@@ -258,4 +258,3 @@ Keep the source task structure and dependency graph. Parallel execution applies 
 1. Produce reviewable release commit/artifact hashes, supported OS/runtime lock, migrations, approved catalog/legal/offer references, operators, scoped deployment/DNS/cutover and rollback plans.
 2. Prevent live activation with fake adapters, synthetic prices/terms, unapproved profiles or missing bank/recovery/archive/operational proof; expose unresolved readiness items.
 3. Execute production, old-trial-page changes or real payment/refund tests only under their separately scoped instructions; report actual checks and rollback readiness without marking pending activation complete.
-
