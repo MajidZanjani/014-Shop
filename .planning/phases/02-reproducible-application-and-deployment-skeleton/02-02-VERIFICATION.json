@@ -1,0 +1,140 @@
+{
+  "observed_utc": "2026-10-20T13:53:41.709499+00:00",
+  "root": "/home/claude/project/014-Shop/.claude/worktrees/agent-p02-02-1792499672",
+  "branch": "worktree-agent-p02-02-1792499672",
+  "head": "824c39996e17e171ee9a3dbac2f198cc8434ae9a",
+  "source_sha256": {
+    "ops/nixos/flake.nix": "bb501e58a38e1c29c23864384ea32ea3858afed445558e5623c50a0647eb9597",
+    "ops/nixos/flake.lock": "865a3c07a35f43f024ce7c01614be82cb795707edac8e27092bdbba42519cd75",
+    "scripts/check.py": "10e1b3bb95e988847ece0e5f96ac92d0fdf1fb39a1699245792418fc261b9c96",
+    "scripts/dev_postgres.py": "a240307064e18b70c4a11c7ed74380d2fe99a8c3e848888f4b048cd76a92d187",
+    "tests/test_check.py": "39608e013632d6f0880d0485ddf47c69c77b4832b515f1c0d3eb4c005c1ed0f2"
+  },
+  "commands": [
+    {
+      "name": "environment",
+      "command_argv": [
+        "nix",
+        "develop",
+        "./ops/nixos",
+        "--command",
+        "python3",
+        "scripts/check.py",
+        "environment"
+      ],
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "stdout": "TOOL_PROVENANCE {\"python3\": {\"path\": \"/nix/store/nr6vqhv33q8n6nbyy529fvcydy3zp1jd-python3-3.13.16-env/bin/python3\"}}\nTOOL_PROVENANCE {\"node\": {\"path\": \"/nix/store/x6a7dbhj1fmhwk0d9124zkszdfhd7k91-nodejs-24.22.0/bin/node\"}}\nTOOL_PROVENANCE {\"npm\": {\"path\": \"/nix/store/x6a7dbhj1fmhwk0d9124zkszdfhd7k91-nodejs-24.22.0/bin/npm\"}}\nPOSTGRESQL_BACKEND 277205|18.6|PostgreSQL 18.6 on x86_64-pc-linux-gnu, compiled by clang version 21.1.8, 64-bit\nENVIRONMENT_PASS\n{\"lane\": \"environment\", \"checks\": 2, \"tests\": 14, \"failures\": 0, \"elapsed_seconds\": 0.6500782369985245, \"tool_identity\": {\"python3\": {\"path\": \"/nix/store/nr6vqhv33q8n6nbyy529fvcydy3zp1jd-python3-3.13.16-env/bin/python3\", \"version\": \"3.13.16\"}, \"node\": {\"path\": \"/nix/store/x6a7dbhj1fmhwk0d9124zkszdfhd7k91-nodejs-24.22.0/bin/node\", \"version\": \"v24.22.0\"}, \"npm\": {\"path\": \"/nix/store/x6a7dbhj1fmhwk0d9124zkszdfhd7k91-nodejs-24.22.0/bin/npm\", \"version\": \"11.19.1\"}, \"pip\": {\"version\": \"pip 26.2.1 from /nix/store/nr6vqhv33q8n6nbyy529fvcydy3zp1jd-python3-3.13.16-env/lib/python3.13/site-packages/pip (python 3.13)\"}, \"systemctl\": {\"path\": \"/nix/store/kmzlca218j6j1ar292fxj7707qzypij8-systemd-260.5/bin/systemctl\"}, \"tar\": {\"path\": \"/nix/store/h24069nxh2alm3afdx5635k756lsiwf0-gnutar-1.35/bin/tar\"}, \"xz\": {\"path\": \"/nix/store/fr31df17rksfki6nv00xq4s5apvqpyhw-xz-5.8.4-bin/bin/xz\"}, \"bzip2\": {\"path\": \"/nix/store/a7501p1w90nhbln9259viwql8m4mnbx5-bzip2-1.0.8-bin/bin/bzip2\"}, \"gzip\": {\"path\": \"/nix/store/k1z3ys65nbrdc60975wajrj4xjwaqqm4-gzip-1.14/bin/gzip\"}, \"unzip\": {\"path\": \"/nix/store/xskccvjphsv5kin0j6a5w82wcsl3q9yr-unzip-6.0/bin/unzip\"}, \"make\": {\"path\": \"/nix/store/sd7yly1jfqhbqmqm938hb6zv68v2ji40-gnumake-4.4.1/bin/make\"}, \"gcc\": {\"path\": \"/nix/store/dy6j7267wrgjlr2z748sbx83zj16vs3c-gcc-wrapper-15.3.0/bin/gcc\"}, \"pkg-config\": {\"path\": \"/nix/store/viqf3122g0bn0ahqgns1yg52axx9p531-pkg-config-wrapper-0.29.2/bin/pkg-config\"}, \"postgresql\": {\"path\": \"/nix/store/r9m7pml7sjm3a91pi63wl06gjiw8ll9v-postgresql-18.6/bin\", \"version\": \"18.6\"}}, \"evidence_class\": \"local-synthetic\"}\n",
+      "stderr": "warning: Git tree '/home/claude/project/014-Shop/.claude/worktrees/agent-p02-02-1792499672' is dirty\ntest_all_requires_every_final_lane (test_check.DispatcherTests.test_all_requires_every_final_lane) ... ok\ntest_every_mode_rejects_missing_producer (test_check.DispatcherTests.test_every_mode_rejects_missing_producer) ... ok\ntest_failures_and_skips_rejected (test_check.DispatcherTests.test_failures_and_skips_rejected) ... ok\ntest_libpq_configuration_is_scratch_only (test_check.DispatcherTests.test_libpq_configuration_is_scratch_only) ... ok\ntest_missing_producer_is_nonzero (test_check.DispatcherTests.test_missing_producer_is_nonzero) ... ok\ntest_no_database_tools_is_nonzero (test_check.DispatcherTests.test_no_database_tools_is_nonzero) ... ok\ntest_owned_subprocess_timeout_is_bounded (test_check.DispatcherTests.test_owned_subprocess_timeout_is_bounded) ... ok\ntest_producer_must_report_expected_marker (test_check.DispatcherTests.test_producer_must_report_expected_marker) ... ok\ntest_producer_must_report_positive_counts (test_check.DispatcherTests.test_producer_must_report_positive_counts) ... ok\ntest_quick_requires_every_producer (test_check.DispatcherTests.test_quick_requires_every_producer) ... ok\ntest_unexpected_database_provenance_rejected (test_check.DispatcherTests.test_unexpected_database_provenance_rejected) ... ok\ntest_unsafe_cleanup_rejected (test_check.DispatcherTests.test_unsafe_cleanup_rejected) ... ok\ntest_worker_and_adapter_ownership (test_check.DispatcherTests.test_worker_and_adapter_ownership) ... ok\ntest_zero_checks_rejected (test_check.DispatcherTests.test_zero_checks_rejected) ... ok\n\n----------------------------------------------------------------------\nRan 14 tests in 0.060s\n\nOK\n",
+      "elapsed_seconds": 1.183368108002469,
+      "pass": true
+    },
+    {
+      "name": "no-database",
+      "command_argv": [
+        "nix",
+        "develop",
+        "./ops/nixos",
+        "--command",
+        "env",
+        "-u",
+        "SHOP_POSTGRES_BIN",
+        "python3",
+        "scripts/check.py",
+        "environment"
+      ],
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "stdout": "TOOL_PROVENANCE {\"python3\": {\"path\": \"/nix/store/nr6vqhv33q8n6nbyy529fvcydy3zp1jd-python3-3.13.16-env/bin/python3\"}}\nTOOL_PROVENANCE {\"node\": {\"path\": \"/nix/store/x6a7dbhj1fmhwk0d9124zkszdfhd7k91-nodejs-24.22.0/bin/node\"}}\nTOOL_PROVENANCE {\"npm\": {\"path\": \"/nix/store/x6a7dbhj1fmhwk0d9124zkszdfhd7k91-nodejs-24.22.0/bin/npm\"}}\n",
+      "stderr": "warning: Git tree '/home/claude/project/014-Shop/.claude/worktrees/agent-p02-02-1792499672' is dirty\nFAIL lane=environment failures=1: missing pinned SHOP_POSTGRES_BIN; use nix develop\n",
+      "elapsed_seconds": 0.5646969790104777,
+      "pass": true
+    },
+    {
+      "name": "wrong-tool",
+      "command_argv": [
+        "nix",
+        "develop",
+        "./ops/nixos",
+        "--command",
+        "env",
+        "SHOP_NODE=/missing",
+        "python3",
+        "scripts/check.py",
+        "environment"
+      ],
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "stdout": "TOOL_PROVENANCE {\"python3\": {\"path\": \"/nix/store/nr6vqhv33q8n6nbyy529fvcydy3zp1jd-python3-3.13.16-env/bin/python3\"}}\nTOOL_PROVENANCE {\"node\": {\"path\": \"/nix/store/x6a7dbhj1fmhwk0d9124zkszdfhd7k91-nodejs-24.22.0/bin/node\"}}\n",
+      "stderr": "warning: Git tree '/home/claude/project/014-Shop/.claude/worktrees/agent-p02-02-1792499672' is dirty\nFAIL lane=environment failures=1: unexpected binary identity: node\n",
+      "elapsed_seconds": 0.12944864301243797,
+      "pass": true
+    },
+    {
+      "name": "quick-missing-producer",
+      "command_argv": [
+        "nix",
+        "develop",
+        "./ops/nixos",
+        "--command",
+        "python3",
+        "scripts/check.py",
+        "quick"
+      ],
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "stdout": "",
+      "stderr": "warning: Git tree '/home/claude/project/014-Shop/.claude/worktrees/agent-p02-02-1792499672' is dirty\nFAIL lane=quick failures=1: frontend: missing required producer scripts/check_frontend.py\n",
+      "elapsed_seconds": 0.1282734550186433,
+      "pass": true
+    },
+    {
+      "name": "all-missing-producer",
+      "command_argv": [
+        "nix",
+        "develop",
+        "./ops/nixos",
+        "--command",
+        "python3",
+        "scripts/check.py",
+        "all"
+      ],
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "stdout": "",
+      "stderr": "warning: Git tree '/home/claude/project/014-Shop/.claude/worktrees/agent-p02-02-1792499672' is dirty\nFAIL lane=all failures=1: frontend: missing required producer scripts/check_frontend.py\n",
+      "elapsed_seconds": 0.12802144495071843,
+      "pass": true
+    },
+    {
+      "name": "review-packet",
+      "command_argv": [
+        "python3",
+        "-B",
+        "scripts/qualify_dependencies.py",
+        "--check-review"
+      ],
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "stdout": "REVIEW_READY candidate_set_sha256=136610b07612762d390b3b3c234ff1ef3f6dc6b0e44a69a2abc646d9106b51bd artifacts=20; integrity only, no approval\n",
+      "stderr": "",
+      "elapsed_seconds": 0.0777127739856951,
+      "pass": true
+    },
+    {
+      "name": "whitespace",
+      "command_argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 0.0015357909724116325,
+      "pass": true
+    }
+  ],
+  "evidence_class": "local-synthetic"
+}
