@@ -3,6 +3,7 @@
 import hashlib
 import re
 import sys
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -249,9 +250,36 @@ ARTIFACTS = (CHECKER, MATRIX, DECISIONS, SCOPE, LEDGER)
 GATES = ("FLAGGED SRC-04/unclassified", "source intent", "approval scope", "execution isolation",
          "source preservation prohibition", "pending decisions prohibition", "T02–T14 remain unexecuted")
 
+def evidence_record(data):
+    """Bound the dated T01 record within the shared evidence document."""
+    value = text(data, "implementation evidence")
+    headings = list(re.finditer(r"^#{1,2} T(\d{2})\b[^\n]*$", value, re.M))
+    own = [heading for heading in headings if heading[1] == "01"]
+    require(len(own) == 1, "one bounded T01 record")
+    start = own[0].start()
+    end = next((heading.start() for heading in headings if heading.start() > start), len(value))
+    return value[start:end], start, end
+
+
+def historical_artifacts(revision):
+    """Read only the five allowlisted artifacts from an attributable Git commit."""
+    require(isinstance(revision, str) and bool(re.fullmatch(r"[0-9a-f]{40}", revision)),
+            "historical artifact commit identity")
+    ancestor = subprocess.run(["git", "merge-base", "--is-ancestor", revision, "HEAD"],
+                              cwd=ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=5)
+    require(ancestor.returncode == 0, "historical artifact commit reachable")
+    result = {}
+    for name in ARTIFACTS:
+        saved = subprocess.run(["git", "show", f"{revision}:{name}"], cwd=ROOT,
+                               capture_output=True, timeout=5)
+        require(saved.returncode == 0, "historical artifact available: " + name)
+        result[name] = saved.stdout
+    return result
+
+
 def evidence(data, inputs):
     import json
-    value = text(data, "T01 evidence")
+    value = evidence_record(data)[0]
     blocks = re.findall(r"\x60{3}json\n(.*?)\n\x60{3}", value, re.S)
     require(len(blocks) == 1, "one evidence metadata block")
     try:
@@ -260,7 +288,7 @@ def evidence(data, inputs):
         raise ContractError("evidence JSON") from None
     count = 0
     for field in ("observed_utc", "head", "branch", "root", "status", "environment",
-                  "tasks", "commands", "artifacts", "isolation", "acceptance"):
+                  "tasks", "commands", "artifacts", "artifact_revision", "isolation", "acceptance"):
         count += require(field in meta and meta[field] is not None, "evidence field: " + field)
     count += require(bool(re.fullmatch(r"[0-9a-f]{40}", meta["head"])), "evidence head")
     count += require(bool(re.fullmatch(r"\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ", meta["observed_utc"])), "evidence timestamp")
@@ -273,8 +301,9 @@ def evidence(data, inputs):
                      "conditional acceptance/isolation")
     count += require(list(meta["tasks"]) == [f"01-{p:02}-{t:02}" for p in (1, 2) for t in (1, 2, 3)]
                      and all(meta["tasks"].values()), "six task statuses")
+    recorded = historical_artifacts(meta["artifact_revision"])
     for name in ARTIFACTS:
-        count += require(meta["artifacts"].get(name) == hashlib.sha256(inputs[name]).hexdigest(),
+        count += require(meta["artifacts"].get(name) == hashlib.sha256(recorded[name]).hexdigest(),
                          "evidence artifact revision: " + name)
     for mode in ("source", "scope", "inventory", "decisions"):
         observation = meta["commands"].get(mode, {})
@@ -407,8 +436,23 @@ def self_check():
         candidate[path] = None
         reject("all missing " + path, lambda candidate=candidate: all_contracts(candidate))
     ev = complete[EVIDENCE]
-    match = re.search(r"\x60{3}json\n(.*?)\n\x60{3}", ev.decode(), re.S)
+    _, begin, end = evidence_record(ev)
+    match = re.compile(r"\x60{3}json\n(.*?)\n\x60{3}", re.S).search(ev.decode(), begin, end)
     metadata = json.loads(match[1])
+    future_ledger = dict(complete)
+    future_ledger[LEDGER] += b"\nT02 evidence link added after T01 execution.\n"
+    require(all_contracts(future_ledger)["evidence"] > 0, "shared ledger advances without rewriting T01")
+    future_record = dict(complete)
+    future_record[EVIDENCE] += b'\n## T02 local documentation evidence\n\n```json\n{"phase": "02"}\n```\n'
+    require(all_contracts(future_record)["evidence"] > 0, "later phase JSON stays outside T01 metadata")
+    duplicate = ev + b'\n```json\n{}\n```\n'
+    reject("duplicate T01 metadata", lambda: evidence(duplicate, complete))
+    unknown_revision = dict(metadata, artifact_revision="0" * 40)
+    unknown_bytes = (ev.decode()[:match.start(1)] + json.dumps(unknown_revision) + ev.decode()[match.end(1):]).encode()
+    reject("unavailable historical artifact revision", lambda: evidence(unknown_bytes, complete))
+    future_decisions = dict(complete)
+    future_decisions[DECISIONS] = register.decode().replace("| Pending | None supplied |", "| Approved | Approver: fixture; Date: 2026-10-20; Scope: fixture only; Revision: synthetic; Evidence: in-memory control |", 1).encode()
+    require(all_contracts(future_decisions)["evidence"] > 0, "valid later register revision preserves T01 snapshot")
     # Evidence describes its original execution, even after merge/relocation.
     relocated = dict(metadata, root="/tmp/retained-t01/" + metadata["branch"].removeprefix("worktree-"))
     candidate_bytes = (ev.decode()[:match.start(1)] + json.dumps(relocated) + ev.decode()[match.end(1):]).encode()
@@ -467,6 +511,6 @@ def main():
 if __name__ == "__main__":
     try:
         main()
-    except (ContractError, OSError) as exc:
+    except (ContractError, OSError, subprocess.TimeoutExpired) as exc:
         print(f"FAIL T01: {exc}", file=sys.stderr)
         sys.exit(1)

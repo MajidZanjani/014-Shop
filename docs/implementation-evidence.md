@@ -65,7 +65,8 @@ The observed HEAD below is Task 2's committed revision, with Task 3 checker/ledg
     "root": "/home/claude/project/014-Shop",
     "previous_checker_sha256": "73602f2c396d401273dab29357af1fbbc6372f69040d651221a45da96d1c442e",
     "change": "Validate recorded historical worktree identity instead of equality to current checkout; allow requirement lifecycle statuses; add relocation/rejection regression checks."
-  }
+  },
+  "artifact_revision": "25b8417b0f9f0c59685bebb1c88811aa9e98b626"
 }
 ```
 
@@ -114,3 +115,11 @@ The original worktree passed its checks, but the first merged-checkout all/self-
 The metadata keeps the original execution identity and records the later repair separately under post_merge_repair, including the previous checker hash. Only the checker artifact hash is refreshed to the repaired code; original task observations above remain historical. No original source bytes, approvals or original scope facts changed. Post-merge checker results are recorded after the actual repair run.
 
 Observed repaired-checkout results: all mode exited 0 with source 18, scope 25, inventory 279, decisions 88 and evidence 38 checks; self-check exited 0 with 57 asserted rejections and a valid relocated-history control. Scoped whitespace check exited 0.
+
+## Historical artifact and record-boundary repair
+
+Independent review CR-01 and CR-02 reproduced two future-phase lifecycle failures. The original execution/post-merge artifact hashes are now anchored to commit 25b8417b0f9f0c59685bebb1c88811aa9e98b626, where all five recorded artifact bytes are preserved. The checker reads only those allowlisted Git objects after verifying the full commit is reachable; a shallow clone lacking the recorded commit fails with an explicit missing-history contract instead of claiming verified provenance. Current source, inventory and decision rules still validate current inputs separately. A later ledger/register edit no longer requires rewriting T01 observations.
+
+T01 metadata parsing is now bounded by task-numbered evidence headings. Later T02 JSON blocks are independent, while duplicate JSON inside T01 is rejected. In-memory regression controls cover a later ledger note, a structurally valid synthetic approval record, later-phase JSON, duplicate T01 metadata and unavailable historical commits. The synthetic approval control is never persisted to the live register and grants no authority. Actual production/business statuses remain pending.
+
+Observed lifecycle-repair results on main: all exited 0 (source 18, scope 25, inventory 279, decisions 88, evidence 39); self-check exited 0 with 59 asserted rejections and positive historical-relocation, later-ledger, later-register and later-phase-JSON controls. Whitespace checks passed.

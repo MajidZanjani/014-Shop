@@ -48,3 +48,7 @@ None. No risk acceptance or business approval has been inferred.
 | 2026-10-20 | 9 | 9 | 0 | Configured L1 mitigation presence, named source review and executed checker/rejection results |
 
 L1 short-circuit applies: a threat model was authored at plan time and all planned mitigations are present. No new threat scan or deeper ASVS certification is claimed. Independent code review follows.
+
+## Post-review mitigation note
+
+The historical-evidence reader added for CR-01 uses only five constant allowlisted paths and a full 40-hex commit identity, verifies ancestry, invokes Git as an argv array with a bounded timeout, and emits no stored document contents. It never opens the recorded historical filesystem root. CR-02 bounds only T01 record parsing; duplicate T01 metadata still rejects. No dependencies or external operations were added. Automated regression controls pass; independent code re-review remains requested.
