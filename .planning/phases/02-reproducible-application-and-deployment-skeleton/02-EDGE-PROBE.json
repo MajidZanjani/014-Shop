@@ -1,0 +1,50 @@
+{
+  "items": [
+    {
+      "requirement_id": "BUILD-01",
+      "category": "unclassified",
+      "status": "unresolved",
+      "verification": null,
+      "resolution": null,
+      "reason": null,
+      "probe": "unclassified \u2014 review manually"
+    },
+    {
+      "requirement_id": "BUILD-02",
+      "category": "unclassified",
+      "status": "unresolved",
+      "verification": null,
+      "resolution": null,
+      "reason": null,
+      "probe": "unclassified \u2014 review manually"
+    },
+    {
+      "requirement_id": "BUILD-03",
+      "category": "unclassified",
+      "status": "unresolved",
+      "verification": null,
+      "resolution": null,
+      "reason": null,
+      "probe": "unclassified \u2014 review manually"
+    },
+    {
+      "requirement_id": "BUILD-04",
+      "category": "unclassified",
+      "status": "unresolved",
+      "verification": null,
+      "resolution": null,
+      "reason": null,
+      "probe": "unclassified \u2014 review manually"
+    }
+  ],
+  "coverage": {
+    "applicable": 4,
+    "resolved": 0,
+    "unresolved": 4,
+    "unclassified": 4,
+    "byVerification": {
+      "explicit": 0,
+      "backstop": 0
+    }
+  }
+}
