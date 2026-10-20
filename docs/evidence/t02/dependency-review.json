@@ -5651,8 +5651,14 @@
       "release_assessment": "Same official PostgreSQL 18.6 source archive; installed libpq/OpenSSL build identity and client smoke tests remain pending."
     }
   ],
-  "human_response": null,
-  "status": "awaiting-human-review",
+  "human_response": {
+    "response": "approve",
+    "candidate_set_sha256": "136610b07612762d390b3b3c234ff1ef3f6dc6b0e44a69a2abc646d9106b51bd",
+    "attribution": "User in this conversation; explicit USER RESPONSE in phase02 plan02-01 executor continuation objective",
+    "recorded_utc": "2026-10-20T12:30:19Z",
+    "scope": "Reviewed exact direct-artifact set only; no business, legal, provider, certification or operational approval. No installation in plan 02-01; subsequent plans own bootstrap."
+  },
+  "status": "human-reviewed",
   "evidence_class": "local-inert-public-artifact-inspection",
   "candidate_manifest_sha256": "06b5424d70ef0b167f4206f0bd76dc42ee0ed8c90fe9bbff3ffa90cfdaf999ea",
   "graph_checks": [

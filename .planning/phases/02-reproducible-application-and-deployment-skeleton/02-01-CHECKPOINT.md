@@ -1,3 +1,14 @@
+# Checkpoint status: resolved
+
+Resolved by explicit user response in this conversation; historical checkpoint text below is preserved as evidence.
+
+
+## Task 2 resolution
+
+User in this conversation explicitly responded `approve` to candidate-set SHA-256 `136610b07612762d390b3b3c234ff1ef3f6dc6b0e44a69a2abc646d9106b51bd`. Recorded UTC: `2026-10-20T12:30:19Z`. Integrity was verified before recording. Approval covers this exact reviewed artifact set only. No installs were performed; bootstrap belongs to subsequent plans. Business, legal, provider, certification and operational approvals are excluded. All unresolved findings above remain unresolved.
+
+## Original checkpoint evidence
+
 # 02-01 checkpoint: Task 2 blocking-human
 
 Plan is NOT COMPLETE. Task 1 completed and pushed in eb80af6b2df7cfd16f9ddaeb7799efebc03c9bfa (RED) and 6210f14100d339698b829ba4a039aedf59179920 (GREEN). See halted 02-01-SUMMARY.md and actual 02-01-RED.json.
