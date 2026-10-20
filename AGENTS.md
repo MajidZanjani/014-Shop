@@ -2,32 +2,43 @@
 
 ## Project
 
-**Synaptic Laboratories IP Shop**
+**SLL xSPI-MC Shop**
 
-One configurable semiconductor-IP shop for engineers evaluating IP and buyers purchasing a reviewed licence scope. Static product discovery and configuration lead to trial/technical/quote inquiries, accepted-quote payment, explicitly approved direct offers, and tracked manual delivery with private downloads. Staff manage these journeys through MFA-protected browser workflows.
+A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering and business purchasers. Customers configure separate vendor-specific licence lines, request reviewed quotes or buy approved offers, and purchase non-expiring ten-hour support packages independently or with IP. Staff use MFA-protected workflows to review acceptance/payment, issue matching private packages and keys, process renewal/rehosting cases, and account for support work.
 
-**Core Value:** Turn a reviewed IP configuration into an attributable agreement, verified payment and authorized delivery without losing commercial evidence or duplicating financial/licence effects.
+**Core Value:** Turn an exact reviewed xSPI-MC configuration or support purchase into attributable acceptance, verified payment and recoverable licence delivery or support credit without duplicate effects.
 
 ### Constraints
 
-- **Architecture**: Static Astro + selected React islands; Django/Gunicorn + PostgreSQL; one leased DB outbox worker. Django owns /inquiry/simple/.
-- **Authority**: Ordinary Markdown/YAML compiles immutable public/private revisions. Admin cannot create a competing mutable catalog. Backend owns validation, pricing, permission and payment decisions.
-- **Commercial**: One English product and one activated currency; actual SKU/release/prices/seller/tax/bank/terms unknown. Default valid configuration is awaiting_review, null price and disabled live purchase. Safety selections request requirements, not certifications.
-- **Profiles**: Immutable sll-trial-form-2026-10-19; proposed sll-shop-form-v1; pending sll-source-to-shop-v1. Protected approval records authorize production changes; editable frontmatter cannot approve itself.
-- **Financial safety**: Archive recoverable snapshots before bank operations, document issuance or delivery activation. Keep prepared/completed evidence separate. An uncertain outcome cannot authorize a second charge.
-- **Isolation**: Proposed separate new OVH VM with native NixOS/systemd, public GRA objects and private off-region SBG evidence/backups. Existing dedicated services stay outside the task boundary. Customer/staff hostnames are proposed, not deployed.
-- **Recovery**: Proposed 15-minute DB RPO and four-hour restore after operator start; measure full outage and bank-dependent reopening separately. VM/Caddy remains a shared availability dependency.
-- **Evidence**: Real PostgreSQL for locks; distinguish synthetic/fake bank, selected-bank sandbox, actual OVH and production proof. No invented acceptance, legal, compatibility or vendor guarantees.
-- **Authorization**: Current instruction authorizes reading and planning. Implementation and external provisioning/cutover/mail/payment operations are not performed by this planning task.
-- **Estimate**: Supplied full scope 40–65 engineer-days, scoped tests included, excluding external waiting/legal work. Supplied hosting estimate is historical planning input, not a current account quote.
+- **Architecture:** Static Astro Content Collections + selected React islands; Django LTS/Gunicorn + PostgreSQL and one leased database outbox worker; Django owns `/purchase/simple/`. No request-time Astro/Node service or mandatory Redis/Celery/CMS/IdP.
+- **Authority:** `SLL_xSPI_MC_Product_Page.md` embedded in the October 20 proposal is the sole product-definition source. One Markdown/YAML catalog compiles immutable public/private revisions; protected approvals govern offers. Admin cannot create a competing catalog.
+- **Product:** `sll-xspi-mc`, `sll-xspi-mc-support-10h`, profile `sll-xspi-mc-v1`; exactly three vendors and thirteen ordered families. One vendor and quantity one per configured IP line; support has real positive package quantity.
+- **Rights and money:** RDP is Altera-only; higher volume requires quotation. EUR is draft display/collection intent. Unknown rates, recurrence, coverage, rights, access or terms remain null/pending and disable affected live offers. Five-plus-five allowances and €50 are provisional; no universal MAC rule.
+- **Private data:** Encrypt/version host bindings, mask ordinary summaries, and authorize each resource. Keep raw host IDs/keys, business/tax details and bearer links out of public artifacts, URLs, ordinary logs and browser persistence. Staff MFA covers every privileged route.
+- **Durability:** Archive recoverable snapshots before bank dispatch, document issue, delivery activation, support-credit spendability and chargeable work; archive actual support completion before final statement publication. Prepared evidence is not completion. An uncertain bank operation cannot authorize a blind retry.
+- **Support:** Each paid/accepted package grants exactly 36,000 integer seconds once with no expiry. Reservations prevent competing spend; corrections reverse/replace; statements use committed ledger revisions. Support never renews IP rights.
+- **Infrastructure:** New isolated OVH B2-7 GRA11 monthly after quote/image/workload qualification; B3-8 hourly fallback. Native hardened NixOS/systemd preferred; one approved Podman alternative if necessary. Separate 50 GB DB volume, `gra` public/private objects and `sbg` recovery/evidence with distinct credentials.
+- **Domains:** Customer `https://shop.xspi.pro`; proposed staff `https://shop-admin.xspi.pro`; Route 53 `xspi.pro` authority unverified. Dedicated new certificate/key per hostname, explicit Let's Encrypt, HTTP-01/TLS-ALPN-01 first; conditional tightly scoped DNS-01 only if needed. Existing services/keys/DNS outside scope.
+- **Recovery:** Proposed five-minute WAL archive timeout, 35-day DB recovery window, 15-minute DB RPO and four-hour technical restore after operator start. Measure full safe reopening separately. Block effects before restored service exposure; invalidate sessions/challenges, reconcile revocations and consumed MFA codes before access.
+- **Evidence:** Real PostgreSQL for concurrency; label local/synthetic, selected-bank sandbox, actual OVH and production evidence separately. No invented approvals, compatibility, legal or provider guarantees.
+- **Authorization:** This reset authorizes reading and replacing planning/documentation only. Application implementation, cloud spending/billing, DNS/TLS issuance, real mail, bank operations and production cutover require their applicable scope.
+- **Estimates:** Supplied 46–74 engineer-days excludes external waiting and ongoing operations. Supplied modeled production £27.20/month ex VAT, £29.24 with temporary staging or £38.76 with permanent staging excludes DNS and other stated costs; these are unverified account estimates, not current quotes.
 
 <!-- GSD:project-end -->
 
-<!-- GSD:stack-start source:STACK.md -->
+<!-- GSD:stack-start source:research/STACK.md -->
 
 ## Technology Stack
 
-Technology stack not yet documented. Will populate after codebase mapping or first phase.
+| Component | Planning choice | Verification |
+|---|---|---|
+| Public build | Static Astro Content Collections + React islands | Exact compatible releases/artifact hashes at T02; no server adapter |
+| App | Django LTS, Gunicorn, Psycopg, Python | Supplied Django 5.2.18/Python 3.13 are research inputs, verify support/patches/licences at T02 |
+| Database/queue | PostgreSQL and one leased outbox worker | Supplied PostgreSQL 18.6 is a baseline assertion; real locking/concurrency proof |
+| Build runtime | Supplied Astro 7/React 19/Node 24 LTS | Verify actual compatibility and support before locks |
+| Services | Supported pinned NixOS/native systemd; approved Podman fallback | Qualify image/bootstrap at T11; no simultaneous managers |
+| Edge | Caddy 2, explicit Let's Encrypt | Pinned build; DNS-01 module only if needed, test renewal |
+| Recovery | pgBackRest, separate gra/sbg namespaces and custody | Actual provider retention/ACL/restore proof at T11/T12 |
 <!-- GSD:stack-end -->
 
 <!-- GSD:conventions-start source:CONVENTIONS.md -->

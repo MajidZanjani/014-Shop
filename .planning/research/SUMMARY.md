@@ -1,28 +1,19 @@
-# Project Research Summary
+# Project Research Summary: SLL xSPI-MC Shop
 
-**Source:** Supplied proposal and implementation handoff dated 2026-10-19, both read completely; hashes in ../SOURCES.md.
-**Method:** Reuse supplied research. No new vendor/source audit or independently verified current-version claims.
+**Method:** Inline synthesis of the two October 20 sources and exact embedded product; supplied dated research reused. No new live vendor, merchant, account, tariff or certificate validation. File hashes and read coverage are recorded in ../SOURCES.md.
 
 ## Key Findings
 
-- Static Astro and React islands support public discovery; Django/PostgreSQL own commercial authority, scoped sessions, admin and durable jobs.
-- Quote-led payment and approved direct offers share order/payment services. Valid unknown configurations remain awaiting_review with null price.
-- Markdown compiles public/private immutable revisions through one strict schema; Python/TypeScript rule parity requires shared conformance fixtures.
-- Source profile and F-01–F-14 shop changes remain separate. Shop profile approval, not a frontmatter word, controls production import.
-- Archive actual recoverable acceptance/payment/document/delivery snapshots before irreversible operations. Prepared evidence differs from completion.
-- Proposed new NixOS VM/Caddy ingress couples static and dynamic availability; object-origin TLS, permissions and retention need actual OVH proof.
+The product is one vendor-scoped IP SKU plus a separate non-expiring support SKU. Exact family coverage, annual/perpetual rights and host mechanisms govern saleability; source placeholders/provisional node pricing cannot activate themselves. Support uses exact seconds and independent rights, purchases, reservations, debits and statements.
 
-## Implications for Roadmap
+Static Astro/React and Django/PostgreSQL retain one catalog authority and server-owned commerce. Immutable scope/host/price/document revisions bind acceptance to payment and delivery. Financial and support effects need recoverable snapshots before dispatch/spend/work and explicit completion evidence afterward.
 
-Preserve T01–T14 and their dependencies. Source-specific acceptance remains in each original task. Phase 9 needs bank inputs; Phase 10 and Phase 11 can proceed independently after their prerequisites. Local Phase 12 preparation can proceed before external proof. Phase 13 reports pending real-bank/cloud evidence honestly; Phase 14 prepares a concrete release package before any separately authorized activation.
+The selected footprint is an isolated new B2-7 GRA11 VM, separate database volume, gra public/private objects, sbg recovery/evidence and Route 53 xspi.pro DNS. Dedicated ACME certificates and fixed HTTPS object-origin routing preserve the existing main website boundary. One Caddy VM remains a shared availability dependency.
 
-## Research Follow-up
+## Roadmap Implications
 
-T02 verifies actual compatible patches, licences, reproducible builds and supported OS. T09 verifies the selected merchant protocol, sandbox and complete-window reconciliation. T11 verifies deployed OVH routing/ACL/Object Lock behavior. T12 measures recovery and financial reconstruction. T14 obtains current account quotes and readiness decisions. Supplied prices and support dates are historical source assertions until checked at the relevant task.
+Use the new handoff T01–T14 and its actual dependencies. T09 bank inputs can wait while independent T10/T11 preparation progresses. T04's frontend and T05/T06 backend/private identity join for T07 checkout. T12 must recover external payments, issued keys, document numbers, support work and post-restore-point access revocations. T13 reports conditional external evidence honestly; T14 prepares concrete change/rollback before scoped activation.
 
-## Sources
+## Unresolved Inputs and Verification
 
-- ../../SLL-IP-Shop-Proposal-2026-10-19.md — all sections, including source audit appendices A–C and D-01–D-09.
-- ../../SLL-IP-Shop-Codex-Handoff-2026-10-19.md — T01–T14, acceptance, evidence and authorization boundaries.
-
-No application, fake-bank, sandbox, OVH or production tests have been performed by this initialization.
+P-01–P-12 remain pending in docs/decisions.md. Verify dependencies/licences at T02, actual merchant contract/capabilities at T09, current OVH quote and Route 53/TLS/object semantics at T11, retained storage/custody and measured recovery at T12, and applicable release approvals at T14. No application tests or external changes occurred during replanning.

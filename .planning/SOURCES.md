@@ -1,16 +1,27 @@
 # Planning Sources
 
-Read completely on 2026-10-19. These files remain unchanged and are normative detail for the planning draft.
+## Current authority
 
-- `SLL-IP-Shop-Proposal-2026-10-19.md` — 1789 lines; SHA-256 `96c6fd3a222ff090f23b5d036dd61cf8314bb621c623323a2b59befa1c338c68`.
-- `SLL-IP-Shop-Codex-Handoff-2026-10-19.md` — 299 lines; SHA-256 `5bfda692ae8b7a54cbd830bb601f7b4b9048a193644bd6c638cb2df6320279f6`.
+The user's 2026-10-20 instruction replaces the complete active planning baseline with the following two files. The embedded product is the sole product-definition source; the proposal supplies architecture and the handoff supplies task acceptance. Subsequent explicit user scope governs authorization. Report material source conflicts; do not revive superseded inputs.
+
+| Source | Lines | UTF-8 bytes | SHA-256 |
+|---|---:|---:|---|
+| `SLL-xSPI-MC-Shop-Proposal-2026-10-20.md` | 1783 | 201117 | `d8db6b54e3e887ca940f0faff0949ca1a1fa2ce24c26075aabd78925f0f60356` |
+| `SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-20.md` | 264 | 42140 | `60e6af0fce6db7412408e04eceb0283881585a295f45cbba0607c4bde9f4227e` |
+| `docs/product-source/SLL_xSPI_MC_Product_Page.md` | 449 | 23969 | `562dc4015c62f165df5df3e9ae1aab26b8102385d9dc76a556d5965ddc1a0263` |
+
+Both October 20 documents were read completely, including the source appendix. Proposal and embedded source hashes match the package identities recorded in the handoff. The source's final newline is preserved. The separate third source file was extracted from the proposal, not obtained from another authority.
 
 ## Evidence policy
 
-Reuse the dated audit and research; no new source-form submission, live website audit, vendor verification, implementation or deployment performed. Exact patch versions, prices, OS support and provider capability claims are supplied historical baselines requiring targeted current verification in T02/T09/T11/T14. Preserve observed/inferred/unverified distinctions. Handoff expands proposal acceptance; record any future discrepancy as a decision instead of silently picking conflicting behavior.
+This is source-based planning. Supplied research is recorded as dated input, with no new live vendor/site/bank/account audit. Exact dependency versions/licences/support must be verified in T02; selected merchant capabilities in T09; current quote/stock/IPv4/disk/billing/DNS/TLS/ACL behavior in T11; retained storage/recovery in T12; release approvals in T14. No legal conclusion or provider performance guarantee is inferred.
 
-Audit coverage: 53 fields, 16 lists/127 values, 242 paired country/phone entries, nine exercised conditional predicates. Source UI hidden-state retention differs deliberately from proposed F-12 clearing. JSON schema/protocol examples are incomplete illustrative inputs, not production validators or chosen merchant configuration.
+The source is a written working draft, not a live-form audit. Counts are logical definitions and source rows: 3 vendors, 13 ordered families, 13 controls with repeated host rows, 19 business checkout groups, two helpers, four IP declarations and one independent marketing control. It supplies no fixed country list or tax-status enum. Price/schema/API examples are incomplete illustrative contracts. Missing price, recurrence, coverage, access or rights stays pending.
 
 ## Traceability
 
-PROJECT.md synthesizes scope. REQUIREMENTS.md maps source capabilities to unique IDs. ROADMAP.md preserves all T01–T14 tasks and dependencies. docs/decisions.md is the working unresolved-input register. Future task evidence belongs in docs/evidence/Txx.md, using handoff §6 fields; implementation progress belongs in docs/implementation-status.md when execution begins.
+SOURCE-MATRIX.md preserves exact option/control/declaration and reset inventories with requirement links. REQUIREMENTS.md gives atomic IDs and one primary phase each. ROADMAP.md retains exact new handoff outputs, acceptance and evidence. docs/decisions.md is the single working P-01–P-12 register. Implementation evidence is planned under docs/implementation-evidence.md with per-task status, code/catalog/config revisions, commands/observations, environment, unresolved decisions and exact affected operations. It is not yet populated with claimed implementation results.
+
+## Reset scope
+
+All old .planning contents were removed before regeneration; docs/decisions.md was replaced and generated AGENTS.md context refreshed. No legacy source names, trial inventories/profiles or D-register carry active authority. The two supplied files are unchanged. Prior planning is recoverable from Git history and a temporary /tmp snapshot, outside active planning. No application or external state was changed.
