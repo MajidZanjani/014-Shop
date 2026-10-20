@@ -69,7 +69,7 @@ def source(inputs):
 
 def load_source():
     return {name: (ROOT / name).read_bytes() if (ROOT / name).is_file() else None
-            for name in (*IDENTITIES, MATRIX, REQS, LEDGER)}
+            for name in (*IDENTITIES, MATRIX, REQS, LEDGER, ".planning/ROADMAP.md")}
 
 
 SCOPE = "docs/product-source/t01-scope.md"
@@ -111,6 +111,193 @@ def scope(data):
         count += require(meta["isolation"] == "pending" and bool(meta.get("isolation_gate")), "scope pending isolation gate")
         print("GATE: isolation pending; full T01 acceptance withheld")
     return count
+
+
+# Bounded tables from the immutable proposal, before its embedded appendix.
+# Complete row comparison preserves requiredness/defaults as well as labels.
+GROUPS = (
+    ("vendor", 98, 102, 3, 1, "CAT-02", 3),
+    ("family", 104, 118, 13, 2, "CAT-02", 3),
+    ("term", 124, 128, 3, 1, "CAT-02", 3),
+    ("band", 137, 140, 4, 1, "CAT-02", 3),
+    ("access", 150, 151, 2, 1, "AUTH-04", 6),
+    ("control", 167, 179, 13, 1, "SHOP-02", 4),
+    ("business", 189, 207, 19, 1, "COM-04", 7),
+    ("declaration", 219, 222, 4, 1, "COM-05", 7),
+    ("marketing", 223, 223, 1, 1, "AUTH-06", 6),
+    ("reset", 249, 264, 14, 0, "SHOP-02", 4),
+)
+TRACE_HEADING = "## Complete bounded record traceability"
+
+def cells(line):
+    return [part.strip() for part in line.strip().strip("|").split("|")]
+
+def proposal_records(inputs):
+    lines = text(inputs.get(PROPOSAL), PROPOSAL).splitlines()
+    records = []
+    for group, start, end, expected, label_at, req, phase in GROUPS:
+        rows = [(n, line) for n, line in enumerate(lines, 1)
+                if start <= n <= end and line.startswith("| ")
+                and not line.startswith("|---") and not line.startswith("| ---")]
+        # Header rows are excluded by numeric first cell, except the reset table.
+        rows = [(n, line) for n, line in rows
+                if (cells(line)[0].isdigit() or group == "family"
+                    or (group == "reset" and cells(line)[0] != "Customer change"))]
+        require(len(rows) == expected, group + ": bounded source count")
+        heading = next(line.lstrip("# ") for line in reversed(lines[:start])
+                       if line.startswith("#"))
+        for ordinal, (n, line) in enumerate(rows, 1):
+            row = cells(line)
+            label = row[label_at]
+            if group == "family":
+                label = row[0] + " → " + label
+            contract = " / ".join(row)
+            records.append((group + "-" + str(ordinal), label,
+                            f"{PROPOSAL} §{heading}, lines {n}–{n}", contract,
+                            f"SRC-02 Phase 1; {req} Phase {phase}", line))
+    helper_line = next(n for n, line in enumerate(lines[:230], 1)
+                       if line.startswith("Two additional convenience controls"))
+    for i, label in enumerate(("Same as registered address", "Same as purchasing contact"), 1):
+        records.append((f"helper-{i}", label,
+                        f"{PROPOSAL} §Business checkout, lines {helper_line}–{helper_line}",
+                        "Independent convenience helper; proposed linked-state enforcement",
+                        "SRC-02 Phase 1; COM-04 Phase 7", None))
+    return records
+
+def trace_lines(inputs):
+    return ["| " + " | ".join((*record[:5],
+             "Written draft; proposed enforcement only; unresolved approvals remain pending")) + " |"
+            for record in proposal_records(inputs)]
+
+def inventory(inputs):
+    matrix = text(inputs.get(MATRIX), MATRIX)
+    count = 0
+    require(matrix.count(TRACE_HEADING) == 1, "complete inventory section")
+    section = matrix.split(TRACE_HEADING, 1)[1]
+    actual = [line for line in section.splitlines() if line.startswith("|")][2:]
+    expected = trace_lines(inputs)
+    count += require(actual == expected and len(actual) == 78, "exact complete ordered trace records")
+    original = matrix.split("## Row-level source traceability")[0].splitlines()
+    original_tables = [line for line in "\n".join(original).split("## Exact option inventory", 1)[1].splitlines() if line.startswith("|")]
+    source_tables = [line for line in text(inputs.get(PROPOSAL), PROPOSAL).splitlines()[92:264] if line.startswith("|")]
+    count += require(original_tables == source_tables, "original exact ordered inventory tables")
+    product = text(inputs.get(PRODUCT), PRODUCT)
+    reqs = text(inputs.get(REQS), REQS)
+    roadmap = text(inputs.get(".planning/ROADMAP.md"), "roadmap")
+    for identity, label, locator, contract, links, row in proposal_records(inputs):
+        if row:
+            count += require(original.count(row) == 1, identity + ": original matrix row")
+        # Exact source wording is retained; configuration purpose labels and resets
+        # originate in the proposal, not literal product input labels.
+        if identity.split("-")[0] in ("family", "vendor", "term", "access", "business", "declaration", "marketing"):
+            raw_label = label.split(" → ")[-1]
+            count += require(raw_label in product, identity + ": embedded product label")
+        for req, phase in re.findall(r"([A-Z]+-\d+) Phase (\d+)", links):
+            count += require(f"**{req}**:" in reqs and f"| {req} | Phase {phase} |" in reqs
+                             and f"### Phase {phase}:" in roadmap, identity + ": requirement ownership")
+    return count
+
+
+DECISIONS = "docs/decisions.md"
+PHASES = ("T03/T07/T10/T14", "T03/T07/T14", "T03/T07/T10/T14",
+          "T03/T06/T07/T10/T14", "T03/T07/T10/T14", "T10/T14", "T09/T14",
+          "T03/T07/T08/T10/T14", "T11/T12/T14", "T11/T14", "T11/T14", "T06/T10/T12/T14")
+ROLES = ("SLL engineering/product", "SLL commercial/finance",
+         "SLL commercial/legal + engineering", "SLL licensing/engineering",
+         "SLL support/commercial/finance", "SLL engineering/licensing",
+         "SLL finance + selected acquirer", "SLL commercial/legal + tax adviser",
+         "SLL privacy/operations + recovery custodian", "SLL infrastructure/billing owner",
+         "SLL DNS/infrastructure owner", "SLL email/operations + business owners")
+DECISION_HEADER = ["ID", "Decision or supplied fact", "Recommended handling", "Affected phase(s)",
+                   "Operation actually blocked", "Proposed owner", "Status", "Approval evidence"]
+
+def decisions(data, inputs):
+    value = text(data, "decisions")
+    lines = [line for line in value.splitlines() if line.startswith("|")]
+    count = require(len(lines) == 14, "one complete decision table")
+    count += require(cells(lines[0]) == DECISION_HEADER, "decision header")
+    count += require(len(cells(lines[1])) == 8 and all(re.fullmatch(r"-+", c) for c in cells(lines[1])),
+                     "decision delimiter width")
+    source_rows = [cells(line) for line in text(inputs.get(HANDOFF), HANDOFF).splitlines()
+                   if re.match(r"\| P-\d\d \|", line)]
+    require(len(source_rows) == 12, "bounded authoritative P register")
+    rows = [cells(line) for line in lines[2:]]
+    count += require([row[0] for row in rows] == [f"P-{i:02}" for i in range(1, 13)],
+                     "ordered unique complete decisions")
+    for i, row in enumerate(rows):
+        count += require(len(row) == 8 and all(row), "decision width/nonempty fields")
+        count += require(row[:3] == source_rows[i][:3], "decision source meaning")
+        count += require(row[3] == PHASES[i], "decision affected phases")
+        count += require(row[4].startswith(source_rows[i][3]) and "Preparation continues:" in row[4],
+                         "decision operation and unaffected preparation")
+        count += require(row[5] == ROLES[i], "responsible role only")
+        count += require(row[6] in ("Pending", "Approved"), "decision status")
+        if row[6] == "Pending":
+            count += require(row[7] == "None supplied", "pending evidence")
+        else:
+            # This validates evidence structure, never the authority of an approval.
+            count += require(all(re.search(key + r":\s*[^;]+", row[7])
+                                 for key in ("Approver", "Date", "Scope", "Revision", "Evidence"))
+                             and bool(re.search(r"Date: \d{4}-\d\d-\d\d", row[7])),
+                             "dated scoped attributable approval required")
+    return count
+
+
+EVIDENCE = "docs/implementation-evidence.md"
+CHECKER = "docs/product-source/verify_t01.py"
+ARTIFACTS = (CHECKER, MATRIX, DECISIONS, SCOPE, LEDGER)
+GATES = ("FLAGGED SRC-04/unclassified", "source intent", "approval scope", "execution isolation",
+         "source preservation prohibition", "pending decisions prohibition", "T02–T14 remain unexecuted")
+
+def evidence(data, inputs):
+    import json
+    value = text(data, "T01 evidence")
+    blocks = re.findall(r"\x60{3}json\n(.*?)\n\x60{3}", value, re.S)
+    require(len(blocks) == 1, "one evidence metadata block")
+    try:
+        meta = json.loads(blocks[0])
+    except ValueError:
+        raise ContractError("evidence JSON") from None
+    count = 0
+    for field in ("observed_utc", "head", "branch", "root", "status", "environment",
+                  "tasks", "commands", "artifacts", "isolation", "acceptance"):
+        count += require(field in meta and meta[field] is not None, "evidence field: " + field)
+    count += require(bool(re.fullmatch(r"[0-9a-f]{40}", meta["head"])), "evidence head")
+    count += require(bool(re.fullmatch(r"\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ", meta["observed_utc"])), "evidence timestamp")
+    count += require(bool(re.fullmatch(r"((worktree-)?agent-|worktree-wf_)[A-Za-z0-9._/-]+", meta["branch"]))
+                     and meta["root"] == str(ROOT), "evidence worktree identity")
+    count += require(meta["acceptance"] == "conditional manual review"
+                     and meta["isolation"] == "separate worktree observed; manual judgment pending",
+                     "conditional acceptance/isolation")
+    count += require(list(meta["tasks"]) == [f"01-{p:02}-{t:02}" for p in (1, 2) for t in (1, 2, 3)]
+                     and all(meta["tasks"].values()), "six task statuses")
+    for name in ARTIFACTS:
+        count += require(meta["artifacts"].get(name) == hashlib.sha256(inputs[name]).hexdigest(),
+                         "evidence artifact revision: " + name)
+    for mode in ("source", "scope", "inventory", "decisions"):
+        observation = meta["commands"].get(mode, {})
+        count += require(observation.get("exit") == 0 and observation.get("checks", 0) > 0
+                         and observation.get("command") == f"python3 {CHECKER} {mode}",
+                         "observed positive command: " + mode)
+    for name in (MATRIX, DECISIONS, SCOPE, CHECKER, LEDGER):
+        count += require(name in value, "evidence artifact link: " + name)
+    for gate in GATES:
+        count += require(gate in value, "remaining gate: " + gate)
+    count += require(EVIDENCE in text(inputs.get(LEDGER), LEDGER), "source ledger evidence link")
+    return count
+
+def all_contracts(inputs):
+    results = {"source": source(inputs), "scope": scope(inputs.get(SCOPE)),
+               "inventory": inventory(inputs), "decisions": decisions(inputs.get(DECISIONS), inputs),
+               "evidence": evidence(inputs.get(EVIDENCE), inputs)}
+    require(all(count > 0 for count in results.values()), "nonempty required modes")
+    return results
+
+def load_all():
+    inputs = load_source()
+    for name in (SCOPE, DECISIONS, EVIDENCE, CHECKER):
+        inputs[name] = (ROOT / name).read_bytes() if (ROOT / name).is_file() else None
+    return inputs
 
 
 def self_check():
@@ -175,16 +362,84 @@ def self_check():
     candidate = dict(meta, isolation="pending", isolation_gate="Separate branch not established")
     with contextlib.redirect_stdout(io.StringIO()):
         require(scope(scope_candidate(candidate)) > 0, "honest pending control")
-    for mode in ("inventory", "decisions", "all"):
-        reject("unimplemented " + mode, lambda mode=mode: dispatch(mode))
+    require(inventory(inputs) > 0, "valid inventory control")
+    trace = trace_lines(inputs)
+    for name, old, new in (
+        ("omitted group", "\n".join(trace[38:57]), ""),
+        ("empty inventory", TRACE_HEADING, ""),
+        ("label substitution", trace[4], trace[4].replace("MAX 10", "MAX 99")),
+        ("family order", "\n".join(trace[4:6]), "\n".join(reversed(trace[4:6]))),
+        ("merged Cyclone", trace[5], ""),
+        ("merged repeated host control", trace[32], ""),
+        ("requiredness changed", trace[55], trace[55].replace("Short description", "Required")),
+        ("marketing mandatory declaration", "| marketing-1 |", "| declaration-5 |"),
+        ("extra record", trace[-1], trace[-1] + "\n" + trace[-1]),
+        ("locator changed", trace[0], trace[0].replace("99–99", "98–98")),
+        ("requirement changed", trace[0], trace[0].replace("CAT-02 Phase 3", "CAT-02 Phase 7")),
+    ):
+        candidate = dict(inputs)
+        require(old in inputs[MATRIX].decode(), "mutation exercised: " + name)
+        candidate[MATRIX] = inputs[MATRIX].decode().replace(old, new).encode()
+        reject(name, lambda candidate=candidate: inventory(candidate))
+        register = (ROOT / DECISIONS).read_bytes()
+    require(decisions(register, inputs) > 0, "valid pending register control")
+    require(decisions(register, inputs) > 0 and (ROOT / DECISIONS).read_bytes() == register,
+            "repeated read-only decisions")
+    rows = [line for line in register.decode().splitlines() if line.startswith("| P-")]
+    for name, old, new in (
+        ("malformed six-cell baseline", rows[0], rows[0].replace(" | " + PHASES[0], "").replace(" | " + ROLES[0], "  " + ROLES[0])),
+        ("duplicate decision", rows[1], rows[0]),
+        ("omitted decision", rows[1], ""),
+        ("missing role", " | " + ROLES[0] + " |", " |  |"),
+        ("missing phase scope", " | " + PHASES[0] + " |", " |  |"),
+        ("missing operation", rows[0], " | ".join(rows[0].split(" | ")[:5] + [""] + rows[0].split(" | ")[6:])),
+        ("shifted status", "| Pending | None supplied |", "| None supplied | Pending |"),
+        ("unsupported approval", "| Pending | None supplied |", "| Approved | None supplied |"),
+    ):
+        require(old in register.decode(), "decision mutation exercised: " + name)
+        reject(name, lambda old=old, new=new: decisions(register.decode().replace(old, new).encode(), inputs))
+    complete = load_all()
+    require(all_contracts(complete)["evidence"] > 0, "valid all/evidence controls")
+    for path in (PROPOSAL, PRODUCT, MATRIX, DECISIONS, SCOPE, EVIDENCE):
+        candidate = dict(complete)
+        candidate[path] = None
+        reject("all missing " + path, lambda candidate=candidate: all_contracts(candidate))
+    ev = complete[EVIDENCE]
+    match = re.search(r"\x60{3}json\n(.*?)\n\x60{3}", ev.decode(), re.S)
+    metadata = json.loads(match[1])
+    for field in ("head", "tasks", "artifacts", "commands", "acceptance"):
+        candidate = dict(metadata)
+        del candidate[field]
+        bad = (ev.decode()[:match.start(1)] + json.dumps(candidate) + ev.decode()[match.end(1):]).encode()
+        reject("evidence omitted " + field, lambda bad=bad: evidence(bad, complete))
+    for name, old, new in (("evidence unsupported acceptance", "conditional manual review", "production complete"),
+                          ("evidence missing manual gate", GATES[0], "removed"),
+                          ("evidence stale hash", metadata["artifacts"][CHECKER], "0" * 64)):
+        require(old in ev.decode(), "evidence mutation exercised")
+        reject(name, lambda old=old, new=new: evidence(ev.decode().replace(old, new).encode(), complete))
+    zero = dict(metadata)
+    zero["commands"] = dict(metadata["commands"])
+    zero["commands"]["inventory"] = dict(zero["commands"]["inventory"], checks=0)
+    bad = (ev.decode()[:match.start(1)] + json.dumps(zero) + ev.decode()[match.end(1):]).encode()
+    reject("evidence zero checked mode", lambda: evidence(bad, complete))
+    require(load_source() == inputs and (ROOT / DECISIONS).read_bytes() == register
+            and (ROOT / SCOPE).read_bytes() == scope_bytes, "canonical bytes untouched")
+
     require(rejected > 0, "positive rejection count")
-    print(f"PASS self-check: {rejected} asserted rejections; valid source/scope and pending controls passed")
+    print(f"PASS self-check: {rejected} asserted rejections; valid source/scope/inventory/decisions/all/evidence and pending controls passed")
 
 def dispatch(mode):
-    if mode == "source":
+    if mode == "all":
+        for name, count in all_contracts(load_all()).items():
+            print(f"PASS {name}: {count} executed checks (local documentation only)")
+    elif mode == "source":
         print(f"PASS source: {source(load_source())} executed checks (local documentation only)")
     elif mode == "scope":
         print(f"PASS scope: {scope((ROOT / SCOPE).read_bytes())} executed checks (local documentation only)")
+    elif mode == "decisions":
+        print(f"PASS decisions: {decisions((ROOT / DECISIONS).read_bytes(), load_source())} executed checks; 12 decision rows")
+    elif mode == "inventory":
+        print(f"PASS inventory: {inventory(load_source())} executed checks; 78 trace records")
     elif mode == "self-check":
         self_check()
     else:
