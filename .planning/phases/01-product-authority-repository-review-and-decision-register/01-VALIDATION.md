@@ -1,15 +1,15 @@
 ---
 phase: "01"
 slug: "product-authority-repository-review-and-decision-register"
-status: draft
-nyquist_compliant: false
-wave_0_complete: false
+status: validated
+nyquist_compliant: true
+wave_0_complete: true
 created: "2026-10-20"
 ---
 
 # Phase 1 — Validation Strategy
 
-Planning contract only. No future checker command below has run or passed. Implementation sign-off remains pending until the documentation plans are actually executed.
+Both documentation plans have executed. Source, scope, inventory, decision and evidence modes run green on merged main after the recorded portability repair. Automated coverage is audited below; manual source/approval/scope judgments still require verification and are not auto-approved.
 
 ## Test Infrastructure
 
@@ -17,7 +17,7 @@ Planning contract only. No future checker command below has run or passed. Imple
 |---|---|
 | Framework | Python standard library and Git; no package/framework installation |
 | Existing inputs | Hash-verified source pair, extracted product and existing inventory matrix |
-| Planned checker | docs/product-source/verify_t01.py; absent until Plan 01-01 creates it |
+| Planned checker | docs/product-source/verify_t01.py; created by Plan 01-01 and extended by Plan 01-02 |
 | Quick command | python3 docs/product-source/verify_t01.py source |
 | Full command | python3 docs/product-source/verify_t01.py all |
 | Negative checks | python3 docs/product-source/verify_t01.py self-check |
@@ -33,12 +33,12 @@ Final task IDs below match the two dependent three-task plans. Wave 2 follows Wa
 
 | Task ID | Plan | Wave | Requirement | Test Type | Automated Command | Availability | Status |
 |---|---|---|---|---|---|---|---|
-| 01-01-01 | 01 | 1 | SRC-01, SRC-02 tracer | provenance + one-row tracer | python3 docs/product-source/verify_t01.py source | checker and source mode produced by this task | pending |
-| 01-01-02 | 01 | 1 | SRC-04 | scope metadata and identity | python3 docs/product-source/verify_t01.py scope | scope note/mode produced by this task after 01-01-01 | pending |
-| 01-01-03 | 01 | 1 | SRC-01, SRC-04 | isolated negative checks | python3 docs/product-source/verify_t01.py self-check | source/scope self-check produced by this task | pending |
-| 01-02-01 | 02 | 2 | SRC-02 | exact ordered inventory and locators | python3 docs/product-source/verify_t01.py inventory | inventory mode and its self-check cases produced by this task | pending |
-| 01-02-02 | 02 | 2 | SRC-03 | register structure/status/gates | python3 docs/product-source/verify_t01.py decisions | decisions mode and read-only/rejection cases produced by this task | pending |
-| 01-02-03 | 02 | 2 | SRC-01–SRC-04 | complete evidence consistency | python3 docs/product-source/verify_t01.py all | all/evidence checks produced by this task; also runs completed self-check and scoped diff check | pending |
+| 01-01-01 | 01 | 1 | SRC-01, SRC-02 tracer | provenance + one-row tracer | python3 docs/product-source/verify_t01.py source | checker and source mode produced by this task | green (observed execution) |
+| 01-01-02 | 01 | 1 | SRC-04 | scope metadata and identity | python3 docs/product-source/verify_t01.py scope | scope note/mode produced by this task after 01-01-01 | green (observed execution) |
+| 01-01-03 | 01 | 1 | SRC-01, SRC-04 | isolated negative checks | python3 docs/product-source/verify_t01.py self-check | source/scope self-check produced by this task | green (observed execution) |
+| 01-02-01 | 02 | 2 | SRC-02 | exact ordered inventory and locators | python3 docs/product-source/verify_t01.py inventory | inventory mode and its self-check cases produced by this task | green (observed execution) |
+| 01-02-02 | 02 | 2 | SRC-03 | register structure/status/gates | python3 docs/product-source/verify_t01.py decisions | decisions mode and read-only/rejection cases produced by this task | green (observed execution) |
+| 01-02-03 | 02 | 2 | SRC-01–SRC-04 | complete evidence consistency | python3 docs/product-source/verify_t01.py all | all/evidence checks produced by this task; also runs completed self-check and scoped diff check | green (observed execution) |
 
 ## Wave 0 Requirements
 
@@ -73,3 +73,9 @@ Every plan includes a proportional threat_model covering source substitution, fa
 - [ ] nyquist_compliant and wave_0_complete updated only from execution evidence.
 
 Approval: pending execution.
+
+## Validation Audit
+
+2026-10-20: all six tasks have producing-task-ordered automated commands and explicit failure signals. The final merged checker runs source 18, scope 25, inventory 279, decisions 88 and evidence 38 checks; self-check runs 57 asserted rejections plus positive controls, including historical worktree relocation and requirement-status lifecycle coverage. No framework installation or missing checker reference remains. The initial post-merge evidence-root failure was fixed in 25b8417 and rechecked. No additional automated coverage gap was found.
+
+Nyquist compliance here means the planned automated sampling/rejection contract is present and green; it does not resolve the four manual-only judgments or imply commercial/security/production acceptance. Test-runtime target is operational guidance, not a benchmark guarantee.
