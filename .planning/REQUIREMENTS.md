@@ -10,10 +10,10 @@
 
 Source: new handoff T01; full proposal supplies normative detail.
 
-- [ ] **SRC-01**: Operators can verify the exact embedded product snapshot by filename, 23,969-byte length and SHA-256, using only the October 20 package as new product authority.
-- [ ] **SRC-02**: Reviewers can trace all three ordered vendors, thirteen families, thirteen logical controls, nineteen checkout groups, two helpers, four IP declarations and separate marketing control to source locations.
-- [ ] **SRC-03**: Operators can inspect one P-01–P-12 register with status, owner, evidence and the exact affected live operation; pending decisions do not block unrelated planning.
-- [ ] **SRC-04**: Reviewers can identify repository scope, new product/profile IDs, superseded assumptions and customer hostname without treating old task completion as new acceptance.
+- [x] **SRC-01**: Operators can verify the exact embedded product snapshot by filename, 23,969-byte length and SHA-256, using only the October 20 package as new product authority.
+- [x] **SRC-02**: Reviewers can trace all three ordered vendors, thirteen families, thirteen logical controls, nineteen checkout groups, two helpers, four IP declarations and separate marketing control to source locations.
+- [x] **SRC-03**: Operators can inspect one P-01–P-12 register with status, owner, evidence and the exact affected live operation; pending decisions do not block unrelated planning.
+- [x] **SRC-04**: Reviewers can identify repository scope, new product/profile IDs, superseded assumptions and customer hostname without treating old task completion as new acceptance.
 
 ### Reproducible foundation
 
@@ -162,10 +162,10 @@ No additional features committed. Automatic renewal, general organization portal
 
 | Requirement | Phase | Status |
 |---|---|---|
-| SRC-01 | Phase 1 | Pending |
-| SRC-02 | Phase 1 | Pending |
-| SRC-03 | Phase 1 | Pending |
-| SRC-04 | Phase 1 | Pending |
+| SRC-01 | Phase 1 | Complete |
+| SRC-02 | Phase 1 | Complete |
+| SRC-03 | Phase 1 | Complete |
+| SRC-04 | Phase 1 | Complete |
 | BUILD-01 | Phase 2 | Pending |
 | BUILD-02 | Phase 2 | Pending |
 | BUILD-03 | Phase 2 | Pending |

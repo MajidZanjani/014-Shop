@@ -19,11 +19,10 @@ Turn an exact reviewed xSPI-MC configuration or support purchase into attributab
 
 ### Validated
 
-None. No application or deployed system exists in this checkout; source verification is documentation evidence only.
+- ✓ Exact source preservation and complete option/field/declaration traceability — Phase 1, automated checks and four explicit human review responses. This validates documentation only; no application or deployed system acceptance is claimed.
 
 ### Active
 
-- [ ] Preserve the exact source and complete option/field/declaration traceability.
 - [ ] Compile strict, immutable Markdown catalogs with matching browser/backend rules and approval gates.
 - [ ] Provide accessible static configuration, private host editing, multi-line quotes and line-type-aware checkout.
 - [ ] Preserve exact acceptance, totals and payment identities across retries, races and crashes.
@@ -74,4 +73,4 @@ Retain the existing authorized workflow preferences (autonomous planning, fine g
 At phase transitions update validated/active scope and decisions from actual evidence. At milestones review core value, business context and exclusions. Preserve historical acceptance, source revisions and approval records; revise future offers explicitly.
 
 ---
-*Last updated: 2026-10-20 after complete source-based replanning.*
+*Last updated: 2026-10-20 after Phase 1 documentation acceptance.*

@@ -1,6 +1,6 @@
 # Roadmap: SLL xSPI-MC Shop
 
-**Baseline:** 2026-10-20, fully rebuilt from the new proposal/handoff. All phases pending; no old task completion carries forward.
+**Baseline:** 2026-10-20, fully rebuilt from the new proposal/handoff. Phase 1 accepted; later phases pending. No old task completion carries forward.
 
 ## Scope and execution policy
 
@@ -14,7 +14,7 @@ Preserve actual dependencies rather than forcing sequential task order or unrest
 
 ## Phases
 
-- [ ] **Phase 1: Product authority, repository review and decision register** — new handoff T01
+- [x] **Phase 1: Product authority, repository review and decision register** — new handoff T01 (completed 2026-10-20)
 - [ ] **Phase 2: Reproducible application and deployment skeleton** — new handoff T02
 - [ ] **Phase 3: Markdown catalog, schemas and approved price calculations** — new handoff T03
 - [ ] **Phase 4: Static product, configurator, support page and accessible fallback** — new handoff T04
@@ -39,7 +39,7 @@ Preserve actual dependencies rather than forcing sequential task order or unrest
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-20.md T01; companion proposal.
 **Estimate:** 1–2 engineer-days
 **UI hint:** no
-**Plans:** 2/2 executed; clean independent code review; four human-verification items pending in 01-UAT.md.
+**Plans:** 2/2 complete; clean independent code review; all four human documentation reviews passed in 01-UAT.md.
 
 **Wave 1**
 
@@ -373,7 +373,7 @@ Preserve actual dependencies rather than forcing sequential task order or unrest
 
 | Phase | Plans complete | Status |
 |---|---|---|
-| 1 | 2 / 2 | Executed — human verification pending (4 items) |
+| 1 | 2 / 2 | Complete    |
 | 2 | 0 / not planned | Pending |
 | 3 | 0 / not planned | Pending |
 | 4 | 0 / not planned | Pending |
