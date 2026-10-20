@@ -20,7 +20,7 @@ The source is a written working draft, not a live-form audit. Counts are logical
 
 ## Traceability
 
-SOURCE-MATRIX.md preserves exact option/control/declaration and reset inventories with requirement links. REQUIREMENTS.md gives atomic IDs and one primary phase each. ROADMAP.md retains exact new handoff outputs, acceptance and evidence. docs/decisions.md is the single working P-01–P-12 register. Implementation evidence is planned under docs/implementation-evidence.md with per-task status, code/catalog/config revisions, commands/observations, environment, unresolved decisions and exact affected operations. It is not yet populated with claimed implementation results.
+SOURCE-MATRIX.md preserves exact option/control/declaration and reset inventories with requirement links. REQUIREMENTS.md gives atomic IDs and one primary phase each. ROADMAP.md retains exact new handoff outputs, acceptance and evidence. docs/decisions.md is the single working P-01–P-12 register. Implementation evidence is planned under docs/implementation-evidence.md with per-task status, code/catalog/config revisions, commands/observations, environment, unresolved decisions and exact affected operations. Observed T01 documentation results are now recorded in docs/implementation-evidence.md; no later implementation results are claimed.
 
 ## Reset scope
 
@@ -29,3 +29,7 @@ All old .planning contents were removed before regeneration; docs/decisions.md w
 ## Reproducible local provenance check
 
 Run `python3 docs/product-source/verify_t01.py source` from this checkout. It verifies raw package identities, bounded appendix equality and family-1-1 source/requirement locators. Passing proves documentation identity, not approval or live acceptance.
+
+## T01 execution evidence
+
+See [observed T01 record](../docs/implementation-evidence.md). Reproduce local checks with python3 docs/product-source/verify_t01.py all and python3 docs/product-source/verify_t01.py self-check. The former checks source/scope/inventory/decisions/evidence consistency; the latter asserts in-memory defect rejection with valid controls and unchanged canonical bytes. These checks do not independently attest to the honesty of recorded observations. All P decisions and manual flagged judgments remain pending; T02–T14 remain unexecuted.

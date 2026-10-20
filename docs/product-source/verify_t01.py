@@ -174,8 +174,7 @@ def inventory(inputs):
     count = 0
     require(matrix.count(TRACE_HEADING) == 1, "complete inventory section")
     section = matrix.split(TRACE_HEADING, 1)[1]
-    actual = [line for line in section.splitlines()
-              if re.match(r"\| (vendor|family|term|band|access|control|business|declaration|marketing|reset|helper)-", line)]
+    actual = [line for line in section.splitlines() if line.startswith("|")][2:]
     expected = trace_lines(inputs)
     count += require(actual == expected and len(actual) == 78, "exact complete ordered trace records")
     original = matrix.split("## Row-level source traceability")[0].splitlines()
@@ -242,6 +241,63 @@ def decisions(data, inputs):
                              and bool(re.search(r"Date: \d{4}-\d\d-\d\d", row[7])),
                              "dated scoped attributable approval required")
     return count
+
+
+EVIDENCE = "docs/implementation-evidence.md"
+CHECKER = "docs/product-source/verify_t01.py"
+ARTIFACTS = (CHECKER, MATRIX, DECISIONS, SCOPE, LEDGER)
+GATES = ("FLAGGED SRC-04/unclassified", "source intent", "approval scope", "execution isolation",
+         "source preservation prohibition", "pending decisions prohibition", "T02–T14 remain unexecuted")
+
+def evidence(data, inputs):
+    import json
+    value = text(data, "T01 evidence")
+    blocks = re.findall(r"\x60{3}json\n(.*?)\n\x60{3}", value, re.S)
+    require(len(blocks) == 1, "one evidence metadata block")
+    try:
+        meta = json.loads(blocks[0])
+    except ValueError:
+        raise ContractError("evidence JSON") from None
+    count = 0
+    for field in ("observed_utc", "head", "branch", "root", "status", "environment",
+                  "tasks", "commands", "artifacts", "isolation", "acceptance"):
+        count += require(field in meta and meta[field] is not None, "evidence field: " + field)
+    count += require(bool(re.fullmatch(r"[0-9a-f]{40}", meta["head"])), "evidence head")
+    count += require(bool(re.fullmatch(r"\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ", meta["observed_utc"])), "evidence timestamp")
+    count += require(bool(re.fullmatch(r"((worktree-)?agent-|worktree-wf_)[A-Za-z0-9._/-]+", meta["branch"]))
+                     and meta["root"] == str(ROOT), "evidence worktree identity")
+    count += require(meta["acceptance"] == "conditional manual review"
+                     and meta["isolation"] == "separate worktree observed; manual judgment pending",
+                     "conditional acceptance/isolation")
+    count += require(list(meta["tasks"]) == [f"01-{p:02}-{t:02}" for p in (1, 2) for t in (1, 2, 3)]
+                     and all(meta["tasks"].values()), "six task statuses")
+    for name in ARTIFACTS:
+        count += require(meta["artifacts"].get(name) == hashlib.sha256(inputs[name]).hexdigest(),
+                         "evidence artifact revision: " + name)
+    for mode in ("source", "scope", "inventory", "decisions"):
+        observation = meta["commands"].get(mode, {})
+        count += require(observation.get("exit") == 0 and observation.get("checks", 0) > 0
+                         and observation.get("command") == f"python3 {CHECKER} {mode}",
+                         "observed positive command: " + mode)
+    for name in (MATRIX, DECISIONS, SCOPE, CHECKER, LEDGER):
+        count += require(name in value, "evidence artifact link: " + name)
+    for gate in GATES:
+        count += require(gate in value, "remaining gate: " + gate)
+    count += require(EVIDENCE in text(inputs.get(LEDGER), LEDGER), "source ledger evidence link")
+    return count
+
+def all_contracts(inputs):
+    results = {"source": source(inputs), "scope": scope(inputs.get(SCOPE)),
+               "inventory": inventory(inputs), "decisions": decisions(inputs.get(DECISIONS), inputs),
+               "evidence": evidence(inputs.get(EVIDENCE), inputs)}
+    require(all(count > 0 for count in results.values()), "nonempty required modes")
+    return results
+
+def load_all():
+    inputs = load_source()
+    for name in (SCOPE, DECISIONS, EVIDENCE, CHECKER):
+        inputs[name] = (ROOT / name).read_bytes() if (ROOT / name).is_file() else None
+    return inputs
 
 
 def self_check():
@@ -342,13 +398,41 @@ def self_check():
     ):
         require(old in register.decode(), "decision mutation exercised: " + name)
         reject(name, lambda old=old, new=new: decisions(register.decode().replace(old, new).encode(), inputs))
-    for mode in ("all",):
-        reject("unimplemented " + mode, lambda mode=mode: dispatch(mode))
+    complete = load_all()
+    require(all_contracts(complete)["evidence"] > 0, "valid all/evidence controls")
+    for path in (PROPOSAL, PRODUCT, MATRIX, DECISIONS, SCOPE, EVIDENCE):
+        candidate = dict(complete)
+        candidate[path] = None
+        reject("all missing " + path, lambda candidate=candidate: all_contracts(candidate))
+    ev = complete[EVIDENCE]
+    match = re.search(r"\x60{3}json\n(.*?)\n\x60{3}", ev.decode(), re.S)
+    metadata = json.loads(match[1])
+    for field in ("head", "tasks", "artifacts", "commands", "acceptance"):
+        candidate = dict(metadata)
+        del candidate[field]
+        bad = (ev.decode()[:match.start(1)] + json.dumps(candidate) + ev.decode()[match.end(1):]).encode()
+        reject("evidence omitted " + field, lambda bad=bad: evidence(bad, complete))
+    for name, old, new in (("evidence unsupported acceptance", "conditional manual review", "production complete"),
+                          ("evidence missing manual gate", GATES[0], "removed"),
+                          ("evidence stale hash", metadata["artifacts"][CHECKER], "0" * 64)):
+        require(old in ev.decode(), "evidence mutation exercised")
+        reject(name, lambda old=old, new=new: evidence(ev.decode().replace(old, new).encode(), complete))
+    zero = dict(metadata)
+    zero["commands"] = dict(metadata["commands"])
+    zero["commands"]["inventory"] = dict(zero["commands"]["inventory"], checks=0)
+    bad = (ev.decode()[:match.start(1)] + json.dumps(zero) + ev.decode()[match.end(1):]).encode()
+    reject("evidence zero checked mode", lambda: evidence(bad, complete))
+    require(load_source() == inputs and (ROOT / DECISIONS).read_bytes() == register
+            and (ROOT / SCOPE).read_bytes() == scope_bytes, "canonical bytes untouched")
+
     require(rejected > 0, "positive rejection count")
-    print(f"PASS self-check: {rejected} asserted rejections; valid source/scope and pending controls passed")
+    print(f"PASS self-check: {rejected} asserted rejections; valid source/scope/inventory/decisions/all/evidence and pending controls passed")
 
 def dispatch(mode):
-    if mode == "source":
+    if mode == "all":
+        for name, count in all_contracts(load_all()).items():
+            print(f"PASS {name}: {count} executed checks (local documentation only)")
+    elif mode == "source":
         print(f"PASS source: {source(load_source())} executed checks (local documentation only)")
     elif mode == "scope":
         print(f"PASS scope: {scope((ROOT / SCOPE).read_bytes())} executed checks (local documentation only)")
