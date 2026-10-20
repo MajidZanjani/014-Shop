@@ -52,11 +52,19 @@ The observed HEAD below is Task 2's committed revision, with Task 3 checker/ledg
     }
   },
   "artifacts": {
-    "docs/product-source/verify_t01.py": "73602f2c396d401273dab29357af1fbbc6372f69040d651221a45da96d1c442e",
+    "docs/product-source/verify_t01.py": "4db4e89050d5d461f4d640b44143128f573dc04ad88b489c343a0def6656657b",
     ".planning/SOURCE-MATRIX.md": "cec2a1dbf8786aff51d589ba4a6b71dbd18a4cc88efa249208ed66a6b9beeaa3",
     "docs/decisions.md": "c8eafc9a0f11412b4befa2845dc0b7ce371c816d88d4fcc8c0ee06bd93cc2ece",
     "docs/product-source/t01-scope.md": "1fb740979566fe73aa81dc237ad4dd5dd99ca306d3f7fdd0f006886f4ef9d3bc",
     ".planning/SOURCES.md": "f6acf8f275a7302876d7d4abc8eb6ae10544e68f2e750364791595ee69ae204e"
+  },
+  "post_merge_repair": {
+    "observed_utc": "2026-10-20T10:55:12Z",
+    "head": "87377f9e91a89aeef34d5e2a2605fce0a3cfbea6",
+    "branch": "main",
+    "root": "/home/claude/project/014-Shop",
+    "previous_checker_sha256": "73602f2c396d401273dab29357af1fbbc6372f69040d651221a45da96d1c442e",
+    "change": "Validate recorded historical worktree identity instead of equality to current checkout; allow requirement lifecycle statuses; add relocation/rejection regression checks."
   }
 }
 ```
@@ -98,3 +106,11 @@ Recorded 2026-10-20T10:51:49Z after actual execution:
 - Scoped git diff --check for SOURCES, SOURCE-MATRIX, decisions, scope, checker and this record: exit 0.
 
 No unperformed final commit is identified by this record. Structural evidence checks cannot prove the observations above independently.
+
+## Post-merge repair observations
+
+The original worktree passed its checks, but the first merged-checkout all/self-check runs on main failed with `evidence worktree identity`. The validator incorrectly equated the historical execution root to its current checkout. The repair validates the recorded absolute root/isolated branch relationship without opening that historical path. Its positive relocated-root control and three invalid-root/branch rejection probes run in memory. Source-to-requirement checks now accept documented lifecycle statuses so future completion tracking does not invalidate source identity.
+
+The metadata keeps the original execution identity and records the later repair separately under post_merge_repair, including the previous checker hash. Only the checker artifact hash is refreshed to the repaired code; original task observations above remain historical. No original source bytes, approvals or original scope facts changed. Post-merge checker results are recorded after the actual repair run.
+
+Observed repaired-checkout results: all mode exited 0 with source 18, scope 25, inventory 279, decisions 88 and evidence 38 checks; self-check exited 0 with 57 asserted rejections and a valid relocated-history control. Scoped whitespace check exited 0.

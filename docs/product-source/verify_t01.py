@@ -63,7 +63,7 @@ def source(inputs):
     count += require(proposal[104] == row and row in matrix.splitlines(), "proposal/matrix family row")
     reqs = text(inputs.get(REQS), REQS)
     for identity, phase in (("SRC-02", 1), ("CAT-02", 3)):
-        count += require(f"**{identity}**:" in reqs and f"| {identity} | Phase {phase} | Pending |" in reqs,
+        count += require(f"**{identity}**:" in reqs and bool(re.search(rf"^\| {re.escape(identity)} \| Phase {phase} \| (?:Pending|In Progress|Complete|Blocked) \|$", reqs, re.M)),
                          identity + ": requirement/owning phase")
     return count
 
@@ -265,7 +265,9 @@ def evidence(data, inputs):
     count += require(bool(re.fullmatch(r"[0-9a-f]{40}", meta["head"])), "evidence head")
     count += require(bool(re.fullmatch(r"\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ", meta["observed_utc"])), "evidence timestamp")
     count += require(bool(re.fullmatch(r"((worktree-)?agent-|worktree-wf_)[A-Za-z0-9._/-]+", meta["branch"]))
-                     and meta["root"] == str(ROOT), "evidence worktree identity")
+                     and isinstance(meta["root"], str) and Path(meta["root"]).is_absolute()
+                     and Path(meta["root"]).name == meta["branch"].removeprefix("worktree-"),
+                     "evidence historical worktree identity")
     count += require(meta["acceptance"] == "conditional manual review"
                      and meta["isolation"] == "separate worktree observed; manual judgment pending",
                      "conditional acceptance/isolation")
@@ -407,6 +409,20 @@ def self_check():
     ev = complete[EVIDENCE]
     match = re.search(r"\x60{3}json\n(.*?)\n\x60{3}", ev.decode(), re.S)
     metadata = json.loads(match[1])
+    # Evidence describes its original execution, even after merge/relocation.
+    relocated = dict(metadata, root="/tmp/retained-t01/" + metadata["branch"].removeprefix("worktree-"))
+    candidate_bytes = (ev.decode()[:match.start(1)] + json.dumps(relocated) + ev.decode()[match.end(1):]).encode()
+    require(evidence(candidate_bytes, complete) > 0, "historical evidence survives checkout relocation")
+    for label, changes in (("relative recorded root", {"root": "relative"}),
+                           ("root/branch mismatch", {"root": "/tmp/unrelated-checkout"}),
+                           ("non-isolated recorded branch", {"branch": "main"})):
+        candidate = dict(metadata, **changes)
+        bad = (ev.decode()[:match.start(1)] + json.dumps(candidate) + ev.decode()[match.end(1):]).encode()
+        reject(label, lambda bad=bad: evidence(bad, complete))
+    for status in ("In Progress", "Complete", "Blocked"):
+        candidate = dict(inputs)
+        candidate[REQS] = inputs[REQS].decode().replace("| Phase 1 | Pending |", f"| Phase 1 | {status} |").encode()
+        require(source(candidate) > 0, "requirement lifecycle status preserves provenance")
     for field in ("head", "tasks", "artifacts", "commands", "acceptance"):
         candidate = dict(metadata)
         del candidate[field]
