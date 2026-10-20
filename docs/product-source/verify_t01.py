@@ -71,10 +71,53 @@ def load_source():
     return {name: (ROOT / name).read_bytes() if (ROOT / name).is_file() else None
             for name in (*IDENTITIES, MATRIX, REQS, LEDGER)}
 
+
+SCOPE = "docs/product-source/t01-scope.md"
+IDS = ("sll-xspi-mc", "sll-xspi-mc-support-10h", "sll-xspi-mc-v1",
+       "https://shop.xspi.pro", "https://shop-admin.xspi.pro")
+SCOPE_FACTS = (
+    "Old task numbers provide no new completion credit.",
+    "Recoverable Git history is retained.",
+    "Unrelated work is preserved.",
+    "External state is uninspected.",
+    "No application/data migration identified within the inspected checkout.",
+    "FLAGGED SRC-04/unclassified remains for end-of-phase human review.",
+)
+
+def scope(data):
+    import json
+    value = text(data, "scope")
+    count = 0
+    for item in (*IDS, *SCOPE_FACTS):
+        count += require(item in value, "scope identity/reset boundary: " + item)
+    match = re.findall(r"\x60{3}json\n(.*?)\n\x60{3}", value, re.S)
+    require(len(match) == 1, "scope metadata block")
+    try:
+        meta = json.loads(match[0])
+    except ValueError:
+        raise ContractError("scope metadata JSON") from None
+    for field in ("observed_utc", "head", "branch", "root", "worktrees", "status", "ignore", "inventory", "isolation"):
+        count += require(field in meta, "scope metadata: " + field)
+    count += require(bool(re.fullmatch(r"[0-9a-f]{40}", meta["head"])), "scope revision")
+    count += require(bool(re.fullmatch(r"\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ", meta["observed_utc"])), "scope timestamp")
+    count += require(meta["ignore"] == ".env" and bool(meta["inventory"]), "scope path inventory/ignore")
+    if meta["isolation"] == "fulfilled":
+        branch = meta["branch"]
+        count += require(bool(re.fullmatch(r"((worktree-)?agent-|worktree-wf_)[A-Za-z0-9._/-]+", branch)), "scope isolated branch")
+        blocks = meta["worktrees"].strip().split("\n\n")
+        count += require(any(f"worktree {meta['root']}\nHEAD {meta['head']}\nbranch refs/heads/{branch}" in block
+                             for block in blocks), "scope matching worktree/revision/branch")
+    else:
+        count += require(meta["isolation"] == "pending" and bool(meta.get("isolation_gate")), "scope pending isolation gate")
+        print("GATE: isolation pending; full T01 acceptance withheld")
+    return count
+
 def main():
     mode = sys.argv[1] if len(sys.argv) == 2 else ""
     if mode == "source":
         print(f"PASS source: {source(load_source())} executed checks (local documentation only)")
+    elif mode == "scope":
+        print(f"PASS scope: {scope((ROOT / SCOPE).read_bytes())} executed checks (local documentation only)")
     else:
         raise ContractError("unimplemented mode: " + mode)
 
