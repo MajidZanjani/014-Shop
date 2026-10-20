@@ -69,7 +69,7 @@ def source(inputs):
 
 def load_source():
     return {name: (ROOT / name).read_bytes() if (ROOT / name).is_file() else None
-            for name in (*IDENTITIES, MATRIX, REQS, LEDGER)}
+            for name in (*IDENTITIES, MATRIX, REQS, LEDGER, ".planning/ROADMAP.md")}
 
 
 SCOPE = "docs/product-source/t01-scope.md"
@@ -110,6 +110,89 @@ def scope(data):
     else:
         count += require(meta["isolation"] == "pending" and bool(meta.get("isolation_gate")), "scope pending isolation gate")
         print("GATE: isolation pending; full T01 acceptance withheld")
+    return count
+
+
+# Bounded tables from the immutable proposal, before its embedded appendix.
+# Complete row comparison preserves requiredness/defaults as well as labels.
+GROUPS = (
+    ("vendor", 98, 102, 3, 1, "CAT-02", 3),
+    ("family", 104, 118, 13, 2, "CAT-02", 3),
+    ("term", 124, 128, 3, 1, "CAT-02", 3),
+    ("band", 137, 140, 4, 1, "CAT-02", 3),
+    ("access", 150, 151, 2, 1, "AUTH-04", 6),
+    ("control", 167, 179, 13, 1, "SHOP-02", 4),
+    ("business", 189, 207, 19, 1, "COM-04", 7),
+    ("declaration", 219, 222, 4, 1, "COM-05", 7),
+    ("marketing", 223, 223, 1, 1, "AUTH-06", 6),
+    ("reset", 249, 264, 14, 0, "SHOP-02", 4),
+)
+TRACE_HEADING = "## Complete bounded record traceability"
+
+def cells(line):
+    return [part.strip() for part in line.strip().strip("|").split("|")]
+
+def proposal_records(inputs):
+    lines = text(inputs.get(PROPOSAL), PROPOSAL).splitlines()
+    records = []
+    for group, start, end, expected, label_at, req, phase in GROUPS:
+        rows = [(n, line) for n, line in enumerate(lines, 1)
+                if start <= n <= end and line.startswith("| ")
+                and not line.startswith("|---") and not line.startswith("| ---")]
+        # Header rows are excluded by numeric first cell, except the reset table.
+        rows = [(n, line) for n, line in rows
+                if (cells(line)[0].isdigit() or group == "family"
+                    or (group == "reset" and cells(line)[0] != "Customer change"))]
+        require(len(rows) == expected, group + ": bounded source count")
+        heading = next(line.lstrip("# ") for line in reversed(lines[:start])
+                       if line.startswith("#"))
+        for ordinal, (n, line) in enumerate(rows, 1):
+            row = cells(line)
+            label = row[label_at]
+            if group == "family":
+                label = row[0] + " → " + label
+            contract = " / ".join(row)
+            records.append((group + "-" + str(ordinal), label,
+                            f"{PROPOSAL} §{heading}, lines {n}–{n}", contract,
+                            f"SRC-02 Phase 1; {req} Phase {phase}", line))
+    helper_line = next(n for n, line in enumerate(lines[:230], 1)
+                       if line.startswith("Two additional convenience controls"))
+    for i, label in enumerate(("Same as registered address", "Same as purchasing contact"), 1):
+        records.append((f"helper-{i}", label,
+                        f"{PROPOSAL} §Business checkout, lines {helper_line}–{helper_line}",
+                        "Independent convenience helper; proposed linked-state enforcement",
+                        "SRC-02 Phase 1; COM-04 Phase 7", None))
+    return records
+
+def trace_lines(inputs):
+    return ["| " + " | ".join((*record[:5],
+             "Written draft; proposed enforcement only; unresolved approvals remain pending")) + " |"
+            for record in proposal_records(inputs)]
+
+def inventory(inputs):
+    matrix = text(inputs.get(MATRIX), MATRIX)
+    count = 0
+    require(matrix.count(TRACE_HEADING) == 1, "complete inventory section")
+    section = matrix.split(TRACE_HEADING, 1)[1]
+    actual = [line for line in section.splitlines()
+              if re.match(r"\| (vendor|family|term|band|access|control|business|declaration|marketing|reset|helper)-", line)]
+    expected = trace_lines(inputs)
+    count += require(actual == expected and len(actual) == 78, "exact complete ordered trace records")
+    original = matrix.split(TRACE_HEADING)[0].splitlines()
+    product = text(inputs.get(PRODUCT), PRODUCT)
+    reqs = text(inputs.get(REQS), REQS)
+    roadmap = text(inputs.get(".planning/ROADMAP.md"), "roadmap")
+    for identity, label, locator, contract, links, row in proposal_records(inputs):
+        if row:
+            count += require(original.count(row) == 1, identity + ": original matrix row")
+        # Exact source wording is retained; configuration purpose labels and resets
+        # originate in the proposal, not literal product input labels.
+        if identity.split("-")[0] in ("family", "vendor", "term", "access", "business", "declaration", "marketing"):
+            raw_label = label.split(" → ")[-1]
+            count += require(raw_label in product, identity + ": embedded product label")
+        for req, phase in re.findall(r"([A-Z]+-\d+) Phase (\d+)", links):
+            count += require(f"**{req}**:" in reqs and f"| {req} | Phase {phase} |" in reqs
+                             and f"### Phase {phase}:" in roadmap, identity + ": requirement ownership")
     return count
 
 
@@ -175,7 +258,26 @@ def self_check():
     candidate = dict(meta, isolation="pending", isolation_gate="Separate branch not established")
     with contextlib.redirect_stdout(io.StringIO()):
         require(scope(scope_candidate(candidate)) > 0, "honest pending control")
-    for mode in ("inventory", "decisions", "all"):
+    require(inventory(inputs) > 0, "valid inventory control")
+    trace = trace_lines(inputs)
+    for name, old, new in (
+        ("omitted group", "\n".join(trace[38:57]), ""),
+        ("empty inventory", TRACE_HEADING, ""),
+        ("label substitution", trace[4], trace[4].replace("MAX 10", "MAX 99")),
+        ("family order", "\n".join(trace[4:6]), "\n".join(reversed(trace[4:6]))),
+        ("merged Cyclone", trace[5], ""),
+        ("merged repeated host control", trace[32], ""),
+        ("requiredness changed", trace[55], trace[55].replace("Short description", "Required")),
+        ("marketing mandatory declaration", "| marketing-1 |", "| declaration-5 |"),
+        ("extra record", trace[-1], trace[-1] + "\n" + trace[-1]),
+        ("locator changed", trace[0], trace[0].replace("99–99", "98–98")),
+        ("requirement changed", trace[0], trace[0].replace("CAT-02 Phase 3", "CAT-02 Phase 7")),
+    ):
+        candidate = dict(inputs)
+        require(old in inputs[MATRIX].decode(), "mutation exercised: " + name)
+        candidate[MATRIX] = inputs[MATRIX].decode().replace(old, new).encode()
+        reject(name, lambda candidate=candidate: inventory(candidate))
+    for mode in ("decisions", "all"):
         reject("unimplemented " + mode, lambda mode=mode: dispatch(mode))
     require(rejected > 0, "positive rejection count")
     print(f"PASS self-check: {rejected} asserted rejections; valid source/scope and pending controls passed")
@@ -185,6 +287,8 @@ def dispatch(mode):
         print(f"PASS source: {source(load_source())} executed checks (local documentation only)")
     elif mode == "scope":
         print(f"PASS scope: {scope((ROOT / SCOPE).read_bytes())} executed checks (local documentation only)")
+    elif mode == "inventory":
+        print(f"PASS inventory: {inventory(load_source())} executed checks; 78 trace records")
     elif mode == "self-check":
         self_check()
     else:
