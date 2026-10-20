@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "runtimes": {
+    "node": "24.22.0",
+    "python": "3.13.16",
+    "npm": "11.19.1"
+  },
+  "selection": "Exact direct review candidates; no compatibility tests or install authorization",
+  "candidates": [
+    {
+      "name": "astro",
+      "version": "7.4.1",
+      "ecosystem": "npm",
+      "release_notes": "https://docs.astro.build/en/guides/upgrade-to/v7/",
+      "research_heuristic": "SUS: too-new"
+    },
+    {
+      "name": "@astrojs/react",
+      "version": "7.1.0",
+      "ecosystem": "npm",
+      "release_notes": "https://docs.astro.build/en/guides/integrations-guide/react/",
+      "research_heuristic": "SUS: too-new"
+    },
+    {
+      "name": "react",
+      "version": "19.3.1",
+      "ecosystem": "npm",
+      "release_notes": "https://react.dev/versions",
+      "research_heuristic": "SUS: too-new"
+    },
+    {
+      "name": "react-dom",
+      "version": "19.3.1",
+      "ecosystem": "npm",
+      "release_notes": "https://react.dev/versions",
+      "research_heuristic": "SUS: too-new"
+    },
+    {
+      "name": "@astrojs/check",
+      "version": "0.9.11",
+      "ecosystem": "npm",
+      "release_notes": "https://docs.astro.build/en/reference/cli-reference/",
+      "research_heuristic": "SUS: too-new"
+    },
+    {
+      "name": "typescript",
+      "version": "6.0.3",
+      "ecosystem": "npm",
+      "release_notes": "https://www.typescriptlang.org/download/",
+      "research_heuristic": "OK; latest 7 excluded by checker peer"
+    },
+    {
+      "name": "@types/react",
+      "version": "19.3.0",
+      "ecosystem": "npm",
+      "release_notes": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+      "research_heuristic": "OK"
+    },
+    {
+      "name": "@types/react-dom",
+      "version": "19.3.0",
+      "ecosystem": "npm",
+      "release_notes": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+      "research_heuristic": "OK"
+    },
+    {
+      "name": "npm",
+      "version": "11.19.1",
+      "ecosystem": "npm",
+      "release_notes": "https://github.com/npm/cli/releases/tag/v11.19.1",
+      "research_heuristic": "Bootstrap: bundled Node installer version"
+    },
+    {
+      "name": "Django",
+      "version": "5.2.18",
+      "ecosystem": "pypi",
+      "release_notes": "https://docs.djangoproject.com/en/5.2/releases/5.2.18/",
+      "research_heuristic": "SUS: too-new, unknown-downloads",
+      "release_assessment": "Official 5.2.18 notes describe language-cache and header-parser denial-of-service fixes, spatial-byte request forgery mitigation and editable-primary-key formset privilege fixes. Later application regression tests remain required."
+    },
+    {
+      "name": "gunicorn",
+      "version": "26.2.0",
+      "ecosystem": "pypi",
+      "release_notes": "https://gunicorn.org/news/",
+      "research_heuristic": "SUS: unknown-downloads"
+    },
+    {
+      "name": "psycopg",
+      "version": "3.3.6",
+      "ecosystem": "pypi",
+      "release_notes": "https://www.psycopg.org/psycopg3/docs/news.html",
+      "research_heuristic": "SUS: unknown-downloads"
+    },
+    {
+      "name": "pip",
+      "version": "26.2.1",
+      "ecosystem": "pypi",
+      "release_notes": "https://pip.pypa.io/en/stable/news/",
+      "research_heuristic": "Bootstrap: no pip execution"
+    },
+    {
+      "name": "pip-tools",
+      "version": "7.6.2",
+      "ecosystem": "pypi",
+      "release_notes": "https://github.com/jazzband/pip-tools/releases",
+      "research_heuristic": "SUS: too-new, unknown-downloads, no-repository (heuristic missed lowercase metadata)"
+    },
+    {
+      "name": "jsonschema",
+      "version": "4.26.0",
+      "ecosystem": "pypi",
+      "release_notes": "https://github.com/python-jsonschema/jsonschema/blob/main/CHANGELOG.rst",
+      "research_heuristic": "SUS: unknown-downloads"
+    },
+    {
+      "name": "cyclonedx-bom",
+      "version": "7.5.0",
+      "ecosystem": "pypi",
+      "release_notes": "https://github.com/CycloneDX/cyclonedx-python/releases",
+      "research_heuristic": "SUS: too-new, unknown-downloads"
+    },
+    {
+      "name": "node",
+      "version": "24.22.0",
+      "ecosystem": "source",
+      "url": "https://nodejs.org/dist/v24.22.0/node-v24.22.0.tar.xz",
+      "release_index": "https://nodejs.org/dist/index.json",
+      "release_notes": "https://nodejs.org/en/blog/release/v24.22.0",
+      "checksum_url": "https://nodejs.org/dist/v24.22.0/SHASUMS256.txt",
+      "research_heuristic": "Native runtime source; build qualification pending",
+      "release_assessment": "Official release dated 2026-10-14 labels 24.22.0 Krypton LTS; release includes crypto API and runtime fixes. Index lists bundled npm 11.19.1. This is release provenance, not a security clearance."
+    },
+    {
+      "name": "python",
+      "version": "3.13.16",
+      "ecosystem": "source",
+      "url": "https://www.python.org/ftp/python/3.13.16/Python-3.13.16.tar.xz",
+      "release_index": "https://www.python.org/ftp/python/",
+      "release_notes": "https://www.python.org/downloads/release/python-31316/",
+      "checksum_url": null,
+      "research_heuristic": "Native runtime source; build qualification pending",
+      "release_assessment": "Official 3.13.16 release page publishes SHA-256 f4b1bfb3c79b5bb11b8d228a12504163b4c0dab4d679828d8f5f26b6cb6ab35d for selected XZ source; downloaded bytes match. Signatures not verified.",
+      "published_sha256": "f4b1bfb3c79b5bb11b8d228a12504163b4c0dab4d679828d8f5f26b6cb6ab35d"
+    },
+    {
+      "name": "postgresql",
+      "version": "18.6",
+      "ecosystem": "source",
+      "url": "https://ftp.postgresql.org/pub/source/v18.6/postgresql-18.6.tar.bz2",
+      "release_index": "https://ftp.postgresql.org/pub/source/",
+      "release_notes": "https://www.postgresql.org/docs/current/release-18-6.html",
+      "checksum_url": "https://ftp.postgresql.org/pub/source/v18.6/postgresql-18.6.tar.bz2.sha256",
+      "research_heuristic": "Native runtime source; build qualification pending",
+      "release_assessment": "Official 18.6 notes say 18.5 was never released and identify output-plugin restriction and pgcrypto cipher-failure fixes. Existing databases may require configuration/data cleanup; none is operated here."
+    },
+    {
+      "name": "libpq",
+      "version": "18.6",
+      "ecosystem": "source",
+      "url": "https://ftp.postgresql.org/pub/source/v18.6/postgresql-18.6.tar.bz2",
+      "release_index": "https://ftp.postgresql.org/pub/source/",
+      "release_notes": "https://www.postgresql.org/docs/current/release-18-6.html",
+      "checksum_url": "https://ftp.postgresql.org/pub/source/v18.6/postgresql-18.6.tar.bz2.sha256",
+      "research_heuristic": "Native runtime source; build qualification pending",
+      "release_assessment": "Same official PostgreSQL 18.6 source archive; installed libpq/OpenSSL build identity and client smoke tests remain pending."
+    }
+  ]
+}
