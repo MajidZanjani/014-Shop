@@ -75,9 +75,9 @@
     }
   ],
   "next": {
-    "command": "$gsd-execute-phase 2",
-    "label": "Continue wave 3: static frontend and Python locks",
-    "reason": "Plans02-01/02 complete; verified pinned native environment;15plans remain."
+    "command": "$gsd-resume-work",
+    "label": "Resume user-paused Phase 2 wave 3",
+    "reason": "Plans02-01/02complete;02-03/05stopped cleanly beforeedits;15plansremain."
   },
-  "updated_at": "2026-10-20T14:00:54.765Z"
+  "updated_at": "2026-10-20T14:04:13.032Z"
 }

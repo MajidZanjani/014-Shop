@@ -1,0 +1,102 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-10-20T14:04:13.032Z",
+  "phase": "02",
+  "phase_name": "Reproducible application and deployment skeleton",
+  "phase_dir": ".planning/phases/02-reproducible-application-and-deployment-skeleton",
+  "plan": 3,
+  "task": 1,
+  "total_tasks": 23,
+  "status": "paused",
+  "completed_tasks": [
+    {
+      "id": "02-01-01",
+      "name": "Exact inert dependency review packet",
+      "status": "done",
+      "commit": "6210f14"
+    },
+    {
+      "id": "02-01-02",
+      "name": "User approval of exact candidate set",
+      "status": "done",
+      "commit": "e97fa6a"
+    },
+    {
+      "id": "02-02-01",
+      "name": "Pinned native environment and real PostgreSQL",
+      "status": "done",
+      "commit": "a4fa749"
+    }
+  ],
+  "remaining_tasks": [
+    {
+      "id": "02-03",
+      "name": "Static frontend",
+      "status": "not_started"
+    },
+    {
+      "id": "02-05",
+      "name": "Python runtime/tool hash locks",
+      "status": "not_started"
+    },
+    {
+      "id": "02-04,02-06..02-17",
+      "name": "Remaining dependency-ordered Phase2 plans",
+      "status": "not_started"
+    }
+  ],
+  "blockers": [],
+  "async_jobs": [],
+  "human_actions_pending": [],
+  "decisions": [
+    {
+      "decision": "Exact candidate set explicitly approved by user",
+      "digest": "136610b07612762d390b3b3c234ff1ef3f6dc6b0e44a69a2abc646d9106b51bd",
+      "rationale": "User replied approve to displayed packet; record in docs/evidence/t02/dependency-review.json",
+      "phase": "02"
+    },
+    {
+      "decision": "Native source builds use reviewed hashes and supported pinned Nixpkgs",
+      "rationale": "Actual shell/real PostgreSQL acceptance passed; preserve warm store outputs",
+      "phase": "02"
+    }
+  ],
+  "background_workers": [
+    {
+      "plan": "02-03",
+      "wave": "3",
+      "worktree": "/home/claude/project/014-Shop/.claude/worktrees/agent-p02-03-1792504881",
+      "manifest": "/tmp/xspi-phase2-wave3-worktrees.json",
+      "log": "/home/claude/project/014-Shop/.claude/worktrees/agent-p02-03-1792504881.worker.log",
+      "pid": 277738,
+      "identity": "agent-p02-03-1792504881",
+      "base": "2c64d9ba3e5a227df6424b8b8c30355a26e2c99c",
+      "pause_signal": "SIGINT",
+      "head": "2c64d9ba3e5a227df6424b8b8c30355a26e2c99c",
+      "status": [],
+      "recent_commits": []
+    },
+    {
+      "plan": "02-05",
+      "wave": "3",
+      "worktree": "/home/claude/project/014-Shop/.claude/worktrees/agent-p02-05-1792504881",
+      "manifest": "/tmp/xspi-phase2-wave3-worktrees.json",
+      "log": "/home/claude/project/014-Shop/.claude/worktrees/agent-p02-05-1792504881.worker.log",
+      "pid": 277878,
+      "identity": "agent-p02-05-1792504881",
+      "base": "2c64d9ba3e5a227df6424b8b8c30355a26e2c99c",
+      "pause_signal": "SIGINT",
+      "head": "2c64d9ba3e5a227df6424b8b8c30355a26e2c99c",
+      "status": [],
+      "recent_commits": []
+    }
+  ],
+  "uncommitted_files": [
+    " M .planning/STATE.md",
+    " M .planning/phases/02-reproducible-application-and-deployment-skeleton/.continue-here.md",
+    " M .planning/state.json",
+    "?? .planning/HANDOFF.json"
+  ],
+  "next_action": "Resume only on user instruction. Reconcile retained wave3 clean worktrees against their base; no task commits or summaries exist. Reuse through fresh continuation or clean empty branches via existing manifest before redispatch. Never dispatch duplicates. Then execute02-03 and02-05.",
+  "context_notes": "User explicitly invoked gsd-pause-work. Both executor groups SIGINT stopped; lifecycle exit130 recorded, NOT completed plans. Source/compiler/build failures documented in handoff. Phase1 remains accepted; all business P decisions pending."
+}
