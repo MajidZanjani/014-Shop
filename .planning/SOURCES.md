@@ -25,3 +25,7 @@ SOURCE-MATRIX.md preserves exact option/control/declaration and reset inventorie
 ## Reset scope
 
 All old .planning contents were removed before regeneration; docs/decisions.md was replaced and generated AGENTS.md context refreshed. No legacy source names, trial inventories/profiles or D-register carry active authority. The two supplied files are unchanged. Prior planning is recoverable from Git history and a temporary /tmp snapshot, outside active planning. No application or external state was changed.
+
+## Reproducible local provenance check
+
+Run `python3 docs/product-source/verify_t01.py source` from this checkout. It verifies raw package identities, bounded appendix equality and family-1-1 source/requirement locators. Passing proves documentation identity, not approval or live acceptance.
