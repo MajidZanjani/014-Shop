@@ -178,7 +178,10 @@ def inventory(inputs):
               if re.match(r"\| (vendor|family|term|band|access|control|business|declaration|marketing|reset|helper)-", line)]
     expected = trace_lines(inputs)
     count += require(actual == expected and len(actual) == 78, "exact complete ordered trace records")
-    original = matrix.split(TRACE_HEADING)[0].splitlines()
+    original = matrix.split("## Row-level source traceability")[0].splitlines()
+    original_tables = [line for line in "\n".join(original).split("## Exact option inventory", 1)[1].splitlines() if line.startswith("|")]
+    source_tables = [line for line in text(inputs.get(PROPOSAL), PROPOSAL).splitlines()[92:264] if line.startswith("|")]
+    count += require(original_tables == source_tables, "original exact ordered inventory tables")
     product = text(inputs.get(PRODUCT), PRODUCT)
     reqs = text(inputs.get(REQS), REQS)
     roadmap = text(inputs.get(".planning/ROADMAP.md"), "roadmap")
@@ -193,6 +196,51 @@ def inventory(inputs):
         for req, phase in re.findall(r"([A-Z]+-\d+) Phase (\d+)", links):
             count += require(f"**{req}**:" in reqs and f"| {req} | Phase {phase} |" in reqs
                              and f"### Phase {phase}:" in roadmap, identity + ": requirement ownership")
+    return count
+
+
+DECISIONS = "docs/decisions.md"
+PHASES = ("T03/T07/T10/T14", "T03/T07/T14", "T03/T07/T10/T14",
+          "T03/T06/T07/T10/T14", "T03/T07/T10/T14", "T10/T14", "T09/T14",
+          "T03/T07/T08/T10/T14", "T11/T12/T14", "T11/T14", "T11/T14", "T06/T10/T12/T14")
+ROLES = ("SLL engineering/product", "SLL commercial/finance",
+         "SLL commercial/legal + engineering", "SLL licensing/engineering",
+         "SLL support/commercial/finance", "SLL engineering/licensing",
+         "SLL finance + selected acquirer", "SLL commercial/legal + tax adviser",
+         "SLL privacy/operations + recovery custodian", "SLL infrastructure/billing owner",
+         "SLL DNS/infrastructure owner", "SLL email/operations + business owners")
+DECISION_HEADER = ["ID", "Decision or supplied fact", "Recommended handling", "Affected phase(s)",
+                   "Operation actually blocked", "Proposed owner", "Status", "Approval evidence"]
+
+def decisions(data, inputs):
+    value = text(data, "decisions")
+    lines = [line for line in value.splitlines() if line.startswith("|")]
+    count = require(len(lines) == 14, "one complete decision table")
+    count += require(cells(lines[0]) == DECISION_HEADER, "decision header")
+    count += require(len(cells(lines[1])) == 8 and all(re.fullmatch(r"-+", c) for c in cells(lines[1])),
+                     "decision delimiter width")
+    source_rows = [cells(line) for line in text(inputs.get(HANDOFF), HANDOFF).splitlines()
+                   if re.match(r"\| P-\d\d \|", line)]
+    require(len(source_rows) == 12, "bounded authoritative P register")
+    rows = [cells(line) for line in lines[2:]]
+    count += require([row[0] for row in rows] == [f"P-{i:02}" for i in range(1, 13)],
+                     "ordered unique complete decisions")
+    for i, row in enumerate(rows):
+        count += require(len(row) == 8 and all(row), "decision width/nonempty fields")
+        count += require(row[:3] == source_rows[i][:3], "decision source meaning")
+        count += require(row[3] == PHASES[i], "decision affected phases")
+        count += require(row[4].startswith(source_rows[i][3]) and "Preparation continues:" in row[4],
+                         "decision operation and unaffected preparation")
+        count += require(row[5] == ROLES[i], "responsible role only")
+        count += require(row[6] in ("Pending", "Approved"), "decision status")
+        if row[6] == "Pending":
+            count += require(row[7] == "None supplied", "pending evidence")
+        else:
+            # This validates evidence structure, never the authority of an approval.
+            count += require(all(re.search(key + r":\s*[^;]+", row[7])
+                                 for key in ("Approver", "Date", "Scope", "Revision", "Evidence"))
+                             and bool(re.search(r"Date: \d{4}-\d\d-\d\d", row[7])),
+                             "dated scoped attributable approval required")
     return count
 
 
@@ -277,7 +325,24 @@ def self_check():
         require(old in inputs[MATRIX].decode(), "mutation exercised: " + name)
         candidate[MATRIX] = inputs[MATRIX].decode().replace(old, new).encode()
         reject(name, lambda candidate=candidate: inventory(candidate))
-    for mode in ("decisions", "all"):
+        register = (ROOT / DECISIONS).read_bytes()
+    require(decisions(register, inputs) > 0, "valid pending register control")
+    require(decisions(register, inputs) > 0 and (ROOT / DECISIONS).read_bytes() == register,
+            "repeated read-only decisions")
+    rows = [line for line in register.decode().splitlines() if line.startswith("| P-")]
+    for name, old, new in (
+        ("malformed six-cell baseline", rows[0], rows[0].replace(" | " + PHASES[0], "").replace(" | " + ROLES[0], "  " + ROLES[0])),
+        ("duplicate decision", rows[1], rows[0]),
+        ("omitted decision", rows[1], ""),
+        ("missing role", " | " + ROLES[0] + " |", " |  |"),
+        ("missing phase scope", " | " + PHASES[0] + " |", " |  |"),
+        ("missing operation", rows[0], " | ".join(rows[0].split(" | ")[:5] + [""] + rows[0].split(" | ")[6:])),
+        ("shifted status", "| Pending | None supplied |", "| None supplied | Pending |"),
+        ("unsupported approval", "| Pending | None supplied |", "| Approved | None supplied |"),
+    ):
+        require(old in register.decode(), "decision mutation exercised: " + name)
+        reject(name, lambda old=old, new=new: decisions(register.decode().replace(old, new).encode(), inputs))
+    for mode in ("all",):
         reject("unimplemented " + mode, lambda mode=mode: dispatch(mode))
     require(rejected > 0, "positive rejection count")
     print(f"PASS self-check: {rejected} asserted rejections; valid source/scope and pending controls passed")
@@ -287,6 +352,8 @@ def dispatch(mode):
         print(f"PASS source: {source(load_source())} executed checks (local documentation only)")
     elif mode == "scope":
         print(f"PASS scope: {scope((ROOT / SCOPE).read_bytes())} executed checks (local documentation only)")
+    elif mode == "decisions":
+        print(f"PASS decisions: {decisions((ROOT / DECISIONS).read_bytes(), load_source())} executed checks; 12 decision rows")
     elif mode == "inventory":
         print(f"PASS inventory: {inventory(load_source())} executed checks; 78 trace records")
     elif mode == "self-check":
