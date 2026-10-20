@@ -70,7 +70,51 @@ Preserve actual dependencies rather than forcing sequential task order or unrest
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-20.md T02; companion proposal.
 **Estimate:** 3–5 engineer-days
 **UI hint:** no
-**Plans:** Not created; detailed planning pending.
+**Plans:** 17 bounded plans in 13 waves; execution requires an implementation instruction.
+
+Plans:
+**Wave 1**
+- [ ] 02-01-PLAN.md — Concrete dependency review (Wave 1).
+
+**Wave 2** *(blocked on Wave 1 completion)*
+- [ ] 02-02-PLAN.md — Pinned native development environment (Wave 2).
+
+**Wave 3** *(blocked on Wave 2 completion)*
+- [ ] 02-03-PLAN.md — Static Astro collection and React island (Wave 3).
+- [ ] 02-05-PLAN.md — Frozen Python runtime and tools (Wave 3).
+
+**Wave 4** *(blocked on Wave 3 completion)*
+- [ ] 02-04-PLAN.md — Public frontend build boundary (Wave 4).
+- [ ] 02-06-PLAN.md — Django real-PostgreSQL health path (Wave 4).
+
+**Wave 5** *(blocked on Wave 4 completion)*
+- [ ] 02-07-PLAN.md — Fail-closed Django environment configuration (Wave 5).
+- [ ] 02-12-PLAN.md — Versioned actual-response API and probe contracts (Wave 5).
+
+**Wave 6** *(blocked on Wave 5 completion)*
+- [ ] 02-08-PLAN.md — Safe logs and developer environment examples (Wave 6).
+
+**Wave 7** *(blocked on Wave 6 completion)*
+- [ ] 02-09-PLAN.md — Migrated synthetic enqueue path (Wave 7).
+- [ ] 02-13-PLAN.md — Environment/artifact schemas and cross-boundary proof (Wave 7).
+
+**Wave 8** *(blocked on Wave 7 completion)*
+- [ ] 02-10-PLAN.md — Leased worker and PostgreSQL ownership proof (Wave 8).
+
+**Wave 9** *(blocked on Wave 8 completion)*
+- [ ] 02-11-PLAN.md — Mail and storage fake-boundary expansion (Wave 9).
+
+**Wave 10** *(blocked on Wave 9 completion)*
+- [ ] 02-14-PLAN.md — Native boot, mount and credential isolation (Wave 10).
+
+**Wave 11** *(blocked on Wave 10 completion)*
+- [ ] 02-15-PLAN.md — Deployment profiles and image qualification plan (Wave 11).
+
+**Wave 12** *(blocked on Wave 11 completion)*
+- [ ] 02-16-PLAN.md — Actual component licences and SBOM (Wave 12).
+
+**Wave 13** *(blocked on Wave 12 completion)*
+- [ ] 02-17-PLAN.md — Two clean builds and complete CI evidence (Wave 13).
 
 **Success Criteria:**
 

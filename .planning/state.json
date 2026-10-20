@@ -75,9 +75,9 @@
     }
   ],
   "next": {
-    "command": "$gsd-progress --next",
-    "label": "Advance to the next step (plan phase 2)",
-    "reason": "Phase 2 of 14 — needs a plan"
+    "command": "$gsd-execute-phase 2",
+    "label": "Execute the 17 approved Phase 2 plans",
+    "reason": "Research and independent plan review passed; all four BUILD requirements covered. No application implementation has run."
   },
-  "updated_at": "2026-10-20T11:22:58.564Z"
+  "updated_at": "2026-10-20T12:13:21Z"
 }
