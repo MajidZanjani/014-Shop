@@ -70,14 +70,14 @@ Preserve actual dependencies rather than forcing sequential task order or unrest
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-20.md T02; companion proposal.
 **Estimate:** 3–5 engineer-days
 **UI hint:** no
-**Plans:** 17 bounded plans in 13 waves; execution requires an implementation instruction.
+**Plans:** 2/17 complete; wave 3 ready (frontend and Python locks); phase execution authorized.
 
 Plans:
 **Wave 1**
-- [ ] 02-01-PLAN.md — Concrete dependency review (Wave 1).
+- [x] 02-01-PLAN.md — Concrete dependency review (Wave 1).
 
 **Wave 2** *(blocked on Wave 1 completion)*
-- [ ] 02-02-PLAN.md — Pinned native development environment (Wave 2).
+- [x] 02-02-PLAN.md — Pinned native development environment (Wave 2).
 
 **Wave 3** *(blocked on Wave 2 completion)*
 - [ ] 02-03-PLAN.md — Static Astro collection and React island (Wave 3).
