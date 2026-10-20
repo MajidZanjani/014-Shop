@@ -59,3 +59,13 @@ AGENTS.md supplies repository instructions; .gitignore excludes .env. Only exclu
 ## Isolation and acceptance
 
 Isolation fulfilled for this execution: the supplied separate worktree and agent branch match the observed revision in Git metadata. This establishes checkout separation, not external authorization. FLAGGED SRC-04/unclassified remains for end-of-phase human review. Source intent, preservation and evidence-honesty review remain manual gates. Full T01 acceptance awaits plan 01-02; T02+, business approvals, application and external operations remain pending.
+
+## Observed local verification
+
+Observed UTC: 2026-10-20T10:42:49Z; Python 3.13.13. Commands: python3 docs/product-source/verify_t01.py {source,scope,self-check} (each mode separately). Combined measured wall time: 0.073 seconds.
+
+- PASS source: 18 executed checks (local documentation only)
+- PASS scope: 25 executed checks (local documentation only)
+- PASS self-check: 23 asserted rejections; valid source/scope and pending controls passed
+
+Canonical source identities remained exact after the probes. All mutations were in memory; no canonical input was changed. inventory, decisions and all deliberately fail as unimplemented until 01-02. Isolation is fulfilled as recorded above; manual scope/evidence review and full inventory/register/evidence acceptance remain pending. These are local documentation checks, with no bank, OVH or production qualification.

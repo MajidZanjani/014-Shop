@@ -112,14 +112,86 @@ def scope(data):
         print("GATE: isolation pending; full T01 acceptance withheld")
     return count
 
-def main():
-    mode = sys.argv[1] if len(sys.argv) == 2 else ""
+
+def self_check():
+    import contextlib
+    import io
+    import json
+    inputs = load_source()
+    scope_bytes = (ROOT / SCOPE).read_bytes()
+    require(source(inputs) > 0 and scope(scope_bytes) > 0, "valid controls")
+    rejected = 0
+
+    def reject(name, callback):
+        nonlocal rejected
+        try:
+            with contextlib.redirect_stdout(io.StringIO()):
+                callback()
+        except ContractError:
+            rejected += 1
+            print("PASS rejection: " + name)
+        else:
+            raise ContractError("unexpected accepted mutation: " + name)
+
+    for name, bad in (("missing", None), ("empty", b""), ("encoding", b"\xff"),
+                      ("altered byte", b"X" + inputs[PRODUCT][1:]),
+                      ("final newline", inputs[PRODUCT][:-1])):
+        candidate = dict(inputs)
+        candidate[PRODUCT] = bad
+        reject(name, lambda candidate=candidate: source(candidate))
+    proposal = inputs[PROPOSAL]
+    marker = b"\x60\x60\x60\x60markdown\n"
+    at = proposal.index(marker, proposal.index(b"## Product source snapshot\n")) + len(marker)
+    changed = proposal[:at] + b"X" + proposal[at+1:]
+    reject("appendix equality independent of package hash",
+           lambda: require(appendix(changed) == inputs[PRODUCT], "appendix equality"))
+    for name, old, new in (
+        ("missing tracer", TRACE, ""),
+        ("wrong family locator", "lines 17–29", "lines 18–30"),
+        ("wrong requirement phase", "SRC-02 Phase 1", "SRC-02 Phase 3"),
+    ):
+        candidate = dict(inputs)
+        candidate[MATRIX] = inputs[MATRIX].decode().replace(old, new).encode()
+        reject(name, lambda candidate=candidate: source(candidate))
+    for name, old in (("wrong product", "sll-xspi-mc"), ("wrong origin", "https://shop.xspi.pro"),
+                      ("missing reset", SCOPE_FACTS[0])):
+        reject(name, lambda old=old: scope(scope_bytes.decode().replace(old, "WRONG").encode()))
+    meta_match = re.search(r"\x60{3}json\n(.*?)\n\x60{3}", scope_bytes.decode(), re.S)
+    meta = json.loads(meta_match[1])
+
+    def scope_candidate(candidate):
+        return (scope_bytes.decode()[:meta_match.start(1)] + json.dumps(candidate) +
+                scope_bytes.decode()[meta_match.end(1):]).encode()
+
+    for field in ("head", "branch", "worktrees", "observed_utc", "status"):
+        candidate = dict(meta)
+        del candidate[field]
+        reject("missing metadata " + field, lambda candidate=candidate: scope(scope_candidate(candidate)))
+    for field, value in (("branch", "main"), ("worktrees", "worktree /wrong\nHEAD " + meta["head"]),
+                         ("head", "0" * 40)):
+        candidate = dict(meta, isolation="fulfilled")
+        candidate[field] = value
+        reject("unsupported isolation " + field, lambda candidate=candidate: scope(scope_candidate(candidate)))
+    candidate = dict(meta, isolation="pending", isolation_gate="Separate branch not established")
+    with contextlib.redirect_stdout(io.StringIO()):
+        require(scope(scope_candidate(candidate)) > 0, "honest pending control")
+    for mode in ("inventory", "decisions", "all"):
+        reject("unimplemented " + mode, lambda mode=mode: dispatch(mode))
+    require(rejected > 0, "positive rejection count")
+    print(f"PASS self-check: {rejected} asserted rejections; valid source/scope and pending controls passed")
+
+def dispatch(mode):
     if mode == "source":
         print(f"PASS source: {source(load_source())} executed checks (local documentation only)")
     elif mode == "scope":
         print(f"PASS scope: {scope((ROOT / SCOPE).read_bytes())} executed checks (local documentation only)")
+    elif mode == "self-check":
+        self_check()
     else:
         raise ContractError("unimplemented mode: " + mode)
+
+def main():
+    dispatch(sys.argv[1] if len(sys.argv) == 2 else "")
 
 if __name__ == "__main__":
     try:
