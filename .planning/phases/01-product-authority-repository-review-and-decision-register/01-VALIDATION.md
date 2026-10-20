@@ -29,16 +29,16 @@ Run the relevant available checker mode after each task, then all/self-check at 
 
 ## Per-Task Verification Map
 
-The planner must reconcile final task IDs with this initial map before checker approval.
+Final task IDs below match the two dependent three-task plans. Wave 2 follows Wave 1 because the checker and matrix are shared; no phase implementation has run during planning.
 
 | Task ID | Plan | Wave | Requirement | Test Type | Automated Command | Availability | Status |
 |---|---|---|---|---|---|---|---|
-| 01-01-01 | 01 | 1 | SRC-01, SRC-02 tracer | provenance + one-row tracer | python3 docs/product-source/verify_t01.py source | produced by task | pending |
-| 01-01-02 | 01 | 1 | SRC-04 | scope metadata and identity | python3 docs/product-source/verify_t01.py scope | source mode exists; extend in task | pending |
-| 01-01-03 | 01 | 1 | SRC-01, SRC-04 | isolated negative checks | python3 docs/product-source/verify_t01.py self-check | implement available-mode probes in task | pending |
-| 01-02-01 | 02 | 2 | SRC-02 | exact ordered inventory and locators | python3 docs/product-source/verify_t01.py inventory | extend checker in task | pending |
-| 01-02-02 | 02 | 2 | SRC-03 | register structure/status/gates | python3 docs/product-source/verify_t01.py decisions | extend checker in task | pending |
-| 01-02-03 | 02 | 2 | SRC-01–SRC-04 | complete evidence consistency | python3 docs/product-source/verify_t01.py all | earlier tasks produce all modes | pending |
+| 01-01-01 | 01 | 1 | SRC-01, SRC-02 tracer | provenance + one-row tracer | python3 docs/product-source/verify_t01.py source | checker and source mode produced by this task | pending |
+| 01-01-02 | 01 | 1 | SRC-04 | scope metadata and identity | python3 docs/product-source/verify_t01.py scope | scope note/mode produced by this task after 01-01-01 | pending |
+| 01-01-03 | 01 | 1 | SRC-01, SRC-04 | isolated negative checks | python3 docs/product-source/verify_t01.py self-check | source/scope self-check produced by this task | pending |
+| 01-02-01 | 02 | 2 | SRC-02 | exact ordered inventory and locators | python3 docs/product-source/verify_t01.py inventory | inventory mode and its self-check cases produced by this task | pending |
+| 01-02-02 | 02 | 2 | SRC-03 | register structure/status/gates | python3 docs/product-source/verify_t01.py decisions | decisions mode and read-only/rejection cases produced by this task | pending |
+| 01-02-03 | 02 | 2 | SRC-01–SRC-04 | complete evidence consistency | python3 docs/product-source/verify_t01.py all | all/evidence checks produced by this task; also runs completed self-check and scoped diff check | pending |
 
 ## Wave 0 Requirements
 

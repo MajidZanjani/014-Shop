@@ -1,0 +1,83 @@
+{
+  "contract": "1.0.0",
+  "flavor": "core",
+  "milestone": null,
+  "phases": [
+    {
+      "number": "1",
+      "name": "Product authority, repository review and decision register",
+      "status": "pending"
+    },
+    {
+      "number": "2",
+      "name": "Reproducible application and deployment skeleton",
+      "status": "pending"
+    },
+    {
+      "number": "3",
+      "name": "Markdown catalog, schemas and approved price calculations",
+      "status": "pending"
+    },
+    {
+      "number": "4",
+      "name": "Static product, configurator, support page and accessible fallback",
+      "status": "pending"
+    },
+    {
+      "number": "5",
+      "name": "Transactional records, durable work and private evidence primitives",
+      "status": "pending"
+    },
+    {
+      "number": "6",
+      "name": "Verified customer access, staff MFA and private host editing",
+      "status": "pending"
+    },
+    {
+      "number": "7",
+      "name": "Multi-line cart, quotations, business checkout and acceptance",
+      "status": "pending"
+    },
+    {
+      "number": "8",
+      "name": "Payment domain and fault-injectable fake bank",
+      "status": "pending"
+    },
+    {
+      "number": "9",
+      "name": "Selected-bank sandbox integration and complete reconciliation",
+      "status": "pending"
+    },
+    {
+      "number": "10",
+      "name": "Licence delivery, renewal/rehosting and support-hours workflows",
+      "status": "pending"
+    },
+    {
+      "number": "11",
+      "name": "OVH deployment, Route 53, dedicated TLS and static publication",
+      "status": "pending"
+    },
+    {
+      "number": "12",
+      "name": "Backups, operating alerts and financial/licensing restore rehearsal",
+      "status": "pending"
+    },
+    {
+      "number": "13",
+      "name": "Integrated product, access, payment and deployment acceptance",
+      "status": "pending"
+    },
+    {
+      "number": "14",
+      "name": "Release handover and separately scoped live activation",
+      "status": "pending"
+    }
+  ],
+  "next": {
+    "command": "$gsd-execute-phase 1",
+    "label": "Phase 1 planned; execution pending",
+    "reason": "Two reviewed documentation plans in two waves; 0 executed. Applicable execution scope remains required."
+  },
+  "updated_at": "2026-10-20T10:35:59.739Z"
+}

@@ -39,7 +39,15 @@ Preserve actual dependencies rather than forcing sequential task order or unrest
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-20.md T01; companion proposal.
 **Estimate:** 1–2 engineer-days
 **UI hint:** no
-**Plans:** Not created; detailed planning pending.
+**Plans:** 2 executable plans; independent plan review passed, implementation pending.
+
+**Wave 1**
+
+- [ ] 01-01-PLAN.md — Source provenance tracer and repository scope (Wave 1; SRC-01, SRC-02, SRC-04).
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [ ] 01-02-PLAN.md — Complete source traceability, decision-register repair and T01 evidence (Wave 2; depends on 01-01; SRC-01–SRC-04).
 
 **Success Criteria:**
 
@@ -365,7 +373,7 @@ Preserve actual dependencies rather than forcing sequential task order or unrest
 
 | Phase | Plans complete | Status |
 |---|---|---|
-| 1 | 0 / not planned | Pending |
+| 1 | 0 / 2 | Planned — execution not authorized by this planning task |
 | 2 | 0 / not planned | Pending |
 | 3 | 0 / not planned | Pending |
 | 4 | 0 / not planned | Pending |
