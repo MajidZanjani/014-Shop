@@ -1,0 +1,38 @@
+{
+  "command_argv": [
+    "timeout",
+    "-k",
+    "5",
+    "3600",
+    "nix",
+    "develop",
+    "--cores",
+    "4",
+    "--max-jobs",
+    "1",
+    "./ops/nixos",
+    "--command",
+    "python3",
+    "scripts/check.py",
+    "environment"
+  ],
+  "started_utc": "2026-10-20T13:15:10+00:00",
+  "timeout_seconds": 3600,
+  "kill_after_seconds": 5,
+  "cores": 4,
+  "max_jobs": 1,
+  "status": "native-build-completed-initial-runtime-failure-repaired",
+  "output_path": "02-02-final-runtime.log",
+  "evidence_class": "local-native-build",
+  "prior_attempt": {
+    "started_utc": "2026-10-20T12:44:14+00:00",
+    "timeout_seconds": 1800,
+    "cores": 2,
+    "exitCode": 124
+  },
+  "exitCode": 1,
+  "log_last_write_utc": "2026-10-20T13:51:05.607107+00:00",
+  "elapsed_to_last_log_seconds": 2155.607107400894,
+  "runtime_failure": "root-private Nix TMPDIR blocked existing unprivileged test UID; fixed by direct owned /tmp root",
+  "final_verification_record": "02-02-VERIFICATION.json"
+}

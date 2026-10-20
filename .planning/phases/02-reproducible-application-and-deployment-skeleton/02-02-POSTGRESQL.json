@@ -1,0 +1,43 @@
+{
+  "command": "resolved reviewed-source PostgreSQL: real SELECT, fresh database, intentional body failure, finally cleanup",
+  "exitCode": 0,
+  "tool_identity": "/nix/store/r9m7pml7sjm3a91pi63wl06gjiw8ll9v-postgresql-18.6/bin",
+  "backend": "277349|PostgreSQL 18.6 on x86_64-pc-linux-gnu, compiled by clang version 21.1.8, 64-bit",
+  "checks": 4,
+  "scratch_removed": true,
+  "elapsed_seconds": 0.4562704020063393,
+  "evidence_class": "local-synthetic",
+  "startup_failure": {
+    "exitCode": 1,
+    "command_argv": [
+      "/nix/store/0bmapmnznzaxgx76jhzbznhlwq738g03-util-linux-2.42.3-bin/bin/runuser",
+      "--preserve-environment",
+      "-u",
+      "claude",
+      "--",
+      "/nix/store/r9m7pml7sjm3a91pi63wl06gjiw8ll9v-postgresql-18.6/bin/pg_ctl",
+      "-D",
+      "/tmp/shop-pg-hf07usa1/data",
+      "-l",
+      "/tmp/shop-pg-hf07usa1/server.log",
+      "-o",
+      "-k /tmp/shop-pg-hf07usa1/socket -h '' -c max_connections=0",
+      "-w",
+      "-t",
+      "15",
+      "start"
+    ],
+    "output": "waiting for server to start.... stopped waiting\npg_ctl: could not start server\nExamine the log output.\n",
+    "server_log": "2026-10-20 13:54:27.380 GMT [277370] FATAL:  0 is outside the valid range for parameter \"max_connections\" (1 .. 262143)\n",
+    "scratch_removed": true,
+    "injection": "owned scratch startup only: max_connections=0"
+  },
+  "observed_utc": "2026-10-20T13:54:27.161460+00:00",
+  "driver_argv": [
+    "/nix/store/nr6vqhv33q8n6nbyy529fvcydy3zp1jd-python3-3.13.16-env/bin/python3",
+    "-B",
+    "-c",
+    "import json,os,sys,subprocess,datetime,hashlib,time; from pathlib import Path; from unittest.mock import patch; sys.path.insert(0,\"scripts\"); from dev_postgres import Cluster,isolated_postgres; path=Path(\".planning/phases/02-reproducible-application-and-deployment-skeleton/02-02-POSTGRESQL.json\"); record=json.loads(path.read_text()); started=time.monotonic()\ntry:\n with isolated_postgres() as pg:\n  root=pg.root; row=pg.sql(\"SELECT pg_backend_pid(), version()\"); pg.create_database(); assert int(row.split(\"|\")[0])>0 and \"PostgreSQL 18.6\" in row; raise RuntimeError(\"planned body failure\")\nexcept RuntimeError as exc:\n assert str(exc)==\"planned body failure\"\nassert not root.exists(); record.update(backend=row,scratch_removed=True,elapsed_seconds=time.monotonic()-started,observed_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),driver_argv=sys.orig_argv,helper_sha256=hashlib.sha256(Path(\"scripts/dev_postgres.py\").read_bytes()).hexdigest()); original=Cluster.command; evidence={}\ndef fail_start(self,tool,*args,**kwargs):\n if tool==\"pg_ctl\" and args[-1]==\"start\":\n  args=list(args); index=args.index(\"-o\")+1; args[index]+=\" -c max_connections=0\"; evidence[\"root\"]=self.root\n  try:\n   return original(self,tool,*args,**kwargs)\n  except subprocess.CalledProcessError as exc:\n   evidence.update(exitCode=exc.returncode,command_argv=exc.cmd,output=exc.stdout+exc.stderr,server_log=(self.root/\"server.log\").read_text()); raise\n return original(self,tool,*args,**kwargs)\ntry:\n with patch.object(Cluster,\"command\",fail_start):\n  with isolated_postgres():\n   raise AssertionError(\"invalid readiness unexpectedly succeeded\")\nexcept subprocess.CalledProcessError:\n pass\nassert evidence[\"exitCode\"]!=0 and \"max_connections\" in evidence[\"server_log\"] and not evidence.pop(\"root\").exists(); evidence.update(scratch_removed=True,injection=\"owned scratch startup only: max_connections=0\"); record[\"startup_failure\"]=evidence; path.write_text(json.dumps(record,indent=2)+\"\\n\"); print(\"POSTGRESQL_POSITIVE_AND_FAILURE_PATHS_PASS checks=6\")"
+  ],
+  "helper_sha256": "a240307064e18b70c4a11c7ed74380d2fe99a8c3e848888f4b048cd76a92d187"
+}
