@@ -39,7 +39,7 @@ Preserve actual dependencies rather than forcing sequential task order or unrest
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-20.md T01; companion proposal.
 **Estimate:** 1–2 engineer-days
 **UI hint:** no
-**Plans:** 2 executable plans; independent plan review passed, implementation pending.
+**Plans:** 2/2 executed; clean independent code review; four human-verification items pending in 01-UAT.md.
 
 **Wave 1**
 
@@ -373,7 +373,7 @@ Preserve actual dependencies rather than forcing sequential task order or unrest
 
 | Phase | Plans complete | Status |
 |---|---|---|
-| 1 | 2 / 2 | Executed — phase verification pending |
+| 1 | 2 / 2 | Executed — human verification pending (4 items) |
 | 2 | 0 / not planned | Pending |
 | 3 | 0 / not planned | Pending |
 | 4 | 0 / not planned | Pending |

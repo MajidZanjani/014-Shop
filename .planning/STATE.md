@@ -2,11 +2,11 @@
 gsd_state_version: "1.0"
 current_phase: 1
 current_phase_name: Product authority, repository review and decision register
-status: executing
-stopped_at: Phase 1 planned and independently reviewed; execution pending.
-last_updated: "2026-10-20T10:35:59.728Z"
+status: verifying
+stopped_at: Phase 1 executed; four human verification items pending in 01-UAT.md.
+last_updated: "2026-10-20T11:10:34Z"
 last_activity: 2026-10-20
-last_activity_desc: Phase 1 planned with two dependent plans; independent review and 4/4 requirement coverage passed; execution pending.
+last_activity_desc: Phase 1 has two executed plans, clean independent code review, green checks and four pending human verification items.
 state_head: 27b04e54287e0f5eabd92967cb7beb359105813e
 progress:
   total_phases: 14
@@ -23,14 +23,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-10-20)
 
 **Core value:** Turn an exact reviewed xSPI-MC configuration or support purchase into attributable acceptance, verified payment and recoverable licence delivery or support credit without duplicate effects.
-**Current focus:** Both Phase 1 documentation plans executed and merged; code review fixes independently confirmed; final phase verification next.
+**Current focus:** Phase 1 executed and reviewed; verification is human_needed, with four saved review items. No phase advancement.
 
 ## Current Position
 
-Phase: 1 (Product authority, repository review and decision register) — READY TO EXECUTE
-Plan: 2 of 2 complete; independent phase verification next
-Status: Verifying Phase 1
-Last activity: 2026-10-20 — Created two Phase 1 plans; independent review and 4/4 requirement coverage passed; no tasks executed.
+Phase: 1 of 14 (Product authority, repository review and decision register) — HUMAN VERIFICATION NEEDED
+Plan: 2 of 2 complete; 6 of 6 tasks executed
+Status: Awaiting human verification
+Last activity: 2026-10-20 — Both plans executed and merged; lifecycle defects fixed and independently re-reviewed; verifier human_needed with four UAT items.
 Progress: [░░░░░░░░░░] 0% implemented
 
 ## Performance Metrics
@@ -47,7 +47,7 @@ Workflow preferences retained: autonomous planning, fine granularity, independen
 
 ### Pending Todos
 
-Run final independent phase verification; retain any human acceptance items. T02+ application work remains outside this phase instruction.
+Run $gsd-verify-work 1 for the four saved documentation acceptance checks. T02+ remains unexecuted; all P-01–P-12 decisions remain pending.
 
 ### Blockers/Concerns
 
@@ -57,5 +57,5 @@ Source version/tariff assertions are supplied dated research, not independently 
 ## Session Continuity
 
 Last session: 2026-10-20
-Stopped at: Both plans executed and independently code-reviewed; final phase verification next.
-Resume file: None
+Stopped at: Phase 1 executed; verification human_needed, four tests saved in 01-UAT.md.
+Resume file: .planning/phases/01-product-authority-repository-review-and-decision-register/01-UAT.md
