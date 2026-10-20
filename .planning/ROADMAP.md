@@ -47,7 +47,7 @@ Preserve actual dependencies rather than forcing sequential task order or unrest
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 01-02-PLAN.md — Complete source traceability, decision-register repair and T01 evidence (Wave 2; depends on 01-01; SRC-01–SRC-04).
+- [x] 01-02-PLAN.md — Complete source traceability, decision-register repair and T01 evidence (Wave 2; depends on 01-01; SRC-01–SRC-04).
 
 **Success Criteria:**
 
@@ -373,7 +373,7 @@ Preserve actual dependencies rather than forcing sequential task order or unrest
 
 | Phase | Plans complete | Status |
 |---|---|---|
-| 1 | 1 / 2 | In progress — Wave 1 merged |
+| 1 | 2 / 2 | Executed — phase verification pending |
 | 2 | 0 / not planned | Pending |
 | 3 | 0 / not planned | Pending |
 | 4 | 0 / not planned | Pending |

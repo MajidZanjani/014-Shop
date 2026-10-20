@@ -6,7 +6,7 @@
     {
       "number": "1",
       "name": "Product authority, repository review and decision register",
-      "status": "pending"
+      "status": "in_progress"
     },
     {
       "number": "2",
@@ -75,9 +75,9 @@
     }
   ],
   "next": {
-    "command": "$gsd-execute-phase 1",
-    "label": "Phase 1 planned; execution pending",
-    "reason": "Two reviewed documentation plans in two waves; 0 executed. Applicable execution scope remains required."
+    "command": "$gsd-verify-work 1",
+    "label": "Phase 1 executed; verification pending",
+    "reason": "Two plans merged, source/code checks green, manual acceptance not yet resolved."
   },
   "updated_at": "2026-10-20T10:35:59.739Z"
 }
