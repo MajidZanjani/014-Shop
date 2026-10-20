@@ -43,7 +43,7 @@ Preserve actual dependencies rather than forcing sequential task order or unrest
 
 **Wave 1**
 
-- [ ] 01-01-PLAN.md — Source provenance tracer and repository scope (Wave 1; SRC-01, SRC-02, SRC-04).
+- [x] 01-01-PLAN.md — Source provenance tracer and repository scope (Wave 1; SRC-01, SRC-02, SRC-04).
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
@@ -373,7 +373,7 @@ Preserve actual dependencies rather than forcing sequential task order or unrest
 
 | Phase | Plans complete | Status |
 |---|---|---|
-| 1 | 0 / 2 | Planned — execution not authorized by this planning task |
+| 1 | 1 / 2 | In progress — Wave 1 merged |
 | 2 | 0 / not planned | Pending |
 | 3 | 0 / not planned | Pending |
 | 4 | 0 / not planned | Pending |
