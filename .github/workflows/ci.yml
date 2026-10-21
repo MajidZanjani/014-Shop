@@ -37,6 +37,11 @@
           }
         },
         {
+          "name": "Verify current source authority and rejection controls",
+          "shell": "bash",
+          "run": "mkdir -p .scratch\nexport TMPDIR=\"$GITHUB_WORKSPACE/.scratch\"\nnix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 docs/product-source/verify_t01.py all\nnix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 docs/product-source/verify_t01.py self-check"
+        },
+        {
           "name": "Run identical required dispatcher lanes",
           "id": "verify",
           "shell": "bash",

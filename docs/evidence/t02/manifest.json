@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "evidence_class": "local-synthetic",
+  "source": {
+    "commit": "373b2c5fa246fb31f7c359bbb87d89098d488f48",
+    "dirty": true
+  },
+  "tools": {
+    "python": "3.13.16"
+  },
+  "locks": [
+    {
+      "path": "backend/requirements/tools-linux-py313.txt",
+      "sha256": "e1be2ae84dba689c3c6cbf3a9e2a4ed468bf34ec5d85550846e73a210fef0fe1"
+    },
+    {
+      "path": "backend/requirements/runtime-linux-py313.txt",
+      "sha256": "f8fcadf293e0da50ca0cd19af277e869a2de4a9476bd65e9d919ff7f506a7606"
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "sha256": "45364e53e0d36a848ce1a615ac9685e76990c4fa904481fb2906cafa87e86315"
+    },
+    {
+      "path": "ops/nixos/flake.lock",
+      "sha256": "865a3c07a35f43f024ce7c01614be82cb795707edac8e27092bdbba42519cd75"
+    }
+  ],
+  "command": [
+    "/nix/store/nr6vqhv33q8n6nbyy529fvcydy3zp1jd-python3-3.13.16-env/bin/python3",
+    "scripts/check_reproducibility.py",
+    "--local",
+    "--record-evidence"
+  ],
+  "exit_code": 0,
+  "checks": 4,
+  "tests": 5,
+  "started_at": "2026-10-21T08:25:20.561370+00:00",
+  "duration_seconds": 16.171542235999368,
+  "artifacts": [
+    {
+      "path": "docs/evidence/t02/reproducibility.json",
+      "sha256": "9765b79e292bc1b9df1d3cacfe803294a20d132709c0e4142e689f039341b482"
+    },
+    {
+      "path": "scripts/check_reproducibility.py",
+      "sha256": "9adbd3e7bce3664748989e47f00075df00003e0a80fe3a12c0ee18776d041d14"
+    }
+  ]
+}
