@@ -4,6 +4,7 @@ import argparse
 from contextlib import contextmanager
 import json
 import os
+import re
 from pathlib import Path
 import subprocess
 import sys
@@ -74,16 +75,88 @@ def enqueue_checks(python, env, pg, database):
     return 4, tests, row
 
 
+def worker_checks(python, env, pg, database, *, full=False):
+    manage(python, env, 'run_worker', '--once')
+    require(pg.sql("SELECT state || '|' || (result->>'outcome') FROM worker_probe", database['NAME']) == 'complete|synthetic-ok', 'worker completion absent')
+    manage(python, env, 'run_worker', '--once')
+    require(pg.sql('SELECT count(*) FROM worker_fakereceipt', database['NAME']) == '1', 'worker receipt not stable')
+    for option in ('--lease-seconds', '--max-attempts'):
+        try:
+            manage(python, env, 'run_worker', '--once', option, '0')
+        except subprocess.CalledProcessError:
+            pass
+        else:
+            raise ValueError('unbounded worker argument accepted')
+    args = ['test', 'shop.worker.tests', '--noinput']
+    if full:
+        env['SHOP_OFFHOST_WORKER_AUTHORIZED'] = '1'
+    else:
+        args.extend(['--exclude-tag', 'offhost'])
+    result = manage(python, env, *args, timeout=60)
+    output = result.stdout + result.stderr
+    count = re.search(r'Ran (\d+) tests?', output)
+    require(count is not None and int(count[1]) >= 7 and 'OK' in output and 'skipped' not in output,
+            'required PostgreSQL ownership tests missing, failed or skipped')
+    return 2, 4 + int(count[1])
+
+
+def mutation_checks(python, env, scratch):
+    """Prove focused tests reject broken controls in a disposable source copy."""
+    backend = scratch / 'mutation-backend'
+    files = list((ROOT / 'backend').rglob('*'))
+    require(len(files) < 200, 'bounded synthetic backend source copy required')
+    for source in files:
+        require(not source.is_symlink(), 'symlink forbidden in mutation source copy')
+        if source.is_file():
+            require(source.stat().st_size <= 1048576, 'oversized backend source input')
+            target = backend / source.relative_to(ROOT / 'backend')
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(source.read_bytes())
+    path = backend / 'shop/worker/services.py'
+    original = path.read_text()
+    fence = original.replace('claim_token=claim.token, lease_until__gt=Now()).update', 'lease_until__gt=Now()).update')
+    old = '    result = perform_fake_probe(ProbeRequest(claim.effect_id))\n    complete_probe(claim, result)'
+    new = '    with transaction.atomic():\n        Probe.objects.select_for_update().get(pk=claim.probe_id)\n        result = perform_fake_probe(ProbeRequest(claim.effect_id))\n        complete_probe(claim, result)'
+    locked = original.replace(old, new)
+    require(fence != original and locked != original, 'mutation targets absent')
+    for source, case in ((fence, 'test_expiry_takeover_fences_old_token'),
+                         (locked, 'test_claim_commits_before_adapter_wait')):
+        path.write_text(source)
+        try:
+            dev_postgres.run([str(python), 'manage.py', 'test', 'shop.worker.tests.OwnershipTests.' + case, '--noinput'],
+                env=env, cwd=backend, timeout=30)
+        except subprocess.CalledProcessError as error:
+            require('Ran 1 test' in error.stderr and 'FAILED (' in error.stderr, 'mutation did not execute its focused test')
+        else:
+            raise ValueError('broken worker ownership control accepted')
+    return 2
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--enqueue-only', action='store_true')
+    parser.add_argument('--runner-authorization', type=Path)
     parser.add_argument('lane', nargs='?', choices=('worker-smoke', 'worker-local', 'worker'))
     args = parser.parse_args()
-    require(args.enqueue_only and args.lane is None, 'worker execution producer pending 02-10')
+    require(bool(args.enqueue_only) != bool(args.lane), 'select enqueue-only or one worker lane')
+    if args.lane == 'worker':
+        from check_backend import runner_authorization
+        runner_authorization(args.runner_authorization, action='owned-synthetic-worker-interruption')
+    else:
+        require(args.runner_authorization is None, 'runner authorization only applies to full worker lane')
     started = time.monotonic()
     with prepared_database() as (python, env, pg, database, scratch):
         checks, tests, row = enqueue_checks(python, env, pg, database)
-    print(f'ENQUEUE_PROBE_PASS checks={checks} tests={tests} duration_seconds={time.monotonic()-started:.3f}')
+        if args.lane:
+            extra_checks, extra_tests = worker_checks(python, env, pg, database, full=args.lane == 'worker')
+            checks += extra_checks
+            tests += extra_tests
+            tests += mutation_checks(python, env, scratch)
+    marker = 'ENQUEUE_PROBE_PASS' if args.enqueue_only else {
+        'worker-smoke': 'WORKER_SMOKE_PASS', 'worker-local': 'WORKER_LOCAL_PASS', 'worker': 'WORKER_PASS'}[args.lane]
+    print(f'{marker} checks={checks} tests={tests} duration_seconds={time.monotonic()-started:.3f}')
+    if args.lane in {'worker-local', 'worker-smoke'}:
+        print('PENDING_OFF_HOST: forced process interruption/restart unexecuted; full worker qualification pending')
 
 if __name__ == '__main__':
     try:

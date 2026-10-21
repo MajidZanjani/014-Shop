@@ -22,7 +22,7 @@ from check_python import frozen_environment, require
 import dev_postgres
 
 
-def runner_authorization(path):
+def runner_authorization(path, action='owned-synthetic-postgresql-outage'):
     """Match operator-supplied runner scope; never infer authority from privileges."""
     require(path is not None, 'PENDING_OFF_HOST: independent runner unassigned; use core-local for ordinary checks')
     path = Path(path)
@@ -43,7 +43,7 @@ def runner_authorization(path):
             'runner machine identity mismatch')
     commit = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True, timeout=5).strip()
     require(data['checkout_commit'] == commit, 'runner authorization must name exact checkout commit')
-    require(data['permitted_actions'] == ['owned-synthetic-postgresql-outage'], 'exact fault scope required')
+    require(data['permitted_actions'] == [action], 'exact fault scope required')
     return data
 
 
