@@ -76,8 +76,8 @@
   ],
   "next": {
     "command": "$gsd-execute-phase 2",
-    "label": "Run current-source migration 02-00 before remaining Phase 2",
-    "reason": "October 21 replan complete; selected mx1 rootless runtime replaces old cloud deployment; documentation only this turn."
+    "label": "Continue 02-03/02-05",
+    "reason": "02-00 source migration complete with 71 rejection controls; rootless deployment remains pending."
   },
-  "updated_at": "2026-10-21T06:10:29Z"
+  "updated_at": "2026-10-21T06:22:50Z"
 }

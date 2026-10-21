@@ -2,8 +2,8 @@
 gsd_state_version: "1.0"
 current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
-status: ready
-stopped_at: October 21 documentation replan complete; next implementation task is 02-00.
+status: executing
+stopped_at: 02-00 complete; proceeding to 02-03 and 02-05.
 last_updated: "2026-10-21T06:15:23.993Z"
 last_activity: 2026-10-21
 last_activity_desc: Replanned for protected mx1 rootless Podman; no implementation resumed.
@@ -12,7 +12,7 @@ progress:
   total_phases: 14
   completed_phases: 1
   total_plans: 20
-  completed_plans: 4
+  completed_plans: 5
   percent: 7
 ---
 
@@ -23,13 +23,13 @@ progress:
 See .planning/PROJECT.md and SOURCES.md (October 21 current authority).
 
 **Core value:** Turn an exact reviewed xSPI-MC configuration or support purchase into attributable acceptance, verified payment and recoverable licence delivery or support credit without duplicate effects.
-**Current focus:** Current-source verifier migration 02-00, then 02-03 static frontend and 02-05 Python locks. Phase 2 has 2/18 completed development plans; 16 pending, 24 tasks/14 waves. This turn replanned documentation only.
+**Current focus:** 02-00 complete; next 02-03 static frontend and 02-05 Python locks. Phase 2 has 3/18 completed development plans; 15 pending, 24 tasks/14 waves. Current-source checks now pass; no host/runtime qualification claimed.
 
 ## Current Position
 
 Phase: 02 of 14 — Reproducible application and deployment skeleton
-Plan: 02-00 pending; existing 02-01 and 02-02 evidence retained only after applicability review.
-Status: Ready for a future execution instruction; auto-advance remains false.
+Plan: 02-00 complete; existing 02-01 and 02-02 evidence retained only after applicability review.
+Status: Executing Phase 2 under user continuation; phase auto-advance remains false.
 Last activity: 2026-10-21 — Protected-host requirements, roadmap, detailed affected plans and stale handoff replaced.
 Progress: [█░░░░░░░░░] 7% phases; no new application/host acceptance.
 
@@ -47,11 +47,11 @@ Progress: [█░░░░░░░░░] 7% phases; no new application/host ac
 
 ### Pending Todos
 
-First execute 02-00 current-source verifier migration. Then 02-03/05 under current context. Two old clean retained worktrees have no task edits/commits; they remain at historical base 2c64d9b and must never execute stale prompts. A future GSD orchestrator must reconcile the recorded manifest and supply fresh current context/base before dispatch. Do not manually merge, broadly clean or restart old workers. No worker was started by this replan.
+02-00 source migration is complete and merged. Execute 02-03/05 under current context. Two old clean retained worktrees have no task edits/commits; they remain at historical base 2c64d9b and must never execute stale prompts. A future GSD orchestrator must reconcile the recorded manifest and supply fresh current context/base before dispatch. Do not manually merge, broadly clean or restart old workers. No worker was started by this replan.
 
 ### Blockers/Concerns
 
-Old executable docs/product-source/verify_t01.py targets deleted October 20 source names/hash/locator/status/evidence assumptions; explicit 02-00 repairs it. Do not claim historical T01 executable all/self-check passes now.
+02-00 all passed six groups (20/27/279/88/39/18 checks) and self-check rejected 71 mutations. Historical/current evidence are separate; shared BUILD requirements remain incomplete.
 
 P-10 host qualification remains unperformed. P-11 public route/zone/certificate contract and P-12 existing SMTP/monitoring/owners remain pending; other commercial/custody decisions stay pending. These defer exact affected operations only. No fresh mx1 inspection or independent off-host runner is claimed. Off-host runtime lanes require an authorized resource and return blocked/nonzero if absent; no automatic infrastructure purchase.
 
@@ -64,5 +64,5 @@ P-10 host qualification remains unperformed. P-11 public route/zone/certificate 
 ## Session Continuity
 
 Last session: 2026-10-21T06:10:29Z
-Stopped at: Documentation replan complete; implementation has not resumed.
+Stopped at: 02-00 merged; proceeding to frontend/Python dependency slices.
 Resume file: .planning/phases/02-reproducible-application-and-deployment-skeleton/.continue-here.md
