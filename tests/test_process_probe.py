@@ -137,11 +137,47 @@ class ProcessProbeTests(unittest.TestCase):
         import json,stat
         record,_=fixture();data=json.dumps(record).encode('ascii')
         parent=SimpleNamespace(st_uid=0,st_mode=stat.S_IFDIR|0o755)
-        leaf=SimpleNamespace(st_uid=0,st_mode=stat.S_IFREG|0o600,st_size=len(data))
-        with patch.object(probe.os,'open',side_effect=[10,11,12,13,14]),patch.object(probe.os,'close') as closed,patch.object(probe.os,'fstat',side_effect=[parent,parent,parent,leaf]),patch.object(probe.os,'read',return_value=data) as read:
+        leaf=SimpleNamespace(st_uid=0,st_gid=0,st_mode=stat.S_IFREG|0o600,st_size=len(data),
+                             st_dev=1,st_ino=2,st_mtime_ns=3,st_ctime_ns=4)
+        with patch.object(probe.os,'open',side_effect=[10,11,12,13,14]),patch.object(probe.os,'close') as closed,patch.object(probe.os,'fstat',side_effect=[parent,parent,parent,leaf,leaf]),patch.object(probe.os,'read',return_value=data) as read:
             self.assertEqual(probe.load_record(),record)
             read.assert_called_once_with(14,32769)
             self.assertEqual(sorted(c.args[0] for c in closed.call_args_list),[10,11,12,13,14])
+
+    def test_control_loader_denies_change_during_read_before_validation(self):
+        from types import SimpleNamespace
+        from unittest.mock import patch,Mock
+        import control,stat
+        parent=SimpleNamespace(st_uid=0,st_mode=stat.S_IFDIR|0o755)
+        values=dict(st_uid=0,st_gid=0,st_mode=stat.S_IFREG|0o440,st_size=2,
+                    st_dev=1,st_ino=2,st_mtime_ns=3,st_ctime_ns=4)
+        for key in values:
+            changed=dict(values);changed[key]+=1
+            validator=Mock()
+            with self.subTest(key=key),patch.object(control.os,'open',side_effect=[10,11,12,13,14]), \
+                 patch.object(control.os,'close'),patch.object(control.os,'read',return_value=b'{}'), \
+                 patch.object(control.os,'fstat',side_effect=[parent,parent,parent,SimpleNamespace(**values),SimpleNamespace(**changed)]):
+                with self.assertRaises(ValueError):control.load_control('expected.json',validator)
+                validator.assert_not_called()
+
+    def test_control_loader_requires_complete_nonempty_read_and_accepts_limit(self):
+        from types import SimpleNamespace
+        from unittest.mock import patch,Mock
+        import control,stat
+        parent=SimpleNamespace(st_uid=0,st_mode=stat.S_IFDIR|0o755)
+        for size,data,accepted in ((3,b'{}',False),(0,b'',False),(32768,b'{}'+b' '*32766,True)):
+            leaf=SimpleNamespace(st_uid=0,st_gid=0,st_mode=stat.S_IFREG|0o440,st_size=size,
+                                 st_dev=1,st_ino=2,st_mtime_ns=3,st_ctime_ns=4)
+            validator=Mock(return_value='validated')
+            with self.subTest(size=size),patch.object(control.os,'open',side_effect=[10,11,12,13,14]), \
+                 patch.object(control.os,'close'),patch.object(control.os,'read',return_value=data), \
+                 patch.object(control.os,'fstat',side_effect=[parent,parent,parent,leaf,leaf]):
+                if accepted:
+                    self.assertEqual(control.load_control('expected.json',validator),'validated')
+                    validator.assert_called_once_with({})
+                else:
+                    with self.assertRaises(ValueError):control.load_control('expected.json',validator)
+                    validator.assert_not_called()
 
     def test_operator_wrapper_uses_one_authoritative_record_for_sql_and_probe(self):
         from types import SimpleNamespace
