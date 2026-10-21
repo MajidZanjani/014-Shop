@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: executing
-last_updated: "2026-10-21T13:45:00.809Z"
-state_head: 9cbc570652fdac5e29ed4831c32e9361e9e1b6c6
+last_updated: "2026-10-21T13:55:58.268Z"
+state_head: cacc247421ba65769b27a31aef2938bbe94b2d21
 progress:
   total_phases: 14
   completed_phases: 1
@@ -13,7 +13,7 @@ last_activity: 2026-10-21
 current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
 stopped_at: Resumed; control-record read hardening complete, plan14 implementation gaps remain.
-last_activity_desc: Read-only retained-candidate inspection implemented; local checks pass.
+last_activity_desc: Explicit npm SBOM derivative validates with preserved raw evidence; full inventory pending.
 ---
 
 # Project State
@@ -178,6 +178,7 @@ Phase02 and14/16/17 remain incomplete. Next scoped durable generation publicatio
 | 261021-hk6 | Exercise real operator SCRAM inspection on disposable PostgreSQL | 2026-10-21 | 908195a | [261021-hk6-exercise-real-operator-scram-inspection-](./quick/261021-hk6-exercise-real-operator-scram-inspection-/) |
 | 261021-i2j | Stage private unverified control candidates with durable exclusive files | 2026-10-21 | 542e2d8 | [261021-i2j-stage-private-unverified-control-candida](./quick/261021-i2j-stage-private-unverified-control-candida/) |
 | 261021-j0i | Inspect retained private candidate generations without repair | 2026-10-21 | 9cbc570 | [261021-j0i-inspect-retained-private-candidate-gener](./quick/261021-j0i-inspect-retained-private-candidate-gener/) |
+| 261021-j6p | Derive traceable schema-valid npm inventory while preserving raw evidence | 2026-10-21 | cacc247 | [261021-j6p-derive-traceable-schema-valid-npm-invent](./quick/261021-j6p-derive-traceable-schema-valid-npm-invent/) |
 
 ## Latest continuation — real local SCRAM inspection
 
@@ -202,3 +203,13 @@ Code9cbc570 adds library-only inspect_candidate(original_data,parent_fd), sharin
 Actual local database-destination PASS3 checks/98 tests,9.415s; database-tools6/5,4.002s; operator-runtime4/10,2.382s; git diff --check passes. Eight added filesystem cases cover successful strictly read-only snapshot, partial/extra sets, altered originals/records/marker, symlink/hardlink/FIFO/directory/mode denial, exact input/private parent, failed parent-sync with marker, replaced file after FD read and replaced named generation. All passed first run; no failure or skipped tests. Packaged module bytes rebuilt/verified; CLI unchanged. Full all not rerun, no FULL_PASS.
 
 Successful candidate_matches remains unverified-candidate with durability_confirmed=false and publication/retry/reopening_authorized=false. A candidate left by a failed parent sync can match identically; result cannot establish past staging success, durability or permission to repeat. Owner/root changes after observation remain possible. Keep original input/failure history for later separately authorized custody/publication decisions. Actual live issuer/publisher/admission barrier, fixed socket/peer/container binding/least-privilege roles, Django/application write/migration integration, generator/replica/images/licences/CI and off-host qualification remain unfinished. Phase02 and14/16/17 stay incomplete. No .env/credential needed/read, host/service/resource modification or purchase. Off-host runner remains unassigned and disruptive tests pending; do not repeatedly ask before remaining qualification stage.
+
+## Latest continuation — traceable npm SBOM derivative
+
+Codecacc247 adds scripts/derive_npm_sbom.py, seven tests, an explicit npm-sbom-derived.json and hash/change/validator receipt plus docs/build/npm-sbom-derivation.md. Raw npm-sbom.json and licences.json remain byte-for-byte unchanged. The derivative omits only exact known malformed VCS external-reference objects for am-i-vibing0.5.0 and common-ancestor-path2.0.0; no replacement URL inferred. JSON pointers/removed values allow exact parsed-JSON reconstruction. All component identities/hashes/licences/dependency edges and other fields remain unchanged. Both original metadata defects remain unresolved upstream.
+
+Actual local: seven transformation tests pass (0.097s), four existing inventory tests pass; locked cyclonedx-python-lib11.12.0 strict CycloneDX1.5 validator confirms raw invalid/derived valid. Exclusive --write pass4 checks/271 reconciled retained unique npm identities15.500s; subsequent default retained-output check pass4/271 in15.682s. No new application install/recollection or image/host qualification implied; tool environment uses existing frozen tools lock. Three initial single-omission qualification/diagnostic attempts failed actual derivative validation, exposing second malformed raw reference git@github.com:isaacs/common-ancestor-path after first raw failure. Expanded only the explicit two-reference policy; no invalid artifacts were written. Reversible-change/coverage tests and actual maintained validator both pass. git diff --check and unchanged raw/provenance checks pass.
+
+Raw SHA25660f9f60edc3164ca4ce7fb3489245a5ae60bcb5178f0efa8ecb09d2f735f892c; derivative8c9d56af9ac8b008a983fff6acf4d178eca7ee8d91d5f806c02dbb4809c2908d. Receipt names actual validator and records raw/derived results; software/legal approval/inventory_complete/raw_upstream_metadata_resolved all false. Default CLI checks exact retained derivative/receipt; --write creates only new outputs and refuses existing ones, no repair/overwrite. Full raw collector unchanged/nonzero on schema findings, not rerun. Twelve missing incorporated-text findings, native/Nix/OCI/layers/notices/compatibility and full inventory approval remain pending. Plan16 remains implementation-incomplete, not completed by a derived SBOM. Plans14/17 and full phase remain incomplete; no FULL_PASS.
+
+No .env read/needed credential, source/product change, host/provider operation, existing service/resource change or purchase. Independent off-host runner remains unassigned and disruptive tests pending. Continue authorized repository preparation, including live record publisher/admission/transport/app migration integration, qualified runtime/generator/replica/images, inventory/licences and OCI/CI evidence. Do not repeatedly ask about runner before remaining qualification stage.
