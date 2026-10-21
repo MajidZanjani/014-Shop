@@ -147,3 +147,18 @@ def execute_operator_mutation(connection, zfs, pg_control, statement, parameters
         require(current == approved)
         return probe(current,zfs,pg_control)
     return execute_mutation(connection,approved['database'],fresh,statement,parameters)
+
+
+def execute_operator_schema_batch(connection, zfs, pg_control, statements):
+    """Host-side schema primitive; exact migration authority is still separate.
+
+    The root-owned process record must remain identical across the whole batch.
+    Never mount host process/control evidence into application containers.
+    """
+    from database import execute_schema_batch
+    approved = load_record()
+    def fresh():
+        current = load_record()
+        require(current == approved)
+        return probe(current,zfs,pg_control)
+    return execute_schema_batch(connection,approved['database'],fresh,statements)

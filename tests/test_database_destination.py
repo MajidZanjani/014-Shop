@@ -170,3 +170,94 @@ class DatabaseDestinationTests(unittest.TestCase):
                          sql='DELETE FROM public.destination_probe WHERE value=%s')
         self.assertEqual(len(calls),3)
         self.assertEqual(self.target.sql('SELECT value FROM public.destination_probe'),'7')
+
+
+    def schema(self, statements, conn=None, probe=None):
+        return database.execute_schema_batch(conn or self.connection(), self.actual,
+                    probe or (lambda: dict(self.runtime)), statements)
+
+    def schema_exists(self, pg=None):
+        return (pg or self.target).sql(
+            "SELECT count(*) FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace "
+            "WHERE n.nspname='public' AND c.relname='schema_guard_probe'")
+
+    def test_schema_batch_commits_exact_reviewed_steps(self):
+        self.addCleanup(self.target.sql, 'DROP TABLE IF EXISTS public.schema_guard_probe')
+        self.schema(('CREATE TABLE public.schema_guard_probe (id integer PRIMARY KEY)',
+                     'ALTER TABLE public.schema_guard_probe ADD COLUMN value text',
+                     'CREATE INDEX schema_guard_value ON public.schema_guard_probe(value)'))
+        self.assertEqual(self.schema_exists(), '1')
+        self.assertEqual(self.target.sql(
+            "SELECT count(*) FROM information_schema.columns "
+            "WHERE table_name='schema_guard_probe' AND column_name='value'"), '1')
+
+    def test_schema_decoy_receives_no_ddl(self):
+        with self.assertRaises(ValueError):
+            self.schema(('CREATE TABLE public.schema_guard_probe(id integer)',),
+                        conn=self.connection(self.decoy))
+        self.assertEqual(self.schema_exists(self.decoy), '0')
+
+    def test_schema_later_error_rolls_back_prior_ddl(self):
+        conn=self.connection()
+        with self.assertRaises(psycopg.errors.UndefinedColumn):
+            self.schema(('CREATE TABLE public.schema_guard_probe(id integer)',
+                         'CREATE INDEX schema_guard_bad ON public.schema_guard_probe(absent)'), conn=conn)
+        self.assertEqual(self.schema_exists(), '0')
+        self.assertEqual(conn.info.transaction_status, TransactionStatus.IDLE)
+
+    def test_schema_identity_checked_before_each_statement_and_commit(self):
+        for fail_at in (2,3,4):
+            calls=[]
+            def probe():
+                calls.append(True)
+                return dict(self.runtime, container_id=('b' if len(calls)==fail_at else 'a')*64)
+            with self.subTest(fail_at=fail_at), self.assertRaises(ValueError):
+                self.schema(('CREATE TABLE public.schema_guard_probe(id integer)',
+                             'ALTER TABLE public.schema_guard_probe ADD COLUMN value text'),probe=probe)
+            self.assertEqual(len(calls), fail_at)
+            self.assertEqual(self.schema_exists(), '0')
+
+    def test_schema_lock_contention_denies_without_retry(self):
+        owner=self.connection()
+        with owner.transaction():
+            owner.execute('SELECT pg_advisory_xact_lock(%s)', (database.SCHEMA_LOCK,))
+            with self.assertRaises(ValueError):
+                self.schema(('CREATE TABLE public.schema_guard_probe(id integer)',))
+            self.assertEqual(self.schema_exists(), '0')
+        # Transaction lock is released; a subsequent separately requested call works.
+        self.schema(('CREATE TABLE public.schema_guard_probe(id integer)',
+                     'DROP TABLE public.schema_guard_probe'))
+        self.assertEqual(self.schema_exists(), '0')
+
+    def test_schema_rejects_unbounded_or_non_schema_commands(self):
+        invalid=((), [], ('CREATE DATABASE decoy',), ('COMMIT',),
+                 ('CREATE INDEX CONCURRENTLY decoy ON public.destination_probe(value)',),
+                 ('GRANT ALL ON public.destination_probe TO public',),
+                 ('INSERT INTO public.destination_probe VALUES (7)',),
+                 ('CREATE TABLE public.schema_guard_probe(id integer); COMMIT',),
+                 ('CREATE TABLE ' + 'x'*65536,),
+                 ('CREATE TABLE ' + 'é'*32768,),
+                 ('CREATE TABLE ' + 'x'*17000,)*64,
+                 ('CREATE TABLE public.schema_guard_probe(id integer)',)*65)
+        for statements in invalid:
+            with self.subTest(case=str(statements)[:40]), self.assertRaises((ValueError,psycopg.Error)):
+                self.schema(statements)
+        self.assertEqual(self.schema_exists(), '0')
+
+    def test_schema_probe_exception_rolls_back_and_is_not_retried(self):
+        calls=[]
+        def probe():
+            calls.append(True)
+            if len(calls)==3:raise OSError('synthetic missing storage')
+            return dict(self.runtime)
+        with self.assertRaises(OSError):
+            self.schema(('CREATE TABLE public.schema_guard_probe(id integer)',), probe=probe)
+        self.assertEqual(len(calls), 3)
+        self.assertEqual(self.schema_exists(), '0')
+
+    def test_schema_refuses_caller_owned_transaction(self):
+        conn=self.connection()
+        with conn.transaction():
+            with self.assertRaises(ValueError):
+                self.schema(('CREATE TABLE public.schema_guard_probe(id integer)',),conn=conn)
+        self.assertEqual(self.schema_exists(), '0')
