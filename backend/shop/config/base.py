@@ -7,7 +7,7 @@ LIVE_PAYMENTS_ENABLED = False
 PAYMENT_ADAPTER = MAIL_ADAPTER = STORAGE_ADAPTER = 'fake'
 ROOT_URLCONF = 'shop.urls'
 WSGI_APPLICATION = 'shop.wsgi.application'
-INSTALLED_APPS = ['shop.core']
+INSTALLED_APPS = ['shop.core', 'shop.worker']
 MIDDLEWARE = ['django.middleware.security.SecurityMiddleware']
 USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
