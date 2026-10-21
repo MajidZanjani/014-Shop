@@ -7,6 +7,7 @@ import json
 import os
 from pathlib import Path
 import signal
+import re
 import socket
 import subprocess
 import sys
@@ -110,7 +111,8 @@ def qualify(faults=False):
         scratch = Path(directory)
         with frozen_environment('runtime', scratch / 'runtime') as (python, env, expected):
             env['SHOP_POSTGRES_BIN'] = os.environ['SHOP_POSTGRES_BIN']
-            env['DJANGO_SETTINGS_MODULE'] = 'shop.config.synthetic'
+            env.update(DJANGO_SETTINGS_MODULE='shop.config.synthetic', SHOP_ENV='synthetic',
+                       LIVE_PAYMENTS_ENABLED='false', PAYMENT_ADAPTER='fake', MAIL_ADAPTER='fake', STORAGE_ADAPTER='fake')
             with dev_postgres.isolated_postgres() as pg:
                 database = pg.create_database()
                 for key, value in database.items():
@@ -119,7 +121,13 @@ def qualify(faults=False):
                 require(identity == '18.6|' + database['NAME'], 'actual scratch database identity mismatch')
                 run([python, 'manage.py', 'check'], env)
                 run([python, 'manage.py', 'migrate', '--noinput'], env)
-                checks, tests = 3, 0
+                test_result = dev_postgres.run([str(python), 'manage.py', 'test', 'shop.core.tests', '--noinput'],
+                    env=env, cwd=ROOT / 'backend', timeout=45)
+                test_output = test_result.stdout + test_result.stderr
+                match = re.search(r'Ran (\d+) tests?', test_output)
+                require(match is not None and int(match[1]) >= 5 and 'OK' in test_output and 'skipped' not in test_output,
+                        'required Django configuration tests missing, failed or skipped')
+                checks, tests = 3, int(match[1])
                 with gunicorn(python, env, scratch) as port:
                     for path, status, body in [('/health/live', 200, {'status': 'live'}),
                                                ('/health/ready', 200, {'status': 'ready'})]:
