@@ -4,10 +4,10 @@ current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
 status: executing
 stopped_at: Candidate runtime and local evidence committed; finish 14/16/17 gaps.
-last_updated: "2026-10-21T10:05:58.912663+00:00"
+last_updated: "2026-10-21T10:13:54.720185+00:00"
 last_activity: 2026-10-21
-last_activity_desc: PostgreSQL console filter and image linkage prepared; 8 new local privacy tests and regressions pass.
-state_head: 62c6f44
+last_activity_desc: Production Django connection gate denies unqualified database access; local backend and worker regressions pass.
+state_head: 52942a4
 progress:
   total_phases: 14
   completed_phases: 1
@@ -30,7 +30,7 @@ No independent off-host runner assigned. User permits all authorized repository 
 
 ## Current evidence
 
-Local environment2 checks/14 tests; frontend13/9; core-local4/20; worker-smoke6/24 including broken-fence/lock controls; adapters3/6 in isolated network; contracts-local12/8; combined boundaries17/32; deployment-eval15/25; postgres-diagnostics3/8; postgresql-config3/7; bootstrap-local3/13; database-destination3/13; profiles6/5; locks3/8; reproducibility4/5 with exactly2 independent public/backend builds. Counts overlap across lanes; no unique total implied. Reproducibility uses a fixed canonical path in separate private process namespaces; raw failed HTML-island-ID comparison remains recorded, no output normalization. Focused versioned manifest is local reproducibility only.
+Local environment2 checks/14 tests; frontend13/9; core-local4/22; worker-smoke6/24 including broken-fence/lock controls; adapters3/6 in isolated network; contracts-local12/8; combined boundaries17/32; deployment-eval15/25; postgres-diagnostics3/8; postgresql-config3/7; bootstrap-local3/13; database-destination3/13; profiles6/5; locks3/8; reproducibility4/5 with exactly2 independent public/backend builds. Counts overlap across lanes; no unique total implied. Reproducibility uses a fixed canonical path in separate private process namespaces; raw failed HTML-island-ID comparison remains recorded, no output normalization. Focused versioned manifest is local reproducibility only.
 
 Installed standard SBOM evidence reconciles271 npm/6 runtime Python/39 tool Python components and records70 uninstalled optional paths. Collector exits2, not INVENTORY_PASS: raw npm malformed URI, missing licence texts and native/image coverage remain unresolved. Images are unbuilt; no real digest or compatibility claimed. Candidate profile/guard evaluation is not operational protection proof. Manual-only read-only SHA-pinned CI is prepared, never executed; no runner/authorization record created.
 
@@ -81,3 +81,9 @@ Code87047c5 adds immutable PostgreSQL/HBA candidate files and readonly Quadlet m
 ## Latest continuation — PostgreSQL console privacy
 
 Code62c6f44 implements content-free console filtering and candidate image linkage using the exact existing Python interpreter. Local lane3 checks/8 tests includes real single-user PostgreSQL raw-versus-filtered runtime-generated canary evidence; synthetic native PID/exit/environment/stream controls pass. Deployment-eval15/25, PG config3/7 and environment2/14 passed. No image/container or fault execution. Next qualify actual image/canary/worker containment, postmaster reaping/PID1/lifecycle/backpressure and other log/private result paths; a protected forensic channel remains unimplemented. Continue roles/auth/network, archive/recovery, records/migrations/app/operator and generator/replica implementation;16/17/runtime/full CI/off-host gates remain pending. No credentials/host changes. Phase02 incomplete.
+
+## Latest continuation — closed production Django database gate
+
+Code52942a4 selects shop.db.unqualified in both production and bank-sandbox settings. It inherits PostgreSQL metadata/operations but refuses get_new_connection before the driver call; application/worker/management/migration and maintenance connections remain unavailable until qualified destination integration replaces this gate. This deliberately prevents readiness and migrations in these modes; it is not live transaction attestation or role/auth completion. Local/synthetic settings retain their ordinary disposable PostgreSQL backend.
+
+Actual local evidence: core-local4 checks/22 tests,7.286 seconds; worker-smoke6/24,8.495 seconds. Added tests assert both production modes select the gate (mocked runtime secret reader only), named/default-maintenance connection attempts and cursor access fail with no driver call and no password in the error. Full off-host checks remain pending. First attempted dispatcher core-local was rejected as an unsupported lane before tests; corrected to scripts/check_backend.py core-local. No .env read, credentials required, host/provider action or resource change. Phase02 and plans14/16/17 remain incomplete.
