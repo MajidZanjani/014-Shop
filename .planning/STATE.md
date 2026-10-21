@@ -4,10 +4,10 @@ current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
 status: executing
 stopped_at: Candidate runtime and local evidence committed; finish 14/16/17 gaps.
-last_updated: "2026-10-21T09:31:38.516608+00:00"
+last_updated: "2026-10-21T09:42:35.620223+00:00"
 last_activity: 2026-10-21
-last_activity_desc: One-use offline bootstrap added; 13 local bootstrap tests and deployment/SQL/environment regressions pass.
-state_head: 637b901
+last_activity_desc: Closed PostgreSQL runtime draft added; native parser/HBA7 tests and deployment/environment regressions pass.
+state_head: 87047c5
 progress:
   total_phases: 14
   completed_phases: 1
@@ -30,7 +30,7 @@ No independent off-host runner assigned. User permits all authorized repository 
 
 ## Current evidence
 
-Local environment2 checks/14 tests; frontend13/9; core-local4/20; worker-smoke6/24 including broken-fence/lock controls; adapters3/6 in isolated network; contracts-local12/8; combined boundaries17/32; deployment-eval13/25; bootstrap-local3/13; database-destination3/13; profiles6/5; locks3/8; reproducibility4/5 with exactly2 independent public/backend builds. Counts overlap across lanes; no unique total implied. Reproducibility uses a fixed canonical path in separate private process namespaces; raw failed HTML-island-ID comparison remains recorded, no output normalization. Focused versioned manifest is local reproducibility only.
+Local environment2 checks/14 tests; frontend13/9; core-local4/20; worker-smoke6/24 including broken-fence/lock controls; adapters3/6 in isolated network; contracts-local12/8; combined boundaries17/32; deployment-eval14/25; postgresql-config3/7; bootstrap-local3/13; database-destination3/13; profiles6/5; locks3/8; reproducibility4/5 with exactly2 independent public/backend builds. Counts overlap across lanes; no unique total implied. Reproducibility uses a fixed canonical path in separate private process namespaces; raw failed HTML-island-ID comparison remains recorded, no output normalization. Focused versioned manifest is local reproducibility only.
 
 Installed standard SBOM evidence reconciles271 npm/6 runtime Python/39 tool Python components and records70 uninstalled optional paths. Collector exits2, not INVENTORY_PASS: raw npm malformed URI, missing licence texts and native/image coverage remain unresolved. Images are unbuilt; no real digest or compatibility claimed. Candidate profile/guard evaluation is not operational protection proof. Manual-only read-only SHA-pinned CI is prepared, never executed; no runner/authorization record created.
 
@@ -73,3 +73,7 @@ Code acaa097 prepares pinned, cleared-environment Podman/Quadlet wrappers and im
 ## Latest continuation — offline bootstrap
 
 Code637b901 adds explicit one-use offline cluster initialization, durable attempt/receipt handling, shared root-owned authority loading and inert Nix bootstrap artifact. Local bootstrap3 checks/13 tests ran actual initdb and single-user UTF8 catalog verification only on a new owned disposable directory; no listener. Deployment-eval13/25, SQL3/13 and environment2/14 regressions pass. Forced Nix bootstrap evaluation now retains whole-repository Git context; earlier metadata was not a build proof. No production record provisioned, .env credential needed/read or host/service action. Next implement application database/roles/auth/runtime config, reviewed record publication, migrations and isolated app/operator enforcement, per-user generator installation and replica driver; off-host bootstrap/runtime/recovery and image/licence/CI qualification remain pending. Phase02 incomplete.
+
+## Latest continuation — closed PostgreSQL runtime draft
+
+Code87047c5 adds immutable PostgreSQL/HBA candidate files and readonly Quadlet mounts. TCP disabled; every connection rejected; explicit durability and deliberately failing archive command retain WAL without a successful-backup claim. Local native single-user config/HBA verification3 checks/7 tests; deployment-eval14/25 and environment2/14 passed. No listener, archiver, host/service mutation or credential access. Provisional memory/connection settings are not qualification; archive backlog can exceed max_wal_size. Next implement qualified application roles/auth/network access, **PostgreSQL diagnostic privacy and canary handling**, real archive integration and migrations/app/operator enforcement; generator/replica/OCI/licence/full CI and off-host/recovery remain pending. Phase02 remains incomplete.

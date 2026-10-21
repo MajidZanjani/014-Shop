@@ -29,6 +29,7 @@ in {
     accountAbsent = !(builtins.hasAttr "shopsvc" disabled.config.users.users);
     lingerAbsent = !(builtins.hasAttr "shop-linger" disabled.config.systemd.services);
     globalPodmanDisabled = !disabled.config.virtualisation.podman.enable;
+    databaseConfigAbsent = !(builtins.hasAttr "xspi-shop/postgresql.conf" disabled.config.environment.etc);
     bootstrapAbsent = !(builtins.hasAttr "xspi-shop/bootstrap" disabled.config.environment.etc);
     runtimeArtifactsAbsent = !(builtins.hasAttr "xspi-shop/runtime/podman" disabled.config.environment.etc);
   };
@@ -44,6 +45,8 @@ in {
     automaticGlobalLingerUnchanged = candidate.config.users.manageLingering == disabled.config.users.manageLingering;
     shopLingerUnmanagedByGlobalService = candidate.config.users.users.shopsvc.linger == null;
     globalUserGeneratorsUnchanged = candidate.config.systemd.user.generators == disabled.config.systemd.user.generators;
+    databaseConfig = builtins.readFile candidate.config.environment.etc."xspi-shop/postgresql.conf".source;
+    databaseHba = builtins.readFile candidate.config.environment.etc."xspi-shop/pg_hba.conf".source;
     bootstrapArtifact = toString candidate.config.environment.etc."xspi-shop/bootstrap".source;
     bootstrapScript = candidate.config.environment.etc."xspi-shop/bootstrap".source.text;
     activationAuthorized = false;
