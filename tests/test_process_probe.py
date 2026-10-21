@@ -28,6 +28,26 @@ def fixture():
     return record,snapshot
 
 
+def candidate_bundle():
+    """Unverified synthetic records only; no observed host evidence or approval."""
+    import base64,hashlib,json
+    from datetime import datetime,timedelta,timezone
+    record,_=fixture()
+    artifact=json.dumps({'schema_version':1,'migration_id':'synthetic_001',
+        'statements':['CREATE TABLE public.synthetic(id integer)']}).encode()
+    authorization={'schema_version':1,'action':'inspect-schema-outcome',
+        'authorization_id':'a'*32,'expires_at':(datetime.now(timezone.utc)+timedelta(hours=1)).strftime('%Y-%m-%dT%H:%M:%SZ'),
+        'artifact_sha256':hashlib.sha256(artifact).hexdigest(),'migration_id':'synthetic_001',
+        'database':dict(record['database']),'artifact_kind':'schema'}
+    return {'schema_version':1,'evidence_class':'unverified-candidate','records':{
+        'expected.json':dict(record['startup']),'database-process.json':record,
+        'operator-connection.json':{'schema_version':1,'database':dict(record['database']),
+            'socket_directory':'/srv/shop/tmp/postgres-socket',
+            'zfs':'/nix/store/'+'b'*32+'-zfs/bin/zfs',
+            'pg_control':record['process']['executable'].rsplit('/',1)[0]+'/pg_controldata'},
+        'schema-reconciliation.json':authorization},'artifact_base64':base64.b64encode(artifact).decode('ascii')}
+
+
 class ProcessProbeTests(unittest.TestCase):
     def test_exact_synthetic_snapshot(self):
         record,snapshot=fixture()

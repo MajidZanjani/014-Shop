@@ -14,7 +14,7 @@ from check_python import require,read_lock
 from check_database_tools import check_artifact,unique_fields
 
 ERROR=b'{"event":"operator.inspection_denied"}\n'
-HELP=b'Prepared read-only command: inspect (private artifact FD0, credential FD3). Runtime qualification pending.\n'
+HELP=b'Prepared read-only commands: inspect (private artifact FD0, credential FD3); validate-records (private candidate FD0). Runtime qualification pending.\n'
 FIELDS={'package','executable','driver','source','runtimeSite','python','libpq',
         'libc','pythonVersion','psycopgVersion','libpqVersion','readOnly','installed','runtimeQualified','productionActivation'}
 
@@ -60,14 +60,14 @@ def main():
     try:
         suite=unittest.TestLoader().discover(str(ROOT/'tests'),pattern='test_operator_runtime.py')
         stream=io.StringIO();result=unittest.TextTestRunner(stream=stream).run(suite)
-        require(result.testsRun>=8 and result.wasSuccessful() and not result.skipped,
+        require(result.testsRun>=10 and result.wasSuccessful() and not result.skipped,
                 'operator native startup/process controls failed: '+stream.getvalue())
     finally:
         for key,value in previous.items():
             if value is None:os.environ.pop(key,None)
             else:os.environ[key]=value
     print(f'OPERATOR_RUNTIME_PASS checks=4 tests={result.testsRun} duration_seconds={time.monotonic()-start:.3f}')
-    print('Actual standalone launcher/native startup and denial only; no host install, positive DB transport or runtime qualification')
+    print('Actual standalone startup/denial and offline record validation only; no host install, positive DB transport or runtime qualification')
 
 if __name__=='__main__':
     try:main()

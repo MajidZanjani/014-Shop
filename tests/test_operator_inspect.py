@@ -33,7 +33,7 @@ class OperatorInspectTests(unittest.TestCase):
             stack.enter_context(patch.dict(os.environ,cli.SAFE_ENV,clear=True))
             stack.enter_context(patch.object(cli.os,'geteuid',return_value=9909))
             loaded=stack.enter_context(patch.object(cli,'load_connection',return_value=record))
-            stack.enter_context(patch.object(cli.process_probe,'load_record',return_value={'database':record['database']}))
+            stack.enter_context(patch.object(cli.process_probe,'load_record',return_value={'database':record['database'],'process':{'executable':record['pg_control'].replace('/pg_controldata','/postgres')}}))
             stack.enter_context(patch.object(cli.schema_reconciliation,'load_authorization',return_value={'database':record['database']}))
             stack.enter_context(patch.object(cli.schema_reconciliation,'validate_artifact'))
             stack.enter_context(patch.object(cli.process_probe,'probe',return_value={'container_id':'a'*64,'account_uid':9909}))

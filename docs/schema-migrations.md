@@ -171,7 +171,7 @@ They adapt only the fixed PGDATA comparison to owned scratch paths. They do not
 establish rootless process/storage/resource containment or production readiness.
 
 The inert source bundle is available as the flake package
-`shop-database-tools-source`. It contains exactly eight explicitly selected Python
+`shop-database-tools-source`. It contains exactly nine explicitly selected Python
 modules plus the pinned SQL artifact and a closed SHA-256 manifest. Individual
 source bytes are copied into separate store files; the bundle does not retain a
 reference to the entire repository source. It contains no interpreter, dependency
@@ -189,7 +189,7 @@ operator tool. The separate candidate launcher/runtime described below is now bu
 its native closure/licence review, credential/transport qualification, host
 installation and operational qualification are still pending. The source manifest is not a complete runtime SBOM or licence review.
 
-The prepared `operator_inspect.py` module now supplies only `inspect` and `--help`.
+The prepared `operator_inspect.py` module now supplies `inspect`, offline `validate-records` and `--help`.
 It is source code in that inert bundle, not an installed executable or qualified
 operator runtime. No mutation/bootstrap command exists. Its standalone entrypoint
 scrubs the environment before handling the command; invocation must use the
@@ -271,3 +271,11 @@ closure/SBOM/licence and full CI/reproducibility evidence are still pending. No
 credentials are bundled and the current closed HBA/Quadlet configuration is
 unchanged. This candidate does not authorize deployment, mutation retry or safe
 reopening, and production Django access stays blocked.
+
+Offline preparation now also validates the four-record control bundle and returns
+only an unverified hash report. It checks common startup/database identity and
+binds pg_controldata to the approved process executable. The inspection command
+uses that same binding check. This does not issue or publish root records, perform
+host observations or grant activation. The exact bundle/publication requirements
+are in [control-record-publication.md](control-record-publication.md); publication
+and operational qualification remain pending.
