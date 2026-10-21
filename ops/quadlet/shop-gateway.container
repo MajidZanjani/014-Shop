@@ -10,6 +10,8 @@ Network=shop-private.network
 UserNS=keep-id:uid=10001,gid=10001
 User=10001:10001
 ReadOnly=true
+ReadOnlyTmpfs=false
+ShmSize=32m
 NoNewPrivileges=true
 DropCapability=all
 Tmpfs=/tmp:rw,size=32m,mode=1777

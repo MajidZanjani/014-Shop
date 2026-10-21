@@ -52,3 +52,13 @@ class RootlessRuntimeTests(unittest.TestCase):
         self.assertNotIn('systemctl',self.candidate['generatorText'])
         self.assertNotIn('loginctl',self.candidate['generatorText'])
         self.assertIn("QUADLET_UNIT_DIRS=/etc/containers/systemd/users/9909",self.candidate['generatorText'])
+
+    def test_actual_quadlets_have_explicit_bounded_tmpfs(self):
+        for name in ('app','worker','postgres','gateway'):
+            text=(ROOT/'ops/quadlet'/('shop-'+name+'.container')).read_text()
+            self.assertTrue(check.validate_quadlet_storage(text))
+            for old,new in [('ReadOnlyTmpfs=false','ReadOnlyTmpfs=true'),('ShmSize=32m','ShmSize=1g'),
+                            ('Tmpfs=/tmp:rw,size=32m,mode=1777','Tmpfs=/tmp:rw'),
+                            ('ShmSize=32m','ShmSize=32m\nTmpfs=/var/tmp:rw')]:
+                with self.subTest(name=name,new=new),self.assertRaises(ValueError):
+                    check.validate_quadlet_storage(text.replace(old,new))

@@ -58,6 +58,18 @@ def validate_runtime_contract(candidate):
     return True
 
 
+
+def validate_quadlet_storage(text):
+    """Require explicit candidate tmpfs bounds; actual mount proof is separate."""
+    import configparser
+    config=configparser.ConfigParser(strict=False,interpolation=None)
+    config.optionxform=str;config.read_string(text)
+    container=config['Container']
+    if any(container.get(key)!=value for key,value in {'ReadOnly':'true','ReadOnlyTmpfs':'false','ShmSize':'32m','Tmpfs':'/tmp:rw,size=32m,mode=1777'}.items()):raise ValueError('implicit or unbounded candidate tmpfs')
+    if sum(line.startswith('Tmpfs=') for line in text.splitlines())!=1:raise ValueError('unexpected extra writable tmpfs')
+    return True
+
+
 def evaluate():
     start=time.monotonic()
     metadata=json.loads(run(['nix','eval','--json','./ops/nixos#deploymentMetadata.x86_64-linux']))
@@ -66,6 +78,8 @@ def evaluate():
     fixture=json.loads(run(['nix','eval','--json','--impure','--expr',expr]))
     if not all(fixture['disabled'].values()):raise ValueError('default module changes protected scope')
     validate_runtime_contract(fixture['runtimeCandidate'])
+    for name in ('app','worker','postgres','gateway'):
+        validate_quadlet_storage((ROOT/'ops/quadlet'/('shop-'+name+'.container')).read_text())
     candidate=fixture['syntheticCandidate']
     failed=[x['message'] for x in candidate['assertions'] if not x['assertion']]
     if failed:raise ValueError('synthetic module assertions failed: '+str(failed))
@@ -82,8 +96,8 @@ def evaluate():
     if probe_result.testsRun<14 or not probe_result.wasSuccessful() or probe_result.skipped:raise ValueError('process probe controls failed: '+stream.getvalue())
     runtime_suite=unittest.TestLoader().discover(str(ROOT/'tests'),pattern='test_rootless_runtime.py')
     runtime_result=unittest.TextTestRunner(stream=stream).run(runtime_suite)
-    if runtime_result.testsRun<6 or not runtime_result.wasSuccessful() or runtime_result.skipped:raise ValueError('runtime config controls failed: '+stream.getvalue())
-    print(f'DEPLOYMENT_EVAL_PASS checks=11 tests={result.testsRun+probe_result.testsRun+runtime_result.testsRun} duration_seconds={time.monotonic()-start:.3f}')
+    if runtime_result.testsRun<7 or not runtime_result.wasSuccessful() or runtime_result.skipped:raise ValueError('runtime config controls failed: '+stream.getvalue())
+    print(f'DEPLOYMENT_EVAL_PASS checks=12 tests={result.testsRun+probe_result.testsRun+runtime_result.testsRun} duration_seconds={time.monotonic()-start:.3f}')
     print('Candidate evaluation only; unbuilt images, generator/runtime/bootstrap/review/off-host evidence pending')
 
 
