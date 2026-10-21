@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "selected": "mx1-rootless",
+  "evidence_class": "proposed-unobserved",
+  "host": {
+    "name": "mx1",
+    "location": null,
+    "machine_id_sha256": null,
+    "configuration_revision": null,
+    "observed": false
+  },
+  "account": {
+    "name": "shopsvc",
+    "uid": null,
+    "gid": null,
+    "subordinate_start": null,
+    "subordinate_count": 65536,
+    "outside_claude_dev": true
+  },
+  "runtime": {
+    "manager": "rootless-podman-quadlet-user-systemd",
+    "graphroot": "/srv/shop/containers/storage",
+    "image_digests": {
+      "app": null,
+      "worker": null,
+      "postgres": null,
+      "gateway": null
+    },
+    "worker_count": 1,
+    "qualified": false
+  },
+  "database": {
+    "independent_new_cluster": true,
+    "container": "shop-postgres",
+    "pgdata": "/srv/shop/postgres",
+    "database": null,
+    "role": null,
+    "system_identifier": null,
+    "socket": null,
+    "private_port": null,
+    "backup_identity": null,
+    "existing_cluster_reuse": false
+  },
+  "resources": {
+    "ancestor": null,
+    "cpu_quota_percent": 200,
+    "memory_high_bytes": 6442450944,
+    "memory_max_bytes": 8589934592,
+    "tasks_max": 1024,
+    "concurrency_qualified": false,
+    "all_descendants_qualified": false,
+    "existing_parent_changes": false
+  },
+  "storage": {
+    "parent_dataset": null,
+    "database_dataset": null,
+    "parent_quota_bytes": 85899345920,
+    "database_quota_bytes": 53687091200,
+    "snapshot_and_descendant_accounting": true,
+    "writable_categories": [
+      "graphroot",
+      "images",
+      "volumes",
+      "postgres-data-index-wal",
+      "tmp",
+      "logs",
+      "certificates",
+      "spool",
+      "backups"
+    ],
+    "observed": false
+  },
+  "listeners": {
+    "example_http_loopback_port": 18080,
+    "example_tls_loopback_port": 18443,
+    "allocated": false,
+    "preserve_ports": [
+      80,
+      443,
+      18444
+    ],
+    "http3": false
+  },
+  "ingress": {
+    "mode": null,
+    "public_activation": false,
+    "unchanged_complete_route_evidence": [],
+    "certificate_owner": null,
+    "http01_tlsalpn01_first": true,
+    "dns01_proves_routing": false,
+    "protected_proxy_change": false,
+    "proxy_protocol_addition": false,
+    "trust_inbound_headers": false,
+    "dns_changes": false
+  },
+  "objects": {
+    "public_region": "gra",
+    "private_region": "gra",
+    "recovery_evidence_region": "sbg",
+    "project": null,
+    "public_namespace": null,
+    "private_namespace": null,
+    "recovery_namespace": null,
+    "evidence_namespace": null,
+    "distinct_credentials_qualified": false,
+    "retention_acl_billing_qualified": false,
+    "protected_project": "001-xspi-pro"
+  },
+  "integrations": {
+    "smtp_interface": null,
+    "monitoring_interface": null,
+    "change_existing_services": false,
+    "shop_backup_owner": null
+  },
+  "authorization": {
+    "inventory_complete": false,
+    "activation_impact_complete": false,
+    "protected_actions": [],
+    "generic_approval": false,
+    "rollback": "shop-only-preserve-committed-records"
+  }
+}
