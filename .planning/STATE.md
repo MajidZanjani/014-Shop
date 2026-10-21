@@ -2,8 +2,8 @@
 gsd_state_version: "1.0"
 current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
-status: paused
-stopped_at: User-requested pause; read HANDOFF.json and phase .continue-here.md before resuming.
+status: executing
+stopped_at: Resumed; control-record read hardening complete, plan14 implementation gaps remain.
 last_updated: "2026-10-21T12:15:59.880Z"
 last_activity: 2026-10-21
 last_activity_desc: Offline unverified record-bundle validation and publication contract prepared; focused local checks pass.
@@ -161,3 +161,11 @@ Publication contract requires actual retained inventory/ownership and exact auth
 ## User-requested pause
 
 Paused with structured HANDOFF.json and phase .continue-here.md. No implementation or qualification advanced during checkpoint. Resume with `$gsd-resume-work`; preserve pending 14/16/17 work and off-host gates. SUMMARY audit flags historical 02-01 pending-approval wording for reconciliation against the later actual approval record.
+
+## Resumed continuation — stable control-record reads
+
+Consumed the user-requested pause handoff. Plan02-01 review JSON records approve at2026-10-20T12:30:19Z for digest136610b07612762d390b3b3c234ff1ef3f6dc6b0e44a69a2abc646d9106b51bd; SUMMARY explicitly labels the later pending passage historical and superseded. No missing approval or summary correction is needed; approval scope unchanged.
+
+Quick261021-h2i code5330962 checks file device/inode/UID/GID/mode/size/mtime/ctime stability across a bounded control-file read and requires exact nonempty length before parsing/validation. Synthetic cases deny every changed metadata field, truncated/empty reads and accept the32768-byte boundary. Actual local: process suite18 tests; deployment-eval15 checks/29 tests (2.543s), database-tools6/5 (4.341s), operator-runtime4/10 (7.714s), all exit0. A concurrent Nix evaluation emitted ignored cache-busy warning; no test failures. This detects observed descriptor changes, not hostile-root immutability or atomic multi-record publication. No host write, credential access, service/resource change or qualification execution.
+
+Phase02 and14/16/17 remain incomplete. Next scoped durable generation publication/custody and private operator transport/application integration, plus previously recorded implementation/review/OCI/CI gates. Off-host runner unassigned; disruptive tests pending, no repeated runner question. Full all not rerun; no FULL_PASS. Continue using .env only when an authorized action actually needs credentials, and commit/push each step.
