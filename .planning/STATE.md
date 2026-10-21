@@ -1,7 +1,7 @@
 ---
 gsd_state_version: "1.0"
-status: executing
-last_updated: "2026-10-21T13:55:58.268Z"
+status: paused
+last_updated: "2026-10-21T14:06:19.642Z"
 state_head: cacc247421ba65769b27a31aef2938bbe94b2d21
 progress:
   total_phases: 14
@@ -12,7 +12,7 @@ progress:
 last_activity: 2026-10-21
 current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
-stopped_at: Resumed; control-record read hardening complete, plan14 implementation gaps remain.
+stopped_at: User-requested pause; read HANDOFF.json and phase .continue-here.md before resuming.
 last_activity_desc: Explicit npm SBOM derivative validates with preserved raw evidence; full inventory pending.
 ---
 
@@ -213,3 +213,7 @@ Actual local: seven transformation tests pass (0.097s), four existing inventory 
 Raw SHA25660f9f60edc3164ca4ce7fb3489245a5ae60bcb5178f0efa8ecb09d2f735f892c; derivative8c9d56af9ac8b008a983fff6acf4d178eca7ee8d91d5f806c02dbb4809c2908d. Receipt names actual validator and records raw/derived results; software/legal approval/inventory_complete/raw_upstream_metadata_resolved all false. Default CLI checks exact retained derivative/receipt; --write creates only new outputs and refuses existing ones, no repair/overwrite. Full raw collector unchanged/nonzero on schema findings, not rerun. Twelve missing incorporated-text findings, native/Nix/OCI/layers/notices/compatibility and full inventory approval remain pending. Plan16 remains implementation-incomplete, not completed by a derived SBOM. Plans14/17 and full phase remain incomplete; no FULL_PASS.
 
 No .env read/needed credential, source/product change, host/provider operation, existing service/resource change or purchase. Independent off-host runner remains unassigned and disruptive tests pending. Continue authorized repository preparation, including live record publisher/admission/transport/app migration integration, qualified runtime/generator/replica/images, inventory/licences and OCI/CI evidence. Do not repeatedly ask about runner before remaining qualification stage.
+
+## User-requested pause — latest checkpoint
+
+Paused after explicit npm SBOM derivative and retained-candidate inspection slices. Structured HANDOFF.json and phase .continue-here.md preserve incomplete14/16/17 work, actual evidence and independent-runner limits. No phase acceptance advanced during pause. Clear session and run `$gsd-resume-work`.

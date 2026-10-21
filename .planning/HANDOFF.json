@@ -1,0 +1,139 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-10-21T14:06:19.642Z",
+  "phase": "02",
+  "phase_name": "Reproducible application and deployment skeleton",
+  "phase_dir": ".planning/phases/02-reproducible-application-and-deployment-skeleton",
+  "plan": 16,
+  "task": 1,
+  "total_tasks": 1,
+  "status": "paused",
+  "base_commit": "5c8ddeadf695b3366e02dd7f132ad7389c9a8811",
+  "completed_tasks": [
+    {
+      "id": "slice-5330962",
+      "name": "Stable control-record descriptor reads",
+      "status": "done",
+      "commit": "5330962",
+      "scope": "Bounded slice only; whole plans14/16/17 remain incomplete."
+    },
+    {
+      "id": "slice-908195a",
+      "name": "Actual local SCRAM operator ledger inspection",
+      "status": "done",
+      "commit": "908195a",
+      "scope": "Bounded slice only; whole plans14/16/17 remain incomplete."
+    },
+    {
+      "id": "slice-542e2d8",
+      "name": "Exclusive private candidate staging",
+      "status": "done",
+      "commit": "542e2d8",
+      "scope": "Bounded slice only; whole plans14/16/17 remain incomplete."
+    },
+    {
+      "id": "slice-9cbc570",
+      "name": "Read-only retained-candidate inspection",
+      "status": "done",
+      "commit": "9cbc570",
+      "scope": "Bounded slice only; whole plans14/16/17 remain incomplete."
+    },
+    {
+      "id": "slice-cacc247",
+      "name": "Explicit schema-valid npm SBOM derivative with reversible omission receipt",
+      "status": "done",
+      "commit": "cacc247",
+      "scope": "Bounded slice only; whole plans14/16/17 remain incomplete."
+    }
+  ],
+  "remaining_tasks": [
+    {
+      "id": "1",
+      "name": "02-16-01 remains incomplete: twelve incorporated-licence-text findings (10 npm/2 Python tools), complete native/Nix/OCI provenance/layers/notices and review. Explicit derived npm SBOM is valid; raw collector still reports invalid raw metadata and full inventory is not accepted.",
+      "status": "pending"
+    },
+    {
+      "id": "2",
+      "name": "02-14-01: separately authorized live control-record publisher/custody/admission barrier, fixed private socket/peer/container transport and least-privilege roles, Django/application write/migration enforcement, generator installation preparation and executable replica driver. Private staging/inspection alone do not complete this.",
+      "status": "pending"
+    },
+    {
+      "id": "3",
+      "name": "02-14-02: independent off-host lifecycle/outage/restart/exhaustion/recovery and containment execution pending; no assigned runner.",
+      "status": "pending"
+    },
+    {
+      "id": "4",
+      "name": "02-17: actual OCI builds/reproducibility and full CI evidence; browser/human review gates remain pending.",
+      "status": "pending"
+    }
+  ],
+  "blockers": [
+    {
+      "description": "No independent off-host runner assigned.",
+      "type": "external",
+      "workaround": "Continue authorized repository/local preparation; docs/qualification-runner.md distinguishes ordinary Linux and NixOS/Podman/ZFS checks. Raise assignment only at remaining qualification stage."
+    }
+  ],
+  "human_actions_pending": [
+    {
+      "action": "Assign authorized independent runner when qualification begins.",
+      "context": "No disruptive mx1/guest tests or automatic server provision/purchase.",
+      "blocking": false
+    },
+    {
+      "action": "Complete source/licence/browser/runtime/host reviews at their gates.",
+      "context": "No blanket operational or redistribution approval.",
+      "blocking": false
+    }
+  ],
+  "async_jobs": [],
+  "async_jobs_observation": ".planning/async-jobs directory absent, checked at pause.",
+  "background_processes": [],
+  "background_observation": "No workflow-owned test server/watcher/agent remains active; all launched exec sessions returned terminal results.",
+  "uncommitted_files": [],
+  "uncommitted_observation": "Measured git status --porcelain immediately before creating pause artifacts; final commit/sync verified separately.",
+  "decisions": [
+    {
+      "decision": "October21 proposal/handoff govern: rootless Podman directly on existing OVH dedicated mx1 under proposed shopsvc, outside claude-dev. No new cloud compute/block/IP/fallback or automatic provision/purchase.",
+      "phase": "02"
+    },
+    {
+      "decision": "Preserve all existing/unknown services, containers, MicroVMs and allocations. No disruptive tests on mx1 or its existing guests. Actual host inventory/allowlist/activation impact and exact authority precede any host write.",
+      "phase": "02"
+    },
+    {
+      "decision": "Resource credentials are available through .env. Read only needed credentials for authorized actions without exposing values. If absent/empty, add descriptive blank VARIABLE_NAME= plus purpose preserving existing entries, then ask owner to fill .env directly. No .env access or real credential needed during these continuations.",
+      "phase": "02"
+    },
+    {
+      "decision": "Commit and push each completed step; use bounded GSD worktree manifests/full current SHA for implementation, never replay old worktrees.",
+      "phase": "02"
+    },
+    {
+      "decision": "At context usage above90% when observable, run gsd-pause-work, tell user clear/resume and stop. Exact percentage unavailable; never invent one.",
+      "phase": "02"
+    },
+    {
+      "decision": "Local/synthetic/package/derived-schema evidence does not establish host qualification, legal approval or production readiness. Keep production Django connection gate closed.",
+      "phase": "02"
+    }
+  ],
+  "blocking_constraints": [
+    {
+      "severity": "advisory",
+      "description": "The maintained validator exposed a second malformed URI after the first was omitted. Require actual maintained validation of the full derived artifact; first-error removal is not proof of validity."
+    },
+    {
+      "severity": "advisory",
+      "description": "Earlier SUMMARY presence overstated completion; incomplete phase records must remain PARTIAL. Historical 02-01 pending passage is explicitly superseded by actual same-digest approval; audit resolved, do not ask again."
+    },
+    {
+      "severity": "advisory",
+      "description": "Shared /tmp128MiB previously exhausted. Use owned project .scratch/TMPDIR, bounded jobs/cores/time; no shared cleanup or allocation changes."
+    }
+  ],
+  "summary_audit": "No To be filled/placeholder/TBD matches in phase SUMMARY files during pause scan. Incomplete plans retain PARTIAL records. Historical 02-01 approval discrepancy was reconciled against actual review JSON and explicitly superseded historical section.",
+  "next_action": "Read STATE, 02-16-PARTIAL, 02-14-PARTIAL and docs/build/npm-sbom-derivation.md. Continue repository-only remaining plan16 incorporated-licence/native inventory work or plan14 issuer/admission/transport integration with an explicit bounded GSD task. Preserve original raw SBOM and exact approvals; do not rerun completed slices or ask about runner until actual qualification needs it.",
+  "context_notes": "User explicitly requested pause. Phase01 complete2/2; Phase02 8/18 local slices complete,7 qualification/review pending,3 implementation-incomplete14/16/17. Latest merge5c8ddea already pushed; clean main before checkpoint. Two historical clean worktrees at2c64d9b must not replay. No source/product byte changes, existing-service changes, provider actions or purchases."
+}
