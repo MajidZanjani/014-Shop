@@ -3,8 +3,9 @@ let
   cfg = config.services.xspiShop;
   uid = if cfg.uid == null then 0 else cfg.uid;
   guard = pkgs.writeShellScript "shop-storage-guard" ''
-    exec ${pkgs.python3}/bin/python3 ${../../runtime/guard.py} --zfs ${pkgs.zfs}/bin/zfs --pg-control ${pkgs.postgresql_18}/bin/pg_controldata "$@"
+    exec ${pkgs.python3}/bin/python3 -I ${../../runtime/guard.py} --zfs ${pkgs.zfs}/bin/zfs --pg-control ${pkgs.postgresql_18}/bin/pg_controldata "$@"
   '';
+  runtime = import ../rootless-runtime.nix { inherit pkgs uid guard; };
   render = service: lib.replaceStrings
     [ "@APP_IMAGE@" "@WORKER_IMAGE@" "@POSTGRES_IMAGE@" "@GATEWAY_IMAGE@" "@GUARD@" ]
     [ cfg.images.app cfg.images.worker cfg.images.postgres cfg.images.gateway (toString guard) ]
@@ -56,7 +57,7 @@ in {
       value.text = render service;
     }) [ "app" "worker" "postgres" "gateway" ])) // {
       "containers/systemd/users/${toString uid}/shop-private.network".source = ../../quadlet/shop-private.network;
-    };
+    } // runtime.etc;
     # No global Podman/firewall/mount/pool/journal/subuid-helper activation.
     # Storage/runtime user configuration and mount identity are required by guard;
     # absent or unsupported prerequisites fail closed, never auto-repair the host.
