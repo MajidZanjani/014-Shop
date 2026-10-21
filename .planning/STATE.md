@@ -4,10 +4,10 @@ current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
 status: executing
 stopped_at: Candidate runtime and local evidence committed; finish 14/16/17 gaps.
-last_updated: "2026-10-21T08:38:06.494116+00:00"
+last_updated: "2026-10-21T08:55:18.922150+00:00"
 last_activity: 2026-10-21
-last_activity_desc: Local payload/hash tests passed; complete inventory/runtime/full qualification incomplete.
-state_head: 01af4114cfaa87cb14b3eb79b35ac3122d8aee75
+last_activity_desc: SQL destination primitive passes 13 local tests; runtime integration and qualification pending.
+state_head: 169f72c
 progress:
   total_phases: 14
   completed_phases: 1
@@ -24,7 +24,7 @@ Phase 02 remains executing; auto-advance false. Eight local slices complete (00â
 
 ## Next authorized work
 
-Finish14 bootstrap/per-mutation destination wrapper, exact rootless runtime/user-generator configuration and executable independent replica driver. Current offhost-cases.json is only a matrix. Resolve16 raw npm CycloneDX URI validation failure,12 incorporated-text findings and actual native/Nix/OCI manifest/layer/notice coverage. Then finish17 actual OCI payload/config reproducibility and required full CI evidence. Human browser hydration/source/licence/probe/prohibition reviews remain pending.
+Finish14 concrete container/account/mount/resource probe and integration of the new single-DML SQL primitive with all applicable application/operator writes, schema/migration and independent bootstrap commands; exact rootless runtime/user-generator configuration and executable independent replica driver. Current offhost-cases.json is only a matrix. Resolve16 raw npm CycloneDX URI validation failure,12 incorporated-text findings and actual native/Nix/OCI manifest/layer/notice coverage. Then finish17 actual OCI payload/config reproducibility and required full CI evidence. Human browser hydration/source/licence/probe/prohibition reviews remain pending.
 
 No independent off-host runner assigned. User permits all authorized repository implementation, ordinary local/synthetic checks and deployment preparation. Do not run disruptive outage/restart/exhaustion/recovery tests on mx1, existing containers or MicroVMs. Preserve every existing service/allocation/resource. Do not provision/purchase automatically or repeatedly ask for runner; raise assignment at remaining qualification stage. Single specification: docs/qualification-runner.md. This dependency does not excuse unfinished repository implementation.
 
@@ -57,3 +57,7 @@ Quick261021-8cb: October21 protected-host replan, committed2f07e57; docs/archive
 ## Standing implementation task: context checkpoint
 
 When session context exceeds 90%, run `$gsd-pause-work`, save a complete resumable handoff and tell the user to clear the session and run `$gsd-resume-work`. Stop implementation until resume. Follow the indicator/unknown-percentage policy in AGENTS.md and PROJECT.md; never invent a measured percentage. This standing instruction preserves all current incomplete work and pending evidence.
+
+## Session continuity â€” SQL guard continuation
+
+Resumed from HANDOFF.json; consumed and removed the one-shot handoff after preserving its pending work here and in 02-14-PARTIAL.md. Code commit169f72c adds same-transaction live SQL identity checks and a required database-destination lane: local synthetic3 checks/13 tests. Container/account evidence and canonical-path adaptation remain test fixtures; no rootless/runtime/host proof. Deployment-eval9/4 and environment2/14 passed. Next implement the concrete runtime attestation and command integrations, bootstrap/migrations and generator configuration; 14/16/17 and all external/human gates remain incomplete. No credentials needed or read.
