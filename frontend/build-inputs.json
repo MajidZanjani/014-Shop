@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "evidence_class": "local-synthetic",
+  "files": [
+    "package.json",
+    "package-lock.json",
+    "astro.config.mjs",
+    "tsconfig.json",
+    "src/content.config.ts",
+    "src/content/probes/skeleton.md",
+    "src/pages/index.astro",
+    "src/components/BuildProbe.tsx",
+    "tests/build.test.mjs"
+  ]
+}
