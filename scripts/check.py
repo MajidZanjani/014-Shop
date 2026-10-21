@@ -15,7 +15,7 @@ sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parents[1]
 QUICK = ("environment", "frontend", "core", "worker", "adapters", "contracts", "boundaries")
 EXTRA = ("inventory", "locks", "reproducibility", "deployment-profiles",
-         "deployment-eval", "postgres-diagnostics", "postgresql-config", "bootstrap-local", "database-destination", "database-tools", "deployment-build", "deployment-boot")
+         "deployment-eval", "postgres-diagnostics", "postgresql-config", "bootstrap-local", "database-destination", "database-tools", "operator-runtime", "deployment-build", "deployment-boot")
 # (producer, commands, timeout). No optional producers or inferred skips.
 LANES = {
     "environment": ("scripts/dev_postgres.py", (), 60),
@@ -33,6 +33,7 @@ LANES = {
     "postgres-diagnostics": ("scripts/check_postgres_diagnostics.py", (("python3", "scripts/check_postgres_diagnostics.py"),), 120),
     "postgresql-config": ("scripts/check_postgresql_config.py", (("python3", "scripts/check_postgresql_config.py"),), 120),
     "bootstrap-local": ("scripts/check_bootstrap.py", (("python3", "scripts/check_bootstrap.py"),), 120),
+    "operator-runtime": ("scripts/check_operator_runtime.py", (("python3", "scripts/check_operator_runtime.py"),), 180),
     "database-tools": ("scripts/check_database_tools.py", (("python3", "scripts/check_database_tools.py"),), 180),
     "database-destination": ("scripts/check_database_destination.py", (("python3", "scripts/check_database_destination.py"),), 120),
     "deployment-eval": ("scripts/check_deployment.py", (("python3", "scripts/check_deployment.py", "deployment-eval"),), 300),

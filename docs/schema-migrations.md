@@ -185,9 +185,9 @@ Python and the existing hash-locked runtime dependencies. Import controls deny
 database connections and control-record reads. Actual packaged help and mutation-
 command denial are also exercised in isolated child processes. This is actual source-bundle build
 and local import evidence only; it does not build an OCI image or qualify a live
-operator tool. A concrete launcher, minimum operator runtime/dependency review,
-credential transport, host installation and operational qualification are still
-pending. The source manifest is not a complete runtime SBOM or licence review.
+operator tool. The separate candidate launcher/runtime described below is now built locally;
+its native closure/licence review, credential/transport qualification, host
+installation and operational qualification are still pending. The source manifest is not a complete runtime SBOM or licence review.
 
 The prepared `operator_inspect.py` module now supplies only `inspect` and `--help`.
 It is source code in that inert bundle, not an installed executable or qualified
@@ -195,8 +195,8 @@ operator runtime. No mutation/bootstrap command exists. Its standalone entrypoin
 scrubs the environment before handling the command; invocation must use the
 reviewed isolated Python/dependency runtime. That runtime must load the pinned
 libpq before the entrypoint scrub; frozen local tests supply the existing verified
-library path and pure-Python Psycopg implementation. Minimum runtime packaging and
-actual client/server authentication qualification remain pending.
+library path and pure-Python Psycopg implementation. The separate pinned launcher/runtime below replaces environment-based library
+discovery. Actual client/server authentication and host qualification remain pending.
 
 The command takes no DSN, password, artifact pathname or tool-path arguments. FD0
 must be an already open private regular artifact file, at most2MiB. FD3 must be an
@@ -235,3 +235,39 @@ fields; denials emit a fixed event without argv, exception, libpq detail or priv
 bytes. Connections close on both success and post-connect denial. Original
 inspection records are rechecked by the library; no write retry/reopening is
 authorized. Production Django connections remain blocked.
+
+The separate flake package `shop-operator-inspect` now builds a standalone candidate
+launcher. It contains the existing exact Python3.13.16, only the already locked
+Psycopg3.3.6 wheel in its added site directory, the source bundle and an isolated
+driver. Pip is used for the offline, hash-checked build and is not installed into
+the operator site. No Django/Gunicorn dependency is added to that site. No NixOS
+module installs the launcher, account, record, socket, role or credential.
+
+The shell launcher clears ambient environment before executing the pinned bare
+Python with `-I`. The driver again sets its closed import environment, uses exact
+Nix-store libpq18.6 and libc paths for Psycopg's two ctypes discovery requests,
+then restores the original discovery function. It requires the exact interpreter,
+pure-Python Psycopg implementation, libpq version180006 and sole added Psycopg
+version before importing the approved command source. No compiler, pg_config or
+host library lookup is used for those imports. The command then applies its own
+closed execution environment. Python startup/import/identity failures emit only
+the fixed denial event; the test-only synthetic startup-failure package confirms
+that exception detail and traceback are suppressed.
+
+The `operator-runtime` lane actually builds the main launcher and an independent
+synthetic import-failure fixture, verifies exported identities against the existing
+runtime lock and source artifact, and executes8 metadata/process controls. Actual
+help works with absent PATH and hostile PG/Python/library environment settings;
+a shadow module is ignored, mutation/secret options are rejected without echo,
+invalid private input denies without connecting, and synthetic import failure
+returns the fixed denial. The fixture is a flake check output, not a deployable
+alternative or runtime fault injection against a service.
+
+Metadata keeps installed=false, runtimeQualified=false and productionActivation=false.
+These tests qualify local build/native startup/denial only. Positive SCRAM/peer/
+socket/account/resource operation, FD3 use through a real connection, separately
+authorized record publication and host installation remain unexecuted. Native
+closure/SBOM/licence and full CI/reproducibility evidence are still pending. No
+credentials are bundled and the current closed HBA/Quadlet configuration is
+unchanged. This candidate does not authorize deployment, mutation retry or safe
+reopening, and production Django access stays blocked.

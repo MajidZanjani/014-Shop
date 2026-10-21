@@ -45,6 +45,14 @@
       };
     });
     databaseTools = import ./database-tools.nix { inherit pkgs; };
+    operatorInspection = import ./operator-runtime.nix {
+      inherit pkgs python pythonEnv postgres; source = databaseTools;
+    };
+    operatorFailure = import ./operator-runtime.nix {
+      inherit pkgs python pythonEnv postgres;
+      source = pkgs.writeTextDir "libexec/shop/database/operator_inspect.py"
+        "raise RuntimeError('synthetic startup detail must stay private')\n";
+    };
     runtime = import ./python-runtime.nix { inherit pkgs pythonEnv postgres; };
     # Only Python source is admitted; no .env, fixtures, caches or private data.
     appSource = pkgs.lib.cleanSourceWith {
@@ -85,13 +93,15 @@
   in {
     nixosModules.shop = import ./modules/shop.nix;
     packages.${system} = { shop-app = appImage; shop-worker = workerImage;
-      shop-postgres = postgresImage; shop-gateway = gatewayImage; shop-python-runtime = runtime; shop-database-tools-source = databaseTools; };
+      shop-postgres = postgresImage; shop-gateway = gatewayImage; shop-python-runtime = runtime; shop-database-tools-source = databaseTools; shop-operator-inspect = operatorInspection.launcher; };
+    checks.${system}.operator-startup-denial = operatorFailure.launcher;
     deploymentMetadata.${system} = {
       status = "candidate; compatibility/build/OCI digests/off-host qualification pending";
       imageDerivations = map (x: x.drvPath) [ appImage workerImage postgresImage gatewayImage ];
       runtimeVersion = pkgs.podman.version;
       systemdVersion = pkgs.systemd.version;
       postgresDiagnostics = { command = postgresCommand; workerSource = "${postgresDiagnostics}/libexec/shop/postgres_entrypoint.py"; nativePidContract = "execve; rootless lifecycle pending"; runtimeQualified = false; };
+      operatorInspection = operatorInspection.metadata;
       databaseTools = { source = toString databaseTools; manifest = "${databaseTools}/share/shop/database-tools.json"; executable = false; runtimeQualified = false; productionActivation = false; };
       productionActivation = false;
     };
