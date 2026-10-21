@@ -1,0 +1,14 @@
+# Nonsecret template; does not authorize deployment or live effects.
+SHOP_ENV=bank-sandbox
+DJANGO_SETTINGS_MODULE=shop.config.production
+DEBUG=false
+LIVE_PAYMENTS_ENABLED=false
+PAYMENT_ADAPTER=fake
+MAIL_ADAPTER=fake
+STORAGE_ADAPTER=fake
+DATABASE_NAME=shop
+DATABASE_USER=shop
+DATABASE_HOST=shop-postgres
+DATABASE_PORT=5432
+SECRET_KEY_FILE=/run/secrets/shop/secret_key
+DATABASE_PASSWORD_FILE=/run/secrets/shop/database_password
