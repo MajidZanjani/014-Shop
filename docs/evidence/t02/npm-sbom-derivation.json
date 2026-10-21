@@ -1,0 +1,45 @@
+{
+  "artifact_kind": "explicit-npm-sbom-derivative",
+  "changes": [
+    {
+      "component_ref": "am-i-vibing@0.5.0",
+      "json_pointer": "/components/70/externalReferences/1",
+      "operation": "remove",
+      "reason": "Malformed repository URI rejected by strict schema validation; no replacement asserted.",
+      "removed_value": {
+        "type": "vcs",
+        "url": "git+https://github.com:ascorbic/am-i-vibing.git"
+      }
+    },
+    {
+      "component_ref": "common-ancestor-path@2.0.0",
+      "json_pointer": "/components/90/externalReferences/1",
+      "operation": "remove",
+      "reason": "Malformed repository URI rejected by strict schema validation; no replacement asserted.",
+      "removed_value": {
+        "type": "vcs",
+        "url": "git@github.com:isaacs/common-ancestor-path"
+      }
+    }
+  ],
+  "derived_artifact": "npm-sbom-derived.json",
+  "derived_sha256": "8c9d56af9ac8b008a983fff6acf4d178eca7ee8d91d5f806c02dbb4809c2908d",
+  "evidence_class": "local-synthetic",
+  "installed_unique_components": 271,
+  "inventory_complete": false,
+  "legal_approval": false,
+  "raw_artifact": "npm-sbom.json",
+  "raw_sha256": "60f9f60edc3164ca4ce7fb3489245a5ae60bcb5178f0efa8ecb09d2f735f892c",
+  "raw_upstream_metadata_resolved": false,
+  "schema_validation": {
+    "derived_diagnostic": null,
+    "derived_valid": true,
+    "raw_diagnostic": "'git+https://github.com:ascorbic/am-i-vibing.git' is not valid under any of the given schemas\n\nFailed validating 'anyOf' in schema['properties']['components']['items']['properties']['externalReferences']['items']['properties']['url']:\n    {'anyOf': [{'title': 'URL',\n                'type': 'string',\n                'format': 'iri-reference'},\n               {'title': 'BOM-Link', '$ref': '#/definitions/bomLink'}],\n     'title': 'URL',\n     'description': 'The URI (URL or URN) to the external reference. '\n                    'External references are URIs and therefore can accept '\n                    'any URL scheme including https '\n                    '([RFC-7230](https://www.ietf.org/rfc/rfc7230.txt)), '\n                    'mailto '\n                    '([RFC-2368](https://www.ietf.org/rfc/rfc2368.txt)), '\n                    'tel '\n                    '([RFC-3966](https://www.ietf.org/rfc/rfc3966.txt)), '\n                    'and dns '\n                    '([RFC-4501](https://www.ietf.org/rfc/rfc4501.txt)). '\n                    'External references may also include formally '\n                    'registered URNs such as [CycloneDX '\n                    'BOM-Link](https://cyclonedx.org/capabilities/bomlink/) '\n                    'to reference CycloneDX BOMs or any object within a '\n                    'BOM. BOM-Link transforms applicable external '\n                    'references into relationships that can be expressed '\n                    'in a BOM or across BOMs.'}\n\nOn instance['components'][70]['externalReferences'][1]['url']:\n    'git+https://github.com:ascorbic/am-i-vibing.git'",
+    "raw_valid": false,
+    "schema_version": "1.5",
+    "validator": "cyclonedx-python-lib",
+    "validator_version": "11.12.0"
+  },
+  "schema_version": 1,
+  "software_approval": false
+}
