@@ -13,3 +13,10 @@ class ProbeRequest:
 class ProbeResult:
     effect_id: UUID
     outcome: str
+
+
+@dataclass(frozen=True)
+class MailRequest:
+    effect_id: UUID
+    recipient: str
+    body: bytes

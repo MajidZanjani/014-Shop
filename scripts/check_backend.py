@@ -166,6 +166,23 @@ def qualify(faults=False):
                     print('PENDING_OFF_HOST: database outage/recovery unexecuted; full core qualification pending')
 
 
+def qualify_adapters():
+    from check_worker import prepared_database, manage
+    started = time.monotonic()
+    with prepared_database() as (python, env, pg, database, scratch):
+        manage(python, env, 'migrate', '--noinput')
+        manage(python, env, 'makemigrations', '--check', '--dry-run')
+        env['SHOP_ADAPTER_NETWORK_ISOLATED'] = '1'
+        env['RES_OPTIONS'] = 'attempts:1 timeout:1'
+        result = dev_postgres.run(['unshare', '--net', '--', str(python), 'manage.py', 'test',
+            'shop.adapters.tests', '--noinput'], env=env, cwd=ROOT / 'backend', timeout=45)
+        output = result.stdout + result.stderr
+        count = re.search(r'Ran (\d+) tests?', output)
+        require(count is not None and int(count[1]) >= 6 and 'OK' in output and 'skipped' not in output,
+                'required isolated adapter tests absent, failed or skipped')
+    print(f'ADAPTERS_PASS checks=3 tests={int(count[1])} duration_seconds={time.monotonic()-started:.3f}')
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('lane', choices=('core', 'core-local', 'adapters'))
@@ -173,7 +190,9 @@ def main():
     args = parser.parse_args()
     if args.lane == 'adapters':
         require((ROOT / 'backend/shop/adapters/tests.py').is_file(), 'required adapter producer missing until 02-11')
-        raise ValueError('adapter execution wiring pending 02-11; no empty producer may pass')
+        require(args.runner_authorization is None, 'adapter fixtures do not use fault authorization')
+        qualify_adapters()
+        return
     if args.lane == 'core':
         runner_authorization(args.runner_authorization)
     elif args.runner_authorization:
