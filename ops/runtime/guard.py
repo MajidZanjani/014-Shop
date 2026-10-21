@@ -19,10 +19,10 @@ def require(condition):
         raise ValueError('shop identity/storage/resource attestation failed; no startup permitted')
 
 
-def validate_expected(value):
+def validate_storage_expected(value):
     require(type(value) is dict and set(value) == {'schema_version','evidence_class','machine_id_sha256',
-        'uid','gid','parent_dataset','database_dataset','pg_system_identifier','paths'})
-    require(value['schema_version'] == 1 and value['evidence_class'] in {'actual-offhost-runtime','actual-mx1-qualified'})
+        'uid','gid','parent_dataset','database_dataset','paths'})
+    require(type(value['schema_version']) is int and value['schema_version'] == 1 and value['evidence_class'] in {'actual-offhost-runtime','actual-mx1-qualified'})
     require(isinstance(value['machine_id_sha256'],str) and re.fullmatch('[0-9a-f]{64}',value['machine_id_sha256']))
     require(type(value['uid']) is int and value['uid'] > 0 and type(value['gid']) is int and value['gid'] > 0)
     require(isinstance(value['paths'],dict) and set(value['paths']) == CATEGORIES)
@@ -31,6 +31,12 @@ def validate_expected(value):
     for key in ('parent_dataset','database_dataset'):
         require(isinstance(value[key],str) and re.fullmatch('[A-Za-z0-9_./:-]+',value[key]) and '..' not in value[key])
     require(value['database_dataset'].startswith(value['parent_dataset']+'/'))
+    return value
+
+
+def validate_expected(value):
+    require(type(value) is dict and 'pg_system_identifier' in value)
+    validate_storage_expected({key:item for key,item in value.items() if key != 'pg_system_identifier'})
     require(isinstance(value['pg_system_identifier'],str) and re.fullmatch('[0-9]{10,20}',value['pg_system_identifier']))
     return value
 
@@ -59,7 +65,8 @@ def capture(argv):
     return result.stdout.strip()
 
 
-def inspect(expected,zfs,pg_control):
+def inspect_storage(expected,zfs):
+    validate_storage_expected(expected)
     require(os.geteuid()==expected['uid'] and os.getegid()==expected['gid'])
     require(hashlib.sha256(Path('/etc/machine-id').read_bytes().strip()).hexdigest()==expected['machine_id_sha256'])
     for path in expected['paths'].values():
@@ -73,11 +80,6 @@ def inspect(expected,zfs,pg_control):
     require(mounts.get('/srv/shop/postgres')==('zfs',expected['database_dataset']))
     for dataset,quota in [(expected['parent_dataset'],PARENT_QUOTA),(expected['database_dataset'],DB_QUOTA)]:
         require(capture([zfs,'get','-Hp','-o','value','quota',dataset])==str(quota))
-    require(Path('/srv/shop/postgres/PG_VERSION').read_text().strip()=='18')
-    control=capture([pg_control,'/srv/shop/postgres'])
-    fields={a.strip():b.strip() for line in control.splitlines() if ':' in line for a,b in [line.split(':',1)]}
-    require(fields.get('Database system identifier')==expected['pg_system_identifier'])
-    require(fields.get('Data page checksum version')=='1')
     # The guard itself must already be under the bounded shop ancestor.
     cgroup=Path('/proc/self/cgroup').read_text().strip()
     require(cgroup.startswith('0::/user.slice/user-'+str(expected['uid'])+'.slice/'))
@@ -86,6 +88,17 @@ def inspect(expected,zfs,pg_control):
     require((ancestor/'memory.high').read_text().strip()==str(6*1024**3))
     cpu,period=map(int,(ancestor/'cpu.max').read_text().split())
     require(cpu==period*2 and (ancestor/'pids.max').read_text().strip()=='1024')
+    return True
+
+
+def inspect(expected,zfs,pg_control):
+    validate_expected(expected)
+    inspect_storage({key:value for key,value in expected.items() if key != 'pg_system_identifier'},zfs)
+    require(Path('/srv/shop/postgres/PG_VERSION').read_text().strip()=='18')
+    control=capture([pg_control,'/srv/shop/postgres'])
+    fields={a.strip():b.strip() for line in control.splitlines() if ':' in line for a,b in [line.split(':',1)]}
+    require(fields.get('Database system identifier')==expected['pg_system_identifier'])
+    require(fields.get('Data page checksum version')=='1')
     return True
 
 
