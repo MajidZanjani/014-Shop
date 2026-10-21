@@ -5,6 +5,8 @@ from django.core.exceptions import ImproperlyConfigured
 if SHOP_ENV not in {'production', 'bank-sandbox'}:
     raise ImproperlyConfigured('Production settings require explicit production-shaped environment')
 SECRET_KEY = runtime_secret_file(os.environ.get('SECRET_KEY_FILE'), minimum=50)
+# Gate every Django connection, including migrate and no-database maintenance.
+DATABASES['default']['ENGINE'] = 'shop.db.unqualified'
 DATABASES['default']['PASSWORD'] = runtime_secret_file(os.environ.get('DATABASE_PASSWORD_FILE'))
 if not DATABASES['default']['HOST'] or not DATABASES['default']['USER'] or not DATABASES['default']['NAME']:
     raise ImproperlyConfigured('Explicit shop database identity is required')
