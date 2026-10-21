@@ -1,0 +1,5 @@
+# Isolated resolver/schema/SBOM tools, separate from application runtime.
+pip==26.2.1
+pip-tools==7.6.2
+jsonschema==4.26.0
+cyclonedx-bom==7.5.0
