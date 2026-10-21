@@ -34,9 +34,9 @@ def load_authorization():
     return load_control('schema-authorization.json',validate_authorization)
 
 
-def read_artifact(data, authorization):
+def read_artifact(data, authorization, *, action='apply-reviewed-schema'):
     """Caller supplies bounded bytes; no pathname reopen or normalization."""
-    validate_authorization(authorization)
+    validate_authorization(authorization,action=action)
     require(type(data) is bytes and 0 < len(data) <= 2097152)
     require(hashlib.sha256(data).hexdigest() == authorization['artifact_sha256'])
     artifact = json.loads(data.decode('utf8'), object_pairs_hook=unique_fields)
