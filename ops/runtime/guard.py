@@ -36,10 +36,15 @@ def validate_expected(value):
 
 
 def validate_database_identity(expected,observed):
-    """For explicit future mutation wrappers; no trust in ambient DSN defaults."""
+    """Closed reviewed identity; never trust ambient DSN defaults."""
     fields={'container_id','account_uid','system_identifier','pgdata','database','role','server_address','server_port'}
     require(isinstance(expected,dict) and set(expected)==fields and isinstance(observed,dict) and set(observed)==fields)
     require(all(value is not None and value != '' for value in expected.values()))
+    require(all(type(observed[key]) is type(expected[key]) for key in fields))
+    require(isinstance(expected['system_identifier'],str) and re.fullmatch('[0-9]{10,20}',expected['system_identifier']))
+    for key in ('database','role'):
+        require(isinstance(expected[key],str) and re.fullmatch('[a-z_][a-z0-9_]{0,62}',expected[key]))
+    require(isinstance(expected['server_address'],str) and 0 < len(expected['server_address']) <= 253)
     require(type(expected['account_uid']) is int and expected['account_uid'] > 0)
     require(type(expected['server_port']) is int and 1 <= expected['server_port'] <= 65535)
     require(expected==observed and expected['pgdata']=='/var/lib/shop/postgres')
