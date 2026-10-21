@@ -4,10 +4,10 @@ current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
 status: executing
 stopped_at: Candidate runtime and local evidence committed; finish 14/16/17 gaps.
-last_updated: "2026-10-21T09:42:35.620223+00:00"
+last_updated: "2026-10-21T10:05:58.912663+00:00"
 last_activity: 2026-10-21
-last_activity_desc: Closed PostgreSQL runtime draft added; native parser/HBA7 tests and deployment/environment regressions pass.
-state_head: 87047c5
+last_activity_desc: PostgreSQL console filter and image linkage prepared; 8 new local privacy tests and regressions pass.
+state_head: 62c6f44
 progress:
   total_phases: 14
   completed_phases: 1
@@ -30,7 +30,7 @@ No independent off-host runner assigned. User permits all authorized repository 
 
 ## Current evidence
 
-Local environment2 checks/14 tests; frontend13/9; core-local4/20; worker-smoke6/24 including broken-fence/lock controls; adapters3/6 in isolated network; contracts-local12/8; combined boundaries17/32; deployment-eval14/25; postgresql-config3/7; bootstrap-local3/13; database-destination3/13; profiles6/5; locks3/8; reproducibility4/5 with exactly2 independent public/backend builds. Counts overlap across lanes; no unique total implied. Reproducibility uses a fixed canonical path in separate private process namespaces; raw failed HTML-island-ID comparison remains recorded, no output normalization. Focused versioned manifest is local reproducibility only.
+Local environment2 checks/14 tests; frontend13/9; core-local4/20; worker-smoke6/24 including broken-fence/lock controls; adapters3/6 in isolated network; contracts-local12/8; combined boundaries17/32; deployment-eval15/25; postgres-diagnostics3/8; postgresql-config3/7; bootstrap-local3/13; database-destination3/13; profiles6/5; locks3/8; reproducibility4/5 with exactly2 independent public/backend builds. Counts overlap across lanes; no unique total implied. Reproducibility uses a fixed canonical path in separate private process namespaces; raw failed HTML-island-ID comparison remains recorded, no output normalization. Focused versioned manifest is local reproducibility only.
 
 Installed standard SBOM evidence reconciles271 npm/6 runtime Python/39 tool Python components and records70 uninstalled optional paths. Collector exits2, not INVENTORY_PASS: raw npm malformed URI, missing licence texts and native/image coverage remain unresolved. Images are unbuilt; no real digest or compatibility claimed. Candidate profile/guard evaluation is not operational protection proof. Manual-only read-only SHA-pinned CI is prepared, never executed; no runner/authorization record created.
 
@@ -77,3 +77,7 @@ Code637b901 adds explicit one-use offline cluster initialization, durable attemp
 ## Latest continuation — closed PostgreSQL runtime draft
 
 Code87047c5 adds immutable PostgreSQL/HBA candidate files and readonly Quadlet mounts. TCP disabled; every connection rejected; explicit durability and deliberately failing archive command retain WAL without a successful-backup claim. Local native single-user config/HBA verification3 checks/7 tests; deployment-eval14/25 and environment2/14 passed. No listener, archiver, host/service mutation or credential access. Provisional memory/connection settings are not qualification; archive backlog can exceed max_wal_size. Next implement qualified application roles/auth/network access, **PostgreSQL diagnostic privacy and canary handling**, real archive integration and migrations/app/operator enforcement; generator/replica/OCI/licence/full CI and off-host/recovery remain pending. Phase02 remains incomplete.
+
+## Latest continuation — PostgreSQL console privacy
+
+Code62c6f44 implements content-free console filtering and candidate image linkage using the exact existing Python interpreter. Local lane3 checks/8 tests includes real single-user PostgreSQL raw-versus-filtered runtime-generated canary evidence; synthetic native PID/exit/environment/stream controls pass. Deployment-eval15/25, PG config3/7 and environment2/14 passed. No image/container or fault execution. Next qualify actual image/canary/worker containment, postmaster reaping/PID1/lifecycle/backpressure and other log/private result paths; a protected forensic channel remains unimplemented. Continue roles/auth/network, archive/recovery, records/migrations/app/operator and generator/replica implementation;16/17/runtime/full CI/off-host gates remain pending. No credentials/host changes. Phase02 incomplete.
