@@ -34,7 +34,10 @@ def evaluate():
     suite=unittest.TestLoader().discover(str(ROOT/'tests'),pattern='test_deployment.py');stream=io.StringIO()
     result=unittest.TextTestRunner(stream=stream).run(suite)
     if result.testsRun<4 or not result.wasSuccessful() or result.skipped:raise ValueError('guard tests failed: '+stream.getvalue())
-    print(f'DEPLOYMENT_EVAL_PASS checks=9 tests={result.testsRun} duration_seconds={time.monotonic()-start:.3f}')
+    probe_suite=unittest.TestLoader().discover(str(ROOT/'tests'),pattern='test_process_probe.py')
+    probe_result=unittest.TextTestRunner(stream=stream).run(probe_suite)
+    if probe_result.testsRun<14 or not probe_result.wasSuccessful() or probe_result.skipped:raise ValueError('process probe controls failed: '+stream.getvalue())
+    print(f'DEPLOYMENT_EVAL_PASS checks=10 tests={result.testsRun+probe_result.testsRun} duration_seconds={time.monotonic()-start:.3f}')
     print('Candidate evaluation only; unbuilt images, generator/runtime/bootstrap/review/off-host evidence pending')
 
 
