@@ -1,0 +1,111 @@
+{
+  "name": "Shop required qualification (manual, assigned runners)",
+  "on": {
+    "workflow_dispatch": {}
+  },
+  "permissions": {
+    "contents": "read"
+  },
+  "jobs": {
+    "local": {
+      "if": "github.ref == 'refs/heads/main'",
+      "runs-on": [
+        "self-hosted",
+        "linux",
+        "x64",
+        "shop-linux-qualified"
+      ],
+      "timeout-minutes": 120,
+      "env": {
+        "SHOP_TEST_SCRATCH": "${{ github.workspace }}/.scratch"
+      },
+      "outputs": {
+        "checks": "${{ steps.verify.outputs.checks }}",
+        "tests": "${{ steps.verify.outputs.tests }}"
+      },
+      "steps": [
+        {
+          "name": "Require assigned independent runner before checkout",
+          "run": "python3 - <<'PY_RUNNER'\nimport hashlib,json,os,socket,stat\nfrom pathlib import Path\nassert os.environ['GITHUB_REF']=='refs/heads/main','Trusted main only'\np=Path('/run/shop-ci/checkout-authorization.json')\nassert not p.is_symlink() and p.resolve()==p and p.stat().st_size<16384\nassert p.stat().st_uid==0 and not p.stat().st_mode & 0o022\nr=json.loads(p.read_text())\nassert r['independent_of_mx1'] is True\nassert r['permitted_actions']==['owned-synthetic-ci-checkout']\nassert r['checkout_commit']==os.environ['GITHUB_SHA']\nassert r['machine_id_sha256']==hashlib.sha256(Path('/etc/machine-id').read_bytes().strip()).hexdigest()\nassert not any(x in socket.gethostname().lower() for x in ('mx1','claude-dev'))\nPY_RUNNER"
+        },
+        {
+          "uses": "actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "with": {
+            "persist-credentials": false,
+            "fetch-depth": 0,
+            "set-safe-directory": false
+          }
+        },
+        {
+          "name": "Run identical required dispatcher lanes",
+          "id": "verify",
+          "shell": "bash",
+          "run": "mkdir -p .scratch\nexport TMPDIR=\"$GITHUB_WORKSPACE/.scratch\"\nnix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 - <<'PY_LANES'\nimport json,os,subprocess\nmodes=['environment', 'frontend', 'boundaries', 'deployment-profiles', 'deployment-eval', 'locks']\nchecks=tests=0\nfor mode in modes:\n r=subprocess.run(['python3','scripts/check.py',mode],text=True,capture_output=True,timeout=7200)\n print(r.stdout,flush=True)\n if r.returncode:\n  print(r.stderr,flush=True)\n  raise SystemExit(r.returncode)\n records=[]\n for line in r.stdout.splitlines():\n  try:v=json.loads(line)\n  except ValueError:continue\n  if isinstance(v,dict) and 'lane' in v and 'tests' in v:records.append(v)\n assert records and all(z.get('failures',0)==0 and z['checks']+z['tests']>0 for z in records)\n checks+=sum(z['checks'] for z in records);tests+=sum(z['tests'] for z in records)\nassert checks>0 and tests>0\nwith open(os.environ['GITHUB_OUTPUT'],'a') as output:\n print('checks='+str(checks),file=output)\n print('tests='+str(tests),file=output)\nPY_LANES"
+        }
+      ]
+    },
+    "full": {
+      "if": "github.ref == 'refs/heads/main'",
+      "runs-on": [
+        "self-hosted",
+        "linux",
+        "x64",
+        "shop-offhost-qualified"
+      ],
+      "timeout-minutes": 120,
+      "env": {
+        "SHOP_TEST_SCRATCH": "${{ github.workspace }}/.scratch",
+        "SHOP_CORE_RUNNER_AUTHORIZATION": "/run/shop-ci/core-authorization.json",
+        "SHOP_WORKER_RUNNER_AUTHORIZATION": "/run/shop-ci/worker-authorization.json",
+        "SHOP_CONTRACTS_RUNNER_AUTHORIZATION": "/run/shop-ci/contracts-authorization.json",
+        "SHOP_DEPLOYMENT_RUNNER_AUTHORIZATION": "/run/shop-ci/deployment-authorization.json"
+      },
+      "outputs": {
+        "checks": "${{ steps.verify.outputs.checks }}",
+        "tests": "${{ steps.verify.outputs.tests }}"
+      },
+      "steps": [
+        {
+          "name": "Require assigned independent runner before checkout",
+          "run": "python3 - <<'PY_RUNNER'\nimport hashlib,json,os,socket,stat\nfrom pathlib import Path\nassert os.environ['GITHUB_REF']=='refs/heads/main','Trusted main only'\np=Path('/run/shop-ci/checkout-authorization.json')\nassert not p.is_symlink() and p.resolve()==p and p.stat().st_size<16384\nassert p.stat().st_uid==0 and not p.stat().st_mode & 0o022\nr=json.loads(p.read_text())\nassert r['independent_of_mx1'] is True\nassert r['permitted_actions']==['owned-synthetic-ci-checkout']\nassert r['checkout_commit']==os.environ['GITHUB_SHA']\nassert r['machine_id_sha256']==hashlib.sha256(Path('/etc/machine-id').read_bytes().strip()).hexdigest()\nassert not any(x in socket.gethostname().lower() for x in ('mx1','claude-dev'))\nPY_RUNNER"
+        },
+        {
+          "uses": "actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "with": {
+            "persist-credentials": false,
+            "fetch-depth": 0,
+            "set-safe-directory": false
+          }
+        },
+        {
+          "name": "Run identical required dispatcher lanes",
+          "id": "verify",
+          "shell": "bash",
+          "run": "mkdir -p .scratch\nexport TMPDIR=\"$GITHUB_WORKSPACE/.scratch\"\nnix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 - <<'PY_LANES'\nimport json,os,subprocess\nmodes=['all']\nchecks=tests=0\nfor mode in modes:\n r=subprocess.run(['python3','scripts/check.py',mode],text=True,capture_output=True,timeout=7200)\n print(r.stdout,flush=True)\n if r.returncode:\n  print(r.stderr,flush=True)\n  raise SystemExit(r.returncode)\n records=[]\n for line in r.stdout.splitlines():\n  try:v=json.loads(line)\n  except ValueError:continue\n  if isinstance(v,dict) and 'lane' in v and 'tests' in v:records.append(v)\n assert records and all(z.get('failures',0)==0 and z['checks']+z['tests']>0 for z in records)\n checks+=sum(z['checks'] for z in records);tests+=sum(z['tests'] for z in records)\nassert checks>0 and tests>0\nwith open(os.environ['GITHUB_OUTPUT'],'a') as output:\n print('checks='+str(checks),file=output)\n print('tests='+str(tests),file=output)\nPY_LANES"
+        }
+      ]
+    },
+    "required": {
+      "if": "always()",
+      "needs": [
+        "local",
+        "full"
+      ],
+      "runs-on": [
+        "self-hosted",
+        "linux",
+        "x64",
+        "shop-linux-qualified"
+      ],
+      "steps": [
+        {
+          "name": "Reject missing failed skipped cancelled or zero-case results",
+          "env": {
+            "RESULTS": "${{ toJSON(needs) }}"
+          },
+          "run": "python3 - <<'PY_REQUIRED'\nimport json,os\nresults=json.loads(os.environ['RESULTS'])\nassert set(results)=={'local','full'}\nfor value in results.values():\n assert value['result']=='success'\n assert int(value['outputs']['checks'])>0 and int(value['outputs']['tests'])>0\nprint('All required dispatcher lanes completed; no absent/skipped/zero-case result accepted')\nPY_REQUIRED"
+        }
+      ]
+    }
+  }
+}

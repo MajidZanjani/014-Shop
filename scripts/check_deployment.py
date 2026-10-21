@@ -85,7 +85,7 @@ def main():
     if a.lane=='deployment-eval':evaluate();return
     if a.lane=='deployment-boot':
         from check_backend import runner_authorization
-        runner_authorization(a.runner_authorization,action='owned-synthetic-rootless-lifecycle')
+        runner_authorization(a.runner_authorization or os.environ.get('SHOP_DEPLOYMENT_RUNNER_AUTHORIZATION'),action='owned-synthetic-rootless-lifecycle')
         raise ValueError('PENDING_RUNTIME_FIXTURES: off-host driver/bootstrap/images not yet qualified; no lifecycle pass')
     if a.lane=='deployment-build':raise ValueError('PENDING_EXACT_RUNTIME_REVIEW: candidate definitions evaluated only; exact image/transitive review and build resource qualification required')
     profiles()

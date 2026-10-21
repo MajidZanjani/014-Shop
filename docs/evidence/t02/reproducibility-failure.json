@@ -1,0 +1,422 @@
+{
+  "schema_version": 1,
+  "evidence_class": "local-synthetic-failed-comparison",
+  "manifests": [
+    {
+      "payload": [
+        {
+          "path": "backend.tar",
+          "bytes": 112640,
+          "sha256": "651f71c0799d27a66cab0463306e0f9cac35c880e9778035dc5aeb19333cc942"
+        },
+        {
+          "path": "public/_astro/BuildProbe.B3vlyrKo.js",
+          "bytes": 707,
+          "sha256": "b2d1aaa0874bebd9cf2724c62abba8deed6378870dec810d5ecb3da4a06eb21d"
+        },
+        {
+          "path": "public/_astro/client.C7WjD2Pw.js",
+          "bytes": 212848,
+          "sha256": "067ac8fb2aadbe933fd1f37b954908b1cc9e238237e348423486b105c320148f"
+        },
+        {
+          "path": "public/_astro/react.CvnImTBr.js",
+          "bytes": 7909,
+          "sha256": "7866ec6c62357fd6b4355d1306d143ca3b008b6ac0e77a37fd51196f21cf5afe"
+        },
+        {
+          "path": "public/index.html",
+          "bytes": 5943,
+          "sha256": "153e7682f6f530b32c10f758fa0e989b19271f5f4ae4b7780a7e0c5a5d3f0fe8"
+        }
+      ],
+      "backend_files": [
+        {
+          "path": "manage.py",
+          "bytes": 357,
+          "sha256": "61c771a545c52f38aca2ea34cfd4821ee2fac91f8f43e53e06135712ee5bc82e"
+        },
+        {
+          "path": "requirements/runtime-linux-py313.txt",
+          "bytes": 1226,
+          "sha256": "f8fcadf293e0da50ca0cd19af277e869a2de4a9476bd65e9d919ff7f506a7606"
+        },
+        {
+          "path": "requirements/runtime.in",
+          "bytes": 140,
+          "sha256": "d7e1553171a3458ed6c25f9f0f2a887211079c4b384d630475882845f13a54ba"
+        },
+        {
+          "path": "requirements/tools-linux-py313.txt",
+          "bytes": 35071,
+          "sha256": "e1be2ae84dba689c3c6cbf3a9e2a4ed468bf34ec5d85550846e73a210fef0fe1"
+        },
+        {
+          "path": "requirements/tools.in",
+          "bytes": 143,
+          "sha256": "c6db464f32fddb52d0930abf85e4f63def8b59d0b92a4def3276defbf29ab37a"
+        },
+        {
+          "path": "shop/__init__.py",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "shop/adapters/__init__.py",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "shop/adapters/capture_mail.py",
+          "bytes": 970,
+          "sha256": "0ed71d4e973da246dde3f3affb2a3f5addcdcd1b5470e0d2a7c7b9ea6f0b329a"
+        },
+        {
+          "path": "shop/adapters/fake_bank.py",
+          "bytes": 1153,
+          "sha256": "fa29fbd05aeb18d86cd11c28408bdb62a1fe1f4fc36cc54b9d5112d174f15685"
+        },
+        {
+          "path": "shop/adapters/local_storage.py",
+          "bytes": 2382,
+          "sha256": "870dade0af9e54a917d37d0d5091154ed36b121261dcad8bf87b042bd7f4ec13"
+        },
+        {
+          "path": "shop/adapters/ports.py",
+          "bytes": 396,
+          "sha256": "22f1e8418e0449aae096cc635f9416795f408df736fce3ce06a6d6f2f860cecf"
+        },
+        {
+          "path": "shop/adapters/tests.py",
+          "bytes": 5067,
+          "sha256": "615ba982b470b7ab125cf0cc3128e732f67786386998fbd019c57ba172b4b3f8"
+        },
+        {
+          "path": "shop/config/__init__.py",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "shop/config/base.py",
+          "bytes": 1406,
+          "sha256": "3da62ff3c3483ea489c3f205417c5a790b1d48f6da774cacb4853894f7bf6f75"
+        },
+        {
+          "path": "shop/config/local.py",
+          "bytes": 350,
+          "sha256": "c18656e9b6d769046b93e1586d96c7cc66fd34f8970efe398f7d099f6b2ac837"
+        },
+        {
+          "path": "shop/config/production.py",
+          "bytes": 1020,
+          "sha256": "ee225ee5dcd4f3084f8292b89b511c4eecd98be57c6ab028955c3356daa1f57e"
+        },
+        {
+          "path": "shop/config/synthetic.py",
+          "bytes": 358,
+          "sha256": "e5e26f7a80180c11127cc4d3b932a9860a5218e9996910f9fa280216207de411"
+        },
+        {
+          "path": "shop/core/__init__.py",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "shop/core/checks.py",
+          "bytes": 3263,
+          "sha256": "85ec08f251edd67ff9834909f034bb4063763781f76f29d744090c412b4f1da5"
+        },
+        {
+          "path": "shop/core/health.py",
+          "bytes": 922,
+          "sha256": "ac88fa2e334d056fa5eb3cd158288976014fec204d715c39779837a126c7b0fc"
+        },
+        {
+          "path": "shop/core/logging.py",
+          "bytes": 1136,
+          "sha256": "bb125f6aeafcc239415c6fefa17ad099ae8aac6e824fb99603bba3941005745b"
+        },
+        {
+          "path": "shop/core/tests.py",
+          "bytes": 8142,
+          "sha256": "1d74d7a5b6438eb36860f542f5b2dec20fab911003bc295e94eb8a772ec85259"
+        },
+        {
+          "path": "shop/urls.py",
+          "bytes": 157,
+          "sha256": "d1f1f9d5c1ab41560cc1142c2a36965d99625fc2cc5b162e5cff2bc293489e97"
+        },
+        {
+          "path": "shop/worker/__init__.py",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "shop/worker/apps.py",
+          "bytes": 149,
+          "sha256": "4049411aecfe323b5a129a88f9330caefa64ffe200642474f2e7b67d2f3cf1d9"
+        },
+        {
+          "path": "shop/worker/management/__init__.py",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "shop/worker/management/commands/__init__.py",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "shop/worker/management/commands/enqueue_probe.py",
+          "bytes": 1606,
+          "sha256": "574d778e150b3ea943b663f4938af4d02766f883762dcba0860b7fb1bc06a729"
+        },
+        {
+          "path": "shop/worker/management/commands/run_worker.py",
+          "bytes": 1515,
+          "sha256": "72c34721b8562c01cff486c42c40c3ce73a2f6cb1aee5b7eb4b0afccd2e7409d"
+        },
+        {
+          "path": "shop/worker/migrations/0001_initial.py",
+          "bytes": 2148,
+          "sha256": "6fc6d01fb6012d22c1d1662c6039419063d81e37fea6d6e4255c530072fe05fb"
+        },
+        {
+          "path": "shop/worker/migrations/__init__.py",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "shop/worker/models.py",
+          "bytes": 1659,
+          "sha256": "5a45d094fd861fbf70bc04c55aa57629d6c1c2a7d3cd60f70f3e280db7550c8f"
+        },
+        {
+          "path": "shop/worker/services.py",
+          "bytes": 3512,
+          "sha256": "8fd15bdb7e34d6ede0639f32b63d7dc76287c28e50d618c6dcc2451829a15471"
+        },
+        {
+          "path": "shop/worker/tests.py",
+          "bytes": 6999,
+          "sha256": "3911f1b1cb2b316f8ef70fa516610bb0cf62bc5afda0d04333f78ae474e1c4f3"
+        },
+        {
+          "path": "shop/wsgi.py",
+          "bytes": 269,
+          "sha256": "1c49c07ee59c830604670fa7363ab0a4d2458d3728bef0c3b8b873a2deaf3dfd"
+        }
+      ]
+    },
+    {
+      "payload": [
+        {
+          "path": "backend.tar",
+          "bytes": 112640,
+          "sha256": "651f71c0799d27a66cab0463306e0f9cac35c880e9778035dc5aeb19333cc942"
+        },
+        {
+          "path": "public/_astro/BuildProbe.B3vlyrKo.js",
+          "bytes": 707,
+          "sha256": "b2d1aaa0874bebd9cf2724c62abba8deed6378870dec810d5ecb3da4a06eb21d"
+        },
+        {
+          "path": "public/_astro/client.C7WjD2Pw.js",
+          "bytes": 212848,
+          "sha256": "067ac8fb2aadbe933fd1f37b954908b1cc9e238237e348423486b105c320148f"
+        },
+        {
+          "path": "public/_astro/react.CvnImTBr.js",
+          "bytes": 7909,
+          "sha256": "7866ec6c62357fd6b4355d1306d143ca3b008b6ac0e77a37fd51196f21cf5afe"
+        },
+        {
+          "path": "public/index.html",
+          "bytes": 5943,
+          "sha256": "d2a5a0facefbdd3dfd519ad4fa1aa942004e6709e883c2cb6f9868cf2d72713e"
+        }
+      ],
+      "backend_files": [
+        {
+          "path": "manage.py",
+          "bytes": 357,
+          "sha256": "61c771a545c52f38aca2ea34cfd4821ee2fac91f8f43e53e06135712ee5bc82e"
+        },
+        {
+          "path": "requirements/runtime-linux-py313.txt",
+          "bytes": 1226,
+          "sha256": "f8fcadf293e0da50ca0cd19af277e869a2de4a9476bd65e9d919ff7f506a7606"
+        },
+        {
+          "path": "requirements/runtime.in",
+          "bytes": 140,
+          "sha256": "d7e1553171a3458ed6c25f9f0f2a887211079c4b384d630475882845f13a54ba"
+        },
+        {
+          "path": "requirements/tools-linux-py313.txt",
+          "bytes": 35071,
+          "sha256": "e1be2ae84dba689c3c6cbf3a9e2a4ed468bf34ec5d85550846e73a210fef0fe1"
+        },
+        {
+          "path": "requirements/tools.in",
+          "bytes": 143,
+          "sha256": "c6db464f32fddb52d0930abf85e4f63def8b59d0b92a4def3276defbf29ab37a"
+        },
+        {
+          "path": "shop/__init__.py",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "shop/adapters/__init__.py",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "shop/adapters/capture_mail.py",
+          "bytes": 970,
+          "sha256": "0ed71d4e973da246dde3f3affb2a3f5addcdcd1b5470e0d2a7c7b9ea6f0b329a"
+        },
+        {
+          "path": "shop/adapters/fake_bank.py",
+          "bytes": 1153,
+          "sha256": "fa29fbd05aeb18d86cd11c28408bdb62a1fe1f4fc36cc54b9d5112d174f15685"
+        },
+        {
+          "path": "shop/adapters/local_storage.py",
+          "bytes": 2382,
+          "sha256": "870dade0af9e54a917d37d0d5091154ed36b121261dcad8bf87b042bd7f4ec13"
+        },
+        {
+          "path": "shop/adapters/ports.py",
+          "bytes": 396,
+          "sha256": "22f1e8418e0449aae096cc635f9416795f408df736fce3ce06a6d6f2f860cecf"
+        },
+        {
+          "path": "shop/adapters/tests.py",
+          "bytes": 5067,
+          "sha256": "615ba982b470b7ab125cf0cc3128e732f67786386998fbd019c57ba172b4b3f8"
+        },
+        {
+          "path": "shop/config/__init__.py",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "shop/config/base.py",
+          "bytes": 1406,
+          "sha256": "3da62ff3c3483ea489c3f205417c5a790b1d48f6da774cacb4853894f7bf6f75"
+        },
+        {
+          "path": "shop/config/local.py",
+          "bytes": 350,
+          "sha256": "c18656e9b6d769046b93e1586d96c7cc66fd34f8970efe398f7d099f6b2ac837"
+        },
+        {
+          "path": "shop/config/production.py",
+          "bytes": 1020,
+          "sha256": "ee225ee5dcd4f3084f8292b89b511c4eecd98be57c6ab028955c3356daa1f57e"
+        },
+        {
+          "path": "shop/config/synthetic.py",
+          "bytes": 358,
+          "sha256": "e5e26f7a80180c11127cc4d3b932a9860a5218e9996910f9fa280216207de411"
+        },
+        {
+          "path": "shop/core/__init__.py",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "shop/core/checks.py",
+          "bytes": 3263,
+          "sha256": "85ec08f251edd67ff9834909f034bb4063763781f76f29d744090c412b4f1da5"
+        },
+        {
+          "path": "shop/core/health.py",
+          "bytes": 922,
+          "sha256": "ac88fa2e334d056fa5eb3cd158288976014fec204d715c39779837a126c7b0fc"
+        },
+        {
+          "path": "shop/core/logging.py",
+          "bytes": 1136,
+          "sha256": "bb125f6aeafcc239415c6fefa17ad099ae8aac6e824fb99603bba3941005745b"
+        },
+        {
+          "path": "shop/core/tests.py",
+          "bytes": 8142,
+          "sha256": "1d74d7a5b6438eb36860f542f5b2dec20fab911003bc295e94eb8a772ec85259"
+        },
+        {
+          "path": "shop/urls.py",
+          "bytes": 157,
+          "sha256": "d1f1f9d5c1ab41560cc1142c2a36965d99625fc2cc5b162e5cff2bc293489e97"
+        },
+        {
+          "path": "shop/worker/__init__.py",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "shop/worker/apps.py",
+          "bytes": 149,
+          "sha256": "4049411aecfe323b5a129a88f9330caefa64ffe200642474f2e7b67d2f3cf1d9"
+        },
+        {
+          "path": "shop/worker/management/__init__.py",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "shop/worker/management/commands/__init__.py",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "shop/worker/management/commands/enqueue_probe.py",
+          "bytes": 1606,
+          "sha256": "574d778e150b3ea943b663f4938af4d02766f883762dcba0860b7fb1bc06a729"
+        },
+        {
+          "path": "shop/worker/management/commands/run_worker.py",
+          "bytes": 1515,
+          "sha256": "72c34721b8562c01cff486c42c40c3ce73a2f6cb1aee5b7eb4b0afccd2e7409d"
+        },
+        {
+          "path": "shop/worker/migrations/0001_initial.py",
+          "bytes": 2148,
+          "sha256": "6fc6d01fb6012d22c1d1662c6039419063d81e37fea6d6e4255c530072fe05fb"
+        },
+        {
+          "path": "shop/worker/migrations/__init__.py",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "shop/worker/models.py",
+          "bytes": 1659,
+          "sha256": "5a45d094fd861fbf70bc04c55aa57629d6c1c2a7d3cd60f70f3e280db7550c8f"
+        },
+        {
+          "path": "shop/worker/services.py",
+          "bytes": 3512,
+          "sha256": "8fd15bdb7e34d6ede0639f32b63d7dc76287c28e50d618c6dcc2451829a15471"
+        },
+        {
+          "path": "shop/worker/tests.py",
+          "bytes": 6999,
+          "sha256": "3911f1b1cb2b316f8ef70fa516610bb0cf62bc5afda0d04333f78ae474e1c4f3"
+        },
+        {
+          "path": "shop/wsgi.py",
+          "bytes": 269,
+          "sha256": "1c49c07ee59c830604670fa7363ab0a4d2458d3728bef0c3b8b873a2deaf3dfd"
+        }
+      ]
+    }
+  ],
+  "html_difference": "Astro island uid only; no normalization applied",
+  "source": "astro@7.4.1 dist/runtime/server/render/component.js",
+  "source_sha256": "534417d864ae4007cde68415bc08c7fbe6b17defc269beb812cbecdda4939d7c",
+  "finding": "Island UID hashes component URL plus rendered HTML/props. Distinct absolute build roots affect the UID. Proposed correction pins the canonical path in separate private mount namespaces, preserving independent source/cache roots and all output bytes."
+}
