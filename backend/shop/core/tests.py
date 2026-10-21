@@ -79,3 +79,82 @@ class ConfigurationTests(SimpleTestCase):
             self.assertEqual(validate_environment(values), mode)
             self.assertEqual(values['LIVE_PAYMENTS_ENABLED'], 'false')
             self.assertTrue(values['SECRET_KEY_FILE'].startswith('/run/secrets/shop/'))
+
+
+class SafeLoggingTests(SimpleTestCase):
+    canaries = ('HOST_CANARY_SYNTHETIC', 'KEY_CANARY_SYNTHETIC', 'https://synthetic.invalid/bearer/CANARY',
+                'TAX_BUSINESS_CANARY', 'postgresql://CANARY:CANARY@synthetic.invalid/shop')
+
+    def test_formatter_drops_untrusted_fields_and_exception(self):
+        import json
+        import logging
+        from shop.core.logging import SafeFormatter
+        record = logging.LogRecord('synthetic', logging.ERROR, __file__, 1, ' '.join(self.canaries), (),
+                                   (ValueError, ValueError(' '.join(self.canaries)), None))
+        record.event = self.canaries[0]
+        record.correlation_id = self.canaries[1]
+        record.request = self.canaries[2]
+        raw = SafeFormatter().format(record)
+        self.assertEqual(json.loads(raw), {'event': 'runtime.event', 'status': None, 'correlation_id': None})
+        for value in self.canaries:
+            self.assertNotIn(value, raw)
+        self.assertLess(len(raw), 128)
+        record.event = ['untrusted']
+        self.assertEqual(json.loads(SafeFormatter().format(record))['event'], 'runtime.event')
+
+    def test_real_readiness_exception_path_is_safe(self):
+        import io
+        import json
+        import logging
+        from unittest.mock import patch
+        from django.db import DatabaseError
+        from django.test import RequestFactory
+        from shop.core.health import readiness
+        from shop.core.logging import SafeFormatter
+        stream = io.StringIO()
+        handler = logging.StreamHandler(stream)
+        handler.setFormatter(SafeFormatter())
+        logger = logging.getLogger('shop')
+        logger.addHandler(handler)
+        try:
+            with patch('shop.core.health.connection') as synthetic_connection:
+                synthetic_connection.cursor.side_effect = DatabaseError(' '.join(self.canaries))
+                response = readiness(RequestFactory().get('/health/ready', HTTP_HOST='127.0.0.1'))
+            self.assertEqual(response.status_code, 503)
+            self.assertEqual(json.loads(response.content), {'status': 'unavailable'})
+            data = json.loads(stream.getvalue())
+            self.assertEqual(data['event'], 'health.ready')
+            self.assertEqual(data['status'], 503)
+            self.assertRegex(data['correlation_id'], '^[0-9a-f]{32}$')
+            for value in self.canaries:
+                self.assertNotIn(value, stream.getvalue() + response.content.decode())
+        finally:
+            logger.removeHandler(handler)
+
+    def test_actual_django_security_log_is_redacted(self):
+        import io
+        import json
+        import logging
+        from shop.core.logging import SafeFormatter
+        stream = io.StringIO()
+        handler = logging.StreamHandler(stream)
+        handler.setFormatter(SafeFormatter())
+        root = logging.getLogger()
+        root.addHandler(handler)
+        try:
+            response = self.client.get('/health/live', HTTP_HOST='HOST_CANARY_SYNTHETIC.invalid')
+            self.assertEqual(response.status_code, 400)
+            self.assertTrue(stream.getvalue())
+            self.assertEqual(json.loads(stream.getvalue().splitlines()[0])['event'], 'runtime.event')
+            self.assertNotIn('HOST_CANARY_SYNTHETIC', stream.getvalue() + response.content.decode())
+        finally:
+            root.removeHandler(handler)
+
+    def test_startup_errors_do_not_echo_canaries(self):
+        env = dict(os.environ, BANK_ENDPOINT=self.canaries[2])
+        result = subprocess.run([sys.executable, '-c', 'import django; django.setup()'], env=env,
+                                capture_output=True, text=True, timeout=8)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('startup rejected', result.stderr)
+        for value in self.canaries:
+            self.assertNotIn(value, result.stdout + result.stderr)

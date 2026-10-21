@@ -9,6 +9,8 @@ MODES = {'local', 'synthetic', 'bank-sandbox', 'production'}
 
 
 def reject(message):
+    import logging
+    logging.getLogger('shop').warning('startup rejected', extra={'event': 'startup.rejected'})
     raise ImproperlyConfigured(message)
 
 
