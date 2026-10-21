@@ -4,10 +4,10 @@ current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
 status: executing
 stopped_at: Candidate runtime and local evidence committed; finish 14/16/17 gaps.
-last_updated: "2026-10-21T10:21:24.774252+00:00"
+last_updated: "2026-10-21T10:28:47.507897+00:00"
 last_activity: 2026-10-21
-last_activity_desc: Exact-byte schema authorization and revocation checks prepared; local database and deployment regressions pass.
-state_head: 22728e1
+last_activity_desc: Atomic schema migration ledger and explicit replay decisions prepared; local PostgreSQL and deployment checks pass.
+state_head: 1f7b165
 progress:
   total_phases: 14
   completed_phases: 1
@@ -30,7 +30,7 @@ No independent off-host runner assigned. User permits all authorized repository 
 
 ## Current evidence
 
-Local environment2 checks/14 tests; frontend13/9; core-local4/22; worker-smoke6/24 including broken-fence/lock controls; adapters3/6 in isolated network; contracts-local12/8; combined boundaries17/32; deployment-eval15/27; postgres-diagnostics3/8; postgresql-config3/7; bootstrap-local3/13; database-destination3/29; profiles6/5; locks3/8; reproducibility4/5 with exactly2 independent public/backend builds. Counts overlap across lanes; no unique total implied. Reproducibility uses a fixed canonical path in separate private process namespaces; raw failed HTML-island-ID comparison remains recorded, no output normalization. Focused versioned manifest is local reproducibility only.
+Local environment2 checks/14 tests; frontend13/9; core-local4/22; worker-smoke6/24 including broken-fence/lock controls; adapters3/6 in isolated network; contracts-local12/8; combined boundaries17/32; deployment-eval15/27; postgres-diagnostics3/8; postgresql-config3/7; bootstrap-local3/13; database-destination3/38; profiles6/5; locks3/8; reproducibility4/5 with exactly2 independent public/backend builds. Counts overlap across lanes; no unique total implied. Reproducibility uses a fixed canonical path in separate private process namespaces; raw failed HTML-island-ID comparison remains recorded, no output normalization. Focused versioned manifest is local reproducibility only.
 
 Installed standard SBOM evidence reconciles271 npm/6 runtime Python/39 tool Python components and records70 uninstalled optional paths. Collector exits2, not INVENTORY_PASS: raw npm malformed URI, missing licence texts and native/image coverage remain unresolved. Images are unbuilt; no real digest or compatibility claimed. Candidate profile/guard evaluation is not operational protection proof. Manual-only read-only SHA-pinned CI is prepared, never executed; no runner/authorization record created.
 
@@ -101,3 +101,11 @@ Code22728e1 adds host-side schema_authorization library and docs/schema-migratio
 Actual local evidence: database-destination3 checks/29 tests,5.016s; deployment-eval15/27,2.274s. Added tests cover exact authorization, equivalent-JSON byte changes, expiry/closed fields/IDs, duplicate/malformed/forbidden artifacts, byte bounds, target mismatch, authorization removal/change/expiry and process-record changes with DDL rollback. These are real disposable PostgreSQL plus synthetic authority/runtime records and fixture PGDATA adaptation only. No approval invented, .env read/value needed, host/provider operation or protected resource change.
 
 Next migration work: atomic durable ledger/replay/uncertain-commit/restore reconciliation, Django migration generation/recorder integration, reviewed roles/credentials/private transport and root-owned publication/immutable packaging. Library does not consume authorization or prevent replay and must not become a deployment command before ledger integration. Revocation after final check cannot undo commit; trustworthy UTC clock/record custody remain operational prerequisites. Other14/16/17 and off-host/T11/T12 gates remain pending; no full acceptance.
+
+## Latest continuation — atomic migration ledger
+
+Code1f7b165 routes exact-byte authorized schema work through execute_schema_migration. A preexisting reviewed shop_control.schema_migrations relation is required; schema plus migration/digest/authorization IDs and transaction timestamp commit atomically. The same three values in a new explicit valid-authority call return already_applied without DDL; conflicting migration/digest/authorization reuse is denied. No automatic retry. A cooperative advisory lock and bounded table lock serialize this path. Ledger relation/owner/columns/constraints/indexes/hooks/grants are checked, including PostgreSQL18 catalog NOT NULL constraints; the original relation OID must survive DDL. Missing/changed/replaced ledgers fail closed. Separate schema-ledger.sql is a review/bootstrap artifact, not automatically applied or permission to adopt/create on a real host.
+
+Actual local evidence: database-destination3 checks/38 tests,6.415s; deployment-eval15/27,2.132s. New real disposable PostgreSQL controls cover same-call replay decision, digest/authorization conflicts, authorization reuse for another migration, failed DDL and post-insert final-guard rollback, missing/altered/replaced ledger and schema/index/grant/trigger mutation. Lost caller acknowledgment is simulated by discarding a successful result then explicitly calling again; no real transport/process failure was injected. Existing runtime/root authority remains synthetic with fixed PGDATA fixture adaptation. Initial new-ledger run failed on incomplete PostgreSQL18 NOT NULL catalog expectations; corrected against official18 pg_constraint documentation and real tests. Final pass includes the stricter conenforced/OID checks.
+
+Next: separately guarded ledger bootstrap/custody and production role grants, Django migration generation/recorder and operator command/credentials/private transport, immutable host packaging; uncertain-commit and restored-ledger reconciliation against external evidence plus actual failure/recovery qualification. already_applied is a ledger decision, not schema-drift verification or restored-service reopening permission. Privileged/inherited-role history tampering remains outside this local proof. Production Django gate stays closed. No .env read/needed credential, host/provider operation, existing service/resource change or purchase. Other14/16/17 and off-host/T11/T12/full acceptance gaps remain pending.
