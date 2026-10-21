@@ -79,3 +79,21 @@ generation or alter/restart protected resources. Actual publication durability,
 partial-generation rejection, custody, positive socket/SCRAM/peer identity and
 failure/recovery evidence remain unexecuted. See qualification-runner.md for the
 single independent-runner specification; no resource is provisioned automatically.
+
+## Local authentication evidence
+
+The database-destination lane exercises a real disposable PostgreSQL18.6 Unix
+socket with a synthetic SCRAM password and the operator's actual libpq connection
+options and read-only ledger inspector. It checks not_recorded, recorded and
+conflict reports, unchanged ledger rows, closed connections, wrong-password
+rejection and rejection of a DELETE under the default read-only session.
+Input files use the real private-file reader through fixture descriptor mapping.
+
+This ordinary Linux test adapts the socket/PGDATA paths and uses mocked root
+records, process probes, effective operator UID and socket ancestry/identity.
+It uses the disposable cluster's administrative role, so it is not least-privilege
+role qualification. No installed fixed socket, actual FD0/FD3 launcher transport,
+peer-process/container binding, root-record publication, NixOS/Podman/ZFS or mx1
+proof follows. Those positive transport and operational checks remain pending.
+The production command's paths, privileges and closed connection contract are
+unchanged; no host HBA, credential or service is modified.
