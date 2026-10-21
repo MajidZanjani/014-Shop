@@ -1,0 +1,18 @@
+# Independent qualification runner
+
+Status: **unassigned; all off-host execution pending** (user instruction, 2026-10-21). Continue repository implementation, ordinary local/synthetic tests and deployment artifact preparation. Do not run disruptive suites on mx1, its containers or MicroVMs; do not alter existing resources or purchase/provision a runner automatically.
+
+| Requirement | Ordinary Linux lane | NixOS/Podman/ZFS lane |
+|---|---|---|
+| OS/runtime | Dedicated disposable x86_64 Linux runner; pinned repository Nix development shell, Python/Node and real isolated PostgreSQL; namespaces for outbound denial | Disposable independent NixOS environment using pinned repository inputs, systemd/cgroup v2 delegation, rootless Podman/Quadlet and a dedicated disposable ZFS pool; KVM only if the harness uses a VM |
+| Proposed capacity | 2–4 vCPU, 8 GiB RAM, 30 GiB free disk beyond cached tools | At least 4 vCPU, 12 GiB RAM and 120 GiB disposable disk beyond tool/image closure, to exercise proposed 80 GiB aggregate/50 GiB DB quota and 8 GiB shop cap with runner overhead; confirm headroom before execution |
+| Access | Explicitly authorized CI job or SSH identity; exact runner ID and checkout commit recorded | Same; narrowly scoped administrative permission for this runner's new test account, cgroups, namespaces and pool only |
+| Permitted actions | New synthetic scratch DB/processes; interrupt/restart those processes; deny their network; inject delays/failures; delete only owned scratch | Additionally exhaust owned cgroups/quotas, restart owned user units, simulate owned pool/data loss and restore from isolated synthetic backup namespaces |
+| Checks | Real DB health outage/recovery; worker interruption, lease/fencing/concurrency; fake-provider timeouts and restart; reproducible clean builds | Quadlet lifecycle, complete helper/payload cgroup containment, CPU/memory/tasks/storage exhaustion, quota descendants/snapshots/WAL, image/runtime closure, backup/recovery and shop-only rollback |
+| Estimated duration | 15–30 minutes for warm focused suites | 60–120 minutes for warm lifecycle/exhaustion/recovery suite; allow a separate 1–2 hours for cold builds/downloads |
+
+Capacity and duration are proposed planning estimates, not measured qualification or provider guarantees. Pin exact runner inputs and record actual resources, elapsed times, commands, logs and artifact hashes when assigned. Use synthetic data and test-only secrets; no production credentials or connectivity to mx1/existing services. Outbound access is limited to dependency acquisition before isolated tests and explicitly approved synthetic storage endpoints. Real OVH object behavior and production routing require separate applicable authorization/evidence.
+
+An ordinary Linux result cannot establish NixOS activation impact, rootless service ownership, aggregate cgroup/ZFS containment or protected-host compatibility. A replica result cannot authorize writes to mx1. Before any actual host write, the separate read-only inventory, exact allowlist/new DB identity and full activation-impact review remain required.
+
+Required unexecuted cases must report pending/nonzero in the full qualification lane. Local subsets may report their own results, never full CORE_PASS/runtime acceptance or production readiness when required off-host cases are missing. Raise runner assignment once at the remaining qualification stage; continue unaffected work meanwhile.

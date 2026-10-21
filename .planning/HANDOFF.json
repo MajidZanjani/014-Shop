@@ -1,10 +1,10 @@
 {
   "version": "1.0",
-  "timestamp": "2026-10-21T06:22:50Z",
+  "timestamp": "2026-10-21T06:50:35.914131+00:00",
   "phase": "02",
   "phase_name": "Reproducible application and deployment skeleton",
   "phase_dir": ".planning/phases/02-reproducible-application-and-deployment-skeleton",
-  "plan": "04",
+  "plan": "06",
   "task": 1,
   "total_tasks": 24,
   "status": "executing",
@@ -47,23 +47,29 @@
       "id": "02-05-01",
       "status": "done",
       "commit": "b4def63"
+    },
+    {
+      "id": "02-04-01",
+      "status": "done",
+      "commit": "9c5bd37"
     }
   ],
   "remaining_tasks": [
     {
-      "id": "02-03,02-05",
-      "name": "Static frontend/Python locks after current-source migration",
-      "status": "not_started"
-    },
-    {
-      "id": "02-04,02-06..02-17",
-      "name": "Revised dependency-ordered Phase 2 slices",
+      "id": "02-06..02-17",
+      "name": "Remaining Phase 2 slices; off-host qualification separately pending",
       "status": "not_started"
     }
   ],
   "blockers": [],
   "async_jobs": [],
-  "human_actions_pending": [],
+  "human_actions_pending": [
+    {
+      "action": "Assign independent runner at remaining qualification stage",
+      "status": "pending; do not repeatedly ask",
+      "specification": "docs/qualification-runner.md"
+    }
+  ],
   "decisions": [
     {
       "decision": "Exact candidate set explicitly approved by user",
@@ -84,7 +90,7 @@
   ],
   "background_workers": [],
   "uncommitted_files": [],
-  "next_action": "02-04 public frontend boundary then 02-06 Django health. Runtime outage/restart/exhaustion/recovery tests require independent off-host runner; details requested, local work continues. Use owned project scratch for Python wheels, not undersized /tmp.",
+  "next_action": "Continue 02-06 implementation and ordinary local checks. Prepare off-host disruptive tests, execution pending; runner unassigned. See docs/qualification-runner.md. No mx1 disruption or automatic provisioning.",
   "context_notes": "October 21 protected-services update is sole current architecture authority. Read 02-CONTEXT.md, SOURCES.md, REQUIREMENTS.md and ROADMAP.md; archived October 20 planning is historical only. Hosting selected, qualification pending; no new runtime/host compliance credited.",
   "retained_historical_worktrees": [
     {
