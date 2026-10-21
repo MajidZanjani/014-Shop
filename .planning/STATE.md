@@ -4,10 +4,10 @@ current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
 status: executing
 stopped_at: Candidate runtime and local evidence committed; finish 14/16/17 gaps.
-last_updated: "2026-10-21T09:03:58.901140+00:00"
+last_updated: "2026-10-21T09:15:56.181244+00:00"
 last_activity: 2026-10-21
-last_activity_desc: Host-side process probe and authoritative operator binding added; deployment-eval18 and SQL13 local tests pass.
-state_head: 3e83014
+last_activity_desc: Account-scoped runtime/generator bundle and explicit tmpfs bounds; deployment-eval25 tests pass.
+state_head: 3cc8b8c
 progress:
   total_phases: 14
   completed_phases: 1
@@ -24,13 +24,13 @@ Phase 02 remains executing; auto-advance false. Eight local slices complete (00�
 
 ## Next authorized work
 
-Finish14 actual qualification and record lifecycle for the new host-side process probe, operator CLI and integration of the single-DML SQL primitive with all applicable application/operator writes, schema/migration and independent bootstrap commands; exact rootless runtime/user-generator configuration and executable independent replica driver. Current offhost-cases.json is only a matrix. Resolve16 raw npm CycloneDX URI validation failure,12 incorporated-text findings and actual native/Nix/OCI manifest/layer/notice coverage. Then finish17 actual OCI payload/config reproducibility and required full CI evidence. Human browser hydration/source/licence/probe/prohibition reviews remain pending.
+Finish14 actual qualification and record lifecycle for the new host-side process probe, operator CLI and integration of the single-DML SQL primitive with all applicable application/operator writes, schema/migration and independent bootstrap commands; installation and qualification of the newly prepared account-scoped runtime/user-generator artifacts, and an executable independent replica driver. Current offhost-cases.json is only a matrix. Resolve16 raw npm CycloneDX URI validation failure,12 incorporated-text findings and actual native/Nix/OCI manifest/layer/notice coverage. Then finish17 actual OCI payload/config reproducibility and required full CI evidence. Human browser hydration/source/licence/probe/prohibition reviews remain pending.
 
 No independent off-host runner assigned. User permits all authorized repository implementation, ordinary local/synthetic checks and deployment preparation. Do not run disruptive outage/restart/exhaustion/recovery tests on mx1, existing containers or MicroVMs. Preserve every existing service/allocation/resource. Do not provision/purchase automatically or repeatedly ask for runner; raise assignment at remaining qualification stage. Single specification: docs/qualification-runner.md. This dependency does not excuse unfinished repository implementation.
 
 ## Current evidence
 
-Local environment2 checks/14 tests; frontend13/9; core-local4/20; worker-smoke6/24 including broken-fence/lock controls; adapters3/6 in isolated network; contracts-local12/8; combined boundaries17/32; deployment-eval10/18; database-destination3/13; profiles6/5; locks3/8; reproducibility4/5 with exactly2 independent public/backend builds. Counts overlap across lanes; no unique total implied. Reproducibility uses a fixed canonical path in separate private process namespaces; raw failed HTML-island-ID comparison remains recorded, no output normalization. Focused versioned manifest is local reproducibility only.
+Local environment2 checks/14 tests; frontend13/9; core-local4/20; worker-smoke6/24 including broken-fence/lock controls; adapters3/6 in isolated network; contracts-local12/8; combined boundaries17/32; deployment-eval12/25; database-destination3/13; profiles6/5; locks3/8; reproducibility4/5 with exactly2 independent public/backend builds. Counts overlap across lanes; no unique total implied. Reproducibility uses a fixed canonical path in separate private process namespaces; raw failed HTML-island-ID comparison remains recorded, no output normalization. Focused versioned manifest is local reproducibility only.
 
 Installed standard SBOM evidence reconciles271 npm/6 runtime Python/39 tool Python components and records70 uninstalled optional paths. Collector exits2, not INVENTORY_PASS: raw npm malformed URI, missing licence texts and native/image coverage remain unresolved. Images are unbuilt; no real digest or compatibility claimed. Candidate profile/guard evaluation is not operational protection proof. Manual-only read-only SHA-pinned CI is prepared, never executed; no runner/authorization record created.
 
@@ -65,3 +65,7 @@ Resumed from HANDOFF.json; consumed and removed the one-shot handoff after prese
 ## Latest continuation — process probe
 
 Code3e83014 adds the concrete read-only host-side process snapshot producer, root-owned attestation loader and execute_operator_mutation binding. Deployment evaluation10 checks/18 tests (14 new synthetic tests); actual local SQL regression3/13 passes. New tests use synthetic /proc and mocked descriptor evidence, not actual Podman. No record installed, process discovered or runtime test executed. Concrete operator commands/credentials, record lifecycle, app/worker enforcement, bootstrap/migrations, runtime/generator and replica driver remain unfinished. Keep14/16/17 incomplete and off-host execution pending. Commit and push after each completed step per user instruction.
+
+## Latest continuation — account-scoped runtime bundle
+
+Code acaa097 prepares pinned, cleared-environment Podman/Quadlet wrappers and immutable account-scoped runtime/storage configuration. Code3cc8b8c disables implicit read-only tmpfs mounts and bounds shared memory on all four candidates. Both steps committed/pushed. Final deployment-eval12 checks/25 tests includes actual Nix evaluation/TOML parsing/shell syntax and negative fixture checks only. Disabled module leaves runtime artifacts absent; global user generators/linger unchanged. No native build, actual generator/Podman/container execution or mx1/credential access. Next finish bootstrap/migration configuration, per-user discovery installation and record lifecycle, app/operator enforcement and replica driver; runtime review/licences/images and independent off-host tests remain pending. Phase02 remains executing and incomplete.
