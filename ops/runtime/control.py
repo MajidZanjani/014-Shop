@@ -34,7 +34,11 @@ def load_control(filename, validator):
             require(stat.S_ISREG(info.st_mode) and info.st_uid == 0
                     and not info.st_mode & 0o022 and info.st_size <= 32768)
             data = os.read(fd, 32769)
-            require(len(data) <= 32768)
+            after = os.fstat(fd)
+            fields = ('st_dev','st_ino','st_uid','st_gid','st_mode','st_size',
+                      'st_mtime_ns','st_ctime_ns')
+            require(all(getattr(info,key) == getattr(after,key) for key in fields)
+                    and len(data) == info.st_size and 0 < len(data) <= 32768)
             return validator(json.loads(data,object_pairs_hook=unique_fields))
         finally:
             os.close(fd)
