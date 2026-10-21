@@ -3,11 +3,11 @@ gsd_state_version: "1.0"
 current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
 status: executing
-stopped_at: 02-13 implementation merged; next 02-14 artifacts, independent runner unassigned.
-last_updated: "2026-10-21T06:15:23.993Z"
+stopped_at: Candidate runtime and local evidence committed; finish 14/16/17 gaps.
+last_updated: "2026-10-21T08:38:06.494116+00:00"
 last_activity: 2026-10-21
-last_activity_desc: 02-04 public build boundary passed; runner unassigned, disruptive qualification pending.
-state_head: 2f07e57f8546cca4bfba4f77e466855af8092e55
+last_activity_desc: Local payload/hash tests passed; complete inventory/runtime/full qualification incomplete.
+state_head: 01af4114cfaa87cb14b3eb79b35ac3122d8aee75
 progress:
   total_phases: 14
   completed_phases: 1
@@ -18,64 +18,38 @@ progress:
 
 # Project State
 
-## Project Reference
+## Current position
 
-See .planning/PROJECT.md and SOURCES.md (October 21 current authority).
+Phase 02 remains executing; auto-advance false. Eight local slices complete (00–05,09,15), seven qualification/human-review pending (06–08,10–13), three implementation-incomplete (14,16,17). Only completion evidence uses SUMMARY.md; incomplete records use PARTIAL.md so GSD discovery cannot turn file presence into 18/18 completion. BUILD requirements and full phase/production acceptance remain incomplete. See 02-VERIFICATION.md (gaps_found), HANDOFF.json and individual records.
 
-**Core value:** Turn an exact reviewed xSPI-MC configuration or support purchase into attributable acceptance, verified payment and recoverable licence delivery or support credit without duplicate effects.
-**Current focus:** All Phase 2 plans have some repository work, but only eight local slices are complete (00–05,09,15). Seven await required qualification/human review (06–08,10–13). Three remain implementation-incomplete (14,16,17). Their evidence is in PARTIAL.md files, not completion SUMMARY.md files. Next: finish 14 bootstrap/per-mutation/runtime driver and 16 native/notice/schema coverage; then complete 17 OCI/full CI qualification.
+## Next authorized work
 
-## Current Position
+Finish14 bootstrap/per-mutation destination wrapper, exact rootless runtime/user-generator configuration and executable independent replica driver. Current offhost-cases.json is only a matrix. Resolve16 raw npm CycloneDX URI validation failure,12 incorporated-text findings and actual native/Nix/OCI manifest/layer/notice coverage. Then finish17 actual OCI payload/config reproducibility and required full CI evidence. Human browser hydration/source/licence/probe/prohibition reviews remain pending.
 
-Phase: 02 of 14 — Reproducible application and deployment skeleton
-Status: executing; full phase/BUILD/production acceptance incomplete, auto-advance false.
-Last activity: 2026-10-21 — Candidate rootless/Nix/profile artifacts, real installed SBOM findings, two local payload builds and installer controls committed; full all exits 1 at off-host gate.
-Progress: 1/14 phases complete. Existing protected services/resources unchanged.
+No independent off-host runner assigned. User permits all authorized repository implementation, ordinary local/synthetic checks and deployment preparation. Do not run disruptive outage/restart/exhaustion/recovery tests on mx1, existing containers or MicroVMs. Preserve every existing service/allocation/resource. Do not provision/purchase automatically or repeatedly ask for runner; raise assignment at remaining qualification stage. Single specification: docs/qualification-runner.md. This dependency does not excuse unfinished repository implementation.
 
-## Accumulated Context
+## Current evidence
 
-### Decisions
+Local environment2 checks/14 tests; frontend13/9; core-local4/20; worker-smoke6/24 including broken-fence/lock controls; adapters3/6 in isolated network; contracts-local12/8; combined boundaries17/32; deployment-eval9/4; profiles6/5; locks3/8; reproducibility4/5 with exactly2 independent public/backend builds. Counts overlap across lanes; no unique total implied. Reproducibility uses a fixed canonical path in separate private process namespaces; raw failed HTML-island-ID comparison remains recorded, no output normalization. Focused versioned manifest is local reproducibility only.
 
-- Only October 21 proposal/handoff governs architecture; exact product bytes unchanged.
-- P-10 hosting direction resolved: rootless Podman/NixOS/Quadlet directly on mx1 under new proposed shopsvc, outside claude-dev. Separate app/worker/new PG/internal gateway; independently owned backup jobs.
-- Proposed aggregate 200% CPU, 6/8 GiB memory and 80/50 GiB ZFS caps need qualification. No cloud compute/block/IP/fallback purchase; £0.79 is incremental object-only model.
-- Every pre-existing/unknown resource in all states/owners/runtimes/native/VM is protected. Inventory/allowlist/DB identity/full activation impact precede host writes; only later explicit named service/action can permit a protected change.
-- Ingress/TLS unchanged or deferred; no DNS before path proof. Existing SMTP/monitoring/backups unchanged. Fault/exhaustion/restart/capacity/restore tests off-host; bounded mx1 checks only. Rollback shop-only.
-- Exact 02-01 approval digest remains 136610b07612762d390b3b3c234ff1ef3f6dc6b0e44a69a2abc646d9106b51bd. 02-02 cached development build/PG evidence retained; new OCI/runtime/host evidence pending. Bound any necessary native build cores/jobs/timeouts; never duplicate builds.
-- User continuation authorizes repository implementation and ordinary local/synthetic tests. Existing applicable local execution authorization/push preference remains recorded; no protected-service or external operational authorization is inferred.
+Installed standard SBOM evidence reconciles271 npm/6 runtime Python/39 tool Python components and records70 uninstalled optional paths. Collector exits2, not INVENTORY_PASS: raw npm malformed URI, missing licence texts and native/image coverage remain unresolved. Images are unbuilt; no real digest or compatibility claimed. Candidate profile/guard evaluation is not operational protection proof. Manual-only read-only SHA-pinned CI is prepared, never executed; no runner/authorization record created.
 
-### Pending Todos
+Full all actually exited1 after environment/frontend, stopped at required off-host core gate, no FULL_PASS. Later lanes did not run in that aggregate and are not reported as passed. Current source all six groups20/27/279/88/39/18 and self-check71 rejections passed. Historical evidence/source bytes unchanged.
 
-02-00 source migration is complete and merged. 02-03 static synthetic build passed 3 integration tests, clean install and diagnostics. 02-04 passed 13 checks/9 tests; 02-05 passed 63 checks/7 tests. Continue 02-14 under current context. Two old clean retained worktrees have no task edits/commits; they remain at historical base 2c64d9b and must never execute stale prompts. A future GSD orchestrator must reconcile the recorded manifest and supply fresh current context/base before dispatch. Do not manually merge, broadly clean or restart old workers. No worker was started by this replan.
+## Locked decisions and scope
 
-### Blockers/Concerns
+October21 proposal/handoff govern; embedded product bytes unchanged. New proposed shopsvc rootless Podman/NixOS/Quadlet directly on existing mx1, outside claude-dev. Separate app/one worker/new independent PostgreSQL/internal gateway and independently owned backup jobs. Proposed aggregate200% CPU,6/8GiB memory,80/50GiB ZFS need actual all-descendant/writable-path qualification. No new cloud compute/block/IP/fallback or permanent staging. £0.79 object-only model is dated/unverified.
 
-02-00 all passed six groups (20/27/279/88/39/18 checks) and self-check rejected 71 mutations. Historical/current evidence are separate; shared BUILD requirements remain incomplete.
+All pre-existing/unknown owners/states/engines/native/VM resources protected. Sanitized read-only inventory, exact new-shop allowlist/database identity and full evaluated activation-impact review precede any host write. No blanket activation, protected reload/restart/repair/prune/GC/reboot, global policy/delegation/cpuset change or host-generation rollback. Ingress/TLS stays unchanged or deferred to a later exact named-service/action approval; no premature DNS or inference that DNS01 supplies routing. Existing SMTP/monitoring/backups unchanged or integration pending. Shop-only rollback retains committed records. Actual host qualification T11; recovery T12.
 
-P-10 host qualification remains unperformed. P-11 public route/zone/certificate contract and P-12 existing SMTP/monitoring/owners remain pending; other commercial/custody decisions stay pending. These defer exact affected operations only. No fresh mx1 inspection or independent off-host runner is claimed. Off-host runtime lanes require an authorized resource and return blocked/nonzero if absent; no automatic infrastructure purchase.
+User continuation authorizes repository/application skeleton implementation and ordinary local tests, not real provider/bank/mail/DNS/TLS/production operations. Exact original dependency approval digest136610b07612762d390b3b3c234ff1ef3f6dc6b0e44a69a2abc646d9106b51bd does not extend to newly selected runtime bytes. Keep unresolved commercial/custody/P11/P12 decisions and flagged BUILD/prohibition findings explicit.
 
-### Quick Tasks Completed
+## Credential and workspace workflow
 
-| # | Description | Date | Commit | Directory |
-|---|---|---|---|---|
-| 261021-8cb | Replan October 21 protected mx1 rootless Podman architecture and retire cloud-instance requirements | 2026-10-21 | 2f07e57 | [261021-8cb-replan-from-october-21-proposal-and-hand](./quick/261021-8cb-replan-from-october-21-proposal-and-hand/) |
+Resource-access credentials are available through repository .env. Read only needed values for authorized work without printing/copying into chat, logs, commands, evidence or public builds. If a needed credential is absent/empty, append a clear blank VARIABLE_NAME= entry/purpose preserving all existing values, then ask the user to fill .env directly. No currently needed missing credential identified. Runtime _FILE/build exclusions and action authorization remain distinct.
 
-## Session Continuity
+Use fresh GSD worktree manifests/full current HEAD and push every commit. Two old clean historical worktrees at2c64d9b must never replay stale prompts; no workers active. Reuse cached Nix outputs and bound jobs/cores/time. Project filesystem had~2.4GiB free at preparation; shared /tmp128MiB is small. Use owned .scratch/TMPDIR and short SHOP_TEST_SCRATCH; never clean shared files/store/caches or change allocations. No mx1 SSH/provider access, disruptive runtime operation, existing-service change or purchase occurred.
 
-Last session: 2026-10-21T06:10:29Z
-Stopped at: 02-00 merged; proceeding to frontend/Python dependency slices.
-Resume file: .planning/phases/02-reproducible-application-and-deployment-skeleton/.continue-here.md
+## Completed reset
 
-Python 02-05 is merged: 63 actual import/identity checks and 7 rejection tests; 6 runtime/39 tool distributions. Shared /tmp is only 128 MB; use task-owned project .scratch/TMPDIR for wheel/venv work, never clean shared files. User confirmed no independent runner is assigned. Continue implementation and ordinary local tests; prepare disruptive suites without executing them here. Runner specification: docs/qualification-runner.md. Do not ask repeatedly or provision automatically.
-
-02-06/07/08 local backend implementation is merged. Latest ordinary core-local: 4 checks/20 tests; full core remains nonzero pending authorized off-host outage case. Do not count summary presence as completed qualification. Runner remains unassigned. Next 02-09.
-
-Credential workflow: resource access secrets are available via repository .env. For a needed missing/empty credential, append a named blank entry/purpose without exposing existing values and ask the user to fill .env. Preserve runtime/build/privacy and operation authorization boundaries.
-
-Latest execution: frontend 13 checks/9 tests; core-local 4/20; worker-smoke 6/24 including two broken-control rejection tests; adapters 3/6 in network namespace; contracts-local 12/8; combined boundaries 17/32. Counts are separate/reused lanes, not a sum of unique tests. Full core/worker/contracts remain nonzero pending actual authorized off-host cases. Human browser hydration and schema/diagram source-fidelity review pending. No runner assigned and no disruptive tests executed on mx1/its guests.
-
-Prepared: real DB-outage/recovery and worker receipt-before-completion interruption cases, guarded by exact independent runner/machine/commit/action authorization. Remaining rootless resource-exhaustion/lifecycle/recovery artifacts are owned by 14–17/T12, not yet implemented. Runner specification: docs/qualification-runner.md. Do not repeatedly ask or automatically provision.
-
-Current continuation (supersedes older next-plan prose): finish 14 implementation (bootstrap/per-mutation wrapper, exact user runtime/generator configuration and executable replica driver). Existing offhost-cases.json is only a matrix. 16 retains actual standard SBOMs (271 npm/6 runtime Python/39 tool Python), but raw npm schema URI failure, 12 missing-text findings and native/OCI closure coverage prevent INVENTORY_PASS. 17 local payload reproducibility passed two builds/5 tests, locks 3 checks/8 tests, environment 2/14. Full all ran environment/frontend then stopped pending off-host with exit1, no FULL_PASS. Manual CI prepared only, not run. Images unbuilt; ~2.4 GiB free at preparation, never clean shared files/store/caches or change allocations. Exact new component review/build resources still need qualification.
-
-Incomplete evidence records now use PARTIAL.md because GSD completion discovery counts SUMMARY presence. Eight genuine local completion summaries remain; no accidental 18/18 completion. Read PARTIAL records before work; do not replay completed implementations or mistake missing off-host evidence for permission to run faults here. Runner remains unassigned; no repeat question or automatic provisioning. Credential .env policy remains in PROJECT/CONTEXT.
+Quick261021-8cb: October21 protected-host replan, committed2f07e57; docs/archive/2026-10-20-planning is historical only. Source files were read completely and remain immutable; active cloud-instance backend requirements were replaced. Current execution follows that reset plus later user implementation/.env instructions.

@@ -65,3 +65,7 @@ Evaluation/build and runtime lanes are distinct. deployment-boot remains a compa
 - [ ] Human judgments and exact deferred host/external actions are recorded.
 
 Do not set nyquist_compliant true based on documentation review. T11/T12/T13/T14 separately close current host/storage, off-host business restore, integrated and public activation criteria.
+
+## Current recorded checkpoint — 2026-10-21
+
+Only8 completed local SUMMARY records remain;10 incomplete records are PARTIAL. Deployment-eval9/4 and profiles6/5 passed; locks3/8 and two independent public/backend builds4/5 passed. Native/OCI inventory and boot implementation/evidence remain incomplete. Installed SBOM collector recorded316 components/4 controls then exit2 with raw npm schema/notice/native gaps. Full all exited1 after environment/frontend at required off-host core gate, no FULL_PASS. Source six groups and71 rejections pass. See02-VERIFICATION.md and PARTIAL records; no sign-off checkbox is complete from this checkpoint.
