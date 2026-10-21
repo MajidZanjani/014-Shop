@@ -4,10 +4,10 @@ current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
 status: executing
 stopped_at: Candidate runtime and local evidence committed; finish 14/16/17 gaps.
-last_updated: "2026-10-21T10:13:54.720185+00:00"
+last_updated: "2026-10-21T10:17:36.821096+00:00"
 last_activity: 2026-10-21
-last_activity_desc: Production Django connection gate denies unqualified database access; local backend and worker regressions pass.
-state_head: 52942a4
+last_activity_desc: Bounded schema transaction and pinned operator wrapper prepared; PostgreSQL and deployment checks pass.
+state_head: a008e1f
 progress:
   total_phases: 14
   completed_phases: 1
@@ -30,7 +30,7 @@ No independent off-host runner assigned. User permits all authorized repository 
 
 ## Current evidence
 
-Local environment2 checks/14 tests; frontend13/9; core-local4/22; worker-smoke6/24 including broken-fence/lock controls; adapters3/6 in isolated network; contracts-local12/8; combined boundaries17/32; deployment-eval15/25; postgres-diagnostics3/8; postgresql-config3/7; bootstrap-local3/13; database-destination3/13; profiles6/5; locks3/8; reproducibility4/5 with exactly2 independent public/backend builds. Counts overlap across lanes; no unique total implied. Reproducibility uses a fixed canonical path in separate private process namespaces; raw failed HTML-island-ID comparison remains recorded, no output normalization. Focused versioned manifest is local reproducibility only.
+Local environment2 checks/14 tests; frontend13/9; core-local4/22; worker-smoke6/24 including broken-fence/lock controls; adapters3/6 in isolated network; contracts-local12/8; combined boundaries17/32; deployment-eval15/27; postgres-diagnostics3/8; postgresql-config3/7; bootstrap-local3/13; database-destination3/21; profiles6/5; locks3/8; reproducibility4/5 with exactly2 independent public/backend builds. Counts overlap across lanes; no unique total implied. Reproducibility uses a fixed canonical path in separate private process namespaces; raw failed HTML-island-ID comparison remains recorded, no output normalization. Focused versioned manifest is local reproducibility only.
 
 Installed standard SBOM evidence reconciles271 npm/6 runtime Python/39 tool Python components and records70 uninstalled optional paths. Collector exits2, not INVENTORY_PASS: raw npm malformed URI, missing licence texts and native/image coverage remain unresolved. Images are unbuilt; no real digest or compatibility claimed. Candidate profile/guard evaluation is not operational protection proof. Manual-only read-only SHA-pinned CI is prepared, never executed; no runner/authorization record created.
 
@@ -87,3 +87,9 @@ Code62c6f44 implements content-free console filtering and candidate image linkag
 Code52942a4 selects shop.db.unqualified in both production and bank-sandbox settings. It inherits PostgreSQL metadata/operations but refuses get_new_connection before the driver call; application/worker/management/migration and maintenance connections remain unavailable until qualified destination integration replaces this gate. This deliberately prevents readiness and migrations in these modes; it is not live transaction attestation or role/auth completion. Local/synthetic settings retain their ordinary disposable PostgreSQL backend.
 
 Actual local evidence: core-local4 checks/22 tests,7.286 seconds; worker-smoke6/24,8.495 seconds. Added tests assert both production modes select the gate (mocked runtime secret reader only), named/default-maintenance connection attempts and cursor access fail with no driver call and no password in the error. Full off-host checks remain pending. First attempted dispatcher core-local was rejected as an unsupported lane before tests; corrected to scripts/check_backend.py core-local. No .env read, credentials required, host/provider action or resource change. Phase02 and plans14/16/17 remain incomplete.
+
+## Latest continuation — guarded schema batch precursor
+
+Codea008e1f adds bounded reviewed transactional schema SQL (1–64 statements,64KiB each and1MiB total UTF8), a cooperative nonblocking transaction advisory lock, fresh runtime/live SQL checks before each statement and before commit, and a host-side wrapper pinning the root-owned process record for the whole batch. Stacked commands are rejected by prepared execution; failures roll back without automatic retry. Exact artifact authorization, schema-role rights, Django migration/ledger integration and an operator command remain pending; production Django gate remains closed. Trusted SQL expressions are not sandboxed and external/nontransactional effects are outside rollback guarantees.
+
+Actual local evidence: database-destination3 checks/21 tests,4.930s; deployment-eval15/27,2.128s. Real disposable PostgreSQL target/decoy tests cover schema commit/rollback, changed identity before each step/commit, failed later DDL, lock contention/release, bounds/forbidden commands and caller transaction refusal. Runtime/container/storage evidence remains synthetic and PGDATA comparison is fixture-adapted. No actual rootless lifecycle/fault qualification, .env read, missing credential, host/provider action or resource change. Plans14/16/17 and full production acceptance remain incomplete.

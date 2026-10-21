@@ -1,6 +1,7 @@
-"""Guarded single-statement DML primitive; caller supplies reviewed runtime evidence.
+"""Guarded DML and bounded transactional schema primitives.
 
-This is not a SQL sandbox or a migration/bootstrap command. It does not connect,
+Callers supply reviewed runtime evidence. This is not a SQL sandbox or a
+complete migration/bootstrap command. It does not connect,
 read credentials, discover containers, initialize storage or retry uncertain work.
 """
 import re
@@ -59,3 +60,51 @@ def execute_mutation(connection, expected, runtime_probe, statement, parameters=
             require(after == before)
             validate_database_identity(expected, observe_database(cursor, after))
     return count
+
+
+# A shop-specific cooperative lock: held for this transaction only, never waited
+# on or retried. Every future schema command must use the same guarded path.
+SCHEMA_LOCK = 0x53484F505343484D
+
+
+def execute_schema_batch(connection, expected, runtime_probe, statements):
+    """Atomically apply bounded, trusted reviewed schema SQL to one destination.
+
+    This is a precursor to a migration runner, not Django migration integration
+    or a SQL sandbox. Callers must authorize exact artifact bytes and role rights
+    separately. Only table/sequence/index schema prefixes are accepted. Embedded
+    SQL expressions remain trusted code; they are not parsed or sandboxed.
+    Transaction commands, role grants and migration ledger DML are rejected.
+    Concurrent indexes cannot run inside the owned transaction.
+    Never connect, initialize a cluster, print diagnostics or retry on failure.
+    """
+    validate_database_identity(expected, expected)
+    expected = dict(expected)
+    require(type(statements) is tuple and 1 <= len(statements) <= 64)
+    for statement in statements:
+        require(type(statement) is str and len(statement.encode('utf8')) <= 65536
+                and re.match(r'\A(?:(?:CREATE|ALTER|DROP) (?:TABLE|SEQUENCE)|'
+                             r'CREATE (?:UNIQUE )?INDEX|DROP INDEX)\s',
+                             statement, re.IGNORECASE))
+    require(sum(len(s.encode('utf8')) for s in statements) <= 1048576)
+    require(callable(runtime_probe) and connection.autocommit is True
+            and connection.info.transaction_status == TransactionStatus.IDLE)
+    with connection.transaction():
+        with connection.cursor() as cursor:
+            cursor.execute("SET LOCAL search_path = pg_catalog", prepare=True)
+            cursor.execute("SET LOCAL statement_timeout = '2s'", prepare=True)
+            cursor.execute("SET LOCAL lock_timeout = '1s'", prepare=True)
+            baseline = runtime_probe()
+            validate_database_identity(expected, observe_database(cursor, baseline))
+            cursor.execute('SELECT pg_catalog.pg_try_advisory_xact_lock(%s)',
+                           (SCHEMA_LOCK,), prepare=True)
+            require(cursor.fetchone() == (True,))
+            for statement in statements:
+                current = runtime_probe()
+                require(current == baseline)
+                validate_database_identity(expected, observe_database(cursor, current))
+                # Extended protocol rejects stacked commands, including COMMIT.
+                cursor.execute(statement, prepare=True)
+            current = runtime_probe()
+            require(current == baseline)
+            validate_database_identity(expected, observe_database(cursor, current))

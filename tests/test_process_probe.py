@@ -152,3 +152,32 @@ class ProcessProbeTests(unittest.TestCase):
         with patch.dict(sys.modules,{'database':SimpleNamespace(execute_mutation=execute)}),patch.object(probe,'load_record',side_effect=[record,changed]),patch.object(probe,'probe') as observed:
             with self.assertRaises(ValueError):probe.execute_operator_mutation(object(),'zfs','pg-control','DELETE FROM public.synthetic')
             observed.assert_not_called()
+
+
+    def test_schema_wrapper_pins_record_for_whole_batch(self):
+        from types import SimpleNamespace
+        from unittest.mock import patch
+        record,_=fixture();runtime={'container_id':'a'*64,'account_uid':9909}
+        connection=object();statements=('CREATE TABLE public.synthetic(id integer)',)
+        def execute(actual_connection,expected,callback,actual_statements):
+            self.assertIs(actual_connection,connection)
+            self.assertIs(actual_statements,statements)
+            self.assertEqual(expected,record['database'])
+            self.assertEqual(callback(),runtime)
+            self.assertEqual(callback(),runtime)
+        with patch.dict(sys.modules,{'database':SimpleNamespace(execute_schema_batch=execute)}),patch.object(probe,'load_record',return_value=record) as loaded,patch.object(probe,'probe',return_value=runtime) as observed:
+            probe.execute_operator_schema_batch(connection,'zfs','pg-control',statements)
+            self.assertEqual(loaded.call_count,3)
+            self.assertEqual(observed.call_count,2)
+
+    def test_schema_wrapper_denies_record_change(self):
+        from types import SimpleNamespace
+        from unittest.mock import patch
+        record,_=fixture();changed={**record,'process':{**record['process'],'start_ticks':123457}}
+        def execute(connection,expected,callback,statements):
+            callback()
+            self.fail('changed record reached schema operation')
+        with patch.dict(sys.modules,{'database':SimpleNamespace(execute_schema_batch=execute)}),patch.object(probe,'load_record',side_effect=[record,changed]),patch.object(probe,'probe') as observed:
+            with self.assertRaises(ValueError):
+                probe.execute_operator_schema_batch(object(),'zfs','pg-control',('CREATE TABLE public.synthetic(id integer)',))
+            observed.assert_not_called()
