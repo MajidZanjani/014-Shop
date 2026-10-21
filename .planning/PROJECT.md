@@ -80,3 +80,9 @@ At phase transitions update validated/active scope and decisions from actual evi
 
 ---
 *Last updated: 2026-10-21 after protected-host documentation replanning.*
+
+## Resource credentials — user instruction, 2026-10-21
+
+The agent has access to resource credentials through the repository .env file. When authorized project work needs a credential, consult that file without printing values or copying them into planning, logs, commands, evidence or public artifacts. If the required credential is absent or empty, add a clearly named empty VARIABLE_NAME= entry with a short purpose comment to .env, preserving every existing entry, then ask the user to fill its value directly in that file. Never ask the user to paste secrets into chat. Continue independent work while waiting; do not invent values or approvals. No currently needed missing credential has been identified by this instruction alone.
+
+This operator credential source does not require application .env auto-loading or relax runtime _FILE secrets, fake-only synthetic tests, build exclusions or existing action authorization. Read only the needed credential for the authorized operation; use non-logging process/environment or secret-file interfaces. Resource access is not automatic permission to purchase/provision, modify protected services or perform disruptive tests on mx1/its guests. The independent runner remains unassigned until the user supplies/authorizes it.

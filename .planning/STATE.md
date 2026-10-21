@@ -70,3 +70,5 @@ Resume file: .planning/phases/02-reproducible-application-and-deployment-skeleto
 Python 02-05 is merged: 63 actual import/identity checks and 7 rejection tests; 6 runtime/39 tool distributions. Shared /tmp is only 128 MB; use task-owned project .scratch/TMPDIR for wheel/venv work, never clean shared files. User confirmed no independent runner is assigned. Continue implementation and ordinary local tests; prepare disruptive suites without executing them here. Runner specification: docs/qualification-runner.md. Do not ask repeatedly or provision automatically.
 
 02-06/07/08 local backend implementation is merged. Latest ordinary core-local: 4 checks/20 tests; full core remains nonzero pending authorized off-host outage case. Do not count summary presence as completed qualification. Runner remains unassigned. Next 02-09.
+
+Credential workflow: resource access secrets are available via repository .env. For a needed missing/empty credential, append a named blank entry/purpose without exposing existing values and ask the user to fill .env. Preserve runtime/build/privacy and operation authorization boundaries.
