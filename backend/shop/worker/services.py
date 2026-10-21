@@ -2,11 +2,15 @@
 from dataclasses import dataclass
 from datetime import timedelta
 import uuid
+import tempfile
+from pathlib import Path
 from django.conf import settings
 from django.db import connection, transaction
 from django.db.models import F, Q
 from django.db.models.functions import Now
-from shop.adapters.ports import ProbeRequest
+from shop.adapters.capture_mail import CaptureMail
+from shop.adapters.local_storage import LocalStorage
+from shop.adapters.ports import MailRequest, ProbeRequest
 from shop.adapters.fake_bank import perform_fake_probe
 from .models import Probe
 
@@ -55,6 +59,16 @@ def execute_once(*, lease_seconds=10, max_attempts=3):
     claim = claim_probe(lease_seconds=lease_seconds, max_attempts=max_attempts)
     if claim is None:
         return False
+    # Disposable fixtures only; not durable delivery, archival evidence or real mail.
+    with tempfile.TemporaryDirectory(prefix='shop-probe-') as directory:
+        with LocalStorage(Path(directory).resolve()) as storage:
+            key = storage.put(b'synthetic-probe')
+            if storage.get(key) != b'synthetic-probe':
+                raise ValueError('Synthetic storage round-trip failed')
+            mail = CaptureMail()
+            mail.send(MailRequest(claim.effect_id, 'probe@synthetic.invalid', storage.get(key)))
+            if len(mail.messages) != 1:
+                raise ValueError('Synthetic mail capture failed')
     result = perform_fake_probe(ProbeRequest(claim.effect_id))
     complete_probe(claim, result)
     return True

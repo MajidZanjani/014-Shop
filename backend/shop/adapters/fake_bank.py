@@ -9,10 +9,14 @@ def perform_fake_probe(request):
         raise ValueError('Synthetic bank unavailable in this environment')
     if connection.in_atomic_block:
         raise ValueError('Adapter cannot run inside claim transaction')
-    if request.scenario != 'ok':
-        raise ValueError('Unsupported synthetic bank scenario')
+    outcomes = {'ok': 'synthetic-ok', 'rejected': 'synthetic-rejected', 'unknown': 'synthetic-unknown'}
+    if request.scenario == 'timeout':
+        raise TimeoutError('Synthetic timeout')
+    if request.scenario not in outcomes:
+        raise ValueError('Unsupported or malformed synthetic bank scenario')
+    outcome = outcomes[request.scenario]
     receipt, created = FakeReceipt.objects.get_or_create(effect_id=request.effect_id,
-        defaults={'scenario': 'ok', 'outcome': 'synthetic-ok'})
-    if receipt.scenario != request.scenario or receipt.outcome != 'synthetic-ok':
+        defaults={'scenario': request.scenario, 'outcome': outcome})
+    if receipt.scenario != request.scenario or receipt.outcome != outcome:
         raise ValueError('Synthetic receipt identity conflict')
     return ProbeResult(request.effect_id, receipt.outcome)
