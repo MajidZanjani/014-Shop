@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: executing
-last_updated: "2026-10-21T12:19:32.106Z"
-state_head: beef66ae830b31b272e064c9bcfbeb6aad36b9cd
+last_updated: "2026-10-21T12:42:03.202Z"
+state_head: 908195a7a4a4db9db69d1c93ed36b12d145f2619
 progress:
   total_phases: 14
   completed_phases: 1
@@ -13,7 +13,7 @@ last_activity: 2026-10-21
 current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
 stopped_at: Resumed; control-record read hardening complete, plan14 implementation gaps remain.
-last_activity_desc: Offline unverified record-bundle validation and publication contract prepared; focused local checks pass.
+last_activity_desc: Actual local SCRAM operator inspection and wrong-password/read-only denial verified.
 ---
 
 # Project State
@@ -30,7 +30,7 @@ No independent off-host runner assigned. User permits all authorized repository 
 
 ## Current evidence
 
-Local environment2 checks/14 tests; frontend13/9; core-local4/22; worker-smoke6/24 including broken-fence/lock controls; adapters3/6 in isolated network; contracts-local12/8; combined boundaries17/32; deployment-eval15/27; postgres-diagnostics3/8; postgresql-config3/7; bootstrap-local3/13; database-destination3/81; database-tools6/5; operator-runtime4/10; profiles6/5; locks3/8; reproducibility4/5 with exactly2 independent public/backend builds. Counts overlap across lanes; no unique total implied. Reproducibility uses a fixed canonical path in separate private process namespaces; raw failed HTML-island-ID comparison remains recorded, no output normalization. Focused versioned manifest is local reproducibility only.
+Local environment2 checks/14 tests; frontend13/9; core-local4/22; worker-smoke6/24 including broken-fence/lock controls; adapters3/6 in isolated network; contracts-local12/8; combined boundaries17/32; deployment-eval15/27; postgres-diagnostics3/8; postgresql-config3/7; bootstrap-local3/13; database-destination3/82; database-tools6/5; operator-runtime4/10; profiles6/5; locks3/8; reproducibility4/5 with exactly2 independent public/backend builds. Counts overlap across lanes; no unique total implied. Reproducibility uses a fixed canonical path in separate private process namespaces; raw failed HTML-island-ID comparison remains recorded, no output normalization. Focused versioned manifest is local reproducibility only.
 
 Installed standard SBOM evidence reconciles271 npm/6 runtime Python/39 tool Python components and records70 uninstalled optional paths. Collector exits2, not INVENTORY_PASS: raw npm malformed URI, missing licence texts and native/image coverage remain unresolved. Images are unbuilt; no real digest or compatibility claimed. Candidate profile/guard evaluation is not operational protection proof. Manual-only read-only SHA-pinned CI is prepared, never executed; no runner/authorization record created.
 
@@ -175,3 +175,12 @@ Phase02 and14/16/17 remain incomplete. Next scoped durable generation publicatio
 | # | Description | Date | Commit | Directory |
 |---|-------------|------|--------|-----------|
 | 261021-h2i | Reject control records changed during descriptor reads | 2026-10-21 | beef66a | [261021-h2i-reject-control-records-changed-during-de](./quick/261021-h2i-reject-control-records-changed-during-de/) |
+| 261021-hk6 | Exercise real operator SCRAM inspection on disposable PostgreSQL | 2026-10-21 | 908195a | [261021-hk6-exercise-real-operator-scram-inspection-](./quick/261021-hk6-exercise-real-operator-scram-inspection-/) |
+
+## Latest continuation — real local SCRAM inspection
+
+Code908195a adds actual disposable PostgreSQL18.6 SCRAM authentication through operator_inspect.inspect_from_fds and the actual guarded read-only ledger inspector. Three connections observe not_recorded/recorded/conflict, return retry/reopening=false, leave ledger rows unchanged and close. All use default read-only sessions and an attempted DELETE is rejected. A wrong synthetic password is rejected without retry. The real private FD reader executes through test descriptor mapping. Only the new token-owned scratch cluster's HBA/password are changed; existing services and allocations unchanged.
+
+Local database-destination passed3 checks/82 tests,8.657s after final read-only denial assertion. Earlier first run failed fixture prevalidation of expected==expected; corrected explicit scratch-path adaptation. Second failed fixture insert omitted required applied_at; supplied clock_timestamp(). Intermediate82-test run passed8.662s before final assertion. These are fixture corrections, not production runtime fixes. No other lanes rerun because runtime/package bytes are unchanged. No full all/FULL_PASS or operational qualification.
+
+Socket/PGDATA paths, root records, effective operator UID, process probe and socket ancestry/identity are explicitly adapted/mocked. Uses fixture administrative role, not qualified least-privilege access. Actual fixed FD0/FD3 launcher, positive peer/container/process binding, root-record issuer/publisher/admission barrier, production socket/HBA/roles, Django writes/migrations, generator/replica/image/notices/CI and off-host qualification remain pending. No .env read, actual credential needed, host access, protected-service change or purchase. Phase02/14/16/17 remain incomplete; runner unassigned with no repeated request.
