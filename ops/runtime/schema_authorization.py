@@ -13,12 +13,12 @@ from database import execute_schema_migration, validate_schema_statements
 import process_probe
 
 
-def validate_authorization(value):
+def validate_authorization(value, *, action='apply-reviewed-schema'):
     require(type(value) is dict and set(value) == {
         'schema_version', 'action', 'authorization_id', 'expires_at',
         'artifact_sha256', 'migration_id', 'database'})
     require(type(value['schema_version']) is int and value['schema_version'] == 1
-            and value['action'] == 'apply-reviewed-schema')
+            and value['action'] == action)
     for field, pattern in (('authorization_id', r'[a-f0-9]{32}'),
                            ('artifact_sha256', r'[a-f0-9]{64}'),
                            ('migration_id', r'[a-z][a-z0-9_-]{0,95}'),

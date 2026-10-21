@@ -480,3 +480,122 @@ class DatabaseDestinationTests(unittest.TestCase):
         self.assertEqual(self.schema_exists(),'0')
         self.assertEqual(self.ledger_count(),'0')
         self.assertEqual(self.target.sql("SELECT 'shop_control.schema_migrations'::regclass::oid"),original_oid)
+
+
+    def bootstrap_authority(self):
+        import ledger_bootstrap as bootstrap
+        data=(ROOT/'ops/postgresql/schema-ledger.sql').read_bytes()
+        _,authority=self.schema_authority(data)
+        authority.update(action='initialize-new-schema-ledger',authorization_id='c'*32,
+                         migration_id=bootstrap.MIGRATION_ID)
+        return data,authority
+
+    def authorized_bootstrap(self, data=None, authority=None, loader=None, conn=None):
+        from unittest.mock import patch
+        import ledger_bootstrap as bootstrap
+        import schema_authorization as auth
+        default_data,default_authority=self.bootstrap_authority()
+        data=default_data if data is None else data
+        authority=default_authority if authority is None else authority
+        with patch.object(auth,'validate_database_identity',database.validate_database_identity), \
+             patch.object(bootstrap,'load_authorization',side_effect=loader or (lambda:bootstrap.validate_authorization(authority))), \
+             patch.object(bootstrap.process_probe,'load_record',return_value={'database':dict(self.actual)}), \
+             patch.object(bootstrap.process_probe,'probe',return_value=dict(self.runtime)):
+            return bootstrap.execute_authorized_bootstrap(conn or self.connection(),
+                        'synthetic-zfs','synthetic-pg-control',data)
+
+    def namespace_count(self):
+        return self.target.sql("SELECT count(*) FROM pg_namespace WHERE nspname='shop_control'")
+
+    def test_guarded_ledger_bootstrap_commits_receipt_and_allows_migration(self):
+        import ledger_bootstrap as bootstrap
+        self.target.sql('DROP SCHEMA shop_control CASCADE')
+        self.assertEqual(self.authorized_bootstrap(),'initialized')
+        self.assertEqual(self.ledger_count(),'1')
+        self.assertEqual(self.target.sql("SELECT migration_id||'|'||artifact_sha256||'|'||authorization_id "
+            "FROM shop_control.schema_migrations"),bootstrap.MIGRATION_ID+'|'+bootstrap.ARTIFACT_SHA256+'|'+'c'*32)
+        self.addCleanup(self.target.sql,'DROP TABLE IF EXISTS public.schema_guard_probe')
+        self.assertEqual(self.authorized_schema(),'applied')
+        self.assertEqual(self.ledger_count(),'2')
+
+    def test_bootstrap_rejects_preexisting_matching_ledger_or_empty_namespace(self):
+        with self.assertRaises(ValueError):self.authorized_bootstrap()
+        self.assertEqual(self.ledger_count(),'0')
+        self.target.sql('DROP TABLE shop_control.schema_migrations')
+        with self.assertRaises(ValueError):self.authorized_bootstrap()
+        self.assertEqual(self.namespace_count(),'1')
+        self.assertEqual(self.target.sql("SELECT count(*) FROM pg_class c JOIN pg_namespace n "
+            "ON n.oid=c.relnamespace WHERE n.nspname='shop_control'"),'0')
+
+    def test_bootstrap_never_repeats_after_committed_initialization(self):
+        self.target.sql('DROP SCHEMA shop_control CASCADE')
+        self.assertEqual(self.authorized_bootstrap(),'initialized')
+        with self.assertRaises(ValueError):self.authorized_bootstrap()
+        self.assertEqual(self.ledger_count(),'1')
+
+    def test_bootstrap_rejects_modified_artifact_even_if_record_approves_hash(self):
+        import hashlib
+        data,authority=self.bootstrap_authority()
+        self.target.sql('DROP SCHEMA shop_control CASCADE')
+        for changed in (data+b' ',data.replace(b'PRIMARY KEY',b'')):
+            for approval in (authority,dict(authority,artifact_sha256=hashlib.sha256(changed).hexdigest())):
+                with self.assertRaises(ValueError):self.authorized_bootstrap(changed,approval)
+        self.assertEqual(self.namespace_count(),'0')
+
+    def test_bootstrap_requires_dedicated_action_id_and_unexpired_authority(self):
+        data,authority=self.bootstrap_authority()
+        self.target.sql('DROP SCHEMA shop_control CASCADE')
+        for changed in ({'action':'apply-reviewed-schema'},{'migration_id':'synthetic_001'},
+                        {'expires_at':'2000-01-01T00:00:00Z'},{'extra':True}):
+            with self.subTest(changed=changed),self.assertRaises(ValueError):
+                self.authorized_bootstrap(data,dict(authority,**changed))
+        self.assertEqual(self.namespace_count(),'0')
+
+    def test_bootstrap_revocation_midway_and_after_receipt_rolls_back_namespace(self):
+        data,authority=self.bootstrap_authority()
+        self.target.sql('DROP SCHEMA shop_control CASCADE')
+        for fail_at in (4,8): # before revoke, or final check after receipt insert
+            calls=[]
+            def loader():
+                calls.append(True)
+                if len(calls)==fail_at:raise FileNotFoundError('synthetic revocation')
+                return authority
+            with self.subTest(fail_at=fail_at),self.assertRaises(FileNotFoundError):
+                self.authorized_bootstrap(data,authority,loader=loader)
+            self.assertEqual(len(calls),fail_at)
+            self.assertEqual(self.namespace_count(),'0')
+
+    def test_bootstrap_decoy_receives_no_mutation(self):
+        self.target.sql('DROP SCHEMA shop_control CASCADE')
+        with self.assertRaises(ValueError):self.authorized_bootstrap(conn=self.connection(self.decoy))
+        self.assertEqual(self.namespace_count(),'0')
+        self.assertEqual(self.decoy.sql('SELECT count(*) FROM shop_control.schema_migrations'),'0')
+
+    def test_bootstrap_obeys_schema_lock_and_caller_transaction_boundary(self):
+        self.target.sql('DROP SCHEMA shop_control CASCADE')
+        owner=self.connection()
+        with owner.transaction():
+            owner.execute('SELECT pg_advisory_xact_lock(%s)',(database.SCHEMA_LOCK,))
+            with self.assertRaises(ValueError):self.authorized_bootstrap()
+            with self.assertRaises(ValueError):self.authorized_bootstrap(conn=owner)
+        self.assertEqual(self.namespace_count(),'0')
+
+
+    def test_bootstrap_inherited_named_role_write_grant_denied_and_rolled_back(self):
+        self.target.sql('DROP SCHEMA shop_control CASCADE')
+        self.target.sql('CREATE ROLE ledger_unexpected_writer NOLOGIN')
+        self.addCleanup(self.target.sql,'DROP ROLE ledger_unexpected_writer')
+        self.target.sql('ALTER DEFAULT PRIVILEGES GRANT INSERT ON TABLES TO ledger_unexpected_writer')
+        self.addCleanup(self.target.sql,'ALTER DEFAULT PRIVILEGES REVOKE INSERT ON TABLES FROM ledger_unexpected_writer')
+        with self.assertRaises(ValueError):self.authorized_bootstrap()
+        self.assertEqual(self.namespace_count(),'0')
+
+
+    def test_bootstrap_explicit_public_revoke_removes_default_write_grant(self):
+        self.target.sql('DROP SCHEMA shop_control CASCADE')
+        self.target.sql('ALTER DEFAULT PRIVILEGES GRANT INSERT ON TABLES TO PUBLIC')
+        self.addCleanup(self.target.sql,'ALTER DEFAULT PRIVILEGES REVOKE INSERT ON TABLES FROM PUBLIC')
+        self.assertEqual(self.authorized_bootstrap(),'initialized')
+        self.assertEqual(self.target.sql("SELECT count(*) FROM pg_class c, "
+            "LATERAL aclexplode(c.relacl) a WHERE c.oid='shop_control.schema_migrations'::regclass "
+            "AND a.grantee=0"),'0')
