@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shop.xspi.pro/schemas/v1/probe.schema.json",
+  "type": "object",
+  "properties": {
+    "request": {
+      "type": "object",
+      "properties": {
+        "payload_version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "evidence_class": {
+          "const": "local-synthetic"
+        }
+      },
+      "required": [
+        "payload_version",
+        "evidence_class"
+      ],
+      "additionalProperties": false
+    },
+    "result": {
+      "type": "object",
+      "properties": {
+        "effect_id": {
+          "type": "string",
+          "format": "uuid",
+          "maxLength": 36
+        },
+        "outcome": {
+          "const": "synthetic-ok"
+        }
+      },
+      "required": [
+        "effect_id",
+        "outcome"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "request",
+    "result"
+  ],
+  "additionalProperties": false
+}
