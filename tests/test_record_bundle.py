@@ -205,3 +205,103 @@ class CandidateStagingTests(unittest.TestCase):
                     target=staged/'bundle.json';target.unlink();target.symlink_to('artifact.bin')
             with patch.object(bundle.os,'fsync',side_effect=replace_after_parent_sync):
                 with self.assertRaises(OSError):bundle.stage_candidate(data,fd)
+
+
+    def test_inspection_matches_exact_files_without_writes_or_action_authority(self):
+        data=self.candidate()
+        with self.parent() as (parent,fd):
+            staged=bundle.stage_candidate(data,fd);real_open=os.open
+            with patch.object(bundle.os,'write',side_effect=AssertionError('no writes')), \
+                 patch.object(bundle.os,'mkdir',side_effect=AssertionError('no mkdir')), \
+                 patch.object(bundle.os,'unlink',side_effect=AssertionError('no cleanup')), \
+                 patch.object(bundle.os,'fsync',side_effect=AssertionError('no durability action')), \
+                 patch.object(bundle.os,'open',wraps=real_open) as opened:
+                report=bundle.inspect_candidate(data,fd)
+                self.assertTrue(all(call.args[1]&os.O_ACCMODE==os.O_RDONLY for call in opened.call_args_list))
+            self.assertEqual(report,dict(staged,status='candidate_matches',durability_confirmed=False))
+            for key in ('publication_authorized','retry_authorized','reopening_authorized','durability_confirmed'):
+                self.assertIs(report[key],False)
+            os.fstat(fd)
+
+    def test_inspection_denies_partial_or_extra_files_without_repair(self):
+        for kind in ('missing','extra'):
+            data=self.candidate()
+            with self.subTest(kind=kind),self.parent() as (parent,fd):
+                report=bundle.stage_candidate(data,fd);stage=parent/('candidate-'+report['bundle_sha256'])
+                if kind=='missing':(stage/'prepared.json').unlink()
+                else:(stage/'unknown').write_bytes(b'synthetic')
+                before=set(stage.iterdir())
+                with self.assertRaises(ValueError):bundle.inspect_candidate(data,fd)
+                self.assertEqual(set(stage.iterdir()),before)
+
+    def test_inspection_denies_tampered_payload_or_forged_marker(self):
+        for name in ('bundle.json','artifact.bin','expected.json','prepared.json'):
+            data=self.candidate()
+            with self.subTest(name=name),self.parent() as (parent,fd):
+                report=bundle.stage_candidate(data,fd);target=parent/('candidate-'+report['bundle_sha256'])/name
+                payload=target.read_bytes();target.chmod(0o600);target.write_bytes(b'X'+payload[1:]);target.chmod(0o400)
+                with self.assertRaises(ValueError):bundle.inspect_candidate(data,fd)
+                self.assertEqual(target.read_bytes(),b'X'+payload[1:])
+
+    def test_inspection_denies_link_fifo_directory_or_changed_mode(self):
+        for kind in ('symlink','hardlink','fifo','directory','mode'):
+            data=self.candidate()
+            with self.subTest(kind=kind),self.parent() as (parent,fd):
+                report=bundle.stage_candidate(data,fd);stage=parent/('candidate-'+report['bundle_sha256']);target=stage/'bundle.json'
+                if kind=='mode':target.chmod(0o600)
+                elif kind=='hardlink':os.link(target,parent/'external-link')
+                else:
+                    target.unlink()
+                    if kind=='symlink':target.symlink_to('artifact.bin')
+                    elif kind=='fifo':os.mkfifo(target,0o400)
+                    else:target.mkdir()
+                with self.assertRaises((ValueError,OSError)):bundle.inspect_candidate(data,fd)
+
+    def test_inspection_requires_original_input_and_private_parent(self):
+        data=self.candidate()
+        with self.parent() as (parent,fd):
+            bundle.stage_candidate(data,fd)
+            with self.assertRaises(FileNotFoundError):bundle.inspect_candidate(data+b' ',fd)
+            os.fchmod(fd,0o750)
+            with self.assertRaises(ValueError):bundle.inspect_candidate(data,fd)
+            os.fchmod(fd,0o700)
+            with patch.object(bundle.os,'geteuid',return_value=os.geteuid()+1):
+                with self.assertRaises(ValueError):bundle.inspect_candidate(data,fd)
+
+    def test_inspection_after_uncertain_parent_sync_never_confirms_durability(self):
+        data=self.candidate();real_sync=os.fsync
+        with self.parent() as (parent,fd):
+            def fail_parent(descriptor):
+                if os.fstat(descriptor).st_ino==os.fstat(fd).st_ino:raise OSError('synthetic-sync')
+                real_sync(descriptor)
+            with patch.object(bundle.os,'fsync',side_effect=fail_parent):
+                with self.assertRaises(OSError):bundle.stage_candidate(data,fd)
+            report=bundle.inspect_candidate(data,fd)
+            self.assertEqual(report['status'],'candidate_matches')
+            self.assertIs(report['durability_confirmed'],False)
+            self.assertIs(report['retry_authorized'],False)
+            with self.assertRaises(FileExistsError):bundle.stage_candidate(data,fd)
+
+    def test_inspection_denies_file_replaced_after_descriptor_read(self):
+        data=self.candidate();real_read=os.pread
+        with self.parent() as (parent,fd):
+            report=bundle.stage_candidate(data,fd);target=parent/('candidate-'+report['bundle_sha256'])/'bundle.json'
+            inode=target.stat().st_ino
+            def replace(descriptor,count,offset):
+                result=real_read(descriptor,count,offset)
+                if os.fstat(descriptor).st_ino==inode:
+                    target.unlink();target.write_bytes(result);target.chmod(0o400)
+                return result
+            with patch.object(bundle.os,'pread',side_effect=replace):
+                with self.assertRaises(ValueError):bundle.inspect_candidate(data,fd)
+
+    def test_inspection_denies_named_generation_replaced_during_readback(self):
+        data=self.candidate();real_readback=bundle._readback_files
+        with self.parent() as (parent,fd):
+            report=bundle.stage_candidate(data,fd);target=parent/('candidate-'+report['bundle_sha256'])
+            def replace(directory,files):
+                real_readback(directory,files)
+                target.rename(parent/'retained-original');target.mkdir(mode=0o700)
+            with patch.object(bundle,'_readback_files',side_effect=replace):
+                with self.assertRaises(ValueError):bundle.inspect_candidate(data,fd)
+            self.assertTrue((parent/'retained-original'/'prepared.json').is_file())
