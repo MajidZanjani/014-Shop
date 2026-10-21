@@ -76,6 +76,33 @@ def _stage_file(directory, name, payload):
         os.close(fd)
 
 
+def _candidate_material(data):
+    payloads,report=prepare_records(data)
+    artifact=base64.b64decode(json.loads(data)['artifact_base64'],validate=True)
+    files=dict(payloads,**{'bundle.json':data,'artifact.bin':artifact})
+    report=dict(report,status='candidate_staged',
+        file_sha256={name:hashlib.sha256(payload).hexdigest() for name,payload in sorted(files.items())})
+    return files,report
+
+
+def _readback_files(directory, files):
+    require(set(os.listdir(directory))==set(files))
+    for filename,payload in files.items():
+        fd=os.open(filename,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK|os.O_CLOEXEC,dir_fd=directory)
+        try:
+            before=os.fstat(fd)
+            require(stat.S_ISREG(before.st_mode) and before.st_uid==os.geteuid()
+                    and stat.S_IMODE(before.st_mode)==0o400 and before.st_nlink==1
+                    and before.st_size==len(payload))
+            require(os.pread(fd,len(payload)+1,0)==payload)
+            after=os.fstat(fd)
+            named=os.stat(filename,dir_fd=directory,follow_symlinks=False)
+            require(all(getattr(before,key)==getattr(after,key) for key in STABLE_FIELDS)
+                    and (named.st_dev,named.st_ino)==(after.st_dev,after.st_ino))
+        finally:os.close(fd)
+    require(set(os.listdir(directory))==set(files))
+
+
 def stage_candidate(data, parent_fd):
     """Prepare private review files, never live control records or authority.
 
@@ -83,11 +110,7 @@ def stage_candidate(data, parent_fd):
     has no path discovery, installer, root-record issuer or retry/cleanup logic.
     Any exception after mkdir leaves an uncertain partial candidate for review.
     """
-    payloads,report=prepare_records(data)  # Invalid candidates create nothing.
-    artifact=base64.b64decode(json.loads(data)['artifact_base64'],validate=True)
-    files=dict(payloads,**{'bundle.json':data,'artifact.bin':artifact})
-    report=dict(report,status='candidate_staged',
-        file_sha256={name:hashlib.sha256(payload).hexdigest() for name,payload in sorted(files.items())})
+    files,report=_candidate_material(data)  # Invalid candidates create nothing.
     name='candidate-'+report['bundle_sha256']
     parent=os.dup(parent_fd)
     os.set_inheritable(parent,False)
@@ -114,20 +137,42 @@ def stage_candidate(data, parent_fd):
             named=os.stat(name,dir_fd=parent,follow_symlinks=False)
             require(identity==(named.st_dev,named.st_ino,named.st_uid,named.st_gid,named.st_mode)
                     and set(os.listdir(directory))==set(files)|{'prepared.json'})
-            for filename,payload in {**files,'prepared.json':receipt}.items():
-                fd=os.open(filename,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK|os.O_CLOEXEC,dir_fd=directory)
-                try:
-                    before=os.fstat(fd)
-                    require(stat.S_ISREG(before.st_mode) and before.st_uid==os.geteuid()
-                            and stat.S_IMODE(before.st_mode)==0o400 and before.st_nlink==1
-                            and before.st_size==len(payload))
-                    require(os.pread(fd,len(payload)+1,0)==payload)
-                    after=os.fstat(fd)
-                    require(all(getattr(before,key)==getattr(after,key) for key in STABLE_FIELDS))
-                finally:os.close(fd)
+            _readback_files(directory,{**files,'prepared.json':receipt})
             current=os.fstat(parent)
             require(all(getattr(parent_before,key)==getattr(current,key)
                         for key in ('st_dev','st_ino','st_uid','st_gid','st_mode')))
             return report
+        finally:os.close(directory)
+    finally:os.close(parent)
+
+
+def inspect_candidate(data, parent_fd):
+    """Read back retained scratch files; matching bytes never prove durability.
+
+    Original input must still pass validation. No write, fsync, publication,
+    repair, expiry renewal or automatic retry is performed, even for a matching
+    final marker left behind by an uncertain staging operation.
+    """
+    files,report=_candidate_material(data)
+    receipt=json.dumps(report,sort_keys=True,separators=(',',':'),ensure_ascii=True).encode('ascii')+b'\n'
+    name='candidate-'+report['bundle_sha256']
+    parent=os.dup(parent_fd)
+    try:
+        before=os.fstat(parent)
+        require(stat.S_ISDIR(before.st_mode) and before.st_uid==os.geteuid()
+                and stat.S_IMODE(before.st_mode)==0o700)
+        directory=os.open(name,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW|os.O_CLOEXEC,dir_fd=parent)
+        try:
+            initial=os.fstat(directory)
+            require(initial.st_uid==os.geteuid() and stat.S_IMODE(initial.st_mode)==0o700)
+            _readback_files(directory,{**files,'prepared.json':receipt})
+            after=os.fstat(directory)
+            named=os.stat(name,dir_fd=parent,follow_symlinks=False)
+            require(all(getattr(initial,key)==getattr(after,key)==getattr(named,key)
+                        for key in STABLE_FIELDS))
+            current=os.fstat(parent)
+            require(all(getattr(before,key)==getattr(current,key)
+                        for key in ('st_dev','st_ino','st_uid','st_gid','st_mode')))
+            return dict(report,status='candidate_matches',durability_confirmed=False)
         finally:os.close(directory)
     finally:os.close(parent)

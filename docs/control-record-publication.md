@@ -135,3 +135,30 @@ alter these artifacts; this is not an immutable archive or a trusted issuer.
 The separately authorized publisher, approval/observation custody, live admission
 barrier, actual host installation and independent off-host recovery tests remain
 unfinished. No production path, existing service or resource is changed.
+
+## Read-only inspection of retained candidates
+
+`record_bundle.inspect_candidate(original_data, parent_fd)` compares an existing
+private candidate with the exact original input. It is library-only; the operator
+CLI gains no command or path option. The input must still pass validation,
+including the existing inspection expiry check. It never renews that expiry.
+Canonical material and bounded file readback are shared with staging.
+
+The parent must be caller-owned mode0700. Inspection opens the deterministic
+candidate directory without following a symlink and requires its exact seven-file
+set. Every file must be current-owner mode0400, regular, singly linked and exactly
+the expected length/bytes, with stable metadata and matching named/opened inode.
+It also checks directory identity/metadata after readback and rejects changes to
+the named generation. Missing, extra, modified, linked or wrongly permissioned
+files deny inspection; nothing is created, adopted, overwritten or repaired.
+
+A successful report has status candidate_matches, remains unverified-candidate,
+and explicitly sets durability_confirmed=false. Publication/retry/reopening
+permissions remain false. This is a current byte comparison, not a historical
+receipt proving that staging returned successfully. In particular, the same report
+can result after a failed parent fsync left a full marker. Inspection performs no
+fsync or implicit repair and does not authorize repeating staging, which still
+rejects an existing target. Caller/root ownership and filesystem durability are
+not qualified by this local helper; retain the original input and failure history
+for separately authorized custody and publication decisions. Owner/root changes
+after the observation are outside this snapshot guarantee.

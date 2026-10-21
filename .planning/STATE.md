@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: executing
-last_updated: "2026-10-21T13:04:52.167Z"
-state_head: 542e2d85f0065f4aa4c66e300bbed722ec5b5561
+last_updated: "2026-10-21T13:45:00.809Z"
+state_head: 9cbc570652fdac5e29ed4831c32e9361e9e1b6c6
 progress:
   total_phases: 14
   completed_phases: 1
@@ -13,7 +13,7 @@ last_activity: 2026-10-21
 current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
 stopped_at: Resumed; control-record read hardening complete, plan14 implementation gaps remain.
-last_activity_desc: Private candidate staging implemented and local failure/readback checks passed.
+last_activity_desc: Read-only retained-candidate inspection implemented; local checks pass.
 ---
 
 # Project State
@@ -30,7 +30,7 @@ No independent off-host runner assigned. User permits all authorized repository 
 
 ## Current evidence
 
-Local environment2 checks/14 tests; frontend13/9; core-local4/22; worker-smoke6/24 including broken-fence/lock controls; adapters3/6 in isolated network; contracts-local12/8; combined boundaries17/32; deployment-eval15/27; postgres-diagnostics3/8; postgresql-config3/7; bootstrap-local3/13; database-destination3/90; database-tools6/5; operator-runtime4/10; profiles6/5; locks3/8; reproducibility4/5 with exactly2 independent public/backend builds. Counts overlap across lanes; no unique total implied. Reproducibility uses a fixed canonical path in separate private process namespaces; raw failed HTML-island-ID comparison remains recorded, no output normalization. Focused versioned manifest is local reproducibility only.
+Local environment2 checks/14 tests; frontend13/9; core-local4/22; worker-smoke6/24 including broken-fence/lock controls; adapters3/6 in isolated network; contracts-local12/8; combined boundaries17/32; deployment-eval15/27; postgres-diagnostics3/8; postgresql-config3/7; bootstrap-local3/13; database-destination3/98; database-tools6/5; operator-runtime4/10; profiles6/5; locks3/8; reproducibility4/5 with exactly2 independent public/backend builds. Counts overlap across lanes; no unique total implied. Reproducibility uses a fixed canonical path in separate private process namespaces; raw failed HTML-island-ID comparison remains recorded, no output normalization. Focused versioned manifest is local reproducibility only.
 
 Installed standard SBOM evidence reconciles271 npm/6 runtime Python/39 tool Python components and records70 uninstalled optional paths. Collector exits2, not INVENTORY_PASS: raw npm malformed URI, missing licence texts and native/image coverage remain unresolved. Images are unbuilt; no real digest or compatibility claimed. Candidate profile/guard evaluation is not operational protection proof. Manual-only read-only SHA-pinned CI is prepared, never executed; no runner/authorization record created.
 
@@ -177,6 +177,7 @@ Phase02 and14/16/17 remain incomplete. Next scoped durable generation publicatio
 | 261021-h2i | Reject control records changed during descriptor reads | 2026-10-21 | beef66a | [261021-h2i-reject-control-records-changed-during-de](./quick/261021-h2i-reject-control-records-changed-during-de/) |
 | 261021-hk6 | Exercise real operator SCRAM inspection on disposable PostgreSQL | 2026-10-21 | 908195a | [261021-hk6-exercise-real-operator-scram-inspection-](./quick/261021-hk6-exercise-real-operator-scram-inspection-/) |
 | 261021-i2j | Stage private unverified control candidates with durable exclusive files | 2026-10-21 | 542e2d8 | [261021-i2j-stage-private-unverified-control-candida](./quick/261021-i2j-stage-private-unverified-control-candida/) |
+| 261021-j0i | Inspect retained private candidate generations without repair | 2026-10-21 | 9cbc570 | [261021-j0i-inspect-retained-private-candidate-gener](./quick/261021-j0i-inspect-retained-private-candidate-gener/) |
 
 ## Latest continuation — real local SCRAM inspection
 
@@ -193,3 +194,11 @@ Code542e2d8 adds library-only record_bundle.stage_candidate(data,parent_fd). It 
 Actual local evidence: database-destination3 checks/90 tests,8.922s (eight new filesystem tests); database-tools6/5,3.966s; operator-runtime4/10,2.379s. All exit0, no failing runs. New cases exercise actual private scratch files, modes/ownership/hashes/bytes, invalid inputs/nonprivate parents, existing full/file/symlink targets, short/zero writes, corrupt and replaced readback, first sync failure and parent-sync failure after marker. Partial files are retained and repeat denied. Final marker can exist after failed sync, so marker presence never means successful/durable completion. Package lanes rebuild exact updated module bytes; CLI unchanged. git diff --check passes.
 
 Status remains unverified-candidate; publication/retry/reopening_authorized=false. Supplied parent is trusted caller scratch, not proof of root-owned ancestor/allowlist custody. Owner/root can alter staged files; no immutable archive or power-loss guarantee. Complete live generation publication, separately scoped authority/receipts, admission barrier, positive fixed socket/peer/container transport, least-privilege roles, application/Django writes/migrations, generator/replica/OCI/notices/full CI and independent runtime/recovery qualification remain unfinished. Phase02/14/16/17 remain incomplete. No .env read/needed credential, host write, existing-service/resource change or purchase. Off-host runner unassigned; disruptive tests pending, no repeated question or full readiness claim.
+
+## Latest continuation — retained candidate inspection
+
+Code9cbc570 adds library-only inspect_candidate(original_data,parent_fd), sharing canonical candidate material and bounded file readback with staging. It revalidates the exact original input (including expiry), opens only an existing deterministic private directory, requires the exact seven files/current owner0400/regular/single-link/exact bytes and stable FD/named inode metadata, and checks named directory identity/metadata after inspection. Parent must remain current-owner0700. No CLI command/path option, write, mkdir, fsync, repair, cleanup, expiry refresh or retry. Staging final readback now shares stricter named-inode and final file-set checks.
+
+Actual local database-destination PASS3 checks/98 tests,9.415s; database-tools6/5,4.002s; operator-runtime4/10,2.382s; git diff --check passes. Eight added filesystem cases cover successful strictly read-only snapshot, partial/extra sets, altered originals/records/marker, symlink/hardlink/FIFO/directory/mode denial, exact input/private parent, failed parent-sync with marker, replaced file after FD read and replaced named generation. All passed first run; no failure or skipped tests. Packaged module bytes rebuilt/verified; CLI unchanged. Full all not rerun, no FULL_PASS.
+
+Successful candidate_matches remains unverified-candidate with durability_confirmed=false and publication/retry/reopening_authorized=false. A candidate left by a failed parent sync can match identically; result cannot establish past staging success, durability or permission to repeat. Owner/root changes after observation remain possible. Keep original input/failure history for later separately authorized custody/publication decisions. Actual live issuer/publisher/admission barrier, fixed socket/peer/container binding/least-privilege roles, Django/application write/migration integration, generator/replica/images/licences/CI and off-host qualification remain unfinished. Phase02 and14/16/17 stay incomplete. No .env/credential needed/read, host/service/resource modification or purchase. Off-host runner remains unassigned and disruptive tests pending; do not repeatedly ask before remaining qualification stage.
