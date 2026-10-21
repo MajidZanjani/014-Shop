@@ -7,7 +7,7 @@ created: "2026-10-21"
 ---
 # Phase 2 validation strategy — current protected-host contract
 
-18 plans / 24 tasks / 14 waves. Plans 02-01/02-02 retain recorded development-only evidence; all other producers/runtime/host acceptance remain pending. This document is a prospective verification contract. No new application checks ran in this replan.
+18 plans / 24 tasks / 14 waves. Plans 02-01/02-02 retain recorded development-only evidence; repository implementation through 13 now has local evidence in individual summaries. Runtime/host/full phase acceptance remains pending. This document retains the prospective full verification contract.
 
 Use real isolated PostgreSQL, Django TransactionTestCase/independent backend connections, Python unittest and Node tests. No SQLite or missing-test/zero-count success. Existing pinned shell/dispatcher is retained. Focused commands run only after producers; quick/all remain nonzero until all required producers exist. Record actual counts/timings and positive controls before installer negatives. No real .env/host secrets.
 
@@ -19,24 +19,24 @@ Evaluation/build and runtime lanes are distinct. deployment-boot remains a compa
 
 | Task | Wave | Dependencies | Requirements | Commands | Status |
 |---|---:|---|---|---|---|
-| 02-00-01 | 3 | [02-02] | [BUILD-01, BUILD-03] | `python3 docs/product-source/verify_t01.py all; python3 docs/product-source/verify_t01.py self-check` | Pending |
+| 02-00-01 | 3 | [02-02] | [BUILD-01, BUILD-03] | `python3 docs/product-source/verify_t01.py all; python3 docs/product-source/verify_t01.py self-check` | Local slice pass; see summary |
 | 02-01-01 | 1 | [] | [BUILD-01, BUILD-02] | `python3 scripts/qualify_dependencies.py --self-test`; `python3 scripts/qualify_dependencies.py --check-review` | Retained development evidence |
 | 02-01-02 | 1 | [] | [BUILD-01, BUILD-02] | `python3 scripts/qualify_dependencies.py --check-review` | Retained development evidence |
 | 02-02-01 | 2 | [02-01] | [BUILD-01] | `nix develop ./ops/nixos --command python3 scripts/check.py environment` | Retained development evidence |
-| 02-03-01 | 4 | [02-02, 02-00] | [BUILD-01, BUILD-03] | `nix develop ./ops/nixos --command npm --prefix frontend run build`; `nix develop ./ops/nixos --command npm --prefix frontend run test` | Pending |
-| 02-03-02 | 4 | [02-02, 02-00] | [BUILD-01, BUILD-03] | `nix develop ./ops/nixos --command npm --prefix frontend run check`; `nix develop ./ops/nixos --command npm --prefix frontend run test` | Pending |
-| 02-04-01 | 5 | [02-03] | [BUILD-01, BUILD-03] | `nix develop ./ops/nixos --command python3 scripts/check.py frontend` | Pending |
-| 02-05-01 | 4 | [02-02, 02-00] | [BUILD-01, BUILD-02] | `nix develop ./ops/nixos --command python3 scripts/check_python.py --qualify` | Pending |
-| 02-06-01 | 5 | [02-05] | [BUILD-01, BUILD-03] | `nix develop ./ops/nixos --command python3 scripts/check.py core` | Pending |
-| 02-07-01 | 6 | [02-06] | [BUILD-01, BUILD-03, BUILD-04] | `nix develop ./ops/nixos --command python3 scripts/check.py core` | Pending |
-| 02-08-01 | 7 | [02-07] | [BUILD-01, BUILD-03, BUILD-04] | `nix develop ./ops/nixos --command python3 scripts/check.py core` | Pending |
-| 02-09-01 | 8 | [02-08] | [BUILD-01, BUILD-03] | `nix develop ./ops/nixos --command python3 scripts/check_worker.py --enqueue-only` | Pending |
-| 02-10-01 | 9 | [02-09] | [BUILD-01, BUILD-03] | `nix develop ./ops/nixos --command python3 scripts/check.py worker-smoke` | Pending |
-| 02-10-02 | 9 | [02-09] | [BUILD-01, BUILD-03] | `nix develop ./ops/nixos --command python3 scripts/check.py worker` | Pending |
-| 02-11-01 | 10 | [02-10] | [BUILD-03] | `nix develop ./ops/nixos --command python3 scripts/check.py adapters`; `nix develop ./ops/nixos --command python3 scripts/check.py worker` | Pending |
-| 02-12-01 | 6 | [02-06] | [BUILD-03] | `nix develop ./ops/nixos --command python3 scripts/check.py contracts` | Pending |
-| 02-13-01 | 8 | [02-04, 02-08, 02-12] | [BUILD-01, BUILD-03, BUILD-04] | `nix develop ./ops/nixos --command python3 scripts/check.py contracts` | Pending |
-| 02-13-02 | 8 | [02-04, 02-08, 02-12] | [BUILD-01, BUILD-03, BUILD-04] | `nix develop ./ops/nixos --command python3 scripts/check.py boundaries` | Pending |
+| 02-03-01 | 4 | [02-02, 02-00] | [BUILD-01, BUILD-03] | `nix develop ./ops/nixos --command npm --prefix frontend run build`; `nix develop ./ops/nixos --command npm --prefix frontend run test` | Local slice pass; see summary |
+| 02-03-02 | 4 | [02-02, 02-00] | [BUILD-01, BUILD-03] | `nix develop ./ops/nixos --command npm --prefix frontend run check`; `nix develop ./ops/nixos --command npm --prefix frontend run test` | Local slice pass; see summary |
+| 02-04-01 | 5 | [02-03] | [BUILD-01, BUILD-03] | `nix develop ./ops/nixos --command python3 scripts/check.py frontend` | Local slice pass; see summary |
+| 02-05-01 | 4 | [02-02, 02-00] | [BUILD-01, BUILD-02] | `nix develop ./ops/nixos --command python3 scripts/check_python.py --qualify` | Local slice pass; see summary |
+| 02-06-01 | 5 | [02-05] | [BUILD-01, BUILD-03] | `nix develop ./ops/nixos --command python3 scripts/check.py core` | Local implementation/test evidence; full qualification/review pending |
+| 02-07-01 | 6 | [02-06] | [BUILD-01, BUILD-03, BUILD-04] | `nix develop ./ops/nixos --command python3 scripts/check.py core` | Local implementation/test evidence; full qualification/review pending |
+| 02-08-01 | 7 | [02-07] | [BUILD-01, BUILD-03, BUILD-04] | `nix develop ./ops/nixos --command python3 scripts/check.py core` | Local implementation/test evidence; full qualification/review pending |
+| 02-09-01 | 8 | [02-08] | [BUILD-01, BUILD-03] | `nix develop ./ops/nixos --command python3 scripts/check_worker.py --enqueue-only` | Local slice pass; see summary |
+| 02-10-01 | 9 | [02-09] | [BUILD-01, BUILD-03] | `nix develop ./ops/nixos --command python3 scripts/check.py worker-smoke` | Local implementation/test evidence; full qualification/review pending |
+| 02-10-02 | 9 | [02-09] | [BUILD-01, BUILD-03] | `nix develop ./ops/nixos --command python3 scripts/check.py worker` | Local implementation/test evidence; full qualification/review pending |
+| 02-11-01 | 10 | [02-10] | [BUILD-03] | `nix develop ./ops/nixos --command python3 scripts/check.py adapters`; `nix develop ./ops/nixos --command python3 scripts/check.py worker` | Local implementation/test evidence; full qualification/review pending |
+| 02-12-01 | 6 | [02-06] | [BUILD-03] | `nix develop ./ops/nixos --command python3 scripts/check.py contracts` | Local implementation/test evidence; full qualification/review pending |
+| 02-13-01 | 8 | [02-04, 02-08, 02-12] | [BUILD-01, BUILD-03, BUILD-04] | `nix develop ./ops/nixos --command python3 scripts/check.py contracts` | Local implementation/test evidence; full qualification/review pending |
+| 02-13-02 | 8 | [02-04, 02-08, 02-12] | [BUILD-01, BUILD-03, BUILD-04] | `nix develop ./ops/nixos --command python3 scripts/check.py boundaries` | Local implementation/test evidence; full qualification/review pending |
 | 02-14-01 | 11 | [02-10, 02-11, 02-13] | [BUILD-01, BUILD-03, BUILD-04, BUILD-05, BUILD-06, BUILD-07] | `nix develop ./ops/nixos --command python3 scripts/check.py deployment-eval; nix develop ./ops/nixos --command python3 scripts/check.py deployment-build` | Pending |
 | 02-14-02 | 11 | [02-10, 02-11, 02-13] | [BUILD-01, BUILD-03, BUILD-04, BUILD-05, BUILD-06, BUILD-07] | `nix develop ./ops/nixos --command python3 scripts/check.py deployment-boot` | Pending |
 | 02-15-01 | 12 | [02-14] | [BUILD-04, BUILD-05, BUILD-06, BUILD-07, BUILD-08] | `nix develop ./ops/nixos --command python3 scripts/check.py deployment-profiles` | Pending |

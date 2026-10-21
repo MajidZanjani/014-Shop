@@ -76,8 +76,8 @@
   ],
   "next": {
     "command": "$gsd-execute-phase 2",
-    "label": "Continue 02-09 local enqueue implementation",
-    "reason": "06/07/08 implemented and locally tested; off-host core qualification remains pending."
+    "label": "Implement 02-14 rootless deployment artifacts",
+    "reason": "Local implementation through 13 merged; qualification/human reviews explicitly pending. No independent runner assigned."
   },
-  "updated_at": "2026-10-21T06:50:35.914131+00:00"
+  "updated_at": "2026-10-21T07:25:14.894573+00:00"
 }

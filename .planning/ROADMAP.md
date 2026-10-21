@@ -41,7 +41,7 @@ This request executes documentation replanning only. Earlier applicable local im
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md T01; complete companion proposal remains normative.
 **Estimate:** 1–2 engineer-days
 **UI hint:** no
-**Plans:** 2/2 documentation records reconciled; original human reviews remain historical, not approval of new hosting.
+**Plans:** 7/18 local slices complete (00–05,09); 7 implemented with qualification/review pending (06–08,10–13); 4 unimplemented (14–17). 24 tasks/14 waves. Summary presence does not mean full qualification.
 
 **Success Criteria:**
 
@@ -76,7 +76,7 @@ This request executes documentation replanning only. Earlier applicable local im
 - [ ] 02-07-PLAN.md — Fail-closed Django environment configuration (Wave 6).
 - [ ] 02-12-PLAN.md — Versioned actual-response API and probe contracts (Wave 6).
 - [ ] 02-08-PLAN.md — Safe logs and developer environment examples (Wave 7).
-- [ ] 02-09-PLAN.md — Migrated synthetic enqueue path (Wave 8).
+- [x] 02-09-PLAN.md — Migrated synthetic enqueue path (Wave 8).
 - [ ] 02-13-PLAN.md — Environment/artifact schemas and cross-boundary proof (Wave 8).
 - [ ] 02-10-PLAN.md — Leased worker and PostgreSQL ownership proof (Wave 9).
 - [ ] 02-11-PLAN.md — Mail and storage fake-boundary expansion (Wave 10).

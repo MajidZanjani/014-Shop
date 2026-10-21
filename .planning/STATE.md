@@ -3,7 +3,7 @@ gsd_state_version: "1.0"
 current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
 status: executing
-stopped_at: 02-06/07/08 implemented locally; off-host core qualification pending.
+stopped_at: 02-13 implementation merged; next 02-14 artifacts, independent runner unassigned.
 last_updated: "2026-10-21T06:15:23.993Z"
 last_activity: 2026-10-21
 last_activity_desc: 02-04 public build boundary passed; runner unassigned, disruptive qualification pending.
@@ -12,7 +12,7 @@ progress:
   total_phases: 14
   completed_phases: 1
   total_plans: 20
-  completed_plans: 8
+  completed_plans: 9
   percent: 7
 ---
 
@@ -23,15 +23,15 @@ progress:
 See .planning/PROJECT.md and SOURCES.md (October 21 current authority).
 
 **Core value:** Turn an exact reviewed xSPI-MC configuration or support purchase into attributable acceptance, verified payment and recoverable licence delivery or support credit without duplicate effects.
-**Current focus:** 02-00 and 02-03 complete; next 02-09 persisted synthetic enqueue. Phase 2 has 6/18 completed development plans; 3 implemented with qualification pending; 9 unimplemented, 24 tasks/14 waves. Current-source checks now pass; no host/runtime qualification claimed.
+**Current focus:** Plans 00–13 have repository implementations/evidence. Seven plans have complete local slice evidence (00–05,09); seven have qualification/human review pending (06–08,10–13); four deployment/inventory/CI plans (14–17) remain to implement. Next: 02-14 rootless deployment artifacts. Full Phase 2 and BUILD acceptance remain incomplete.
 
 ## Current Position
 
 Phase: 02 of 14 — Reproducible application and deployment skeleton
-Plan: 02-09 next; 02-06/07/08 implementation merged, qualification pending; existing 02-01 and 02-02 evidence retained only after applicability review.
-Status: Executing Phase 2 under user continuation; phase auto-advance remains false.
-Last activity: 2026-10-21 — Protected-host requirements, roadmap, detailed affected plans and stale handoff replaced.
-Progress: [█░░░░░░░░░] 7% phases; no new application/host acceptance.
+Plan: 02-14 next; do not count summary presence as qualification completion.
+Status: Executing under user continuation; auto-advance false.
+Last activity: 2026-10-21 — Local frontend/backend/worker/adapters/contracts/boundaries implemented and tested; credential policy updated.
+Progress: 1/14 phases complete. No production readiness or host runtime acceptance.
 
 ## Accumulated Context
 
@@ -47,7 +47,7 @@ Progress: [█░░░░░░░░░] 7% phases; no new application/host ac
 
 ### Pending Todos
 
-02-00 source migration is complete and merged. 02-03 static synthetic build passed 3 integration tests, clean install and diagnostics. 02-04 passed 13 checks/9 tests; 02-05 passed 63 checks/7 tests. Continue 02-06 under current context. Two old clean retained worktrees have no task edits/commits; they remain at historical base 2c64d9b and must never execute stale prompts. A future GSD orchestrator must reconcile the recorded manifest and supply fresh current context/base before dispatch. Do not manually merge, broadly clean or restart old workers. No worker was started by this replan.
+02-00 source migration is complete and merged. 02-03 static synthetic build passed 3 integration tests, clean install and diagnostics. 02-04 passed 13 checks/9 tests; 02-05 passed 63 checks/7 tests. Continue 02-14 under current context. Two old clean retained worktrees have no task edits/commits; they remain at historical base 2c64d9b and must never execute stale prompts. A future GSD orchestrator must reconcile the recorded manifest and supply fresh current context/base before dispatch. Do not manually merge, broadly clean or restart old workers. No worker was started by this replan.
 
 ### Blockers/Concerns
 
@@ -72,3 +72,7 @@ Python 02-05 is merged: 63 actual import/identity checks and 7 rejection tests; 
 02-06/07/08 local backend implementation is merged. Latest ordinary core-local: 4 checks/20 tests; full core remains nonzero pending authorized off-host outage case. Do not count summary presence as completed qualification. Runner remains unassigned. Next 02-09.
 
 Credential workflow: resource access secrets are available via repository .env. For a needed missing/empty credential, append a named blank entry/purpose without exposing existing values and ask the user to fill .env. Preserve runtime/build/privacy and operation authorization boundaries.
+
+Latest execution: frontend 13 checks/9 tests; core-local 4/20; worker-smoke 6/24 including two broken-control rejection tests; adapters 3/6 in network namespace; contracts-local 12/8; combined boundaries 17/32. Counts are separate/reused lanes, not a sum of unique tests. Full core/worker/contracts remain nonzero pending actual authorized off-host cases. Human browser hydration and schema/diagram source-fidelity review pending. No runner assigned and no disruptive tests executed on mx1/its guests.
+
+Prepared: real DB-outage/recovery and worker receipt-before-completion interruption cases, guarded by exact independent runner/machine/commit/action authorization. Remaining rootless resource-exhaustion/lifecycle/recovery artifacts are owned by 14–17/T12, not yet implemented. Runner specification: docs/qualification-runner.md. Do not repeatedly ask or automatically provision.
