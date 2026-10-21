@@ -44,7 +44,52 @@
         sha256 = "555610c24d53e4316da5b7d3fc25c279d96856d5e0e23ee308c328c5fa881d9f";
       };
     });
+    runtime = import ./python-runtime.nix { inherit pkgs pythonEnv postgres; };
+    # Only Python source is admitted; no .env, fixtures, caches or private data.
+    appSource = pkgs.lib.cleanSourceWith {
+      src = ../../backend;
+      filter = path: type: type == "directory" || pkgs.lib.hasSuffix ".py" path;
+    };
+    appTree = pkgs.runCommand "shop-python-source" {} ''
+      mkdir -p $out/app
+      cp -r ${appSource}/. $out/app/
+    '';
+    gatewayConfig = pkgs.writeTextDir "etc/shop/Caddyfile" ''
+      { admin off; auto_https off }
+      :8080 {
+        @private_ready path /health/ready
+        respond @private_ready 404
+        reverse_proxy shop-app:8000
+      }
+    '';
+    identityTree = pkgs.runCommand "shop-container-identities" {} ''
+      mkdir -p $out/etc $out/app $out/tmp
+      chmod 1777 $out/tmp
+      echo 'shop:x:10001:10001:shop:/tmp:/sbin/nologin' > $out/etc/passwd
+      echo 'shop:x:10001:' > $out/etc/group
+    '';
+    image = name: contents: command: pkgs.dockerTools.buildLayeredImage {
+      inherit name; contents = contents ++ [ identityTree ];
+      tag = "candidate"; created = "1970-01-01T00:00:01Z";
+      config = { User = "10001:10001"; WorkingDir = "/app"; Cmd = command;
+        Env = [ "PYTHONDONTWRITEBYTECODE=1" "PYTHONNOUSERSITE=1" ]; };
+    };
+    appImage = image "shop-app" [ runtime appTree ] [ "${runtime}/bin/python" "-m" "gunicorn" "shop.wsgi:application" "--bind" "0.0.0.0:8000" "--workers" "2" "--threads" "1" "--timeout" "30" ];
+    workerImage = image "shop-worker" [ runtime appTree ] [ "${runtime}/bin/python" "/app/manage.py" "run_worker" "--poll-interval" "1" "--lease-seconds" "30" "--max-attempts" "3" ];
+    # PGDATA must already exist and be attested; no implicit initdb entrypoint.
+    postgresImage = image "shop-postgres" [ postgres ] [ "${postgres}/bin/postgres" "-D" "/var/lib/shop/postgres" "-c" "fsync=on" "-c" "synchronous_commit=on" "-c" "full_page_writes=on" "-c" "config_file=/var/lib/shop/config/postgresql.conf" ];
+    gatewayImage = image "shop-gateway" [ pkgs.caddy gatewayConfig ] [ "${pkgs.caddy}/bin/caddy" "run" "--config" "/etc/shop/Caddyfile" "--adapter" "caddyfile" ];
   in {
+    nixosModules.shop = import ./modules/shop.nix;
+    packages.${system} = { shop-app = appImage; shop-worker = workerImage;
+      shop-postgres = postgresImage; shop-gateway = gatewayImage; shop-python-runtime = runtime; };
+    deploymentMetadata.${system} = {
+      status = "candidate; compatibility/build/OCI digests/off-host qualification pending";
+      imageDerivations = map (x: x.drvPath) [ appImage workerImage postgresImage gatewayImage ];
+      runtimeVersion = pkgs.podman.version;
+      systemdVersion = pkgs.systemd.version;
+      productionActivation = false;
+    };
     devShells.${system}.default = pkgs.mkShell {
       PYTHONDONTWRITEBYTECODE = "1";
       PYTHONNOUSERSITE = "1";

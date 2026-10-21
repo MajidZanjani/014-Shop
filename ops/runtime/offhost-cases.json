@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "execution_status": "pending; no runner assigned",
+  "required_environment": "independent NixOS/systemd/cgroup-v2/rootless-Podman/ZFS replica",
+  "fixtures_pending": ["exact approved OCI images/digests", "new-cluster bootstrap and mutation wrapper", "qualified Quadlet generator and runtime paths", "synthetic-only replica setup driver"],
+  "cases": [
+    {"id":"positive-lifecycle","assertions":["real PG system identifier and checksums", "app HTTP live/ready", "one worker completes synthetic probe", "all containers rootless/nonroot", "no host DB/app listener"]},
+    {"id":"destination-denial","assertions":["decoy existing cluster receives zero writes", "wrong UID/container/PGDATA/database/role/server rejected", "missing mount never initializes fallback PGDATA"]},
+    {"id":"secret-denial","assertions":["missing/wrong-user/world-readable/symlink secret denies startup", "generated canaries absent from images/store/public/logs"]},
+    {"id":"restart","assertions":["restart only fixture payload", "committed row/receipt retained", "stale claim completion rejected", "SIGTERM bounded"]},
+    {"id":"aggregate-cgroup","assertions":["payload/conmon/network helpers/backups all below exact ancestor", "200% CPU and 6/8 GiB thresholds effective", "bounded task/concurrency exhaustion", "escape attempts fail"]},
+    {"id":"storage-exhaustion","assertions":["80 GiB aggregate including snapshots/descendants", "50 GiB DB including WAL/indexes", "every writable path/GraphRoot/image/tmp/log/cert/spool accounted", "quota exhaustion cannot consume protected reserves"]},
+    {"id":"oom","assertions":["OOM confined to fixture shop ancestor", "restart and durable state recovery measured", "no unrelated process or resource affected"]},
+    {"id":"routing-spoof","assertions":["loopback-only gateway", "private DB network", "forged inbound identity headers ignored", "readiness not exposed by gateway"]},
+    {"id":"recovery","assertions":["restart after synthetic data loss uses isolated recoverable backup", "no shared/production namespace", "RPO/restore/reopening measured separately", "full-pool loss remains T12 independent fixture"]}
+  ]
+}

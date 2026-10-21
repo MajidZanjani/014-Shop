@@ -1,0 +1,44 @@
+[
+  {
+    "name": "pip",
+    "version": "26.2.1",
+    "filename": "pip-26.2.1-py3-none-any.whl",
+    "url": "https://files.pythonhosted.org/packages/f3/6e/1736e5b4ae2b778ef2f81c47d797de9f891d4d8acb047a24ca37a60294dd/pip-26.2.1-py3-none-any.whl",
+    "sha256": "71138adf1f4ca900cdb7d289c21b7494329f2332b6d85f0e1c42108c0384ed3e"
+  },
+  {
+    "name": "Django",
+    "version": "5.2.18",
+    "filename": "django-5.2.18-py3-none-any.whl",
+    "url": "https://files.pythonhosted.org/packages/d6/01/6568ec52b26548ca1b83d33249f7274db3bf74698f42c0da42ec9db1a24a/django-5.2.18-py3-none-any.whl",
+    "sha256": "92ed81d500be6408ecd704d7bd1366c534f30427bffcc63c5fefb129561aec7c"
+  },
+  {
+    "name": "gunicorn",
+    "version": "26.2.0",
+    "filename": "gunicorn-26.2.0-py3-none-any.whl",
+    "url": "https://files.pythonhosted.org/packages/fe/85/7522a52e5e2f42faf1a129113ab63e548c42e103e9af395b7bfe65e403e2/gunicorn-26.2.0-py3-none-any.whl",
+    "sha256": "bd249d0b3f7972f7432f0a6b6ff3b3ee2d129f70cd1ff6c09a9dd9e29a2b88e3"
+  },
+  {
+    "name": "psycopg",
+    "version": "3.3.6",
+    "filename": "psycopg-3.3.6-py3-none-any.whl",
+    "url": "https://files.pythonhosted.org/packages/4e/de/748bd7609c71cae5d737f0ba9192f19329f70180ecda8fff3cac02c5abe3/psycopg-3.3.6-py3-none-any.whl",
+    "sha256": "a1db9f7148b06a28606767efaca51fa6f9398c5c0a3810519be69d7000bdb631"
+  },
+  {
+    "name": "asgiref",
+    "version": "3.12.1",
+    "filename": "asgiref-3.12.1-py3-none-any.whl",
+    "url": "https://files.pythonhosted.org/packages/c0/1b/54f4ad77cd8a584fa70746c47df988e002cf1ee1eba43364d46f87803647/asgiref-3.12.1-py3-none-any.whl",
+    "sha256": "fe386d1c2bff7259ea95929266d12a8cf9a8b5a1c2598402967d8792e7a7c094"
+  },
+  {
+    "name": "sqlparse",
+    "version": "0.6.0",
+    "filename": "sqlparse-0.6.0-py3-none-any.whl",
+    "url": "https://files.pythonhosted.org/packages/d9/50/f00935da0ec7cbf325f8dc4f772ae46fbc7b672dd62876e73f0a94adda57/sqlparse-0.6.0-py3-none-any.whl",
+    "sha256": "b861c0288ce2fa56209a9a6412d2e066ac664b3873b89c26c9d8415e8e32996f"
+  }
+]
