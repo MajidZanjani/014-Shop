@@ -4,10 +4,10 @@ current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
 status: executing
 stopped_at: Candidate runtime and local evidence committed; finish 14/16/17 gaps.
-last_updated: "2026-10-21T10:17:36.821096+00:00"
+last_updated: "2026-10-21T10:21:24.774252+00:00"
 last_activity: 2026-10-21
-last_activity_desc: Bounded schema transaction and pinned operator wrapper prepared; PostgreSQL and deployment checks pass.
-state_head: a008e1f
+last_activity_desc: Exact-byte schema authorization and revocation checks prepared; local database and deployment regressions pass.
+state_head: 22728e1
 progress:
   total_phases: 14
   completed_phases: 1
@@ -30,7 +30,7 @@ No independent off-host runner assigned. User permits all authorized repository 
 
 ## Current evidence
 
-Local environment2 checks/14 tests; frontend13/9; core-local4/22; worker-smoke6/24 including broken-fence/lock controls; adapters3/6 in isolated network; contracts-local12/8; combined boundaries17/32; deployment-eval15/27; postgres-diagnostics3/8; postgresql-config3/7; bootstrap-local3/13; database-destination3/21; profiles6/5; locks3/8; reproducibility4/5 with exactly2 independent public/backend builds. Counts overlap across lanes; no unique total implied. Reproducibility uses a fixed canonical path in separate private process namespaces; raw failed HTML-island-ID comparison remains recorded, no output normalization. Focused versioned manifest is local reproducibility only.
+Local environment2 checks/14 tests; frontend13/9; core-local4/22; worker-smoke6/24 including broken-fence/lock controls; adapters3/6 in isolated network; contracts-local12/8; combined boundaries17/32; deployment-eval15/27; postgres-diagnostics3/8; postgresql-config3/7; bootstrap-local3/13; database-destination3/29; profiles6/5; locks3/8; reproducibility4/5 with exactly2 independent public/backend builds. Counts overlap across lanes; no unique total implied. Reproducibility uses a fixed canonical path in separate private process namespaces; raw failed HTML-island-ID comparison remains recorded, no output normalization. Focused versioned manifest is local reproducibility only.
 
 Installed standard SBOM evidence reconciles271 npm/6 runtime Python/39 tool Python components and records70 uninstalled optional paths. Collector exits2, not INVENTORY_PASS: raw npm malformed URI, missing licence texts and native/image coverage remain unresolved. Images are unbuilt; no real digest or compatibility claimed. Candidate profile/guard evaluation is not operational protection proof. Manual-only read-only SHA-pinned CI is prepared, never executed; no runner/authorization record created.
 
@@ -93,3 +93,11 @@ Actual local evidence: core-local4 checks/22 tests,7.286 seconds; worker-smoke6/
 Codea008e1f adds bounded reviewed transactional schema SQL (1–64 statements,64KiB each and1MiB total UTF8), a cooperative nonblocking transaction advisory lock, fresh runtime/live SQL checks before each statement and before commit, and a host-side wrapper pinning the root-owned process record for the whole batch. Stacked commands are rejected by prepared execution; failures roll back without automatic retry. Exact artifact authorization, schema-role rights, Django migration/ledger integration and an operator command remain pending; production Django gate remains closed. Trusted SQL expressions are not sandboxed and external/nontransactional effects are outside rollback guarantees.
 
 Actual local evidence: database-destination3 checks/21 tests,4.930s; deployment-eval15/27,2.128s. Real disposable PostgreSQL target/decoy tests cover schema commit/rollback, changed identity before each step/commit, failed later DDL, lock contention/release, bounds/forbidden commands and caller transaction refusal. Runtime/container/storage evidence remains synthetic and PGDATA comparison is fixture-adapted. No actual rootless lifecycle/fault qualification, .env read, missing credential, host/provider action or resource change. Plans14/16/17 and full production acceptance remain incomplete.
+
+## Latest continuation — exact-byte schema authorization
+
+Code22728e1 adds host-side schema_authorization library and docs/schema-migrations.md. A closed bounded root-owned schema-authorization.json record binds action, authorization/migration IDs, UTC expiry, exact artifact SHA256 and the complete approved database identity. Immutable UTF8 artifact bytes are hashed before strict duplicate-free JSON parsing and shared schema bounds validation. Fresh authorization/process-record checks run at each existing SQL/runtime guard callback; revocation, expiry or change before commit denies/rolls back. No command, record issuance, credential loading or deployment is supplied. Production Django gate remains closed.
+
+Actual local evidence: database-destination3 checks/29 tests,5.016s; deployment-eval15/27,2.274s. Added tests cover exact authorization, equivalent-JSON byte changes, expiry/closed fields/IDs, duplicate/malformed/forbidden artifacts, byte bounds, target mismatch, authorization removal/change/expiry and process-record changes with DDL rollback. These are real disposable PostgreSQL plus synthetic authority/runtime records and fixture PGDATA adaptation only. No approval invented, .env read/value needed, host/provider operation or protected resource change.
+
+Next migration work: atomic durable ledger/replay/uncertain-commit/restore reconciliation, Django migration generation/recorder integration, reviewed roles/credentials/private transport and root-owned publication/immutable packaging. Library does not consume authorization or prevent replay and must not become a deployment command before ledger integration. Revocation after final check cannot undo commit; trustworthy UTC clock/record custody remain operational prerequisites. Other14/16/17 and off-host/T11/T12 gates remain pending; no full acceptance.

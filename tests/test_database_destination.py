@@ -261,3 +261,104 @@ class DatabaseDestinationTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 self.schema(('CREATE TABLE public.schema_guard_probe(id integer)',),conn=conn)
         self.assertEqual(self.schema_exists(), '0')
+
+
+    def schema_authority(self, data=None):
+        import hashlib,json
+        from datetime import datetime,timedelta,timezone
+        data = data if data is not None else json.dumps({'schema_version':1,
+            'migration_id':'synthetic_001',
+            'statements':['CREATE TABLE public.schema_guard_probe(id integer)']}).encode()
+        return data, {'schema_version':1,'action':'apply-reviewed-schema',
+            'authorization_id':'a'*32,'artifact_sha256':hashlib.sha256(data).hexdigest(),
+            'migration_id':'synthetic_001','database':dict(self.actual),
+            'expires_at':(datetime.now(timezone.utc)+timedelta(hours=1)).strftime('%Y-%m-%dT%H:%M:%SZ')}
+
+    def authorized_schema(self, data=None, authorization=None, loader=None, record=None):
+        from unittest.mock import patch
+        import schema_authorization as auth
+        default_data, default_authority=self.schema_authority()
+        data=default_data if data is None else data
+        authorization=default_authority if authorization is None else authorization
+        with patch.object(auth,'validate_database_identity',database.validate_database_identity), \
+             patch.object(auth,'load_authorization',side_effect=loader or (lambda:auth.validate_authorization(authorization))), \
+             patch.object(auth.process_probe,'load_record',return_value=record or {'database':dict(self.actual)}), \
+             patch.object(auth.process_probe,'probe',return_value=dict(self.runtime)):
+            auth.execute_authorized_schema(self.connection(),'synthetic-zfs','synthetic-pg-control',data)
+
+    def test_authorized_exact_schema_artifact_executes(self):
+        self.addCleanup(self.target.sql,'DROP TABLE IF EXISTS public.schema_guard_probe')
+        self.authorized_schema()
+        self.assertEqual(self.schema_exists(),'1')
+
+    def test_artifact_byte_change_denied_even_equivalent_json(self):
+        data,authority=self.schema_authority()
+        with self.assertRaises(ValueError):
+            self.authorized_schema(data+b' ',authority)
+        self.assertEqual(self.schema_exists(),'0')
+
+    def test_schema_authorization_closed_fields_and_expiry(self):
+        data,authority=self.schema_authority()
+        for patch in ({'expires_at':'2000-01-01T00:00:00Z'}, {'schema_version':True},
+                      {'action':'unreviewed'}, {'extra':True}, {'authorization_id':'invalid'},
+                      {'migration_id':'different'}, {'artifact_sha256':'f'*64}):
+            with self.subTest(patch=patch),self.assertRaises(ValueError):
+                self.authorized_schema(data,dict(authority,**patch))
+        self.assertEqual(self.schema_exists(),'0')
+
+    def test_artifact_duplicate_fields_and_unreviewed_content_denied(self):
+        cases=(b'{"schema_version":1,"schema_version":1,"migration_id":"synthetic_001","statements":[]}',
+               b'{"schema_version":1,"migration_id":"synthetic_001","statements":[],"extra":true}',
+               b'{"schema_version":1,"migration_id":"synthetic_001","statements":["COMMIT"]}',
+               b'{}', b'\xff')
+        for data in cases:
+            _,authority=self.schema_authority(data)
+            with self.subTest(data=data[:30]),self.assertRaises(ValueError):
+                self.authorized_schema(data,authority)
+        self.assertEqual(self.schema_exists(),'0')
+
+    def test_authorization_target_must_equal_pinned_process_record(self):
+        with self.assertRaises(ValueError):
+            self.authorized_schema(record={'database':dict(self.actual,role='decoy')})
+        self.assertEqual(self.schema_exists(),'0')
+
+    def test_authorization_revocation_or_change_rolls_back_ddl(self):
+        import schema_authorization as auth
+        from unittest.mock import patch
+        data,authority=self.schema_authority()
+        for change in ('removed','changed','expired'):
+            calls=[]
+            def loader():
+                calls.append(True)
+                if len(calls)==4: # initial, baseline, before DDL, before commit
+                    if change=='removed':raise FileNotFoundError('synthetic revocation')
+                    if change=='changed':return dict(authority,authorization_id='b'*32)
+                    return auth.validate_authorization(dict(authority,expires_at='2000-01-01T00:00:00Z'))
+                return authority
+            with self.subTest(change=change),self.assertRaises((ValueError,FileNotFoundError)):
+                self.authorized_schema(data,authority,loader=loader)
+            self.assertEqual(len(calls),4)
+            self.assertEqual(self.schema_exists(),'0')
+
+
+    def test_authorized_artifact_has_explicit_byte_bound(self):
+        for data in (b'', b' '*2097153):
+            _,authority=self.schema_authority(data)
+            with self.subTest(size=len(data)),self.assertRaises(ValueError):
+                self.authorized_schema(data,authority)
+        self.assertEqual(self.schema_exists(),'0')
+
+    def test_authorized_schema_process_record_change_rolls_back(self):
+        from unittest.mock import patch
+        import schema_authorization as auth
+        data,authority=self.schema_authority()
+        original={'database':dict(self.actual),'synthetic_process':'original'}
+        changed={**original,'synthetic_process':'changed'}
+        with patch.object(auth,'validate_database_identity',database.validate_database_identity), \
+             patch.object(auth,'load_authorization',return_value=authority), \
+             patch.object(auth.process_probe,'load_record',side_effect=[original,original,original,changed]), \
+             patch.object(auth.process_probe,'probe',return_value=dict(self.runtime)) as observed:
+            with self.assertRaises(ValueError):
+                auth.execute_authorized_schema(self.connection(),'synthetic-zfs','synthetic-pg-control',data)
+            self.assertEqual(observed.call_count,2)
+        self.assertEqual(self.schema_exists(),'0')
