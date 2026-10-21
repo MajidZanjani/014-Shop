@@ -59,7 +59,7 @@ def validate_database_identity(expected,observed):
 
 
 def capture(argv):
-    result=subprocess.run(argv,env={'PATH':os.defpath,'LANG':'C','HOME':'/nonexistent'},
+    result=subprocess.run(argv,stdin=subprocess.DEVNULL,env={'PATH':os.defpath,'LANG':'C','HOME':'/nonexistent'},
         capture_output=True,text=True,timeout=5,check=True)
     require(len(result.stdout)<32768)
     return result.stdout.strip()

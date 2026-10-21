@@ -29,8 +29,9 @@ sys.dont_write_bytecode=True
 import dev_postgres
 dev_postgres.SCRATCH_PARENT=pathlib.Path(os.environ['SHOP_TEST_SCRATCH'])
 suite=unittest.TestLoader().discover('tests',pattern='test_database_destination.py')
+suite.addTests(unittest.TestLoader().discover('tests',pattern='test_operator_inspect.py'))
 r=unittest.TextTestRunner(verbosity=2).run(suite)
-if r.testsRun < 60 or r.skipped or not r.wasSuccessful(): sys.exit(1)
+if r.testsRun < 72 or r.skipped or not r.wasSuccessful(): sys.exit(1)
 '''
             result=dev_postgres.run([str(python),'-c',script],env=env,cwd=ROOT,timeout=60)
             match=re.search(r'Ran (\d+) tests?', result.stderr)

@@ -1,8 +1,8 @@
-# Inert, explicitly selected source bytes only. No interpreter, CLI or activation.
+# Explicit source bytes only; no bundled runtime, executable launcher or activation.
 { pkgs }:
 let
   names = [ "guard.py" "control.py" "database.py" "process_probe.py"
-    "schema_authorization.py" "ledger_bootstrap.py" "schema_reconciliation.py" ];
+    "schema_authorization.py" "ledger_bootstrap.py" "schema_reconciliation.py" "operator_inspect.py" ];
   entries = (map (name: {
     name = "libexec/shop/database/${name}";
     # Copy individual bytes, not a reference into the entire repository closure.
