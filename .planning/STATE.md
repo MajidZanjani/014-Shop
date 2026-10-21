@@ -4,10 +4,10 @@ current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
 status: executing
 stopped_at: Candidate runtime and local evidence committed; finish 14/16/17 gaps.
-last_updated: "2026-10-21T10:34:10.328092+00:00"
+last_updated: "2026-10-21T10:40:22.992457+00:00"
 last_activity: 2026-10-21
-last_activity_desc: Explicit pinned ledger bootstrap and atomic receipt prepared; local database and deployment checks pass.
-state_head: 995fdb8
+last_activity_desc: Guarded read-only schema outcome observations prepared; local PostgreSQL and deployment checks pass.
+state_head: 835bf80
 progress:
   total_phases: 14
   completed_phases: 1
@@ -30,7 +30,7 @@ No independent off-host runner assigned. User permits all authorized repository 
 
 ## Current evidence
 
-Local environment2 checks/14 tests; frontend13/9; core-local4/22; worker-smoke6/24 including broken-fence/lock controls; adapters3/6 in isolated network; contracts-local12/8; combined boundaries17/32; deployment-eval15/27; postgres-diagnostics3/8; postgresql-config3/7; bootstrap-local3/13; database-destination3/48; profiles6/5; locks3/8; reproducibility4/5 with exactly2 independent public/backend builds. Counts overlap across lanes; no unique total implied. Reproducibility uses a fixed canonical path in separate private process namespaces; raw failed HTML-island-ID comparison remains recorded, no output normalization. Focused versioned manifest is local reproducibility only.
+Local environment2 checks/14 tests; frontend13/9; core-local4/22; worker-smoke6/24 including broken-fence/lock controls; adapters3/6 in isolated network; contracts-local12/8; combined boundaries17/32; deployment-eval15/27; postgres-diagnostics3/8; postgresql-config3/7; bootstrap-local3/13; database-destination3/60; profiles6/5; locks3/8; reproducibility4/5 with exactly2 independent public/backend builds. Counts overlap across lanes; no unique total implied. Reproducibility uses a fixed canonical path in separate private process namespaces; raw failed HTML-island-ID comparison remains recorded, no output normalization. Focused versioned manifest is local reproducibility only.
 
 Installed standard SBOM evidence reconciles271 npm/6 runtime Python/39 tool Python components and records70 uninstalled optional paths. Collector exits2, not INVENTORY_PASS: raw npm malformed URI, missing licence texts and native/image coverage remain unresolved. Images are unbuilt; no real digest or compatibility claimed. Candidate profile/guard evaluation is not operational protection proof. Manual-only read-only SHA-pinned CI is prepared, never executed; no runner/authorization record created.
 
@@ -117,3 +117,11 @@ Code995fdb8 adds ledger_bootstrap.py library, accepting only the exact pinned sc
 Actual local evidence: database-destination3 checks/48 tests,7.055s; deployment-eval15/27,2.155s. Ten new controls cover receipt and later migration, matching/empty namespace denial, repeat denial, exact pin/action/ID/expiry, midway/final revocation rollback, real decoy no mutation, shared lock/caller transaction, named-role inherited grant denial and explicit removal of PUBLIC grants. Initial47-test run had one incorrect test expectation: pinned REVOKE correctly removes default PUBLIC INSERT. Corrected to distinguish named-role denial from intended PUBLIC removal; final48 passed. Root authority/runtime identity remains synthetic, fixed PGDATA fixture-adapted; no off-host or production proof.
 
 Next: operator CLI/immutable packaging and separately authorized root-record publication/custody, migration/app roles and credentials/private transport, Django migration generation/recorder integration, read-only uncertain-commit/recovery reconciliation and actual off-host qualification. Bootstrap implementation is locally prepared; actual bootstrap/role/runtime qualification remains pending. Production Django connections stay closed. No .env read/needed credential, host/provider action, existing service/resource change or purchase. Other14/16/17 and off-host/T11/T12/full acceptance gaps remain open.
+
+## Latest continuation — read-only schema outcome observations
+
+Code835bf80 adds schema_reconciliation.py with separate root-owned schema-reconciliation.json, action inspect-schema-outcome and artifact_kind schema/ledger-bootstrap. New unexpired inspection authority refers to the original operation IDs/bytes; original write records are not read or renewed. Exact artifact and pinned process/database checks precede a READ ONLY, REPEATABLE READ transaction with fresh authority/runtime/live SQL checks before/after ledger reads. A closed result reports recorded/not_recorded/conflict/ledger_absent with retry_authorized=false and reopening_authorized=false. No artifact SQL, writes, advisory locks, repairs, bootstrap, record refresh or retries. Malformed/partial ledger is a denial, not a clean absence.
+
+Actual local evidence: database-destination3 checks/60 tests,7.713s; deployment-eval15/27,2.175s. Twelve new tests cover ordinary/bootstrap receipts, missing/conflicting/invalid ledgers, independent action/kind/expiry, absent original write record, revocation, decoy denial, real read-only/repeatable transaction enforcement and refusal of writes/caller-owned transactions. Ordinary two-connection test commits a migration after the query but before return; old snapshot reports not_recorded without authorizing retry and a fresh inspection reports recorded. All tests passed; no process/network failure injected. Runtime/root custody remains synthetic, scratch PGDATA comparison adapted.
+
+This is only a ledger observation library, not external-evidence or restore reconciliation, schema-drift verification or safe reopening. Next operator CLI/immutable packaging, record publication/custody, roles/credentials/private transport and Django migration/recorder integration; external recovery barrier and actual uncertain-commit/failure/recovery qualification remain pending. No .env read/value needed, host/provider action, existing service/resource change or purchase. Production Django gate stays closed; other14/16/17 and off-host/T11/T12/full acceptance remain incomplete.

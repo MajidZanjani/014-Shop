@@ -99,13 +99,17 @@ def execute_schema_migration(connection, expected, runtime_probe, statements, mi
     Authorization validity and restore reconciliation remain caller requirements.
     The ledger must already exist under its reviewed migration owner.
     """
+    validate_migration_identity(migration)
+    return _execute_schema_transaction(connection,expected,runtime_probe,statements,dict(migration))
+
+
+def validate_migration_identity(migration):
     require(type(migration) is dict and set(migration) == {
         'migration_id','artifact_sha256','authorization_id'})
     for key,pattern in (('migration_id',r'[a-z][a-z0-9_-]{0,95}'),
                         ('artifact_sha256',r'[a-f0-9]{64}'),
                         ('authorization_id',r'[a-f0-9]{32}')):
         require(type(migration[key]) is str and re.fullmatch(pattern,migration[key]))
-    return _execute_schema_transaction(connection,expected,runtime_probe,statements,dict(migration))
 
 
 def validate_ledger(cursor):
@@ -202,3 +206,42 @@ def _execute_schema_transaction(connection, expected, runtime_probe, statements,
             validate_database_identity(expected, observe_database(cursor, current))
     if migration is not None:
         return 'already_applied' if applied else 'applied'
+
+
+def inspect_schema_migration(connection, expected, runtime_probe, migration):
+    """Return a read-only snapshot observation, never permission to retry/reopen.
+
+    A missing row can reflect a concurrent commit or a restored/stale database.
+    Invalid/partial ledger shape, wrong identity or unavailable guard is a denial.
+    No schema SQL, ledger writes, advisory locks, discovery or automatic retries.
+    """
+    validate_migration_identity(migration)
+    migration=dict(migration)
+    validate_database_identity(expected,expected)
+    expected=dict(expected)
+    require(callable(runtime_probe) and connection.autocommit is True
+            and connection.info.transaction_status == TransactionStatus.IDLE)
+    with connection.transaction():
+        with connection.cursor() as cursor:
+            cursor.execute('SET TRANSACTION ISOLATION LEVEL REPEATABLE READ, READ ONLY',prepare=True)
+            cursor.execute('SET LOCAL search_path = pg_catalog',prepare=True)
+            cursor.execute("SET LOCAL statement_timeout = '2s'",prepare=True)
+            cursor.execute("SET LOCAL lock_timeout = '1s'",prepare=True)
+            baseline=runtime_probe()
+            validate_database_identity(expected,observe_database(cursor,baseline))
+            cursor.execute("SELECT count(*) FROM pg_catalog.pg_namespace WHERE nspname='shop_control'",prepare=True)
+            if cursor.fetchone() == (0,):
+                status='ledger_absent'
+            else:
+                validate_ledger(cursor)
+                cursor.execute("""SELECT migration_id,artifact_sha256,authorization_id
+                    FROM shop_control.schema_migrations
+                    WHERE migration_id=%s OR authorization_id=%s""",
+                    (migration['migration_id'],migration['authorization_id']),prepare=True)
+                rows=cursor.fetchall()
+                exact=(migration['migration_id'],migration['artifact_sha256'],migration['authorization_id'])
+                status='not_recorded' if not rows else ('recorded' if rows == [exact] else 'conflict')
+            current=runtime_probe()
+            require(current == baseline)
+            validate_database_identity(expected,observe_database(cursor,current))
+    return {'schema_version':1,'status':status,'retry_authorized':False,'reopening_authorized':False}

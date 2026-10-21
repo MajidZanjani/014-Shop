@@ -599,3 +599,152 @@ class DatabaseDestinationTests(unittest.TestCase):
         self.assertEqual(self.target.sql("SELECT count(*) FROM pg_class c, "
             "LATERAL aclexplode(c.relacl) a WHERE c.oid='shop_control.schema_migrations'::regclass "
             "AND a.grantee=0"),'0')
+
+
+    def inspection_authority(self, data=None, authority=None, kind='schema'):
+        if authority is None:
+            data,authority=self.schema_authority(data)
+        return data,dict(authority,action='inspect-schema-outcome',artifact_kind=kind)
+
+    def authorized_inspection(self, data=None, authority=None, loader=None, conn=None):
+        from unittest.mock import patch
+        import schema_authorization as auth
+        import schema_reconciliation as inspection
+        default_data,default_authority=self.inspection_authority()
+        data=default_data if data is None else data
+        authority=default_authority if authority is None else authority
+        with patch.object(auth,'validate_database_identity',database.validate_database_identity), \
+             patch.object(inspection,'load_authorization',side_effect=loader or (lambda:inspection.validate_authorization(authority))), \
+             patch.object(inspection.process_probe,'load_record',return_value={'database':dict(self.actual)}), \
+             patch.object(inspection.process_probe,'probe',return_value=dict(self.runtime)):
+            result=inspection.inspect_authorized_schema(conn or self.connection(),
+                    'synthetic-zfs','synthetic-pg-control',data)
+        self.assertEqual(set(result),{'schema_version','status','retry_authorized','reopening_authorized'})
+        self.assertEqual(result['schema_version'],1)
+        self.assertIs(result['retry_authorized'],False)
+        self.assertIs(result['reopening_authorized'],False)
+        return result['status']
+
+    def test_readonly_inspection_not_recorded_does_not_apply_schema(self):
+        self.assertEqual(self.authorized_inspection(),'not_recorded')
+        self.assertEqual(self.schema_exists(),'0')
+        self.assertEqual(self.ledger_count(),'0')
+
+    def test_readonly_inspection_observes_recorded_without_write_authorization(self):
+        from unittest.mock import patch
+        import schema_authorization as auth
+        self.addCleanup(self.target.sql,'DROP TABLE IF EXISTS public.schema_guard_probe')
+        self.assertEqual(self.authorized_schema(),'applied')
+        # Original write authority can be removed/expired; this separate observation
+        # uses a newly valid inspection record referring to the original three IDs.
+        with patch.object(auth,'load_authorization',side_effect=FileNotFoundError('synthetic expired write record')):
+            self.assertEqual(self.authorized_inspection(),'recorded')
+        self.assertEqual(self.ledger_count(),'1')
+
+    def test_readonly_inspection_reports_conflicts_without_changing_history(self):
+        import hashlib,json
+        self.addCleanup(self.target.sql,'DROP TABLE IF EXISTS public.schema_guard_probe')
+        self.authorized_schema()
+        data,authority=self.inspection_authority()
+        cases=((data,dict(authority,authorization_id='b'*32)),
+               (data+b' ',dict(authority,artifact_sha256=hashlib.sha256(data+b' ').hexdigest())))
+        for artifact,approval in cases:
+            self.assertEqual(self.authorized_inspection(artifact,approval),'conflict')
+        original=json.loads(data);original['migration_id']='synthetic_002'
+        artifact=json.dumps(original).encode()
+        approval=dict(authority,migration_id='synthetic_002',artifact_sha256=hashlib.sha256(artifact).hexdigest())
+        self.assertEqual(self.authorized_inspection(artifact,approval),'conflict')
+        self.assertEqual(self.ledger_count(),'1')
+
+    def test_readonly_inspection_absent_ledger_never_bootstraps(self):
+        self.target.sql('DROP SCHEMA shop_control CASCADE')
+        self.assertEqual(self.authorized_inspection(),'ledger_absent')
+        self.assertEqual(self.namespace_count(),'0')
+
+    def test_readonly_inspection_partial_or_invalid_ledger_is_denial(self):
+        self.target.sql('ALTER TABLE shop_control.schema_migrations ADD COLUMN unexpected integer')
+        with self.assertRaises(ValueError):self.authorized_inspection()
+        self.target.sql('DROP TABLE shop_control.schema_migrations')
+        with self.assertRaises(ValueError):self.authorized_inspection()
+        self.assertEqual(self.namespace_count(),'1')
+
+    def test_readonly_inspection_observes_bootstrap_receipt(self):
+        data,authority=self.bootstrap_authority()
+        data,approval=self.inspection_authority(data,authority,kind='ledger-bootstrap')
+        self.assertEqual(self.authorized_inspection(data,approval),'not_recorded')
+        self.target.sql('DROP SCHEMA shop_control CASCADE')
+        self.assertEqual(self.authorized_bootstrap(),'initialized')
+        self.assertEqual(self.authorized_inspection(data,approval),'recorded')
+        self.assertEqual(self.ledger_count(),'1')
+        with self.assertRaises(ValueError):self.authorized_inspection(data+b' ',approval)
+
+    def test_readonly_inspection_needs_its_own_valid_action_kind_and_expiry(self):
+        data,authority=self.inspection_authority()
+        for patch in ({'action':'apply-reviewed-schema'},{'action':'initialize-new-schema-ledger'},
+                      {'artifact_kind':'unknown'},{'artifact_kind':'ledger-bootstrap'},
+                      {'expires_at':'2000-01-01T00:00:00Z'},{'extra':True}):
+            with self.subTest(patch=patch),self.assertRaises(ValueError):
+                self.authorized_inspection(data,dict(authority,**patch))
+        self.assertEqual(self.ledger_count(),'0')
+
+    def test_readonly_inspection_revocation_before_return_denies_report(self):
+        data,authority=self.inspection_authority();calls=[]
+        def loader():
+            calls.append(True)
+            if len(calls)==3:raise FileNotFoundError('synthetic inspection revocation')
+            return authority
+        with self.assertRaises(FileNotFoundError):self.authorized_inspection(data,authority,loader=loader)
+        self.assertEqual(len(calls),3)
+        self.assertEqual(self.ledger_count(),'0')
+
+    def test_readonly_inspection_rejects_decoy(self):
+        with self.assertRaises(ValueError):self.authorized_inspection(conn=self.connection(self.decoy))
+        self.assertEqual(self.decoy.sql('SELECT count(*) FROM shop_control.schema_migrations'),'0')
+
+    def test_inspection_uses_actual_readonly_repeatable_transaction(self):
+        conn=self.connection();observed=[]
+        _,authority=self.schema_authority()
+        migration={key:authority[key] for key in ('migration_id','artifact_sha256','authorization_id')}
+        def probe():
+            observed.append(conn.execute("SELECT current_setting('transaction_read_only'), "
+                                         "current_setting('transaction_isolation')").fetchone())
+            return dict(self.runtime)
+        result=database.inspect_schema_migration(conn,self.actual,probe,migration)
+        self.assertEqual(result['status'],'not_recorded')
+        self.assertEqual(observed,[('on','repeatable read')]*2)
+        self.assertEqual(conn.info.transaction_status,TransactionStatus.IDLE)
+        self.assertEqual(conn.execute('SHOW transaction_read_only').fetchone(),('off',))
+        def attempted_write():
+            conn.execute('INSERT INTO public.destination_probe(value) VALUES (7)')
+            return dict(self.runtime)
+        with self.assertRaises(psycopg.errors.ReadOnlySqlTransaction):
+            database.inspect_schema_migration(conn,self.actual,attempted_write,migration)
+        self.assertEqual(self.target.sql('SELECT count(*) FROM public.destination_probe'),'0')
+
+    def test_readonly_inspection_refuses_caller_owned_transaction(self):
+        conn=self.connection()
+        with conn.transaction():
+            conn.execute('INSERT INTO public.destination_probe(value) VALUES (9)')
+            with self.assertRaises(ValueError):self.authorized_inspection(conn=conn)
+            self.assertEqual(self.target.sql('SELECT count(*) FROM public.destination_probe'),'0')
+        self.assertEqual(self.target.sql('SELECT value FROM public.destination_probe'),'9')
+
+
+    def test_inspection_snapshot_cannot_authorize_retry_during_concurrent_commit(self):
+        self.addCleanup(self.target.sql,'DROP TABLE IF EXISTS public.schema_guard_probe')
+        _,authority=self.schema_authority()
+        migration={key:authority[key] for key in ('migration_id','artifact_sha256','authorization_id')}
+        calls=[]
+        def probe():
+            calls.append(True)
+            if len(calls)==2:
+                # Ordinary second-connection commit after the inspection query,
+                # before its final guard/return; no process or transport fault.
+                self.assertEqual(self.authorized_schema(),'applied')
+            return dict(self.runtime)
+        result=database.inspect_schema_migration(self.connection(),self.actual,probe,migration)
+        self.assertEqual(result['status'],'not_recorded')
+        self.assertIs(result['retry_authorized'],False)
+        self.assertIs(result['reopening_authorized'],False)
+        self.assertEqual(self.ledger_count(),'1')
+        self.assertEqual(self.authorized_inspection(),'recorded')

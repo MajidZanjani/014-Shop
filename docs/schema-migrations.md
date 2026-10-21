@@ -127,6 +127,45 @@ remain unexecuted qualification checks. This library does not create the databas
 roles, account or control records, connect/read a password, install itself or
 expose a CLI; production Django access remains blocked.
 
+`ops/runtime/schema_reconciliation.py` supplies a separate read-only observation
+library for uncertain schema/bootstrap results. Root-owned
+`schema-reconciliation.json` has the authorization fields above plus
+`artifact_kind` (`schema` or `ledger-bootstrap`) and requires action
+`inspect-schema-outcome`. Its `authorization_id` refers to the original operation;
+the new record grants inspection only. It must have a current expiry even when
+the original write record has expired or been removed. Neither write record is
+loaded or renewed. Supply the exact original artifact bytes: schema JSON is
+validated under the inspection action, and bootstrap bytes/ID must match the
+fixed source pin and reserved bootstrap ID. The database/process identity must
+still match the separately approved process record. Record issuance/custody and
+CLI integration remain pending.
+
+The inspection opens one bounded READ ONLY, REPEATABLE READ transaction, checks
+runtime/live SQL identity before and after its ledger query, and rechecks current
+inspection/process records. It creates no schema, ledger row or advisory lock and
+executes no artifact statements. A partial or malformed ledger is a denial;
+a genuinely absent namespace is an observation. Results contain only
+`schema_version` (1), `status`, `retry_authorized` (false) and
+`reopening_authorized` (false), without artifact, database, role or authorization
+values. Status has these meanings:
+
+| Status | Point-in-time observation |
+| --- | --- |
+| recorded | One ledger row matches migration ID, digest and original authorization ID |
+| not_recorded | Neither the migration ID nor original authorization ID is recorded |
+| conflict | A migration/authorization row exists but the complete identity differs |
+| ledger_absent | The shop_control namespace is absent in this snapshot |
+
+None of these observations authorizes a write retry, ledger initialization,
+repair or reopening. A concurrent commit after the query can make not_recorded
+stale immediately; the local two-connection test demonstrates this and requires
+a fresh inspection to observe that commit. A restored ledger can likewise omit
+external evidence or effects. Operators must reconcile retained external evidence,
+original artifacts, identity and recovery-barrier state before separately
+approving any next action. This library does not verify schema drift, completed
+external effects, backups, restore currency or safe reopening. Actual lost-result,
+process/transport failure and restore qualification remain pending off-host.
+
 Local tests use disposable PostgreSQL target/decoy clusters and synthetic records.
 They adapt only the fixed PGDATA comparison to owned scratch paths. They do not
 establish rootless process/storage/resource containment or production readiness.
