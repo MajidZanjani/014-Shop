@@ -1,6 +1,6 @@
 """Prepared read-only operator command; runtime packaging/qualification pending.
 
-Only inspect and --help exist. No DSN, credential, path or mutation arguments.
+Only inspect, validate-records and --help exist. No DSN, path or mutation arguments.
 Artifact input is private regular FD0; credential input is private regular FD3.
 """
 import json
@@ -18,7 +18,7 @@ import schema_reconciliation
 SAFE_ENV={'LANG':'C','LC_ALL':'C','HOME':'/nonexistent'}
 SOCKET_DIRECTORY='/srv/shop/tmp/postgres-socket'
 ERROR=b'{"event":"operator.inspection_denied"}\n'
-HELP=b'Prepared read-only command: inspect (private artifact FD0, credential FD3). Runtime qualification pending.\n'
+HELP=b'Prepared read-only commands: inspect (private artifact FD0, credential FD3); validate-records (private candidate FD0). Runtime qualification pending.\n'
 
 
 def validate_connection(value):
@@ -32,6 +32,11 @@ def validate_connection(value):
         require(type(value[field]) is str and re.fullmatch(
             r'/nix/store/[a-z0-9]{32}-[^/]+/bin/'+name,value[field]))
     return value
+
+
+def validate_bindings(connection, process, authorization):
+    require(connection['database']==process['database']==authorization['database'])
+    require(connection['pg_control']==process['process']['executable'].rsplit('/',1)[0]+'/pg_controldata')
 
 
 def load_connection():
@@ -87,7 +92,7 @@ def inspect_from_fds():
     approved=process_probe.load_record()
     require(approved['database']==expected)
     authorization=schema_reconciliation.load_authorization()
-    require(authorization['database']==expected)
+    validate_bindings(connection_record,approved,authorization)
     artifact=read_private_fd(0,2097152)
     schema_reconciliation.validate_artifact(artifact,authorization)
     process_probe.probe(approved,connection_record['zfs'],connection_record['pg_control'])
@@ -115,10 +120,14 @@ def inspect_from_fds():
 def main(argv):
     if argv==['--help']:
         os.write(1,HELP);return 0
-    if argv!=['inspect']:
+    if argv not in (['inspect'],['validate-records']):
         os.write(2,ERROR);return 2
     try:
-        result=inspect_from_fds()
+        if argv==['validate-records']:
+            from record_bundle import MAX_BUNDLE,prepare_records
+            _,result=prepare_records(read_private_fd(0,MAX_BUNDLE))
+        else:
+            result=inspect_from_fds()
         os.write(1,json.dumps(result,sort_keys=True,separators=(',',':')).encode('ascii')+b'\n')
         return 0
     except BaseException:

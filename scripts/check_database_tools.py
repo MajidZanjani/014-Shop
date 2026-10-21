@@ -16,7 +16,7 @@ ROOT=Path(__file__).resolve().parents[1]
 from check_python import frozen_environment, require
 
 MODULES=('guard','control','database','process_probe','schema_authorization',
-         'ledger_bootstrap','schema_reconciliation','operator_inspect')
+         'ledger_bootstrap','schema_reconciliation','operator_inspect','record_bundle')
 FILES={**{f'libexec/shop/database/{name}.py':f'ops/runtime/{name}.py' for name in MODULES},
        'share/shop/schema-ledger.sql':'ops/postgresql/schema-ledger.sql'}
 MANIFEST='share/shop/database-tools.json'
@@ -104,7 +104,7 @@ print('DATABASE_TOOLS_IMPORT_PASS')
             command="import sys,runpy;sys.dont_write_bytecode=True;sys.path.insert(0,sys.argv.pop(1));runpy.run_module('operator_inspect',run_name='__main__')"
             help_result=subprocess.run([str(python),'-I','-c',command,str(artifact/'libexec/shop/database'),'--help'],
                 env=env,capture_output=True,timeout=10)
-            require(help_result.returncode==0 and help_result.stdout.startswith(b'Prepared read-only command:')
+            require(help_result.returncode==0 and help_result.stdout.startswith(b'Prepared read-only commands:')
                 and not help_result.stderr,'actual packaged help required')
             denied=subprocess.run([str(python),'-I','-c',command,str(artifact/'libexec/shop/database'),'apply'],
                 env=env,capture_output=True,timeout=10)
@@ -114,7 +114,7 @@ print('DATABASE_TOOLS_IMPORT_PASS')
     stream=io.StringIO();tests=unittest.TextTestRunner(stream=stream).run(suite)
     require(tests.testsRun>=5 and tests.wasSuccessful() and not tests.skipped,'manifest controls failed')
     print(f'DATABASE_TOOLS_PASS checks=6 tests={tests.testsRun} duration_seconds={time.monotonic()-start:.3f}')
-    print('Actual source build/import and packaged help/denial only; executable runtime/host installation/positive transport qualification pending')
+    print('Actual source build/import and packaged help/denial only; host installation/positive transport/runtime qualification pending')
 
 if __name__=='__main__':
     try:main()

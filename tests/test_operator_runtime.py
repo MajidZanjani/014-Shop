@@ -1,5 +1,6 @@
 """Actual built launcher process controls and metadata rejection cases."""
 import importlib.util
+import json
 import os
 from pathlib import Path
 import secrets
@@ -20,12 +21,12 @@ class OperatorRuntimeTests(unittest.TestCase):
             readOnly=True,installed=False,runtimeQualified=False,productionActivation=False)
         return value
 
-    def run_command(self,args,*,failure=False,env=None):
+    def run_command(self,args,*,failure=False,env=None,stdin=None):
         key='SHOP_OPERATOR_FAILURE_EXECUTABLE' if failure else 'SHOP_OPERATOR_EXECUTABLE'
         executable=os.environ[key]
         self.assertTrue(executable.startswith('/nix/store/'))
         return subprocess.run([executable,*args],env={} if env is None else env,
-            stdin=subprocess.DEVNULL,capture_output=True,timeout=8)
+            stdin=subprocess.DEVNULL if stdin is None else stdin,capture_output=True,timeout=8)
 
     def test_closed_unqualified_runtime_metadata(self):
         self.assertEqual(checks.validate_metadata(self.metadata()),self.metadata())
@@ -78,3 +79,33 @@ class OperatorRuntimeTests(unittest.TestCase):
         self.assertEqual(result.stdout,b'')
         self.assertEqual(result.stderr,checks.ERROR)
         self.assertNotIn(b'synthetic startup detail',result.stderr)
+
+
+    def test_actual_candidate_validation_reads_private_fd_and_never_grants_publication(self):
+        from test_process_probe import candidate_bundle
+        parent=Path(os.environ.get('SHOP_TEST_SCRATCH',checks.ROOT/'.scratch'))
+        with tempfile.TemporaryFile(dir=parent) as file:
+            file.write(json.dumps(candidate_bundle()).encode());file.flush();os.fchmod(file.fileno(),0o600)
+            result=self.run_command(['validate-records'],stdin=file)
+        self.assertEqual(result.returncode,0)
+        self.assertEqual(result.stderr,b'')
+        report=json.loads(result.stdout)
+        self.assertEqual(report['status'],'candidate_validated')
+        self.assertEqual(report['evidence_class'],'unverified-candidate')
+        self.assertIs(report['publication_authorized'],False)
+        self.assertIs(report['retry_authorized'],False)
+        self.assertIs(report['reopening_authorized'],False)
+        self.assertNotIn(b'synthetic_shop',result.stdout)
+
+    def test_actual_candidate_mixed_record_denies_without_private_echo(self):
+        from test_process_probe import candidate_bundle
+        candidate=candidate_bundle()
+        candidate['records']['operator-connection.json']['database']['role']='private_mixed_decoy'
+        parent=Path(os.environ.get('SHOP_TEST_SCRATCH',checks.ROOT/'.scratch'))
+        with tempfile.TemporaryFile(dir=parent) as file:
+            file.write(json.dumps(candidate).encode());file.flush();os.fchmod(file.fileno(),0o600)
+            result=self.run_command(['validate-records'],stdin=file)
+        self.assertEqual(result.returncode,1)
+        self.assertEqual(result.stdout,b'')
+        self.assertEqual(result.stderr,checks.ERROR)
+        self.assertNotIn(b'private_mixed_decoy',result.stderr)
