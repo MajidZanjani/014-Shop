@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "values": {
+      "type": "object",
+      "properties": {
+        "DEBUG": {
+          "const": "false"
+        },
+        "LIVE_PAYMENTS_ENABLED": {
+          "const": "false"
+        },
+        "PAYMENT_ADAPTER": {
+          "const": "fake"
+        },
+        "MAIL_ADAPTER": {
+          "const": "fake"
+        },
+        "STORAGE_ADAPTER": {
+          "const": "fake"
+        },
+        "SHOP_ENV": {
+          "enum": [
+            "local",
+            "synthetic",
+            "bank-sandbox",
+            "production"
+          ]
+        },
+        "DJANGO_SETTINGS_MODULE": {
+          "enum": [
+            "shop.config.local",
+            "shop.config.synthetic",
+            "shop.config.production"
+          ]
+        },
+        "DATABASE_NAME": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "DATABASE_USER": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "DATABASE_HOST": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "DATABASE_PORT": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "SECRET_KEY_FILE": {
+          "type": "string",
+          "pattern": "^/run/secrets/shop/[a-z_]+$"
+        },
+        "DATABASE_PASSWORD_FILE": {
+          "type": "string",
+          "pattern": "^/run/secrets/shop/[a-z_]+$"
+        }
+      },
+      "required": [
+        "DEBUG",
+        "LIVE_PAYMENTS_ENABLED",
+        "PAYMENT_ADAPTER",
+        "MAIL_ADAPTER",
+        "STORAGE_ADAPTER",
+        "SHOP_ENV",
+        "DJANGO_SETTINGS_MODULE"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "SHOP_ENV": {
+                "enum": [
+                  "production",
+                  "bank-sandbox"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "DATABASE_NAME",
+              "DATABASE_USER",
+              "DATABASE_HOST",
+              "DATABASE_PORT",
+              "SECRET_KEY_FILE",
+              "DATABASE_PASSWORD_FILE"
+            ],
+            "properties": {
+              "DJANGO_SETTINGS_MODULE": {
+                "const": "shop.config.production"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "SHOP_ENV": {
+                "const": "local"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "DJANGO_SETTINGS_MODULE": {
+                "const": "shop.config.local"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "SHOP_ENV": {
+                "const": "synthetic"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "DJANGO_SETTINGS_MODULE": {
+                "const": "shop.config.synthetic"
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "values"
+  ],
+  "additionalProperties": false
+}
