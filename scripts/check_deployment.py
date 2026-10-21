@@ -74,13 +74,15 @@ def evaluate():
     start=time.monotonic()
     metadata=json.loads(run(['nix','eval','--json','./ops/nixos#deploymentMetadata.x86_64-linux']))
     if metadata['productionActivation'] is not False or len(metadata['imageDerivations'])!=4:raise ValueError('candidate metadata invalid')
-    expr='let f = builtins.getFlake (toString ./ops/nixos); in import ./ops/nixos/tests/shop.nix { inherit (f.inputs) nixpkgs; shopModule = f.nixosModules.shop; }'
+    expr='let f = builtins.getFlake "git+file://${toString ./.}?dir=ops/nixos"; in import ./ops/nixos/tests/shop.nix { inherit (f.inputs) nixpkgs; shopModule = f.nixosModules.shop; }'
     fixture=json.loads(run(['nix','eval','--json','--impure','--expr',expr]))
     if not all(fixture['disabled'].values()):raise ValueError('default module changes protected scope')
     validate_runtime_contract(fixture['runtimeCandidate'])
     for name in ('app','worker','postgres','gateway'):
         validate_quadlet_storage((ROOT/'ops/quadlet'/('shop-'+name+'.container')).read_text())
     candidate=fixture['syntheticCandidate']
+    if not candidate['bootstrapArtifact'].startswith('/nix/store/') or ' -I -c ' not in candidate['bootstrapScript'] or '--apply|--help' not in candidate['bootstrapScript']:raise ValueError('bootstrap artifact missing isolated explicit-action entrypoint')
+    subprocess.run(['sh','-n'],input=candidate['bootstrapScript'],text=True,capture_output=True,check=True,timeout=5)
     failed=[x['message'] for x in candidate['assertions'] if not x['assertion']]
     if failed:raise ValueError('synthetic module assertions failed: '+str(failed))
     bounds=candidate['bounds']
@@ -97,7 +99,7 @@ def evaluate():
     runtime_suite=unittest.TestLoader().discover(str(ROOT/'tests'),pattern='test_rootless_runtime.py')
     runtime_result=unittest.TextTestRunner(stream=stream).run(runtime_suite)
     if runtime_result.testsRun<7 or not runtime_result.wasSuccessful() or runtime_result.skipped:raise ValueError('runtime config controls failed: '+stream.getvalue())
-    print(f'DEPLOYMENT_EVAL_PASS checks=12 tests={result.testsRun+probe_result.testsRun+runtime_result.testsRun} duration_seconds={time.monotonic()-start:.3f}')
+    print(f'DEPLOYMENT_EVAL_PASS checks=13 tests={result.testsRun+probe_result.testsRun+runtime_result.testsRun} duration_seconds={time.monotonic()-start:.3f}')
     print('Candidate evaluation only; unbuilt images, generator/runtime/bootstrap/review/off-host evidence pending')
 
 

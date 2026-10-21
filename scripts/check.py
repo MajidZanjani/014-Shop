@@ -15,7 +15,7 @@ sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parents[1]
 QUICK = ("environment", "frontend", "core", "worker", "adapters", "contracts", "boundaries")
 EXTRA = ("inventory", "locks", "reproducibility", "deployment-profiles",
-         "deployment-eval", "database-destination", "deployment-build", "deployment-boot")
+         "deployment-eval", "bootstrap-local", "database-destination", "deployment-build", "deployment-boot")
 # (producer, commands, timeout). No optional producers or inferred skips.
 LANES = {
     "environment": ("scripts/dev_postgres.py", (), 60),
@@ -30,6 +30,7 @@ LANES = {
     "locks": ("scripts/check_locks.py", (("python3", "scripts/check_locks.py"),), 900),
     "reproducibility": ("scripts/check_reproducibility.py", (("python3", "scripts/check_reproducibility.py"),), 1800),
     "deployment-profiles": ("scripts/check_deployment.py", (("python3", "scripts/check_deployment.py", "deployment-profiles"),), 300),
+    "bootstrap-local": ("scripts/check_bootstrap.py", (("python3", "scripts/check_bootstrap.py"),), 120),
     "database-destination": ("scripts/check_database_destination.py", (("python3", "scripts/check_database_destination.py"),), 120),
     "deployment-eval": ("scripts/check_deployment.py", (("python3", "scripts/check_deployment.py", "deployment-eval"),), 300),
     "deployment-build": ("scripts/check_deployment.py", (("python3", "scripts/check_deployment.py", "deployment-build"),), 3600),

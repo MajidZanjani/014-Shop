@@ -5,6 +5,19 @@ let
   guard = pkgs.writeShellScript "shop-storage-guard" ''
     exec ${pkgs.python3}/bin/python3 -I ${../../runtime/guard.py} --zfs ${pkgs.zfs}/bin/zfs --pg-control ${pkgs.postgresql_18}/bin/pg_controldata "$@"
   '';
+  bootstrapSource = pkgs.linkFarm "shop-bootstrap-source" (map (name: {
+    inherit name; path = ../../runtime + "/${name}";
+  }) [ "bootstrap.py" "guard.py" "control.py" ]);
+  bootstrapCode = "import sys,runpy;sys.path.insert(0,'${bootstrapSource}');sys.argv[0]='shop-bootstrap';runpy.run_module('bootstrap',run_name='__main__')";
+  bootstrap = pkgs.writeShellScript "shop-bootstrap" ''
+    set -eu
+    case "$#" in
+      0) ;;
+      1) case "$1" in --apply|--help) ;; *) exit 1;; esac ;;
+      *) exit 1 ;;
+    esac
+    exec ${pkgs.python3}/bin/python3 -I -c ${lib.escapeShellArg bootstrapCode} --zfs ${pkgs.zfs}/bin/zfs "$@"
+  '';
   runtime = import ../rootless-runtime.nix { inherit pkgs uid guard; };
   render = service: lib.replaceStrings
     [ "@APP_IMAGE@" "@WORKER_IMAGE@" "@POSTGRES_IMAGE@" "@GATEWAY_IMAGE@" "@GUARD@" ]
@@ -56,6 +69,7 @@ in {
       name = "containers/systemd/users/${toString uid}/shop-${service}.container";
       value.text = render service;
     }) [ "app" "worker" "postgres" "gateway" ])) // {
+      "xspi-shop/bootstrap".source = bootstrap;
       "containers/systemd/users/${toString uid}/shop-private.network".source = ../../quadlet/shop-private.network;
     } // runtime.etc;
     # No global Podman/firewall/mount/pool/journal/subuid-helper activation.

@@ -12,7 +12,7 @@ import check_deployment as check
 class RootlessRuntimeTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        expr='let f = builtins.getFlake (toString ./ops/nixos); in (import ./ops/nixos/tests/shop.nix { inherit (f.inputs) nixpkgs; shopModule = f.nixosModules.shop; }).runtimeCandidate'
+        expr='let f = builtins.getFlake "git+file://${toString ./.}?dir=ops/nixos"; in (import ./ops/nixos/tests/shop.nix { inherit (f.inputs) nixpkgs; shopModule = f.nixosModules.shop; }).runtimeCandidate'
         cls.candidate=json.loads(check.run(['nix','eval','--json','--impure','--expr',expr]))
 
     def test_real_evaluated_configs_and_shell_syntax(self):

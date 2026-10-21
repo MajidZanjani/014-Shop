@@ -3,14 +3,13 @@
 The attestation is provisioned separately after actual reviewed inventory. This
 module never discovers a target, refreshes a stale PID or repairs storage.
 """
-import json
 import os
 from pathlib import Path
 import re
 import stat
 from guard import inspect, require, validate_database_identity, validate_expected
+from control import load_control, unique_fields
 
-CONTROL = Path('/srv/shop/control/database-process.json')
 
 
 def bounded_read(directory, name, limit=32768):
@@ -46,37 +45,8 @@ def validate_record(value):
     return value
 
 
-def unique_fields(pairs):
-    result = {}
-    for key,value in pairs:
-        require(key not in result)
-        result[key] = value
-    return result
-
-
 def load_record():
-    """Walk root-owned, non-writable ancestors by FD; reject symlink substitution."""
-    directory = os.open('/', os.O_RDONLY | os.O_DIRECTORY | os.O_CLOEXEC)
-    try:
-        for part in CONTROL.parts[1:-1]:
-            next_fd = os.open(part, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC,
-                              dir_fd=directory)
-            os.close(directory)
-            directory = next_fd
-            info = os.fstat(directory)
-            require(info.st_uid == 0 and not info.st_mode & 0o022)
-        fd = os.open(CONTROL.name, os.O_RDONLY | os.O_NOFOLLOW | os.O_CLOEXEC | os.O_NONBLOCK, dir_fd=directory)
-        try:
-            info = os.fstat(fd)
-            require(stat.S_ISREG(info.st_mode) and info.st_uid == 0
-                    and not info.st_mode & 0o022 and info.st_size <= 32768)
-            data = os.read(fd, 32769)
-            require(len(data) <= 32768)
-            return validate_record(json.loads(data,object_pairs_hook=unique_fields))
-        finally:
-            os.close(fd)
-    finally:
-        os.close(directory)
+    return load_control('database-process.json',validate_record)
 
 
 def start_ticks(raw, expected_pid):
