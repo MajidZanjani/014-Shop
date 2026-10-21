@@ -194,7 +194,7 @@ def main():
         qualify_adapters()
         return
     if args.lane == 'core':
-        runner_authorization(args.runner_authorization)
+        runner_authorization(args.runner_authorization or os.environ.get("SHOP_CORE_RUNNER_AUTHORIZATION"))
     elif args.runner_authorization:
         raise ValueError('runner authorization is only valid for the full core lane')
     qualify(faults=args.lane == 'core')

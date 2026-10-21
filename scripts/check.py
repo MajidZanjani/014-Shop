@@ -101,17 +101,28 @@ def environment():
         if not found or not str(Path(found).resolve()).startswith("/nix/store/"):
             raise RuntimeError("missing/unpinned native tool: " + tool)
         identities[tool] = {"path": str(Path(found).resolve())}
-    from dev_postgres import isolated_postgres
-    with isolated_postgres() as pg:
-        root = pg.root
-        row = pg.sql("SELECT pg_backend_pid(), current_setting('server_version'), version()")
-        fields = row.split("|")
-        if len(fields) != 3 or int(fields[0]) <= 0 or fields[1] != "18.6":
-            raise RuntimeError("unexpected PostgreSQL backend: " + row)
-        print("POSTGRESQL_BACKEND " + row)
-        identities["postgresql"] = {"path": str(pg.binaries), "version": fields[1]}
-    if root.exists():
-        raise RuntimeError("owned PostgreSQL scratch remains")
+    import dev_postgres
+    previous_scratch_parent = dev_postgres.SCRATCH_PARENT
+    parent = os.environ.get('SHOP_TEST_SCRATCH')
+    if parent:
+        scratch = Path(parent)
+        if scratch.is_symlink() or not scratch.is_dir() or len(str(scratch.resolve())) + 50 >= 108:
+            raise RuntimeError("short existing owned SHOP_TEST_SCRATCH required")
+        dev_postgres.SCRATCH_PARENT = scratch.resolve()
+    isolated_postgres = dev_postgres.isolated_postgres
+    try:
+        with isolated_postgres() as pg:
+            root = pg.root
+            row = pg.sql("SELECT pg_backend_pid(), current_setting('server_version'), version()")
+            fields = row.split("|")
+            if len(fields) != 3 or int(fields[0]) <= 0 or fields[1] != "18.6":
+                raise RuntimeError("unexpected PostgreSQL backend: " + row)
+            print("POSTGRESQL_BACKEND " + row)
+            identities["postgresql"] = {"path": str(pg.binaries), "version": fields[1]}
+        if root.exists():
+            raise RuntimeError("owned PostgreSQL scratch remains")
+    finally:
+        dev_postgres.SCRATCH_PARENT = previous_scratch_parent
     suite = unittest.defaultTestLoader.discover(str(ROOT / "tests"), pattern="test_check.py")
     result = unittest.TextTestRunner(verbosity=2).run(suite)
     if not result.wasSuccessful() or result.testsRun == 0 or result.skipped:

@@ -141,7 +141,7 @@ def main():
     require(bool(args.enqueue_only) != bool(args.lane), 'select enqueue-only or one worker lane')
     if args.lane == 'worker':
         from check_backend import runner_authorization
-        runner_authorization(args.runner_authorization, action='owned-synthetic-worker-interruption')
+        runner_authorization(args.runner_authorization or os.environ.get('SHOP_WORKER_RUNNER_AUTHORIZATION'), action='owned-synthetic-worker-interruption')
     else:
         require(args.runner_authorization is None, 'runner authorization only applies to full worker lane')
     started = time.monotonic()

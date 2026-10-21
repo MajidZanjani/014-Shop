@@ -175,7 +175,7 @@ with patch('shop.core.health.connection') as conn:
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--local',action='store_true');p.add_argument('--runner-authorization',type=Path);p.add_argument('--validate-file',type=Path);a=p.parse_args()
     if a.validate_file: validate_file(a.validate_file)
-    else: qualify(a.local,a.runner_authorization)
+    else: qualify(a.local,a.runner_authorization or (os.environ.get('SHOP_CONTRACTS_RUNNER_AUTHORIZATION') if not a.local else None))
 
 if __name__=='__main__':
     try: main()
