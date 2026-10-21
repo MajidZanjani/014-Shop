@@ -76,8 +76,10 @@
     };
     appImage = image "shop-app" [ runtime appTree ] [ "${runtime}/bin/python" "-m" "gunicorn" "shop.wsgi:application" "--bind" "0.0.0.0:8000" "--workers" "2" "--threads" "1" "--timeout" "30" ];
     workerImage = image "shop-worker" [ runtime appTree ] [ "${runtime}/bin/python" "/app/manage.py" "run_worker" "--poll-interval" "1" "--lease-seconds" "30" "--max-attempts" "3" ];
+    postgresDiagnostics = pkgs.writeTextDir "libexec/shop/postgres_entrypoint.py" (builtins.readFile ../runtime/postgres_entrypoint.py);
+    postgresCommand = [ "${python}/bin/python3" "-I" "${postgresDiagnostics}/libexec/shop/postgres_entrypoint.py" "${postgres}/bin/postgres" "-D" "/var/lib/shop/postgres" "-c" "fsync=on" "-c" "synchronous_commit=on" "-c" "full_page_writes=on" "-c" "config_file=/var/lib/shop/config/postgresql.conf" ];
     # PGDATA must already exist and be attested; no implicit initdb entrypoint.
-    postgresImage = image "shop-postgres" [ postgres ] [ "${postgres}/bin/postgres" "-D" "/var/lib/shop/postgres" "-c" "fsync=on" "-c" "synchronous_commit=on" "-c" "full_page_writes=on" "-c" "config_file=/var/lib/shop/config/postgresql.conf" ];
+    postgresImage = image "shop-postgres" [ postgres python postgresDiagnostics ] postgresCommand;
     gatewayImage = image "shop-gateway" [ pkgs.caddy gatewayConfig ] [ "${pkgs.caddy}/bin/caddy" "run" "--config" "/etc/shop/Caddyfile" "--adapter" "caddyfile" ];
   in {
     nixosModules.shop = import ./modules/shop.nix;
@@ -88,6 +90,7 @@
       imageDerivations = map (x: x.drvPath) [ appImage workerImage postgresImage gatewayImage ];
       runtimeVersion = pkgs.podman.version;
       systemdVersion = pkgs.systemd.version;
+      postgresDiagnostics = { command = postgresCommand; workerSource = "${postgresDiagnostics}/libexec/shop/postgres_entrypoint.py"; nativePidContract = "execve; rootless lifecycle pending"; runtimeQualified = false; };
       productionActivation = false;
     };
     devShells.${system}.default = pkgs.mkShell {

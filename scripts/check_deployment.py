@@ -74,6 +74,13 @@ def evaluate():
     start=time.monotonic()
     metadata=json.loads(run(['nix','eval','--json','./ops/nixos#deploymentMetadata.x86_64-linux']))
     if metadata['productionActivation'] is not False or len(metadata['imageDerivations'])!=4:raise ValueError('candidate metadata invalid')
+    diagnostics=metadata['postgresDiagnostics'];command=diagnostics['command']
+    if (diagnostics['runtimeQualified'] is not False or len(command)<4 or command[1]!='-I'
+        or not command[0].startswith('/nix/store/') or not command[0].endswith('/bin/python3')
+        or command[2]!=diagnostics['workerSource'] or not command[2].startswith('/nix/store/')
+        or not command[2].endswith('/libexec/shop/postgres_entrypoint.py')
+        or not command[3].startswith('/nix/store/') or not command[3].endswith('/bin/postgres')):
+        raise ValueError('candidate PG console filter image linkage missing')
     expr='let f = builtins.getFlake "git+file://${toString ./.}?dir=ops/nixos"; in import ./ops/nixos/tests/shop.nix { inherit (f.inputs) nixpkgs; shopModule = f.nixosModules.shop; }'
     fixture=json.loads(run(['nix','eval','--json','--impure','--expr',expr]))
     if not all(fixture['disabled'].values()):raise ValueError('default module changes protected scope')
@@ -101,7 +108,7 @@ def evaluate():
     runtime_suite=unittest.TestLoader().discover(str(ROOT/'tests'),pattern='test_rootless_runtime.py')
     runtime_result=unittest.TextTestRunner(stream=stream).run(runtime_suite)
     if runtime_result.testsRun<7 or not runtime_result.wasSuccessful() or runtime_result.skipped:raise ValueError('runtime config controls failed: '+stream.getvalue())
-    print(f'DEPLOYMENT_EVAL_PASS checks=14 tests={result.testsRun+probe_result.testsRun+runtime_result.testsRun} duration_seconds={time.monotonic()-start:.3f}')
+    print(f'DEPLOYMENT_EVAL_PASS checks=15 tests={result.testsRun+probe_result.testsRun+runtime_result.testsRun} duration_seconds={time.monotonic()-start:.3f}')
     print('Candidate evaluation only; unbuilt images, generator/runtime/bootstrap/review/off-host evidence pending')
 
 
