@@ -64,7 +64,7 @@ This request executes documentation replanning only. Earlier applicable local im
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md T02; complete companion proposal remains normative.
 **Estimate:** 3–5 engineer-days
 **UI hint:** no
-**Plans:** 6/18 complete (local development evidence); 12 pending; 24 tasks/14 waves. 02-00/03/04/05 complete; next 02-06.
+**Plans:** 6/18 complete (local development evidence); 3 locally implemented/qualification pending; 9 unimplemented; 24 tasks/14 waves. 02-00/03/04/05 complete; next 02-09; 06/07/08 full core qualification pending.
 
 - [x] 02-01-PLAN.md — Concrete dependency review (Wave 1).
 - [x] 02-02-PLAN.md — Pinned native development environment (Wave 2).

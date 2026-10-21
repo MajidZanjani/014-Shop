@@ -76,8 +76,8 @@
   ],
   "next": {
     "command": "$gsd-execute-phase 2",
-    "label": "Continue 02-06 local implementation",
-    "reason": "Local frontend/Python checks passed; user permits unaffected work while independent runner qualification remains pending."
+    "label": "Continue 02-09 local enqueue implementation",
+    "reason": "06/07/08 implemented and locally tested; off-host core qualification remains pending."
   },
   "updated_at": "2026-10-21T06:50:35.914131+00:00"
 }

@@ -3,7 +3,7 @@ gsd_state_version: "1.0"
 current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
 status: executing
-stopped_at: 02-04 complete; proceeding to 02-06 local implementation.
+stopped_at: 02-06/07/08 implemented locally; off-host core qualification pending.
 last_updated: "2026-10-21T06:15:23.993Z"
 last_activity: 2026-10-21
 last_activity_desc: 02-04 public build boundary passed; runner unassigned, disruptive qualification pending.
@@ -23,12 +23,12 @@ progress:
 See .planning/PROJECT.md and SOURCES.md (October 21 current authority).
 
 **Core value:** Turn an exact reviewed xSPI-MC configuration or support purchase into attributable acceptance, verified payment and recoverable licence delivery or support credit without duplicate effects.
-**Current focus:** 02-00 and 02-03 complete; next 02-06 Django health. Phase 2 has 6/18 completed development plans; 12 pending, 24 tasks/14 waves. Current-source checks now pass; no host/runtime qualification claimed.
+**Current focus:** 02-00 and 02-03 complete; next 02-09 persisted synthetic enqueue. Phase 2 has 6/18 completed development plans; 3 implemented with qualification pending; 9 unimplemented, 24 tasks/14 waves. Current-source checks now pass; no host/runtime qualification claimed.
 
 ## Current Position
 
 Phase: 02 of 14 — Reproducible application and deployment skeleton
-Plan: 02-06 next; existing 02-01 and 02-02 evidence retained only after applicability review.
+Plan: 02-09 next; 02-06/07/08 implementation merged, qualification pending; existing 02-01 and 02-02 evidence retained only after applicability review.
 Status: Executing Phase 2 under user continuation; phase auto-advance remains false.
 Last activity: 2026-10-21 — Protected-host requirements, roadmap, detailed affected plans and stale handoff replaced.
 Progress: [█░░░░░░░░░] 7% phases; no new application/host acceptance.
@@ -68,3 +68,5 @@ Stopped at: 02-00 merged; proceeding to frontend/Python dependency slices.
 Resume file: .planning/phases/02-reproducible-application-and-deployment-skeleton/.continue-here.md
 
 Python 02-05 is merged: 63 actual import/identity checks and 7 rejection tests; 6 runtime/39 tool distributions. Shared /tmp is only 128 MB; use task-owned project .scratch/TMPDIR for wheel/venv work, never clean shared files. User confirmed no independent runner is assigned. Continue implementation and ordinary local tests; prepare disruptive suites without executing them here. Runner specification: docs/qualification-runner.md. Do not ask repeatedly or provision automatically.
+
+02-06/07/08 local backend implementation is merged. Latest ordinary core-local: 4 checks/20 tests; full core remains nonzero pending authorized off-host outage case. Do not count summary presence as completed qualification. Runner remains unassigned. Next 02-09.
