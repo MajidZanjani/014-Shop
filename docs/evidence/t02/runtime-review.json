@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "evidence_class": "inert-nix-evaluation",
+  "nixpkgs_revision": "f3a73bcf5d1c5b75a66cf35a48957e30d41d647a",
+  "components": {
+    "aardvark-dns": {
+      "drv": "/nix/store/w1jf87xb25pwij3r6wjan2ilzlbsj2gx-aardvark-dns-1.17.1.drv",
+      "licenses": [
+        "Apache-2.0"
+      ],
+      "source": {
+        "hash": "sha256-gd04T+GK/+gCWGMnNfFzCcTBPbjU8e5mWjFf7uvob38=",
+        "path": "/nix/store/4i3djz0kd8axc5f2a20hjh23sgz60n9g-source",
+        "urls": [
+          "https://github.com/containers/aardvark-dns/archive/refs/tags/v1.17.1.tar.gz"
+        ]
+      },
+      "version": "1.17.1"
+    },
+    "caddy": {
+      "drv": "/nix/store/nlr1p1ijghl97qbc7blsfbx2r17zqaav-caddy-2.11.7.drv",
+      "licenses": [
+        "Apache-2.0"
+      ],
+      "source": {
+        "hash": "sha256-6+USPwF6LzDWUjrNRL2ncxSz5KmqJM0L/6o03Lh8YD8=",
+        "path": "/nix/store/plzm4hl5q6nhmg2grldhhcarfdjl5c7y-source",
+        "urls": [
+          "https://github.com/caddyserver/caddy/archive/refs/tags/v2.11.7.tar.gz"
+        ]
+      },
+      "version": "2.11.7"
+    },
+    "conmon": {
+      "drv": "/nix/store/9m0gzc7iqirlk590ngcw3kayx231wf2x-conmon-2.2.1.drv",
+      "licenses": [
+        "Apache-2.0"
+      ],
+      "source": {
+        "hash": "sha256-YkPgpT+0cE7FCP/dcqnTy6oonPbXKiutFCGX5Lj1JB8=",
+        "path": "/nix/store/q8cg2iifqx7njms6wacki7icfj93msmb-source",
+        "urls": []
+      },
+      "version": "2.2.1"
+    },
+    "crun": {
+      "drv": "/nix/store/0nb2f9im0pzysy6p9mb74p7lznrmcqjf-crun-1.27.1.drv",
+      "licenses": [
+        "GPL-2.0-or-later"
+      ],
+      "source": {
+        "hash": "sha256-cuzw0YbbV4LU5nOP2DZghLAIYhkSY3Qf1bdm+JskHZA=",
+        "path": "/nix/store/fa4l8nlj62h61wbpk845j0w0giam6iyd-source",
+        "urls": []
+      },
+      "version": "1.27.1"
+    },
+    "fuse-overlayfs": {
+      "drv": "/nix/store/3jqmg3n7jx7gkgx43lyqbi3y3rw6vghw-fuse-overlayfs-1.17.drv",
+      "licenses": [
+        "GPL-3.0"
+      ],
+      "source": {
+        "hash": "sha256-oXSqyxe5+hsuFXKajuviqh2nKIz8Kw6rjLnb6XTF6GI=",
+        "path": "/nix/store/mzvdwz8l8sh5w0i23il6xsq1q9yxw17w-source",
+        "urls": [
+          "https://github.com/containers/fuse-overlayfs/archive/v1.17.tar.gz"
+        ]
+      },
+      "version": "1.17"
+    },
+    "netavark": {
+      "drv": "/nix/store/2va9ibp7d8vy70vki8afy6aaz314agw8-netavark-1.17.2.drv",
+      "licenses": [
+        "Apache-2.0"
+      ],
+      "source": {
+        "hash": "sha256-FdJNcHYK6Jc1dNqcUr5Ne8dv1dzlHRhcjoldiihrov8=",
+        "path": "/nix/store/10b0ylm8ia8aygdalgqah3g0ypwnqh00-source",
+        "urls": [
+          "https://github.com/containers/netavark/archive/v1.17.2.tar.gz"
+        ]
+      },
+      "version": "1.17.2"
+    },
+    "passt": {
+      "drv": "/nix/store/q62xc3mnzk94n05mz8cri0wj0xchp798-passt-2025_09_19.623dbf6.drv",
+      "licenses": [
+        "BSD-3-Clause",
+        "GPL-2.0-or-later"
+      ],
+      "source": {
+        "hash": "sha256-3krWW/QKijgZsmHuelMjpcaL8OyRqmPKC/wUvag0ZHI=",
+        "path": "/nix/store/gjki968f0hhdqfgm14anm4ni33gwhwip-passt-2025_09_19.623dbf6.tar.gz",
+        "urls": [
+          "https://passt.top/passt/snapshot/passt-2025_09_19.623dbf6.tar.gz"
+        ]
+      },
+      "version": "2025_09_19.623dbf6"
+    },
+    "podman": {
+      "drv": "/nix/store/ci2q7yamsnvrwys06gislzayan891mbc-podman-5.8.8.drv",
+      "licenses": [
+        "Apache-2.0"
+      ],
+      "source": {
+        "hash": "sha256-fl2/HyUh2EBbSw6O50H04Bltu2ZNF1Fay9XNNzKVpSE=",
+        "path": "/nix/store/9v6393i8gl0sq6vnar4p4y4fkgk0wqrq-source",
+        "urls": [
+          "https://github.com/containers/podman/archive/refs/tags/v5.8.8.tar.gz"
+        ]
+      },
+      "version": "5.8.8"
+    },
+    "systemd": {
+      "drv": "/nix/store/zdc0b6xvx8xz9pa1sqw2ja88ac0zkyrg-systemd-260.5.drv",
+      "licenses": [
+        "BSD-2-Clause",
+        "BSD-3-Clause",
+        "CC0-1.0",
+        "LGPL-2.1-or-later",
+        "LGPL-2.0-or-later",
+        "MIT",
+        "MIT-0",
+        "OFL-1.1",
+        "publicDomain"
+      ],
+      "source": {
+        "hash": "sha256-QLQad4pKkaf99k+ABOaooKi5TSX0iHH9XtMn/fy1rfE=",
+        "path": "/nix/store/s8lxzd3r71kn8f8gfj9vq4ghdzvlna7f-source",
+        "urls": [
+          "https://github.com/systemd/systemd/archive/v260.5.tar.gz"
+        ]
+      },
+      "version": "260.5"
+    },
+    "zfs": {
+      "drv": "/nix/store/82xwdnl83hvisan9d1ylpiamzxabhrmj-zfs-user-2.4.4.drv",
+      "licenses": [
+        "CDDL-1.0"
+      ],
+      "source": {
+        "hash": "sha256-ZgfHTPsNoeDq6GKP4Xiti7Keis3vIZLDaTGQjgCItIc=",
+        "path": "/nix/store/5f1hgrmd2iz4isjgsyjkrkvrdlm8n269-source",
+        "urls": [
+          "https://github.com/openzfs/zfs/archive/zfs-2.4.4.tar.gz"
+        ]
+      },
+      "version": "2.4.4"
+    }
+  },
+  "approval": "pending separate exact runtime review; old approval does not extend",
+  "compatibility": "pending actual rootless lifecycle; no host observations",
+  "license_scope": "Nix metadata only; transitive/bundled licence audit pending 02-16",
+  "images": "not built; no OCI digest asserted"
+}

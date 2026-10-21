@@ -1,0 +1,30 @@
+[Unit]
+Description=Isolated shop postgres (candidate; activation gated)
+RequiresMountsFor=/srv/shop
+
+[Container]
+Image=@POSTGRES_IMAGE@
+ContainerName=shop-postgres
+Pull=never
+Network=shop-private.network
+UserNS=keep-id:uid=10001,gid=10001
+User=10001:10001
+ReadOnly=true
+NoNewPrivileges=true
+DropCapability=all
+Tmpfs=/tmp:rw,size=32m,mode=1777
+LogDriver=k8s-file
+LogOpt=path=/srv/shop/logs/shop-postgres.log
+LogOpt=max-size=10mb
+Volume=/srv/shop/postgres:/var/lib/shop/postgres:rw
+Volume=/srv/shop/control/postgresql.conf:/var/lib/shop/config/postgresql.conf:ro
+Volume=/srv/shop/control/pg_hba.conf:/var/lib/shop/config/pg_hba.conf:ro
+[Service]
+Restart=on-failure
+RestartSec=5
+TimeoutStartSec=60
+TimeoutStopSec=40
+ExecStartPre=@GUARD@ --expected /srv/shop/control/expected.json
+
+[Install]
+WantedBy=default.target
