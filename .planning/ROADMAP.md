@@ -1,6 +1,6 @@
 # Roadmap: SLL xSPI-MC Shop
 
-**Baseline:** 2026-10-21 protected-services proposal/handoff, read in full. T01 documentation reconciled; T02 has two completed development plans retained with narrow evidence scope. New runtime/host criteria are unexecuted.
+**Baseline:** 2026-10-21 protected-services proposal/handoff, read in full. T01 documentation reconciled; T02 is executing with eight completed local slices and ten incomplete qualification/implementation records. Actual runtime/host criteria remain unexecuted.
 
 ## Scope and execution policy
 
@@ -10,7 +10,7 @@ All pre-existing services/resources in every owner/runtime/state remain protecte
 
 Public activation requires a complete already working unchanged ingress/TLS path, or later explicit authorization for the precise deferred protected action. DNS-01 cannot supply a missing traffic route. No A/AAAA before complete path proof. Existing SMTP/monitoring/backup configuration remains unchanged. Runtime fault/exhaustion/restart/restore and burst/capacity tests are off-host; mx1 checks are bounded shop functional work and read-only comparison.
 
-This request executes documentation replanning only. Earlier applicable local implementation permission remains recorded for a future execution instruction; no host/cloud/DNS/TLS/mail/bank activation is inferred. Preserve actual dependencies: T09 input gaps need not block independent T10/T11 preparation. T04 UI/fallback, T05 persistence and T06 access join at T07; do not expose private editing early. A missing off-host runner defers its runtime lane with nonzero blocked evidence, not a synthetic pass or automatic purchase.
+The October21 reset completed documentation replanning. Later user continuation authorizes repository/application implementation, ordinary local/synthetic tests and deployment-artifact preparation; no host/cloud/DNS/TLS/mail/bank activation is inferred. Preserve actual dependencies: T09 input gaps need not block independent T10/T11 preparation. T04 UI/fallback, T05 persistence and T06 access join at T07; do not expose private editing early. A missing off-host runner defers its runtime lane with nonzero blocked evidence, not a synthetic pass or automatic purchase.
 
 **Estimate:** supplied 46–74 engineer-days excluding external waiting/ongoing operations. About £0.79/month ex VAT models incremental 130 GiB object storage only; existing server/capacity, bandwidth, DNS, merchant fees, retention growth and independent drills are excluded and unverified. Full retention is never reduced to fit that model.
 
@@ -41,7 +41,7 @@ This request executes documentation replanning only. Earlier applicable local im
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md T01; complete companion proposal remains normative.
 **Estimate:** 1–2 engineer-days
 **UI hint:** no
-**Plans:** 8/18 local slices complete (00–05,09,15); 7 qualification/review pending (06–08,10–13); 3 implementation-incomplete (14,16,17). Incomplete evidence is PARTIAL.md; no full phase acceptance.
+**Plans:** 2/2 documentation plans complete. Product authority and decision-register reconciliation do not establish implementation or operational acceptance.
 
 **Success Criteria:**
 
@@ -64,7 +64,7 @@ This request executes documentation replanning only. Earlier applicable local im
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md T02; complete companion proposal remains normative.
 **Estimate:** 3–5 engineer-days
 **UI hint:** no
-**Plans:** 6/18 complete (local development evidence); 3 locally implemented/qualification pending; 9 unimplemented; 24 tasks/14 waves. 02-00/03/04/05 complete; next 02-09; 06/07/08 full core qualification pending.
+**Plans:** 8/18 local slices complete (00–05,09,15); 7 qualification/review pending (06–08,10–13); 3 implementation-incomplete (14,16,17); 24 tasks/14 waves. Incomplete evidence uses PARTIAL.md. Phase02 and BUILD acceptance remain incomplete.
 
 - [x] 02-01-PLAN.md — Concrete dependency review (Wave 1).
 - [x] 02-02-PLAN.md — Pinned native development environment (Wave 2).
@@ -394,7 +394,7 @@ Keep public bytes in shop-owned OVH Object Storage through a fixed verified HTTP
 | Phase | Plans complete | Status |
 |---|---|---|
 | 1 | 2 / 2 | Documentation reconciled |
-| 2 | 2 / 18 | Ready for 02-00; implementation not resumed |
+| 2 | 8 / 18 local slices | Executing; 7 qualification/review pending, 3 implementation-incomplete |
 | 3 | 0 / not planned | Pending |
 | 4 | 0 / not planned | Pending |
 | 5 | 0 / not planned | Pending |
