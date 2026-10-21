@@ -67,6 +67,17 @@ def execute_mutation(connection, expected, runtime_probe, statement, parameters=
 SCHEMA_LOCK = 0x53484F505343484D
 
 
+def validate_schema_statements(statements):
+    """Validate bounds/prefixes only; statements remain trusted reviewed SQL."""
+    require(type(statements) is tuple and 1 <= len(statements) <= 64)
+    for statement in statements:
+        require(type(statement) is str and len(statement.encode('utf8')) <= 65536
+                and re.match(r'\A(?:(?:CREATE|ALTER|DROP) (?:TABLE|SEQUENCE)|'
+                             r'CREATE (?:UNIQUE )?INDEX|DROP INDEX)\s',
+                             statement, re.IGNORECASE))
+    require(sum(len(s.encode('utf8')) for s in statements) <= 1048576)
+
+
 def execute_schema_batch(connection, expected, runtime_probe, statements):
     """Atomically apply bounded, trusted reviewed schema SQL to one destination.
 
@@ -80,13 +91,7 @@ def execute_schema_batch(connection, expected, runtime_probe, statements):
     """
     validate_database_identity(expected, expected)
     expected = dict(expected)
-    require(type(statements) is tuple and 1 <= len(statements) <= 64)
-    for statement in statements:
-        require(type(statement) is str and len(statement.encode('utf8')) <= 65536
-                and re.match(r'\A(?:(?:CREATE|ALTER|DROP) (?:TABLE|SEQUENCE)|'
-                             r'CREATE (?:UNIQUE )?INDEX|DROP INDEX)\s',
-                             statement, re.IGNORECASE))
-    require(sum(len(s.encode('utf8')) for s in statements) <= 1048576)
+    validate_schema_statements(statements)
     require(callable(runtime_probe) and connection.autocommit is True
             and connection.info.transaction_status == TransactionStatus.IDLE)
     with connection.transaction():
