@@ -89,6 +89,70 @@ def execute_schema_batch(connection, expected, runtime_probe, statements):
     Concurrent indexes cannot run inside the owned transaction.
     Never connect, initialize a cluster, print diagnostics or retry on failure.
     """
+    return _execute_schema_transaction(connection,expected,runtime_probe,statements)
+
+
+def execute_schema_migration(connection, expected, runtime_probe, statements, migration):
+    """Commit schema and its ledger row together; never auto-retry uncertain work.
+
+    A new explicit call may observe already_applied for the exact same three IDs.
+    Authorization validity and restore reconciliation remain caller requirements.
+    The ledger must already exist under its reviewed migration owner.
+    """
+    require(type(migration) is dict and set(migration) == {
+        'migration_id','artifact_sha256','authorization_id'})
+    for key,pattern in (('migration_id',r'[a-z][a-z0-9_-]{0,95}'),
+                        ('artifact_sha256',r'[a-f0-9]{64}'),
+                        ('authorization_id',r'[a-f0-9]{32}')):
+        require(type(migration[key]) is str and re.fullmatch(pattern,migration[key]))
+    return _execute_schema_transaction(connection,expected,runtime_probe,statements,dict(migration))
+
+
+def validate_ledger(cursor):
+    """Reject absent/adopted views, changed columns, hooks, owners or write grants."""
+    cursor.execute("""SELECT c.oid, c.relkind, c.relpersistence, c.relrowsecurity,
+        c.relforcerowsecurity, c.relhasrules, c.relispartition, c.relhassubclass,
+        c.relowner = (SELECT oid FROM pg_catalog.pg_roles WHERE rolname=current_user),
+        n.nspowner = c.relowner,
+        NOT EXISTS (SELECT FROM pg_catalog.pg_trigger WHERE tgrelid=c.oid),
+        NOT EXISTS (SELECT FROM pg_catalog.pg_inherits WHERE inhrelid=c.oid),
+        NOT EXISTS (SELECT FROM pg_catalog.aclexplode(COALESCE(c.relacl,
+            pg_catalog.acldefault('r',c.relowner))) a WHERE a.grantee<>c.relowner
+            AND a.privilege_type IN ('INSERT','UPDATE','DELETE','TRUNCATE','TRIGGER','REFERENCES')),
+        NOT EXISTS (SELECT FROM pg_catalog.aclexplode(COALESCE(n.nspacl,
+            pg_catalog.acldefault('n',n.nspowner))) a WHERE a.grantee<>n.nspowner
+            AND a.privilege_type='CREATE')
+        FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+        WHERE n.nspname='shop_control' AND c.relname='schema_migrations'""",prepare=True)
+    relation=cursor.fetchone()
+    require(relation is not None and relation[1:] == ('r','p',False,False,False,False,False,
+                                  True,True,True,True,True,True))
+    cursor.execute("""SELECT attnum,attname,pg_catalog.format_type(atttypid,atttypmod),
+        attnotnull,atthasdef,attidentity,attgenerated FROM pg_catalog.pg_attribute
+        WHERE attrelid='shop_control.schema_migrations'::pg_catalog.regclass
+        AND attnum>0 ORDER BY attnum""",prepare=True)
+    require(cursor.fetchall() == [
+        (1,'migration_id','text',True,False,'',''),
+        (2,'artifact_sha256','text',True,False,'',''),
+        (3,'authorization_id','text',True,False,'',''),
+        (4,'applied_at','timestamp with time zone',True,False,'','')])
+    cursor.execute("""SELECT contype,conkey,convalidated,condeferrable,conenforced
+        FROM pg_catalog.pg_constraint
+        WHERE conrelid='shop_control.schema_migrations'::pg_catalog.regclass
+        ORDER BY contype,conkey""",prepare=True)
+    require(cursor.fetchall() == [('n',[1],True,False,True),('n',[2],True,False,True),
+                                   ('n',[3],True,False,True),('n',[4],True,False,True),
+                                   ('p',[1],True,False,True),('u',[3],True,False,True)])
+    cursor.execute("""SELECT count(*),bool_and(indisunique AND indisvalid AND indisready
+        AND indexprs IS NULL AND indpred IS NULL AND indexrelid IN
+            (SELECT conindid FROM pg_catalog.pg_constraint WHERE
+             conrelid='shop_control.schema_migrations'::pg_catalog.regclass))
+        FROM pg_catalog.pg_index WHERE indrelid='shop_control.schema_migrations'::pg_catalog.regclass""",prepare=True)
+    require(cursor.fetchone() == (2,True))
+    return relation[0]
+
+
+def _execute_schema_transaction(connection, expected, runtime_probe, statements, migration=None):
     validate_database_identity(expected, expected)
     expected = dict(expected)
     validate_schema_statements(statements)
@@ -104,12 +168,37 @@ def execute_schema_batch(connection, expected, runtime_probe, statements):
             cursor.execute('SELECT pg_catalog.pg_try_advisory_xact_lock(%s)',
                            (SCHEMA_LOCK,), prepare=True)
             require(cursor.fetchone() == (True,))
-            for statement in statements:
-                current = runtime_probe()
-                require(current == baseline)
-                validate_database_identity(expected, observe_database(cursor, current))
-                # Extended protocol rejects stacked commands, including COMMIT.
-                cursor.execute(statement, prepare=True)
+            applied = False
+            if migration is not None:
+                # Fixed qualified relation; never CREATE IF NOT EXISTS or discover.
+                cursor.execute('LOCK TABLE shop_control.schema_migrations IN SHARE ROW EXCLUSIVE MODE',prepare=True)
+                ledger_oid=validate_ledger(cursor)
+                cursor.execute("""SELECT migration_id,artifact_sha256,authorization_id
+                    FROM shop_control.schema_migrations
+                    WHERE migration_id=%s OR authorization_id=%s""",
+                    (migration['migration_id'],migration['authorization_id']),prepare=True)
+                rows=cursor.fetchall()
+                require(not rows or rows == [(migration['migration_id'],
+                        migration['artifact_sha256'],migration['authorization_id'])])
+                applied=bool(rows)
+            if not applied:
+                for statement in statements:
+                    current = runtime_probe()
+                    require(current == baseline)
+                    validate_database_identity(expected, observe_database(cursor, current))
+                    cursor.execute(statement, prepare=True)
+                if migration is not None:
+                    current=runtime_probe()
+                    require(current == baseline)
+                    validate_database_identity(expected,observe_database(cursor,current))
+                    require(validate_ledger(cursor) == ledger_oid)
+                    cursor.execute("""INSERT INTO shop_control.schema_migrations
+                        (migration_id,artifact_sha256,authorization_id,applied_at)
+                        VALUES (%s,%s,%s,pg_catalog.transaction_timestamp())""",
+                        (migration['migration_id'],migration['artifact_sha256'],
+                         migration['authorization_id']),prepare=True)
             current = runtime_probe()
             require(current == baseline)
             validate_database_identity(expected, observe_database(cursor, current))
+    if migration is not None:
+        return 'already_applied' if applied else 'applied'

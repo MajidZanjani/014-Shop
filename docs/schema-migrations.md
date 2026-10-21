@@ -48,15 +48,52 @@ only callers using the same path; role restrictions must separately prevent
 bypasses. The caller must not interpret a digest or synthetically generated test
 record as evidence of human approval.
 
-Before this can become a migration runner, implement and qualify an atomic durable
-migration ledger binding migration ID, artifact digest and authorization ID to the
-schema commit. Handle already-applied/conflicting artifacts and uncertain commit
-outcomes without blind retry, including restore reconciliation. This library does
-not consume authorization and does not prevent replay by itself. Also pending:
-Django migration generation/recorder integration, reviewed migration-role grants,
-credentials/private connection transport, root-owned record publication, immutable
-host-side packaging and actual off-host rootless/runtime qualification. Do not
-remove the production Django connection gate until those boundaries are covered.
+The authorized path now uses `execute_schema_migration` to write a durable ledger
+row in the same transaction as the schema statements. The ledger must already
+exist as `shop_control.schema_migrations` under the exact migration owner. The
+separate review/bootstrap artifact is `ops/postgresql/schema-ledger.sql`; it is
+never automatically executed or used to adopt an existing object. A missing
+ledger fails closed. Its separately destination-guarded bootstrap procedure,
+owner/role publication and deployment authorization remain unfinished.
+
+Under the schema advisory lock, the transaction takes a bounded table lock and
+validates the ledger relation, schema/table owner, durable ordinary table shape,
+columns, nullability, constraints/indexes and lack of rules, triggers, inheritance,
+RLS and nonowner write/create grants. PostgreSQL18 not-null constraints are checked
+explicitly against the [official pg_constraint catalog](https://www.postgresql.org/docs/18/catalog-pg-constraint.html).
+The same relation OID and contract must survive the reviewed DDL; replacing the
+ledger with an identically shaped empty table is rejected. These checks do not
+protect history against a privileged owner or prove all inherited-role rights.
+Production role/grant qualification is still required.
+
+For a new migration, the transaction inserts migration ID, artifact digest,
+authorization ID and a database transaction timestamp, then performs its final
+runtime/authorization/SQL check and commits. A failure rolls back transactional
+DDL and the ledger insert together. Migration ID is the primary key and
+authorization ID is independently unique. A new explicit call with the exact same
+three values returns `already_applied` without executing the artifact statements;
+a different digest/authorization for that migration, or reused authorization for
+another migration, is a conflict. The authorization must still be valid even for
+a repeated call. The library never automatically retries an uncertain commit.
+`already_applied` reports the ledger decision, not a schema-drift audit or proof
+that external effects remain intact.
+
+An uncertain result requires a separately initiated, authorized reconciliation
+against the same positively identified database and original artifact. The local
+test repeats a call after synthetically discarding its result; it does not inject
+a real transport/process failure. After restore, do not infer safety from the
+restored ledger alone: reconcile external evidence and effects under the recovery
+barrier before exposing access or authorizing new work. Actual failure/restore
+qualification remains pending on the independent off-host runner.
+
+Django migration generation/recorder integration, operator command/credential and
+private transport, root-owned record publication, immutable host-side packaging,
+ledger bootstrap/role qualification and actual off-host runtime qualification are
+still pending. Direct lower-level `execute_schema_batch` remains an internal
+untracked schema primitive for separately authorized bootstrap/tests; deployment
+migrations must use the authorized ledger path. No deployment CLI is supplied.
+Do not remove the production Django connection gate before those boundaries are
+covered.
 
 Local tests use disposable PostgreSQL target/decoy clusters and synthetic records.
 They adapt only the fixed PGDATA comparison to owned scratch paths. They do not

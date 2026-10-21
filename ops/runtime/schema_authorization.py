@@ -1,7 +1,7 @@
 """Host-side exact-byte schema admission; no CLI, record issuance or retries.
 
-This does not consume authorization or supply a migration ledger. Do not expose
-as a deployment command until atomic replay/ledger handling is implemented.
+Schema and ledger commit atomically; restore reconciliation, role qualification
+and deployment command integration remain pending. No automatic retry.
 """
 from datetime import datetime, timezone
 import hashlib
@@ -9,7 +9,7 @@ import json
 import re
 from control import load_control, unique_fields
 from guard import require, validate_database_identity
-from database import execute_schema_batch, validate_schema_statements
+from database import execute_schema_migration, validate_schema_statements
 import process_probe
 
 
@@ -50,7 +50,7 @@ def read_artifact(data, authorization):
 
 
 def execute_authorized_schema(connection, zfs, pg_control, data):
-    """Library integration only; production readiness and replay control pending."""
+    """Library integration only; production readiness/restore reconciliation pending."""
     authorization = load_authorization()
     statements = read_artifact(data,authorization)
     approved = process_probe.load_record()
@@ -61,4 +61,5 @@ def execute_authorized_schema(connection, zfs, pg_control, data):
         current = process_probe.load_record()
         require(current == approved)
         return process_probe.probe(current,zfs,pg_control)
-    return execute_schema_batch(connection,authorization['database'],fresh,statements)
+    return execute_schema_migration(connection,authorization['database'],fresh,statements,
+        {key:authorization[key] for key in ('migration_id','artifact_sha256','authorization_id')})

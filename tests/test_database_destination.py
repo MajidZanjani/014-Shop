@@ -49,6 +49,9 @@ class DatabaseDestinationTests(unittest.TestCase):
         self.validation = patch.object(database, 'validate_database_identity', side_effect=local_validate)
         self.validation.start()
         self.addCleanup(self.validation.stop)
+        for pg in (self.target,self.decoy):
+            pg.sql('DROP SCHEMA IF EXISTS shop_control CASCADE')
+            pg.sql((ROOT/'ops/postgresql/schema-ledger.sql').read_text())
         self.target.sql('DELETE FROM public.destination_probe')
         self.decoy.sql('DELETE FROM public.destination_probe')
 
@@ -284,7 +287,7 @@ class DatabaseDestinationTests(unittest.TestCase):
              patch.object(auth,'load_authorization',side_effect=loader or (lambda:auth.validate_authorization(authorization))), \
              patch.object(auth.process_probe,'load_record',return_value=record or {'database':dict(self.actual)}), \
              patch.object(auth.process_probe,'probe',return_value=dict(self.runtime)):
-            auth.execute_authorized_schema(self.connection(),'synthetic-zfs','synthetic-pg-control',data)
+            return auth.execute_authorized_schema(self.connection(),'synthetic-zfs','synthetic-pg-control',data)
 
     def test_authorized_exact_schema_artifact_executes(self):
         self.addCleanup(self.target.sql,'DROP TABLE IF EXISTS public.schema_guard_probe')
@@ -362,3 +365,118 @@ class DatabaseDestinationTests(unittest.TestCase):
                 auth.execute_authorized_schema(self.connection(),'synthetic-zfs','synthetic-pg-control',data)
             self.assertEqual(observed.call_count,2)
         self.assertEqual(self.schema_exists(),'0')
+
+
+    def ledger_count(self):
+        return self.target.sql('SELECT count(*) FROM shop_control.schema_migrations')
+
+    def test_migration_ledger_commits_and_repeated_call_skips_ddl(self):
+        self.addCleanup(self.target.sql,'DROP TABLE IF EXISTS public.schema_guard_probe')
+        self.assertEqual(self.authorized_schema(),'applied')
+        self.assertEqual(self.ledger_count(),'1')
+        # New explicit connection/request after a synthetically lost caller result.
+        # A repeated CREATE TABLE would fail if the ledger did not skip the DDL.
+        self.assertEqual(self.authorized_schema(),'already_applied')
+        self.assertEqual(self.ledger_count(),'1')
+        self.assertEqual(self.target.sql(
+            "SELECT migration_id||'|'||authorization_id FROM shop_control.schema_migrations"),
+            'synthetic_001|'+'a'*32)
+
+    def test_migration_ledger_conflicting_digest_or_authorization_denied(self):
+        import hashlib
+        self.addCleanup(self.target.sql,'DROP TABLE IF EXISTS public.schema_guard_probe')
+        data,authority=self.schema_authority()
+        self.assertEqual(self.authorized_schema(data,authority),'applied')
+        changed=data+b' '
+        cases=((changed,dict(authority,artifact_sha256=hashlib.sha256(changed).hexdigest())),
+               (data,dict(authority,authorization_id='b'*32)))
+        for artifact,approval in cases:
+            with self.subTest(approval=approval['authorization_id']),self.assertRaises(ValueError):
+                self.authorized_schema(artifact,approval)
+        self.assertEqual(self.ledger_count(),'1')
+
+    def test_migration_ledger_authorization_cannot_apply_another_migration(self):
+        import json
+        self.addCleanup(self.target.sql,'DROP TABLE IF EXISTS public.schema_guard_probe')
+        self.assertEqual(self.authorized_schema(),'applied')
+        data=json.dumps({'schema_version':1,'migration_id':'synthetic_002',
+             'statements':['ALTER TABLE public.schema_guard_probe ADD COLUMN unexpected integer']}).encode()
+        _,authority=self.schema_authority(data)
+        authority['migration_id']='synthetic_002'
+        with self.assertRaises(ValueError):self.authorized_schema(data,authority)
+        self.assertEqual(self.ledger_count(),'1')
+        self.assertEqual(self.target.sql("SELECT count(*) FROM information_schema.columns "
+            "WHERE table_name='schema_guard_probe' AND column_name='unexpected'"),'0')
+
+    def test_migration_ledger_and_schema_roll_back_after_later_ddl_failure(self):
+        import json
+        data=json.dumps({'schema_version':1,'migration_id':'synthetic_001','statements':[
+             'CREATE TABLE public.schema_guard_probe(id integer)',
+             'ALTER TABLE public.absent_ledger_test ADD COLUMN value integer']}).encode()
+        _,authority=self.schema_authority(data)
+        with self.assertRaises(psycopg.errors.UndefinedTable):self.authorized_schema(data,authority)
+        self.assertEqual(self.schema_exists(),'0')
+        self.assertEqual(self.ledger_count(),'0')
+
+    def test_migration_precommit_denial_rolls_back_ledger_insert(self):
+        data,authority=self.schema_authority();calls=[]
+        def loader():
+            calls.append(True)
+            if len(calls)==5:raise FileNotFoundError('synthetic final revocation')
+            return authority
+        with self.assertRaises(FileNotFoundError):self.authorized_schema(data,authority,loader=loader)
+        self.assertEqual(len(calls),5)
+        self.assertEqual(self.schema_exists(),'0')
+        self.assertEqual(self.ledger_count(),'0')
+
+    def test_migration_requires_preexisting_ledger_without_adoption(self):
+        self.target.sql('DROP SCHEMA shop_control CASCADE')
+        with self.assertRaises(psycopg.errors.InvalidSchemaName):self.authorized_schema()
+        self.assertEqual(self.schema_exists(),'0')
+        self.assertEqual(self.target.sql("SELECT count(*) FROM pg_namespace WHERE nspname='shop_control'"),'0')
+
+    def test_migration_rejects_changed_ledger_shape_hooks_grants_and_indexes(self):
+        changes=(
+            'ALTER TABLE shop_control.schema_migrations ADD COLUMN unexpected integer',
+            "ALTER TABLE shop_control.schema_migrations ALTER COLUMN applied_at SET DEFAULT now()",
+            'ALTER TABLE shop_control.schema_migrations ENABLE ROW LEVEL SECURITY',
+            'ALTER TABLE shop_control.schema_migrations DROP CONSTRAINT schema_migrations_authorization_id_key',
+            'GRANT INSERT ON shop_control.schema_migrations TO PUBLIC',
+            'GRANT CREATE ON SCHEMA shop_control TO PUBLIC',
+            'CREATE INDEX unexpected_ledger_idx ON shop_control.schema_migrations(applied_at)',
+            'CREATE TRIGGER unexpected_ledger_trigger BEFORE UPDATE ON shop_control.schema_migrations '
+            'FOR EACH ROW EXECUTE FUNCTION pg_catalog.suppress_redundant_updates_trigger()')
+        for change in changes:
+            self.target.sql('DROP SCHEMA shop_control CASCADE')
+            self.target.sql((ROOT/'ops/postgresql/schema-ledger.sql').read_text())
+            self.target.sql(change)
+            with self.subTest(change=change),self.assertRaises(ValueError):self.authorized_schema()
+            self.assertEqual(self.schema_exists(),'0')
+            self.assertEqual(self.ledger_count(),'0')
+
+    def test_migration_rejects_ledger_alteration_in_reviewed_batch(self):
+        import json
+        data=json.dumps({'schema_version':1,'migration_id':'synthetic_001','statements':[
+             'CREATE TABLE public.schema_guard_probe(id integer)',
+             'ALTER TABLE shop_control.schema_migrations ADD COLUMN unexpected integer']}).encode()
+        _,authority=self.schema_authority(data)
+        with self.assertRaises(ValueError):self.authorized_schema(data,authority)
+        self.assertEqual(self.schema_exists(),'0')
+        self.assertEqual(self.ledger_count(),'0')
+        self.assertEqual(self.target.sql("SELECT count(*) FROM information_schema.columns "
+            "WHERE table_schema='shop_control' AND column_name='unexpected'"),'0')
+
+
+    def test_migration_rejects_replacement_ledger_even_with_same_shape(self):
+        import json
+        original_oid=self.target.sql("SELECT 'shop_control.schema_migrations'::regclass::oid")
+        bootstrap=(ROOT/'ops/postgresql/schema-ledger.sql').read_text()
+        create='CREATE TABLE'+bootstrap.split('CREATE TABLE',1)[1].split(';',1)[0]
+        data=json.dumps({'schema_version':1,'migration_id':'synthetic_001','statements':[
+            'CREATE TABLE public.schema_guard_probe(id integer)',
+            'DROP TABLE shop_control.schema_migrations',create]}).encode()
+        _,authority=self.schema_authority(data)
+        with self.assertRaises(ValueError):self.authorized_schema(data,authority)
+        self.assertEqual(self.schema_exists(),'0')
+        self.assertEqual(self.ledger_count(),'0')
+        self.assertEqual(self.target.sql("SELECT 'shop_control.schema_migrations'::regclass::oid"),original_oid)
