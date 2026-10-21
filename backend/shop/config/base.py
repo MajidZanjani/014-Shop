@@ -18,3 +18,15 @@ DATABASES = {'default': {
     'CONN_MAX_AGE': 0,
     'OPTIONS': {'connect_timeout': 2, 'options': '-c statement_timeout=1000'},
 }}
+
+LOGGING = {
+    'version': 1, 'disable_existing_loggers': False,
+    'formatters': {'safe': {'()': 'shop.core.logging.SafeFormatter'}},
+    'handlers': {'safe': {'class': 'logging.StreamHandler', 'formatter': 'safe'}},
+    'root': {'handlers': ['safe'], 'level': 'INFO'},
+    'loggers': {
+        'django': {'handlers': [], 'propagate': True, 'level': 'INFO'},
+        'django.server': {'handlers': [], 'propagate': True, 'level': 'INFO'},
+        'shop': {'handlers': [], 'propagate': True, 'level': 'INFO'},
+    },
+}

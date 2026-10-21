@@ -156,6 +156,10 @@ def qualify(faults=False):
                                 '-o', f"-k {pg.socket} -h ''", '-w', '-t', '15', 'start')
                         require(get(port, '/health/ready')[0] == 200, 'scratch DB recovery failed')
                         tests += 1
+                log_output = (scratch / 'gunicorn.log').read_text()
+                require('"event":"health.ready"' in log_output and '"event":"health.live"' in log_output,
+                        'real request safe events missing')
+                checks += 1
                 marker = 'CORE_PASS' if faults else 'CORE_LOCAL_PASS'
                 print(f'{marker} checks={checks} tests={tests} duration_seconds={time.monotonic()-started:.3f}')
                 if not faults:
@@ -168,7 +172,8 @@ def main():
     parser.add_argument('--runner-authorization', type=Path)
     args = parser.parse_args()
     if args.lane == 'adapters':
-        raise ValueError('adapter producer not implemented until 02-11')
+        require((ROOT / 'backend/shop/adapters/tests.py').is_file(), 'required adapter producer missing until 02-11')
+        raise ValueError('adapter execution wiring pending 02-11; no empty producer may pass')
     if args.lane == 'core':
         runner_authorization(args.runner_authorization)
     elif args.runner_authorization:

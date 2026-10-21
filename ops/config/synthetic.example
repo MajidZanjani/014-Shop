@@ -1,0 +1,9 @@
+# Nonsecret example; caller supplies a newly owned scratch PostgreSQL identity.
+SHOP_ENV=synthetic
+DJANGO_SETTINGS_MODULE=shop.config.synthetic
+DEBUG=false
+LIVE_PAYMENTS_ENABLED=false
+PAYMENT_ADAPTER=fake
+MAIL_ADAPTER=fake
+STORAGE_ADAPTER=fake
+# DATABASE_NAME/USER/HOST/PORT come from scripts/dev_postgres.py, not existing services.
