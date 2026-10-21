@@ -11,7 +11,7 @@
     {
       "number": "2",
       "name": "Reproducible application and deployment skeleton",
-      "status": "pending"
+      "status": "in_progress"
     },
     {
       "number": "3",
@@ -55,7 +55,7 @@
     },
     {
       "number": "11",
-      "name": "OVH deployment, Route 53, dedicated TLS and static publication",
+      "name": "Protected-host qualification, shop-only deployment and conditional public activation",
       "status": "pending"
     },
     {
@@ -75,9 +75,9 @@
     }
   ],
   "next": {
-    "command": "$gsd-resume-work",
-    "label": "Resume user-paused Phase 2 wave 3",
-    "reason": "Plans02-01/02complete;02-03/05stopped cleanly beforeedits;15plansremain."
+    "command": "$gsd-execute-phase 2",
+    "label": "Run current-source migration 02-00 before remaining Phase 2",
+    "reason": "October 21 replan complete; selected mx1 rootless runtime replaces old cloud deployment; documentation only this turn."
   },
-  "updated_at": "2026-10-20T14:04:13.032Z"
+  "updated_at": "2026-10-21T06:10:29Z"
 }

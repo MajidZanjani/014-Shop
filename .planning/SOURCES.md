@@ -1,35 +1,23 @@
-# Planning Sources
+# Planning Sources — current October 21 authority
 
-## Current authority
-
-The user's 2026-10-20 instruction replaces the complete active planning baseline with the following two files. The embedded product is the sole product-definition source; the proposal supplies architecture and the handoff supplies task acceptance. Subsequent explicit user scope governs authorization. Report material source conflicts; do not revive superseded inputs.
+The user explicitly requested this replan on 2026-10-21. The two October 21 files supersede earlier architectural/deployment instructions; the embedded product remains the sole product-definition source. Latest explicit SLL scope controls authorization. Both files were read completely, including all 1,798 proposal lines and 330 handoff lines and the complete product appendix.
 
 | Source | Lines | UTF-8 bytes | SHA-256 |
 |---|---:|---:|---|
-| `SLL-xSPI-MC-Shop-Proposal-2026-10-20.md` | 1783 | 201117 | `d8db6b54e3e887ca940f0faff0949ca1a1fa2ce24c26075aabd78925f0f60356` |
-| `SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-20.md` | 264 | 42140 | `60e6af0fce6db7412408e04eceb0283881585a295f45cbba0607c4bde9f4227e` |
+| `SLL-xSPI-MC-Shop-Proposal-2026-10-21.md` | 1798 | 222085 | `26a7359624ea4a9625005b39a3fa43beff01c31c830e3b6f122c1ad7417787d0` |
+| `SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md` | 330 | 70623 | `3ff0ecffe4432514bab4a29d500fff05c5537a79c0a8fa494faeb8dfda1c6fac` |
 | `docs/product-source/SLL_xSPI_MC_Product_Page.md` | 449 | 23969 | `562dc4015c62f165df5df3e9ae1aab26b8102385d9dc76a556d5965ddc1a0263` |
 
-Both October 20 documents were read completely, including the source appendix. Proposal and embedded source hashes match the package identities recorded in the handoff. The source's final newline is preserved. The separate third source file was extracted from the proposal, not obtained from another authority.
+The proposal identity matches the handoff. Bounded extraction inside the outer four-backtick fence equals the existing 23,969-byte product exactly, including its final newline. Source files and product bytes are unchanged by this replan. Software/tariff research remains dated October 20; capacity evidence and hosting selection are operator-supplied October 21; hardware/ingress context is September 3. None is a fresh host inspection or current account quotation.
 
-## Evidence policy
+## Supersession and retained evidence
 
-This is source-based planning. Supplied research is recorded as dated input, with no new live vendor/site/bank/account audit. Exact dependency versions/licences/support must be verified in T02; selected merchant capabilities in T09; current quote/stock/IPv4/disk/billing/DNS/TLS/ACL behavior in T11; retained storage/recovery in T12; release approvals in T14. No legal conclusion or provider performance guarantee is inferred.
+Old planning/paused instructions are archived at docs/archive/2026-10-20-planning and excluded from active requirements. Git history preserves originals. Product taxonomy, source bytes, commerce, access, payment and ledger/recovery invariants are unchanged. New mx1 hosting and protection criteria must be proved; earlier matching task numbers do not prove compliance.
 
-The source is a written working draft, not a live-form audit. Counts are logical definitions and source rows: 3 vendors, 13 ordered families, 13 controls with repeated host rows, 19 business checkout groups, two helpers, four IP declarations and one independent marketing control. It supplies no fixed country list or tax-status enum. Price/schema/API examples are incomplete illustrative contracts. Missing price, recurrence, coverage, access or rights stays pending.
+Plans 02-01/02-02 retain evidence only for the exact approved artifact set and isolated development toolchain/PostgreSQL, not rootless deployment or host enforcement. Artifact approval digest 136610b07612762d390b3b3c234ff1ef3f6dc6b0e44a69a2abc646d9106b51bd remains applicable to those bytes only. New runtime/image components require their own provenance/compatibility/licence evidence; no repeat approval of unchanged artifacts is requested.
 
-## Traceability
+The historical docs/product-source/verify_t01.py hard-codes the October 20 filenames/hashes, old proposal line locators, decision statuses and old evidence schema. It is not current verification. Plan 02-00 explicitly migrates it and its controls before the next implementation work; this documentation task does not edit executable code or claim it passes. Current replan checks are recorded in REPLAN-VERIFICATION.md.
 
-SOURCE-MATRIX.md preserves exact option/control/declaration and reset inventories with requirement links. REQUIREMENTS.md gives atomic IDs and one primary phase each. ROADMAP.md retains exact new handoff outputs, acceptance and evidence. docs/decisions.md is the single working P-01–P-12 register. Implementation evidence is planned under docs/implementation-evidence.md with per-task status, code/catalog/config revisions, commands/observations, environment, unresolved decisions and exact affected operations. Observed T01 documentation results are now recorded in docs/implementation-evidence.md; no later implementation results are claimed.
+## Evidence and traceability
 
-## Reset scope
-
-All old .planning contents were removed before regeneration; docs/decisions.md was replaced and generated AGENTS.md context refreshed. No legacy source names, trial inventories/profiles or D-register carry active authority. The two supplied files are unchanged. Prior planning is recoverable from Git history and a temporary /tmp snapshot, outside active planning. No application or external state was changed.
-
-## Reproducible local provenance check
-
-Run `python3 docs/product-source/verify_t01.py source` from this checkout. It verifies raw package identities, bounded appendix equality and family-1-1 source/requirement locators. Passing proves documentation identity, not approval or live acceptance.
-
-## T01 execution evidence
-
-See [observed T01 record](../docs/implementation-evidence.md). Reproduce local checks with python3 docs/product-source/verify_t01.py all and python3 docs/product-source/verify_t01.py self-check. The former checks source/scope/inventory/decisions/evidence consistency; the latter asserts in-memory defect rejection with valid controls and unchanged canonical bytes. These checks do not independently attest to the honesty of recorded observations. All P decisions and manual flagged judgments remain pending; T02–T14 remain unexecuted.
+REQUIREMENTS.md maps 80 atomic requirements exactly once; ROADMAP.md retains all T01–T14 dependencies and verbatim handoff outputs/acceptance/evidence. SOURCE-MATRIX.md preserves exact product inventories and adds hosting deltas. docs/decisions.md is the single P register: P-10 hosting selected, qualification pending; all other affected approvals remain pending. Distinguish local/synthetic, bank sandbox, actual Object Storage, current mx1 observations, independent off-host drills and production. No remote audit, purchase, DNS/TLS issuance, message, bank action or deployment occurred.

@@ -1,6 +1,6 @@
 # Features: source-derived scope
 
-Source: October 20 proposal and exact embedded product; no additional market research.
+Source: October 21 proposal and exact embedded product; no additional market research.
 
 | Capability | Role | Complexity/dependencies |
 |---|---|---|

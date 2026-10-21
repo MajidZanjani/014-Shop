@@ -1,13 +1,13 @@
 {
   "version": "1.0",
-  "timestamp": "2026-10-20T14:04:13.032Z",
+  "timestamp": "2026-10-21T06:10:29Z",
   "phase": "02",
   "phase_name": "Reproducible application and deployment skeleton",
   "phase_dir": ".planning/phases/02-reproducible-application-and-deployment-skeleton",
-  "plan": 3,
+  "plan": "00",
   "task": 1,
-  "total_tasks": 23,
-  "status": "paused",
+  "total_tasks": 24,
+  "status": "ready",
   "completed_tasks": [
     {
       "id": "02-01-01",
@@ -30,18 +30,18 @@
   ],
   "remaining_tasks": [
     {
-      "id": "02-03",
-      "name": "Static frontend",
+      "id": "02-00",
+      "name": "Current-source verification migration",
       "status": "not_started"
     },
     {
-      "id": "02-05",
-      "name": "Python runtime/tool hash locks",
+      "id": "02-03,02-05",
+      "name": "Static frontend/Python locks after current-source migration",
       "status": "not_started"
     },
     {
       "id": "02-04,02-06..02-17",
-      "name": "Remaining dependency-ordered Phase2 plans",
+      "name": "Revised dependency-ordered Phase 2 slices",
       "status": "not_started"
     }
   ],
@@ -59,44 +59,28 @@
       "decision": "Native source builds use reviewed hashes and supported pinned Nixpkgs",
       "rationale": "Actual shell/real PostgreSQL acceptance passed; preserve warm store outputs",
       "phase": "02"
-    }
-  ],
-  "background_workers": [
-    {
-      "plan": "02-03",
-      "wave": "3",
-      "worktree": "/home/claude/project/014-Shop/.claude/worktrees/agent-p02-03-1792504881",
-      "manifest": "/tmp/xspi-phase2-wave3-worktrees.json",
-      "log": "/home/claude/project/014-Shop/.claude/worktrees/agent-p02-03-1792504881.worker.log",
-      "pid": 277738,
-      "identity": "agent-p02-03-1792504881",
-      "base": "2c64d9ba3e5a227df6424b8b8c30355a26e2c99c",
-      "pause_signal": "SIGINT",
-      "head": "2c64d9ba3e5a227df6424b8b8c30355a26e2c99c",
-      "status": [],
-      "recent_commits": []
     },
     {
-      "plan": "02-05",
-      "wave": "3",
-      "worktree": "/home/claude/project/014-Shop/.claude/worktrees/agent-p02-05-1792504881",
-      "manifest": "/tmp/xspi-phase2-wave3-worktrees.json",
-      "log": "/home/claude/project/014-Shop/.claude/worktrees/agent-p02-05-1792504881.worker.log",
-      "pid": 277878,
-      "identity": "agent-p02-05-1792504881",
-      "base": "2c64d9ba3e5a227df6424b8b8c30355a26e2c99c",
-      "pause_signal": "SIGINT",
-      "head": "2c64d9ba3e5a227df6424b8b8c30355a26e2c99c",
-      "status": [],
-      "recent_commits": []
+      "decision": "Existing mx1 rootless Podman selected; all pre-existing resources protected",
+      "rationale": "October 21 sources and explicit user replan instruction; no generic protected-service exception",
+      "phase": "02"
     }
   ],
-  "uncommitted_files": [
-    " M .planning/STATE.md",
-    " M .planning/phases/02-reproducible-application-and-deployment-skeleton/.continue-here.md",
-    " M .planning/state.json",
-    "?? .planning/HANDOFF.json"
+  "background_workers": [],
+  "uncommitted_files": [],
+  "next_action": "Future execution: first 02-00, then 02-03/05 with complete October 21 context. Reconcile old retained worktree manifest/clean base through approved GSD isolation before any dispatch; no old worker is active. No host/protected/external operations authorized by this handoff.",
+  "context_notes": "October 21 protected-services update is sole current architecture authority. Read 02-CONTEXT.md, SOURCES.md, REQUIREMENTS.md and ROADMAP.md; archived October 20 planning is historical only. Hosting selected, qualification pending; no new runtime/host compliance credited.",
+  "retained_historical_worktrees": [
+    {
+      "worktree": ".claude/worktrees/agent-p02-03-1792504881",
+      "base": "2c64d9ba3e5a227df6424b8b8c30355a26e2c99c",
+      "status": "retained clean historical context; do not dispatch stale prompt"
+    },
+    {
+      "worktree": ".claude/worktrees/agent-p02-05-1792504881",
+      "base": "2c64d9ba3e5a227df6424b8b8c30355a26e2c99c",
+      "status": "retained clean historical context; do not dispatch stale prompt"
+    }
   ],
-  "next_action": "Resume only on user instruction. Reconcile retained wave3 clean worktrees against their base; no task commits or summaries exist. Reuse through fresh continuation or clean empty branches via existing manifest before redispatch. Never dispatch duplicates. Then execute02-03 and02-05.",
-  "context_notes": "User explicitly invoked gsd-pause-work. Both executor groups SIGINT stopped; lifecycle exit130 recorded, NOT completed plans. Source/compiler/build failures documented in handoff. Phase1 remains accepted; all business P decisions pending."
+  "uncommitted_files_policy": "Replan committed as documentation; inspect git status on resume rather than replaying old handoff paths."
 }

@@ -13,7 +13,7 @@ Turn an exact reviewed xSPI-MC configuration or support purchase into attributab
 - **Customer:** Business/professional engineering purchasers and their explicitly authorized purchasing, invoice and technical contacts.
 - **Revenue model:** Reviewed annual/perpetual IP licence scopes plus separately purchased ten-hour support packages; hosted payments of approved direct or quoted orders.
 - **Success metric:** Verified end-to-end purchase/delivery and support usage journeys with reconstructable evidence and no duplicate financial, licence or ledger effects; no sales target supplied.
-- **Strategy notes:** October 20 proposal and handoff, identified in SOURCES.md; P-01–P-12 remain commercial/operating inputs.
+- **Strategy notes:** October 21 proposal and handoff, identified in SOURCES.md; P-10 hosting direction is selected, with qualification and other commercial/operating inputs pending.
 
 ## Requirements
 
@@ -38,39 +38,45 @@ Automatic recurring debits, a general organization-account portal, automatic pro
 
 ## Context
 
-Replanned from the two October 20 files at the user's explicit request on 2026-10-20. All prior active planning and the old decision register were replaced; no earlier task number implies completion. The exact embedded product bytes were extracted and hash-verified. The source specifies 13 logical configuration controls, 19 business-checkout groups, two convenience helpers, four IP declarations and a separate optional marketing control. It is a working draft, not a live-form audit. Pricing/schema/API examples are illustrative and require complete validation before implementation.
+Replanned on 2026-10-21 from the complete protected-services proposal/handoff. The exact product bytes and commerce rules are unchanged. Earlier planning is archived outside active planning; retained development evidence is reviewed for applicability rather than credited by task number. This request changes planning/documentation only. No application or external operations are executed.
 
 Retain the existing authorized workflow preferences (autonomous planning, fine granularity, independent parallel work, documentation commits/sync and current-model inheritance). This planning pass is performed inline. Use supplied research as dated input; exact dependencies, tariffs, account capabilities and legal/merchant facts are verified at their affected phases. No live external audit or application tests are claimed.
 
 ## Constraints
 
 - **Architecture:** Static Astro Content Collections + selected React islands; Django LTS/Gunicorn + PostgreSQL and one leased database outbox worker; Django owns `/purchase/simple/`. No request-time Astro/Node service or mandatory Redis/Celery/CMS/IdP.
-- **Authority:** `SLL_xSPI_MC_Product_Page.md` embedded in the October 20 proposal is the sole product-definition source. One Markdown/YAML catalog compiles immutable public/private revisions; protected approvals govern offers. Admin cannot create a competing catalog.
+- **Authority:** `SLL_xSPI_MC_Product_Page.md` embedded in the October 21 proposal is the sole product-definition source. One Markdown/YAML catalog compiles immutable public/private revisions; protected approvals govern offers. Admin cannot create a competing catalog.
 - **Product:** `sll-xspi-mc`, `sll-xspi-mc-support-10h`, profile `sll-xspi-mc-v1`; exactly three vendors and thirteen ordered families. One vendor and quantity one per configured IP line; support has real positive package quantity.
 - **Rights and money:** RDP is Altera-only; higher volume requires quotation. EUR is draft display/collection intent. Unknown rates, recurrence, coverage, rights, access or terms remain null/pending and disable affected live offers. Five-plus-five allowances and €50 are provisional; no universal MAC rule.
 - **Private data:** Encrypt/version host bindings, mask ordinary summaries, and authorize each resource. Keep raw host IDs/keys, business/tax details and bearer links out of public artifacts, URLs, ordinary logs and browser persistence. Staff MFA covers every privileged route.
 - **Durability:** Archive recoverable snapshots before bank dispatch, document issue, delivery activation, support-credit spendability and chargeable work; archive actual support completion before final statement publication. Prepared evidence is not completion. An uncertain bank operation cannot authorize a blind retry.
 - **Support:** Each paid/accepted package grants exactly 36,000 integer seconds once with no expiry. Reservations prevent competing spend; corrections reverse/replace; statements use committed ledger revisions. Support never renews IP rights.
-- **Infrastructure:** New isolated OVH B2-7 GRA11 monthly after quote/image/workload qualification; B3-8 hourly fallback. Native hardened NixOS/systemd preferred; one approved Podman alternative if necessary. Separate 50 GB DB volume, `gra` public/private objects and `sbg` recovery/evidence with distinct credentials.
-- **Domains:** Customer `https://shop.xspi.pro`; proposed staff `https://shop-admin.xspi.pro`; Route 53 `xspi.pro` authority unverified. Dedicated new certificate/key per hostname, explicit Let's Encrypt, HTTP-01/TLS-ALPN-01 first; conditional tightly scoped DNS-01 only if needed. Existing services/keys/DNS outside scope.
-- **Recovery:** Proposed five-minute WAL archive timeout, 35-day DB recovery window, 15-minute DB RPO and four-hour technical restore after operator start. Measure full safe reopening separately. Block effects before restored service exposure; invalidate sessions/challenges, reconcile revocations and consumed MFA codes before access.
+- **Infrastructure:** Existing OVH dedicated host `mx1`; NixOS-declared rootless Podman Quadlet/user-systemd under new proposed `shopsvc`, directly on the host, outside `claude-dev`. Separate Django, one worker, new shop PostgreSQL cluster and internal Caddy containers; independently owned backup jobs. No new production compute/block/IP rental or automatic paid fallback.
+- **Domains:** Customer `https://shop.xspi.pro`; proposed staff `https://shop-admin.xspi.pro`; Route 53 authority unverified. Existing public ingress/TLS stays unchanged: prove a complete existing route/certificate lifecycle or defer activation with exact service/action proposal. Only later explicit service/action authorization can permit a protected change. New shop issuer is Let’s Encrypt; conditional DNS-01 cannot supply a missing traffic path. No A/AAAA before end-to-end path proof.
+- **Recovery:** Independent off-host complete-pool-loss rehearsal, without production rpool or host-only secrets. Five-minute WAL timeout, 35-day DB window, 15-minute DB RPO and four-hour operator-start technical restore are proposed targets; include target provisioning/traffic timing and measure safe reopening separately. Block effects before exposure; reconcile money/acceptance/documents/licences/support and invalidate restored access/MFA state.
 - **Evidence:** Real PostgreSQL for concurrency; label local/synthetic, selected-bank sandbox, actual OVH and production evidence separately. No invented approvals, compatibility, legal or provider guarantees.
-- **Authorization:** This reset authorizes reading and replacing planning/documentation only. Application implementation, cloud spending/billing, DNS/TLS issuance, real mail, bank operations and production cutover require their applicable scope.
-- **Estimates:** Supplied 46–74 engineer-days excludes external waiting and ongoing operations. Supplied modeled production £27.20/month ex VAT, £29.24 with temporary staging or £38.76 with permanent staging excludes DNS and other stated costs; these are unverified account estimates, not current quotes.
+- **Authorization:** This user request authorizes documentation replanning only; prior applicable local implementation authorization is retained for a future execution instruction. Source deployment designs do not grant host access or a protected-service exception. Real mail, bank, DNS/certificates, allowed host mutations and public activation require their actual scoped authority; generic deployment approval never overrides protection.
+- **Estimates:** Supplied 46–74 engineer-days excludes external waiting/ongoing operations. About £0.79/month ex VAT is the dated illustrative incremental OVH cost for 130 GiB objects only; existing dedicated-server bill/capacity, bandwidth, DNS, merchant costs, retention growth and independent drills remain excluded. No permanent staging VM. Qualify real storage usage and tariffs; never prune required evidence to fit the model.
+
+- **Resources:** Proposed aggregate shop CPUQuota=200%, MemoryHigh=6G/MemoryMax=8G, bounded tasks/concurrency at a verified host-controlled shop ancestor including payloads/conmon/network helpers/backups. CPU quota is time, not exclusive cores. Preserve existing cpusets, shared slices/delegation and every guest/service allocation.
+
+- **Storage:** Proposed local ZFS 80 GiB aggregate shop cap including descendants/snapshots, with 50 GiB PostgreSQL data/index/WAL allowance. Account for rootless GraphRoot/images/volumes/temp/logs/certificates/spool; preserve shared journal, reserves, snapshots and disks. `gra` public/private objects; independent off-host `sbg` backups/evidence/artifacts with scoped credentials.
+
+- **Protection:** Inventory every pre-existing rootful/rootless/native/VM resource in all states read-only before the first mx1 deployment write. Unknown ownership is protected. Require docs/host-protection-inventory.md, docs/shop-resource-allowlist.md, separate database identity and complete NixOS activation-impact review before mutations. No protected reload/restart/edit/prune/GC/upgrade/reboot or blanket NixOS activation; rollback is shop-only and preserves business records.
 
 ## Key Decisions
 
 | Decision | Rationale | Outcome |
 |---|---|---|
-| Replace the complete planning baseline from the October 20 pair | Explicit user request; new product authority supersedes old inputs | Completed documentation reset |
-| Preserve new T01–T14 as the phase/dependency structure | Direct acceptance/evidence traceability to the supplied implementation plan | Planning baseline; no execution credited |
+| Replace active architecture and deployment planning from the October 21 pair | Explicit user request; new product authority supersedes old inputs | Completed documentation reset |
+| Preserve new T01–T14 as the phase/dependency structure | Direct acceptance/evidence traceability to the supplied implementation plan | Current source structure; only explicitly reconciled evidence retained |
 | Keep support separate from IP rights and quantities | Non-expiring support purchases and fixed-term IP have different effects | Required source contract |
-| Keep P-01–P-12 pending until evidenced approval | Source proposals cannot approve themselves | Affected live operations gated |
-| Complete unaffected preparation while external inputs wait | Bank/cloud/policy gaps have specific scopes | Required workflow policy |
+| Keep P-10 hosting resolved and its qualification pending; other approvals require evidence | Source proposals cannot approve themselves | Affected live operations gated |
+| Complete unaffected preparation while external inputs wait | Bank/host/ingress/policy gaps have specific scopes | Required workflow policy |
 
 ## Evolution
 
 At phase transitions update validated/active scope and decisions from actual evidence. At milestones review core value, business context and exclusions. Preserve historical acceptance, source revisions and approval records; revise future offers explicitly.
 
 ---
-*Last updated: 2026-10-20 after Phase 1 documentation acceptance.*
+*Last updated: 2026-10-21 after protected-host documentation replanning.*

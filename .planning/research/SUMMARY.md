@@ -1,19 +1,11 @@
-# Project Research Summary: SLL xSPI-MC Shop
+# Research synthesis — October 21 replan
 
-**Method:** Inline synthesis of the two October 20 sources and exact embedded product; supplied dated research reused. No new live vendor, merchant, account, tariff or certificate validation. File hashes and read coverage are recorded in ../SOURCES.md.
+Both new sources were read completely. No new live upstream/account/provider audit was performed. Package hashes/product equality are in SOURCES.md. Product meaning and commerce/access/payment/support invariants are unchanged; hosting/protection are replaced by the new source.
 
-## Key Findings
+Selected initial backend: new shopsvc rootless Podman services directly on existing mx1, NixOS/Quadlet declarations, new independent PostgreSQL, host-controlled aggregate resource boundaries and local snapshot-aware storage caps. Static gra and independent sbg remain. Existing services/guests/owners/stores, proxy/TLS/firewall, backup/monitoring/SMTP configuration, disks/reserves/allocations and partner project 001-xspi-pro remain protected.
 
-The product is one vendor-scoped IP SKU plus a separate non-expiring support SKU. Exact family coverage, annual/perpetual rights and host mechanisms govern saleability; source placeholders/provisional node pricing cannot activate themselves. Support uses exact seconds and independent rights, purchases, reservations, debits and statements.
+P-10 hosting choice is resolved, not live host qualification. T02 prepares identities/artifacts/limits/storage and full activation-impact contracts; T11 inventories all resources read-only before any deployment write. Unchanged ingress/TLS must be proved or public activation is deferred with exact service/action proposal. Generic approval cannot permit a protected reload. DNS-01 does not provide routing. No new compute/block/IP rental or automatic paid fallback.
 
-Static Astro/React and Django/PostgreSQL retain one catalog authority and server-owned commerce. Immutable scope/host/price/document revisions bind acceptance to payment and delivery. Financial and support effects need recoverable snapshots before dispatch/spend/work and explicit completion evidence afterward.
+Fault/exhaustion/restart/capacity/full-pool-loss restore evidence requires an independent off-host target. Supplied mx1 capacity is operator evidence, not a benchmark. The single-device pool and shared kernel/ingress create common outage risk. £0.79/month models incremental objects only; recovery growth and actual tariffs remain unqualified.
 
-The selected footprint is an isolated new B2-7 GRA11 VM, separate database volume, gra public/private objects, sbg recovery/evidence and Route 53 xspi.pro DNS. Dedicated ACME certificates and fixed HTTPS object-origin routing preserve the existing main website boundary. One Caddy VM remains a shared availability dependency.
-
-## Roadmap Implications
-
-Use the new handoff T01–T14 and its actual dependencies. T09 bank inputs can wait while independent T10/T11 preparation progresses. T04's frontend and T05/T06 backend/private identity join for T07 checkout. T12 must recover external payments, issued keys, document numbers, support work and post-restore-point access revocations. T13 reports conditional external evidence honestly; T14 prepares concrete change/rollback before scoped activation.
-
-## Unresolved Inputs and Verification
-
-P-01–P-12 remain pending in docs/decisions.md. Verify dependencies/licences at T02, actual merchant contract/capabilities at T09, current OVH quote and Route 53/TLS/object semantics at T11, retained storage/custody and measured recovery at T12, and applicable release approvals at T14. No application tests or external changes occurred during replanning.
+Retain unchanged artifact approval and development toolchain evidence narrowly. Migrate obsolete executable source checks in 02-00 before 02-03/05. T09 gaps do not block independent T10/T11 preparation; T12/T13/T14 retain precise external evidence/authority gates. This replan makes no application/host/production acceptance claim.

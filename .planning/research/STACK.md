@@ -1,15 +1,17 @@
-# Stack: supplied October 20 baseline
+# Stack — selected October 21 architecture
 
-Source: proposal “Architecture and first-release boundaries” and handoff fixed architecture/T02. No independent version verification performed.
+Source-derived planning; no new upstream/current-host compatibility audit in this replan. Software/tariff research is dated October 20; actual recorded 02-01/02-02 artifacts are retained only for development.
 
 | Component | Planning choice | Verification |
 |---|---|---|
-| Public build | Static Astro Content Collections + React islands | Exact compatible releases/artifact hashes at T02; no server adapter |
-| App | Django LTS, Gunicorn, Psycopg, Python | Supplied Django 5.2.18/Python 3.13 are research inputs, verify support/patches/licences at T02 |
-| Database/queue | PostgreSQL and one leased outbox worker | Supplied PostgreSQL 18.6 is a baseline assertion; real locking/concurrency proof |
-| Build runtime | Supplied Astro 7/React 19/Node 24 LTS | Verify actual compatibility and support before locks |
-| Services | Supported pinned NixOS/native systemd; approved Podman fallback | Qualify image/bootstrap at T11; no simultaneous managers |
-| Edge | Caddy 2, explicit Let's Encrypt | Pinned build; DNS-01 module only if needed, test renewal |
-| Recovery | pgBackRest, separate gra/sbg namespaces and custody | Actual provider retention/ACL/restore proof at T11/T12 |
+| Public build | Static Astro Content Collections + selected React islands | Exact compatible frozen graph; no runtime Node/adapter |
+| App | Django LTS/Gunicorn/Psycopg/Python | Retained approved artifacts; actual runtime/import/lock/SBOM proof in T02 |
+| Database/queue | New independent PostgreSQL container/cluster and one worker | Real PostgreSQL concurrency; distinct PGDATA/roles/credentials/socket/backup; destination checks |
+| Development tools | Pinned Nix shell, Node/npm, Python/pip and PostgreSQL/libpq | Existing 02-02 development evidence; cached outputs retained |
+| Production services | Rootless Podman, NixOS-declared Quadlet/user-systemd, proposed shopsvc directly on mx1 | Pin exact OCI/runtime/Quadlet/systemd/network/storage compatibility; one lifecycle; off-host runtime evidence then bounded T11 attestation |
+| Resource boundary | Proposed host-controlled aggregate 200% CPU, MemoryHigh 6G / MemoryMax 8G, bounded tasks/concurrency | Covers payload scopes/conmon/network helpers/backup; protected parent/CPU/guest allocations unchanged |
+| Persistence | New local ZFS shop datasets: 80 GiB aggregate, 50 GiB DB subtree | Snapshots/descendants and all rootless writable paths/logs/spool accounted; existing reserves/disks unchanged |
+| Edge | New internal Caddy 2 behind unchanged existing public ingress | Fixed HTTPS object origin and metadata boundary; conditional A/B profile, complete path before DNS; new-shop Let’s Encrypt only |
+| Recovery | Independent sbg pgBackRest, retained evidence, artifacts and custody | Full-pool-loss off-host rehearsal; existing PostgreSQL/services never restore targets |
 
-No mandatory Redis/Celery/CMS/external IdP/commercial edition. Verify full distributed transitive notices/SBOM rather than assuming licence-family summaries cover artifacts. Current prices and software versions are intentionally not newly asserted by this planning pass.
+No mandatory Redis/Celery/CMS/IdP/commercial edition. All distributed OCI/runtime/build transitive notices and SBOM identities require verification. Actual host OS/runtime support is observed read-only; no upgrade, shared reload, blanket NixOS activation or paid fallback follows from a missing capability.

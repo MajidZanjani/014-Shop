@@ -1,3 +1,5 @@
+> Historical October 20 observations retained unchanged below. Current authority is .planning/SOURCES.md; hosting changed on October 21. These results do not establish current rootless/mx1/protection compliance. The old executable verifier is explicitly migrated by 02-00; no current pass is claimed here.
+
 # T01 local documentation execution evidence
 
 Scope: October 20 source pair and embedded product only. No application or external operations.

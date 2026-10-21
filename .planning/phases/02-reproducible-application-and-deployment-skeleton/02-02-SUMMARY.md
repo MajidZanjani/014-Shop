@@ -74,6 +74,9 @@ duration: 80 min
 completed: 2026-10-20
 ---
 
+> Retained historical development evidence, reconciled 2026-10-21. Original execution details below remain unchanged; current 02-CONTEXT.md overrides old hosting/source assumptions. Approval covers the exact recorded artifact bytes only. This is not rootless-container, mx1, protected-resource or production acceptance. Do not rerun this completed plan to regenerate unchanged evidence. Supporting original JSON/log/checkpoint files are archived under docs/archive/2026-10-20-planning/planning/phases/02-reproducible-application-and-deployment-skeleton/.
+
+
 # Phase 02 Plan 02: Pinned native development environment Summary
 
 **A locked native shell runs 14 passing tests and a real PostgreSQL 18.6 query, with explicit producer requirements and verified scratch cleanup.**

@@ -1,7 +1,7 @@
 # Requirements: SLL xSPI-MC Shop
 
-**Defined:** 2026-10-20
-**Status:** Fresh October 20 baseline; all implementation requirements pending.
+**Defined:** 2026-10-21
+**Status:** October 21 protected-services replan. SRC documentation reconciled; Phase 2 partial; all new host/runtime criteria pending execution.
 **Core Value:** Turn an exact reviewed xSPI-MC configuration or support purchase into attributable acceptance, verified payment and recoverable licence delivery or support credit without duplicate effects.
 
 ## v1 Requirements
@@ -10,7 +10,7 @@
 
 Source: new handoff T01; full proposal supplies normative detail.
 
-- [x] **SRC-01**: Operators can verify the exact embedded product snapshot by filename, 23,969-byte length and SHA-256, using only the October 20 package as new product authority.
+- [x] **SRC-01**: Operators can verify the exact embedded product snapshot by filename, 23,969-byte length and SHA-256, using only the October 21 package as new product authority.
 - [x] **SRC-02**: Reviewers can trace all three ordered vendors, thirteen families, thirteen logical controls, nineteen checkout groups, two helpers, four IP declarations and separate marketing control to source locations.
 - [x] **SRC-03**: Operators can inspect one P-01–P-12 register with status, owner, evidence and the exact affected live operation; pending decisions do not block unrelated planning.
 - [x] **SRC-04**: Reviewers can identify repository scope, new product/profile IDs, superseded assumptions and customer hostname without treating old task completion as new acceptance.
@@ -22,7 +22,12 @@ Source: new handoff T02; full proposal supplies normative detail.
 - [ ] **BUILD-01**: Developers can reproduce static frontend, Django/worker and real-PostgreSQL development builds from compatible pinned dependencies, hashes and CI commands.
 - [ ] **BUILD-02**: Reviewers can inspect component/transitive licences and SBOM for the actual locked artifacts; exact patches are verified when lockfiles are created.
 - [ ] **BUILD-03**: Developers can run isolated synthetic bank/mail/storage fixtures and versioned OpenAPI/schema contracts without production credentials or external provisioning.
-- [ ] **BUILD-04**: Operators can review native hardened service, image/bootstrap, secret and environment templates for isolated B2-7 deployment and configurable B3-8 fallback.
+- [ ] **BUILD-04**: Operators can review pinned NixOS-declared rootless Podman Quadlet/user-systemd artifacts for separate Django, one worker, new shop PostgreSQL and internal Caddy containers directly on mx1 under the dedicated proposed shopsvc account, with one lifecycle per container.
+
+- [ ] **BUILD-05**: Operators can review a shop identity/mutation map for UID/GID/subordinate mappings, rootless stores, units, networks, unused loopback ports, credentials and separate database cluster/PGDATA/roles/socket/backup identities; database mutations require positive destination checks.
+- [ ] **BUILD-06**: Prepared host-controlled aggregate shop limits cover payload scopes, conmon, network helpers and backups: proposed CPUQuota=200%, MemoryHigh=6G, MemoryMax=8G, bounded TasksMax/concurrency; protected parent policies, cpusets and guest allocations remain unchanged.
+- [ ] **BUILD-07**: Prepared local ZFS shop storage enforces an 80 GiB aggregate cap including descendants/snapshots and a 50 GiB PostgreSQL allowance including indexes/WAL; GraphRoot/images/volumes/temp/certificates/logs/spool are accounted and shared journal/reserves/disks remain unchanged.
+- [ ] **BUILD-08**: Operators can review the complete evaluated NixOS closure, activation scripts, unit/user/mount/dependency and restart/reload impact before any host write; artifacts separate verified shop-only additions from deferred protected changes, without blanket activation.
 
 ### Catalog rules and price authority
 
@@ -105,26 +110,34 @@ Source: new handoff T10; full proposal supplies normative detail.
 - [ ] **FUL-05**: Support reservations/authority are archived before work; concurrent task posting cannot overspend or duplicate debits, completion is archived before publication, and corrections reverse/replace history.
 - [ ] **FUL-06**: Committed task statements show task/cumulative/remaining usage; mail retry never debits again and refunds of consumed credit require review without erasing work or negative usable balances.
 
-### Isolated cloud, DNS/TLS and publication
+### Protected mx1 host, conditional ingress and static publication
 
 Source: new handoff T11; full proposal supplies normative detail.
 
-- [ ] **HOST-01**: Operators can qualify a new B2-7 GRA11 image/workload and current account quote, monthly conversion, IPv4/disks/volume/buckets/identities and B3-8 fallback within authorized scope.
-- [ ] **HOST-02**: Prepared Route 53 changes target only approved xspi.pro records; customer shop.xspi.pro uses dedicated new TLS, staff name remains proposed, AAAA requires end-to-end proof and DNS-01 is conditional/scoped.
+- [ ] **HOST-01**: Before the first mx1 deployment write, operators record a sanitized read-only inventory of host/configuration identity and every pre-existing rootful/rootless/native/VM resource in all lifecycle states; unknown ownership remains protected.
+- [ ] **HOST-02**: Public ingress/TLS uses a complete already working unchanged route/certificate contract or stays deferred with an exact protected-service/action proposal; DNS A/AAAA activation requires end-to-end authorized path proof, Route 53 authority and staff-host approval.
 - [ ] **HOST-03**: Caddy routes API/private/simple purchases before static matching, isolates staff, and fetches only manifest-listed GET/HEAD objects over verified fixed HTTPS Host/SNI with sensitive headers/query metadata stripped.
 - [ ] **HOST-04**: Immutable publication verifies hash/MIME/route/ACL completeness before one validated route switch; interrupted upload/failed load/rollback and cached two-release assets remain safe.
-- [ ] **HOST-05**: Actual authorized OVH tests distinguish public-object access/private listing and object denials, canonical 308, true 404, origin 502/503, HEAD/304/compression/cache behavior and certificate renewal.
+- [ ] **HOST-05**: Authorized Object Storage checks prove public approved objects/private listing/private-object denial and HTTP semantics; mx1 checks are bounded/read-only comparisons, with new-shop certificate evidence only on a qualified unchanged path.
+
+- [ ] **HOST-06**: Operators prove every proposed mx1 mutation is within the current shop allowlist and actual authority; all pre-existing services, stopped/failed resources, shared proxies/TLS/firewall/monitoring/SMTP/backups and MicroVM infrastructure remain unchanged.
+- [ ] **HOST-07**: Operators observe effective shop ancestor/controller/path/quota enforcement and separate database destination read-only on mx1; missing support or capacity defers the step or qualifies smaller shop limits off-host without protected reallocations.
+- [ ] **HOST-08**: Before/after configuration fingerprints, identities, listeners, lifecycle/restart evidence and bounded health observations detect adverse impact; stop shop activity and safely revert only proved shop additions, preserving business records and never repairing protected services.
+- [ ] **HOST-09**: Storage project/bucket/credential/tariff/bandwidth scopes are qualified without modifying partner project 001-xspi-pro; no production compute/block/IP purchase, billing conversion, automatic paid fallback, disk restructuring or permanent staging VM is selected.
 
 ### Recovery and operating readiness
 
 Source: new handoff T12; full proposal supplies normative detail.
 
-- [ ] **OPS-01**: Operators can restore PostgreSQL from encrypted off-region pgBackRest full/differential/WAL backups with independent artifact/secret custody and separately qualified retained evidence namespaces.
+- [ ] **OPS-01**: Operators restore only the independent shop PostgreSQL cluster from encrypted off-host sbg pgBackRest full/differential/WAL backups with separate namespaces and independently recoverable artifacts/secrets; existing PostgreSQL instances are never targets.
 - [ ] **OPS-02**: Recovery mode blocks mutating bank/SMTP/workers before data exposure; restored sessions/challenges are invalidated, post-point grants/revocations reconciled and consumed MFA codes recovered/reset before access.
 - [ ] **OPS-03**: Restored financial/order/acceptance/host/document/key records reconcile complete external windows and retained versions under original identities; missing acceptance or ambiguous preparation holds affected operations.
 - [ ] **OPS-04**: Support credits/reservations/completed work reconcile after restore without restoring spent hours, including a debit committed before completion-archive acknowledgement; missing completion is never invented.
-- [ ] **OPS-05**: Drills measure proposed 15-minute DB RPO and four-hour operator-start technical restore separately from detection/response/safe reopening, with no accidental bank/email effects.
-- [ ] **OPS-06**: Operators receive activity-aware WAL, backup, resource, certificate, job/mail/payment/fulfilment/support alerts and named ownership/runbooks, with measured ten-customer/two-staff workload and bounded concurrency.
+- [ ] **OPS-05**: An isolated off-host full-pool-loss drill measures five-minute WAL archive timeout, 35-day recovery window, 15-minute DB RPO and four-hour operator-start technical restore separately from detection/response/safe reopening, including replacement provisioning and DNS/TLS timing.
+- [ ] **OPS-06**: Shop-owned metrics/alerts cover WAL, backups, resource/storage growth, certificate, jobs/mail/payments/fulfilment/support with named owners; existing SMTP/monitoring interfaces are consumed unchanged or the precise integration stays deferred.
+
+- [ ] **OPS-07**: Complete-pool-loss recovery succeeds on an independently authorized off-host target without production rpool data/snapshots/local backups or host-only secrets; fault/exhaustion/restart/restore drills never run on mx1 or its existing MicroVM.
+- [ ] **OPS-08**: Independent shop backup jobs and custody qualify real 35-day retained backup/WAL/artifact/evidence growth and 70%/85% shop/pool warnings; required recovery/evidence is never pruned to fit the illustrative object-storage estimate.
 
 ### Integrated acceptance
 
@@ -133,16 +146,20 @@ Source: new handoff T13; full proposal supplies normative detail.
 - [ ] **UAT-01**: Release reviewers can trace every source field/option/rule to exercised customer/staff journeys, exact new IDs/hostnames and source/profile/approval revisions.
 - [ ] **UAT-02**: Integrated cases cover multi-vendor direct/quote orders, higher-volume quote, support-only/mixed checkout, private host access, rehosting/renewal and support usage statements.
 - [ ] **UAT-03**: Risk-based regression checks cover payment uncertainty/duplicates, cross-resource/MFA denial, static/no-JS/offline accessibility, public/log leaks, restored support/document/grants and two-release rollback.
-- [ ] **UAT-04**: Evidence identifies reproducible release revisions, actual commands/environments and unexecuted bank/cloud gates, with no production claim inferred from a mock.
+- [ ] **UAT-04**: Evidence separates operator-supplied facts, local/synthetic results, selected-bank sandbox, current mx1 read-only/bounded qualification, actual Object Storage, independent off-host recovery and production; unexecuted gates remain pending.
+
+- [ ] **UAT-05**: Ten-customer/two-staff/bounded-burst capacity, OOM/quota exhaustion, runtime failure/restart/rollback are qualified off-host; mx1 uses bounded shop smoke checks and read-only comparison of every protected resource, with no proxy-reload exception.
 
 ### Release and controlled activation
 
 Source: new handoff T14; full proposal supplies normative detail.
 
-- [ ] **REL-01**: Operators receive a concrete release/deploy/rollback package containing artifact/config/catalog/document identities, exact domains, bank capability/fee record and custody/operator/support/licensing runbooks.
+- [ ] **REL-01**: Operators receive release/config/catalog/document identities, bank obligations, protected-resource register, shop mutation allowlist/isolation/database map, complete NixOS activation-impact review, shop-only rollback and independent recovery/custody runbooks.
 - [ ] **REL-02**: Live activation rejects missing prices/rights/host/seller/tax/legal/retention/bank/recovery/owner approvals, synthetic adapters and unqualified external proofs without blocking unaffected preparation.
-- [ ] **REL-03**: Any authorized external change records observed DNS/TLS/mail/bank/production results and cost/cleanup scope; unexecuted activation remains pending and separately scoped.
+- [ ] **REL-03**: Any allowed external action records its exact resource/action authority, verified shop ownership, before/after protected-state comparison, DNS/TLS/mail/bank/activation result and storage cost/cleanup; unexecuted activation remains pending.
 - [ ] **REL-04**: The handover report separates completed work, conditional work, P-01–P-12 decisions, actual external changes and the precise next missing input.
+
+- [ ] **REL-05**: A necessary protected-resource change is deferred until later explicit authorization names that exact service and action; generic deployment approval cannot override protection, DNS-01 cannot create ingress, and rollback never restores a host generation or protected resource.
 
 ## v2 / Deferred Scope
 
@@ -155,7 +172,7 @@ No additional features committed. Automatic renewal, general organization portal
 | Legacy trial-form inventories, profiles and change sets | Superseded product authority; no earlier implementation credit |
 | Automatic debits, saved cards and implied renewal | Separate customer authorization and approved policy required |
 | Generic IP quantity multipliers, inferred company wallets | Would invent entitlement/ownership semantics |
-| Existing website/mail/monitoring administration or migration | Outside isolated new-shop boundary |
+| Existing service/guest/proxy/TLS/firewall/SMTP/monitoring changes | Protected; only later explicit service/action authorization can permit the named exception |
 | New CMS/IdP/Redis/Celery or runtime Astro service | Outside selected architecture |
 
 ## Traceability
@@ -170,6 +187,10 @@ No additional features committed. Automatic renewal, general organization portal
 | BUILD-02 | Phase 2 | Pending |
 | BUILD-03 | Phase 2 | Pending |
 | BUILD-04 | Phase 2 | Pending |
+| BUILD-05 | Phase 2 | Pending |
+| BUILD-06 | Phase 2 | Pending |
+| BUILD-07 | Phase 2 | Pending |
+| BUILD-08 | Phase 2 | Pending |
 | CAT-01 | Phase 3 | Pending |
 | CAT-02 | Phase 3 | Pending |
 | CAT-03 | Phase 3 | Pending |
@@ -216,19 +237,27 @@ No additional features committed. Automatic renewal, general organization portal
 | HOST-03 | Phase 11 | Pending |
 | HOST-04 | Phase 11 | Pending |
 | HOST-05 | Phase 11 | Pending |
+| HOST-06 | Phase 11 | Pending |
+| HOST-07 | Phase 11 | Pending |
+| HOST-08 | Phase 11 | Pending |
+| HOST-09 | Phase 11 | Pending |
 | OPS-01 | Phase 12 | Pending |
 | OPS-02 | Phase 12 | Pending |
 | OPS-03 | Phase 12 | Pending |
 | OPS-04 | Phase 12 | Pending |
 | OPS-05 | Phase 12 | Pending |
 | OPS-06 | Phase 12 | Pending |
+| OPS-07 | Phase 12 | Pending |
+| OPS-08 | Phase 12 | Pending |
 | UAT-01 | Phase 13 | Pending |
 | UAT-02 | Phase 13 | Pending |
 | UAT-03 | Phase 13 | Pending |
 | UAT-04 | Phase 13 | Pending |
+| UAT-05 | Phase 13 | Pending |
 | REL-01 | Phase 14 | Pending |
 | REL-02 | Phase 14 | Pending |
 | REL-03 | Phase 14 | Pending |
 | REL-04 | Phase 14 | Pending |
+| REL-05 | Phase 14 | Pending |
 
-**Coverage:** 68 v1 requirements; 68 mapped exactly once; 0 unmapped.
+**Coverage:** 80 v1 requirements; 80 mapped exactly once; 0 unmapped.

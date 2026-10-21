@@ -1,3 +1,5 @@
+> Historical October 20 observations retained unchanged below. Current authority is .planning/SOURCES.md; hosting changed on October 21. These results do not establish current rootless/mx1/protection compliance. The old executable verifier is explicitly migrated by 02-00; no current pass is claimed here.
+
 # T01 repository scope and execution provenance
 
 Documentation only: sll-xspi-mc; sll-xspi-mc-support-10h; sll-xspi-mc-v1. Customer origin: https://shop.xspi.pro. Proposed staff origin: https://shop-admin.xspi.pro.
