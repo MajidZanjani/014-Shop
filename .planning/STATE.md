@@ -3,7 +3,7 @@ gsd_state_version: "1.0"
 current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
 status: executing
-stopped_at: 02-00 complete; proceeding to 02-03 and 02-05.
+stopped_at: 02-00/02-03 complete; proceeding to 02-05.
 last_updated: "2026-10-21T06:15:23.993Z"
 last_activity: 2026-10-21
 last_activity_desc: Replanned for protected mx1 rootless Podman; no implementation resumed.
@@ -12,7 +12,7 @@ progress:
   total_phases: 14
   completed_phases: 1
   total_plans: 20
-  completed_plans: 5
+  completed_plans: 6
   percent: 7
 ---
 
@@ -23,12 +23,12 @@ progress:
 See .planning/PROJECT.md and SOURCES.md (October 21 current authority).
 
 **Core value:** Turn an exact reviewed xSPI-MC configuration or support purchase into attributable acceptance, verified payment and recoverable licence delivery or support credit without duplicate effects.
-**Current focus:** 02-00 complete; next 02-03 static frontend and 02-05 Python locks. Phase 2 has 3/18 completed development plans; 15 pending, 24 tasks/14 waves. Current-source checks now pass; no host/runtime qualification claimed.
+**Current focus:** 02-00 and 02-03 complete; next 02-05 Python locks. Phase 2 has 4/18 completed development plans; 14 pending, 24 tasks/14 waves. Current-source checks now pass; no host/runtime qualification claimed.
 
 ## Current Position
 
 Phase: 02 of 14 — Reproducible application and deployment skeleton
-Plan: 02-00 complete; existing 02-01 and 02-02 evidence retained only after applicability review.
+Plan: 02-05 pending; existing 02-01 and 02-02 evidence retained only after applicability review.
 Status: Executing Phase 2 under user continuation; phase auto-advance remains false.
 Last activity: 2026-10-21 — Protected-host requirements, roadmap, detailed affected plans and stale handoff replaced.
 Progress: [█░░░░░░░░░] 7% phases; no new application/host acceptance.
@@ -47,7 +47,7 @@ Progress: [█░░░░░░░░░] 7% phases; no new application/host ac
 
 ### Pending Todos
 
-02-00 source migration is complete and merged. Execute 02-03/05 under current context. Two old clean retained worktrees have no task edits/commits; they remain at historical base 2c64d9b and must never execute stale prompts. A future GSD orchestrator must reconcile the recorded manifest and supply fresh current context/base before dispatch. Do not manually merge, broadly clean or restart old workers. No worker was started by this replan.
+02-00 source migration is complete and merged. 02-03 static synthetic build passed 3 integration tests, clean install and diagnostics. Execute 02-05 under current context. Two old clean retained worktrees have no task edits/commits; they remain at historical base 2c64d9b and must never execute stale prompts. A future GSD orchestrator must reconcile the recorded manifest and supply fresh current context/base before dispatch. Do not manually merge, broadly clean or restart old workers. No worker was started by this replan.
 
 ### Blockers/Concerns
 

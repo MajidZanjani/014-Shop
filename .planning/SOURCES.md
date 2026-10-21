@@ -16,7 +16,7 @@ Old planning/paused instructions are archived at docs/archive/2026-10-20-plannin
 
 Plans 02-01/02-02 retain evidence only for the exact approved artifact set and isolated development toolchain/PostgreSQL, not rootless deployment or host enforcement. Artifact approval digest 136610b07612762d390b3b3c234ff1ef3f6dc6b0e44a69a2abc646d9106b51bd remains applicable to those bytes only. New runtime/image components require their own provenance/compatibility/licence evidence; no repeat approval of unchanged artifacts is requested.
 
-The historical docs/product-source/verify_t01.py hard-codes the October 20 filenames/hashes, old proposal line locators, decision statuses and old evidence schema. It is not current verification. Plan 02-00 explicitly migrates it and its controls before the next implementation work; this documentation task does not edit executable code or claim it passes. Current replan checks are recorded in REPLAN-VERIFICATION.md.
+The historical docs/product-source/verify_t01.py hard-codes the October 20 filenames/hashes, old proposal line locators, decision statuses and old evidence schema. Plan 02-00 has now migrated it and its controls. Current all passes six groups (20/27/279/88/39/18 checks); self-check rejects 71 mutations. Historical T01 and current migration evidence are separate. No rootless/current-host qualification is implied. Current replan checks are recorded in REPLAN-VERIFICATION.md.
 
 ## Evidence and traceability
 

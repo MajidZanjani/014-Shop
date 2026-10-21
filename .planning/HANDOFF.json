@@ -4,7 +4,7 @@
   "phase": "02",
   "phase_name": "Reproducible application and deployment skeleton",
   "phase_dir": ".planning/phases/02-reproducible-application-and-deployment-skeleton",
-  "plan": "03",
+  "plan": "05",
   "task": 1,
   "total_tasks": 24,
   "status": "executing",
@@ -32,6 +32,16 @@
       "name": "Current-source verification migration",
       "status": "done",
       "commit": "65b7157"
+    },
+    {
+      "id": "02-03-01",
+      "status": "done",
+      "commit": "6a532a5"
+    },
+    {
+      "id": "02-03-02",
+      "status": "done",
+      "commit": "1581176"
     }
   ],
   "remaining_tasks": [
@@ -69,7 +79,7 @@
   ],
   "background_workers": [],
   "uncommitted_files": [],
-  "next_action": "Execute 02-03 and 02-05 sequentially inline in fresh GSD-recorded worktrees; old paused worker prompts remain retired. 02-00 current-source migration complete and merged; no host operations.",
+  "next_action": "Continue 02-05 Python locks in a fresh current GSD worktree; 02-00 and 02-03 complete. No host mutation.",
   "context_notes": "October 21 protected-services update is sole current architecture authority. Read 02-CONTEXT.md, SOURCES.md, REQUIREMENTS.md and ROADMAP.md; archived October 20 planning is historical only. Hosting selected, qualification pending; no new runtime/host compliance credited.",
   "retained_historical_worktrees": [
     {

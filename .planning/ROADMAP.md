@@ -64,12 +64,12 @@ This request executes documentation replanning only. Earlier applicable local im
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md T02; complete companion proposal remains normative.
 **Estimate:** 3–5 engineer-days
 **UI hint:** no
-**Plans:** 3/18 complete (retained development evidence); 15 pending; 24 tasks/14 waves. 02-00 complete; next 02-03/05.
+**Plans:** 4/18 complete (retained development evidence); 14 pending; 24 tasks/14 waves. 02-00/03 complete; next 02-05.
 
 - [x] 02-01-PLAN.md — Concrete dependency review (Wave 1).
 - [x] 02-02-PLAN.md — Pinned native development environment (Wave 2).
 - [x] 02-00-PLAN.md — Current-source verification migration (Wave 3).
-- [ ] 02-03-PLAN.md — Static Astro collection and React island (Wave 4).
+- [x] 02-03-PLAN.md — Static Astro collection and React island (Wave 4).
 - [ ] 02-05-PLAN.md — Frozen Python runtime and tools (Wave 4).
 - [ ] 02-04-PLAN.md — Public frontend build boundary (Wave 5).
 - [ ] 02-06-PLAN.md — Django real-PostgreSQL health path (Wave 5).
