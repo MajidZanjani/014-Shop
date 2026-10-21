@@ -53,3 +53,7 @@ Use fresh GSD worktree manifests/full current HEAD and push every commit. Two ol
 ## Completed reset
 
 Quick261021-8cb: October21 protected-host replan, committed2f07e57; docs/archive/2026-10-20-planning is historical only. Source files were read completely and remain immutable; active cloud-instance backend requirements were replaced. Current execution follows that reset plus later user implementation/.env instructions.
+
+## Standing implementation task: context checkpoint
+
+When session context exceeds 90%, run `$gsd-pause-work`, save a complete resumable handoff and tell the user to clear the session and run `$gsd-resume-work`. Stop implementation until resume. Follow the indicator/unknown-percentage policy in AGENTS.md and PROJECT.md; never invent a measured percentage. This standing instruction preserves all current incomplete work and pending evidence.

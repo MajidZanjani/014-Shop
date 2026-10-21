@@ -92,3 +92,9 @@ Do not make direct repo edits outside a GSD workflow unless the user explicitly 
 > Profile not yet configured. Run `$gsd-profile-user` to generate your developer profile.
 > This section is managed by `generate-claude-profile` -- do not edit manually.
 <!-- GSD:profile-end -->
+
+## Session context checkpoint — user instruction, 2026-10-21
+
+During project implementation, when session context usage exceeds 90%, run `$gsd-pause-work` at a safe checkpoint before continuing implementation. Save the current position, completed and remaining tasks, evidence, blockers and exact next action in the GSD handoff. Inform the user: “Context usage exceeded 90%. Work is saved. Clear the session, then run `$gsd-resume-work`.” Wait for the cleared/resumed session before further implementation; this instruction authorizes the conditional pause without another confirmation.
+
+Use the context usage indicator supplied by the session when available. If an exact percentage is unavailable, do not invent a measurement or claim automatic threshold monitoring; preserve a handoff proactively when context pressure is apparent and state that limitation. Keep secrets out of the handoff and retain all pending qualification checks as pending.
