@@ -158,3 +158,42 @@ class SafeLoggingTests(SimpleTestCase):
         self.assertIn('startup rejected', result.stderr)
         for value in self.canaries:
             self.assertNotIn(value, result.stdout + result.stderr)
+
+
+class UnqualifiedDatabaseTests(SimpleTestCase):
+    def test_no_connection_or_cursor_before_attestation(self):
+        from unittest.mock import patch
+        from shop.db.unqualified.base import DatabaseWrapper
+        for database in ('synthetic_decoy', None):
+            connection = DatabaseWrapper({
+                'ENGINE': 'shop.db.unqualified', 'NAME': database,
+                'USER': 'synthetic', 'PASSWORD': 'SYNTHETIC_PRIVATE_CANARY',
+                'HOST': 'synthetic.invalid', 'PORT': '5432',
+                'OPTIONS': {}, 'AUTOCOMMIT': True, 'ATOMIC_REQUESTS': False,
+                'CONN_MAX_AGE': 0, 'CONN_HEALTH_CHECKS': False,
+                'TIME_ZONE': None, 'TEST': {},
+            }, alias='unqualified')
+            with patch('django.db.backends.postgresql.base.Database.connect') as connect:
+                with self.assertRaisesMessage(ImproperlyConfigured,
+                        'pending destination-guard integration') as error:
+                    connection.ensure_connection()
+                self.assertNotIn('SYNTHETIC_PRIVATE_CANARY', str(error.exception))
+                self.assertIsNone(connection.connection)
+                connect.assert_not_called()
+                with self.assertRaises(ImproperlyConfigured):
+                    connection.cursor()
+                connect.assert_not_called()
+
+    def test_both_production_modes_select_closed_backend(self):
+        program = """
+from unittest.mock import patch
+with patch('shop.core.checks.runtime_secret_file', return_value='synthetic-only-' * 5):
+    import shop.config.production as config
+    assert config.DATABASES['default']['ENGINE'] == 'shop.db.unqualified'
+"""
+        for mode in ('production', 'bank-sandbox'):
+            env = dict(os.environ, SHOP_ENV=mode, DATABASE_NAME='synthetic',
+                       DATABASE_USER='synthetic', DATABASE_HOST='synthetic.invalid')
+            result = subprocess.run([sys.executable, '-c', program], env=env,
+                                    capture_output=True, text=True, timeout=8)
+            self.assertEqual(result.returncode, 0, result.stderr)
