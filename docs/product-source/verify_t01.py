@@ -1,24 +1,25 @@
 #!/usr/bin/env python3
 """Read-only T01 documentation contracts; Python standard library only."""
 import hashlib
+import json
 import re
 import sys
 import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-PROPOSAL = "SLL-xSPI-MC-Shop-Proposal-2026-10-20.md"
-HANDOFF = "SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-20.md"
+PROPOSAL = "SLL-xSPI-MC-Shop-Proposal-2026-10-21.md"
+HANDOFF = "SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md"
 PRODUCT = "docs/product-source/SLL_xSPI_MC_Product_Page.md"
 MATRIX = ".planning/SOURCE-MATRIX.md"
 REQS = ".planning/REQUIREMENTS.md"
 LEDGER = ".planning/SOURCES.md"
 IDENTITIES = {
-    PROPOSAL: (201117, "d8db6b54e3e887ca940f0faff0949ca1a1fa2ce24c26075aabd78925f0f60356"),
-    HANDOFF: (42140, "60e6af0fce6db7412408e04eceb0283881585a295f45cbba0607c4bde9f4227e"),
+    PROPOSAL: (222085, "26a7359624ea4a9625005b39a3fa43beff01c31c830e3b6f122c1ad7417787d0"),
+    HANDOFF: (70623, "3ff0ecffe4432514bab4a29d500fff05c5537a79c0a8fa494faeb8dfda1c6fac"),
     PRODUCT: (23969, "562dc4015c62f165df5df3e9ae1aab26b8102385d9dc76a556d5965ddc1a0263"),
 }
-TRACE = "| family-1-1 | Altera / Intel FPGA → Cyclone 10 LP (C10LP) | product §1 / Altera, lines 17–29; proposal FPGA vendors and families, line 105 | Altera / Intel FPGA; family order 1; altera-cyclone-10-lp-c10lp | SRC-02 Phase 1; CAT-02 Phase 3 | Specified draft; coverage relationship unresolved; implementation pending |"
+TRACE = "| family-1-1 | Altera / Intel FPGA → Cyclone 10 LP (C10LP) | product §1 / Altera, lines 17–29; proposal FPGA vendors and families, line 156 | Altera / Intel FPGA; family order 1; altera-cyclone-10-lp-c10lp | SRC-02 Phase 1; CAT-02 Phase 3 | Specified draft; coverage relationship unresolved; implementation pending |"
 
 class ContractError(ValueError):
     pass
@@ -61,11 +62,16 @@ def source(inputs):
     count += require("Altera / Intel FPGA" in product[16] and product[24] == "### Altera / Intel FPGA"
                      and product[28] == "- [ ] Cyclone 10 LP (C10LP)", "product locator 17–29")
     row = "| Altera / Intel FPGA | 1 | Cyclone 10 LP (C10LP) | " + chr(96) + "altera-cyclone-10-lp-c10lp" + chr(96) + " |"
-    count += require(proposal[104] == row and row in matrix.splitlines(), "proposal/matrix family row")
+    count += require(proposal[155] == row and row in matrix.splitlines(), "proposal/matrix family row")
     reqs = text(inputs.get(REQS), REQS)
     for identity, phase in (("SRC-02", 1), ("CAT-02", 3)):
         count += require(f"**{identity}**:" in reqs and bool(re.search(rf"^\| {re.escape(identity)} \| Phase {phase} \| (?:Pending|In Progress|Complete|Blocked) \|$", reqs, re.M)),
                          identity + ": requirement/owning phase")
+    definitions = re.findall(r"^- \[[ x]\] \*\*([A-Z]+-\d\d)\*\*:", reqs, re.M)
+    mappings = re.findall(r"^\| ([A-Z]+-\d\d) \| Phase (\d+) \|", reqs, re.M)
+    count += require(len(definitions) == len(set(definitions)) == 80, "80 unique current requirements")
+    count += require(len(mappings) == len(dict(mappings)) == 80
+                     and set(definitions) == set(dict(mappings)), "exact current primary mappings")
     return count
 
 def load_source():
@@ -81,13 +87,16 @@ SCOPE_FACTS = (
     "Recoverable Git history is retained.",
     "Unrelated work is preserved.",
     "External state is uninspected.",
-    "No application/data migration identified within the inspected checkout.",
-    "FLAGGED SRC-04/unclassified remains for end-of-phase human review.",
+    "Application/runtime acceptance remains pending.",
+    "Protected-resource ownership is unverified; no host mutation is authorized by this record.",
 )
 
 def scope(data):
     import json
-    value = text(data, "scope")
+    whole = text(data, "scope")
+    marker = "## October 21 current checkout scope\n"
+    require(whole.count(marker) == 1, "current scope record uniqueness")
+    value = whole.split(marker, 1)[1]
     count = 0
     for item in (*IDS, *SCOPE_FACTS):
         count += require(item in value, "scope identity/reset boundary: " + item)
@@ -111,22 +120,25 @@ def scope(data):
     else:
         count += require(meta["isolation"] == "pending" and bool(meta.get("isolation_gate")), "scope pending isolation gate")
         print("GATE: isolation pending; full T01 acceptance withheld")
+    count += require(meta.get("host_inspected") is False and meta.get("production_qualified") is False,
+                     "repository-only observations, no host acceptance")
+    count += require(meta.get("ownership") == "repository checkout only", "scope ownership boundary")
     return count
 
 
 # Bounded tables from the immutable proposal, before its embedded appendix.
 # Complete row comparison preserves requiredness/defaults as well as labels.
 GROUPS = (
-    ("vendor", 98, 102, 3, 1, "CAT-02", 3),
-    ("family", 104, 118, 13, 2, "CAT-02", 3),
-    ("term", 124, 128, 3, 1, "CAT-02", 3),
-    ("band", 137, 140, 4, 1, "CAT-02", 3),
-    ("access", 150, 151, 2, 1, "AUTH-04", 6),
-    ("control", 167, 179, 13, 1, "SHOP-02", 4),
-    ("business", 189, 207, 19, 1, "COM-04", 7),
-    ("declaration", 219, 222, 4, 1, "COM-05", 7),
-    ("marketing", 223, 223, 1, 1, "AUTH-06", 6),
-    ("reset", 249, 264, 14, 0, "SHOP-02", 4),
+    ("vendor", 149, 153, 3, 1, "CAT-02", 3),
+    ("family", 155, 169, 13, 2, "CAT-02", 3),
+    ("term", 175, 179, 3, 1, "CAT-02", 3),
+    ("band", 188, 191, 4, 1, "CAT-02", 3),
+    ("access", 201, 202, 2, 1, "AUTH-04", 6),
+    ("control", 218, 230, 13, 1, "SHOP-02", 4),
+    ("business", 240, 258, 19, 1, "COM-04", 7),
+    ("declaration", 270, 273, 4, 1, "COM-05", 7),
+    ("marketing", 274, 274, 1, 1, "AUTH-06", 6),
+    ("reset", 300, 315, 14, 0, "SHOP-02", 4),
 )
 TRACE_HEADING = "## Complete bounded record traceability"
 
@@ -156,7 +168,7 @@ def proposal_records(inputs):
             records.append((group + "-" + str(ordinal), label,
                             f"{PROPOSAL} §{heading}, lines {n}–{n}", contract,
                             f"SRC-02 Phase 1; {req} Phase {phase}", line))
-    helper_line = next(n for n, line in enumerate(lines[:230], 1)
+    helper_line = next(n for n, line in enumerate(lines[:281], 1)
                        if line.startswith("Two additional convenience controls"))
     for i, label in enumerate(("Same as registered address", "Same as purchasing contact"), 1):
         records.append((f"helper-{i}", label,
@@ -174,13 +186,13 @@ def inventory(inputs):
     matrix = text(inputs.get(MATRIX), MATRIX)
     count = 0
     require(matrix.count(TRACE_HEADING) == 1, "complete inventory section")
-    section = matrix.split(TRACE_HEADING, 1)[1]
+    section = matrix.split(TRACE_HEADING, 1)[1].split("\n## ", 1)[0]
     actual = [line for line in section.splitlines() if line.startswith("|")][2:]
     expected = trace_lines(inputs)
     count += require(actual == expected and len(actual) == 78, "exact complete ordered trace records")
     original = matrix.split("## Row-level source traceability")[0].splitlines()
     original_tables = [line for line in "\n".join(original).split("## Exact option inventory", 1)[1].splitlines() if line.startswith("|")]
-    source_tables = [line for line in text(inputs.get(PROPOSAL), PROPOSAL).splitlines()[92:264] if line.startswith("|")]
+    source_tables = [line for line in text(inputs.get(PROPOSAL), PROPOSAL).splitlines()[143:315] if line.startswith("|")]
     count += require(original_tables == source_tables, "original exact ordered inventory tables")
     product = text(inputs.get(PRODUCT), PRODUCT)
     reqs = text(inputs.get(REQS), REQS)
@@ -229,11 +241,15 @@ def decisions(data, inputs):
         count += require(len(row) == 8 and all(row), "decision width/nonempty fields")
         count += require(row[:3] == source_rows[i][:3], "decision source meaning")
         count += require(row[3] == PHASES[i], "decision affected phases")
-        count += require(row[4].startswith(source_rows[i][3]) and "Preparation continues:" in row[4],
+        count += require(row[4] == source_rows[i][3],
                          "decision operation and unaffected preparation")
         count += require(row[5] == ROLES[i], "responsible role only")
         count += require(row[6] in ("Pending", "Approved"), "decision status")
-        if row[6] == "Pending":
+        if row[0] == "P-10":
+            count += require(row[6] == "Approved" and row[7] ==
+                             "SLL October 21 proposal/handoff and user replan instruction; hosting direction only. Host inventory/allowlist/activation qualification pending.",
+                             "P-10 hosting direction only; qualification pending")
+        elif row[6] == "Pending":
             count += require(row[7] == "None supplied", "pending evidence")
         else:
             # This validates evidence structure, never the authority of an approval.
@@ -314,13 +330,60 @@ def evidence(data, inputs):
         count += require(name in value, "evidence artifact link: " + name)
     for gate in GATES:
         count += require(gate in value, "remaining gate: " + gate)
-    count += require(EVIDENCE in text(inputs.get(LEDGER), LEDGER), "source ledger evidence link")
+    count += require(EVIDENCE in text(recorded[LEDGER], LEDGER), "historical source ledger evidence link")
     return count
+
+CURRENT_HEADING = "## T02 02-00 current-source migration evidence"
+CURRENT_ARTIFACTS = (CHECKER, SCOPE, MATRIX, DECISIONS, LEDGER)
+
+def current_evidence(data, inputs):
+    value = text(data, "current evidence")
+    require(value.count(CURRENT_HEADING) == 1, "one current migration record")
+    record = value.split(CURRENT_HEADING, 1)[1]
+    record = re.split(r"^#{1,2} T\d{2}\b", record, maxsplit=1, flags=re.M)[0]
+    blocks = re.findall(r"\x60{3}json\n(.*?)\n\x60{3}", record, re.S)
+    require(len(blocks) == 1, "one current evidence metadata block")
+    try:
+        meta = json.loads(blocks[0])
+    except ValueError:
+        raise ContractError("current evidence JSON") from None
+    require(isinstance(meta, dict), "current evidence object")
+    count = require(meta.get("schema_version") == 1, "current evidence schema")
+    count += require(meta.get("evidence_class") == "local-documentation"
+                     and meta.get("host_inspected") is False
+                     and meta.get("production_qualified") is False, "current evidence scope")
+    count += require(meta.get("approval_scope") == "P-10 hosting direction selected; host qualification pending",
+                     "current evidence approval scope")
+    count += require(bool(re.fullmatch(r"[0-9a-f]{40}", str(meta.get("head", ""))))
+                     and bool(re.fullmatch(r"\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ", str(meta.get("observed_utc", "")))),
+                     "current evidence dated revision")
+    count += require(isinstance(meta.get("root"), str) and Path(meta["root"]).is_absolute()
+                     and isinstance(meta.get("branch"), str) and bool(meta["branch"]), "current evidence checkout")
+    recorded = historical_artifacts(meta.get("artifact_revision"))
+    artifacts = meta.get("artifacts")
+    count += require(isinstance(artifacts, dict) and set(artifacts) == set(CURRENT_ARTIFACTS),
+                     "current exact artifact set")
+    for name in CURRENT_ARTIFACTS:
+        count += require(artifacts.get(name) == hashlib.sha256(recorded[name]).hexdigest(),
+                         "current historical artifact identity: " + name)
+    commands = meta.get("commands")
+    require(isinstance(commands, dict), "current evidence commands object")
+    for mode in ("source", "scope", "inventory", "decisions"):
+        item = commands.get(mode)
+        count += require(isinstance(item, dict) and item.get("exit") == 0
+                         and type(item.get("checks")) is int and item["checks"] > 0
+                         and item.get("command") == f"python3 {CHECKER} {mode}",
+                         "current executed positive command: " + mode)
+    for name in (PROPOSAL, HANDOFF, PRODUCT):
+        count += require(meta.get("sources", {}).get(name) == IDENTITIES[name][1], "current evidence source: " + name)
+    return count
+
 
 def all_contracts(inputs):
     results = {"source": source(inputs), "scope": scope(inputs.get(SCOPE)),
                "inventory": inventory(inputs), "decisions": decisions(inputs.get(DECISIONS), inputs),
-               "evidence": evidence(inputs.get(EVIDENCE), inputs)}
+               "evidence": evidence(inputs.get(EVIDENCE), inputs),
+               "current": current_evidence(inputs.get(EVIDENCE), inputs)}
     require(all(count > 0 for count in results.values()), "nonempty required modes")
     return results
 
@@ -374,12 +437,13 @@ def self_check():
     for name, old in (("wrong product", "sll-xspi-mc"), ("wrong origin", "https://shop.xspi.pro"),
                       ("missing reset", SCOPE_FACTS[0])):
         reject(name, lambda old=old: scope(scope_bytes.decode().replace(old, "WRONG").encode()))
-    meta_match = re.search(r"\x60{3}json\n(.*?)\n\x60{3}", scope_bytes.decode(), re.S)
+    meta_match = re.search(r"\x60{3}json\n(.*?)\n\x60{3}", scope_bytes.decode().split("## October 21 current checkout scope\n", 1)[1], re.S)
+    scope_prefix, current_scope = scope_bytes.decode().split("## October 21 current checkout scope\n", 1)
     meta = json.loads(meta_match[1])
 
     def scope_candidate(candidate):
-        return (scope_bytes.decode()[:meta_match.start(1)] + json.dumps(candidate) +
-                scope_bytes.decode()[meta_match.end(1):]).encode()
+        return (scope_prefix + "## October 21 current checkout scope\n" + current_scope[:meta_match.start(1)] + json.dumps(candidate) +
+                current_scope[meta_match.end(1):]).encode()
 
     for field in ("head", "branch", "worktrees", "observed_utc", "status"):
         candidate = dict(meta)
@@ -405,7 +469,7 @@ def self_check():
         ("requiredness changed", trace[55], trace[55].replace("Short description", "Required")),
         ("marketing mandatory declaration", "| marketing-1 |", "| declaration-5 |"),
         ("extra record", trace[-1], trace[-1] + "\n" + trace[-1]),
-        ("locator changed", trace[0], trace[0].replace("99–99", "98–98")),
+        ("locator changed", trace[0], trace[0].replace("150–150", "149–149")),
         ("requirement changed", trace[0], trace[0].replace("CAT-02 Phase 3", "CAT-02 Phase 7")),
     ):
         candidate = dict(inputs)
@@ -445,7 +509,7 @@ def self_check():
     future_record = dict(complete)
     future_record[EVIDENCE] += b'\n## T02 local documentation evidence\n\n```json\n{"phase": "02"}\n```\n'
     require(all_contracts(future_record)["evidence"] > 0, "later phase JSON stays outside T01 metadata")
-    duplicate = ev + b'\n```json\n{}\n```\n'
+    duplicate = (ev.decode()[:end] + "\n```json\n{}\n```\n" + ev.decode()[end:]).encode()
     reject("duplicate T01 metadata", lambda: evidence(duplicate, complete))
     unknown_revision = dict(metadata, artifact_revision="0" * 40)
     unknown_bytes = (ev.decode()[:match.start(1)] + json.dumps(unknown_revision) + ev.decode()[match.end(1):]).encode()
@@ -485,6 +549,33 @@ def self_check():
     require(load_source() == inputs and (ROOT / DECISIONS).read_bytes() == register
             and (ROOT / SCOPE).read_bytes() == scope_bytes, "canonical bytes untouched")
 
+    candidate = dict(inputs)
+    candidate[PROPOSAL.replace("2026-10-21", "2026-10-20")] = candidate.pop(PROPOSAL)
+    reject("obsolete source filename", lambda: source(candidate))
+    for field, bad_value in (("host_inspected", True), ("production_qualified", True),
+                             ("ownership", "existing mx1 services")):
+        bad_scope = dict(meta, **{field: bad_value})
+        reject("false scope " + field, lambda bad_scope=bad_scope: scope(scope_candidate(bad_scope)))
+    p10 = rows[9]
+    for label, changed in (("P10 unselected", p10.replace("| Approved |", "| Pending |")),
+                           ("P10 blanket host approval", p10.replace("hosting direction only", "all protected services")),
+                           ("P10 qualification fabricated", p10.replace("qualification pending", "qualification complete"))):
+        reject(label, lambda changed=changed: decisions(register.decode().replace(p10, changed).encode(), inputs))
+    current_match = re.search(r"\x60{3}json\n(.*?)\n\x60{3}", ev.decode().split(CURRENT_HEADING, 1)[1], re.S)
+    cm = json.loads(current_match[1])
+    def current_candidate(changes):
+        candidate = dict(cm, **changes)
+        prefix, suffix = ev.decode().split(CURRENT_HEADING, 1)
+        return (prefix + CURRENT_HEADING + suffix[:current_match.start(1)] + json.dumps(candidate) + suffix[current_match.end(1):]).encode()
+    for name, change in (("host acceptance", {"host_inspected": True}),
+                         ("approval scope", {"approval_scope": "all host changes"}),
+                         ("zero commands", {"commands": {}}),
+                         ("unreachable revision", {"artifact_revision": "0" * 40}),
+                         ("missing artifacts", {"artifacts": {}})):
+        reject("current evidence " + name, lambda change=change: current_evidence(current_candidate(change), complete))
+    advanced = dict(complete)
+    advanced[EVIDENCE] += b'\n## T02 later independent evidence\n\n```json\n{}\n```\n'
+    require(current_evidence(advanced[EVIDENCE], advanced) > 0, "later evidence independent of migration record")
     require(rejected > 0, "positive rejection count")
     print(f"PASS self-check: {rejected} asserted rejections; valid source/scope/inventory/decisions/all/evidence and pending controls passed")
 
