@@ -758,3 +758,97 @@ class DatabaseDestinationTests(unittest.TestCase):
                 require_auth='scram-sha-256',options='-c default_transaction_read_only=on')
         self.assertIn('authentication',str(error.exception))
         self.assertEqual(self.target.sql('SELECT count(*) FROM public.destination_probe'),'0')
+
+
+    def test_real_operator_scram_connection_and_readonly_ledger_outcomes(self):
+        """Actual libpq/SCRAM/SQL; root records, runtime and path are fixtures."""
+        import contextlib,json,os,tempfile
+        from unittest.mock import patch
+        from psycopg import sql
+        import dev_postgres,operator_inspect as cli,schema_reconciliation
+        from test_process_probe import candidate_bundle
+        with dev_postgres.isolated_postgres() as pg:
+            pg.sql((ROOT/'ops/postgresql/schema-ledger.sql').read_text())
+            # Establish a fixture-only management connection before switching HBA.
+            # Password never appears in command arguments or server SQL logs.
+            admin=self.connection(pg)
+            password='SYNTHETIC_SCRAM_ONLY_4f8d7146'
+            admin.execute("SET password_encryption = 'scram-sha-256'")
+            admin.execute(sql.SQL('ALTER ROLE shop_test PASSWORD {}').format(sql.Literal(password)))
+            self.assertTrue(admin.execute("SELECT rolpassword LIKE 'SCRAM-SHA-256$%' FROM pg_authid WHERE rolname='shop_test'").fetchone()[0])
+            # Only this token-owned disposable cluster's HBA is replaced/reloaded.
+            hba=pg.root/'data/pg_hba.conf'
+            hba.write_text('local all all scram-sha-256\nhost all all 0.0.0.0/0 reject\nhost all all ::0/0 reject\n')
+            loaded_before=admin.execute('SELECT pg_conf_load_time()').fetchone()[0]
+            self.assertTrue(admin.execute('SELECT pg_reload_conf()').fetchone()[0])
+            # Reload is asynchronous: wait boundedly for parsed target HBA before
+            # making any authentication assertion, never retry wrong credentials.
+            import time
+            deadline=time.monotonic()+2
+            while True:
+                methods=admin.execute("SELECT auth_method FROM pg_hba_file_rules WHERE type='local' AND error IS NULL").fetchall()
+                loaded_after=admin.execute('SELECT pg_conf_load_time()').fetchone()[0]
+                if methods==[('scram-sha-256',)] and loaded_after>loaded_before:break
+                if time.monotonic()>=deadline:self.fail('owned SCRAM HBA reload did not complete')
+                time.sleep(0.01)
+            # The authenticated connection itself proves the active HBA offers
+            # SCRAM; require_auth rejects an accidental trust negotiation.
+            value=candidate_bundle();records=value['records']
+            process=records['database-process.json'];authorization=records['schema-reconciliation.json']
+            uid=os.stat(pg.root).st_uid
+            expected=dict(process['database'],account_uid=uid,database='postgres',role='shop_test',
+                system_identifier=str(admin.execute('SELECT system_identifier FROM pg_control_system()').fetchone()[0]))
+            process['database']=expected;authorization['database']=expected
+            connection_record=dict(records['operator-connection.json'],database=expected,socket_directory=str(pg.socket))
+            artifact=__import__('base64').b64decode(value['artifact_base64'])
+            real_fd_reader=cli.read_private_fd;real_validate=self.real_validate
+            opened=[]
+            def connect(**kwargs):
+                # Only host attestation uses a fixture path; real libpq and all
+                # command-selected authentication/session options execute here.
+                connection=psycopg.connect(**kwargs);opened.append(connection)
+                self.assertEqual(connection.execute('SHOW default_transaction_read_only').fetchone()[0],'on')
+                self.assertEqual(connection.execute('SHOW transaction_read_only').fetchone()[0],'on')
+                with self.assertRaises(psycopg.errors.ReadOnlySqlTransaction):
+                    connection.execute('DELETE FROM shop_control.schema_migrations')
+                return connection
+            def local_validate(wanted,observed):
+                if wanted==observed:return real_validate(wanted,observed)
+                self.assertEqual(observed['pgdata'],str(pg.root/'data'))
+                return real_validate(wanted,dict(observed,pgdata='/var/lib/shop/postgres'))
+            with contextlib.ExitStack() as stack:
+                inputs={}
+                for descriptor,data in ((0,artifact),(3,password.encode())):
+                    file=stack.enter_context(tempfile.TemporaryFile(dir=pg.root))
+                    file.write(data);file.flush();os.fchmod(file.fileno(),0o600)
+                    if os.geteuid()==0:os.fchown(file.fileno(),uid,os.stat(pg.root).st_gid)
+                    inputs[descriptor]=file
+                stack.enter_context(patch.dict(os.environ,cli.SAFE_ENV,clear=True))
+                stack.enter_context(patch.object(cli.os,'geteuid',return_value=uid))
+                stack.enter_context(patch.object(cli,'SOCKET_DIRECTORY',str(pg.socket)))
+                stack.enter_context(patch.object(cli,'load_connection',return_value=connection_record))
+                stack.enter_context(patch.object(cli.process_probe,'load_record',return_value=process))
+                stack.enter_context(patch.object(schema_reconciliation,'load_authorization',return_value=authorization))
+                stack.enter_context(patch.object(cli.process_probe,'probe',return_value={'container_id':expected['container_id'],'account_uid':uid}))
+                stack.enter_context(patch.object(cli,'socket_identity',return_value=(1,2,uid)))
+                stack.enter_context(patch.object(database,'validate_database_identity',side_effect=local_validate))
+                stack.enter_context(patch.object(cli,'read_private_fd',side_effect=lambda fd,maximum,minimum=1:real_fd_reader(inputs[fd].fileno(),maximum,minimum)))
+                # Preserve the real function before patching the shared module.
+                actual_connect=psycopg.connect
+                def tracked_connect(**kwargs):
+                    with patch.object(psycopg,'connect',actual_connect):return connect(**kwargs)
+                stack.enter_context(patch.object(cli.psycopg,'connect',side_effect=tracked_connect))
+                for status in ('not_recorded','recorded','conflict'):
+                    if status=='recorded':
+                        admin.execute('INSERT INTO shop_control.schema_migrations(migration_id,artifact_sha256,authorization_id,applied_at) VALUES (%s,%s,%s,clock_timestamp())',tuple(authorization[k] for k in ('migration_id','artifact_sha256','authorization_id')))
+                    elif status=='conflict':
+                        admin.execute("UPDATE shop_control.schema_migrations SET artifact_sha256=%s",('c'*64,))
+                    before=admin.execute('SELECT * FROM shop_control.schema_migrations').fetchall()
+                    result=cli.inspect_from_fds()
+                    self.assertEqual(result,{'schema_version':1,'status':status,'retry_authorized':False,'reopening_authorized':False})
+                    self.assertTrue(opened[-1].closed)
+                    self.assertEqual(admin.execute('SELECT * FROM shop_control.schema_migrations').fetchall(),before)
+                private=inputs[3];private.seek(0);private.write(b'SYNTHETIC_WRONG_PASSWORD_00');private.truncate();private.flush()
+                with self.assertRaises(psycopg.OperationalError):cli.inspect_from_fds()
+                self.assertEqual(len(opened),3)
+            admin.close()
