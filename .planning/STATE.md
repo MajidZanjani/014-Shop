@@ -4,10 +4,10 @@ current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
 status: executing
 stopped_at: Candidate runtime and local evidence committed; finish 14/16/17 gaps.
-last_updated: "2026-10-21T11:45:15.961887+00:00"
+last_updated: "2026-10-21T12:06:55.133809+00:00"
 last_activity: 2026-10-21
-last_activity_desc: Pinned standalone inspection launcher built; native startup/denial and deployment/environment regressions pass.
-state_head: c60cd58
+last_activity_desc: Offline unverified record-bundle validation and publication contract prepared; focused local checks pass.
+state_head: 6c1360b
 progress:
   total_phases: 14
   completed_phases: 1
@@ -30,7 +30,7 @@ No independent off-host runner assigned. User permits all authorized repository 
 
 ## Current evidence
 
-Local environment2 checks/14 tests; frontend13/9; core-local4/22; worker-smoke6/24 including broken-fence/lock controls; adapters3/6 in isolated network; contracts-local12/8; combined boundaries17/32; deployment-eval15/27; postgres-diagnostics3/8; postgresql-config3/7; bootstrap-local3/13; database-destination3/72; database-tools6/5; operator-runtime4/8; profiles6/5; locks3/8; reproducibility4/5 with exactly2 independent public/backend builds. Counts overlap across lanes; no unique total implied. Reproducibility uses a fixed canonical path in separate private process namespaces; raw failed HTML-island-ID comparison remains recorded, no output normalization. Focused versioned manifest is local reproducibility only.
+Local environment2 checks/14 tests; frontend13/9; core-local4/22; worker-smoke6/24 including broken-fence/lock controls; adapters3/6 in isolated network; contracts-local12/8; combined boundaries17/32; deployment-eval15/27; postgres-diagnostics3/8; postgresql-config3/7; bootstrap-local3/13; database-destination3/81; database-tools6/5; operator-runtime4/10; profiles6/5; locks3/8; reproducibility4/5 with exactly2 independent public/backend builds. Counts overlap across lanes; no unique total implied. Reproducibility uses a fixed canonical path in separate private process namespaces; raw failed HTML-island-ID comparison remains recorded, no output normalization. Focused versioned manifest is local reproducibility only.
 
 Installed standard SBOM evidence reconciles271 npm/6 runtime Python/39 tool Python components and records70 uninstalled optional paths. Collector exits2, not INVENTORY_PASS: raw npm malformed URI, missing licence texts and native/image coverage remain unresolved. Images are unbuilt; no real digest or compatibility claimed. Candidate profile/guard evaluation is not operational protection proof. Manual-only read-only SHA-pinned CI is prepared, never executed; no runner/authorization record created.
 
@@ -149,3 +149,11 @@ Codec60cd58 adds shop-operator-inspect flake package and required operator-runti
 Actual local evidence: operator-runtime4 checks/8 tests,2.000s, including actual main and synthetic import-failure package builds, hostile environment/shadow-module help, mutation/secret-option denial, invalid private input and fixed startup failure; deployment-eval15/27,2.100s; environment2/14,0.902s including required new all-lane coverage. Source bundle is verified as a runtime build dependency against exact source hashes; prior SQL/operator3/72 and source6/5 remain retained, not rerun because underlying modules unchanged. Full all not rerun; new operator-runtime lane required, no FULL_PASS. Initial lane failed native startup due to Psycopg's additional libc lookup; inspected exact installed wheel, pinned libc as well as libpq, then all8 passed. Temporary source-only diagnostic file was removed; no private inputs were used.
 
 Next: authorized record publication/custody and actual dedicated socket/HBA/role/credential/peer/FD transport integration plus positive qualified connection, app/Django writes/migrations, generator/replica/OCI/notices/reproducibility/full CI and off-host qualification. Native closure/SBOM/licence review must include standalone launcher/runtime; package build/startup is not approval or host qualification. No .env read/needed missing value, real connection/host install/provider action, service/resource change or purchase. Production Django gate remains closed; plans14/16/17 and full readiness remain incomplete.
+
+## Latest continuation — unverified control-record bundle contract
+
+Code6c1360b adds record_bundle.py and validate-records command, plus docs/control-record-publication.md. Private FD0 bundle must remain unverified-candidate and contain exactly expected.json, database-process.json, operator-connection.json and schema-reconciliation.json plus strict base64 original artifact. Validates closed schemas, expiry, common startup/database identity, exact original bytes and pg_controldata as the approved PostgreSQL executable sibling. The same binary binding now applies to actual inspect. Library returns exact canonical private payload bytes and a closed hash report; CLI emits hashes only with publication/retry/reopening_authorized=false. No live record load, probe, connect, publisher or host write. Inner actual-evidence schema labels are shape-checked claims, never proof; outer evidence remains explicitly unverified.
+
+Actual local evidence: database-destination3 checks/81 tests,7.960s including9 new candidate controls; operator-runtime4/10,2.440s with actual packaged private-FD valid candidate and mixed-record denial; database-tools6/5,4.000s with9-module source bundle; deployment-eval15/27,2.247s. No failing runs. Nix emitted an ignored eval-cache busy warning during concurrent evaluation; all required lanes completed0 with positive counts. Reports contain only hashes/closed flags, no record values/SQL. Synthetic fixtures and existing adapted scratch PGDATA remain local evidence, not actual host observations/approvals.
+
+Publication contract requires actual retained inventory/ownership and exact authority, new-object staging and readback hashes, root-owned nonsymlink ancestors, bounded read-group permissions, durable complete generations under shop-only admission barrier and uncertainty reconciliation. It performs none of these writes. Next actual publisher/custody and positive socket/HBA/role/credential/peer/FD integration/qualification; application/Django migration/write integration, generator/replica/OCI/notices/reproducibility/full CI and off-host/T11/T12 remain pending. No .env read/needed credential, root record issued/published, real service connection, host/provider operation, existing service/resource change or purchase. Production Django access stays blocked; plans14/16/17 and full readiness incomplete.
