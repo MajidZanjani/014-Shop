@@ -41,7 +41,7 @@ This request executes documentation replanning only. Earlier applicable local im
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md T01; complete companion proposal remains normative.
 **Estimate:** 1–2 engineer-days
 **UI hint:** no
-**Plans:** 7/18 local slices complete (00–05,09); 7 implemented with qualification/review pending (06–08,10–13); 4 unimplemented (14–17). 24 tasks/14 waves. Summary presence does not mean full qualification.
+**Plans:** 8/18 local slices complete (00–05,09,15); 7 qualification/review pending (06–08,10–13); 3 implementation-incomplete (14,16,17). Incomplete evidence is PARTIAL.md; no full phase acceptance.
 
 **Success Criteria:**
 
@@ -81,7 +81,7 @@ This request executes documentation replanning only. Earlier applicable local im
 - [ ] 02-10-PLAN.md — Leased worker and PostgreSQL ownership proof (Wave 9).
 - [ ] 02-11-PLAN.md — Mail and storage fake-boundary expansion (Wave 10).
 - [ ] 02-14-PLAN.md — Rootless shop containers, independent database and bounded off-host lifecycle (Wave 11).
-- [ ] 02-15-PLAN.md — Protected-host inventory, selected profile and complete activation-impact preparation (Wave 12).
+- [x] 02-15-PLAN.md — Protected-host inventory, selected profile and complete activation-impact preparation (Wave 12).
 - [ ] 02-16-PLAN.md — Actual component licences and SBOM (Wave 13).
 - [ ] 02-17-PLAN.md — Two clean builds and complete CI evidence (Wave 14).
 

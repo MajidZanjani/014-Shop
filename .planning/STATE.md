@@ -12,7 +12,7 @@ progress:
   total_phases: 14
   completed_phases: 1
   total_plans: 20
-  completed_plans: 9
+  completed_plans: 10
   percent: 7
 ---
 
@@ -23,15 +23,14 @@ progress:
 See .planning/PROJECT.md and SOURCES.md (October 21 current authority).
 
 **Core value:** Turn an exact reviewed xSPI-MC configuration or support purchase into attributable acceptance, verified payment and recoverable licence delivery or support credit without duplicate effects.
-**Current focus:** Plans 00–13 have repository implementations/evidence. Seven plans have complete local slice evidence (00–05,09); seven have qualification/human review pending (06–08,10–13); four deployment/inventory/CI plans (14–17) remain to implement. Next: 02-14 rootless deployment artifacts. Full Phase 2 and BUILD acceptance remain incomplete.
+**Current focus:** All Phase 2 plans have some repository work, but only eight local slices are complete (00–05,09,15). Seven await required qualification/human review (06–08,10–13). Three remain implementation-incomplete (14,16,17). Their evidence is in PARTIAL.md files, not completion SUMMARY.md files. Next: finish 14 bootstrap/per-mutation/runtime driver and 16 native/notice/schema coverage; then complete 17 OCI/full CI qualification.
 
 ## Current Position
 
 Phase: 02 of 14 — Reproducible application and deployment skeleton
-Plan: 02-14 next; do not count summary presence as qualification completion.
-Status: Executing under user continuation; auto-advance false.
-Last activity: 2026-10-21 — Local frontend/backend/worker/adapters/contracts/boundaries implemented and tested; credential policy updated.
-Progress: 1/14 phases complete. No production readiness or host runtime acceptance.
+Status: executing; full phase/BUILD/production acceptance incomplete, auto-advance false.
+Last activity: 2026-10-21 — Candidate rootless/Nix/profile artifacts, real installed SBOM findings, two local payload builds and installer controls committed; full all exits 1 at off-host gate.
+Progress: 1/14 phases complete. Existing protected services/resources unchanged.
 
 ## Accumulated Context
 
@@ -76,3 +75,7 @@ Credential workflow: resource access secrets are available via repository .env. 
 Latest execution: frontend 13 checks/9 tests; core-local 4/20; worker-smoke 6/24 including two broken-control rejection tests; adapters 3/6 in network namespace; contracts-local 12/8; combined boundaries 17/32. Counts are separate/reused lanes, not a sum of unique tests. Full core/worker/contracts remain nonzero pending actual authorized off-host cases. Human browser hydration and schema/diagram source-fidelity review pending. No runner assigned and no disruptive tests executed on mx1/its guests.
 
 Prepared: real DB-outage/recovery and worker receipt-before-completion interruption cases, guarded by exact independent runner/machine/commit/action authorization. Remaining rootless resource-exhaustion/lifecycle/recovery artifacts are owned by 14–17/T12, not yet implemented. Runner specification: docs/qualification-runner.md. Do not repeatedly ask or automatically provision.
+
+Current continuation (supersedes older next-plan prose): finish 14 implementation (bootstrap/per-mutation wrapper, exact user runtime/generator configuration and executable replica driver). Existing offhost-cases.json is only a matrix. 16 retains actual standard SBOMs (271 npm/6 runtime Python/39 tool Python), but raw npm schema URI failure, 12 missing-text findings and native/OCI closure coverage prevent INVENTORY_PASS. 17 local payload reproducibility passed two builds/5 tests, locks 3 checks/8 tests, environment 2/14. Full all ran environment/frontend then stopped pending off-host with exit1, no FULL_PASS. Manual CI prepared only, not run. Images unbuilt; ~2.4 GiB free at preparation, never clean shared files/store/caches or change allocations. Exact new component review/build resources still need qualification.
+
+Incomplete evidence records now use PARTIAL.md because GSD completion discovery counts SUMMARY presence. Eight genuine local completion summaries remain; no accidental 18/18 completion. Read PARTIAL records before work; do not replay completed implementations or mistake missing off-host evidence for permission to run faults here. Runner remains unassigned; no repeat question or automatic provisioning. Credential .env policy remains in PROJECT/CONTEXT.

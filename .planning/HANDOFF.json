@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "timestamp": "2026-10-21T07:25:14.894573+00:00",
+  "timestamp": "2026-10-21T08:32:09.343160+00:00",
   "phase": "02",
   "phase_name": "Reproducible application and deployment skeleton",
   "phase_dir": ".planning/phases/02-reproducible-application-and-deployment-skeleton",
@@ -57,11 +57,11 @@
   "remaining_tasks": [
     {
       "id": "02-06..02-08,02-10..02-13",
-      "status": "repository implementation merged; full off-host/human qualification pending"
+      "status": "local implementation done; required off-host/human qualification pending; PARTIAL evidence"
     },
     {
-      "id": "02-14..02-17",
-      "status": "implementation pending"
+      "id": "02-14,02-16,02-17",
+      "status": "implementation incomplete; detailed PARTIAL evidence"
     }
   ],
   "blockers": [],
@@ -93,7 +93,7 @@
   ],
   "background_workers": [],
   "uncommitted_files": [],
-  "next_action": "Implement 02-14 rootless deployment artifacts with current context; then 15\u201317. Continue ordinary local/synthetic work. Required off-host disruptive execution remains pending; no runner assigned. Follow .env credential policy without printing values.",
+  "next_action": "Finish 14 bootstrap/per-mutation wrapper, selected runtime/generator configuration and executable independent replica driver; complete16 native/notice/npm schema findings; then17 OCI/full CI. Read PARTIAL records, not replay old implementation. No runner assigned; no disruptive execution here.",
   "context_notes": "October 21 authority; source verifier all passes. Latest local boundaries 17 checks/32 tests; worker 6/24; adapters 3/6; contracts 12/8. Reused counts are not unique totals. See summaries for evidence limits.",
   "retained_historical_worktrees": [
     {
@@ -108,5 +108,6 @@
     }
   ],
   "uncommitted_files_policy": "Replan committed as documentation; inspect git status on resume rather than replaying old handoff paths.",
-  "credential_policy": "Resource-access credentials are in repository .env. For a needed absent/empty credential, append a clear named blank entry/purpose while preserving existing values, then ask user to fill .env; never request values in chat or print secrets."
+  "credential_policy": "Resource-access credentials are in repository .env. For a needed absent/empty credential, append a clear named blank entry/purpose while preserving existing values, then ask user to fill .env; never request values in chat or print secrets.",
+  "completion_semantics": "Eight local SUMMARY files only. Ten incomplete records renamed PARTIAL so discovery cannot mark phase complete. Full all exit1, no FULL_PASS."
 }
