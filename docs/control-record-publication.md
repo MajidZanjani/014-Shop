@@ -1,6 +1,7 @@
 # Operator control-record preparation and publication contract
 
-Status: offline validation is implemented. Publication/host installation and actual
+Status: offline validation and private candidate staging are implemented.
+Publication/host installation and actual
 socket, account, authentication and runtime qualification remain pending. No
 publisher, root-record issuer or automatic refresh is supplied. A validated
 candidate never establishes authority or actual host evidence.
@@ -97,3 +98,40 @@ peer-process/container binding, root-record publication, NixOS/Podman/ZFS or mx1
 proof follows. Those positive transport and operational checks remain pending.
 The production command's paths, privileges and closed connection contract are
 unchanged; no host HBA, credential or service is modified.
+
+## Library-only private candidate staging
+
+`record_bundle.stage_candidate(data, parent_fd)` prepares a new private review
+artifact under an already caller-owned directory FD with exactly mode0700.
+It validates the candidate before creating anything, duplicates the supplied FD,
+and exclusively creates `candidate-<raw-bundle-sha256>` mode0700. It accepts no
+live control path, performs no discovery and is not exposed by the operator CLI.
+The caller must supply a trusted private scratch directory; this does not prove
+root-owned ancestor custody or an approved publication location.
+
+The new directory contains the four canonical record files, exact original
+`bundle.json`, exact decoded `artifact.bin` and `prepared.json` containing only
+closed unverified flags and hashes. Each file is created exclusively mode0400,
+written with bounded short-write handling, fsynced and read back through its FD.
+The stage directory is fsynced before the final marker and again afterward;
+the parent directory is fsynced. Final readback reopens every file without
+following symlinks, verifies ownership/modes/single links/stable metadata and
+compares exact bytes. The named candidate directory must still match its opened
+inode. No chmod/chown/adoption of existing objects or automatic cleanup occurs.
+
+`candidate_staged` still means unverified-candidate; publication_authorized,
+retry_authorized and reopening_authorized remain false. A failure may leave any
+partial set, including a final marker when a later sync/readback fails. Marker
+presence alone is never completion or durable evidence. An existing full,
+partial, file or symlink target is denied; no automatic repeat/overwrite/repair
+is supported. Retain uncertain artifacts privately for explicit reconciliation.
+
+Ordinary Linux tests execute only on new token-owned scratch files, including
+short writes, zero writes, corrupt/replaced readback, nonprivate parents,
+preexisting targets and sync failures before/after the marker. Successful fsync
+calls do not qualify power-loss durability, filesystem/storage containment or a
+complete atomic live generation. The private staging owner (or root) can still
+alter these artifacts; this is not an immutable archive or a trusted issuer.
+The separately authorized publisher, approval/observation custody, live admission
+barrier, actual host installation and independent off-host recovery tests remain
+unfinished. No production path, existing service or resource is changed.

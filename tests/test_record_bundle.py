@@ -2,6 +2,10 @@
 import copy
 import hashlib
 import json
+import os
+import tempfile
+import contextlib
+import stat
 from pathlib import Path
 import sys
 import unittest
@@ -88,3 +92,116 @@ class RecordBundleTests(unittest.TestCase):
              patch.object(operator_inspect.psycopg,'connect',side_effect=AssertionError):
             _,report=self.prepare(value)
             self.assertIs(report['publication_authorized'],False)
+
+
+class CandidateStagingTests(unittest.TestCase):
+    @contextlib.contextmanager
+    def parent(self):
+        scratch=Path(os.environ.get('SHOP_TEST_SCRATCH',Path(__file__).resolve().parents[1]/'.scratch'))
+        with tempfile.TemporaryDirectory(prefix='candidate-',dir=scratch) as directory:
+            fd=os.open(directory,os.O_RDONLY|os.O_DIRECTORY|os.O_CLOEXEC)
+            try:yield Path(directory),fd
+            finally:os.close(fd)
+
+    def candidate(self):
+        return json.dumps(candidate_bundle()).encode()
+
+    def test_actual_exclusive_private_files_preserve_bytes_and_unverified_report(self):
+        data=self.candidate();payloads,_=bundle.prepare_records(data)
+        with self.parent() as (parent,fd):
+            with patch.object(operator_inspect.psycopg,'connect',side_effect=AssertionError), \
+                 patch.object(process_probe,'probe',side_effect=AssertionError):
+                report=bundle.stage_candidate(data,fd)
+            staged=parent/('candidate-'+report['bundle_sha256'])
+            self.assertEqual(stat.S_IMODE(staged.stat().st_mode),0o700)
+            self.assertEqual(set(p.name for p in staged.iterdir()),bundle.FILENAMES|{'bundle.json','artifact.bin','prepared.json'})
+            expected={**payloads,'bundle.json':data,'artifact.bin':__import__('base64').b64decode(json.loads(data)['artifact_base64'])}
+            for name,payload in expected.items():
+                self.assertEqual((staged/name).read_bytes(),payload)
+                self.assertEqual(report['file_sha256'][name],hashlib.sha256(payload).hexdigest())
+            for child in staged.iterdir():
+                self.assertEqual(stat.S_IMODE(child.stat().st_mode),0o400)
+                self.assertEqual(child.stat().st_uid,os.geteuid())
+                self.assertEqual(child.stat().st_nlink,1)
+            self.assertEqual(json.loads((staged/'prepared.json').read_bytes()),report)
+            self.assertEqual(report['evidence_class'],'unverified-candidate')
+            self.assertEqual(report['status'],'candidate_staged')
+            for flag in ('publication_authorized','retry_authorized','reopening_authorized'):self.assertIs(report[flag],False)
+            with self.assertRaises(FileExistsError):bundle.stage_candidate(data,fd)
+            self.assertEqual((staged/'bundle.json').read_bytes(),data)
+            os.fstat(fd)  # Caller descriptor remains open.
+
+    def test_invalid_candidate_or_nonprivate_parent_creates_nothing(self):
+        with self.parent() as (parent,fd):
+            for data in (b'{}',b'invalid'):
+                with self.assertRaises(ValueError):bundle.stage_candidate(data,fd)
+                self.assertEqual(list(parent.iterdir()),[])
+            os.fchmod(fd,0o750)
+            with self.assertRaises(ValueError):bundle.stage_candidate(self.candidate(),fd)
+            self.assertEqual(list(parent.iterdir()),[])
+            os.fchmod(fd,0o700)
+            with patch.object(bundle.os,'geteuid',return_value=os.geteuid()+1):
+                with self.assertRaises(ValueError):bundle.stage_candidate(self.candidate(),fd)
+            self.assertEqual(list(parent.iterdir()),[])
+
+    def test_preexisting_directory_file_or_symlink_never_adopted(self):
+        data=self.candidate();name='candidate-'+hashlib.sha256(data).hexdigest()
+        for kind in ('directory','file','symlink'):
+            with self.subTest(kind=kind),self.parent() as (parent,fd):
+                target=parent/name
+                if kind=='directory':target.mkdir()
+                elif kind=='file':target.write_bytes(b'protected-synthetic')
+                else:target.symlink_to('unrelated-missing')
+                with self.assertRaises(FileExistsError):bundle.stage_candidate(data,fd)
+                self.assertEqual(list(parent.iterdir()),[target])
+                if kind=='file':self.assertEqual(target.read_bytes(),b'protected-synthetic')
+                if kind=='directory':self.assertEqual(list(target.iterdir()),[])
+                if kind=='symlink':self.assertEqual(os.readlink(target),'unrelated-missing')
+
+    def test_short_writes_complete_and_required_sync_calls_execute(self):
+        real_write=os.write;real_sync=os.fsync
+        with self.parent() as (parent,fd),patch.object(bundle.os,'write',side_effect=lambda fd,data:real_write(fd,data[:7])), \
+             patch.object(bundle.os,'fsync',wraps=real_sync) as synced:
+            report=bundle.stage_candidate(self.candidate(),fd)
+            self.assertEqual(report['status'],'candidate_staged')
+            self.assertEqual(synced.call_count,10)  # Seven files, twice stage dir, parent.
+
+    def test_failed_sync_retains_partial_and_denies_blind_repeat(self):
+        data=self.candidate();name='candidate-'+hashlib.sha256(data).hexdigest()
+        with self.parent() as (parent,fd):
+            with patch.object(bundle.os,'fsync',side_effect=OSError('synthetic-sync-failure')):
+                with self.assertRaises(OSError):bundle.stage_candidate(data,fd)
+            self.assertTrue((parent/name).is_dir())
+            self.assertTrue(any((parent/name).iterdir()))
+            self.assertFalse((parent/name/'prepared.json').exists())
+            with self.assertRaises(FileExistsError):bundle.stage_candidate(data,fd)
+
+    def test_zero_write_or_corrupt_readback_never_returns_success(self):
+        for operation,result in (('write',0),('pread',b'corrupt-synthetic')):
+            with self.subTest(operation=operation),self.parent() as (parent,fd):
+                with patch.object(bundle.os,operation,return_value=result):
+                    with self.assertRaises(ValueError):bundle.stage_candidate(self.candidate(),fd)
+                self.assertEqual(len(list(parent.iterdir())),1)
+
+    def test_last_parent_sync_failure_leaves_marker_but_not_success_or_retry(self):
+        data=self.candidate();name='candidate-'+hashlib.sha256(data).hexdigest();real_sync=os.fsync
+        with self.parent() as (parent,fd):
+            def fail_parent(descriptor):
+                info=os.fstat(descriptor)
+                if (info.st_dev,info.st_ino)==(os.fstat(fd).st_dev,os.fstat(fd).st_ino):raise OSError('synthetic-parent-sync')
+                real_sync(descriptor)
+            with patch.object(bundle.os,'fsync',side_effect=fail_parent):
+                with self.assertRaises(OSError):bundle.stage_candidate(data,fd)
+            self.assertTrue((parent/name/'prepared.json').is_file())
+            with self.assertRaises(FileExistsError):bundle.stage_candidate(data,fd)
+
+    def test_final_readback_detects_replaced_file(self):
+        data=self.candidate();real_sync=os.fsync
+        with self.parent() as (parent,fd):
+            staged=parent/('candidate-'+hashlib.sha256(data).hexdigest())
+            def replace_after_parent_sync(descriptor):
+                real_sync(descriptor)
+                if os.fstat(descriptor).st_ino==os.fstat(fd).st_ino:
+                    target=staged/'bundle.json';target.unlink();target.symlink_to('artifact.bin')
+            with patch.object(bundle.os,'fsync',side_effect=replace_after_parent_sync):
+                with self.assertRaises(OSError):bundle.stage_candidate(data,fd)

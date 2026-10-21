@@ -6,6 +6,8 @@ exact canonical record bytes a separately authorized publisher would review.
 import base64
 import hashlib
 import json
+import os
+import stat
 from control import unique_fields
 from guard import require,validate_expected
 import operator_inspect
@@ -42,3 +44,90 @@ def prepare_records(data):
         'bundle_sha256':hashlib.sha256(data).hexdigest(),
         'record_sha256':{name:hashlib.sha256(payloads[name]).hexdigest() for name in sorted(FILENAMES)}}
     return payloads,report
+
+
+STABLE_FIELDS=('st_dev','st_ino','st_uid','st_gid','st_mode','st_size','st_mtime_ns','st_ctime_ns')
+
+
+def _stage_file(directory, name, payload):
+    """New private regular file only; retain every created object on failure."""
+    fd=os.open(name,os.O_RDWR|os.O_CREAT|os.O_EXCL|os.O_NOFOLLOW|os.O_CLOEXEC,
+               0o400,dir_fd=directory)
+    try:
+        info=os.fstat(fd)
+        require(stat.S_ISREG(info.st_mode) and stat.S_IMODE(info.st_mode)==0o400
+                and info.st_uid==os.geteuid() and info.st_nlink==1 and info.st_size==0)
+        remaining=memoryview(payload)
+        while remaining:
+            written=os.write(fd,remaining)
+            require(0<written<=len(remaining))
+            remaining=remaining[written:]
+        os.fsync(fd)
+        before=os.fstat(fd)
+        actual=os.pread(fd,len(payload)+1,0)
+        after=os.fstat(fd)
+        named=os.stat(name,dir_fd=directory,follow_symlinks=False)
+        require((info.st_dev,info.st_ino,info.st_uid,info.st_gid,info.st_mode)==
+                (after.st_dev,after.st_ino,after.st_uid,after.st_gid,after.st_mode)
+                and (named.st_dev,named.st_ino)==(after.st_dev,after.st_ino)
+                and actual==payload and before.st_size==len(payload) and after.st_nlink==1
+                and all(getattr(before,key)==getattr(after,key) for key in STABLE_FIELDS))
+    finally:
+        os.close(fd)
+
+
+def stage_candidate(data, parent_fd):
+    """Prepare private review files, never live control records or authority.
+
+    Caller supplies an already-owned scratch directory FD, mode0700. The library
+    has no path discovery, installer, root-record issuer or retry/cleanup logic.
+    Any exception after mkdir leaves an uncertain partial candidate for review.
+    """
+    payloads,report=prepare_records(data)  # Invalid candidates create nothing.
+    artifact=base64.b64decode(json.loads(data)['artifact_base64'],validate=True)
+    files=dict(payloads,**{'bundle.json':data,'artifact.bin':artifact})
+    report=dict(report,status='candidate_staged',
+        file_sha256={name:hashlib.sha256(payload).hexdigest() for name,payload in sorted(files.items())})
+    name='candidate-'+report['bundle_sha256']
+    parent=os.dup(parent_fd)
+    os.set_inheritable(parent,False)
+    try:
+        parent_before=os.fstat(parent)
+        require(stat.S_ISDIR(parent_before.st_mode) and parent_before.st_uid==os.geteuid()
+                and stat.S_IMODE(parent_before.st_mode)==0o700)
+        # Exclusive new directory: an existing full, partial, symlink or unknown
+        # object is never adopted, overwritten, removed or automatically retried.
+        os.mkdir(name,0o700,dir_fd=parent)
+        directory=os.open(name,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW|os.O_CLOEXEC,dir_fd=parent)
+        try:
+            info=os.fstat(directory)
+            require(info.st_uid==os.geteuid() and stat.S_IMODE(info.st_mode)==0o700)
+            identity=(info.st_dev,info.st_ino,info.st_uid,info.st_gid,info.st_mode)
+            for filename,payload in sorted(files.items()):_stage_file(directory,filename,payload)
+            require(set(os.listdir(directory))==set(files))
+            os.fsync(directory)
+            # Final marker remains unverified and cannot authorize publication.
+            receipt=json.dumps(report,sort_keys=True,separators=(',',':'),ensure_ascii=True).encode('ascii')+b'\n'
+            _stage_file(directory,'prepared.json',receipt)
+            os.fsync(directory)
+            os.fsync(parent)
+            named=os.stat(name,dir_fd=parent,follow_symlinks=False)
+            require(identity==(named.st_dev,named.st_ino,named.st_uid,named.st_gid,named.st_mode)
+                    and set(os.listdir(directory))==set(files)|{'prepared.json'})
+            for filename,payload in {**files,'prepared.json':receipt}.items():
+                fd=os.open(filename,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK|os.O_CLOEXEC,dir_fd=directory)
+                try:
+                    before=os.fstat(fd)
+                    require(stat.S_ISREG(before.st_mode) and before.st_uid==os.geteuid()
+                            and stat.S_IMODE(before.st_mode)==0o400 and before.st_nlink==1
+                            and before.st_size==len(payload))
+                    require(os.pread(fd,len(payload)+1,0)==payload)
+                    after=os.fstat(fd)
+                    require(all(getattr(before,key)==getattr(after,key) for key in STABLE_FIELDS))
+                finally:os.close(fd)
+            current=os.fstat(parent)
+            require(all(getattr(parent_before,key)==getattr(current,key)
+                        for key in ('st_dev','st_ino','st_uid','st_gid','st_mode')))
+            return report
+        finally:os.close(directory)
+    finally:os.close(parent)
