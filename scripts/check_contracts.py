@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Offline versioned contracts with actual synthetic HTTP/worker observations."""
 import argparse
+import datetime
 import hashlib
 import io
 import json
@@ -72,8 +73,35 @@ def validate_observations(observations):
     return 7
 
 
+def environment_examples():
+    schema = validator(load(ROOT / 'schemas/v1/environment.schema.json'))
+    for mode in ('local', 'synthetic', 'bank-sandbox', 'production'):
+        values = {}
+        for line in (ROOT / 'ops/config' / (mode + '.example')).read_text().splitlines():
+            if not line or line.startswith('#'): continue
+            key, value = line.split('=', 1)
+            if key in values: raise ValueError('duplicate template field')
+            values[key] = value
+        schema.validate({'schema_version': 1, 'values': values})
+    return 4
+
+
+def artifact_record(command, counts, started_at, duration):
+    def identity(path):
+        return {'path': path, 'sha256': hashlib.sha256((ROOT / path).read_bytes()).hexdigest()}
+    commit = subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True,timeout=5).strip()
+    dirty = bool(subprocess.check_output(['git','status','--porcelain'],cwd=ROOT,text=True,timeout=5))
+    import platform
+    return {'schema_version':1,'evidence_class':'local-synthetic','source':{'commit':commit,'dirty':dirty},
+        'tools':{'python':platform.python_version()},
+        'locks':[identity('backend/requirements/tools-linux-py313.txt'),identity('backend/requirements/runtime-linux-py313.txt')],
+        'command':command,'exit_code':0,'checks':counts['checks'],'tests':counts['tests'],
+        'started_at':started_at,'duration_seconds':duration,
+        'artifacts':[identity('api/v1/openapi.json'),identity('schemas/v1/probe.schema.json')]}
+
+
 def validate_file(path):
-    checks = validate_observations(load(path))
+    checks = validate_observations(load(path)) + environment_examples()
     import unittest
     suite = unittest.TestLoader().discover(str(ROOT / 'tests'), pattern='test_contracts.py')
     stream = io.StringIO()
@@ -90,6 +118,7 @@ def qualify(local, authorization):
     if not local: runner_authorization(authorization)
     elif authorization is not None: raise ValueError('local subset cannot accept fault authorization')
     start = time.monotonic()
+    started_at = datetime.datetime.now(datetime.timezone.utc).isoformat()
     parent = ROOT / '.scratch'; parent.mkdir(exist_ok=True)
     with tempfile.TemporaryDirectory(prefix='contracts-',dir=parent) as directory:
         scratch = Path(directory)
@@ -131,6 +160,13 @@ with patch('shop.core.health.connection') as conn:
             completed=subprocess.run(['unshare','--net','--',str(python),str(Path(__file__).resolve()),'--validate-file',str(path)],
                 env=env,cwd=ROOT,capture_output=True,text=True,timeout=30,check=True)
             counts=json.loads(completed.stdout)
+            record = artifact_record(['unshare', '--net', '--', str(python), str(Path(__file__).resolve()), '--validate-file', str(path)],
+                counts, started_at, time.monotonic()-start)
+            manifest = scratch/'artifact-record.json';manifest.write_text(json.dumps(record))
+            check = 'import sys;sys.path.insert(0,sys.argv[1]);from check_contracts import validator,load,ROOT;validator(load(ROOT/"schemas/v1/artifact-manifest.schema.json")).validate(load(sys.argv[2]))'
+            subprocess.run(['unshare','--net','--',str(python),'-c',check,str(ROOT/'scripts'),str(manifest)],
+                cwd=ROOT,env=env,capture_output=True,text=True,timeout=15,check=True)
+            counts['checks'] += 1
     marker='CONTRACTS_LOCAL_PASS' if local else 'CONTRACTS_PASS'
     print(f'{marker} checks={counts["checks"]} tests={counts["tests"]} duration_seconds={time.monotonic()-start:.3f}')
     if local: print('PENDING_OFF_HOST: 503 is a synthetic handler exception, not actual HTTP database-outage evidence')
