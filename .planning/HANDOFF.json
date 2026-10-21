@@ -4,7 +4,7 @@
   "phase": "02",
   "phase_name": "Reproducible application and deployment skeleton",
   "phase_dir": ".planning/phases/02-reproducible-application-and-deployment-skeleton",
-  "plan": "05",
+  "plan": "04",
   "task": 1,
   "total_tasks": 24,
   "status": "executing",
@@ -42,6 +42,11 @@
       "id": "02-03-02",
       "status": "done",
       "commit": "1581176"
+    },
+    {
+      "id": "02-05-01",
+      "status": "done",
+      "commit": "b4def63"
     }
   ],
   "remaining_tasks": [
@@ -79,7 +84,7 @@
   ],
   "background_workers": [],
   "uncommitted_files": [],
-  "next_action": "Continue 02-05 Python locks in a fresh current GSD worktree; 02-00 and 02-03 complete. No host mutation.",
+  "next_action": "02-04 public frontend boundary then 02-06 Django health. Runtime outage/restart/exhaustion/recovery tests require independent off-host runner; details requested, local work continues. Use owned project scratch for Python wheels, not undersized /tmp.",
   "context_notes": "October 21 protected-services update is sole current architecture authority. Read 02-CONTEXT.md, SOURCES.md, REQUIREMENTS.md and ROADMAP.md; archived October 20 planning is historical only. Hosting selected, qualification pending; no new runtime/host compliance credited.",
   "retained_historical_worktrees": [
     {

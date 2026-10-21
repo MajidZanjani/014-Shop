@@ -12,7 +12,7 @@ progress:
   total_phases: 14
   completed_phases: 1
   total_plans: 20
-  completed_plans: 6
+  completed_plans: 7
   percent: 7
 ---
 
@@ -23,12 +23,12 @@ progress:
 See .planning/PROJECT.md and SOURCES.md (October 21 current authority).
 
 **Core value:** Turn an exact reviewed xSPI-MC configuration or support purchase into attributable acceptance, verified payment and recoverable licence delivery or support credit without duplicate effects.
-**Current focus:** 02-00 and 02-03 complete; next 02-05 Python locks. Phase 2 has 4/18 completed development plans; 14 pending, 24 tasks/14 waves. Current-source checks now pass; no host/runtime qualification claimed.
+**Current focus:** 02-00 and 02-03 complete; next 02-04 public frontend boundary, then 02-06 Django health. Phase 2 has 5/18 completed development plans; 13 pending, 24 tasks/14 waves. Current-source checks now pass; no host/runtime qualification claimed.
 
 ## Current Position
 
 Phase: 02 of 14 — Reproducible application and deployment skeleton
-Plan: 02-05 pending; existing 02-01 and 02-02 evidence retained only after applicability review.
+Plan: 02-04 pending; existing 02-01 and 02-02 evidence retained only after applicability review.
 Status: Executing Phase 2 under user continuation; phase auto-advance remains false.
 Last activity: 2026-10-21 — Protected-host requirements, roadmap, detailed affected plans and stale handoff replaced.
 Progress: [█░░░░░░░░░] 7% phases; no new application/host acceptance.
@@ -66,3 +66,5 @@ P-10 host qualification remains unperformed. P-11 public route/zone/certificate 
 Last session: 2026-10-21T06:10:29Z
 Stopped at: 02-00 merged; proceeding to frontend/Python dependency slices.
 Resume file: .planning/phases/02-reproducible-application-and-deployment-skeleton/.continue-here.md
+
+Python 02-05 is merged: 63 actual import/identity checks and 7 rejection tests; 6 runtime/39 tool distributions. Shared /tmp is only 128 MB; use task-owned project .scratch/TMPDIR for wheel/venv work, never clean shared files. Independent off-host runner details requested asynchronously; local work continues.
