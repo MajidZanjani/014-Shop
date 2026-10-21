@@ -1,8 +1,18 @@
 ---
-const title = 'xSPI-MC build probe';
+import { getEntry } from 'astro:content';
+import BuildProbe from '../components/BuildProbe';
+const probe = await getEntry('probes', 'skeleton');
+if (!probe) throw new Error('Required synthetic build probe missing');
+const { title, evidence_class } = probe.data;
 ---
 <!doctype html>
 <html lang="en">
   <head><meta charset="utf-8" /><meta name="viewport" content="width=device-width" /><title>{title}</title></head>
-  <body><main><h1>{title}</h1><p data-evidence-class="local-synthetic">Synthetic infrastructure check. No purchase or licence offer.</p></main></body>
+  <body>
+    <main>
+      <h1>{title}</h1>
+      <p data-evidence-class={evidence_class}>Synthetic infrastructure check. No purchase or licence offer.</p>
+      <BuildProbe client:load />
+    </main>
+  </body>
 </html>
