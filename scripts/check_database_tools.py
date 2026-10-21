@@ -16,7 +16,7 @@ ROOT=Path(__file__).resolve().parents[1]
 from check_python import frozen_environment, require
 
 MODULES=('guard','control','database','process_probe','schema_authorization',
-         'ledger_bootstrap','schema_reconciliation')
+         'ledger_bootstrap','schema_reconciliation','operator_inspect')
 FILES={**{f'libexec/shop/database/{name}.py':f'ops/runtime/{name}.py' for name in MODULES},
        'share/shop/schema-ledger.sql':'ops/postgresql/schema-ledger.sql'}
 MANIFEST='share/shop/database-tools.json'
@@ -101,11 +101,20 @@ print('DATABASE_TOOLS_IMPORT_PASS')
             imported=subprocess.run([str(python),'-I','-c',program,str(artifact),*MODULES],
                 env=env,capture_output=True,text=True,check=True,timeout=15)
             require(imported.stdout.strip()=='DATABASE_TOOLS_IMPORT_PASS','actual isolated import required')
+            command="import sys,runpy;sys.dont_write_bytecode=True;sys.path.insert(0,sys.argv.pop(1));runpy.run_module('operator_inspect',run_name='__main__')"
+            help_result=subprocess.run([str(python),'-I','-c',command,str(artifact/'libexec/shop/database'),'--help'],
+                env=env,capture_output=True,timeout=10)
+            require(help_result.returncode==0 and help_result.stdout.startswith(b'Prepared read-only command:')
+                and not help_result.stderr,'actual packaged help required')
+            denied=subprocess.run([str(python),'-I','-c',command,str(artifact/'libexec/shop/database'),'apply'],
+                env=env,capture_output=True,timeout=10)
+            require(denied.returncode==2 and not denied.stdout
+                and denied.stderr==b'{"event":"operator.inspection_denied"}\n','packaged mutation command must be absent')
     suite=unittest.TestLoader().discover(str(ROOT/'tests'),pattern='test_database_tools.py')
     stream=io.StringIO();tests=unittest.TextTestRunner(stream=stream).run(suite)
     require(tests.testsRun>=5 and tests.wasSuccessful() and not tests.skipped,'manifest controls failed')
-    print(f'DATABASE_TOOLS_PASS checks=5 tests={tests.testsRun} duration_seconds={time.monotonic()-start:.3f}')
-    print('Actual inert source build and frozen-runtime isolated imports only; no CLI/host installation or runtime qualification')
+    print(f'DATABASE_TOOLS_PASS checks=6 tests={tests.testsRun} duration_seconds={time.monotonic()-start:.3f}')
+    print('Actual source build/import and packaged help/denial only; executable runtime/host installation/positive transport qualification pending')
 
 if __name__=='__main__':
     try:main()

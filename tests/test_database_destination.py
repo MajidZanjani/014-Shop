@@ -748,3 +748,13 @@ class DatabaseDestinationTests(unittest.TestCase):
         self.assertIs(result['reopening_authorized'],False)
         self.assertEqual(self.ledger_count(),'1')
         self.assertEqual(self.authorized_inspection(),'recorded')
+
+
+    def test_operator_scram_requirement_rejects_real_trust_only_cluster(self):
+        with self.assertRaises(psycopg.OperationalError) as error:
+            psycopg.connect(host=str(self.target.socket),port=5432,dbname='postgres',
+                user='shop_test',password='SYNTHETIC_PRIVATE_PASSWORD',autocommit=True,
+                connect_timeout=2,passfile=str(self.target.root/'absent.pgpass'),
+                require_auth='scram-sha-256',options='-c default_transaction_read_only=on')
+        self.assertIn('authentication',str(error.exception))
+        self.assertEqual(self.target.sql('SELECT count(*) FROM public.destination_probe'),'0')

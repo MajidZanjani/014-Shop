@@ -1,7 +1,7 @@
 # Schema migration boundary
 
 Status: repository implementation in progress. Production and bank-sandbox Django
-connections remain blocked by `shop.db.unqualified`. No deployment CLI, approved
+connections remain blocked by `shop.db.unqualified`. No installed operator executable, approved
 host record, role provisioning or production migration is supplied here.
 
 `ops/runtime/schema_authorization.py` accepts an already connected idle autocommit
@@ -92,7 +92,7 @@ private transport, root-owned record publication, immutable host-side packaging,
 bootstrap/role qualification and actual off-host runtime qualification are
 still pending. Direct lower-level `execute_schema_batch` remains an internal
 untracked schema primitive for separately authorized bootstrap/tests; deployment
-migrations must use the authorized ledger path. No deployment CLI is supplied.
+migrations must use the authorized ledger path. No mutation/deployment CLI is supplied.
 Do not remove the production Django connection gate before those boundaries are
 covered.
 
@@ -171,7 +171,7 @@ They adapt only the fixed PGDATA comparison to owned scratch paths. They do not
 establish rootless process/storage/resource containment or production readiness.
 
 The inert source bundle is available as the flake package
-`shop-database-tools-source`. It contains exactly seven explicitly selected Python
+`shop-database-tools-source`. It contains exactly eight explicitly selected Python
 modules plus the pinned SQL artifact and a closed SHA-256 manifest. Individual
 source bytes are copied into separate store files; the bundle does not retain a
 reference to the entire repository source. It contains no interpreter, dependency
@@ -180,10 +180,58 @@ record. No NixOS module installs it and no service uses it automatically.
 
 The `database-tools` verification lane builds this source bundle, compares all
 packaged bytes and its manifest with the selected sources, checks exported
-metadata and exact direct store references, and imports the modules from the actual store path using isolated
+metadata and exact direct store references, imports the modules from the actual store path using isolated
 Python and the existing hash-locked runtime dependencies. Import controls deny
-database connections and control-record reads. This is actual source-bundle build
+database connections and control-record reads. Actual packaged help and mutation-
+command denial are also exercised in isolated child processes. This is actual source-bundle build
 and local import evidence only; it does not build an OCI image or qualify a live
 operator tool. A concrete launcher, minimum operator runtime/dependency review,
 credential transport, host installation and operational qualification are still
 pending. The source manifest is not a complete runtime SBOM or licence review.
+
+The prepared `operator_inspect.py` module now supplies only `inspect` and `--help`.
+It is source code in that inert bundle, not an installed executable or qualified
+operator runtime. No mutation/bootstrap command exists. Its standalone entrypoint
+scrubs the environment before handling the command; invocation must use the
+reviewed isolated Python/dependency runtime. That runtime must load the pinned
+libpq before the entrypoint scrub; frozen local tests supply the existing verified
+library path and pure-Python Psycopg implementation. Minimum runtime packaging and
+actual client/server authentication qualification remain pending.
+
+The command takes no DSN, password, artifact pathname or tool-path arguments. FD0
+must be an already open private regular artifact file, at most2MiB. FD3 must be an
+already open private regular credential file,16–4096 bytes, decoded exactly as
+UTF8 without trimming; NUL is rejected. Each file must belong to the current
+account, mode0400/0600, with stable identity/ownership/mode/size/modification
+metadata while read. Inputs are read from offset0 without advancing the caller's
+offset, and marked non-inheritable. Helpers receive null stdin; no artifact or
+credential is sent to helper arguments/environment. Future credential provisioning
+follows the repository .env policy; no real credential or .env value is needed by
+these local preparation tests.
+
+A separate root-owned `operator-connection.json` contains exactly schema_version1,
+the complete approved database identity, socket_directory, zfs and pg_control.
+The latter two are explicit approved Nix-store binary paths ending in /bin/zfs and
+/bin/pg_controldata. The socket directory is fixed to the proposed
+`/srv/shop/tmp/postgres-socket`, within the existing shop tmp boundary. Every
+ancestor is opened without symlink traversal and must be root/account-owned and
+not group/other writable; the directory and socket must belong to the shop account
+with mode0700. Socket identity and connection record are compared before/after
+connection and observation. The caller must be the nonroot approved shop UID.
+Current Quadlets/HBA do not expose or authorize this proposed host-side socket:
+mount/path/auth/account/role provisioning and actual identity/race/peer/runtime
+qualification remain pending. The command creates or changes none of them.
+
+The process/database/inspection authorities and exact artifact are checked before
+credential use or connection. Connection parameters are explicit: only the fixed
+Unix socket, approved database/role/port, two-second connect timeout, null passfile,
+UTF8 and default_transaction_read_only=on with bounded search_path/query/lock
+settings. `require_auth=scram-sha-256` rejects a trust-only server, as specified by
+[PostgreSQL18 libpq](https://www.postgresql.org/docs/18/libpq-connect.html).
+Local tests prove that negative case, not a qualified positive SCRAM exchange or
+actual end-to-end operator connection. SQL inspection still uses its separate
+read-only transaction/identity checks. Results retain only the closed observation
+fields; denials emit a fixed event without argv, exception, libpq detail or private
+bytes. Connections close on both success and post-connect denial. Original
+inspection records are rechecked by the library; no write retry/reopening is
+authorized. Production Django connections remain blocked.

@@ -4,10 +4,10 @@ current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
 status: executing
 stopped_at: Candidate runtime and local evidence committed; finish 14/16/17 gaps.
-last_updated: "2026-10-21T11:12:53.416484+00:00"
+last_updated: "2026-10-21T11:32:58.584567+00:00"
 last_activity: 2026-10-21
-last_activity_desc: Inert database source bundle built and imported; roadmap and gap audit reconciled with current evidence.
-state_head: 7dfa316
+last_activity_desc: Prepared read-only operator command with private FD input; local database/operator and source/deployment checks pass.
+state_head: d011e40
 progress:
   total_phases: 14
   completed_phases: 1
@@ -30,7 +30,7 @@ No independent off-host runner assigned. User permits all authorized repository 
 
 ## Current evidence
 
-Local environment2 checks/14 tests; frontend13/9; core-local4/22; worker-smoke6/24 including broken-fence/lock controls; adapters3/6 in isolated network; contracts-local12/8; combined boundaries17/32; deployment-eval15/27; postgres-diagnostics3/8; postgresql-config3/7; bootstrap-local3/13; database-destination3/60; database-tools5/5; profiles6/5; locks3/8; reproducibility4/5 with exactly2 independent public/backend builds. Counts overlap across lanes; no unique total implied. Reproducibility uses a fixed canonical path in separate private process namespaces; raw failed HTML-island-ID comparison remains recorded, no output normalization. Focused versioned manifest is local reproducibility only.
+Local environment2 checks/14 tests; frontend13/9; core-local4/22; worker-smoke6/24 including broken-fence/lock controls; adapters3/6 in isolated network; contracts-local12/8; combined boundaries17/32; deployment-eval15/27; postgres-diagnostics3/8; postgresql-config3/7; bootstrap-local3/13; database-destination3/72; database-tools6/5; profiles6/5; locks3/8; reproducibility4/5 with exactly2 independent public/backend builds. Counts overlap across lanes; no unique total implied. Reproducibility uses a fixed canonical path in separate private process namespaces; raw failed HTML-island-ID comparison remains recorded, no output normalization. Focused versioned manifest is local reproducibility only.
 
 Installed standard SBOM evidence reconciles271 npm/6 runtime Python/39 tool Python components and records70 uninstalled optional paths. Collector exits2, not INVENTORY_PASS: raw npm malformed URI, missing licence texts and native/image coverage remain unresolved. Images are unbuilt; no real digest or compatibility claimed. Candidate profile/guard evaluation is not operational protection proof. Manual-only read-only SHA-pinned CI is prepared, never executed; no runner/authorization record created.
 
@@ -133,3 +133,11 @@ Code7dfa316 exposes shop-database-tools-source as a separate Nix package with se
 Actual local evidence: database-tools5 checks/5 tests,3.494s; deployment-eval15/27,2.164s; environment2/14 passes including updated all-lane producer checks. Prior database-destination3/60 remains recorded, not rerun because runtime module bytes unchanged. Full all not rerun; known off-host gate remains nonzero and the new lane is required by all. No failing test/build run this step. ROADMAP baseline/scope, misplaced Phase01 plan count, Phase02 count and progress row reconciled with actual2 Phase01 and8 Phase02 SUMMARY records. VERIFICATION gap audit refreshed without full verification or acceptance credit.
 
 Next: concrete operator launcher/minimum dependency runtime, credentials/private transport/roles, record publication/custody and host-side installation, Django migration/recorder and application write integration, generator/replica/OCI/notices/reproducibility/full CI and actual off-host qualification. Source-only packaging does not complete these gates. No .env read/value needed, host/provider/service/resource change or purchase. Production Django connections remain blocked; Phase02 and14/16/17 remain incomplete.
+
+## Latest continuation — prepared read-only operator command
+
+Coded011e40 adds operator_inspect.py (inspect/--help only), strict root-owned operator-connection.json, private regular artifact FD0/credential FD3 reads, fixed proposed Unix socket path under shop tmp, approved binary paths, nonroot UID matching, socket ancestor/type/ownership/mode and stable record/socket checks. Standalone entrypoint scrubs environment before command handling; libpq parameters explicitly require SCRAM and default read-only sessions with bounded timeouts/null passfile. Records/artifact/process are checked before credentials/connect; inspection still uses guarded read-only snapshot. No DSN/password/path/mutation arguments, automatic setup or retries. Output is closed observation or fixed denial, no input/libpq/exception echo. Helpers use null stdin; descriptors are non-inheritable. Source bundle now contains8 modules, still no executable launcher/runtime/install/activation.
+
+Actual local evidence: database-destination3 checks/72 tests,7.914s (61 database-suite cases plus11 FD/mock/process operator cases); database-tools6/5,4.029s including actual packaged help/mutation-command denial; deployment-eval15/27,2.144s. Real disposable PG trust-only server is rejected under require_auth=scram-sha-256. Positive command connection/probe/socket path is mocked, not real runtime/SCRAM qualification. Initial71/72-test attempts failed only child help import because the test omitted the pinned runtime discovery PATH; diagnostic run confirmed libpq not found, and corrected controlled PATH/LD_LIBRARY_PATH/PSYCOPG_IMPL preload fixture passed. Environment scrub occurs after required imports. This finding reinforces unfinished pinned executable-runtime packaging; no invented positive transport proof.
+
+Next minimum operator runtime/launcher and error/startup qualification, separately authorized root-record publication/custody, actual dedicated socket mount/HBA/role/credential integration and positive peer/runtime/SCRAM tests, Django/app write/migration integration, generator/replica/OCI/licences/CI and independent off-host qualification. Current Quadlets/HBA provide no such operator socket/access and were unchanged. No real credential/.env read/needed missing value, host/provider action, service/resource change or purchase. Production Django gate stays closed; plans14/16/17 and full readiness remain incomplete.
