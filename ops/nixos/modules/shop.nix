@@ -70,6 +70,8 @@ in {
       value.text = render service;
     }) [ "app" "worker" "postgres" "gateway" ])) // {
       "xspi-shop/bootstrap".source = bootstrap;
+      "xspi-shop/postgresql.conf".source = ../../postgresql/postgresql.conf;
+      "xspi-shop/pg_hba.conf".source = ../../postgresql/pg_hba.conf;
       "containers/systemd/users/${toString uid}/shop-private.network".source = ../../quadlet/shop-private.network;
     } // runtime.etc;
     # No global Podman/firewall/mount/pool/journal/subuid-helper activation.
