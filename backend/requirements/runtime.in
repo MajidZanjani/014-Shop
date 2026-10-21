@@ -1,0 +1,5 @@
+# Linux x86_64, pinned Python 3.13.16; source-approved direct runtime artifacts.
+pip==26.2.1
+Django==5.2.18
+gunicorn==26.2.0
+psycopg==3.3.6
