@@ -2,9 +2,9 @@
 gsd_state_version: "1.0"
 current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
-status: executing
-stopped_at: Candidate runtime and local evidence committed; finish 14/16/17 gaps.
-last_updated: "2026-10-21T12:06:55.133809+00:00"
+status: paused
+stopped_at: User-requested pause; read HANDOFF.json and phase .continue-here.md before resuming.
+last_updated: "2026-10-21T12:15:59.880Z"
 last_activity: 2026-10-21
 last_activity_desc: Offline unverified record-bundle validation and publication contract prepared; focused local checks pass.
 state_head: 6c1360b
@@ -157,3 +157,7 @@ Code6c1360b adds record_bundle.py and validate-records command, plus docs/contro
 Actual local evidence: database-destination3 checks/81 tests,7.960s including9 new candidate controls; operator-runtime4/10,2.440s with actual packaged private-FD valid candidate and mixed-record denial; database-tools6/5,4.000s with9-module source bundle; deployment-eval15/27,2.247s. No failing runs. Nix emitted an ignored eval-cache busy warning during concurrent evaluation; all required lanes completed0 with positive counts. Reports contain only hashes/closed flags, no record values/SQL. Synthetic fixtures and existing adapted scratch PGDATA remain local evidence, not actual host observations/approvals.
 
 Publication contract requires actual retained inventory/ownership and exact authority, new-object staging and readback hashes, root-owned nonsymlink ancestors, bounded read-group permissions, durable complete generations under shop-only admission barrier and uncertainty reconciliation. It performs none of these writes. Next actual publisher/custody and positive socket/HBA/role/credential/peer/FD integration/qualification; application/Django migration/write integration, generator/replica/OCI/notices/reproducibility/full CI and off-host/T11/T12 remain pending. No .env read/needed credential, root record issued/published, real service connection, host/provider operation, existing service/resource change or purchase. Production Django access stays blocked; plans14/16/17 and full readiness incomplete.
+
+## User-requested pause
+
+Paused with structured HANDOFF.json and phase .continue-here.md. No implementation or qualification advanced during checkpoint. Resume with `$gsd-resume-work`; preserve pending 14/16/17 work and off-host gates. SUMMARY audit flags historical 02-01 pending-approval wording for reconciliation against the later actual approval record.

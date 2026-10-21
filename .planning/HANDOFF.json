@@ -1,0 +1,102 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-10-21T12:15:59.880Z",
+  "phase": "02",
+  "phase_name": "Reproducible application and deployment skeleton",
+  "phase_dir": ".planning/phases/02-reproducible-application-and-deployment-skeleton",
+  "plan": 14,
+  "task": 1,
+  "total_tasks": 2,
+  "status": "paused",
+  "base_commit": "fb3a65e7f192b293c14ba4f640c0be8c1b632933",
+  "completed_tasks": [
+    {
+      "id": "02-14-01-slice",
+      "name": "Offline unverified bundle validator, packaged command and publication contract",
+      "status": "done",
+      "commit": "6c1360b",
+      "scope": "Slice only; whole task remains incomplete."
+    }
+  ],
+  "remaining_tasks": [
+    {
+      "id": "1",
+      "name": "02-14-01: scoped durable record publisher/custody, positive private socket/HBA/role/credential transport, application/Django write and migration enforcement, generator installation preparation and executable replica driver.",
+      "status": "pending"
+    },
+    {
+      "id": "2",
+      "name": "02-14-02: actual off-host lifecycle/outage/restart/exhaustion/recovery and containment evidence pending; no runner assigned.",
+      "status": "pending"
+    },
+    {
+      "id": "3",
+      "name": "02-16: malformed raw npm CycloneDX URI, 12 licence-text findings, native/Nix/OCI closure/layer/notice coverage.",
+      "status": "pending"
+    },
+    {
+      "id": "4",
+      "name": "02-17: OCI builds and reproducibility, actual full CI evidence; outstanding browser and human reviews.",
+      "status": "pending"
+    }
+  ],
+  "blockers": [
+    {
+      "description": "No independent off-host runner assigned.",
+      "type": "external",
+      "workaround": "Continue repository/local preparation; docs/qualification-runner.md specifies ordinary Linux versus NixOS/Podman/ZFS checks. Raise dependency at qualification stage only."
+    }
+  ],
+  "async_jobs": [],
+  "async_jobs_observation": ".planning/async-jobs does not exist; inspected during pause.",
+  "background_processes": [],
+  "human_actions_pending": [
+    {
+      "action": "Assign authorized off-host runner when remaining qualification begins.",
+      "context": "No disruptive tests on mx1; no automatic purchase/provisioning.",
+      "blocking": false
+    },
+    {
+      "action": "Complete browser, source/licence and runtime/host approval reviews at their gates.",
+      "context": "No full production readiness claimed.",
+      "blocking": false
+    }
+  ],
+  "decisions": [
+    {
+      "decision": "October 21 proposal/handoff govern: rootless Podman directly on existing OVH dedicated mx1 under proposed shopsvc, outside claude-dev; no new cloud compute or automatic provisioning.",
+      "phase": "02"
+    },
+    {
+      "decision": "Preserve all existing services, containers, MicroVMs and resource allocations. Never run disruptive qualification on mx1.",
+      "phase": "02"
+    },
+    {
+      "decision": "Use .env for credentials only as needed for an authorized action; never expose values. Add descriptive blank missing VARIABLE_NAME= entries and ask owner to fill .env directly. No credential needed or read during latest work.",
+      "phase": "02"
+    },
+    {
+      "decision": "Commit and push each completed step. Pause above 90% context when observable; never invent context percentage.",
+      "phase": "02"
+    },
+    {
+      "decision": "Keep production Django connections blocked and all unexecuted qualification pending; candidate validation never grants publication, retry or reopening authority.",
+      "phase": "02"
+    }
+  ],
+  "uncommitted_files": [],
+  "uncommitted_observation": "Measured git status --porcelain immediately before writing pause artifacts.",
+  "blocking_constraints": [
+    {
+      "severity": "advisory",
+      "description": "SUMMARY file presence previously overstated completion; use PARTIAL for unfinished plans and inspect actual acceptance evidence."
+    },
+    {
+      "severity": "advisory",
+      "description": "Shared /tmp exhausted at 128 MiB; use owned project .scratch and bounded jobs, never clean shared storage or change allocations."
+    }
+  ],
+  "summary_audit": "02-01-SUMMARY contains historical task-2 pending approval text despite later recorded approval in STATE. Reconcile against actual review JSON/checkpoint on resume; no approval invented or completion count changed during pause. Other matched SUMMARY references explicitly defer shared/external gates.",
+  "next_action": "Read HANDOFF, STATE, 02-14-PARTIAL and docs/control-record-publication.md; reconcile historical 02-01 SUMMARY approval wording against the actual recorded approval, then continue repository-only plan 02-14-01 record lifecycle and guarded application/operator integration. Do not execute off-host qualification or host changes.",
+  "context_notes": "User explicitly requested pause. Latest implementation and documentation already pushed via fb3a65e. Phase 02 incomplete: 8 local slices complete, 7 qualification/review pending, 3 implementation-incomplete (14/16/17). No FULL_PASS. Two clean historical worktrees at 2c64d9b must not replay stale prompts. No active implementation agent or job."
+}
