@@ -330,7 +330,7 @@ def evidence(data, inputs):
         count += require(name in value, "evidence artifact link: " + name)
     for gate in GATES:
         count += require(gate in value, "remaining gate: " + gate)
-    count += require(EVIDENCE in text(inputs.get(LEDGER), LEDGER), "source ledger evidence link")
+    count += require(EVIDENCE in text(recorded[LEDGER], LEDGER), "historical source ledger evidence link")
     return count
 
 CURRENT_HEADING = "## T02 02-00 current-source migration evidence"

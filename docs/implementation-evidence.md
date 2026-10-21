@@ -125,3 +125,59 @@ Independent review CR-01 and CR-02 reproduced two future-phase lifecycle failure
 T01 metadata parsing is now bounded by task-numbered evidence headings. Later T02 JSON blocks are independent, while duplicate JSON inside T01 is rejected. In-memory regression controls cover a later ledger note, a structurally valid synthetic approval record, later-phase JSON, duplicate T01 metadata and unavailable historical commits. The synthetic approval control is never persisted to the live register and grants no authority. Actual production/business statuses remain pending.
 
 Observed lifecycle-repair results on main: all exited 0 (source 18, scope 25, inventory 279, decisions 88, evidence 39); self-check exited 0 with 59 asserted rejections and positive historical-relocation, later-ledger, later-register and later-phase-JSON controls. Whitespace checks passed.
+
+## T02 02-00 current-source migration evidence
+
+Current source/scope/inventory/decisions modes were actually run with the counts below. This is local documentation evidence only. Existing T01 observations above remain historical, not new acceptance or host inspection. Artifact hashes identify the committed migration inputs; the evidence record excludes its own hash. The hosting choice is selected; host protection, rootlessness, runtime/ingress and production qualification remain pending.
+
+```json
+{
+  "schema_version": 1,
+  "observed_utc": "2026-10-21T06:20:22Z",
+  "head": "1ea8fabd32780199051fda61fea4b4e30ae3bdc7",
+  "branch": "worktree-agent-p02-00-oct21",
+  "root": "/home/claude/project/014-Shop/.claude/worktrees/agent-p02-00-oct21",
+  "status": "?? docs/product-source/__pycache__/",
+  "artifact_revision": "1ea8fabd32780199051fda61fea4b4e30ae3bdc7",
+  "artifacts": {
+    "docs/product-source/verify_t01.py": "3dc3194d3f03cf35dc3dfb936c0210e221a143e3809f88a816e3b1e7fd3ffcb4",
+    "docs/product-source/t01-scope.md": "e20afc470cc860c14cc975eb4346ba78e2c25756f60fa96ca6bda763f94ccc8a",
+    ".planning/SOURCE-MATRIX.md": "319d29caf4706f64017348c37e1cbd6ad59231db909134b21c078cc08dbdbec3",
+    "docs/decisions.md": "28708da84758fc0c62a3ee01a5baeb200b302810b06dcea74289be733da8cc71",
+    ".planning/SOURCES.md": "8d273cb093dafcb53a384dafef4bf838bb0f8f14374a1972b7484d3a0aa5a15c"
+  },
+  "commands": {
+    "source": {
+      "command": "python3 docs/product-source/verify_t01.py source",
+      "exit": 0,
+      "checks": 20
+    },
+    "scope": {
+      "command": "python3 docs/product-source/verify_t01.py scope",
+      "exit": 0,
+      "checks": 27
+    },
+    "inventory": {
+      "command": "python3 docs/product-source/verify_t01.py inventory",
+      "exit": 0,
+      "checks": 279
+    },
+    "decisions": {
+      "command": "python3 docs/product-source/verify_t01.py decisions",
+      "exit": 0,
+      "checks": 88
+    }
+  },
+  "evidence_class": "local-documentation",
+  "host_inspected": false,
+  "production_qualified": false,
+  "approval_scope": "P-10 hosting direction selected; host qualification pending",
+  "sources": {
+    "SLL-xSPI-MC-Shop-Proposal-2026-10-21.md": "26a7359624ea4a9625005b39a3fa43beff01c31c830e3b6f122c1ad7417787d0",
+    "SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md": "3ff0ecffe4432514bab4a29d500fff05c5537a79c0a8fa494faeb8dfda1c6fac",
+    "docs/product-source/SLL_xSPI_MC_Product_Page.md": "562dc4015c62f165df5df3e9ae1aab26b8102385d9dc76a556d5965ddc1a0263"
+  }
+}
+```
+
+Final observed migration checks: all exited 0 with source 20, scope 27, inventory 279, decisions 88, historical evidence 39 and current evidence 18 checks. Self-check exited 0 with 71 asserted in-memory rejections, including obsolete source filenames, false host ownership/qualification, P-10 blanket approval and invalid current evidence. Canonical source, decision and historical records were unchanged by checks. The historical source-ledger evidence link is checked against its recorded Git revision rather than imposed on the current ledger. No host or runtime qualification was performed.
