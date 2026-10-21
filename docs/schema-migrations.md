@@ -53,8 +53,9 @@ row in the same transaction as the schema statements. The ledger must already
 exist as `shop_control.schema_migrations` under the exact migration owner. The
 separate review/bootstrap artifact is `ops/postgresql/schema-ledger.sql`; it is
 never automatically executed or used to adopt an existing object. A missing
-ledger fails closed. Its separately destination-guarded bootstrap procedure,
-owner/role publication and deployment authorization remain unfinished.
+ledger fails closed. The explicit destination-guarded bootstrap library is described below;
+owner/role and record publication, command integration and actual deployment
+authorization/qualification remain unfinished.
 
 Under the schema advisory lock, the transaction takes a bounded table lock and
 validates the ledger relation, schema/table owner, durable ordinary table shape,
@@ -88,12 +89,43 @@ qualification remains pending on the independent off-host runner.
 
 Django migration generation/recorder integration, operator command/credential and
 private transport, root-owned record publication, immutable host-side packaging,
-ledger bootstrap/role qualification and actual off-host runtime qualification are
+bootstrap/role qualification and actual off-host runtime qualification are
 still pending. Direct lower-level `execute_schema_batch` remains an internal
 untracked schema primitive for separately authorized bootstrap/tests; deployment
 migrations must use the authorized ledger path. No deployment CLI is supplied.
 Do not remove the production Django connection gate before those boundaries are
 covered.
+
+`ops/runtime/ledger_bootstrap.py` supplies the separate explicit library path for
+initial creation. It loads root-owned `ledger-bootstrap.json` through the same
+bounded reader. The record uses the fields above but requires action
+`initialize-new-schema-ledger`, reserved migration ID `shop_ledger_bootstrap_v1`,
+and the exact source pin in `ledger_bootstrap.ARTIFACT_SHA256`. Supply the exact
+bytes of `ops/postgresql/schema-ledger.sql`, at most 32 KiB. The pin, approval and
+actual bytes must agree; comments/whitespace are part of those bytes. The four
+statements are decoded only after the pin check. This is a fixed artifact decoder,
+not a general SQL-script parser; changing the artifact requires review and a code
+pin update.
+
+Bootstrap uses the same positively identified connection, runtime and process
+record, live durability checks, transaction/time bounds and cooperative schema
+lock. It rejects any existing `shop_control` namespace, including an empty one,
+a matching ledger or a previous successful bootstrap. It rechecks authorization,
+runtime and SQL identity before each CREATE/REVOKE and before receipt insertion
+and commit. It validates the new ledger contract, so unexpected inherited write
+grants also deny and roll back. Initial creation and a reserved bootstrap receipt
+(with pinned artifact digest, authorization ID and transaction timestamp) commit
+together. Ordinary later migrations use distinct migration/authorization IDs
+through the ledger path.
+
+No automatic creation, adoption, cleanup, authorization issuance, target discovery
+or retry is provided. A repeated bootstrap is a denial, even with the original
+approval; uncertain completion needs read-only reconciliation of the positively
+identified database and retained evidence. It must never trigger ledger removal
+or a blind bootstrap retry. Actual loss of an acknowledgment, crashes and restore
+remain unexecuted qualification checks. This library does not create the database,
+roles, account or control records, connect/read a password, install itself or
+expose a CLI; production Django access remains blocked.
 
 Local tests use disposable PostgreSQL target/decoy clusters and synthetic records.
 They adapt only the fixed PGDATA comparison to owned scratch paths. They do not

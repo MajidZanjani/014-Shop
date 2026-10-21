@@ -4,10 +4,10 @@ current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
 status: executing
 stopped_at: Candidate runtime and local evidence committed; finish 14/16/17 gaps.
-last_updated: "2026-10-21T10:28:47.507897+00:00"
+last_updated: "2026-10-21T10:34:10.328092+00:00"
 last_activity: 2026-10-21
-last_activity_desc: Atomic schema migration ledger and explicit replay decisions prepared; local PostgreSQL and deployment checks pass.
-state_head: 1f7b165
+last_activity_desc: Explicit pinned ledger bootstrap and atomic receipt prepared; local database and deployment checks pass.
+state_head: 995fdb8
 progress:
   total_phases: 14
   completed_phases: 1
@@ -30,7 +30,7 @@ No independent off-host runner assigned. User permits all authorized repository 
 
 ## Current evidence
 
-Local environment2 checks/14 tests; frontend13/9; core-local4/22; worker-smoke6/24 including broken-fence/lock controls; adapters3/6 in isolated network; contracts-local12/8; combined boundaries17/32; deployment-eval15/27; postgres-diagnostics3/8; postgresql-config3/7; bootstrap-local3/13; database-destination3/38; profiles6/5; locks3/8; reproducibility4/5 with exactly2 independent public/backend builds. Counts overlap across lanes; no unique total implied. Reproducibility uses a fixed canonical path in separate private process namespaces; raw failed HTML-island-ID comparison remains recorded, no output normalization. Focused versioned manifest is local reproducibility only.
+Local environment2 checks/14 tests; frontend13/9; core-local4/22; worker-smoke6/24 including broken-fence/lock controls; adapters3/6 in isolated network; contracts-local12/8; combined boundaries17/32; deployment-eval15/27; postgres-diagnostics3/8; postgresql-config3/7; bootstrap-local3/13; database-destination3/48; profiles6/5; locks3/8; reproducibility4/5 with exactly2 independent public/backend builds. Counts overlap across lanes; no unique total implied. Reproducibility uses a fixed canonical path in separate private process namespaces; raw failed HTML-island-ID comparison remains recorded, no output normalization. Focused versioned manifest is local reproducibility only.
 
 Installed standard SBOM evidence reconciles271 npm/6 runtime Python/39 tool Python components and records70 uninstalled optional paths. Collector exits2, not INVENTORY_PASS: raw npm malformed URI, missing licence texts and native/image coverage remain unresolved. Images are unbuilt; no real digest or compatibility claimed. Candidate profile/guard evaluation is not operational protection proof. Manual-only read-only SHA-pinned CI is prepared, never executed; no runner/authorization record created.
 
@@ -109,3 +109,11 @@ Code1f7b165 routes exact-byte authorized schema work through execute_schema_migr
 Actual local evidence: database-destination3 checks/38 tests,6.415s; deployment-eval15/27,2.132s. New real disposable PostgreSQL controls cover same-call replay decision, digest/authorization conflicts, authorization reuse for another migration, failed DDL and post-insert final-guard rollback, missing/altered/replaced ledger and schema/index/grant/trigger mutation. Lost caller acknowledgment is simulated by discarding a successful result then explicitly calling again; no real transport/process failure was injected. Existing runtime/root authority remains synthetic with fixed PGDATA fixture adaptation. Initial new-ledger run failed on incomplete PostgreSQL18 NOT NULL catalog expectations; corrected against official18 pg_constraint documentation and real tests. Final pass includes the stricter conenforced/OID checks.
 
 Next: separately guarded ledger bootstrap/custody and production role grants, Django migration generation/recorder and operator command/credentials/private transport, immutable host packaging; uncertain-commit and restored-ledger reconciliation against external evidence plus actual failure/recovery qualification. already_applied is a ledger decision, not schema-drift verification or restored-service reopening permission. Privileged/inherited-role history tampering remains outside this local proof. Production Django gate stays closed. No .env read/needed credential, host/provider operation, existing service/resource change or purchase. Other14/16/17 and off-host/T11/T12/full acceptance gaps remain pending.
+
+## Latest continuation — explicit guarded ledger bootstrap
+
+Code995fdb8 adds ledger_bootstrap.py library, accepting only the exact pinned schema-ledger.sql bytes under a separate root-owned ledger-bootstrap.json record/action and reserved shop_ledger_bootstrap_v1 ID. It checks the same approved process/database and fresh runtime/live SQL identity before every CREATE/REVOKE, receipt insertion and commit, under the shared schema transaction lock. Any existing shop_control namespace is denied, including empty/matching/previously successful bootstrap. Validated new ledger plus bootstrap receipt commit atomically; no adoption, cleanup, target discovery or automatic retry. A repeated/uncertain bootstrap needs separate read-only reconciliation, never ledger removal. Source pin changes require review; no record issued or deployment command exposed.
+
+Actual local evidence: database-destination3 checks/48 tests,7.055s; deployment-eval15/27,2.155s. Ten new controls cover receipt and later migration, matching/empty namespace denial, repeat denial, exact pin/action/ID/expiry, midway/final revocation rollback, real decoy no mutation, shared lock/caller transaction, named-role inherited grant denial and explicit removal of PUBLIC grants. Initial47-test run had one incorrect test expectation: pinned REVOKE correctly removes default PUBLIC INSERT. Corrected to distinguish named-role denial from intended PUBLIC removal; final48 passed. Root authority/runtime identity remains synthetic, fixed PGDATA fixture-adapted; no off-host or production proof.
+
+Next: operator CLI/immutable packaging and separately authorized root-record publication/custody, migration/app roles and credentials/private transport, Django migration generation/recorder integration, read-only uncertain-commit/recovery reconciliation and actual off-host qualification. Bootstrap implementation is locally prepared; actual bootstrap/role/runtime qualification remains pending. Production Django connections stay closed. No .env read/needed credential, host/provider action, existing service/resource change or purchase. Other14/16/17 and off-host/T11/T12/full acceptance gaps remain open.
