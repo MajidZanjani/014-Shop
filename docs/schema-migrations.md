@@ -169,3 +169,21 @@ process/transport failure and restore qualification remain pending off-host.
 Local tests use disposable PostgreSQL target/decoy clusters and synthetic records.
 They adapt only the fixed PGDATA comparison to owned scratch paths. They do not
 establish rootless process/storage/resource containment or production readiness.
+
+The inert source bundle is available as the flake package
+`shop-database-tools-source`. It contains exactly seven explicitly selected Python
+modules plus the pinned SQL artifact and a closed SHA-256 manifest. Individual
+source bytes are copied into separate store files; the bundle does not retain a
+reference to the entire repository source. It contains no interpreter, dependency
+environment, executable launcher, host account/configuration or authorization
+record. No NixOS module installs it and no service uses it automatically.
+
+The `database-tools` verification lane builds this source bundle, compares all
+packaged bytes and its manifest with the selected sources, checks exported
+metadata and exact direct store references, and imports the modules from the actual store path using isolated
+Python and the existing hash-locked runtime dependencies. Import controls deny
+database connections and control-record reads. This is actual source-bundle build
+and local import evidence only; it does not build an OCI image or qualify a live
+operator tool. A concrete launcher, minimum operator runtime/dependency review,
+credential transport, host installation and operational qualification are still
+pending. The source manifest is not a complete runtime SBOM or licence review.

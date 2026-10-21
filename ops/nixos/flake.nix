@@ -44,6 +44,7 @@
         sha256 = "555610c24d53e4316da5b7d3fc25c279d96856d5e0e23ee308c328c5fa881d9f";
       };
     });
+    databaseTools = import ./database-tools.nix { inherit pkgs; };
     runtime = import ./python-runtime.nix { inherit pkgs pythonEnv postgres; };
     # Only Python source is admitted; no .env, fixtures, caches or private data.
     appSource = pkgs.lib.cleanSourceWith {
@@ -84,13 +85,14 @@
   in {
     nixosModules.shop = import ./modules/shop.nix;
     packages.${system} = { shop-app = appImage; shop-worker = workerImage;
-      shop-postgres = postgresImage; shop-gateway = gatewayImage; shop-python-runtime = runtime; };
+      shop-postgres = postgresImage; shop-gateway = gatewayImage; shop-python-runtime = runtime; shop-database-tools-source = databaseTools; };
     deploymentMetadata.${system} = {
       status = "candidate; compatibility/build/OCI digests/off-host qualification pending";
       imageDerivations = map (x: x.drvPath) [ appImage workerImage postgresImage gatewayImage ];
       runtimeVersion = pkgs.podman.version;
       systemdVersion = pkgs.systemd.version;
       postgresDiagnostics = { command = postgresCommand; workerSource = "${postgresDiagnostics}/libexec/shop/postgres_entrypoint.py"; nativePidContract = "execve; rootless lifecycle pending"; runtimeQualified = false; };
+      databaseTools = { source = toString databaseTools; manifest = "${databaseTools}/share/shop/database-tools.json"; executable = false; runtimeQualified = false; productionActivation = false; };
       productionActivation = false;
     };
     devShells.${system}.default = pkgs.mkShell {
