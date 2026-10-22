@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "evidence_class": "local-nix-candidate-image-build",
+  "implementation_commit": "a02e5a56e312a3ca0615128e51d0ffcddeb71268",
+  "derivation_path": "/nix/store/wv31yrg53saxdpfsy600yzywlllwgisv-shop-postgres.tar.gz.drv",
+  "derivation_file_sha256": "19d54ccb2761938f7cfcfa2cf26f4e1651b73a7171ff74f590af22cdbe0b4adf",
+  "archive_path": "/nix/store/55fbc919a5fwhyc1gcsn1h6m63s4ipai-shop-postgres.tar.gz",
+  "archive_sha256": "00ad3ec8402040624e9218f25fed63c5aa62a1a002a07dc3a3a1fab425021067",
+  "config_image_id": "sha256:2de6ade6a883cb6a376fe6239cbabc78a671007e6490c961f828eb93954f0e44",
+  "archive_inspection_report": "docs/evidence/t02/image-archive-revisions/f40a60ce47686368cd6dbd4dcbf2da6ad5bde1893eb865b757281dbfabb23e31.json",
+  "archive_inspection_report_sha256": "f40a60ce47686368cd6dbd4dcbf2da6ad5bde1893eb865b757281dbfabb23e31",
+  "selected_unchanged_source_sha256": {
+    "ops/nixos/flake.nix": "28b073c8567cbb57c7d092a35765d0c502b0e7549ab65900990ad5ee49a0e99f",
+    "ops/nixos/flake.lock": "865a3c07a35f43f024ce7c01614be82cb795707edac8e27092bdbba42519cd75",
+    "ops/runtime/postgres_entrypoint.py": "69ddf57160cedec25569fe33af05ab75ef9fc1942e8e886acba946e2372157f4"
+  },
+  "successful_local_realizations_observed": 1,
+  "build_command": [
+    "nix",
+    "build",
+    "--no-link",
+    "--print-out-paths",
+    "--max-jobs",
+    "1",
+    "--cores",
+    "4",
+    "--option",
+    "build-dir",
+    "/var/lib/shop-image-scratch-VjIrVLVQ",
+    "./ops/nixos#shop-postgres"
+  ],
+  "local_builder_log": {
+    "path": "docs/evidence/t02/image-builds/4105667a0be3999851f352a8bdc0e150079c1c861a74e5c2a6166c6c355b62da.log",
+    "sha256": "4105667a0be3999851f352a8bdc0e150079c1c861a74e5c2a6166c6c355b62da"
+  },
+  "initial_failures": [
+    "Build-user traversal of private project ancestors denied; no ancestor permissions changed.",
+    "Nix rejected world-writable /var/tmp ancestor; no global permissions/config changed."
+  ],
+  "all_build_inputs_inventoried": false,
+  "container_imported_or_run": false,
+  "registry_push_performed": false,
+  "independent_rebuild_compared": false,
+  "offhost_artifact_retention_qualified": false,
+  "production_activation": false,
+  "scope": "One local pinned image build and retained exact builder log/archive inspection; no runtime, complete licence/native inventory or independent reproducibility qualification"
+}

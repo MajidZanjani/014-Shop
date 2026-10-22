@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: executing
-last_updated: "2026-10-22T08:32:01.774240+00:00"
-state_head: 9c0f67d
+last_updated: "2026-10-22T08:43:09.468257+00:00"
+state_head: a02e5a5
 progress:
   total_phases: 14
   completed_phases: 1
@@ -12,8 +12,8 @@ progress:
 last_activity: 2026-10-22
 current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
-stopped_at: Supplemental licence evidence reconciled offline; all12 package-wide reviews and application/native gates pending.
-last_activity_desc: Exact supplemental observations linked per package; inventory acceptance remains false.
+stopped_at: One PostgreSQL Docker archive built/inspected locally; inner payload/native/OCI/reproducibility/runtime pending.
+last_activity_desc: Actual local PostgreSQL archive51 layer hashes retained; no container execution or production activation.
 ---
 
 # Project State
@@ -191,7 +191,8 @@ Phase02 and14/16/17 remain incomplete. Next scoped durable generation publicatio
 | 261022-aql | Django multi-statement transaction precursor | 2026-10-22 | e863f6c | [261022-aql](./quick/261022-aql-integrate-admission-lifetime-into-a-clos/) |
 | 261022-b5y | Supplemental prefixed licence-name audit | 2026-10-22 | e873adf | [261022-b5y](./quick/261022-b5y-audit-prefixed-licence-filenames-in-exac/) |
 | 261022-bb9 | Bounded embedded npm notice-marker discovery | 2026-10-22 | 9c0f67d | [261022-bb9](./quick/261022-bb9-inspect-bounded-embedded-notice-candidat/) |
-| 261022-bqg | Reconcile supplemental licence observations | 2026-10-22 | this commit | [261022-bqg](./quick/261022-bqg-reconcile-supplemental-licence-observati/) |
+| 261022-bqg | Reconcile supplemental licence observations | 2026-10-22 | a02e5a5 | [261022-bqg](./quick/261022-bqg-reconcile-supplemental-licence-observati/) |
+| 261022-bw3 | Build and inspect PostgreSQL candidate archive | 2026-10-22 | this commit | [261022-bw3](./quick/261022-bw3-build-and-inspect-the-prepared-postgresq/) |
 
 ## Latest continuation — real local SCRAM inspection
 
@@ -388,3 +389,7 @@ Quick261022-bb9 adds exact-artifact/member-bound text marker discovery with expl
 ## Latest continuation — offline supplemental licence reconciliation
 
 Quick261022-bqg binds five retained inventory/baseline/named/header/marker reports and exact content-addressed text hashes/sizes/ranges with complete package/artifact/member identities. Stable no-follow FD reads and final source recheck; no archive recollection/authenticity or licence/legal acceptance claim.12 original gaps:1 named/2 header/10 marker observations overlap,12 package-wide reviews pending; acceptance/legal/full review flagsfalse.8 new mutation+20 collector tests0.060s,8 marker0.005s,4 inventory0.001s (40) pass. Actual report creation/offline rechecks pass;10 prior reports equal HEAD. Full inventory default remains expected exit1/PENDING_FULL_INVENTORY and raw required-text guard still rejects empty original entries. No failures/network/install/runtime/credential/host/provider operation. Safe application boundary and14/16/17/legal/native/OCI remain incomplete.
+
+## Latest continuation — actual local PostgreSQL image archive
+
+Quick261022-bw3 built existing pinned shop-postgres archive /nix/store/55fbc919a5fwhyc1gcsn1h6m63s4ipai-shop-postgres.tar.gz (125653410 bytes;SHA25600ad3ec8402040624e9218f25fed63c5aa62a1a002a07dc3a3a1fab425021067),51 layer hashes match ordered config DiffIDs. Exact content-addressed config/archive/layer report and successful local builder log/provenance retained. Config ImageID2de6ade6a883cb6a376fe6239cbabc78a671007e6490c961f828eb93954f0e44; no OCI distribution manifest digest claimed.8 scanner tests0.019s and deployment16/31 2.133s pass, actual archive independently rescanned. Original empty candidate report unchanged/historical; one actual image now built, other images remain unbuilt. Inner filesystem semantics/native notice inventory/runtime/reproducibility/independent retention not qualified. Two setup failures: private project ancestors prevent build-user traversal; Nix rejects world-writable /var/tmp parent. Successful exclusive /var/lib/shop-image-scratch-VjIrVLVQ with max-jobs1/cores4; /var6.3GiB free. No protected permissions/global config/shared cleanup or container/cluster/host/provider/credential action.14/16/17/application boundary/full CI/off-host remain incomplete. Next inspect actual inner layer payload/provenance/notices and build other approved candidates or independent comparison, preserving no-run qualification boundary.
