@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: executing
-last_updated: "2026-10-22T08:05:42.423085+00:00"
-state_head: bdbd432
+last_updated: "2026-10-22T08:13:15.869764+00:00"
+state_head: e873adf
 progress:
   total_phases: 14
   completed_phases: 1
@@ -12,8 +12,8 @@ progress:
 last_activity: 2026-10-22
 current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
-stopped_at: Supplemental prefixed licence-name evidence verified; safe host/application boundary and14/16/17 incomplete.
-last_activity_desc: Exact mit.LICENSE named text retained separately; legal/full inventory and runtime integration pending.
+stopped_at: Bounded npm notice-marker evidence verified; package-wide/native review and safe application boundary pending.
+last_activity_desc: Exact npm marker ranges retained; no legal/full inventory acceptance or runtime activation.
 ---
 
 # Project State
@@ -189,7 +189,8 @@ Phase02 and14/16/17 remain incomplete. Next scoped durable generation publicatio
 | 261022-afa | Prepare exact proposed admission bytes without activation | 2026-10-22 | 11279da | [261022-afa](./quick/261022-afa-prepare-exact-reviewed-admission-reopeni/) |
 | 261022-ajs | Candidate reopening and uncertain-outcome inspection | 2026-10-22 | 820f7ba | [261022-ajs](./quick/261022-ajs-implement-separately-authorized-admissio/) |
 | 261022-aql | Django multi-statement transaction precursor | 2026-10-22 | e863f6c | [261022-aql](./quick/261022-aql-integrate-admission-lifetime-into-a-clos/) |
-| 261022-b5y | Supplemental prefixed licence-name audit | 2026-10-22 | this commit | [261022-b5y](./quick/261022-b5y-audit-prefixed-licence-filenames-in-exac/) |
+| 261022-b5y | Supplemental prefixed licence-name audit | 2026-10-22 | e873adf | [261022-b5y](./quick/261022-b5y-audit-prefixed-licence-filenames-in-exac/) |
+| 261022-bb9 | Bounded embedded npm notice-marker discovery | 2026-10-22 | this commit | [261022-bb9](./quick/261022-bb9-inspect-bounded-embedded-notice-candidat/) |
 
 ## Latest continuation — real local SCRAM inspection
 
@@ -378,3 +379,7 @@ Resumed bdbd432 clean checkpoint under standing local implementation/commit/push
 ## Latest continuation — supplemental prefixed licence filenames
 
 Quick261022-b5y preserves original anchored audit/default bytes while adding supplementary explicit prefixed notice-name policy. Binds exact original inventory/audit/artifact/member identities and separately retains1,080-byte pip-requirements-parser32.0.1 mit.LICENSE (SHA25618081c2c82771ca09d99d08cdac405924309e09fd19b16f1eea59cbc6ab809ed). All12 official hashed artifacts verified twice;12/1 candidate/1 text. Original default recheck12/0 unchanged.20 collector tests0.008s plus4 inventory tests0.000s pass;8 baseline/raw/derived evidence files equal HEAD. No extraction/install/execution/legal completeness/native/runtime claim, no credential/host/provider action. Ten npm/packageurl-python named gaps, legal/package-wide/native/OCI16/17 and application safe host/proc/control boundary remain pending. Production backend stays closed.
+
+## Latest continuation — bounded npm embedded notice discovery
+
+Quick261022-bb9 adds exact-artifact/member-bound text marker discovery with explicit file/total/match/line bounds, skips and exact CRLF byte-range/hash evidence; no complete licence/legal/native/absence inference. All10 official hashed npm archives verified/refetched twice,13 text members with markers,6 distinct lines239 bytes. Ten package.json declarations plus sharp-libvips/am-i-vibing/process-ancestry README references only; all ten npm gaps remain pending package-wide review.8 scanner0.005s+20 licence0.009s+4 inventory0.000s pass;9 prior evidence files match HEAD. No failures/runtime/dependency/credential/host/provider changes. Production closed, safe application/probe boundary and14/16/17/native/OCI/legal qualification incomplete.

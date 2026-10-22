@@ -76,3 +76,42 @@ collector tests and four inventory tests pass, including seven new tests for the
 expanded policy, baseline substitution, exact bytes, preserved bounds and exclusive
 retention/tamper detection. Package/runtime rebuilds are unnecessary for this
 collector-only change; application/runtime source artifacts are unchanged.
+
+## Bounded embedded npm notice-marker discovery
+
+`scripts/audit_npm_notice_markers.py` supplements filename discovery by scanning
+selected UTF-8 textual members in the ten exact unresolved npm distributions.
+It binds the original inventory/audit and verifies the exact artifact digest and
+complete archive member inventory before scanning. The same official-origin,
+archive/path/link/member/expanded-size guards apply. It never extracts, installs
+or executes package code. The policy and every file scan/skip reason are retained
+in `docs/evidence/t02/npm-notice-markers.json`.
+
+Selected suffixes are Markdown/RST/text, JavaScript/TypeScript, C headers/sources
+and JSON; source maps and native/binary suffixes are unselected. Each selected
+member is limited to 1 MiB, selected reads to 16 MiB per archive and marker matches
+to 512 per member. Invalid UTF-8 and NUL-containing members are explicitly skipped.
+Oversize files remain unscanned. Exact matching line ranges up to 16 KiB are
+retained without newline normalization; longer matching lines are recorded but
+not retained. Observations bind full scanned-member SHA256, byte start/end,
+marker labels and exact retained-line hash. Identical lines are deduplicated by
+content hash. These bounded lines are discovery pointers, not complete notices.
+
+Actual collection and independent refetch/reconciliation verified all ten exact
+archives. Thirteen members contain markers; six distinct exact lines (239 bytes)
+are retained separately in `npm-notice-marker-texts/`. All ten package.json files
+contain declared-licence fields. Additional README observations are a copyright
+reference in sharp-libvips, a licence section/copyright line in am-i-vibing and a
+licence section in process-ancestry. Other selected files have no marker under
+this explicit policy. No complete grant, incorporated licence coverage, legal
+approval, binary/native absence or redistribution completeness is inferred.
+All ten npm notice gaps remain pending actual notice/package-wide review.
+
+Eight new scanner tests pass alongside twenty existing licence-collector and
+four inventory tests. They cover exact CRLF offsets, same-line deduplication,
+file/total/match/line bounds, explicit binary/UTF8/NUL/oversize handling, baseline
+and artifact substitution, exact attribution and exclusive retention/tamper
+checks. `--write` creates separate report/text paths once; normal execution
+refetches and verifies them. Existing/dangling outputs are never adopted or
+repaired. Original inventory/raw/derived SBOM/named-file/header evidence remains
+unchanged; no runtime/package rebuild or new dependency was needed.

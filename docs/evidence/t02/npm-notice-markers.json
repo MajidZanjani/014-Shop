@@ -1,0 +1,633 @@
+{
+  "schema_version": 1,
+  "evidence_class": "exact-distribution-bounded-text-marker-discovery",
+  "source_licences_sha256": "a9f0417869532b04147500c18cd8c858c73745c8af614353c7ba7713338ce376",
+  "baseline_audit_sha256": "9f7291438942ed05532d315f175d9856cb6f51814b73602b782ff93f0f3abbe7",
+  "inventory_complete": false,
+  "legal_approval": false,
+  "package_wide_notice_review_complete": false,
+  "policy": {
+    "suffixes": [
+      ".c",
+      ".cjs",
+      ".cpp",
+      ".h",
+      ".js",
+      ".json",
+      ".markdown",
+      ".md",
+      ".mjs",
+      ".rst",
+      ".ts",
+      ".txt"
+    ],
+    "max_file_bytes": 1048576,
+    "max_scanned_bytes_per_archive": 16777216,
+    "max_retained_line_bytes": 16384,
+    "max_markers_per_member": 512,
+    "patterns": {
+      "copyright": "copyright",
+      "spdx-license-identifier": "spdx-license-identifier",
+      "permission-grant": "permission is hereby granted",
+      "warranty-phrase": "the software is provided",
+      "redistribution-phrase": "redistribution and use",
+      "gnu-license-reference": "gnu (?:lesser )?general public license",
+      "license-reference": "licensed under|see[^\\r\\n]{0,120}(?:licen[cs]e|copying)",
+      "license-section": "^#{1,6}[ \\t]+licen[cs]e\\b",
+      "declared-license-field": "\"licen[cs]e\"[ \\t]*:"
+    }
+  },
+  "scope": "Exact marker lines only, not complete notices; skipped/binary/oversize/non-UTF8 members unreviewed; no code execution or legal classification",
+  "findings": [
+    {
+      "name": "@astrojs/compiler-binding-linux-x64-gnu",
+      "version": "0.5.2",
+      "artifact_url": "https://registry.npmjs.org/@astrojs/compiler-binding-linux-x64-gnu/-/compiler-binding-linux-x64-gnu-0.5.2.tgz",
+      "artifact_hash": "sha512-9XAqGTMQAtIslMsjK3xdyY6OI9d59OZqcLBB6pvD/DcoR0daYswfrKx2azdDERDY4AqAnWPC7odVM1BmxYv3Vw==",
+      "observed_archive_sha256": "dee5101031ce2737e64da61e497d8637dcf672c3a321d5a6383766013a992ce8",
+      "member_observations": [
+        {
+          "archive_member": "package/README.md",
+          "size": 125,
+          "member_sha256": "82a1c7b571cf380c2e06924eada4818285b5f6e8f65088935cfc552f6b80cb9c",
+          "status": "no-markers-in-selected-text",
+          "observations": []
+        },
+        {
+          "archive_member": "package/astro.linux-x64-gnu.node",
+          "size": 7352096,
+          "status": "skipped-unselected-suffix"
+        },
+        {
+          "archive_member": "package/package.json",
+          "size": 809,
+          "member_sha256": "bf56fdc72c4ff2e59b6dadbfd04cd81c42e5b4682f3ec2498002bf6fa15578eb",
+          "status": "markers-observed",
+          "observations": [
+            {
+              "byte_start": 381,
+              "byte_end_exclusive": 401,
+              "markers": [
+                "declared-license-field"
+              ],
+              "retention": "exact-line-retained",
+              "text_sha256": "da5dfb6b38f4714b22ad5f065974723d92002380535d00bf2f2bc172e5152583",
+              "retained_path": "npm-notice-marker-texts/da5dfb6b38f4714b22ad5f065974723d92002380535d00bf2f2bc172e5152583.txt"
+            }
+          ]
+        }
+      ],
+      "status": "bounded-marker-discovery-review-pending"
+    },
+    {
+      "name": "@bruits/satteri-linux-x64-gnu",
+      "version": "0.10.5",
+      "artifact_url": "https://registry.npmjs.org/@bruits/satteri-linux-x64-gnu/-/satteri-linux-x64-gnu-0.10.5.tgz",
+      "artifact_hash": "sha512-FVaLoPT1fBgGl0J+AYebyyXJYBachGl8Oyyrf1lye4RTqCB4S0Gwkj1uM9RJyThUOvx5VUmAT1CnNh1SFHA+kw==",
+      "observed_archive_sha256": "c2b733e72cef4850da027a4dfdc06dbf64fa2f99fb944a40016cb2a7aecb8a1e",
+      "member_observations": [
+        {
+          "archive_member": "package/README.md",
+          "size": 105,
+          "member_sha256": "9fde944aaea6113e14a27173739f70de7c7a9a603508542331c5299b2dc8775f",
+          "status": "no-markers-in-selected-text",
+          "observations": []
+        },
+        {
+          "archive_member": "package/package.json",
+          "size": 433,
+          "member_sha256": "97d68b4f97cd7b33006a8239d9336a68e16fadaf0eb347cf8125059940cecc9f",
+          "status": "markers-observed",
+          "observations": [
+            {
+              "byte_start": 260,
+              "byte_end_exclusive": 280,
+              "markers": [
+                "declared-license-field"
+              ],
+              "retention": "exact-line-retained",
+              "text_sha256": "da5dfb6b38f4714b22ad5f065974723d92002380535d00bf2f2bc172e5152583",
+              "retained_path": "npm-notice-marker-texts/da5dfb6b38f4714b22ad5f065974723d92002380535d00bf2f2bc172e5152583.txt"
+            }
+          ]
+        },
+        {
+          "archive_member": "package/satteri_napi.linux-x64-gnu.node",
+          "size": 4146224,
+          "status": "skipped-unselected-suffix"
+        }
+      ],
+      "status": "bounded-marker-discovery-review-pending"
+    },
+    {
+      "name": "@img/sharp-libvips-linux-x64",
+      "version": "1.3.4",
+      "artifact_url": "https://registry.npmjs.org/@img/sharp-libvips-linux-x64/-/sharp-libvips-linux-x64-1.3.4.tgz",
+      "artifact_hash": "sha512-GJ//SSXbnwSDes02umB3nDJLFcQzw8a18V8fyhqr6tV515tOEMdImjjxj1AoafMRz56F3PHgftnj1QEKSU1zkw==",
+      "observed_archive_sha256": "e371cb713fc8822c96a0d3fb60a3d092799d0aefab6d7f1fb3b72d8d75f1d109",
+      "member_observations": [
+        {
+          "archive_member": "package/README.md",
+          "size": 4331,
+          "member_sha256": "b4fb1a9f5909cfd58edb4177c2028ce3033cf8651aef740a554c1dc58b3c5ee3",
+          "status": "markers-observed",
+          "observations": [
+            {
+              "byte_start": 2360,
+              "byte_end_exclusive": 2486,
+              "markers": [
+                "copyright"
+              ],
+              "retention": "exact-line-retained",
+              "text_sha256": "7b012290841754018cf25d5cb17c28cd124de1a64d949fe9c14dad0b2a490d73",
+              "retained_path": "npm-notice-marker-texts/7b012290841754018cf25d5cb17c28cd124de1a64d949fe9c14dad0b2a490d73.txt"
+            }
+          ]
+        },
+        {
+          "archive_member": "package/lib/glib-2.0/include/glibconfig.h",
+          "size": 5923,
+          "member_sha256": "07baaf7ef57ac20fa5e0220ab88b9cf2f23d6a433b5305360ef285b36633d9ca",
+          "status": "no-markers-in-selected-text",
+          "observations": []
+        },
+        {
+          "archive_member": "package/lib/index.js",
+          "size": 28,
+          "member_sha256": "516a08c06660cddb50d5f30ccac29a0514b05724956a11e8a7e6b799f2e1ab72",
+          "status": "no-markers-in-selected-text",
+          "observations": []
+        },
+        {
+          "archive_member": "package/lib/libvips-cpp.so.8.18.7",
+          "size": 18699288,
+          "status": "skipped-unselected-suffix"
+        },
+        {
+          "archive_member": "package/package.json",
+          "size": 935,
+          "member_sha256": "2c5f6f9abf74c1492622d5dc4e4da056ab0712fd71de61e03a687c88b8cdab4e",
+          "status": "markers-observed",
+          "observations": [
+            {
+              "byte_start": 393,
+              "byte_end_exclusive": 427,
+              "markers": [
+                "declared-license-field"
+              ],
+              "retention": "exact-line-retained",
+              "text_sha256": "6e2dd262b8692eacdd5e1a12d72458e583175d7604ac04e86eaffb474bc1a0d7",
+              "retained_path": "npm-notice-marker-texts/6e2dd262b8692eacdd5e1a12d72458e583175d7604ac04e86eaffb474bc1a0d7.txt"
+            }
+          ]
+        },
+        {
+          "archive_member": "package/versions.json",
+          "size": 596,
+          "member_sha256": "e2611d5d854815a8b33c8a3d2ec649511a9596ccf16844e8eae7cf81e79881c4",
+          "status": "no-markers-in-selected-text",
+          "observations": []
+        }
+      ],
+      "status": "bounded-marker-discovery-review-pending"
+    },
+    {
+      "name": "@napi-rs/wasm-runtime",
+      "version": "1.2.4",
+      "artifact_url": "https://registry.npmjs.org/@napi-rs/wasm-runtime/-/wasm-runtime-1.2.4.tgz",
+      "artifact_hash": "sha512-AJxoUD2/15ESHbvpcyjU274nsAPLuOtPHCk0vKJM5pj//Fg/B1FXNWjPnXTT9PymCYYiHo4zPj0ZomXBKhoy7g==",
+      "observed_archive_sha256": "e64c2013eba51ad6624ccf94f06c8a570c0d80488b7eabf17af2934690ccb887",
+      "member_observations": [
+        {
+          "archive_member": "package/dist/emnapi-plugins.cjs",
+          "size": 59988,
+          "member_sha256": "52ab7f50c419e212cedcfead479f51b8ad9b5c3c4a532ff8912ab9f5ea25822e",
+          "status": "no-markers-in-selected-text",
+          "observations": []
+        },
+        {
+          "archive_member": "package/dist/emnapi-plugins.js",
+          "size": 59912,
+          "member_sha256": "dd251f61e295a4c25c4024f56870aa892db8eac55c6dea291070592a262717b5",
+          "status": "no-markers-in-selected-text",
+          "observations": []
+        },
+        {
+          "archive_member": "package/dist/fs-proxy.cjs",
+          "size": 7373,
+          "member_sha256": "60344c89721cf1d623e726905f33923bdad51a1bf9444c9531ef39d8e77bbe6e",
+          "status": "no-markers-in-selected-text",
+          "observations": []
+        },
+        {
+          "archive_member": "package/dist/fs.js",
+          "size": 639375,
+          "member_sha256": "0d4b8c98dea82828883a29c6dd07b31b7d1d0f23ae7854ebc464a0d3a3d9cedf",
+          "status": "no-markers-in-selected-text",
+          "observations": []
+        },
+        {
+          "archive_member": "package/fs-proxy.js",
+          "size": 8510,
+          "member_sha256": "95cc7ffb14b5f605461a33470f66792ece28b80dd2b4325838542249705dbc45",
+          "status": "no-markers-in-selected-text",
+          "observations": []
+        },
+        {
+          "archive_member": "package/package.json",
+          "size": 1530,
+          "member_sha256": "1c67ade399c50710c49bc04f5ad133ae504bf03792df7832eee73d0ecd002045",
+          "status": "markers-observed",
+          "observations": [
+            {
+              "byte_start": 458,
+              "byte_end_exclusive": 478,
+              "markers": [
+                "declared-license-field"
+              ],
+              "retention": "exact-line-retained",
+              "text_sha256": "da5dfb6b38f4714b22ad5f065974723d92002380535d00bf2f2bc172e5152583",
+              "retained_path": "npm-notice-marker-texts/da5dfb6b38f4714b22ad5f065974723d92002380535d00bf2f2bc172e5152583.txt"
+            }
+          ]
+        },
+        {
+          "archive_member": "package/runtime.cjs",
+          "size": 1542,
+          "member_sha256": "ac3fb8bba0eae6fa31adcd3cf9e13ea78789b72f7e5ad51c9a33d1d8bb014ace",
+          "status": "no-markers-in-selected-text",
+          "observations": []
+        },
+        {
+          "archive_member": "package/runtime.js",
+          "size": 1521,
+          "member_sha256": "5fd49a37e1e817f7498bb8e5bed5ad2c322823fff50488674254bf749e4a8ba2",
+          "status": "no-markers-in-selected-text",
+          "observations": []
+        }
+      ],
+      "status": "bounded-marker-discovery-review-pending"
+    },
+    {
+      "name": "@rolldown/binding-linux-x64-gnu",
+      "version": "1.2.14",
+      "artifact_url": "https://registry.npmjs.org/@rolldown/binding-linux-x64-gnu/-/binding-linux-x64-gnu-1.2.14.tgz",
+      "artifact_hash": "sha512-WxalXzgrLVpKC93xfpaJ3gCXUWzeCr+FRCbDVD2mUAy4L6Vo3lNVz0epUEUpxPWJkLNYUwM4OSIikv36OJ9mLg==",
+      "observed_archive_sha256": "365472fd9f5293c76b905b210ad6756ab7c2c56f99231ce55b92a31c0211594e",
+      "member_observations": [
+        {
+          "archive_member": "package/README.md",
+          "size": 109,
+          "member_sha256": "8424466220cb244a154dc80cf19b4252ee20aef8f13a04a50eeac672cd0aaed7",
+          "status": "no-markers-in-selected-text",
+          "observations": []
+        },
+        {
+          "archive_member": "package/package.json",
+          "size": 884,
+          "member_sha256": "632c8956b193139f3e448d23056719f1679f6dc34c0659d2c2a52d2fe8a895cd",
+          "status": "markers-observed",
+          "observations": [
+            {
+              "byte_start": 443,
+              "byte_end_exclusive": 463,
+              "markers": [
+                "declared-license-field"
+              ],
+              "retention": "exact-line-retained",
+              "text_sha256": "da5dfb6b38f4714b22ad5f065974723d92002380535d00bf2f2bc172e5152583",
+              "retained_path": "npm-notice-marker-texts/da5dfb6b38f4714b22ad5f065974723d92002380535d00bf2f2bc172e5152583.txt"
+            }
+          ]
+        },
+        {
+          "archive_member": "package/rolldown-binding.linux-x64-gnu.node",
+          "size": 19812640,
+          "status": "skipped-unselected-suffix"
+        }
+      ],
+      "status": "bounded-marker-discovery-review-pending"
+    },
+    {
+      "name": "@vscode/l10n",
+      "version": "0.0.18",
+      "artifact_url": "https://registry.npmjs.org/@vscode/l10n/-/l10n-0.0.18.tgz",
+      "artifact_hash": "sha512-KYSIHVmslkaCDyw013pphY+d7x1qV8IZupYfeIfzNA+nsaWHbn5uPuQRvdRFsa9zFzGeudPuoGoZ1Op4jrJXIQ==",
+      "observed_archive_sha256": "f1c2dc897488595f6bb42121869f525c6c6a5f7c8dca550754199c3251ed7c5c",
+      "member_observations": [
+        {
+          "archive_member": "package/README.md",
+          "size": 1423,
+          "member_sha256": "4aaa859447a3db374692b940cef70bb380160524db1203c26a969b2849e077f2",
+          "status": "no-markers-in-selected-text",
+          "observations": []
+        },
+        {
+          "archive_member": "package/dist/browser.js",
+          "size": 2969,
+          "member_sha256": "7e74b4963b59a7c5e380699233d7aa7cc94fb095706fb34e8ad88bf825cc78d5",
+          "status": "no-markers-in-selected-text",
+          "observations": []
+        },
+        {
+          "archive_member": "package/dist/main.d.ts",
+          "size": 5601,
+          "member_sha256": "026930c0ed50d369cfc92dac7cc62a46672d15856f5ede6f5437ac917669ff9d",
+          "status": "no-markers-in-selected-text",
+          "observations": []
+        },
+        {
+          "archive_member": "package/dist/main.js",
+          "size": 4582,
+          "member_sha256": "acb4bd2bcbfc029a6744f475151a9c188890cd0dca00c15b739d2371497909cb",
+          "status": "no-markers-in-selected-text",
+          "observations": []
+        },
+        {
+          "archive_member": "package/dist/tsdoc-metadata.json",
+          "size": 340,
+          "member_sha256": "edd0e881410dfe96bc8b53a2081f01f936318c850e502af3e3980fbbe2211501",
+          "status": "no-markers-in-selected-text",
+          "observations": []
+        },
+        {
+          "archive_member": "package/package.json",
+          "size": 1504,
+          "member_sha256": "293375e8e1de0d54c2437079fdc47e6ee4f55a125ca346ac58e61cbd602e959a",
+          "status": "markers-observed",
+          "observations": [
+            {
+              "byte_start": 192,
+              "byte_end_exclusive": 212,
+              "markers": [
+                "declared-license-field"
+              ],
+              "retention": "exact-line-retained",
+              "text_sha256": "da5dfb6b38f4714b22ad5f065974723d92002380535d00bf2f2bc172e5152583",
+              "retained_path": "npm-notice-marker-texts/da5dfb6b38f4714b22ad5f065974723d92002380535d00bf2f2bc172e5152583.txt"
+            }
+          ]
+        }
+      ],
+      "status": "bounded-marker-discovery-review-pending"
+    },
+    {
+      "name": "am-i-vibing",
+      "version": "0.5.0",
+      "artifact_url": "https://registry.npmjs.org/am-i-vibing/-/am-i-vibing-0.5.0.tgz",
+      "artifact_hash": "sha512-KLcsDhqf1XRrJmJr+9I/C0EX2K+sGrAGZFgkmd84c8TJO9zJBu+/kFInjazu1KfJWFhWDKdRWkpBzEs7s35DVA==",
+      "observed_archive_sha256": "04355987537ac8578954e6f70a60c39b8d00bd151c0fdb90e2c7be50a311b7bc",
+      "member_observations": [
+        {
+          "archive_member": "package/README.md",
+          "size": 5960,
+          "member_sha256": "f2dbe95905be94f2f536639145d6bcc5676f4b77d58d4be8713759bbd24bc76f",
+          "status": "markers-observed",
+          "observations": [
+            {
+              "byte_start": 5915,
+              "byte_end_exclusive": 5926,
+              "markers": [
+                "license-section"
+              ],
+              "retention": "exact-line-retained",
+              "text_sha256": "ae070da695f33eee9ad9a6f12cb2c2c5d8074103c8df5ce396ff5a65ede8ce37",
+              "retained_path": "npm-notice-marker-texts/ae070da695f33eee9ad9a6f12cb2c2c5d8074103c8df5ce396ff5a65ede8ce37.txt"
+            },
+            {
+              "byte_start": 5932,
+              "byte_end_exclusive": 5960,
+              "markers": [
+                "copyright"
+              ],
+              "retention": "exact-line-retained",
+              "text_sha256": "d080090f392694c664a8821c692f89b7475d8028d80aba84d100777bc2bf9f00",
+              "retained_path": "npm-notice-marker-texts/d080090f392694c664a8821c692f89b7475d8028d80aba84d100777bc2bf9f00.txt"
+            }
+          ]
+        },
+        {
+          "archive_member": "package/dist/cli.d.mts",
+          "size": 11,
+          "status": "skipped-unselected-suffix"
+        },
+        {
+          "archive_member": "package/dist/cli.mjs",
+          "size": 4463,
+          "member_sha256": "0f88926a47f2758bc4efc60a0486b1098586cb1f1281d30ecaadfdb53813a53a",
+          "status": "no-markers-in-selected-text",
+          "observations": []
+        },
+        {
+          "archive_member": "package/dist/cli.mjs.map",
+          "size": 7725,
+          "status": "skipped-unselected-suffix"
+        },
+        {
+          "archive_member": "package/dist/detector-1yx2Hoe0.mjs",
+          "size": 8025,
+          "member_sha256": "dfbc151e1d1f536e2033d9154ee5acb3e8744fa4f86a9955ce4031ba49360825",
+          "status": "no-markers-in-selected-text",
+          "observations": []
+        },
+        {
+          "archive_member": "package/dist/detector-1yx2Hoe0.mjs.map",
+          "size": 21618,
+          "status": "skipped-unselected-suffix"
+        },
+        {
+          "archive_member": "package/dist/index.d.mts",
+          "size": 5074,
+          "status": "skipped-unselected-suffix"
+        },
+        {
+          "archive_member": "package/dist/index.d.mts.map",
+          "size": 1417,
+          "status": "skipped-unselected-suffix"
+        },
+        {
+          "archive_member": "package/dist/index.mjs",
+          "size": 464,
+          "member_sha256": "647373ddf29fa06f4e6d09c3a64630387ead3b9f73dab5c462b69a3dc0b3afdc",
+          "status": "no-markers-in-selected-text",
+          "observations": []
+        },
+        {
+          "archive_member": "package/dist/index.mjs.map",
+          "size": 822,
+          "status": "skipped-unselected-suffix"
+        },
+        {
+          "archive_member": "package/package.json",
+          "size": 1209,
+          "member_sha256": "eea5f282495e540410aebc20b31fec39adc173b573c0596accf1b26eed26a6f6",
+          "status": "markers-observed",
+          "observations": [
+            {
+              "byte_start": 827,
+              "byte_end_exclusive": 847,
+              "markers": [
+                "declared-license-field"
+              ],
+              "retention": "exact-line-retained",
+              "text_sha256": "da5dfb6b38f4714b22ad5f065974723d92002380535d00bf2f2bc172e5152583",
+              "retained_path": "npm-notice-marker-texts/da5dfb6b38f4714b22ad5f065974723d92002380535d00bf2f2bc172e5152583.txt"
+            }
+          ]
+        }
+      ],
+      "status": "bounded-marker-discovery-review-pending"
+    },
+    {
+      "name": "boolbase",
+      "version": "1.0.0",
+      "artifact_url": "https://registry.npmjs.org/boolbase/-/boolbase-1.0.0.tgz",
+      "artifact_hash": "sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==",
+      "observed_archive_sha256": "69628ff8092c5ff940ea4a0f29da98d520615bae138755c9e059033606c6caa8",
+      "member_observations": [
+        {
+          "archive_member": "package/README.md",
+          "size": 655,
+          "member_sha256": "9cac5bfc290d30ccd13fa833923cb545584481e8ced66380bf758f1053f9d81d",
+          "status": "no-markers-in-selected-text",
+          "observations": []
+        },
+        {
+          "archive_member": "package/index.js",
+          "size": 125,
+          "member_sha256": "c62510fca8738c7444cdf5012bdd0ce214a1b6f7eaff7facb3a919e4656d7341",
+          "status": "no-markers-in-selected-text",
+          "observations": []
+        },
+        {
+          "archive_member": "package/package.json",
+          "size": 550,
+          "member_sha256": "ca09c0dccbfc43be6be0ac89e9ffa19b64b30f9c74c64da27f719a7244a25e30",
+          "status": "markers-observed",
+          "observations": [
+            {
+              "byte_start": 409,
+              "byte_end_exclusive": 429,
+              "markers": [
+                "declared-license-field"
+              ],
+              "retention": "exact-line-retained",
+              "text_sha256": "0e3790768a5add6c2efd4f27f947a5b89b74a70513b577a7f02dcb8e8e373511",
+              "retained_path": "npm-notice-marker-texts/0e3790768a5add6c2efd4f27f947a5b89b74a70513b577a7f02dcb8e8e373511.txt"
+            }
+          ]
+        }
+      ],
+      "status": "bounded-marker-discovery-review-pending"
+    },
+    {
+      "name": "piccolore",
+      "version": "0.1.3",
+      "artifact_url": "https://registry.npmjs.org/piccolore/-/piccolore-0.1.3.tgz",
+      "artifact_hash": "sha512-o8bTeDWjE086iwKrROaDf31K0qC/BENdm15/uH9usSC/uZjJOKb2YGiVHfLY4GhwsERiPI1jmwI2XrA7ACOxVw==",
+      "observed_archive_sha256": "d80aca8423f431568f382a1df72a96480ea66186567598a8eeebc8e2d7c59b9b",
+      "member_observations": [
+        {
+          "archive_member": "package/README.md",
+          "size": 278,
+          "member_sha256": "28eb643e014301c3e10a1ef277d73f0f32095e4cdcbcccec9d75916bb652667d",
+          "status": "no-markers-in-selected-text",
+          "observations": []
+        },
+        {
+          "archive_member": "package/dist/index.d.ts",
+          "size": 931,
+          "member_sha256": "c2613672a5724850e67d43d1fa356d9caf8faae26614e015bfea773e6b2c6f8f",
+          "status": "no-markers-in-selected-text",
+          "observations": []
+        },
+        {
+          "archive_member": "package/dist/index.js",
+          "size": 1957,
+          "member_sha256": "9693fafc35842ef5ca5f938b60dd9822f9ca02f6431c8809b8a0f0c5346129c7",
+          "status": "no-markers-in-selected-text",
+          "observations": []
+        },
+        {
+          "archive_member": "package/package.json",
+          "size": 584,
+          "member_sha256": "17e4425992180694581938d67397c0f50c0fd2f013e4b891f21534feeae2c7ec",
+          "status": "markers-observed",
+          "observations": [
+            {
+              "byte_start": 354,
+              "byte_end_exclusive": 374,
+              "markers": [
+                "declared-license-field"
+              ],
+              "retention": "exact-line-retained",
+              "text_sha256": "0e3790768a5add6c2efd4f27f947a5b89b74a70513b577a7f02dcb8e8e373511",
+              "retained_path": "npm-notice-marker-texts/0e3790768a5add6c2efd4f27f947a5b89b74a70513b577a7f02dcb8e8e373511.txt"
+            }
+          ]
+        }
+      ],
+      "status": "bounded-marker-discovery-review-pending"
+    },
+    {
+      "name": "process-ancestry",
+      "version": "0.1.0",
+      "artifact_url": "https://registry.npmjs.org/process-ancestry/-/process-ancestry-0.1.0.tgz",
+      "artifact_hash": "sha512-tGqJW/UnclpYASFcM6Xh8D8l/BMtaQ9+CSG0vlJSJTcdMM4lDRv4c6H0Pdcsfted+bVczdYSfk2fdukg2gQkZg==",
+      "observed_archive_sha256": "b73a85f002681f3fd87ae9112e7b11bb29a06bc90be2e359010c6a7d709a4ecf",
+      "member_observations": [
+        {
+          "archive_member": "package/README.md",
+          "size": 2112,
+          "member_sha256": "39c3a43f0b4282f2f36cb53096b5e58a93c5d48468d4db6a5331cb97d0669871",
+          "status": "markers-observed",
+          "observations": [
+            {
+              "byte_start": 2074,
+              "byte_end_exclusive": 2085,
+              "markers": [
+                "license-section"
+              ],
+              "retention": "exact-line-retained",
+              "text_sha256": "ae070da695f33eee9ad9a6f12cb2c2c5d8074103c8df5ce396ff5a65ede8ce37",
+              "retained_path": "npm-notice-marker-texts/ae070da695f33eee9ad9a6f12cb2c2c5d8074103c8df5ce396ff5a65ede8ce37.txt"
+            }
+          ]
+        },
+        {
+          "archive_member": "package/dist/index.d.ts",
+          "size": 299,
+          "member_sha256": "1121510d69bd0d6526bc8ba56f51ab18c813a9d0b473534773e795cb61292a24",
+          "status": "no-markers-in-selected-text",
+          "observations": []
+        },
+        {
+          "archive_member": "package/dist/index.js",
+          "size": 3771,
+          "member_sha256": "c645d5c77e3c06758921a089e0bcb95e2296151c84c7d80b51ea9e7ca3ae152e",
+          "status": "no-markers-in-selected-text",
+          "observations": []
+        },
+        {
+          "archive_member": "package/package.json",
+          "size": 1231,
+          "member_sha256": "ec3e2a3bdadeb4278cec00eaeeeb5567c5996fa3fb1026ba459da4ea343211e4",
+          "status": "markers-observed",
+          "observations": [
+            {
+              "byte_start": 927,
+              "byte_end_exclusive": 947,
+              "markers": [
+                "declared-license-field"
+              ],
+              "retention": "exact-line-retained",
+              "text_sha256": "da5dfb6b38f4714b22ad5f065974723d92002380535d00bf2f2bc172e5152583",
+              "retained_path": "npm-notice-marker-texts/da5dfb6b38f4714b22ad5f065974723d92002380535d00bf2f2bc172e5152583.txt"
+            }
+          ]
+        }
+      ],
+      "status": "bounded-marker-discovery-review-pending"
+    }
+  ]
+}
