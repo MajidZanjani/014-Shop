@@ -21,6 +21,10 @@
     "src/pages/support.astro",
     "src/components/CustomerDrafts.tsx",
     "src/lib/customer-api.ts",
-    "tests/customer-api.test.mjs"
+    "tests/customer-api.test.mjs",
+    "src/components/DraftCart.tsx",
+    "tests/cart-conformance.json",
+    "src/lib/cart.ts",
+    "tests/cart.test.mjs"
   ]
 }

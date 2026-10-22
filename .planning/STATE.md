@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: executing
-last_updated: "2026-10-22T13:24:57.922Z"
-state_head: edd48e13b322beb5b29bf9e20456541f5e1b249f
+last_updated: "2026-10-22T13:44:46.090Z"
+state_head: 8c72b69c724687ce9942d14f5a34bac795c78854
 progress:
   total_phases: 14
   completed_phases: 1
@@ -10,38 +10,39 @@ progress:
   completed_plans: 10
   percent: 7
 last_activity: 2026-10-22
-current_phase: 06
-current_phase_name: Verified local access and protected draft save/resume
-stopped_at: Verified synthetic customer access and protected save/resume delivered; continue local draft cart.
-last_activity_desc: Captured-code login, session rotation, owner-only draft listing and UI save/resume verified locally; release gates pending.
+current_phase: 07
+current_phase_name: Local multi-line draft cart
+stopped_at: Versioned owner draft cart delivered; next protected quotation-request capture.
+last_activity_desc: Multi-line IP and support draft cart, version arbitration and exact retries verified locally; release gates pending.
 ---
 
 # Project State
 
-Updated 2026-10-22T13:10:12+00:00. Canonical current summary; detailed evidence: [quick/261022-hrl-verify-local-customer-access-through-cap/261022-hrl-SUMMARY.md](quick/261022-hrl-verify-local-customer-access-through-cap/261022-hrl-SUMMARY.md). Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
+Updated 2026-10-22T13:10:12+00:00. Canonical current summary; detailed evidence: [quick/261022-iqc-implement-verified-owner-multi-line-draf/261022-iqc-SUMMARY.md](quick/261022-iqc-implement-verified-owner-multi-line-draf/261022-iqc-SUMMARY.md). Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
 ## Current position
 
-T03/T04 local catalog delivery remains intact; T05 local draft persistence and T06 synthetic verified access/save-resume are implemented. Next ready local work is the T07 draft cart. Full phase acceptance remains pending. Phase02 remains 8/18 complete with all ten incomplete qualification/implementation records preserved. Only Phase01 is fully complete: 1/14 = rounded 7%. That is completed-phase progress, not engineering effort. Existing planned records remain 10/20; later phase acceptance is not claimed from quick-task implementation.
+T03/T04 local catalog delivery remains intact; T05 local draft persistence and T06 synthetic verified access/save-resume are implemented. T07 now has the owner-scoped versioned multi-line draft cart; quotation requests are next. Full phase acceptance remains pending. Phase02 remains 8/18 complete with all ten incomplete qualification/implementation records preserved. Only Phase01 is fully complete: 1/14 = rounded 7%. That is completed-phase progress, not engineering effort. Existing planned records remain 10/20; later phase acceptance is not claimed from quick-task implementation.
 
 ## Delivered behavior
 
 - Source-faithful Markdown catalog, strict compiler and matching browser/backend validation; three vendors, thirteen ordered families, source IDs, RDP bands and higher-volume quote behavior.
 - Static Astro/React configurator, dependent resets, fixed/floating counts, optional non-expiring support packages, support page and Django no-JavaScript preview. Unknown money/rights remain null/pending; purchase disabled; no host IDs or browser persistence.
 - Local/synthetic captured-code verification, rotated sessions/CSRF, expiry/attempt/request bounds and owner-only draft save/list/resume UI. No real email, shared contact roles, staff MFA or production activation.
+- Owner-only multi-line cart: separate IP and support lines, add/edit/remove, version conflicts, exact uncertain retry, resume; prices null and checkout disabled.
 - Bounded `scripts/check.py dev` command; automatic lightweight push/PR CI prepared separately from unchanged manual specialized qualification.
 
 ## Run and evidence
 
 Demo: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/demo.py --backend`; open http://127.0.0.1:4321 (also /support/ and /purchase/simple/).
 
-Checks: all six ordinary local lanes passed (frontend77 tests, latest core-local44, worker-smoke24, adapters6, contracts-local8, catalog70 conformance cases); static privacy boundary83 tests and real loopback access/save/resume/logout9 observations passed. Detailed scoped/overlapping counts in the task evidence. No FULL_PASS or measured real-browser/production/recovery/legal acceptance. Previous development [CI passed](https://github.com/MajidZanjani/014-Shop/actions/runs/39761244219); the new slice is pushed, but its CI status is unverified (anonymous API404; credential read rejected by automatic approval review).
+Checks: all six ordinary local lanes passed; final changed lanes passed isolated frontend110 tests, core-local52 tests, catalogue96 shared cases/full browser-backend equality (100 reported tests). React cart retry and real loopback cart13 observations passed. Unchanged worker24/adapter6/contracts8 evidence reused. Counts overlap; see task evidence. No FULL_PASS or real-browser/production/recovery/legal acceptance. Previous development [CI passed](https://github.com/MajidZanjani/014-Shop/actions/runs/39761244219); current slice CI remains unverified. No credential access retried.
 
 User review, 2026-10-22: **previous catalog demo checked and approved** (user: “all checked and approved”). See task evidence for scope. Verification/save-resume also passed user review (“all works fine”, 2026-10-22). Detailed browser/accessibility qualification and commercial/release gates remain pending.
 
 ## Exact next action
 
-Implement a local owner-scoped multi-line draft cart: separate one-vendor IP licence lines and independent positive support-package quantities, with catalog revision checks and exact snapshot/retry identities. Keep totals null and acceptance/payment disabled until approvals and durability prerequisites are satisfied. Shared contact roles, private host editing and staff MFA remain separate pending work.
+Implement protected quotation-request capture from an exact owner cart snapshot. Keep prices/rights null, approved offers, acceptance and payment disabled until their commercial/durability prerequisites are satisfied. New cart UI review, shared contact roles, private host editing and staff MFA remain pending.
 
 ## Remaining dependencies and protections
 
@@ -93,3 +94,4 @@ Resumed 2026-10-22 under the explicit execution amendment. HANDOFF.json contains
 | 34 | Record user approval of local catalog/configurator demo with scoped pending release gates | 2026-10-22 | c1faa41 | — |
 | 261022-hrl | Verify synthetic customer sessions and deliver protected draft save/list/resume UI | 2026-10-22 | bd7539f | [261022-hrl-verify-local-customer-access-through-cap](./quick/261022-hrl-verify-local-customer-access-through-cap/) |
 | 36 | Record successful user review of synthetic verification and protected save/resume | 2026-10-22 | edd48e1 | — |
+| 261022-iqc | Implement versioned owner multi-line IP and support draft cart | 2026-10-22 | 8c72b69 | [261022-iqc-implement-verified-owner-multi-line-draf](./quick/261022-iqc-implement-verified-owner-multi-line-draf/) |

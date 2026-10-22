@@ -29,7 +29,7 @@ class DemoHandler(SimpleHTTPRequestHandler):
             size=int(self.headers.get('Content-Length','0'))
         except ValueError:
             self.send_error(400);return
-        if size<0 or size>8192:
+        if size<0 or size>32768:
             self.send_error(413);return
         body=self.rfile.read(size) if size else None
         headers={k:self.headers[k] for k in ('Content-Type','Cookie','Origin','Referer','X-CSRFToken') if k in self.headers}

@@ -155,3 +155,47 @@ test('real React event dispatch updates the component hook state', { timeout: 10
     await rm(scratch, { recursive: true, force: true });
   }
 });
+
+test('cart React flow preserves exact uncertain retry and separate support lines', {timeout:10000}, async()=>{
+ const host=domHost(),previous={window:globalThis.window,document:globalThis.document,act:globalThis.IS_REACT_ACT_ENVIRONMENT};
+ const scratch=await mkdtemp(join(project,'.cart-ui-test-'));let root;
+ try {
+  globalThis.window=host.window;globalThis.document=host.document;globalThis.IS_REACT_ACT_ENVIRONMENT=true;
+  const {default:ts}=await import('typescript');
+  for(const [name,path] of [['catalog','lib/catalog'],['configuration','lib/configuration'],['cart','lib/cart'],['customer-api','lib/customer-api'],['DraftCart','components/DraftCart']]){
+   const source=await readFile(join(project,'src',path+(name==='DraftCart'?'.tsx':'.ts')),'utf8');
+   const compiled=ts.transpileModule(source,{compilerOptions:{jsx:ts.JsxEmit.ReactJSX,module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}});
+   await writeFile(join(scratch,name+'.mjs'),compiled.outputText.replace(/(['"])(?:\.\/|\.\.\/lib\/)(catalog|configuration|cart|customer-api)\1/g,"'./$2.mjs'"));
+  }
+  const {default:Cart}=await import(pathToFileURL(join(scratch,'DraftCart.mjs')));
+  const {evaluateCart}=await import(pathToFileURL(join(scratch,'cart.mjs')));
+  const fixtures=JSON.parse(await readFile(join(project,'tests/conformance.json'),'utf8'));
+  let state={version:0,current_version:0,lines:[],evaluation:evaluateCart([])},uncertain=true;
+  const requests=[];
+  host.window.fetch=async(path,options)=>{
+   if(options.method==='POST'){
+    const payload=JSON.parse(options.body);requests.push(payload);
+    if(uncertain){uncertain=false;state={version:1,current_version:1,lines:payload.lines,evaluation:evaluateCart(payload.lines)};throw new Error('synthetic response loss');}
+    if(requests.length>2)state={version:state.version+1,current_version:state.version+1,lines:payload.lines,evaluation:evaluateCart(payload.lines)};
+   }
+   return new Response(JSON.stringify(state),{headers:{'content-type':'application/json'}});
+  };
+  const {act,createElement}=await import('react');const {createRoot}=await import('react-dom/client');
+  const container=host.document.createElement('div');host.document.body.appendChild(container);root=createRoot(container);
+  await act(async()=>root.render(createElement(Cart,{configuration:fixtures[1].value,csrf:'synthetic-csrf',onResume(){}})));
+  const click=async(label)=>{const button=findNode(container,n=>n.tagName==='BUTTON'&&n.textContent===label);assert.ok(button,label);await act(async()=>{
+   const event={type:'click',target:button,button:0,bubbles:true,timeStamp:Date.now(),preventDefault(){},stopPropagation(){}};
+   for(const key of ['click:true','click:false'])for(const listener of container.events.get(key)??[])listener(event);
+  });};
+  await click('Add current configuration to cart');assert.match(container.textContent,/Save outcome uncertain/);
+  await click('Retry last cart save');assert.deepEqual(requests[0],requests[1]);
+  assert.equal(state.lines.length,2);assert.equal(state.lines[0].quantity,1);assert.equal(state.lines[0].configuration.support_packages,0);assert.equal(state.lines[1].quantity,2);
+  await click('Add support packages only');assert.equal(state.lines.length,3);assert.equal(state.evaluation.quoted_support_seconds,108000);
+  await click('Remove line');assert.equal(state.lines.length,2);assert.equal(state.lines[0].kind,'support');
+  assert.match(container.textContent,/Checkout pending commercial approval/);
+  await act(async()=>root.unmount());root=null;
+ }finally{
+  if(root){const {act}=await import('react');await act(async()=>root.unmount());}
+  globalThis.window=previous.window;globalThis.document=previous.document;globalThis.IS_REACT_ACT_ENVIRONMENT=previous.act;await rm(scratch,{recursive:true,force:true});
+ }
+});

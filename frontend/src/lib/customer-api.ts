@@ -3,6 +3,7 @@ export class ApiError extends Error {
   constructor(public status: number) { super('Customer request failed'); }
 }
 const allowed = new Set([
+  '/api/v1/cart/',
   '/api/v1/customer/session/', '/api/v1/customer/request-code/',
   '/api/v1/customer/verify/', '/api/v1/customer/logout/', '/api/v1/configuration-drafts/',
 ]);

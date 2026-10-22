@@ -122,7 +122,7 @@ def qualify(faults=False):
                 run([python, 'manage.py', 'check'], env)
                 run([python, 'manage.py', 'migrate', '--noinput'], env)
                 run([python, 'manage.py', 'makemigrations', '--check', '--dry-run'], env)
-                test_result = dev_postgres.run([str(python), 'manage.py', 'test', 'shop.core.tests', 'shop.catalog.tests', 'shop.access.tests', '--noinput'],
+                test_result = dev_postgres.run([str(python), 'manage.py', 'test', 'shop.core.tests', 'shop.catalog.tests', 'shop.access.tests', 'shop.catalog.cart_tests', '--noinput'],
                     env=env, cwd=ROOT / 'backend', timeout=45)
                 test_output = test_result.stdout + test_result.stderr
                 match = re.search(r'Ran (\d+) tests?', test_output)

@@ -20,7 +20,7 @@ SESSION_COOKIE_SECURE = CSRF_COOKIE_SECURE = SHOP_ENV not in ('local','synthetic
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 SESSION_COOKIE_AGE = 1800
 LOCAL_CAPTURE_ROOT = os.environ.get('SHOP_LOCAL_CAPTURE_ROOT') if SHOP_ENV in ('local','synthetic') else None
-DATA_UPLOAD_MAX_MEMORY_SIZE = 8192
+DATA_UPLOAD_MAX_MEMORY_SIZE = 32768
 USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DATABASES = {'default': {

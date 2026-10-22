@@ -209,6 +209,8 @@ The October21 reset completed documentation replanning. Later user continuation 
 
 ### Phase 7: Multi-line cart, quotations, business checkout and acceptance
 
+Local implementation: versioned owner draft cart delivered in [quick261022-iqc](quick/261022-iqc-implement-verified-owner-multi-line-draf/261022-iqc-SUMMARY.md). Quote/acceptance/business checkout and full COM-01–06 acceptance remain pending.
+
 **Goal:** Customers retain separate configured IP lines at quantity one across vendors and explicit duplicate scopes; support has positive real package quantity and zero selector value omits its line.
 **Depends on:** T03,T05–T06
 **Requirements:** COM-01, COM-02, COM-03, COM-04, COM-05, COM-06

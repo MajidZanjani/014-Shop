@@ -1,0 +1,1333 @@
+[
+  {
+    "name": "empty editable cart",
+    "lines": [],
+    "status": "draft",
+    "errors": []
+  },
+  {
+    "name": "one IP",
+    "lines": [
+      {
+        "id": "00000000-0000-0000-0000-000000000001",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      }
+    ],
+    "status": "awaiting_review",
+    "errors": []
+  },
+  {
+    "name": "independent support only",
+    "lines": [
+      {
+        "id": "00000000-0000-0000-0000-000000000001",
+        "kind": "support",
+        "product_id": "sll-xspi-mc-support-10h",
+        "quantity": 2
+      }
+    ],
+    "status": "awaiting_review",
+    "errors": []
+  },
+  {
+    "name": "mixed vendors and support",
+    "lines": [
+      {
+        "id": "00000000-0000-0000-0000-000000000001",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000002",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "amd-xilinx",
+          "families": [
+            "amd-series-7"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 0,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000003",
+        "kind": "support",
+        "product_id": "sll-xspi-mc-support-10h",
+        "quantity": 3
+      }
+    ],
+    "status": "awaiting_review",
+    "errors": []
+  },
+  {
+    "name": "higher volume quotation",
+    "lines": [
+      {
+        "id": "00000000-0000-0000-0000-000000000001",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rdp-yearly",
+          "production_band": "higher-volume",
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      }
+    ],
+    "status": "requires_quote",
+    "errors": []
+  },
+  {
+    "name": "maximum support quantity",
+    "lines": [
+      {
+        "id": "00000000-0000-0000-0000-000000000001",
+        "kind": "support",
+        "product_id": "sll-xspi-mc-support-10h",
+        "quantity": 1000000
+      }
+    ],
+    "status": "awaiting_review",
+    "errors": []
+  },
+  {
+    "name": "twenty distinct licences",
+    "lines": [
+      {
+        "id": "00000000-0000-0000-0000-000000000001",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000002",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000003",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000004",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000005",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000006",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000007",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000008",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000009",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-00000000000a",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-00000000000b",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-00000000000c",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-00000000000d",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-00000000000e",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-00000000000f",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000010",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000011",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000012",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000013",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000014",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      }
+    ],
+    "status": "awaiting_review",
+    "errors": []
+  },
+  {
+    "name": "too many lines",
+    "lines": [
+      {
+        "id": "00000000-0000-0000-0000-000000000001",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000002",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000003",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000004",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000005",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000006",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000007",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000008",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000009",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-00000000000a",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-00000000000b",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-00000000000c",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-00000000000d",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-00000000000e",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-00000000000f",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000010",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000011",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000012",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000013",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000014",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000015",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      }
+    ],
+    "status": "invalid",
+    "errors": [
+      "lines:bounded_array"
+    ]
+  },
+  {
+    "name": "invalid support 0",
+    "lines": [
+      {
+        "id": "00000000-0000-0000-0000-000000000001",
+        "kind": "support",
+        "product_id": "sll-xspi-mc-support-10h",
+        "quantity": 0
+      }
+    ],
+    "status": "invalid",
+    "errors": [
+      "lines.0.quantity:positive_integer"
+    ]
+  },
+  {
+    "name": "invalid support -1",
+    "lines": [
+      {
+        "id": "00000000-0000-0000-0000-000000000001",
+        "kind": "support",
+        "product_id": "sll-xspi-mc-support-10h",
+        "quantity": -1
+      }
+    ],
+    "status": "invalid",
+    "errors": [
+      "lines.0.quantity:positive_integer"
+    ]
+  },
+  {
+    "name": "invalid support True",
+    "lines": [
+      {
+        "id": "00000000-0000-0000-0000-000000000001",
+        "kind": "support",
+        "product_id": "sll-xspi-mc-support-10h",
+        "quantity": true
+      }
+    ],
+    "status": "invalid",
+    "errors": [
+      "lines.0.quantity:positive_integer"
+    ]
+  },
+  {
+    "name": "invalid support 1.5",
+    "lines": [
+      {
+        "id": "00000000-0000-0000-0000-000000000001",
+        "kind": "support",
+        "product_id": "sll-xspi-mc-support-10h",
+        "quantity": 1.5
+      }
+    ],
+    "status": "invalid",
+    "errors": [
+      "lines.0.quantity:positive_integer"
+    ]
+  },
+  {
+    "name": "invalid support 2",
+    "lines": [
+      {
+        "id": "00000000-0000-0000-0000-000000000001",
+        "kind": "support",
+        "product_id": "sll-xspi-mc-support-10h",
+        "quantity": "2"
+      }
+    ],
+    "status": "invalid",
+    "errors": [
+      "lines.0.quantity:positive_integer"
+    ]
+  },
+  {
+    "name": "invalid support 1000001",
+    "lines": [
+      {
+        "id": "00000000-0000-0000-0000-000000000001",
+        "kind": "support",
+        "product_id": "sll-xspi-mc-support-10h",
+        "quantity": 1000001
+      }
+    ],
+    "status": "invalid",
+    "errors": [
+      "lines.0.quantity:positive_integer"
+    ]
+  },
+  {
+    "name": "IP quantity cannot multiply hosts",
+    "lines": [
+      {
+        "id": "00000000-0000-0000-0000-000000000001",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 2,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      }
+    ],
+    "status": "invalid",
+    "errors": [
+      "lines.0.quantity:one_per_line"
+    ]
+  },
+  {
+    "name": "duplicate line identity",
+    "lines": [
+      {
+        "id": "00000000-0000-0000-0000-000000000001",
+        "kind": "support",
+        "product_id": "sll-xspi-mc-support-10h",
+        "quantity": 1
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000001",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      }
+    ],
+    "status": "invalid",
+    "errors": [
+      "lines.1.id:duplicate"
+    ]
+  },
+  {
+    "name": "embedded support must become separate line",
+    "lines": [
+      {
+        "id": "00000000-0000-0000-0000-000000000001",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "altera-agilex-5"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 2
+        }
+      }
+    ],
+    "status": "invalid",
+    "errors": [
+      "lines.0.configuration.support_packages:separate_line_required"
+    ]
+  },
+  {
+    "name": "mixed family in one licence",
+    "lines": [
+      {
+        "id": "00000000-0000-0000-0000-000000000001",
+        "kind": "ip",
+        "product_id": "sll-xspi-mc",
+        "quantity": 1,
+        "configuration": {
+          "product_id": "sll-xspi-mc",
+          "profile_id": "sll-xspi-mc-v1",
+          "quantity": 1,
+          "vendor": "altera",
+          "families": [
+            "amd-series-7"
+          ],
+          "term": "rd-annual",
+          "production_band": null,
+          "production_units": null,
+          "fixed_nodes": 1,
+          "floating_nodes": 0,
+          "support_packages": 0
+        }
+      }
+    ],
+    "status": "invalid",
+    "errors": [
+      "lines.0.configuration.families:vendor_families"
+    ]
+  },
+  {
+    "name": "private line field",
+    "lines": [
+      {
+        "id": "00000000-0000-0000-0000-000000000001",
+        "kind": "support",
+        "product_id": "sll-xspi-mc-support-10h",
+        "quantity": 1,
+        "host_id": "SYNTHETIC_PRIVATE_HOST"
+      }
+    ],
+    "status": "invalid",
+    "errors": [
+      "lines.0:fields"
+    ]
+  },
+  {
+    "name": "unknown product",
+    "lines": [
+      {
+        "id": "00000000-0000-0000-0000-000000000001",
+        "kind": "support",
+        "product_id": "other",
+        "quantity": 1
+      }
+    ],
+    "status": "invalid",
+    "errors": [
+      "lines.0.product_id:invalid"
+    ]
+  },
+  {
+    "name": "invalid line ID",
+    "lines": [
+      {
+        "id": "bad",
+        "kind": "support",
+        "product_id": "sll-xspi-mc-support-10h",
+        "quantity": 1
+      }
+    ],
+    "status": "invalid",
+    "errors": [
+      "lines.0.id:uuid"
+    ]
+  },
+  {
+    "name": "unknown line type",
+    "lines": [
+      {
+        "id": "00000000-0000-0000-0000-000000000001",
+        "kind": "other",
+        "product_id": "sll-xspi-mc-support-10h",
+        "quantity": 1
+      }
+    ],
+    "status": "invalid",
+    "errors": [
+      "lines.0.kind:invalid"
+    ]
+  },
+  {
+    "name": "non-object line",
+    "lines": [
+      false
+    ],
+    "status": "invalid",
+    "errors": [
+      "lines.0:fields"
+    ]
+  },
+  {
+    "name": "non-array None",
+    "lines": null,
+    "status": "invalid",
+    "errors": [
+      "lines:bounded_array"
+    ]
+  },
+  {
+    "name": "non-array {}",
+    "lines": {},
+    "status": "invalid",
+    "errors": [
+      "lines:bounded_array"
+    ]
+  },
+  {
+    "name": "non-array invalid",
+    "lines": "invalid",
+    "status": "invalid",
+    "errors": [
+      "lines:bounded_array"
+    ]
+  }
+]

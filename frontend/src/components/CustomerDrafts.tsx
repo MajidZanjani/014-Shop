@@ -1,3 +1,4 @@
+import DraftCart from './DraftCart';
 import { useEffect, useRef, useState } from 'react';
 import { catalog } from '../lib/catalog';
 import { evaluate, initialConfiguration } from '../lib/configuration';
@@ -68,6 +69,7 @@ export default function CustomerDrafts({configuration, onResume}: {configuration
       </form>}
     </> : <>
       <p>Verified customer session</p>
+      <DraftCart configuration={configuration} csrf={csrf} onResume={onResume}/>
       <button type="button" disabled={busy||!evaluate(configuration).valid} onClick={()=>void action(async()=>{
         const payload=JSON.stringify(configuration);
         if(pending.current?.payload!==payload)pending.current={payload,id:crypto.randomUUID()};
