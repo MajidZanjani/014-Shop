@@ -2,7 +2,7 @@
 gsd_state_version: "1.0"
 status: executing
 last_updated: "2026-10-22T10:09:34.578Z"
-state_head: 575575e1050c4d29d2747eaaae6bb13de630a183
+state_head: d9d088a1050c4d29d2747eaaae6bb13de630a183
 progress:
   total_phases: 14
   completed_phases: 1
@@ -35,7 +35,7 @@ T03/T04 local product development is active; ready T05 draft persistence has beg
 
 Demo: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/demo.py --backend`; open http://127.0.0.1:4321 (also /support/ and /purchase/simple/).
 
-Checks: all six ordinary local lanes passed; latest changed lanes rerun (frontend75 tests, core-local34 tests), 70 cross-language cases agree, compiler rejection tests pass, dispatcher15 tests pass, static privacy boundary81 tests pass. Actual loopback demo/CSRF/quote/catalog smoke passed. Details and scoped counts in the task evidence. No FULL_PASS, actual browser/host/runtime/recovery/legal acceptance or production readiness claim. Hosted runner execution is available: the first run failed its historical-evidence check on shallow checkout; fetch-depth:0 fixes that setup defect. Replacement result pending.
+Checks: all six ordinary local lanes passed; latest changed lanes rerun (frontend75 tests, core-local34 tests), 70 cross-language cases agree, compiler rejection tests pass, dispatcher15 tests pass, static privacy boundary81 tests pass. Actual loopback demo/CSRF/quote/catalog smoke passed. Details and scoped counts in the task evidence. No FULL_PASS, actual browser/host/runtime/recovery/legal acceptance or production readiness claim. Automatic GitHub-hosted development [CI passed](https://github.com/MajidZanjani/014-Shop/actions/runs/39761244219) at d9d088a (source/frontend/schema/conformance subset). Full release CI remains pending.
 
 ## Exact next action
 
