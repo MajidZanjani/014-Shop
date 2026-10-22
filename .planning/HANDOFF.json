@@ -1,0 +1,168 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-10-22T05:18:59.935Z",
+  "phase": "02",
+  "phase_name": "Reproducible application and deployment skeleton",
+  "phase_dir": ".planning/phases/02-reproducible-application-and-deployment-skeleton",
+  "plan": 16,
+  "task": 1,
+  "total_tasks": 1,
+  "status": "paused",
+  "base_commit": "2e5ccdec8a323ae8c295dd931cd64104d144319d",
+  "pause_reason": "Proactive context-pressure handoff per standing user instruction. No exact usage percentage supplied; no claim of measured90% threshold.",
+  "completed_tasks": [
+    {
+      "id": "8052689",
+      "name": "Exact twelve-distribution missing-file archive audit",
+      "status": "done",
+      "commit": "8052689",
+      "scope": "Bounded slice only; parent14/16/17 remain incomplete."
+    },
+    {
+      "id": "4a02f7c",
+      "name": "Two embedded Python source licence headers",
+      "status": "done",
+      "commit": "4a02f7c",
+      "scope": "Bounded slice only; parent14/16/17 remain incomplete."
+    },
+    {
+      "id": "6008f2c",
+      "name": "Actual realized operator native closure lane",
+      "status": "done",
+      "commit": "6008f2c",
+      "scope": "Bounded slice only; parent14/16/17 remain incomplete."
+    },
+    {
+      "id": "8e7cbf4",
+      "name": "New-user-manager-only generator discovery candidate",
+      "status": "done",
+      "commit": "8e7cbf4",
+      "scope": "Bounded slice only; parent14/16/17 remain incomplete."
+    },
+    {
+      "id": "0adc350",
+      "name": "Private-FD exact-authority schema source command and transaction admission",
+      "status": "done",
+      "commit": "0adc350",
+      "scope": "Bounded slice only; parent14/16/17 remain incomplete."
+    },
+    {
+      "id": "c14ae3a",
+      "name": "Cached exact Python/PostgreSQL upstream source notice candidates",
+      "status": "done",
+      "commit": "c14ae3a",
+      "scope": "Bounded slice only; parent14/16/17 remain incomplete."
+    }
+  ],
+  "remaining_tasks": [
+    {
+      "id": "14-command",
+      "name": "Separate pinned schema candidate launcher; exact roles/private transport/peer/root-record publisher/custody/admission barrier, Django migration/write enforcement and executable replica driver remain unfinished.",
+      "status": "pending"
+    },
+    {
+      "id": "16-inventory",
+      "name": "Ten npm text gaps, broader native recipes/source/notices/redistribution and legal review, actual standard full inventory/OCI layers remain pending. Two Python embedded headers and nine source candidates are evidence, not package-wide approval.",
+      "status": "pending"
+    },
+    {
+      "id": "17-repro",
+      "name": "Actual OCI builds/payload-config reproducibility and required full CI evidence; resources/review/runner gates remain.",
+      "status": "pending"
+    },
+    {
+      "id": "qualification",
+      "name": "Independent off-host lifecycle/failure/containment/recovery and human browser/source/licence/runtime reviews remain unexecuted.",
+      "status": "pending"
+    }
+  ],
+  "blockers": [
+    {
+      "description": "Independent off-host runner remains unassigned.",
+      "type": "external",
+      "workaround": "Continue all authorized repository/local preparation. No disruptive tests on mx1/guests; no automatic provisioning/purchase. Raise assignment only at remaining actual qualification stage."
+    }
+  ],
+  "human_actions_pending": [
+    {
+      "action": "Assign explicitly authorized independent runner at qualification stage.",
+      "context": "docs/qualification-runner.md is sole runner specification.",
+      "blocking": false
+    },
+    {
+      "action": "Complete source/licence/host/browser/runtime and remaining commercial/custody reviews at their gates.",
+      "context": "No approval or production readiness inferred from candidate/local evidence.",
+      "blocking": false
+    }
+  ],
+  "async_jobs": [],
+  "async_jobs_observation": "Directory absent at measured checkpoint.",
+  "background_processes": [],
+  "background_observation": "All workflow-launched exec sessions returned terminal results; no agents spawned or test servers/watchers left running.",
+  "uncommitted_files": [],
+  "uncommitted_observation": "Actual git status --porcelain empty before handoff writes; main and origin/main both 2e5ccdec8a323ae8c295dd931cd64104d144319d. Checkpoint files committed/synced separately.",
+  "actual_evidence": {
+    "database_destination": "3 checks/107 tests,9.518s; real local SCRAM source apply/explicit replay plus rollback; runtime/path/UID/role fixture limits",
+    "database_tools": "7 checks/5 tests,4.009s; actual ten-module source build/import/help/denial",
+    "operator_runtime": "4 checks/10 tests,2.341s; actual read-only launcher denies exact new mutation command",
+    "native_closure": "54 checks/9 tests,0.918s; realized reference closure,15 missing local recipes; historical53 preserved",
+    "deployment_eval": "16 checks/31 tests,2.075s; pure Nix/shell/TOML/synthetic existing-owner controls only",
+    "deployment_profiles": "6 checks/5 tests,0.019s; proposed-unobserved only",
+    "native_source_notices": "9 checks/6 tests,3.696s independent retained recheck; two cached exact sources; upstream candidates only",
+    "environment": "2 checks/14 tests,0.897s; includes required aggregate lane coverage"
+  },
+  "blocking_constraints": [
+    {
+      "severity": "advisory",
+      "description": "Nix excludes untracked source files: first source/operator package checks failed until declared operator_schema.py was staged. Admit declared files to Git before Nix build, never bypass source filters."
+    },
+    {
+      "severity": "advisory",
+      "description": "Measured Nix2.34.7 derivation JSON envelope is4; --json-format is unsupported for derivation show. Assumed2 correctly failed; inspect actual format and keep validation explicit."
+    },
+    {
+      "severity": "advisory",
+      "description": "Importing a TestCase class into another discovery module duplicated11 tests (116 instead of105). Import the fixture module, not its class; final107 after two added cases."
+    },
+    {
+      "severity": "advisory",
+      "description": "Standalone synthetic/module generator bundles contain different guard paths. Compare each drop-in to its own evaluated bundle, not cross-fixture path equality."
+    },
+    {
+      "severity": "advisory",
+      "description": "Copyright clause references falsely satisfied holder detection after holder removal. Embedded header extraction now requires actual leading holder comment; do not weaken it."
+    },
+    {
+      "severity": "advisory",
+      "description": "Shared /tmp128MiB previously exhausted; owned project .scratch with bounded jobs/cores and short socket paths only. No shared cleanup or allocation change."
+    }
+  ],
+  "decisions": [
+    {
+      "decision": "Continue through multiple authorized repository slices without ending the turn after each. Preserve this preference on resume; skip generic1/2 choice menu and proceed to exact next action.",
+      "phase": "02"
+    },
+    {
+      "decision": "Commit/push completed steps to established origin under continuing user authority. Earlier publication rejection resolved by explicit continue to approval request and subsequent successful pushes.",
+      "phase": "02"
+    },
+    {
+      "decision": "Rootless shopsvc on existing mx1 outside claude-dev; preserve all existing/unknown resources. No host/provider/protected-service/production actions without exact scoped authority.",
+      "phase": "02"
+    },
+    {
+      "decision": "Source-only schema mutation command does not expose write command through read-only launcher, open production Django or provision roles/records/credentials. Uncertain outcome never grants retry.",
+      "phase": "02"
+    },
+    {
+      "decision": "Preserve original raw/derived SBOM/licences and historical native report. New realized native report gets exclusive content-addressed revision; no silent overwrite.",
+      "phase": "02"
+    },
+    {
+      "decision": "No exact context percentage available; proactive save when context pressure apparent. Pause implementation until clear/resume.",
+      "phase": "02"
+    }
+  ],
+  "next_action": "Resume directly without a generic menu. Read operator_schema.py, schema_authorization.py, operator-runtime.nix, database-tools.nix and latest plan14/16 PARTIALs. Start a bounded GSD task to package a separate pinned candidate schema launcher using the existing exact Python/Psycopg/libpq environment; keep shop-operator-inspect read-only and production Django closed. Verify actual startup/private-FD/error controls and local SCRAM/transaction admission, add immutable native/source evidence revisions if producing inputs change, commit/push and continue remaining repository work. Do not invoke live apply, publish root records, install on mx1 or ask about runner until actual qualification stage.",
+  "context_notes": "Phase01 complete2/2. Phase02 still8/18 local slices complete,7 review/qualification pending and3 implementation-incomplete14/16/17. No FULL_PASS, full inventory/phase or production acceptance. Final source task complete before checkpoint; main clean/synced. No .env read/needed missing credential, host access, protected mutation or purchase this session. Default bwrap still fails; scoped approved require_escalated exec worked. GSD quick documented inline sequential fallback, no subagents/worktree dispatch. Two old historical worktrees untouched; never replay stale prompts. About2.4GiB free last observed; no images built."
+}
