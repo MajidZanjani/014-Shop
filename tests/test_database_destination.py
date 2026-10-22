@@ -277,7 +277,7 @@ class DatabaseDestinationTests(unittest.TestCase):
             'migration_id':'synthetic_001','database':dict(self.actual),
             'expires_at':(datetime.now(timezone.utc)+timedelta(hours=1)).strftime('%Y-%m-%dT%H:%M:%SZ')}
 
-    def authorized_schema(self, data=None, authorization=None, loader=None, record=None):
+    def authorized_schema(self, data=None, authorization=None, loader=None, record=None, admission_check=None):
         from unittest.mock import patch
         import schema_authorization as auth
         default_data, default_authority=self.schema_authority()
@@ -287,7 +287,7 @@ class DatabaseDestinationTests(unittest.TestCase):
              patch.object(auth,'load_authorization',side_effect=loader or (lambda:auth.validate_authorization(authorization))), \
              patch.object(auth.process_probe,'load_record',return_value=record or {'database':dict(self.actual)}), \
              patch.object(auth.process_probe,'probe',return_value=dict(self.runtime)):
-            return auth.execute_authorized_schema(self.connection(),'synthetic-zfs','synthetic-pg-control',data)
+            return auth.execute_authorized_schema(self.connection(),'synthetic-zfs','synthetic-pg-control',data,admission_check=admission_check)
 
     def test_authorized_exact_schema_artifact_executes(self):
         self.addCleanup(self.target.sql,'DROP TABLE IF EXISTS public.schema_guard_probe')
@@ -851,4 +851,44 @@ class DatabaseDestinationTests(unittest.TestCase):
                 private=inputs[3];private.seek(0);private.write(b'SYNTHETIC_WRONG_PASSWORD_00');private.truncate();private.flush()
                 with self.assertRaises(psycopg.OperationalError):cli.inspect_from_fds()
                 self.assertEqual(len(opened),3)
+
+                # Exercise the source schema command through actual SCRAM using
+                # the same explicit fixture adaptations/private FD reader.
+                import operator_schema as schema_command
+                import schema_authorization as schema_auth
+                admin.execute('TRUNCATE shop_control.schema_migrations')
+                schema_data=json.dumps({'schema_version':1,'migration_id':'synthetic_001',
+                    'statements':['CREATE TABLE public.operator_schema_probe(id integer)']}).encode()
+                _,write_authority=self.schema_authority(schema_data)
+                write_authority['database']=expected
+                for descriptor,data in ((0,schema_data),(3,password.encode())):
+                    file=inputs[descriptor];file.seek(0);file.write(data);file.truncate();file.flush()
+                schema_opened=[]
+                def schema_connect(**kwargs):
+                    connection=actual_connect(**kwargs);schema_opened.append(connection)
+                    self.assertEqual(connection.execute('SHOW default_transaction_read_only').fetchone()[0],'off')
+                    return connection
+                with patch.object(schema_auth,'load_authorization',return_value=write_authority), \
+                     patch.object(cli.psycopg,'connect',side_effect=schema_connect):
+                    self.assertEqual(schema_command.apply_from_fds(),{'schema_version':1,'status':'applied',
+                        'retry_authorized':False,'reopening_authorized':False})
+                    self.assertEqual(schema_command.apply_from_fds()['status'],'already_applied')
+                self.assertEqual(len(schema_opened),2)
+                self.assertTrue(all(connection.closed for connection in schema_opened))
+                self.assertEqual(admin.execute("SELECT count(*) FROM pg_class WHERE oid=to_regclass('public.operator_schema_probe')").fetchone()[0],1)
+                self.assertEqual(admin.execute('SELECT count(*) FROM shop_control.schema_migrations').fetchone()[0],1)
             admin.close()
+
+    def test_schema_transport_admission_failure_rolls_back_schema_and_ledger(self):
+        for fail_at in (1,2,3,4):
+            calls=[]
+            def admission():
+                calls.append(True)
+                if len(calls)==fail_at:raise ValueError('synthetic transport changed')
+                return True
+            with self.subTest(fail_at=fail_at),self.assertRaises(ValueError):self.authorized_schema(admission_check=admission)
+            self.assertEqual(len(calls),fail_at)
+            self.assertEqual(self.schema_exists(),'0')
+            self.assertEqual(self.target.sql('SELECT count(*) FROM shop_control.schema_migrations'),'0')
+        with self.assertRaises(ValueError):self.authorized_schema(admission_check=lambda:False)
+        self.assertEqual(self.schema_exists(),'0')

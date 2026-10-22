@@ -171,7 +171,7 @@ They adapt only the fixed PGDATA comparison to owned scratch paths. They do not
 establish rootless process/storage/resource containment or production readiness.
 
 The inert source bundle is available as the flake package
-`shop-database-tools-source`. It contains exactly nine explicitly selected Python
+`shop-database-tools-source`. It contains exactly ten explicitly selected Python
 modules plus the pinned SQL artifact and a closed SHA-256 manifest. Individual
 source bytes are copied into separate store files; the bundle does not retain a
 reference to the entire repository source. It contains no interpreter, dependency
@@ -279,3 +279,47 @@ uses that same binding check. This does not issue or publish root records, perfo
 host observations or grant activation. The exact bundle/publication requirements
 are in [control-record-publication.md](control-record-publication.md); publication
 and operational qualification remain pending.
+
+## Source-only schema apply integration
+
+`ops/runtime/operator_schema.py` prepares a separate `apply-reviewed-schema`
+source command. It is included in the inert source manifest, but the existing
+standalone `shop-operator-inspect` launcher still rejects all mutation commands.
+No mutating launcher is installed or qualified; no root record, role, socket,
+credential or runtime configuration is provisioned by this code.
+
+The source command requires private artifact FD0 and credential FD3, the exact
+nonroot shop UID and the same fixed Unix socket/tool/process/record controls as
+inspection. It validates the exact active schema authorization and immutable
+artifact before reading credentials or connecting. Its explicit SCRAM session
+is writable only for this reviewed schema operation; production Django remains
+blocked. It exposes no DSN/path/role/bootstrap/retry arguments.
+
+`execute_authorized_schema(..., admission_check=...)` can now call an additional
+caller transport-admission callback inside every runtime/SQL guard, including
+before DDL, ledger insert and commit. A provided callback must return exactly
+True; exceptions/false deny. The source command uses this to recheck its original
+connection record, process record, schema authorization and socket identity at
+each guard. Existing root-authority/runtime/live-SQL checks still execute. No
+callback can grant schema authorization or replace the underlying guard.
+
+Connections close on success or failure; no automatic reconnect/retry. Successful
+output contains only schema_version1, status applied/already_applied and false
+retry/reopening flags. Any failure emits a fixed schema_outcome_unconfirmed
+event, including failure after commit or while reporting a result. It never
+claims that no effects occurred. Use the independently authorized read-only
+inspection and retained external records to reconcile uncertainty; no observation
+alone grants retry or safe reopening. Exact authority can permit an explicit
+same-artifact call to return already_applied without repeating DDL.
+
+Local tests exercise actual SCRAM/private-FD source schema apply and explicit
+already_applied observation on a newly owned disposable PostgreSQL cluster,
+with matching schema/ledger rows and closed connections. Runtime records, socket
+ancestry/identity, UID and canonical PGDATA are fixture adaptations. The fixture
+uses its administrative role, so it does not qualify least-privilege schema
+access. Separate real-PostgreSQL cases deny admission at every transaction guard
+and leave neither schema nor ledger effects. Package tests import the ten-module
+source set without connections and exercise source help/bootstrap denial. Full
+pinned executable startup/error/FD transport, exact schema role privileges,
+root-record publisher/admission barrier, Django recorder/migration integration,
+actual host/runtime and independent failure/recovery qualification remain pending.

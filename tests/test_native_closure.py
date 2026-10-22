@@ -69,5 +69,16 @@ class NativeTests(unittest.TestCase):
         with self.assertRaises(ValueError): native.validate_graph(A, {})
         with patch.object(native, 'MAX_PATHS', 1), self.assertRaises(ValueError): native.validate_graph(A, self.nodes)
 
+    def test_new_evidence_uses_content_addressed_revision_without_overwrite(self):
+        with tempfile.TemporaryDirectory() as directory:
+            base=Path(directory)/'operator-native-closure.json'
+            self.assertEqual(native.evidence_path(base,b'first'),base)
+            base.write_bytes(b'first')
+            self.assertEqual(native.evidence_path(base,b'first'),base)
+            revision=native.evidence_path(base,b'second')
+            self.assertEqual(revision.name,native.sha256(b'second')+'.json')
+            self.assertEqual(revision.parent.name,'operator-native-closure-revisions')
+            self.assertEqual(base.read_bytes(),b'first')
+
 
 if __name__ == '__main__': unittest.main()

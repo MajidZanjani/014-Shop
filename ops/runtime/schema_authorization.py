@@ -49,13 +49,16 @@ def read_artifact(data, authorization, *, action='apply-reviewed-schema'):
     return statements
 
 
-def execute_authorized_schema(connection, zfs, pg_control, data):
+def execute_authorized_schema(connection, zfs, pg_control, data, *, admission_check=None):
     """Library integration only; production readiness/restore reconciliation pending."""
+    require(admission_check is None or callable(admission_check))
     authorization = load_authorization()
     statements = read_artifact(data,authorization)
     approved = process_probe.load_record()
     require(approved['database'] == authorization['database'])
     def fresh():
+        if admission_check is not None:
+            require(admission_check() is True)
         current_authorization = load_authorization()
         require(current_authorization == authorization)
         current = process_probe.load_record()

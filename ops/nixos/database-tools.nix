@@ -2,7 +2,7 @@
 { pkgs }:
 let
   names = [ "guard.py" "control.py" "database.py" "process_probe.py"
-    "schema_authorization.py" "ledger_bootstrap.py" "schema_reconciliation.py" "operator_inspect.py" "record_bundle.py" ];
+    "schema_authorization.py" "ledger_bootstrap.py" "schema_reconciliation.py" "operator_inspect.py" "record_bundle.py" "operator_schema.py" ];
   entries = (map (name: {
     name = "libexec/shop/database/${name}";
     # Copy individual bytes, not a reference into the entire repository closure.

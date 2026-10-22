@@ -58,7 +58,7 @@ class OperatorRuntimeTests(unittest.TestCase):
 
     def test_actual_launcher_denies_mutation_or_secret_option_without_echo(self):
         canary='synthetic-'+secrets.token_hex(16)
-        for args in (['apply'],['bootstrap'],['--password',canary]):
+        for args in (['apply'],['apply-reviewed-schema'],['bootstrap'],['--password',canary]):
             result=self.run_command(args)
             self.assertEqual(result.returncode,2)
             self.assertEqual(result.stdout,b'')

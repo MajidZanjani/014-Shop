@@ -49,3 +49,15 @@ rejection tests. Scope-specific success leaves inventory_complete, legal_approva
 runtime_qualified and oci_images_included false. Host runtime/transport/resource
 compatibility, full native source/notice coverage, all four OCI images/layers
 and production qualification remain pending.
+
+## Preserving observed revisions
+
+When current realized source/recipe/closure bytes change, a new explicit --write
+creates `operator-native-closure-revisions/<report-SHA256>.json`. The original
+operator-native-closure.json is never overwritten. Default verification derives
+the current observation again and requires either the matching original report
+or its exact content-addressed revision. No mutable current pointer is trusted.
+The ten-module source bundle produces a later54-object operator reference closure;
+that observed revision remains supplementary evidence with missing provenance,
+notice/OCI/legal/runtime gates open. Nine controls now include historical-byte
+preservation and deterministic revision naming.

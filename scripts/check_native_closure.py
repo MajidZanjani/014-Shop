@@ -156,6 +156,13 @@ def collect():
             'oci_images_included': False, 'missing_local_derivations': sorted(set(missing_derivations)), 'nodes': records}
 
 
+def evidence_path(baseline, encoded):
+    """New observed bytes get an exclusive revision; historical bytes never change."""
+    if baseline.exists() and baseline.read_bytes() != encoded:
+        return baseline.parent / 'operator-native-closure-revisions' / (sha256(encoded) + '.json')
+    return baseline
+
+
 def main():
     start = time.monotonic()
     parser = argparse.ArgumentParser(description=__doc__)
@@ -163,8 +170,9 @@ def main():
     args = parser.parse_args()
     report = collect()
     encoded = (json.dumps(report, indent=2, sort_keys=True) + '\n').encode()
-    output = ROOT / 'docs/evidence/t02/operator-native-closure.json'
+    output = evidence_path(ROOT / 'docs/evidence/t02/operator-native-closure.json', encoded)
     if args.write:
+        output.parent.mkdir(exist_ok=True)
         with output.open('xb') as stream:
             stream.write(encoded)
     else:

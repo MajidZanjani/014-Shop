@@ -16,7 +16,7 @@ ROOT=Path(__file__).resolve().parents[1]
 from check_python import frozen_environment, require
 
 MODULES=('guard','control','database','process_probe','schema_authorization',
-         'ledger_bootstrap','schema_reconciliation','operator_inspect','record_bundle')
+         'ledger_bootstrap','schema_reconciliation','operator_inspect','record_bundle','operator_schema')
 FILES={**{f'libexec/shop/database/{name}.py':f'ops/runtime/{name}.py' for name in MODULES},
        'share/shop/schema-ledger.sql':'ops/postgresql/schema-ledger.sql'}
 MANIFEST='share/shop/database-tools.json'
@@ -110,10 +110,16 @@ print('DATABASE_TOOLS_IMPORT_PASS')
                 env=env,capture_output=True,timeout=10)
             require(denied.returncode==2 and not denied.stdout
                 and denied.stderr==b'{"event":"operator.inspection_denied"}\n','packaged mutation command must be absent')
+            schema_command=command.replace("'operator_inspect'","'operator_schema'")
+            schema_help=subprocess.run([str(python),'-I','-c',schema_command,str(artifact/'libexec/shop/database'),'--help'],env=env,capture_output=True,timeout=10)
+            require(schema_help.returncode==0 and schema_help.stdout.startswith(b'Prepared source-only command:') and not schema_help.stderr,'actual packaged schema source help required')
+            schema_denied=subprocess.run([str(python),'-I','-c',schema_command,str(artifact/'libexec/shop/database'),'bootstrap'],env=env,capture_output=True,timeout=10)
+            require(schema_denied.returncode==2 and not schema_denied.stdout and schema_denied.stderr==b'{"event":"operator.schema_outcome_unconfirmed"}\n','schema source must reject bootstrap')
+
     suite=unittest.TestLoader().discover(str(ROOT/'tests'),pattern='test_database_tools.py')
     stream=io.StringIO();tests=unittest.TextTestRunner(stream=stream).run(suite)
     require(tests.testsRun>=5 and tests.wasSuccessful() and not tests.skipped,'manifest controls failed')
-    print(f'DATABASE_TOOLS_PASS checks=6 tests={tests.testsRun} duration_seconds={time.monotonic()-start:.3f}')
+    print(f'DATABASE_TOOLS_PASS checks=7 tests={tests.testsRun} duration_seconds={time.monotonic()-start:.3f}')
     print('Actual source build/import and packaged help/denial only; host installation/positive transport/runtime qualification pending')
 
 if __name__=='__main__':
