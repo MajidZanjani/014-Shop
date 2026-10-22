@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: executing
-last_updated: "2026-10-22T05:06:28.236Z"
-state_head: 8e7cbf41a9052ac45f7930dde8a710ae5e5f0f75
+last_updated: "2026-10-22T05:13:10.799Z"
+state_head: 0adc350310a270a252279d60ba05e7cf2990d123
 progress:
   total_phases: 14
   completed_phases: 1
@@ -183,6 +183,7 @@ Phase02 and14/16/17 remain incomplete. Next scoped durable generation publicatio
 | 261022-6s2 | Retain exact embedded Python tool licence headers | 2026-10-22 | 4a02f7c | [261022-6s2-retain-exact-embedded-licence-headers-fr](./quick/261022-6s2-retain-exact-embedded-licence-headers-fr/) |
 | 261022-6vp | Verify actual operator native reference closure | 2026-10-22 | 6008f2c | [261022-6vp-inventory-actual-cached-operator-native-](./quick/261022-6vp-inventory-actual-cached-operator-native-/) |
 | 261022-700 | Prepare generator discovery for only new shop manager | 2026-10-22 | 8e7cbf4 | [261022-700-prepare-root-owned-generator-discovery-f](./quick/261022-700-prepare-root-owned-generator-discovery-f/) |
+| 261022-73q | Integrate exact-authority schema operator transport and admission | 2026-10-22 | 0adc350 | [261022-73q-integrate-private-fd-guarded-schema-comm](./quick/261022-73q-integrate-private-fd-guarded-schema-comm/) |
 
 ## Latest continuation — real local SCRAM inspection
 
@@ -247,3 +248,11 @@ Actual pinned native53 checks/8 tests0.899s, operator4/10 in2.159s and environme
 ## Continuous execution — account-only generator discovery
 
 Prepared root-owned immutable one-generator bundle and exact user@newUID instance drop-in; new manager search replaces only its generator path. No global/template change, mutable home installer, manager reload/start, Podman run or host activation. Disabled candidate has no discovery artifacts. Existing synthetic account/manager sentinel unchanged. Actual deployment-eval16/31 in2.049s and profiles6/5 in0.019s pass. Initial comparison of different synthetic/module guard bundles corrected to each actual bundle. Actual pinned compatibility/installation/qualification and14/16/17 remain pending. Continue guarded schema/operator/application integration and source/native/OCI work without stopping after this step.
+
+## Continuous execution — private-FD schema source command
+
+Source-only operator_schema integrates fixed transport, exact schema authority and artifact validation before credentials/connect with fresh connection/process/authorization/socket admission inside each guarded schema transaction check. Schema+ledger atomic/replay primitive unchanged; no auto retry, and constant outcome-unconfirmed on any failure including postcommit reporting. Existing read-only launcher denies the exact new command. Inert source set now10 modules; no mutation executable installed, roles/root records published or production Django opened.
+
+Actual final SQL3 checks/107 tests9.518s (real local SCRAM source apply/explicit already_applied and guard-by-guard rollback), source7/5 in4.009s, operator4/10, native54/9 in0.918s and deployment16/31 in2.075s pass. Initial116 discovery duplicated imported TestCase; changed to module import, actual105 then107 after two added controls. Initial source/operator builds failed because untracked source is excluded by Nix; explicitly staged declared source, rebuilds/imports pass. Historical native53-object report preserved; exact current54-object report added under content hash revision. No real host/runtime/role qualification, credentials or provider operation.
+
+Next native upstream notice evidence from existing cached exact Python/PG source archives, then outstanding publisher/custody/barrier, schema roles/transport, Django migrations/writes and executable replica preparation. No off-host runner assigned; do not repeatedly ask before actual qualification.14/16/17 remain incomplete. User requests continuous steps, keep committing/pushing and proceed until required boundary or context handoff.
