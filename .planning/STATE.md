@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: executing
-last_updated: "2026-10-22T08:13:15.869764+00:00"
-state_head: e873adf
+last_updated: "2026-10-22T08:32:01.774240+00:00"
+state_head: 9c0f67d
 progress:
   total_phases: 14
   completed_phases: 1
@@ -12,8 +12,8 @@ progress:
 last_activity: 2026-10-22
 current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
-stopped_at: Bounded npm notice-marker evidence verified; package-wide/native review and safe application boundary pending.
-last_activity_desc: Exact npm marker ranges retained; no legal/full inventory acceptance or runtime activation.
+stopped_at: Supplemental licence evidence reconciled offline; all12 package-wide reviews and application/native gates pending.
+last_activity_desc: Exact supplemental observations linked per package; inventory acceptance remains false.
 ---
 
 # Project State
@@ -190,7 +190,8 @@ Phase02 and14/16/17 remain incomplete. Next scoped durable generation publicatio
 | 261022-ajs | Candidate reopening and uncertain-outcome inspection | 2026-10-22 | 820f7ba | [261022-ajs](./quick/261022-ajs-implement-separately-authorized-admissio/) |
 | 261022-aql | Django multi-statement transaction precursor | 2026-10-22 | e863f6c | [261022-aql](./quick/261022-aql-integrate-admission-lifetime-into-a-clos/) |
 | 261022-b5y | Supplemental prefixed licence-name audit | 2026-10-22 | e873adf | [261022-b5y](./quick/261022-b5y-audit-prefixed-licence-filenames-in-exac/) |
-| 261022-bb9 | Bounded embedded npm notice-marker discovery | 2026-10-22 | this commit | [261022-bb9](./quick/261022-bb9-inspect-bounded-embedded-notice-candidat/) |
+| 261022-bb9 | Bounded embedded npm notice-marker discovery | 2026-10-22 | 9c0f67d | [261022-bb9](./quick/261022-bb9-inspect-bounded-embedded-notice-candidat/) |
+| 261022-bqg | Reconcile supplemental licence observations | 2026-10-22 | this commit | [261022-bqg](./quick/261022-bqg-reconcile-supplemental-licence-observati/) |
 
 ## Latest continuation — real local SCRAM inspection
 
@@ -383,3 +384,7 @@ Quick261022-b5y preserves original anchored audit/default bytes while adding sup
 ## Latest continuation — bounded npm embedded notice discovery
 
 Quick261022-bb9 adds exact-artifact/member-bound text marker discovery with explicit file/total/match/line bounds, skips and exact CRLF byte-range/hash evidence; no complete licence/legal/native/absence inference. All10 official hashed npm archives verified/refetched twice,13 text members with markers,6 distinct lines239 bytes. Ten package.json declarations plus sharp-libvips/am-i-vibing/process-ancestry README references only; all ten npm gaps remain pending package-wide review.8 scanner0.005s+20 licence0.009s+4 inventory0.000s pass;9 prior evidence files match HEAD. No failures/runtime/dependency/credential/host/provider changes. Production closed, safe application/probe boundary and14/16/17/native/OCI/legal qualification incomplete.
+
+## Latest continuation — offline supplemental licence reconciliation
+
+Quick261022-bqg binds five retained inventory/baseline/named/header/marker reports and exact content-addressed text hashes/sizes/ranges with complete package/artifact/member identities. Stable no-follow FD reads and final source recheck; no archive recollection/authenticity or licence/legal acceptance claim.12 original gaps:1 named/2 header/10 marker observations overlap,12 package-wide reviews pending; acceptance/legal/full review flagsfalse.8 new mutation+20 collector tests0.060s,8 marker0.005s,4 inventory0.001s (40) pass. Actual report creation/offline rechecks pass;10 prior reports equal HEAD. Full inventory default remains expected exit1/PENDING_FULL_INVENTORY and raw required-text guard still rejects empty original entries. No failures/network/install/runtime/credential/host/provider operation. Safe application boundary and14/16/17/legal/native/OCI remain incomplete.

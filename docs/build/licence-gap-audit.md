@@ -115,3 +115,43 @@ checks. `--write` creates separate report/text paths once; normal execution
 refetches and verifies them. Existing/dangling outputs are never adopted or
 repaired. Original inventory/raw/derived SBOM/named-file/header evidence remains
 unchanged; no runtime/package rebuild or new dependency was needed.
+
+## Offline reconciliation for review
+
+`scripts/reconcile_licence_evidence.py` links the immutable original inventory and
+baseline audit to the separately retained named-file, embedded-header and npm
+marker reports. `docs/evidence/t02/licence-evidence-review.json` binds exact hashes
+of all five source reports and presents the observations per original gap package.
+It reconciles retained reports and text, not newly downloaded archives or upstream
+source authenticity. The independently collected archive evidence remains its
+source; hashes and local consistency do not create external provenance guarantees.
+
+The reconciler requires exact package/version/artifact identities, complete gap
+coverage, matching archive member inventories and valid source/baseline links.
+Named text bytes must match their digest and whole-member size; header and marker
+bytes must match their digest and bounded member ranges. Fixed content-addressed
+paths are checked with no-follow descriptor traversal and bounded stable regular,
+singly linked file reads. Source reports are reread at the end to reject changes
+during reconciliation. Unsupported schemas, duplicate JSON fields/identities,
+changed approval flags, missing packages, substituted artifacts, ranges, paths,
+links or text deny reconciliation. It does not reinterpret markers as licences
+or claim to revalidate unretained full source-member contents.
+
+The actual review summary contains twelve original gap packages, one with named
+text, two with embedded headers and ten with marker lines. These observation
+counts overlap; they are not a package-completeness total. All twelve still have
+package-wide review pending. inventory_accepted, legal_approval and
+package_wide_notice_review_complete stay false. Supplemental observations never
+rewrite the original licence_texts arrays or satisfy required-text acceptance by
+inference. The original full-inventory command still exits1 with
+PENDING_FULL_INVENTORY; the new report's success is evidence reconciliation only.
+
+Run `python3 -B scripts/reconcile_licence_evidence.py` to check the retained review
+report entirely offline. `--write` exclusively creates that report and refuses
+an existing/dangling output; it cannot overwrite or repair prior evidence.
+Eight new mutation tests pass with twenty existing licence, eight marker and four
+inventory tests (forty total). Exact retained data was reconciled on collection
+and independently rechecked after validation hardening. No network, installation,
+code execution, runtime rebuild or production activation is involved in this
+reconciliation. Legal/native/Nix/OCI and safe application integration remain
+pending.

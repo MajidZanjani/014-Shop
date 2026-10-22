@@ -1,0 +1,395 @@
+{
+  "schema_version": 1,
+  "evidence_class": "offline-retained-licence-observation-reconciliation",
+  "source_sha256": {
+    "licences.json": "a9f0417869532b04147500c18cd8c858c73745c8af614353c7ba7713338ce376",
+    "licence-gap-audit.json": "9f7291438942ed05532d315f175d9856cb6f51814b73602b782ff93f0f3abbe7",
+    "licence-name-audit.json": "868bb81e79059218400a19ae13cdef5f6482f74d070e1e6a57e396a511d16035",
+    "embedded-licences.json": "e479fb3c8f39bcd93975ff467413b4d4bc2ac15e90151ac1b11c00dce300c06e",
+    "npm-notice-markers.json": "bba28beca1a3606b1dc384bf672cc7e6e0f633b6f3b65a0ab7afb83114c35d11"
+  },
+  "scope": "Reconciles retained reports/text hashes only; no archive recollection, completeness or legal classification",
+  "inventory_accepted": false,
+  "legal_approval": false,
+  "package_wide_notice_review_complete": false,
+  "findings": [
+    {
+      "group": "npm",
+      "name": "@astrojs/compiler-binding-linux-x64-gnu",
+      "version": "0.5.2",
+      "artifact_url": "https://registry.npmjs.org/@astrojs/compiler-binding-linux-x64-gnu/-/compiler-binding-linux-x64-gnu-0.5.2.tgz",
+      "artifact_hash": "sha512-9XAqGTMQAtIslMsjK3xdyY6OI9d59OZqcLBB6pvD/DcoR0daYswfrKx2azdDERDY4AqAnWPC7odVM1BmxYv3Vw==",
+      "named_texts": [],
+      "embedded_headers": [],
+      "marker_lines": [
+        {
+          "archive_member": "package/package.json",
+          "member_sha256": "bf56fdc72c4ff2e59b6dadbfd04cd81c42e5b4682f3ec2498002bf6fa15578eb",
+          "byte_start": 381,
+          "byte_end_exclusive": 401,
+          "markers": [
+            "declared-license-field"
+          ],
+          "retention": "exact-line-retained",
+          "text_sha256": "da5dfb6b38f4714b22ad5f065974723d92002380535d00bf2f2bc172e5152583",
+          "retained_path": "npm-notice-marker-texts/da5dfb6b38f4714b22ad5f065974723d92002380535d00bf2f2bc172e5152583.txt"
+        }
+      ],
+      "status": "observations-reconciled-review-pending",
+      "package_wide_notice_review_complete": false,
+      "legal_approval": false
+    },
+    {
+      "group": "npm",
+      "name": "@bruits/satteri-linux-x64-gnu",
+      "version": "0.10.5",
+      "artifact_url": "https://registry.npmjs.org/@bruits/satteri-linux-x64-gnu/-/satteri-linux-x64-gnu-0.10.5.tgz",
+      "artifact_hash": "sha512-FVaLoPT1fBgGl0J+AYebyyXJYBachGl8Oyyrf1lye4RTqCB4S0Gwkj1uM9RJyThUOvx5VUmAT1CnNh1SFHA+kw==",
+      "named_texts": [],
+      "embedded_headers": [],
+      "marker_lines": [
+        {
+          "archive_member": "package/package.json",
+          "member_sha256": "97d68b4f97cd7b33006a8239d9336a68e16fadaf0eb347cf8125059940cecc9f",
+          "byte_start": 260,
+          "byte_end_exclusive": 280,
+          "markers": [
+            "declared-license-field"
+          ],
+          "retention": "exact-line-retained",
+          "text_sha256": "da5dfb6b38f4714b22ad5f065974723d92002380535d00bf2f2bc172e5152583",
+          "retained_path": "npm-notice-marker-texts/da5dfb6b38f4714b22ad5f065974723d92002380535d00bf2f2bc172e5152583.txt"
+        }
+      ],
+      "status": "observations-reconciled-review-pending",
+      "package_wide_notice_review_complete": false,
+      "legal_approval": false
+    },
+    {
+      "group": "npm",
+      "name": "@img/sharp-libvips-linux-x64",
+      "version": "1.3.4",
+      "artifact_url": "https://registry.npmjs.org/@img/sharp-libvips-linux-x64/-/sharp-libvips-linux-x64-1.3.4.tgz",
+      "artifact_hash": "sha512-GJ//SSXbnwSDes02umB3nDJLFcQzw8a18V8fyhqr6tV515tOEMdImjjxj1AoafMRz56F3PHgftnj1QEKSU1zkw==",
+      "named_texts": [],
+      "embedded_headers": [],
+      "marker_lines": [
+        {
+          "archive_member": "package/README.md",
+          "member_sha256": "b4fb1a9f5909cfd58edb4177c2028ce3033cf8651aef740a554c1dc58b3c5ee3",
+          "byte_start": 2360,
+          "byte_end_exclusive": 2486,
+          "markers": [
+            "copyright"
+          ],
+          "retention": "exact-line-retained",
+          "text_sha256": "7b012290841754018cf25d5cb17c28cd124de1a64d949fe9c14dad0b2a490d73",
+          "retained_path": "npm-notice-marker-texts/7b012290841754018cf25d5cb17c28cd124de1a64d949fe9c14dad0b2a490d73.txt"
+        },
+        {
+          "archive_member": "package/package.json",
+          "member_sha256": "2c5f6f9abf74c1492622d5dc4e4da056ab0712fd71de61e03a687c88b8cdab4e",
+          "byte_start": 393,
+          "byte_end_exclusive": 427,
+          "markers": [
+            "declared-license-field"
+          ],
+          "retention": "exact-line-retained",
+          "text_sha256": "6e2dd262b8692eacdd5e1a12d72458e583175d7604ac04e86eaffb474bc1a0d7",
+          "retained_path": "npm-notice-marker-texts/6e2dd262b8692eacdd5e1a12d72458e583175d7604ac04e86eaffb474bc1a0d7.txt"
+        }
+      ],
+      "status": "observations-reconciled-review-pending",
+      "package_wide_notice_review_complete": false,
+      "legal_approval": false
+    },
+    {
+      "group": "npm",
+      "name": "@napi-rs/wasm-runtime",
+      "version": "1.2.4",
+      "artifact_url": "https://registry.npmjs.org/@napi-rs/wasm-runtime/-/wasm-runtime-1.2.4.tgz",
+      "artifact_hash": "sha512-AJxoUD2/15ESHbvpcyjU274nsAPLuOtPHCk0vKJM5pj//Fg/B1FXNWjPnXTT9PymCYYiHo4zPj0ZomXBKhoy7g==",
+      "named_texts": [],
+      "embedded_headers": [],
+      "marker_lines": [
+        {
+          "archive_member": "package/package.json",
+          "member_sha256": "1c67ade399c50710c49bc04f5ad133ae504bf03792df7832eee73d0ecd002045",
+          "byte_start": 458,
+          "byte_end_exclusive": 478,
+          "markers": [
+            "declared-license-field"
+          ],
+          "retention": "exact-line-retained",
+          "text_sha256": "da5dfb6b38f4714b22ad5f065974723d92002380535d00bf2f2bc172e5152583",
+          "retained_path": "npm-notice-marker-texts/da5dfb6b38f4714b22ad5f065974723d92002380535d00bf2f2bc172e5152583.txt"
+        }
+      ],
+      "status": "observations-reconciled-review-pending",
+      "package_wide_notice_review_complete": false,
+      "legal_approval": false
+    },
+    {
+      "group": "npm",
+      "name": "@rolldown/binding-linux-x64-gnu",
+      "version": "1.2.14",
+      "artifact_url": "https://registry.npmjs.org/@rolldown/binding-linux-x64-gnu/-/binding-linux-x64-gnu-1.2.14.tgz",
+      "artifact_hash": "sha512-WxalXzgrLVpKC93xfpaJ3gCXUWzeCr+FRCbDVD2mUAy4L6Vo3lNVz0epUEUpxPWJkLNYUwM4OSIikv36OJ9mLg==",
+      "named_texts": [],
+      "embedded_headers": [],
+      "marker_lines": [
+        {
+          "archive_member": "package/package.json",
+          "member_sha256": "632c8956b193139f3e448d23056719f1679f6dc34c0659d2c2a52d2fe8a895cd",
+          "byte_start": 443,
+          "byte_end_exclusive": 463,
+          "markers": [
+            "declared-license-field"
+          ],
+          "retention": "exact-line-retained",
+          "text_sha256": "da5dfb6b38f4714b22ad5f065974723d92002380535d00bf2f2bc172e5152583",
+          "retained_path": "npm-notice-marker-texts/da5dfb6b38f4714b22ad5f065974723d92002380535d00bf2f2bc172e5152583.txt"
+        }
+      ],
+      "status": "observations-reconciled-review-pending",
+      "package_wide_notice_review_complete": false,
+      "legal_approval": false
+    },
+    {
+      "group": "npm",
+      "name": "@vscode/l10n",
+      "version": "0.0.18",
+      "artifact_url": "https://registry.npmjs.org/@vscode/l10n/-/l10n-0.0.18.tgz",
+      "artifact_hash": "sha512-KYSIHVmslkaCDyw013pphY+d7x1qV8IZupYfeIfzNA+nsaWHbn5uPuQRvdRFsa9zFzGeudPuoGoZ1Op4jrJXIQ==",
+      "named_texts": [],
+      "embedded_headers": [],
+      "marker_lines": [
+        {
+          "archive_member": "package/package.json",
+          "member_sha256": "293375e8e1de0d54c2437079fdc47e6ee4f55a125ca346ac58e61cbd602e959a",
+          "byte_start": 192,
+          "byte_end_exclusive": 212,
+          "markers": [
+            "declared-license-field"
+          ],
+          "retention": "exact-line-retained",
+          "text_sha256": "da5dfb6b38f4714b22ad5f065974723d92002380535d00bf2f2bc172e5152583",
+          "retained_path": "npm-notice-marker-texts/da5dfb6b38f4714b22ad5f065974723d92002380535d00bf2f2bc172e5152583.txt"
+        }
+      ],
+      "status": "observations-reconciled-review-pending",
+      "package_wide_notice_review_complete": false,
+      "legal_approval": false
+    },
+    {
+      "group": "npm",
+      "name": "am-i-vibing",
+      "version": "0.5.0",
+      "artifact_url": "https://registry.npmjs.org/am-i-vibing/-/am-i-vibing-0.5.0.tgz",
+      "artifact_hash": "sha512-KLcsDhqf1XRrJmJr+9I/C0EX2K+sGrAGZFgkmd84c8TJO9zJBu+/kFInjazu1KfJWFhWDKdRWkpBzEs7s35DVA==",
+      "named_texts": [],
+      "embedded_headers": [],
+      "marker_lines": [
+        {
+          "archive_member": "package/README.md",
+          "member_sha256": "f2dbe95905be94f2f536639145d6bcc5676f4b77d58d4be8713759bbd24bc76f",
+          "byte_start": 5915,
+          "byte_end_exclusive": 5926,
+          "markers": [
+            "license-section"
+          ],
+          "retention": "exact-line-retained",
+          "text_sha256": "ae070da695f33eee9ad9a6f12cb2c2c5d8074103c8df5ce396ff5a65ede8ce37",
+          "retained_path": "npm-notice-marker-texts/ae070da695f33eee9ad9a6f12cb2c2c5d8074103c8df5ce396ff5a65ede8ce37.txt"
+        },
+        {
+          "archive_member": "package/README.md",
+          "member_sha256": "f2dbe95905be94f2f536639145d6bcc5676f4b77d58d4be8713759bbd24bc76f",
+          "byte_start": 5932,
+          "byte_end_exclusive": 5960,
+          "markers": [
+            "copyright"
+          ],
+          "retention": "exact-line-retained",
+          "text_sha256": "d080090f392694c664a8821c692f89b7475d8028d80aba84d100777bc2bf9f00",
+          "retained_path": "npm-notice-marker-texts/d080090f392694c664a8821c692f89b7475d8028d80aba84d100777bc2bf9f00.txt"
+        },
+        {
+          "archive_member": "package/package.json",
+          "member_sha256": "eea5f282495e540410aebc20b31fec39adc173b573c0596accf1b26eed26a6f6",
+          "byte_start": 827,
+          "byte_end_exclusive": 847,
+          "markers": [
+            "declared-license-field"
+          ],
+          "retention": "exact-line-retained",
+          "text_sha256": "da5dfb6b38f4714b22ad5f065974723d92002380535d00bf2f2bc172e5152583",
+          "retained_path": "npm-notice-marker-texts/da5dfb6b38f4714b22ad5f065974723d92002380535d00bf2f2bc172e5152583.txt"
+        }
+      ],
+      "status": "observations-reconciled-review-pending",
+      "package_wide_notice_review_complete": false,
+      "legal_approval": false
+    },
+    {
+      "group": "npm",
+      "name": "boolbase",
+      "version": "1.0.0",
+      "artifact_url": "https://registry.npmjs.org/boolbase/-/boolbase-1.0.0.tgz",
+      "artifact_hash": "sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==",
+      "named_texts": [],
+      "embedded_headers": [],
+      "marker_lines": [
+        {
+          "archive_member": "package/package.json",
+          "member_sha256": "ca09c0dccbfc43be6be0ac89e9ffa19b64b30f9c74c64da27f719a7244a25e30",
+          "byte_start": 409,
+          "byte_end_exclusive": 429,
+          "markers": [
+            "declared-license-field"
+          ],
+          "retention": "exact-line-retained",
+          "text_sha256": "0e3790768a5add6c2efd4f27f947a5b89b74a70513b577a7f02dcb8e8e373511",
+          "retained_path": "npm-notice-marker-texts/0e3790768a5add6c2efd4f27f947a5b89b74a70513b577a7f02dcb8e8e373511.txt"
+        }
+      ],
+      "status": "observations-reconciled-review-pending",
+      "package_wide_notice_review_complete": false,
+      "legal_approval": false
+    },
+    {
+      "group": "npm",
+      "name": "piccolore",
+      "version": "0.1.3",
+      "artifact_url": "https://registry.npmjs.org/piccolore/-/piccolore-0.1.3.tgz",
+      "artifact_hash": "sha512-o8bTeDWjE086iwKrROaDf31K0qC/BENdm15/uH9usSC/uZjJOKb2YGiVHfLY4GhwsERiPI1jmwI2XrA7ACOxVw==",
+      "named_texts": [],
+      "embedded_headers": [],
+      "marker_lines": [
+        {
+          "archive_member": "package/package.json",
+          "member_sha256": "17e4425992180694581938d67397c0f50c0fd2f013e4b891f21534feeae2c7ec",
+          "byte_start": 354,
+          "byte_end_exclusive": 374,
+          "markers": [
+            "declared-license-field"
+          ],
+          "retention": "exact-line-retained",
+          "text_sha256": "0e3790768a5add6c2efd4f27f947a5b89b74a70513b577a7f02dcb8e8e373511",
+          "retained_path": "npm-notice-marker-texts/0e3790768a5add6c2efd4f27f947a5b89b74a70513b577a7f02dcb8e8e373511.txt"
+        }
+      ],
+      "status": "observations-reconciled-review-pending",
+      "package_wide_notice_review_complete": false,
+      "legal_approval": false
+    },
+    {
+      "group": "npm",
+      "name": "process-ancestry",
+      "version": "0.1.0",
+      "artifact_url": "https://registry.npmjs.org/process-ancestry/-/process-ancestry-0.1.0.tgz",
+      "artifact_hash": "sha512-tGqJW/UnclpYASFcM6Xh8D8l/BMtaQ9+CSG0vlJSJTcdMM4lDRv4c6H0Pdcsfted+bVczdYSfk2fdukg2gQkZg==",
+      "named_texts": [],
+      "embedded_headers": [],
+      "marker_lines": [
+        {
+          "archive_member": "package/README.md",
+          "member_sha256": "39c3a43f0b4282f2f36cb53096b5e58a93c5d48468d4db6a5331cb97d0669871",
+          "byte_start": 2074,
+          "byte_end_exclusive": 2085,
+          "markers": [
+            "license-section"
+          ],
+          "retention": "exact-line-retained",
+          "text_sha256": "ae070da695f33eee9ad9a6f12cb2c2c5d8074103c8df5ce396ff5a65ede8ce37",
+          "retained_path": "npm-notice-marker-texts/ae070da695f33eee9ad9a6f12cb2c2c5d8074103c8df5ce396ff5a65ede8ce37.txt"
+        },
+        {
+          "archive_member": "package/package.json",
+          "member_sha256": "ec3e2a3bdadeb4278cec00eaeeeb5567c5996fa3fb1026ba459da4ea343211e4",
+          "byte_start": 927,
+          "byte_end_exclusive": 947,
+          "markers": [
+            "declared-license-field"
+          ],
+          "retention": "exact-line-retained",
+          "text_sha256": "da5dfb6b38f4714b22ad5f065974723d92002380535d00bf2f2bc172e5152583",
+          "retained_path": "npm-notice-marker-texts/da5dfb6b38f4714b22ad5f065974723d92002380535d00bf2f2bc172e5152583.txt"
+        }
+      ],
+      "status": "observations-reconciled-review-pending",
+      "package_wide_notice_review_complete": false,
+      "legal_approval": false
+    },
+    {
+      "group": "python_tools",
+      "name": "packageurl-python",
+      "version": "0.17.6",
+      "artifact_url": "https://files.pythonhosted.org/packages/b1/2f/c7277b7615a93f51b5fbc1eacfc1b75e8103370e786fd8ce2abf6e5c04ab/packageurl_python-0.17.6-py3-none-any.whl",
+      "artifact_hash": "sha256:31a85c2717bc41dd818f3c62908685ff9eebcb68588213745b14a6ee9e7df7c9",
+      "named_texts": [],
+      "embedded_headers": [
+        {
+          "name": "packageurl-python",
+          "version": "0.17.6",
+          "artifact_url": "https://files.pythonhosted.org/packages/b1/2f/c7277b7615a93f51b5fbc1eacfc1b75e8103370e786fd8ce2abf6e5c04ab/packageurl_python-0.17.6-py3-none-any.whl",
+          "artifact_hash": "sha256:31a85c2717bc41dd818f3c62908685ff9eebcb68588213745b14a6ee9e7df7c9",
+          "observed_archive_sha256": "31a85c2717bc41dd818f3c62908685ff9eebcb68588213745b14a6ee9e7df7c9",
+          "archive_member": "packageurl/__init__.py",
+          "member_sha256": "87f73f026928040dc728fc2e82bd6dcca695c76f105cb9a5229856c4e6927a81",
+          "byte_start": 0,
+          "byte_end_exclusive": 1208,
+          "text_sha256": "12ccafb615578970a39a3544ccd5e1c7d34eccd1fa39035568715a94ccf28f11",
+          "retained_path": "embedded-licence-texts/12ccafb615578970a39a3544ccd5e1c7d34eccd1fa39035568715a94ccf28f11.txt",
+          "status": "embedded-MIT-header-observed-review-pending"
+        }
+      ],
+      "marker_lines": [],
+      "status": "observations-reconciled-review-pending",
+      "package_wide_notice_review_complete": false,
+      "legal_approval": false
+    },
+    {
+      "group": "python_tools",
+      "name": "pip-requirements-parser",
+      "version": "32.0.1",
+      "artifact_url": "https://files.pythonhosted.org/packages/54/d0/d04f1d1e064ac901439699ee097f58688caadea42498ec9c4b4ad2ef84ab/pip_requirements_parser-32.0.1-py3-none-any.whl",
+      "artifact_hash": "sha256:4659bc2a667783e7a15d190f6fccf8b2486685b6dba4c19c3876314769c57526",
+      "named_texts": [
+        {
+          "archive_path": "pip_requirements_parser-32.0.1.dist-info/mit.LICENSE",
+          "sha256": "18081c2c82771ca09d99d08cdac405924309e09fd19b16f1eea59cbc6ab809ed",
+          "size": 1080,
+          "retained_path": "licence-name-texts/18081c2c82771ca09d99d08cdac405924309e09fd19b16f1eea59cbc6ab809ed.txt"
+        }
+      ],
+      "embedded_headers": [
+        {
+          "name": "pip-requirements-parser",
+          "version": "32.0.1",
+          "artifact_url": "https://files.pythonhosted.org/packages/54/d0/d04f1d1e064ac901439699ee097f58688caadea42498ec9c4b4ad2ef84ab/pip_requirements_parser-32.0.1-py3-none-any.whl",
+          "artifact_hash": "sha256:4659bc2a667783e7a15d190f6fccf8b2486685b6dba4c19c3876314769c57526",
+          "observed_archive_sha256": "4659bc2a667783e7a15d190f6fccf8b2486685b6dba4c19c3876314769c57526",
+          "archive_member": "pip_requirements_parser.py",
+          "member_sha256": "64d6f14b080b79f0d016af6ed1548e072b1ad749e0cb2d2f0b8dc6f7fbae778b",
+          "byte_start": 0,
+          "byte_end_exclusive": 1263,
+          "text_sha256": "83fbbda6b9dc18c9fce678f0e385bc099e692c47d3570ef45aca526c07bef9e5",
+          "retained_path": "embedded-licence-texts/83fbbda6b9dc18c9fce678f0e385bc099e692c47d3570ef45aca526c07bef9e5.txt",
+          "status": "embedded-MIT-header-observed-review-pending"
+        }
+      ],
+      "marker_lines": [],
+      "status": "observations-reconciled-review-pending",
+      "package_wide_notice_review_complete": false,
+      "legal_approval": false
+    }
+  ],
+  "counts": {
+    "original_gap_distributions": 12,
+    "with_named_text": 1,
+    "with_embedded_header": 2,
+    "with_marker_lines": 10,
+    "pending_package_wide_review": 12
+  }
+}
