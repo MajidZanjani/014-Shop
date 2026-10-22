@@ -59,6 +59,26 @@ def validate_runtime_contract(candidate):
 
 
 
+def validate_generator_discovery(candidate):
+    """Validate evaluated instance-only discovery; never start/reload a manager."""
+    import configparser
+    import re
+    runtime = candidate['environment']['XDG_RUNTIME_DIR']
+    if not re.fullmatch('/run/user/[1-9][0-9]*', runtime):raise ValueError('explicit new nonroot UID required')
+    uid = runtime.rsplit('/',1)[1]
+    expected = 'systemd/system/user@'+uid+'.service.d/50-shop-generators.conf'
+    if candidate['managerDropinPath'] != expected:raise ValueError('instance-only user manager required')
+    bundle = candidate['generatorBundle']
+    if not re.fullmatch('/nix/store/[0-9a-df-np-sv-z]{32}-shop-user-generators-'+uid,bundle):raise ValueError('immutable account-only generator bundle required')
+    parser=configparser.ConfigParser(interpolation=None,strict=True)
+    parser.optionxform=str
+    try:parser.read_string(candidate['managerDropinText'])
+    except configparser.Error as error:raise ValueError('closed manager drop-in required') from error
+    if parser.defaults() or parser.sections()!=['Service'] or dict(parser['Service'])!={'Environment':'SYSTEMD_GENERATOR_PATH='+bundle}:
+        raise ValueError('closed single-directory generator discovery required')
+    return True
+
+
 def validate_quadlet_storage(text):
     """Require explicit candidate tmpfs bounds; actual mount proof is separate."""
     import configparser
@@ -85,6 +105,7 @@ def evaluate():
     fixture=json.loads(run(['nix','eval','--json','--impure','--expr',expr]))
     if not all(fixture['disabled'].values()):raise ValueError('default module changes protected scope')
     validate_runtime_contract(fixture['runtimeCandidate'])
+    validate_generator_discovery(fixture['runtimeCandidate'])
     for name in ('app','worker','postgres','gateway'):
         validate_quadlet_storage((ROOT/'ops/quadlet'/('shop-'+name+'.container')).read_text())
     candidate=fixture['syntheticCandidate']
@@ -96,7 +117,10 @@ def evaluate():
     if failed:raise ValueError('synthetic module assertions failed: '+str(failed))
     bounds=candidate['bounds']
     if any(bounds.get(k)!=v for k,v in {'CPUQuota':'200%','MemoryHigh':'6G','MemoryMax':'8G','TasksMax':1024}.items()):raise ValueError('aggregate resource contract invalid')
-    if not candidate['globalUserGeneratorsUnchanged']:raise ValueError('global user generator configuration changed')
+    if candidate['managerDropinPaths']!=[fixture['runtimeCandidate']['managerDropinPath']] or candidate['disabledManagerDropinPaths']:raise ValueError('generator discovery escaped new manager instance')
+    actual_discovery=dict(fixture['runtimeCandidate'], managerDropinText=candidate['managerDropinText'], generatorBundle=candidate['managerGeneratorBundle'])
+    validate_generator_discovery(actual_discovery)
+    if not candidate['globalUserGeneratorsUnchanged'] or not candidate['existingManagerConfigUnchanged'] or not candidate['existingAccountUnchanged']:raise ValueError('global or pre-existing owner/manager configuration changed')
     if not candidate['automaticGlobalLingerUnchanged'] or not candidate['shopLingerUnmanagedByGlobalService']:
         raise ValueError('global linger policy changed or new shop enrolled into shared management')
     suite=unittest.TestLoader().discover(str(ROOT/'tests'),pattern='test_deployment.py');stream=io.StringIO()
@@ -108,7 +132,7 @@ def evaluate():
     runtime_suite=unittest.TestLoader().discover(str(ROOT/'tests'),pattern='test_rootless_runtime.py')
     runtime_result=unittest.TextTestRunner(stream=stream).run(runtime_suite)
     if runtime_result.testsRun<7 or not runtime_result.wasSuccessful() or runtime_result.skipped:raise ValueError('runtime config controls failed: '+stream.getvalue())
-    print(f'DEPLOYMENT_EVAL_PASS checks=15 tests={result.testsRun+probe_result.testsRun+runtime_result.testsRun} duration_seconds={time.monotonic()-start:.3f}')
+    print(f'DEPLOYMENT_EVAL_PASS checks=16 tests={result.testsRun+probe_result.testsRun+runtime_result.testsRun} duration_seconds={time.monotonic()-start:.3f}')
     print('Candidate evaluation only; unbuilt images, generator/runtime/bootstrap/review/off-host evidence pending')
 
 

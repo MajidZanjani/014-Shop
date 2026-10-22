@@ -48,7 +48,8 @@ class RootlessRuntimeTests(unittest.TestCase):
 
     def test_no_global_generator_or_activation_artifact(self):
         self.assertFalse(self.candidate['productionActivation'])
-        self.assertTrue(all(path.startswith('xspi-shop/runtime/') for path in self.candidate['artifacts']))
+        self.assertEqual([path for path in self.candidate['artifacts'] if not path.startswith('xspi-shop/runtime/')], [self.candidate['managerDropinPath']])
+        self.assertTrue(check.validate_generator_discovery(self.candidate))
         self.assertNotIn('systemctl',self.candidate['generatorText'])
         self.assertNotIn('loginctl',self.candidate['generatorText'])
         self.assertIn("QUADLET_UNIT_DIRS=/etc/containers/systemd/users/9909",self.candidate['generatorText'])
@@ -62,3 +63,22 @@ class RootlessRuntimeTests(unittest.TestCase):
                             ('ShmSize=32m','ShmSize=32m\nTmpfs=/var/tmp:rw')]:
                 with self.subTest(name=name,new=new),self.assertRaises(ValueError):
                     check.validate_quadlet_storage(text.replace(old,new))
+
+    def test_instance_only_generator_discovery(self):
+        self.assertTrue(check.validate_generator_discovery(self.candidate))
+        for key,value in [('managerDropinPath','systemd/system/user@.service.d/50-shop-generators.conf'),
+                          ('managerDropinPath','systemd/system/user@1.service.d/50-shop-generators.conf'),
+                          ('generatorBundle','/srv/shop/generators'),
+                          ('generatorBundle',self.candidate['generatorBundle']+':')]:
+            candidate=copy.deepcopy(self.candidate);candidate[key]=value
+            with self.subTest(key=key,value=value),self.assertRaises(ValueError):check.validate_generator_discovery(candidate)
+
+    def test_manager_dropin_cannot_reload_or_expand_search(self):
+        original=self.candidate['managerDropinText']
+        bundle=self.candidate['generatorBundle']
+        for replacement in (original.replace(bundle,bundle+':'),original.replace(bundle,'/etc/systemd/user-generators'),
+                            original+'ExecStart=/unapproved\n',original+'[Unit]\nBefore=unrelated.service\n',
+                            original+'Environment=SYSTEMD_GENERATOR_PATH=/tmp\n',
+                            original+'[DEFAULT]\nOther=unapproved\n'):
+            candidate=copy.deepcopy(self.candidate);candidate['managerDropinText']=replacement
+            with self.subTest(replacement=replacement),self.assertRaises(ValueError):check.validate_generator_discovery(candidate)

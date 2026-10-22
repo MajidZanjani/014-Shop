@@ -83,12 +83,23 @@ let
       ${pkgs.podman}/libexec/podman/quadlet --user --no-kmsg-log "$@"
   '';
   generator = pkgs.writeShellScript "shop-podman-user-generator" generatorText;
+  generatorBundle = pkgs.linkFarm "shop-user-generators-${toString uid}" [
+    { name = "podman-user-generator"; path = generator; }
+  ];
+  managerDropinPath = "systemd/system/user@${toString uid}.service.d/50-shop-generators.conf";
+  managerDropinText = ''
+    # Only the newly admitted shop user's manager; no shared template change.
+    [Service]
+    Environment=SYSTEMD_GENERATOR_PATH=${generatorBundle}
+  '';
 in {
   inherit containersText storageText environment podmanText generatorText podman generator;
-  inherit unitDir;
-  # Only root-owned documentation/artifact links; per-user discovery installation
-  # and activation are a separately reviewed bootstrap operation.
+  inherit unitDir generatorBundle managerDropinPath managerDropinText;
+  # Root-owned artifacts and an instance-only discovery drop-in. Actual NixOS
+  # installation, manager start/reload and compatibility require separate review.
   etc = {
+    "${managerDropinPath}".text = managerDropinText;
+    "xspi-shop/runtime/user-generators".source = generatorBundle;
     "xspi-shop/runtime/containers.conf".source = containers;
     "xspi-shop/runtime/storage.conf".source = storage;
     "xspi-shop/runtime/podman".source = podman;

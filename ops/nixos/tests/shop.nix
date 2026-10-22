@@ -6,6 +6,10 @@ let
     system = "x86_64-linux";
     modules = [ shopModule {
       system.stateVersion = "26.05";
+      # Protected pre-existing synthetic owner and manager drop-in sentinel.
+      users.groups.fixture-existing.gid = 9908;
+      users.users.fixture-existing = { isSystemUser = true; uid = 9908; group = "fixture-existing"; home = "/var/empty"; };
+      environment.etc."systemd/system/user@9908.service.d/10-existing.conf".text = "[Service]\nEnvironment=EXISTING_FIXTURE=preserved\n";
       boot.loader.grub.enable = false;
       fileSystems."/" = { device = "none"; fsType = "tmpfs"; };
     } extra ];
@@ -31,10 +35,12 @@ in {
     globalPodmanDisabled = !disabled.config.virtualisation.podman.enable;
     databaseConfigAbsent = !(builtins.hasAttr "xspi-shop/postgresql.conf" disabled.config.environment.etc);
     bootstrapAbsent = !(builtins.hasAttr "xspi-shop/bootstrap" disabled.config.environment.etc);
+    managerDropinAbsent = !(builtins.hasAttr "systemd/system/user@9909.service.d/50-shop-generators.conf" disabled.config.environment.etc);
     runtimeArtifactsAbsent = !(builtins.hasAttr "xspi-shop/runtime/podman" disabled.config.environment.etc);
   };
   runtimeCandidate = {
-    inherit (runtime) containersText storageText environment podmanText generatorText unitDir;
+    inherit (runtime) containersText storageText environment podmanText generatorText unitDir managerDropinPath managerDropinText;
+    generatorBundle = toString runtime.generatorBundle;
     artifacts = builtins.attrNames runtime.etc;
     productionActivation = false;
   };
@@ -44,7 +50,13 @@ in {
     units = builtins.attrNames candidate.config.environment.etc;
     automaticGlobalLingerUnchanged = candidate.config.users.manageLingering == disabled.config.users.manageLingering;
     shopLingerUnmanagedByGlobalService = candidate.config.users.users.shopsvc.linger == null;
+    existingManagerConfigUnchanged = candidate.config.environment.etc."systemd/system/user@9908.service.d/10-existing.conf".text == disabled.config.environment.etc."systemd/system/user@9908.service.d/10-existing.conf".text;
+    existingAccountUnchanged = candidate.config.users.users.fixture-existing.uid == disabled.config.users.users.fixture-existing.uid && candidate.config.users.users.fixture-existing.subUidRanges == disabled.config.users.users.fixture-existing.subUidRanges && candidate.config.users.users.fixture-existing.subGidRanges == disabled.config.users.users.fixture-existing.subGidRanges;
     globalUserGeneratorsUnchanged = candidate.config.systemd.user.generators == disabled.config.systemd.user.generators;
+    managerGeneratorBundle = toString candidate.config.environment.etc."xspi-shop/runtime/user-generators".source;
+    managerDropinText = candidate.config.environment.etc."systemd/system/user@9909.service.d/50-shop-generators.conf".text;
+    managerDropinPaths = builtins.filter (path: nixpkgs.lib.hasPrefix "systemd/system/user@" path && nixpkgs.lib.hasSuffix "/50-shop-generators.conf" path) (builtins.attrNames candidate.config.environment.etc);
+    disabledManagerDropinPaths = builtins.filter (path: nixpkgs.lib.hasSuffix "/50-shop-generators.conf" path) (builtins.attrNames disabled.config.environment.etc);
     databaseConfig = builtins.readFile candidate.config.environment.etc."xspi-shop/postgresql.conf".source;
     databaseHba = builtins.readFile candidate.config.environment.etc."xspi-shop/pg_hba.conf".source;
     bootstrapArtifact = toString candidate.config.environment.etc."xspi-shop/bootstrap".source;
