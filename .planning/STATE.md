@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: executing
-last_updated: "2026-10-22T05:13:10.799Z"
-state_head: 0adc350310a270a252279d60ba05e7cf2990d123
+last_updated: "2026-10-22T05:16:52.912Z"
+state_head: c14ae3a54c021bb05ba879c53c0356f8c2ad363a
 progress:
   total_phases: 14
   completed_phases: 1
@@ -184,6 +184,7 @@ Phase02 and14/16/17 remain incomplete. Next scoped durable generation publicatio
 | 261022-6vp | Verify actual operator native reference closure | 2026-10-22 | 6008f2c | [261022-6vp-inventory-actual-cached-operator-native-](./quick/261022-6vp-inventory-actual-cached-operator-native-/) |
 | 261022-700 | Prepare generator discovery for only new shop manager | 2026-10-22 | 8e7cbf4 | [261022-700-prepare-root-owned-generator-discovery-f](./quick/261022-700-prepare-root-owned-generator-discovery-f/) |
 | 261022-73q | Integrate exact-authority schema operator transport and admission | 2026-10-22 | 0adc350 | [261022-73q-integrate-private-fd-guarded-schema-comm](./quick/261022-73q-integrate-private-fd-guarded-schema-comm/) |
+| 261022-799 | Retain exact cached native upstream source notice candidates | 2026-10-22 | c14ae3a | [261022-799-retain-notices-from-cached-exact-python-](./quick/261022-799-retain-notices-from-cached-exact-python-/) |
 
 ## Latest continuation — real local SCRAM inspection
 
@@ -256,3 +257,7 @@ Source-only operator_schema integrates fixed transport, exact schema authority a
 Actual final SQL3 checks/107 tests9.518s (real local SCRAM source apply/explicit already_applied and guard-by-guard rollback), source7/5 in4.009s, operator4/10, native54/9 in0.918s and deployment16/31 in2.075s pass. Initial116 discovery duplicated imported TestCase; changed to module import, actual105 then107 after two added controls. Initial source/operator builds failed because untracked source is excluded by Nix; explicitly staged declared source, rebuilds/imports pass. Historical native53-object report preserved; exact current54-object report added under content hash revision. No real host/runtime/role qualification, credentials or provider operation.
 
 Next native upstream notice evidence from existing cached exact Python/PG source archives, then outstanding publisher/custody/barrier, schema roles/transport, Django migrations/writes and executable replica preparation. No off-host runner assigned; do not repeatedly ask before actual qualification.14/16/17 remain incomplete. User requests continuous steps, keep committing/pushing and proceed until required boundary or context handoff.
+
+## Continuous execution — cached native source notice evidence
+
+Required native-source-notices lane retains nine exact upstream named candidates from already-cached Python/PG source archives, bound to current verified operator native report/recipe/output plus original archive SHA256 pins. Both top-level notices observed; copyright.pl and Windows/Mac candidates explicitly require text/applicability review. Actual initial9/6 in3.718s, independent pinned recheck9/6 in3.696s and environment2/14 in0.897s pass. No new downloads/builds/extraction, raw evidence changes, legal/source-offer/output-incorporation acceptance or host/credential/provider action. Plan16/14/17 and independent qualification stay incomplete. User requests continuous execution across slices; carry it into next session.

@@ -55,3 +55,9 @@ Actual pinned lane53 checks/8 tests0.899s; operator-runtime4/10 in2.159s; enviro
 ### Native report revision after ten-module source integration
 
 Current operator reference closure has54 realized objects; original53-object report retained unchanged. New content-addressed exact report revision plus deterministic current-observation selection prevent historical overwrite. Actual native54/9 in0.918s after source/operator builds. Missing native/source/notice/OCI/legal/runtime gates remain open; not standard SBOM or complete inventory.
+
+## Continuation — exact cached native source notices
+
+Required native-source-notices lane binds already-cached exact Python3.13.16/PostgreSQL18.6 source archives to current verified operator recipe/output and original source SHA256 pins. Nine upstream named candidates retained with member/content hashes and native-evidence binding, including exact top-level LICENSE/COPYRIGHT. No downloads/builds/extraction. PostgreSQL7944 members/141525674 expanded bytes/3 candidates; Python5272/110355801/6 candidates. Filename candidates include copyright.pl and non-Linux notices, so no legal/output-incorporation or source-offer completion inferred. Original raw/native reports unchanged.
+
+Actual initial9 checks/6 tests3.718s; pinned independent recheck9/6 in3.696s; environment2/14 in0.897s pass. No failed tests. Other native/npm notices/source/OCI/legal/runtime/CI gates,14/17 and full phase remain incomplete. No credentials or host/provider/service/resource operation.
