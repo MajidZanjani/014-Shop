@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "source_licences_sha256": "a9f0417869532b04147500c18cd8c858c73745c8af614353c7ba7713338ce376",
+  "evidence_class": "exact-distribution-embedded-source-headers",
+  "inventory_complete": false,
+  "legal_approval": false,
+  "package_wide_notice_review_complete": false,
+  "scope": "Two explicitly selected Python module leading comments; original twelve named-file findings unchanged",
+  "findings": [
+    {
+      "name": "pip-requirements-parser",
+      "version": "32.0.1",
+      "artifact_url": "https://files.pythonhosted.org/packages/54/d0/d04f1d1e064ac901439699ee097f58688caadea42498ec9c4b4ad2ef84ab/pip_requirements_parser-32.0.1-py3-none-any.whl",
+      "artifact_hash": "sha256:4659bc2a667783e7a15d190f6fccf8b2486685b6dba4c19c3876314769c57526",
+      "observed_archive_sha256": "4659bc2a667783e7a15d190f6fccf8b2486685b6dba4c19c3876314769c57526",
+      "archive_member": "pip_requirements_parser.py",
+      "member_sha256": "64d6f14b080b79f0d016af6ed1548e072b1ad749e0cb2d2f0b8dc6f7fbae778b",
+      "byte_start": 0,
+      "byte_end_exclusive": 1263,
+      "text_sha256": "83fbbda6b9dc18c9fce678f0e385bc099e692c47d3570ef45aca526c07bef9e5",
+      "retained_path": "embedded-licence-texts/83fbbda6b9dc18c9fce678f0e385bc099e692c47d3570ef45aca526c07bef9e5.txt",
+      "status": "embedded-MIT-header-observed-review-pending"
+    },
+    {
+      "name": "packageurl-python",
+      "version": "0.17.6",
+      "artifact_url": "https://files.pythonhosted.org/packages/b1/2f/c7277b7615a93f51b5fbc1eacfc1b75e8103370e786fd8ce2abf6e5c04ab/packageurl_python-0.17.6-py3-none-any.whl",
+      "artifact_hash": "sha256:31a85c2717bc41dd818f3c62908685ff9eebcb68588213745b14a6ee9e7df7c9",
+      "observed_archive_sha256": "31a85c2717bc41dd818f3c62908685ff9eebcb68588213745b14a6ee9e7df7c9",
+      "archive_member": "packageurl/__init__.py",
+      "member_sha256": "87f73f026928040dc728fc2e82bd6dcca695c76f105cb9a5229856c4e6927a81",
+      "byte_start": 0,
+      "byte_end_exclusive": 1208,
+      "text_sha256": "12ccafb615578970a39a3544ccd5e1c7d34eccd1fa39035568715a94ccf28f11",
+      "retained_path": "embedded-licence-texts/12ccafb615578970a39a3544ccd5e1c7d34eccd1fa39035568715a94ccf28f11.txt",
+      "status": "embedded-MIT-header-observed-review-pending"
+    }
+  ]
+}
