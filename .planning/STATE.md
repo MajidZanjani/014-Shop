@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: executing
-last_updated: "2026-10-22T07:40:39.356318+00:00"
-state_head: 11279da
+last_updated: "2026-10-22T07:56:19.721281+00:00"
+state_head: 820f7ba
 progress:
   total_phases: 14
   completed_phases: 1
@@ -12,8 +12,8 @@ progress:
 last_activity: 2026-10-22
 current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
-stopped_at: Source-only admission reopening and uncertain-outcome inspection verified; actual qualification and app integration pending.
-last_activity_desc: Candidate reopening lifecycle tested; actual activation/14/16/17 incomplete.
+stopped_at: Django multi-statement transaction precursor verified; application record/connection/backend integration pending.
+last_activity_desc: Guarded Django transaction primitive tested; production backend remains closed;14/16/17 incomplete.
 ---
 
 # Project State
@@ -187,7 +187,8 @@ Phase02 and14/16/17 remain incomplete. Next scoped durable generation publicatio
 | 261022-799 | Retain exact cached native upstream source notice candidates | 2026-10-22 | c14ae3a | [261022-799-retain-notices-from-cached-exact-python-](./quick/261022-799-retain-notices-from-cached-exact-python-/) |
 | 261022-7l3 | Package separate pinned candidate schema launcher | 2026-10-22 | ec4c4db | [261022-7l3-package-separate-pinned-candidate-schema](./quick/261022-7l3-package-separate-pinned-candidate-schema/) |
 | 261022-afa | Prepare exact proposed admission bytes without activation | 2026-10-22 | 11279da | [261022-afa](./quick/261022-afa-prepare-exact-reviewed-admission-reopeni/) |
-| 261022-ajs | Candidate reopening and uncertain-outcome inspection | 2026-10-22 | this commit | [261022-ajs](./quick/261022-ajs-implement-separately-authorized-admissio/) |
+| 261022-ajs | Candidate reopening and uncertain-outcome inspection | 2026-10-22 | 820f7ba | [261022-ajs](./quick/261022-ajs-implement-separately-authorized-admissio/) |
+| 261022-aql | Django multi-statement transaction precursor | 2026-10-22 | this commit | [261022-aql](./quick/261022-aql-integrate-admission-lifetime-into-a-clos/) |
 
 ## Latest continuation — real local SCRAM inspection
 
@@ -360,3 +361,7 @@ Quick261022-afa adds root-only read-only preparation with independently fresh ro
 ## Latest continuation — candidate reopening and uncertain-outcome inspection
 
 Quick261022-ajs adds source-only root reopening under independently fresh exact reopening/preparation/inspection authorities and opaque recovery/qualification evidence hashes. Two full fresh published-only preflights share the permanent EXNB lease, exact raw prep/barrier rechecks, fixed inode bounded short writes/sync/readback. No repair/rollback/retry/CLI/install. Separate independent fresh read-only historical reopening inspection reports blocked/admitted/different including empty/partial without completion/durability/retry/reopen grants. Tests explicitly show a raised late sync/revocation failure can leave admitted bytes that admit readers; never falsely blocked, never automatic retry. SQL3/17513.032s, source7/5 4.537s, operator7/17 6.140s, deployment16/31 2.478s, native55/9 0.976s, notices9/7 3.744s pass; earlier173-test run also passed. One ignored Nix concurrent SQLite cache busy warning, all lanes successful. No actual authority/host/provider/credential/activation operation. Actual crash/storage/runtime/independent custody qualification and app/14/16/17 incomplete. Next repository work can integrate admitted application/worker destination enforcement while production backend stays closed pending actual qualification; account-scoped runtime/replica driver/licence/OCI work remains. Source library success does not grant actual deployment or protected-service exceptions.
+
+## Latest continuation — Django multi-statement transaction precursor
+
+Quick261022-aql adds guarded_atomic for already-connected registered Django/Psycopg wrapper: owns durable outer transaction, permanent admission through actual commit/rollback, before/after fresh SQL/durability/runtime checks, no reconnect/callback/manual/outer/rollback-only acceptance or retry. Nine actual scratch Django/QuerySet/SQL/flock tests, root path/container evidence adapted. Explicit12-module source artifact. SQL3/18413.762s, source7/5 9.497s, operator7/17 5.951s, deployment16/31 2.292s, core-local4/22 7.710s, worker-smoke6/24 9.022s, native56/9 1.035s, notices9/7 3.820s pass. Initial183-test run passed; initial three package/evaluation lanes failed due new untracked file missing Nix Git source, exact git add fixed them. No tests failed/invalid native retained. Production gate/settings/worker call sites unchanged. Next bind application-specific root record and existing connection/role/peer to admitted immutable controls, then all-write backend integration; this primitive accepts trusted caller expected/probe and is not automatic enforcement. Actual host/runtime/archive/recovery and14/16/17 incomplete; no credentials/provider/host operation.
