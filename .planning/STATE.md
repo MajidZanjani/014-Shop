@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: executing
-last_updated: "2026-10-22T07:33:42.564561+00:00"
-state_head: dfbdc74e456c2ac8f187a3013884566bd7a4551b
+last_updated: "2026-10-22T07:40:39.356318+00:00"
+state_head: 11279da
 progress:
   total_phases: 14
   completed_phases: 1
@@ -12,8 +12,8 @@ progress:
 last_activity: 2026-10-22
 current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
-stopped_at: Exact proposed admission preparation verified; actual reopening and qualification remain pending.
-last_activity_desc: Exact proposed admission bytes prepared and tested; activation/14/16/17 incomplete.
+stopped_at: Source-only admission reopening and uncertain-outcome inspection verified; actual qualification and app integration pending.
+last_activity_desc: Candidate reopening lifecycle tested; actual activation/14/16/17 incomplete.
 ---
 
 # Project State
@@ -186,7 +186,8 @@ Phase02 and14/16/17 remain incomplete. Next scoped durable generation publicatio
 | 261022-73q | Integrate exact-authority schema operator transport and admission | 2026-10-22 | 0adc350 | [261022-73q-integrate-private-fd-guarded-schema-comm](./quick/261022-73q-integrate-private-fd-guarded-schema-comm/) |
 | 261022-799 | Retain exact cached native upstream source notice candidates | 2026-10-22 | c14ae3a | [261022-799-retain-notices-from-cached-exact-python-](./quick/261022-799-retain-notices-from-cached-exact-python-/) |
 | 261022-7l3 | Package separate pinned candidate schema launcher | 2026-10-22 | ec4c4db | [261022-7l3-package-separate-pinned-candidate-schema](./quick/261022-7l3-package-separate-pinned-candidate-schema/) |
-| 261022-afa | Prepare exact proposed admission bytes without activation | 2026-10-22 | this commit | [261022-afa](./quick/261022-afa-prepare-exact-reviewed-admission-reopeni/) |
+| 261022-afa | Prepare exact proposed admission bytes without activation | 2026-10-22 | 11279da | [261022-afa](./quick/261022-afa-prepare-exact-reviewed-admission-reopeni/) |
+| 261022-ajs | Candidate reopening and uncertain-outcome inspection | 2026-10-22 | this commit | [261022-ajs](./quick/261022-ajs-implement-separately-authorized-admissio/) |
 
 ## Latest continuation — real local SCRAM inspection
 
@@ -355,3 +356,7 @@ Quick261022-a80 adds fresh independent root inspection authority binding exact h
 ## Latest continuation — exact admission preparation
 
 Quick261022-afa adds root-only read-only preparation with independently fresh root authority for exact historical publication/proposed-admission/opaque qualification bytes. Complete original manifest binding, full fresh candidate semantic/artifact checks and published-only stable snapshots under permanent SH lease; exact four-record output bytes only, all activation/completion/durability grants false. Six new tests cover scope/incomplete states/final revocation/writer exclusion/actual inner expiry. SQL3/16611.557s, source7/5 9.070s, operator7/17 5.497s, deployment16/31 2.154s, native55/9 0.938s and notices9/7 3.701s pass, no failures. Actual reopening/uncertain-sync recovery, custody/host/runtime qualification, app integration and14/16/17 pending. No actual host/provider/credential action. Next separate reopening design must account for admitted bytes potentially visible before failed sync returns, forbid inferred success/retry and revalidate fresh authority/state independently of this staleable proposal.
+
+## Latest continuation — candidate reopening and uncertain-outcome inspection
+
+Quick261022-ajs adds source-only root reopening under independently fresh exact reopening/preparation/inspection authorities and opaque recovery/qualification evidence hashes. Two full fresh published-only preflights share the permanent EXNB lease, exact raw prep/barrier rechecks, fixed inode bounded short writes/sync/readback. No repair/rollback/retry/CLI/install. Separate independent fresh read-only historical reopening inspection reports blocked/admitted/different including empty/partial without completion/durability/retry/reopen grants. Tests explicitly show a raised late sync/revocation failure can leave admitted bytes that admit readers; never falsely blocked, never automatic retry. SQL3/17513.032s, source7/5 4.537s, operator7/17 6.140s, deployment16/31 2.478s, native55/9 0.976s, notices9/7 3.744s pass; earlier173-test run also passed. One ignored Nix concurrent SQLite cache busy warning, all lanes successful. No actual authority/host/provider/credential/activation operation. Actual crash/storage/runtime/independent custody qualification and app/14/16/17 incomplete. Next repository work can integrate admitted application/worker destination enforcement while production backend stays closed pending actual qualification; account-scoped runtime/replica driver/licence/OCI work remains. Source library success does not grant actual deployment or protected-service exceptions.

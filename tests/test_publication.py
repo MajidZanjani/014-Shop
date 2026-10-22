@@ -405,3 +405,183 @@ class PublicationTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     publication.prepare_reopening(case['data'],case['original'],historical,evidence)
             self.assertEqual(case['barrier'].read_bytes(),case['blocked'])
+
+    def reopening(self,case):
+        historical,proposed,qualification,preparation_file=self.preparation(case)
+        recovery=b'SYNTHETIC_REOPENING_RECOVERY_REVIEW'
+        authority={'schema_version':1,'action':'reopen-control-admission','authorization_id':'9'*32,
+            'expires_at':case['authority']['expires_at'],
+            'preparation_authority_sha256':hashlib.sha256(preparation_file.read_bytes()).hexdigest(),
+            'blocked_admission_sha256':hashlib.sha256(case['blocked']).hexdigest(),
+            'proposed_admission_sha256':hashlib.sha256(proposed).hexdigest(),
+            'recovery_evidence_sha256':hashlib.sha256(recovery).hexdigest()}
+        file=case['base']/'control-admission-reopening.json'
+        raw=json.dumps(authority).encode();file.write_bytes(raw);file.chmod(0o440)
+        inspection={'schema_version':1,'action':'inspect-control-admission-reopening','authorization_id':'8'*32,
+            'expires_at':authority['expires_at'],'reopening_authority_sha256':hashlib.sha256(raw).hexdigest()}
+        inspect_file=case['base']/'control-admission-reopening-inspection.json'
+        inspect_file.write_bytes(json.dumps(inspection).encode());inspect_file.chmod(0o440)
+        return dict(historical=historical,proposed=proposed,qualification=qualification,
+            recovery=recovery,authority=authority,raw=raw,file=file,inspect_file=inspect_file)
+
+    def reopen(self,case,setup):
+        return publication.reopen_admission(case['data'],case['original'],setup['historical'],
+            setup['qualification'],setup['recovery'])
+
+    def observe_reopening(self,case,setup):
+        return publication.inspect_reopening(case['blocked'],setup['proposed'],setup['raw'])
+
+    def test_actual_reopening_keeps_permanent_inode_and_exact_manifest(self):
+        with self.fixture() as case:
+            setup=self.reopening(case);self.publish(case);before=case['barrier'].stat()
+            result=self.reopen(case,setup)
+            self.assertEqual(result['status'],'admission_opened')
+            self.assertEqual(case['barrier'].read_bytes(),setup['proposed'])
+            self.assertEqual(case['barrier'].stat().st_ino,before.st_ino)
+            self.assertEqual(case['barrier'].stat().st_mode,before.st_mode)
+            with control.admission():
+                self.assertEqual(control.load_control_bytes('expected.json'),case['payloads']['expected.json'])
+            self.assertEqual(self.observe_reopening(case,setup)['status'],'admitted_matches')
+            with self.assertRaises(ValueError):self.reopen(case,setup)
+
+    def test_reopening_exact_scope_required_before_first_write(self):
+        for kind in ('expired','extra','preparation','blocked','proposed','recovery','qualification','root'):
+            with self.subTest(kind=kind),self.fixture() as case:
+                setup=self.reopening(case);self.publish(case)
+                value=dict(setup['authority'])
+                if kind=='expired':value['expires_at']='2000-01-01T00:00:00Z'
+                elif kind=='extra':value['extra']=True
+                elif kind in ('preparation','blocked','proposed'):value[kind+('_authority_sha256' if kind=='preparation' else '_admission_sha256')]='0'*64
+                elif kind=='recovery':setup['recovery']+=b' '
+                elif kind=='qualification':setup['qualification']+=b' '
+                setup['file'].write_bytes(json.dumps(value).encode())
+                manager=patch.object(os,'geteuid',return_value=9909) if kind=='root' else contextlib.nullcontext()
+                with manager,patch.object(os,'ftruncate',side_effect=AssertionError('write before scope')),self.assertRaises(ValueError):
+                    self.reopen(case,setup)
+                self.assertEqual(case['barrier'].read_bytes(),case['blocked'])
+
+    def test_reopening_exclusive_lease_excludes_all_readers(self):
+        with self.fixture() as case:
+            setup=self.reopening(case);self.publish(case);actual=os.pwrite
+            def write(*args):
+                self.assertEqual(case['barrier_fixture'].child_lock(case['barrier'],False),3)
+                return actual(*args)
+            with patch.object(os,'pwrite',side_effect=write):self.reopen(case,setup)
+        import fcntl
+        with self.fixture() as case:
+            setup=self.reopening(case);self.publish(case)
+            with case['barrier'].open('rb') as barrier:
+                fcntl.flock(barrier,fcntl.LOCK_SH|fcntl.LOCK_NB)
+                with self.assertRaises(BlockingIOError):self.reopen(case,setup)
+            self.assertEqual(case['barrier'].read_bytes(),case['blocked'])
+
+    def test_partial_reopening_is_denied_and_never_repaired_or_retried(self):
+        for kind in ('truncate','partial','short'):
+            with self.subTest(kind=kind),self.fixture() as case:
+                setup=self.reopening(case);self.publish(case);actual=os.pwrite;calls=[]
+                def write(fd,data,offset):
+                    calls.append(1)
+                    if kind=='truncate' or kind=='partial' and len(calls)>1:raise OSError('synthetic-write')
+                    return actual(fd,data[:7] if kind!='truncate' else data,offset)
+                with patch.object(os,'pwrite',side_effect=write):
+                    if kind=='short':self.reopen(case,setup)
+                    else:
+                        with self.assertRaises(OSError):self.reopen(case,setup)
+                if kind=='short':
+                    self.assertGreater(len(calls),1);self.assertEqual(case['barrier'].read_bytes(),setup['proposed'])
+                else:
+                    raw=case['barrier'].read_bytes();self.assertEqual(len(raw),0 if kind=='truncate' else 7)
+                    self.assertEqual(self.observe_reopening(case,setup)['status'],'different_bytes')
+                    with self.assertRaises(ValueError):
+                        with control.admission():self.fail('partial must deny')
+                    with self.assertRaises(ValueError):self.reopen(case,setup)
+                    self.assertEqual(case['barrier'].read_bytes(),raw)
+
+    def test_late_failure_can_leave_admitted_bytes_without_completion_proof(self):
+        for kind in ('file-sync','parent-sync','revoked'):
+            with self.subTest(kind=kind),self.fixture() as case:
+                setup=self.reopening(case);self.publish(case);actual=os.fsync;calls=[]
+                def sync(fd):
+                    calls.append(1)
+                    if kind=='file-sync' and len(calls)==1 or kind=='parent-sync' and len(calls)==2:
+                        raise OSError('synthetic-sync')
+                    result=actual(fd)
+                    if kind=='revoked' and len(calls)==2:
+                        value=dict(setup['authority'],authorization_id='7'*32)
+                        setup['file'].write_bytes(json.dumps(value).encode())
+                    return result
+                with patch.object(os,'fsync',side_effect=sync),self.assertRaises((ValueError,OSError)):
+                    self.reopen(case,setup)
+                self.assertEqual(case['barrier'].read_bytes(),setup['proposed'])
+                with control.admission():pass  # Explicitly uncertain, not falsely denied.
+                result=self.observe_reopening(case,setup)
+                self.assertEqual(result['status'],'admitted_matches')
+                for key,value in result.items():
+                    if key not in ('schema_version','status'):self.assertIs(value,False)
+                with self.assertRaises(ValueError):self.reopen(case,setup)
+
+    def test_reopening_inspection_is_independently_scoped_and_read_only(self):
+        with self.fixture() as case:
+            setup=self.reopening(case)
+            with patch.object(publication,'load_reopening_authority',side_effect=AssertionError('old authority')), \
+                 patch.object(os,'write',side_effect=AssertionError('write')), \
+                 patch.object(os,'pwrite',side_effect=AssertionError('pwrite')), \
+                 patch.object(os,'fsync',side_effect=AssertionError('fsync')):
+                self.assertEqual(self.observe_reopening(case,setup)['status'],'blocked_matches')
+            original_inspection=setup['inspect_file'].read_bytes()
+            for kind in ('expired','digest','extra'):
+                value=json.loads(original_inspection)
+                if kind=='expired':value['expires_at']='2000-01-01T00:00:00Z'
+                elif kind=='digest':value['reopening_authority_sha256']='0'*64
+                else:value['extra']=True
+                setup['inspect_file'].write_bytes(json.dumps(value).encode())
+                with self.assertRaises(ValueError):self.observe_reopening(case,setup)
+
+    def test_reopening_revalidates_preflight_before_first_write(self):
+        with self.fixture() as case:
+            setup=self.reopening(case);self.publish(case)
+            actual=publication._prepare_reopening_locked;calls=[]
+            def prepare(*args):
+                calls.append(1)
+                if len(calls)==2:raise ValueError('synthetic-stale-preflight')
+                return actual(*args)
+            with patch.object(publication,'_prepare_reopening_locked',side_effect=prepare),self.assertRaises(ValueError):
+                self.reopen(case,setup)
+            self.assertEqual(case['barrier'].read_bytes(),case['blocked'])
+
+    def test_reopening_inspection_rechecks_scope_bytes_and_lock(self):
+        for kind in ('revoked','bytes','root','exclusive','shared'):
+            with self.subTest(kind=kind),self.fixture() as case:
+                setup=self.reopening(case);actual=publication.load_reopening_inspection;calls=[]
+                def load():
+                    calls.append(1)
+                    if len(calls)==2:
+                        if kind=='revoked':
+                            value=json.loads(setup['inspect_file'].read_bytes());value['authorization_id']='6'*32
+                            setup['inspect_file'].write_bytes(json.dumps(value).encode())
+                        elif kind=='bytes':case['barrier'].write_bytes(b'partial')
+                    if kind=='shared' and len(calls)>1:
+                        self.assertEqual(case['barrier_fixture'].child_lock(case['barrier'],True),3)
+                    return actual()
+                manager=patch.object(os,'geteuid',return_value=9909) if kind=='root' else contextlib.nullcontext()
+                with manager,patch.object(publication,'load_reopening_inspection',side_effect=load):
+                    if kind=='exclusive':
+                        import fcntl
+                        with case['barrier'].open('rb') as barrier:
+                            fcntl.flock(barrier,fcntl.LOCK_EX|fcntl.LOCK_NB)
+                            with self.assertRaises(BlockingIOError):self.observe_reopening(case,setup)
+                    elif kind=='shared':self.assertEqual(self.observe_reopening(case,setup)['status'],'blocked_matches')
+                    else:
+                        with self.assertRaises(ValueError):self.observe_reopening(case,setup)
+
+    def test_historical_reopening_inspection_never_renews_write_authority(self):
+        with self.fixture() as case:
+            setup=self.reopening(case)
+            value=dict(setup['authority'],expires_at='2000-01-01T00:00:00Z')
+            setup['raw']=json.dumps(value).encode()
+            inspection=json.loads(setup['inspect_file'].read_bytes())
+            inspection['reopening_authority_sha256']=hashlib.sha256(setup['raw']).hexdigest()
+            setup['inspect_file'].write_bytes(json.dumps(inspection).encode())
+            with patch.object(publication,'load_reopening_authority',side_effect=AssertionError('historical live lookup')):
+                self.assertEqual(self.observe_reopening(case,setup)['status'],'blocked_matches')
+            with self.assertRaises(ValueError):publication.validate_reopening_authority(value)

@@ -377,7 +377,8 @@ crash durability, publication and reopening qualification remain pending.
 `publication.publish_control_generation(candidate_bytes, original_admission,
 custody_evidence)` is a root-only library operation, included in the explicit
 eleven-module inert source artifact. No command, automatic installer, account,
-service, HBA/role/credential provisioner or reopening operation is supplied.
+service or HBA/role/credential provisioner is supplied. This publisher does not
+reopen admission; the separate library candidate is described below.
 Its separate root-owned `/srv/shop/control-publication.json` stays outside the
 replaceable control directory. Existing root-owned, non-writable physical
 ancestor and stable bounded record reads apply.
@@ -504,9 +505,9 @@ file or activated lease. All completion/durability/publication/retry/reopening
 grants remain false. There is no write/fsync/rename, CLI or installation hook.
 The output can become stale after lease release and cannot authorize a later
 mutation; an actual reopener must independently recheck current state and fresh
-scoped authority. Interrupted reopening and power-loss behavior still need a
-separate design and qualification, including the possibility of complete admitted
-bytes being visible before a failing sync returns. No automatic retry or inferred
+scoped authority. The separate reopening library candidate below models
+interrupted writes; actual power-loss/runtime qualification remains pending,
+including complete admitted bytes being visible before a failing sync returns. No automatic retry or inferred
 successful activation is allowed.
 
 Synthetic scratch tests verify exact output/no writes, retained blocked admission,
@@ -514,3 +515,70 @@ all incomplete publication states, changed installed bytes, exact independent
 scope/expiry/root checks, final authority/candidate revalidation and writer
 exclusion. Advancing only the inner schema-authority clock proves that historical
 observation may match while current preparation rejects actual expiry.
+
+### Library-only separately authorized reopening
+
+`reopen_admission` is prepared source with no CLI, service invocation or installer.
+All actual root approvals, independent archives and host/storage/runtime
+qualification remain pending. Synthetic scratch calls are not mx1 activation.
+A fresh independent root record at
+`/srv/shop/control-admission-reopening.json` has exactly schema_version=1,
+action=reopen-control-admission, authorization_id, expires_at,
+preparation_authority_sha256, blocked_admission_sha256,
+proposed_admission_sha256 and recovery_evidence_sha256. It binds the exact raw
+preparation-authority record, not merely equivalent parsed fields, and exact
+bounded private recovery-review evidence. Recovery evidence remains opaque
+externally reviewed bytes; this library cannot certify archive or restore quality.
+Fresh preparation and publication-inspection authorities remain necessary.
+
+The operation takes an exclusive nonblocking lease on the permanent physical
+admission inode. Inspection/preparation now share internal checks using the same
+caller-held lease, avoiding nested flock conversion or lock release. It twice
+performs current full candidate/artifact/expiry validation and exact published
+state checks, rechecks preparation bytes/reopening authority and barrier metadata,
+then truncates and writes only the exact reviewed proposed admission using bounded
+short-write handling. It syncs the file and parent, verifies bytes and preserved
+inode/owner/group/mode, and rechecks authority. It never creates/replaces the
+barrier, discovers another target, modifies control files, repairs state, rolls
+back or retries. Existing reader leases exclude reopening; the exclusive writer
+excludes readers for the full operation.
+
+A successful return reports admission_opened and completed local fsync/readback
+calls. It is not actual durability qualification or a grant for another action;
+durability_qualified/publication_authorized/retry_authorized/reopening_authorized
+remain false. Once the exact admitted bytes are present, future normal admitted
+reads can succeed. Truncation or partial writes leave invalid bytes and deny
+readers. Crucially, full admitted bytes may remain after a failed file/parent
+sync, failed final check or late revocation, and can admit readers when the writer
+exits. The library does not falsely claim those failures remain blocked. It
+preserves evidence, raises and does no automatic rollback/reblock/retry. A new
+scoped block/recovery decision and actual storage/runtime qualification are
+required to handle that uncertainty before any real deployment. Source completion
+is not approval to expose effects; independent recoverable snapshots and exact
+service/action authority still precede actual activation.
+
+### Independent uncertain-reopening observation
+
+`inspect_reopening(blocked, proposed, historical_reopening_authority)` requires
+fresh independent root authority at
+`/srv/shop/control-admission-reopening-inspection.json` with exactly
+schema_version=1, action=inspect-control-admission-reopening, authorization_id,
+expires_at and reopening_authority_sha256. It binds historical raw reopening
+authority without consulting or renewing the former live authority. Supplied
+blocked/proposed bytes must match its bound hashes; proposed admission must pass
+the closed manifest schema. A shared nonblocking permanent-inode lease observes
+stable current bytes, including empty/partial states, and rechecks fresh inspection
+authority and exact bytes/metadata. Reports are blocked_matches, admitted_matches
+or different_bytes. Every completion/durability/publication/retry/reopening flag
+is false. It performs no writes, sync, repair or implicit revocation. Even
+admitted_matches cannot establish a successful earlier return or durable commit.
+
+Actual local synthetic scratch tests cover successful exact reopening and admitted
+manifest reads, permanent inode/mode preservation, exact authority/evidence/root
+scope, preflight revalidation, exclusion with existing readers, reader exclusion
+through writes, short writes, empty/partial failure, both sync failures and late
+revocation. Failure tests explicitly demonstrate admitted reads after a raised
+late failure and no repeat reopening. Independent read-only inspection tests
+exercise exact scope, expiry, revocation, changed bytes, shared/exclusive locks and
+historical-expiry separation. These are not crash, rootless, host or independent
+archive/recovery qualifications.

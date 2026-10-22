@@ -1,4 +1,4 @@
-"""Library-only physical generation publication. No CLI or reopening operation."""
+"""Library-only control publication/reopening lifecycle; no CLI or installation."""
 import fcntl
 import hashlib
 import json
@@ -225,6 +225,13 @@ def _observe_directory(parent,name,authority,payloads):
 
 
 def inspect_publication(data, original_admission, historical_authority):
+    require(os.geteuid()==0 and control._ADMISSION.get() is None)
+    with control._admission_file() as lease:
+        fcntl.flock(lease[1],fcntl.LOCK_SH|fcntl.LOCK_NB)
+        return _inspect_publication_locked(data,original_admission,historical_authority,lease)
+
+
+def _inspect_publication_locked(data, original_admission, historical_authority, lease):
     """Observe fixed publication states, never complete/retry/repair/reopen."""
     require(os.geteuid()==0 and control._ADMISSION.get() is None)
     inspection=load_inspection()
@@ -239,29 +246,28 @@ def inspect_publication(data, original_admission, historical_authority):
     require(hashlib.sha256(original_admission).hexdigest()==authority['original_admission_sha256'])
     stage='control-next-'+authority['bundle_sha256']
     previous='control-previous-'+authority['original_admission_sha256']
-    with control._admission_file() as (parent,barrier):
-        fcntl.flock(barrier,fcntl.LOCK_SH|fcntl.LOCK_NB)
-        info=os.fstat(parent)
-        require(info.st_uid==0 and not info.st_mode&0o022 and (info.st_dev,info.st_ino)==
-                (authority['parent']['device'],authority['parent']['inode']))
-        blocked,metadata=control._admission_bytes(parent,barrier)
-        require(hashlib.sha256(blocked).hexdigest()==authority['blocked_admission_sha256'])
-        value=json.loads(blocked,object_pairs_hook=control.unique_fields)
-        block_id=value.get('block_authorization_id')
-        require(type(block_id) is str and re.fullmatch(r'[a-f0-9]{32}',block_id)
-                and blocked==control._blocked_bytes(original_admission,block_id))
-        def snapshot():
-            return tuple(_observe_directory(parent,name,authority,payloads) for name in ('control',stage,previous))
-        observed=snapshot();pattern=tuple(item[0] for item in observed)
-        status={('original_matches','absent','absent'):'original_matches',
-                ('original_matches','new_matches','absent'):'stage_matches',
-                ('absent','new_matches','original_matches'):'prior_moved_matches',
-                ('new_matches','absent','original_matches'):'published_matches'}.get(pattern,'conflicting')
-        require(load_inspection()==inspection and snapshot()==observed
-                and control._admission_bytes(parent,barrier)==(blocked,metadata))
-        return {'schema_version':1,'status':status,'completion_confirmed':False,
-                'durability_qualified':False,'publication_authorized':False,
-                'retry_authorized':False,'reopening_authorized':False}
+    parent,barrier=lease
+    info=os.fstat(parent)
+    require(info.st_uid==0 and not info.st_mode&0o022 and (info.st_dev,info.st_ino)==
+            (authority['parent']['device'],authority['parent']['inode']))
+    blocked,metadata=control._admission_bytes(parent,barrier)
+    require(hashlib.sha256(blocked).hexdigest()==authority['blocked_admission_sha256'])
+    value=json.loads(blocked,object_pairs_hook=control.unique_fields)
+    block_id=value.get('block_authorization_id')
+    require(type(block_id) is str and re.fullmatch(r'[a-f0-9]{32}',block_id)
+            and blocked==control._blocked_bytes(original_admission,block_id))
+    def snapshot():
+        return tuple(_observe_directory(parent,name,authority,payloads) for name in ('control',stage,previous))
+    observed=snapshot();pattern=tuple(item[0] for item in observed)
+    status={('original_matches','absent','absent'):'original_matches',
+            ('original_matches','new_matches','absent'):'stage_matches',
+            ('absent','new_matches','original_matches'):'prior_moved_matches',
+            ('new_matches','absent','original_matches'):'published_matches'}.get(pattern,'conflicting')
+    require(load_inspection()==inspection and snapshot()==observed
+            and control._admission_bytes(parent,barrier)==(blocked,metadata))
+    return {'schema_version':1,'status':status,'completion_confirmed':False,
+            'durability_qualified':False,'publication_authorized':False,
+            'retry_authorized':False,'reopening_authorized':False}
 
 
 def validate_reopening_preparation(value):
@@ -283,6 +289,13 @@ def load_reopening_preparation():
 
 
 def prepare_reopening(data, original_admission, historical_authority, qualification_evidence):
+    require(os.geteuid()==0 and control._ADMISSION.get() is None)
+    with control._admission_file() as lease:
+        fcntl.flock(lease[1],fcntl.LOCK_SH|fcntl.LOCK_NB)
+        return _prepare_reopening_locked(data,original_admission,historical_authority,qualification_evidence,lease)
+
+
+def _prepare_reopening_locked(data, original_admission, historical_authority, qualification_evidence, lease):
     """Return reviewed proposed bytes only; never write or open admission.
 
     Evidence is opaque and hash-bound to separate root review, not qualified by
@@ -308,21 +321,122 @@ def prepare_reopening(data, original_admission, historical_authority, qualificat
         sort_keys=True,separators=(',',':')).encode('ascii')+b'\n'
     control._validate_admitted(proposed)
     require(hashlib.sha256(proposed).hexdigest()==approval['proposed_admission_sha256'])
-    with control._admission_file() as (parent,barrier):
-        fcntl.flock(barrier,fcntl.LOCK_SH|fcntl.LOCK_NB)
+    parent,barrier=lease
+    blocked,metadata=control._admission_bytes(parent,barrier)
+    require(hashlib.sha256(blocked).hexdigest()==authority['blocked_admission_sha256'])
+    # Independent inspection checks exact parent/block/previous/stage state.
+    require(_inspect_publication_locked(data,original_admission,historical_authority,lease)['status']=='published_matches')
+    observed=_observe_directory(parent,'control',authority,payloads)
+    require(observed[0]=='new_matches' and load_reopening_preparation()==approval)
+    # Revalidate all expiring inner records before returning proposed bytes.
+    require(bundle.prepare_records(data)==(payloads,report)
+            and _inspect_publication_locked(data,original_admission,historical_authority,lease)['status']=='published_matches'
+            and _observe_directory(parent,'control',authority,payloads)==observed
+            and control._admission_bytes(parent,barrier)==(blocked,metadata)
+            and load_reopening_preparation()==approval)
+    return proposed,{'schema_version':1,'status':'admission_bytes_prepared',
+        'proposed_admission_sha256':approval['proposed_admission_sha256'],
+        'completion_confirmed':False,'durability_qualified':False,
+        'publication_authorized':False,'retry_authorized':False,'reopening_authorized':False}
+
+
+def validate_reopening_authority(value, *, require_fresh=True):
+    require(type(value) is dict and set(value)=={
+        'schema_version','action','authorization_id','expires_at','preparation_authority_sha256',
+        'blocked_admission_sha256','proposed_admission_sha256','recovery_evidence_sha256'}
+        and value['action']=='reopen-control-admission')
+    control.validate_block_authority({key:value[key] for key in
+        ('schema_version','authorization_id','expires_at')} | {
+        'action':'block-control-admission','current_admission_sha256':value['blocked_admission_sha256']},
+        require_fresh=require_fresh)
+    for key in ('preparation_authority_sha256','proposed_admission_sha256','recovery_evidence_sha256'):
+        require(type(value[key]) is str and re.fullmatch(r'[a-f0-9]{64}',value[key]))
+    return value
+
+
+def load_reopening_authority():
+    raw=control._load_control_data('control-admission-reopening.json',outside_control=True)
+    return validate_reopening_authority(json.loads(raw,object_pairs_hook=control.unique_fields))
+
+
+def reopen_admission(data, original_admission, historical_authority, qualification_evidence, recovery_evidence):
+    """Library-only exact reopening; late failure may leave admitted bytes.
+
+    Never install/invoke without qualified storage/runtime and scoped authority.
+    There is no automatic rollback, reblock, cleanup or retry after uncertainty.
+    """
+    require(os.geteuid()==0 and control._ADMISSION.get() is None)
+    authority=load_reopening_authority()
+    require(type(recovery_evidence) is bytes and 0<len(recovery_evidence)<=1048576
+            and hashlib.sha256(recovery_evidence).hexdigest()==authority['recovery_evidence_sha256'])
+    preparation=control._load_control_data('control-admission-preparation.json',outside_control=True)
+    validate_reopening_preparation(json.loads(preparation,object_pairs_hook=control.unique_fields))
+    require(hashlib.sha256(preparation).hexdigest()==authority['preparation_authority_sha256'])
+    with control._admission_file(writable=True) as lease:
+        parent,barrier=lease
+        fcntl.flock(barrier,fcntl.LOCK_EX|fcntl.LOCK_NB)
         blocked,metadata=control._admission_bytes(parent,barrier)
         require(hashlib.sha256(blocked).hexdigest()==authority['blocked_admission_sha256'])
-        # Independent inspection checks exact parent/block/previous/stage state.
-        require(inspect_publication(data,original_admission,historical_authority)['status']=='published_matches')
-        observed=_observe_directory(parent,'control',authority,payloads)
-        require(observed[0]=='new_matches' and load_reopening_preparation()==approval)
-        # Revalidate all expiring inner records before returning proposed bytes.
-        require(bundle.prepare_records(data)==(payloads,report)
-                and inspect_publication(data,original_admission,historical_authority)['status']=='published_matches'
-                and _observe_directory(parent,'control',authority,payloads)==observed
+        proposed,_=_prepare_reopening_locked(data,original_admission,historical_authority,qualification_evidence,lease)
+        require(hashlib.sha256(proposed).hexdigest()==authority['proposed_admission_sha256']
+                and control._load_control_data('control-admission-preparation.json',outside_control=True)==preparation
+                and load_reopening_authority()==authority
+                and _prepare_reopening_locked(data,original_admission,historical_authority,qualification_evidence,lease)[0]==proposed
+                and control._load_control_data('control-admission-preparation.json',outside_control=True)==preparation
                 and control._admission_bytes(parent,barrier)==(blocked,metadata)
-                and load_reopening_preparation()==approval)
-        return proposed,{'schema_version':1,'status':'admission_bytes_prepared',
-            'proposed_admission_sha256':approval['proposed_admission_sha256'],
-            'completion_confirmed':False,'durability_qualified':False,
+                and load_reopening_authority()==authority)
+        # Truncation/partial bytes deny readers. Full bytes can be admitted even
+        # if a subsequent sync/readback/authority check raises. Preserve evidence.
+        os.ftruncate(barrier,0)
+        offset=0;remaining=memoryview(proposed)
+        while remaining:
+            written=os.pwrite(barrier,remaining,offset)
+            require(0<written<=len(remaining))
+            offset+=written;remaining=remaining[written:]
+        os.fsync(barrier);os.fsync(parent)
+        observed,after=control._admission_bytes(parent,barrier)
+        require(observed==proposed and metadata[:5]==after[:5]
+                and control._load_control_data('control-admission-preparation.json',outside_control=True)==preparation
+                and load_reopening_authority()==authority)
+        return {'schema_version':1,'status':'admission_opened',
+            'admission_sha256':authority['proposed_admission_sha256'],
+            'local_fsync_readback_completed':True,'durability_qualified':False,
             'publication_authorized':False,'retry_authorized':False,'reopening_authorized':False}
+
+
+def validate_reopening_inspection(value):
+    require(type(value) is dict and set(value)=={
+        'schema_version','action','authorization_id','expires_at','reopening_authority_sha256'}
+        and value['action']=='inspect-control-admission-reopening')
+    control.validate_block_authority({key:value[key] for key in
+        ('schema_version','authorization_id','expires_at')} | {
+        'action':'block-control-admission','current_admission_sha256':value['reopening_authority_sha256']})
+    return value
+
+
+def load_reopening_inspection():
+    raw=control._load_control_data('control-admission-reopening-inspection.json',outside_control=True)
+    return validate_reopening_inspection(json.loads(raw,object_pairs_hook=control.unique_fields))
+
+
+def inspect_reopening(blocked, proposed, historical_reopening_authority):
+    """Current-byte observation only, including partial/empty uncertain writes."""
+    require(os.geteuid()==0 and control._ADMISSION.get() is None)
+    inspection=load_reopening_inspection()
+    require(type(historical_reopening_authority) is bytes and 0<len(historical_reopening_authority)<=32768
+            and hashlib.sha256(historical_reopening_authority).hexdigest()==inspection['reopening_authority_sha256'])
+    authority=validate_reopening_authority(json.loads(historical_reopening_authority,
+        object_pairs_hook=control.unique_fields),require_fresh=False)
+    require(type(blocked) is bytes and 0<len(blocked)<=8192
+            and hashlib.sha256(blocked).hexdigest()==authority['blocked_admission_sha256'])
+    control._validate_admitted(proposed)
+    require(hashlib.sha256(proposed).hexdigest()==authority['proposed_admission_sha256'])
+    with control._admission_file() as (parent,barrier):
+        fcntl.flock(barrier,fcntl.LOCK_SH|fcntl.LOCK_NB)
+        raw,metadata=control._admission_bytes(parent,barrier,allow_empty=True)
+        status='blocked_matches' if raw==blocked else ('admitted_matches' if raw==proposed else 'different_bytes')
+        require(load_reopening_inspection()==inspection
+                and control._admission_bytes(parent,barrier,allow_empty=True)==(raw,metadata))
+        return {'schema_version':1,'status':status,'completion_confirmed':False,
+            'durability_qualified':False,'publication_authorized':False,
+            'retry_authorized':False,'reopening_authorized':False}
