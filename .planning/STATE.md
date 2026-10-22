@@ -35,7 +35,7 @@ T03/T04 local product development is active; ready T05 draft persistence has beg
 
 Demo: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/demo.py --backend`; open http://127.0.0.1:4321 (also /support/ and /purchase/simple/).
 
-Checks: all six ordinary local lanes passed; latest changed lanes rerun (frontend75 tests, core-local34 tests), 70 cross-language cases agree, compiler rejection tests pass, dispatcher15 tests pass, static privacy boundary81 tests pass. Actual loopback demo/CSRF/quote/catalog smoke passed. Details and scoped counts in the task evidence. No FULL_PASS, actual browser/host/runtime/recovery/legal acceptance or production readiness claim. Hosted CI execution initially unproven; update only from actual run evidence.
+Checks: all six ordinary local lanes passed; latest changed lanes rerun (frontend75 tests, core-local34 tests), 70 cross-language cases agree, compiler rejection tests pass, dispatcher15 tests pass, static privacy boundary81 tests pass. Actual loopback demo/CSRF/quote/catalog smoke passed. Details and scoped counts in the task evidence. No FULL_PASS, actual browser/host/runtime/recovery/legal acceptance or production readiness claim. Hosted runner execution is available: the first run failed its historical-evidence check on shallow checkout; fetch-depth:0 fixes that setup defect. Replacement result pending.
 
 ## Exact next action
 

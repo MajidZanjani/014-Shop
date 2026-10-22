@@ -23,7 +23,7 @@ class DispatcherTests(unittest.TestCase):
             "environment", "frontend", "core", "worker", "adapters", "contracts", "boundaries"))
 
     def test_all_requires_every_final_lane(self):
-        self.assertEqual(set(check.required_lanes("all")), set(check.LANES) - {"worker-smoke", "core-local", "contracts-local", "catalog"})
+        self.assertEqual(set(check.required_lanes("all")), set(check.LANES) - {"worker-smoke", "core-local", "contracts-local"})
 
     def test_development_excludes_qualification(self):
         self.assertEqual(check.required_lanes('dev'),check.DEVELOPMENT)

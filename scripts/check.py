@@ -15,7 +15,7 @@ sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parents[1]
 QUICK = ("environment", "frontend", "core", "worker", "adapters", "contracts", "boundaries")
 DEVELOPMENT = ("frontend", "core-local", "worker-smoke", "adapters", "contracts-local", "catalog")
-EXTRA = ("inventory", "locks", "reproducibility", "deployment-profiles",
+EXTRA = ("catalog", "inventory", "locks", "reproducibility", "deployment-profiles",
          "deployment-eval", "postgres-diagnostics", "postgresql-config", "bootstrap-local", "database-destination", "database-tools", "operator-runtime", "native-closure", "native-source-notices", "deployment-build", "deployment-boot")
 # (producer, commands, timeout). No optional producers or inferred skips.
 LANES = {
