@@ -143,3 +143,109 @@ class GenerationCustodyTests(unittest.TestCase):
             self.assertEqual(json.loads((target/'retained.json').read_bytes())['status'],'generation_retained')
             with self.assertRaises(FileExistsError):bundle.retain_control_generation(fd)
             self.assertEqual(json.loads(path.read_bytes())['state'],'admitted')
+
+    def original_material(self,parent,authority):
+        target=parent/('generation-'+authority['admission_sha256'])
+        report=json.loads((target/'retained.json').read_bytes())
+        files={name:(target/name).read_bytes() for name in report['file_sha256']}
+        inspection={key:value for key,value in authority.items()}
+        inspection.update(action='inspect-control-generation',authorization_id='e'*32,
+                          retained_authority_sha256=hashlib.sha256(files['custody-authorization.json']).hexdigest())
+        return target,files,inspection
+
+    def test_readonly_inspection_matches_and_never_writes_syncs_or_reads_live_authority(self):
+        with self.fixture() as (base,path,parent,fd,auth,authority,barrier):
+            bundle.retain_control_generation(fd)
+            target,files,inspection=self.original_material(parent,authority)
+            before={p.name:(p.read_bytes(),p.stat().st_mtime_ns,p.stat().st_ctime_ns) for p in target.iterdir()}
+            with patch.object(bundle,'load_custody_inspection',return_value=inspection), \
+                 patch.object(bundle,'load_custody_authority',side_effect=AssertionError('old/live write authority unused')), \
+                 patch.object(bundle.os,'fsync',side_effect=AssertionError('no sync')), \
+                 patch.object(bundle.os,'write',side_effect=AssertionError('no write')), \
+                 patch.object(bundle.os,'mkdir',side_effect=AssertionError('no create')):
+                result=bundle.inspect_retained_generation(files,fd)
+            self.assertEqual(result['status'],'generation_matches')
+            for flag in ('completion_confirmed','durability_qualified','publication_authorized',
+                         'retry_authorized','reopening_authorized','local_fsync_readback_completed'):
+                self.assertFalse(result[flag])
+            self.assertEqual(before,{p.name:(p.read_bytes(),p.stat().st_mtime_ns,p.stat().st_ctime_ns) for p in target.iterdir()})
+            os.fstat(fd)
+
+    def test_inspection_accepts_expired_historical_write_authority_with_fresh_independent_authority(self):
+        from datetime import datetime,timezone
+        with self.fixture() as (base,path,parent,fd,auth,authority,barrier):
+            bundle.retain_control_generation(fd)
+            target,files,inspection=self.original_material(parent,authority)
+            inspection['expires_at']='2028-01-01T00:00:00Z'
+            with patch.object(control,'datetime',wraps=datetime) as clock, \
+                 patch.object(bundle,'load_custody_inspection',side_effect=lambda:bundle.validate_custody_inspection(inspection)):
+                clock.now.return_value=datetime(2027,1,1,tzinfo=timezone.utc)
+                with self.assertRaises(ValueError):bundle.validate_custody_authority(authority)
+                self.assertEqual(bundle.inspect_retained_generation(files,fd)['status'],'generation_matches')
+
+    def test_inspection_after_uncertain_parent_sync_never_confirms_completion(self):
+        with self.fixture() as (base,path,parent,fd,auth,authority,barrier):
+            real_sync=os.fsync;calls=[]
+            def sync(descriptor):
+                calls.append(True)
+                if len(calls)==9:raise OSError('synthetic-parent-sync-failure')
+                return real_sync(descriptor)
+            with patch.object(bundle.os,'fsync',side_effect=sync):
+                with self.assertRaises(OSError):bundle.retain_control_generation(fd)
+            target,files,inspection=self.original_material(parent,authority)
+            with patch.object(bundle,'load_custody_inspection',return_value=inspection):
+                result=bundle.inspect_retained_generation(files,fd)
+            self.assertEqual(result['status'],'generation_matches')
+            self.assertFalse(result['completion_confirmed']);self.assertFalse(result['retry_authorized'])
+            with self.assertRaises(FileExistsError):bundle.retain_control_generation(fd)
+
+    def test_inspection_exact_original_authority_parent_and_closed_files(self):
+        with self.fixture() as (base,path,parent,fd,auth,authority,barrier):
+            bundle.retain_control_generation(fd)
+            target,files,inspection=self.original_material(parent,authority)
+            self.assertEqual(bundle.validate_custody_inspection(inspection),inspection)
+            for change in ({'action':'retain-control-generation'},{'expires_at':'2000-01-01T00:00:00Z'},
+                           {'retained_authority_sha256':'bad'},{'extra':True}):
+                with self.subTest(change=change),self.assertRaises(ValueError):bundle.validate_custody_inspection(dict(inspection,**change))
+            for original in (dict(files,**{'expected.json':b'{ }'}),dict(files,**{'extra':b'{}'}),
+                             {name:data for name,data in files.items() if name!='expected.json'},
+                             dict(files,**{'custody-authorization.json':files['custody-authorization.json']+b' '})):
+                with patch.object(bundle,'load_custody_inspection',return_value=inspection):
+                    with self.assertRaises(ValueError):bundle.inspect_retained_generation(original,fd)
+            wrong=dict(inspection,parent=dict(inspection['parent'],inode=inspection['parent']['inode']+1))
+            with patch.object(bundle,'load_custody_inspection',return_value=wrong):
+                with self.assertRaises(ValueError):bundle.inspect_retained_generation(files,fd)
+
+    def test_inspection_denies_tampered_incomplete_extra_or_linked_archive(self):
+        for kind in ('bytes','missing','extra','mode','symlink','hardlink','fifo','receipt'):
+            with self.subTest(kind=kind),self.fixture() as (base,path,parent,fd,auth,authority,barrier):
+                bundle.retain_control_generation(fd)
+                target,files,inspection=self.original_material(parent,authority)
+                file=target/'expected.json'
+                if kind=='bytes':file.write_bytes(b'{ }')
+                elif kind=='missing':file.unlink()
+                elif kind=='extra':(target/'extra').write_bytes(b'{}')
+                elif kind=='mode':file.chmod(0o600)
+                elif kind=='symlink':file.unlink();file.symlink_to(base/'expected.json')
+                elif kind=='hardlink':os.link(file,base/'linked')
+                elif kind=='fifo':file.unlink();os.mkfifo(file)
+                else:(target/'retained.json').write_bytes(b'{}')
+                with patch.object(bundle,'load_custody_inspection',return_value=inspection):
+                    with self.assertRaises((ValueError,OSError)):bundle.inspect_retained_generation(files,fd)
+
+    def test_inspection_denies_authority_revocation_and_generation_replacement(self):
+        for kind in ('revoke','replace'):
+            with self.subTest(kind=kind),self.fixture() as (base,path,parent,fd,auth,authority,barrier):
+                bundle.retain_control_generation(fd)
+                target,files,inspection=self.original_material(parent,authority)
+                reads=[];real_read=bundle._readback_files
+                def read(directory,payloads):
+                    real_read(directory,payloads)
+                    if kind=='replace':
+                        target.rename(parent/'moved');target.mkdir(mode=0o700)
+                def recheck():
+                    reads.append(True)
+                    return dict(inspection,authorization_id='f'*32) if len(reads)>1 else inspection
+                with patch.object(bundle,'load_custody_inspection',side_effect=recheck), \
+                     patch.object(bundle,'_readback_files',side_effect=read):
+                    with self.assertRaises(ValueError):bundle.inspect_retained_generation(files,fd)

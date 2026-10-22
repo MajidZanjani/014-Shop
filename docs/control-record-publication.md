@@ -339,3 +339,35 @@ unknown objects. Short writes pass; sync failures and post-retention revocation
 retain artifacts without a success result, and repeat attempts deny. These tests
 adapt root paths and fake authority; no production records, credentials, protected
 resources or services are modified. The operator CLI remains unchanged.
+
+## Read-only inspection of retained generation custody
+
+`record_bundle.inspect_retained_generation(original_files, parent_fd)` requires
+independent root-owned custody-inspection.json authority: integer schema_version1,
+action inspect-control-generation, authorization_id32 hex, fresh UTC expires_at,
+admission_sha25664 hex, exact parent device/inode and
+retained_authority_sha25664 hex. Exact original admission, admitted control files
+and archived custody-authorization.json are supplied privately; their set,
+raw hashes and duplicate-free JSON are validated before inspection. Historical
+write authority is parsed with expiry enforcement disabled only in this read-only
+path. Original write/retention paths still require fresh authority. No old live
+write authority is read or renewed.
+
+Inspection opens only the deterministic retained directory under the exact
+root0700 parent. It requires the exact root0400 single-link file set and original
+bytes, including the canonical retained.json receipt, then stable directory and
+named-inode metadata and fresh inspection authority before return. Missing,
+extra, altered, linked or wrongly permissioned objects deny; nothing is created,
+written, fsynced, adopted, repaired or removed. The caller FD remains open and
+there is no new CLI or production installation.
+
+A successful generation_matches observation sets completion_confirmed,
+local_fsync_readback_completed, durability_qualified, publication_authorized,
+retry_authorized and reopening_authorized false. Full bytes can remain after a
+failed parent sync, so matching a receipt cannot establish historical completion.
+Local tests cover that exact uncertain case, independently fresh inspection of
+expired historical authority, original hashes/set/parent binding, no writes/sync/
+old authority lookup, tampering/missing/extra/permissions/symlink/hardlink/FIFO,
+receipt corruption, revocation and named-generation replacement. Root paths and
+actual authority remain adapted fixtures; trusted ancestry, independent archive,
+crash durability, publication and reopening qualification remain pending.

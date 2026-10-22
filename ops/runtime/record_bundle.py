@@ -8,6 +8,7 @@ import control
 import hashlib
 import json
 import os
+import re
 import stat
 from control import unique_fields
 from guard import require,validate_expected
@@ -180,13 +181,14 @@ def inspect_candidate(data, parent_fd):
 
 
 
-def validate_custody_authority(value):
+def validate_custody_authority(value, *, require_fresh=True):
     require(type(value) is dict and set(value) == {
         'schema_version','action','authorization_id','expires_at','admission_sha256','parent'})
     require(value['action'] == 'retain-control-generation')
     control.validate_block_authority({key:value[key] for key in
         ('schema_version','authorization_id','expires_at')} | {
-        'action':'block-control-admission','current_admission_sha256':value['admission_sha256']})
+        'action':'block-control-admission','current_admission_sha256':value['admission_sha256']},
+        require_fresh=require_fresh)
     parent = value['parent']
     require(type(parent) is dict and set(parent) == {'device','inode'}
             and all(type(n) is int and n > 0 for n in parent.values()))
@@ -235,12 +237,7 @@ def retain_control_generation(parent_fd):
             require(initial.st_uid == 0 and stat.S_IMODE(initial.st_mode) == 0o700)
             for filename,payload in sorted(files.items()):_stage_file(directory,filename,payload)
             os.fsync(directory)
-            report = {'schema_version':1,'status':'generation_retained',
-                'admission_sha256':authority['admission_sha256'],
-                'file_sha256':{filename:hashlib.sha256(payload).hexdigest()
-                               for filename,payload in sorted(files.items())},
-                'local_fsync_readback_completed':True,'durability_qualified':False,
-                'publication_authorized':False,'retry_authorized':False,'reopening_authorized':False}
+            report = _custody_report(files,authority['admission_sha256'])
             receipt = json.dumps(report,sort_keys=True,separators=(',',':')).encode('ascii')+b'\n'
             _stage_file(directory,'retained.json',receipt)
             os.fsync(directory);os.fsync(parent)
@@ -253,5 +250,81 @@ def retain_control_generation(parent_fd):
                         for key in ('st_dev','st_ino','st_uid','st_gid','st_mode')))
             require(load_custody_authority() == (authority_raw,authority))
             return report
+        finally:os.close(directory)
+    finally:os.close(parent)
+
+
+
+def _custody_report(files, digest):
+    return {'schema_version':1,'status':'generation_retained','admission_sha256':digest,
+            'file_sha256':{name:hashlib.sha256(payload).hexdigest() for name,payload in sorted(files.items())},
+            'local_fsync_readback_completed':True,'durability_qualified':False,
+            'publication_authorized':False,'retry_authorized':False,'reopening_authorized':False}
+
+
+def validate_custody_inspection(value):
+    require(type(value) is dict and set(value) == {
+        'schema_version','action','authorization_id','expires_at','admission_sha256',
+        'parent','retained_authority_sha256'} and value['action'] == 'inspect-control-generation')
+    validate_custody_authority({key:item for key,item in value.items()
+        if key != 'retained_authority_sha256'} | {'action':'retain-control-generation'})
+    digest = value['retained_authority_sha256']
+    require(type(digest) is str and re.fullmatch(r'[a-f0-9]{64}',digest))
+    return value
+
+
+def load_custody_inspection():
+    return control.load_control('custody-inspection.json',validate_custody_inspection)
+
+
+def inspect_retained_generation(original_files, parent_fd):
+    """Compare private original material, never confirm historical completion.
+
+    Independent fresh inspection authority; no live admission, old authority
+    lookup/renewal, file writes, fsync, cleanup, repair, retry or reopening.
+    """
+    require(os.geteuid() == 0 and control._ADMISSION.get() is None)
+    authority = load_custody_inspection()
+    require(type(original_files) is dict)
+    files = dict(original_files)
+    require({'admission.json','custody-authorization.json'} <= set(files)
+            and set(files) <= control.ADMISSION_RECORDS | {'admission.json','custody-authorization.json'})
+    require(all(type(payload) is bytes and 0 < len(payload) <= 32768 for payload in files.values()))
+    manifest = control._validate_admitted(files['admission.json'])
+    require(set(files) == set(manifest['record_sha256']) | {'admission.json','custody-authorization.json'}
+            and hashlib.sha256(files['admission.json']).hexdigest() == authority['admission_sha256']
+            and hashlib.sha256(files['custody-authorization.json']).hexdigest() == authority['retained_authority_sha256'])
+    historical = validate_custody_authority(json.loads(files['custody-authorization.json'],
+        object_pairs_hook=unique_fields),require_fresh=False)
+    require(historical['admission_sha256'] == authority['admission_sha256']
+            and historical['parent'] == authority['parent'])
+    for name,digest in manifest['record_sha256'].items():
+        require(hashlib.sha256(files[name]).hexdigest() == digest)
+        json.loads(files[name],object_pairs_hook=unique_fields)
+    report = _custody_report(files,authority['admission_sha256'])
+    receipt = json.dumps(report,sort_keys=True,separators=(',',':')).encode('ascii')+b'\n'
+    parent = os.dup(parent_fd)
+    os.set_inheritable(parent,False)
+    try:
+        before = os.fstat(parent)
+        require(stat.S_ISDIR(before.st_mode) and before.st_uid == 0
+                and stat.S_IMODE(before.st_mode) == 0o700
+                and (before.st_dev,before.st_ino) ==
+                    (authority['parent']['device'],authority['parent']['inode']))
+        name = 'generation-'+authority['admission_sha256']
+        directory = os.open(name,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW|os.O_CLOEXEC,dir_fd=parent)
+        try:
+            initial = os.fstat(directory)
+            require(initial.st_uid == 0 and stat.S_IMODE(initial.st_mode) == 0o700)
+            _readback_files(directory,{**files,'retained.json':receipt})
+            after = os.fstat(directory)
+            named = os.stat(name,dir_fd=parent,follow_symlinks=False)
+            require(all(getattr(initial,key) == getattr(after,key) == getattr(named,key) for key in STABLE_FIELDS))
+            current = os.fstat(parent)
+            require(all(getattr(before,key) == getattr(current,key)
+                        for key in ('st_dev','st_ino','st_uid','st_gid','st_mode')))
+            require(load_custody_inspection() == authority)
+            return dict(report,status='generation_matches',local_fsync_readback_completed=False,
+                        completion_confirmed=False)
         finally:os.close(directory)
     finally:os.close(parent)

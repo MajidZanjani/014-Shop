@@ -1,0 +1,1266 @@
+{
+  "evidence_class": "local-realized-nix-closure",
+  "flake_lock_sha256": "865a3c07a35f43f024ce7c01614be82cb795707edac8e27092bdbba42519cd75",
+  "inventory_complete": false,
+  "legal_approval": false,
+  "missing_local_derivations": [
+    "/nix/store/16swl0i6xjip9xa4wylmyg9c3hsg8k1r-expat-2.8.5.drv",
+    "/nix/store/22hc96bp6qmzms3fxb7d8mpaxbza88an-tzdata-2026c.drv",
+    "/nix/store/383s9pc1ssvsyw8p1krcmkfbla230dyk-libffi-3.8.0.drv",
+    "/nix/store/38vcag99xd0r5xxy0g3igyypfz0qfln6-keyutils-1.6.3.drv",
+    "/nix/store/4lqadr4prlfg41kiriraqh41a4vk7p9r-publicsuffix-list-0-unstable-2026-05-13.drv",
+    "/nix/store/6732i7c5wn0llzsgja2xa0nxsw2jywsj-ncurses-6.6.drv",
+    "/nix/store/7q0q5dgnn2q81pb2d1l47875m24ll6cp-nghttp3-1.15.0.drv",
+    "/nix/store/9qzg0ydk2fm0rjrcwg5a4zbm653vc1kb-brotli-1.2.0.drv",
+    "/nix/store/9wickk6d009r8mry0p8gpsiji6m67g91-readline-8.3p3.drv",
+    "/nix/store/kd3dsqy8akrixdh8swk21xm8j98wyqvv-zstd-1.5.7.drv",
+    "/nix/store/myi8y4cfgcz8i26xr4yaxag73n5prp2y-mailcap-2.1.54.drv",
+    "/nix/store/r9y3zhflxpww7i20z6rqwwcxrn2r90b5-util-linux-minimal-2.42.3.drv",
+    "/nix/store/sinwsxjppc6jc167i57yqwj6avm690x2-mpdecimal-4.0.1.drv",
+    "/nix/store/xs96hh6vnw41z1hc10j748lgcrdm6hzf-sqlite-3.51.2.drv",
+    "/nix/store/ywp03z8jsqqbl6bqslvhpnmwlq5sjwcn-gdbm-1.26.drv"
+  ],
+  "nix_version": "nix (Nix) 2.34.7",
+  "nodes": {
+    "/nix/store/0vw7gvcazcjqc762x7vg3l31cpx65l7i-gcc-15.3.0-libgcc": {
+      "derivation_sha256": "628cb524be4d82a816b0c991af4d4cabd17844c96fc229ea85c551df83340175",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/ss9rn8rmcy4h5i7s4v7bswf1br6yfxdz-gcc-15.3.0.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-8aeSawLWybYcM/jOKI3x3iCSWJWQNKtWh6zQM3EnYjU=",
+      "nar_size": 197752,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": "gcc",
+        "declared_version": "15.3.0",
+        "name": "gcc-15.3.0",
+        "outputs": {
+          "checksum": "/nix/store/7hlr3v37f8dyn7hi7rgk79489idrha5p-gcc-15.3.0-checksum",
+          "info": "/nix/store/qzfy2frkkp3k793dzwz1x986jbxzdkjl-gcc-15.3.0-info",
+          "lib": "/nix/store/dqj57l1prad38vjrad4bs9d977i4q5zm-gcc-15.3.0-lib",
+          "libgcc": "/nix/store/0vw7gvcazcjqc762x7vg3l31cpx65l7i-gcc-15.3.0-libgcc",
+          "man": "/nix/store/h5dsdg7gh5zm9a6yba9mz96s2si7p4bv-gcc-15.3.0-man",
+          "out": "/nix/store/s2f0mfx0iiap9yxmlfvq0psn26jsbind-gcc-15.3.0"
+        },
+        "source_provenance_status": "recipe-source-pointer-only",
+        "source_store_path": "/nix/store/6b75ff0llvr4z03wzs42cinwflnp4l1h-gcc-15.3.0.tar.xz",
+        "system": "x86_64-linux"
+      },
+      "references": []
+    },
+    "/nix/store/19bnjl5xmgsl194795xddyc61f70f4rg-shop-database-tools-source": {
+      "derivation_sha256": "68c1d4fc06c1d974d52e2795101fc7620d26e1304f730fabe4f810f3cccb2d03",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/74vy8wfa09vlwhahdrhc2vfs0znvlz44-shop-database-tools-source.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-KztHYWZ19466CgG946IXNThRx1tjViNlNFGEp66W08M=",
+      "nar_size": 4144,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": null,
+        "declared_version": null,
+        "name": "shop-database-tools-source",
+        "outputs": {
+          "out": "/nix/store/19bnjl5xmgsl194795xddyc61f70f4rg-shop-database-tools-source"
+        },
+        "source_provenance_status": "no-source-attribute-in-recipe",
+        "source_store_path": null,
+        "system": "x86_64-linux"
+      },
+      "references": [
+        "/nix/store/51dp9sxwsr88vw57jzhx4n7n84x34qcw-shop-db-operator_inspect.py",
+        "/nix/store/55x1r0qz2gr3bb49lvl7b7i8fy09wj01-shop-schema-ledger.sql",
+        "/nix/store/5i516n7r2fh3gs516jbdpdh102nml3v0-shop-db-control.py",
+        "/nix/store/9dq2llf2zygd87mym5mr9dlk0lpl0q5l-shop-database-tools.json",
+        "/nix/store/9hpm22qngy2xcirwqdn21rrfymd3k6cv-shop-db-operator_schema.py",
+        "/nix/store/akc0p8bw70kc0s7ligdjgd0cgg714f94-shop-db-process_probe.py",
+        "/nix/store/axmryr9rbvm9y9ii22q2wnmg4dfsd30s-shop-db-guard.py",
+        "/nix/store/kx9df7c3mqj9zjbm83zbfwbrsxgjlpkr-shop-db-database.py",
+        "/nix/store/lk48gxiwvz19k9lpyjnplg227fjs7mjb-shop-db-schema_authorization.py",
+        "/nix/store/np25yg59dav13f7j7pdb25pifkj7b9pi-shop-db-record_bundle.py",
+        "/nix/store/rizqp9bgwh15ilyfphv6yc9rzpdzvw14-shop-db-ledger_bootstrap.py",
+        "/nix/store/z9pl487y5vkkp6k78sak23497djxmin0-shop-db-schema_reconciliation.py"
+      ]
+    },
+    "/nix/store/3gnbcz1h1xxfby9khvv04ighy6nn4p4i-gdbm-1.26-lib": {
+      "derivation_sha256": null,
+      "derivation_status": "missing-local-recipe-review-pending",
+      "deriver": "/nix/store/ywp03z8jsqqbl6bqslvhpnmwlq5sjwcn-gdbm-1.26.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-UoGpGsxKjD1oIqFeWbIrtYfz29ByaXAPCJZFyq62c1A=",
+      "nar_size": 459384,
+      "recipe": null,
+      "references": [
+        "/nix/store/3gnbcz1h1xxfby9khvv04ighy6nn4p4i-gdbm-1.26-lib",
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100"
+      ]
+    },
+    "/nix/store/51dp9sxwsr88vw57jzhx4n7n84x34qcw-shop-db-operator_inspect.py": {
+      "derivation_sha256": "c4b6fd228eed63fdccdd7d2c95a73bdcf56e8ad03136b488f1b9c8a501d4caa3",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/7qj280c6bdrvak9qshgz0cqg1z7y24hf-shop-db-operator_inspect.py.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-5yHmlXzy994ZcOjTa1amhASMkGIeN/3wtwKEfV/MEF0=",
+      "nar_size": 7680,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": null,
+        "declared_version": null,
+        "name": "shop-db-operator_inspect.py",
+        "outputs": {
+          "out": "/nix/store/51dp9sxwsr88vw57jzhx4n7n84x34qcw-shop-db-operator_inspect.py"
+        },
+        "source_provenance_status": "no-source-attribute-in-recipe",
+        "source_store_path": null,
+        "system": "x86_64-linux"
+      },
+      "references": []
+    },
+    "/nix/store/55kg73zr3x4x8lfnpjf9k11p7wy8ad5j-postgresql-18.6-lib": {
+      "derivation_sha256": "24ad9df95900e4775f36538460f33952555c609227bfe8201237fb0c6f7c69ce",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/bx88a3mykh9q0fhrjfzdvszph7mkpdfw-postgresql-18.6.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-9r8Yc+8mDyU+nalSfydu2EU0StUdljVqk2V+93/nJQc=",
+      "nar_size": 703136,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": "postgresql",
+        "declared_version": "18.6",
+        "name": "postgresql-18.6",
+        "outputs": {
+          "debug": "/nix/store/lzq77sl189a4mvvjck0vnng9ms27z7s0-postgresql-18.6-debug",
+          "dev": "/nix/store/rndhm8wrlr024h3nym2jysmv64745m87-postgresql-18.6-dev",
+          "doc": "/nix/store/pgwql7kz72pdmwbax9xx981dw0kz4xfk-postgresql-18.6-doc",
+          "jit": "/nix/store/iz6bhmwz12pn3q7lw1xvrzxngsm3aljq-postgresql-18.6-jit",
+          "lib": "/nix/store/55kg73zr3x4x8lfnpjf9k11p7wy8ad5j-postgresql-18.6-lib",
+          "man": "/nix/store/4w6ypjq3z45g043xyq0g3h6g4i3bixvr-postgresql-18.6-man",
+          "out": "/nix/store/r9m7pml7sjm3a91pi63wl06gjiw8ll9v-postgresql-18.6",
+          "plperl": "/nix/store/pcq57q7j8dkfyadx8i81fnzkg5zkhx2p-postgresql-18.6-plperl",
+          "plpython3": "/nix/store/icajb8qmmc465g3gxlvmd8nkzgj81qna-postgresql-18.6-plpython3",
+          "pltcl": "/nix/store/4v7c8jppk1sacrhpzf97i89w0z0prgsq-postgresql-18.6-pltcl"
+        },
+        "source_provenance_status": "recipe-source-pointer-only",
+        "source_store_path": "/nix/store/bwpqlah00sz6f6mys9c40sxh8finswkw-postgresql-18.6.tar.bz2",
+        "system": "x86_64-linux"
+      },
+      "references": [
+        "/nix/store/55kg73zr3x4x8lfnpjf9k11p7wy8ad5j-postgresql-18.6-lib",
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100",
+        "/nix/store/kysvfcf8d8v26rr32xfqji8ri2lczlqk-openssl-3.6.5",
+        "/nix/store/q3lhcbjc0bxxiqnhcp2vslmn9mh3f256-curl-8.22.0",
+        "/nix/store/yfvrxfh24kxshxsvgic60893sy8h4shc-krb5-1.22.2-lib"
+      ]
+    },
+    "/nix/store/55x1r0qz2gr3bb49lvl7b7i8fy09wj01-shop-schema-ledger.sql": {
+      "derivation_sha256": "2b89640d09d3064953bdaefde1db0b815fb2970b1de30f1c38aabbe613a4448c",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/dll6drs5m3dipjyvlalbjb1dndzq6ccn-shop-schema-ledger.sql.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-OBvOnVtI64Z87nfdUfP3fLHc1K9HZcHC7ezRQU7NhYE=",
+      "nar_size": 616,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": null,
+        "declared_version": null,
+        "name": "shop-schema-ledger.sql",
+        "outputs": {
+          "out": "/nix/store/55x1r0qz2gr3bb49lvl7b7i8fy09wj01-shop-schema-ledger.sql"
+        },
+        "source_provenance_status": "no-source-attribute-in-recipe",
+        "source_store_path": null,
+        "system": "x86_64-linux"
+      },
+      "references": []
+    },
+    "/nix/store/5i516n7r2fh3gs516jbdpdh102nml3v0-shop-db-control.py": {
+      "derivation_sha256": "a5791f1c6e470074e212d4f3367a5a705ea21ae4eeb9e76e54f8db73e97eaf8c",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/3iwchmgv0wx65kkd04sq631nqida304j-shop-db-control.py.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-sqtvMHsAl2BICa25YpvLRmW+qELQmnksm0t/XpG4jso=",
+      "nar_size": 12232,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": null,
+        "declared_version": null,
+        "name": "shop-db-control.py",
+        "outputs": {
+          "out": "/nix/store/5i516n7r2fh3gs516jbdpdh102nml3v0-shop-db-control.py"
+        },
+        "source_provenance_status": "no-source-attribute-in-recipe",
+        "source_store_path": null,
+        "system": "x86_64-linux"
+      },
+      "references": []
+    },
+    "/nix/store/5s4ahr76fzx3p4z0fyhphskham55nkhb-nghttp3-1.15.0": {
+      "derivation_sha256": null,
+      "derivation_status": "missing-local-recipe-review-pending",
+      "deriver": "/nix/store/7q0q5dgnn2q81pb2d1l47875m24ll6cp-nghttp3-1.15.0.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-m2zTMQE8Eh8Lv2xnOuOxC66KSrkxqWZbtWe+8eRPZdM=",
+      "nar_size": 233128,
+      "recipe": null,
+      "references": [
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100"
+      ]
+    },
+    "/nix/store/6s4wm3zl2y0v5g998n2g88k1zh3vf2pr-zlib-1.3.2": {
+      "derivation_sha256": "96abbc1635cf7cf81f298815eecf9523b90b978997f4d480fdabb4a568f99882",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/4h14gh40cmy92iwbsv9z0rxcchi0c980-zlib-1.3.2.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-MlqHh3YOaQbK5SC63dHNW4oKPQF+97j7QPdrfmBMHTY=",
+      "nar_size": 132608,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": "zlib",
+        "declared_version": "1.3.2",
+        "name": "zlib-1.3.2",
+        "outputs": {
+          "dev": "/nix/store/2k9dj65vyanlvq863ks3ii7cjx82kfng-zlib-1.3.2-dev",
+          "out": "/nix/store/6s4wm3zl2y0v5g998n2g88k1zh3vf2pr-zlib-1.3.2",
+          "static": "/nix/store/xvpdcmxbccnavnw2dciidp0zrknzr1db-zlib-1.3.2-static"
+        },
+        "source_provenance_status": "recipe-source-pointer-only",
+        "source_store_path": "/nix/store/13vkic2v8zac4m6p38asdhasb3xylv07-zlib-1.3.2.tar.gz",
+        "system": "x86_64-linux"
+      },
+      "references": [
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100"
+      ]
+    },
+    "/nix/store/7zbzvm0bwa2mh5dp3p5gasix417lysxc-zstd-1.5.7": {
+      "derivation_sha256": null,
+      "derivation_status": "missing-local-recipe-review-pending",
+      "deriver": "/nix/store/kd3dsqy8akrixdh8swk21xm8j98wyqvv-zstd-1.5.7.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-TZK0fyNZKPsb8FokGlKOcuTa3dRn2IZJ6LjXKyI3EFg=",
+      "nar_size": 1202224,
+      "recipe": null,
+      "references": [
+        "/nix/store/7zbzvm0bwa2mh5dp3p5gasix417lysxc-zstd-1.5.7",
+        "/nix/store/dqj57l1prad38vjrad4bs9d977i4q5zm-gcc-15.3.0-lib",
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100"
+      ]
+    },
+    "/nix/store/9csszq0cch2npq0flybqmvkabb1dj3r4-libssh2-1.11.1": {
+      "derivation_sha256": "3440c2e733b7d52184ab53dc8612bfa4a5244f6226c4d41ab900bf51cf0eaba9",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/cd7iw2vmzd7n3k5a39wq9c7r61z2m97p-libssh2-1.11.1.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-WYLZxXCj25NicguKuJvu9vfFD0TPuHkQ2t4+YvK4RKk=",
+      "nar_size": 338512,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": "libssh2",
+        "declared_version": "1.11.1",
+        "name": "libssh2-1.11.1",
+        "outputs": {
+          "dev": "/nix/store/7mwhrh8kgxrjn8mzyq2v5n9rcmpzwc91-libssh2-1.11.1-dev",
+          "devdoc": "/nix/store/6aklq7gbsd5m3fsb2sbi4sgcqbg8vqsd-libssh2-1.11.1-devdoc",
+          "out": "/nix/store/9csszq0cch2npq0flybqmvkabb1dj3r4-libssh2-1.11.1"
+        },
+        "source_provenance_status": "recipe-source-pointer-only",
+        "source_store_path": "/nix/store/j04yfblg6sk5abb4n067xv0x0dfraf73-libssh2-1.11.1.tar.gz",
+        "system": "x86_64-linux"
+      },
+      "references": [
+        "/nix/store/6s4wm3zl2y0v5g998n2g88k1zh3vf2pr-zlib-1.3.2",
+        "/nix/store/9csszq0cch2npq0flybqmvkabb1dj3r4-libssh2-1.11.1",
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100",
+        "/nix/store/kysvfcf8d8v26rr32xfqji8ri2lczlqk-openssl-3.6.5"
+      ]
+    },
+    "/nix/store/9dq2llf2zygd87mym5mr9dlk0lpl0q5l-shop-database-tools.json": {
+      "derivation_sha256": "d6da60e101c4837261035fa82af5396b73ebfb228bdb13d29a9e8cd7fb67d1df",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/gjkarpvvdwam8daq5k0scfd49wh0qgnw-shop-database-tools.json.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-8Z+yxsaSH6yzglBAgTKvbfNFYk0OnB13yJgCGaGLzaA=",
+      "nar_size": 1448,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": null,
+        "declared_version": null,
+        "name": "shop-database-tools.json",
+        "outputs": {
+          "out": "/nix/store/9dq2llf2zygd87mym5mr9dlk0lpl0q5l-shop-database-tools.json"
+        },
+        "source_provenance_status": "no-source-attribute-in-recipe",
+        "source_store_path": null,
+        "system": "x86_64-linux"
+      },
+      "references": []
+    },
+    "/nix/store/9hpm22qngy2xcirwqdn21rrfymd3k6cv-shop-db-operator_schema.py": {
+      "derivation_sha256": "c6492d0dceac110e59cc948a380aa3aa7a81bebccad9da1e2bb0126e09583c85",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/xs9wds2wv02xknf8cqh4g7p0znxzxjfp-shop-db-operator_schema.py.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-Hez2SS5GokU2Y8CZt+QDadgqwV2lEtQm7pDY7uYEvvI=",
+      "nar_size": 5992,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": null,
+        "declared_version": null,
+        "name": "shop-db-operator_schema.py",
+        "outputs": {
+          "out": "/nix/store/9hpm22qngy2xcirwqdn21rrfymd3k6cv-shop-db-operator_schema.py"
+        },
+        "source_provenance_status": "no-source-attribute-in-recipe",
+        "source_store_path": null,
+        "system": "x86_64-linux"
+      },
+      "references": []
+    },
+    "/nix/store/adygr6jyf3xbv37lnvm4lj4cy85g0ajg-mpdecimal-4.0.1": {
+      "derivation_sha256": null,
+      "derivation_status": "missing-local-recipe-review-pending",
+      "deriver": "/nix/store/sinwsxjppc6jc167i57yqwj6avm690x2-mpdecimal-4.0.1.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-g84aKb+vXlMTwpTT7SAgJuPe1tFsIe6NNUMRrIDJqBc=",
+      "nar_size": 226192,
+      "recipe": null,
+      "references": [
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100"
+      ]
+    },
+    "/nix/store/akc0p8bw70kc0s7ligdjgd0cgg714f94-shop-db-process_probe.py": {
+      "derivation_sha256": "c1a119bab4f9ab32534da0f0c952bc97d8d94b5a02b6f81310a9d51b39b17972",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/0gvlxgrwnfiwwfdh6vszr2dsnwhijims-shop-db-process_probe.py.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-qKIr0ufnC0N1AnGFkKaI9DBaFQYV/TN3jCEr+90zibY=",
+      "nar_size": 7952,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": null,
+        "declared_version": null,
+        "name": "shop-db-process_probe.py",
+        "outputs": {
+          "out": "/nix/store/akc0p8bw70kc0s7ligdjgd0cgg714f94-shop-db-process_probe.py"
+        },
+        "source_provenance_status": "no-source-attribute-in-recipe",
+        "source_store_path": null,
+        "system": "x86_64-linux"
+      },
+      "references": []
+    },
+    "/nix/store/axmryr9rbvm9y9ii22q2wnmg4dfsd30s-shop-db-guard.py": {
+      "derivation_sha256": "9a3841c3e40a0c15d14c62408f9810808247a62ff26737242dfe7d94cb1e3716",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/zsx8yzibbc2bav76677cwfpzm4kd9mlg-shop-db-guard.py.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-O4ImP68fNg5CTrBB3sX/Qokd1u8zOoBiVjSygzHArYI=",
+      "nar_size": 6704,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": null,
+        "declared_version": null,
+        "name": "shop-db-guard.py",
+        "outputs": {
+          "out": "/nix/store/axmryr9rbvm9y9ii22q2wnmg4dfsd30s-shop-db-guard.py"
+        },
+        "source_provenance_status": "no-source-attribute-in-recipe",
+        "source_store_path": null,
+        "system": "x86_64-linux"
+      },
+      "references": []
+    },
+    "/nix/store/b56ind0m3byv7pzby5mwsn5qsy1g6lqf-expat-2.8.5": {
+      "derivation_sha256": null,
+      "derivation_status": "missing-local-recipe-review-pending",
+      "deriver": "/nix/store/16swl0i6xjip9xa4wylmyg9c3hsg8k1r-expat-2.8.5.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-VjjdaDBGkZw1u8SrtxoNGBVnLRshoa1wDqtZgmaJRkA=",
+      "nar_size": 334960,
+      "recipe": null,
+      "references": [
+        "/nix/store/b56ind0m3byv7pzby5mwsn5qsy1g6lqf-expat-2.8.5",
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100"
+      ]
+    },
+    "/nix/store/bhv6xyvqw6gjs3j488gi1z6wdv18bdpa-coreutils-9.11": {
+      "derivation_sha256": "4f43dce080a879e39d689e69453d9bb298e4be97096754c819e98e7f79fa5ccf",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/3l7bj57n7b6y0w321f9sfw5rlqq4ik0g-coreutils-9.11.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-kdZsQ/asHe3OecMYVdFLzoNBgh+xmsGfKkJQ3jwZyp8=",
+      "nar_size": 1806736,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": "coreutils",
+        "declared_version": "9.11",
+        "name": "coreutils-9.11",
+        "outputs": {
+          "debug": "/nix/store/27ppi1aw9711bjhds28qlpaz7mhcq7dl-coreutils-9.11-debug",
+          "info": "/nix/store/8gc7xlhafbwi95pyvsl1qllxylxbli5f-coreutils-9.11-info",
+          "out": "/nix/store/bhv6xyvqw6gjs3j488gi1z6wdv18bdpa-coreutils-9.11"
+        },
+        "source_provenance_status": "recipe-source-pointer-only",
+        "source_store_path": "/nix/store/p59cz49l5faa67c72wxdql3jfj9gy2fn-coreutils-9.11.tar.xz",
+        "system": "x86_64-linux"
+      },
+      "references": [
+        "/nix/store/bhv6xyvqw6gjs3j488gi1z6wdv18bdpa-coreutils-9.11",
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100",
+        "/nix/store/j7gw09i8msa13fvpv20j98hp6id9k2ql-acl-2.4.0",
+        "/nix/store/xj8g46bl0ps12qw46gi9gacm493m3pff-gmp-with-cxx-6.3.0",
+        "/nix/store/zfsvnb0vxwck1hq55j4900f7rrpm5y9y-attr-2.6.0"
+      ]
+    },
+    "/nix/store/dqj57l1prad38vjrad4bs9d977i4q5zm-gcc-15.3.0-lib": {
+      "derivation_sha256": "628cb524be4d82a816b0c991af4d4cabd17844c96fc229ea85c551df83340175",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/ss9rn8rmcy4h5i7s4v7bswf1br6yfxdz-gcc-15.3.0.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-V9UfiOgod8B1bPCAj1knpjHlIpx/u2IajRbmHZ1sriw=",
+      "nar_size": 10317392,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": "gcc",
+        "declared_version": "15.3.0",
+        "name": "gcc-15.3.0",
+        "outputs": {
+          "checksum": "/nix/store/7hlr3v37f8dyn7hi7rgk79489idrha5p-gcc-15.3.0-checksum",
+          "info": "/nix/store/qzfy2frkkp3k793dzwz1x986jbxzdkjl-gcc-15.3.0-info",
+          "lib": "/nix/store/dqj57l1prad38vjrad4bs9d977i4q5zm-gcc-15.3.0-lib",
+          "libgcc": "/nix/store/0vw7gvcazcjqc762x7vg3l31cpx65l7i-gcc-15.3.0-libgcc",
+          "man": "/nix/store/h5dsdg7gh5zm9a6yba9mz96s2si7p4bv-gcc-15.3.0-man",
+          "out": "/nix/store/s2f0mfx0iiap9yxmlfvq0psn26jsbind-gcc-15.3.0"
+        },
+        "source_provenance_status": "recipe-source-pointer-only",
+        "source_store_path": "/nix/store/6b75ff0llvr4z03wzs42cinwflnp4l1h-gcc-15.3.0.tar.xz",
+        "system": "x86_64-linux"
+      },
+      "references": [
+        "/nix/store/0vw7gvcazcjqc762x7vg3l31cpx65l7i-gcc-15.3.0-libgcc",
+        "/nix/store/dqj57l1prad38vjrad4bs9d977i4q5zm-gcc-15.3.0-lib",
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100"
+      ]
+    },
+    "/nix/store/drxakd25lbv35flbk8f01bqq417j9czw-nghttp2-1.69.0-lib": {
+      "derivation_sha256": "6854a393382e886fdcd144e8a5124adaa02aed71b549c2cee6c68451e377ef9f",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/f1m10914mg6shrwalfwzdwfbxv3hkmja-nghttp2-1.69.0.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-xvheF99IssrFybFD2/8AgkwccGyuk5QK+sd7znW8ahc=",
+      "nar_size": 230728,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": "nghttp2",
+        "declared_version": "1.69.0",
+        "name": "nghttp2-1.69.0",
+        "outputs": {
+          "dev": "/nix/store/6s6ajz3vw48qxnqggp9pih22af5gdc6r-nghttp2-1.69.0-dev",
+          "doc": "/nix/store/i7xi4kbzgni8cjm8zr4c8g5g2f8r5hpn-nghttp2-1.69.0-doc",
+          "lib": "/nix/store/drxakd25lbv35flbk8f01bqq417j9czw-nghttp2-1.69.0-lib",
+          "man": "/nix/store/22z60ia2s4c1p5c8hq5l940sw1cqba5i-nghttp2-1.69.0-man",
+          "out": "/nix/store/yslvvfdr3dfdn4wykgf8qh6bdyfyxqcc-nghttp2-1.69.0"
+        },
+        "source_provenance_status": "recipe-source-pointer-only",
+        "source_store_path": "/nix/store/q43sdpfy99b1wskg3vh1hcg7ryq9f094-nghttp2-1.69.0.tar.bz2",
+        "system": "x86_64-linux"
+      },
+      "references": [
+        "/nix/store/drxakd25lbv35flbk8f01bqq417j9czw-nghttp2-1.69.0-lib",
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100"
+      ]
+    },
+    "/nix/store/f609k7r23gic2vl1xj29rf5bn1qph8lg-shop-operator-psycopg-site": {
+      "derivation_sha256": "ca20af5eef9ab01437af4e79a899db0daf51c0b4f47bbffde7cbe416f017c5c1",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/3iy0g9r8pi03msf5l9gj50whgnvp966v-shop-operator-psycopg-site.drv",
+      "named_notices": [
+        {
+          "path": "site/psycopg-3.3.6.dist-info/licenses/LICENSE.txt",
+          "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118",
+          "size": 7652
+        }
+      ],
+      "nar_hash": "sha256-ALBjTHcG71T8o1IfZV+VY3GVA2QgX5w9+1K9ZbRF96w=",
+      "nar_size": 762392,
+      "notice_status": "candidates-found-review-pending",
+      "recipe": {
+        "declared_pname": null,
+        "declared_version": null,
+        "name": "shop-operator-psycopg-site",
+        "outputs": {
+          "out": "/nix/store/f609k7r23gic2vl1xj29rf5bn1qph8lg-shop-operator-psycopg-site"
+        },
+        "source_provenance_status": "no-source-attribute-in-recipe",
+        "source_store_path": null,
+        "system": "x86_64-linux"
+      },
+      "references": []
+    },
+    "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100": {
+      "derivation_sha256": "892ef0b6ec8b2af52297f0c5409b419eae13353445b35b0dff569ad3703ed4df",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-c9VTB0ezSOYH331yInQ5a7N73FFzdKcvzI6Jk9tFNSU=",
+      "nar_size": 35073208,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": "glibc",
+        "declared_version": "2.42-100",
+        "name": "glibc-2.42-100",
+        "outputs": {
+          "bin": "/nix/store/kgd806ssw99qaxwiislhfx5dwnc8k893-glibc-2.42-100-bin",
+          "debug": "/nix/store/v98mh5jg68nn9cbzsnism0zjyrqib666-glibc-2.42-100-debug",
+          "dev": "/nix/store/sr08dm9x0fsa1mrzjrlb3csdcmilsraz-glibc-2.42-100-dev",
+          "getent": "/nix/store/9a6dqr6vgdi4qidprg92l3k9kkv13xyn-glibc-2.42-100-getent",
+          "out": "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100",
+          "static": "/nix/store/730n9ixp9w48l4jwxh42qhkaj2q0zvrk-glibc-2.42-100-static"
+        },
+        "source_provenance_status": "recipe-source-pointer-only",
+        "source_store_path": "/nix/store/6zxixmszg0vbhpaa8rxwfr05by9axj68-glibc-2.42.tar.xz",
+        "system": "x86_64-linux"
+      },
+      "references": [
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100",
+        "/nix/store/l1n6wi2lyzglvgzbwzw9n9w2pzkcj41i-xgcc-15.3.0-libgcc",
+        "/nix/store/l5y42bimjvvn8h3v5y40w13vv7y2p3k5-libidn2-2.3.8"
+      ]
+    },
+    "/nix/store/g49nqr7si7n6z4jlh8cwyxxlggkj2i8p-publicsuffix-list-0-unstable-2026-05-13": {
+      "derivation_sha256": null,
+      "derivation_status": "missing-local-recipe-review-pending",
+      "deriver": "/nix/store/4lqadr4prlfg41kiriraqh41a4vk7p9r-publicsuffix-list-0-unstable-2026-05-13.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-RoYmk5JxPOkArV815zDkRFKxqxJByK9qY7BQytRx6V4=",
+      "nar_size": 337752,
+      "recipe": null,
+      "references": []
+    },
+    "/nix/store/g64gr9m6lhzp9aq393yv0sxlr5176jrc-brotli-1.2.0-lib": {
+      "derivation_sha256": null,
+      "derivation_status": "missing-local-recipe-review-pending",
+      "deriver": "/nix/store/9qzg0ydk2fm0rjrcwg5a4zbm653vc1kb-brotli-1.2.0.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-rqagD9L9oABVlqo44WcjPBMP6tdq3eVWm7GoQiABVrc=",
+      "nar_size": 984976,
+      "recipe": null,
+      "references": [
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100",
+        "/nix/store/g64gr9m6lhzp9aq393yv0sxlr5176jrc-brotli-1.2.0-lib"
+      ]
+    },
+    "/nix/store/g6mvl9ns7k52zfv9pcfw3dbh65z3j7id-libunistring-1.4.2": {
+      "derivation_sha256": "8563c6b72ee96e36d5cdd5a54806eefc7d6124c0d1633175a14c195f75524471",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/5619yyfjmswzmq0vn5y69xcdlzv4nj7g-libunistring-1.4.2.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-Z6bmPhxtAUNI+KjrT9Ro7yBPC9iEi5TDpdKYFm/EUZE=",
+      "nar_size": 2078944,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": "libunistring",
+        "declared_version": "1.4.2",
+        "name": "libunistring-1.4.2",
+        "outputs": {
+          "dev": "/nix/store/2qd533hi07p85w7vf1jkxn106ggs4xm6-libunistring-1.4.2-dev",
+          "doc": "/nix/store/nrz5l97j2ax1bcqjandbwayvdw79c32n-libunistring-1.4.2-doc",
+          "info": "/nix/store/xpab61wbqj8xxgw3jx3mqviywjivj98z-libunistring-1.4.2-info",
+          "out": "/nix/store/g6mvl9ns7k52zfv9pcfw3dbh65z3j7id-libunistring-1.4.2"
+        },
+        "source_provenance_status": "recipe-source-pointer-only",
+        "source_store_path": "/nix/store/l6b9nvw7fhknbn8f4g7zgglg5y2cf5ki-libunistring-1.4.2.tar.gz",
+        "system": "x86_64-linux"
+      },
+      "references": [
+        "/nix/store/g6mvl9ns7k52zfv9pcfw3dbh65z3j7id-libunistring-1.4.2"
+      ]
+    },
+    "/nix/store/hf8a95j1jr8bjmxb93np94xlqwqr492x-libffi-3.8.0": {
+      "derivation_sha256": null,
+      "derivation_status": "missing-local-recipe-review-pending",
+      "deriver": "/nix/store/383s9pc1ssvsyw8p1krcmkfbla230dyk-libffi-3.8.0.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-8RdUAMDVM+q1NsaJ9S+KcwAXqRborbIhOS4QvF4vigU=",
+      "nar_size": 95792,
+      "recipe": null,
+      "references": [
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100",
+        "/nix/store/hf8a95j1jr8bjmxb93np94xlqwqr492x-libffi-3.8.0"
+      ]
+    },
+    "/nix/store/hw26gin576lvhnmfkv5fqm4nayj9qwdi-util-linux-minimal-2.42.3-lib": {
+      "derivation_sha256": null,
+      "derivation_status": "missing-local-recipe-review-pending",
+      "deriver": "/nix/store/r9y3zhflxpww7i20z6rqwwcxrn2r90b5-util-linux-minimal-2.42.3.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-DxdqO7e43ZoHMuqtBVunpR4xmcbUyd1FvrX0wMKm70g=",
+      "nar_size": 2100904,
+      "recipe": null,
+      "references": [
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100",
+        "/nix/store/hw26gin576lvhnmfkv5fqm4nayj9qwdi-util-linux-minimal-2.42.3-lib"
+      ]
+    },
+    "/nix/store/hzwckv1kq2pqa7010zph0a6j0xfbyvwa-readline-8.3p3": {
+      "derivation_sha256": null,
+      "derivation_status": "missing-local-recipe-review-pending",
+      "deriver": "/nix/store/9wickk6d009r8mry0p8gpsiji6m67g91-readline-8.3p3.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-a8RPwOCD3ddJ7unu0ylWI45BT5pT51f1T+LVgdyN+Tw=",
+      "nar_size": 506392,
+      "recipe": null,
+      "references": [
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100",
+        "/nix/store/wpyc0r4d4idaq96y0dc1375ziabl4b38-ncurses-6.6"
+      ]
+    },
+    "/nix/store/j7gw09i8msa13fvpv20j98hp6id9k2ql-acl-2.4.0": {
+      "derivation_sha256": "7e815555f2210c75ac2082d4ea710666e82f252f78b795f8b209c124180a1862",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/6qdkyginmgiq4ing2w0mg7nhh6hwgcir-acl-2.4.0.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-W3s+Qy4rBifUsRVGIeV8q+OEbmUNnlkK7JIIm7lUF3c=",
+      "nar_size": 137600,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": "acl",
+        "declared_version": "2.4.0",
+        "name": "acl-2.4.0",
+        "outputs": {
+          "bin": "/nix/store/vfn0r8d1gzidlvj4nr45n5pq2hw9alin-acl-2.4.0-bin",
+          "dev": "/nix/store/xklk0y1rk34f9x6qbbwxliy3y8kglhpd-acl-2.4.0-dev",
+          "doc": "/nix/store/41m573nqmnq2k0zl929pc4263cylqnyi-acl-2.4.0-doc",
+          "man": "/nix/store/wd8070gqyv58kmlg9zq156frp8q0l6kz-acl-2.4.0-man",
+          "out": "/nix/store/j7gw09i8msa13fvpv20j98hp6id9k2ql-acl-2.4.0"
+        },
+        "source_provenance_status": "recipe-source-pointer-only",
+        "source_store_path": "/nix/store/6bjcfvwxqd5zh78ljkjld8mxkdkr1jy8-acl-2.4.0.tar.gz",
+        "system": "x86_64-linux"
+      },
+      "references": [
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100",
+        "/nix/store/j7gw09i8msa13fvpv20j98hp6id9k2ql-acl-2.4.0"
+      ]
+    },
+    "/nix/store/jl59hda3fjmf62hdz59cmrj0q067q10a-shop-operator-inspect-driver.py": {
+      "derivation_sha256": "9a33d08589e13c2a19e3fd906cbc01b09ef03e77c6a0189f1a6bc746b798caa9",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/bnkh5larfm239r7vb5l6lswrpgfn47kg-shop-operator-inspect-driver.py.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-+JtpxFkoV5TU668YVQpOyyI9FYh+EPsZuo9WpknbOQ0=",
+      "nar_size": 1696,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": null,
+        "declared_version": null,
+        "name": "shop-operator-inspect-driver.py",
+        "outputs": {
+          "out": "/nix/store/jl59hda3fjmf62hdz59cmrj0q067q10a-shop-operator-inspect-driver.py"
+        },
+        "source_provenance_status": "no-source-attribute-in-recipe",
+        "source_store_path": null,
+        "system": "x86_64-linux"
+      },
+      "references": [
+        "/nix/store/19bnjl5xmgsl194795xddyc61f70f4rg-shop-database-tools-source",
+        "/nix/store/55kg73zr3x4x8lfnpjf9k11p7wy8ad5j-postgresql-18.6-lib",
+        "/nix/store/f609k7r23gic2vl1xj29rf5bn1qph8lg-shop-operator-psycopg-site",
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100"
+      ]
+    },
+    "/nix/store/jnyfsf2mp08d1xyz2m72ic2vz2kcx0sd-bash-5.3p9": {
+      "derivation_sha256": "86724bed183b191ed0cafb1a24e234c8a9551fa55bb641d38d4d3a6e2442ea3b",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/f13dw1l416dhsf1gck4wizy79hjvqp9d-bash-5.3p9.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-JX2VzBtjxQntP4ZZaPpw1Pr034Ixs9nXqCf8up6WOP4=",
+      "nar_size": 1852752,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": "bash",
+        "declared_version": "5.3p9",
+        "name": "bash-5.3p9",
+        "outputs": {
+          "debug": "/nix/store/6issr5q77vx0nircgyp46qlydm53myaf-bash-5.3p9-debug",
+          "dev": "/nix/store/nryj4175dwkdp9kana7x791mhc7k6kh0-bash-5.3p9-dev",
+          "doc": "/nix/store/jzk6dy86g57z9989yspny7mk7jqwzrzx-bash-5.3p9-doc",
+          "info": "/nix/store/p36hljfl2pplzi8bcqarjy5i70l1ix71-bash-5.3p9-info",
+          "man": "/nix/store/svkyhrjjs4nv2mq75jaspy8w1f2x7a0l-bash-5.3p9-man",
+          "out": "/nix/store/jnyfsf2mp08d1xyz2m72ic2vz2kcx0sd-bash-5.3p9"
+        },
+        "source_provenance_status": "recipe-source-pointer-only",
+        "source_store_path": "/nix/store/kwm524zjlnnq4yfhhmb5r14f2wxf8a2j-bash-5.3.tar.gz",
+        "system": "x86_64-linux"
+      },
+      "references": [
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100",
+        "/nix/store/jnyfsf2mp08d1xyz2m72ic2vz2kcx0sd-bash-5.3p9"
+      ]
+    },
+    "/nix/store/jpw02npp3bx1jm1dw0rr7p1w8890fgd6-python3-3.13.16": {
+      "derivation_sha256": "1782319eaf9467cb6f84e573bbb8d9d45f0c245cc02fd408a5cbfa8fe8dbbfbc",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/cvrl56w81ddfr22qz7p0a4ga701vfp0v-python3-3.13.16.drv",
+      "named_notices": [
+        {
+          "path": "lib/python3.13/LICENSE.txt",
+          "sha256": "78b12c3a81360b357002334f0e70ea0e92eebf7a9b358805c03c48484945f3bb",
+          "size": 13809
+        }
+      ],
+      "nar_hash": "sha256-6xpT0Rt4OxHOaCKJhm6kaKUgbu46sPjWj9QA/VSZsYo=",
+      "nar_size": 134200480,
+      "notice_status": "candidates-found-review-pending",
+      "recipe": {
+        "declared_pname": "python3",
+        "declared_version": "3.13.16",
+        "name": "python3-3.13.16",
+        "outputs": {
+          "debug": "/nix/store/cdn0kpnw9f22yfkqbhfi7vb5qp42g1vc-python3-3.13.16-debug",
+          "out": "/nix/store/jpw02npp3bx1jm1dw0rr7p1w8890fgd6-python3-3.13.16"
+        },
+        "source_provenance_status": "recipe-source-pointer-only",
+        "source_store_path": "/nix/store/2k17nhljlm3fjg2713vilw8klb626dx4-Python-3.13.16.tar.xz",
+        "system": "x86_64-linux"
+      },
+      "references": [
+        "/nix/store/3gnbcz1h1xxfby9khvv04ighy6nn4p4i-gdbm-1.26-lib",
+        "/nix/store/6s4wm3zl2y0v5g998n2g88k1zh3vf2pr-zlib-1.3.2",
+        "/nix/store/adygr6jyf3xbv37lnvm4lj4cy85g0ajg-mpdecimal-4.0.1",
+        "/nix/store/b56ind0m3byv7pzby5mwsn5qsy1g6lqf-expat-2.8.5",
+        "/nix/store/dqj57l1prad38vjrad4bs9d977i4q5zm-gcc-15.3.0-lib",
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100",
+        "/nix/store/hf8a95j1jr8bjmxb93np94xlqwqr492x-libffi-3.8.0",
+        "/nix/store/hw26gin576lvhnmfkv5fqm4nayj9qwdi-util-linux-minimal-2.42.3-lib",
+        "/nix/store/hzwckv1kq2pqa7010zph0a6j0xfbyvwa-readline-8.3p3",
+        "/nix/store/jnyfsf2mp08d1xyz2m72ic2vz2kcx0sd-bash-5.3p9",
+        "/nix/store/jpw02npp3bx1jm1dw0rr7p1w8890fgd6-python3-3.13.16",
+        "/nix/store/kysvfcf8d8v26rr32xfqji8ri2lczlqk-openssl-3.6.5",
+        "/nix/store/mkbbamycmw838fwxk21jz0nw3mhnmk16-tzdata-2026c",
+        "/nix/store/mm22hz4w37ndx2hvczd9qrrfg8i17cvy-sqlite-3.51.2",
+        "/nix/store/pddqhhpjip4p5l93nxdkvbmm23fp7fd9-bzip2-1.0.8",
+        "/nix/store/v3imdn9s2021ssh45ps62kksg2d1k7xm-xz-5.8.4",
+        "/nix/store/wpyc0r4d4idaq96y0dc1375ziabl4b38-ncurses-6.6",
+        "/nix/store/xql1i59wn5n0v4hxx1xhji9p6zns8hsi-mailcap-2.1.54"
+      ]
+    },
+    "/nix/store/jylddnx8hm8hhmyiyzrqcsb6hvc7kki1-shop-operator-inspect": {
+      "derivation_sha256": "ed013eab787f549614c62c15fb5236abd24c06d872f5d813bd4a201271ebcccc",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/klrsb1pjmaqkrfszz9irqg7j6wlvmsvk-shop-operator-inspect.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-IlJ+uhY/XZTgrRNOlme3hFDQuoPH4TiPIkKAxSiEIj0=",
+      "nar_size": 832,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": null,
+        "declared_version": null,
+        "name": "shop-operator-inspect",
+        "outputs": {
+          "out": "/nix/store/jylddnx8hm8hhmyiyzrqcsb6hvc7kki1-shop-operator-inspect"
+        },
+        "source_provenance_status": "no-source-attribute-in-recipe",
+        "source_store_path": null,
+        "system": "x86_64-linux"
+      },
+      "references": [
+        "/nix/store/bhv6xyvqw6gjs3j488gi1z6wdv18bdpa-coreutils-9.11",
+        "/nix/store/jl59hda3fjmf62hdz59cmrj0q067q10a-shop-operator-inspect-driver.py",
+        "/nix/store/jnyfsf2mp08d1xyz2m72ic2vz2kcx0sd-bash-5.3p9",
+        "/nix/store/jpw02npp3bx1jm1dw0rr7p1w8890fgd6-python3-3.13.16"
+      ]
+    },
+    "/nix/store/k0fby92994cjcmj3npd562dy22qxnwdy-ngtcp2-1.22.1": {
+      "derivation_sha256": "5c98f4ec74f9bcdb1018ecb9ecec1bc3dc815199a28747da83039bf879f312a6",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/wa8illsz4krwwwhglkc0wv07ckdw7lxl-ngtcp2-1.22.1.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-Ga8umgV/8Tt4J4WXw/Mnjof1zl2DwmqGfPUCxqPZr9s=",
+      "nar_size": 495896,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": "ngtcp2",
+        "declared_version": "1.22.1",
+        "name": "ngtcp2-1.22.1",
+        "outputs": {
+          "dev": "/nix/store/xzz3cxfj20sajfjrn7dfgkrc70r93cfk-ngtcp2-1.22.1-dev",
+          "doc": "/nix/store/y9xfvca5h0x9lr9j6gigzry0rp9w0i4d-ngtcp2-1.22.1-doc",
+          "out": "/nix/store/k0fby92994cjcmj3npd562dy22qxnwdy-ngtcp2-1.22.1"
+        },
+        "source_provenance_status": "recipe-source-pointer-only",
+        "source_store_path": "/nix/store/gcf00yfh684sdpwb4zyhwp9rn5khhqq2-ngtcp2-1.22.1.tar.bz2",
+        "system": "x86_64-linux"
+      },
+      "references": [
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100",
+        "/nix/store/k0fby92994cjcmj3npd562dy22qxnwdy-ngtcp2-1.22.1",
+        "/nix/store/kysvfcf8d8v26rr32xfqji8ri2lczlqk-openssl-3.6.5"
+      ]
+    },
+    "/nix/store/kx9df7c3mqj9zjbm83zbfwbrsxgjlpkr-shop-db-database.py": {
+      "derivation_sha256": "380833b0a3059813b1e6269706c22c1c43a281010ac03d60217348bfc4605e07",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/q1hq1m9sma4302ny8vlvxcs3j1gwbn63-shop-db-database.py.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-hXNNPjCPlteUhSqDs5wb+yQe1hu3LHglCR1EM05QA6U=",
+      "nar_size": 14504,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": null,
+        "declared_version": null,
+        "name": "shop-db-database.py",
+        "outputs": {
+          "out": "/nix/store/kx9df7c3mqj9zjbm83zbfwbrsxgjlpkr-shop-db-database.py"
+        },
+        "source_provenance_status": "no-source-attribute-in-recipe",
+        "source_store_path": null,
+        "system": "x86_64-linux"
+      },
+      "references": []
+    },
+    "/nix/store/kysvfcf8d8v26rr32xfqji8ri2lczlqk-openssl-3.6.5": {
+      "derivation_sha256": "bdf442614f73695acb681fb214b69bd1bc5ad1e7e8d2f84be0980e1fdc610f3a",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/hd73dkpv6dx8qyq3yl4jv8iyi9955vr8-openssl-3.6.5.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-i70funLfV3EpWL0MnBQMnuf0cBUc+m5n4Yd8MmDdaR0=",
+      "nar_size": 9332000,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": "openssl",
+        "declared_version": "3.6.5",
+        "name": "openssl-3.6.5",
+        "outputs": {
+          "bin": "/nix/store/ndv550fkbmsfvdxax71d4d5d59x4lq80-openssl-3.6.5-bin",
+          "debug": "/nix/store/7ag2iq9v8ab0gf0lw3jx1say4kgnh48h-openssl-3.6.5-debug",
+          "dev": "/nix/store/7l09089ahshxjx4js3zswqk6azhx6ccq-openssl-3.6.5-dev",
+          "doc": "/nix/store/7vhk6c2vg819fl44sj99bp8k3503xy8v-openssl-3.6.5-doc",
+          "man": "/nix/store/fnr9mx06brcp7c3dixdn1zr73lf7jgcw-openssl-3.6.5-man",
+          "out": "/nix/store/kysvfcf8d8v26rr32xfqji8ri2lczlqk-openssl-3.6.5"
+        },
+        "source_provenance_status": "recipe-source-pointer-only",
+        "source_store_path": "/nix/store/8zxj0x9qmlm3lnj1rc6j8s3wxbfczs4n-openssl-3.6.5.tar.gz",
+        "system": "x86_64-linux"
+      },
+      "references": [
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100",
+        "/nix/store/kysvfcf8d8v26rr32xfqji8ri2lczlqk-openssl-3.6.5"
+      ]
+    },
+    "/nix/store/l1n6wi2lyzglvgzbwzw9n9w2pzkcj41i-xgcc-15.3.0-libgcc": {
+      "derivation_sha256": "61917baab6aab2f07a4b841fb4543ba80cf56a9cea7bec7af20d82d983151de5",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/wsisnqqva71ba5k4x8dipsggdvcjb07x-xgcc-15.3.0.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-cMuvHKKZQ7us4kpUA40tNxZpkQQRivt6fWtZHAPVcK8=",
+      "nar_size": 197672,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": "xgcc",
+        "declared_version": "15.3.0",
+        "name": "xgcc-15.3.0",
+        "outputs": {
+          "checksum": "/nix/store/rmm33mq7jki9qj2fir9zz83hlmh74945-xgcc-15.3.0-checksum",
+          "info": "/nix/store/8g9wafcmmgi20g1zs60bab8slmqlg1n8-xgcc-15.3.0-info",
+          "lib": "/nix/store/ycpq9jikv510nsgv98cm6n1i7mr9lrjp-xgcc-15.3.0-lib",
+          "libgcc": "/nix/store/l1n6wi2lyzglvgzbwzw9n9w2pzkcj41i-xgcc-15.3.0-libgcc",
+          "man": "/nix/store/0lh1ymixj1b3cgrd92bqn5mkx8jmmz4p-xgcc-15.3.0-man",
+          "out": "/nix/store/7r693grdji6isxcvsfj7cq67i077451r-xgcc-15.3.0"
+        },
+        "source_provenance_status": "recipe-source-pointer-only",
+        "source_store_path": "/nix/store/6b75ff0llvr4z03wzs42cinwflnp4l1h-gcc-15.3.0.tar.xz",
+        "system": "x86_64-linux"
+      },
+      "references": []
+    },
+    "/nix/store/l5y42bimjvvn8h3v5y40w13vv7y2p3k5-libidn2-2.3.8": {
+      "derivation_sha256": "69233d781010c668161bb4b9bde56d5dfce5c28e0dc01c70030c50f0c503b737",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/7y9dhcsvg41d8ijzw6s8smcg1mld7fpf-libidn2-2.3.8.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-XstAYjw1RHyYPQzyGwj0q8m4COL/mqAalfu9S0+7Ejo=",
+      "nar_size": 368176,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": "libidn2",
+        "declared_version": "2.3.8",
+        "name": "libidn2-2.3.8",
+        "outputs": {
+          "bin": "/nix/store/rk9jm0g3b3kacwk3bv23lkgrjw0k3mjk-libidn2-2.3.8-bin",
+          "dev": "/nix/store/ni02i7x1p4z2z4sq9rwl3lid7q7c53qy-libidn2-2.3.8-dev",
+          "devdoc": "/nix/store/zkh3xnw3n0awg7z86c13sspyzfsvyr8r-libidn2-2.3.8-devdoc",
+          "info": "/nix/store/84ihrbm4nqx8jqhp408mi13v30w89v4p-libidn2-2.3.8-info",
+          "out": "/nix/store/l5y42bimjvvn8h3v5y40w13vv7y2p3k5-libidn2-2.3.8"
+        },
+        "source_provenance_status": "recipe-source-pointer-only",
+        "source_store_path": "/nix/store/9dcs318zy7jbxz8kfdjnxd1c6s1xd2vy-libidn2-2.3.8.tar.gz",
+        "system": "x86_64-linux"
+      },
+      "references": [
+        "/nix/store/g6mvl9ns7k52zfv9pcfw3dbh65z3j7id-libunistring-1.4.2",
+        "/nix/store/l5y42bimjvvn8h3v5y40w13vv7y2p3k5-libidn2-2.3.8"
+      ]
+    },
+    "/nix/store/lk48gxiwvz19k9lpyjnplg227fjs7mjb-shop-db-schema_authorization.py": {
+      "derivation_sha256": "6d97f5c392e409376115d0d2f59007c09e12f45bb0d2360ebdb655d43d1b5f25",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/wnasyl6xwrrx3rm9ydi02q7sklglkwa6-shop-db-schema_authorization.py.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-/yaDSdtZtD0IKKBTcI6X1PHFWdjefa/19jc2CNJmvv4=",
+      "nar_size": 3568,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": null,
+        "declared_version": null,
+        "name": "shop-db-schema_authorization.py",
+        "outputs": {
+          "out": "/nix/store/lk48gxiwvz19k9lpyjnplg227fjs7mjb-shop-db-schema_authorization.py"
+        },
+        "source_provenance_status": "no-source-attribute-in-recipe",
+        "source_store_path": null,
+        "system": "x86_64-linux"
+      },
+      "references": []
+    },
+    "/nix/store/lmnj7lp2dqpc7rw5mq5scrpig0irar6a-keyutils-1.6.3-lib": {
+      "derivation_sha256": null,
+      "derivation_status": "missing-local-recipe-review-pending",
+      "deriver": "/nix/store/38vcag99xd0r5xxy0g3igyypfz0qfln6-keyutils-1.6.3.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-M+jjIoqnj2ZHyN/z6jKvaqv8RO7g8J72DSNiKnJydLw=",
+      "nar_size": 42848,
+      "recipe": null,
+      "references": [
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100"
+      ]
+    },
+    "/nix/store/mkbbamycmw838fwxk21jz0nw3mhnmk16-tzdata-2026c": {
+      "derivation_sha256": null,
+      "derivation_status": "missing-local-recipe-review-pending",
+      "deriver": "/nix/store/22hc96bp6qmzms3fxb7d8mpaxbza88an-tzdata-2026c.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-9RNssc1MdqwuuxmVP0DyUxn6Xl1vnlEu6BaF7SMk35s=",
+      "nar_size": 2138680,
+      "recipe": null,
+      "references": []
+    },
+    "/nix/store/mm22hz4w37ndx2hvczd9qrrfg8i17cvy-sqlite-3.51.2": {
+      "derivation_sha256": null,
+      "derivation_status": "missing-local-recipe-review-pending",
+      "deriver": "/nix/store/xs96hh6vnw41z1hc10j748lgcrdm6hzf-sqlite-3.51.2.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-qBSmw6S8MqfYpq+KgG9NbzlGPtaCIy4K61nNfzUi+Qk=",
+      "nar_size": 5866704,
+      "recipe": null,
+      "references": [
+        "/nix/store/6s4wm3zl2y0v5g998n2g88k1zh3vf2pr-zlib-1.3.2",
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100"
+      ]
+    },
+    "/nix/store/np25yg59dav13f7j7pdb25pifkj7b9pi-shop-db-record_bundle.py": {
+      "derivation_sha256": "8354c50bd81051704771ebe512b9450dd685fa64ce80f2063ecbfb00c0b66036",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/drcmzdr4lck89b9jybkm08412z39wgvw-shop-db-record_bundle.py.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-s/RnQdH8Z9r9HTUaCn241ISc4Ypdfqyg+rB7JCeISGU=",
+      "nar_size": 17624,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": null,
+        "declared_version": null,
+        "name": "shop-db-record_bundle.py",
+        "outputs": {
+          "out": "/nix/store/np25yg59dav13f7j7pdb25pifkj7b9pi-shop-db-record_bundle.py"
+        },
+        "source_provenance_status": "no-source-attribute-in-recipe",
+        "source_store_path": null,
+        "system": "x86_64-linux"
+      },
+      "references": []
+    },
+    "/nix/store/pddqhhpjip4p5l93nxdkvbmm23fp7fd9-bzip2-1.0.8": {
+      "derivation_sha256": "d5adcf9ade92dd832f9d5520beb04ab792748c0c799ae6bf9a77c7b3866df16f",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/iifbrha64kwkyqcjk93fc2l6hvpyd0nz-bzip2-1.0.8.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-AjED8CcVq3HoJ+9lcSJPbMk6yt2JRDz1b6Ym3dK9qGw=",
+      "nar_size": 88952,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": "bzip2",
+        "declared_version": "1.0.8",
+        "name": "bzip2-1.0.8",
+        "outputs": {
+          "bin": "/nix/store/a7501p1w90nhbln9259viwql8m4mnbx5-bzip2-1.0.8-bin",
+          "dev": "/nix/store/kfn2jilm57w74fi9vn7nl34isdpsifmy-bzip2-1.0.8-dev",
+          "man": "/nix/store/jy83l8cp4jafqq36mmg6wq3ym5kppym7-bzip2-1.0.8-man",
+          "out": "/nix/store/pddqhhpjip4p5l93nxdkvbmm23fp7fd9-bzip2-1.0.8"
+        },
+        "source_provenance_status": "recipe-source-pointer-only",
+        "source_store_path": "/nix/store/slpdqm3wlhwbkzyijjz3xpifa219ac0x-bzip2-1.0.8.tar.gz",
+        "system": "x86_64-linux"
+      },
+      "references": [
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100",
+        "/nix/store/pddqhhpjip4p5l93nxdkvbmm23fp7fd9-bzip2-1.0.8"
+      ]
+    },
+    "/nix/store/q3lhcbjc0bxxiqnhcp2vslmn9mh3f256-curl-8.22.0": {
+      "derivation_sha256": "8cf34be5935feab1a9df372b462c6c7cefdcf6b3b0c1e53fa176daa878de78e3",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/bnydhpm1n00qy7vfl2fh76v8pmfhr5b7-curl-8.22.0.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-1Y1eCYcRKZKJ5rY7e8rwx90DthfEf5nC+5q58h3GBK0=",
+      "nar_size": 1286232,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": "curl",
+        "declared_version": "8.22.0",
+        "name": "curl-8.22.0",
+        "outputs": {
+          "bin": "/nix/store/x5ad8l4zpkg2dldjyqsknlcyypjmp0wp-curl-8.22.0-bin",
+          "debug": "/nix/store/h4pgd4nd35n0rpg31r7cadfjbpp843mz-curl-8.22.0-debug",
+          "dev": "/nix/store/pqvvkzca5in8kfdz9chymswfwsg4ga6a-curl-8.22.0-dev",
+          "devdoc": "/nix/store/xddjm87yivi3222qfdvkxl5jb0yg9w3y-curl-8.22.0-devdoc",
+          "man": "/nix/store/86h60daxqvclraj4xril7ffjrsagy4gf-curl-8.22.0-man",
+          "out": "/nix/store/q3lhcbjc0bxxiqnhcp2vslmn9mh3f256-curl-8.22.0"
+        },
+        "source_provenance_status": "recipe-source-pointer-only",
+        "source_store_path": "/nix/store/a9rs1bl0n1m4wc0zfky8h4w46lkc55j1-curl-8.22.0.tar.xz",
+        "system": "x86_64-linux"
+      },
+      "references": [
+        "/nix/store/5s4ahr76fzx3p4z0fyhphskham55nkhb-nghttp3-1.15.0",
+        "/nix/store/7zbzvm0bwa2mh5dp3p5gasix417lysxc-zstd-1.5.7",
+        "/nix/store/9csszq0cch2npq0flybqmvkabb1dj3r4-libssh2-1.11.1",
+        "/nix/store/drxakd25lbv35flbk8f01bqq417j9czw-nghttp2-1.69.0-lib",
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100",
+        "/nix/store/g64gr9m6lhzp9aq393yv0sxlr5176jrc-brotli-1.2.0-lib",
+        "/nix/store/k0fby92994cjcmj3npd562dy22qxnwdy-ngtcp2-1.22.1",
+        "/nix/store/kysvfcf8d8v26rr32xfqji8ri2lczlqk-openssl-3.6.5",
+        "/nix/store/l5y42bimjvvn8h3v5y40w13vv7y2p3k5-libidn2-2.3.8",
+        "/nix/store/q3lhcbjc0bxxiqnhcp2vslmn9mh3f256-curl-8.22.0",
+        "/nix/store/rcvnjiaywqlx4d6ra1z4z537jpw3jvwy-libpsl-0.21.5",
+        "/nix/store/yfvrxfh24kxshxsvgic60893sy8h4shc-krb5-1.22.2-lib"
+      ]
+    },
+    "/nix/store/rcvnjiaywqlx4d6ra1z4z537jpw3jvwy-libpsl-0.21.5": {
+      "derivation_sha256": "34cae0ef6bacf0125d441f4e170f58e037b14ea75b68c3a4ffb82a59706bf73e",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/x3r9aiakxw72b9qzr5zw4x3f09rs9ymh-libpsl-0.21.5.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-A0Q8JovEMHvfpGrKn04YaFS9i/gbBKLF1kOMrhNEidg=",
+      "nar_size": 117608,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": "libpsl",
+        "declared_version": "0.21.5",
+        "name": "libpsl-0.21.5",
+        "outputs": {
+          "dev": "/nix/store/hlky6hh1qf9m8rf5ax7k5wjd0plq4mas-libpsl-0.21.5-dev",
+          "out": "/nix/store/rcvnjiaywqlx4d6ra1z4z537jpw3jvwy-libpsl-0.21.5"
+        },
+        "source_provenance_status": "recipe-source-pointer-only",
+        "source_store_path": "/nix/store/mkgbzcbcfi0wnb9cf243rp3vk3djaj5l-libpsl-0.21.5.tar.lz",
+        "system": "x86_64-linux"
+      },
+      "references": [
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100",
+        "/nix/store/g49nqr7si7n6z4jlh8cwyxxlggkj2i8p-publicsuffix-list-0-unstable-2026-05-13",
+        "/nix/store/g6mvl9ns7k52zfv9pcfw3dbh65z3j7id-libunistring-1.4.2",
+        "/nix/store/l5y42bimjvvn8h3v5y40w13vv7y2p3k5-libidn2-2.3.8",
+        "/nix/store/rcvnjiaywqlx4d6ra1z4z537jpw3jvwy-libpsl-0.21.5"
+      ]
+    },
+    "/nix/store/rizqp9bgwh15ilyfphv6yc9rzpdzvw14-shop-db-ledger_bootstrap.py": {
+      "derivation_sha256": "c4f3a069deed02dd7ecc944a3c1d5513a54bf84372752ff8cf36da8bf557c0e7",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/0pszgw910yzmja38ryzj4h5vdd06rk74-shop-db-ledger_bootstrap.py.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-BClGOUTiKEik+/DF9P7RA16/LwjmmPLNs4vwxuMauy4=",
+      "nar_size": 4216,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": null,
+        "declared_version": null,
+        "name": "shop-db-ledger_bootstrap.py",
+        "outputs": {
+          "out": "/nix/store/rizqp9bgwh15ilyfphv6yc9rzpdzvw14-shop-db-ledger_bootstrap.py"
+        },
+        "source_provenance_status": "no-source-attribute-in-recipe",
+        "source_store_path": null,
+        "system": "x86_64-linux"
+      },
+      "references": []
+    },
+    "/nix/store/v3imdn9s2021ssh45ps62kksg2d1k7xm-xz-5.8.4": {
+      "derivation_sha256": "c2162bb0e42633639c70b316ea4138347892a630ed2b0a9e4d2d1747a91acda5",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/spy1vhzw07pnzbk2c5lvcljb66ckzwr8-xz-5.8.4.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-hx1xN7eJpSiTz4JjirPB0DeEnYtEV68b5TNpufENuq8=",
+      "nar_size": 873248,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": "xz",
+        "declared_version": "5.8.4",
+        "name": "xz-5.8.4",
+        "outputs": {
+          "bin": "/nix/store/fr31df17rksfki6nv00xq4s5apvqpyhw-xz-5.8.4-bin",
+          "dev": "/nix/store/n133n8ir697g70mvzcdw669qfa69pibl-xz-5.8.4-dev",
+          "doc": "/nix/store/rawrmzi7xv4yy3rzdj3gykibfaaaqvm9-xz-5.8.4-doc",
+          "man": "/nix/store/15mlpz0nv6dwi8v1z7mx0dpvcmnhd7ql-xz-5.8.4-man",
+          "out": "/nix/store/v3imdn9s2021ssh45ps62kksg2d1k7xm-xz-5.8.4"
+        },
+        "source_provenance_status": "recipe-source-pointer-only",
+        "source_store_path": "/nix/store/g24yxxv6fqp51f2g1fy1li7dpvz4g2r2-xz-5.8.4.tar.xz",
+        "system": "x86_64-linux"
+      },
+      "references": [
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100",
+        "/nix/store/v3imdn9s2021ssh45ps62kksg2d1k7xm-xz-5.8.4"
+      ]
+    },
+    "/nix/store/wpyc0r4d4idaq96y0dc1375ziabl4b38-ncurses-6.6": {
+      "derivation_sha256": null,
+      "derivation_status": "missing-local-recipe-review-pending",
+      "deriver": "/nix/store/6732i7c5wn0llzsgja2xa0nxsw2jywsj-ncurses-6.6.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-bwCJ4PDrMOy018sD4zkWZWeCLdES9GcFU1LeK0ZQVsw=",
+      "nar_size": 3870560,
+      "recipe": null,
+      "references": [
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100",
+        "/nix/store/wpyc0r4d4idaq96y0dc1375ziabl4b38-ncurses-6.6"
+      ]
+    },
+    "/nix/store/xj8g46bl0ps12qw46gi9gacm493m3pff-gmp-with-cxx-6.3.0": {
+      "derivation_sha256": "6c953ea0f195518b3cd5930038fca9ff0c58335bcca0f85dc30499d6360c908e",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/1bivb8zg4ard4419zkpdh1m4m5w0wrds-gmp-with-cxx-6.3.0.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-dfCu3X67+UlRMIHS5BCQHpBAT8W3HOViO2BKmtV0t3A=",
+      "nar_size": 783432,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": "gmp-with-cxx",
+        "declared_version": "6.3.0",
+        "name": "gmp-with-cxx-6.3.0",
+        "outputs": {
+          "dev": "/nix/store/h4rklarl4033ws91kz6b6psmlcqhljjp-gmp-with-cxx-6.3.0-dev",
+          "info": "/nix/store/sl7m46apjnfvnklfs9vg94gjasp09wvx-gmp-with-cxx-6.3.0-info",
+          "out": "/nix/store/xj8g46bl0ps12qw46gi9gacm493m3pff-gmp-with-cxx-6.3.0"
+        },
+        "source_provenance_status": "recipe-source-pointer-only",
+        "source_store_path": "/nix/store/n1djrrflvxnwdd735304l23r2qdnjrm6-gmp-6.3.0.tar.bz2",
+        "system": "x86_64-linux"
+      },
+      "references": [
+        "/nix/store/dqj57l1prad38vjrad4bs9d977i4q5zm-gcc-15.3.0-lib",
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100",
+        "/nix/store/xj8g46bl0ps12qw46gi9gacm493m3pff-gmp-with-cxx-6.3.0"
+      ]
+    },
+    "/nix/store/xql1i59wn5n0v4hxx1xhji9p6zns8hsi-mailcap-2.1.54": {
+      "derivation_sha256": null,
+      "derivation_status": "missing-local-recipe-review-pending",
+      "deriver": "/nix/store/myi8y4cfgcz8i26xr4yaxag73n5prp2y-mailcap-2.1.54.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-/2pkdgHKodEDLknYROnuSN0F17m+BZ4AymO51vBpcvU=",
+      "nar_size": 119360,
+      "recipe": null,
+      "references": []
+    },
+    "/nix/store/yfvrxfh24kxshxsvgic60893sy8h4shc-krb5-1.22.2-lib": {
+      "derivation_sha256": "d07d8078876a1f79a59d460efcf6aee9fe55361329fe858d9da3e640c45f5459",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/4cvni1g6rc3bs8l5zb8dfsi1kz54glhs-krb5-1.22.2.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-IzVK+Yz339xqHrhHSo1h7zDJ2wbRPuVCt1p6GmmYYYc=",
+      "nar_size": 2879776,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": "krb5",
+        "declared_version": "1.22.2",
+        "name": "krb5-1.22.2",
+        "outputs": {
+          "dev": "/nix/store/gsfchss5wp40hp0f2yrhk2ri8ys9gh51-krb5-1.22.2-dev",
+          "lib": "/nix/store/yfvrxfh24kxshxsvgic60893sy8h4shc-krb5-1.22.2-lib",
+          "out": "/nix/store/z8w7vy6k9knakkc6z6jn5nzk6dg968hp-krb5-1.22.2"
+        },
+        "source_provenance_status": "recipe-source-pointer-only",
+        "source_store_path": "/nix/store/mqn63gvfy2rpzy4q15qx7jfwba82c7ap-krb5-1.22.2.tar.gz",
+        "system": "x86_64-linux"
+      },
+      "references": [
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100",
+        "/nix/store/kysvfcf8d8v26rr32xfqji8ri2lczlqk-openssl-3.6.5",
+        "/nix/store/lmnj7lp2dqpc7rw5mq5scrpig0irar6a-keyutils-1.6.3-lib",
+        "/nix/store/yfvrxfh24kxshxsvgic60893sy8h4shc-krb5-1.22.2-lib"
+      ]
+    },
+    "/nix/store/z9pl487y5vkkp6k78sak23497djxmin0-shop-db-schema_reconciliation.py": {
+      "derivation_sha256": "7354c6d9697ca7078609303aa99e983147105d145c20baeb8e7478713259c953",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/jdm0dihnca4v3v2l3ynsikg7lf8xfz3m-shop-db-schema_reconciliation.py.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-kzh5XpWK0pPrjMaka/UgLeiY2Y12N7F+e4Q+WprI/aQ=",
+      "nar_size": 2624,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": null,
+        "declared_version": null,
+        "name": "shop-db-schema_reconciliation.py",
+        "outputs": {
+          "out": "/nix/store/z9pl487y5vkkp6k78sak23497djxmin0-shop-db-schema_reconciliation.py"
+        },
+        "source_provenance_status": "no-source-attribute-in-recipe",
+        "source_store_path": null,
+        "system": "x86_64-linux"
+      },
+      "references": []
+    },
+    "/nix/store/zfsvnb0vxwck1hq55j4900f7rrpm5y9y-attr-2.6.0": {
+      "derivation_sha256": "ef02f8c5749310e3537892d37b63e9568897897b720d21e3141ff7ac676c481f",
+      "derivation_status": "local-recipe-output-bound",
+      "deriver": "/nix/store/8skcqy8js62jn5mcwa3rkmnzwchk7szl-attr-2.6.0.drv",
+      "named_notices": [],
+      "nar_hash": "sha256-ZrZ27983uHa/+Sae/SVKZJMlp5hxCoQG33U8G/V4YT8=",
+      "nar_size": 90936,
+      "notice_status": "no-named-notices-in-output-review-pending",
+      "recipe": {
+        "declared_pname": "attr",
+        "declared_version": "2.6.0",
+        "name": "attr-2.6.0",
+        "outputs": {
+          "bin": "/nix/store/q72887m6220zi3mja56k1pjyx2rr4qzf-attr-2.6.0-bin",
+          "dev": "/nix/store/lmb3zn9pn4iippigghm8mas6w5ip0mzs-attr-2.6.0-dev",
+          "doc": "/nix/store/ld55mfw8mb8niv5vgf5h66y0np4y9fiz-attr-2.6.0-doc",
+          "man": "/nix/store/fpq4vpsmdy3xzx1hbfcayfn59ja948c4-attr-2.6.0-man",
+          "out": "/nix/store/zfsvnb0vxwck1hq55j4900f7rrpm5y9y-attr-2.6.0"
+        },
+        "source_provenance_status": "recipe-source-pointer-only",
+        "source_store_path": "/nix/store/is9qrfj8i2k7dhzqkmxwrmbvvl6q5k9r-attr-2.6.0.tar.gz",
+        "system": "x86_64-linux"
+      },
+      "references": [
+        "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100",
+        "/nix/store/zfsvnb0vxwck1hq55j4900f7rrpm5y9y-attr-2.6.0"
+      ]
+    }
+  },
+  "oci_images_included": false,
+  "recipe_hashes": {
+    "ops/nixos/database-tools.nix": "f2e57927048e3e408aa1108b06630d5746df91b0b83d4d69f8acfa9dd65e5b3e",
+    "ops/nixos/flake.lock": "865a3c07a35f43f024ce7c01614be82cb795707edac8e27092bdbba42519cd75",
+    "ops/nixos/flake.nix": "28b073c8567cbb57c7d092a35765d0c502b0e7549ab65900990ad5ee49a0e99f",
+    "ops/nixos/operator-runtime.nix": "f7d376699716360f3b501bb2dad8132be10e14abb27747408be9e44bcff24579",
+    "ops/runtime/wheels.json": "f0fb57ba0f62f4c0feb626ae6fbd03e06edb2a66e8f260538f00137a14989559"
+  },
+  "root": "/nix/store/jylddnx8hm8hhmyiyzrqcsb6hvc7kki1-shop-operator-inspect",
+  "runtime_qualified": false,
+  "schema_version": 1,
+  "scope": "Standalone operator runtime reference closure only; not a standard SBOM or build/source closure",
+  "store_bytes_verified": true,
+  "trust_signatures_verified": false
+}

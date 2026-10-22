@@ -167,7 +167,7 @@ def admission():
 
 
 
-def validate_block_authority(value):
+def validate_block_authority(value, *, require_fresh=True):
     require(type(value) is dict and set(value) == {
         'schema_version','action','authorization_id','expires_at','current_admission_sha256'})
     require(type(value['schema_version']) is int and value['schema_version'] == 1
@@ -176,8 +176,8 @@ def validate_block_authority(value):
                           ('current_admission_sha256',r'[a-f0-9]{64}'),
                           ('expires_at',r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z')):
         require(type(value[field]) is str and re.fullmatch(pattern,value[field]))
-    require(datetime.strptime(value['expires_at'],'%Y-%m-%dT%H:%M:%SZ').replace(
-        tzinfo=timezone.utc) > datetime.now(timezone.utc))
+    expiry = datetime.strptime(value['expires_at'],'%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=timezone.utc)
+    require(not require_fresh or expiry > datetime.now(timezone.utc))
     return value
 
 
