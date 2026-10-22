@@ -29,8 +29,8 @@ class ControlAdmissionTests(unittest.TestCase):
             directory=os.open(parent,os.O_RDONLY|os.O_DIRECTORY|os.O_CLOEXEC)
             real_open=os.open
             @contextlib.contextmanager
-            def opened():
-                fd=real_open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK|os.O_CLOEXEC)
+            def opened(*,writable=False):
+                fd=real_open(path,(os.O_RDWR if writable else os.O_RDONLY)|os.O_NOFOLLOW|os.O_NONBLOCK|os.O_CLOEXEC)
                 try:yield directory,fd
                 finally:os.close(fd)
             try:
@@ -170,3 +170,91 @@ finally:
             self.assertEqual(output,[(2,command.ERROR)])
             self.assertIsNone(control._ADMISSION.get())
             self.assertEqual(self.child_lock(path,True),0)
+
+    def authority(self,path):
+        from datetime import datetime,timedelta,timezone
+        return {'schema_version':1,'action':'block-control-admission','authorization_id':'b'*32,
+                'current_admission_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
+                'expires_at':(datetime.now(timezone.utc)+timedelta(hours=1)).strftime('%Y-%m-%dT%H:%M:%SZ')}
+
+    def test_authorized_block_preserves_inode_and_denies_readers_and_repeat(self):
+        with self.fixture() as (parent,path,fd):
+            authority=self.authority(path);before=path.stat()
+            with patch.object(control,'load_block_authority',return_value=authority):
+                result=control.block_admission()
+                with self.assertRaises(ValueError):control.block_admission()
+            self.assertEqual(result['status'],'admission_blocked')
+            self.assertTrue(result['local_fsync_readback_completed'])
+            for flag in ('durability_qualified','publication_authorized','retry_authorized','reopening_authorized'):
+                self.assertFalse(result[flag])
+            blocked=json.loads(path.read_bytes());self.assertEqual(blocked['state'],'blocked')
+            self.assertEqual(blocked['block_authorization_id'],authority['authorization_id'])
+            after=path.stat()
+            self.assertEqual((before.st_dev,before.st_ino,before.st_uid,before.st_gid,before.st_mode),
+                             (after.st_dev,after.st_ino,after.st_uid,after.st_gid,after.st_mode))
+            with self.assertRaises(ValueError):
+                with control.admission():self.fail('blocked state admitted')
+            self.assertEqual(self.child_lock(path,True),0)
+
+    def test_block_authority_closed_expiry_and_exact_bytes(self):
+        with self.fixture() as (parent,path,fd):
+            valid=self.authority(path)
+            self.assertEqual(control.validate_block_authority(valid),valid)
+            for change in ({'schema_version':True},{'action':'publish-control-generation'},
+                           {'authorization_id':'bad'},{'expires_at':'2000-01-01T00:00:00Z'},
+                           {'extra':True},{'current_admission_sha256':'bad'}):
+                with self.subTest(change=change),self.assertRaises(ValueError):
+                    control.validate_block_authority(dict(valid,**change))
+            before=path.read_bytes()
+            wrong=dict(valid,current_admission_sha256='c'*64)
+            with patch.object(control,'load_block_authority',return_value=wrong):
+                with self.assertRaises(ValueError):control.block_admission()
+            self.assertEqual(path.read_bytes(),before)
+            with patch.object(control.os,'geteuid',return_value=9909),patch.object(control,'load_block_authority') as loader:
+                with self.assertRaises(ValueError):control.block_admission()
+                loader.assert_not_called()
+
+    def test_block_denied_while_reader_holds_lease(self):
+        with self.fixture() as (parent,path,fd),control.admission():
+            before=path.read_bytes()
+            # A separate logical publisher context still cannot acquire EX.
+            token=control._ADMISSION.set(None)
+            try:
+                with patch.object(control,'load_block_authority',return_value=self.authority(path)):
+                    with self.assertRaises(BlockingIOError):control.block_admission()
+            finally:control._ADMISSION.reset(token)
+            self.assertEqual(path.read_bytes(),before)
+            control.check_admission()
+
+    def test_block_revocation_before_write_and_after_sync(self):
+        for changed_at in (2,3):
+            with self.subTest(changed_at=changed_at),self.fixture() as (parent,path,fd):
+                authority=self.authority(path);before=path.read_bytes()
+                changed=dict(authority,authorization_id='d'*32)
+                with patch.object(control,'load_block_authority',side_effect=[authority]*(changed_at-1)+[changed]):
+                    with self.assertRaises(ValueError):control.block_admission()
+                if changed_at==2:self.assertEqual(path.read_bytes(),before)
+                else:
+                    self.assertEqual(json.loads(path.read_bytes())['state'],'blocked')
+                    with self.assertRaises(ValueError):
+                        with control.admission():self.fail('uncertain block admitted')
+                self.assertEqual(self.child_lock(path,True),0)
+
+    def test_block_short_write_and_failure_retain_denied_state(self):
+        actual_pwrite=os.pwrite
+        with self.fixture() as (parent,path,fd), \
+             patch.object(control,'load_block_authority',side_effect=lambda:self.authority_original), \
+             patch.object(control.os,'pwrite',side_effect=lambda fd,data,offset:actual_pwrite(fd,data[:7],offset)):
+            self.authority_original=self.authority(path)
+            self.assertEqual(control.block_admission()['status'],'admission_blocked')
+        for operation,result in (('pwrite',0),('fsync',OSError('synthetic-sync-failure'))):
+            with self.subTest(operation=operation),self.fixture() as (parent,path,fd):
+                authority=self.authority(path)
+                with patch.object(control,'load_block_authority',return_value=authority), \
+                     patch.object(control.os,operation,**({'side_effect':result} if isinstance(result,Exception) else {'return_value':result})):
+                    with self.assertRaises((ValueError,OSError)):control.block_admission()
+                with self.assertRaises(ValueError):
+                    with control.admission():self.fail('failed block admitted')
+                with patch.object(control,'load_block_authority',return_value=authority):
+                    with self.assertRaises(ValueError):control.block_admission()
+                self.assertEqual(self.child_lock(path,True),0)
