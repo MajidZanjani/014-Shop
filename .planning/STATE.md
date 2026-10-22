@@ -1,21 +1,19 @@
 ---
-gsd_state_version: '1.0'
+gsd_state_version: "1.0"
 status: executing
-last_updated: '2026-10-22T10:08:45+00:00'
-state_head: 84343d5
+last_updated: "2026-10-22T10:09:34.578Z"
+state_head: 575575e1050c4d29d2747eaaae6bb13de630a183
 progress:
   total_phases: 14
   completed_phases: 1
   total_plans: 20
   completed_plans: 10
   percent: 7
-last_activity: '2026-10-22'
-current_phase: '03'
+last_activity: 2026-10-22
+current_phase: 03
 current_phase_name: Markdown catalog, schemas and local product flow
-stopped_at: Local catalog/configurator delivered; continue verified customer access
-  and protected save/resume integration.
-last_activity_desc: Catalog, static configurator, Django fallback and owner-scoped
-  local draft persistence delivered; release qualification pending.
+stopped_at: Local catalog/configurator delivered; continue verified customer access and protected save/resume integration.
+last_activity_desc: Catalog, static configurator, Django fallback and owner-scoped local draft persistence delivered; release qualification pending.
 ---
 
 # Project State
@@ -89,3 +87,4 @@ Resumed 2026-10-22 under the explicit execution amendment. HANDOFF.json contains
 | 261022-cci | Reconcile visible and machine-readable planning progress | 2026-10-22 | 8a5c91e | [261022-cci-reconcile-stale-planning-summaries-and-m](./quick/261022-cci-reconcile-stale-planning-summaries-and-m/) |
 | 261022-cor | Inventory actual PostgreSQL inner-layer payload | 2026-10-22 | dd322e1 | [261022-cor-inventory-actual-postgresql-image-inner-](./quick/261022-cor-inventory-actual-postgresql-image-inner-/) |
 | 32 | Quote STATE activity description containing a colon to repair YAML frontmatter | 2026-10-22 | 1cf78b8 | — |
+| 261022-dj5 | Deliver source catalog/configurator, no-JS fallback, local owner drafts and ordinary development CI | 2026-10-22 | 575575e | [261022-dj5-amend-local-execution-sequence-and-deliv](./quick/261022-dj5-amend-local-execution-sequence-and-deliv/) |
