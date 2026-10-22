@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: executing
-last_updated: "2026-10-22T13:44:46.090Z"
-state_head: 8c72b69c724687ce9942d14f5a34bac795c78854
+last_updated: "2026-10-22T13:45:08.395955+00:00"
+state_head: f5f78d198c1228877a7e47a39ce6cc7ae8c62116
 progress:
   total_phases: 14
   completed_phases: 1
@@ -18,7 +18,7 @@ last_activity_desc: Multi-line IP and support draft cart, version arbitration an
 
 # Project State
 
-Updated 2026-10-22T13:10:12+00:00. Canonical current summary; detailed evidence: [quick/261022-iqc-implement-verified-owner-multi-line-draf/261022-iqc-SUMMARY.md](quick/261022-iqc-implement-verified-owner-multi-line-draf/261022-iqc-SUMMARY.md). Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
+Updated 2026-10-22T13:45:08.395955+00:00. Canonical current summary; detailed evidence: [quick/261022-iqc-implement-verified-owner-multi-line-draf/261022-iqc-SUMMARY.md](quick/261022-iqc-implement-verified-owner-multi-line-draf/261022-iqc-SUMMARY.md). Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
 ## Current position
 
@@ -94,4 +94,4 @@ Resumed 2026-10-22 under the explicit execution amendment. HANDOFF.json contains
 | 34 | Record user approval of local catalog/configurator demo with scoped pending release gates | 2026-10-22 | c1faa41 | — |
 | 261022-hrl | Verify synthetic customer sessions and deliver protected draft save/list/resume UI | 2026-10-22 | bd7539f | [261022-hrl-verify-local-customer-access-through-cap](./quick/261022-hrl-verify-local-customer-access-through-cap/) |
 | 36 | Record successful user review of synthetic verification and protected save/resume | 2026-10-22 | edd48e1 | — |
-| 261022-iqc | Implement versioned owner multi-line IP and support draft cart | 2026-10-22 | 8c72b69 | [261022-iqc-implement-verified-owner-multi-line-draf](./quick/261022-iqc-implement-verified-owner-multi-line-draf/) |
+| 261022-iqc | Implement versioned owner multi-line IP and support draft cart | 2026-10-22 | f5f78d1 | [261022-iqc-implement-verified-owner-multi-line-draf](./quick/261022-iqc-implement-verified-owner-multi-line-draf/) |
