@@ -309,3 +309,7 @@ Synthetic authority/evidence/root paths are not actual custody qualification or 
 ## Read-only blocked-publication reconciliation — quick261022-a80
 
 Prepared independent fresh root inspection binding historical publication authority, exact blocked barrier and fixed current/stage/previous snapshots. Four matching byte patterns and conflicting unknown/partial states return no completion/durability/retry/publication/reopening grants. Historical comparison never renews write authority. Local synthetic SQL3/16011.115s, source7/5 4.159s, operator7/17 5.631s, deployment16/31 2.175s, native55/9 1.004s and notices9/7 3.728s pass. No actual host/provider action; reopening/application integration and actual qualification remain incomplete.
+
+## Exact proposed admission preparation — quick261022-afa
+
+Read-only root preparation returns hash-approved canonical admission bytes only after complete prior-manifest binding, fresh candidate/artifact/inner authority validation and stable published-only observations under a shared permanent barrier lease. Independent fresh preparation authority and opaque exact qualification evidence bind the proposal, not actual qualification. No activation or completion/durability/retry/reopen grants. SQL3/16611.557s, source7/5 9.070s, operator7/17 5.497s, deployment16/31 2.154s, native55/9 0.938s and notices9/7 3.701s pass. Actual reopening mutation/uncertain-sync recovery, application integration and actual host/runtime qualification remain pending; no host/provider action.

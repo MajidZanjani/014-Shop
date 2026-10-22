@@ -473,3 +473,44 @@ Local synthetic scratch tests cover all four patterns, unknown/partial states,
 replaced original inode, independent scope/expiry/root denial, historical expiry
 without write-authority renewal, shared/exclusive lock exclusion, linked paths,
 late revocation and changed bytes. No actual host path or provider is exercised.
+
+### Exact proposed admission bytes, without activation
+
+`prepare_reopening` is a root-only read-only library function. Separate fresh
+root authority at `/srv/shop/control-admission-preparation.json` has exactly
+schema_version=1, action=prepare-control-admission, authorization_id, expires_at,
+publication_authority_sha256, proposed_admission_sha256 and
+qualification_evidence_sha256. The caller supplies the historical publication
+authority, original admission, candidate bundle and bounded private qualification
+evidence. Evidence is opaque: its hash binds bytes to external root review and
+does not turn the bytes into verified custody, runtime or durability evidence.
+No actual approval record is generated, installed or inferred by this library.
+The independent publication-inspection authority is also required.
+
+Preparation checks the original manifest against the complete reviewed prior
+hash inventory, exact candidate/publication/original bindings and proposed
+admission digest. It performs full current candidate semantic/artifact validation,
+including inner authority expiry, before and during a permanent shared barrier
+lease. Only published_matches is accepted; current new directory byte/metadata
+snapshots must remain identical across independent publication inspections and
+fresh preparation-authority rechecks. An exclusive publisher cannot acquire the
+barrier while these final checks run. The barrier remains exactly blocked.
+
+Returned bytes are canonical admission JSON: generation is the exact candidate
+bundle hash and record_sha256 contains exactly the four newly validated canonical
+records. Old optional write/bootstrap authorities are not copied into this new
+manifest. The caller receives proposed bytes and their digest, never an installed
+file or activated lease. All completion/durability/publication/retry/reopening
+grants remain false. There is no write/fsync/rename, CLI or installation hook.
+The output can become stale after lease release and cannot authorize a later
+mutation; an actual reopener must independently recheck current state and fresh
+scoped authority. Interrupted reopening and power-loss behavior still need a
+separate design and qualification, including the possibility of complete admitted
+bytes being visible before a failing sync returns. No automatic retry or inferred
+successful activation is allowed.
+
+Synthetic scratch tests verify exact output/no writes, retained blocked admission,
+all incomplete publication states, changed installed bytes, exact independent
+scope/expiry/root checks, final authority/candidate revalidation and writer
+exclusion. Advancing only the inner schema-authority clock proves that historical
+observation may match while current preparation rejects actual expiry.

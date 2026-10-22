@@ -1,7 +1,7 @@
 ---
 gsd_state_version: "1.0"
 status: executing
-last_updated: "2026-10-22T07:29:12.208164+00:00"
+last_updated: "2026-10-22T07:33:42.564561+00:00"
 state_head: dfbdc74e456c2ac8f187a3013884566bd7a4551b
 progress:
   total_phases: 14
@@ -12,8 +12,8 @@ progress:
 last_activity: 2026-10-22
 current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
-stopped_at: Read-only publication reconciliation verified; separate reopening and actual qualification remain pending.
-last_activity_desc: Read-only blocked-publication reconciliation verified; reopening/14/16/17 incomplete.
+stopped_at: Exact proposed admission preparation verified; actual reopening and qualification remain pending.
+last_activity_desc: Exact proposed admission bytes prepared and tested; activation/14/16/17 incomplete.
 ---
 
 # Project State
@@ -186,6 +186,7 @@ Phase02 and14/16/17 remain incomplete. Next scoped durable generation publicatio
 | 261022-73q | Integrate exact-authority schema operator transport and admission | 2026-10-22 | 0adc350 | [261022-73q-integrate-private-fd-guarded-schema-comm](./quick/261022-73q-integrate-private-fd-guarded-schema-comm/) |
 | 261022-799 | Retain exact cached native upstream source notice candidates | 2026-10-22 | c14ae3a | [261022-799-retain-notices-from-cached-exact-python-](./quick/261022-799-retain-notices-from-cached-exact-python-/) |
 | 261022-7l3 | Package separate pinned candidate schema launcher | 2026-10-22 | ec4c4db | [261022-7l3-package-separate-pinned-candidate-schema](./quick/261022-7l3-package-separate-pinned-candidate-schema/) |
+| 261022-afa | Prepare exact proposed admission bytes without activation | 2026-10-22 | this commit | [261022-afa](./quick/261022-afa-prepare-exact-reviewed-admission-reopeni/) |
 
 ## Latest continuation — real local SCRAM inspection
 
@@ -350,3 +351,7 @@ Restored4b40a03 clean checkpoint; continuing inline quick261022-a80 under existi
 ## Latest continuation — publication-outcome reconciliation
 
 Quick261022-a80 adds fresh independent root inspection authority binding exact historical publication authority. Fixed current/stage/previous snapshots under permanent SHNB blocked barrier recognize four byte patterns; unknown/partial/inode replacement remains conflicting. No write/sync/repair/retry/reopen or old live authority lookup; historical expiry bypass only compares historical bytes, writer validation remains fresh. Actual scratch tests include scope, expiry, locks, linked files, late revocation and changed bytes. SQL3/16011.115s, source7/5 4.159s, operator7/17 5.631s, deployment16/31 2.175s, native55/9 1.004s and notices9/7 3.728s pass. Initial158-test run also passed; no failures. Actual host/custody/runtime qualification, separate reopening, app integration and14/16/17 remain incomplete. No credentials/host/provider actions.
+
+## Latest continuation — exact admission preparation
+
+Quick261022-afa adds root-only read-only preparation with independently fresh root authority for exact historical publication/proposed-admission/opaque qualification bytes. Complete original manifest binding, full fresh candidate semantic/artifact checks and published-only stable snapshots under permanent SH lease; exact four-record output bytes only, all activation/completion/durability grants false. Six new tests cover scope/incomplete states/final revocation/writer exclusion/actual inner expiry. SQL3/16611.557s, source7/5 9.070s, operator7/17 5.497s, deployment16/31 2.154s, native55/9 0.938s and notices9/7 3.701s pass, no failures. Actual reopening/uncertain-sync recovery, custody/host/runtime qualification, app integration and14/16/17 pending. No actual host/provider/credential action. Next separate reopening design must account for admitted bytes potentially visible before failed sync returns, forbid inferred success/retry and revalidate fresh authority/state independently of this staleable proposal.

@@ -287,3 +287,121 @@ class PublicationTests(unittest.TestCase):
                 fcntl.flock(barrier,fcntl.LOCK_EX|fcntl.LOCK_NB)
                 with self.assertRaises(BlockingIOError):self.observe(case,raw)
             self.assertEqual(self.observe(case,raw)['status'],'original_matches')
+
+    def preparation(self,case):
+        historical,_=self.inspection(case)
+        _,report=record_bundle.prepare_records(case['data'])
+        proposed=json.dumps({'schema_version':1,'state':'admitted',
+            'generation':report['bundle_sha256'],'record_sha256':report['record_sha256']},
+            sort_keys=True,separators=(',',':')).encode('ascii')+b'\n'
+        evidence=b'SYNTHETIC_EXTERNAL_QUALIFICATION_REVIEW_ONLY'
+        approval={'schema_version':1,'action':'prepare-control-admission','authorization_id':'c'*32,
+            'expires_at':case['authority']['expires_at'],
+            'publication_authority_sha256':hashlib.sha256(historical).hexdigest(),
+            'proposed_admission_sha256':hashlib.sha256(proposed).hexdigest(),
+            'qualification_evidence_sha256':hashlib.sha256(evidence).hexdigest()}
+        file=case['base']/'control-admission-preparation.json'
+        file.write_bytes(json.dumps(approval).encode());file.chmod(0o440)
+        return historical,proposed,evidence,file
+
+    def test_exact_preparation_returns_bytes_without_any_activation(self):
+        with self.fixture() as case:
+            historical,proposed,evidence,_=self.preparation(case);self.publish(case)
+            with patch.object(os,'write',side_effect=AssertionError('write')), \
+                 patch.object(os,'pwrite',side_effect=AssertionError('pwrite')), \
+                 patch.object(os,'fsync',side_effect=AssertionError('sync')), \
+                 patch.object(os,'mkdir',side_effect=AssertionError('mkdir')), \
+                 patch.object(publication,'load_authority',side_effect=AssertionError('old authority')):
+                raw,result=publication.prepare_reopening(case['data'],case['original'],historical,evidence)
+            self.assertEqual(raw,proposed)
+            self.assertEqual(control._validate_admitted(raw)['record_sha256'],
+                {name:hashlib.sha256(data).hexdigest() for name,data in case['payloads'].items()})
+            self.assertEqual(result['status'],'admission_bytes_prepared')
+            for key,value in result.items():
+                if key not in ('schema_version','status','proposed_admission_sha256'):self.assertIs(value,False)
+            self.assertEqual(case['barrier'].read_bytes(),case['blocked'])
+            with self.assertRaises(ValueError):
+                with control.admission():self.fail('preparation must remain blocked')
+
+    def test_preparation_denies_unpublished_partial_and_changed_generations(self):
+        for kind in ('original','stage','moved','partial','changed'):
+            with self.subTest(kind=kind),self.fixture() as case:
+                historical,_,evidence,_=self.preparation(case)
+                if kind in ('stage','moved'):
+                    actual=publication._rename_no_replace;calls=[]
+                    def rename(*args):
+                        calls.append(1)
+                        if len(calls)==(1 if kind=='stage' else 2):raise OSError('interrupted')
+                        return actual(*args)
+                    with patch.object(publication,'_rename_no_replace',side_effect=rename):
+                        with self.assertRaises(OSError):self.publish(case)
+                elif kind=='partial':
+                    with patch.object(os,'fsync',side_effect=OSError('sync')):
+                        with self.assertRaises(OSError):self.publish(case)
+                elif kind=='changed':
+                    self.publish(case);(case['old']/'expected.json').write_bytes(b'{}')
+                with self.assertRaises(ValueError):
+                    publication.prepare_reopening(case['data'],case['original'],historical,evidence)
+                self.assertEqual(case['barrier'].read_bytes(),case['blocked'])
+
+    def test_preparation_requires_exact_fresh_independent_approval(self):
+        for kind in ('expired','extra','proposal','historical','evidence','candidate','original','root'):
+            with self.subTest(kind=kind),self.fixture() as case:
+                historical,_,evidence,file=self.preparation(case);self.publish(case)
+                value=json.loads(file.read_bytes())
+                if kind=='expired':value['expires_at']='2000-01-01T00:00:00Z'
+                elif kind=='extra':value['extra']=True
+                elif kind=='proposal':value['proposed_admission_sha256']='0'*64
+                elif kind=='historical':historical+=b' '
+                elif kind=='evidence':evidence+=b' '
+                elif kind=='candidate':case['data']+=b' '
+                elif kind=='original':case['original']+=b' '
+                file.write_bytes(json.dumps(value).encode())
+                manager=patch.object(os,'geteuid',return_value=9909) if kind=='root' else contextlib.nullcontext()
+                with manager,self.assertRaises(ValueError):
+                    publication.prepare_reopening(case['data'],case['original'],historical,evidence)
+                self.assertEqual(case['barrier'].read_bytes(),case['blocked'])
+
+    def test_preparation_revalidates_candidate_and_late_approval(self):
+        for kind in ('candidate','approval'):
+            with self.subTest(kind=kind),self.fixture() as case:
+                historical,_,evidence,file=self.preparation(case);self.publish(case)
+                actual=record_bundle.prepare_records;calls=[]
+                def validate(data):
+                    calls.append(1)
+                    if len(calls)==2:
+                        if kind=='candidate':raise ValueError('synthetic-expired-inner-authority')
+                        value=json.loads(file.read_bytes());value['authorization_id']='d'*32
+                        file.write_bytes(json.dumps(value).encode())
+                    return actual(data)
+                with patch.object(record_bundle,'prepare_records',side_effect=validate),self.assertRaises(ValueError):
+                    publication.prepare_reopening(case['data'],case['original'],historical,evidence)
+                self.assertEqual(case['barrier'].read_bytes(),case['blocked'])
+
+    def test_preparation_excludes_writer_through_final_validation(self):
+        with self.fixture() as case:
+            historical,_,evidence,_=self.preparation(case);self.publish(case)
+            actual=record_bundle.prepare_records;calls=[]
+            def validate(data):
+                calls.append(1)
+                if len(calls)>1:self.assertEqual(case['barrier_fixture'].child_lock(case['barrier'],True),3)
+                return actual(data)
+            with patch.object(record_bundle,'prepare_records',side_effect=validate):
+                publication.prepare_reopening(case['data'],case['original'],historical,evidence)
+
+    def test_preparation_rejects_actually_expired_inner_authority(self):
+        from datetime import datetime,timedelta,timezone
+        import schema_authorization
+        with self.fixture() as case:
+            historical,_,evidence,_=self.preparation(case);self.publish(case)
+            candidate=json.loads(case['data'])
+            expiry=candidate['records']['schema-reconciliation.json']['expires_at']
+            future=datetime.strptime(expiry,'%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=timezone.utc)+timedelta(seconds=1)
+            with patch.object(schema_authorization,'datetime',wraps=datetime) as clock:
+                clock.now.return_value=future
+                # Historical observation still compares bytes; preparation must
+                # independently perform current semantic/expiry validation.
+                self.assertEqual(self.observe(case,historical)['status'],'published_matches')
+                with self.assertRaises(ValueError):
+                    publication.prepare_reopening(case['data'],case['original'],historical,evidence)
+            self.assertEqual(case['barrier'].read_bytes(),case['blocked'])
