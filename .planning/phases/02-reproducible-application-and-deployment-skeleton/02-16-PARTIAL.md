@@ -61,3 +61,9 @@ Current operator reference closure has54 realized objects; original53-object rep
 Required native-source-notices lane binds already-cached exact Python3.13.16/PostgreSQL18.6 source archives to current verified operator recipe/output and original source SHA256 pins. Nine upstream named candidates retained with member/content hashes and native-evidence binding, including exact top-level LICENSE/COPYRIGHT. No downloads/builds/extraction. PostgreSQL7944 members/141525674 expanded bytes/3 candidates; Python5272/110355801/6 candidates. Filename candidates include copyright.pl and non-Linux notices, so no legal/output-incorporation or source-offer completion inferred. Original raw/native reports unchanged.
 
 Actual initial9 checks/6 tests3.718s; pinned independent recheck9/6 in3.696s; environment2/14 in0.897s pass. No failed tests. Other native/npm notices/source/OCI/legal/runtime/CI gates,14/17 and full phase remain incomplete. No credentials or host/provider/service/resource operation.
+
+## Continuation — separate pinned schema candidate
+
+Code ec4c4db packages a distinct schema launcher with exact isolated Python/Psycopg/libpq/site/source inputs shared with inspection. Actual operator7/17 passes, including hostile startup, closed errors/arguments and synthetic private-FD0/FD3 transport through exec. Real source SCRAM/admission3/107, deployment16/31, environment2/14 pass. First Nix check declaration failed and was corrected. No role/authority/socket/publication/host qualification implied.
+
+Current inspection reference native54/9 and cached notices9/7 pass with content-addressed reports preserving history/texts. Separate schema closure/standard/native/OCI/legal inventory pending. No live apply, records, credentials, installation, host/provider or production connection.14/16/17/full phase/BUILD incomplete. See quick261022-7l3. Remote push blocked by approval review pending explicit origin/main publication authority.

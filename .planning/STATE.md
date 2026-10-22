@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
-status: paused
-last_updated: "2026-10-22T05:18:59.935Z"
-state_head: 2e5ccdec8a323ae8c295dd931cd64104d144319d
+status: executing
+last_updated: "2026-10-22T05:32:39.595Z"
+state_head: ec4c4db32bb14014b2aafc3932a9c4a8f4d34f07
 progress:
   total_phases: 14
   completed_phases: 1
@@ -185,6 +185,7 @@ Phase02 and14/16/17 remain incomplete. Next scoped durable generation publicatio
 | 261022-700 | Prepare generator discovery for only new shop manager | 2026-10-22 | 8e7cbf4 | [261022-700-prepare-root-owned-generator-discovery-f](./quick/261022-700-prepare-root-owned-generator-discovery-f/) |
 | 261022-73q | Integrate exact-authority schema operator transport and admission | 2026-10-22 | 0adc350 | [261022-73q-integrate-private-fd-guarded-schema-comm](./quick/261022-73q-integrate-private-fd-guarded-schema-comm/) |
 | 261022-799 | Retain exact cached native upstream source notice candidates | 2026-10-22 | c14ae3a | [261022-799-retain-notices-from-cached-exact-python-](./quick/261022-799-retain-notices-from-cached-exact-python-/) |
+| 261022-7l3 | Package separate pinned candidate schema launcher | 2026-10-22 | ec4c4db | [261022-7l3-package-separate-pinned-candidate-schema](./quick/261022-7l3-package-separate-pinned-candidate-schema/) |
 
 ## Latest continuation — real local SCRAM inspection
 
@@ -265,3 +266,13 @@ Required native-source-notices lane retains nine exact upstream named candidates
 ## Context checkpoint — sustained execution saved
 
 Proactive pause under standing AGENTS rule; no exact percentage supplied, no measured90% claim. All completed slices committed/pushed through 2e5ccde before handoff. Read HANDOFF.json and phase .continue-here.md. Resume directly into separate pinned candidate schema launcher preparation, then continue authorized work without per-slice stops. Parent14/16/17 and all unresolved qualification/approval gates stay incomplete. No running workflow processes or async jobs; measured clean tree before checkpoint writes.
+
+## Session continuity — resumed schema launcher preparation
+
+2026-10-22: Restored structured handoff at b875add, clean Git tree and no interrupted agents/async jobs. Continuing saved authorization inline through quick261022-7l3: separate pinned schema candidate launcher, then remaining repository work. Runner, human reviews,14/16/17 and full phase acceptance remain pending. No protected or external action authorized.
+
+## Latest continuation — separate schema candidate launcher
+
+Code ec4c4db packages shop-operator-schema separately from read-only inspection with exact existing dependencies. Operator7/17 startup/denial/synthetic FD transport, real source SQL3/107, deployment16/31, environment2/14, native54/9 and notices9/7 pass. Historical evidence preserved via content-addressed revisions.14/16/17 and human/off-host gates incomplete. No credentials/host/production operations.
+
+Automatic approval review blocked remote push pending explicit origin/main destination/publication authority; no remote mutation this session. Resume context restored and one-shot/stale pause artifacts consumed. Next local work: exact schema roles/transport, publisher/custody/barrier, Django/app write integration and independent replica. No runner assigned.
