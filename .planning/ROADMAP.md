@@ -4,12 +4,12 @@
 
 ## Current implementation activity — 2026-10-22
 
-**Updated through 798eaa3:** 24 implementation quick tasks completed today. Phase 02 remains 8/18 locally complete because 7 qualification/review and 3 implementation/qualification records remain open. See [current Phase 02 progress](phases/02-reproducible-application-and-deployment-skeleton/02-PROGRESS.md) and the [current state/task index](STATE.md).
+**Updated through PENDING_IMPLEMENTATION_COMMIT:** 25 implementation quick tasks completed today, plus one planning reconciliation. Phase 02 remains 8/18 locally complete because 7 qualification/review and 3 implementation/qualification records remain open. See [current Phase 02 progress](phases/02-reproducible-application-and-deployment-skeleton/02-PROGRESS.md) and the [current state/task index](STATE.md).
 
 - Plan 14 now includes source-only control publication/reopening/uncertainty lifecycle and an admission-leased Django multi-statement transaction precursor; application/worker integration and actual qualification remain open.
 - Plan 16 now has attributable named/header/marker licence evidence and offline reconciliation; all 12 package-wide reviews and complete native/OCI inventory remain pending.
-- Plans 16/17 now have one actual local PostgreSQL image archive,51 layer byte hashes and builder provenance. Other images,inner payload/runtime execution,OCI manifests and independent image comparison remain pending. The historical blanket unbuilt status no longer applies to PostgreSQL.
-- Latest PostgreSQL-backed lane is184 tests;latest deployment evaluation16/31;archive inspector8 tests;licence-related suites40 tests. These overlap and do not constitute a full-all/CI/production pass.
+- Plans 16/17 now have one actual local PostgreSQL image archive,51 layer byte hashes and builder provenance. An actual 14,480-entry inner-layer inventory now records regular byte hashes, links, absolute names and PAX metadata. Other images, importer/merged-rootfs/runtime semantics, OCI manifests and independent image comparison remain pending. The historical blanket unbuilt status no longer applies to PostgreSQL.
+- Latest PostgreSQL-backed lane is184 tests;latest deployment evaluation16/31;archive/payload inspectors17 tests;licence-related suites40 tests. These overlap and do not constitute a full-all/CI/production pass.
 
 ## Scope and execution policy
 
@@ -403,7 +403,7 @@ Keep public bytes in shop-owned OVH Object Storage through a fixed verified HTTP
 | Phase | Plans Complete | Status | Completed |
 |---|---|---|---|
 | 1. Product authority, repository review and decision register | 2 / 2 | Complete — documentation reconciled | 2026-10-21 |
-| 2. Reproducible application and deployment skeleton | 8 / 18 | In Progress; updated 2026-10-22: 24 implementation quick tasks; 7 qualification/review and 3 implementation/qualification records open | — |
+| 2. Reproducible application and deployment skeleton | 8 / 18 | In Progress; updated 2026-10-22: 25 implementation quick tasks; 7 qualification/review and 3 implementation/qualification records open | — |
 | 3. Markdown catalog, schemas and approved price calculations | 0 / not planned | Not started | — |
 | 4. Static product, configurator, support page and accessible fallback | 0 / not planned | Not started | — |
 | 5. Transactional records, durable work and private evidence primitives | 0 / not planned | Not started | — |

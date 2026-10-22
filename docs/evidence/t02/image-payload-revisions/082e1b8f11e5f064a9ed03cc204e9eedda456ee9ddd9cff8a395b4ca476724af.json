@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "evidence_class": "local-image-inner-layer-entry-inventory",
+  "archive_sha256": "00ad3ec8402040624e9218f25fed63c5aa62a1a002a07dc3a3a1fab425021067",
+  "config_image_id": "sha256:2de6ade6a883cb6a376fe6239cbabc78a671007e6490c961f828eb93954f0e44",
+  "outer_report_sha256": "f40a60ce47686368cd6dbd4dcbf2da6ad5bde1893eb865b757281dbfabb23e31",
+  "layer_count": 51,
+  "counts": {
+    "entries": 14480,
+    "regular_files": 8298,
+    "file_bytes": 298557309
+  },
+  "payload_manifest": {
+    "path": "image-payload-manifests/4827160ed18d55a4daf9e64bf5b43e76bda1a02857eafba51ba4fc02c7815933.json.gz",
+    "sha256": "4827160ed18d55a4daf9e64bf5b43e76bda1a02857eafba51ba4fc02c7815933",
+    "compressed_bytes": 487735,
+    "uncompressed_sha256": "a3dacc59f96fb7669fb02a708f01c5ebddfbaf600cd70bcd9617226f7e878444",
+    "uncompressed_bytes": 5483758
+  },
+  "notice_filename_candidates": [
+    {
+      "layer_index": 47,
+      "path": "nix/store/v1z7l40cvbgmcxg2rgpff37zvbxscxfa-icu4c-76.1/share/icu/76.1/LICENSE",
+      "sha256": "01edac20612b1e590c1c1cfb02b7218c6adc7b0a944eda7a1e03aeee10725aed",
+      "size": 26487
+    },
+    {
+      "layer_index": 49,
+      "path": "nix/store/jpw02npp3bx1jm1dw0rr7p1w8890fgd6-python3-3.13.16/lib/python3.13/LICENSE.txt",
+      "sha256": "78b12c3a81360b357002334f0e70ea0e92eebf7a9b358805c03c48484945f3bb",
+      "size": 13809
+    }
+  ],
+  "symlink_count": 5151,
+  "hardlink_count": 0,
+  "absolute_archive_member_names": 10517,
+  "whiteout_markers_unapplied": 0,
+  "merged_rootfs_qualified": false,
+  "links_resolved": false,
+  "native_notice_inventory_complete": false,
+  "legal_approval": false,
+  "container_execution_qualified": false,
+  "reproducibility_qualified": false,
+  "production_activation": false,
+  "scope": "Layer entry metadata and regular bytes hashed only; links recorded/unfollowed, overlays/whiteouts unapplied, notice filenames not licence classification"
+}

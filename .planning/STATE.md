@@ -1,7 +1,7 @@
 ---
 gsd_state_version: "1.0"
 status: executing
-last_updated: "2026-10-22T09:02:38.751929Z"
+last_updated: "2026-10-22T09:16:32.119826Z"
 state_head: 8a5c91e
 progress:
   total_phases: 14
@@ -12,13 +12,13 @@ progress:
 last_activity: 2026-10-22
 current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
-stopped_at: Planning summaries reconciled against implementation 798eaa3; Phase 02 acceptance still incomplete.
-last_activity_desc: Today 24 implementation quick tasks recorded; PostgreSQL archive built; current evidence and machine state synchronized.
+stopped_at: Actual image payload inventory verified; importer/link/merged-rootfs/native/legal/runtime qualification pending.
+last_activity_desc: PostgreSQL inner-layer inventory verified: 14480 entries, 8298 regular files; absolute names and PAX recorded; production remains closed.
 ---
 
 # Project State
 
-**Updated 2026-10-22 (UTC). Evidence reviewed through implementation commit 798eaa3.**
+**Updated 2026-10-22 (UTC). Evidence reviewed through implementation commit PENDING_IMPLEMENTATION_COMMIT.**
 Current detail: [Phase 02 progress](phases/02-reproducible-application-and-deployment-skeleton/02-PROGRESS.md).
 Chronological prior notes: [ACTIVITY-LOG.md](ACTIVITY-LOG.md); their old statuses are historical.
 
@@ -26,13 +26,13 @@ Chronological prior notes: [ACTIVITY-LOG.md](ACTIVITY-LOG.md); their old statuse
 
 Phase 02 is executing. Phase 01 has 2/2 documentation plans complete; Phase 02 has 8/18 local slices complete (00–05, 09, 15), 7 qualification/review pending (06–08, 10–13), 3 implementation/qualification incomplete (14, 16, 17). Across the milestone 10/20 planned records and 1/14 phases are complete. Frontmatter 7% is the rounded completed-phase ratio, not an estimate of implementation effort or today's work.
 
-**Today 24 implementation quick tasks completed**, indexed below, plus this planning reconciliation. Quick tasks advance incomplete plans without falsely completing phase/BUILD acceptance. Eight Phase 02 SUMMARY files and ten PARTIAL files remain intentional; no FULL_PASS or production readiness is claimed.
+**Today 25 implementation quick tasks completed**, indexed below, plus one completed planning reconciliation. Quick tasks advance incomplete plans without falsely completing phase/BUILD acceptance. Eight Phase 02 SUMMARY files and ten PARTIAL files remain intentional; no FULL_PASS or production readiness is claimed.
 
 ## Current implementation and today's work
 
 - Plan 14: pinned operator/schema launchers, actual local restricted SCRAM/peer tests, source-only exact control admission/block/custody/publication/reopening lifecycle and independent uncertainty observations. Twelve-module inert source package. New multi-statement Django transaction precursor holds admission through actual commit/rollback. Production/bank-sandbox still use the closed backend; safe host/application evidence boundary, all-write/role/transport integration and actual installation/qualification remain pending.
 - Plan 16: exact artifact/named-file/embedded-header/npm-marker evidence and offline reconciliation.12 original gap packages:1 named text, 2 headers, 10 marker observations (overlap), all 12 package-wide/legal reviews pending. Raw npm SBOM remains invalid; separate attributable schema-valid derivative exists. Native closure/notice evidence is partial, not complete legal/native acceptance.
-- Plans 16/17: one PostgreSQL Docker save candidate archive now actually built locally, 125653410 bytes, 51 ordered layer byte hashes checked against declared DiffIDs. Exact builder log/provenance/archive report retained. This supersedes yesterday's blanket unbuilt statement for PostgreSQL only; other images remain unbuilt. No image imported/run, inner filesystem/native inventory/OCI distribution manifest/two-independent-build or runtime qualification.
+- Plans 16/17: one PostgreSQL Docker save candidate archive now actually built locally, 125653410 bytes, 51 ordered layer byte hashes checked against declared DiffIDs. Exact builder log/provenance/archive report retained. This supersedes yesterday's blanket unbuilt statement for PostgreSQL only; other images remain unbuilt. Inner layers now inventoried: 14,480 entries, 8,298 regular files, 298,557,309 bytes hashed; 5,151 symlinks and 10,517 absolute names recorded without resolution or extraction. PAX-aware manifest and two notice filename candidates retained. No image imported/run or merged-rootfs/native-licence/OCI distribution manifest/two-independent-build/runtime qualification.
 
 ## Current recorded evidence
 
@@ -48,13 +48,13 @@ Latest recorded results below are separate overlapping lanes, not a unique total
 | Worker-smoke | 6/24, 9.022s | quick261022-aql |
 | Native operator closure / source notices | 56/9, 1.035s / 9/7, 3.820s | quick261022-aql |
 | Licence/reconciliation/marker/inventory units | 28+8+4 tests, 40 total in these suites | quick261022-bqg |
-| Docker archive inspector | 8 tests, 0.019s; actual51-layer rescans match | quick261022-bw3 |
+| Docker archive / payload inspectors | 17 tests, 0.035s; actual 51-layer, 14,480-entry rescans match | quick261022-cor |
 
 Most recent historical full-all attempt exited1 at the required off-host core gate after environment/frontend. It was not rerun today; there is no FULL_PASS. Earlier frontend/contracts/installer/two-public-backend-build/source-baseline evidence remains scoped to its historical record, not a newly executed all/OCI/CI pass.
 
 ## Next authorized work
 
-1. Inspect built PostgreSQL inner payload/native component/notice evidence, build remaining prepared candidates and implement independent image comparison. OCI distribution manifests and complete native/legal inventory remain pending.
+1. Review the two image notice candidates and map native components; qualify observed absolute-name/link/PAX/importer semantics, build remaining prepared candidates and implement independent image comparison. OCI distribution manifests and complete native/legal inventory remain pending.
 2. Resolve the safe host/application evidence boundary before application-role/connection/all-write backend and migration integration. Do not expose host /proc or host control mounts to application containers. Keep production closed until complete and qualified.
 3. Finish account-scoped runtime/generator and executable independent replica driver, then assigned off-host lifecycle/recovery/full CI and outstanding browser/source/licence reviews.
 
@@ -120,3 +120,4 @@ When session context exceeds 90%, run `$gsd-pause-work`, save a complete resumab
 | 261022-bqg | Reconcile supplemental licence observations | 2026-10-22 | a02e5a5 | [261022-bqg](./quick/261022-bqg-reconcile-supplemental-licence-observati/) |
 | 261022-bw3 | Build and inspect PostgreSQL candidate archive | 2026-10-22 | 798eaa3 | [261022-bw3](./quick/261022-bw3-build-and-inspect-the-prepared-postgresq/) |
 | 261022-cci | Reconcile visible and machine-readable planning progress | 2026-10-22 | 8a5c91e | [261022-cci-reconcile-stale-planning-summaries-and-m](./quick/261022-cci-reconcile-stale-planning-summaries-and-m/) |
+| 261022-cor | Inventory actual PostgreSQL inner-layer payload | 2026-10-22 | PENDING_IMPLEMENTATION_COMMIT | [261022-cor-inventory-actual-postgresql-image-inner-](./quick/261022-cor-inventory-actual-postgresql-image-inner-/) |

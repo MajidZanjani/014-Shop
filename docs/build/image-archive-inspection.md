@@ -61,3 +61,52 @@ To recheck locally, run the pinned development shell's Python with
 `--write` exclusively creates a content-addressed inspection report and refuses
 existing output. It does not rebuild, import, execute, overwrite, repair or publish
 the image.
+
+## Actual inner-layer inventory
+
+`inventory_image_payload.py` now observes the existing layer streams while the
+outer inspector independently accounts for every layer byte, including unread
+padding, and checks the original config/DiffIDs. The optional observer leaves
+original outer-report bytes unchanged. No file is extracted to a host filesystem,
+no link target is opened and no image is imported or executed.
+
+The PAX-aware inventory revision
+`874d877d6651a07c89871beaae9e66c30beefb469cfdfebc4018da318b639ba7.json`
+contains51 layers,14,480 entries,8,298 regular files and298,557,309 regular-file
+bytes hashed. It records5,151 symlinks,zero hardlinks and zero observed whiteout
+markers. Selected metadata includes raw names, image-relative indexing paths,
+mode,UID/GID,mtime,size,regular content hashes,unresolved links and bounded PAX
+headers.2,972 entries have PAX headers. The deterministic compressed manifest is
+500,801 bytes (6,115,498 uncompressed). An earlier narrower revision without PAX
+fields is preserved separately; these are two inventory revisions of the same
+single image realization,not independent rebuilds.
+
+A concrete format observation is10,517 absolute inner member names,including
+/nix/store paths. Initial strict relative-path-only scanning denied before any
+report write. The corrected nonextracting observer preserves original spelling,
+flags absolute names and uses stripped-root indexing solely for lookup;it does
+not silently normalize the actual image or claim importer compatibility. Traversal,
+ambiguous double-root names,normalized duplicate paths,special/sparse entries,
+invalid numeric/timestamp metadata and size/PAX limits still deny. Link targets
+may be absolute or contain parent components:they are recorded without resolution,
+never used as host paths. They remain unqualified runtime semantics.
+
+[OCI layer application rules](https://raw.githubusercontent.com/opencontainers/image-spec/v1.1.1/layer.md)
+treat layers as changesets with link/whiteout/replacement semantics. This collector
+does not assemble or qualify the merged root filesystem. Absolute-name importer
+behavior,links,attributes and any resulting runtime behavior require separate
+qualification. No blanket OCI-conformance conclusion is inferred.
+
+Two named-notice candidates were found and hashed in actual image files:ICU76.1
+LICENSE(26,487 bytes) and Python3.13.16 LICENSE.txt(13,809 bytes). These are filename
+observations,not a complete component/native/redistribution inventory or legal
+approval. Text retention/review and mapping all native dependencies remain pending.
+
+Nine new payload tests plus eight outer-archive tests pass (17 total). Actual
+PAX-aware collection and independent rescan reproduce every manifest/report byte;
+the original outer report also independently reproduces. Tests cover streamed
+byte accounting,unresolved links,unapplied whiteouts,absolute-name flags,path
+aliases/traversal,special entries,bounds,finite timestamps,PAX retention,outer
+report substitution and exclusive/tamper-resistant evidence retention.
+The report's merged-rootfs,links-resolved,complete native-notice,legal,runtime,
+reproducibility and production flags all remain false.

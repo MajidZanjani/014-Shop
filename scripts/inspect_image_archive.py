@@ -29,7 +29,19 @@ def unique(pairs):
     return value
 
 
-def inspect(path):
+class DigestReader:
+    """Account every streamed layer byte, including bytes consumed by an observer."""
+    def __init__(self,stream,maximum):
+        self.stream=stream;self.maximum=maximum;self.size=0;self.digest=hashlib.sha256()
+    def read(self,size):
+        require(type(size) is int and size>=0,'bounded layer read required')
+        data=self.stream.read(size);self.size+=len(data)
+        require(self.size<=self.maximum,'layer reader byte bound exceeded')
+        self.digest.update(data)
+        return data
+
+
+def inspect(path, *, layer_observer=None):
     path=Path(path)
     fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK|os.O_CLOEXEC)
     with os.fdopen(fd,'rb') as stream:
@@ -56,10 +68,16 @@ def inspect(path):
                         require(metadata_total<=MAX_METADATA,'total metadata byte bound exceeded')
                     digest=hashlib.sha256();chunks=[];size=0
                     with archive.extractfile(member) as payload:
-                        while chunk:=payload.read(1024**2):
-                            size+=len(chunk);require(size<=member.size,'member byte length exceeded')
-                            digest.update(chunk)
-                            if capture:chunks.append(chunk)
+                        if layer_observer is not None and name.endswith('/layer.tar'):
+                            reader=DigestReader(payload,member.size)
+                            layer_observer(name,reader)
+                            while reader.read(1024**2):pass
+                            size=reader.size;digest=reader.digest
+                        else:
+                            while chunk:=payload.read(1024**2):
+                                size+=len(chunk);require(size<=member.size,'member byte length exceeded')
+                                digest.update(chunk)
+                                if capture:chunks.append(chunk)
                     require(size==member.size,'member byte length mismatch')
                     item['sha256']=digest.hexdigest()
                     if capture:json_bytes[name]=b''.join(chunks)
