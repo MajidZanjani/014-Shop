@@ -1,0 +1,100 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-10-22T07:58:01.338Z",
+  "phase": "02",
+  "phase_name": "Reproducible application and deployment skeleton",
+  "phase_dir": ".planning/phases/02-reproducible-application-and-deployment-skeleton",
+  "plan": 14,
+  "task": 1,
+  "total_tasks": 3,
+  "status": "paused",
+  "completed_tasks": [
+    {
+      "id": 1,
+      "name": "Read-only publication reconciliation",
+      "status": "done",
+      "commit": "c5b3c7a"
+    },
+    {
+      "id": 2,
+      "name": "Exact proposed admission preparation",
+      "status": "done",
+      "commit": "11279da"
+    },
+    {
+      "id": 3,
+      "name": "Source-only scoped reopening and uncertain outcome inspection",
+      "status": "done",
+      "commit": "820f7ba"
+    },
+    {
+      "id": 4,
+      "name": "Django multi-statement transaction precursor",
+      "status": "done",
+      "commit": "e863f6c"
+    }
+  ],
+  "remaining_tasks": [
+    {
+      "id": 5,
+      "name": "Design safe host/application evidence boundary, then bind application connection/role and implement all-write backend/worker enforcement",
+      "status": "not_started"
+    },
+    {
+      "id": 6,
+      "name": "Account-scoped runtime/generator qualification and executable independent replica driver",
+      "status": "not_started"
+    },
+    {
+      "id": 7,
+      "name": "Remaining licence/SBOM/native/OCI/reproducibility/full CI and actual independent recovery qualifications (14/16/17)",
+      "status": "not_started"
+    }
+  ],
+  "blockers": [
+    {
+      "description": "Independent off-host qualification runner remains unassigned; not a blocker to remaining repository implementation",
+      "type": "external",
+      "workaround": "Continue ordinary owned local/synthetic implementation. No disruptive tests on mx1/claude-dev/guests; no automatic purchase/provisioning."
+    }
+  ],
+  "async_jobs": [],
+  "human_actions_pending": [
+    {
+      "action": "Assign scoped independent qualification runner and perform outstanding browser/legal/host/runtime reviews at qualification stage",
+      "context": "Do not repeatedly ask until remaining qualification boundary. Actual host/provider/DNS/TLS/bank/mail actions need exact scoped authority.",
+      "blocking": false
+    }
+  ],
+  "decisions": [
+    {
+      "decision": "Keep production/bank-sandbox shop.db.unqualified closed; transaction primitive is not automatic ORM enforcement",
+      "rationale": "Caller expected/probe, admitted transport/role and every write path remain unintegrated.",
+      "phase": "02"
+    },
+    {
+      "decision": "Do not place host /proc or host control mounts in application containers",
+      "rationale": "Host-side process probe restriction in ops/runtime/process_probe.py; next integration must preserve that boundary.",
+      "phase": "02"
+    },
+    {
+      "decision": "Late reopening sync/revocation failure can leave admitted bytes and admit readers; never claim blocked or infer retry",
+      "rationale": "Actual synthetic scratch failure tests demonstrate this uncertainty; separate read-only inspection grants no completion/durability/retry.",
+      "phase": "02"
+    }
+  ],
+  "uncommitted_files": [],
+  "next_action": "Read STATE, docs/django-destination-guard.md, ops/runtime/django_transaction.py and process_probe.py host-only restrictions, then existing runtime/connection/architecture docs. Plan a safe host/application evidence boundary before binding root records or opening production backend. init.quick returned unused id261022-b19 (no directory/artifact/code created); reinitialize or explicitly plan the corrected next slice. Continue authorized local implementation/commits/push without per-slice permission.",
+  "context_notes": "Proactive checkpoint after long context; no exact context percentage supplied, no automatic threshold claim. All four local slices committed/pushed to origin/main; tree measured clean before handoff. No agents/background checks/jobs active; no async-jobs directory; no SUMMARY placeholders found. Source-only library, no actual authority/host/provider/credential action. Phase02/14/16/17 incomplete, no FULL_PASS. Nix builds need new files tracked before Git-source evaluation; run package builds to completion before native collection. Use cached Nix, --max-jobs1 --cores4, owned .scratch; no shared cleanup. Tools require escalated local cwd because default sandbox resolution fails.",
+  "evidence": {
+    "database_destination": "3 checks/184 tests13.762s; earlier183/13.320s passed",
+    "database_tools": "7/5 9.497s",
+    "operator_runtime": "7/17 5.951s",
+    "deployment_eval": "16/31 2.292s",
+    "core_local": "4/22 7.710s",
+    "worker_smoke": "6/24 9.022s",
+    "native_closure": "56/9 1.035s; content-addressed revision retained",
+    "native_source_notices": "9/7 3.820s; content-addressed revision retained",
+    "failures": "Initial source/operator/deployment lanes failed because new untracked django_transaction.py absent Nix Git source. git add exact source corrected all. No test failures or invalid native reports retained. Earlier reopening slice had ignored concurrent Nix SQLite busy warning; completed successfully."
+  }
+}

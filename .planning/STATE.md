@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
-status: executing
-last_updated: "2026-10-22T07:56:19.721281+00:00"
-state_head: 820f7ba
+status: paused
+last_updated: "2026-10-22T07:58:01.338Z"
+state_head: e863f6c
 progress:
   total_phases: 14
   completed_phases: 1
@@ -365,3 +365,7 @@ Quick261022-ajs adds source-only root reopening under independently fresh exact 
 ## Latest continuation — Django multi-statement transaction precursor
 
 Quick261022-aql adds guarded_atomic for already-connected registered Django/Psycopg wrapper: owns durable outer transaction, permanent admission through actual commit/rollback, before/after fresh SQL/durability/runtime checks, no reconnect/callback/manual/outer/rollback-only acceptance or retry. Nine actual scratch Django/QuerySet/SQL/flock tests, root path/container evidence adapted. Explicit12-module source artifact. SQL3/18413.762s, source7/5 9.497s, operator7/17 5.951s, deployment16/31 2.292s, core-local4/22 7.710s, worker-smoke6/24 9.022s, native56/9 1.035s, notices9/7 3.820s pass. Initial183-test run passed; initial three package/evaluation lanes failed due new untracked file missing Nix Git source, exact git add fixed them. No tests failed/invalid native retained. Production gate/settings/worker call sites unchanged. Next bind application-specific root record and existing connection/role/peer to admitted immutable controls, then all-write backend integration; this primitive accepts trusted caller expected/probe and is not automatic enforcement. Actual host/runtime/archive/recovery and14/16/17 incomplete; no credentials/provider/host operation.
+
+## Context checkpoint — reopening lifecycle and Django transaction precursor
+
+Implementation through e863f6c committed/pushed; measured clean before handoff. Saved structured/phase handoff with184-test/package/core/worker/native evidence and initial Nix untracked-source failure/correction. Next safe host/application evidence boundary, then root-bound role/connection/all-write integration; never mount host /proc or host control evidence into application containers. Unused quick init261022-b19 created no artifact/code. Exact percentage unavailable, proactive long-context checkpoint under standing instruction. No running checks/agents/jobs or real credentials/host/provider action. Phase02/14/16/17 and actual qualification remain incomplete.
