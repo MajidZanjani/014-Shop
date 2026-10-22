@@ -81,7 +81,7 @@ def candidate(name):
     return bool(re.match(r'(?i)^(licen[cs]es?|copying|copyright|notice)([._-].*)?$', PurePosixPath(name).name))
 
 
-def inspect_archive(data, group):
+def inspect_archive(data, group, *, notice_candidate=candidate):
     members = []
     found = {}
     total = 0
@@ -100,7 +100,7 @@ def inspect_archive(data, group):
         total += size
         require(total <= MAX_TOTAL, 'expanded archive bound exceeded')
         members.append({'path': name, 'size': size, 'kind': kind})
-        if kind == 'file' and candidate(name):
+        if kind == 'file' and notice_candidate(name):
             require(size <= MAX_TEXT, 'notice byte bound exceeded')
             content = read(MAX_TEXT + 1)
             require(len(content) == size and bool(content), 'invalid notice length')
@@ -127,13 +127,13 @@ def inspect_archive(data, group):
     return sorted(members, key=lambda x: x['path']), found
 
 
-def audit(source, loader=fetch):
+def audit(source, loader=fetch, *, notice_candidate=candidate):
     findings = []
     payloads = {}
     for group, record in targets(json.loads(source)):
         data = loader(record['artifact_url'], group)
         verify(data, record['artifact_hash'])
-        members, found = inspect_archive(data, group)
+        members, found = inspect_archive(data, group, notice_candidate=notice_candidate)
         texts = []
         for name, content in sorted(found.items()):
             digest = sha256(content)

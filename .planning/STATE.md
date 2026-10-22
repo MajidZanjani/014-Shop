@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
-status: paused
-last_updated: "2026-10-22T07:58:01.338Z"
-state_head: e863f6c
+status: executing
+last_updated: "2026-10-22T08:05:42.423085+00:00"
+state_head: bdbd432
 progress:
   total_phases: 14
   completed_phases: 1
@@ -12,8 +12,8 @@ progress:
 last_activity: 2026-10-22
 current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
-stopped_at: Django multi-statement transaction precursor verified; application record/connection/backend integration pending.
-last_activity_desc: Guarded Django transaction primitive tested; production backend remains closed;14/16/17 incomplete.
+stopped_at: Supplemental prefixed licence-name evidence verified; safe host/application boundary and14/16/17 incomplete.
+last_activity_desc: Exact mit.LICENSE named text retained separately; legal/full inventory and runtime integration pending.
 ---
 
 # Project State
@@ -188,7 +188,8 @@ Phase02 and14/16/17 remain incomplete. Next scoped durable generation publicatio
 | 261022-7l3 | Package separate pinned candidate schema launcher | 2026-10-22 | ec4c4db | [261022-7l3-package-separate-pinned-candidate-schema](./quick/261022-7l3-package-separate-pinned-candidate-schema/) |
 | 261022-afa | Prepare exact proposed admission bytes without activation | 2026-10-22 | 11279da | [261022-afa](./quick/261022-afa-prepare-exact-reviewed-admission-reopeni/) |
 | 261022-ajs | Candidate reopening and uncertain-outcome inspection | 2026-10-22 | 820f7ba | [261022-ajs](./quick/261022-ajs-implement-separately-authorized-admissio/) |
-| 261022-aql | Django multi-statement transaction precursor | 2026-10-22 | this commit | [261022-aql](./quick/261022-aql-integrate-admission-lifetime-into-a-clos/) |
+| 261022-aql | Django multi-statement transaction precursor | 2026-10-22 | e863f6c | [261022-aql](./quick/261022-aql-integrate-admission-lifetime-into-a-clos/) |
+| 261022-b5y | Supplemental prefixed licence-name audit | 2026-10-22 | this commit | [261022-b5y](./quick/261022-b5y-audit-prefixed-licence-filenames-in-exac/) |
 
 ## Latest continuation — real local SCRAM inspection
 
@@ -369,3 +370,11 @@ Quick261022-aql adds guarded_atomic for already-connected registered Django/Psyc
 ## Context checkpoint — reopening lifecycle and Django transaction precursor
 
 Implementation through e863f6c committed/pushed; measured clean before handoff. Saved structured/phase handoff with184-test/package/core/worker/native evidence and initial Nix untracked-source failure/correction. Next safe host/application evidence boundary, then root-bound role/connection/all-write integration; never mount host /proc or host control evidence into application containers. Unused quick init261022-b19 created no artifact/code. Exact percentage unavailable, proactive long-context checkpoint under standing instruction. No running checks/agents/jobs or real credentials/host/provider action. Phase02/14/16/17 and actual qualification remain incomplete.
+
+## Session continuity — supplemental licence filename audit
+
+Resumed bdbd432 clean checkpoint under standing local implementation/commit/push authority. Consumed one-shot handoff. Host/application process evidence boundary remains unresolved; never mount host /proc/control into app, keep production backend closed. Independent local inventory review found exact archive mit.LICENSE omitted by original anchored filename policy. Continuing quick261022-b5y supplementary exact-artifact evidence; preserve baseline/raw bytes and all legal/runtime/phase gates.
+
+## Latest continuation — supplemental prefixed licence filenames
+
+Quick261022-b5y preserves original anchored audit/default bytes while adding supplementary explicit prefixed notice-name policy. Binds exact original inventory/audit/artifact/member identities and separately retains1,080-byte pip-requirements-parser32.0.1 mit.LICENSE (SHA25618081c2c82771ca09d99d08cdac405924309e09fd19b16f1eea59cbc6ab809ed). All12 official hashed artifacts verified twice;12/1 candidate/1 text. Original default recheck12/0 unchanged.20 collector tests0.008s plus4 inventory tests0.000s pass;8 baseline/raw/derived evidence files equal HEAD. No extraction/install/execution/legal completeness/native/runtime claim, no credential/host/provider action. Ten npm/packageurl-python named gaps, legal/package-wide/native/OCI16/17 and application safe host/proc/control boundary remain pending. Production backend stays closed.

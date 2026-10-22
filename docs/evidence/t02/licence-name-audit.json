@@ -1,0 +1,555 @@
+{
+  "schema_version": 1,
+  "evidence_class": "exact-distribution-extended-name-audit",
+  "source_licences_sha256": "a9f0417869532b04147500c18cd8c858c73745c8af614353c7ba7713338ce376",
+  "distributions_checked": 12,
+  "inventory_complete": false,
+  "legal_approval": false,
+  "scope": "Original named-file policy plus bounded prefixed notice names; exact distribution bytes only, no legal/native/package-wide completeness",
+  "findings": [
+    {
+      "group": "npm",
+      "name": "@astrojs/compiler-binding-linux-x64-gnu",
+      "version": "0.5.2",
+      "artifact_url": "https://registry.npmjs.org/@astrojs/compiler-binding-linux-x64-gnu/-/compiler-binding-linux-x64-gnu-0.5.2.tgz",
+      "artifact_hash": "sha512-9XAqGTMQAtIslMsjK3xdyY6OI9d59OZqcLBB6pvD/DcoR0daYswfrKx2azdDERDY4AqAnWPC7odVM1BmxYv3Vw==",
+      "observed_archive_sha256": "dee5101031ce2737e64da61e497d8637dcf672c3a321d5a6383766013a992ce8",
+      "archive_members": [
+        {
+          "path": "package/README.md",
+          "size": 125,
+          "kind": "file"
+        },
+        {
+          "path": "package/astro.linux-x64-gnu.node",
+          "size": 7352096,
+          "kind": "file"
+        },
+        {
+          "path": "package/package.json",
+          "size": 809,
+          "kind": "file"
+        }
+      ],
+      "candidate_notice_texts": [],
+      "status": "no-named-notice-found-review-pending"
+    },
+    {
+      "group": "npm",
+      "name": "@bruits/satteri-linux-x64-gnu",
+      "version": "0.10.5",
+      "artifact_url": "https://registry.npmjs.org/@bruits/satteri-linux-x64-gnu/-/satteri-linux-x64-gnu-0.10.5.tgz",
+      "artifact_hash": "sha512-FVaLoPT1fBgGl0J+AYebyyXJYBachGl8Oyyrf1lye4RTqCB4S0Gwkj1uM9RJyThUOvx5VUmAT1CnNh1SFHA+kw==",
+      "observed_archive_sha256": "c2b733e72cef4850da027a4dfdc06dbf64fa2f99fb944a40016cb2a7aecb8a1e",
+      "archive_members": [
+        {
+          "path": "package/README.md",
+          "size": 105,
+          "kind": "file"
+        },
+        {
+          "path": "package/package.json",
+          "size": 433,
+          "kind": "file"
+        },
+        {
+          "path": "package/satteri_napi.linux-x64-gnu.node",
+          "size": 4146224,
+          "kind": "file"
+        }
+      ],
+      "candidate_notice_texts": [],
+      "status": "no-named-notice-found-review-pending"
+    },
+    {
+      "group": "npm",
+      "name": "@img/sharp-libvips-linux-x64",
+      "version": "1.3.4",
+      "artifact_url": "https://registry.npmjs.org/@img/sharp-libvips-linux-x64/-/sharp-libvips-linux-x64-1.3.4.tgz",
+      "artifact_hash": "sha512-GJ//SSXbnwSDes02umB3nDJLFcQzw8a18V8fyhqr6tV515tOEMdImjjxj1AoafMRz56F3PHgftnj1QEKSU1zkw==",
+      "observed_archive_sha256": "e371cb713fc8822c96a0d3fb60a3d092799d0aefab6d7f1fb3b72d8d75f1d109",
+      "archive_members": [
+        {
+          "path": "package/README.md",
+          "size": 4331,
+          "kind": "file"
+        },
+        {
+          "path": "package/lib/glib-2.0/include/glibconfig.h",
+          "size": 5923,
+          "kind": "file"
+        },
+        {
+          "path": "package/lib/index.js",
+          "size": 28,
+          "kind": "file"
+        },
+        {
+          "path": "package/lib/libvips-cpp.so.8.18.7",
+          "size": 18699288,
+          "kind": "file"
+        },
+        {
+          "path": "package/package.json",
+          "size": 935,
+          "kind": "file"
+        },
+        {
+          "path": "package/versions.json",
+          "size": 596,
+          "kind": "file"
+        }
+      ],
+      "candidate_notice_texts": [],
+      "status": "no-named-notice-found-review-pending"
+    },
+    {
+      "group": "npm",
+      "name": "@napi-rs/wasm-runtime",
+      "version": "1.2.4",
+      "artifact_url": "https://registry.npmjs.org/@napi-rs/wasm-runtime/-/wasm-runtime-1.2.4.tgz",
+      "artifact_hash": "sha512-AJxoUD2/15ESHbvpcyjU274nsAPLuOtPHCk0vKJM5pj//Fg/B1FXNWjPnXTT9PymCYYiHo4zPj0ZomXBKhoy7g==",
+      "observed_archive_sha256": "e64c2013eba51ad6624ccf94f06c8a570c0d80488b7eabf17af2934690ccb887",
+      "archive_members": [
+        {
+          "path": "package/dist/emnapi-plugins.cjs",
+          "size": 59988,
+          "kind": "file"
+        },
+        {
+          "path": "package/dist/emnapi-plugins.js",
+          "size": 59912,
+          "kind": "file"
+        },
+        {
+          "path": "package/dist/fs-proxy.cjs",
+          "size": 7373,
+          "kind": "file"
+        },
+        {
+          "path": "package/dist/fs.js",
+          "size": 639375,
+          "kind": "file"
+        },
+        {
+          "path": "package/fs-proxy.js",
+          "size": 8510,
+          "kind": "file"
+        },
+        {
+          "path": "package/package.json",
+          "size": 1530,
+          "kind": "file"
+        },
+        {
+          "path": "package/runtime.cjs",
+          "size": 1542,
+          "kind": "file"
+        },
+        {
+          "path": "package/runtime.js",
+          "size": 1521,
+          "kind": "file"
+        }
+      ],
+      "candidate_notice_texts": [],
+      "status": "no-named-notice-found-review-pending"
+    },
+    {
+      "group": "npm",
+      "name": "@rolldown/binding-linux-x64-gnu",
+      "version": "1.2.14",
+      "artifact_url": "https://registry.npmjs.org/@rolldown/binding-linux-x64-gnu/-/binding-linux-x64-gnu-1.2.14.tgz",
+      "artifact_hash": "sha512-WxalXzgrLVpKC93xfpaJ3gCXUWzeCr+FRCbDVD2mUAy4L6Vo3lNVz0epUEUpxPWJkLNYUwM4OSIikv36OJ9mLg==",
+      "observed_archive_sha256": "365472fd9f5293c76b905b210ad6756ab7c2c56f99231ce55b92a31c0211594e",
+      "archive_members": [
+        {
+          "path": "package/README.md",
+          "size": 109,
+          "kind": "file"
+        },
+        {
+          "path": "package/package.json",
+          "size": 884,
+          "kind": "file"
+        },
+        {
+          "path": "package/rolldown-binding.linux-x64-gnu.node",
+          "size": 19812640,
+          "kind": "file"
+        }
+      ],
+      "candidate_notice_texts": [],
+      "status": "no-named-notice-found-review-pending"
+    },
+    {
+      "group": "npm",
+      "name": "@vscode/l10n",
+      "version": "0.0.18",
+      "artifact_url": "https://registry.npmjs.org/@vscode/l10n/-/l10n-0.0.18.tgz",
+      "artifact_hash": "sha512-KYSIHVmslkaCDyw013pphY+d7x1qV8IZupYfeIfzNA+nsaWHbn5uPuQRvdRFsa9zFzGeudPuoGoZ1Op4jrJXIQ==",
+      "observed_archive_sha256": "f1c2dc897488595f6bb42121869f525c6c6a5f7c8dca550754199c3251ed7c5c",
+      "archive_members": [
+        {
+          "path": "package/README.md",
+          "size": 1423,
+          "kind": "file"
+        },
+        {
+          "path": "package/dist/browser.js",
+          "size": 2969,
+          "kind": "file"
+        },
+        {
+          "path": "package/dist/main.d.ts",
+          "size": 5601,
+          "kind": "file"
+        },
+        {
+          "path": "package/dist/main.js",
+          "size": 4582,
+          "kind": "file"
+        },
+        {
+          "path": "package/dist/tsdoc-metadata.json",
+          "size": 340,
+          "kind": "file"
+        },
+        {
+          "path": "package/package.json",
+          "size": 1504,
+          "kind": "file"
+        }
+      ],
+      "candidate_notice_texts": [],
+      "status": "no-named-notice-found-review-pending"
+    },
+    {
+      "group": "npm",
+      "name": "am-i-vibing",
+      "version": "0.5.0",
+      "artifact_url": "https://registry.npmjs.org/am-i-vibing/-/am-i-vibing-0.5.0.tgz",
+      "artifact_hash": "sha512-KLcsDhqf1XRrJmJr+9I/C0EX2K+sGrAGZFgkmd84c8TJO9zJBu+/kFInjazu1KfJWFhWDKdRWkpBzEs7s35DVA==",
+      "observed_archive_sha256": "04355987537ac8578954e6f70a60c39b8d00bd151c0fdb90e2c7be50a311b7bc",
+      "archive_members": [
+        {
+          "path": "package/README.md",
+          "size": 5960,
+          "kind": "file"
+        },
+        {
+          "path": "package/dist/cli.d.mts",
+          "size": 11,
+          "kind": "file"
+        },
+        {
+          "path": "package/dist/cli.mjs",
+          "size": 4463,
+          "kind": "file"
+        },
+        {
+          "path": "package/dist/cli.mjs.map",
+          "size": 7725,
+          "kind": "file"
+        },
+        {
+          "path": "package/dist/detector-1yx2Hoe0.mjs",
+          "size": 8025,
+          "kind": "file"
+        },
+        {
+          "path": "package/dist/detector-1yx2Hoe0.mjs.map",
+          "size": 21618,
+          "kind": "file"
+        },
+        {
+          "path": "package/dist/index.d.mts",
+          "size": 5074,
+          "kind": "file"
+        },
+        {
+          "path": "package/dist/index.d.mts.map",
+          "size": 1417,
+          "kind": "file"
+        },
+        {
+          "path": "package/dist/index.mjs",
+          "size": 464,
+          "kind": "file"
+        },
+        {
+          "path": "package/dist/index.mjs.map",
+          "size": 822,
+          "kind": "file"
+        },
+        {
+          "path": "package/package.json",
+          "size": 1209,
+          "kind": "file"
+        }
+      ],
+      "candidate_notice_texts": [],
+      "status": "no-named-notice-found-review-pending"
+    },
+    {
+      "group": "npm",
+      "name": "boolbase",
+      "version": "1.0.0",
+      "artifact_url": "https://registry.npmjs.org/boolbase/-/boolbase-1.0.0.tgz",
+      "artifact_hash": "sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==",
+      "observed_archive_sha256": "69628ff8092c5ff940ea4a0f29da98d520615bae138755c9e059033606c6caa8",
+      "archive_members": [
+        {
+          "path": "package/README.md",
+          "size": 655,
+          "kind": "file"
+        },
+        {
+          "path": "package/index.js",
+          "size": 125,
+          "kind": "file"
+        },
+        {
+          "path": "package/package.json",
+          "size": 550,
+          "kind": "file"
+        }
+      ],
+      "candidate_notice_texts": [],
+      "status": "no-named-notice-found-review-pending"
+    },
+    {
+      "group": "npm",
+      "name": "piccolore",
+      "version": "0.1.3",
+      "artifact_url": "https://registry.npmjs.org/piccolore/-/piccolore-0.1.3.tgz",
+      "artifact_hash": "sha512-o8bTeDWjE086iwKrROaDf31K0qC/BENdm15/uH9usSC/uZjJOKb2YGiVHfLY4GhwsERiPI1jmwI2XrA7ACOxVw==",
+      "observed_archive_sha256": "d80aca8423f431568f382a1df72a96480ea66186567598a8eeebc8e2d7c59b9b",
+      "archive_members": [
+        {
+          "path": "package/README.md",
+          "size": 278,
+          "kind": "file"
+        },
+        {
+          "path": "package/dist/index.d.ts",
+          "size": 931,
+          "kind": "file"
+        },
+        {
+          "path": "package/dist/index.js",
+          "size": 1957,
+          "kind": "file"
+        },
+        {
+          "path": "package/package.json",
+          "size": 584,
+          "kind": "file"
+        }
+      ],
+      "candidate_notice_texts": [],
+      "status": "no-named-notice-found-review-pending"
+    },
+    {
+      "group": "npm",
+      "name": "process-ancestry",
+      "version": "0.1.0",
+      "artifact_url": "https://registry.npmjs.org/process-ancestry/-/process-ancestry-0.1.0.tgz",
+      "artifact_hash": "sha512-tGqJW/UnclpYASFcM6Xh8D8l/BMtaQ9+CSG0vlJSJTcdMM4lDRv4c6H0Pdcsfted+bVczdYSfk2fdukg2gQkZg==",
+      "observed_archive_sha256": "b73a85f002681f3fd87ae9112e7b11bb29a06bc90be2e359010c6a7d709a4ecf",
+      "archive_members": [
+        {
+          "path": "package/README.md",
+          "size": 2112,
+          "kind": "file"
+        },
+        {
+          "path": "package/dist/index.d.ts",
+          "size": 299,
+          "kind": "file"
+        },
+        {
+          "path": "package/dist/index.js",
+          "size": 3771,
+          "kind": "file"
+        },
+        {
+          "path": "package/package.json",
+          "size": 1231,
+          "kind": "file"
+        }
+      ],
+      "candidate_notice_texts": [],
+      "status": "no-named-notice-found-review-pending"
+    },
+    {
+      "group": "python_tools",
+      "name": "pip-requirements-parser",
+      "version": "32.0.1",
+      "artifact_url": "https://files.pythonhosted.org/packages/54/d0/d04f1d1e064ac901439699ee097f58688caadea42498ec9c4b4ad2ef84ab/pip_requirements_parser-32.0.1-py3-none-any.whl",
+      "artifact_hash": "sha256:4659bc2a667783e7a15d190f6fccf8b2486685b6dba4c19c3876314769c57526",
+      "observed_archive_sha256": "4659bc2a667783e7a15d190f6fccf8b2486685b6dba4c19c3876314769c57526",
+      "archive_members": [
+        {
+          "path": "packaging_legacy_version.py",
+          "size": 5092,
+          "kind": "file"
+        },
+        {
+          "path": "pip_requirements_parser-32.0.1.dist-info/AUTHORS.rst",
+          "size": 78,
+          "kind": "file"
+        },
+        {
+          "path": "pip_requirements_parser-32.0.1.dist-info/CHANGELOG.rst",
+          "size": 931,
+          "kind": "file"
+        },
+        {
+          "path": "pip_requirements_parser-32.0.1.dist-info/METADATA",
+          "size": 9288,
+          "kind": "file"
+        },
+        {
+          "path": "pip_requirements_parser-32.0.1.dist-info/README.rst",
+          "size": 7973,
+          "kind": "file"
+        },
+        {
+          "path": "pip_requirements_parser-32.0.1.dist-info/RECORD",
+          "size": 968,
+          "kind": "file"
+        },
+        {
+          "path": "pip_requirements_parser-32.0.1.dist-info/WHEEL",
+          "size": 92,
+          "kind": "file"
+        },
+        {
+          "path": "pip_requirements_parser-32.0.1.dist-info/mit.LICENSE",
+          "size": 1080,
+          "kind": "file"
+        },
+        {
+          "path": "pip_requirements_parser-32.0.1.dist-info/top_level.txt",
+          "size": 49,
+          "kind": "file"
+        },
+        {
+          "path": "pip_requirements_parser.py",
+          "size": 96343,
+          "kind": "file"
+        }
+      ],
+      "candidate_notice_texts": [
+        {
+          "archive_path": "pip_requirements_parser-32.0.1.dist-info/mit.LICENSE",
+          "sha256": "18081c2c82771ca09d99d08cdac405924309e09fd19b16f1eea59cbc6ab809ed",
+          "size": 1080,
+          "retained_path": "licence-name-texts/18081c2c82771ca09d99d08cdac405924309e09fd19b16f1eea59cbc6ab809ed.txt"
+        }
+      ],
+      "status": "candidate-text-found-review-pending"
+    },
+    {
+      "group": "python_tools",
+      "name": "packageurl-python",
+      "version": "0.17.6",
+      "artifact_url": "https://files.pythonhosted.org/packages/b1/2f/c7277b7615a93f51b5fbc1eacfc1b75e8103370e786fd8ce2abf6e5c04ab/packageurl_python-0.17.6-py3-none-any.whl",
+      "artifact_hash": "sha256:31a85c2717bc41dd818f3c62908685ff9eebcb68588213745b14a6ee9e7df7c9",
+      "observed_archive_sha256": "31a85c2717bc41dd818f3c62908685ff9eebcb68588213745b14a6ee9e7df7c9",
+      "archive_members": [
+        {
+          "path": "packageurl/__init__.py",
+          "size": 21854,
+          "kind": "file"
+        },
+        {
+          "path": "packageurl/contrib/__init__.py",
+          "size": 0,
+          "kind": "file"
+        },
+        {
+          "path": "packageurl/contrib/django/__init__.py",
+          "size": 0,
+          "kind": "file"
+        },
+        {
+          "path": "packageurl/contrib/django/filters.py",
+          "size": 2438,
+          "kind": "file"
+        },
+        {
+          "path": "packageurl/contrib/django/models.py",
+          "size": 5930,
+          "kind": "file"
+        },
+        {
+          "path": "packageurl/contrib/django/utils.py",
+          "size": 2547,
+          "kind": "file"
+        },
+        {
+          "path": "packageurl/contrib/purl2url.py",
+          "size": 20074,
+          "kind": "file"
+        },
+        {
+          "path": "packageurl/contrib/route.py",
+          "size": 7991,
+          "kind": "file"
+        },
+        {
+          "path": "packageurl/contrib/sqlalchemy/mixin.py",
+          "size": 4023,
+          "kind": "file"
+        },
+        {
+          "path": "packageurl/contrib/url2purl.py",
+          "size": 25944,
+          "kind": "file"
+        },
+        {
+          "path": "packageurl/py.typed",
+          "size": 0,
+          "kind": "file"
+        },
+        {
+          "path": "packageurl/utils.py",
+          "size": 2586,
+          "kind": "file"
+        },
+        {
+          "path": "packageurl/validate.py",
+          "size": 26562,
+          "kind": "file"
+        },
+        {
+          "path": "packageurl_python-0.17.6.dist-info/METADATA",
+          "size": 5089,
+          "kind": "file"
+        },
+        {
+          "path": "packageurl_python-0.17.6.dist-info/RECORD",
+          "size": 1457,
+          "kind": "file"
+        },
+        {
+          "path": "packageurl_python-0.17.6.dist-info/WHEEL",
+          "size": 91,
+          "kind": "file"
+        },
+        {
+          "path": "packageurl_python-0.17.6.dist-info/top_level.txt",
+          "size": 11,
+          "kind": "file"
+        }
+      ],
+      "candidate_notice_texts": [],
+      "status": "no-named-notice-found-review-pending"
+    }
+  ],
+  "baseline_audit_sha256": "9f7291438942ed05532d315f175d9856cb6f51814b73602b782ff93f0f3abbe7",
+  "candidate_filename_policy": "(?i)^(?:[a-z0-9]+[._-])+(?:licen[cs]es?|copying|copyright|notice)(?:[._-][a-z0-9._-]+)?$",
+  "package_wide_notice_review_complete": false
+}

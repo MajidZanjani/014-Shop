@@ -38,3 +38,41 @@ Next work: inspect attributable embedded/source notice evidence for each exact
 version, preserve the distinction between distribution-incorporated and external
 source notices, and prepare outstanding native/OCI provenance. Do not copy a
 generic MIT/ISC text into the inventory as if it was incorporated in a package.
+
+## Supplemental prefixed-name audit
+
+The original beginning-of-basename policy omitted the exact member
+`pip_requirements_parser-32.0.1.dist-info/mit.LICENSE`, even though the original
+complete member inventory retained its name and size. This is a filename-policy
+gap. `scripts/audit_licence_names.py` adds a separate explicit prefixed-name
+policy (for example MIT-LICENSE.txt or mit.LICENSE) to the shared bounded archive
+scanner. The original scanner's default behavior and retained baseline report
+remain unchanged; the original twelve missing-file observations are historical
+results under that narrower policy.
+
+`licence-name-audit.json` binds both original inventory and baseline audit hashes.
+Every artifact URL/hash, actual archive SHA256 and complete member inventory must
+match the baseline. The collector refetched all twelve exact official artifacts,
+verified their existing digests and found one named candidate: the 1,080 exact
+bytes of mit.LICENSE from pip-requirements-parser32.0.1. Its SHA256 is
+18081c2c82771ca09d99d08cdac405924309e09fd19b16f1eea59cbc6ab809ed, retained under
+`docs/evidence/t02/licence-name-texts/`. A second independent refetch reproduced
+the report and text exactly. The ten npm distributions and packageurl-python
+still have no named candidate under the expanded policy; embedded-header evidence
+for both Python tools remains separately retained.
+
+This observation supplies an actual named-file text for one original gap. It does
+not establish package-wide notices, redistribution completeness or legal approval.
+The raw inventory/SBOMs, derivative SBOM, original gap report and embedded-header
+evidence remain byte-for-byte unchanged. Full inventory/native/Nix/OCI and legal
+review remain pending. No archive was extracted, installed or executed.
+
+Run `python3 -B scripts/audit_licence_names.py` for a refetch/reconciliation.
+`--write` exclusively creates the separate report/text paths and rejects existing
+or dangling symlink outputs; it never overwrites, adopts or repairs partial output.
+The original URL/digest/archive/member/link/size guards apply unchanged. Filename
+selection is evidence discovery, not licence classification. Twenty licence
+collector tests and four inventory tests pass, including seven new tests for the
+expanded policy, baseline substitution, exact bytes, preserved bounds and exclusive
+retention/tamper detection. Package/runtime rebuilds are unnecessary for this
+collector-only change; application/runtime source artifacts are unchanged.
