@@ -1,7 +1,7 @@
 ---
 gsd_state_version: "1.0"
-status: executing
-last_updated: "2026-10-22T13:59:42.633Z"
+status: paused
+last_updated: "2026-10-22T14:00:51.926Z"
 state_head: fdfdc4facb0dcf31778bf76972e09106680cfde4
 progress:
   total_phases: 14
@@ -12,7 +12,7 @@ progress:
 last_activity: 2026-10-22
 current_phase: 07
 current_phase_name: Local multi-line draft cart
-stopped_at: Versioned owner draft cart delivered; next protected quotation-request capture.
+stopped_at: User-requested pause after approved cart demo; resume protected quotation requests.
 last_activity_desc: Multi-line IP and support draft cart, version arbitration and exact retries verified locally; release gates pending.
 ---
 
@@ -52,7 +52,7 @@ Retain dependency locks, raw SBOMs, notices, validated derivative and all origin
 
 ## Session continuity
 
-Resumed 2026-10-22 under the explicit execution amendment. HANDOFF.json contains the next action. No workflow agents or demo processes remain active. Retain the user's context-checkpoint rule; no exact context percentage is available or claimed.
+Paused by explicit user request on 2026-10-22 after approved cart demo. Resume with `$gsd-resume-work`; human handoff: [.continue-here.md](.continue-here.md). HANDOFF.json contains the next action. No workflow agents or demo processes remain active. Retain the user's context-checkpoint rule; no exact context percentage is available or claimed.
 
 ### Quick Tasks Completed
 
