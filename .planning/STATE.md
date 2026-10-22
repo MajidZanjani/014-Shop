@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
-status: executing
-last_updated: "2026-10-22T05:32:39.595Z"
-state_head: ec4c4db32bb14014b2aafc3932a9c4a8f4d34f07
+status: paused
+last_updated: "2026-10-22T06:09:29.567539Z"
+state_head: 3f03fe690ab9137c2dfe39f27f2159265420f879
 progress:
   total_phases: 14
   completed_phases: 1
@@ -12,8 +12,8 @@ progress:
 last_activity: 2026-10-22
 current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
-stopped_at: Proactive context-pressure handoff saved; exact usage percentage unavailable. Read HANDOFF and phase checkpoint; resume continuous execution.
-last_activity_desc: Explicit npm SBOM derivative validates with preserved raw evidence; full inventory pending.
+stopped_at: Proactive context-pressure checkpoint after role and Unix peer admission; exact percentage unavailable. Read HANDOFF.json and phase checkpoint; resume continuous local work.
+last_activity_desc: Restricted schema role and kernel Unix peer admission verified; parent14/16/17 incomplete.
 ---
 
 # Project State
@@ -288,3 +288,7 @@ Quick261022-8ci enforces actual direct-login/role-attribute/current-database-own
 ## Latest continuation — connected Unix peer admission
 
 Quick261022-8fv binds actual libpq AF_UNIX/SOCK_STREAM SO_PEERCRED to approved postmaster PID and startup host UID/GID using a duplicate descriptor. No protocol I/O/original close; read-only before/after SQL and every connected schema admission recheck. Real scratch SCRAM peers/restricted role plus wrong-PID denial, real socketpair/type/descriptor controls and command close-before-SQL pass: SQL3/114 in10.140s, source7/5, operator7/17. Native54/9 and notices9/7 new immutable revisions preserve history. No failing peer runs. Credentials identify listen-time peer, not live backend; existing fresh process/start/resource/SQL guards retained. Actual rootless/namespace/host qualification, complete roles/grants, publisher/custody/barrier, Django/app/replica/OCI/full CI/off-host remain incomplete. No credentials/host/provider action. Save proactive context handoff after this commit; exact percentage unavailable. Continuous local execution preference retained for resume;14/16/17/full phase incomplete; remote publication still blocked.
+
+## Context checkpoint — role and peer admission saved
+
+Proactive pause under standing AGENTS rule; context pressure apparent, exact percentage unavailable. Three slices committed locally through3f03fe6. Read HANDOFF.json and phase .continue-here.md. Resume directly into publisher/custody/admission-barrier repository preparation, then remaining authorized local work without per-slice stops. No active tests/async jobs, real credentials, host/provider operations or full acceptance. Native evidence rechecks passed. Remote publication remains blocked pending scoped authority.
