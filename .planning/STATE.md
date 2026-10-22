@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: executing
-last_updated: "2026-10-22T04:55:17.983Z"
-state_head: 4a02f7c7a7ba90a1264e59a3f2e74ac31f6fdd24
+last_updated: "2026-10-22T05:01:37.362Z"
+state_head: 6008f2cf73f7dfe0e622c939cbc6ce3a50221ff4
 progress:
   total_phases: 14
   completed_phases: 1
@@ -181,6 +181,7 @@ Phase02 and14/16/17 remain incomplete. Next scoped durable generation publicatio
 | 261021-j6p | Derive traceable schema-valid npm inventory while preserving raw evidence | 2026-10-21 | cacc247 | [261021-j6p-derive-traceable-schema-valid-npm-invent](./quick/261021-j6p-derive-traceable-schema-valid-npm-invent/) |
 | 261022-6n6 | Audit exact distributions for twelve missing incorporated licence texts | 2026-10-22 | 8052689 | [261022-6n6-trace-missing-incorporated-licence-texts](./quick/261022-6n6-trace-missing-incorporated-licence-texts/) |
 | 261022-6s2 | Retain exact embedded Python tool licence headers | 2026-10-22 | 4a02f7c | [261022-6s2-retain-exact-embedded-licence-headers-fr](./quick/261022-6s2-retain-exact-embedded-licence-headers-fr/) |
+| 261022-6vp | Verify actual operator native reference closure | 2026-10-22 | 6008f2c | [261022-6vp-inventory-actual-cached-operator-native-](./quick/261022-6vp-inventory-actual-cached-operator-native-/) |
 
 ## Latest continuation — real local SCRAM inspection
 
@@ -235,3 +236,9 @@ Automatic approval review rejected combined commit/push because external reposit
 User continued after the explicit publication request; origin push for8052689/b7b0928 succeeded. Prior remote block resolved for that push. Next bounded quick261022-6s2 retains exact embedded MIT candidate headers from the two Python-tool wheels (pip-requirements-parser32.0.1 and packageurl-python0.17.6). Actual hashes/selected source bytes/start-end offsets and two content-addressed headers supplement unchanged raw inventory and named-file audit. Both initial collection and independent recheck pass2 distributions.
 
 Five new tests, eight archive tests and four inventory tests pass. Initial new negative control failed when removing Copyright holder still matched a later condition reference; detector now requires an actual leading copyright holder comment. Focused rerun5/5 and retained actual evidence pass. No legal/full-package review/completeness approval; ten npm findings and all native/Nix/OCI/CI/14/17/qualification gates remain pending. No credentials/install/host/provider/service action. Continue exact embedded/source/npm/native provenance work; independent runner remains unassigned and is only raised at qualification.
+
+## Continuous execution — actual native closure
+
+User explicitly requests sustained execution across steps; do not end after each bounded task. Commit/push and continue authorized repository/local work; stop only required decision/external boundary/context handoff. New native-closure lane code6008f2c verifies53 actual realized operator store objects (222931552 NAR bytes) and graph closure. Fifteen missing local derivations and native notice gaps explicit; two named-notice candidates only. No image/full source/native review or legal/runtime approval inferred. Required aggregate includes new lane.
+
+Actual pinned native53 checks/8 tests0.899s, operator4/10 in2.159s and environment2/14 in0.900s pass. Raw SBOM/licences unchanged. Initial derivation-format diagnostic flag unsupported; actual envelope4 observed and pinned after assumed2 denied. Missing cache recipes now explicitly observed rather than fabricated. No new build/download/repair, credentials or host/provider/service/resource action. Continue npm/source/native evidence and account-scoped/deployment integration;14/16/17 and off-host gates stay incomplete.
