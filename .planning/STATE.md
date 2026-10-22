@@ -1,7 +1,7 @@
 ---
 gsd_state_version: "1.0"
 status: executing
-last_updated: "2026-10-22T12:41:55.217Z"
+last_updated: "2026-10-22T13:10:12+00:00"
 state_head: c1faa419a3ec9d698aaebb13df6819e9b7c1f54e
 progress:
   total_phases: 14
@@ -10,38 +10,38 @@ progress:
   completed_plans: 10
   percent: 7
 last_activity: 2026-10-22
-current_phase: 03
-current_phase_name: Markdown catalog, schemas and local product flow
-stopped_at: Local catalog/configurator delivered; continue verified customer access and protected save/resume integration.
-last_activity_desc: Catalog, static configurator, Django fallback and owner-scoped local draft persistence delivered; release qualification pending.
+current_phase: 06
+current_phase_name: Verified local access and protected draft save/resume
+stopped_at: Verified synthetic customer access and protected save/resume delivered; continue local draft cart.
+last_activity_desc: Captured-code login, session rotation, owner-only draft listing and UI save/resume verified locally; release gates pending.
 ---
 
 # Project State
 
-Updated 2026-10-22T10:08:45+00:00. Canonical current summary; detailed evidence: [quick/261022-dj5-amend-local-execution-sequence-and-deliv/261022-dj5-SUMMARY.md](quick/261022-dj5-amend-local-execution-sequence-and-deliv/261022-dj5-SUMMARY.md). Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
+Updated 2026-10-22T13:10:12+00:00. Canonical current summary; detailed evidence: [quick/261022-hrl-verify-local-customer-access-through-cap/261022-hrl-SUMMARY.md](quick/261022-hrl-verify-local-customer-access-through-cap/261022-hrl-SUMMARY.md). Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
 ## Current position
 
-T03/T04 local product development is active; ready T05 draft persistence has begun. Phase02 remains 8/18 complete with all ten incomplete qualification/implementation records preserved. Only Phase01 is fully complete: 1/14 = rounded 7%. That is completed-phase progress, not engineering effort. Existing planned records remain 10/20; later phase acceptance is not claimed from quick-task implementation.
+T03/T04 local catalog delivery remains intact; T05 local draft persistence and T06 synthetic verified access/save-resume are implemented. Next ready local work is the T07 draft cart. Full phase acceptance remains pending. Phase02 remains 8/18 complete with all ten incomplete qualification/implementation records preserved. Only Phase01 is fully complete: 1/14 = rounded 7%. That is completed-phase progress, not engineering effort. Existing planned records remain 10/20; later phase acceptance is not claimed from quick-task implementation.
 
 ## Delivered behavior
 
 - Source-faithful Markdown catalog, strict compiler and matching browser/backend validation; three vendors, thirteen ordered families, source IDs, RDP bands and higher-volume quote behavior.
 - Static Astro/React configurator, dependent resets, fixed/floating counts, optional non-expiring support packages, support page and Django no-JavaScript preview. Unknown money/rights remain null/pending; purchase disabled; no host IDs or browser persistence.
-- Local/synthetic authenticated draft APIs: CSRF/Host/owner/revision checks and PostgreSQL retry/race arbitration. No customer verification/login, UI save/resume, staff MFA or production draft activation yet.
+- Local/synthetic captured-code verification, rotated sessions/CSRF, expiry/attempt/request bounds and owner-only draft save/list/resume UI. No real email, shared contact roles, staff MFA or production activation.
 - Bounded `scripts/check.py dev` command; automatic lightweight push/PR CI prepared separately from unchanged manual specialized qualification.
 
 ## Run and evidence
 
 Demo: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/demo.py --backend`; open http://127.0.0.1:4321 (also /support/ and /purchase/simple/).
 
-Checks: all six ordinary local lanes passed; latest changed lanes rerun (frontend75 tests, core-local34 tests), 70 cross-language cases agree, compiler rejection tests pass, dispatcher15 tests pass, static privacy boundary81 tests pass. Actual loopback demo/CSRF/quote/catalog smoke passed. Details and scoped counts in the task evidence. No FULL_PASS, measured browser/accessibility qualification, host/runtime/recovery/legal acceptance or production readiness claim. Automatic GitHub-hosted development [CI passed](https://github.com/MajidZanjani/014-Shop/actions/runs/39761244219) at d9d088a (source/frontend/schema/conformance subset). Full release CI remains pending.
+Checks: all six ordinary local lanes passed (frontend77 tests, latest core-local44, worker-smoke24, adapters6, contracts-local8, catalog70 conformance cases); static privacy boundary83 tests and real loopback access/save/resume/logout9 observations passed. Detailed scoped/overlapping counts in the task evidence. No FULL_PASS or measured real-browser/production/recovery/legal acceptance. Previous development [CI passed](https://github.com/MajidZanjani/014-Shop/actions/runs/39761244219); the new slice awaits its push-triggered run.
 
-User review, 2026-10-22: **local demo checked and approved** (user: “all checked and approved”). See task evidence for scope. Detailed browser/accessibility qualification and commercial/release gates remain pending.
+User review, 2026-10-22: **previous catalog demo checked and approved** (user: “all checked and approved”). See task evidence for scope. The new verification/save-resume UI awaits user/browser review; commercial/release gates remain pending.
 
 ## Exact next action
 
-Implement local verified customer email/session and resource membership using capture-mail only; then connect protected draft save/resume UI and continue quote/cart/acceptance primitives on available local interfaces. Add browser interaction/accessibility review when a suitable browser is available. Keep staff routes absent until MFA exists; no private host collection until its encryption/authorization prerequisites exist.
+Implement a local owner-scoped multi-line draft cart: separate one-vendor IP licence lines and independent positive support-package quantities, with catalog revision checks and exact snapshot/retry identities. Keep totals null and acceptance/payment disabled until approvals and durability prerequisites are satisfied. Shared contact roles, private host editing and staff MFA remain separate pending work.
 
 ## Remaining dependencies and protections
 

@@ -16,6 +16,7 @@ Existing detailed evidence and criteria remain in Phase02 PARTIAL records; these
 | Image/importer/native licence/distribution | Resolve named package/legal findings and required notices; validate absolute/link/PAX/merged-rootfs semantics, immutable distribution manifests and independent build comparison; T02-16/17, BUILD requirements | Distribution/publication of affected runtime images; no legal approval inferred |
 | Independent runtime/recovery/full CI | Assigned independent authorized runner, lifecycle/outage/restart/exhaustion/full-pool-loss evidence against original T02/T11/T12 criteria; no protected-host faults | Deployment and recovery acceptance, FULL_PASS |
 | Commercial/source/browser review | Approved prices, rights, access, recurrence, coverage, policies and human/browser review; CAT-01–05, T03/T04 and original approval register | Live offers, acceptance, payment and fulfilment |
+| Customer access delivery | Real approved email/HTTPS transport, resource/contact-role scope, scanner/replay/expiry/recovery invalidation evidence; AUTH-01–05, T06/T12. Current captured-code endpoints stay local/synthetic only | Real customer access, resource sharing, private hosts and staff access |
 | Host activation/ingress | Read-only complete inventory, shop allowlist, independent DB identity and full activation-impact review, exact service/action authority and end-to-end route/certificate proof; T11 | Any host write/public activation/DNS |
 
 ## Progress maintenance

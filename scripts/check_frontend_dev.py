@@ -19,5 +19,10 @@ def main():
             if r.returncode: raise RuntimeError(r.stderr)
         source_policy(ROOT/'frontend',env)
         inventory,count=scan_output(ROOT/'frontend/dist')
+        import io,unittest
+        output=io.StringIO()
+        result=unittest.TextTestRunner(stream=output).run(unittest.defaultTestLoader.discover(str(ROOT/'tests'),pattern='test_demo_proxy.py'))
+        if not result.wasSuccessful() or result.testsRun!=1 or result.skipped: raise RuntimeError(output.getvalue())
+        print(f'DEMO_PROXY_PASS checks=5 tests={result.testsRun}')
     print(f'FRONTEND_PASS checks={4+len(names)+count} evidence_class=local-synthetic')
 if __name__=='__main__':main()

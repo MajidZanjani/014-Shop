@@ -411,7 +411,7 @@ Keep public bytes in shop-owned OVH Object Storage through a fixed verified HTTP
 | 3. Markdown catalog, schemas and approved price calculations | 0 / not planned | In Progress — local slice in quick261022-dj5; full acceptance pending | — |
 | 4. Static product, configurator, support page and accessible fallback | 0 / not planned | In Progress — local slice in quick261022-dj5; full acceptance pending | — |
 | 5. Transactional records, durable work and private evidence primitives | 0 / not planned | In Progress — local slice in quick261022-dj5; full acceptance pending | — |
-| 6. Verified customer access, staff MFA and private host editing | 0 / not planned | Not started | — |
+| 6. Verified customer access, staff MFA and private host editing | 0 / not planned | In Progress — synthetic customer verification/save-resume in quick261022-hrl; staff/private-host/release acceptance pending | — |
 | 7. Multi-line cart, quotations, business checkout and acceptance | 0 / not planned | Not started | — |
 | 8. Payment domain and fault-injectable fake bank | 0 / not planned | Not started | — |
 | 9. Selected-bank sandbox integration and complete reconciliation | 0 / not planned | Not started | — |

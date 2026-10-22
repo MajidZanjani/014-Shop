@@ -82,7 +82,12 @@ for (const name of names.filter(name => /\.(?:ts|tsx|astro)$/.test(name))) {
         if (node.importClause.namedBindings.elements.some(item => /^(getLiveCollection|getLiveEntry|defineLiveCollection)$/.test((item.propertyName ?? item.name).text))) throw Error('live collection prohibited');
       }
     }
-    if (ts.isCallExpression(node) && (node.expression.kind === ts.SyntaxKind.ImportKeyword || ts.isIdentifier(node.expression) && ['require', 'fetch', 'eval'].includes(node.expression.text))) throw Error('dynamic/external input prohibited');
+    if (ts.isCallExpression(node)) {
+      const exp=node.expression;
+      const fetchCall=ts.isIdentifier(exp) && exp.text==='fetch' || ts.isPropertyAccessExpression(exp) && exp.name.text==='fetch';
+      if (fetchCall && !(name==='src/lib/customer-api.ts' && ts.isPropertyAccessExpression(exp) && exp.expression.getText(tree)==='window')) throw Error('unreviewed/build-time fetch prohibited');
+      if (exp.kind === ts.SyntaxKind.ImportKeyword || ts.isIdentifier(exp) && ['require', 'eval'].includes(exp.text)) throw Error('dynamic/external input prohibited');
+    }
     if (ts.isVariableDeclaration(node) && node.name.getText(tree) === 'prerender' && node.initializer?.kind === ts.SyntaxKind.FalseKeyword) throw Error('request-time route prohibited');
     ts.forEachChild(node, visit);
   }

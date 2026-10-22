@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import CustomerDrafts from './CustomerDrafts';
 import { catalog } from '../lib/catalog';
 import { initialConfiguration, changeVendor, changeTerm, evaluate } from '../lib/configuration';
 
@@ -62,7 +63,8 @@ export default function Configurator() {
         </div>
         <p>{result.status === 'requires_quote' ? 'Higher-volume configurations require a reviewed quotation.' : 'Pricing, rights, access, family coverage and final terms require review.'}</p>
         <button type="button" disabled>Purchase unavailable · approvals pending</button>
-        <p className="hint">Local preview. No order is submitted, no payment is collected, and selections stay in memory only.</p>
+        <p className="hint">Local preview. No order is submitted, no payment is collected, and unsaved selections stay in memory only.</p>
+        <CustomerDrafts configuration={value} onResume={setValue} />
       </div>
     </aside>
   </div>;

@@ -21,7 +21,7 @@ class FrontendBoundaryTests(unittest.TestCase):
 
     def test_private_import_and_runtime_routes(self):
         path = self.root / 'src/pages/index.astro'; original = path.read_text()
-        bad_sources = [original.replace('---\n', '---\nimport "../../private/synthetic-only.txt";\n', 1),
+        bad_sources = [original.replace('---\n', '---\nwindow.fetch("https://synthetic.invalid");\n', 1), original.replace('---\n', '---\nfetch("https://synthetic.invalid");\n', 1), original.replace('---\n', '---\nimport "../../private/synthetic-only.txt";\n', 1),
                        original.replace('---\n', '---\nexport const prerender = false;\n', 1),
                        original.replace('<main>', '<main server:defer>'),
                        original.replace('---\n', '---\nimport { getLiveCollection } from "astro:content";\n', 1),

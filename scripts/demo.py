@@ -13,6 +13,15 @@ ROOT=Path(__file__).resolve().parents[1]
 
 class DemoHandler(SimpleHTTPRequestHandler):
     backend_port=None
+    def log_message(self,format,*args):
+        # Never put verification query strings, cookie data or arbitrary paths
+        # in ordinary demo logs, even for malformed/manual requests.
+        pass
+    def approved_host(self):
+        expected={'127.0.0.1:'+str(self.server.server_port),'localhost:'+str(self.server.server_port)}
+        if self.headers.get('Host') not in expected:
+            self.send_error(400);return False
+        return True
     def backend(self):
         if self.backend_port is None:
             self.send_error(503,'Restart demo with --backend for the synthetic Django fallback');return
@@ -24,7 +33,7 @@ class DemoHandler(SimpleHTTPRequestHandler):
             self.send_error(413);return
         body=self.rfile.read(size) if size else None
         headers={k:self.headers[k] for k in ('Content-Type','Cookie','Origin','Referer','X-CSRFToken') if k in self.headers}
-        headers['Host']='127.0.0.1:4321'
+        headers['Host']=self.headers['Host']
         connection=http.client.HTTPConnection('127.0.0.1',self.backend_port,timeout=5)
         try:
             connection.request(self.command,self.path,body=body,headers=headers)
@@ -38,9 +47,14 @@ class DemoHandler(SimpleHTTPRequestHandler):
             self.send_header('Content-Length',str(len(data)));self.end_headers();self.wfile.write(data)
         finally:connection.close()
     def do_GET(self):
+        if not self.approved_host():return
         if self.path.startswith(('/api/','/purchase/')):self.backend()
         else:super().do_GET()
+    def do_HEAD(self):
+        if not self.approved_host():return
+        super().do_HEAD()
     def do_POST(self):
+        if not self.approved_host():return
         if self.path.startswith(('/api/','/purchase/')):self.backend()
         else:self.send_error(405)
 
@@ -61,6 +75,10 @@ if __name__=='__main__':
             from check_backend import gunicorn
             python,runtime,pg,database,backend_scratch=stack.enter_context(prepared_database())
             manage(python,runtime,'migrate','--noinput')
+            mailbox=scratch/'captured-mail';mailbox.mkdir(mode=0o700)
+            runtime['SHOP_LOCAL_CAPTURE_ROOT']=str(mailbox)
+            print('Private synthetic email capture directory: '+str(mailbox),flush=True)
+            print('Read the newest private file there to obtain the verification code. No real email is sent.',flush=True)
             DemoHandler.backend_port=stack.enter_context(gunicorn(python,runtime,backend_scratch))
         server=ThreadingHTTPServer(('127.0.0.1',4321),partial(DemoHandler,directory=str(ROOT/'frontend/dist')))
         print('Local preview: http://127.0.0.1:4321 · fallback: /purchase/simple/ with --backend (Ctrl-C stops owned processes)',flush=True)

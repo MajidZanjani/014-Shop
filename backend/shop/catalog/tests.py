@@ -60,6 +60,14 @@ from threading import Barrier
 import uuid
 from .models import ConfigurationDraft
 
+def verified_login(client,user):
+    # Trusted test fixture only, not a public authentication bypass.
+    from shop.access.models import CustomerIdentity
+    from django.utils import timezone
+    identity,_=CustomerIdentity.objects.get_or_create(user=user,defaults={'email':'fixture-'+str(user.pk)+'@synthetic.invalid','verified_at':timezone.now()})
+    client.force_login(user)
+    session=client.session;session['shop_verified_identity']=str(identity.id);session.save()
+
 class DraftTests(TestCase):
     def setUp(self):
         self.owner=get_user_model().objects.create_user(username='synthetic-owner')
@@ -72,7 +80,7 @@ class DraftTests(TestCase):
 
     def test_authenticated_owner_and_idempotency(self):
         self.assertEqual(self.save().status_code,401)
-        self.client.force_login(self.owner)
+        verified_login(self.client,self.owner)
         first=self.save();self.assertEqual(first.status_code,201)
         self.assertEqual(self.save().status_code,200)
         self.assertEqual(ConfigurationDraft.objects.count(),1)
@@ -80,14 +88,14 @@ class DraftTests(TestCase):
         self.assertEqual(self.client.get(path).json(),first.json())
         self.assertEqual(first.json()['state'],'draft')
         self.assertFalse(first.json()['evaluation']['purchase_enabled'])
-        self.client.force_login(self.other)
+        verified_login(self.client,self.other)
         self.assertEqual(self.client.get(path).status_code,404)
         # Same client request ID belongs to its owner, not another customer.
         self.assertEqual(self.save().status_code,201)
         self.assertEqual(ConfigurationDraft.objects.count(),2)
 
     def test_stale_conflicting_and_invalid_drafts(self):
-        self.client.force_login(self.owner)
+        verified_login(self.client,self.owner)
         self.assertEqual(self.save(self.payload|{'revision':'0'*64}).status_code,409)
         self.assertEqual(self.save(self.payload|{'configuration':CASES[0]['value']|{'host_id':'SYNTHETIC_HOST_CANARY'}}).status_code,422)
         self.assertEqual(ConfigurationDraft.objects.count(),0)
@@ -97,9 +105,9 @@ class DraftTests(TestCase):
 
     def test_csrf_and_production_gate(self):
         protected=Client(enforce_csrf_checks=True)
-        protected.force_login(self.owner)
+        verified_login(protected,self.owner)
         self.assertEqual(protected.post(self.url,data=json.dumps(self.payload),content_type='application/json').status_code,403)
-        self.client.force_login(self.owner)
+        verified_login(self.client,self.owner)
         with override_settings(SHOP_ENV='production'):
             self.assertEqual(self.save().status_code,404)
         self.owner.is_staff=True;self.owner.save()
@@ -108,11 +116,14 @@ class DraftTests(TestCase):
 class DraftRaceTests(TransactionTestCase):
     def test_concurrent_same_request_creates_one_snapshot(self):
         owner=get_user_model().objects.create_user(username='synthetic-race')
+        from shop.access.models import CustomerIdentity
+        from django.utils import timezone
+        CustomerIdentity.objects.create(user=owner,email='race@synthetic.invalid',verified_at=timezone.now())
         barrier=Barrier(2)
         payload={'request_id':str(uuid.uuid4()),'revision':CATALOG['revision'],'configuration':CASES[0]['value']}
         def attempt():
             try:
-                client=Client();client.force_login(get_user_model().objects.get(pk=owner.pk))
+                client=Client();verified_login(client,get_user_model().objects.get(pk=owner.pk))
                 barrier.wait(timeout=5)
                 response=client.post('/api/v1/configuration-drafts/',data=json.dumps(payload),content_type='application/json')
                 return response.status_code,response.json()['id']

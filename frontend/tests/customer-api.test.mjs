@@ -1,0 +1,30 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFile,writeFile,mkdtemp,rm} from 'node:fs/promises';
+import {pathToFileURL} from 'node:url';
+import ts from 'typescript';
+const scratch=await mkdtemp(new URL('../.customer-test-',import.meta.url).pathname);
+let api;
+try{
+  const source=await readFile(new URL('../src/lib/customer-api.ts',import.meta.url),'utf8');
+  const output=ts.transpileModule(source,{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText;
+  await writeFile(scratch+'/api.mjs',output);api=await import(pathToFileURL(scratch+'/api.mjs'));
+}finally{await rm(scratch,{recursive:true,force:true});}
+test('customer transport cannot run during static builds',async()=>{
+  await assert.rejects(api.customerRequest('/api/v1/customer/session/'),/browser-only/);
+});
+test('customer transport restricts paths, sends same-origin CSRF and hides error bodies',async()=>{
+  const old=globalThis.window;const calls=[];
+  globalThis.window={fetch:async(path,options)=>{calls.push({path,options});return {ok:true,headers:new Headers({'content-type':'application/json'}),json:async()=>({authenticated:false})};}};
+  try{
+    for(const path of ['https://external.invalid/','//external.invalid/','/api/v1/configuration-drafts/../../private/','/api/v1/customer/session/?code=secret'])await assert.rejects(api.customerRequest(path),/Unapproved/);
+    assert.equal(calls.length,0);
+    await assert.rejects(api.customerRequest('/api/v1/customer/verify/','POST',{code:'synthetic'}),/CSRF/);
+    await api.customerRequest('/api/v1/customer/verify/','POST',{code:'synthetic'},'synthetic-csrf');
+    assert.equal(calls[0].options.credentials,'same-origin');assert.equal(calls[0].options.cache,'no-store');assert.equal(calls[0].options.redirect,'error');
+    assert.equal(calls[0].options.headers['X-CSRFToken'],'synthetic-csrf');
+    assert.equal(calls[0].path,'/api/v1/customer/verify/');assert.deepEqual(JSON.parse(calls[0].options.body),{code:'synthetic'});
+    globalThis.window.fetch=async()=>({ok:false,status:403});
+    await assert.rejects(api.customerRequest('/api/v1/customer/session/'),error=>error.status===403&&error.message==='Customer request failed');
+  }finally{if(old===undefined)delete globalThis.window;else globalThis.window=old;}
+});

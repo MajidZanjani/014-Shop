@@ -207,7 +207,7 @@ Updated 2026-10-22: BUILD-01–08 have partial local implementation/evidence and
 | DATA-02 | Phase 5 | In Progress |
 | DATA-03 | Phase 5 | Pending |
 | DATA-04 | Phase 5 | Pending |
-| AUTH-01 | Phase 6 | Pending |
+| AUTH-01 | Phase 6 | In Progress |
 | AUTH-02 | Phase 6 | In Progress |
 | AUTH-03 | Phase 6 | Pending |
 | AUTH-04 | Phase 6 | Pending |
@@ -265,3 +265,5 @@ Updated 2026-10-22: BUILD-01–08 have partial local implementation/evidence and
 **Coverage:** 80 v1 requirements; 80 mapped exactly once; 0 unmapped.
 
 Local implementation evidence for CAT/SHOP and initial owner/retry DATA/AUTH behavior: [quick261022-dj5](quick/261022-dj5-amend-local-execution-sequence-and-deliv/261022-dj5-SUMMARY.md). Checkboxes remain pending full acceptance; verified customer access, staff MFA, private approvals, approved money and release qualification are not claimed. Current sequence follows the execution amendment.
+
+Local T06/T07 prerequisite evidence: [quick261022-hrl](quick/261022-hrl-verify-local-customer-access-through-cap/261022-hrl-SUMMARY.md). AUTH-01/02/05 cover synthetic session/owner behavior only; real delivery, full memberships, staff MFA and recovery remain pending.

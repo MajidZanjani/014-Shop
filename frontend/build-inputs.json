@@ -18,6 +18,9 @@
     "src/lib/configuration.ts",
     "tests/configuration.test.mjs",
     "tests/conformance.json",
-    "src/pages/support.astro"
+    "src/pages/support.astro",
+    "src/components/CustomerDrafts.tsx",
+    "src/lib/customer-api.ts",
+    "tests/customer-api.test.mjs"
   ]
 }

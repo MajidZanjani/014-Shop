@@ -1,6 +1,6 @@
 import json
 from django.http import JsonResponse
-from django.views.decorators.http import require_GET, require_POST
+from django.views.decorators.http import require_GET, require_POST, require_http_methods
 from django.views.decorators.csrf import csrf_exempt
 from .rules import CATALOG, evaluate
 
@@ -43,6 +43,9 @@ def local_customer(request):
         return JsonResponse({'error':'authentication_required'},status=401)
     if request.user.is_staff or request.user.is_superuser or not request.user.is_active:
         return JsonResponse({'error':'customer_access_required'},status=403)
+    from shop.access.views import verified_identity
+    if verified_identity(request) is None:
+        return JsonResponse({'error':'verification_required'},status=403)
     return None
 
 
@@ -51,13 +54,18 @@ def draft_json(row):
             'evaluation':row.evaluation,'created_at':row.created_at.isoformat(),'state':'draft'}
 
 
-@require_POST
+@require_http_methods(['GET','POST'])
 def save_draft(request):
     from uuid import UUID
     from django.db import transaction
     from .models import ConfigurationDraft
     denied=local_customer(request)
     if denied is not None: return denied
+    if request.method=='GET':
+        rows=ConfigurationDraft.objects.filter(owner=request.user).order_by('-created_at','-id')[:20]
+        response=JsonResponse({'drafts':[{'id':str(row.id),'revision':row.revision,'created_at':row.created_at.isoformat()} for row in rows],'limit':20})
+        response['Cache-Control']='no-store'
+        return response
     if request.content_type != 'application/json': return JsonResponse({'error':'content_type'},status=415)
     try:
         if int(request.META.get('CONTENT_LENGTH') or 0)>8192: raise ValueError('size')

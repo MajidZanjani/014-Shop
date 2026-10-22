@@ -1,22 +1,22 @@
 {
   "version": "1.0",
-  "timestamp": "2026-10-22T10:08:45+00:00",
+  "timestamp": "2026-10-22T13:10:12+00:00",
   "status": "executing",
-  "phase": "03",
-  "phase_name": "Local catalog and product flow",
+  "phase": "06",
+  "phase_name": "Verified local access and protected drafts",
   "completed_tasks": [
-    "261022-dj5: execution amendment, catalog/configurator, local drafts/fallback and development verification"
+    "261022-dj5: catalog/configurator and local draft foundation",
+    "261022-hrl: synthetic captured-code verification and UI save/resume"
   ],
-  "next_action": "Implement local verified customer email/session and resource membership using capture-mail only; then protected draft save/resume UI. Read STATE.md, EXECUTION-AMENDMENT-2026-10-22.md and the linked task SUMMARY. No infrastructure expansion.",
+  "next_action": "Implement owner-scoped local draft cart with separate one-vendor IP lines and independent positive support quantities; preserve null prices and disabled acceptance/payment. Read STATE.md and quick261022-hrl SUMMARY. No infrastructure expansion.",
   "blockers": [
     {
       "description": "Independent off-host runner unassigned; affects release qualification only",
       "blocking_local_development": false
     }
   ],
-  "context_notes": "No real bank/mail/DNS/TLS/deployment or credential access. Production/bank-sandbox DB remains closed. Private host editing and staff routes wait for encryption/verified access/MFA. Reuse recorded unchanged evidence. Context percentage unavailable; retain standing checkpoint policy.",
+  "context_notes": "Synthetic .invalid capture only; private code files, rotated verified sessions and owner draft UI work in the disposable demo. No real mail/credentials/host/provider/bank/DNS/TLS action. New UI review pending; prior demo approval retained. Keep all release gates and context-checkpoint instruction.",
   "uncommitted_files": [],
-  "implementation_commit": "575575e",
   "development_ci": {
     "commit": "d9d088a",
     "result": "success",
