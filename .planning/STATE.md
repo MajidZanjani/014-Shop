@@ -35,7 +35,7 @@ T03/T04 local catalog delivery remains intact; T05 local draft persistence and T
 
 Demo: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/demo.py --backend`; open http://127.0.0.1:4321 (also /support/ and /purchase/simple/).
 
-Checks: all six ordinary local lanes passed (frontend77 tests, latest core-local44, worker-smoke24, adapters6, contracts-local8, catalog70 conformance cases); static privacy boundary83 tests and real loopback access/save/resume/logout9 observations passed. Detailed scoped/overlapping counts in the task evidence. No FULL_PASS or measured real-browser/production/recovery/legal acceptance. Previous development [CI passed](https://github.com/MajidZanjani/014-Shop/actions/runs/39761244219); the new slice awaits its push-triggered run.
+Checks: all six ordinary local lanes passed (frontend77 tests, latest core-local44, worker-smoke24, adapters6, contracts-local8, catalog70 conformance cases); static privacy boundary83 tests and real loopback access/save/resume/logout9 observations passed. Detailed scoped/overlapping counts in the task evidence. No FULL_PASS or measured real-browser/production/recovery/legal acceptance. Previous development [CI passed](https://github.com/MajidZanjani/014-Shop/actions/runs/39761244219); the new slice is pushed, but its CI status is unverified (anonymous API404; credential read rejected by automatic approval review).
 
 User review, 2026-10-22: **previous catalog demo checked and approved** (user: “all checked and approved”). See task evidence for scope. The new verification/save-resume UI awaits user/browser review; commercial/release gates remain pending.
 

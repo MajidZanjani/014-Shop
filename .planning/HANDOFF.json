@@ -23,5 +23,10 @@
     "url": "https://github.com/MajidZanjani/014-Shop/actions/runs/39761244219",
     "scope": "source/frontend/schema/conformance only; not FULL_PASS"
   },
-  "implementation_commit": "bd7539f"
+  "implementation_commit": "bd7539f",
+  "latest_development_ci": {
+    "commit": "a046df2",
+    "status": "unverified",
+    "reason": "Anonymous API404; automatic approval review rejected .env token read pending specific user authorization. No credential read occurred."
+  }
 }
