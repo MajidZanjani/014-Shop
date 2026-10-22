@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: executing
-last_updated: "2026-10-22T04:50:30.301Z"
-state_head: 80526897e73b4bd9edc8950f3621e7d44e1c9782
+last_updated: "2026-10-22T04:55:17.983Z"
+state_head: 4a02f7c7a7ba90a1264e59a3f2e74ac31f6fdd24
 progress:
   total_phases: 14
   completed_phases: 1
@@ -12,7 +12,7 @@ progress:
 last_activity: 2026-10-22
 current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
-stopped_at: Resumed; bounded licence archive audit complete locally; push awaiting scoped approval.
+stopped_at: Embedded Python licence evidence retained; phase02 and plans14/16/17 incomplete.
 last_activity_desc: Explicit npm SBOM derivative validates with preserved raw evidence; full inventory pending.
 ---
 
@@ -180,6 +180,7 @@ Phase02 and14/16/17 remain incomplete. Next scoped durable generation publicatio
 | 261021-j0i | Inspect retained private candidate generations without repair | 2026-10-21 | 9cbc570 | [261021-j0i-inspect-retained-private-candidate-gener](./quick/261021-j0i-inspect-retained-private-candidate-gener/) |
 | 261021-j6p | Derive traceable schema-valid npm inventory while preserving raw evidence | 2026-10-21 | cacc247 | [261021-j6p-derive-traceable-schema-valid-npm-invent](./quick/261021-j6p-derive-traceable-schema-valid-npm-invent/) |
 | 261022-6n6 | Audit exact distributions for twelve missing incorporated licence texts | 2026-10-22 | 8052689 | [261022-6n6-trace-missing-incorporated-licence-texts](./quick/261022-6n6-trace-missing-incorporated-licence-texts/) |
+| 261022-6s2 | Retain exact embedded Python tool licence headers | 2026-10-22 | 4a02f7c | [261022-6s2-retain-exact-embedded-licence-headers-fr](./quick/261022-6s2-retain-exact-embedded-licence-headers-fr/) |
 
 ## Latest continuation — real local SCRAM inspection
 
@@ -228,3 +229,9 @@ Quick261022-6n6 code8052689 adds a separate audit of all twelve missing-text dis
 Plans14/16/17 and full phase remain incomplete. Next inspect attributable embedded/source notice evidence for exact versions; native/Nix/OCI layers/notices/compatibility and full CI remain pending. Independent off-host runner unassigned; no repeated assignment request. No .env read, host/provider/service/resource changes or purchase. Quick uses documented sequential fallback, no agents dispatched.
 
 Automatic approval review rejected combined commit/push because external repository destination/authority was not established. Local code commit completed separately; remote push remains pending explicit scoped approval. Finish documentation locally and ask user to approve publishing these commits to origin. No bypass attempted.
+
+## Continuation — embedded Python header evidence
+
+User continued after the explicit publication request; origin push for8052689/b7b0928 succeeded. Prior remote block resolved for that push. Next bounded quick261022-6s2 retains exact embedded MIT candidate headers from the two Python-tool wheels (pip-requirements-parser32.0.1 and packageurl-python0.17.6). Actual hashes/selected source bytes/start-end offsets and two content-addressed headers supplement unchanged raw inventory and named-file audit. Both initial collection and independent recheck pass2 distributions.
+
+Five new tests, eight archive tests and four inventory tests pass. Initial new negative control failed when removing Copyright holder still matched a later condition reference; detector now requires an actual leading copyright holder comment. Focused rerun5/5 and retained actual evidence pass. No legal/full-package review/completeness approval; ten npm findings and all native/Nix/OCI/CI/14/17/qualification gates remain pending. No credentials/install/host/provider/service action. Continue exact embedded/source/npm/native provenance work; independent runner remains unassigned and is only raised at qualification.
