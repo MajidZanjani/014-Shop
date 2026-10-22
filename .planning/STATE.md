@@ -1,18 +1,18 @@
 ---
 gsd_state_version: "1.0"
-status: paused
-last_updated: "2026-10-21T14:06:19.642Z"
-state_head: cacc247421ba65769b27a31aef2938bbe94b2d21
+status: executing
+last_updated: "2026-10-22T04:50:30.301Z"
+state_head: 80526897e73b4bd9edc8950f3621e7d44e1c9782
 progress:
   total_phases: 14
   completed_phases: 1
   total_plans: 20
   completed_plans: 10
   percent: 7
-last_activity: 2026-10-21
+last_activity: 2026-10-22
 current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
-stopped_at: User-requested pause; read HANDOFF.json and phase .continue-here.md before resuming.
+stopped_at: Resumed; bounded licence archive audit complete locally; push awaiting scoped approval.
 last_activity_desc: Explicit npm SBOM derivative validates with preserved raw evidence; full inventory pending.
 ---
 
@@ -179,6 +179,7 @@ Phase02 and14/16/17 remain incomplete. Next scoped durable generation publicatio
 | 261021-i2j | Stage private unverified control candidates with durable exclusive files | 2026-10-21 | 542e2d8 | [261021-i2j-stage-private-unverified-control-candida](./quick/261021-i2j-stage-private-unverified-control-candida/) |
 | 261021-j0i | Inspect retained private candidate generations without repair | 2026-10-21 | 9cbc570 | [261021-j0i-inspect-retained-private-candidate-gener](./quick/261021-j0i-inspect-retained-private-candidate-gener/) |
 | 261021-j6p | Derive traceable schema-valid npm inventory while preserving raw evidence | 2026-10-21 | cacc247 | [261021-j6p-derive-traceable-schema-valid-npm-invent](./quick/261021-j6p-derive-traceable-schema-valid-npm-invent/) |
+| 261022-6n6 | Audit exact distributions for twelve missing incorporated licence texts | 2026-10-22 | 8052689 | [261022-6n6-trace-missing-incorporated-licence-texts](./quick/261022-6n6-trace-missing-incorporated-licence-texts/) |
 
 ## Latest continuation — real local SCRAM inspection
 
@@ -217,3 +218,13 @@ No .env read/needed credential, source/product change, host/provider operation, 
 ## User-requested pause — latest checkpoint
 
 Paused after explicit npm SBOM derivative and retained-candidate inspection slices. Structured HANDOFF.json and phase .continue-here.md preserve incomplete14/16/17 work, actual evidence and independent-runner limits. No phase acceptance advanced during pause. Clear session and run `$gsd-resume-work`.
+
+## Resumed continuation — exact-distribution licence gap audit
+
+Resumed October22 from structured HANDOFF.json and phase checkpoint; one-shot handoff consumed. Prior checkpoint remains preserved in Git and phase .continue-here.md. Clean HEAD95d920e matched the pause record; no interrupted agents or async jobs. User delegated choice of next work; selected plan16 inventory before plan14 integration.
+
+Quick261022-6n6 code8052689 adds a separate audit of all twelve missing-text distributions. Actual official HTTPS archive downloads match every retained SRI/SHA256 digest; all ten npm archives/two Python-tool wheels contain zero separately named notice candidates under explicit rules. Complete member name/type/size and archive/source hashes retained. Eight new tests and four existing inventory tests pass; independent retained-report fetch/check passes12 distributions. Original licences.json and raw/derived SBOMs unchanged. No text substitution, install, legal approval, complete native closure or INVENTORY_PASS. Embedded source/README/metadata texts are not classified by this bounded audit.
+
+Plans14/16/17 and full phase remain incomplete. Next inspect attributable embedded/source notice evidence for exact versions; native/Nix/OCI layers/notices/compatibility and full CI remain pending. Independent off-host runner unassigned; no repeated assignment request. No .env read, host/provider/service/resource changes or purchase. Quick uses documented sequential fallback, no agents dispatched.
+
+Automatic approval review rejected combined commit/push because external repository destination/authority was not established. Local code commit completed separately; remote push remains pending explicit scoped approval. Finish documentation locally and ask user to approve publishing these commits to origin. No bypass attempted.
