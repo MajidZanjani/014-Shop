@@ -1,93 +1,57 @@
 ---
-gsd_state_version: "1.0"
-status: paused
-last_updated: "2026-10-22T09:24:19.621Z"
-state_head: 1cf78b858185584a0ed6b4f1a143ac5dc2931dcf
+gsd_state_version: '1.0'
+status: executing
+last_updated: '2026-10-22T10:08:45+00:00'
+state_head: 84343d5
 progress:
   total_phases: 14
   completed_phases: 1
   total_plans: 20
   completed_plans: 10
   percent: 7
-last_activity: 2026-10-22
-current_phase: 02
-current_phase_name: Reproducible application and deployment skeleton
-stopped_at: Proactive context checkpoint after payload inventory; read HANDOFF and resume safe local implementation.
-paused_at: "2026-10-22T09:18:17.520Z"
-last_activity_desc: "PostgreSQL inner-layer inventory verified: 14480 entries, 8298 regular files; absolute names and PAX recorded; production remains closed."
+last_activity: '2026-10-22'
+current_phase: '03'
+current_phase_name: Markdown catalog, schemas and local product flow
+stopped_at: Local catalog/configurator delivered; continue verified customer access
+  and protected save/resume integration.
+last_activity_desc: Catalog, static configurator, Django fallback and owner-scoped
+  local draft persistence delivered; release qualification pending.
 ---
 
 # Project State
 
-**Updated 2026-10-22 (UTC). Evidence reviewed through implementation commit dd322e1.**
-Current detail: [Phase 02 progress](phases/02-reproducible-application-and-deployment-skeleton/02-PROGRESS.md).
-Chronological prior notes: [ACTIVITY-LOG.md](ACTIVITY-LOG.md); their old statuses are historical.
+Updated 2026-10-22T10:08:45+00:00. Canonical current summary; detailed evidence: [quick/261022-dj5-amend-local-execution-sequence-and-deliv/261022-dj5-SUMMARY.md](quick/261022-dj5-amend-local-execution-sequence-and-deliv/261022-dj5-SUMMARY.md). Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
 ## Current position
 
-Session proactively paused with a complete [handoff](HANDOFF.json). Exact context percentage is unavailable; this is not a threshold measurement. Clear/resume before further implementation.
+T03/T04 local product development is active; ready T05 draft persistence has begun. Phase02 remains 8/18 complete with all ten incomplete qualification/implementation records preserved. Only Phase01 is fully complete: 1/14 = rounded 7%. That is completed-phase progress, not engineering effort. Existing planned records remain 10/20; later phase acceptance is not claimed from quick-task implementation.
 
-Phase 02 is executing. Phase 01 has 2/2 documentation plans complete; Phase 02 has 8/18 local slices complete (00–05, 09, 15), 7 qualification/review pending (06–08, 10–13), 3 implementation/qualification incomplete (14, 16, 17). Across the milestone 10/20 planned records and 1/14 phases are complete. Frontmatter 7% is the rounded completed-phase ratio, not an estimate of implementation effort or today's work.
+## Delivered behavior
 
-**Today 25 implementation quick tasks completed**, indexed below, plus one completed planning reconciliation. Quick tasks advance incomplete plans without falsely completing phase/BUILD acceptance. Eight Phase 02 SUMMARY files and ten PARTIAL files remain intentional; no FULL_PASS or production readiness is claimed.
+- Source-faithful Markdown catalog, strict compiler and matching browser/backend validation; three vendors, thirteen ordered families, source IDs, RDP bands and higher-volume quote behavior.
+- Static Astro/React configurator, dependent resets, fixed/floating counts, optional non-expiring support packages, support page and Django no-JavaScript preview. Unknown money/rights remain null/pending; purchase disabled; no host IDs or browser persistence.
+- Local/synthetic authenticated draft APIs: CSRF/Host/owner/revision checks and PostgreSQL retry/race arbitration. No customer verification/login, UI save/resume, staff MFA or production draft activation yet.
+- Bounded `scripts/check.py dev` command; automatic lightweight push/PR CI prepared separately from unchanged manual specialized qualification.
 
-## Current implementation and today's work
+## Run and evidence
 
-- Plan 14: pinned operator/schema launchers, actual local restricted SCRAM/peer tests, source-only exact control admission/block/custody/publication/reopening lifecycle and independent uncertainty observations. Twelve-module inert source package. New multi-statement Django transaction precursor holds admission through actual commit/rollback. Production/bank-sandbox still use the closed backend; safe host/application evidence boundary, all-write/role/transport integration and actual installation/qualification remain pending.
-- Plan 16: exact artifact/named-file/embedded-header/npm-marker evidence and offline reconciliation.12 original gap packages:1 named text, 2 headers, 10 marker observations (overlap), all 12 package-wide/legal reviews pending. Raw npm SBOM remains invalid; separate attributable schema-valid derivative exists. Native closure/notice evidence is partial, not complete legal/native acceptance.
-- Plans 16/17: one PostgreSQL Docker save candidate archive now actually built locally, 125653410 bytes, 51 ordered layer byte hashes checked against declared DiffIDs. Exact builder log/provenance/archive report retained. This supersedes yesterday's blanket unbuilt statement for PostgreSQL only; other images remain unbuilt. Inner layers now inventoried: 14,480 entries, 8,298 regular files, 298,557,309 bytes hashed; 5,151 symlinks and 10,517 absolute names recorded without resolution or extraction. PAX-aware manifest and two notice filename candidates retained. No image imported/run or merged-rootfs/native-licence/OCI distribution manifest/two-independent-build/runtime qualification.
+Demo: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/demo.py --backend`; open http://127.0.0.1:4321 (also /support/ and /purchase/simple/).
 
-## Current recorded evidence
+Checks: all six ordinary local lanes passed; latest changed lanes rerun (frontend75 tests, core-local34 tests), 70 cross-language cases agree, compiler rejection tests pass, dispatcher15 tests pass, static privacy boundary81 tests pass. Actual loopback demo/CSRF/quote/catalog smoke passed. Details and scoped counts in the task evidence. No FULL_PASS, actual browser/host/runtime/recovery/legal acceptance or production readiness claim. Hosted CI execution initially unproven; update only from actual run evidence.
 
-Latest recorded results below are separate overlapping lanes, not a unique total or new full-suite execution.
+## Exact next action
 
-| Scope | Latest passing evidence | Record |
-|---|---|---|
-| PostgreSQL destination/admission/Django primitive | 3 checks/184 tests, 13.762s | quick261022-aql |
-| Inert database source package | 7/5, 9.497s; 12 explicit modules | quick261022-aql |
-| Operator launchers | 7/17, 5.951s | quick261022-aql |
-| Deployment evaluation | 16/31, 2.133s | quick261022-bw3 |
-| Django core-local | 4/22, 7.710s | quick261022-aql |
-| Worker-smoke | 6/24, 9.022s | quick261022-aql |
-| Native operator closure / source notices | 56/9, 1.035s / 9/7, 3.820s | quick261022-aql |
-| Licence/reconciliation/marker/inventory units | 28+8+4 tests, 40 total in these suites | quick261022-bqg |
-| Docker archive / payload inspectors | 17 tests, 0.035s; actual 51-layer, 14,480-entry rescans match | quick261022-cor |
+Implement local verified customer email/session and resource membership using capture-mail only; then connect protected draft save/resume UI and continue quote/cart/acceptance primitives on available local interfaces. Add browser interaction/accessibility review when a suitable browser is available. Keep staff routes absent until MFA exists; no private host collection until its encryption/authorization prerequisites exist.
 
-Most recent historical full-all attempt exited1 at the required off-host core gate after environment/frontend. It was not rerun today; there is no FULL_PASS. Earlier frontend/contracts/installer/two-public-backend-build/source-baseline evidence remains scoped to its historical record, not a newly executed all/OCI/CI pass.
+## Remaining dependencies and protections
 
-## Next authorized work
+Finite release gate register: [amendment](EXECUTION-AMENDMENT-2026-10-22.md#finite-qualification-register), linked to original requirements/T02 evidence. One unresolved host/application attestation design task; production/bank-sandbox DB gate closed. No additional infrastructure/collector expansion without concrete need. No off-host runner assigned; do not repeatedly request, purchase or provision. No protected-host operations, real bank/mail/DNS/TLS or automatic billing changes authorized.
 
-1. Review the two image notice candidates and map native components; qualify observed absolute-name/link/PAX/importer semantics, build remaining prepared candidates and implement independent image comparison. OCI distribution manifests and complete native/legal inventory remain pending.
-2. Resolve the safe host/application evidence boundary before application-role/connection/all-write backend and migration integration. Do not expose host /proc or host control mounts to application containers. Keep production closed until complete and qualified.
-3. Finish account-scoped runtime/generator and executable independent replica driver, then assigned off-host lifecycle/recovery/full CI and outstanding browser/source/licence reviews.
+Retain dependency locks, raw SBOMs, notices, validated derivative and all original source/evidence. Local tests use fresh owned synthetic PostgreSQL and unchanged existing allocations. Existing-service inventory/allowlist/DB identity/full activation-impact review and exact authority still precede any separately authorized host write. `.env` credentials remain private and unused by this slice.
 
-No off-host runner is assigned. This does not block remaining repository implementation or authorize provisioning/purchase. Do not run disruptive tests on mx1/claude-dev/existing guests. No actual host/provider/DNS/TLS/bank/mail actions or credential reads occurred. Scoped local implementation and origin/main pushes remain authorized.
+## Session continuity
 
-## Progress maintenance
-
-After a completed local slice, refresh this current summary/evidence and linked Phase 02 progress, record its real commit in the quick-task table, update roadmap/requirement evidence when it changes, and publish the canonical state.json snapshot. Keep old dated narrative in ACTIVITY-LOG.md and preserve all incomplete acceptance gates. Do not rely on append-only notes to communicate current progress.
-
-## Locked decisions and scope
-
-October21 proposal/handoff govern; embedded product bytes unchanged. New proposed shopsvc rootless Podman/NixOS/Quadlet directly on existing mx1, outside claude-dev. Separate app/one worker/new independent PostgreSQL/internal gateway and independently owned backup jobs. Proposed aggregate200% CPU, 6/8GiB memory, 80/50GiB ZFS need actual all-descendant/writable-path qualification. No new cloud compute/block/IP/fallback or permanent staging. £0.79 object-only model is dated/unverified.
-
-All pre-existing/unknown owners/states/engines/native/VM resources protected. Sanitized read-only inventory, exact new-shop allowlist/database identity and full evaluated activation-impact review precede any host write. No blanket activation, protected reload/restart/repair/prune/GC/reboot, global policy/delegation/cpuset change or host-generation rollback. Ingress/TLS stays unchanged or deferred to a later exact named-service/action approval; no premature DNS or inference that DNS01 supplies routing. Existing SMTP/monitoring/backups unchanged or integration pending. Shop-only rollback retains committed records. Actual host qualification T11; recovery T12.
-
-User continuation authorizes repository/application skeleton implementation and ordinary local tests, not real provider/bank/mail/DNS/TLS/production operations. Exact original dependency approval digest136610b07612762d390b3b3c234ff1ef3f6dc6b0e44a69a2abc646d9106b51bd does not extend to newly selected runtime bytes. Keep unresolved commercial/custody/P11/P12 decisions and flagged BUILD/prohibition findings explicit.
-
-## Credential and workspace workflow
-
-Resource-access credentials are available through repository .env. Read only needed values for authorized work without printing/copying into chat, logs, commands, evidence or public builds. If a needed credential is absent/empty, append a clear blank VARIABLE_NAME= entry/purpose preserving all existing values, then ask the user to fill .env directly. No currently needed missing credential identified. Runtime _FILE/build exclusions and action authorization remain distinct.
-
-Use fresh GSD worktree manifests/full current HEAD and push every commit. Two old clean historical worktrees at2c64d9b must never replay stale prompts; no workers active. Reuse cached Nix outputs and bound jobs/cores/time. Project filesystem had~2.4GiB free at preparation; shared /tmp128MiB is small. Use owned .scratch/TMPDIR and short SHOP_TEST_SCRATCH; never clean shared files/store/caches or change allocations. No mx1 SSH/provider access, disruptive runtime operation, existing-service change or purchase occurred.
-
-## Completed reset
-
-Quick261021-8cb: October21 protected-host replan, committed2f07e57; docs/archive/2026-10-20-planning is historical only. Source files were read completely and remain immutable; active cloud-instance backend requirements were replaced. Current execution follows that reset plus later user implementation/.env instructions.
-
-## Standing implementation task: context checkpoint
-
-When session context exceeds 90%, run `$gsd-pause-work`, save a complete resumable handoff and tell the user to clear the session and run `$gsd-resume-work`. Stop implementation until resume. Follow the indicator/unknown-percentage policy in AGENTS.md and PROJECT.md; never invent a measured percentage. This standing instruction preserves all current incomplete work and pending evidence.
+Resumed 2026-10-22 under the explicit execution amendment. HANDOFF.json contains the next action. No workflow agents or demo processes remain active. Retain the user's context-checkpoint rule; no exact context percentage is available or claimed.
 
 ### Quick Tasks Completed
 

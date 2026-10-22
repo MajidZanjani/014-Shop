@@ -1,3 +1,5 @@
+Active local sequence and authorization: [2026-10-22 amendment](../../EXECUTION-AMENDMENT-2026-10-22.md). Historical replan-only statements below describe that earlier pass. T02 release qualifications no longer block independent local features.
+
 # Phase 2 — October 21 locked context
 
 <decisions>

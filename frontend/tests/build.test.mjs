@@ -23,9 +23,9 @@ test('built synthetic HTML is served as an ordinary static HTTP page', { timeout
     assert.equal(response.status, 200);
     assert.match(response.headers.get('content-type'), /^text\/html/);
     const text = await response.text();
-    assert.match(text, /xSPI-MC build probe/);
-    assert.match(text, /data-evidence-class="local-synthetic"/);
-    assert.match(text, /No purchase or licence offer/);
+    assert.match(text, /Configure your licence/);
+    assert.match(text, /Local product preview/);
+    assert.match(text, /Purchase unavailable/);
   } finally {
     server.closeAllConnections();
     await new Promise((resolve, reject) => server.close(error => error ? reject(error) : resolve()));
@@ -102,7 +102,7 @@ test('Markdown collection changes reach HTML; unknown fields and invalid types f
     await writeFile(markdown, original.replace('xSPI-MC build probe', 'Changed synthetic Markdown title'));
     const changed = astroBuild(scratch);
     assert.equal(changed.status, 0, changed.stdout + changed.stderr);
-    const html = await readFile(join(scratch, 'dist/index.html'), 'utf8');
+    const html = await readFile(join(scratch, 'dist/build-probe/index.html'), 'utf8');
     assert.match(html, /Changed synthetic Markdown title/);
     assert.match(html, /astro-island/);
     assert.match(html, /client="load"/);

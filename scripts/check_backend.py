@@ -121,21 +121,29 @@ def qualify(faults=False):
                 require(identity == '18.6|' + database['NAME'], 'actual scratch database identity mismatch')
                 run([python, 'manage.py', 'check'], env)
                 run([python, 'manage.py', 'migrate', '--noinput'], env)
-                test_result = dev_postgres.run([str(python), 'manage.py', 'test', 'shop.core.tests', '--noinput'],
+                run([python, 'manage.py', 'makemigrations', '--check', '--dry-run'], env)
+                test_result = dev_postgres.run([str(python), 'manage.py', 'test', 'shop.core.tests', 'shop.catalog.tests', '--noinput'],
                     env=env, cwd=ROOT / 'backend', timeout=45)
                 test_output = test_result.stdout + test_result.stderr
                 match = re.search(r'Ran (\d+) tests?', test_output)
                 require(match is not None and int(match[1]) >= 5 and 'OK' in test_output and 'skipped' not in test_output,
                         'required Django configuration tests missing, failed or skipped')
-                checks, tests = 3, int(match[1])
+                checks, tests = 4, int(match[1])
                 with gunicorn(python, env, scratch) as port:
                     for path, status, body in [('/health/live', 200, {'status': 'live'}),
                                                ('/health/ready', 200, {'status': 'ready'})]:
                         code, raw, content_type = get(port, path)
                         require(code == status and json.loads(raw) == body and content_type.startswith('application/json'), 'health contract mismatch')
                         tests += 1
-                    for path in ('/admin/', '/private/', '/orders/', '/payments/', '/purchase/simple/'):
-                        require(get(port, path)[0] == 404, 'unexpected privileged or commerce route')
+                    # Product capabilities are tested directly; future commerce routes
+                    # are no longer required to remain skeleton 404s.
+                    for path, status in (
+                        ('/api/v1/catalog/', 200),
+                        ('/purchase/simple/', 200),
+                        ('/api/v1/configurations/validate/', 405),
+                        ('/api/v1/configuration-drafts/00000000-0000-0000-0000-000000000001/', 401),
+                        ('/admin/', 404)):
+                        require(get(port, path)[0] == status, 'product/authentication boundary mismatch')
                         tests += 1
                     require(get(port, '/health/live', method='POST')[0] == 405, 'liveness must be GET-only')
                     require(get(port, '/health/ready', method='POST')[0] == 405, 'readiness must be GET-only')

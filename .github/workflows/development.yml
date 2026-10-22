@@ -1,0 +1,50 @@
+{
+  "name": "Shop ordinary development",
+  "on": {
+    "push": {},
+    "pull_request": {}
+  },
+  "permissions": {
+    "contents": "read"
+  },
+  "concurrency": {
+    "group": "development-${{ github.ref }}",
+    "cancel-in-progress": true
+  },
+  "jobs": {
+    "catalog-frontend": {
+      "runs-on": "ubuntu-24.04",
+      "timeout-minutes": 12,
+      "env": {
+        "ASTRO_TELEMETRY_DISABLED": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "steps": [
+        {
+          "uses": "actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "with": {
+            "persist-credentials": false
+          }
+        },
+        {
+          "uses": "actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+          "with": {
+            "node-version": "24.22.0"
+          }
+        },
+        {
+          "name": "Use reviewed npm version",
+          "run": "npm install --global npm@11.19.1 --no-audit --no-fund"
+        },
+        {
+          "name": "Source authority and generated catalog",
+          "run": "python3 docs/product-source/verify_t01.py all\npython3 scripts/compile_catalog.py --check"
+        },
+        {
+          "name": "Bounded ordinary frontend and catalog checks",
+          "run": "python3 scripts/check_frontend_dev.py\npython3 scripts/check_catalog.py"
+        }
+      ]
+    }
+  }
+}

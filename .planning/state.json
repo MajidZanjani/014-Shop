@@ -16,17 +16,17 @@
     {
       "number": "3",
       "name": "Markdown catalog, schemas and approved price calculations",
-      "status": "pending"
+      "status": "in_progress"
     },
     {
       "number": "4",
       "name": "Static product, configurator, support page and accessible fallback",
-      "status": "pending"
+      "status": "in_progress"
     },
     {
       "number": "5",
       "name": "Transactional records, durable work and private evidence primitives",
-      "status": "pending"
+      "status": "in_progress"
     },
     {
       "number": "6",
@@ -75,9 +75,9 @@
     }
   ],
   "next": {
-    "command": "$gsd-resume-work",
-    "label": "Resume work",
-    "reason": "Work is paused — pick up where you left off"
+    "command": "$gsd-progress --next",
+    "label": "Advance to the next step",
+    "reason": "Phase 3 of 14 · 7% · executing"
   },
-  "updated_at": "2026-10-22T09:20:21.504Z"
+  "updated_at": "2026-10-22T10:08:45.497Z"
 }

@@ -1,122 +1,19 @@
 {
   "version": "1.0",
-  "timestamp": "2026-10-22T09:18:17.520Z",
-  "phase": "02",
-  "phase_name": "Reproducible application and deployment skeleton",
-  "phase_dir": ".planning/phases/02-reproducible-application-and-deployment-skeleton",
-  "plan": 16,
-  "task": 1,
-  "total_tasks": 3,
-  "status": "paused",
+  "timestamp": "2026-10-22T10:08:45+00:00",
+  "status": "executing",
+  "phase": "03",
+  "phase_name": "Local catalog and product flow",
   "completed_tasks": [
-    {
-      "id": 1,
-      "name": "Supplemental prefixed licence filenames",
-      "status": "done",
-      "commit": "e873adf"
-    },
-    {
-      "id": 2,
-      "name": "Bounded npm embedded marker evidence",
-      "status": "done",
-      "commit": "9c0f67d"
-    },
-    {
-      "id": 3,
-      "name": "Offline licence observation reconciliation",
-      "status": "done",
-      "commit": "a02e5a5"
-    },
-    {
-      "id": 4,
-      "name": "Actual local PostgreSQL image build/archive inspection",
-      "status": "done",
-      "commit": "798eaa3"
-    },
-    {
-      "id": 5,
-      "name": "Repair stale visible/machine planning state and10 missing task index rows",
-      "status": "done",
-      "commit": "8a5c91e",
-      "metadata_commit": "a0ce5c2"
-    },
-    {
-      "id": 6,
-      "name": "Actual image inner-layer entry inventory",
-      "status": "done",
-      "commit": "dd322e1"
-    }
+    "261022-dj5: execution amendment, catalog/configurator, local drafts/fallback and development verification"
   ],
-  "remaining_tasks": [
-    {
-      "id": 7,
-      "name": "Retain/review two exact in-image notice candidates with archive/layer/path/hash bindings, then native component mapping",
-      "status": "not_started"
-    },
-    {
-      "id": 8,
-      "name": "Qualified importer/absolute-name/link/PAX/merged-rootfs semantics, other image builds and independent comparison",
-      "status": "not_started"
-    },
-    {
-      "id": 9,
-      "name": "Safe host/application attestation boundary, roles/auth/transport/all-write/migration integration; production stays closed",
-      "status": "not_started"
-    },
-    {
-      "id": 10,
-      "name": "Runtime/generator/executable replica driver and actual off-host/full CI/human/legal/runtime/recovery qualification",
-      "status": "not_started"
-    }
-  ],
+  "next_action": "Implement local verified customer email/session and resource membership using capture-mail only; then protected draft save/resume UI. Read STATE.md, EXECUTION-AMENDMENT-2026-10-22.md and the linked task SUMMARY. No infrastructure expansion.",
   "blockers": [
     {
-      "description": "Independent off-host runner unassigned; does not block repository implementation",
-      "type": "external",
-      "workaround": "Continue ordinary local/synthetic work; no disruptive tests on mx1/claude-dev/guests or automatic provisioning/purchase."
+      "description": "Independent off-host runner unassigned; affects release qualification only",
+      "blocking_local_development": false
     }
   ],
-  "async_jobs": [],
-  "human_actions_pending": [
-    {
-      "action": "Assigned scoped independent runner and outstanding browser/source/legal/host/runtime reviews at qualification stage",
-      "context": "Do not repeatedly ask while independent implementation remains. Exact scoped authority for actual host/provider/DNS/TLS/bank/mail operations remains required.",
-      "blocking": false
-    }
-  ],
-  "decisions": [
-    {
-      "decision": "Keep all current planning views fresh, not append-only historical notes",
-      "rationale": "User reported stale top-level .planning. Current STATE/02-PROGRESS/ROADMAP/verification/requirement traceability/state.json now reconciled; historical narrative moved to ACTIVITY-LOG.",
-      "phase": "02"
-    },
-    {
-      "decision": "Use canonical GSD four-column progress table and publisher",
-      "rationale": "Old three-column table and Executing token were not recognized; fallback missed padded phase02. Complete/In Progress/Not started with Completed column validates phase2 in_progress.",
-      "phase": "02"
-    },
-    {
-      "decision": "Absolute inner names are preserved/flagged, links recorded, layers never extracted or applied",
-      "rationale": "Actual image has10517 absolute names and5151 symlinks. Importer/runtime semantics remain unqualified; do not silently normalize image payload or infer legal/runtime acceptance.",
-      "phase": "02"
-    }
-  ],
-  "uncommitted_files": [],
-  "next_action": "Read STATE/02-PROGRESS plus scripts/inventory_image_payload.py and inspect_image_archive.py. Verify local archive/report availability. Start a new GSD quick task to retain the two exact actual-image notice bytes (ICU/Python) with bound layer/path/size/hash evidence, no extraction/import/run or generic text substitution; then native mapping/other image/independent-build work. Preserve safe host/application evidence isolation and production gate. On successful resume consume HANDOFF/.continue-here, clear paused_at and set status executing, refresh canonical state after each slice and use real task commit rows.",
-  "context_notes": "Proactive long-context pause under standing user instruction; exact percentage unavailable, no claimed threshold monitoring. All local implementation through dd322e1 committed before handoff; measured clean before checkpoint writes. No workflow agents/checks/servers/async jobs running; async-jobs directory absent. No .env/real credentials/host/provider changes. Source docs and evidence now current. Phase2 remains8/18 summaries,10 partials;milestone1/14 phases,10/20 plan records.26 completed quick records today=25 implementation+1 planning repair. No FULL_PASS/production acceptance. Local exec requires escalation due default cwd sandbox resolution. Bound Nix jobs1/cores4; use cached graph, no shared cleanup. Build scratch /var/lib/shop-image-scratch-VjIrVLVQ has safe ancestors; project ancestors private and /var/tmp world-writable are unsuitable for Nix build users. No existing permissions/global Nix configuration changed.",
-  "evidence": {
-    "archive_path": "/nix/store/55fbc919a5fwhyc1gcsn1h6m63s4ipai-shop-postgres.tar.gz",
-    "archive_bytes": 125653410,
-    "archive_sha256": "00ad3ec8402040624e9218f25fed63c5aa62a1a002a07dc3a3a1fab425021067",
-    "outer_report": "docs/evidence/t02/image-archive-revisions/f40a60ce47686368cd6dbd4dcbf2da6ad5bde1893eb865b757281dbfabb23e31.json",
-    "preferred_payload_report": "docs/evidence/t02/image-payload-revisions/874d877d6651a07c89871beaae9e66c30beefb469cfdfebc4018da318b639ba7.json",
-    "payload_counts": "51 layers;14480 entries;8298 regular;298557309 bytes;5151 symlinks;0 hardlinks/whiteouts;10517 absolute names;2972 PAX entries",
-    "payload_manifest": "500801 compressed/6115498 uncompressed bytes; exact hash/path in preferred report",
-    "earlier_payload_revision": "082e1b8f11e5f064a9ed03cc204e9eedda456ee9ddd9cff8a395b4ca476724af lacks PAX fields,retained historical;not a second image build",
-    "notice_candidates": "ICU76.1 share/icu/76.1/LICENSE26487 bytes sha25601edac20612b1e590c1c1cfb02b7218c6adc7b0a944eda7a1e03aeee10725aed;Python3.13.16 lib/python3.13/LICENSE.txt13809 bytes sha25678b12c3a81360b357002334f0e70ea0e92eebf7a9b358805c03c48484945f3bb",
-    "latest_tests": "17 image outer/payload tests0.035s pass; earlier16/0.029s pass; actual PAX-aware rescan and original outer report reproduce exactly",
-    "other_recorded_lanes": "SQL3/18413.762s;source7/5 9.497s;operator7/17 5.951s;deployment16/31 2.133s;core4/22 7.710s;worker6/24 9.022s;native56/9 1.035s;notices9/7 3.820s;licence suites40. These overlap and were not all rerun this slice.",
-    "limitations": "All12 package-wide/legal text reviews pending;1 named/2 header/10 marker observations overlap. No inner merged-rootfs/importer/native completeness/OCI distribution manifest/runtime/independent image rebuild/retention qualification.",
-    "failures": "Initial image build setup failed private project traversal,then world-writable /var/tmp,corrected with exclusive /var/lib scratch. Initial inner collector denied actual absolute names before output; corrected preservation/flagging policy. No tests failed in image payload slice. Planning validation initially detected unrecognized progress table/status; corrected canonical format. No invalid reports overwritten or shared cleanup."
-  }
+  "context_notes": "No real bank/mail/DNS/TLS/deployment or credential access. Production/bank-sandbox DB remains closed. Private host editing and staff routes wait for encryption/verified access/MFA. Reuse recorded unchanged evidence. Context percentage unavailable; retain standing checkpoint policy.",
+  "uncommitted_files": []
 }

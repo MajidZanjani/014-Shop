@@ -3,13 +3,16 @@ from django.db import DatabaseError, connection
 from .logging import safe_event
 from django.http import JsonResponse
 from django.views.decorators.http import require_GET
+from django.views.decorators.csrf import csrf_exempt
 
+@csrf_exempt
 @require_GET
 def liveness(request):
     request.get_host()
     safe_event("health.live", 200)
     return JsonResponse({"status": "live"})
 
+@csrf_exempt
 @require_GET
 def readiness(request):
     request.get_host()

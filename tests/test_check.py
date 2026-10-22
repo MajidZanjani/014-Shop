@@ -23,7 +23,12 @@ class DispatcherTests(unittest.TestCase):
             "environment", "frontend", "core", "worker", "adapters", "contracts", "boundaries"))
 
     def test_all_requires_every_final_lane(self):
-        self.assertEqual(set(check.required_lanes("all")), set(check.LANES) - {"worker-smoke"})
+        self.assertEqual(set(check.required_lanes("all")), set(check.LANES) - {"worker-smoke", "core-local", "contracts-local", "catalog"})
+
+    def test_development_excludes_qualification(self):
+        self.assertEqual(check.required_lanes('dev'),check.DEVELOPMENT)
+        self.assertTrue({'core-local','worker-smoke','contracts-local','catalog'} <= set(check.DEVELOPMENT))
+        self.assertFalse(set(check.DEVELOPMENT) & {'core','worker','contracts','deployment-boot','reproducibility','inventory'})
 
     def test_missing_producer_is_nonzero(self):
         with tempfile.TemporaryDirectory() as empty, patch.object(check, "ROOT", Path(empty)):
@@ -33,7 +38,7 @@ class DispatcherTests(unittest.TestCase):
 
     def test_every_mode_rejects_missing_producer(self):
         with tempfile.TemporaryDirectory() as empty, patch.object(check, "ROOT", Path(empty)):
-            for mode in (*check.LANES, "quick", "all"):
+            for mode in (*check.LANES, "quick", "all", "dev"):
                 with self.subTest(mode=mode), contextlib.redirect_stderr(io.StringIO()):
                     self.assertEqual(check.main([mode]), 1)
 

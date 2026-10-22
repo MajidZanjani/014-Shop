@@ -14,10 +14,14 @@ import unittest
 sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parents[1]
 QUICK = ("environment", "frontend", "core", "worker", "adapters", "contracts", "boundaries")
+DEVELOPMENT = ("frontend", "core-local", "worker-smoke", "adapters", "contracts-local", "catalog")
 EXTRA = ("inventory", "locks", "reproducibility", "deployment-profiles",
          "deployment-eval", "postgres-diagnostics", "postgresql-config", "bootstrap-local", "database-destination", "database-tools", "operator-runtime", "native-closure", "native-source-notices", "deployment-build", "deployment-boot")
 # (producer, commands, timeout). No optional producers or inferred skips.
 LANES = {
+    "core-local": ("scripts/check_backend.py", (("python3", "scripts/check_backend.py", "core-local"),), 120),
+    "contracts-local": ("scripts/check_contracts.py", (("python3", "scripts/check_contracts.py", "--local"),), 120),
+    "catalog": ("scripts/check_catalog.py", (("python3", "scripts/check_catalog.py"),), 120),
     "environment": ("scripts/dev_postgres.py", (), 60),
     "frontend": ("scripts/check_frontend.py", (("python3", "scripts/check_frontend.py"),), 180),
     "core": ("scripts/check_backend.py", (("python3", "scripts/check_backend.py", "core"),), 120),
@@ -45,6 +49,8 @@ LANES = {
 
 
 def required_lanes(mode):
+    if mode == "dev":
+        return DEVELOPMENT
     if mode == "quick":
         return QUICK
     if mode == "all":
@@ -171,7 +177,7 @@ def main(argv=None):
     provenance = ", ".join(f"{tool}={shutil.which(tool) or 'MISSING'}"
                            for tool in ("python3", "node", "npm", "nix", "psql"))
     parser = argparse.ArgumentParser(description=__doc__, epilog="Tool provenance: " + provenance)
-    parser.add_argument("lane", choices=(*LANES, "quick", "all"))
+    parser.add_argument("lane", choices=(*LANES, "quick", "all", "dev"))
     args = parser.parse_args(argv)
     lanes = required_lanes(args.lane)
     try:
@@ -182,8 +188,15 @@ def main(argv=None):
         if "environment" not in lanes:
             tool_identities()
         for lane in lanes:
-            execute(lane)
-        if args.lane == "all":
+            if args.lane == 'dev' and lane == 'frontend':
+                original = LANES[lane]
+                LANES[lane] = ('scripts/check_frontend_dev.py', (('python3','scripts/check_frontend_dev.py'),), 240)
+                try: execute(lane)
+                finally: LANES[lane] = original
+            else: execute(lane)
+        if args.lane == "dev":
+            print("LOCAL_DEVELOPMENT_PASS; release qualification pending")
+        elif args.lane == "all":
             print("FULL_PASS")
         elif args.lane == "quick":
             print("QUICK_PASS")

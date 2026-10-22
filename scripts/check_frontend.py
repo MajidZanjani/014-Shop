@@ -171,7 +171,7 @@ def main():
         command(['unshare', '--net', '--', 'npm', 'run', 'build'], project, env)
         inventory, count = scan_output(project / 'dist')
         smoke = command(['npm', 'run', 'test'], project, env, 120)
-        require('tests 3' in smoke and 'fail 0' in smoke, 'required real frontend tests absent')
+        require('fail 0' in smoke and 'configuration: Altera annual fixed' in smoke, 'required real frontend tests absent')
         os.environ['SHOP_FRONTEND_TEST_ROOT'] = str(project)
         os.environ['SHOP_FRONTEND_TEST_ENV'] = json.dumps(env)
         try:
@@ -182,7 +182,7 @@ def main():
         finally:
             os.environ.pop('SHOP_FRONTEND_TEST_ROOT', None); os.environ.pop('SHOP_FRONTEND_TEST_ENV', None)
         print(json.dumps({'evidence_class': 'local-synthetic', 'artifacts': inventory}))
-        print(f'FRONTEND_PASS checks={count + len(names)} tests={result.testsRun + 3} duration_seconds={time.monotonic()-start:.3f}')
+        print(f'FRONTEND_PASS checks={count + len(names)} tests={result.testsRun + int(__import__('re').search(r'tests (\d+)', smoke).group(1))} duration_seconds={time.monotonic()-start:.3f}')
 
 if __name__ == '__main__':
     try: main()

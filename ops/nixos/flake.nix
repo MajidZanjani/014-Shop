@@ -79,10 +79,10 @@
       '';
     };
     runtime = import ./python-runtime.nix { inherit pkgs pythonEnv postgres; };
-    # Only Python source is admitted; no .env, fixtures, caches or private data.
+    # Python source and the exact public catalog manifest only; no .env/private data.
     appSource = pkgs.lib.cleanSourceWith {
       src = ../../backend;
-      filter = path: type: type == "directory" || pkgs.lib.hasSuffix ".py" path;
+      filter = path: type: type == "directory" || pkgs.lib.hasSuffix ".py" path || path == toString ../../backend/shop/catalog/revision.json;
     };
     appTree = pkgs.runCommand "shop-python-source" {} ''
       mkdir -p $out/app

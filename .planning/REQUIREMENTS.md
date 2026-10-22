@@ -193,25 +193,25 @@ Updated 2026-10-22: BUILD-01–08 have partial local implementation/evidence and
 | BUILD-06 | Phase 2 | In Progress |
 | BUILD-07 | Phase 2 | In Progress |
 | BUILD-08 | Phase 2 | In Progress |
-| CAT-01 | Phase 3 | Pending |
-| CAT-02 | Phase 3 | Pending |
-| CAT-03 | Phase 3 | Pending |
-| CAT-04 | Phase 3 | Pending |
-| CAT-05 | Phase 3 | Pending |
-| SHOP-01 | Phase 4 | Pending |
-| SHOP-02 | Phase 4 | Pending |
-| SHOP-03 | Phase 4 | Pending |
-| SHOP-04 | Phase 4 | Pending |
-| SHOP-05 | Phase 4 | Pending |
-| DATA-01 | Phase 5 | Pending |
-| DATA-02 | Phase 5 | Pending |
+| CAT-01 | Phase 3 | In Progress |
+| CAT-02 | Phase 3 | In Progress |
+| CAT-03 | Phase 3 | In Progress |
+| CAT-04 | Phase 3 | In Progress |
+| CAT-05 | Phase 3 | In Progress |
+| SHOP-01 | Phase 4 | In Progress |
+| SHOP-02 | Phase 4 | In Progress |
+| SHOP-03 | Phase 4 | In Progress |
+| SHOP-04 | Phase 4 | In Progress |
+| SHOP-05 | Phase 4 | In Progress |
+| DATA-01 | Phase 5 | In Progress |
+| DATA-02 | Phase 5 | In Progress |
 | DATA-03 | Phase 5 | Pending |
 | DATA-04 | Phase 5 | Pending |
 | AUTH-01 | Phase 6 | Pending |
-| AUTH-02 | Phase 6 | Pending |
+| AUTH-02 | Phase 6 | In Progress |
 | AUTH-03 | Phase 6 | Pending |
 | AUTH-04 | Phase 6 | Pending |
-| AUTH-05 | Phase 6 | Pending |
+| AUTH-05 | Phase 6 | In Progress |
 | AUTH-06 | Phase 6 | Pending |
 | COM-01 | Phase 7 | Pending |
 | COM-02 | Phase 7 | Pending |
@@ -263,3 +263,5 @@ Updated 2026-10-22: BUILD-01–08 have partial local implementation/evidence and
 | REL-05 | Phase 14 | Pending |
 
 **Coverage:** 80 v1 requirements; 80 mapped exactly once; 0 unmapped.
+
+Local implementation evidence for CAT/SHOP and initial owner/retry DATA/AUTH behavior: [quick261022-dj5](quick/261022-dj5-amend-local-execution-sequence-and-deliv/261022-dj5-SUMMARY.md). Checkboxes remain pending full acceptance; verified customer access, staff MFA, private approvals, approved money and release qualification are not claimed. Current sequence follows the execution amendment.

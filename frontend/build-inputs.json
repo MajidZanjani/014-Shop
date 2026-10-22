@@ -10,6 +10,14 @@
     "src/content/probes/skeleton.md",
     "src/pages/index.astro",
     "src/components/BuildProbe.tsx",
-    "tests/build.test.mjs"
+    "tests/build.test.mjs",
+    "src/content/products/xspi.md",
+    "src/pages/build-probe.astro",
+    "src/components/Configurator.tsx",
+    "src/lib/catalog.ts",
+    "src/lib/configuration.ts",
+    "tests/configuration.test.mjs",
+    "tests/conformance.json",
+    "src/pages/support.astro"
   ]
 }

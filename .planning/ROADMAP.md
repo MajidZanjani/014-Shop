@@ -1,5 +1,9 @@
 # Roadmap: SLL xSPI-MC Shop
 
+**Active sequencing:** [2026-10-22 execution amendment](EXECUTION-AMENDMENT-2026-10-22.md); T03 and ready local slices proceed independently of pending release qualification.
+
+**Local evidence:** [catalog/configurator and draft/fallback delivery](quick/261022-dj5-amend-local-execution-sequence-and-deliv/261022-dj5-SUMMARY.md); canonical current status is STATE.md.
+
 **Baseline:** 2026-10-21 protected-services proposal/handoff, read in full. T01 documentation reconciled; T02 is executing with eight completed local slices and ten incomplete qualification/implementation records. Actual runtime/host criteria remain unexecuted.
 
 ## Current implementation activity — 2026-10-22
@@ -45,7 +49,7 @@ The October21 reset completed documentation replanning. Later user continuation 
 ### Phase 1: Product authority, repository review and decision register
 
 **Goal:** Operators can verify the exact embedded product snapshot by filename, 23,969-byte length and SHA-256, using only the October 21 package as new product authority.
-**Depends on:** An implementation instruction
+**Depends on:** Implementation authorized; see 2026-10-22 execution amendment
 **Requirements:** SRC-01, SRC-02, SRC-03, SRC-04
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md T01; complete companion proposal remains normative.
 **Estimate:** 1–2 engineer-days
@@ -111,7 +115,7 @@ The October21 reset completed documentation replanning. Later user continuation 
 ### Phase 3: Markdown catalog, schemas and approved price calculations
 
 **Goal:** Editors can compile one reviewed Markdown/YAML catalog into immutable public/private manifests with the same revision; incomplete approvals cannot be activated through editable content.
-**Depends on:** T01–T02
+**Depends on:** T01 and available T02 local interfaces; remaining release qualifications run separately under the [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md)
 **Requirements:** CAT-01, CAT-02, CAT-03, CAT-04, CAT-05
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md T03; complete companion proposal remains normative.
 **Estimate:** 4–6 engineer-days
@@ -135,7 +139,7 @@ The October21 reset completed documentation replanning. Later user continuation 
 ### Phase 4: Static product, configurator, support page and accessible fallback
 
 **Goal:** Customers can read static product/support/legal pages and select only the exact ordered vendor/family/term/band options, including Altera-only RDP and higher-volume quotation.
-**Depends on:** T03
+**Depends on:** Available local T03 catalog/validation interfaces; approval/release gates remain separate under the execution amendment
 **Requirements:** SHOP-01, SHOP-02, SHOP-03, SHOP-04, SHOP-05
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md T04; complete companion proposal remains normative.
 **Estimate:** 4–6 engineer-days
@@ -159,7 +163,7 @@ The October21 reset completed documentation replanning. Later user continuation 
 ### Phase 5: Transactional records, durable work and private evidence primitives
 
 **Goal:** Business records for contacts, configuration/host revisions, quotes/orders, acceptance, money, licensing, support and evidence are persisted with reconstructable immutable snapshots.
-**Depends on:** T02–T03
+**Depends on:** Available T02 local PostgreSQL/Django and T03 validation interfaces; release qualification remains separate
 **Requirements:** DATA-01, DATA-02, DATA-03, DATA-04
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md T05; complete companion proposal remains normative.
 **Estimate:** 3–5 engineer-days
@@ -404,9 +408,9 @@ Keep public bytes in shop-owned OVH Object Storage through a fixed verified HTTP
 |---|---|---|---|
 | 1. Product authority, repository review and decision register | 2 / 2 | Complete — documentation reconciled | 2026-10-21 |
 | 2. Reproducible application and deployment skeleton | 8 / 18 | In Progress; updated 2026-10-22: 25 implementation quick tasks; 7 qualification/review and 3 implementation/qualification records open | — |
-| 3. Markdown catalog, schemas and approved price calculations | 0 / not planned | Not started | — |
-| 4. Static product, configurator, support page and accessible fallback | 0 / not planned | Not started | — |
-| 5. Transactional records, durable work and private evidence primitives | 0 / not planned | Not started | — |
+| 3. Markdown catalog, schemas and approved price calculations | 0 / not planned | In Progress — local slice in quick261022-dj5; full acceptance pending | — |
+| 4. Static product, configurator, support page and accessible fallback | 0 / not planned | In Progress — local slice in quick261022-dj5; full acceptance pending | — |
+| 5. Transactional records, durable work and private evidence primitives | 0 / not planned | In Progress — local slice in quick261022-dj5; full acceptance pending | — |
 | 6. Verified customer access, staff MFA and private host editing | 0 / not planned | Not started | — |
 | 7. Multi-line cart, quotations, business checkout and acceptance | 0 / not planned | Not started | — |
 | 8. Payment domain and fault-injectable fake bank | 0 / not planned | Not started | — |
