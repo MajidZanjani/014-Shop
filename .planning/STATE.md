@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: executing
-last_updated: "2026-10-22T08:43:09.468257+00:00"
-state_head: a02e5a5
+last_updated: "2026-10-22T08:57:57.434272Z"
+state_head: 798eaa3
 progress:
   total_phases: 14
   completed_phases: 1
@@ -12,33 +12,61 @@ progress:
 last_activity: 2026-10-22
 current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
-stopped_at: One PostgreSQL Docker archive built/inspected locally; inner payload/native/OCI/reproducibility/runtime pending.
-last_activity_desc: Actual local PostgreSQL archive51 layer hashes retained; no container execution or production activation.
+stopped_at: Planning summaries reconciled against implementation 798eaa3; Phase 02 acceptance still incomplete.
+last_activity_desc: Today 24 implementation quick tasks recorded; PostgreSQL archive built; current evidence and machine state synchronized.
 ---
 
 # Project State
 
+**Updated 2026-10-22 (UTC). Evidence reviewed through implementation commit 798eaa3.**
+Current detail: [Phase 02 progress](phases/02-reproducible-application-and-deployment-skeleton/02-PROGRESS.md).
+Chronological prior notes: [ACTIVITY-LOG.md](ACTIVITY-LOG.md); their old statuses are historical.
+
 ## Current position
 
-Phase 02 remains executing; auto-advance false. Eight local slices complete (00–05,09,15), seven qualification/human-review pending (06–08,10–13), three implementation-incomplete (14,16,17). Only completion evidence uses SUMMARY.md; incomplete records use PARTIAL.md so GSD discovery cannot turn file presence into 18/18 completion. BUILD requirements and full phase/production acceptance remain incomplete. See 02-VERIFICATION.md (gaps_found) and individual records; the prior one-shot HANDOFF.json was consumed.
+Phase 02 is executing. Phase 01 has 2/2 documentation plans complete; Phase 02 has 8/18 local slices complete (00–05, 09, 15), 7 qualification/review pending (06–08, 10–13), 3 implementation/qualification incomplete (14, 16, 17). Across the milestone 10/20 planned records and 1/14 phases are complete. Frontmatter 7% is the rounded completed-phase ratio, not an estimate of implementation effort or today's work.
+
+**Today 24 implementation quick tasks completed**, indexed below, plus this planning reconciliation. Quick tasks advance incomplete plans without falsely completing phase/BUILD acceptance. Eight Phase 02 SUMMARY files and ten PARTIAL files remain intentional; no FULL_PASS or production readiness is claimed.
+
+## Current implementation and today's work
+
+- Plan 14: pinned operator/schema launchers, actual local restricted SCRAM/peer tests, source-only exact control admission/block/custody/publication/reopening lifecycle and independent uncertainty observations. Twelve-module inert source package. New multi-statement Django transaction precursor holds admission through actual commit/rollback. Production/bank-sandbox still use the closed backend; safe host/application evidence boundary, all-write/role/transport integration and actual installation/qualification remain pending.
+- Plan 16: exact artifact/named-file/embedded-header/npm-marker evidence and offline reconciliation.12 original gap packages:1 named text, 2 headers, 10 marker observations (overlap), all 12 package-wide/legal reviews pending. Raw npm SBOM remains invalid; separate attributable schema-valid derivative exists. Native closure/notice evidence is partial, not complete legal/native acceptance.
+- Plans 16/17: one PostgreSQL Docker save candidate archive now actually built locally, 125653410 bytes, 51 ordered layer byte hashes checked against declared DiffIDs. Exact builder log/provenance/archive report retained. This supersedes yesterday's blanket unbuilt statement for PostgreSQL only; other images remain unbuilt. No image imported/run, inner filesystem/native inventory/OCI distribution manifest/two-independent-build or runtime qualification.
+
+## Current recorded evidence
+
+Latest recorded results below are separate overlapping lanes, not a unique total or new full-suite execution.
+
+| Scope | Latest passing evidence | Record |
+|---|---|---|
+| PostgreSQL destination/admission/Django primitive | 3 checks/184 tests, 13.762s | quick261022-aql |
+| Inert database source package | 7/5, 9.497s; 12 explicit modules | quick261022-aql |
+| Operator launchers | 7/17, 5.951s | quick261022-aql |
+| Deployment evaluation | 16/31, 2.133s | quick261022-bw3 |
+| Django core-local | 4/22, 7.710s | quick261022-aql |
+| Worker-smoke | 6/24, 9.022s | quick261022-aql |
+| Native operator closure / source notices | 56/9, 1.035s / 9/7, 3.820s | quick261022-aql |
+| Licence/reconciliation/marker/inventory units | 28+8+4 tests, 40 total in these suites | quick261022-bqg |
+| Docker archive inspector | 8 tests, 0.019s; actual51-layer rescans match | quick261022-bw3 |
+
+Most recent historical full-all attempt exited1 at the required off-host core gate after environment/frontend. It was not rerun today; there is no FULL_PASS. Earlier frontend/contracts/installer/two-public-backend-build/source-baseline evidence remains scoped to its historical record, not a newly executed all/OCI/CI pass.
 
 ## Next authorized work
 
-Finish14 actual qualification and record lifecycle for the new host-side process probe, operator integration/positive-transport qualification (source bundle and standalone inspection runtime are built) and integration of the single-DML SQL primitive with all applicable application/operator writes, schema/migration commands and app-role/auth/runtime configuration plus qualification of the new offline bootstrap; installation and qualification of the newly prepared account-scoped runtime/user-generator artifacts, and an executable independent replica driver. Current offhost-cases.json is only a matrix. Resolve16 raw npm CycloneDX URI validation failure,12 incorporated-text findings and actual native/Nix/OCI manifest/layer/notice coverage. Then finish17 actual OCI payload/config reproducibility and required full CI evidence. Human browser hydration/source/licence/probe/prohibition reviews remain pending.
+1. Inspect built PostgreSQL inner payload/native component/notice evidence, build remaining prepared candidates and implement independent image comparison. OCI distribution manifests and complete native/legal inventory remain pending.
+2. Resolve the safe host/application evidence boundary before application-role/connection/all-write backend and migration integration. Do not expose host /proc or host control mounts to application containers. Keep production closed until complete and qualified.
+3. Finish account-scoped runtime/generator and executable independent replica driver, then assigned off-host lifecycle/recovery/full CI and outstanding browser/source/licence reviews.
 
-No independent off-host runner assigned. User permits all authorized repository implementation, ordinary local/synthetic checks and deployment preparation. Do not run disruptive outage/restart/exhaustion/recovery tests on mx1, existing containers or MicroVMs. Preserve every existing service/allocation/resource. Do not provision/purchase automatically or repeatedly ask for runner; raise assignment at remaining qualification stage. Single specification: docs/qualification-runner.md. This dependency does not excuse unfinished repository implementation.
+No off-host runner is assigned. This does not block remaining repository implementation or authorize provisioning/purchase. Do not run disruptive tests on mx1/claude-dev/existing guests. No actual host/provider/DNS/TLS/bank/mail actions or credential reads occurred. Scoped local implementation and origin/main pushes remain authorized.
 
-## Current evidence
+## Progress maintenance
 
-Local environment2 checks/14 tests; frontend13/9; core-local4/22; worker-smoke6/24 including broken-fence/lock controls; adapters3/6 in isolated network; contracts-local12/8; combined boundaries17/32; deployment-eval15/27; postgres-diagnostics3/8; postgresql-config3/7; bootstrap-local3/13; database-destination3/98; database-tools6/5; operator-runtime4/10; profiles6/5; locks3/8; reproducibility4/5 with exactly2 independent public/backend builds. Counts overlap across lanes; no unique total implied. Reproducibility uses a fixed canonical path in separate private process namespaces; raw failed HTML-island-ID comparison remains recorded, no output normalization. Focused versioned manifest is local reproducibility only.
-
-Installed standard SBOM evidence reconciles271 npm/6 runtime Python/39 tool Python components and records70 uninstalled optional paths. Collector exits2, not INVENTORY_PASS: raw npm malformed URI, missing licence texts and native/image coverage remain unresolved. Images are unbuilt; no real digest or compatibility claimed. Candidate profile/guard evaluation is not operational protection proof. Manual-only read-only SHA-pinned CI is prepared, never executed; no runner/authorization record created.
-
-Full all actually exited1 after environment/frontend, stopped at required off-host core gate, no FULL_PASS. Later lanes did not run in that aggregate and are not reported as passed. Current source all six groups20/27/279/88/39/18 and self-check71 rejections passed. Historical evidence/source bytes unchanged.
+After a completed local slice, refresh this current summary/evidence and linked Phase 02 progress, record its real commit in the quick-task table, update roadmap/requirement evidence when it changes, and publish the canonical state.json snapshot. Keep old dated narrative in ACTIVITY-LOG.md and preserve all incomplete acceptance gates. Do not rely on append-only notes to communicate current progress.
 
 ## Locked decisions and scope
 
-October21 proposal/handoff govern; embedded product bytes unchanged. New proposed shopsvc rootless Podman/NixOS/Quadlet directly on existing mx1, outside claude-dev. Separate app/one worker/new independent PostgreSQL/internal gateway and independently owned backup jobs. Proposed aggregate200% CPU,6/8GiB memory,80/50GiB ZFS need actual all-descendant/writable-path qualification. No new cloud compute/block/IP/fallback or permanent staging. £0.79 object-only model is dated/unverified.
+October21 proposal/handoff govern; embedded product bytes unchanged. New proposed shopsvc rootless Podman/NixOS/Quadlet directly on existing mx1, outside claude-dev. Separate app/one worker/new independent PostgreSQL/internal gateway and independently owned backup jobs. Proposed aggregate200% CPU, 6/8GiB memory, 80/50GiB ZFS need actual all-descendant/writable-path qualification. No new cloud compute/block/IP/fallback or permanent staging. £0.79 object-only model is dated/unverified.
 
 All pre-existing/unknown owners/states/engines/native/VM resources protected. Sanitized read-only inventory, exact new-shop allowlist/database identity and full evaluated activation-impact review precede any host write. No blanket activation, protected reload/restart/repair/prune/GC/reboot, global policy/delegation/cpuset change or host-generation rollback. Ingress/TLS stays unchanged or deferred to a later exact named-service/action approval; no premature DNS or inference that DNS01 supplies routing. Existing SMTP/monitoring/backups unchanged or integration pending. Shop-only rollback retains committed records. Actual host qualification T11; recovery T12.
 
@@ -58,118 +86,6 @@ Quick261021-8cb: October21 protected-host replan, committed2f07e57; docs/archive
 
 When session context exceeds 90%, run `$gsd-pause-work`, save a complete resumable handoff and tell the user to clear the session and run `$gsd-resume-work`. Stop implementation until resume. Follow the indicator/unknown-percentage policy in AGENTS.md and PROJECT.md; never invent a measured percentage. This standing instruction preserves all current incomplete work and pending evidence.
 
-## Session continuity — SQL guard continuation
-
-Resumed from HANDOFF.json; consumed and removed the one-shot handoff after preserving its pending work here and in 02-14-PARTIAL.md. Code commit169f72c adds same-transaction live SQL identity checks and a required database-destination lane: local synthetic3 checks/13 tests. Container/account evidence and canonical-path adaptation remain test fixtures; no rootless/runtime/host proof. Deployment-eval9/4 and environment2/14 passed. Next implement the concrete runtime attestation and command integrations, bootstrap/migrations and generator configuration; 14/16/17 and all external/human gates remain incomplete. No credentials needed or read.
-
-## Latest continuation — process probe
-
-Code3e83014 adds the concrete read-only host-side process snapshot producer, root-owned attestation loader and execute_operator_mutation binding. Deployment evaluation10 checks/18 tests (14 new synthetic tests); actual local SQL regression3/13 passes. New tests use synthetic /proc and mocked descriptor evidence, not actual Podman. No record installed, process discovered or runtime test executed. Concrete operator commands/credentials, record lifecycle, app/worker enforcement, bootstrap/migrations, runtime/generator and replica driver remain unfinished. Keep14/16/17 incomplete and off-host execution pending. Commit and push after each completed step per user instruction.
-
-## Latest continuation — account-scoped runtime bundle
-
-Code acaa097 prepares pinned, cleared-environment Podman/Quadlet wrappers and immutable account-scoped runtime/storage configuration. Code3cc8b8c disables implicit read-only tmpfs mounts and bounds shared memory on all four candidates. Both steps committed/pushed. Final deployment-eval12 checks/25 tests includes actual Nix evaluation/TOML parsing/shell syntax and negative fixture checks only. Disabled module leaves runtime artifacts absent; global user generators/linger unchanged. No native build, actual generator/Podman/container execution or mx1/credential access. Next finish bootstrap/migration configuration, per-user discovery installation and record lifecycle, app/operator enforcement and replica driver; runtime review/licences/images and independent off-host tests remain pending. Phase02 remains executing and incomplete.
-
-## Latest continuation — offline bootstrap
-
-Code637b901 adds explicit one-use offline cluster initialization, durable attempt/receipt handling, shared root-owned authority loading and inert Nix bootstrap artifact. Local bootstrap3 checks/13 tests ran actual initdb and single-user UTF8 catalog verification only on a new owned disposable directory; no listener. Deployment-eval13/25, SQL3/13 and environment2/14 regressions pass. Forced Nix bootstrap evaluation now retains whole-repository Git context; earlier metadata was not a build proof. No production record provisioned, .env credential needed/read or host/service action. Next implement application database/roles/auth/runtime config, reviewed record publication, migrations and isolated app/operator enforcement, per-user generator installation and replica driver; off-host bootstrap/runtime/recovery and image/licence/CI qualification remain pending. Phase02 incomplete.
-
-## Latest continuation — closed PostgreSQL runtime draft
-
-Code87047c5 adds immutable PostgreSQL/HBA candidate files and readonly Quadlet mounts. TCP disabled; every connection rejected; explicit durability and deliberately failing archive command retain WAL without a successful-backup claim. Local native single-user config/HBA verification3 checks/7 tests; deployment-eval14/25 and environment2/14 passed. No listener, archiver, host/service mutation or credential access. Provisional memory/connection settings are not qualification; archive backlog can exceed max_wal_size. Next implement qualified application roles/auth/network access, **PostgreSQL diagnostic privacy and canary handling**, real archive integration and migrations/app/operator enforcement; generator/replica/OCI/licence/full CI and off-host/recovery remain pending. Phase02 remains incomplete.
-
-## Latest continuation — PostgreSQL console privacy
-
-Code62c6f44 implements content-free console filtering and candidate image linkage using the exact existing Python interpreter. Local lane3 checks/8 tests includes real single-user PostgreSQL raw-versus-filtered runtime-generated canary evidence; synthetic native PID/exit/environment/stream controls pass. Deployment-eval15/25, PG config3/7 and environment2/14 passed. No image/container or fault execution. Next qualify actual image/canary/worker containment, postmaster reaping/PID1/lifecycle/backpressure and other log/private result paths; a protected forensic channel remains unimplemented. Continue roles/auth/network, archive/recovery, records/migrations/app/operator and generator/replica implementation;16/17/runtime/full CI/off-host gates remain pending. No credentials/host changes. Phase02 incomplete.
-
-## Latest continuation — closed production Django database gate
-
-Code52942a4 selects shop.db.unqualified in both production and bank-sandbox settings. It inherits PostgreSQL metadata/operations but refuses get_new_connection before the driver call; application/worker/management/migration and maintenance connections remain unavailable until qualified destination integration replaces this gate. This deliberately prevents readiness and migrations in these modes; it is not live transaction attestation or role/auth completion. Local/synthetic settings retain their ordinary disposable PostgreSQL backend.
-
-Actual local evidence: core-local4 checks/22 tests,7.286 seconds; worker-smoke6/24,8.495 seconds. Added tests assert both production modes select the gate (mocked runtime secret reader only), named/default-maintenance connection attempts and cursor access fail with no driver call and no password in the error. Full off-host checks remain pending. First attempted dispatcher core-local was rejected as an unsupported lane before tests; corrected to scripts/check_backend.py core-local. No .env read, credentials required, host/provider action or resource change. Phase02 and plans14/16/17 remain incomplete.
-
-## Latest continuation — guarded schema batch precursor
-
-Codea008e1f adds bounded reviewed transactional schema SQL (1–64 statements,64KiB each and1MiB total UTF8), a cooperative nonblocking transaction advisory lock, fresh runtime/live SQL checks before each statement and before commit, and a host-side wrapper pinning the root-owned process record for the whole batch. Stacked commands are rejected by prepared execution; failures roll back without automatic retry. Exact artifact authorization, schema-role rights, Django migration/ledger integration and an operator command remain pending; production Django gate remains closed. Trusted SQL expressions are not sandboxed and external/nontransactional effects are outside rollback guarantees.
-
-Actual local evidence: database-destination3 checks/21 tests,4.930s; deployment-eval15/27,2.128s. Real disposable PostgreSQL target/decoy tests cover schema commit/rollback, changed identity before each step/commit, failed later DDL, lock contention/release, bounds/forbidden commands and caller transaction refusal. Runtime/container/storage evidence remains synthetic and PGDATA comparison is fixture-adapted. No actual rootless lifecycle/fault qualification, .env read, missing credential, host/provider action or resource change. Plans14/16/17 and full production acceptance remain incomplete.
-
-## Latest continuation — exact-byte schema authorization
-
-Code22728e1 adds host-side schema_authorization library and docs/schema-migrations.md. A closed bounded root-owned schema-authorization.json record binds action, authorization/migration IDs, UTC expiry, exact artifact SHA256 and the complete approved database identity. Immutable UTF8 artifact bytes are hashed before strict duplicate-free JSON parsing and shared schema bounds validation. Fresh authorization/process-record checks run at each existing SQL/runtime guard callback; revocation, expiry or change before commit denies/rolls back. No command, record issuance, credential loading or deployment is supplied. Production Django gate remains closed.
-
-Actual local evidence: database-destination3 checks/29 tests,5.016s; deployment-eval15/27,2.274s. Added tests cover exact authorization, equivalent-JSON byte changes, expiry/closed fields/IDs, duplicate/malformed/forbidden artifacts, byte bounds, target mismatch, authorization removal/change/expiry and process-record changes with DDL rollback. These are real disposable PostgreSQL plus synthetic authority/runtime records and fixture PGDATA adaptation only. No approval invented, .env read/value needed, host/provider operation or protected resource change.
-
-Next migration work: atomic durable ledger/replay/uncertain-commit/restore reconciliation, Django migration generation/recorder integration, reviewed roles/credentials/private transport and root-owned publication/immutable packaging. Library does not consume authorization or prevent replay and must not become a deployment command before ledger integration. Revocation after final check cannot undo commit; trustworthy UTC clock/record custody remain operational prerequisites. Other14/16/17 and off-host/T11/T12 gates remain pending; no full acceptance.
-
-## Latest continuation — atomic migration ledger
-
-Code1f7b165 routes exact-byte authorized schema work through execute_schema_migration. A preexisting reviewed shop_control.schema_migrations relation is required; schema plus migration/digest/authorization IDs and transaction timestamp commit atomically. The same three values in a new explicit valid-authority call return already_applied without DDL; conflicting migration/digest/authorization reuse is denied. No automatic retry. A cooperative advisory lock and bounded table lock serialize this path. Ledger relation/owner/columns/constraints/indexes/hooks/grants are checked, including PostgreSQL18 catalog NOT NULL constraints; the original relation OID must survive DDL. Missing/changed/replaced ledgers fail closed. Separate schema-ledger.sql is a review/bootstrap artifact, not automatically applied or permission to adopt/create on a real host.
-
-Actual local evidence: database-destination3 checks/38 tests,6.415s; deployment-eval15/27,2.132s. New real disposable PostgreSQL controls cover same-call replay decision, digest/authorization conflicts, authorization reuse for another migration, failed DDL and post-insert final-guard rollback, missing/altered/replaced ledger and schema/index/grant/trigger mutation. Lost caller acknowledgment is simulated by discarding a successful result then explicitly calling again; no real transport/process failure was injected. Existing runtime/root authority remains synthetic with fixed PGDATA fixture adaptation. Initial new-ledger run failed on incomplete PostgreSQL18 NOT NULL catalog expectations; corrected against official18 pg_constraint documentation and real tests. Final pass includes the stricter conenforced/OID checks.
-
-Next: separately guarded ledger bootstrap/custody and production role grants, Django migration generation/recorder and operator command/credentials/private transport, immutable host packaging; uncertain-commit and restored-ledger reconciliation against external evidence plus actual failure/recovery qualification. already_applied is a ledger decision, not schema-drift verification or restored-service reopening permission. Privileged/inherited-role history tampering remains outside this local proof. Production Django gate stays closed. No .env read/needed credential, host/provider operation, existing service/resource change or purchase. Other14/16/17 and off-host/T11/T12/full acceptance gaps remain pending.
-
-## Latest continuation — explicit guarded ledger bootstrap
-
-Code995fdb8 adds ledger_bootstrap.py library, accepting only the exact pinned schema-ledger.sql bytes under a separate root-owned ledger-bootstrap.json record/action and reserved shop_ledger_bootstrap_v1 ID. It checks the same approved process/database and fresh runtime/live SQL identity before every CREATE/REVOKE, receipt insertion and commit, under the shared schema transaction lock. Any existing shop_control namespace is denied, including empty/matching/previously successful bootstrap. Validated new ledger plus bootstrap receipt commit atomically; no adoption, cleanup, target discovery or automatic retry. A repeated/uncertain bootstrap needs separate read-only reconciliation, never ledger removal. Source pin changes require review; no record issued or deployment command exposed.
-
-Actual local evidence: database-destination3 checks/48 tests,7.055s; deployment-eval15/27,2.155s. Ten new controls cover receipt and later migration, matching/empty namespace denial, repeat denial, exact pin/action/ID/expiry, midway/final revocation rollback, real decoy no mutation, shared lock/caller transaction, named-role inherited grant denial and explicit removal of PUBLIC grants. Initial47-test run had one incorrect test expectation: pinned REVOKE correctly removes default PUBLIC INSERT. Corrected to distinguish named-role denial from intended PUBLIC removal; final48 passed. Root authority/runtime identity remains synthetic, fixed PGDATA fixture-adapted; no off-host or production proof.
-
-Next: operator CLI/immutable packaging and separately authorized root-record publication/custody, migration/app roles and credentials/private transport, Django migration generation/recorder integration, read-only uncertain-commit/recovery reconciliation and actual off-host qualification. Bootstrap implementation is locally prepared; actual bootstrap/role/runtime qualification remains pending. Production Django connections stay closed. No .env read/needed credential, host/provider action, existing service/resource change or purchase. Other14/16/17 and off-host/T11/T12/full acceptance gaps remain open.
-
-## Latest continuation — read-only schema outcome observations
-
-Code835bf80 adds schema_reconciliation.py with separate root-owned schema-reconciliation.json, action inspect-schema-outcome and artifact_kind schema/ledger-bootstrap. New unexpired inspection authority refers to the original operation IDs/bytes; original write records are not read or renewed. Exact artifact and pinned process/database checks precede a READ ONLY, REPEATABLE READ transaction with fresh authority/runtime/live SQL checks before/after ledger reads. A closed result reports recorded/not_recorded/conflict/ledger_absent with retry_authorized=false and reopening_authorized=false. No artifact SQL, writes, advisory locks, repairs, bootstrap, record refresh or retries. Malformed/partial ledger is a denial, not a clean absence.
-
-Actual local evidence: database-destination3 checks/60 tests,7.713s; deployment-eval15/27,2.175s. Twelve new tests cover ordinary/bootstrap receipts, missing/conflicting/invalid ledgers, independent action/kind/expiry, absent original write record, revocation, decoy denial, real read-only/repeatable transaction enforcement and refusal of writes/caller-owned transactions. Ordinary two-connection test commits a migration after the query but before return; old snapshot reports not_recorded without authorizing retry and a fresh inspection reports recorded. All tests passed; no process/network failure injected. Runtime/root custody remains synthetic, scratch PGDATA comparison adapted.
-
-This is only a ledger observation library, not external-evidence or restore reconciliation, schema-drift verification or safe reopening. Next operator CLI/immutable packaging, record publication/custody, roles/credentials/private transport and Django migration/recorder integration; external recovery barrier and actual uncertain-commit/failure/recovery qualification remain pending. No .env read/value needed, host/provider action, existing service/resource change or purchase. Production Django gate stays closed; other14/16/17 and off-host/T11/T12/full acceptance remain incomplete.
-
-## Latest continuation — immutable inert database source bundle
-
-Code7dfa316 exposes shop-database-tools-source as a separate Nix package with seven explicit guarded modules, pinned ledger SQL and a closed hash manifest. Individual source bytes are copied into separate immutable store files; actual direct references equal exactly those8 files plus manifest. No interpreter/dependency environment, launcher, record, host configuration or installation. Exported metadata names the actual built source/manifest and keeps executable/runtimeQualified/productionActivation false. New required database-tools lane builds it and checks bytes, hashes, references, metadata and isolated imports through existing frozen runtime dependencies; no import-time connection/control read permitted. This is actual source-bundle build evidence, not OCI/operator-runtime qualification or a complete SBOM/licence review.
-
-Actual local evidence: database-tools5 checks/5 tests,3.494s; deployment-eval15/27,2.164s; environment2/14 passes including updated all-lane producer checks. Prior database-destination3/60 remains recorded, not rerun because runtime module bytes unchanged. Full all not rerun; known off-host gate remains nonzero and the new lane is required by all. No failing test/build run this step. ROADMAP baseline/scope, misplaced Phase01 plan count, Phase02 count and progress row reconciled with actual2 Phase01 and8 Phase02 SUMMARY records. VERIFICATION gap audit refreshed without full verification or acceptance credit.
-
-Next: concrete operator launcher/minimum dependency runtime, credentials/private transport/roles, record publication/custody and host-side installation, Django migration/recorder and application write integration, generator/replica/OCI/notices/reproducibility/full CI and actual off-host qualification. Source-only packaging does not complete these gates. No .env read/value needed, host/provider/service/resource change or purchase. Production Django connections remain blocked; Phase02 and14/16/17 remain incomplete.
-
-## Latest continuation — prepared read-only operator command
-
-Coded011e40 adds operator_inspect.py (inspect/--help only), strict root-owned operator-connection.json, private regular artifact FD0/credential FD3 reads, fixed proposed Unix socket path under shop tmp, approved binary paths, nonroot UID matching, socket ancestor/type/ownership/mode and stable record/socket checks. Standalone entrypoint scrubs environment before command handling; libpq parameters explicitly require SCRAM and default read-only sessions with bounded timeouts/null passfile. Records/artifact/process are checked before credentials/connect; inspection still uses guarded read-only snapshot. No DSN/password/path/mutation arguments, automatic setup or retries. Output is closed observation or fixed denial, no input/libpq/exception echo. Helpers use null stdin; descriptors are non-inheritable. Source bundle now contains8 modules, still no executable launcher/runtime/install/activation.
-
-Actual local evidence: database-destination3 checks/72 tests,7.914s (61 database-suite cases plus11 FD/mock/process operator cases); database-tools6/5,4.029s including actual packaged help/mutation-command denial; deployment-eval15/27,2.144s. Real disposable PG trust-only server is rejected under require_auth=scram-sha-256. Positive command connection/probe/socket path is mocked, not real runtime/SCRAM qualification. Initial71/72-test attempts failed only child help import because the test omitted the pinned runtime discovery PATH; diagnostic run confirmed libpq not found, and corrected controlled PATH/LD_LIBRARY_PATH/PSYCOPG_IMPL preload fixture passed. Environment scrub occurs after required imports. This finding reinforces unfinished pinned executable-runtime packaging; no invented positive transport proof.
-
-Next minimum operator runtime/launcher and error/startup qualification, separately authorized root-record publication/custody, actual dedicated socket mount/HBA/role/credential integration and positive peer/runtime/SCRAM tests, Django/app write/migration integration, generator/replica/OCI/licences/CI and independent off-host qualification. Current Quadlets/HBA provide no such operator socket/access and were unchanged. No real credential/.env read/needed missing value, host/provider action, service/resource change or purchase. Production Django gate stays closed; plans14/16/17 and full readiness remain incomplete.
-
-## Latest continuation — pinned standalone inspection runtime
-
-Codec60cd58 adds shop-operator-inspect flake package and required operator-runtime lane. A separate minimal site installs only the existing hash-locked Psycopg3.3.6 wheel offline, with pip as build tool only. Launcher uses exact bare Python3.13.16 with -I and cleared environment. Driver resolves only pq/c ctypes requests to exact Nix-store libpq18.6/libc paths, verifies pure-Python Psycopg/libpq180006 and sole Psycopg distribution before importing approved source, then invokes the command's own scrub. No compiler/pg_config/ambient library lookup needed. Python import/startup failures use fixed denial. Metadata keeps installed/runtimeQualified/productionActivation false; no NixOS module installs this package or any record/account/socket/role/credential.
-
-Actual local evidence: operator-runtime4 checks/8 tests,2.000s, including actual main and synthetic import-failure package builds, hostile environment/shadow-module help, mutation/secret-option denial, invalid private input and fixed startup failure; deployment-eval15/27,2.100s; environment2/14,0.902s including required new all-lane coverage. Source bundle is verified as a runtime build dependency against exact source hashes; prior SQL/operator3/72 and source6/5 remain retained, not rerun because underlying modules unchanged. Full all not rerun; new operator-runtime lane required, no FULL_PASS. Initial lane failed native startup due to Psycopg's additional libc lookup; inspected exact installed wheel, pinned libc as well as libpq, then all8 passed. Temporary source-only diagnostic file was removed; no private inputs were used.
-
-Next: authorized record publication/custody and actual dedicated socket/HBA/role/credential/peer/FD transport integration plus positive qualified connection, app/Django writes/migrations, generator/replica/OCI/notices/reproducibility/full CI and off-host qualification. Native closure/SBOM/licence review must include standalone launcher/runtime; package build/startup is not approval or host qualification. No .env read/needed missing value, real connection/host install/provider action, service/resource change or purchase. Production Django gate remains closed; plans14/16/17 and full readiness remain incomplete.
-
-## Latest continuation — unverified control-record bundle contract
-
-Code6c1360b adds record_bundle.py and validate-records command, plus docs/control-record-publication.md. Private FD0 bundle must remain unverified-candidate and contain exactly expected.json, database-process.json, operator-connection.json and schema-reconciliation.json plus strict base64 original artifact. Validates closed schemas, expiry, common startup/database identity, exact original bytes and pg_controldata as the approved PostgreSQL executable sibling. The same binary binding now applies to actual inspect. Library returns exact canonical private payload bytes and a closed hash report; CLI emits hashes only with publication/retry/reopening_authorized=false. No live record load, probe, connect, publisher or host write. Inner actual-evidence schema labels are shape-checked claims, never proof; outer evidence remains explicitly unverified.
-
-Actual local evidence: database-destination3 checks/81 tests,7.960s including9 new candidate controls; operator-runtime4/10,2.440s with actual packaged private-FD valid candidate and mixed-record denial; database-tools6/5,4.000s with9-module source bundle; deployment-eval15/27,2.247s. No failing runs. Nix emitted an ignored eval-cache busy warning during concurrent evaluation; all required lanes completed0 with positive counts. Reports contain only hashes/closed flags, no record values/SQL. Synthetic fixtures and existing adapted scratch PGDATA remain local evidence, not actual host observations/approvals.
-
-Publication contract requires actual retained inventory/ownership and exact authority, new-object staging and readback hashes, root-owned nonsymlink ancestors, bounded read-group permissions, durable complete generations under shop-only admission barrier and uncertainty reconciliation. It performs none of these writes. Next actual publisher/custody and positive socket/HBA/role/credential/peer/FD integration/qualification; application/Django migration/write integration, generator/replica/OCI/notices/reproducibility/full CI and off-host/T11/T12 remain pending. No .env read/needed credential, root record issued/published, real service connection, host/provider operation, existing service/resource change or purchase. Production Django access stays blocked; plans14/16/17 and full readiness incomplete.
-
-## User-requested pause
-
-Paused with structured HANDOFF.json and phase .continue-here.md. No implementation or qualification advanced during checkpoint. Resume with `$gsd-resume-work`; preserve pending 14/16/17 work and off-host gates. SUMMARY audit flags historical 02-01 pending-approval wording for reconciliation against the later actual approval record.
-
-## Resumed continuation — stable control-record reads
-
-Consumed the user-requested pause handoff. Plan02-01 review JSON records approve at2026-10-20T12:30:19Z for digest136610b07612762d390b3b3c234ff1ef3f6dc6b0e44a69a2abc646d9106b51bd; SUMMARY explicitly labels the later pending passage historical and superseded. No missing approval or summary correction is needed; approval scope unchanged.
-
-Quick261021-h2i code5330962 checks file device/inode/UID/GID/mode/size/mtime/ctime stability across a bounded control-file read and requires exact nonempty length before parsing/validation. Synthetic cases deny every changed metadata field, truncated/empty reads and accept the32768-byte boundary. Actual local: process suite18 tests; deployment-eval15 checks/29 tests (2.543s), database-tools6/5 (4.341s), operator-runtime4/10 (7.714s), all exit0. A concurrent Nix evaluation emitted ignored cache-busy warning; no test failures. This detects observed descriptor changes, not hostile-root immutability or atomic multi-record publication. No host write, credential access, service/resource change or qualification execution.
-
-Phase02 and14/16/17 remain incomplete. Next scoped durable generation publication/custody and private operator transport/application integration, plus previously recorded implementation/review/OCI/CI gates. Off-host runner unassigned; disruptive tests pending, no repeated runner question. Full all not rerun; no FULL_PASS. Continue using .env only when an authorized action actually needs credentials, and commit/push each step.
-
 ### Quick Tasks Completed
 
 | # | Description | Date | Commit | Directory |
@@ -186,210 +102,21 @@ Phase02 and14/16/17 remain incomplete. Next scoped durable generation publicatio
 | 261022-73q | Integrate exact-authority schema operator transport and admission | 2026-10-22 | 0adc350 | [261022-73q-integrate-private-fd-guarded-schema-comm](./quick/261022-73q-integrate-private-fd-guarded-schema-comm/) |
 | 261022-799 | Retain exact cached native upstream source notice candidates | 2026-10-22 | c14ae3a | [261022-799-retain-notices-from-cached-exact-python-](./quick/261022-799-retain-notices-from-cached-exact-python-/) |
 | 261022-7l3 | Package separate pinned candidate schema launcher | 2026-10-22 | ec4c4db | [261022-7l3-package-separate-pinned-candidate-schema](./quick/261022-7l3-package-separate-pinned-candidate-schema/) |
+| 261022-89m | Restricted-role schema qualification | 2026-10-22 | 1bbc889 | [261022-89m-qualify-guarded-schema-operations-with-a](./quick/261022-89m-qualify-guarded-schema-operations-with-a/) |
+| 261022-8ci | Schema role admission enforcement | 2026-10-22 | 68b1c26 | [261022-8ci-enforce-restricted-schema-login-attribut](./quick/261022-8ci-enforce-restricted-schema-login-attribut/) |
+| 261022-8fv | Connected Unix peer admission | 2026-10-22 | 3f03fe6 | [261022-8fv-bind-operator-unix-socket-peers-to-appro](./quick/261022-8fv-bind-operator-unix-socket-peers-to-appro/) |
+| 261022-8m7 | Operator admission reader | 2026-10-22 | 96b7bc7 | [261022-8m7-hold-durable-control-admission-during-op](./quick/261022-8m7-hold-durable-control-admission-during-op/) |
+| 261022-8so | Library-only persistent admission block | 2026-10-22 | be802bc | [261022-8so-prepare-separately-authorized-persistent](./quick/261022-8so-prepare-separately-authorized-persistent/) |
+| 261022-9ba | Read-only uncertain-block reconciliation | 2026-10-22 | 1162972 | [261022-9ba-reconcile-uncertain-admission-blocks-wit](./quick/261022-9ba-reconcile-uncertain-admission-blocks-wit/) |
+| 261022-9fo | Private exact-generation custody | 2026-10-22 | 783615a | [261022-9fo-retain-exact-admitted-control-generation](./quick/261022-9fo-retain-exact-admitted-control-generation/) |
+| 261022-9m7 | Retained-generation inspection | 2026-10-22 | 2869c0b | [261022-9m7-inspect-retained-generation-custody-with](./quick/261022-9m7-inspect-retained-generation-custody-with/) |
+| 261022-9uf | Physical control publication while blocked | 2026-10-22 | dfbdc74 | [261022-9uf-publish-reviewed-control-generations-whi](./quick/261022-9uf-publish-reviewed-control-generations-whi/) |
+| 261022-a80 | Read-only publication reconciliation | 2026-10-22 | c5b3c7a | [261022-a80-reconcile-blocked-physical-publication-o](./quick/261022-a80-reconcile-blocked-physical-publication-o/) |
 | 261022-afa | Prepare exact proposed admission bytes without activation | 2026-10-22 | 11279da | [261022-afa](./quick/261022-afa-prepare-exact-reviewed-admission-reopeni/) |
 | 261022-ajs | Candidate reopening and uncertain-outcome inspection | 2026-10-22 | 820f7ba | [261022-ajs](./quick/261022-ajs-implement-separately-authorized-admissio/) |
 | 261022-aql | Django multi-statement transaction precursor | 2026-10-22 | e863f6c | [261022-aql](./quick/261022-aql-integrate-admission-lifetime-into-a-clos/) |
 | 261022-b5y | Supplemental prefixed licence-name audit | 2026-10-22 | e873adf | [261022-b5y](./quick/261022-b5y-audit-prefixed-licence-filenames-in-exac/) |
 | 261022-bb9 | Bounded embedded npm notice-marker discovery | 2026-10-22 | 9c0f67d | [261022-bb9](./quick/261022-bb9-inspect-bounded-embedded-notice-candidat/) |
 | 261022-bqg | Reconcile supplemental licence observations | 2026-10-22 | a02e5a5 | [261022-bqg](./quick/261022-bqg-reconcile-supplemental-licence-observati/) |
-| 261022-bw3 | Build and inspect PostgreSQL candidate archive | 2026-10-22 | this commit | [261022-bw3](./quick/261022-bw3-build-and-inspect-the-prepared-postgresq/) |
-
-## Latest continuation — real local SCRAM inspection
-
-Code908195a adds actual disposable PostgreSQL18.6 SCRAM authentication through operator_inspect.inspect_from_fds and the actual guarded read-only ledger inspector. Three connections observe not_recorded/recorded/conflict, return retry/reopening=false, leave ledger rows unchanged and close. All use default read-only sessions and an attempted DELETE is rejected. A wrong synthetic password is rejected without retry. The real private FD reader executes through test descriptor mapping. Only the new token-owned scratch cluster's HBA/password are changed; existing services and allocations unchanged.
-
-Local database-destination passed3 checks/82 tests,8.657s after final read-only denial assertion. Earlier first run failed fixture prevalidation of expected==expected; corrected explicit scratch-path adaptation. Second failed fixture insert omitted required applied_at; supplied clock_timestamp(). Intermediate82-test run passed8.662s before final assertion. These are fixture corrections, not production runtime fixes. No other lanes rerun because runtime/package bytes are unchanged. No full all/FULL_PASS or operational qualification.
-
-Socket/PGDATA paths, root records, effective operator UID, process probe and socket ancestry/identity are explicitly adapted/mocked. Uses fixture administrative role, not qualified least-privilege access. Actual fixed FD0/FD3 launcher, positive peer/container/process binding, root-record issuer/publisher/admission barrier, production socket/HBA/roles, Django writes/migrations, generator/replica/image/notices/CI and off-host qualification remain pending. No .env read, actual credential needed, host access, protected-service change or purchase. Phase02/14/16/17 remain incomplete; runner unassigned with no repeated request.
-
-## Latest continuation — private candidate staging
-
-Code542e2d8 adds library-only record_bundle.stage_candidate(data,parent_fd). It validates before writes, requires a caller-owned mode0700 parent descriptor, creates only an exclusive candidate-<raw-bundle-hash> directory, stages the four canonical records plus exact bundle.json/artifact.bin, and creates prepared.json with hashes and unverified flags. Files are exclusive0400/current-owner/single-link, writes handle short writes and reject zero progress, fsync/readback checks exact bytes and stable metadata; stage/parent directories are fsynced, final file reopening rejects symlinks/substitution. Caller FD stays open. Existing targets are denied; no adoption, chmod/chown, overwrite, discovery, automatic cleanup/retry or operator CLI publication command.
-
-Actual local evidence: database-destination3 checks/90 tests,8.922s (eight new filesystem tests); database-tools6/5,3.966s; operator-runtime4/10,2.379s. All exit0, no failing runs. New cases exercise actual private scratch files, modes/ownership/hashes/bytes, invalid inputs/nonprivate parents, existing full/file/symlink targets, short/zero writes, corrupt and replaced readback, first sync failure and parent-sync failure after marker. Partial files are retained and repeat denied. Final marker can exist after failed sync, so marker presence never means successful/durable completion. Package lanes rebuild exact updated module bytes; CLI unchanged. git diff --check passes.
-
-Status remains unverified-candidate; publication/retry/reopening_authorized=false. Supplied parent is trusted caller scratch, not proof of root-owned ancestor/allowlist custody. Owner/root can alter staged files; no immutable archive or power-loss guarantee. Complete live generation publication, separately scoped authority/receipts, admission barrier, positive fixed socket/peer/container transport, least-privilege roles, application/Django writes/migrations, generator/replica/OCI/notices/full CI and independent runtime/recovery qualification remain unfinished. Phase02/14/16/17 remain incomplete. No .env read/needed credential, host write, existing-service/resource change or purchase. Off-host runner unassigned; disruptive tests pending, no repeated question or full readiness claim.
-
-## Latest continuation — retained candidate inspection
-
-Code9cbc570 adds library-only inspect_candidate(original_data,parent_fd), sharing canonical candidate material and bounded file readback with staging. It revalidates the exact original input (including expiry), opens only an existing deterministic private directory, requires the exact seven files/current owner0400/regular/single-link/exact bytes and stable FD/named inode metadata, and checks named directory identity/metadata after inspection. Parent must remain current-owner0700. No CLI command/path option, write, mkdir, fsync, repair, cleanup, expiry refresh or retry. Staging final readback now shares stricter named-inode and final file-set checks.
-
-Actual local database-destination PASS3 checks/98 tests,9.415s; database-tools6/5,4.002s; operator-runtime4/10,2.382s; git diff --check passes. Eight added filesystem cases cover successful strictly read-only snapshot, partial/extra sets, altered originals/records/marker, symlink/hardlink/FIFO/directory/mode denial, exact input/private parent, failed parent-sync with marker, replaced file after FD read and replaced named generation. All passed first run; no failure or skipped tests. Packaged module bytes rebuilt/verified; CLI unchanged. Full all not rerun, no FULL_PASS.
-
-Successful candidate_matches remains unverified-candidate with durability_confirmed=false and publication/retry/reopening_authorized=false. A candidate left by a failed parent sync can match identically; result cannot establish past staging success, durability or permission to repeat. Owner/root changes after observation remain possible. Keep original input/failure history for later separately authorized custody/publication decisions. Actual live issuer/publisher/admission barrier, fixed socket/peer/container binding/least-privilege roles, Django/application write/migration integration, generator/replica/images/licences/CI and off-host qualification remain unfinished. Phase02 and14/16/17 stay incomplete. No .env/credential needed/read, host/service/resource modification or purchase. Off-host runner remains unassigned and disruptive tests pending; do not repeatedly ask before remaining qualification stage.
-
-## Latest continuation — traceable npm SBOM derivative
-
-Codecacc247 adds scripts/derive_npm_sbom.py, seven tests, an explicit npm-sbom-derived.json and hash/change/validator receipt plus docs/build/npm-sbom-derivation.md. Raw npm-sbom.json and licences.json remain byte-for-byte unchanged. The derivative omits only exact known malformed VCS external-reference objects for am-i-vibing0.5.0 and common-ancestor-path2.0.0; no replacement URL inferred. JSON pointers/removed values allow exact parsed-JSON reconstruction. All component identities/hashes/licences/dependency edges and other fields remain unchanged. Both original metadata defects remain unresolved upstream.
-
-Actual local: seven transformation tests pass (0.097s), four existing inventory tests pass; locked cyclonedx-python-lib11.12.0 strict CycloneDX1.5 validator confirms raw invalid/derived valid. Exclusive --write pass4 checks/271 reconciled retained unique npm identities15.500s; subsequent default retained-output check pass4/271 in15.682s. No new application install/recollection or image/host qualification implied; tool environment uses existing frozen tools lock. Three initial single-omission qualification/diagnostic attempts failed actual derivative validation, exposing second malformed raw reference git@github.com:isaacs/common-ancestor-path after first raw failure. Expanded only the explicit two-reference policy; no invalid artifacts were written. Reversible-change/coverage tests and actual maintained validator both pass. git diff --check and unchanged raw/provenance checks pass.
-
-Raw SHA25660f9f60edc3164ca4ce7fb3489245a5ae60bcb5178f0efa8ecb09d2f735f892c; derivative8c9d56af9ac8b008a983fff6acf4d178eca7ee8d91d5f806c02dbb4809c2908d. Receipt names actual validator and records raw/derived results; software/legal approval/inventory_complete/raw_upstream_metadata_resolved all false. Default CLI checks exact retained derivative/receipt; --write creates only new outputs and refuses existing ones, no repair/overwrite. Full raw collector unchanged/nonzero on schema findings, not rerun. Twelve missing incorporated-text findings, native/Nix/OCI/layers/notices/compatibility and full inventory approval remain pending. Plan16 remains implementation-incomplete, not completed by a derived SBOM. Plans14/17 and full phase remain incomplete; no FULL_PASS.
-
-No .env read/needed credential, source/product change, host/provider operation, existing service/resource change or purchase. Independent off-host runner remains unassigned and disruptive tests pending. Continue authorized repository preparation, including live record publisher/admission/transport/app migration integration, qualified runtime/generator/replica/images, inventory/licences and OCI/CI evidence. Do not repeatedly ask about runner before remaining qualification stage.
-
-## User-requested pause — latest checkpoint
-
-Paused after explicit npm SBOM derivative and retained-candidate inspection slices. Structured HANDOFF.json and phase .continue-here.md preserve incomplete14/16/17 work, actual evidence and independent-runner limits. No phase acceptance advanced during pause. Clear session and run `$gsd-resume-work`.
-
-## Resumed continuation — exact-distribution licence gap audit
-
-Resumed October22 from structured HANDOFF.json and phase checkpoint; one-shot handoff consumed. Prior checkpoint remains preserved in Git and phase .continue-here.md. Clean HEAD95d920e matched the pause record; no interrupted agents or async jobs. User delegated choice of next work; selected plan16 inventory before plan14 integration.
-
-Quick261022-6n6 code8052689 adds a separate audit of all twelve missing-text distributions. Actual official HTTPS archive downloads match every retained SRI/SHA256 digest; all ten npm archives/two Python-tool wheels contain zero separately named notice candidates under explicit rules. Complete member name/type/size and archive/source hashes retained. Eight new tests and four existing inventory tests pass; independent retained-report fetch/check passes12 distributions. Original licences.json and raw/derived SBOMs unchanged. No text substitution, install, legal approval, complete native closure or INVENTORY_PASS. Embedded source/README/metadata texts are not classified by this bounded audit.
-
-Plans14/16/17 and full phase remain incomplete. Next inspect attributable embedded/source notice evidence for exact versions; native/Nix/OCI layers/notices/compatibility and full CI remain pending. Independent off-host runner unassigned; no repeated assignment request. No .env read, host/provider/service/resource changes or purchase. Quick uses documented sequential fallback, no agents dispatched.
-
-Automatic approval review rejected combined commit/push because external repository destination/authority was not established. Local code commit completed separately; remote push remains pending explicit scoped approval. Finish documentation locally and ask user to approve publishing these commits to origin. No bypass attempted.
-
-## Continuation — embedded Python header evidence
-
-User continued after the explicit publication request; origin push for8052689/b7b0928 succeeded. Prior remote block resolved for that push. Next bounded quick261022-6s2 retains exact embedded MIT candidate headers from the two Python-tool wheels (pip-requirements-parser32.0.1 and packageurl-python0.17.6). Actual hashes/selected source bytes/start-end offsets and two content-addressed headers supplement unchanged raw inventory and named-file audit. Both initial collection and independent recheck pass2 distributions.
-
-Five new tests, eight archive tests and four inventory tests pass. Initial new negative control failed when removing Copyright holder still matched a later condition reference; detector now requires an actual leading copyright holder comment. Focused rerun5/5 and retained actual evidence pass. No legal/full-package review/completeness approval; ten npm findings and all native/Nix/OCI/CI/14/17/qualification gates remain pending. No credentials/install/host/provider/service action. Continue exact embedded/source/npm/native provenance work; independent runner remains unassigned and is only raised at qualification.
-
-## Continuous execution — actual native closure
-
-User explicitly requests sustained execution across steps; do not end after each bounded task. Commit/push and continue authorized repository/local work; stop only required decision/external boundary/context handoff. New native-closure lane code6008f2c verifies53 actual realized operator store objects (222931552 NAR bytes) and graph closure. Fifteen missing local derivations and native notice gaps explicit; two named-notice candidates only. No image/full source/native review or legal/runtime approval inferred. Required aggregate includes new lane.
-
-Actual pinned native53 checks/8 tests0.899s, operator4/10 in2.159s and environment2/14 in0.900s pass. Raw SBOM/licences unchanged. Initial derivation-format diagnostic flag unsupported; actual envelope4 observed and pinned after assumed2 denied. Missing cache recipes now explicitly observed rather than fabricated. No new build/download/repair, credentials or host/provider/service/resource action. Continue npm/source/native evidence and account-scoped/deployment integration;14/16/17 and off-host gates stay incomplete.
-
-## Continuous execution — account-only generator discovery
-
-Prepared root-owned immutable one-generator bundle and exact user@newUID instance drop-in; new manager search replaces only its generator path. No global/template change, mutable home installer, manager reload/start, Podman run or host activation. Disabled candidate has no discovery artifacts. Existing synthetic account/manager sentinel unchanged. Actual deployment-eval16/31 in2.049s and profiles6/5 in0.019s pass. Initial comparison of different synthetic/module guard bundles corrected to each actual bundle. Actual pinned compatibility/installation/qualification and14/16/17 remain pending. Continue guarded schema/operator/application integration and source/native/OCI work without stopping after this step.
-
-## Continuous execution — private-FD schema source command
-
-Source-only operator_schema integrates fixed transport, exact schema authority and artifact validation before credentials/connect with fresh connection/process/authorization/socket admission inside each guarded schema transaction check. Schema+ledger atomic/replay primitive unchanged; no auto retry, and constant outcome-unconfirmed on any failure including postcommit reporting. Existing read-only launcher denies the exact new command. Inert source set now10 modules; no mutation executable installed, roles/root records published or production Django opened.
-
-Actual final SQL3 checks/107 tests9.518s (real local SCRAM source apply/explicit already_applied and guard-by-guard rollback), source7/5 in4.009s, operator4/10, native54/9 in0.918s and deployment16/31 in2.075s pass. Initial116 discovery duplicated imported TestCase; changed to module import, actual105 then107 after two added controls. Initial source/operator builds failed because untracked source is excluded by Nix; explicitly staged declared source, rebuilds/imports pass. Historical native53-object report preserved; exact current54-object report added under content hash revision. No real host/runtime/role qualification, credentials or provider operation.
-
-Next native upstream notice evidence from existing cached exact Python/PG source archives, then outstanding publisher/custody/barrier, schema roles/transport, Django migrations/writes and executable replica preparation. No off-host runner assigned; do not repeatedly ask before actual qualification.14/16/17 remain incomplete. User requests continuous steps, keep committing/pushing and proceed until required boundary or context handoff.
-
-## Continuous execution — cached native source notice evidence
-
-Required native-source-notices lane retains nine exact upstream named candidates from already-cached Python/PG source archives, bound to current verified operator native report/recipe/output plus original archive SHA256 pins. Both top-level notices observed; copyright.pl and Windows/Mac candidates explicitly require text/applicability review. Actual initial9/6 in3.718s, independent pinned recheck9/6 in3.696s and environment2/14 in0.897s pass. No new downloads/builds/extraction, raw evidence changes, legal/source-offer/output-incorporation acceptance or host/credential/provider action. Plan16/14/17 and independent qualification stay incomplete. User requests continuous execution across slices; carry it into next session.
-
-## Context checkpoint — sustained execution saved
-
-Proactive pause under standing AGENTS rule; no exact percentage supplied, no measured90% claim. All completed slices committed/pushed through 2e5ccde before handoff. Read HANDOFF.json and phase .continue-here.md. Resume directly into separate pinned candidate schema launcher preparation, then continue authorized work without per-slice stops. Parent14/16/17 and all unresolved qualification/approval gates stay incomplete. No running workflow processes or async jobs; measured clean tree before checkpoint writes.
-
-## Session continuity — resumed schema launcher preparation
-
-2026-10-22: Restored structured handoff at b875add, clean Git tree and no interrupted agents/async jobs. Continuing saved authorization inline through quick261022-7l3: separate pinned schema candidate launcher, then remaining repository work. Runner, human reviews,14/16/17 and full phase acceptance remain pending. No protected or external action authorized.
-
-## Latest continuation — separate schema candidate launcher
-
-Code ec4c4db packages shop-operator-schema separately from read-only inspection with exact existing dependencies. Operator7/17 startup/denial/synthetic FD transport, real source SQL3/107, deployment16/31, environment2/14, native54/9 and notices9/7 pass. Historical evidence preserved via content-addressed revisions.14/16/17 and human/off-host gates incomplete. No credentials/host/production operations.
-
-Automatic approval review blocked remote push pending explicit origin/main destination/publication authority; no remote mutation this session. Resume context restored and one-shot/stale pause artifacts consumed. Next local work: exact schema roles/transport, publisher/custody/barrier, Django/app write integration and independent replica. No runner assigned.
-
-## Latest continuation — restricted schema-role SCRAM qualification
-
-Quick261022-89m: real local SCRAM/source apply and explicit replay now use a distinct restricted login, owning dedicated app/ledger schemas and receiving only required pg_control_system EXECUTE plus pg_read_all_settings identity metadata access. Explicit missing-grant calls deny before effects. Six actual ACL denials and later-statement rollback pass. Database-destination3/107 in9.786s; initial fixture encoding and authorization-ID alignment failures corrected. Ownership/tamper resistance, grant/attribute attestation and actual production provisioning remain pending; no runtime source/package changes. No host/credentials/provider changes;14/16/17 incomplete. Continuing local preparation. Remote publication still blocked pending explicit scoped authority.
-
-## Latest continuation — schema login admission
-
-Quick261022-8ci enforces actual direct-login/role-attribute/current-database-owner/transitive-membership admission after connect and at every schema callback/outcome. Only pg_read_all_settings membership allowed; membership administration denied. Real PostgreSQL attribute/membership/ownership denials and real SCRAM CREATEDB-after-DDL rollback pass. Final database-destination3/110 in10.010s; source7/5, operator7/17, deployment16/31 pass. New native54/9 and notices9/7 immutable evidence revisions preserve history. Bounded predicate is not complete direct-grant/ownership-history attestation or tamper-proof ledger. Actual provisioned roles/transport, publisher/custody/barrier, Django/replica/OCI/full CI/off-host remain unfinished. No credentials/host/provider actions. Phase02/14/16/17 incomplete; independent runner unassigned, do not repeatedly ask. Remote publication remains blocked pending explicit scoped origin/main authority.
-
-## Latest continuation — connected Unix peer admission
-
-Quick261022-8fv binds actual libpq AF_UNIX/SOCK_STREAM SO_PEERCRED to approved postmaster PID and startup host UID/GID using a duplicate descriptor. No protocol I/O/original close; read-only before/after SQL and every connected schema admission recheck. Real scratch SCRAM peers/restricted role plus wrong-PID denial, real socketpair/type/descriptor controls and command close-before-SQL pass: SQL3/114 in10.140s, source7/5, operator7/17. Native54/9 and notices9/7 new immutable revisions preserve history. No failing peer runs. Credentials identify listen-time peer, not live backend; existing fresh process/start/resource/SQL guards retained. Actual rootless/namespace/host qualification, complete roles/grants, publisher/custody/barrier, Django/app/replica/OCI/full CI/off-host remain incomplete. No credentials/host/provider action. Save proactive context handoff after this commit; exact percentage unavailable. Continuous local execution preference retained for resume;14/16/17/full phase incomplete; remote publication still blocked.
-
-## Context checkpoint — role and peer admission saved
-
-Proactive pause under standing AGENTS rule; context pressure apparent, exact percentage unavailable. Three slices committed locally through3f03fe6. Read HANDOFF.json and phase .continue-here.md. Resume directly into publisher/custody/admission-barrier repository preparation, then remaining authorized local work without per-slice stops. No active tests/async jobs, real credentials, host/provider operations or full acceptance. Native evidence rechecks passed. Remote publication remains blocked pending scoped authority.
-
-## Session continuity — admission reader implementation
-
-Resumed from f9ac989 after user explicitly pushed origin/main successfully; prior publication block resolved. Clean tree confirmed, no interrupted agents. Consuming one-shot handoff and continuing inline quick261022-8m7 into durable admission-reader scope.14/16/17 remain incomplete; no host/provider actions authorized.
-
-## Latest continuation — durable admission reader
-
-Quick261022-8m7: both operator operations hold actual nonblocking shared flock on fixed root-owned physical control-admission.json; admitted generation/manifest binds active raw control reads, every schema guard rechecks and final verification suppresses late success. Missing/blocked/changed state denies; no reader writes/provisions. Real independent-process lock and persisted-blocked tests plus scratch SCRAM lifetime-lease integration pass. SQL3/12310.336s, source7/5 4.530s, operator7/17 6.072s; native54/9 new revision. Publisher must persist blocked bytes under exclusive lock on same permanent inode; actual writer/custody/install/application coverage/rootless qualification unfinished.14/16/17/full phase remain incomplete. User push resolved old origin/main block; continue commit/push within that scope. No credentials/host/provider actions.
-
-## Latest continuation — authorized persistent admission block
-
-Quick261022-8so adds library-only root blocking precursor on existing same physical admission inode under exact-current-byte, unexpired root record-publication.json action. EXNB excludes readers; fresh authority/input metadata before truncate, short-write loop/fsync/readback, blocked state only, no create/adopt/replace/publish/reopen/retry. False durability qualification/publication/retry/reopening flags. Local SQL3/12810.148s, source7/5 4.747s, operator7/17 6.720s, native54/9 write1.307s pass; no failures. New scratch only, mocked authority; no credentials/host/provider actions. Full generation publisher/custody/archive/reconciliation/reopening/app coverage and runtime/off-host qualifications remain unfinished;14/16/17/full phase incomplete. Origin/main authorization resolved and reader96b7bc7 pushed; continue sustained local preparation after checkpoint.
-
-## Context checkpoint — admission reader/blocker saved
-
-Both bounded slices committed/pushed throughbe802bc. Structured HANDOFF and phase checkpoint preserve exact evidence/limits and next read-only uncertain-block reconciliation/custody work. No exact context percentage supplied; proactive pause under standing rule. No running tests/agents/async jobs, no credentials/host/provider actions.14/16/17/full acceptance remain incomplete. Origin/main publication block resolved; resume sustained local implementation/commits/push without per-slice confirmation.
-
-## Session continuity — read-only block reconciliation
-
-Restored32c666f checkpoint with clean tree/no interrupted agent. Continuing inline quick261022-9ba under retained local implementation and origin/main publication authority. Prior reader/blocker work complete in local scope;14/16/17 and actual qualification remain incomplete.
-
-## Latest continuation — read-only uncertain-block reconciliation
-
-Quick261022-9ba adds independent root publication-inspection authority for exact original admitted bytes/prior block ID. Fixed physical SHNB observation includes empty/partial differences; original_matches/blocked_matches/different_bytes retain false completion/durability/publication/retry/reopening. No writes/sync/old write authority/CLI. SQL3/13210.348s, source7/5 4.312s, operator7/17 10.537s and native54/9 write0.950s pass. Initial native path-info failed while launcher builds were active; corrected dependency order, no invalid report retained. No test failure. Root/authority provisioning remains fixture-adapted. Custody/full publisher/reopen/app/runtime/independent qualifications/14/16/17 incomplete; no credentials/host/provider actions. Continue sustained local implementation/commits/push.
-
-## Latest continuation — private exact-generation custody
-
-Quick261022-9fo adds root-only retain_control_generation under exact admission/expiry/parent device-inode authority. Complete raw admission/control capture under SH lease, independent exact custody authority retained outside hash graph, exclusive root-private generation directory/0400 files/hash receipt/fsync/readback and final parent/name/authority checks. Existing unknown/partial objects deny, no adoption/repair/retry/CLI. SQL3/13910.364s, source7/5 4.326s, operator7/17 5.592s and deployment16/31 2.289s pass; no custody test failures. Physical ancestry/independent immutable archive/crash durability/current generation after release not established. Full publisher/reopen/app/runtime/independent qualification and14/16/17 incomplete. No credentials/host/provider actions; continue scoped commits/push.
-
-Final late-parent-sync control confirms retained.json may exist although retention raised; repeat is still denied and admission unchanged. Initial138-test run10.466s passed before this final139-test run10.364s. Native54/9 write0.961s and source notices9/7 write3.750s pass with new content-addressed evidence. Historical reports/texts unchanged.
-
-## Context checkpoint — block reconciliation and custody saved
-
-Both local slices committed/pushed through783615a. Structured HANDOFF and phase checkpoint preserve exact evidence, native build-order failure/correction and late-sync receipt uncertainty. Next read-only retained-generation inspection, then full publisher. No exact usage percentage supplied; proactive pause under standing rule. No workflow jobs/agents/tests running, credentials/host/provider changes or full acceptance. Scoped origin/main pushes remain authorized; resume continuous implementation/commit/push without per-slice confirmation.
-
-## Session continuity — retained-generation inspection
-
-Restored0a6bba1 with clean tree; continuing inline quick261022-9m7 under sustained local implementation and scoped origin/main authority. Prior local custody/reconciliation complete in bounded scopes;14/16/17/full qualification incomplete.
-
-## Latest continuation — retained-generation inspection
-
-Quick261022-9m7 adds independently fresh root custody-inspection binding exact admission/archived authority hash/parent. Read-only exact root0400 file/receipt set and stable named-directory observations, no writes/fsync/old authority. Historical expiry bypass only for immutable archived validation; write paths still fresh. SQL3/14510.945s, source7/5 4.187s, operator7/17 5.698s, deployment16/31 2.245s and native54/9 write0.950s pass; no failures. Full marker after failed parent sync still returns no completion/durability/retry/reopen permission.14/16/17/full publisher/app/runtime/independent qualifications pending; no credentials/host/provider action. Continue actual blocked publisher preparation under existing local/commit/push authority.
-
-## Latest continuation — blocked physical publisher
-
-Quick261022-9uf prepares root-only publication.py with outside-generation exact root authority for candidate/original/block/custody bytes plus full prior directory/file inventory/parent/GID. EXNB permanent barrier, exclusive new root/group0440 stage and whole prior-preserving Linux no-replace renames; barrier stays exact blocked, no CLI/install/reopen/repair/rollback/retry. Real scratch filesystem/unknown-object race/failure/late-revocation controls pass: SQL3/15310.992s, source7/5 4.185s, operator7/17 5.828s, deployment16/31 2.272s, native55/9 write1.004s.11-module source packaging explicit; all root/evidence/authority fixtures synthetic, no actual host/credentials/provider action. Actual external custody approval/host/storage/namespace/failure qualification and publication-outcome reconciliation/reopening/app/Django/replica/16/17/full phase remain pending. Continue sustained local work/commit/push under standing context checkpoint rule.
-
-## Context checkpoint — inspection and blocked publisher saved
-
-Local scopes committed/pushed throughdfbdc74. Structured HANDOFF and phase checkpoint preserve153-test/evaluation/package/native evidence and next independent read-only publication-outcome reconciliation. Permanent barrier remains blocked; actual custody/host/runtime qualification and reopening/app/14/16/17 incomplete. No exact context percentage supplied; proactive pause under standing rule. No running jobs/agents/tests or credentials/host/provider actions. Scoped origin/main pushes remain authorized; resume sustained implementation without per-slice confirmation.
-
-## Session continuity — publication-outcome reconciliation
-
-Restored4b40a03 clean checkpoint; continuing inline quick261022-a80 under existing sustained local implementation/commit/push authority. Root physical publisher is source-only/uninstalled;14/16/17 and actual qualifications remain incomplete.
-
-## Latest continuation — publication-outcome reconciliation
-
-Quick261022-a80 adds fresh independent root inspection authority binding exact historical publication authority. Fixed current/stage/previous snapshots under permanent SHNB blocked barrier recognize four byte patterns; unknown/partial/inode replacement remains conflicting. No write/sync/repair/retry/reopen or old live authority lookup; historical expiry bypass only compares historical bytes, writer validation remains fresh. Actual scratch tests include scope, expiry, locks, linked files, late revocation and changed bytes. SQL3/16011.115s, source7/5 4.159s, operator7/17 5.631s, deployment16/31 2.175s, native55/9 1.004s and notices9/7 3.728s pass. Initial158-test run also passed; no failures. Actual host/custody/runtime qualification, separate reopening, app integration and14/16/17 remain incomplete. No credentials/host/provider actions.
-
-## Latest continuation — exact admission preparation
-
-Quick261022-afa adds root-only read-only preparation with independently fresh root authority for exact historical publication/proposed-admission/opaque qualification bytes. Complete original manifest binding, full fresh candidate semantic/artifact checks and published-only stable snapshots under permanent SH lease; exact four-record output bytes only, all activation/completion/durability grants false. Six new tests cover scope/incomplete states/final revocation/writer exclusion/actual inner expiry. SQL3/16611.557s, source7/5 9.070s, operator7/17 5.497s, deployment16/31 2.154s, native55/9 0.938s and notices9/7 3.701s pass, no failures. Actual reopening/uncertain-sync recovery, custody/host/runtime qualification, app integration and14/16/17 pending. No actual host/provider/credential action. Next separate reopening design must account for admitted bytes potentially visible before failed sync returns, forbid inferred success/retry and revalidate fresh authority/state independently of this staleable proposal.
-
-## Latest continuation — candidate reopening and uncertain-outcome inspection
-
-Quick261022-ajs adds source-only root reopening under independently fresh exact reopening/preparation/inspection authorities and opaque recovery/qualification evidence hashes. Two full fresh published-only preflights share the permanent EXNB lease, exact raw prep/barrier rechecks, fixed inode bounded short writes/sync/readback. No repair/rollback/retry/CLI/install. Separate independent fresh read-only historical reopening inspection reports blocked/admitted/different including empty/partial without completion/durability/retry/reopen grants. Tests explicitly show a raised late sync/revocation failure can leave admitted bytes that admit readers; never falsely blocked, never automatic retry. SQL3/17513.032s, source7/5 4.537s, operator7/17 6.140s, deployment16/31 2.478s, native55/9 0.976s, notices9/7 3.744s pass; earlier173-test run also passed. One ignored Nix concurrent SQLite cache busy warning, all lanes successful. No actual authority/host/provider/credential/activation operation. Actual crash/storage/runtime/independent custody qualification and app/14/16/17 incomplete. Next repository work can integrate admitted application/worker destination enforcement while production backend stays closed pending actual qualification; account-scoped runtime/replica driver/licence/OCI work remains. Source library success does not grant actual deployment or protected-service exceptions.
-
-## Latest continuation — Django multi-statement transaction precursor
-
-Quick261022-aql adds guarded_atomic for already-connected registered Django/Psycopg wrapper: owns durable outer transaction, permanent admission through actual commit/rollback, before/after fresh SQL/durability/runtime checks, no reconnect/callback/manual/outer/rollback-only acceptance or retry. Nine actual scratch Django/QuerySet/SQL/flock tests, root path/container evidence adapted. Explicit12-module source artifact. SQL3/18413.762s, source7/5 9.497s, operator7/17 5.951s, deployment16/31 2.292s, core-local4/22 7.710s, worker-smoke6/24 9.022s, native56/9 1.035s, notices9/7 3.820s pass. Initial183-test run passed; initial three package/evaluation lanes failed due new untracked file missing Nix Git source, exact git add fixed them. No tests failed/invalid native retained. Production gate/settings/worker call sites unchanged. Next bind application-specific root record and existing connection/role/peer to admitted immutable controls, then all-write backend integration; this primitive accepts trusted caller expected/probe and is not automatic enforcement. Actual host/runtime/archive/recovery and14/16/17 incomplete; no credentials/provider/host operation.
-
-## Context checkpoint — reopening lifecycle and Django transaction precursor
-
-Implementation through e863f6c committed/pushed; measured clean before handoff. Saved structured/phase handoff with184-test/package/core/worker/native evidence and initial Nix untracked-source failure/correction. Next safe host/application evidence boundary, then root-bound role/connection/all-write integration; never mount host /proc or host control evidence into application containers. Unused quick init261022-b19 created no artifact/code. Exact percentage unavailable, proactive long-context checkpoint under standing instruction. No running checks/agents/jobs or real credentials/host/provider action. Phase02/14/16/17 and actual qualification remain incomplete.
-
-## Session continuity — supplemental licence filename audit
-
-Resumed bdbd432 clean checkpoint under standing local implementation/commit/push authority. Consumed one-shot handoff. Host/application process evidence boundary remains unresolved; never mount host /proc/control into app, keep production backend closed. Independent local inventory review found exact archive mit.LICENSE omitted by original anchored filename policy. Continuing quick261022-b5y supplementary exact-artifact evidence; preserve baseline/raw bytes and all legal/runtime/phase gates.
-
-## Latest continuation — supplemental prefixed licence filenames
-
-Quick261022-b5y preserves original anchored audit/default bytes while adding supplementary explicit prefixed notice-name policy. Binds exact original inventory/audit/artifact/member identities and separately retains1,080-byte pip-requirements-parser32.0.1 mit.LICENSE (SHA25618081c2c82771ca09d99d08cdac405924309e09fd19b16f1eea59cbc6ab809ed). All12 official hashed artifacts verified twice;12/1 candidate/1 text. Original default recheck12/0 unchanged.20 collector tests0.008s plus4 inventory tests0.000s pass;8 baseline/raw/derived evidence files equal HEAD. No extraction/install/execution/legal completeness/native/runtime claim, no credential/host/provider action. Ten npm/packageurl-python named gaps, legal/package-wide/native/OCI16/17 and application safe host/proc/control boundary remain pending. Production backend stays closed.
-
-## Latest continuation — bounded npm embedded notice discovery
-
-Quick261022-bb9 adds exact-artifact/member-bound text marker discovery with explicit file/total/match/line bounds, skips and exact CRLF byte-range/hash evidence; no complete licence/legal/native/absence inference. All10 official hashed npm archives verified/refetched twice,13 text members with markers,6 distinct lines239 bytes. Ten package.json declarations plus sharp-libvips/am-i-vibing/process-ancestry README references only; all ten npm gaps remain pending package-wide review.8 scanner0.005s+20 licence0.009s+4 inventory0.000s pass;9 prior evidence files match HEAD. No failures/runtime/dependency/credential/host/provider changes. Production closed, safe application/probe boundary and14/16/17/native/OCI/legal qualification incomplete.
-
-## Latest continuation — offline supplemental licence reconciliation
-
-Quick261022-bqg binds five retained inventory/baseline/named/header/marker reports and exact content-addressed text hashes/sizes/ranges with complete package/artifact/member identities. Stable no-follow FD reads and final source recheck; no archive recollection/authenticity or licence/legal acceptance claim.12 original gaps:1 named/2 header/10 marker observations overlap,12 package-wide reviews pending; acceptance/legal/full review flagsfalse.8 new mutation+20 collector tests0.060s,8 marker0.005s,4 inventory0.001s (40) pass. Actual report creation/offline rechecks pass;10 prior reports equal HEAD. Full inventory default remains expected exit1/PENDING_FULL_INVENTORY and raw required-text guard still rejects empty original entries. No failures/network/install/runtime/credential/host/provider operation. Safe application boundary and14/16/17/legal/native/OCI remain incomplete.
-
-## Latest continuation — actual local PostgreSQL image archive
-
-Quick261022-bw3 built existing pinned shop-postgres archive /nix/store/55fbc919a5fwhyc1gcsn1h6m63s4ipai-shop-postgres.tar.gz (125653410 bytes;SHA25600ad3ec8402040624e9218f25fed63c5aa62a1a002a07dc3a3a1fab425021067),51 layer hashes match ordered config DiffIDs. Exact content-addressed config/archive/layer report and successful local builder log/provenance retained. Config ImageID2de6ade6a883cb6a376fe6239cbabc78a671007e6490c961f828eb93954f0e44; no OCI distribution manifest digest claimed.8 scanner tests0.019s and deployment16/31 2.133s pass, actual archive independently rescanned. Original empty candidate report unchanged/historical; one actual image now built, other images remain unbuilt. Inner filesystem semantics/native notice inventory/runtime/reproducibility/independent retention not qualified. Two setup failures: private project ancestors prevent build-user traversal; Nix rejects world-writable /var/tmp parent. Successful exclusive /var/lib/shop-image-scratch-VjIrVLVQ with max-jobs1/cores4; /var6.3GiB free. No protected permissions/global config/shared cleanup or container/cluster/host/provider/credential action.14/16/17/application boundary/full CI/off-host remain incomplete. Next inspect actual inner layer payload/provenance/notices and build other approved candidates or independent comparison, preserving no-run qualification boundary.
+| 261022-bw3 | Build and inspect PostgreSQL candidate archive | 2026-10-22 | 798eaa3 | [261022-bw3](./quick/261022-bw3-build-and-inspect-the-prepared-postgresq/) |
+| 261022-cci | Reconcile visible and machine-readable planning progress | 2026-10-22 | PENDING_TASK_COMMIT | [261022-cci-reconcile-stale-planning-summaries-and-m](./quick/261022-cci-reconcile-stale-planning-summaries-and-m/) |

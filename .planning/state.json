@@ -75,9 +75,9 @@
     }
   ],
   "next": {
-    "command": "$gsd-execute-phase 2",
-    "label": "Finish incomplete 02-14 runtime implementation",
-    "reason": "Partial14/16/17 implementations and external qualification remain; only8/18 summaries complete. Full all failed closed, source baseline passes."
+    "command": "$gsd-progress --next",
+    "label": "Advance to the next step",
+    "reason": "Phase 2 of 14 · 7% · executing"
   },
-  "updated_at": "2026-10-21T08:32:09.343160+00:00"
+  "updated_at": "2026-10-22T09:00:51.943Z"
 }

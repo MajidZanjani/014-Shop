@@ -177,20 +177,22 @@ No additional features committed. Automatic renewal, general organization portal
 
 ## Traceability
 
+Updated 2026-10-22: BUILD-01–08 have partial local implementation/evidence and are In Progress, not accepted. Their checkboxes remain unchecked. See [current Phase 02 progress](phases/02-reproducible-application-and-deployment-skeleton/02-PROGRESS.md) for completed work and remaining qualification gates.
+
 | Requirement | Phase | Status |
 |---|---|---|
 | SRC-01 | Phase 1 | Complete |
 | SRC-02 | Phase 1 | Complete |
 | SRC-03 | Phase 1 | Complete |
 | SRC-04 | Phase 1 | Complete |
-| BUILD-01 | Phase 2 | Pending |
-| BUILD-02 | Phase 2 | Pending |
-| BUILD-03 | Phase 2 | Pending |
-| BUILD-04 | Phase 2 | Pending |
-| BUILD-05 | Phase 2 | Pending |
-| BUILD-06 | Phase 2 | Pending |
-| BUILD-07 | Phase 2 | Pending |
-| BUILD-08 | Phase 2 | Pending |
+| BUILD-01 | Phase 2 | In Progress |
+| BUILD-02 | Phase 2 | In Progress |
+| BUILD-03 | Phase 2 | In Progress |
+| BUILD-04 | Phase 2 | In Progress |
+| BUILD-05 | Phase 2 | In Progress |
+| BUILD-06 | Phase 2 | In Progress |
+| BUILD-07 | Phase 2 | In Progress |
+| BUILD-08 | Phase 2 | In Progress |
 | CAT-01 | Phase 3 | Pending |
 | CAT-02 | Phase 3 | Pending |
 | CAT-03 | Phase 3 | Pending |

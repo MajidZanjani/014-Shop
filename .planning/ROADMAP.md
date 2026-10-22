@@ -2,6 +2,15 @@
 
 **Baseline:** 2026-10-21 protected-services proposal/handoff, read in full. T01 documentation reconciled; T02 is executing with eight completed local slices and ten incomplete qualification/implementation records. Actual runtime/host criteria remain unexecuted.
 
+## Current implementation activity — 2026-10-22
+
+**Updated through 798eaa3:** 24 implementation quick tasks completed today. Phase 02 remains 8/18 locally complete because 7 qualification/review and 3 implementation/qualification records remain open. See [current Phase 02 progress](phases/02-reproducible-application-and-deployment-skeleton/02-PROGRESS.md) and the [current state/task index](STATE.md).
+
+- Plan 14 now includes source-only control publication/reopening/uncertainty lifecycle and an admission-leased Django multi-statement transaction precursor; application/worker integration and actual qualification remain open.
+- Plan 16 now has attributable named/header/marker licence evidence and offline reconciliation; all 12 package-wide reviews and complete native/OCI inventory remain pending.
+- Plans 16/17 now have one actual local PostgreSQL image archive,51 layer byte hashes and builder provenance. Other images,inner payload/runtime execution,OCI manifests and independent image comparison remain pending. The historical blanket unbuilt status no longer applies to PostgreSQL.
+- Latest PostgreSQL-backed lane is184 tests;latest deployment evaluation16/31;archive inspector8 tests;licence-related suites40 tests. These overlap and do not constitute a full-all/CI/production pass.
+
 ## Scope and execution policy
 
 Selected production backend: rootless Podman directly on existing mx1, declared by NixOS/Quadlet under new proposed shopsvc. Separate app, one worker, new PostgreSQL cluster and internal Caddy containers; independently owned backup jobs. Static output remains in gra; off-host recovery/evidence/artifacts in sbg. No new production compute, block volume, public IP, automatic paid fallback or permanent staging VM.
@@ -64,7 +73,7 @@ The October21 reset completed documentation replanning. Later user continuation 
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md T02; complete companion proposal remains normative.
 **Estimate:** 3–5 engineer-days
 **UI hint:** no
-**Plans:** 8/18 local slices complete (00–05,09,15); 7 qualification/review pending (06–08,10–13); 3 implementation-incomplete (14,16,17); 24 tasks/14 waves. Incomplete evidence uses PARTIAL.md. Phase02 and BUILD acceptance remain incomplete.
+**Plans:** 8/18 local slices complete (00–05,09,15); 7 qualification/review pending (06–08,10–13); 3 implementation-incomplete (14,16,17); 24 tasks/14 waves. Incomplete evidence uses PARTIAL.md. Phase 02 and BUILD acceptance remain incomplete.
 
 - [x] 02-01-PLAN.md — Concrete dependency review (Wave 1).
 - [x] 02-02-PLAN.md — Pinned native development environment (Wave 2).
@@ -391,19 +400,19 @@ Keep public bytes in shop-owned OVH Object Storage through a fixed verified HTTP
 
 ## Progress
 
-| Phase | Plans complete | Status |
-|---|---|---|
-| 1 | 2 / 2 | Documentation reconciled |
-| 2 | 8 / 18 local slices | Executing; 7 qualification/review pending, 3 implementation-incomplete |
-| 3 | 0 / not planned | Pending |
-| 4 | 0 / not planned | Pending |
-| 5 | 0 / not planned | Pending |
-| 6 | 0 / not planned | Pending |
-| 7 | 0 / not planned | Pending |
-| 8 | 0 / not planned | Pending |
-| 9 | 0 / not planned | Pending |
-| 10 | 0 / not planned | Pending |
-| 11 | 0 / not planned | Pending |
-| 12 | 0 / not planned | Pending |
-| 13 | 0 / not planned | Pending |
-| 14 | 0 / not planned | Pending |
+| Phase | Plans Complete | Status | Completed |
+|---|---|---|---|
+| 1. Product authority, repository review and decision register | 2 / 2 | Complete — documentation reconciled | 2026-10-21 |
+| 2. Reproducible application and deployment skeleton | 8 / 18 | In Progress; updated 2026-10-22: 24 implementation quick tasks; 7 qualification/review and 3 implementation/qualification records open | — |
+| 3. Markdown catalog, schemas and approved price calculations | 0 / not planned | Not started | — |
+| 4. Static product, configurator, support page and accessible fallback | 0 / not planned | Not started | — |
+| 5. Transactional records, durable work and private evidence primitives | 0 / not planned | Not started | — |
+| 6. Verified customer access, staff MFA and private host editing | 0 / not planned | Not started | — |
+| 7. Multi-line cart, quotations, business checkout and acceptance | 0 / not planned | Not started | — |
+| 8. Payment domain and fault-injectable fake bank | 0 / not planned | Not started | — |
+| 9. Selected-bank sandbox integration and complete reconciliation | 0 / not planned | Not started | — |
+| 10. Licence delivery, renewal/rehosting and support-hours workflows | 0 / not planned | Not started | — |
+| 11. Protected-host qualification, shop-only deployment and conditional public activation | 0 / not planned | Not started | — |
+| 12. Backups, operating alerts and financial/licensing restore rehearsal | 0 / not planned | Not started | — |
+| 13. Integrated product, access, payment and deployment acceptance | 0 / not planned | Not started | — |
+| 14. Release handover and separately scoped live activation | 0 / not planned | Not started | — |
