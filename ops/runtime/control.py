@@ -20,7 +20,7 @@ def unique_fields(pairs):
     return result
 
 
-def load_control(filename, validator):
+def _load_control_data(filename):
     """Walk root-owned, non-writable ancestors by FD; reject symlinks."""
     require(isinstance(filename,str) and re.fullmatch(r"[a-z][a-z0-9-]*\.json",filename))
     path = Path("/srv/shop/control")/filename
@@ -49,12 +49,22 @@ def load_control(filename, validator):
                 active['verify']()
                 require(filename in active['records']
                         and hashlib.sha256(data).hexdigest() == active['records'][filename])
-            return validator(json.loads(data,object_pairs_hook=unique_fields))
+            return data
         finally:
             os.close(fd)
     finally:
         os.close(directory)
 
+
+def load_control(filename, validator):
+    return validator(json.loads(_load_control_data(filename),object_pairs_hook=unique_fields))
+
+
+def load_control_bytes(filename):
+    """Exact private bytes, with the same root/manifest/stability admission."""
+    data = _load_control_data(filename)
+    json.loads(data,object_pairs_hook=unique_fields)
+    return data
 
 
 _ADMISSION = contextvars.ContextVar('shop_control_admission', default=None)
@@ -146,7 +156,7 @@ def admission():
         original = _admission_snapshot(directory,fd)
         def verify():
             require(_admission_snapshot(directory,fd) == original)
-        token = _ADMISSION.set({'records':original[2],'verify':verify})
+        token = _ADMISSION.set({'records':original[2],'verify':verify,'original':original[0]})
         try:
             yield
             verify()

@@ -4,6 +4,7 @@ Input is a private candidate bundle, not proof or authority. Hashes identify the
 exact canonical record bytes a separately authorized publisher would review.
 """
 import base64
+import control
 import hashlib
 import json
 import os
@@ -174,5 +175,83 @@ def inspect_candidate(data, parent_fd):
             require(all(getattr(before,key)==getattr(current,key)
                         for key in ('st_dev','st_ino','st_uid','st_gid','st_mode')))
             return dict(report,status='candidate_matches',durability_confirmed=False)
+        finally:os.close(directory)
+    finally:os.close(parent)
+
+
+
+def validate_custody_authority(value):
+    require(type(value) is dict and set(value) == {
+        'schema_version','action','authorization_id','expires_at','admission_sha256','parent'})
+    require(value['action'] == 'retain-control-generation')
+    control.validate_block_authority({key:value[key] for key in
+        ('schema_version','authorization_id','expires_at')} | {
+        'action':'block-control-admission','current_admission_sha256':value['admission_sha256']})
+    parent = value['parent']
+    require(type(parent) is dict and set(parent) == {'device','inode'}
+            and all(type(n) is int and n > 0 for n in parent.values()))
+    return value
+
+
+def load_custody_authority():
+    raw = control.load_control_bytes('generation-custody.json')
+    return raw,validate_custody_authority(json.loads(raw,object_pairs_hook=unique_fields))
+
+
+def retain_control_generation(parent_fd):
+    """Root-only exact-generation local custody, not publication or archive proof.
+
+    Parent FD must be separately approved by exact device/inode and root0700.
+    Trusted physical ancestry and independent archive qualification are external
+    prerequisites; a matching leaf FD does not establish them.
+    """
+    require(os.geteuid() == 0 and control._ADMISSION.get() is None)
+    authority_raw,authority = load_custody_authority()
+    parent = os.dup(parent_fd)
+    os.set_inheritable(parent,False)
+    try:
+        before = os.fstat(parent)
+        require(stat.S_ISDIR(before.st_mode) and before.st_uid == 0
+                and stat.S_IMODE(before.st_mode) == 0o700
+                and (before.st_dev,before.st_ino) ==
+                    (authority['parent']['device'],authority['parent']['inode']))
+        with control.admission():
+            active = control._ADMISSION.get()
+            original = active['original']
+            require(hashlib.sha256(original).hexdigest() == authority['admission_sha256'])
+            files = {'admission.json':original,'custody-authorization.json':authority_raw}
+            for filename in sorted(active['records']):
+                files[filename] = control.load_control_bytes(filename)
+            control.check_admission()
+        # The source snapshot is complete under its lease. Authority lives outside
+        # its hash graph, avoiding a self-referential manifest. Never infer that
+        # this generation is still current after releasing the lease.
+        require(load_custody_authority() == (authority_raw,authority))
+        name = 'generation-'+authority['admission_sha256']
+        os.mkdir(name,0o700,dir_fd=parent)
+        directory = os.open(name,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW|os.O_CLOEXEC,dir_fd=parent)
+        try:
+            initial = os.fstat(directory)
+            require(initial.st_uid == 0 and stat.S_IMODE(initial.st_mode) == 0o700)
+            for filename,payload in sorted(files.items()):_stage_file(directory,filename,payload)
+            os.fsync(directory)
+            report = {'schema_version':1,'status':'generation_retained',
+                'admission_sha256':authority['admission_sha256'],
+                'file_sha256':{filename:hashlib.sha256(payload).hexdigest()
+                               for filename,payload in sorted(files.items())},
+                'local_fsync_readback_completed':True,'durability_qualified':False,
+                'publication_authorized':False,'retry_authorized':False,'reopening_authorized':False}
+            receipt = json.dumps(report,sort_keys=True,separators=(',',':')).encode('ascii')+b'\n'
+            _stage_file(directory,'retained.json',receipt)
+            os.fsync(directory);os.fsync(parent)
+            _readback_files(directory,{**files,'retained.json':receipt})
+            named = os.stat(name,dir_fd=parent,follow_symlinks=False)
+            require(all(getattr(initial,key) == getattr(named,key)
+                        for key in ('st_dev','st_ino','st_uid','st_gid','st_mode')))
+            current = os.fstat(parent)
+            require(all(getattr(before,key) == getattr(current,key)
+                        for key in ('st_dev','st_ino','st_uid','st_gid','st_mode')))
+            require(load_custody_authority() == (authority_raw,authority))
+            return report
         finally:os.close(directory)
     finally:os.close(parent)

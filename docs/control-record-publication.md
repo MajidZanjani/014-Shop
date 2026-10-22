@@ -292,3 +292,50 @@ concurrent byte/inode changes. A failed writer fsync can still yield
 blocked_matches with all completion/permission flags false and reader admission
 still denied. Root paths and authority provisioning remain fixture-adapted;
 independent custody, full publisher and actual recovery qualification are pending.
+
+## Private exact-generation custody
+
+`record_bundle.retain_control_generation(parent_fd)` is a library-only root
+operation. Its separate root-owned generation-custody.json authority contains
+integer schema_version1, action retain-control-generation, authorization_id
+(32 hex), a future UTC expires_at, admission_sha256 (64 hex) and parent with exact
+positive integer device/inode. The already opened destination parent must be that
+exact directory, owned by root with mode0700. This verifies the leaf identity;
+physical ancestry, storage accounting, allowlist membership and actual authority
+must still be independently proved before any host invocation. No such authority
+or destination is provisioned here.
+
+Capture holds the actual shared admission lease while reading the exact original
+admission bytes and every raw control file in its manifest. The existing root
+custody, stable bounded reads, duplicate-key denial and exact manifest hashes all
+apply. The custody authority is captured separately outside that hash graph,
+avoiding a self-referential admission/authority digest. After a complete snapshot,
+the lease is released and exact authority bytes are rechecked before retention.
+The retained generation may no longer be current after release; its receipt does
+not attest current service state or permission for another action.
+
+The helper exclusively creates generation-<admission-sha256> mode0700 under the
+approved parent FD. It writes the original admission as admission.json, all exact
+manifest control files and exact custody-authorization.json, each root-owned
+mode0400/singly linked with bounded short writes, fsync and exact readback. A
+retained.json receipt records hashes and explicit false durability qualification,
+publication/retry/reopening authority. Directory/parent sync and final byte,
+file-set, named-directory and parent-metadata checks precede return; authority is
+checked again. The caller's parent FD remains open. Existing full/partial/file/
+symlink targets are denied; no adoption, overwrite, chmod/chown, cleanup or retry.
+
+Local_fsync_readback_completed describes a successful returned local operation.
+A receipt may exist after a later sync/readback/authority failure, and its presence
+cannot establish that the function returned or authorize repetition. Partial or
+complete uncertain artifacts are retained for separate read-only reconciliation.
+Root can still alter these files: this is not an independent immutable archive,
+proof of power-loss durability, root ancestry custody, safe reopening or full
+publisher completion. Original approvals and off-host retention remain required.
+
+Local scratch tests retain exact admission/control/authority bytes and hashes,
+exercise real reader exclusion while capturing, and deny changed/missing source
+records, expired/mismatched authority, wrong parent/root/mode and preexisting
+unknown objects. Short writes pass; sync failures and post-retention revocation
+retain artifacts without a success result, and repeat attempts deny. These tests
+adapt root paths and fake authority; no production records, credentials, protected
+resources or services are modified. The operator CLI remains unchanged.
