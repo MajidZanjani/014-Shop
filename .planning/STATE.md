@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: executing
-last_updated: "2026-10-22T05:01:37.362Z"
-state_head: 6008f2cf73f7dfe0e622c939cbc6ce3a50221ff4
+last_updated: "2026-10-22T05:06:28.236Z"
+state_head: 8e7cbf41a9052ac45f7930dde8a710ae5e5f0f75
 progress:
   total_phases: 14
   completed_phases: 1
@@ -182,6 +182,7 @@ Phase02 and14/16/17 remain incomplete. Next scoped durable generation publicatio
 | 261022-6n6 | Audit exact distributions for twelve missing incorporated licence texts | 2026-10-22 | 8052689 | [261022-6n6-trace-missing-incorporated-licence-texts](./quick/261022-6n6-trace-missing-incorporated-licence-texts/) |
 | 261022-6s2 | Retain exact embedded Python tool licence headers | 2026-10-22 | 4a02f7c | [261022-6s2-retain-exact-embedded-licence-headers-fr](./quick/261022-6s2-retain-exact-embedded-licence-headers-fr/) |
 | 261022-6vp | Verify actual operator native reference closure | 2026-10-22 | 6008f2c | [261022-6vp-inventory-actual-cached-operator-native-](./quick/261022-6vp-inventory-actual-cached-operator-native-/) |
+| 261022-700 | Prepare generator discovery for only new shop manager | 2026-10-22 | 8e7cbf4 | [261022-700-prepare-root-owned-generator-discovery-f](./quick/261022-700-prepare-root-owned-generator-discovery-f/) |
 
 ## Latest continuation — real local SCRAM inspection
 
@@ -242,3 +243,7 @@ Five new tests, eight archive tests and four inventory tests pass. Initial new n
 User explicitly requests sustained execution across steps; do not end after each bounded task. Commit/push and continue authorized repository/local work; stop only required decision/external boundary/context handoff. New native-closure lane code6008f2c verifies53 actual realized operator store objects (222931552 NAR bytes) and graph closure. Fifteen missing local derivations and native notice gaps explicit; two named-notice candidates only. No image/full source/native review or legal/runtime approval inferred. Required aggregate includes new lane.
 
 Actual pinned native53 checks/8 tests0.899s, operator4/10 in2.159s and environment2/14 in0.900s pass. Raw SBOM/licences unchanged. Initial derivation-format diagnostic flag unsupported; actual envelope4 observed and pinned after assumed2 denied. Missing cache recipes now explicitly observed rather than fabricated. No new build/download/repair, credentials or host/provider/service/resource action. Continue npm/source/native evidence and account-scoped/deployment integration;14/16/17 and off-host gates stay incomplete.
+
+## Continuous execution — account-only generator discovery
+
+Prepared root-owned immutable one-generator bundle and exact user@newUID instance drop-in; new manager search replaces only its generator path. No global/template change, mutable home installer, manager reload/start, Podman run or host activation. Disabled candidate has no discovery artifacts. Existing synthetic account/manager sentinel unchanged. Actual deployment-eval16/31 in2.049s and profiles6/5 in0.019s pass. Initial comparison of different synthetic/module guard bundles corrected to each actual bundle. Actual pinned compatibility/installation/qualification and14/16/17 remain pending. Continue guarded schema/operator/application integration and source/native/OCI work without stopping after this step.
