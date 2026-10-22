@@ -1,0 +1,96 @@
+{
+  "evidence_class": "cached-exact-upstream-source-notices",
+  "findings": [
+    {
+      "declared_expanded_bytes": 141525674,
+      "derivation_sha256": "24ad9df95900e4775f36538460f33952555c609227bfe8201237fb0c6f7c69ce",
+      "links_not_followed": 0,
+      "members_scanned": 7944,
+      "name": "postgresql",
+      "notice_candidates": [
+        {
+          "archive_member": "postgresql-18.6/COPYRIGHT",
+          "retained_path": "native-source-notice-texts/3d6af92ff8a4c2cdf69afb1cf44edea727922f5cd0cf8b5f72b11cdecac8fdfd.txt",
+          "sha256": "3d6af92ff8a4c2cdf69afb1cf44edea727922f5cd0cf8b5f72b11cdecac8fdfd",
+          "size": 1198
+        },
+        {
+          "archive_member": "postgresql-18.6/src/backend/regex/COPYRIGHT",
+          "retained_path": "native-source-notice-texts/5027cfe4f54842896b01ca6be28becc9a018623aaadc0f5b51350da71118cb0e.txt",
+          "sha256": "5027cfe4f54842896b01ca6be28becc9a018623aaadc0f5b51350da71118cb0e",
+          "size": 4362
+        },
+        {
+          "archive_member": "postgresql-18.6/src/tools/copyright.pl",
+          "retained_path": "native-source-notice-texts/9c3682a8fe827a303da44a00cd2f7c48907df273ee917957c517a2d35d5070be.txt",
+          "sha256": "9c3682a8fe827a303da44a00cd2f7c48907df273ee917957c517a2d35d5070be",
+          "size": 2040
+        }
+      ],
+      "output": "/nix/store/55kg73zr3x4x8lfnpjf9k11p7wy8ad5j-postgresql-18.6-lib",
+      "required_notice": "postgresql-18.6/COPYRIGHT",
+      "sha256": "555610c24d53e4316da5b7d3fc25c279d96856d5e0e23ee308c328c5fa881d9f",
+      "source": "/nix/store/bwpqlah00sz6f6mys9c40sxh8finswkw-postgresql-18.6.tar.bz2",
+      "status": "upstream-source-candidates-only-output-and-legal-review-pending",
+      "version": "18.6"
+    },
+    {
+      "declared_expanded_bytes": 110355801,
+      "derivation_sha256": "1782319eaf9467cb6f84e573bbb8d9d45f0c245cc02fd408a5cbfa8fe8dbbfbc",
+      "links_not_followed": 0,
+      "members_scanned": 5272,
+      "name": "python3",
+      "notice_candidates": [
+        {
+          "archive_member": "Python-3.13.16/Doc/copyright.rst",
+          "retained_path": "native-source-notice-texts/2f455e3bd119869bf01369ab852d87d11c9e67e5351a7ebc64ab2c0af344aff6.txt",
+          "sha256": "2f455e3bd119869bf01369ab852d87d11c9e67e5351a7ebc64ab2c0af344aff6",
+          "size": 451
+        },
+        {
+          "archive_member": "Python-3.13.16/Doc/license.rst",
+          "retained_path": "native-source-notice-texts/952ac05720d7f1dcb63589b35eb0931b1442eb250230a4ad31198eddf0ad6abc.txt",
+          "sha256": "952ac05720d7f1dcb63589b35eb0931b1442eb250230a4ad31198eddf0ad6abc",
+          "size": 58181
+        },
+        {
+          "archive_member": "Python-3.13.16/LICENSE",
+          "retained_path": "native-source-notice-texts/78b12c3a81360b357002334f0e70ea0e92eebf7a9b358805c03c48484945f3bb.txt",
+          "sha256": "78b12c3a81360b357002334f0e70ea0e92eebf7a9b358805c03c48484945f3bb",
+          "size": 13809
+        },
+        {
+          "archive_member": "Python-3.13.16/Mac/BuildScript/resources/License.rtf",
+          "retained_path": "native-source-notice-texts/ab6df6040a4e24babad38f98454eb3263722fa6a1c441bfaa271798efbe55f27.txt",
+          "sha256": "ab6df6040a4e24babad38f98454eb3263722fa6a1c441bfaa271798efbe55f27",
+          "size": 15068
+        },
+        {
+          "archive_member": "Python-3.13.16/Modules/expat/COPYING",
+          "retained_path": "native-source-notice-texts/31b15de82aa19a845156169a17a5488bf597e561b2c318d159ed583139b25e87.txt",
+          "sha256": "31b15de82aa19a845156169a17a5488bf597e561b2c318d159ed583139b25e87",
+          "size": 1144
+        },
+        {
+          "archive_member": "Python-3.13.16/Tools/msi/bundle/bootstrap/LICENSE.txt",
+          "retained_path": "native-source-notice-texts/cb95daf98edda8e08a242e1060691b6941f0911692bf468a3f9c5e4b58c09b8f.txt",
+          "sha256": "cb95daf98edda8e08a242e1060691b6941f0911692bf468a3f9c5e4b58c09b8f",
+          "size": 3273
+        }
+      ],
+      "output": "/nix/store/jpw02npp3bx1jm1dw0rr7p1w8890fgd6-python3-3.13.16",
+      "required_notice": "Python-3.13.16/LICENSE",
+      "sha256": "f4b1bfb3c79b5bb11b8d228a12504163b4c0dab4d679828d8f5f26b6cb6ab35d",
+      "source": "/nix/store/2k17nhljlm3fjg2713vilw8klb626dx4-Python-3.13.16.tar.xz",
+      "status": "upstream-source-candidates-only-output-and-legal-review-pending",
+      "version": "3.13.16"
+    }
+  ],
+  "inventory_complete": false,
+  "legal_approval": false,
+  "native_evidence_path": "docs/evidence/t02/operator-native-closure-revisions/ab756ab3070111f65adc1cd3ab2affad737fff65ab43f45b64bddce8e8de1808.json",
+  "native_evidence_sha256": "ab756ab3070111f65adc1cd3ab2affad737fff65ab43f45b64bddce8e8de1808",
+  "output_notice_incorporation_confirmed": false,
+  "schema_version": 1,
+  "source_offer_obligations_satisfied": false
+}

@@ -1,6 +1,6 @@
 ---
 gsd_state_version: "1.0"
-status: paused
+status: executing
 last_updated: "2026-10-22T06:09:29.567539Z"
 state_head: 3f03fe690ab9137c2dfe39f27f2159265420f879
 progress:
@@ -292,3 +292,11 @@ Quick261022-8fv binds actual libpq AF_UNIX/SOCK_STREAM SO_PEERCRED to approved p
 ## Context checkpoint — role and peer admission saved
 
 Proactive pause under standing AGENTS rule; context pressure apparent, exact percentage unavailable. Three slices committed locally through3f03fe6. Read HANDOFF.json and phase .continue-here.md. Resume directly into publisher/custody/admission-barrier repository preparation, then remaining authorized local work without per-slice stops. No active tests/async jobs, real credentials, host/provider operations or full acceptance. Native evidence rechecks passed. Remote publication remains blocked pending scoped authority.
+
+## Session continuity — admission reader implementation
+
+Resumed from f9ac989 after user explicitly pushed origin/main successfully; prior publication block resolved. Clean tree confirmed, no interrupted agents. Consuming one-shot handoff and continuing inline quick261022-8m7 into durable admission-reader scope.14/16/17 remain incomplete; no host/provider actions authorized.
+
+## Latest continuation — durable admission reader
+
+Quick261022-8m7: both operator operations hold actual nonblocking shared flock on fixed root-owned physical control-admission.json; admitted generation/manifest binds active raw control reads, every schema guard rechecks and final verification suppresses late success. Missing/blocked/changed state denies; no reader writes/provisions. Real independent-process lock and persisted-blocked tests plus scratch SCRAM lifetime-lease integration pass. SQL3/12310.336s, source7/5 4.530s, operator7/17 6.072s; native54/9 new revision. Publisher must persist blocked bytes under exclusive lock on same permanent inode; actual writer/custody/install/application coverage/rootless qualification unfinished.14/16/17/full phase remain incomplete. User push resolved old origin/main block; continue commit/push within that scope. No credentials/host/provider actions.

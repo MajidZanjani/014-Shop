@@ -162,3 +162,49 @@ rejects an existing target. Caller/root ownership and filesystem durability are
 not qualified by this local helper; retain the original input and failure history
 for separately authorized custody and publication decisions. Owner/root changes
 after the observation are outside this snapshot guarantee.
+
+## Prepared operator admission reader
+
+The two live-source operator operations now require a separate physical
+`/srv/shop/control-admission.json`, outside the replaceable control directory.
+The reader walks root-owned non-writable ancestors without following symlinks,
+opens an existing root-owned regular singly linked mode0440 file, and takes a
+nonblocking shared flock for the whole operation. Missing, malformed or blocked
+state and an exclusive writer lock deny entry before control/credential/SQL work.
+No lock file, directory, admission state or authority is created by the reader.
+Offline candidate validation and help do not acquire admission.
+
+The closed record has integer schema_version1, state admitted, a64-character
+lowercase hex generation identity, and record_sha256. The latter binds exact raw
+control-file bytes; expected.json, database-process.json and
+operator-connection.json are required. Additional keys are limited to
+schema-reconciliation.json, schema-authorization.json, ledger-bootstrap.json and
+bootstrap.json. All digests are lowercase SHA256. Generation/hash equality
+identifies bytes; it is not evidence of approval or permission to reopen.
+
+While this context is active, load_control rechecks the unchanged barrier and
+requires every loaded record to belong to its manifest with its exact raw hash.
+Schema admission also rechecks the barrier at every existing transaction guard.
+Both operations verify it again before returning, so a late failed check cannot
+escape as a successful command result; a schema outcome remains unconfirmed.
+Descriptor metadata and the named lock inode must remain identical. Nested
+admission contexts deny. Existing standalone library readers without an operator
+admission context retain their prior behavior; this is not an application/worker
+or universal bootstrap barrier.
+
+A cooperating publisher must exclusively lock this same permanent inode, persist
+and fsync blocked state before changing any generation, retain evidence and only
+reopen under separate actual authority after complete durable qualification.
+Never replace or unlink the lock inode: a new inode creates an independent lock.
+Advisory locking cannot stop a privileged/noncooperating writer. Lock release on
+exit does not make blocked bytes admitted. See Linux [flock(2)](https://www.man7.org/linux/man-pages/man2/flock.2.html).
+The actual authorized publisher/state-writer and installation remain unfinished.
+
+Local scratch tests use actual independent-process locks, writer exclusion and
+release, persisted blocked state after release, named-inode/metadata/bytes changes,
+exact control hashes, closed schemas/modes and exception release. A synthetic
+postcommit-return change suppresses the success report. Real scratch PostgreSQL
+SCRAM inspection/schema commands now hold the actual lease while another process
+is denied an exclusive lock. Physical production paths/root records remain
+fixture-adapted; this neither qualifies power-loss durability nor grants actual
+host publication, credentials, provisioning or reopening authority.

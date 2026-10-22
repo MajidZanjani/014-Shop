@@ -822,6 +822,9 @@ class DatabaseDestinationTests(unittest.TestCase):
                 self.assertEqual(observed['pgdata'],str(pg.root/'data'))
                 return real_validate(wanted,dict(observed,pgdata='/var/lib/shop/postgres'))
             with contextlib.ExitStack() as stack:
+                import test_control_admission as admission_tests
+                barrier_fixture=admission_tests.ControlAdmissionTests()
+                _,barrier_path,_=stack.enter_context(barrier_fixture.fixture())
                 inputs={}
                 for descriptor,data in ((0,artifact),(3,password.encode())):
                     file=stack.enter_context(tempfile.TemporaryFile(dir=pg.root))
@@ -841,6 +844,8 @@ class DatabaseDestinationTests(unittest.TestCase):
                 # Preserve the real function before patching the shared module.
                 actual_connect=psycopg.connect
                 def tracked_connect(**kwargs):
+                    cli.control.check_admission()
+                    self.assertEqual(barrier_fixture.child_lock(barrier_path,True),3)
                     with patch.object(psycopg,'connect',actual_connect):return connect(**kwargs)
                 stack.enter_context(patch.object(cli.psycopg,'connect',side_effect=tracked_connect))
                 for status in ('not_recorded','recorded','conflict'):
@@ -881,6 +886,9 @@ class DatabaseDestinationTests(unittest.TestCase):
                     file=inputs[descriptor];file.seek(0);file.write(data);file.truncate();file.flush()
                 schema_opened=[]
                 def schema_connect(**kwargs):
+                    if cli.control._ADMISSION.get() is not None:
+                        cli.control.check_admission()
+                        self.assertEqual(barrier_fixture.child_lock(barrier_path,True),3)
                     connection=actual_connect(**kwargs);schema_opened.append(connection)
                     self.assertEqual(connection.execute('SHOW default_transaction_read_only').fetchone()[0],'off')
                     self.assertEqual(connection.execute('SELECT current_user, session_user').fetchone(),

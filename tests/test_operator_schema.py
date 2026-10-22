@@ -19,6 +19,8 @@ class OperatorSchemaTests(unittest.TestCase):
             'executable': connection_record['pg_control'].replace('/pg_controldata', '/postgres')}}
         transport = command.transport
         with contextlib.ExitStack() as stack:
+            stack.enter_context(patch.object(command.control,'admission',contextlib.nullcontext))
+            stack.enter_context(patch.object(command.control,'check_admission'))
             stack.enter_context(patch.dict(os.environ, transport.SAFE_ENV, clear=True))
             stack.enter_context(patch.object(command.os, 'geteuid', return_value=9909))
             loaded = stack.enter_context(patch.object(transport, 'load_connection', return_value=connection_record))

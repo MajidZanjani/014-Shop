@@ -4,6 +4,7 @@ Only apply-reviewed-schema and --help. No bootstrap, DSN/path, role provisioning
 retry or production application connection. Private artifact FD0/credential FD3.
 """
 import json
+import control
 import os
 import sys
 import operator_inspect as transport
@@ -45,6 +46,12 @@ def require_schema_role(connection):
 
 
 def apply_from_fds():
+    require(dict(os.environ) == transport.SAFE_ENV and os.geteuid() > 0)
+    with control.admission():
+        return _apply_admitted()
+
+
+def _apply_admitted():
     """Single-process source command only; never invoke inside an app server."""
     require(dict(os.environ) == transport.SAFE_ENV and os.geteuid() > 0)
     connection_record = transport.load_connection()
@@ -61,6 +68,7 @@ def apply_from_fds():
     connection = None
 
     def admission():
+        control.check_admission()
         require(transport.load_connection() == connection_record
                 and transport.process_probe.load_record() == approved
                 and schema.load_authorization() == authorization

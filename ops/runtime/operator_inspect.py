@@ -4,6 +4,7 @@ Only inspect, validate-records and --help exist. No DSN, path or mutation argume
 Artifact input is private regular FD0; credential input is private regular FD3.
 """
 import json
+import control
 import os
 import re
 import stat
@@ -101,6 +102,12 @@ def validate_report(value):
 
 
 def inspect_from_fds():
+    require(dict(os.environ) == SAFE_ENV and os.geteuid() > 0)
+    with control.admission():
+        return _inspect_admitted()
+
+
+def _inspect_admitted():
     """Single-process CLI only; never invoke inside an application server."""
     require(dict(os.environ)==SAFE_ENV and os.geteuid()>0)
     connection_record=load_connection();expected=connection_record['database']

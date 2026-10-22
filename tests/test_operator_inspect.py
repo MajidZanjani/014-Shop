@@ -30,6 +30,7 @@ class OperatorInspectTests(unittest.TestCase):
     def mocked_command(self):
         record=self.record();connection=Mock()
         with contextlib.ExitStack() as stack:
+            stack.enter_context(patch.object(cli.control,'admission',contextlib.nullcontext))
             stack.enter_context(patch.dict(os.environ,cli.SAFE_ENV,clear=True))
             stack.enter_context(patch.object(cli.os,'geteuid',return_value=9909))
             loaded=stack.enter_context(patch.object(cli,'load_connection',return_value=record))
