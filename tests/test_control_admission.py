@@ -258,3 +258,95 @@ finally:
                 with patch.object(control,'load_block_authority',return_value=authority):
                     with self.assertRaises(ValueError):control.block_admission()
                 self.assertEqual(self.child_lock(path,True),0)
+
+    def inspection_authority(self,original,block_id='b'*32):
+        from datetime import datetime,timedelta,timezone
+        return {'schema_version':1,'action':'inspect-control-admission-block',
+                'authorization_id':'c'*32,'block_authorization_id':block_id,
+                'original_admission_sha256':hashlib.sha256(original).hexdigest(),
+                'expires_at':(datetime.now(timezone.utc)+timedelta(hours=1)).strftime('%Y-%m-%dT%H:%M:%SZ')}
+
+    def test_block_inspection_observes_original_exact_block_and_partial_without_writes(self):
+        for kind,status in (('original','original_matches'),('blocked','blocked_matches'),
+                            ('empty','different_bytes'),('partial','different_bytes'),
+                            ('other_id','different_bytes')):
+            with self.subTest(kind=kind),self.fixture() as (parent,path,fd):
+                original=path.read_bytes();authority=self.inspection_authority(original)
+                if kind=='blocked':
+                    with patch.object(control,'load_block_authority',return_value=self.authority(path)):
+                        control.block_admission()
+                elif kind=='empty':path.write_bytes(b'')
+                elif kind=='partial':path.write_bytes(b'{"state":"blo')
+                elif kind=='other_id':path.write_bytes(control._blocked_bytes(original,'d'*32))
+                before=path.read_bytes();metadata=path.stat()
+                with patch.object(control,'load_block_inspection',return_value=authority), \
+                     patch.object(control,'load_block_authority',side_effect=AssertionError('old write authority unused')), \
+                     patch.object(control.os,'fsync',side_effect=AssertionError('no sync')), \
+                     patch.object(control.os,'ftruncate',side_effect=AssertionError('no truncate')), \
+                     patch.object(control.os,'pwrite',side_effect=AssertionError('no writes')):
+                    result=control.inspect_admission_block(original)
+                self.assertEqual(result['status'],status)
+                self.assertEqual(result['observed_sha256'],hashlib.sha256(before).hexdigest())
+                for flag in ('durability_qualified','completion_confirmed','publication_authorized',
+                             'retry_authorized','reopening_authorized'):self.assertFalse(result[flag])
+                self.assertEqual(path.read_bytes(),before)
+                after=path.stat()
+                self.assertEqual((metadata.st_ino,metadata.st_size,metadata.st_mtime_ns,metadata.st_ctime_ns),
+                                 (after.st_ino,after.st_size,after.st_mtime_ns,after.st_ctime_ns))
+                self.assertEqual(self.child_lock(path,True),0)
+
+    def test_block_inspection_authority_and_exact_original_required_before_open(self):
+        with self.fixture() as (parent,path,fd):
+            original=path.read_bytes();valid=self.inspection_authority(original)
+            self.assertEqual(control.validate_block_inspection(valid),valid)
+            for change in ({'action':'block-control-admission'},{'schema_version':True},
+                           {'expires_at':'2000-01-01T00:00:00Z'},{'block_authorization_id':'invalid'},
+                           {'original_admission_sha256':'invalid'},{'extra':True}):
+                with self.subTest(change=change),self.assertRaises(ValueError):
+                    control.validate_block_inspection(dict(valid,**change))
+            with patch.object(control,'load_block_inspection',return_value=valid), \
+                 patch.object(control,'_admission_file',side_effect=AssertionError('invalid original must not open')):
+                for data in (original+b' ',b'',b'{}',b'x'*8193):
+                    with self.assertRaises(ValueError):control.inspect_admission_block(data)
+            with patch.object(control.os,'geteuid',return_value=9909),patch.object(control,'load_block_inspection') as loader:
+                with self.assertRaises(ValueError):control.inspect_admission_block(original)
+                loader.assert_not_called()
+
+    def test_block_inspection_denies_writer_revocation_changed_bytes_and_replacement(self):
+        import fcntl
+        with self.fixture() as (parent,path,fd):
+            original=path.read_bytes();authority=self.inspection_authority(original)
+            writer=os.open(path,os.O_RDONLY)
+            try:
+                fcntl.flock(writer,fcntl.LOCK_EX|fcntl.LOCK_NB)
+                with patch.object(control,'load_block_inspection',return_value=authority):
+                    with self.assertRaises(BlockingIOError):control.inspect_admission_block(original)
+            finally:os.close(writer)
+        for kind in ('revoke','change','replace'):
+            with self.subTest(kind=kind),self.fixture() as (parent,path,fd):
+                original=path.read_bytes();authority=self.inspection_authority(original);calls=[]
+                def recheck():
+                    calls.append(True)
+                    if len(calls)==2:
+                        if kind=='revoke':return dict(authority,authorization_id='d'*32)
+                        if kind=='change':path.write_bytes(b'{"partial":')
+                        else:
+                            other=parent/'replacement';other.write_bytes(original);other.chmod(0o440);os.replace(other,path)
+                    return authority
+                with patch.object(control,'load_block_inspection',side_effect=recheck):
+                    with self.assertRaises(ValueError):control.inspect_admission_block(original)
+                self.assertEqual(self.child_lock(path,True),0)
+
+    def test_block_inspection_of_uncertain_sync_has_no_completion_or_retry_authority(self):
+        with self.fixture() as (parent,path,fd):
+            original=path.read_bytes();write=self.authority(path)
+            with patch.object(control,'load_block_authority',return_value=write), \
+                 patch.object(control.os,'fsync',side_effect=OSError('synthetic-sync-failure')):
+                with self.assertRaises(OSError):control.block_admission()
+            with patch.object(control,'load_block_inspection',return_value=self.inspection_authority(original)):
+                result=control.inspect_admission_block(original)
+            self.assertEqual(result['status'],'blocked_matches')
+            self.assertFalse(result['completion_confirmed']);self.assertFalse(result['retry_authorized'])
+            self.assertFalse(result['reopening_authorized'])
+            with self.assertRaises(ValueError):
+                with control.admission():self.fail('observed block must remain blocked')

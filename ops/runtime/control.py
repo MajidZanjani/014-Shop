@@ -82,11 +82,11 @@ def _admission_file(*, writable=False):
     finally: os.close(directory)
 
 
-def _admission_bytes(directory, fd):
+def _admission_bytes(directory, fd, *, allow_empty=False):
     before = os.fstat(fd)
     require(stat.S_ISREG(before.st_mode) and before.st_uid == 0
             and stat.S_IMODE(before.st_mode) == 0o440 and before.st_nlink == 1
-            and 0 < before.st_size <= 8192)
+            and (0 if allow_empty else 1) <= before.st_size <= 8192)
     raw = os.pread(fd,8193,0)
     after = os.fstat(fd)
     named = os.stat(ADMISSION_NAME,dir_fd=directory,follow_symlinks=False)
@@ -95,8 +95,8 @@ def _admission_bytes(directory, fd):
     return raw,tuple(getattr(after,key) for key in _META)
 
 
-def _admission_snapshot(directory, fd):
-    raw,metadata = _admission_bytes(directory,fd)
+def _validate_admitted(raw):
+    require(type(raw) is bytes and 0 < len(raw) <= 8192)
     value = json.loads(raw,object_pairs_hook=unique_fields)
     require(type(value) is dict and set(value) == {'schema_version','state','generation','record_sha256'}
             and type(value['schema_version']) is int and value['schema_version'] == 1
@@ -107,7 +107,21 @@ def _admission_snapshot(directory, fd):
             and {'expected.json','database-process.json','operator-connection.json'} <= set(records) <= ADMISSION_RECORDS)
     for digest in records.values():
         require(type(digest) is str and re.fullmatch(r'[a-f0-9]{64}',digest))
-    return raw,metadata,records
+    return value
+
+
+def _admission_snapshot(directory, fd):
+    raw,metadata = _admission_bytes(directory,fd)
+    value = _validate_admitted(raw)
+    return raw,metadata,value['record_sha256']
+
+
+def _blocked_bytes(raw, authorization_id):
+    value = _validate_admitted(raw)
+    value.update(state='blocked',block_authorization_id=authorization_id)
+    blocked = json.dumps(value,sort_keys=True,separators=(',',':')).encode('ascii')+b'\n'
+    require(0 < len(blocked) <= 8192)
+    return blocked
 
 
 def check_admission():
@@ -176,10 +190,7 @@ def block_admission():
         require(hashlib.sha256(raw).hexdigest() == authority['current_admission_sha256'])
         require(load_block_authority() == authority)
         # Capture the existing admitted generation, not discovered target data.
-        value = json.loads(raw,object_pairs_hook=unique_fields)
-        value.update(state='blocked',block_authorization_id=authority['authorization_id'])
-        blocked = json.dumps(value,sort_keys=True,separators=(',',':')).encode('ascii')+b'\n'
-        require(0 < len(blocked) <= 8192)
+        blocked = _blocked_bytes(raw,authority['authorization_id'])
         # Recheck named inode and exact input immediately before the first write.
         require(_admission_bytes(directory,fd) == (raw,metadata))
         os.ftruncate(fd,0)
@@ -198,4 +209,48 @@ def block_admission():
                 'previous_admission_sha256':hashlib.sha256(raw).hexdigest(),
                 'blocked_admission_sha256':hashlib.sha256(blocked).hexdigest(),
                 'local_fsync_readback_completed':True,'durability_qualified':False,
+                'publication_authorized':False,'retry_authorized':False,'reopening_authorized':False}
+
+
+
+def validate_block_inspection(value):
+    require(type(value) is dict and set(value) == {
+        'schema_version','action','authorization_id','expires_at',
+        'original_admission_sha256','block_authorization_id'})
+    require(value['action'] == 'inspect-control-admission-block'
+            and type(value['block_authorization_id']) is str
+            and re.fullmatch(r'[a-f0-9]{32}',value['block_authorization_id']))
+    # Reuse the exact identity/time formats without reading/renewing write authority.
+    validate_block_authority({key:value[key] for key in
+        ('schema_version','authorization_id','expires_at')} | {
+        'action':'block-control-admission',
+        'current_admission_sha256':value['original_admission_sha256']})
+    return value
+
+
+def load_block_inspection():
+    return load_control('publication-inspection.json',validate_block_inspection)
+
+
+def inspect_admission_block(original):
+    """Observe current bytes, never permission to repeat, publish or reopen.
+
+    Even exact original bytes can be restored/stale. Matching blocked bytes do
+    not establish successful fsync, original writer completion or custody.
+    """
+    require(os.geteuid() == 0 and _ADMISSION.get() is None)
+    authority = load_block_inspection()
+    _validate_admitted(original)
+    require(hashlib.sha256(original).hexdigest() == authority['original_admission_sha256'])
+    blocked = _blocked_bytes(original,authority['block_authorization_id'])
+    with _admission_file() as (directory,fd):
+        fcntl.flock(fd,fcntl.LOCK_SH|fcntl.LOCK_NB)
+        observed,metadata = _admission_bytes(directory,fd,allow_empty=True)
+        status = 'original_matches' if observed == original else (
+                 'blocked_matches' if observed == blocked else 'different_bytes')
+        require(load_block_inspection() == authority)
+        require(_admission_bytes(directory,fd,allow_empty=True) == (observed,metadata))
+        return {'schema_version':1,'status':status,
+                'observed_sha256':hashlib.sha256(observed).hexdigest(),
+                'durability_qualified':False,'completion_confirmed':False,
                 'publication_authorized':False,'retry_authorized':False,'reopening_authorized':False}
