@@ -51,13 +51,14 @@ def prepare_records(data):
 STABLE_FIELDS=('st_dev','st_ino','st_uid','st_gid','st_mode','st_size','st_mtime_ns','st_ctime_ns')
 
 
-def _stage_file(directory, name, payload):
+def _stage_file(directory, name, payload, *, mode=0o400, gid=None):
     """New private regular file only; retain every created object on failure."""
     fd=os.open(name,os.O_RDWR|os.O_CREAT|os.O_EXCL|os.O_NOFOLLOW|os.O_CLOEXEC,
-               0o400,dir_fd=directory)
+               mode,dir_fd=directory)
     try:
+        if gid is not None:os.fchown(fd,-1,gid)
         info=os.fstat(fd)
-        require(stat.S_ISREG(info.st_mode) and stat.S_IMODE(info.st_mode)==0o400
+        require(stat.S_ISREG(info.st_mode) and stat.S_IMODE(info.st_mode)==mode
                 and info.st_uid==os.geteuid() and info.st_nlink==1 and info.st_size==0)
         remaining=memoryview(payload)
         while remaining:
@@ -87,14 +88,14 @@ def _candidate_material(data):
     return files,report
 
 
-def _readback_files(directory, files):
+def _readback_files(directory, files, *, mode=0o400, gid=None):
     require(set(os.listdir(directory))==set(files))
     for filename,payload in files.items():
         fd=os.open(filename,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK|os.O_CLOEXEC,dir_fd=directory)
         try:
             before=os.fstat(fd)
             require(stat.S_ISREG(before.st_mode) and before.st_uid==os.geteuid()
-                    and stat.S_IMODE(before.st_mode)==0o400 and before.st_nlink==1
+                    and stat.S_IMODE(before.st_mode)==mode and (gid is None or before.st_gid==gid) and before.st_nlink==1
                     and before.st_size==len(payload))
             require(os.pread(fd,len(payload)+1,0)==payload)
             after=os.fstat(fd)

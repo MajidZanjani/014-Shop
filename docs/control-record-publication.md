@@ -371,3 +371,67 @@ old authority lookup, tampering/missing/extra/permissions/symlink/hardlink/FIFO,
 receipt corruption, revocation and named-generation replacement. Root paths and
 actual authority remain adapted fixtures; trusted ancestry, independent archive,
 crash durability, publication and reopening qualification remain pending.
+
+## Library-only physical publication with admission blocked
+
+`publication.publish_control_generation(candidate_bytes, original_admission,
+custody_evidence)` is a root-only library operation, included in the explicit
+eleven-module inert source artifact. No command, automatic installer, account,
+service, HBA/role/credential provisioner or reopening operation is supplied.
+Its separate root-owned `/srv/shop/control-publication.json` stays outside the
+replaceable control directory. Existing root-owned, non-writable physical
+ancestor and stable bounded record reads apply.
+
+The closed publication authority binds integer schema_version1, action
+publish-control-generation, authorization_id32 hex/future UTC expires_at, exact
+bundle_sha256/original_admission_sha256/blocked_admission_sha256/
+custody_evidence_sha256, exact parent device/inode, prior_directory
+device/inode/gid/mode0750, read_gid and complete prior_files_sha256. Prior names
+must be known control/authority JSON names. All digests are SHA256. The read group
+must match the reviewed candidate startup GID and the existing control directory;
+old/new startup UID/GID must remain equal. This action does not authorize account
+or resource-allocation changes.
+
+Custody evidence is bounded private bytes whose exact digest must be independently
+approved by the root publication authority. A digest, local retained marker or
+matching inspection report cannot grant that authority. Actual issuance requires
+reviewed custody/approvals, complete new-shop ownership/inventory/allowlist and
+activation-impact evidence plus exact action permission. Nothing here issues a
+record or claims external archive/provider/storage qualification.
+
+The publisher holds EXNB on the same permanent physical admission inode and
+requires its exact canonical blocked form for the supplied original admission.
+It verifies the complete actual prior directory identity, exact file set and raw
+hashes, regular/root/single-link/stable files and original manifest. Unknown or
+changed entries deny before staging. It exclusively stages
+`/srv/shop/control-next-<bundle-sha256>` with root/group mode0750 directory and
+mode0440 records, handles short writes, fsyncs and reads back exact canonical
+reviewed bytes. Authority is rechecked throughout.
+
+Linux/glibc renameat2 with RENAME_NOREPLACE first preserves the entire original
+`control` directory as `control-previous-<original-admission-sha256>`, syncs the
+parent, then moves the staged physical directory to `control` without replacing
+any intervening object and syncs again. There is no unsafe replacement fallback.
+No old file, authority or committed record is deleted or chmod/chowned. Only
+exclusively created stage objects receive the reviewed group. The original
+admission file, inode and blocked bytes remain unchanged before, between and
+after the renames; normal readers remain denied. These retained paths must be
+included in actual shop storage accounting; nothing is pruned to fit the model.
+
+Return status control_published_blocked reports only completed local calls and
+readback; durability_qualified/publication_authorized/retry_authorized/
+reopening_authorized remain false as grants for any further action. A failure
+may leave a partial stage, an intact prior directory with no current control,
+or installed new controls. All remain behind blocked admission. No rollback,
+cleanup, target adoption or automatic retry occurs, including after expiry or
+revocation. Reconciliation and later opening require separate actual authority.
+Root/noncooperating writers and real filesystem/namespace/power-loss behavior
+still require qualification.
+
+Actual local scratch tests exercise no-replace renames, exact old/new byte and
+permission preservation, unchanged blocked barrier, reader exclusion, scope and
+custody-digest denial, unknown/changed/linked prior entries, preexisting stage or
+prior objects, stage-sync failure, failure between renames and late revocation.
+An unknown `control` inserted between renames is preserved while publication
+fails. All authority and custody evidence are explicitly synthetic fixtures;
+no production path, actual custody approval, existing service or host is touched.

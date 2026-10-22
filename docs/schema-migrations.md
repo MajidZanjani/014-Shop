@@ -171,7 +171,7 @@ They adapt only the fixed PGDATA comparison to owned scratch paths. They do not
 establish rootless process/storage/resource containment or production readiness.
 
 The inert source bundle is available as the flake package
-`shop-database-tools-source`. It contains exactly ten explicitly selected Python
+`shop-database-tools-source`. It contains exactly eleven explicitly selected Python
 modules plus the pinned SQL artifact and a closed SHA-256 manifest. Individual
 source bytes are copied into separate store files; the bundle does not retain a
 reference to the entire repository source. It contains no interpreter, dependency
@@ -318,7 +318,7 @@ with matching schema/ledger rows and closed connections. Runtime records, socket
 ancestry/identity, UID and canonical PGDATA are fixture adaptations. The fixture
 uses its administrative role, so it does not qualify least-privilege schema
 access. Separate real-PostgreSQL cases deny admission at every transaction guard
-and leave neither schema nor ledger effects. Package tests import the ten-module
+and leave neither schema nor ledger effects. Package tests import the eleven-module
 source set without connections and exercise source help/bootstrap denial. Full
 pinned executable startup/error/FD transport, exact schema role privileges,
 root-record publisher/admission barrier, Django recorder/migration integration,
@@ -329,7 +329,7 @@ actual host/runtime and independent failure/recovery qualification remain pendin
 
 The flake now exports `shop-operator-schema` separately from
 `shop-operator-inspect`. Both use the same exact Python3.13.16, Psycopg3.3.6
-site, libpq18.6, libc and ten-module source artifact. The shared driver selects
+site, libpq18.6, libc and eleven-module source artifact. The shared driver selects
 only one declared module at evaluation time; runtime arguments cannot change
 command modules. The inspection executable continues to reject schema writes.
 The schema executable accepts only its existing `--help` and
@@ -457,3 +457,8 @@ its work; synthetic controls confirm both paths close before their SQL action.
 Root records, startup/resource attestation, fixed path/UID and PGDATA comparisons
 remain fixture-adapted. This is local transport evidence only; no production
 socket, role, root record or host account is created.
+
+The inert source set also includes publication.py, a root-only library publisher
+with no operator CLI or installation. It preserves previous physical controls
+and keeps admission blocked; separate actual publication/custody authority and
+all host/runtime qualification remain required. See control-record-publication.md.

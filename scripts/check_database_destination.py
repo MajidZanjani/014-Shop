@@ -34,8 +34,9 @@ suite.addTests(unittest.TestLoader().discover('tests',pattern='test_record_bundl
 suite.addTests(unittest.TestLoader().discover('tests',pattern='test_operator_schema.py'))
 suite.addTests(unittest.TestLoader().discover('tests',pattern='test_control_admission.py'))
 suite.addTests(unittest.TestLoader().discover('tests',pattern='test_generation_custody.py'))
+suite.addTests(unittest.TestLoader().discover('tests',pattern='test_publication.py'))
 r=unittest.TextTestRunner(verbosity=2).run(suite)
-if r.testsRun < 145 or r.skipped or not r.wasSuccessful(): sys.exit(1)
+if r.testsRun < 153 or r.skipped or not r.wasSuccessful(): sys.exit(1)
 '''
             result=dev_postgres.run([str(python),'-c',script],env=env,cwd=ROOT,timeout=60)
             match=re.search(r'Ran (\d+) tests?', result.stderr)

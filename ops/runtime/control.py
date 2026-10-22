@@ -20,10 +20,10 @@ def unique_fields(pairs):
     return result
 
 
-def _load_control_data(filename):
+def _load_control_data(filename, *, outside_control=False):
     """Walk root-owned, non-writable ancestors by FD; reject symlinks."""
     require(isinstance(filename,str) and re.fullmatch(r"[a-z][a-z0-9-]*\.json",filename))
-    path = Path("/srv/shop/control")/filename
+    path = Path("/srv/shop" if outside_control else "/srv/shop/control")/filename
     directory = os.open('/', os.O_RDONLY | os.O_DIRECTORY | os.O_CLOEXEC)
     try:
         for part in path.parts[1:-1]:
@@ -45,7 +45,7 @@ def _load_control_data(filename):
             require(all(getattr(info,key) == getattr(after,key) for key in fields)
                     and len(data) == info.st_size and 0 < len(data) <= 32768)
             active = _ADMISSION.get()
-            if active is not None:
+            if active is not None and not outside_control:
                 active['verify']()
                 require(filename in active['records']
                         and hashlib.sha256(data).hexdigest() == active['records'][filename])
