@@ -1,0 +1,83 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-10-22T06:54:19.975441Z",
+  "phase": "02",
+  "phase_name": "Reproducible application and deployment skeleton",
+  "phase_dir": ".planning/phases/02-reproducible-application-and-deployment-skeleton",
+  "plan": 14,
+  "task": 2,
+  "total_tasks": 2,
+  "status": "paused",
+  "completed_tasks": [
+    {
+      "id": 1,
+      "name": "Independent read-only uncertain admission-block reconciliation",
+      "status": "done",
+      "commit": "1162972"
+    },
+    {
+      "id": 2,
+      "name": "Exact admitted-generation capture and separately authorized private local custody",
+      "status": "done",
+      "commit": "783615a"
+    }
+  ],
+  "remaining_tasks": [
+    {
+      "id": 3,
+      "name": "Read-only retained-generation inspection/reconciliation without repair or completion claims",
+      "status": "not_started"
+    },
+    {
+      "id": 4,
+      "name": "Full physical generation publisher/custody lifecycle and separately authorized reopening",
+      "status": "not_started"
+    },
+    {
+      "id": 5,
+      "name": "Django migration recorder and all app/worker write integration; independent executable replica",
+      "status": "not_started"
+    },
+    {
+      "id": 6,
+      "name": "Complete16 native/schema/OCI/licences and17 actual payload reproducibility/full CI; actual runtime/off-host/human qualification",
+      "status": "not_started"
+    }
+  ],
+  "blockers": [
+    {
+      "description": "Independent off-host runner unassigned; disruptive/rootless/runtime/recovery qualification pending.",
+      "type": "external",
+      "workaround": "Continue local repository preparation; do not repeat runner request before qualification stage."
+    }
+  ],
+  "async_jobs": [],
+  "human_actions_pending": [
+    {
+      "action": "Phase02 human browser/source/licence/runtime/prohibition reviews and later independent runner assignment",
+      "context": "Local synthetic evidence does not grant parent phase/T11/T12 acceptance.",
+      "blocking": false
+    }
+  ],
+  "decisions": [
+    {
+      "decision": "Block reconciliation is an independent read-only authority and never reads or renews the original write authority.",
+      "rationale": "Matching original/blocked bytes can reflect uncertain writes or restored/stale state and cannot grant retry or reopening.",
+      "phase": "02"
+    },
+    {
+      "decision": "Capture all original admitted control bytes under one SH lease, archive exact authority separately outside the manifest hash graph.",
+      "rationale": "Avoid mixed snapshots and self-referential admission/authority hashes. Releasing lease means retained generation may no longer be current.",
+      "phase": "02"
+    },
+    {
+      "decision": "Retained.json presence is not successful operation evidence.",
+      "rationale": "Actual late parent-fsync failure leaves receipt despite raised operation; automatic repeat is denied. Independent crash/archive qualification remains pending.",
+      "phase": "02"
+    }
+  ],
+  "uncommitted_files": [],
+  "checkpoint_base_commit": "783615a00c6718de877ac3ee4c3600e1fc12e89a",
+  "next_action": "Read retain_control_generation and tests/test_generation_custody.py; implement a separately authorized read-only inspection of retained generations against exact original admission/control/authority bytes and the hash receipt. It must accept that a full receipt can remain after failed parent fsync, report only current byte/metadata observations with no completion/durability/retry/reopen permission, and never overwrite or repair. Then continue full physical-generation publisher preparation under the permanent admission barrier.",
+  "context_notes": "Sustained local repository implementation/ordinary tests/commit/push remain authorized; do not ask per slice. No protected host/provider/DNS/bank/mail/action authorized. Origin/main scope resolved and both1162972/783615a pushed and verified. Current phase02 has8 completed local parent slices,7 human/qualification pending,14/16/17 implementation-incomplete. New quick slices complete bounded local work only, no FULL_PASS. Final local SQL3/13910.364s (initial13810.466s passed), source7/5 4.326s, operator7/17 5.592s, deployment16/31 2.289s, native54/9 write0.961s and notices9/7 write3.750s pass. Earlier reconciliation SQL3/13210.348s/source7/5/operator7/17 also passed. Initial native collection before runtime build completion failed path-info; after build completion it passed without retaining invalid output. Run builds to completion before dependent native collection. All workflow processes/agents/async jobs complete; no real credentials/.env read or host/provider/service/resource change. Tests adapt root physical paths and fake authority on newly owned scratch; archive parent leaf identity is not trusted ancestry or independent immutable custody. Source copies raw root files only to private root0400 artifacts; no private bytes in public artifacts/Nix/logs. Sandbox needs reviewed require_escalated because default bwrap cannot resolve cwd. Bound Nix jobs/cores and reuse cache/owned .scratch; no shared cleanup. Exact context percentage unavailable, proactive checkpoint under standing AGENTS policy; no measured90% claim."
+}
