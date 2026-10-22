@@ -4,7 +4,7 @@
 
 ## Current implementation activity — 2026-10-22
 
-**Updated through PENDING_IMPLEMENTATION_COMMIT:** 25 implementation quick tasks completed today, plus one planning reconciliation. Phase 02 remains 8/18 locally complete because 7 qualification/review and 3 implementation/qualification records remain open. See [current Phase 02 progress](phases/02-reproducible-application-and-deployment-skeleton/02-PROGRESS.md) and the [current state/task index](STATE.md).
+**Updated through dd322e1:** 25 implementation quick tasks completed today, plus one planning reconciliation. Phase 02 remains 8/18 locally complete because 7 qualification/review and 3 implementation/qualification records remain open. See [current Phase 02 progress](phases/02-reproducible-application-and-deployment-skeleton/02-PROGRESS.md) and the [current state/task index](STATE.md).
 
 - Plan 14 now includes source-only control publication/reopening/uncertainty lifecycle and an admission-leased Django multi-statement transaction precursor; application/worker integration and actual qualification remain open.
 - Plan 16 now has attributable named/header/marker licence evidence and offline reconciliation; all 12 package-wide reviews and complete native/OCI inventory remain pending.

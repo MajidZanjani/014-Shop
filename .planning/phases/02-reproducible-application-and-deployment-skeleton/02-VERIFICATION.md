@@ -6,7 +6,7 @@ scope: recorded-evidence-reconciliation
 ---
 # Current recorded-evidence audit — full phase not verified
 
-Updated against implementation PENDING_IMPLEMENTATION_COMMIT and current source/task records. This refresh reconciles recorded evidence; it is not an independent rerun of all lanes or full goal verification. See [current progress](02-PROGRESS.md) for evidence pointers and next work.
+Updated against implementation dd322e1 and current source/task records. This refresh reconciles recorded evidence; it is not an independent rerun of all lanes or full goal verification. See [current progress](02-PROGRESS.md) for evidence pointers and next work.
 
 Phase 02 remains8 local slices complete(00–05, 09, 15), 7 qualification/review pending(06–08, 10–13), 3 implementation/qualification incomplete(14, 16, 17). Actual filesystem has18 PLAN, 8 SUMMARY, 10 PARTIAL records. Phase 01 has2 documentation SUMMARY records. Today 25 implementation quick tasks advanced the incomplete plans; completed phase/BUILD acceptance is not inferred.
 
