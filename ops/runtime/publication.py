@@ -13,7 +13,7 @@ PRIOR_FILES = control.ADMISSION_RECORDS | {
     'record-publication.json','publication-inspection.json','generation-custody.json','custody-inspection.json'}
 
 
-def validate_authority(value):
+def validate_authority(value, *, require_fresh=True):
     require(type(value) is dict and set(value) == {
         'schema_version','action','authorization_id','expires_at','bundle_sha256',
         'original_admission_sha256','blocked_admission_sha256','custody_evidence_sha256',
@@ -21,7 +21,8 @@ def validate_authority(value):
     require(value['action'] == 'publish-control-generation')
     control.validate_block_authority({key:value[key] for key in
         ('schema_version','authorization_id','expires_at')} | {
-        'action':'block-control-admission','current_admission_sha256':value['bundle_sha256']})
+        'action':'block-control-admission','current_admission_sha256':value['bundle_sha256']},
+        require_fresh=require_fresh)
     for key in ('original_admission_sha256','blocked_admission_sha256','custody_evidence_sha256'):
         require(type(value[key]) is str and re.fullmatch(r'[a-f0-9]{64}',value[key]))
     parent=value['parent'];prior=value['prior_directory']
@@ -162,3 +163,102 @@ def publish_control_generation(data, original_admission, custody_evidence):
                         'publication_authorized':False,'retry_authorized':False,'reopening_authorized':False}
             finally:os.close(directory)
         finally:os.close(old)
+
+
+
+def validate_inspection(value):
+    require(type(value) is dict and set(value)=={
+        'schema_version','action','authorization_id','expires_at','publication_authority_sha256'}
+        and value['action']=='inspect-control-publication')
+    control.validate_block_authority({key:value[key] for key in
+        ('schema_version','authorization_id','expires_at')} | {
+        'action':'block-control-admission','current_admission_sha256':value['publication_authority_sha256']})
+    return value
+
+
+def load_inspection():
+    raw=control._load_control_data('control-publication-inspection.json',outside_control=True)
+    return validate_inspection(json.loads(raw,object_pairs_hook=control.unique_fields))
+
+
+def _observe_directory(parent,name,authority,payloads):
+    """Bounded current bytes only; unknown contents never grant adoption."""
+    try:named=os.stat(name,dir_fd=parent,follow_symlinks=False)
+    except FileNotFoundError:return 'absent',None
+    require(stat.S_ISDIR(named.st_mode) and named.st_uid==0
+            and stat.S_IMODE(named.st_mode)==0o750 and named.st_gid==authority['read_gid'])
+    directory=os.open(name,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW|os.O_CLOEXEC,dir_fd=parent)
+    try:
+        before=os.fstat(directory)
+        require(all(getattr(before,key)==getattr(named,key) for key in bundle.STABLE_FIELDS))
+        names=set(os.listdir(directory));require(len(names)<=16)
+        known=set(authority['prior_files_sha256'])|set(payloads)
+        files={};fingerprints=[];new_permissions=True
+        for filename in sorted(names & known):
+            fd=os.open(filename,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK|os.O_CLOEXEC,dir_fd=directory)
+            try:
+                info=os.fstat(fd)
+                require(stat.S_ISREG(info.st_mode) and info.st_uid==0 and info.st_nlink==1
+                        and not info.st_mode&0o022 and 0<=info.st_size<=32768)
+                raw=os.pread(fd,32769,0);after=os.fstat(fd)
+                node=os.stat(filename,dir_fd=directory,follow_symlinks=False)
+                require(len(raw)==info.st_size
+                        and all(getattr(info,key)==getattr(after,key)==getattr(node,key)
+                                for key in bundle.STABLE_FIELDS))
+                files[filename]=hashlib.sha256(raw).hexdigest()
+                fingerprints.append((filename,tuple(getattr(info,key) for key in bundle.STABLE_FIELDS),files[filename]))
+                new_permissions &= stat.S_IMODE(info.st_mode)==0o440 and info.st_gid==authority['read_gid']
+            finally:os.close(fd)
+        final=os.fstat(directory);node=os.stat(name,dir_fd=parent,follow_symlinks=False)
+        require(names==set(os.listdir(directory))
+                and all(getattr(before,key)==getattr(final,key)==getattr(node,key) for key in bundle.STABLE_FIELDS))
+        prior=authority['prior_directory']
+        old_identity=(before.st_dev,before.st_ino)==(prior['device'],prior['inode'])
+        if old_identity and names==set(authority['prior_files_sha256']) and files==authority['prior_files_sha256']:
+            status='original_matches'
+        elif names==set(payloads) and new_permissions and files=={
+            key:hashlib.sha256(raw).hexdigest() for key,raw in payloads.items()}:
+            status='new_matches'
+        else:status='different'
+        return status,(tuple(getattr(before,key) for key in bundle.STABLE_FIELDS),tuple(sorted(names)),tuple(fingerprints))
+    finally:os.close(directory)
+
+
+def inspect_publication(data, original_admission, historical_authority):
+    """Observe fixed publication states, never complete/retry/repair/reopen."""
+    require(os.geteuid()==0 and control._ADMISSION.get() is None)
+    inspection=load_inspection()
+    require(type(historical_authority) is bytes and 0<len(historical_authority)<=32768
+            and hashlib.sha256(historical_authority).hexdigest()==inspection['publication_authority_sha256'])
+    authority=validate_authority(json.loads(historical_authority,object_pairs_hook=control.unique_fields),require_fresh=False)
+    require(type(data) is bytes and hashlib.sha256(data).hexdigest()==authority['bundle_sha256'])
+    # Historical byte comparison only: expired inner records are not renewed or
+    # admitted. Live publication/reopening must still validate fresh authorities.
+    _,payloads=bundle._candidate_bytes(data)
+    control._validate_admitted(original_admission)
+    require(hashlib.sha256(original_admission).hexdigest()==authority['original_admission_sha256'])
+    stage='control-next-'+authority['bundle_sha256']
+    previous='control-previous-'+authority['original_admission_sha256']
+    with control._admission_file() as (parent,barrier):
+        fcntl.flock(barrier,fcntl.LOCK_SH|fcntl.LOCK_NB)
+        info=os.fstat(parent)
+        require(info.st_uid==0 and not info.st_mode&0o022 and (info.st_dev,info.st_ino)==
+                (authority['parent']['device'],authority['parent']['inode']))
+        blocked,metadata=control._admission_bytes(parent,barrier)
+        require(hashlib.sha256(blocked).hexdigest()==authority['blocked_admission_sha256'])
+        value=json.loads(blocked,object_pairs_hook=control.unique_fields)
+        block_id=value.get('block_authorization_id')
+        require(type(block_id) is str and re.fullmatch(r'[a-f0-9]{32}',block_id)
+                and blocked==control._blocked_bytes(original_admission,block_id))
+        def snapshot():
+            return tuple(_observe_directory(parent,name,authority,payloads) for name in ('control',stage,previous))
+        observed=snapshot();pattern=tuple(item[0] for item in observed)
+        status={('original_matches','absent','absent'):'original_matches',
+                ('original_matches','new_matches','absent'):'stage_matches',
+                ('absent','new_matches','original_matches'):'prior_moved_matches',
+                ('new_matches','absent','original_matches'):'published_matches'}.get(pattern,'conflicting')
+        require(load_inspection()==inspection and snapshot()==observed
+                and control._admission_bytes(parent,barrier)==(blocked,metadata))
+        return {'schema_version':1,'status':status,'completion_confirmed':False,
+                'durability_qualified':False,'publication_authorized':False,
+                'retry_authorized':False,'reopening_authorized':False}

@@ -1,7 +1,7 @@
 ---
 gsd_state_version: "1.0"
-status: paused
-last_updated: "2026-10-22T07:18:24.599057Z"
+status: executing
+last_updated: "2026-10-22T07:29:12.208164+00:00"
 state_head: dfbdc74e456c2ac8f187a3013884566bd7a4551b
 progress:
   total_phases: 14
@@ -12,8 +12,8 @@ progress:
 last_activity: 2026-10-22
 current_phase: 02
 current_phase_name: Reproducible application and deployment skeleton
-stopped_at: Proactive context-pressure checkpoint after retained inspection and physical blocked publisher. Exact percentage unavailable; read HANDOFF and resume sustained local work.
-last_activity_desc: Read-only retained inspection and blocked physical publication verified/pushed; reconciliation/reopening/14/16/17 incomplete.
+stopped_at: Read-only publication reconciliation verified; separate reopening and actual qualification remain pending.
+last_activity_desc: Read-only blocked-publication reconciliation verified; reopening/14/16/17 incomplete.
 ---
 
 # Project State
@@ -342,3 +342,11 @@ Quick261022-9uf prepares root-only publication.py with outside-generation exact 
 ## Context checkpoint — inspection and blocked publisher saved
 
 Local scopes committed/pushed throughdfbdc74. Structured HANDOFF and phase checkpoint preserve153-test/evaluation/package/native evidence and next independent read-only publication-outcome reconciliation. Permanent barrier remains blocked; actual custody/host/runtime qualification and reopening/app/14/16/17 incomplete. No exact context percentage supplied; proactive pause under standing rule. No running jobs/agents/tests or credentials/host/provider actions. Scoped origin/main pushes remain authorized; resume sustained implementation without per-slice confirmation.
+
+## Session continuity — publication-outcome reconciliation
+
+Restored4b40a03 clean checkpoint; continuing inline quick261022-a80 under existing sustained local implementation/commit/push authority. Root physical publisher is source-only/uninstalled;14/16/17 and actual qualifications remain incomplete.
+
+## Latest continuation — publication-outcome reconciliation
+
+Quick261022-a80 adds fresh independent root inspection authority binding exact historical publication authority. Fixed current/stage/previous snapshots under permanent SHNB blocked barrier recognize four byte patterns; unknown/partial/inode replacement remains conflicting. No write/sync/repair/retry/reopen or old live authority lookup; historical expiry bypass only compares historical bytes, writer validation remains fresh. Actual scratch tests include scope, expiry, locks, linked files, late revocation and changed bytes. SQL3/16011.115s, source7/5 4.159s, operator7/17 5.631s, deployment16/31 2.175s, native55/9 1.004s and notices9/7 3.728s pass. Initial158-test run also passed; no failures. Actual host/custody/runtime qualification, separate reopening, app integration and14/16/17 remain incomplete. No credentials/host/provider actions.

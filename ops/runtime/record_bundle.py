@@ -20,7 +20,7 @@ MAX_BUNDLE=3145728
 FILENAMES={'expected.json','database-process.json','operator-connection.json','schema-reconciliation.json'}
 
 
-def prepare_records(data):
+def _candidate_bytes(data):
     require(type(data) is bytes and 0<len(data)<=MAX_BUNDLE)
     value=json.loads(data.decode('utf8'),object_pairs_hook=unique_fields)
     require(type(value) is dict and set(value)=={'schema_version','evidence_class','records','artifact_base64'})
@@ -31,6 +31,12 @@ def prepare_records(data):
     payloads={name:json.dumps(record,sort_keys=True,separators=(',',':'),ensure_ascii=True,
                            allow_nan=False).encode('ascii')+b'\n' for name,record in records.items()}
     require(all(len(payload)<=32768 for payload in payloads.values()))
+    return value,payloads
+
+
+def prepare_records(data):
+    value,payloads=_candidate_bytes(data)
+    records=value['records']
     expected=validate_expected(records['expected.json'])
     process=process_probe.validate_record(records['database-process.json'])
     connection=operator_inspect.validate_connection(records['operator-connection.json'])

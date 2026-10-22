@@ -175,3 +175,115 @@ class PublicationTests(unittest.TestCase):
                 with self.assertRaises(ValueError):self.publish(case)
             self.assertEqual((case['old']/'expected.json').read_bytes(),case['payloads']['expected.json'])
             self.assertEqual(case['barrier'].read_bytes(),case['blocked'])
+
+    def inspection(self,case):
+        raw=case['authority_file'].read_bytes()
+        value={'schema_version':1,'action':'inspect-control-publication',
+            'authorization_id':'e'*32,'expires_at':case['authority']['expires_at'],
+            'publication_authority_sha256':hashlib.sha256(raw).hexdigest()}
+        file=case['base']/'control-publication-inspection.json'
+        file.write_bytes(json.dumps(value).encode());file.chmod(0o440)
+        return raw,file
+
+    def observe(self,case,raw):
+        return publication.inspect_publication(case['data'],case['original'],raw)
+
+    def test_read_only_observation_of_each_interrupted_state(self):
+        for state in ('original_matches','stage_matches','prior_moved_matches','published_matches','conflicting'):
+            with self.subTest(state=state),self.fixture() as case:
+                raw,_=self.inspection(case)
+                if state in ('stage_matches','prior_moved_matches'):
+                    actual=publication._rename_no_replace;calls=[]
+                    def rename(*args):
+                        calls.append(args)
+                        if len(calls)==(1 if state=='stage_matches' else 2):raise OSError('synthetic interruption')
+                        return actual(*args)
+                    with patch.object(publication,'_rename_no_replace',side_effect=rename):
+                        with self.assertRaises(OSError):self.publish(case)
+                elif state=='published_matches':self.publish(case)
+                elif state=='conflicting':(case['old']/'unknown').write_bytes(b'protected')
+                before=case['barrier'].read_bytes()
+                with patch.object(publication,'load_authority',side_effect=AssertionError('historical lookup')), \
+                     patch.object(os,'write',side_effect=AssertionError('write')), \
+                     patch.object(os,'pwrite',side_effect=AssertionError('pwrite')), \
+                     patch.object(os,'fsync',side_effect=AssertionError('sync')), \
+                     patch.object(os,'mkdir',side_effect=AssertionError('mkdir')), \
+                     patch.object(publication,'_rename_no_replace',side_effect=AssertionError('rename')):
+                    result=self.observe(case,raw)
+                self.assertEqual(result['status'],state)
+                for key,value in result.items():
+                    if key not in ('status','schema_version'):self.assertIs(value,False)
+                self.assertEqual(case['barrier'].read_bytes(),before)
+
+    def test_inspection_requires_fresh_exact_independent_scope(self):
+        for kind in ('expired','extra','digest','candidate','original','root'):
+            with self.subTest(kind=kind),self.fixture() as case:
+                raw,file=self.inspection(case)
+                value=json.loads(file.read_bytes())
+                if kind=='expired':value['expires_at']='2000-01-01T00:00:00Z'
+                elif kind=='extra':value['extra']=True
+                elif kind=='digest':value['publication_authority_sha256']='0'*64
+                elif kind=='candidate':case['data']+=b' '
+                elif kind=='original':case['original']+=b' '
+                file.write_bytes(json.dumps(value).encode())
+                manager=patch.object(os,'geteuid',return_value=9909) if kind=='root' else contextlib.nullcontext()
+                with manager,self.assertRaises(ValueError):self.observe(case,raw)
+
+    def test_inspection_shared_lease_excludes_writer(self):
+        with self.fixture() as case:
+            raw,_=self.inspection(case);actual=publication._observe_directory
+            def observe(*args):
+                self.assertEqual(case['barrier_fixture'].child_lock(case['barrier'],True),3)
+                return actual(*args)
+            with patch.object(publication,'_observe_directory',side_effect=observe):self.observe(case,raw)
+
+    def test_inspection_denies_late_revocation_and_changed_bytes(self):
+        for kind in ('revocation','bytes','symlink','hardlink'):
+            with self.subTest(kind=kind),self.fixture() as case:
+                raw,file=self.inspection(case);actual=publication.load_inspection;calls=[]
+                target=case['old']/'expected.json'
+                if kind=='symlink':target.unlink();target.symlink_to(case['authority_file'])
+                elif kind=='hardlink':os.link(target,case['base']/'protected-link')
+                def load():
+                    calls.append(1)
+                    if len(calls)==2:
+                        if kind=='revocation':
+                            value=json.loads(file.read_bytes());value['authorization_id']='d'*32
+                            file.write_bytes(json.dumps(value).encode())
+                        elif kind=='bytes':target.write_bytes(b'{}')
+                    return actual()
+                with patch.object(publication,'load_inspection',side_effect=load),self.assertRaises((ValueError,OSError)):
+                    self.observe(case,raw)
+
+    def test_historical_expiry_is_not_renewed_by_observation(self):
+        with self.fixture() as case:
+            case['authority']['expires_at']='2000-01-01T00:00:00Z'
+            case['authority_file'].write_bytes(json.dumps(case['authority']).encode())
+            raw,file=self.inspection(case)
+            value=json.loads(file.read_bytes());value['expires_at']=case['barrier_fixture'].authority(case['barrier'])['expires_at']
+            file.write_bytes(json.dumps(value).encode())
+            self.assertEqual(self.observe(case,raw)['status'],'original_matches')
+            with self.assertRaises(ValueError):publication.validate_authority(case['authority'])
+
+    def test_partial_stage_and_replaced_original_remain_conflicting(self):
+        for kind in ('partial','replacement'):
+            with self.subTest(kind=kind),self.fixture() as case:
+                raw,_=self.inspection(case)
+                if kind=='partial':
+                    with patch.object(os,'fsync',side_effect=OSError('synthetic-sync')):
+                        with self.assertRaises(OSError):self.publish(case)
+                else:
+                    case['old'].rename(case['base']/'retained-original')
+                    case['old'].mkdir(mode=0o750);os.chown(case['old'],-1,case['gid'])
+                    for name,data in case['old_payloads'].items():
+                        file=case['old']/name;file.write_bytes(data);file.chmod(0o440);os.chown(file,-1,case['gid'])
+                self.assertEqual(self.observe(case,raw)['status'],'conflicting')
+
+    def test_existing_exclusive_lease_denies_inspection(self):
+        import fcntl
+        with self.fixture() as case:
+            raw,_=self.inspection(case)
+            with case['barrier'].open('rb') as barrier:
+                fcntl.flock(barrier,fcntl.LOCK_EX|fcntl.LOCK_NB)
+                with self.assertRaises(BlockingIOError):self.observe(case,raw)
+            self.assertEqual(self.observe(case,raw)['status'],'original_matches')

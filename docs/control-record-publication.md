@@ -436,3 +436,40 @@ prior objects, stage-sync failure, failure between renames and late revocation.
 An unknown `control` inserted between renames is preserved while publication
 fails. All authority and custody evidence are explicitly synthetic fixtures;
 no production path, actual custody approval, existing service or host is touched.
+
+### Read-only reconciliation of uncertain publication
+
+The library-only `inspect_publication` requires fresh, independent root authority
+at `/srv/shop/control-publication-inspection.json`, outside replaceable controls.
+Its closed record contains schema_version=1, action=inspect-control-publication,
+authorization_id, expires_at and publication_authority_sha256. The digest binds
+supplied exact historical publication-authority bytes; the observer does not
+load the former live write authority. Historical expiry is parsed without
+renewing it. Writers continue to require fresh authority and full candidate
+semantic/artifact validation. Historical comparison extracts bounded canonical
+candidate bytes only, under the independently approved exact candidate digest;
+it does not validate current rights or admit expired inner records.
+
+Under a shared nonblocking lock on the permanent barrier, the observer requires
+exact approved blocked bytes and parent device/inode, then takes two matching
+bounded snapshots of fixed current, stage and previous paths. Known files must
+be stable, regular, root-owned, singly linked and nonwritable by group/other;
+new generation matches additionally require exact group and mode0440. Directory
+mode/group and named inode are checked. Original matches require the exact
+reviewed prior inode as well as complete file hashes. Unknown entries are not
+opened or adopted; partial or unexpected combinations return conflicting.
+Unsafe path/file metadata denies inspection. Concurrent exclusive publication,
+late inspection-authority changes or changed observed bytes also deny.
+
+The four recognized patterns report original_matches, stage_matches,
+prior_moved_matches or published_matches. Every report keeps
+completion_confirmed, durability_qualified, publication_authorized,
+retry_authorized and reopening_authorized false. It performs no write, fsync,
+rename, cleanup, repair or retry. Matching bytes cannot establish whether an
+earlier operation returned successfully or survived a power loss. Reopening
+still requires separate preparation, actual qualification and scoped authority.
+
+Local synthetic scratch tests cover all four patterns, unknown/partial states,
+replaced original inode, independent scope/expiry/root denial, historical expiry
+without write-authority renewal, shared/exclusive lock exclusion, linked paths,
+late revocation and changed bytes. No actual host path or provider is exercised.
