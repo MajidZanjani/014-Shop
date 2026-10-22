@@ -41,8 +41,11 @@ python3 scripts/check.py native-source-notices
 ```
 
 Default re-observes current native/source bindings and requires exact retained
-report/text bytes and file set. Explicit --write exclusively creates new report
-and text directory; it rejects existing/partial evidence rather than repairing.
-Writing is not crash-durable publication. Six negative/positive tests cover
+report/text bytes and file set. A changed binding selects a content-addressed
+report in native-source-notices-revisions; historical reports stay unchanged.
+Explicit --write exclusively creates a new report. A revision requires the
+original exact text set and bytes, reusing them without rewriting. Missing,
+corrupt or extra text evidence denies revision rather than repairing it.
+Writing is not crash-durable publication. Seven negative/positive tests cover
 identity/digest-before-parse, bytes, paths/duplicates/links, required notice and
-size/count bounds. Scope-specific success never supplies full INVENTORY_PASS.
+size/count bounds and preservation of historical binding reports. Scope-specific success never supplies full INVENTORY_PASS.

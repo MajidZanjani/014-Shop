@@ -1,6 +1,10 @@
 # Standalone candidate launcher only; no NixOS installation or host activation.
-{ pkgs, python, pythonEnv, postgres, source }:
+{ pkgs, python, pythonEnv, postgres, source, command ? "inspect" }:
 let
+  inspection = command == "inspect";
+  executable = if inspection then "shop-operator-inspect" else "shop-operator-schema";
+  module = if inspection then "operator_inspect" else "operator_schema";
+  errorEvent = if inspection then "operator.inspection_denied" else "operator.schema_outcome_unconfirmed";
   selected = builtins.filter (w: w.name == "psycopg")
     (builtins.fromJSON (builtins.readFile ../runtime/wheels.json));
   wheel = builtins.head selected;
@@ -18,7 +22,7 @@ let
   '';
   libpq = "${postgres.lib}/lib/libpq.so.5";
   libc = "${pkgs.stdenv.cc.libc}/lib/libc.so.6";
-  driver = pkgs.writeText "shop-operator-driver.py" ''
+  driver = pkgs.writeText "${executable}-driver.py" ''
     import os,sys
     sys.dont_write_bytecode=True
     status=1
@@ -48,25 +52,26 @@ let
         if distributions != [('psycopg','3.3.6')]:
             raise RuntimeError()
         sys.path.insert(0,'${source}/libexec/shop/database')
-        import operator_inspect
-        status=operator_inspect.entrypoint()
+        import ${module} as command_module
+        status=command_module.entrypoint()
     except BaseException:
         try:
-            os.write(2,b'{"event":"operator.inspection_denied"}\n')
+            os.write(2,b'{"event":"${errorEvent}"}\n')
         except OSError:
             pass
     raise SystemExit(status)
   '';
-  launcher = pkgs.writeShellScriptBin "shop-operator-inspect" ''
+  launcher = pkgs.writeShellScriptBin executable ''
     exec ${pkgs.coreutils}/bin/env -i LANG=C LC_ALL=C HOME=/nonexistent \
       ${python}/bin/python3 -I ${driver} "$@"
   '';
-in assert builtins.length selected == 1 && wheel.version == "3.3.6" && wheel.sha256 == approvedHash;
+in assert builtins.elem command [ "inspect" "schema" ];
+assert builtins.length selected == 1 && wheel.version == "3.3.6" && wheel.sha256 == approvedHash;
 {
   inherit site driver launcher;
   metadata = {
     package = toString launcher;
-    executable = "${launcher}/bin/shop-operator-inspect";
+    executable = "${launcher}/bin/${executable}";
     driver = toString driver;
     source = toString source;
     runtimeSite = "${site}/site";
@@ -75,7 +80,7 @@ in assert builtins.length selected == 1 && wheel.version == "3.3.6" && wheel.sha
     pythonVersion = "3.13.16";
     psycopgVersion = "3.3.6";
     libpqVersion = 180006;
-    readOnly = true;
+    readOnly = inspection;
     installed = false;
     runtimeQualified = false;
     productionActivation = false;

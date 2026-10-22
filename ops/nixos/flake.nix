@@ -53,6 +53,31 @@
       source = pkgs.writeTextDir "libexec/shop/database/operator_inspect.py"
         "raise RuntimeError('synthetic startup detail must stay private')\n";
     };
+    operatorSchema = import ./operator-runtime.nix {
+      inherit pkgs python pythonEnv postgres; source = databaseTools; command = "schema";
+    };
+    schemaFailure = import ./operator-runtime.nix {
+      inherit pkgs python pythonEnv postgres; command = "schema";
+      source = pkgs.writeTextDir "libexec/shop/database/operator_schema.py"
+        "raise RuntimeError('synthetic schema startup detail must stay private')\n";
+    };
+    # Check-only source tests exec descriptor preservation; no database imports,
+    # credentials, authority records or production alternative.
+    schemaFdFixture = import ./operator-runtime.nix {
+      inherit pkgs python pythonEnv postgres; command = "schema";
+      source = pkgs.writeTextDir "libexec/shop/database/operator_schema.py" ''
+        import os
+        def entrypoint():
+            first=os.fstat(0); third=os.fstat(3)
+            assert first.st_uid == os.geteuid() and third.st_uid == os.geteuid()
+            assert first.st_mode & 0o777 == 0o600 and third.st_mode & 0o777 == 0o600
+            assert os.read(0,64) == b'synthetic-artifact'
+            assert os.read(3,64) == b'synthetic-credential'
+            assert dict(os.environ) == {'LANG':'C','LC_ALL':'C','HOME':'/nonexistent','PSYCOPG_IMPL':'python'}
+            os.write(1,b'private_fds_preserved\n')
+            return 0
+      '';
+    };
     runtime = import ./python-runtime.nix { inherit pkgs pythonEnv postgres; };
     # Only Python source is admitted; no .env, fixtures, caches or private data.
     appSource = pkgs.lib.cleanSourceWith {
@@ -93,8 +118,12 @@
   in {
     nixosModules.shop = import ./modules/shop.nix;
     packages.${system} = { shop-app = appImage; shop-worker = workerImage;
-      shop-postgres = postgresImage; shop-gateway = gatewayImage; shop-python-runtime = runtime; shop-database-tools-source = databaseTools; shop-operator-inspect = operatorInspection.launcher; };
-    checks.${system}.operator-startup-denial = operatorFailure.launcher;
+      shop-postgres = postgresImage; shop-gateway = gatewayImage; shop-python-runtime = runtime; shop-database-tools-source = databaseTools; shop-operator-inspect = operatorInspection.launcher; shop-operator-schema = operatorSchema.launcher; };
+    checks.${system} = {
+      operator-startup-denial = operatorFailure.launcher;
+      schema-startup-denial = schemaFailure.launcher;
+      schema-private-fds = schemaFdFixture.launcher;
+    };
     deploymentMetadata.${system} = {
       status = "candidate; compatibility/build/OCI digests/off-host qualification pending";
       imageDerivations = map (x: x.drvPath) [ appImage workerImage postgresImage gatewayImage ];
@@ -102,6 +131,7 @@
       systemdVersion = pkgs.systemd.version;
       postgresDiagnostics = { command = postgresCommand; workerSource = "${postgresDiagnostics}/libexec/shop/postgres_entrypoint.py"; nativePidContract = "execve; rootless lifecycle pending"; runtimeQualified = false; };
       operatorInspection = operatorInspection.metadata;
+      operatorSchema = operatorSchema.metadata;
       databaseTools = { source = toString databaseTools; manifest = "${databaseTools}/share/shop/database-tools.json"; executable = false; runtimeQualified = false; productionActivation = false; };
       productionActivation = false;
     };

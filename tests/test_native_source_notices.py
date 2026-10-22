@@ -62,3 +62,16 @@ class SourceNoticeTests(unittest.TestCase):
         with self.assertRaises(ValueError):notices.select_sources(bad)
         bad=copy.deepcopy(report);bad['nodes'].pop(next(iter(nodes)))
         with self.assertRaises(ValueError):notices.select_sources(bad)
+
+    def test_changed_binding_uses_revision_without_replacing_history(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as directory:
+            baseline=Path(directory)/'native-source-notices.json'
+            first=b'original';changed=b'new binding'
+            self.assertEqual(notices.evidence_path(baseline,first),baseline)
+            baseline.write_bytes(first)
+            self.assertEqual(notices.evidence_path(baseline,first),baseline)
+            revision=notices.evidence_path(baseline,changed)
+            self.assertEqual(revision,baseline.parent/'native-source-notices-revisions'/
+                (hashlib.sha256(changed).hexdigest()+'.json'))
+            self.assertEqual(baseline.read_bytes(),first)

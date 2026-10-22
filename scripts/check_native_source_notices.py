@@ -93,6 +93,13 @@ def collect():
             'source_offer_obligations_satisfied': False, 'findings': findings}, payloads
 
 
+def evidence_path(baseline, encoded):
+    """Select an exclusive content-addressed revision for changed bindings."""
+    if baseline.exists() and baseline.read_bytes() != encoded:
+        return baseline.parent / 'native-source-notices-revisions' / (native.sha256(encoded) + '.json')
+    return baseline
+
+
 def main():
     start = time.monotonic()
     parser = argparse.ArgumentParser(description=__doc__)
@@ -101,13 +108,25 @@ def main():
     report, payloads = collect()
     encoded = (json.dumps(report, indent=2, sort_keys=True) + '\n').encode()
     directory = ROOT / 'docs/evidence/t02'
-    output, text_dir = directory / 'native-source-notices.json', directory / 'native-source-notice-texts'
+    output=evidence_path(directory / 'native-source-notices.json',encoded)
+    text_dir=directory / 'native-source-notice-texts'
     if args.write:
-        require(not output.exists() and not text_dir.exists(), 'existing source evidence denied')
-        text_dir.mkdir()
-        for digest, content in sorted(payloads.items()):
-            with (text_dir / (digest + '.txt')).open('xb') as stream:
-                stream.write(content)
+        require(not output.exists(), 'existing source report denied')
+        # Revisions reuse verified content-addressed texts without replacing any
+        # historical file. Existing corrupt/missing/extra text sets fail closed.
+        if text_dir.exists():
+            require({p.name for p in text_dir.iterdir()} == {d + '.txt' for d in payloads},
+                    'existing source text set differs; no repair')
+            for digest,content in payloads.items():
+                require((text_dir / (digest + '.txt')).read_bytes() == content,
+                        'existing source text mismatch; no repair')
+        else:
+            require(output == directory / 'native-source-notices.json', 'revision requires original text custody')
+            text_dir.mkdir()
+            for digest,content in sorted(payloads.items()):
+                with (text_dir / (digest + '.txt')).open('xb') as stream:
+                    stream.write(content)
+        output.parent.mkdir(exist_ok=True)
         with output.open('xb') as stream:
             stream.write(encoded)
     else:

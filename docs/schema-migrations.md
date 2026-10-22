@@ -323,3 +323,41 @@ source set without connections and exercise source help/bootstrap denial. Full
 pinned executable startup/error/FD transport, exact schema role privileges,
 root-record publisher/admission barrier, Django recorder/migration integration,
 actual host/runtime and independent failure/recovery qualification remain pending.
+
+
+## Separate pinned schema candidate launcher
+
+The flake now exports `shop-operator-schema` separately from
+`shop-operator-inspect`. Both use the same exact Python3.13.16, Psycopg3.3.6
+site, libpq18.6, libc and ten-module source artifact. The shared driver selects
+only one declared module at evaluation time; runtime arguments cannot change
+command modules. The inspection executable continues to reject schema writes.
+The schema executable accepts only its existing `--help` and
+`apply-reviewed-schema` interface. Its help retains the historical source-only
+wording; the source is now packaged, with operational qualification pending.
+
+Both shell and Python startup clear ambient environment and preserve isolated
+imports. Schema startup failures emit the same constant
+`operator.schema_outcome_unconfirmed` event as command failures. Metadata for
+the schema executable declares readOnly=false, installed=false,
+runtimeQualified=false and productionActivation=false. It is never installed
+by the NixOS module or added to application/container startup.
+
+The required operator-runtime lane builds both candidates plus three check-only
+outputs. Seventeen controls include actual native help under hostile library,
+Python and PostgreSQL settings, ignored shadow source, closed arguments,
+missing-authority denial and import-failure privacy. A synthetic check-only
+module verifies FD0/FD3 private-file contents, owner/mode and cleared driver
+environment through the actual shell/Python exec chain. It has no database
+imports or apply implementation. This verifies descriptor transport, not a
+positive schema connection through real records or the intended nonroot role.
+The real local SCRAM/source/schema admission suite remains separate fixture
+adapted evidence (107 tests); least-privilege and actual runtime qualification
+remain pending. Native reference evidence still covers inspection only; sharing
+native dependencies does not establish complete schema/package/OCI inventory.
+
+No root record, role, socket, credential, installation, live application access,
+retry or reopening permission is created by building or testing this candidate.
+The publisher/custody/admission barrier, exact role provisioning, Django writes
+and migration recorder integration, executable independent replica and full
+runtime/human review gates remain unfinished.
