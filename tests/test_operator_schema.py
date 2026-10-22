@@ -26,6 +26,7 @@ class OperatorSchemaTests(unittest.TestCase):
             authority = stack.enter_context(patch.object(command.schema, 'load_authorization', return_value={'database': connection_record['database']}))
             artifact = stack.enter_context(patch.object(command.schema, 'read_artifact'))
             stack.enter_context(patch.object(transport.process_probe, 'probe'))
+            stack.enter_context(patch.object(transport, 'require_peer'))
             socket = stack.enter_context(patch.object(transport, 'socket_identity', return_value=(1, 2, 9909)))
             reader = stack.enter_context(patch.object(transport, 'read_private_fd', side_effect=[b'EXACT_ARTIFACT', b'SYNTHETIC_PRIVATE_PASSWORD']))
             connection = Mock()
@@ -126,5 +127,12 @@ class OperatorSchemaTests(unittest.TestCase):
             case['connection'].execute.return_value.fetchone.return_value=(False,)
             with self.assertRaises(ValueError):command.apply_from_fds()
             self.assertEqual(case['connect'].call_count,1)
+            case['mutation'].assert_not_called()
+            case['connection'].close.assert_called_once()
+
+
+    def test_peer_denial_closes_before_schema_mutation(self):
+        with self.fixture() as case, patch.object(command.transport,'require_peer',side_effect=ValueError):
+            with self.assertRaises(ValueError):command.apply_from_fds()
             case['mutation'].assert_not_called()
             case['connection'].close.assert_called_once()

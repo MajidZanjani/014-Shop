@@ -40,6 +40,7 @@ class OperatorInspectTests(unittest.TestCase):
             socket=stack.enter_context(patch.object(cli,'socket_identity',return_value=(1,2,9909)))
             stack.enter_context(patch.object(cli,'read_private_fd',side_effect=[b'private-artifact',b'SYNTHETIC_PRIVATE_PASSWORD']))
             connect=stack.enter_context(patch.object(cli.psycopg,'connect',return_value=connection))
+            stack.enter_context(patch.object(cli,'require_peer'))
             inspect=stack.enter_context(patch.object(cli.schema_reconciliation,'inspect_authorized_schema',return_value=self.report()))
             yield SimpleNamespace(record=record,connection=connection,loaded=loaded,socket=socket,connect=connect,inspect=inspect)
 
@@ -160,3 +161,39 @@ class OperatorInspectTests(unittest.TestCase):
             self.assertEqual(result.returncode,code,result.stderr.decode())
             self.assertNotIn(b'SYNTHETIC_PRIVATE_PASSWORD',result.stdout+result.stderr)
             self.assertEqual(result.stdout if code==0 else result.stderr,cli.HELP if code==0 else cli.ERROR)
+
+
+    def test_actual_unix_peer_credentials_and_duplicate_fd_ownership(self):
+        import socket
+        approved={'process':{'pid':os.getpid()},'startup':{'uid':os.getuid(),'gid':os.getgid()}}
+        first,second=socket.socketpair()
+        try:
+            cli.require_peer(first,approved)
+            for field in ('pid','uid','gid'):
+                bad=__import__('copy').deepcopy(approved)
+                section='process' if field=='pid' else 'startup'
+                bad[section][field]+=1
+                with self.subTest(field=field),self.assertRaises(ValueError):cli.require_peer(first,bad)
+            # Checking must neither consume bytes nor close libpq's original FD.
+            second.sendall(b'peer-control')
+            cli.require_peer(first,approved)
+            self.assertEqual(first.recv(12),b'peer-control')
+            self.assertGreaterEqual(first.fileno(),0)
+        finally:first.close();second.close()
+
+    def test_peer_denies_non_unix_stream_or_missing_descriptor(self):
+        import socket
+        approved={'process':{'pid':os.getpid()},'startup':{'uid':os.getuid(),'gid':os.getgid()}}
+        for family,kind in ((socket.AF_INET,socket.SOCK_STREAM),(socket.AF_UNIX,socket.SOCK_DGRAM)):
+            with socket.socket(family,kind) as connection:
+                with self.assertRaises(ValueError):cli.require_peer(connection,approved)
+                self.assertGreaterEqual(connection.fileno(),0)
+        with tempfile.TemporaryFile() as file:
+            with self.assertRaises(OSError):cli.require_peer(file,approved)
+
+
+    def test_peer_denial_closes_before_readonly_observation(self):
+        with self.mocked_command() as case, patch.object(cli,'require_peer',side_effect=ValueError):
+            with self.assertRaises(ValueError):cli.inspect_from_fds()
+            case.inspect.assert_not_called()
+            case.connection.close.assert_called_once()

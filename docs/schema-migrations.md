@@ -427,3 +427,33 @@ Concurrent privileged changes after the final check cannot be undone, and a
 postcommit denial still reports an unconfirmed outcome. Production provisioning,
 complete grant review, root-record custody/barriers, isolated runtime and
 independent restore reconciliation remain prerequisites.
+
+
+## Connected Unix peer admission
+
+Both command paths now inspect the actual connected libpq socket on Linux.
+A private duplicate of connection.fileno() must report AF_UNIX/SOCK_STREAM via
+SO_DOMAIN/SO_TYPE, and its SO_PEERCRED PID/UID/GID must equal the approved
+postmaster PID and startup host UID/GID. Only the duplicate is closed. The check
+performs no send/receive and preserves protocol bytes and the libpq descriptor.
+It runs before/after read-only inspection and at every connected schema admission.
+Any mismatch/error follows the existing fixed-denial or unconfirmed-outcome path
+and closes the command connection without reconnecting.
+
+Linux [unix(7)](https://www.man7.org/linux/man-pages/man7/unix.7.html) defines these
+credentials at connect/listen/socketpair time. They identify the listener as
+observed by the caller's namespaces, not a live credential snapshot of a forked
+PostgreSQL backend. Existing fresh process PID/start-tick/executable/resource
+checks and live SQL identity guards remain necessary. Credential forwarding,
+namespace mappings, socket passing and process lifecycle still need actual
+rootless runtime qualification; no qualification claim follows from the match.
+
+Local controls use real socketpairs to deny PID/UID/GID mismatch, TCP sockets,
+Unix datagram sockets and regular files while retaining original descriptors and
+queued protocol bytes. Actual disposable PostgreSQL SCRAM inspection and schema
+apply/replay now compare the kernel peer to the scratch postmaster PID and host
+UID/GID. A deliberately wrong approved PID denies a real schema connection before
+its work; synthetic controls confirm both paths close before their SQL action.
+Root records, startup/resource attestation, fixed path/UID and PGDATA comparisons
+remain fixture-adapted. This is local transport evidence only; no production
+socket, role, root record or host account is created.

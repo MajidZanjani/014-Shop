@@ -66,6 +66,7 @@ def apply_from_fds():
                 and schema.load_authorization() == authorization
                 and transport.socket_identity(expected['account_uid'], expected['server_port']) == socket_before)
         if connection is not None:
+            transport.require_peer(connection, approved)
             require_schema_role(connection)
         return True
 

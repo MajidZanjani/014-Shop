@@ -799,6 +799,11 @@ class DatabaseDestinationTests(unittest.TestCase):
             expected=dict(process['database'],account_uid=uid,database='postgres',role='shop_test',
                 system_identifier=str(admin.execute('SELECT system_identifier FROM pg_control_system()').fetchone()[0]))
             process['database']=expected;authorization['database']=expected
+            # Actual kernel peer identity; other root/runtime/path fields remain
+            # adapted fixture evidence, never container qualification.
+            process['process']['pid']=int((pg.root/'data/postmaster.pid').read_text().splitlines()[0])
+            process['startup']['uid']=uid
+            process['startup']['gid']=os.stat(pg.root).st_gid
             connection_record=dict(records['operator-connection.json'],database=expected,socket_directory=str(pg.socket))
             artifact=__import__('base64').b64decode(value['artifact_base64'])
             real_fd_reader=cli.read_private_fd;real_validate=self.real_validate
@@ -954,6 +959,14 @@ class DatabaseDestinationTests(unittest.TestCase):
                 finally:admin.execute('ALTER ROLE schema_candidate NOCREATEDB')
                 self.assertEqual(len(role_checks),4)
                 self.assertTrue(schema_opened[-1].closed)
+                actual_pid=process['process']['pid']
+                process['process']['pid']=actual_pid+1
+                try:
+                    with patch.object(schema_auth,'load_authorization',return_value=role_authority), \
+                         patch.object(cli.psycopg,'connect',side_effect=schema_connect):
+                        with self.assertRaises(ValueError):schema_command.apply_from_fds()
+                    self.assertTrue(schema_opened[-1].closed)
+                finally:process['process']['pid']=actual_pid
                 self.assertIsNone(admin.execute("SELECT to_regclass('shop_app.role_change_rollback')").fetchone()[0])
                 self.assertEqual(admin.execute('SELECT count(*) FROM shop_control.schema_migrations').fetchone()[0],1)
             admin.close()

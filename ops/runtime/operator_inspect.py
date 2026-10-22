@@ -7,6 +7,8 @@ import json
 import os
 import re
 import stat
+import socket
+import struct
 import sys
 sys.dont_write_bytecode=True
 import psycopg
@@ -75,6 +77,20 @@ def socket_identity(uid,port):
         os.close(directory)
 
 
+def require_peer(connection, approved):
+    """Bind Linux listen-time peer credentials; never consume protocol bytes."""
+    require(sys.platform == 'linux')
+    descriptor = connection.fileno()
+    require(type(descriptor) is int and descriptor >= 0)
+    # fromfd duplicates ownership: close only our duplicate, never libpq's FD.
+    with socket.fromfd(descriptor, socket.AF_UNIX, socket.SOCK_STREAM) as peer:
+        require(peer.getsockopt(socket.SOL_SOCKET, socket.SO_DOMAIN) == socket.AF_UNIX
+                and peer.getsockopt(socket.SOL_SOCKET, socket.SO_TYPE) == socket.SOCK_STREAM)
+        observed = struct.unpack('=iII', peer.getsockopt(socket.SOL_SOCKET, socket.SO_PEERCRED, 12))
+        require(observed == (approved['process']['pid'], approved['startup']['uid'],
+                             approved['startup']['gid']))
+
+
 def validate_report(value):
     require(type(value) is dict and set(value)=={
         'schema_version','status','retry_authorized','reopening_authorized'})
@@ -108,10 +124,12 @@ def inspect_from_fds():
     try:
         require(load_connection()==connection_record
                 and socket_identity(expected['account_uid'],expected['server_port'])==socket_before)
+        require_peer(connection,approved)
         result=schema_reconciliation.inspect_authorized_schema(connection,
             connection_record['zfs'],connection_record['pg_control'],artifact)
         require(load_connection()==connection_record
                 and socket_identity(expected['account_uid'],expected['server_port'])==socket_before)
+        require_peer(connection,approved)
         return validate_report(result)
     finally:
         connection.close()
