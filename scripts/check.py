@@ -15,7 +15,7 @@ sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parents[1]
 QUICK = ("environment", "frontend", "core", "worker", "adapters", "contracts", "boundaries")
 EXTRA = ("inventory", "locks", "reproducibility", "deployment-profiles",
-         "deployment-eval", "postgres-diagnostics", "postgresql-config", "bootstrap-local", "database-destination", "database-tools", "operator-runtime", "native-closure", "deployment-build", "deployment-boot")
+         "deployment-eval", "postgres-diagnostics", "postgresql-config", "bootstrap-local", "database-destination", "database-tools", "operator-runtime", "native-closure", "native-source-notices", "deployment-build", "deployment-boot")
 # (producer, commands, timeout). No optional producers or inferred skips.
 LANES = {
     "environment": ("scripts/dev_postgres.py", (), 60),
@@ -33,6 +33,7 @@ LANES = {
     "postgres-diagnostics": ("scripts/check_postgres_diagnostics.py", (("python3", "scripts/check_postgres_diagnostics.py"),), 120),
     "postgresql-config": ("scripts/check_postgresql_config.py", (("python3", "scripts/check_postgresql_config.py"),), 120),
     "bootstrap-local": ("scripts/check_bootstrap.py", (("python3", "scripts/check_bootstrap.py"),), 120),
+    "native-source-notices": ("scripts/check_native_source_notices.py", (("python3", "scripts/check_native_source_notices.py"),), 180),
     "native-closure": ("scripts/check_native_closure.py", (("python3", "scripts/check_native_closure.py"),), 180),
     "operator-runtime": ("scripts/check_operator_runtime.py", (("python3", "scripts/check_operator_runtime.py"),), 180),
     "database-tools": ("scripts/check_database_tools.py", (("python3", "scripts/check_database_tools.py"),), 180),
