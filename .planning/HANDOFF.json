@@ -22,5 +22,6 @@
     "result": "success",
     "url": "https://github.com/MajidZanjani/014-Shop/actions/runs/39761244219",
     "scope": "source/frontend/schema/conformance only; not FULL_PASS"
-  }
+  },
+  "implementation_commit": "bd7539f"
 }
