@@ -35,7 +35,9 @@ T03/T04 local product development is active; ready T05 draft persistence has beg
 
 Demo: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/demo.py --backend`; open http://127.0.0.1:4321 (also /support/ and /purchase/simple/).
 
-Checks: all six ordinary local lanes passed; latest changed lanes rerun (frontend75 tests, core-local34 tests), 70 cross-language cases agree, compiler rejection tests pass, dispatcher15 tests pass, static privacy boundary81 tests pass. Actual loopback demo/CSRF/quote/catalog smoke passed. Details and scoped counts in the task evidence. No FULL_PASS, actual browser/host/runtime/recovery/legal acceptance or production readiness claim. Automatic GitHub-hosted development [CI passed](https://github.com/MajidZanjani/014-Shop/actions/runs/39761244219) at d9d088a (source/frontend/schema/conformance subset). Full release CI remains pending.
+Checks: all six ordinary local lanes passed; latest changed lanes rerun (frontend75 tests, core-local34 tests), 70 cross-language cases agree, compiler rejection tests pass, dispatcher15 tests pass, static privacy boundary81 tests pass. Actual loopback demo/CSRF/quote/catalog smoke passed. Details and scoped counts in the task evidence. No FULL_PASS, measured browser/accessibility qualification, host/runtime/recovery/legal acceptance or production readiness claim. Automatic GitHub-hosted development [CI passed](https://github.com/MajidZanjani/014-Shop/actions/runs/39761244219) at d9d088a (source/frontend/schema/conformance subset). Full release CI remains pending.
+
+User review, 2026-10-22: **local demo checked and approved** (user: “all checked and approved”). See task evidence for scope. Detailed browser/accessibility qualification and commercial/release gates remain pending.
 
 ## Exact next action
 
