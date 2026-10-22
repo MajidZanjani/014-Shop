@@ -852,13 +852,24 @@ class DatabaseDestinationTests(unittest.TestCase):
                 with self.assertRaises(psycopg.OperationalError):cli.inspect_from_fds()
                 self.assertEqual(len(opened),3)
 
-                # Exercise the source schema command through actual SCRAM using
-                # the same explicit fixture adaptations/private FD reader.
+                # Exercise source schema SCRAM with a distinct restricted login.
+                # The admin only provisions this disposable fixture; the command
+                # must connect directly as the role, never SET ROLE.
                 import operator_schema as schema_command
                 import schema_authorization as schema_auth
                 admin.execute('TRUNCATE shop_control.schema_migrations')
+                admin.execute('CREATE TABLE public.destination_probe(value integer)')
+                admin.execute('CREATE ROLE schema_candidate LOGIN NOSUPERUSER NOCREATEDB '
+                              'NOCREATEROLE NOREPLICATION NOBYPASSRLS')
+                admin.execute(sql.SQL('ALTER ROLE schema_candidate PASSWORD {}').format(sql.Literal(password)))
+                admin.execute('CREATE SCHEMA shop_app AUTHORIZATION schema_candidate')
+                admin.execute('ALTER SCHEMA shop_control OWNER TO schema_candidate')
+                admin.execute('ALTER TABLE shop_control.schema_migrations OWNER TO schema_candidate')
+                expected=dict(expected,role='schema_candidate')
+                process['database']=expected
+                connection_record['database']=expected
                 schema_data=json.dumps({'schema_version':1,'migration_id':'synthetic_001',
-                    'statements':['CREATE TABLE public.operator_schema_probe(id integer)']}).encode()
+                    'statements':['CREATE TABLE shop_app.operator_schema_probe(id integer)']}).encode()
                 _,write_authority=self.schema_authority(schema_data)
                 write_authority['database']=expected
                 for descriptor,data in ((0,schema_data),(3,password.encode())):
@@ -867,15 +878,60 @@ class DatabaseDestinationTests(unittest.TestCase):
                 def schema_connect(**kwargs):
                     connection=actual_connect(**kwargs);schema_opened.append(connection)
                     self.assertEqual(connection.execute('SHOW default_transaction_read_only').fetchone()[0],'off')
+                    self.assertEqual(connection.execute('SELECT current_user, session_user').fetchone(),
+                                     ('schema_candidate','schema_candidate'))
+                    self.assertEqual(connection.execute('SELECT rolsuper, rolcreatedb, rolcreaterole, '
+                        'rolreplication, rolbypassrls FROM pg_roles WHERE rolname=current_user').fetchone(),
+                        (False,False,False,False,False))
                     return connection
                 with patch.object(schema_auth,'load_authorization',return_value=write_authority), \
                      patch.object(cli.psycopg,'connect',side_effect=schema_connect):
+                    # Both identity privileges are necessary; neither failed
+                    # attempt may create DDL or ledger effects, and no retry is
+                    # performed by the command. Each call is explicit here.
+                    for grant in ('GRANT EXECUTE ON FUNCTION pg_catalog.pg_control_system() TO schema_candidate',
+                                  'GRANT pg_read_all_settings TO schema_candidate'):
+                        with self.assertRaises(psycopg.errors.InsufficientPrivilege):
+                            schema_command.apply_from_fds()
+                        self.assertTrue(schema_opened[-1].closed)
+                        self.assertIsNone(admin.execute("SELECT to_regclass('shop_app.operator_schema_probe')").fetchone()[0])
+                        self.assertEqual(admin.execute('SELECT count(*) FROM shop_control.schema_migrations').fetchone()[0],0)
+                        admin.execute(grant)
                     self.assertEqual(schema_command.apply_from_fds(),{'schema_version':1,'status':'applied',
                         'retry_authorized':False,'reopening_authorized':False})
                     self.assertEqual(schema_command.apply_from_fds()['status'],'already_applied')
-                self.assertEqual(len(schema_opened),2)
+                self.assertEqual(len(schema_opened),4)
+                # Ordinary PostgreSQL ACLs deny unrelated objects and privilege
+                # escalation even outside the reviewed-statement prefix filter.
+                restricted=schema_connect(host=str(pg.socket),port=5432,dbname='postgres',
+                    user='schema_candidate',password=password,autocommit=True,client_encoding='utf8',
+                    require_auth='scram-sha-256',passfile='/dev/null',connect_timeout=2)
+                try:
+                    for forbidden in ('CREATE DATABASE forbidden_schema_database',
+                                      'CREATE ROLE forbidden_schema_role',
+                                      'SET ROLE shop_test',
+                                      "SELECT pg_read_file('/etc/passwd')",
+                                      'CREATE TABLE public.forbidden_schema_table(id integer)',
+                                      'UPDATE public.destination_probe SET value=99'):
+                        with self.subTest(forbidden=forbidden), self.assertRaises(psycopg.errors.InsufficientPrivilege):
+                            restricted.execute(forbidden)
+                finally:
+                    restricted.close()
+                # A later ACL denial rolls back earlier schema and ledger work.
+                failing_data=json.dumps({'schema_version':1,'migration_id':'synthetic_acl_denied',
+                    'statements':['CREATE TABLE shop_app.must_rollback(id integer)',
+                                  'CREATE TABLE public.forbidden_schema_table(id integer)']}).encode()
+                _,failing_authority=self.schema_authority(failing_data)
+                failing_authority.update(database=expected,authorization_id='d'*32,migration_id='synthetic_acl_denied')
+                file=inputs[0];file.seek(0);file.write(failing_data);file.truncate();file.flush()
+                with patch.object(schema_auth,'load_authorization',return_value=failing_authority), \
+                     patch.object(cli.psycopg,'connect',side_effect=schema_connect):
+                    with self.assertRaises(psycopg.errors.InsufficientPrivilege):
+                        schema_command.apply_from_fds()
+                self.assertIsNone(admin.execute("SELECT to_regclass('shop_app.must_rollback')").fetchone()[0])
+                self.assertEqual(len(schema_opened),6)
                 self.assertTrue(all(connection.closed for connection in schema_opened))
-                self.assertEqual(admin.execute("SELECT count(*) FROM pg_class WHERE oid=to_regclass('public.operator_schema_probe')").fetchone()[0],1)
+                self.assertEqual(admin.execute("SELECT count(*) FROM pg_class WHERE oid=to_regclass('shop_app.operator_schema_probe')").fetchone()[0],1)
                 self.assertEqual(admin.execute('SELECT count(*) FROM shop_control.schema_migrations').fetchone()[0],1)
             admin.close()
 

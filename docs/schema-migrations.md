@@ -361,3 +361,37 @@ retry or reopening permission is created by building or testing this candidate.
 The publisher/custody/admission barrier, exact role provisioning, Django writes
 and migration recorder integration, executable independent replica and full
 runtime/human review gates remain unfinished.
+
+## Restricted schema-role local qualification
+
+The real disposable SCRAM/source-command fixture now connects directly as a
+separate `schema_candidate` login with NOSUPERUSER, NOCREATEDB, NOCREATEROLE,
+NOREPLICATION and NOBYPASSRLS. It owns only the fixture's `shop_control` ledger
+schema/table and a dedicated `shop_app` schema. The administrative fixture
+connection creates those objects and transfers ownership; no production role
+provisioning SQL or automatic ownership adoption is supplied.
+
+The current identity query needs both EXECUTE on
+`pg_catalog.pg_control_system()` and membership in `pg_read_all_settings`.
+Explicit calls with neither privilege and then only the function privilege fail
+before schema/ledger effects. With both, the guarded source command applies and
+recognizes the exact migration through SCRAM. The latter membership exposes all
+configuration settings, including settings normally restricted to superusers;
+it is broader than access to data_directory alone and requires review for the
+isolated shop cluster. See [PostgreSQL predefined roles](https://www.postgresql.org/docs/18/predefined-roles.html).
+
+Actual ACL denials cover database creation, role creation, SET ROLE to the fixture
+administrator, server-file reads, creating a public-schema table and modifying
+an unrelated administrator-owned table. A reviewed two-statement artifact first
+creates a table in shop_app and then attempts forbidden public-schema DDL; the
+later denial rolls back both the first table and its prospective ledger entry.
+These are local database privilege observations, with the existing synthetic
+root records/process/socket/UID and PGDATA adaptations. They do not qualify
+host-side fixed socket/peer admission, a production grant set or role provisioning.
+
+Schema ownership allows the migration role to change its own ledger and objects
+outside this command. This fixture does not establish tamper-proof history or a
+complete least-privilege model, and the command currently does not independently
+reject an overprivileged role. Publication/custody, admission barriers, role
+attribute/grant attestation, Django integration and independent runtime/recovery
+qualification remain pending. Production Django remains closed.
