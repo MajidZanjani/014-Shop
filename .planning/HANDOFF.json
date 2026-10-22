@@ -1,0 +1,83 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-10-22T07:18:24.599057Z",
+  "phase": "02",
+  "phase_name": "Reproducible application and deployment skeleton",
+  "phase_dir": ".planning/phases/02-reproducible-application-and-deployment-skeleton",
+  "plan": 14,
+  "task": 2,
+  "total_tasks": 2,
+  "status": "paused",
+  "completed_tasks": [
+    {
+      "id": 1,
+      "name": "Independent read-only retained-generation inspection with historical authority expiry separation",
+      "status": "done",
+      "commit": "2869c0b"
+    },
+    {
+      "id": 2,
+      "name": "Root-only physical publisher preserving prior generation behind unchanged blocked admission",
+      "status": "done",
+      "commit": "dfbdc74"
+    }
+  ],
+  "remaining_tasks": [
+    {
+      "id": 3,
+      "name": "Read-only physical publication-outcome reconciliation with independent fresh authority",
+      "status": "not_started"
+    },
+    {
+      "id": 4,
+      "name": "Separately authorized reopening and actual authority/custody/ancestry/namespace/storage/failure qualification",
+      "status": "not_started"
+    },
+    {
+      "id": 5,
+      "name": "Django migration recorder and all app/worker writes, independent executable replica",
+      "status": "not_started"
+    },
+    {
+      "id": 6,
+      "name": "Complete16 native/schema/OCI/licences,17 payload reproducibility/full CI and human/off-host qualification",
+      "status": "not_started"
+    }
+  ],
+  "blockers": [
+    {
+      "description": "Independent runner unassigned; actual disruptive/rootless/runtime/recovery qualification remains pending.",
+      "type": "external",
+      "workaround": "Continue local repository implementation and ordinary synthetic checks; do not repeat runner assignment question before remaining qualification stage."
+    }
+  ],
+  "async_jobs": [],
+  "human_actions_pending": [
+    {
+      "action": "Phase02 human browser/source/licence/runtime/prohibition reviews; later independent runner assignment and actual scoped host/custody approvals",
+      "context": "Local code/tests and source designs do not grant phase/production acceptance or protected service/action authority.",
+      "blocking": false
+    }
+  ],
+  "decisions": [
+    {
+      "decision": "Historical expiry bypass is available only to read-only retained authority parsing; write/root issue paths remain fresh.",
+      "rationale": "Fresh independent inspection of immutable history must not renew original write authority or rely on live old records.",
+      "phase": "02"
+    },
+    {
+      "decision": "Whole prior physical directory is preserved and staged controls installed with Linux renameat2 RENAME_NOREPLACE under permanent EXNB admission.",
+      "rationale": "Unknown targets are never overwritten; interrupted steps remain behind unchanged blocked bytes with no automatic compensation or retry.",
+      "phase": "02"
+    },
+    {
+      "decision": "Publication authority stays outside replaceable generations and binds complete prior inventory plus exact reviewed candidate/custody evidence.",
+      "rationale": "Authority must remain freshly readable across both renames; actual root review/qualified evidence are external prerequisites, not created here.",
+      "phase": "02"
+    }
+  ],
+  "uncommitted_files": [],
+  "checkpoint_base_commit": "dfbdc74e456c2ac8f187a3013884566bd7a4551b",
+  "next_action": "Read publication.py and tests/test_publication.py. Start an inline GSD quick slice for independently authorized read-only publication-outcome reconciliation while holding the permanent admission barrier. Observe current/stage/previous physical directory identity, exact reviewed hashes and blocked bytes across original-only, staged, prior-moved/no-current, published and conflicting/unknown states. Never adopt/repair/rollback/retry/reopen or infer completion/durability from matching files. Keep inspection authority outside replaceable generations. Then prepare separately authorized reopening only after actual qualification, and continue app/Django/replica/16/17 work.",
+  "context_notes": "User explicitly requested continue during the active turn: treated as sustained execution, not task replacement. Continue useful authorized local steps without per-slice permission and commit/push to scoped origin/main. No actual mx1/provider/DNS/bank/mail/service/credential actions authorized. Eight parent local slices remain complete, seven qualification/human pending;14/16/17 implementation-incomplete and no FULL_PASS. Root publisher library now performs actual no-replace filesystem operations only in owned synthetic scratch tests; no CLI/install/runtime activation. Fresh root publication authority is outside replaceable control generation at /srv/shop/control-publication.json; exact root-approved custody evidence bytes are opaque and SHA-bound, not independently qualified by this code. Candidate records remain unverified until actual root review; fixtures do not grant host authority. Final actual SQL3/15310.992s, source7/5 4.185s (11 modules), operator7/17 5.828s, deployment16/31 2.272s, native55/9 write1.004s, notices9/7 write3.759s pass. Prior inspection SQL3/14510.945s/source/operator/deployment/native54 also passed. No failing runs this continuation. Await source/operator builds before collecting dependent native inventory; preserve historical evidence revisions. All test/push/verification processes finished, no agents or async jobs. No .env/real credentials/host/provider/production/resource mutations. Sandbox exec needs reviewed require_escalated due default bwrap cwd failure; bounded cached Nix jobs/cores and owned .scratch only, no shared cleanup. Proactive context pressure checkpoint under standing AGENTS instruction; exact percentage unavailable, no measured90% claim."
+}

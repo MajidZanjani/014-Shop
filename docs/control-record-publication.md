@@ -408,7 +408,8 @@ changed entries deny before staging. It exclusively stages
 mode0440 records, handles short writes, fsyncs and reads back exact canonical
 reviewed bytes. Authority is rechecked throughout.
 
-Linux/glibc renameat2 with RENAME_NOREPLACE first preserves the entire original
+Linux/glibc [renameat2](https://man7.org/linux/man-pages/man2/rename.2.html)
+with RENAME_NOREPLACE first preserves the entire original
 `control` directory as `control-previous-<original-admission-sha256>`, syncs the
 parent, then moves the staged physical directory to `control` without replacing
 any intervening object and syncs again. There is no unsafe replacement fallback.
