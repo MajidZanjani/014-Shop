@@ -23,6 +23,27 @@ def validate_report(value):
     return value
 
 
+def require_schema_role(connection):
+    """Bounded role admission, not complete ACL or owner-history attestation."""
+    row = connection.execute("""WITH RECURSIVE memberships(roleid) AS (
+        SELECT roleid FROM pg_catalog.pg_auth_members
+        WHERE member=(SELECT oid FROM pg_catalog.pg_roles WHERE rolname=current_user)
+        UNION
+        SELECT a.roleid FROM pg_catalog.pg_auth_members a
+        JOIN memberships m ON a.member=m.roleid
+    ) SELECT current_user=session_user AND me.rolcanlogin
+        AND NOT (me.rolsuper OR me.rolcreatedb OR me.rolcreaterole
+                 OR me.rolreplication OR me.rolbypassrls)
+        AND NOT EXISTS (SELECT FROM pg_catalog.pg_database d
+                        WHERE d.datname=current_database() AND d.datdba=me.oid)
+        AND NOT EXISTS (SELECT FROM memberships m JOIN pg_catalog.pg_roles r ON r.oid=m.roleid
+                        WHERE r.rolname<>'pg_read_all_settings')
+        AND NOT EXISTS (SELECT FROM pg_catalog.pg_auth_members a WHERE a.admin_option
+                        AND (a.member=me.oid OR a.member IN (SELECT roleid FROM memberships)))
+        FROM pg_catalog.pg_roles me WHERE me.rolname=current_user""", prepare=True).fetchone()
+    require(row == (True,))
+
+
 def apply_from_fds():
     """Single-process source command only; never invoke inside an app server."""
     require(dict(os.environ) == transport.SAFE_ENV and os.geteuid() > 0)
@@ -37,11 +58,15 @@ def apply_from_fds():
     transport.process_probe.probe(approved, connection_record['zfs'], connection_record['pg_control'])
     socket_before = transport.socket_identity(expected['account_uid'], expected['server_port'])
 
+    connection = None
+
     def admission():
         require(transport.load_connection() == connection_record
                 and transport.process_probe.load_record() == approved
                 and schema.load_authorization() == authorization
                 and transport.socket_identity(expected['account_uid'], expected['server_port']) == socket_before)
+        if connection is not None:
+            require_schema_role(connection)
         return True
 
     admission()

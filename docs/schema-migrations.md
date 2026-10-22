@@ -391,7 +391,39 @@ host-side fixed socket/peer admission, a production grant set or role provisioni
 
 Schema ownership allows the migration role to change its own ledger and objects
 outside this command. This fixture does not establish tamper-proof history or a
-complete least-privilege model, and the command currently does not independently
-reject an overprivileged role. Publication/custody, admission barriers, role
-attribute/grant attestation, Django integration and independent runtime/recovery
+complete least-privilege model, and the role-admission predicate below is only a bounded privilege check.
+Publication/custody, admission barriers, complete object/grant attestation,
+Django integration and independent runtime/recovery
 qualification remain pending. Production Django remains closed.
+
+
+## Enforced schema-login admission
+
+The separate schema command now checks the actual SQL session after connecting,
+inside every schema admission callback and after its outcome. It requires
+current_user=session_user, LOGIN, no SUPERUSER/CREATEDB/CREATEROLE/REPLICATION/
+BYPASSRLS attributes, and no ownership of the current database. A recursive walk
+of pg_auth_members rejects every reachable membership except
+pg_read_all_settings, including membership edges with INHERIT/SET disabled.
+Membership ADMIN OPTION is also denied on the login and reachable roles. Cycles
+are bounded by the recursive UNION; existing session statement timeouts bound the
+query. No role names, credentials, grants or ownership are changed by this check.
+
+False/missing predicate observations or SQL errors deny through the existing
+constant outcome-unconfirmed error path and close the connection. With a live
+connection, every existing authority/socket/runtime/schema transaction admission
+also runs this role check. Real disposable tests cover each forbidden attribute,
+NOLOGIN, permitted metadata membership, membership administration, transitive
+membership and database ownership. The SCRAM fixture promotes CREATEDB after the
+first DDL statement; the next check observes the change and rolls back the DDL
+without adding a ledger row. This is an explicit test action on an owned scratch
+cluster, not a production fault test.
+
+The predicate is deliberately conservative about role membership. It does not
+inventory arbitrary directly granted function/object/parameter privileges,
+SECURITY DEFINER routines, historical ownership or every other database in the
+cluster. Ledger/app ownership still permits changes outside this command.
+Concurrent privileged changes after the final check cannot be undone, and a
+postcommit denial still reports an unconfirmed outcome. Production provisioning,
+complete grant review, root-record custody/barriers, isolated runtime and
+independent restore reconciliation remain prerequisites.

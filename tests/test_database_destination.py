@@ -933,6 +933,29 @@ class DatabaseDestinationTests(unittest.TestCase):
                 self.assertTrue(all(connection.closed for connection in schema_opened))
                 self.assertEqual(admin.execute("SELECT count(*) FROM pg_class WHERE oid=to_regclass('shop_app.operator_schema_probe')").fetchone()[0],1)
                 self.assertEqual(admin.execute('SELECT count(*) FROM shop_control.schema_migrations').fetchone()[0],1)
+                role_data=json.dumps({'schema_version':1,'migration_id':'synthetic_role_change',
+                    'statements':['CREATE TABLE shop_app.role_change_rollback(id integer)']}).encode()
+                _,role_authority=self.schema_authority(role_data)
+                role_authority.update(database=expected,migration_id='synthetic_role_change',authorization_id='e'*32)
+                file=inputs[0];file.seek(0);file.write(role_data);file.truncate();file.flush()
+                real_role_check=schema_command.require_schema_role
+                role_checks=[]
+                def promote_after_ddl(connection):
+                    role_checks.append(True)
+                    if len(role_checks)==4:
+                        self.assertIsNotNone(connection.execute("SELECT to_regclass('shop_app.role_change_rollback')").fetchone()[0])
+                        admin.execute('ALTER ROLE schema_candidate CREATEDB')
+                    return real_role_check(connection)
+                try:
+                    with patch.object(schema_auth,'load_authorization',return_value=role_authority), \
+                         patch.object(cli.psycopg,'connect',side_effect=schema_connect), \
+                         patch.object(schema_command,'require_schema_role',side_effect=promote_after_ddl):
+                        with self.assertRaises(ValueError):schema_command.apply_from_fds()
+                finally:admin.execute('ALTER ROLE schema_candidate NOCREATEDB')
+                self.assertEqual(len(role_checks),4)
+                self.assertTrue(schema_opened[-1].closed)
+                self.assertIsNone(admin.execute("SELECT to_regclass('shop_app.role_change_rollback')").fetchone()[0])
+                self.assertEqual(admin.execute('SELECT count(*) FROM shop_control.schema_migrations').fetchone()[0],1)
             admin.close()
 
     def test_schema_transport_admission_failure_rolls_back_schema_and_ledger(self):
@@ -948,3 +971,40 @@ class DatabaseDestinationTests(unittest.TestCase):
             self.assertEqual(self.target.sql('SELECT count(*) FROM shop_control.schema_migrations'),'0')
         with self.assertRaises(ValueError):self.authorized_schema(admission_check=lambda:False)
         self.assertEqual(self.schema_exists(),'0')
+
+
+    def test_schema_login_attribute_and_transitive_membership_admission(self):
+        import operator_schema as command
+        self.target.sql('CREATE ROLE role_candidate LOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOREPLICATION NOBYPASSRLS')
+        self.addCleanup(self.target.sql,'DROP ROLE role_candidate')
+        conn=self.connection()
+        conn.execute('SET SESSION AUTHORIZATION role_candidate')
+        command.require_schema_role(conn)
+        for forbidden,reset in (('SUPERUSER','NOSUPERUSER'),('CREATEDB','NOCREATEDB'),
+                                ('CREATEROLE','NOCREATEROLE'),('REPLICATION','NOREPLICATION'),
+                                ('BYPASSRLS','NOBYPASSRLS'),('NOLOGIN','LOGIN')):
+            with self.subTest(attribute=forbidden):
+                self.target.sql('ALTER ROLE role_candidate '+forbidden)
+                try:
+                    with self.assertRaises(ValueError):command.require_schema_role(conn)
+                finally:self.target.sql('ALTER ROLE role_candidate '+reset)
+                command.require_schema_role(conn)
+        self.target.sql('GRANT pg_read_all_settings TO role_candidate')
+        command.require_schema_role(conn)
+        self.target.sql('GRANT pg_read_all_settings TO role_candidate WITH ADMIN OPTION')
+        with self.assertRaises(ValueError):command.require_schema_role(conn)
+        self.target.sql('REVOKE ADMIN OPTION FOR pg_read_all_settings FROM role_candidate')
+        command.require_schema_role(conn)
+        self.target.sql('CREATE ROLE role_bridge NOLOGIN')
+        self.addCleanup(self.target.sql,'DROP ROLE role_bridge')
+        self.target.sql('GRANT pg_write_all_data TO role_bridge')
+        self.target.sql('GRANT role_bridge TO role_candidate WITH INHERIT FALSE, SET FALSE')
+        with self.assertRaises(ValueError):command.require_schema_role(conn)
+        self.target.sql('REVOKE role_bridge FROM role_candidate')
+        command.require_schema_role(conn)
+        self.target.sql('CREATE DATABASE role_owned OWNER role_candidate')
+        self.addCleanup(self.target.sql,'DROP DATABASE role_owned')
+        owned=psycopg.connect(host=str(self.target.socket),port=5432,dbname='role_owned',
+            user='role_candidate',autocommit=True,client_encoding='utf8',passfile='/dev/null')
+        self.addCleanup(owned.close)
+        with self.assertRaises(ValueError):command.require_schema_role(owned)

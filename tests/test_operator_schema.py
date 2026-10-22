@@ -29,6 +29,7 @@ class OperatorSchemaTests(unittest.TestCase):
             socket = stack.enter_context(patch.object(transport, 'socket_identity', return_value=(1, 2, 9909)))
             reader = stack.enter_context(patch.object(transport, 'read_private_fd', side_effect=[b'EXACT_ARTIFACT', b'SYNTHETIC_PRIVATE_PASSWORD']))
             connection = Mock()
+            connection.execute.return_value.fetchone.return_value = (True,)
             connect = stack.enter_context(patch.object(transport.psycopg, 'connect', return_value=connection))
             def apply(*args, **kwargs):
                 self.assertTrue(kwargs['admission_check']())
@@ -108,3 +109,22 @@ class OperatorSchemaTests(unittest.TestCase):
                 return 0
             main.side_effect=check
             self.assertEqual(command.entrypoint(),0)
+
+
+    def test_schema_role_predicate_denies_absent_or_false_observation(self):
+        for row in (None, (False,), (True, False)):
+            connection=Mock()
+            connection.execute.return_value.fetchone.return_value=row
+            with self.subTest(row=row), self.assertRaises(ValueError):
+                command.require_schema_role(connection)
+        connection.execute.assert_called_once()
+        self.assertTrue(connection.execute.call_args.kwargs['prepare'])
+
+
+    def test_rejected_schema_role_closes_before_mutation(self):
+        with self.fixture() as case:
+            case['connection'].execute.return_value.fetchone.return_value=(False,)
+            with self.assertRaises(ValueError):command.apply_from_fds()
+            self.assertEqual(case['connect'].call_count,1)
+            case['mutation'].assert_not_called()
+            case['connection'].close.assert_called_once()
