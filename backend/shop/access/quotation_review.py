@@ -11,7 +11,7 @@ from django.shortcuts import render
 from django.views.decorators.http import require_POST
 from shop.catalog.models import QuotationRequest, QuotationReview, REVIEW_DECISIONS
 from shop.catalog.rules import CATALOG
-from shop.catalog.business_scope import current_scope, valid_business
+from shop.catalog.business_scope import current_scope, valid_business, scope_for_version
 from .models import StaffCredential, StaffQuotationGrant
 from .staff_auth import staff_credential, payload
 from .views import reply
@@ -102,6 +102,8 @@ def record_review(request,identity):
                 return reject(request,'request_conflict',409)
             if old.business_version and grant.business_scope_version!=old.business_version:
                 return reject(request,'business_scope_access_required',403)
+            if old.business_version and scope_for_version(quotation,old.business_version) is None:
+                return reject(request,'business_scope_changed',409)
             return result(request,quotation,old,False)
         if quotation.review_version!=value['expected_review_version']:
             return reject(request,'review_changed',409,current_review_version=quotation.review_version)

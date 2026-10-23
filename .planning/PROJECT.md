@@ -6,7 +6,7 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 ## Current implementation status — 2026-10-23
 
-Current work is **Phase7**, implemented in local/synthetic slices with full acceptance pending. Phase1 is the last completed phase; total1/14 (rounded7%),10/20 planned records, Phase02 remains8/18. See [STATE.md](STATE.md) and [ROADMAP.md](ROADMAP.md) for current evidence, next action and unchanged release gates. Country/tax answers are being prepared by the user; no choices/rates are approved. Current audit: F-00 and F-01 fixed; reproduce and fix F-02 historical private review ownership checks. Backend core-local145 passes.
+Current work is **Phase7**, implemented in local/synthetic slices with full acceptance pending. Phase1 is the last completed phase; total1/14 (rounded7%),10/20 planned records, Phase02 remains8/18. See [STATE.md](STATE.md) and [ROADMAP.md](ROADMAP.md) for current evidence, next action and unchanged release gates. Country/tax answers are being prepared by the user; no choices/rates are approved. Current audit: F-00 F-01 F-02 fixed and local audit complete; implement an automated synthetic customer-to-staff round trip through supported routes without real deliveries or commercial effects. Backend core-local147 passes.
 
 Before **every commit**, check all planning files for affected live status references, update them together, regenerate canonical state.json and run `python3 scripts/check_planning.py`. Preserve immutable sources and dated evidence; do not relabel partial local implementation as phase acceptance. Sync every commit to configured origin/main without force. This later user instruction supersedes the amendment's narrower status-maintenance convention.
 

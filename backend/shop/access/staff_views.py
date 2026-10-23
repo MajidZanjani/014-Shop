@@ -10,7 +10,7 @@ from .views import reply
 from .quotation_review import snapshot_digest, review_json, history
 from shop.catalog.models import REVIEW_DECISIONS
 from shop.catalog.rules import CATALOG
-from shop.catalog.business_scope import current_scope, valid_business
+from shop.catalog.business_scope import current_scope, valid_business, scope_for_version
 from shop.catalog.business_rules import GROUPS
 from shop.catalog.business_views import LABELS
 
@@ -41,12 +41,13 @@ def quotation_detail(request,identity):
     review_enabled=(not quotation.business_version or (private_access and valid_business(scope.business_snapshot,quotation.cart.owner_id)))
     digest=snapshot_digest(quotation) if review_enabled else None
     records=history(quotation)
+    historical_private_version=grant.business_scope_version if scope_for_version(quotation,grant.business_scope_version) is not None else 0
     if 'text/html' in request.headers.get('Accept',''):
         return page(request,'access/staff_quotation.html',{'quotation':quotation,'reviews':records,
             'request_id':str(uuid.uuid4()),'snapshot_digest':digest,'decisions':REVIEW_DECISIONS,
             'catalog_current':quotation.snapshot.catalog_revision==CATALOG['revision'],'review_enabled':review_enabled,'private_access':private_access})
     return reply({**quotation_json(quotation),'review_version':quotation.review_version,'snapshot_digest':digest,
-                  'reviews':[review_json(row,private_scope_version=grant.business_scope_version) for row in records],'history_limit':20,'review_enabled':review_enabled,'private_business_access':private_access})
+                  'reviews':[review_json(row,private_scope_version=historical_private_version) for row in records],'history_limit':20,'review_enabled':review_enabled,'private_business_access':private_access})
 
 
 @require_GET

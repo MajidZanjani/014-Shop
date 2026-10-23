@@ -83,3 +83,25 @@ class WorkflowAuditTests(TransactionTestCase):
         self.corrupt_parent()
         self.assertEqual(self.post(self.review_route,value).status_code,404)
         self.assertEqual(QuotationReview.objects.count(),1)
+    def test_F02_history_and_replay_recheck_recorded_scope_owner(self):
+        self.authenticated();self.grant();self.assertEqual(self.attach().status_code,303);self.enable_private(1)
+        value=self.review_value();self.assertEqual(self.post(self.review_route,value).status_code,201)
+        self.saved.draft.owner=get_user_model().objects.create_user(username='foreign-review-business-owner');self.saved.draft.save()
+        with self.subTest(operation='history'):
+            response=self.browser.get(self.detail);self.assertEqual(response.status_code,200)
+            self.assertIsNone(response.json()['snapshot_digest'])
+            self.assertIsNone(response.json()['reviews'][0]['snapshot_digest'])
+        with self.subTest(operation='retry'):
+            self.assertEqual(self.post(self.review_route,value).status_code,409)
+        self.assertEqual(QuotationReview.objects.count(),1)
+    def test_F02_valid_old_scope_history_and_retry_remain_source_independent(self):
+        self.authenticated();self.grant();self.assertEqual(self.attach().status_code,303);self.enable_private(1)
+        value=self.review_value();original=self.post(self.review_route,value);self.assertEqual(original.status_code,201)
+        self.business(2,'SECOND_PRIVATE_AUDIT_BUSINESS')
+        self.assertEqual(self.attach(dict(self.request,request_id=str(uuid.uuid4()),expected_scope_version='1',business_version='2')).status_code,303)
+        from shop.catalog import business_rules
+        with patch.object(business_rules,'SOURCE_SHA256','f'*64):
+            response=self.browser.get(self.detail)
+            self.assertFalse(response.json()['private_business_access'])
+            self.assertEqual(response.json()['reviews'][0]['snapshot_digest'],value['snapshot_digest'])
+            self.assertEqual(self.post(self.review_route,value).json()['review'],original.json()['review'])

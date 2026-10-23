@@ -3,9 +3,12 @@ from django.db.models import F
 from .models import QuotationBusinessScope
 from . import business_rules as rules
 
+def scope_for_version(quotation,version):
+    if not version:return None
+    return QuotationBusinessScope.objects.select_related('business_snapshot__draft').filter(quotation=quotation,version=version,business_snapshot__draft__owner_id=F('quotation__cart__owner_id')).first()
+
 def current_scope(quotation):
-    if not quotation.business_version:return None
-    return QuotationBusinessScope.objects.select_related('business_snapshot__draft').filter(quotation=quotation,version=quotation.business_version,business_snapshot__draft__owner_id=F('quotation__cart__owner_id')).first()
+    return scope_for_version(quotation,quotation.business_version)
 
 def valid_business(snapshot,owner_id):
     clean,errors=rules.validate_details(snapshot.details)
