@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
-status: active
-last_updated: "2026-10-23T11:24:23.950972+00:00"
-state_head: d1e65a4
+status: paused
+last_updated: "2026-10-23T11:26:19.461Z"
+state_head: ccab85a
 progress:
   total_phases: 14
   completed_phases: 1
@@ -12,13 +12,13 @@ progress:
 last_activity: 2026-10-23
 current_phase: 07
 current_phase_name: Multi-line cart, quotations, business checkout and acceptance
-stopped_at: Selected local prepared command passes; separate-process smoke next; Country/tax pending.
+stopped_at: Context checkpoint after selected prepared command; clear session and resume separate-process smoke; Country/tax pending.
 last_activity_desc: Local selected command passes246 tests;157 files19 templates;07-02 partial.
 ---
 
 # Project State
 
-Updated 2026-10-23T11:24:23.950972+00:00. Canonical current summary; latest evidence: [Plan07-02 selected local command](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-WORKER-COMMAND-PARTIAL.md). Customer status: [quick261023-7s8](quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-SUMMARY.md). Prior staff/HTTP evidence remains linked there. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
+Updated 2026-10-23T11:26:19.461Z. Canonical current summary; latest evidence: [Plan07-02 selected local command](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-WORKER-COMMAND-PARTIAL.md). Customer status: [quick261023-7s8](quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-SUMMARY.md). Prior staff/HTTP evidence remains linked there. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
 ## Current position
 
@@ -83,7 +83,7 @@ T03/T04 local catalog delivery remains intact; T05 local draft persistence and T
 
 Demo: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/demo.py --backend`; open http://127.0.0.1:4321 (also /support/ and /purchase/simple/).
 
-Checks: Current selected command evidence:246 core-local tests (232 Django plus14 Gunicorn observations),57.080s; owned PostgreSQL18.6/UTF8. Source157 files19 templates exact/allowlisted/no symlinks. run_prepared_archive executes one explicit authorization/destination/existing bound root with fixed safe stdout/errors, no initialization/adoption/queue scan/retry. One-shot prepared executor and all manual-autocommit guards remain passing. Existing probe daemon/default images unchanged. Next: separate-process owned-synthetic command smoke/failure tests; actual transport/process/outage/off-host/provider/production qualification remains pending. Country/tax pending; focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 remains8/18;07-02 partial.
+Checks: Current selected command evidence (implementationccab85a synced0/0):246 core-local tests (232 Django plus14 Gunicorn observations),57.080s; owned PostgreSQL18.6/UTF8. Source157 files19 templates exact/allowlisted/no symlinks. run_prepared_archive executes one explicit authorization/destination/existing bound root with fixed safe stdout/errors, no initialization/adoption/queue scan/retry. One-shot prepared executor and all manual-autocommit guards remain passing. Existing probe daemon/default images unchanged. Next: separate-process owned-synthetic command smoke/failure tests; actual transport/process/outage/off-host/provider/production qualification remains pending. Country/tax pending; focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 remains8/18;07-02 partial.
 
 User review, 2026-10-22: **previous catalog demo checked and approved** (user: “all checked and approved”). See task evidence for scope. Verification/save-resume also passed user review (“all works fine”, 2026-10-22). Local multi-line cart demo approved by user (“approved”, 2026-10-22). Detailed browser/accessibility qualification and commercial/release gates remain pending.
 
@@ -168,4 +168,6 @@ Session continued afterd1e65a4 sync into selected local management command;246 t
 | 261023-cyg | Fix audit F-01 missing cart snapshot ownership recheck | 2026-10-23 | 83e8464 | [261023-cyg-fix-customer-form-audit-f-01-by-rechecki](./quick/261023-cyg-fix-customer-form-audit-f-01-by-rechecki/) |
 | 261023-d1r | Show exact committed and current cart revisions after no-JavaScript retries | 2026-10-23 | 6171d3c | [261023-d1r-show-exact-committed-revision-and-curren](./quick/261023-d1r-show-exact-committed-revision-and-curren/) |
 
-Current selected command evidence:246 core-local tests (232 Django plus14 Gunicorn observations),57.080s; owned PostgreSQL18.6/UTF8. Source157 files19 templates exact/allowlisted/no symlinks. run_prepared_archive executes one explicit authorization/destination/existing bound root with fixed safe stdout/errors, no initialization/adoption/queue scan/retry. One-shot prepared executor and all manual-autocommit guards remain passing. Existing probe daemon/default images unchanged. Next: separate-process owned-synthetic command smoke/failure tests; actual transport/process/outage/off-host/provider/production qualification remains pending. Country/tax pending; focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 remains8/18;07-02 partial.
+Current selected command evidence (implementationccab85a synced0/0):246 core-local tests (232 Django plus14 Gunicorn observations),57.080s; owned PostgreSQL18.6/UTF8. Source157 files19 templates exact/allowlisted/no symlinks. run_prepared_archive executes one explicit authorization/destination/existing bound root with fixed safe stdout/errors, no initialization/adoption/queue scan/retry. One-shot prepared executor and all manual-autocommit guards remain passing. Existing probe daemon/default images unchanged. Next: separate-process owned-synthetic command smoke/failure tests; actual transport/process/outage/off-host/provider/production qualification remains pending. Country/tax pending; focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 remains8/18;07-02 partial.
+
+Context checkpoint: implementationccab85a synced0/0,246 local checks pass; waiting for cleared session and $gsd-resume-work. No exact context percentage is available; proactive handoff follows the user AGENTS.md rule. Focus7/completed1;07-02 partial; Country/tax pending.

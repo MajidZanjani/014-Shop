@@ -1,0 +1,67 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-10-23T11:26:19.461Z",
+  "phase": "07",
+  "phase_name": "Multi-line cart, quotations, business checkout and acceptance",
+  "phase_dir": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance",
+  "plan": 2,
+  "task": 3,
+  "total_tasks": 3,
+  "status": "paused",
+  "completed_tasks": [
+    {
+      "id": 1,
+      "name": "Bounded prepared executor and twelve manual-autocommit guards",
+      "status": "done",
+      "commit": "d1e65a4"
+    },
+    {
+      "id": 2,
+      "name": "Selected local management command and in-process command tests",
+      "status": "done",
+      "commit": "ccab85a"
+    }
+  ],
+  "remaining_tasks": [
+    {
+      "id": 3,
+      "name": "Separate-process owned-synthetic command smoke/failure test",
+      "status": "not_started"
+    }
+  ],
+  "blockers": [
+    {
+      "description": "Actual independent runtime/transport/outage/off-host/provider/recovery qualification remains pending; local smoke work can continue.",
+      "type": "external",
+      "workaround": "Continue only ordinary isolated repository tests; do not infer external authority."
+    }
+  ],
+  "async_jobs": [],
+  "human_actions_pending": [
+    {
+      "action": "Clear this session and run $gsd-resume-work.",
+      "context": "Proactive context-pressure checkpoint authorized by AGENTS.md; no exact percentage available.",
+      "blocking": true
+    },
+    {
+      "action": "Country/tax answers remain deferred while user prepares them.",
+      "context": "Do not guess or repeatedly ask; local unrelated work can continue.",
+      "blocking": false
+    }
+  ],
+  "decisions": [
+    {
+      "decision": "One selected local job, never automatic retry/queue scan/root adoption.",
+      "rationale": "Preserve exact durable authority, destination and uncertainty reconciliation.",
+      "phase": "07"
+    },
+    {
+      "decision": "Reject manual autocommit-off as well as nested Django transactions before archive I/O.",
+      "rationale": "Owned atomic contexts must actually commit before publication.",
+      "phase": "07"
+    }
+  ],
+  "uncommitted_files": [],
+  "next_action": "Add a separate-process owned-synthetic run_prepared_archive smoke/failure regression using the frozen interpreter and the actual test database identity; assert fixed safe stdout/errors and bounded child cleanup. Keep default probe daemon/images and production gates unchanged.",
+  "context_notes": "Checkpoint task numbers describe the two completed local worker slices and one next smoke task, not completed original plan tasks. Runtimeccab85a synced before checkpoint.246 tests (232 Django plus14 Gunicorn),57.080s; source /nix/store/qr4g27lv40q90jmcbgcmic59z5b5bnvs-shop-python-source:157 exact files19 templates.0012/no-drift passes. Frontend/proxy unchanged/not rerun. Original plan progress11/24; focus7/last complete1; Phase02 8/18;07-02 remains partial. No test/demo/async job remains active. uncommitted_files measured before checkpoint artifact writes; this checkpoint is committed afterward. No exact context percentage supplied or claimed. User requires continued work across syncs until context clear/user stop."
+}
