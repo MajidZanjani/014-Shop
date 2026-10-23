@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: active
-last_updated: "2026-10-23T05:24:00.193677+00:00"
-state_head: 817fd57e3d1bcd2baebcbf8631805ab91bb01e45
+last_updated: "2026-10-23T05:35:27.312Z"
+state_head: 7cbff58c9692e90957294e0d9a1a09d1cf6db670
 progress:
   total_phases: 14
   completed_phases: 1
@@ -11,18 +11,18 @@ progress:
   percent: 7
 last_activity: 2026-10-23
 current_phase: 07
-current_phase_name: Local staff access and quotation review
-stopped_at: Authorized staff HTTP check passed; local quotation/staff demo review pending.
-last_activity_desc: Staff HTTP form flow passed15 observations; preview header forwarding fixed; production MFA/release gates pending.
+current_phase_name: Local internal quotation-review decisions
+stopped_at: Internal quotation-review decisions implemented and verified; demo review pending.
+last_activity_desc: Assigned versioned staff decisions and exact retry passed75 core-local tests; commercial/release gates pending.
 ---
 
 # Project State
 
-Updated 2026-10-23T05:24:00.193677+00:00. Canonical current summary; latest evidence: [quick261023-72i](quick/261023-72i-implement-local-staff-mfa-and-quotation-/261023-72i-SUMMARY.md), quotation capture: [quick261023-6w3](quick/261023-6w3-implement-protected-quotation-requests-f/261023-6w3-SUMMARY.md). Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
+Updated 2026-10-23T05:35:27.134901+00:00. Canonical current summary; latest evidence: [quick261023-7l0](quick/261023-7l0-record-assigned-staff-quotation-review-d/261023-7l0-SUMMARY.md). Staff authentication/manual HTTP evidence: [quick261023-72i](quick/261023-72i-implement-local-staff-mfa-and-quotation-/261023-72i-SUMMARY.md). Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
 ## Current position
 
-T03/T04 local catalog delivery remains intact; T05 local draft persistence and T06 synthetic verified access/save-resume are implemented. T07 now has the owner-scoped versioned multi-line draft cart; protected quotation-request capture now retains exact owner snapshots and reconciles duplicate/retried submissions. Local staff password/private-code rehearsal and assigned read-only quotation review are implemented; real staff MFA/delivery/recovery, review decisions and approved offers remain pending. Full phase acceptance remains pending. Phase02 remains 8/18 complete with all ten incomplete qualification/implementation records preserved. Only Phase01 is fully complete: 1/14 = rounded 7%. That is completed-phase progress, not engineering effort. Existing planned records remain 10/20; later phase acceptance is not claimed from quick-task implementation.
+T03/T04 local catalog delivery remains intact; T05 local draft persistence and T06 synthetic verified access/save-resume are implemented. T07 now has the owner-scoped versioned multi-line draft cart; protected quotation-request capture now retains exact owner snapshots and reconciles duplicate/retried submissions. Local staff password/private-code rehearsal, assigned quotation reads and append-only-by-API internal review decisions are implemented. Real staff MFA/delivery/recovery and approved offers remain pending. Full phase acceptance remains pending. Phase02 remains 8/18 complete with all ten incomplete qualification/implementation records preserved. Only Phase01 is fully complete: 1/14 = rounded 7%. That is completed-phase progress, not engineering effort. Existing planned records remain 10/20; later phase acceptance is not claimed from quick-task implementation.
 
 ## Delivered behavior
 
@@ -31,20 +31,20 @@ T03/T04 local catalog delivery remains intact; T05 local draft persistence and T
 - Local/synthetic captured-code verification, rotated sessions/CSRF, expiry/attempt/request bounds and owner-only draft save/list/resume UI. No real email, shared contact roles, staff MFA or production activation.
 - Owner-only multi-line cart: separate IP and support lines, add/edit/remove, version conflicts, exact uncertain retry, resume; prices null and checkout disabled.
 - Owner-only quotation requests capture exact saved cart versions, with protected list/detail, duplicate-key arbitration and unchanged captured lines after later edits. Local/synthetic only; no email or commercial effects.
-- Separate local staff process with password/private-code rehearsal, session/CSRF rotation, recent verification and explicit quotation grants. Operator reset/revocation invalidates MFA state and removes assignments; real staff MFA/recovery remains pending.
+- Separate local staff process with password/private-code rehearsal, session/CSRF rotation, recent verification and explicit quotation grants. Operator reset/revocation invalidates MFA state and removes assignments; real staff MFA/recovery remains pending. Internal decisions bind actor/MFA evidence to exact request snapshots, retain correction history and reject stale/concurrent overwrites.
 - Bounded `scripts/check.py dev` command; automatic lightweight push/PR CI prepared separately from unchanged manual specialized qualification.
 
 ## Run and evidence
 
 Demo: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/demo.py --backend`; open http://127.0.0.1:4321 (also /support/ and /purchase/simple/).
 
-Checks: current changed lanes pass core-local68 tests on fresh owned real PostgreSQL and frontend104 Node tests plus proxy1; static build/typecheck/source policy/output privacy checks pass. New staff evidence and limits are in quick261023-72i SUMMARY; startup of both previews and the updated proxy1 test also passed. User explicitly approved the previously blocked disposable credential read; final manual HTTP sign-in/review/logout passed15 observations after proxy Accept/CSP forwarding fix817fd57; unchanged lanes retain prior scoped evidence. No FULL_PASS or real-browser/production/recovery/legal acceptance. Hosted CI for this slice remains unverified; no credential access retried.
+Checks: current changed lanes pass core-local75 tests on fresh owned real PostgreSQL and frontend104 Node tests plus proxy1; static build/typecheck/source policy/output privacy checks pass. New decision evidence/limits are in quick261023-7l0 SUMMARY; prior staff authentication evidence remains in quick261023-72i; startup of both previews and the updated proxy1 test also passed. User explicitly approved the previously blocked disposable credential read; final manual HTTP sign-in/review/logout passed15 observations after proxy Accept/CSP forwarding fix817fd57; unchanged lanes retain prior scoped evidence. No FULL_PASS or real-browser/production/recovery/legal acceptance. Hosted CI for this slice remains unverified; no credential access retried.
 
 User review, 2026-10-22: **previous catalog demo checked and approved** (user: “all checked and approved”). See task evidence for scope. Verification/save-resume also passed user review (“all works fine”, 2026-10-22). Local multi-line cart demo approved by user (“approved”, 2026-10-22). Detailed browser/accessibility qualification and commercial/release gates remain pending.
 
 ## Exact next action
 
-Current local quotation/staff demos await human review. Next independent local feature: record staff quotation-review decisions against the exact assigned request snapshot, keeping approved offers, acceptance/payment and financial effects disabled pending commercial/durability prerequisites. The specifically approved disposable-credential HTTP check is complete; that permission does not authorize real credentials or unrelated operations.
+Current local quotation/staff demos await human review. Next independent local feature: customer-safe review status on owner quotation history/detail, excluding staff reviewer/MFA metadata and keeping approved offers, acceptance/payment and financial effects disabled pending commercial/durability prerequisites. The previously approved disposable-credential HTTP check is complete; no real credential authority is inferred.
 
 ## Remaining dependencies and protections
 
@@ -54,7 +54,7 @@ Retain dependency locks, raw SBOMs, notices, validated derivative and all origin
 
 ## Session continuity
 
-Session resumed 2026-10-23 through `$gsd-resume-work`; user selected quotation implementation then continuation. Staff quick261023-72i has68 core-local tests and final15-observation HTTP evidence. User explicitly approved only the generated disposable staff passwords/codes for this check; no real/provider/.env credentials accessed. HTTP check found proxy Accept/CSP loss; fixed at817fd57 with passing regression. All owned previews stopped and private capture/database/runtime directories removed. No active agents or async jobs. No exact context percentage available or claimed; retain conditional checkpoint rule.
+Session resumed 2026-10-23; user selected quotation implementation, then staff prerequisites, approved the specific synthetic HTTP check and requested continuation. Quick261023-7l0 internal decisions committed at7cbff58, final75 core-local tests pass. No additional manual credential access or demo process needed for this slice. No active agents/async jobs/owned demo processes. Prior scoped15-observation HTTP evidence and credential/privacy restrictions retained. No exact context percentage available or claimed; retain conditional checkpoint rule.
 
 ### Quick Tasks Completed
 
@@ -100,3 +100,4 @@ Session resumed 2026-10-23 through `$gsd-resume-work`; user selected quotation i
 | 38 | Record user approval of local multi-line cart demo | 2026-10-22 | fdfdc4f | — |
 | 261023-6w3 | Capture protected owner quotation requests from exact cart snapshots with idempotent retries | 2026-10-23 | a919f0c | [261023-6w3-implement-protected-quotation-requests-f](./quick/261023-6w3-implement-protected-quotation-requests-f/) |
 | 261023-72i | Implement local staff two-factor rehearsal and assigned read-only quotation review | 2026-10-23 | 8af5098 | [261023-72i-implement-local-staff-mfa-and-quotation-](./quick/261023-72i-implement-local-staff-mfa-and-quotation-/) |
+| 261023-7l0 | Record assigned staff review decisions with exact-snapshot attribution, correction history and idempotent retries | 2026-10-23 | 7cbff58 | [261023-7l0-record-assigned-staff-quotation-review-d](./quick/261023-7l0-record-assigned-staff-quotation-review-d/) |
