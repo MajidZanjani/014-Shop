@@ -9,6 +9,7 @@ IP · Vendor: {{ line.configuration.vendor }} · Families: {{ line.configuration
 {% endif %} · Line reference: {{ line.id }}</li>{% endfor %}</ol>
 <p>Business scope {{ quotation.business_version }}. Country/tax choices remain pending.</p>
 {% if private_access %}<p><a href="/staff/quotation-requests/{{ quotation.id }}/business/">Review private attached business details</a> before recording a decision.</p>{% elif quotation.business_version %}<p>Explicit private-business access is required for this attached scope. No decision can be recorded until access is assigned.</p>{% endif %}
+{% if catalog_current and review_enabled %}<p><a href="/staff/quotation-requests/{{ quotation.id }}/request-evidence/{{ quotation.business_version }}/">Preview prepared request evidence for displayed scope {{ quotation.business_version }}</a></p>{% endif %}
 <section aria-label="Internal review"><h2>Internal review decisions</h2>
 <p>Review revision {{ quotation.review_version }}. Decisions concern this captured request only. They do not approve an offer or grant rights. Corrections create a new decision and retain earlier records.</p>
 {% if catalog_current and review_enabled %}

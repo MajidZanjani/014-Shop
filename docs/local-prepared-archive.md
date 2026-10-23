@@ -16,7 +16,7 @@ A selected invocation requires all of the following existing records:
 - An explicitly initialized private root, retained physical identity and intent binding.
 - An unexpired, current, unrevoked authorization for that intent and destination, with the original owner/staff attribution and exact current source permissions.
 
-Capture, root initialization/binding and authorization currently use internal application services exercised by synthetic fixtures. A complete interactive operator preparation UI is pending. Do not manufacture a request/session, edit database rows or create an authorization merely to execute this command. An old capture retry, historical MFA timestamp or successful inspection cannot supply fresh work authority.
+Exact retained request capture now has an explicit recent-MFA staff preview/form at `/staff/quotation-requests/<quotation UUID>/request-evidence/<business version>/` on the synthetic staff origin, linked from the displayed request scope. It requires the exact private scope grant; version0 explicitly selects the unbound cart. The source digest is private to the protected form and checked inside the durable capture transaction. Explicit same-form resubmission retains the original fact/intent and attribution. This action performs no archive I/O or work authorization. Root initialization/binding and authorization still use internal services exercised by synthetic fixtures; their interactive controls remain pending. Do not manufacture a request/session, edit database rows or create an authorization merely to execute this command. An old capture retry, historical MFA timestamp or successful inspection cannot supply fresh work authority.
 
 ## Invocation and result
 

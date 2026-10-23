@@ -2,6 +2,7 @@
 from dataclasses import dataclass
 from datetime import datetime,timezone
 import hashlib
+import re
 import uuid
 from django.db import IntegrityError,transaction,connection
 from .models import RequestEnvelope,RequestArchiveIntent
@@ -14,8 +15,10 @@ class CaptureReference:
     created: bool
 
 
-def capture_request_envelope(request,quotation_id,business_version):
+def capture_request_envelope(request,quotation_id,business_version,expected_source_sha256=None):
     if connection.in_atomic_block or not connection.get_autocommit():raise EnvelopeError('capture_transaction_active')
+    if expected_source_sha256 is not None and (not isinstance(expected_source_sha256,str) or re.fullmatch('[0-9a-f]{64}',expected_source_sha256) is None):
+        raise EnvelopeError('invalid_capture_digest')
     try:
         with transaction.atomic(durable=True):
             # Nested producer authorization acquires credential/parent/cart locks
@@ -23,6 +26,8 @@ def capture_request_envelope(request,quotation_id,business_version):
             raw=prepare_request_envelope(request,quotation_id,business_version)
             value=validate_envelope(raw)
             digest=hashlib.sha256(raw).hexdigest()
+            if expected_source_sha256 is not None and digest!=expected_source_sha256:
+                raise EnvelopeError('capture_preview_changed')
             envelope_id=identity(quotation_id,business_version)
             row=RequestEnvelope.objects.select_for_update().filter(quotation_id=quotation_id,business_version=business_version,schema_version=1).first()
             if row is not None:
