@@ -33,7 +33,7 @@ class DemoHandler(SimpleHTTPRequestHandler):
         if size<0 or size>32768:
             self.send_error(413);return
         body=self.rfile.read(size) if size else None
-        headers={k:self.headers[k] for k in ('Content-Type','Cookie','Origin','Referer','X-CSRFToken') if k in self.headers}
+        headers={k:self.headers[k] for k in ('Accept','Content-Type','Cookie','Origin','Referer','X-CSRFToken') if k in self.headers}
         headers['Host']=self.headers['Host']
         connection=http.client.HTTPConnection('127.0.0.1',self.backend_port,timeout=5)
         try:
@@ -43,7 +43,7 @@ class DemoHandler(SimpleHTTPRequestHandler):
                 self.send_error(502);return
             self.send_response(response.status)
             for key,value in response.getheaders():
-                if key.lower() in ('content-type','set-cookie','cache-control','etag','x-content-type-options','referrer-policy'):
+                if key.lower() in ('content-type','set-cookie','cache-control','etag','x-content-type-options','referrer-policy','content-security-policy'):
                     self.send_header(key,value)
             self.send_header('Content-Length',str(len(data)));self.end_headers();self.wfile.write(data)
         finally:connection.close()

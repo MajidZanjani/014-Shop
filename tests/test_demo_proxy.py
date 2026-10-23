@@ -1,6 +1,6 @@
 """Real loopback requests verify demo Host handling without any backend or credentials."""
 from functools import partial
-from http.server import ThreadingHTTPServer
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import http.client
 from pathlib import Path
 import sys
@@ -43,4 +43,27 @@ class DemoHostTests(unittest.TestCase):
                     conn.request('GET','/staff/',headers={'Host':'staff.localhost:'+str(staff.server_port)})
                     response=conn.getresponse();response.read();self.assertEqual(response.status,503)
                 finally:conn.close()
+                class AcceptBackend(BaseHTTPRequestHandler):
+                    def log_message(self,*args):pass
+                    def do_GET(self):
+                        is_html=self.headers.get('Accept')=='text/html'
+                        body=b'synthetic staff HTML' if is_html else b'{}'
+                        self.send_response(200)
+                        self.send_header('Content-Type','text/html' if is_html else 'application/json')
+                        self.send_header('Content-Security-Policy',"default-src 'none'")
+                        self.end_headers();self.wfile.write(body)
+                backend=ThreadingHTTPServer(('127.0.0.1',0),AcceptBackend)
+                backend_thread=threading.Thread(target=backend.serve_forever,daemon=True);backend_thread.start()
+                StaffDemoHandler.backend_port=backend.server_port
+                conn=http.client.HTTPConnection('127.0.0.1',staff.server_port,timeout=3)
+                try:
+                    conn.request('GET','/staff/quotation-requests/',headers={'Host':'staff.localhost:'+str(staff.server_port),'Accept':'text/html'})
+                    response=conn.getresponse()
+                    self.assertEqual(response.status,200)
+                    self.assertEqual(response.getheader('Content-Type'),'text/html')
+                    self.assertEqual(response.getheader('Content-Security-Policy'),"default-src 'none'")
+                    self.assertEqual(response.read(),b'synthetic staff HTML')
+                finally:
+                    conn.close();StaffDemoHandler.backend_port=None
+                    backend.shutdown();backend.server_close();backend_thread.join(3)
             finally:staff.shutdown();staff.server_close();staff_thread.join(3)
