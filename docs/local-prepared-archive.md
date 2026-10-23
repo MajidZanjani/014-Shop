@@ -18,6 +18,14 @@ A selected invocation requires all of the following existing records:
 
 Exact retained request capture now has an explicit recent-MFA staff preview/form at `/staff/quotation-requests/<quotation UUID>/request-evidence/<business version>/` on the synthetic staff origin, linked from the displayed request scope. It requires the exact private scope grant; version0 explicitly selects the unbound cart. The source digest is private to the protected form and checked inside the durable capture transaction. Explicit same-form resubmission retains the original fact/intent and attribution. This action performs no archive I/O or work authorization. Root initialization/binding and authorization still use internal services exercised by synthetic fixtures; their interactive controls remain pending. Do not manufacture a request/session, edit database rows or create an authorization merely to execute this command. An old capture retry, historical MFA timestamp or successful inspection cannot supply fresh work authority.
 
+## Observe an uncertain capture without resubmitting
+
+On the existing synthetic staff origin, open the preview/confirmation link **Observe capture status without resubmitting**, or the exact retained path `/staff/quotation-requests/<quotation UUID>/request-evidence/<business version>/status/`. Select an already authorized request and explicit business version; version0 selects the unbound cart. Current recent MFA and the exact scope grant are required for each read, even after an earlier successful capture.
+
+The GET returns fixed private HTML when requested, or JSON with `capture_not_recorded` or `capture_recorded`, `local-synthetic`/`prepared` classification, and false retention/effect flags. It checks the locked exact source against retained database evidence; it performs no capture writes or archive I/O. A missing/inconsistent intent or changed source is unavailable, rather than reported as absent. The page has no forms or work controls and links only to the exact preview and request details.
+
+A recorded capture means only that the prepared database fact and matching intent were observed. No recorded capture is a point-in-time observation that can change; it does not authorize retry or work. Neither result verifies physical publication, off-host custody, retention, a worker attempt or commercial completion. Preserve the original records and use the separate exact-attempt reconciliation below for uncertain archive work. Query parameters and non-GET methods are rejected. This local route grants no production access or operational authority.
+
 ## Invocation and result
 
 From the prepared synthetic runtime, select the existing frozen interpreter and exact retained identifiers/root. The variables below are placeholders for that private rehearsal context; this document supplies no production configuration or credentials.

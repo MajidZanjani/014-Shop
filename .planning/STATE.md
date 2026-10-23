@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: in_progress
-last_updated: "2026-10-23T12:21:33.058768+00:00"
-state_head: 7e8a06d
+last_updated: "2026-10-23T12:26:18.904123+00:00"
+state_head: e29b0e7
 progress:
   total_phases: 14
   completed_phases: 1
@@ -12,8 +12,8 @@ progress:
 last_activity: 2026-10-23
 current_phase: 07
 current_phase_name: Multi-line cart, quotations, business checkout and acceptance
-stopped_at: Capture observation verified; integrate supported-route status journeys next.
-last_activity_desc: Read-only exact capture status passes272 local checks;07-02 partial.
+stopped_at: Supported capture/status journeys verified; bounded local audit next.
+last_activity_desc: Supported capture/status journeys pass272 local checks;07-02 partial.
 ---
 
 # Project State
@@ -91,17 +91,17 @@ T03/T04 local catalog delivery remains intact; T05 local draft persistence and T
 
 Demo: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/demo.py --backend`; open http://127.0.0.1:4321 (also /support/ and /purchase/simple/).
 
-Checks:272 core-local checks pass (258 Django plus14 Gunicorn),70.685s; owned PostgreSQL18.6/UTF8. Source /nix/store/j18ag5j6i8krdn4lhxpv40m97q7nakc8-shop-python-source:163 exact files21 templates/no symlinks.0012 application/no-drift pass; no new migration. Frontend/proxy unchanged/not rerun. Independent/runtime/recovery/provider/production gates pending.
+Checks:272 core-local checks pass (258 Django plus14 Gunicorn),70.667s; owned PostgreSQL18.6/UTF8. Source /nix/store/6x0vx2hhfaszqnjfj9mgznj73v58yj09-shop-python-source:163 exact files21 templates/no symlinks.0012 application/no-drift pass; no new migration. Frontend/proxy unchanged/not rerun. Independent/runtime/recovery/provider/production gates pending.
 
 User review, 2026-10-22: **previous catalog demo checked and approved** (user: “all checked and approved”). See task evidence for scope. Verification/save-resume also passed user review (“all works fine”, 2026-10-22). Local multi-line cart demo approved by user (“approved”, 2026-10-22). Detailed browser/accessibility qualification and commercial/release gates remain pending.
 
 ## Exact next action
 
-Current local quotation/staff/status/business slices await human review. Next action: integrate exact retained capture status into supported mixed/support-only journeys using supported APIs/forms/operator commands, then review remaining local boundary gaps. Country/tax choices remain explicitly deferred; all commercial effects and real provider/runtime/recovery/production qualification stay pending. No infrastructure expansion or real credential authority inferred.
+Current local quotation/staff/status/business slices await human review. Next action: Audit the prepared capture/status slice against current producer locks, staff credential/grant changes, immutable attribution and closed outputs; record concrete findings and fix only demonstrated local defects. Do not broaden infrastructure or commercial scope. Country/tax choices remain explicitly deferred; all commercial effects and real provider/runtime/recovery/production qualification stay pending.
 
 User instruction2026-10-23: **sync to configured origin/main after every commit**, using ordinary fetch/non-force push and checking ahead/behind. This applies to implementation and planning commits. Every implementation and planning commit must be pushed immediately and ahead/behind checked. Before each commit, reconcile all affected planning files, regenerate canonical state.json and run scripts/check_planning.py; preserve historical evidence.
 
-Planning audit2026-10-23: [F-00/F-01/F-02 report](audits/2026-10-23-local-workflow.md). All three findings remain fixed; recorded audit evidence147 retains its scope. Current combined lane passes266 core-local checks; prior journey and audit evidence retain their recorded scopes. Country/tax answers stay deferred.
+Planning audit2026-10-23: [F-00/F-01/F-02 report](audits/2026-10-23-local-workflow.md). All three findings remain fixed; recorded audit evidence147 retains its scope. Current combined lane passes272 core-local checks; prior journey and audit evidence retain their recorded scopes. Country/tax answers stay deferred.
 
 Audit completion: all three local findings fixed; final core-local147 tests and source package116 files/fifteen templates pass. Full report: [local workflow audit](audits/2026-10-23-local-workflow.md). Current phase7/last complete1 and all acceptance gates unchanged.
 
@@ -113,7 +113,7 @@ Retain dependency locks, raw SBOMs, notices, validated derivative and all origin
 
 ## Session continuity
 
-Resumed from clean checkpoint2bf5491; saved clear/resume action satisfied and one-shot HANDOFF.json consumed. Critique complete before runtime edits; capture-status implementation verified272 local checks/source163/21. Continuing supported-route observation journeys. No active tests/demo/async jobs. Every commit requires planning check and immediate origin/main sync. No subagents or external operations.
+Capture-status implementatione29b0e7 synced0/0. Supported observation journey extension verified; latest evidence below. No active tests/demo/async jobs. Every commit requires planning check and immediate origin/main sync. No subagents/external operations/credentials. Context percentage unavailable.
 
 ### Quick Tasks Completed
 
@@ -176,7 +176,7 @@ Resumed from clean checkpoint2bf5491; saved clear/resume action satisfied and on
 | 261023-cyg | Fix audit F-01 missing cart snapshot ownership recheck | 2026-10-23 | 83e8464 | [261023-cyg-fix-customer-form-audit-f-01-by-rechecki](./quick/261023-cyg-fix-customer-form-audit-f-01-by-rechecki/) |
 | 261023-d1r | Show exact committed and current cart revisions after no-JavaScript retries | 2026-10-23 | 6171d3c | [261023-d1r-show-exact-committed-revision-and-curren](./quick/261023-d1r-show-exact-committed-revision-and-curren/) |
 
-Exact retained staff capture status now provides GET-only private JSON/HTML observation under recent MFA and exact historical permissions. Shared retained-fact/intent validation distinguishes absent capture from unavailable inconsistency; producer locks remain held through inspection. No database writes/archive I/O/work authority or commercial effects.272 core-local checks pass (258 Django plus14 Gunicorn),70.685s; owned PostgreSQL18.6/UTF8. Source /nix/store/j18ag5j6i8krdn4lhxpv40m97q7nakc8-shop-python-source matches163 exact files21 templates/no symlinks. See [capture observation evidence](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-OBSERVATION-PARTIAL.md). Next: integrate status observation into supported mixed/support-only journeys without direct domain fixture writes. Country/tax, commercial actions and independent runtime/transport/outage/off-host/provider/recovery qualification remain pending. Focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 8/18;07-02 partial.
+Exact retained staff capture status and supported mixed/support-only observation journeys are verified. GET uses current recent MFA/exact historical scope and shared locked source/fact/intent validation; absence is distinct from inconsistency. Supported journeys observe before capture, after capture/retry/later edits and operator revocation/logout; facts and private local files stay unchanged.272 core-local checks pass (258 Django plus14 Gunicorn),70.667s; owned PostgreSQL18.6/UTF8. Source /nix/store/6x0vx2hhfaszqnjfj9mgznj73v58yj09-shop-python-source matches163 exact files21 templates/no symlinks. See [capture observation evidence](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-OBSERVATION-PARTIAL.md). Next: bounded audit of the completed local capture/status slice. No archive I/O/work authority/commercial effects. Country/tax and independent runtime/transport/outage/off-host/provider/recovery qualification remain pending. Focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 8/18;07-02 partial.
 
 
 Session resumed2026-10-23: checkpoint2bf5491 reconciled against clean working tree. Saved clear/resume action satisfied. Continuing tasks4/5 inline; critique recorded before runtime edits.

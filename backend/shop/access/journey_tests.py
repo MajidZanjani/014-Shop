@@ -59,6 +59,20 @@ class SupportedJourneyTests(TransactionTestCase):
     def staff_get(self,path,html=False):
         with override_settings(**staff_tests.STAFF_SETTINGS):
             return self.staff.get(path,HTTP_ACCEPT='text/html' if html else 'application/json')
+    def observe_capture(self,path,expected):
+        facts=list(RequestEnvelope.objects.values()),list(RequestArchiveIntent.objects.values())
+        files={str(p.relative_to(self.root)):p.read_bytes() for p in self.root.rglob('*') if p.is_file()}
+        response=self.staff_get(path)
+        self.assertEqual(response.status_code,200)
+        self.assertEqual(response.json(),{'status':expected,'evidence_class':'local-synthetic','evidence_kind':'prepared',
+            'retention_qualified':False,'effects_authorized':False})
+        self.assertEqual(response['Cache-Control'],'no-store');self.assertEqual(response['Referrer-Policy'],'no-referrer')
+        self.assertIn("form-action 'none'",response['Content-Security-Policy'])
+        html=self.staff_get(path,html=True);self.assertEqual(html.status_code,200)
+        self.assertEqual(HiddenForms(html.content.decode()).forms,[])
+        self.assertEqual((list(RequestEnvelope.objects.values()),list(RequestArchiveIntent.objects.values())),facts)
+        self.assertEqual({str(p.relative_to(self.root)):p.read_bytes() for p in self.root.rglob('*') if p.is_file()},files)
+        return response,html
     def staff_json(self,path,value):
         with override_settings(**staff_tests.STAFF_SETTINGS):
             token=self.staff.get('/staff/session/').json()['csrf_token']
@@ -116,19 +130,27 @@ class SupportedJourneyTests(TransactionTestCase):
         self.local_operator('grant',quotation=identity)
         self.assertEqual(self.staff_get(detail+'business/').status_code,403)
         self.assertEqual(self.staff_get(detail+'preparation/').status_code,403)
+        status=detail+'request-evidence/1/status/'
+        self.assertEqual(self.staff_get(status).status_code,404)
         self.local_operator('grant-business',quotation=identity,business_scope=1)
         private=self.staff_get(detail+'business/');self.assertEqual(private.status_code,200)
         self.assertEqual(private.json()['details']['legal_business_name'],'PRIVATE_JOURNEY_BUSINESS — 測試')
         for field in ['registration_country','tax_status','deployment_country']:self.assertIsNone(private.json()['details'][field])
         evidence=detail+'request-evidence/1/'
+        self.observe_capture(status,'capture_not_recorded')
+        self.assertEqual(self.customer.get(status).status_code,404)
         page=self.staff_get(evidence,html=True);self.assertEqual(page.status_code,200)
+        self.assertContains(page,status)
         evidence_form=HiddenForms(page.content.decode()).forms[0]
         self.assertEqual(set(evidence_form),{'action','expected_source_sha256','csrfmiddlewaretoken'})
         self.assertEqual(RequestEnvelope.objects.count(),0);self.assertEqual(RequestArchiveIntent.objects.count(),0)
         result=self.staff_form(evidence,evidence_form);self.assertContains(result,'Captured',status_code=201)
+        self.assertContains(result,status,status_code=201)
+        self.observe_capture(status,'capture_recorded')
         original_envelope=list(RequestEnvelope.objects.values());original_intent=list(RequestArchiveIntent.objects.values())
         result=self.staff_form(evidence,evidence_form);self.assertContains(result,'Original capture retained')
         self.assertNotContains(result,evidence_form['expected_source_sha256'])
+        self.observe_capture(status,'capture_recorded')
         self.assertEqual(list(RequestEnvelope.objects.values()),original_envelope);self.assertEqual(list(RequestArchiveIntent.objects.values()),original_intent)
         self.review(detail,'ready_for_commercial_review')
         owner=self.customer.get(owner_detail);self.assertEqual(owner.json()['review_status']['code'],'ready_for_commercial_review')
@@ -161,6 +183,7 @@ class SupportedJourneyTests(TransactionTestCase):
         # bytes and the original attributed capture untouched.
         self.assertContains(self.staff_form(evidence,evidence_form),'Original capture retained')
         self.assertEqual(list(RequestEnvelope.objects.values()),original_envelope);self.assertEqual(list(RequestArchiveIntent.objects.values()),original_intent)
+        observations=self.observe_capture(status,'capture_recorded')
         history=self.customer.get('/purchase/quotations/');self.assertEqual(history.status_code,200)
         self.assertContains(history,'/purchase/quotation-timeline/'+identity+'/')
         self.assertContains(history,'/purchase/quotation-documents/'+identity+'/')
@@ -168,7 +191,7 @@ class SupportedJourneyTests(TransactionTestCase):
         other=Client(enforce_csrf_checks=True,HTTP_HOST='127.0.0.1');self.verify_customer('other@journey.synthetic.invalid',other)
         self.assertEqual(other.get('/purchase/quotations/').context['items'],[])
         self.assertEqual(other.get(owner_detail).status_code,404);self.assertEqual(other.get('/api/v1/quotation-requests/').json()['requests'],[])
-        for response in [owner,documents,timeline,self.staff_get(detail),self.staff_get(snap+'1/'),self.staff_get(compare),self.staff_get(evidence,html=True),self.staff_form(evidence,evidence_form)]:
+        for response in [owner,documents,timeline,self.staff_get(detail),self.staff_get(snap+'1/'),self.staff_get(compare),self.staff_get(evidence,html=True),self.staff_form(evidence,evidence_form),*observations]:
             text=response.content.decode()
             for value in ['PRIVATE_JOURNEY_BUSINESS','PRIVATE_JOURNEY_TAX','PRIVATE_JOURNEY_PURCHASER','PRIVATE_JOURNEY_UNATTACHED_BUSINESS']:self.assertNotIn(value,text)
             self.assertEqual(response['Cache-Control'],'no-store')
@@ -176,10 +199,12 @@ class SupportedJourneyTests(TransactionTestCase):
         for path in [detail+'business/',detail+'preparation/',snap+'1/',compare]:self.assertEqual(self.staff_get(path).status_code,403)
         self.assertEqual(self.staff_get(evidence,html=True).status_code,404)
         self.assertEqual(self.staff_form(evidence,evidence_form).status_code,404)
+        self.assertEqual(self.staff_get(status).status_code,404)
         self.assertEqual(list(RequestEnvelope.objects.values()),original_envelope);self.assertEqual(list(RequestArchiveIntent.objects.values()),original_intent)
         self.assertIsNone(self.staff_get(detail).json()['reviews'][0]['snapshot_digest'])
         self.assertEqual(self.staff_json('/staff/logout/',{}).status_code,200)
         self.assertEqual(self.staff_get(detail).status_code,403)
+        self.assertEqual(self.staff_get(status).status_code,403)
         self.assertEqual(self.customer.get(owner_detail).status_code,200)
         self.assertEqual(self.customer_json('/api/v1/customer/logout/',{}).status_code,200)
         self.assertEqual(self.customer.get(owner_detail).status_code,401)
