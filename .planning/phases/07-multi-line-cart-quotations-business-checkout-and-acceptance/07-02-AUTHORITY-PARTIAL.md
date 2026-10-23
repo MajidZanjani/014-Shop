@@ -1,6 +1,6 @@
 # Plan07-02 bounded local authorization records — partial
 
-Implementation pending commit; recorded base3b9f6a1. No phase/requirement completion credit.
+Implementation9f79fc3 synced0/0. No phase/requirement completion credit.
 
 Current local authority evidence:219 core-local tests (205 Django plus14 Gunicorn observations),48.499s; owned PostgreSQL18.6/UTF8. Actual source144 files19 templates exact/allowlisted/no symlinks. Explicit five-minute authorization and append-only-by-service revocation are implemented; retries retain original deadlines/attribution. Only pending/held intents exist; no detached authorization checker, claim, worker or publication service. Retention/effect flags stay false. Next: shared exact-source reader and detached current-authority checks before fenced claims. Country/tax pending; focus7/completed1,11/24 planned records,1/14 fully complete phases (7%); Phase02 remains8/18;07-02 partial.
 

@@ -109,30 +109,38 @@ def prepare_request_envelope(request,quotation_id,business_version):
         if privileged:
             grant=StaffQuotationGrant.objects.filter(user=request.user,quotation=quotation).first()
             if grant is None or (business_version and grant.business_scope_version!=business_version):raise EnvelopeError('envelope_unavailable')
-        scope=scope_for_version(quotation,business_version)
-        if business_version and (scope is None or not valid_business(scope.business_snapshot,quotation.cart.owner_id)):raise EnvelopeError('envelope_unavailable')
-        snapshot=quotation.snapshot
-        evaluated=evaluate_cart(snapshot.lines)
-        if snapshot.catalog_revision!=CATALOG['revision']:raise EnvelopeError('envelope_source_unavailable')
-        if not evaluated['valid'] or not snapshot.lines:raise EnvelopeError('invalid_envelope')
-        try:
-            if canonical(snapshot.evaluation)!=canonical(evaluated):raise EnvelopeError('invalid_envelope')
-        except (ValueError,TypeError,RecursionError,UnicodeError):raise EnvelopeError('invalid_envelope') from None
-        value={'schema':1,'kind':'quotation-request-prepared','evidence_class':'local-synthetic',
-            'envelope_id':str(identity(quotation.pk,business_version)),
-            'source':{key:CATALOG[key] for key in ('revision','source_sha256','product_id','profile_id')},
-            'request':{'id':str(quotation.pk),'request_id':str(quotation.request_id),'owner_id':quotation.cart.owner_id,'created_at':quotation.created_at.isoformat(),'business_version':business_version},
-            'cart':{'id':str(quotation.cart_id),'snapshot_id':snapshot.pk,'request_id':str(snapshot.request_id),'version':snapshot.version,'created_at':snapshot.created_at.isoformat(),'catalog_revision':snapshot.catalog_revision,'lines':snapshot.lines,'evaluation':snapshot.evaluation},
-            'business_scope':None,'commercial':dict(COMMERCIAL),'gates':dict(FLAGS)}
-        if scope:
-            business=scope.business_snapshot
-            value['business_scope']={'id':scope.pk,'version':scope.version,'created_at':scope.created_at.isoformat(),
-                'snapshot':{'id':business.pk,'draft_id':business.draft_id,'owner_id':business.draft.owner_id,'request_id':str(business.request_id),'version':business.version,'created_at':business.created_at.isoformat(),
-                    'schema_version':business.schema_version,'source_sha256':business.source_sha256,'submission_digest':business.submission_digest,'details':business.details,'evaluation':business.evaluation}}
-        try:raw=canonical(value)
-        except (ValueError,TypeError,RecursionError,UnicodeError):raise EnvelopeError('invalid_envelope') from None
-        validate_envelope(raw)
-        return raw
+        return source_bytes(quotation,business_version)
+
+
+def source_bytes(quotation,business_version):
+    """Internal shared reconstruction; caller must hold quotation/cart locks."""
+    from django.db import connection
+    if not connection.in_atomic_block:raise EnvelopeError("source_transaction_required")
+    scope=scope_for_version(quotation,business_version)
+    if business_version and (scope is None or not valid_business(scope.business_snapshot,quotation.cart.owner_id)):raise EnvelopeError('envelope_unavailable')
+    snapshot=quotation.snapshot
+    evaluated=evaluate_cart(snapshot.lines)
+    if snapshot.catalog_revision!=CATALOG['revision']:raise EnvelopeError('envelope_source_unavailable')
+    if not evaluated['valid'] or not snapshot.lines:raise EnvelopeError('invalid_envelope')
+    try:
+        if canonical(snapshot.evaluation)!=canonical(evaluated):raise EnvelopeError('invalid_envelope')
+    except (ValueError,TypeError,RecursionError,UnicodeError):raise EnvelopeError('invalid_envelope') from None
+    value={'schema':1,'kind':'quotation-request-prepared','evidence_class':'local-synthetic',
+        'envelope_id':str(identity(quotation.pk,business_version)),
+        'source':{key:CATALOG[key] for key in ('revision','source_sha256','product_id','profile_id')},
+        'request':{'id':str(quotation.pk),'request_id':str(quotation.request_id),'owner_id':quotation.cart.owner_id,'created_at':quotation.created_at.isoformat(),'business_version':business_version},
+        'cart':{'id':str(quotation.cart_id),'snapshot_id':snapshot.pk,'request_id':str(snapshot.request_id),'version':snapshot.version,'created_at':snapshot.created_at.isoformat(),'catalog_revision':snapshot.catalog_revision,'lines':snapshot.lines,'evaluation':snapshot.evaluation},
+        'business_scope':None,'commercial':dict(COMMERCIAL),'gates':dict(FLAGS)}
+    if scope:
+        business=scope.business_snapshot
+        value['business_scope']={'id':scope.pk,'version':scope.version,'created_at':scope.created_at.isoformat(),
+            'snapshot':{'id':business.pk,'draft_id':business.draft_id,'owner_id':business.draft.owner_id,'request_id':str(business.request_id),'version':business.version,'created_at':business.created_at.isoformat(),
+                'schema_version':business.schema_version,'source_sha256':business.source_sha256,'submission_digest':business.submission_digest,'details':business.details,'evaluation':business.evaluation}}
+    try:raw=canonical(value)
+    except (ValueError,TypeError,RecursionError,UnicodeError):raise EnvelopeError('invalid_envelope') from None
+    validate_envelope(raw)
+    return raw
+
 
 
 def recover_request_envelope(request,quotation_id,business_version,receipt,archive):
