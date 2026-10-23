@@ -16,7 +16,7 @@ Required content for an offer candidate:
 - Separate quote validity, order payment-start deadline and eventual bank-session expiry semantics. No arbitrary default durations. Unknown deadlines block affected operations. No bank-session identity exists before its own payment preparation.
 - Protected approval actor/resource-role/MFA audit references and decision revision, separate from ordinary internal review/preparation. Never retain passwords, challenge codes, recovery credentials, session cookies, bearer URLs or raw request headers/bodies.
 
-No envelope producer exists yet. Before implementing it, define the exact closed schema, maximum sizes and privacy classifications against actual retained models and source revisions. Unknown commercial fields cannot be filled from test fixtures or staff free text.
+An internal request-only producer/validator now implements a closed131072-byte canonical UTF8 schema over the existing retained records (07-02-ENVELOPE-PARTIAL). It is not the offer-candidate producer described above. Original immutable request IDs are retained; later alias-key/review/counter facts require separate envelopes. There is no durable domain capture/outbox yet. Before implementing offer evidence, bind its exact closed schema and privacy classifications to actual approved inputs. Unknown commercial fields cannot be filled from test fixtures or staff free text.
 
 ## Persist first, archive second, qualify explicitly
 
@@ -43,3 +43,5 @@ Private envelope reads/exports require their exact resource scope and recent sta
 ## Next executable design task
 
 Specify and validate a closed recoverable quotation-request/business-scope envelope using existing immutable local models and source schema, without creating an offer or selecting Country/tax. Define its domain-specific identity and owner/private-scope checks first. Then design durable intent/outbox/reference models and fencing. Approved offer publication, acceptance, payment and07-02 completion remain gated until their actual input and durability contracts are implemented and verified.
+
+Current request-only API: prepare_request_envelope(request, quotation_uuid, business_scope_version) returns authorized prepared bytes; validate_envelope(bytes) validates current known source/schema; recover_request_envelope(request, quotation_uuid, business_scope_version, receipt, archive) binds exact receipt and reauthorizes after I/O outside database transactions. No HTTP export or automatic archive write is registered.

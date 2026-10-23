@@ -1,6 +1,6 @@
 # Phase 02 current progress
 
-Status reconciled 2026-10-23. Phase02 evidence below retains its original recorded scope through dd322e1. Current development focus is Phase7; Phases2–6 remain partial/qualification-pending; see [STATE.md](../../STATE.md) and [ROADMAP.md](../../ROADMAP.md). Latest local app evidence is188 core-local tests, not new Phase02 runtime/off-host acceptance. This is a reconciliation of recorded results, not independent goal verification, new execution of every test lane or production approval.
+Status reconciled 2026-10-23. Phase02 evidence below retains its original recorded scope through dd322e1. Current development focus is Phase7; Phases2–6 remain partial/qualification-pending; see [STATE.md](../../STATE.md) and [ROADMAP.md](../../ROADMAP.md). Latest local app evidence is197 core-local tests, not new Phase02 runtime/off-host acceptance. This is a reconciliation of recorded results, not independent goal verification, new execution of every test lane or production approval.
 
 ## Completion and activity
 
@@ -39,14 +39,16 @@ GSD parsing was also stale-prone: the old progress table omitted the canonical C
 
 
 
-Latest application evidence: [exact cart retry confirmation](../../quick/261023-d1r-show-exact-committed-revision-and-curren/261023-d1r-SUMMARY.md),188 core-local tests; source131 files19 templates. Focus7/completed1; Phase02 remains8/18 with ten incomplete records. No new qualification acceptance.
+Latest application evidence: [exact cart retry confirmation](../../quick/261023-d1r-show-exact-committed-revision-and-curren/261023-d1r-SUMMARY.md),197 core-local tests; source133 files19 templates. Focus7/completed1; Phase02 remains8/18 with ten incomplete records. No new qualification acceptance.
 
-Latest local evidence: [Plan07-01](../07-multi-line-cart-quotations-business-checkout-and-acceptance/07-01-SUMMARY.md),188 core-local tests, actual source131 files19 templates. Synthetic prepared archive only; no retention/effect qualification.11/24 records; focus7/completed1; Phase02 8/18.
+Latest local evidence: [request envelope](../07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-ENVELOPE-PARTIAL.md),197 core-local tests, source133 files19 templates. Plan07-02 remains partial; no durable outbox/offer/acceptance added.11/24 records; focus7/completed1; Phase02 8/18.
 
-Batch checkpoint2026-10-23: six implementation/fix commits through6171d3c synchronized and indexed;188 core-local tests, source131 files19 templates. Live references reviewed 2026-10-23T09:27:13.668083+00:00. Next action and gates are in [HANDOFF](../../HANDOFF.md). Focus7/completed1 and all acceptance counts unchanged.
+Batch checkpoint2026-10-23: six implementation/fix commits through6171d3c synchronized and indexed;197 core-local tests, source133 files19 templates. Live references reviewed 2026-10-23T09:27:13.668083+00:00. Next action and gates are in [HANDOFF](../../HANDOFF.md). Focus7/completed1 and all acceptance counts unchanged.
 
-Current Phase7 checkpoint:07-01 local archive slice complete;11/24 planned records. Next: implement a closed recoverable local quotation-request/business-scope envelope validator with exact owner/private-scope checks, following07-EVIDENCE-CONTRACT; no offer or Country/tax decisions.188 core-local tests, source131 files19 templates. Focus7/completed1 and Phase02 8/18 unchanged.
+Current Phase7 checkpoint:07-01 local archive slice complete;11/24 planned records. Next: implement atomic immutable request-envelope capture and unique semantic archive intent before a leased archive worker; keep Country/tax, provider retention and commercial effects gated.197 core-local tests, source133 files19 templates. Focus7/completed1 and Phase02 8/18 unchanged.
 
-Latest archive evidence: [Plan07-01](../07-multi-line-cart-quotations-business-checkout-and-acceptance/07-01-SUMMARY.md),188 core-local tests, source131 files19 templates. Reviewed 2026-10-23T09:38:37.488188+00:00;11/24 records,07-01 complete locally; phase completion remains1/14. Next: implement a closed recoverable local quotation-request/business-scope envelope validator with exact owner/private-scope checks, following07-EVIDENCE-CONTRACT; no offer or Country/tax decisions.
+Latest archive evidence: [Plan07-01](../07-multi-line-cart-quotations-business-checkout-and-acceptance/07-01-SUMMARY.md),197 core-local tests, source133 files19 templates. Reviewed 2026-10-23T09:38:37.488188+00:00;11/24 records,07-01 complete locally; phase completion remains1/14. Next: implement atomic immutable request-envelope capture and unique semantic archive intent before a leased archive worker; keep Country/tax, provider retention and commercial effects gated.
 
-Domain evidence design checkpoint: Plan07-01 implementation3e1b811 synced;07-EVIDENCE-CONTRACT is proposed local design only. Next: implement a closed recoverable local quotation-request/business-scope envelope validator with exact owner/private-scope checks, following07-EVIDENCE-CONTRACT; no offer or Country/tax decisions.188 core-local tests/source131 files19 templates retain their implementation scope; no source change after that result.11/24 records; focus7/completed1; Country/tax pending.
+Domain evidence design checkpoint: Plan07-01 implementation3e1b811 synced;07-EVIDENCE-CONTRACT is proposed local design only. Next: implement atomic immutable request-envelope capture and unique semantic archive intent before a leased archive worker; keep Country/tax, provider retention and commercial effects gated.197 core-local tests/source133 files19 templates retain their implementation scope; no source change after that result.11/24 records; focus7/completed1; Country/tax pending.
+
+Request-envelope checkpoint: closed internal producer/validator and post-I/O authorized recovery pass197 core-local tests; source133 files19 templates.07-02 remains incomplete;11/24 records, focus7/completed1. Next: implement atomic immutable request-envelope capture and unique semantic archive intent before a leased archive worker; keep Country/tax, provider retention and commercial effects gated.
