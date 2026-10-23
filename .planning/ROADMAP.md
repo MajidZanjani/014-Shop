@@ -12,7 +12,7 @@
 
 **Last fully completed phase:** 1. Phases2–7 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase8 work while those earlier checks remain open. Completed phases remain1/14 (rounded7%); planned records11/24. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
 
-**Current activity:** Delivered staff queue/preparation/review history navigation and independent typed durable synthetic-bank boundary;297 local tests pass. [Phase08 evidence](phases/08-payment-domain-and-fault-injectable-fake-bank/08-BANK-BOUNDARY-PARTIAL.md). Payment-attempt/reconciliation planning next; canonical state:STATE.md. No routine task/commit context pauses. Full source/commercial/financial/external gates and phase/record completion counts unchanged.
+**Current activity:** Delivered staff queue/preparation/review history navigation and independent typed durable synthetic-bank boundary;305 local tests pass. [Phase08 evidence](phases/08-payment-domain-and-fault-injectable-fake-bank/08-BANK-BOUNDARY-PARTIAL.md). Synthetic attempt dispatch/reconciliation now implemented; verification evidence in STATE.md; canonical state:STATE.md. No routine task/commit context pauses. Full source/commercial/financial/external gates and phase/record completion counts unchanged.
 
 Before every commit, reconcile all affected planning status references, regenerate canonical state.json and run `python3 scripts/check_planning.py`; commit then sync origin/main. Historical sources/evidence remain scoped to their dates.
 
@@ -242,7 +242,7 @@ Local implementation: versioned owner draft cart delivered in [quick261022-iqc](
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md T08; complete companion proposal remains normative.
 **Estimate:** 4–6 engineer-days
 **UI hint:** yes
-**Plans:** Independent typed local synthetic-bank boundary implemented; [partial evidence](phases/08-payment-domain-and-fault-injectable-fake-bank/08-BANK-BOUNDARY-PARTIAL.md). Full payment-domain plans/acceptance remain pending; no completion credit from this adapter slice.
+**Plans:** Independent typed local synthetic-bank boundary implemented; [partial evidence](phases/08-payment-domain-and-fault-injectable-fake-bank/08-BANK-BOUNDARY-PARTIAL.md). Synthetic attempt claims and lookup reconciliation are also implemented. Full payment-domain plans/acceptance remain pending; no completion credit from these slices.
 
 **Success Criteria:**
 

@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: executing
-last_updated: "2026-10-23T13:33:30.420242+00:00"
-state_head: 9039679
+last_updated: "2026-10-23T13:48:23.112251+00:00"
+state_head: de05656
 progress:
   total_phases: 14
   completed_phases: 1
@@ -12,13 +12,13 @@ progress:
 last_activity: 2026-10-23
 current_phase: 08
 current_phase_name: Payment domain and fault-injectable fake bank
-stopped_at: Typed durable synthetic-bank boundary verified; payment-attempt/reconciliation slice next.
-last_activity_desc: Delivered synthetic-bank boundary;297 local tests pass; continued project implementation.
+stopped_at: Synthetic attempt dispatch/reconciliation verified; cancellation/expiry lifecycle next.
+last_activity_desc: Delivered archive-before-dispatch synthetic claims and lookup reconciliation;305 local tests pass.
 ---
 
 # Project State
 
-Updated 2026-10-23T13:33:30.420242+00:00. Canonical current summary; latest evidence: [typed synthetic bank](phases/08-payment-domain-and-fault-injectable-fake-bank/08-BANK-BOUNDARY-PARTIAL.md). Prior observation/process evidence retains its historical scope. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
+Updated 2026-10-23T13:48:23.112251+00:00. Canonical current summary; latest evidence: [typed synthetic bank](phases/08-payment-domain-and-fault-injectable-fake-bank/08-BANK-BOUNDARY-PARTIAL.md). Prior observation/process evidence retains its historical scope. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
 ## Current position
 
@@ -29,6 +29,8 @@ Updated 2026-10-23T13:33:30.420242+00:00. Canonical current summary; latest evid
 T03/T04 local catalog delivery remains intact; T05 local draft persistence and T06 synthetic verified access/save-resume are implemented. T07 now has the owner-scoped versioned multi-line draft cart; protected quotation-request capture now retains exact owner snapshots and reconciles duplicate/retried submissions. Local staff password/private-code rehearsal, assigned quotation reads and append-only-by-API internal review decisions are implemented. Owner history/detail now show safe current review status and corrections without staff/MFA metadata. Private owner partial business drafts now preserve nineteen exact source groups, helpers/defaults and versioned snapshots; country/tax choices and applicability stay pending. Explicit immutable business/quotation revision binding and exact-scope private staff grants are implemented. Protected current-source document/declaration previews now show applicable pending document sets for retained IP/support/mixed scopes, without acceptance or consent writes. Owner-only bounded quotation history now preserves capture/attachment/review-correction metadata without private values or staff attribution. Staff exact-scope advisory offer prerequisites now distinguish internal review evidence from missing commercial inputs; all commercial actions remain disabled. Explicit staff captures now retain attributed versioned internal preparation assessments with CAS/retry arbitration and exact historical permissions. Authorized retained/current comparisons now report fixed safe delta categories with strict null handling and both-scope permissions; equality never approves an offer. Real staff MFA/delivery/recovery and approved offers remain pending. Full phase acceptance remains pending. Phase02 remains 8/18 complete with all ten incomplete qualification/implementation records preserved. Only Phase01 is fully complete: 1/14 = rounded 7%. That is completed-phase progress, not engineering effort. Existing planned records remain 11/24; later phase acceptance is not claimed from quick-task implementation.
 
 ## Delivered behavior
+
+- Synthetic attempts now recover archived expected bytes before a durable one-way dispatch claim. Lost responses remain uncertain; lookup-only reconciliation cannot blindly resend or authorize commerce. CORE_LOCAL_PASS5 checks/305 tests (291 Django plus14 Gunicorn),80.979s; owned PostgreSQL18.6/UTF8; payments0002/catalog0012 application and no-drift pass. Frozen source179 files23 templates/exact bytes/no symlinks. [Evidence](phases/08-payment-domain-and-fault-injectable-fake-bank/08-ATTEMPTS-PARTIAL.md).
 
 - Typed synthetic bank operations/key aliases now persist outside caller transactions with exact correlation, distinct statuses and recoverable simulated response loss. All financial/effect flags stay false; no actual order or payment is confirmed.
 
@@ -101,7 +103,7 @@ User review, 2026-10-22: **previous catalog demo checked and approved** (user: �
 
 ## Exact next action
 
-Plan the local-synthetic payment-attempt/reconciliation slice against the new typed fake-bank boundary and existing prepared archive primitives. Define immutable expected merchant/currency/amount/reference, uncertain/observed/reconciled states and no-blind-retry claim arbitration before implementation. Retain separate order/acceptance/archive/approval prerequisites and synthetic-only classification; no fake result can mark a real order paid or grant rights. Source permits independent synthetic work while live tax/legal inputs remain pending. Continue substantive work without per-task context-clear requests; no actual external/host operations authorized.
+Continue the synthetic attempt lifecycle with explicit pre-dispatch cancellation/expiry and recovery inspection, rechecking eligibility after archive I/O under the same claim lock. Preserve uncertain claims and lookup-only reconciliation; do not add automatic redispatch. Actual immutable approved order/acceptance, live archive authority, authenticated bank evidence and commerce effects remain separately pending. Continue substantive implementation without per-task context-clear requests; no external/host operations authorized.
 
 User instruction2026-10-23: **sync to configured origin/main after every commit**, using ordinary fetch/non-force push and checking ahead/behind. This applies to implementation and planning commits. Every implementation and planning commit must be pushed immediately and ahead/behind checked. Before each commit, reconcile all affected planning files, regenerate canonical state.json and run scripts/check_planning.py; preserve historical evidence.
 
@@ -121,7 +123,7 @@ User corrected excessive context-clear requests: a task/commit is not context pr
 
 Continued implementation through4063465 staff queue/preparation history and9039679 review history, each synced0/0. Implemented a typed durable local-synthetic bank adapter, separate from worker probes. Immutable-by-service fake operations and retained key aliases arbitrate merchant/reference/key retries and conflicts; explicit post-commit timeout can be reconciled by no-write reference lookup across connections. Exact typed correlation never confirms actual money; database/observation flags remain false. CORE_LOCAL_PASS5 checks/297 tests (283 Django plus14 Gunicorn),80.242s; PostgreSQL18.6/UTF8, payments0001/catalog0012 application and no-drift pass. Exact source /nix/store/87iyj21lmi0pmbqf52iyyvx68pvy1ygf-shop-python-source176 files23 templates/no symlinks.
 
-Plan the local-synthetic payment-attempt/reconciliation slice against the new typed fake-bank boundary and existing prepared archive primitives. Define immutable expected merchant/currency/amount/reference, uncertain/observed/reconciled states and no-blind-retry claim arbitration before implementation. Retain separate order/acceptance/archive/approval prerequisites and synthetic-only classification; no fake result can mark a real order paid or grant rights. Source permits independent synthetic work while live tax/legal inputs remain pending. Continue substantive work without per-task context-clear requests; no actual external/host operations authorized. No active test/demo/async jobs after verification. Country/tax stays deferred without repeated requests; no credentials/agents/protected/external operations.
+Continue the synthetic attempt lifecycle with explicit pre-dispatch cancellation/expiry and recovery inspection, rechecking eligibility after archive I/O under the same claim lock. Preserve uncertain claims and lookup-only reconciliation; do not add automatic redispatch. Actual immutable approved order/acceptance, live archive authority, authenticated bank evidence and commerce effects remain separately pending. Continue substantive implementation without per-task context-clear requests; no external/host operations authorized. No active test/demo/async jobs after verification. Country/tax stays deferred without repeated requests; no credentials/agents/protected/external operations.
 
 ### Quick Tasks Completed
 
@@ -189,4 +191,6 @@ Plan the local-synthetic payment-attempt/reconciliation slice against the new ty
 | 261023-hzz | Audit existing preparation/review/document routes; no findings | 2026-10-23 | e26b21a | [261023-hzz](./quick/261023-hzz-audit-existing-preparation-review-and-do/) |
 | 261023-i7s | Add authorized staff queue and retained preparation pagination | 2026-10-23 | 4063465 | [261023-i7s](./quick/261023-i7s-add-authorized-staff-queue-and-retained-/) |
 | 261023-iet | Paginate all assigned internal review decisions with safe attribution | 2026-10-23 | 9039679 | [261023-iet](./quick/261023-iet-expose-authorized-paginated-internal-rev/) |
-| 261023-ina | Add typed durable synthetic-bank observations and uncertain-response lookup | 2026-10-23 | — | [261023-ina](./quick/261023-ina-implement-typed-durable-synthetic-bank-o/) |
+| 261023-ina | Add typed durable synthetic-bank observations and uncertain-response lookup | 2026-10-23 | de05656 | [261023-ina](./quick/261023-ina-implement-typed-durable-synthetic-bank-o/) |
+
+| 261023-j1r | Archive synthetic attempts before single dispatch and reconcile uncertainty by lookup | 2026-10-23 | — | [261023-j1r](./quick/261023-j1r-implement-synthetic-payment-attempt-disp/) |
