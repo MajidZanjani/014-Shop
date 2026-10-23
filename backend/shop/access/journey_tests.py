@@ -12,7 +12,7 @@ import uuid
 from django.core.management import call_command
 from django.test import Client, TransactionTestCase, override_settings
 from shop.catalog.cart_tests import CASES
-from shop.catalog.models import DraftCart, QuotationRequest, BusinessDraftSnapshot, QuotationBusinessScope, QuotationReview
+from shop.catalog.models import DraftCart, QuotationRequest, BusinessDraftSnapshot, QuotationBusinessScope, QuotationReview, RequestEnvelope, RequestArchiveIntent, ArchiveWorkAuthorization, ArchiveWorkClaim, ArchivePreparedVerification
 from shop.catalog.rules import CATALOG
 from .models import PreparationAssessment
 from . import staff_tests
@@ -40,7 +40,7 @@ class SupportedJourneyTests(TransactionTestCase):
         config.enable();self.addCleanup(config.disable)
         self.customer=Client(enforce_csrf_checks=True,HTTP_HOST='127.0.0.1')
         self.staff=Client(enforce_csrf_checks=True,HTTP_HOST='staff.localhost')
-        for model in [DraftCart,QuotationRequest,BusinessDraftSnapshot,QuotationBusinessScope,QuotationReview,PreparationAssessment]:self.assertEqual(model.objects.count(),0)
+        for model in [DraftCart,QuotationRequest,BusinessDraftSnapshot,QuotationBusinessScope,QuotationReview,PreparationAssessment,RequestEnvelope,RequestArchiveIntent]:self.assertEqual(model.objects.count(),0)
     def capture_value(self,root,before,label):
         added=set(root.iterdir())-before;self.assertEqual(len(added),1)
         path=added.pop();self.assertEqual(stat.S_IMODE(path.stat().st_mode),0o600)
@@ -120,6 +120,16 @@ class SupportedJourneyTests(TransactionTestCase):
         private=self.staff_get(detail+'business/');self.assertEqual(private.status_code,200)
         self.assertEqual(private.json()['details']['legal_business_name'],'PRIVATE_JOURNEY_BUSINESS — 測試')
         for field in ['registration_country','tax_status','deployment_country']:self.assertIsNone(private.json()['details'][field])
+        evidence=detail+'request-evidence/1/'
+        page=self.staff_get(evidence,html=True);self.assertEqual(page.status_code,200)
+        evidence_form=HiddenForms(page.content.decode()).forms[0]
+        self.assertEqual(set(evidence_form),{'action','expected_source_sha256','csrfmiddlewaretoken'})
+        self.assertEqual(RequestEnvelope.objects.count(),0);self.assertEqual(RequestArchiveIntent.objects.count(),0)
+        result=self.staff_form(evidence,evidence_form);self.assertContains(result,'Captured',status_code=201)
+        original_envelope=list(RequestEnvelope.objects.values());original_intent=list(RequestArchiveIntent.objects.values())
+        result=self.staff_form(evidence,evidence_form);self.assertContains(result,'Original capture retained')
+        self.assertNotContains(result,evidence_form['expected_source_sha256'])
+        self.assertEqual(list(RequestEnvelope.objects.values()),original_envelope);self.assertEqual(list(RequestArchiveIntent.objects.values()),original_intent)
         self.review(detail,'ready_for_commercial_review')
         owner=self.customer.get(owner_detail);self.assertEqual(owner.json()['review_status']['code'],'ready_for_commercial_review')
         self.assertFalse(owner.json()['checkout_enabled']);self.assertFalse(owner.json()['acceptance_enabled'])
@@ -147,6 +157,10 @@ class SupportedJourneyTests(TransactionTestCase):
         self.assertEqual(self.customer.get(owner_detail).json()['lines'],lines)
         self.save_business(self.business_form('PRIVATE_JOURNEY_UNATTACHED_BUSINESS'))
         self.assertEqual(self.staff_get(detail+'business/').json()['business_draft_version'],1)
+        # Later cart/unattached business and review changes leave retained request
+        # bytes and the original attributed capture untouched.
+        self.assertContains(self.staff_form(evidence,evidence_form),'Original capture retained')
+        self.assertEqual(list(RequestEnvelope.objects.values()),original_envelope);self.assertEqual(list(RequestArchiveIntent.objects.values()),original_intent)
         history=self.customer.get('/purchase/quotations/');self.assertEqual(history.status_code,200)
         self.assertContains(history,'/purchase/quotation-timeline/'+identity+'/')
         self.assertContains(history,'/purchase/quotation-documents/'+identity+'/')
@@ -154,12 +168,15 @@ class SupportedJourneyTests(TransactionTestCase):
         other=Client(enforce_csrf_checks=True,HTTP_HOST='127.0.0.1');self.verify_customer('other@journey.synthetic.invalid',other)
         self.assertEqual(other.get('/purchase/quotations/').context['items'],[])
         self.assertEqual(other.get(owner_detail).status_code,404);self.assertEqual(other.get('/api/v1/quotation-requests/').json()['requests'],[])
-        for response in [owner,documents,timeline,self.staff_get(detail),self.staff_get(snap+'1/'),self.staff_get(compare)]:
+        for response in [owner,documents,timeline,self.staff_get(detail),self.staff_get(snap+'1/'),self.staff_get(compare),self.staff_get(evidence,html=True),self.staff_form(evidence,evidence_form)]:
             text=response.content.decode()
             for value in ['PRIVATE_JOURNEY_BUSINESS','PRIVATE_JOURNEY_TAX','PRIVATE_JOURNEY_PURCHASER','PRIVATE_JOURNEY_UNATTACHED_BUSINESS']:self.assertNotIn(value,text)
             self.assertEqual(response['Cache-Control'],'no-store')
         self.local_operator('revoke-business',quotation=identity)
         for path in [detail+'business/',detail+'preparation/',snap+'1/',compare]:self.assertEqual(self.staff_get(path).status_code,403)
+        self.assertEqual(self.staff_get(evidence,html=True).status_code,404)
+        self.assertEqual(self.staff_form(evidence,evidence_form).status_code,404)
+        self.assertEqual(list(RequestEnvelope.objects.values()),original_envelope);self.assertEqual(list(RequestArchiveIntent.objects.values()),original_intent)
         self.assertIsNone(self.staff_get(detail).json()['reviews'][0]['snapshot_digest'])
         self.assertEqual(self.staff_json('/staff/logout/',{}).status_code,200)
         self.assertEqual(self.staff_get(detail).status_code,403)
@@ -168,5 +185,9 @@ class SupportedJourneyTests(TransactionTestCase):
         self.assertEqual(self.customer.get(owner_detail).status_code,401)
         self.assertEqual(QuotationRequest.objects.count(),1);self.assertEqual(QuotationReview.objects.count(),2)
         self.assertEqual(PreparationAssessment.objects.count(),1)
+        self.assertEqual(RequestEnvelope.objects.count(),1);self.assertEqual(RequestArchiveIntent.objects.count(),1)
+        for model in (ArchiveWorkAuthorization,ArchiveWorkClaim,ArchivePreparedVerification):self.assertEqual(model.objects.count(),0)
+        intent=RequestArchiveIntent.objects.get();self.assertEqual(intent.state,'pending');self.assertIsNone(intent.destination_id)
+        self.assertFalse(intent.retention_qualified);self.assertFalse(intent.effects_authorized)
     def test_mixed_customer_to_staff_round_trip(self):self.round_trip(CASES[3],'mixed')
     def test_support_only_customer_to_staff_round_trip(self):self.round_trip(CASES[2],'support_only')

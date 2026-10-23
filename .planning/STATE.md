@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: in_progress
-last_updated: "2026-10-23T12:08:46.753306+00:00"
-state_head: 8aa2ad5
+last_updated: "2026-10-23T12:12:06.442133+00:00"
+state_head: cc16c47
 progress:
   total_phases: 14
   completed_phases: 1
@@ -12,7 +12,7 @@ progress:
 last_activity: 2026-10-23
 current_phase: 07
 current_phase_name: Multi-line cart, quotations, business checkout and acceptance
-stopped_at: Staff capture implemented and verified; continue supported mixed/support-only capture integration.
+stopped_at: Staff capture implemented and verified; continue with critique07-02-CAPTURE-OBSERVATION-DESIGN against actual producer/capture/observation code, then implement only its read-only exact-scope capture-status service/route if the critique confirms the boundary.
 last_activity_desc: Explicit staff prepared capture passes266 local checks;07-02 partial.
 ---
 
@@ -29,6 +29,8 @@ Updated 2026-10-23T12:04:45.027833+00:00. Canonical current summary; latest evid
 T03/T04 local catalog delivery remains intact; T05 local draft persistence and T06 synthetic verified access/save-resume are implemented. T07 now has the owner-scoped versioned multi-line draft cart; protected quotation-request capture now retains exact owner snapshots and reconciles duplicate/retried submissions. Local staff password/private-code rehearsal, assigned quotation reads and append-only-by-API internal review decisions are implemented. Owner history/detail now show safe current review status and corrections without staff/MFA metadata. Private owner partial business drafts now preserve nineteen exact source groups, helpers/defaults and versioned snapshots; country/tax choices and applicability stay pending. Explicit immutable business/quotation revision binding and exact-scope private staff grants are implemented. Protected current-source document/declaration previews now show applicable pending document sets for retained IP/support/mixed scopes, without acceptance or consent writes. Owner-only bounded quotation history now preserves capture/attachment/review-correction metadata without private values or staff attribution. Staff exact-scope advisory offer prerequisites now distinguish internal review evidence from missing commercial inputs; all commercial actions remain disabled. Explicit staff captures now retain attributed versioned internal preparation assessments with CAS/retry arbitration and exact historical permissions. Authorized retained/current comparisons now report fixed safe delta categories with strict null handling and both-scope permissions; equality never approves an offer. Real staff MFA/delivery/recovery and approved offers remain pending. Full phase acceptance remains pending. Phase02 remains 8/18 complete with all ten incomplete qualification/implementation records preserved. Only Phase01 is fully complete: 1/14 = rounded 7%. That is completed-phase progress, not engineering effort. Existing planned records remain 11/24; later phase acceptance is not claimed from quick-task implementation.
 
 ## Delivered behavior
+
+- Supported mixed/support-only customer-to-staff journeys now include deliberate capture/retry, later edit stability, revoked-scope refusal and zero worker effects. All records created through supported APIs/forms/operator commands; read assertions only.
 
 - Explicit exact retained-scope staff prepared preview/capture uses strict CSRF forms and digest arbitration inside the durable capture transaction. GET has no capture effects; retries preserve original actor/MFA, no archive I/O or worker authority. Safe private confirmation only.
 
@@ -87,13 +89,13 @@ T03/T04 local catalog delivery remains intact; T05 local draft persistence and T
 
 Demo: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/demo.py --backend`; open http://127.0.0.1:4321 (also /support/ and /purchase/simple/).
 
-Checks:266 core-local checks pass (252 Django plus14 Gunicorn),67.977s; owned PostgreSQL18.6/UTF8. Source /nix/store/8n6c9k4klxd7kb7w4kj9wa2chzsd4ym1-shop-python-source:163 exact files21 templates/no symlinks.0012 application/no-drift pass; no new migration. Frontend/proxy unchanged/not rerun. Independent/runtime/recovery/provider/production gates pending.
+Checks:266 core-local checks pass (252 Django plus14 Gunicorn),68.425s; owned PostgreSQL18.6/UTF8. Source /nix/store/d1hwx24hz000h3afy65pld2a1ma18ni9-shop-python-source:163 exact files21 templates/no symlinks.0012 application/no-drift pass; no new migration. Frontend/proxy unchanged/not rerun. Independent/runtime/recovery/provider/production gates pending.
 
 User review, 2026-10-22: **previous catalog demo checked and approved** (user: “all checked and approved”). See task evidence for scope. Verification/save-resume also passed user review (“all works fine”, 2026-10-22). Local multi-line cart demo approved by user (“approved”, 2026-10-22). Detailed browser/accessibility qualification and commercial/release gates remain pending.
 
 ## Exact next action
 
-Current local quotation/staff/status/business slices await human review. Next action: extend supported mixed/support-only customer-to-staff journeys through the capture form; independent runtime/recovery qualification and production gates stay pending. Country/tax and commercial effects remain gated. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
+Current local quotation/staff/status/business slices await human review. Next action: critique07-02-CAPTURE-OBSERVATION-DESIGN against actual producer/capture/observation code, then implement only its read-only exact-scope capture-status service/route if the critique confirms the boundary; independent runtime/recovery qualification and production gates stay pending. Country/tax and commercial effects remain gated. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
 
 User instruction2026-10-23: **sync to configured origin/main after every commit**, using ordinary fetch/non-force push and checking ahead/behind. This applies to implementation and planning commits. Every implementation and planning commit must be pushed immediately and ahead/behind checked. Before each commit, reconcile all affected planning files, regenerate canonical state.json and run scripts/check_planning.py; preserve historical evidence.
 
@@ -109,7 +111,7 @@ Retain dependency locks, raw SBOMs, notices, validated derivative and all origin
 
 ## Session continuity
 
-Session resumed from57665cd;8aa2ad5 synced0/0. Staff capture plus actual concurrent route/original-owner held-intent regressions verified266/source163. Continue supported mixed/support-only capture integration. Country/tax and all external gates pending; no exact context percentage available.
+Session resumed from57665cd;8aa2ad5 synced0/0. Staff capture plus actual concurrent route/original-owner held-intent regressions verified266/source163. Continue with critique07-02-CAPTURE-OBSERVATION-DESIGN against actual producer/capture/observation code, then implement only its read-only exact-scope capture-status service/route if the critique confirms the boundary. Country/tax and all external gates pending; no exact context percentage available.
 
 ### Quick Tasks Completed
 
@@ -172,4 +174,4 @@ Session resumed from57665cd;8aa2ad5 synced0/0. Staff capture plus actual concurr
 | 261023-cyg | Fix audit F-01 missing cart snapshot ownership recheck | 2026-10-23 | 83e8464 | [261023-cyg-fix-customer-form-audit-f-01-by-rechecki](./quick/261023-cyg-fix-customer-form-audit-f-01-by-rechecki/) |
 | 261023-d1r | Show exact committed and current cart revisions after no-JavaScript retries | 2026-10-23 | 6171d3c | [261023-d1r-show-exact-committed-revision-and-curren](./quick/261023-d1r-show-exact-committed-revision-and-curren/) |
 
-Explicit recent-MFA staff prepared-request preview/capture is implemented with strict CSRF forms, exact retained scope, and source digest checked inside the durable capture transaction before insert/replay. Original actor/MFA attribution survives exact retries; no archive I/O, root binding or work authority.266 core-local checks pass (252 Django plus14 Gunicorn),67.977s; owned PostgreSQL18.6/UTF8. Source163 exact files21 templates/no symlinks. See [staff capture evidence](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-STAFF-CAPTURE-PARTIAL.md). Next: extend supported mixed/support-only customer-to-staff journeys through the capture form; country/tax, commercial actions and independent runtime/transport/outage/off-host/provider/recovery qualification remain pending. Focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 8/18;07-02 partial.
+Explicit recent-MFA staff prepared-request preview/capture is implemented with strict CSRF forms, exact retained scope, and source digest checked inside the durable capture transaction before insert/replay. Original actor/MFA attribution survives exact retries; no archive I/O, root binding or work authority.266 core-local checks pass (252 Django plus14 Gunicorn),68.425s; owned PostgreSQL18.6/UTF8. Source163 exact files21 templates/no symlinks. See [staff capture evidence](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-STAFF-CAPTURE-PARTIAL.md). Next: critique07-02-CAPTURE-OBSERVATION-DESIGN against actual producer/capture/observation code, then implement only its read-only exact-scope capture-status service/route if the critique confirms the boundary; country/tax, commercial actions and independent runtime/transport/outage/off-host/provider/recovery qualification remain pending. Focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 8/18;07-02 partial.
