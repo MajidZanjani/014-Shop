@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
-status: in_progress
-last_updated: "2026-10-23T11:33:11.675431+00:00"
-state_head: 3f5cdb5
+status: paused
+last_updated: "2026-10-23T11:36:00.947Z"
+state_head: cfa0252
 progress:
   total_phases: 14
   completed_phases: 1
@@ -12,7 +12,7 @@ progress:
 last_activity: 2026-10-23
 current_phase: 07
 current_phase_name: Multi-line cart, quotations, business checkout and acceptance
-stopped_at: Resumed; separate-process command smoke verified, continuing local root-refusal regressions.
+stopped_at: Context checkpoint after250 local process/refusal checks; resume DB-lock/wrong-root regressions; Country/tax pending.
 last_activity_desc: Process smoke and root refusal pass250 tests;07-02 partial.
 ---
 
@@ -169,3 +169,5 @@ Session resumed from fa98c7d; process smoke/refusal regressions pass250 local ch
 | 261023-d1r | Show exact committed and current cart revisions after no-JavaScript retries | 2026-10-23 | 6171d3c | [261023-d1r-show-exact-committed-revision-and-curren](./quick/261023-d1r-show-exact-committed-revision-and-curren/) |
 
 Local selected command process regressions pass250 core-local checks (236 Django tests plus14 Gunicorn observations),60.268s; owned PostgreSQL18.6/UTF8. Success/duplicate/scope/revocation plus real cross-process busy-root and tampered-marker refusal pass with exact safe output and preserved files. Source157 exact files19 templates, no symlinks. See [process evidence](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-WORKER-PROCESS-PARTIAL.md). Next: deterministic process PostgreSQL row-lock-contention and wrong-physical-root refusal tests. Independent transport/outage/off-host/provider/recovery qualification pending; Country/tax deferred; commercial effects disabled. Focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 8/18;07-02 partial.
+
+Context checkpoint: cfa0252/3f5cdb5 synced0/0;250 local checks pass. Structured/phase handoffs saved. No exact context percentage available; proactive pause per user policy. Clear session and run $gsd-resume-work.

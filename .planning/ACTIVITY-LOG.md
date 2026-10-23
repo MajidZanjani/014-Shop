@@ -457,3 +457,5 @@ Implementation546dead synced0/0 and recorded. Proposed07-02-WORKER-DESIGN spells
 2026-10-23T11:33:11.675431+00:00 — Resumed fa98c7d clean checkpoint; consumed HANDOFF.json/phase checkpoint. Added separate-process selected command success/duplicate/failure regressions.248 local checks pass59.426s; source157/19 exact. Initial libpq discovery failure fixed with pinned PATH. See process partial;07-02 remains partial; Country/tax/external gates unchanged.
 
 2026-10-23T11:35:44.547407+00:00 — Continued after3f5cdb5 synced0/0: two deterministic process busy-root/tampered-marker refusal tests pass;250 local checks60.268s. Source157/19 exact;07-02 partial, all external/commercial/Country-tax gates retained.
+
+2026-10-23T11:36:00.947Z — Proactive context-pressure checkpoint: cfa0252/3f5cdb5 synced0/0;250 local checks and source157/19 verified. No active processes; measured clean tree before handoff writes. Exact percentage unavailable. Next normal isolated DB-lock/wrong-root process regressions; all original gates retained.
