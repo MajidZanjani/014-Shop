@@ -1,0 +1,5 @@
+<p>Captured cart revision {{ preparation.cart_version }} · Business scope {{ preparation.business.scope_version }} · Review revision {{ preparation.latest_review_version }} · Profile {{ preparation.profile }}</p>
+<p>Internal review: {{ preparation.review.label }}</p>
+<p>Catalog {{ preparation.catalog_revision }} · Document preview definition {{ preparation.definition_revision }}</p>
+<ul>{% for row in preparation.blockers %}<li>{{ row.label }} — {{ row.state }}</li>{% endfor %}</ul>
+<p>Money and deadlines remain unknown; all offer creation, publication, acceptance and payment are disabled. Country/tax answers remain pending. This is internal preparation evidence, not an approved offer or independent recovery archive.</p>

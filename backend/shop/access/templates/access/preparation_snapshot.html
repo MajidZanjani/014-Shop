@@ -1,0 +1,6 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Retained preparation assessment</title></head><body><main>
+<h1>Retained preparation assessment {{ snapshot.version }}</h1><p>Request {{ quotation.id }} · Captured by staff {{ snapshot.captured_by_id }} · {{ snapshot.created_at }}</p>
+<p>This is the retained assessment at capture time. Later corrections and source changes do not replace it.</p>
+{% include 'access/preparation_assessment_summary.html' %}
+<p><a href="/staff/quotation-requests/{{ quotation.id }}/preparation-snapshots/">Review current assessment and authorized captures</a> · <a href="/staff/quotation-requests/{{ quotation.id }}/">Return to captured request</a></p>
+</main></body></html>

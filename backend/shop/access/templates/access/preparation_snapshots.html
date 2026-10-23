@@ -1,0 +1,12 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Retain internal preparation assessment</title></head><body><main>
+<h1>Retain internal preparation assessment</h1><p>Request {{ quotation.id }} · Latest preparation revision {{ expected_preparation_version }}</p>
+<h2>Displayed assessment</h2>{% include 'access/preparation_assessment_summary.html' %}
+{% if assessment_digest %}<form method="post">{% csrf_token %}
+<input type="hidden" name="request_id" value="{{ request_id }}"><input type="hidden" name="expected_preparation_version" value="{{ expected_preparation_version }}"><input type="hidden" name="assessment_digest" value="{{ assessment_digest }}">
+<button>Retain displayed internal assessment</button></form>
+<p>If the response is lost, resubmit this same form. Changed scope, source, review or preparation revisions require reloading and reviewing again. Captures preserve earlier records.</p>
+{% else %}<p>Capture unavailable until the retained source, scope and review references are consistent.</p>{% endif %}
+<h2>Recent authorized captures</h2><p>Showing up to {{ history_limit }} captures for which your current permissions apply. Other historical business scopes stay hidden.</p>
+<ol>{% for row in snapshots %}<li><a href="/staff/quotation-requests/{{ quotation.id }}/preparation-snapshots/{{ row.version }}/">Preparation revision {{ row.version }}</a> · Business scope {{ row.business_version }} · Review revision {{ row.review_version }} · {{ row.created_at }}</li>{% empty %}<li>No authorized retained captures.</li>{% endfor %}</ol>
+<p><a href="/staff/quotation-requests/{{ quotation.id }}/preparation/">Review full current prerequisites</a> · <a href="/staff/quotation-requests/{{ quotation.id }}/">Return to captured request</a></p>
+</main></body></html>

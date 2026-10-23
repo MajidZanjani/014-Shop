@@ -105,7 +105,7 @@ def isolated_postgres():
     started = False
     try:
         cluster.command("initdb", "-D", root / "data", "-U", "shop_test",
-                        "--auth-local=trust", "--auth-host=reject", "--no-locale")
+                        "--auth-local=trust", "--auth-host=reject", "--no-locale", "--encoding=UTF8")
         # Unix socket only, inside a mode-0700 unique root. No TCP listener.
         cluster.command("pg_ctl", "-D", root / "data", "-l", root / "server.log",
                         "-o", f"-k {cluster.socket} -h ''", "-w", "-t", "15", "start")

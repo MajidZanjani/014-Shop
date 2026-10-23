@@ -41,6 +41,7 @@ class QuotationRequest(models.Model):
     cart=models.ForeignKey(DraftCart,on_delete=models.PROTECT)
     snapshot=models.OneToOneField(CartSnapshot,on_delete=models.PROTECT)
     review_version=models.PositiveIntegerField(default=0)
+    preparation_version=models.PositiveIntegerField(default=0)
     business_version=models.PositiveIntegerField(default=0)
     request_id=models.UUIDField()
     created_at=models.DateTimeField(auto_now_add=True)

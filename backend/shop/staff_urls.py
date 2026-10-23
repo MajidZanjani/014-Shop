@@ -1,5 +1,6 @@
 from django.urls import path
 from shop.access import staff_auth, staff_views
+from shop.access.preparation_snapshots import snapshots, snapshot_detail
 from shop.access.preparation_views import preparation
 from shop.access.quotation_review import record_review
 urlpatterns=[
@@ -8,6 +9,8 @@ urlpatterns=[
     path('staff/quotation-requests/',staff_views.quotations),
     path('staff/quotation-requests/<uuid:identity>/',staff_views.quotation_detail),
     path('staff/quotation-requests/<uuid:identity>/reviews/',record_review),
+    path('staff/quotation-requests/<uuid:identity>/preparation-snapshots/',snapshots),
+    path('staff/quotation-requests/<uuid:identity>/preparation-snapshots/<int:version>/',snapshot_detail),
     path('staff/quotation-requests/<uuid:identity>/preparation/',preparation),
     path('staff/quotation-requests/<uuid:identity>/business/',staff_views.quotation_business),
 ]

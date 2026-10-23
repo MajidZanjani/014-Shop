@@ -14,5 +14,6 @@
 <h2>Applicable document versions</h2><ul>{% for row in preparation.document_requirements %}<li>{{ row.title }} — approved text and version pending</li>{% empty %}<li>Document requirements unavailable; source review required.</li>{% endfor %}</ul>
 <p>Money: EUR draft intent; subtotal, tax and total remain unknown. Quote-validity and payment deadlines remain unknown. No values are treated as zero.</p>
 <p>Preview definition revision {{ preparation.definition_revision }}</p>
+<p><a href="/staff/quotation-requests/{{ preparation.quotation_id }}/preparation-snapshots/">Retain or review internal preparation assessments</a></p>
 <p><a href="/staff/quotation-requests/{{ preparation.quotation_id }}/">Return to captured request</a> · <a href="/staff/quotation-requests/">Assigned requests</a></p>
 </main></body></html>

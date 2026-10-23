@@ -117,12 +117,12 @@ def qualify(faults=False):
                 database = pg.create_database()
                 for key, value in database.items():
                     env['DATABASE_' + key] = value
-                identity = pg.sql("SELECT current_setting('server_version'), current_database()", database['NAME'])
-                require(identity == '18.6|' + database['NAME'], 'actual scratch database identity mismatch')
+                identity = pg.sql("SELECT current_setting('server_version'), current_database(), current_setting('server_encoding')", database['NAME'])
+                require(identity == '18.6|' + database['NAME'] + '|UTF8', 'actual scratch database identity mismatch')
                 run([python, 'manage.py', 'check'], env)
                 run([python, 'manage.py', 'migrate', '--noinput'], env)
                 run([python, 'manage.py', 'makemigrations', '--check', '--dry-run'], env)
-                test_result = dev_postgres.run([str(python), 'manage.py', 'test', 'shop.core.tests', 'shop.catalog.tests', 'shop.access.tests', 'shop.catalog.cart_tests', 'shop.catalog.quotation_tests', 'shop.access.staff_tests', 'shop.access.review_tests', 'shop.catalog.business_tests', 'shop.catalog.binding_tests', 'shop.catalog.document_tests', 'shop.catalog.timeline_tests', 'shop.access.preparation_tests', '--noinput'],
+                test_result = dev_postgres.run([str(python), 'manage.py', 'test', 'shop.core.tests', 'shop.catalog.tests', 'shop.access.tests', 'shop.catalog.cart_tests', 'shop.catalog.quotation_tests', 'shop.access.staff_tests', 'shop.access.review_tests', 'shop.catalog.business_tests', 'shop.catalog.binding_tests', 'shop.catalog.document_tests', 'shop.catalog.timeline_tests', 'shop.access.preparation_tests', 'shop.access.preparation_snapshot_tests', '--noinput'],
                     env=env, cwd=ROOT / 'backend', timeout=45)
                 test_output = test_result.stdout + test_result.stderr
                 match = re.search(r'Ran (\d+) tests?', test_output)
