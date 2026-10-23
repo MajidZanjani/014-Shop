@@ -12,6 +12,7 @@ from django.core.management.base import CommandError
 from django.db import connection
 from django.test import TransactionTestCase,override_settings
 from shop.access import staff_tests
+from shop.adapters.archive_destination import BoundPreparedArchive,MARKER
 from shop.catalog.models import ArchivePreparedVerification,ArchiveWorkClaim
 from . import prepared_tests as fixtures
 
@@ -117,3 +118,29 @@ class PreparedCommandTests(TransactionTestCase):
         self.assertEqual(ArchiveWorkClaim.objects.count(),0)
         self.assertEqual(ArchivePreparedVerification.objects.count(),0)
         self.assertEqual({p.name:p.read_bytes() for p in self.root.iterdir()},files)
+
+    def test_separate_process_busy_root_fails_before_claim_and_does_not_retry(self):
+        reference=self.authorize();files={p.name:p.read_bytes() for p in self.root.iterdir()}
+        with BoundPreparedArchive(self.root,self.proof) as archive:
+            with archive.operation():
+                self.assert_child_unavailable(self.run_child(reference))
+                self.assertEqual(ArchiveWorkClaim.objects.count(),0)
+                self.assertEqual(ArchivePreparedVerification.objects.count(),0)
+                self.assertEqual({p.name:p.read_bytes() for p in self.root.iterdir()},files)
+        # Releasing the lock cannot itself cause work: the child already exited.
+        self.assertEqual(ArchiveWorkClaim.objects.count(),0)
+        self.assertEqual(ArchivePreparedVerification.objects.count(),0)
+        self.assertEqual({p.name:p.read_bytes() for p in self.root.iterdir()},files)
+
+    def test_separate_process_tampered_marker_is_never_repaired_or_adopted(self):
+        reference=self.authorize();marker=self.root/MARKER;original=marker.read_bytes()
+        marker.write_bytes(b'private-tampered-marker')
+        files={p.name:p.read_bytes() for p in self.root.iterdir()}
+        try:
+            self.assert_child_unavailable(self.run_child(reference))
+            self.assertEqual(ArchiveWorkClaim.objects.count(),0)
+            self.assertEqual(ArchivePreparedVerification.objects.count(),0)
+            self.assertEqual({p.name:p.read_bytes() for p in self.root.iterdir()},files)
+        finally:
+            # Only the test repairs its own fixture after observing refusal.
+            marker.write_bytes(original)

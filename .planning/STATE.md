@@ -2,7 +2,7 @@
 gsd_state_version: "1.0"
 status: in_progress
 last_updated: "2026-10-23T11:33:11.675431+00:00"
-state_head: ccab85a
+state_head: 3f5cdb5
 progress:
   total_phases: 14
   completed_phases: 1
@@ -13,7 +13,7 @@ last_activity: 2026-10-23
 current_phase: 07
 current_phase_name: Multi-line cart, quotations, business checkout and acceptance
 stopped_at: Resumed; separate-process command smoke verified, continuing local root-refusal regressions.
-last_activity_desc: Separate-process command smoke passes248 tests;07-02 partial.
+last_activity_desc: Process smoke and root refusal pass250 tests;07-02 partial.
 ---
 
 # Project State
@@ -89,7 +89,7 @@ User review, 2026-10-22: **previous catalog demo checked and approved** (user: â
 
 ## Exact next action
 
-Current local quotation/staff/status/business slices await human review. Next action: Add deterministic cross-process busy-root/tampered-marker refusal tests; independent runtime/recovery qualification and production gates stay pending. Country/tax and commercial effects remain gated. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
+Current local quotation/staff/status/business slices await human review. Next action: Add deterministic process PostgreSQL row-lock-contention and wrong-physical-root refusal tests; independent runtime/recovery qualification and production gates stay pending. Country/tax and commercial effects remain gated. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
 
 User instruction2026-10-23: **sync to configured origin/main after every commit**, using ordinary fetch/non-force push and checking ahead/behind. This applies to implementation and planning commits. Every implementation and planning commit must be pushed immediately and ahead/behind checked. Before each commit, reconcile all affected planning files, regenerate canonical state.json and run scripts/check_planning.py; preserve historical evidence.
 
@@ -105,7 +105,7 @@ Retain dependency locks, raw SBOMs, notices, validated derivative and all origin
 
 ## Session continuity
 
-Session resumed from fa98c7d; separate-process smoke/failure regression passes248 local checks. Next deterministic cross-process busy-root/tampered-marker refusal tests. Continue across commits until context clear/user stop. Country/tax pending; focus7/completed1; no exact context percentage supplied or claimed.
+Session resumed from fa98c7d; process smoke/refusal regressions pass250 local checks. Next process PostgreSQL row-lock-contention/wrong-physical-root refusal tests. Continue across commits until context clear/user stop. Country/tax pending; focus7/completed1; no exact context percentage supplied or claimed.
 
 ### Quick Tasks Completed
 
@@ -168,4 +168,4 @@ Session resumed from fa98c7d; separate-process smoke/failure regression passes24
 | 261023-cyg | Fix audit F-01 missing cart snapshot ownership recheck | 2026-10-23 | 83e8464 | [261023-cyg-fix-customer-form-audit-f-01-by-rechecki](./quick/261023-cyg-fix-customer-form-audit-f-01-by-rechecki/) |
 | 261023-d1r | Show exact committed and current cart revisions after no-JavaScript retries | 2026-10-23 | 6171d3c | [261023-d1r-show-exact-committed-revision-and-curren](./quick/261023-d1r-show-exact-committed-revision-and-curren/) |
 
-Local separate-process command smoke passes248 core-local checks (234 Django tests plus14 Gunicorn observations),59.426s, on owned PostgreSQL18.6/UTF8. Child success commits one prepared verification; duplicate, malformed/unknown scope, missing root and revocation fail with exact safe output and preserve files/records. Source157 exact files19 templates, no symlinks. See [process smoke evidence](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-WORKER-PROCESS-PARTIAL.md). Next: deterministic cross-process busy-root and tampered-marker refusal regressions. Independent transport/outage/off-host/provider/recovery qualification remains pending; Country/tax deferred; commercial effects disabled. Focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 8/18;07-02 partial.
+Local selected command process regressions pass250 core-local checks (236 Django tests plus14 Gunicorn observations),60.268s; owned PostgreSQL18.6/UTF8. Success/duplicate/scope/revocation plus real cross-process busy-root and tampered-marker refusal pass with exact safe output and preserved files. Source157 exact files19 templates, no symlinks. See [process evidence](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-WORKER-PROCESS-PARTIAL.md). Next: deterministic process PostgreSQL row-lock-contention and wrong-physical-root refusal tests. Independent transport/outage/off-host/provider/recovery qualification pending; Country/tax deferred; commercial effects disabled. Focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 8/18;07-02 partial.

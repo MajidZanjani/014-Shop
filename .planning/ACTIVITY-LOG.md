@@ -455,3 +455,5 @@ Implementation546dead synced0/0 and recorded. Proposed07-02-WORKER-DESIGN spells
 2026-10-23T11:26:19.461Z — Authorized proactive context checkpoint via GSD pause-work; no exact percentage available. ccab85a/d1e65a4 synced;246 tests/source157 files19 templates unchanged. Structured/human handoffs saved; next separate-process owned-synthetic command smoke. Wait for clear/resume;07-02 partial, Country/tax pending.
 
 2026-10-23T11:33:11.675431+00:00 — Resumed fa98c7d clean checkpoint; consumed HANDOFF.json/phase checkpoint. Added separate-process selected command success/duplicate/failure regressions.248 local checks pass59.426s; source157/19 exact. Initial libpq discovery failure fixed with pinned PATH. See process partial;07-02 remains partial; Country/tax/external gates unchanged.
+
+2026-10-23T11:35:44.547407+00:00 — Continued after3f5cdb5 synced0/0: two deterministic process busy-root/tampered-marker refusal tests pass;250 local checks60.268s. Source157/19 exact;07-02 partial, all external/commercial/Country-tax gates retained.
