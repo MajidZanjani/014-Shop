@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: active
-last_updated: "2026-10-23T05:15:23.880Z"
-state_head: 8af50988e514924eb9ca0d13680af8b686972723
+last_updated: "2026-10-23T05:24:00.193677+00:00"
+state_head: 817fd57e3d1bcd2baebcbf8631805ab91bb01e45
 progress:
   total_phases: 14
   completed_phases: 1
@@ -12,13 +12,13 @@ progress:
 last_activity: 2026-10-23
 current_phase: 07
 current_phase_name: Local staff access and quotation review
-stopped_at: Local staff rehearsal implemented; optional manual HTTP check awaits specific synthetic-credential authorization.
-last_activity_desc: Local two-factor staff rehearsal and assigned quotation reads verified; real staff MFA and release qualification pending.
+stopped_at: Authorized staff HTTP check passed; local quotation/staff demo review pending.
+last_activity_desc: Staff HTTP form flow passed15 observations; preview header forwarding fixed; production MFA/release gates pending.
 ---
 
 # Project State
 
-Updated 2026-10-23T05:15:23.673734+00:00. Canonical current summary; latest evidence: [quick261023-72i](quick/261023-72i-implement-local-staff-mfa-and-quotation-/261023-72i-SUMMARY.md), quotation capture: [quick261023-6w3](quick/261023-6w3-implement-protected-quotation-requests-f/261023-6w3-SUMMARY.md). Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
+Updated 2026-10-23T05:24:00.193677+00:00. Canonical current summary; latest evidence: [quick261023-72i](quick/261023-72i-implement-local-staff-mfa-and-quotation-/261023-72i-SUMMARY.md), quotation capture: [quick261023-6w3](quick/261023-6w3-implement-protected-quotation-requests-f/261023-6w3-SUMMARY.md). Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
 ## Current position
 
@@ -38,13 +38,13 @@ T03/T04 local catalog delivery remains intact; T05 local draft persistence and T
 
 Demo: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/demo.py --backend`; open http://127.0.0.1:4321 (also /support/ and /purchase/simple/).
 
-Checks: current changed lanes pass core-local68 tests on fresh owned real PostgreSQL and frontend104 Node tests plus proxy1; static build/typecheck/source policy/output privacy checks pass. New staff evidence and limits are in quick261023-72i SUMMARY; startup of both previews and the updated proxy1 test also passed. Optional manual HTTP sign-in was rejected before synthetic credential access by automatic approval review and remains pending specific authorization; unchanged lanes retain prior scoped evidence. No FULL_PASS or real-browser/production/recovery/legal acceptance. Hosted CI for this slice remains unverified; no credential access retried.
+Checks: current changed lanes pass core-local68 tests on fresh owned real PostgreSQL and frontend104 Node tests plus proxy1; static build/typecheck/source policy/output privacy checks pass. New staff evidence and limits are in quick261023-72i SUMMARY; startup of both previews and the updated proxy1 test also passed. User explicitly approved the previously blocked disposable credential read; final manual HTTP sign-in/review/logout passed15 observations after proxy Accept/CSP forwarding fix817fd57; unchanged lanes retain prior scoped evidence. No FULL_PASS or real-browser/production/recovery/legal acceptance. Hosted CI for this slice remains unverified; no credential access retried.
 
 User review, 2026-10-22: **previous catalog demo checked and approved** (user: “all checked and approved”). See task evidence for scope. Verification/save-resume also passed user review (“all works fine”, 2026-10-22). Local multi-line cart demo approved by user (“approved”, 2026-10-22). Detailed browser/accessibility qualification and commercial/release gates remain pending.
 
 ## Exact next action
 
-Specific user authorization is needed only to read freshly generated disposable staff demo passwords/codes for the optional manual HTTP sign-in/review check; automatic approval review rejected that action before any read. Do not bypass or retry credential access without that authorization. The owned demo is stopped. Next independent local feature: record staff quotation-review decisions against the exact assigned request snapshot, keeping approved offers, acceptance/payment and financial effects disabled pending commercial/durability prerequisites. Current quotation/staff demos await user review.
+Current local quotation/staff demos await human review. Next independent local feature: record staff quotation-review decisions against the exact assigned request snapshot, keeping approved offers, acceptance/payment and financial effects disabled pending commercial/durability prerequisites. The specifically approved disposable-credential HTTP check is complete; that permission does not authorize real credentials or unrelated operations.
 
 ## Remaining dependencies and protections
 
@@ -54,7 +54,7 @@ Retain dependency locks, raw SBOMs, notices, validated derivative and all origin
 
 ## Session continuity
 
-Session resumed 2026-10-23 through `$gsd-resume-work`; user selected quotation implementation then requested continuation. Quick261023-72i implemented at8af5098, with68 core-local tests passing. Optional manual synthetic-credential HTTP check blocked by automatic approval review; specific authorization pending. Existing isolated tests passed before that attempted manual check; do not use alternate execution to bypass the rejection. No owned demo/check processes or agents remain active; disposable capture/database directories removed. No exact context percentage available or claimed; retain conditional context-checkpoint rule.
+Session resumed 2026-10-23 through `$gsd-resume-work`; user selected quotation implementation then continuation. Staff quick261023-72i has68 core-local tests and final15-observation HTTP evidence. User explicitly approved only the generated disposable staff passwords/codes for this check; no real/provider/.env credentials accessed. HTTP check found proxy Accept/CSP loss; fixed at817fd57 with passing regression. All owned previews stopped and private capture/database/runtime directories removed. No active agents or async jobs. No exact context percentage available or claimed; retain conditional checkpoint rule.
 
 ### Quick Tasks Completed
 
