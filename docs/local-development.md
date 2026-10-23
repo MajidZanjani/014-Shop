@@ -221,3 +221,5 @@ Migration0008 adds the tables, semantic/one-to-one uniqueness and PostgreSQL act
 
 
 Internal local archive destination binding: initialize only an explicitly selected empty owned0700 disposable root with UUID; reopen using its exact LocalDestination proof/BoundPreparedArchive. Existing unbound objects are not adopted. Intent binding preserves attribution and holds; post-I/O revocation denies acknowledgement without deleting evidence. This API creates no worker authority/claim/publication service or provider retention qualification. See planning07-02-DESTINATION-PARTIAL.
+
+Internal archive_authority APIs explicitly issue a five-minute local prepared-work authorization under current exact-scope permissions and retain separate revocation. Exact retries return historical metadata without deadline renewal or active-work approval; held work never resumes. No detached checker, route, worker or publication service yet. See07-02-AUTHORITY-PARTIAL. Preserve populated0010 tables on rollback.

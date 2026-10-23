@@ -22,9 +22,9 @@ Use real PostgreSQL for competing claims, expiration/reclaim, stale-worker compl
 
 Destination identity/binding is implemented. Next define/test durable authority and a closed claim/fencing contract, then wire publish/readback. Do not add a generic unguarded worker/export route. Country/tax and all commercial approvals remain pending;07-02 stays partial.
 
-## Concrete next slice — bounded local work authorization proposal
+## Bounded local work authorization — implemented subset and remaining proposal
 
-This section is a proposed contract, not an implemented grant or deployment permission. Destination binding3b9f6a1 is necessary but does not authorize detached reads/publication. Do not expand intent states first and infer authority afterward.
+Explicit issuance/revocation records are implemented (07-02-AUTHORITY-PARTIAL). Detached checker/source reader, claim/lease protocol and work execution below remain proposals, not runtime capability or deployment permission. Destination binding3b9f6a1 is necessary but does not authorize detached reads/publication. Do not expand intent states first and infer authority afterward.
 
 Introduce an explicit internal authorize_request_archive(request, intent_id, expected_destination_id, command_id) action. It must own its durable outer commit, reject external transactions and validate current local/synthetic fake settings. Reuse the exact request producer and current owner/recent-MFA staff/private-scope authorization. Compare retained envelope bytes/hash/length, original owner and actual destination binding. No filesystem call occurs under its transaction. This deliberate action grants only bounded prepared-byte work to that exact immutable envelope/root; never customer downloads, offers, acceptance or domain effects. No automatic grant from capture/binding, no stored browser session and no fabricated request for a detached worker.
 

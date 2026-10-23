@@ -1,3 +1,4 @@
+from datetime import timedelta
 from django.db.models.lookups import Exact
 """Local product draft snapshots. No acceptance, entitlement, hosts or payment."""
 import uuid
@@ -189,3 +190,41 @@ class ArchiveDestination(models.Model):
             models.UniqueConstraint(fields=['device','inode'],name='archive_destination_root_unique'),
             models.CheckConstraint(condition=models.Q(inode__gte=1,profile='local-prepared-v1',manifest_sha256__regex=r'^[0-9a-f]{64}$'),name='archive_destination_known_local'),
         ]
+
+
+class ArchiveWorkAuthorization(models.Model):
+    """Explicit bounded local prepared-work authorization; immutable by service."""
+    id=models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
+    intent=models.ForeignKey(RequestArchiveIntent,on_delete=models.PROTECT)
+    command_id=models.UUIDField()
+    generation=models.PositiveIntegerField()
+    destination=models.ForeignKey(ArchiveDestination,on_delete=models.PROTECT)
+    envelope_sha256=models.CharField(max_length=64)
+    byte_length=models.PositiveIntegerField()
+    schema_version=models.PositiveSmallIntegerField(default=1)
+    owner=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT,related_name='+')
+    authorized_by=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT,related_name='+')
+    staff_generation=models.UUIDField(null=True,editable=False)
+    mfa_verified_at=models.DateTimeField(null=True)
+    issued_at=models.DateTimeField()
+    not_after=models.DateTimeField()
+    retention_qualified=models.BooleanField(default=False)
+    effects_authorized=models.BooleanField(default=False)
+    class Meta:
+        constraints=[
+            models.UniqueConstraint(fields=['intent','command_id'],name='archive_auth_command_unique'),
+            models.UniqueConstraint(fields=['intent','generation'],name='archive_auth_generation_unique'),
+            models.CheckConstraint(condition=models.Q(generation__gte=1,generation__lte=1000000000,schema_version=1,byte_length__gte=1,byte_length__lte=131072,envelope_sha256__regex=r'^[0-9a-f]{64}$',retention_qualified=False,effects_authorized=False),name='archive_auth_local_bounds'),
+            models.CheckConstraint(condition=models.Q(not_after=models.F('issued_at')+timedelta(minutes=5)),name='archive_auth_fixed_lifetime'),
+            models.CheckConstraint(condition=models.Q(staff_generation__isnull=True,mfa_verified_at__isnull=True)|models.Q(staff_generation__isnull=False,mfa_verified_at__isnull=False),name='archive_auth_staff_pair'),
+        ]
+
+
+class ArchiveWorkRevocation(models.Model):
+    """Retained explicit revocation; retry never reactivates the grant."""
+    authorization=models.OneToOneField(ArchiveWorkAuthorization,on_delete=models.PROTECT)
+    revoked_by=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT,related_name='+')
+    revoked_at=models.DateTimeField()
+    reason=models.CharField(max_length=32,default='explicit-revocation')
+    class Meta:
+        constraints=[models.CheckConstraint(condition=models.Q(reason='explicit-revocation'),name='archive_revoke_known_reason')]

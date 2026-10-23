@@ -1,7 +1,7 @@
 ---
 gsd_state_version: "1.0"
 status: active
-last_updated: "2026-10-23T10:29:32.763676+00:00"
+last_updated: "2026-10-23T10:36:00.109249+00:00"
 state_head: 3b9f6a1
 progress:
   total_phases: 14
@@ -12,13 +12,13 @@ progress:
 last_activity: 2026-10-23
 current_phase: 07
 current_phase_name: Multi-line cart, quotations, business checkout and acceptance
-stopped_at: Explicit destination binding implemented; durable authority and fenced claims next; Country/tax pending.
-last_activity_desc: Local destination binding passes214 tests;141 files19 templates;07-02 remains partial.
+stopped_at: Explicit bounded authority records implemented; detached source/permission checks next; Country/tax pending.
+last_activity_desc: Local authorization/revocation passes219 tests;144 files19 templates;07-02 partial.
 ---
 
 # Project State
 
-Updated 2026-10-23T10:29:32.763676+00:00. Canonical current summary; latest evidence: [Plan07-02 destination binding](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-DESTINATION-PARTIAL.md). Customer status: [quick261023-7s8](quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-SUMMARY.md). Prior staff/HTTP evidence remains linked there. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
+Updated 2026-10-23T10:29:32.763676+00:00. Canonical current summary; latest evidence: [Plan07-02 authorization records](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-AUTHORITY-PARTIAL.md). Customer status: [quick261023-7s8](quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-SUMMARY.md). Prior staff/HTTP evidence remains linked there. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
 ## Current position
 
@@ -30,7 +30,9 @@ T03/T04 local catalog delivery remains intact; T05 local draft persistence and T
 
 ## Delivered behavior
 
-- Explicit private local destination identity and attributed intent binding are implemented; root replacement, copied/tampered markers and rebinding fail closed. Only pending/held intents exist; no claim, worker, publication service or durable worker authority exists. Retention/effect flags remain false.
+- Explicit internal current-request authorization records bind one intent/destination/source with five-minute database-clock deadline, original actor/MFA and CAS generation. Revocation is retained separately. Neither historical retry nor revocation clears holds or grants executable worker capability.
+
+- Explicit private local destination identity and attributed intent binding are implemented; root replacement, copied/tampered markers and rebinding fail closed. Only pending/held intents exist; explicit bounded authorization/revocation records now exist; no detached checker, claim, worker or publication service exists. Retention/effect flags remain false.
 
 - Atomic request-envelope capture commits one private fact and one pending local archive intent per semantic request/business/schema scope. PostgreSQL constraints bound actual bytes and forbid execution/qualification/effects. Capture owns a durable outer transaction; exact retries preserve original IDs/attribution. No archive I/O, HTTP route or worker is added.
 
@@ -71,17 +73,17 @@ T03/T04 local catalog delivery remains intact; T05 local draft persistence and T
 
 Demo: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/demo.py --backend`; open http://127.0.0.1:4321 (also /support/ and /purchase/simple/).
 
-Checks: 214 core-local tests (200 Django plus14 Gunicorn observations),46.154s; owned PostgreSQL18.6/UTF8. Actual Nix source141 files19 templates, byte-identical/allowlisted/no symlinks. See destination partial for ten new identity/binding tests and migration0009. Frontend/proxy unchanged and not rerun. No FULL_PASS/browser/provider/off-host/production qualification.
+Checks:219 core-local tests (205 Django plus14 Gunicorn observations),48.499s; owned PostgreSQL18.6/UTF8. Source144 files19 templates exact. Authority partial records five new tests and migration0010. Frontend/proxy unchanged, not rerun. No FULL_PASS/browser/provider/off-host/production qualification.
 
 User review, 2026-10-22: **previous catalog demo checked and approved** (user: “all checked and approved”). See task evidence for scope. Verification/save-resume also passed user review (“all works fine”, 2026-10-22). Local multi-line cart demo approved by user (“approved”, 2026-10-22). Detailed browser/accessibility qualification and commercial/release gates remain pending.
 
 ## Exact next action
 
-Current local quotation/staff/status/business slices await human review. Next action: Define durable archive authority and fenced local claims before publication; preserve holds and retained bytes. Country/tax and commercial effects remain gated. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
+Current local quotation/staff/status/business slices await human review. Next action: Implement shared exact-source reader and detached current-authority checks before fenced claims. Country/tax and commercial effects remain gated. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
 
 User instruction2026-10-23: **sync to configured origin/main after every commit**, using ordinary fetch/non-force push and checking ahead/behind. This applies to implementation and planning commits. Every implementation and planning commit must be pushed immediately and ahead/behind checked. Before each commit, reconcile all affected planning files, regenerate canonical state.json and run scripts/check_planning.py; preserve historical evidence.
 
-Planning audit2026-10-23: [F-00/F-01/F-02 report](audits/2026-10-23-local-workflow.md). All three findings remain fixed; recorded audit evidence147 retains its scope. Current combined lane passes214 core-local tests; prior journey and audit evidence retain their recorded scopes. Country/tax answers stay deferred.
+Planning audit2026-10-23: [F-00/F-01/F-02 report](audits/2026-10-23-local-workflow.md). All three findings remain fixed; recorded audit evidence147 retains its scope. Current combined lane passes219 core-local tests; prior journey and audit evidence retain their recorded scopes. Country/tax answers stay deferred.
 
 Audit completion: all three local findings fixed; final core-local147 tests and source package116 files/fifteen templates pass. Full report: [local workflow audit](audits/2026-10-23-local-workflow.md). Current phase7/last complete1 and all acceptance gates unchanged.
 
@@ -93,7 +95,7 @@ Retain dependency locks, raw SBOMs, notices, validated derivative and all origin
 
 ## Session continuity
 
-Session continued2026-10-23 with local destination binding:214 core-local tests (200 Django,14 transport), source141 files19 templates. Focus7/completed1 unchanged. Next durable worker authority and fenced claims; Country/tax pending. No exact context percentage supplied or claimed.
+Session continued2026-10-23 with explicit bounded archive authority records;219 tests, source144 files19 templates. Next detached exact-source/current-permission checker. Country/tax pending; focus7/completed1. No exact context percentage supplied or claimed.
 
 ### Quick Tasks Completed
 
@@ -156,6 +158,4 @@ Session continued2026-10-23 with local destination binding:214 core-local tests 
 | 261023-cyg | Fix audit F-01 missing cart snapshot ownership recheck | 2026-10-23 | 83e8464 | [261023-cyg-fix-customer-form-audit-f-01-by-rechecki](./quick/261023-cyg-fix-customer-form-audit-f-01-by-rechecki/) |
 | 261023-d1r | Show exact committed and current cart revisions after no-JavaScript retries | 2026-10-23 | 6171d3c | [261023-d1r-show-exact-committed-revision-and-curren](./quick/261023-d1r-show-exact-committed-revision-and-curren/) |
 
-Latest local destination evidence: 214 core-local tests (200 Django plus14 Gunicorn observations),46.154s; owned PostgreSQL18.6/UTF8. Actual Nix source141 files19 templates, byte-identical/allowlisted/no symlinks. Explicit private local destination identity and attributed intent binding are implemented; root replacement, copied/tampered markers and rebinding fail closed. Only pending/held intents exist; no claim, worker, publication service or durable worker authority exists. Retention/effect flags remain false. Next: Define durable archive authority and fenced local claims before publication; preserve holds and retained bytes. Country/tax and commercial effects remain gated. Focus7/completed1;11/24 planned records,1/14 complete phases (7%); Phase02 remains8/18.07-02 remains partial.
-
-Recorded local implementation3b9f6a1 synced0/0. Worker design now specifies a proposed explicit bounded authorization record/source reader before claims; it adds no runtime authority or completed-plan credit. Current214-test/141-file evidence unchanged.
+Current local authority evidence:219 core-local tests (205 Django plus14 Gunicorn observations),48.499s; owned PostgreSQL18.6/UTF8. Actual source144 files19 templates exact/allowlisted/no symlinks. Explicit five-minute authorization and append-only-by-service revocation are implemented; retries retain original deadlines/attribution. Only pending/held intents exist; no detached authorization checker, claim, worker or publication service. Retention/effect flags stay false. Next: shared exact-source reader and detached current-authority checks before fenced claims. Country/tax pending; focus7/completed1,11/24 planned records,1/14 fully complete phases (7%); Phase02 remains8/18;07-02 partial.
