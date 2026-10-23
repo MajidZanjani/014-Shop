@@ -409,3 +409,8 @@ Plan07-01 implementation3e1b811 synced0/0 and recorded. Proposed07-EVIDENCE-CONT
 ## 2026-10-23T09:55:39.174739+00:00 — Plan07-02 private request envelope partial
 
 [STATE](STATE.md)/[ROADMAP](ROADMAP.md) and all affected live planning reconciled before commit. Closed source-bound request/business bytes retain immutable request IDs; exact owner/recent-MFA/history scope checks and post-archive-I/O reauthorization tested.197 core-local tests, source133 files19 templates exact. No route, migration/outbox, offer, approval or effect.11/24 records; focus7/completed1;07-02 incomplete; Country/tax deferred. Next atomic capture/archive intent.
+
+
+## 2026-10-23T09:58:12.543064+00:00 — envelope sync and atomic capture design
+
+Implementation2048a57 synced0/0 and recorded in partial evidence. Proposed07-02-CAPTURE-DESIGN defines one immutable semantic envelope/intent transaction and required race/rollback/no-I/O tests. No new source/migration/test run;197-test evidence retained. [STATE](STATE.md)/[ROADMAP](ROADMAP.md), HANDOFF and affected live indexes reconciled before commit; duplicate stale checkpoint footers removed while chronological evidence retained here.11/24 records; focus7/completed1, Phase02 8/18; Country/tax pending.

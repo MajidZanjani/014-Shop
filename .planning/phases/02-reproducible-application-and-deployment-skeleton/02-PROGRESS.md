@@ -43,12 +43,9 @@ Latest application evidence: [exact cart retry confirmation](../../quick/261023-
 
 Latest local evidence: [request envelope](../07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-ENVELOPE-PARTIAL.md),197 core-local tests, source133 files19 templates. Plan07-02 remains partial; no durable outbox/offer/acceptance added.11/24 records; focus7/completed1; Phase02 8/18.
 
-Batch checkpoint2026-10-23: six implementation/fix commits through6171d3c synchronized and indexed;197 core-local tests, source133 files19 templates. Live references reviewed 2026-10-23T09:27:13.668083+00:00. Next action and gates are in [HANDOFF](../../HANDOFF.md). Focus7/completed1 and all acceptance counts unchanged.
 
-Current Phase7 checkpoint:07-01 local archive slice complete;11/24 planned records. Next: implement atomic immutable request-envelope capture and unique semantic archive intent before a leased archive worker; keep Country/tax, provider retention and commercial effects gated.197 core-local tests, source133 files19 templates. Focus7/completed1 and Phase02 8/18 unchanged.
 
-Latest archive evidence: [Plan07-01](../07-multi-line-cart-quotations-business-checkout-and-acceptance/07-01-SUMMARY.md),197 core-local tests, source133 files19 templates. Reviewed 2026-10-23T09:38:37.488188+00:00;11/24 records,07-01 complete locally; phase completion remains1/14. Next: implement atomic immutable request-envelope capture and unique semantic archive intent before a leased archive worker; keep Country/tax, provider retention and commercial effects gated.
 
-Domain evidence design checkpoint: Plan07-01 implementation3e1b811 synced;07-EVIDENCE-CONTRACT is proposed local design only. Next: implement atomic immutable request-envelope capture and unique semantic archive intent before a leased archive worker; keep Country/tax, provider retention and commercial effects gated.197 core-local tests/source133 files19 templates retain their implementation scope; no source change after that result.11/24 records; focus7/completed1; Country/tax pending.
 
-Request-envelope checkpoint: closed internal producer/validator and post-I/O authorized recovery pass197 core-local tests; source133 files19 templates.07-02 remains incomplete;11/24 records, focus7/completed1. Next: implement atomic immutable request-envelope capture and unique semantic archive intent before a leased archive worker; keep Country/tax, provider retention and commercial effects gated.
+
+Current implementation2048a57 synced and recorded: request-envelope partial passes197 core-local tests; actual source133 files19 templates. Proposed07-02-CAPTURE-DESIGN narrows the next atomic record/intent slice; no schema/outbox or new test run for this design-only update.11/24 planned records, focus7/completed1; Country/tax and commercial/provider gates pending.

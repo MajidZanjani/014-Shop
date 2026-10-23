@@ -1,5 +1,7 @@
 # Plan07-02 partial — private prepared request envelope
 
+Implementation commit:2048a57 (synced origin/main).
+
 Internal request_envelope module now produces closed canonical UTF8 bytes for one exact request/business-scope version. Stable UUIDv5 identity is schema/request/scope-specific. Retained content includes source/catalog/profile identity, original request IDs, exact immutable cart lines/evaluation/timestamps, private resolved business snapshot/source/evaluation/submission digest and source IDs. All commercial fields stay null and gates false. No raw request/session/MFA credential data or actual offer/acceptance record is added.
 
 Verified active customer owner or recent local staff MFA plus assigned quotation/exact private scope is required. Parent request/cart locks freeze scope reads; current owner/cart/snapshot and business-source checks fail closed. Historical and current private grants are separate; newly granting history is not invented. Original scope0 contains no private business values. Support-only envelopes introduce no IP/host inputs. Known-source validator checks closed fields, canonical encoding, exact identity, numeric/bool types and source/domain evaluation. Unknown historical source/schema is held; original archive bytes remain recoverable, never rewritten to new assumptions.
