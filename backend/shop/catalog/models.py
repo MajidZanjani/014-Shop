@@ -40,6 +40,7 @@ class QuotationRequest(models.Model):
     id=models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
     cart=models.ForeignKey(DraftCart,on_delete=models.PROTECT)
     snapshot=models.OneToOneField(CartSnapshot,on_delete=models.PROTECT)
+    review_version=models.PositiveIntegerField(default=0)
     request_id=models.UUIDField()
     created_at=models.DateTimeField(auto_now_add=True)
     class Meta:
@@ -52,3 +53,29 @@ class QuotationRequestKey(models.Model):
     quotation=models.ForeignKey(QuotationRequest,on_delete=models.PROTECT)
     class Meta:
         constraints=[models.UniqueConstraint(fields=['cart','request_id'],name='quotation_retry_key_unique')]
+
+
+REVIEW_DECISIONS=[
+    ('needs_information','Needs scope clarification'),
+    ('ready_for_commercial_review','Ready for commercial review (offer not approved)'),
+    ('declined','Declined request'),
+]
+
+class QuotationReview(models.Model):
+    """Append-only-by-API internal decision; never commercial offer approval."""
+    quotation=models.ForeignKey(QuotationRequest,on_delete=models.PROTECT)
+    version=models.PositiveIntegerField()
+    request_id=models.UUIDField()
+    snapshot_digest=models.CharField(max_length=64)
+    decision=models.CharField(max_length=32,choices=REVIEW_DECISIONS)
+    reviewer=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT)
+    reviewer_generation=models.UUIDField()
+    mfa_verified_at=models.DateTimeField()
+    created_at=models.DateTimeField(auto_now_add=True)
+    class Meta:
+        constraints=[
+            models.UniqueConstraint(fields=['quotation','version'],name='quotation_review_unique_version'),
+            models.UniqueConstraint(fields=['quotation','request_id'],name='quotation_review_unique_request'),
+            models.CheckConstraint(condition=models.Q(version__gte=1),name='quotation_review_positive_version'),
+            models.CheckConstraint(condition=models.Q(decision__in=[value for value,_ in REVIEW_DECISIONS]),name='quotation_review_known_decision'),
+        ]

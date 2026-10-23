@@ -1,4 +1,4 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Assigned quotation requests</title></head><body><main>
 <h1>Assigned quotation requests</h1><p>Local rehearsal. Showing up to 20 requests explicitly assigned to you.</p>
-<ol>{% for row in rows %}<li><a href="/staff/quotation-requests/{{ row.quotation_id }}/">Request {{ row.quotation_id }}</a> · Saved cart version {{ row.quotation.snapshot.version }}</li>{% empty %}<li>No quotation requests assigned.</li>{% endfor %}</ol>
+<ol>{% for row in rows %}<li><a href="/staff/quotation-requests/{{ row.quotation_id }}/">Request {{ row.quotation_id }}</a> · Saved cart version {{ row.quotation.snapshot.version }} · Review revision {{ row.quotation.review_version }}</li>{% empty %}<li>No quotation requests assigned.</li>{% endfor %}</ol>
 <a href="/staff/">Staff access</a></main></body></html>
