@@ -1,0 +1,10 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Preparation comparison</title></head><body><main>
+<h1>Preparation comparison</h1><p>Request {{ comparison.quotation_id }} · Retained preparation revision {{ comparison.preparation_version }}</p>
+<p>Retained: cart {{ comparison.retained.cart_version }}, business scope {{ comparison.retained.business_version }}, review {{ comparison.retained.review_version }}.</p>
+<p>Current assessment: cart {{ comparison.current.cart_version }}, business scope {{ comparison.current.business_version }}, review {{ comparison.current.review_version }}.</p>
+{% if not comparison.current_assessment_available %}<p role="alert">Current evidence is unavailable or inconsistent. Review the current prerequisites before another capture.</p>{% endif %}
+<p>{{ comparison.changed_categories }} categories differ. Equality means only that these assessed prerequisites match; it does not mean ready for an offer.</p>
+<table><caption>Retained versus current assessment categories</caption><thead><tr><th scope="col">Category</th><th scope="col">Comparison</th></tr></thead><tbody>{% for row in comparison.categories %}<tr><th scope="row">{{ row.label }}</th><td>{% if row.changed %}Changed{% else %}Unchanged{% endif %}</td></tr>{% endfor %}</tbody></table>
+<p>Country/tax answers remain pending. No raw business values or private hashes are shown. No record is changed. Offer creation, publication, acceptance and payment remain disabled.</p>
+<p><a href="/staff/quotation-requests/{{ comparison.quotation_id }}/preparation-snapshots/{{ comparison.preparation_version }}/">Retained assessment</a> · <a href="/staff/quotation-requests/{{ comparison.quotation_id }}/preparation/">Current prerequisites</a> · <a href="/staff/quotation-requests/{{ comparison.quotation_id }}/preparation-snapshots/">Authorized captures</a></p>
+</main></body></html>

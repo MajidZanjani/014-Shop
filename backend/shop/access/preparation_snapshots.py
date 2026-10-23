@@ -78,6 +78,7 @@ def response_error(request, code, status):
         'recent_staff_mfa_required':'Sign in again for recent staff verification.',
         'not_found':'This request is unavailable or no longer assigned.',
         'business_scope_access_required':'Explicit private permission is required for this exact recorded business scope.',
+        'comparison_scope_access_required':'Comparison requires explicit permission for both the retained and current business scopes.',
         'request_conflict':'This submission identity was used for different capture content or attribution. Reload before another capture.',
         'preparation_changed':'Another preparation snapshot was retained. Reload and review the current assessment.',
         'assessment_changed':'The assessed source, scope or review changed. Reload and review it before capturing.',
