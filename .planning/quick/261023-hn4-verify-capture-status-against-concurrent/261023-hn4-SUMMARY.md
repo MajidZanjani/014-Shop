@@ -1,6 +1,7 @@
 ---
 quick_id: 261023-hn4
 status: complete
+implementation_commit: b96b665
 ---
 # Capture-status reads across supported operator revocation
 

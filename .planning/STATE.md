@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
-status: executing
-last_updated: "2026-10-23T12:45:49.494156+00:00"
-state_head: 35cb252
+status: paused
+last_updated: "2026-10-23T12:50:29.624318+00:00"
+state_head: b96b665
 progress:
   total_phases: 14
   completed_phases: 1
@@ -12,13 +12,13 @@ progress:
 last_activity: 2026-10-23
 current_phase: 07
 current_phase_name: Multi-line cart, quotations, business checkout and acceptance
-stopped_at: Verified quick261023-hn4; resolving remaining existing domain contract next.
-last_activity_desc: Supported revocation races pass275 local checks;07-02 partial.
+stopped_at: Revocation races verified; proposed protected-offer contract saved; critique next after context checkpoint.
+last_activity_desc: Verified275 local checks; proposed domain contract documented;07-02 partial.
 ---
 
 # Project State
 
-Updated 2026-10-23T12:45:49.494156+00:00. Canonical current summary; latest evidence: [operator revocation regressions](quick/261023-hn4-verify-capture-status-against-concurrent/261023-hn4-SUMMARY.md). Prior observation/process evidence retains its historical scope. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
+Updated 2026-10-23T12:50:29.624318+00:00. Canonical current summary; latest evidence: [revocation tests](quick/261023-hn4-verify-capture-status-against-concurrent/261023-hn4-SUMMARY.md) and [proposed offer contract](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-OFFER-CONTRACT-DESIGN.md). Prior observation/process evidence retains its historical scope. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
 ## Current position
 
@@ -97,7 +97,7 @@ User review, 2026-10-22: **previous catalog demo checked and approved** (user: �
 
 ## Exact next action
 
-Review the existing07-EVIDENCE-CONTRACT against current offer-preparation/catalog/document interfaces and original COM-02–06 requirements. Resolve the closed protected-offer/domain revision and approval contract on paper, keeping all missing prices/rights/terms/hosts/country/tax/deadlines null or pending; identify the exact implementation blockers. Do not implement or approve offers from request-only prepared evidence.
+Critique07-02-OFFER-CONTRACT-DESIGN against original COM-02–06/source and actual offer_preparation, request-envelope/archive and staff role interfaces. Resolve canonical field/byte bounds, per-operation approval applicability, acceptance/payment clock anchors, exact revision permissions and aggregate lock order before any runtime candidate work. Select only an independently implementable internal blocked-candidate boundary if it can be specified without guessed approvals, commercial/tax/host inputs or domain retention; otherwise retain the precise affected-operation blockers. Country/tax remains deferred; do not repeatedly request answers or broaden infrastructure.
 
 User instruction2026-10-23: **sync to configured origin/main after every commit**, using ordinary fetch/non-force push and checking ahead/behind. This applies to implementation and planning commits. Every implementation and planning commit must be pushed immediately and ahead/behind checked. Before each commit, reconcile all affected planning files, regenerate canonical state.json and run scripts/check_planning.py; preserve historical evidence.
 
@@ -113,9 +113,9 @@ Retain dependency locks, raw SBOMs, notices, validated derivative and all origin
 
 ## Session continuity
 
-User explicitly continued after3787718; consumed one-shot handoff and completed quick261023-hn4 inline. Supported operator revocation races verified: credential reset/revoke and exact business-grant withdrawal each block status on the exact operator PostgreSQL backend; rollback preserves recorded status, commit safely refuses. Retained envelope/intent attribution and work gates remain unchanged. CORE_LOCAL_PASS5 checks/275 tests (261 Django plus14 Gunicorn),71.878s; owned PostgreSQL18.6/UTF8 and0012 application/no-drift pass. Exact source /nix/store/vvwm917wanx5ad6zi60n2a8fw1m5m4k8-shop-python-source:163 files21 templates/no symlinks. Runtime unchanged; tests only. Full07-02 and external/commercial gates remain pending; country/tax deferred.
+Quick261023-hn4 revocation races committed/syncedb96b665 (0/0). Proposed protected-offer/domain contract and exact blocker mapping are recorded in [design](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-OFFER-CONTRACT-DESIGN.md); no runtime model/offer/approval added. 275 core-local tests/observations (261 Django plus14 Gunicorn),5 checks,71.878s; owned PostgreSQL18.6/UTF8,0012 application/no-drift pass. Exact source /nix/store/vvwm917wanx5ad6zi60n2a8fw1m5m4k8-shop-python-source:163 files21 templates/no symlinks. Source and runtime unchanged since b96b665; documentation-only continuation did not rerun tests. Full07-02 remains partial; focus7/last complete1,11/24 records,1/14 phases (7%), Phase02 8/18. All original commercial/external qualification gates remain pending.
 
-Review the existing07-EVIDENCE-CONTRACT against current offer-preparation/catalog/document interfaces and original COM-02–06 requirements. Resolve the closed protected-offer/domain revision and approval contract on paper, keeping all missing prices/rights/terms/hosts/country/tax/deadlines null or pending; identify the exact implementation blockers. Do not implement or approve offers from request-only prepared evidence. No active tests/demo/async jobs; no agents or credentials/protected/external operations. Continue across commits/syncs under saved user policy.
+Context-pressure checkpoint under standing user instruction; exact percentage unavailable. No active tests/demo/async jobs. Clear session and run $gsd-resume-work. Measured dirty handoff/planning files are included in this checkpoint commit; reconcile with actual status on resume.
 
 ### Quick Tasks Completed
 
@@ -177,4 +177,5 @@ Review the existing07-EVIDENCE-CONTRACT against current offer-preparation/catalo
 | 261023-crh | Deliberate no-JavaScript quotation capture with shared owner snapshot retry arbitration | 2026-10-23 | 74b6083 | [261023-crh-add-deliberate-django-quotation-request-](./quick/261023-crh-add-deliberate-django-quotation-request-/) |
 | 261023-cyg | Fix audit F-01 missing cart snapshot ownership recheck | 2026-10-23 | 83e8464 | [261023-cyg-fix-customer-form-audit-f-01-by-rechecki](./quick/261023-cyg-fix-customer-form-audit-f-01-by-rechecki/) |
 | 261023-d1r | Show exact committed and current cart revisions after no-JavaScript retries | 2026-10-23 | 6171d3c | [261023-d1r-show-exact-committed-revision-and-curren](./quick/261023-d1r-show-exact-committed-revision-and-curren/) |
-| 261023-hn4 | Verify capture status against concurrent local staff revocation | 2026-10-23 | pending | [261023-hn4](./quick/261023-hn4-verify-capture-status-against-concurrent/) |
+| 261023-hn4 | Verify capture status against concurrent local staff revocation | 2026-10-23 | b96b665 | [261023-hn4](./quick/261023-hn4-verify-capture-status-against-concurrent/) |
+| 261023-hr2 | Propose exact protected-offer/domain contract and scoped blockers | 2026-10-23 | — | [261023-hr2](./quick/261023-hr2-resolve-protected-offer-domain-contract-/) |

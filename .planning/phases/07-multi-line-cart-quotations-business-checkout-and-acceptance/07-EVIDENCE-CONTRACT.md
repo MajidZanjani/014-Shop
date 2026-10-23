@@ -2,6 +2,8 @@
 
 This document retains the original07-02 repository design and current implementation notes. Request-only local schemas/authority/claims/publication are now implemented; full protected-offer/domain contracts and commercial policy remain pending. It follows source handoffT05/T07/T08 and DATA01–04/COM02–06. Country/tax remains user-deferred. Plan07-01 proves bounded local prepared bytes only; its receipts cannot satisfy provider retention or authorize any business effect.
 
+The proposed exact protected-offer schema, decision/transition contract and current interface/blocker mapping are now in [07-02-OFFER-CONTRACT-DESIGN.md](07-02-OFFER-CONTRACT-DESIGN.md). This extends the existing domain design without promoting request-only prepared receipts. Missing source/role/host/entity/tax/text/retention inputs remain gates; no runtime offer implementation or approval follows from the design.
+
 ## Exact private envelope
 
 A future domain envelope is an immutable, schema-versioned canonical UTF8 JSON byte sequence, bounded before persistence/publication. Its stable UUID identifies a domain fact and its revision; a new semantic revision always gets a new identity. A digest must never substitute for retaining recoverable content. Envelope identity, bytes/hash, operation kind and all referenced revisions are committed together before scheduling archive work. Exact retry compares bytes/hash and all semantic identifiers, not a caller-selected fresh idempotency key alone.
@@ -16,7 +18,7 @@ Required content for an offer candidate:
 - Separate quote validity, order payment-start deadline and eventual bank-session expiry semantics. No arbitrary default durations. Unknown deadlines block affected operations. No bank-session identity exists before its own payment preparation.
 - Protected approval actor/resource-role/MFA audit references and decision revision, separate from ordinary internal review/preparation. Never retain passwords, challenge codes, recovery credentials, session cookies, bearer URLs or raw request headers/bodies.
 
-An internal request-only producer/validator now implements a closed131072-byte canonical UTF8 schema over the existing retained records (07-02-ENVELOPE-PARTIAL). It is not the offer-candidate producer described above. Original immutable request IDs are retained; later alias-key/review/counter facts require separate envelopes. Atomic RequestEnvelope/RequestArchiveIntent capture now exists; no leased archive worker or qualified destination exists. Before implementing offer evidence, bind its exact closed schema and privacy classifications to actual approved inputs. Unknown commercial fields cannot be filled from test fixtures or staff free text.
+An internal request-only producer/validator implements a closed131072-byte canonical UTF8 schema over the existing retained records (07-02-ENVELOPE-PARTIAL). It is not the offer-candidate producer described above. Original immutable request IDs are retained; later alias-key/review/counter facts require separate envelopes. Atomic RequestEnvelope/RequestArchiveIntent capture exists. At that initial milestone no leased archive worker or destination existed; the current boundary below records the later selected local prepared worker/destination implementation, which still supplies no qualified domain retention. Before implementing offer evidence, bind its exact closed schema and privacy classifications to actual approved inputs. Unknown commercial fields cannot be filled from test fixtures or staff free text.
 
 ## Persist first, archive second, qualify explicitly
 
