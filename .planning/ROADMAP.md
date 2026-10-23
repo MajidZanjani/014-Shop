@@ -10,7 +10,7 @@
 
 **Current development focus:** 7 — Multi-line cart, quotations, business checkout and acceptance. Local implementation is in progress; this is not full phase acceptance.
 
-**Last fully completed phase:** 1. Phases2–6 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase7 work while those earlier checks remain open. Completed phases remain1/14 (rounded7%); planned records10/20. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
+**Last fully completed phase:** 1. Phases2–6 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase7 work while those earlier checks remain open. Completed phases remain1/14 (rounded7%); planned records10/24. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
 
 **Current activity:** no-JavaScript customer access/cart/quotation/history path and ownership audit complete locally; explicit retained/current retry confirmations verified; core-local178 tests pass (164 Django plus14 transport observations). Next: plan the remaining Phase7 local acceptance and durable-evidence boundaries against the delivered customer/staff slices, keeping unknown approvals and Country/tax pending. Country/tax and all commercial/release gates pending. See [STATE](STATE.md), [audit](audits/2026-10-23-customer-forms.md) and [latest evidence](quick/261023-d1r-show-exact-committed-revision-and-curren/261023-d1r-SUMMARY.md).
 
@@ -210,7 +210,7 @@ The October21 reset completed documentation replanning. Later user continuation 
 
 ### Phase 7: Multi-line cart, quotations, business checkout and acceptance
 
-Local implementation: versioned owner draft cart delivered in [quick261022-iqc](quick/261022-iqc-implement-verified-owner-multi-line-draf/261022-iqc-SUMMARY.md). Quote/acceptance/business checkout and full COM-01–06 acceptance remain pending.
+Local implementation: versioned owner draft cart delivered in [quick261022-iqc](quick/261022-iqc-implement-verified-owner-multi-line-draf/261022-iqc-SUMMARY.md). Quotation requests, partial business drafts, review/preparation and no-JavaScript flows are implemented locally; protected offers/acceptance and full COM-01–06 acceptance remain pending.
 
 **Goal:** Customers retain separate configured IP lines at quantity one across vendors and explicit duplicate scopes; support has positive real package quantity and zero selector value omits its line.
 **Depends on:** T03,T05–T06
@@ -218,7 +218,7 @@ Local implementation: versioned owner draft cart delivered in [quick261022-iqc](
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md T07; complete companion proposal remains normative.
 **Estimate:** 4–6 engineer-days
 **UI hint:** yes
-**Plans:** Detailed executable plans created at phase planning; no completion credit from earlier task numbers.
+**Plans:** 0/4 remaining plans complete. [07-01 local archive](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-01-PLAN.md) executes first;07-02 protected offer,07-03 acceptance/order and07-04 qualification retain actual prerequisite gates. Existing quick slices are not counted again.
 
 **Success Criteria:**
 
@@ -415,7 +415,7 @@ Keep public bytes in shop-owned OVH Object Storage through a fixed verified HTTP
 | 4. Static product, configurator, support page and accessible fallback | 0 / not planned | In Progress — local slice in quick261022-dj5; full acceptance pending | — |
 | 5. Transactional records, durable work and private evidence primitives | 0 / not planned | In Progress — local slice in quick261022-dj5; full acceptance pending | — |
 | 6. Verified customer access, staff MFA and private host editing | 0 / not planned | In Progress — synthetic customer verification/save-resume and staff MFA rehearsal/assigned reviews implemented; production MFA/private-host/release acceptance pending | — |
-| 7. Multi-line cart, quotations, business checkout and acceptance | 0 / not planned | In Progress — current local cart/quotation/business/review/preparation implementation; commercial acceptance pending | — |
+| 7. Multi-line cart, quotations, business checkout and acceptance | 0 / 4 | In Progress — current local cart/quotation/business/review/preparation implementation; commercial acceptance pending | — |
 | 8. Payment domain and fault-injectable fake bank | 0 / not planned | Not started | — |
 | 9. Selected-bank sandbox integration and complete reconciliation | 0 / not planned | Not started | — |
 | 10. Licence delivery, renewal/rehosting and support-hours workflows | 0 / not planned | Not started | — |
@@ -427,3 +427,5 @@ Keep public bytes in shop-owned OVH Object Storage through a fixed verified HTTP
 Latest local evidence: explicit retained/current cart retry confirmation;178 core-local tests, source129 files19 templates. Latest implementation6171d3c synced and indexed. Focus7/completed1 and Phase02 8/18 unchanged. Reviewed 2026-10-23T09:26:09.128709+00:00.
 
 Batch checkpoint2026-10-23: six implementation/fix commits through6171d3c synchronized and indexed;178 core-local tests, source129 files19 templates. Live references reviewed 2026-10-23T09:27:13.668083+00:00. Next action and gates are in [HANDOFF](HANDOFF.md). Focus7/completed1 and all acceptance counts unchanged.
+
+Current Phase7 planning checkpoint: four remaining plans added; total planned records10/24. Next: execute07-01 private synthetic prepared-evidence archive. Baseline178 core-local tests retained, not rerun for documentation. Country/tax deferred; focus7/completed1 and Phase02 8/18 unchanged.
