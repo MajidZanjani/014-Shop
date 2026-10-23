@@ -1,0 +1,87 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-10-23T11:51:02.700Z",
+  "phase": "07",
+  "phase_name": "Multi-line cart, quotations, business checkout and acceptance",
+  "phase_dir": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance",
+  "plan": 2,
+  "task": 4,
+  "total_tasks": 5,
+  "status": "paused",
+  "completed_tasks": [
+    {
+      "id": 1,
+      "name": "Process PostgreSQL row-lock and same-UUID different-root refusal tests",
+      "status": "done",
+      "commit": "9f922fa"
+    },
+    {
+      "id": 2,
+      "name": "Selected local command and uncertain-result operator guide",
+      "status": "done",
+      "commit": "e66e414"
+    },
+    {
+      "id": 3,
+      "name": "Recent-MFA private staff exact-attempt observation route and tests",
+      "status": "done",
+      "commit": "8ba45cc"
+    }
+  ],
+  "remaining_tasks": [
+    {
+      "id": 4,
+      "name": "Critique proposed digest-bound staff capture contract",
+      "status": "not_started"
+    },
+    {
+      "id": 5,
+      "name": "Implement and verify explicit local staff prepared capture action",
+      "status": "not_started"
+    }
+  ],
+  "blockers": [
+    {
+      "description": "Country/tax and commercial prerequisites are user-deferred; independent runtime/transport/outage/off-host/provider/recovery qualification and real staff access remain pending.",
+      "type": "external",
+      "workaround": "Continue only independent local synthetic work; do not infer external authority or repeatedly request runner/tax answers."
+    }
+  ],
+  "async_jobs": [],
+  "human_actions_pending": [
+    {
+      "action": "Clear session and run $gsd-resume-work.",
+      "context": "Proactive context-pressure checkpoint under standing user instruction; exact percentage unavailable.",
+      "blocking": true
+    },
+    {
+      "action": "Country/tax answers remain deferred while the user prepares them.",
+      "context": "Do not guess or repeatedly ask; unrelated local work remains authorized.",
+      "blocking": false
+    }
+  ],
+  "decisions": [
+    {
+      "decision": "Staff observation wraps existing locked exact-attempt service and returns fixed safe observations only.",
+      "rationale": "No new private scope discovery, archive I/O or work authority.",
+      "phase": "07"
+    },
+    {
+      "decision": "Proposed capture form must bind its preview digest under the existing durable capture transaction.",
+      "rationale": "An old form cannot silently capture changed private source or retarget its retained scope.",
+      "phase": "07"
+    }
+  ],
+  "uncommitted_files": [
+    " M .planning/ACTIVITY-LOG.md",
+    " M .planning/HANDOFF.md",
+    " M .planning/PROJECT.md",
+    " M .planning/REQUIREMENTS.md",
+    " M .planning/ROADMAP.md",
+    " M .planning/STATE.md",
+    " M .planning/state.json",
+    "?? .planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-STAFF-CAPTURE-DESIGN.md"
+  ],
+  "next_action": "Read and critique07-02-STAFF-CAPTURE-DESIGN.md against actual capture/producer/staff-form code, resolve the five named boundaries, then implement the bounded digest-bound explicit staff prepared-request preview/capture action with real PostgreSQL/CSRF/scope/retry tests. No root binding, worker grants, archive I/O or commercial effects.",
+  "context_notes": "8ba45cc/e66e414/9f922fa synced0/0.257 core-local checks (243 Django plus14 Gunicorn),64.329s; owned PostgreSQL18.6/UTF8. Source /nix/store/xg3863wvggln039svk0cxwm51acz415x-shop-python-source:160 exact files20 templates/no symlinks.0012 application/no-drift pass; no migrations. Frontend/proxy unchanged/not rerun.07-02 remains partial; focus7/last complete1;11/24 records; Phase02 8/18. No active tests/demo/async jobs. Pending design/planning edits listed above were measured before checkpoint writes; all are included in the checkpoint commit afterward. Task numbers describe local continuation slices, not original phase completion. Staff capture design is proposed, not implemented or commercially approved; perform critique first. User requires continuing across commits/syncs until context clear/user stop. Before every commit reconcile all live planning, publish canonical state.json/run check_planning.py; immediately fetch/non-force push origin/main and verify0/0. No subagents without explicit request. No credentials/.env, protected hosts or external operations used. No exact context percentage available. Existing middleware denies stale MFA before handler; preserve its boundary. Git-backed Nix excludes untracked files: stage new source before source artifact comparison. The last failed targeted middleware test/artifact check are documented in STAFF-OBSERVATION-PARTIAL; final257/source160 pass."
+}

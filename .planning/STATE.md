@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
-status: in_progress
-last_updated: "2026-10-23T11:40:29.803917+00:00"
-state_head: 9f922fa
+status: paused
+last_updated: "2026-10-23T11:51:02.700Z"
+state_head: 8ba45cc
 progress:
   total_phases: 14
   completed_phases: 1
@@ -12,13 +12,13 @@ progress:
 last_activity: 2026-10-23
 current_phase: 07
 current_phase_name: Multi-line cart, quotations, business checkout and acceptance
-stopped_at: Continuing across commits; staff observation verified, prepared capture action design next.
+stopped_at: Context checkpoint after staff observation; resume capture-design critique then bounded implementation.
 last_activity_desc: Staff exact-attempt observation passes257 local checks;07-02 partial.
 ---
 
 # Project State
 
-Updated 2026-10-23T11:26:19.461Z. Canonical current summary; latest evidence: [Plan07-02 selected local command](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-WORKER-COMMAND-PARTIAL.md). Customer status: [quick261023-7s8](quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-SUMMARY.md). Prior staff/HTTP evidence remains linked there. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
+Updated 2026-10-23T11:50:39.124265+00:00. Canonical current summary; latest evidence: [staff exact-attempt observation](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-STAFF-OBSERVATION-PARTIAL.md). Customer status: [quick261023-7s8](quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-SUMMARY.md). Prior staff/HTTP evidence remains linked there. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
 ## Current position
 
@@ -29,6 +29,8 @@ Updated 2026-10-23T11:26:19.461Z. Canonical current summary; latest evidence: [P
 T03/T04 local catalog delivery remains intact; T05 local draft persistence and T06 synthetic verified access/save-resume are implemented. T07 now has the owner-scoped versioned multi-line draft cart; protected quotation-request capture now retains exact owner snapshots and reconciles duplicate/retried submissions. Local staff password/private-code rehearsal, assigned quotation reads and append-only-by-API internal review decisions are implemented. Owner history/detail now show safe current review status and corrections without staff/MFA metadata. Private owner partial business drafts now preserve nineteen exact source groups, helpers/defaults and versioned snapshots; country/tax choices and applicability stay pending. Explicit immutable business/quotation revision binding and exact-scope private staff grants are implemented. Protected current-source document/declaration previews now show applicable pending document sets for retained IP/support/mixed scopes, without acceptance or consent writes. Owner-only bounded quotation history now preserves capture/attachment/review-correction metadata without private values or staff attribution. Staff exact-scope advisory offer prerequisites now distinguish internal review evidence from missing commercial inputs; all commercial actions remain disabled. Explicit staff captures now retain attributed versioned internal preparation assessments with CAS/retry arbitration and exact historical permissions. Authorized retained/current comparisons now report fixed safe delta categories with strict null handling and both-scope permissions; equality never approves an offer. Real staff MFA/delivery/recovery and approved offers remain pending. Full phase acceptance remains pending. Phase02 remains 8/18 complete with all ten incomplete qualification/implementation records preserved. Only Phase01 is fully complete: 1/14 = rounded 7%. That is completed-phase progress, not engineering effort. Existing planned records remain 11/24; later phase acceptance is not claimed from quick-task implementation.
 
 ## Delivered behavior
+
+- Recent-MFA staff exact-attempt reconciliation GET uses current locked retained-scope permissions and fixed private HTML/JSON. No archive I/O, work controls or new authority. Local command process tests cover source/revocation/root/database-lock refusals.
 
 - One-shot prepared worker validates the explicit local bound root and executes one claim/publication without synthetic probe effects or automatic retries. All owned archive entrypoints reject manually disabled autocommit as well as nested transactions before storage I/O.
 
@@ -44,9 +46,9 @@ T03/T04 local catalog delivery remains intact; T05 local draft persistence and T
 
 - Explicit private local destination identity and attributed intent binding are implemented; root replacement, copied/tampered markers and rebinding fail closed. Only pending/held intents exist; explicit bounded authorization/revocation records now exist; detached point-in-time inspection now exists; selected fenced claims now exist; selected bound-root publication/readback now exists; no worker queue loop or domain completion exists. Retention/effect flags remain false.
 
-- Atomic request-envelope capture commits one private fact and one pending local archive intent per semantic request/business/schema scope. PostgreSQL constraints bound actual bytes and forbid execution/qualification/effects. Capture owns a durable outer transaction; exact retries preserve original IDs/attribution. No archive I/O, HTTP route or worker is added.
+- Atomic request-envelope capture commits one private fact and one pending local archive intent per semantic request/business/schema scope. PostgreSQL constraints bound actual bytes and forbid execution/qualification/effects. Capture owns a durable outer transaction; exact retries preserve original IDs/attribution. Capture itself performs no archive I/O or worker execution; separate selected worker/observation boundaries are described above.
 
-- Private local quotation-request envelopes freeze exact cart/business scope, source/evaluation and original immutable request IDs in closed canonical UTF8 bytes. Verified owners or recent-MFA assigned staff need exact historical private grants. Recovery binds the exact receipt, forbids outer database transactions and rechecks authorization after archive I/O. Atomic private capture and an unexecuted intent now exist; no route, worker, offer or acceptance added.
+- Private local quotation-request envelopes freeze exact cart/business scope, source/evaluation and original immutable request IDs in closed canonical UTF8 bytes. Verified owners or recent-MFA assigned staff need exact historical private grants. Recovery binds the exact receipt, forbids outer database transactions and rechecks authorization after archive I/O. Atomic private capture and an unexecuted intent now exist; no payload-download route, offer or acceptance is added by this envelope service.
 
 - Plan07-01 private synthetic prepared-evidence archive: immutable identity/hash/size receipts, blob-before-receipt publication, file/directory sync, reopened verification, exact retries and fail-fast contention. Prepared bytes only; no provider retention, domain completion or effect authorization.
 
@@ -83,17 +85,17 @@ T03/T04 local catalog delivery remains intact; T05 local draft persistence and T
 
 Demo: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/demo.py --backend`; open http://127.0.0.1:4321 (also /support/ and /purchase/simple/).
 
-Checks: Current selected command evidence (implementationccab85a synced0/0):246 core-local tests (232 Django plus14 Gunicorn observations),57.080s; owned PostgreSQL18.6/UTF8. Source157 files19 templates exact/allowlisted/no symlinks. run_prepared_archive executes one explicit authorization/destination/existing bound root with fixed safe stdout/errors, no initialization/adoption/queue scan/retry. One-shot prepared executor and all manual-autocommit guards remain passing. Existing probe daemon/default images unchanged. Next: separate-process owned-synthetic command smoke/failure tests; actual transport/process/outage/off-host/provider/production qualification remains pending. Country/tax pending; focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 remains8/18;07-02 partial.
+Checks:257 core-local checks pass (243 Django plus14 Gunicorn),64.329s; owned PostgreSQL18.6/UTF8. Source /nix/store/xg3863wvggln039svk0cxwm51acz415x-shop-python-source:160 exact files20 templates/no symlinks. Staff exact-attempt observation and command process refusals included.0012 application/no-drift passes; no new migration. Frontend/proxy unchanged/not rerun. Independent/runtime/recovery/provider/production gates pending.
 
 User review, 2026-10-22: **previous catalog demo checked and approved** (user: “all checked and approved”). See task evidence for scope. Verification/save-resume also passed user review (“all works fine”, 2026-10-22). Local multi-line cart demo approved by user (“approved”, 2026-10-22). Detailed browser/accessibility qualification and commercial/release gates remain pending.
 
 ## Exact next action
 
-Current local quotation/staff/status/business slices await human review. Next action: Design an explicit staff prepared-request capture action; independent runtime/recovery qualification and production gates stay pending. Country/tax and commercial effects remain gated. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
+Current local quotation/staff/status/business slices await human review. Next action: Critique07-02-STAFF-CAPTURE-DESIGN, then implement its explicit digest-bound staff prepared-request capture action; independent runtime/recovery qualification and production gates stay pending. Country/tax and commercial effects remain gated. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
 
 User instruction2026-10-23: **sync to configured origin/main after every commit**, using ordinary fetch/non-force push and checking ahead/behind. This applies to implementation and planning commits. Every implementation and planning commit must be pushed immediately and ahead/behind checked. Before each commit, reconcile all affected planning files, regenerate canonical state.json and run scripts/check_planning.py; preserve historical evidence.
 
-Planning audit2026-10-23: [F-00/F-01/F-02 report](audits/2026-10-23-local-workflow.md). All three findings remain fixed; recorded audit evidence147 retains its scope. Current combined lane passes246 core-local tests; prior journey and audit evidence retain their recorded scopes. Country/tax answers stay deferred.
+Planning audit2026-10-23: [F-00/F-01/F-02 report](audits/2026-10-23-local-workflow.md). All three findings remain fixed; recorded audit evidence147 retains its scope. Current combined lane passes257 core-local checks; prior journey and audit evidence retain their recorded scopes. Country/tax answers stay deferred.
 
 Audit completion: all three local findings fixed; final core-local147 tests and source package116 files/fifteen templates pass. Full report: [local workflow audit](audits/2026-10-23-local-workflow.md). Current phase7/last complete1 and all acceptance gates unchanged.
 
@@ -105,7 +107,7 @@ Retain dependency locks, raw SBOMs, notices, validated derivative and all origin
 
 ## Session continuity
 
-Session resumed from fa98c7d; process smoke/refusal regressions pass250 local checks. Next process PostgreSQL row-lock-contention/wrong-physical-root refusal tests. Continue across commits until context clear/user stop. Country/tax pending; focus7/completed1; no exact context percentage supplied or claimed.
+Session continued across9f922fa/e66e414/8ba45cc commits/syncs.257 local checks pass. Next: critique07-02-STAFF-CAPTURE-DESIGN, then implement only its explicit prepared capture action. Country/tax and all external gates pending. No exact context percentage available.
 
 ### Quick Tasks Completed
 
@@ -172,3 +174,5 @@ Recent-MFA staff exact-attempt reconciliation GET is implemented over the existi
 
 
 Session continued on explicit user instruction2026-10-23; no per-commit stop. Database-lock/wrong-root process regressions pass252 local checks; next local operator runbook. Country/tax pending.
+
+Context checkpoint:257 checks/source160 verified;8ba45cc synced0/0. Proactive pause under user context rule; no exact percentage available. Structured/phase handoff retains capture-design critique and implementation next action. Clear session and run $gsd-resume-work.
