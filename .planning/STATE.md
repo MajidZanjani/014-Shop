@@ -2,7 +2,7 @@
 gsd_state_version: "1.0"
 status: in_progress
 last_updated: "2026-10-23T11:40:29.803917+00:00"
-state_head: cfa0252
+state_head: 9f922fa
 progress:
   total_phases: 14
   completed_phases: 1
@@ -12,7 +12,7 @@ progress:
 last_activity: 2026-10-23
 current_phase: 07
 current_phase_name: Multi-line cart, quotations, business checkout and acceptance
-stopped_at: Continued by explicit user instruction;252 local tests pass; operator command documentation next.
+stopped_at: Continued by explicit user instruction;252 local tests pass; operator guide prepared; read-only staff reconciliation design next.
 last_activity_desc: Process DB-lock and wrong-root refusal passes252 tests;07-02 partial.
 ---
 
@@ -89,7 +89,7 @@ User review, 2026-10-22: **previous catalog demo checked and approved** (user: â
 
 ## Exact next action
 
-Current local quotation/staff/status/business slices await human review. Next action: Document selected local command and uncertain-result handling; independent runtime/recovery qualification and production gates stay pending. Country/tax and commercial effects remain gated. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
+Current local quotation/staff/status/business slices await human review. Next action: Design a recent-MFA staff read-only exact-attempt reconciliation route; independent runtime/recovery qualification and production gates stay pending. Country/tax and commercial effects remain gated. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
 
 User instruction2026-10-23: **sync to configured origin/main after every commit**, using ordinary fetch/non-force push and checking ahead/behind. This applies to implementation and planning commits. Every implementation and planning commit must be pushed immediately and ahead/behind checked. Before each commit, reconcile all affected planning files, regenerate canonical state.json and run scripts/check_planning.py; preserve historical evidence.
 
@@ -168,7 +168,7 @@ Session resumed from fa98c7d; process smoke/refusal regressions pass250 local ch
 | 261023-cyg | Fix audit F-01 missing cart snapshot ownership recheck | 2026-10-23 | 83e8464 | [261023-cyg-fix-customer-form-audit-f-01-by-rechecki](./quick/261023-cyg-fix-customer-form-audit-f-01-by-rechecki/) |
 | 261023-d1r | Show exact committed and current cart revisions after no-JavaScript retries | 2026-10-23 | 6171d3c | [261023-d1r-show-exact-committed-revision-and-curren](./quick/261023-d1r-show-exact-committed-revision-and-curren/) |
 
-Local selected command regressions pass252 core-local checks (238 Django tests plus14 Gunicorn observations),62.376s; owned PostgreSQL18.6/UTF8. Database row-lock timeout rolls back with safe generic output and no claim/file effect; a different physical root using the same destination UUID is rejected unchanged. Source157 exact files19 templates/no symlinks. See [process evidence](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-WORKER-PROCESS-PARTIAL.md). Next: document the selected local command and uncertain-result procedure. Independent transport/outage/off-host/provider/recovery qualification pending; Country/tax deferred; commercial effects disabled. Focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 8/18;07-02 partial.
+Local selected command regressions pass252 core-local checks (238 Django tests plus14 Gunicorn observations),62.376s; owned PostgreSQL18.6/UTF8. Database row-lock timeout rolls back with safe generic output and no claim/file effect; a different physical root using the same destination UUID is rejected unchanged. Source157 exact files19 templates/no symlinks. See [process evidence](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-WORKER-PROCESS-PARTIAL.md). Selected local command/uncertainty runbook: [operator guide](../docs/local-prepared-archive.md). Next: design a recent-MFA staff read-only exact-attempt reconciliation route. Independent transport/outage/off-host/provider/recovery qualification pending; Country/tax deferred; commercial effects disabled. Focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 8/18;07-02 partial.
 
 
 Session continued on explicit user instruction2026-10-23; no per-commit stop. Database-lock/wrong-root process regressions pass252 local checks; next local operator runbook. Country/tax pending.
