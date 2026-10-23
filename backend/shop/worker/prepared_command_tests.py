@@ -5,14 +5,15 @@ import os
 from pathlib import Path
 import subprocess
 import sys
+import tempfile
 from unittest.mock import patch
 import uuid
 from django.core.management import call_command
 from django.core.management.base import CommandError
-from django.db import connection
+from django.db import connection,transaction
 from django.test import TransactionTestCase,override_settings
 from shop.access import staff_tests
-from shop.adapters.archive_destination import BoundPreparedArchive,MARKER
+from shop.adapters.archive_destination import BoundPreparedArchive,MARKER,initialize_destination
 from shop.catalog.models import ArchivePreparedVerification,ArchiveWorkClaim
 from . import prepared_tests as fixtures
 
@@ -144,3 +145,29 @@ class PreparedCommandTests(TransactionTestCase):
         finally:
             # Only the test repairs its own fixture after observing refusal.
             marker.write_bytes(original)
+
+    def test_separate_process_database_lock_timeout_rolls_back_without_archive_effects(self):
+        reference=self.authorize();files={p.name:p.read_bytes() for p in self.root.iterdir()}
+        with transaction.atomic():
+            type(self.owner).objects.select_for_update().get(pk=self.owner.pk)
+            # The child uses its own DB connection and the configured one-second
+            # statement timeout. This is normal lock contention, never an outage.
+            self.assert_child_unavailable(self.run_child(reference))
+            self.assertEqual(ArchiveWorkClaim.objects.count(),0)
+            self.assertEqual(ArchivePreparedVerification.objects.count(),0)
+        self.assertEqual(ArchiveWorkClaim.objects.count(),0)
+        self.assertEqual(ArchivePreparedVerification.objects.count(),0)
+        self.assertEqual({p.name:p.read_bytes() for p in self.root.iterdir()},files)
+
+    def test_separate_process_same_destination_uuid_cannot_adopt_different_physical_root(self):
+        reference=self.authorize();files={p.name:p.read_bytes() for p in self.root.iterdir()}
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory)
+            replacement=initialize_destination(root,self.proof.id)
+            self.assertNotEqual((replacement.device,replacement.inode),(self.proof.device,self.proof.inode))
+            other_files={p.name:p.read_bytes() for p in root.iterdir()}
+            self.assert_child_unavailable(self.run_child(reference,root=str(root)))
+            self.assertEqual({p.name:p.read_bytes() for p in root.iterdir()},other_files)
+        self.assertEqual(ArchiveWorkClaim.objects.count(),0)
+        self.assertEqual(ArchivePreparedVerification.objects.count(),0)
+        self.assertEqual({p.name:p.read_bytes() for p in self.root.iterdir()},files)
