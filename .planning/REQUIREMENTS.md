@@ -275,6 +275,6 @@ Current development focus is Phase7, not a completed Phase7; last fully complete
 
 
 
-Latest local evidence: [deliberate quotation form](quick/261023-crh-add-deliberate-django-quotation-request-/261023-crh-SUMMARY.md),177 core-local tests. SHOP-04/AUTH/COM local behavior expanded; full requirement checkboxes unchanged. Next: audit the assembled local customer forms and their owner/privacy/retry failure states, then address concrete findings without changing Country/tax or live gates. Country/tax and commercial effects pending.
+Latest local evidence: [customer form audit fix](quick/261023-cyg-fix-customer-form-audit-f-01-by-rechecki/261023-cyg-SUMMARY.md),178 core-local tests. Owner-qualified snapshot reads reject late ownership changes. SHOP-04/AUTH/COM full acceptance remains pending; requirement checkboxes unchanged. Next: make no-JavaScript cart retry confirmations identify the committed and current revisions using safe numeric metadata. Country/tax deferred.
 
-Latest local evidence: deliberate quotation form;177 core-local tests, source129 files19 templates. Cart implementation691ce9f synced. Focus7/completed1 and Phase02 8/18 unchanged. Reviewed 2026-10-23T09:16:49.007175+00:00.
+Latest local evidence: customer form audit F-01 fixed;178 core-local tests, source129 files19 templates. Quotation implementation74b6083 synced. Focus7/completed1, Phase02 8/18 unchanged. Reviewed 2026-10-23T09:23:15.358324+00:00.

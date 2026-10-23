@@ -374,3 +374,8 @@ Implementation8e76c27 and its live planning changes committed/synced. Canonical 
 ## 2026-10-23T09:16:49.007175+00:00 — deliberate quotation-request forms
 
 [Quick261023-crh](quick/261023-crh-add-deliberate-django-quotation-request-/261023-crh-SUMMARY.md):177 core-local tests pass, source129 files19 templates exact. Complete synthetic form journey and simultaneous form/JSON request capture verified. Cart691ce9f synced0/0 and registered. All affected live planning reviewed before commit; [STATE](STATE.md)/[ROADMAP](ROADMAP.md) retain focus7/completed1,10/20 planned records, Phase02 8/18. Country/tax remains pending; no offer/acceptance/payment/credit/host/provider effects. Continue assembled-form audit after sync.
+
+
+## 2026-10-23T09:23:15.358324+00:00 — customer form audit F-01
+
+[Quick261023-cyg](quick/261023-cyg-fix-customer-form-audit-f-01-by-rechecki/261023-cyg-SUMMARY.md) / [audit](audits/2026-10-23-customer-forms.md): ownership change between cart and snapshot reads reproduced200; fixed with owner predicates and safe404.178 core-local tests pass, source129 files19 templates exact. Quotation74b6083 synced0/0 and registered. Reviewed all affected live planning references before commit; [STATE](STATE.md)/[ROADMAP](ROADMAP.md), focus7/completed1,10/20 planned records, Phase02 8/18 unchanged. Continue explicit retry confirmation metadata after immediate sync. Country/tax and live gates pending.

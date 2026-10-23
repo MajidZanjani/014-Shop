@@ -6,6 +6,7 @@ from django.shortcuts import render
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.http import require_http_methods
 from .cart_editor import canonical_uuid,private
+from .cart_views import reply
 from .models import DraftCart,CartSnapshot
 from .quotation_views import capture_quotation
 from .rules import CATALOG
@@ -41,7 +42,8 @@ def quotation_capture(request):
             error={404:'The saved cart revision is unavailable.',409:'The cart or catalog changed. Reload and review the saved cart before requesting a quotation.',422:'Save a valid nonempty cart before requesting a quotation.'}.get(status,'The request was rejected.')
         except (ValueError,TypeError,UnicodeError):error='The request was rejected. Reload and try again.';status=400
     cart=DraftCart.objects.filter(owner=request.user).first()
-    snapshot=CartSnapshot.objects.filter(cart=cart,version=cart.version).first() if cart and cart.version else None
+    snapshot=CartSnapshot.objects.filter(cart=cart,cart__owner=request.user,version=cart.version).first() if cart and cart.version else None
+    if cart and cart.version and snapshot is None:return private(reply({'error':'not_found'},404))
     eligible=bool(snapshot and snapshot.lines and snapshot.catalog_revision==CATALOG['revision'] and evaluate_cart(snapshot.lines)['valid'])
     return private(render(request,'catalog/quotation_capture.html',{
         'cart':cart,'snapshot':snapshot,'eligible':eligible,'request_id':str(uuid.uuid4()),'error':error},status=status))

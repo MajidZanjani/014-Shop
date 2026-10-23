@@ -42,7 +42,7 @@ def command(request):
     revision=data['catalog_revision']
     if re.fullmatch('[0-9a-f]{64}',revision) is None:raise ValueError('revision')
     cart=DraftCart.objects.filter(owner=request.user).first()
-    base=CartSnapshot.objects.filter(cart=cart,version=version).first() if cart and version else None
+    base=CartSnapshot.objects.filter(cart=cart,cart__owner=request.user,version=version).first() if cart and version else None
     if version and base is None:return None,404
     lines=copy.deepcopy(base.lines if base else [])
     index=next((n for n,line in enumerate(lines) if line['id']==line_id),None)
@@ -98,7 +98,8 @@ def cart_editor(request):
             error={404:'The saved line or cart revision is unavailable.',409:'The cart or catalog changed. Reload and review before submitting a new change.',422:'Check the configuration, support quantity and cart limits.'}.get(status,'The request was rejected.')
         except (ValueError,TypeError,UnicodeError):error='The request was rejected. Reload this page and try again.';status=400
     cart=DraftCart.objects.filter(owner=request.user).first()
-    snapshot=CartSnapshot.objects.filter(cart=cart,version=cart.version).first() if cart and cart.version else None
+    snapshot=CartSnapshot.objects.filter(cart=cart,cart__owner=request.user,version=cart.version).first() if cart and cart.version else None
+    if cart and cart.version and snapshot is None:return private(reply({'error':'not_found'},404))
     value=snapshot_json(cart,snapshot)
     edit=None
     if request.method=='GET' and request.GET:

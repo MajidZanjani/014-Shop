@@ -1,6 +1,7 @@
 ---
 quick_id: 261023-crh
 status: complete
+implementation_commit: 74b6083
 ---
 # Deliberate quotation request without JavaScript
 

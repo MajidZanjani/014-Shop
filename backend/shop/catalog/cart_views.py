@@ -25,7 +25,8 @@ def current_cart(request):
     if request.GET:return reply({'error':'unexpected_query'},400)
     if request.method=='GET':
         cart=DraftCart.objects.filter(owner=request.user).first()
-        snapshot=CartSnapshot.objects.get(cart=cart,version=cart.version) if cart and cart.version else None
+        snapshot=CartSnapshot.objects.filter(cart=cart,cart__owner=request.user,version=cart.version).first() if cart and cart.version else None
+        if cart and cart.version and snapshot is None:return reply({'error':'not_found'},404)
         return reply(snapshot_json(cart,snapshot))
     if request.content_type!='application/json':return reply({'error':'content_type'},415)
     try:

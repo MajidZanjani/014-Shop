@@ -143,3 +143,27 @@ class CartEditorTests(TransactionTestCase):
         self.assertEqual(CartSnapshot.objects.count(),1)
         self.assertEqual(len(self.cart()['lines']),1)
         self.assertIn(self.cart()['lines'][0]['quantity'],(2,3))
+
+    def test_snapshot_reads_recheck_owner_after_parent_lookup(self):
+        from django.contrib.auth import get_user_model
+        from django.db.models.query import QuerySet
+        form=self.form('add_support');form['quantity']='712341'
+        self.assertEqual(self.post(form).status_code,303)
+        cart=DraftCart.objects.get();owner=cart.owner
+        other=get_user_model().objects.create_user(username='cart-owner-change-audit')
+        original=QuerySet.first
+        for path in (PATH,'/purchase/request-quotation/','/api/v1/cart/'):
+            moved=False
+            def first(query):
+                nonlocal moved
+                row=original(query)
+                if query.model is DraftCart and row is not None and row.pk==cart.pk and not moved:
+                    moved=True
+                    DraftCart.objects.filter(pk=cart.pk).update(owner=other)
+                return row
+            try:
+                with patch.object(QuerySet,'first',first):response=self.browser.get(path)
+                self.assertTrue(moved)
+                self.assertEqual(response.status_code,404,path)
+                self.assertNotContains(response,'712341',status_code=404)
+            finally:DraftCart.objects.filter(pk=cart.pk).update(owner=owner)

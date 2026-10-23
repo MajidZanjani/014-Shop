@@ -12,7 +12,7 @@
 
 **Last fully completed phase:** 1. Phases2–6 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase7 work while those earlier checks remain open. Completed phases remain1/14 (rounded7%); planned records10/20. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
 
-**Current activity:** complete local no-JavaScript customer access/cart/quotation-request path verified; core-local177 tests (163 Django plus14 transport observations). Next: audit the assembled local customer forms and their owner/privacy/retry failure states, then address concrete findings without changing Country/tax or live gates. Country/tax and all commercial/release gates pending. See [STATE](STATE.md) and [quotation-form evidence](quick/261023-crh-add-deliberate-django-quotation-request-/261023-crh-SUMMARY.md).
+**Current activity:** local customer form audit complete, F-01 owner-snapshot read gap reproduced and fixed; core-local178 tests pass (164 Django plus14 transport observations). Next: make no-JavaScript cart retry confirmations identify the committed and current revisions using safe numeric metadata. Country/tax and all commercial/release gates pending. See [STATE](STATE.md), [audit](audits/2026-10-23-customer-forms.md) and [fix evidence](quick/261023-cyg-fix-customer-form-audit-f-01-by-rechecki/261023-cyg-SUMMARY.md).
 
 Before every commit, reconcile all affected planning status references, regenerate canonical state.json and run `python3 scripts/check_planning.py`; commit then sync origin/main. Historical sources/evidence remain scoped to their dates.
 
@@ -424,4 +424,4 @@ Keep public bytes in shop-owned OVH Object Storage through a fixed verified HTTP
 | 13. Integrated product, access, payment and deployment acceptance | 0 / not planned | Not started | — |
 | 14. Release handover and separately scoped live activation | 0 / not planned | Not started | — |
 
-Latest local evidence: deliberate quotation form;177 core-local tests, source129 files19 templates. Cart implementation691ce9f synced. Focus7/completed1 and Phase02 8/18 unchanged. Reviewed 2026-10-23T09:16:49.007175+00:00.
+Latest local evidence: customer form audit F-01 fixed;178 core-local tests, source129 files19 templates. Quotation implementation74b6083 synced. Focus7/completed1, Phase02 8/18 unchanged. Reviewed 2026-10-23T09:23:15.358324+00:00.
