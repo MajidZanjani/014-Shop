@@ -1,7 +1,7 @@
 ---
 gsd_state_version: "1.0"
-status: paused
-last_updated: "2026-10-23T12:39:06.902802+00:00"
+status: executing
+last_updated: "2026-10-23T12:45:49.494156+00:00"
 state_head: 35cb252
 progress:
   total_phases: 14
@@ -12,13 +12,13 @@ progress:
 last_activity: 2026-10-23
 current_phase: 07
 current_phase_name: Multi-line cart, quotations, business checkout and acceptance
-stopped_at: Bounded capture/status audit complete; context-pressure checkpoint before revocation-race regressions.
-last_activity_desc: Capture/status audit clean;272 local checks pass;07-02 partial.
+stopped_at: Verified quick261023-hn4; resolving remaining existing domain contract next.
+last_activity_desc: Supported revocation races pass275 local checks;07-02 partial.
 ---
 
 # Project State
 
-Updated 2026-10-23T12:39:06.902802+00:00. Canonical current summary; latest evidence: [bounded capture/status audit](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-REVIEW.md). Prior observation/process evidence retains its historical scope. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
+Updated 2026-10-23T12:45:49.494156+00:00. Canonical current summary; latest evidence: [operator revocation regressions](quick/261023-hn4-verify-capture-status-against-concurrent/261023-hn4-SUMMARY.md). Prior observation/process evidence retains its historical scope. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
 ## Current position
 
@@ -91,13 +91,13 @@ T03/T04 local catalog delivery remains intact; T05 local draft persistence and T
 
 Demo: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/demo.py --backend`; open http://127.0.0.1:4321 (also /support/ and /purchase/simple/).
 
-Checks:272 core-local checks pass (258 Django plus14 Gunicorn),70.667s; owned PostgreSQL18.6/UTF8. Source /nix/store/6x0vx2hhfaszqnjfj9mgznj73v58yj09-shop-python-source:163 exact files21 templates/no symlinks.0012 application/no-drift pass; no new migration. Frontend/proxy unchanged/not rerun. Independent/runtime/recovery/provider/production gates pending.
+Checks:275 core-local tests/observations pass (261 Django plus14 Gunicorn),71.878s;5 producer checks. Owned PostgreSQL18.6/UTF8,0012 application/no-drift pass. Exact source /nix/store/vvwm917wanx5ad6zi60n2a8fw1m5m4k8-shop-python-source:163 files21 templates/no symlinks. Test changes only; frontend/proxy unchanged/not rerun. Independent/runtime/recovery/provider/production gates pending.
 
 User review, 2026-10-22: **previous catalog demo checked and approved** (user: “all checked and approved”). See task evidence for scope. Verification/save-resume also passed user review (“all works fine”, 2026-10-22). Local multi-line cart demo approved by user (“approved”, 2026-10-22). Detailed browser/accessibility qualification and commercial/release gates remain pending.
 
 ## Exact next action
 
-Add deterministic owned-PostgreSQL capture/status regressions for supported local_staff credential reset/revoke and exact business-grant withdrawal while an observation waits for producer locks. Confirm post-commit refusal, rollback preservation, unchanged capture attribution/facts and no archive I/O. Use actual local login/CSRF/operator paths where practical; do not infer process/outage or production qualification. Fix runtime only if a demonstrated defect is reproduced. Country/tax remains user-deferred; no commercial or external authority is added.
+Review the existing07-EVIDENCE-CONTRACT against current offer-preparation/catalog/document interfaces and original COM-02–06 requirements. Resolve the closed protected-offer/domain revision and approval contract on paper, keeping all missing prices/rights/terms/hosts/country/tax/deadlines null or pending; identify the exact implementation blockers. Do not implement or approve offers from request-only prepared evidence.
 
 User instruction2026-10-23: **sync to configured origin/main after every commit**, using ordinary fetch/non-force push and checking ahead/behind. This applies to implementation and planning commits. Every implementation and planning commit must be pushed immediately and ahead/behind checked. Before each commit, reconcile all affected planning files, regenerate canonical state.json and run scripts/check_planning.py; preserve historical evidence.
 
@@ -113,9 +113,9 @@ Retain dependency locks, raw SBOMs, notices, validated derivative and all origin
 
 ## Session continuity
 
-Bounded inline capture/status audit complete with zero demonstrated findings; see [review](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-REVIEW.md). Fresh CORE_LOCAL_PASS checks=5 tests=272 (258 Django plus14 Gunicorn),70.325s; owned PostgreSQL18.6/UTF8, migration application/no-drift pass. Runtime/source unchanged; prior exact source163 files/21 templates evidence retained, not rebuilt. Next: deterministic supported credential/grant revocation races under producer lock contention. Full07-02 acceptance remains pending; focus7/last complete1,11/24 records,1/14 phases (7%), Phase02 8/18. Country/tax deferred; commercial and external qualification gates unchanged.
+User explicitly continued after3787718; consumed one-shot handoff and completed quick261023-hn4 inline. Supported operator revocation races verified: credential reset/revoke and exact business-grant withdrawal each block status on the exact operator PostgreSQL backend; rollback preserves recorded status, commit safely refuses. Retained envelope/intent attribution and work gates remain unchanged. CORE_LOCAL_PASS5 checks/275 tests (261 Django plus14 Gunicorn),71.878s; owned PostgreSQL18.6/UTF8 and0012 application/no-drift pass. Exact source /nix/store/vvwm917wanx5ad6zi60n2a8fw1m5m4k8-shop-python-source:163 files21 templates/no symlinks. Runtime unchanged; tests only. Full07-02 and external/commercial gates remain pending; country/tax deferred.
 
-Checkpoint after substantial restoration/review context; exact usage percentage unavailable. Clear session and run $gsd-resume-work. No active tests/demo/async jobs. No credentials or protected/external services accessed. Continue across commits/syncs under saved user policy.
+Review the existing07-EVIDENCE-CONTRACT against current offer-preparation/catalog/document interfaces and original COM-02–06 requirements. Resolve the closed protected-offer/domain revision and approval contract on paper, keeping all missing prices/rights/terms/hosts/country/tax/deadlines null or pending; identify the exact implementation blockers. Do not implement or approve offers from request-only prepared evidence. No active tests/demo/async jobs; no agents or credentials/protected/external operations. Continue across commits/syncs under saved user policy.
 
 ### Quick Tasks Completed
 
@@ -177,10 +177,4 @@ Checkpoint after substantial restoration/review context; exact usage percentage 
 | 261023-crh | Deliberate no-JavaScript quotation capture with shared owner snapshot retry arbitration | 2026-10-23 | 74b6083 | [261023-crh-add-deliberate-django-quotation-request-](./quick/261023-crh-add-deliberate-django-quotation-request-/) |
 | 261023-cyg | Fix audit F-01 missing cart snapshot ownership recheck | 2026-10-23 | 83e8464 | [261023-cyg-fix-customer-form-audit-f-01-by-rechecki](./quick/261023-cyg-fix-customer-form-audit-f-01-by-rechecki/) |
 | 261023-d1r | Show exact committed and current cart revisions after no-JavaScript retries | 2026-10-23 | 6171d3c | [261023-d1r-show-exact-committed-revision-and-curren](./quick/261023-d1r-show-exact-committed-revision-and-curren/) |
-
-Exact retained staff capture status and supported mixed/support-only observation journeys are verified. GET uses current recent MFA/exact historical scope and shared locked source/fact/intent validation; absence is distinct from inconsistency. Supported journeys observe before capture, after capture/retry/later edits and operator revocation/logout; facts and private local files stay unchanged.272 core-local checks pass (258 Django plus14 Gunicorn),70.667s; owned PostgreSQL18.6/UTF8. Source /nix/store/6x0vx2hhfaszqnjfj9mgznj73v58yj09-shop-python-source matches163 exact files21 templates/no symlinks. See [capture observation evidence](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-OBSERVATION-PARTIAL.md). Next: bounded audit of the completed local capture/status slice. No archive I/O/work authority/commercial effects. Country/tax and independent runtime/transport/outage/off-host/provider/recovery qualification remain pending. Focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 8/18;07-02 partial.
-
-
-Session resumed2026-10-23: checkpoint2bf5491 reconciled against clean working tree. Saved clear/resume action satisfied. Continuing tasks4/5 inline; critique recorded before runtime edits.
-
-Proactive context-pressure checkpoint under standing user instruction; exact percentage unavailable. Work saved in HANDOFF.json and phase .continue-here.md. Clear/resume before further implementation.
+| 261023-hn4 | Verify capture status against concurrent local staff revocation | 2026-10-23 | pending | [261023-hn4](./quick/261023-hn4-verify-capture-status-against-concurrent/) |

@@ -334,3 +334,77 @@ class RequestEvidenceTests(TransactionTestCase):
                     finally:release.set()
                 self.assertEqual(RequestEnvelope.objects.count(),0 if rollback else 1)
                 self.assert_no_work()
+
+    def operator_change_during_status(self,action):
+        import io
+        from pathlib import Path
+        import tempfile
+        from threading import Event
+        import time
+        from django.core.management import call_command
+        from django.db import transaction
+        self.staff();self.assertEqual(self.submit(self.form()).status_code,201)
+        facts=list(RequestEnvelope.objects.values()),list(RequestArchiveIntent.objects.values())
+        # Rollback first leaves the same authenticated session and grants for commit.
+        for rollback in (True,False):
+            with self.subTest(action=action,rollback=rollback),tempfile.TemporaryDirectory() as root:
+                entered=Event();release=Event();observing=Event();pids={}
+                def operator():
+                    try:
+                        with transaction.atomic():
+                            with connection.cursor() as cursor:
+                                cursor.execute('SELECT pg_backend_pid()');pids['operator']=cursor.fetchone()[0]
+                            call_command('local_staff',action,username=self.user.username,
+                                quotation=str(self.quotation.pk),capture_root=root,stdout=io.StringIO())
+                            entered.set()
+                            if not release.wait(10):raise AssertionError('operator release timeout')
+                            if rollback:transaction.set_rollback(True)
+                    finally:connections.close_all()
+                def reading(*args,**kwargs):
+                    with connection.cursor() as cursor:
+                        cursor.execute('SELECT pg_backend_pid()');pids['observation']=cursor.fetchone()[0]
+                    observing.set()
+                    return prepare_request_envelope(*args,**kwargs)
+                def observation():
+                    client=Client(enforce_csrf_checks=True,HTTP_HOST='staff.localhost')
+                    client.cookies=self.browser.cookies.copy()
+                    try:return client.get(self.status_url())
+                    finally:connections.close_all()
+                with patch('shop.adapters.evidence_archive.PreparedArchive.publish',side_effect=AssertionError('no archive I/O')), \
+                     patch('shop.adapters.evidence_archive.PreparedArchive.recover',side_effect=AssertionError('no archive I/O')), \
+                     patch('shop.adapters.archive_destination.BoundPreparedArchive.attest',side_effect=AssertionError('no archive I/O')), \
+                     ThreadPoolExecutor(max_workers=2) as pool:
+                    change=pool.submit(operator)
+                    try:
+                        self.assertTrue(entered.wait(10),'supported operator change must hold locks')
+                        operator_files={p.name:p.read_bytes() for p in Path(root).iterdir()}
+                        with patch('shop.catalog.envelope_capture.prepare_request_envelope',side_effect=reading):
+                            read=pool.submit(observation);self.assertTrue(observing.wait(10))
+                            deadline=time.monotonic()+5;blocked=False
+                            while time.monotonic()<deadline:
+                                with connection.cursor() as cursor:
+                                    cursor.execute('SELECT %s = ANY(pg_blocking_pids(%s))',
+                                        [pids['operator'],pids['observation']]);blocked=cursor.fetchone()[0]
+                                if blocked:break
+                                time.sleep(.01)
+                            self.assertTrue(blocked,'exact operator backend must block observation')
+                            self.assertFalse(read.done());release.set();change.result(timeout=10)
+                            response=read.result(timeout=10)
+                        if rollback:self.assert_status(response,'capture_recorded')
+                        else:
+                            self.assertEqual(response.status_code,404)
+                            self.assertEqual(response.json(),{'error':'not_found'})
+                            self.assertIn("form-action 'none'",response['Content-Security-Policy'])
+                        self.assertEqual({p.name:p.read_bytes() for p in Path(root).iterdir()},operator_files)
+                    finally:release.set()
+                self.assertEqual((list(RequestEnvelope.objects.values()),list(RequestArchiveIntent.objects.values())),facts)
+                self.assert_no_work()
+
+    def test_capture_status_waits_for_operator_credential_reset_commit_and_rollback(self):
+        self.operator_change_during_status('reset')
+
+    def test_capture_status_waits_for_operator_credential_revoke_commit_and_rollback(self):
+        self.operator_change_during_status('revoke')
+
+    def test_capture_status_waits_for_operator_business_grant_withdrawal_commit_and_rollback(self):
+        self.operator_change_during_status('revoke-business')

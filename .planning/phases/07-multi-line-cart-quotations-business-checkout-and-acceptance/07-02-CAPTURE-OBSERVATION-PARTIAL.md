@@ -17,3 +17,7 @@ Pre-execution check: the existing mixed/support-only journey creates all domain 
 ## Bounded audit — 2026-10-23T12:39:06.902802+00:00
 
 [07-REVIEW.md](07-REVIEW.md) records17-file inline cross-file audit with no demonstrated defects. Fresh CORE_LOCAL_PASS5 checks/272 tests70.325s. No runtime/source changes; prior exact source evidence retained, not rebuilt. Supported operator mutation lock order traced statically; deterministic lock-contention revocation regressions remain next. All original acceptance gates retained.
+
+## Supported operator revocation-race continuation
+
+Supported operator revocation races verified: credential reset/revoke and exact business-grant withdrawal each block status on the exact operator PostgreSQL backend; rollback preserves recorded status, commit safely refuses. Retained envelope/intent attribution and work gates remain unchanged. CORE_LOCAL_PASS5 checks/275 tests (261 Django plus14 Gunicorn),71.878s; owned PostgreSQL18.6/UTF8 and0012 application/no-drift pass. Exact source /nix/store/vvwm917wanx5ad6zi60n2a8fw1m5m4k8-shop-python-source:163 files21 templates/no symlinks. Runtime unchanged; tests only. Full07-02 and external/commercial gates remain pending; country/tax deferred. See [quick summary](../../quick/261023-hn4-verify-capture-status-against-concurrent/261023-hn4-SUMMARY.md) for six exact-backend lock/commit/rollback interleavings and scope limits. No runtime defect reproduced.
