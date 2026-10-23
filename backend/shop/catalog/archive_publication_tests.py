@@ -1,7 +1,7 @@
 """Owned-root publication and PostgreSQL fencing; no domain completion."""
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
-from threading import Event
+from threading import Event,Barrier,Lock
 from unittest.mock import patch
 import tempfile
 import uuid
@@ -146,3 +146,49 @@ class ArchivePublicationTests(TransactionTestCase):
             with self.assertRaises(IntegrityError):
                 with transaction.atomic():ArchivePreparedVerification.objects.filter(pk=row.pk).update(**values)
         self.assertEqual(RequestArchiveIntent.objects.get().state,'pending')
+
+    def test_same_claim_publishers_race_to_one_original_verification(self):
+        claim=self.claim(self.authorize());ready=Barrier(2);io=Lock()
+        original_publish=BoundPreparedArchive.publish;original_attest=BoundPreparedArchive.attest;original_recover=BoundPreparedArchive.recover
+        def serialized_publish(archive,*args):
+            self.assertFalse(connection.in_atomic_block)
+            with io:return original_publish(archive,*args)
+        def serialized_attest(archive):
+            self.assertFalse(connection.in_atomic_block)
+            with io:return original_attest(archive)
+        def readback_then_race(archive,*args):
+            self.assertFalse(connection.in_atomic_block)
+            with io:raw=original_recover(archive,*args)
+            # Both completed physical readback before either completion transaction.
+            ready.wait(timeout=10);return raw
+        with BoundPreparedArchive(self.root,self.proof) as first,BoundPreparedArchive(self.root,self.proof) as second:
+            def run(index):
+                try:return self.publish(claim,(first,second)[index])
+                finally:connections.close_all()
+            with patch.object(BoundPreparedArchive,'publish',serialized_publish),patch.object(BoundPreparedArchive,'attest',serialized_attest),patch.object(BoundPreparedArchive,'recover',readback_then_race):
+                with ThreadPoolExecutor(max_workers=2) as pool:results=list(pool.map(run,range(2)))
+        self.assertEqual(sum(result.created for result in results),1)
+        self.assertEqual(results[0].verification_id,results[1].verification_id)
+        self.assertEqual(ArchivePreparedVerification.objects.count(),1)
+        self.assertEqual(ArchivePreparedVerification.objects.get().claim_id,claim.claim_id)
+        self.assertEqual(ArchiveWorkClaim.objects.count(),1);self.assertEqual(len(list(self.root.iterdir())),3)
+
+    def test_busy_archive_and_corrupt_readback_retain_files_and_deny_verification(self):
+        claim=self.claim(self.authorize())
+        with BoundPreparedArchive(self.root,self.proof) as archive,BoundPreparedArchive(self.root,self.proof) as busy:
+            with busy.operation():
+                with self.assertRaises(EnvelopeError):self.publish(claim,archive)
+            self.assertEqual([p.name for p in self.root.iterdir()],[MARKER])
+            original=archive.publish;retained={}
+            def corrupt(*args):
+                receipt=original(*args);blob=self.root/('blob-'+receipt.sha256)
+                retained['blob']=blob;retained['bytes']=blob.read_bytes();blob.write_bytes(b'corrupt')
+                return receipt
+            with patch.object(archive,'publish',corrupt):
+                with self.assertRaises(EnvelopeError):self.publish(claim,archive)
+            self.assertEqual(ArchivePreparedVerification.objects.count(),0)
+            self.assertEqual(len(list(self.root.iterdir())),3)
+            self.assertEqual(retained['blob'].read_bytes(),b'corrupt')
+            # Test fixture restores exact bytes; runtime never repairs/deletes uncertain data.
+            retained['blob'].write_bytes(retained['bytes'])
+            self.assertTrue(self.publish(claim,archive).created)

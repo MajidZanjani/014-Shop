@@ -1,6 +1,6 @@
-# Next local archive worker boundary — proposed, not implemented
+# Local archive worker boundary — design and current scope
 
-Atomic capture commits one private envelope and one pending/held local intent. Explicit local destination binding and selected fenced claims are implemented (07-02-DESTINATION-PARTIAL,07-02-CLAIM-PARTIAL); no worker loop, receipt-verification row or publication service exists yet. The local-prepared-v1 profile is only a closed adapter type, not a physical destination or provider guarantee. This design must be resolved in code/tests before intent states expand.
+Current local runtime6bae131 has exact capture/root binding, explicit bounded authority, fenced claims and bound-root publication/reopened readback with unique technical verification. See07-02-PUBLICATION-PARTIAL and07-02-PUBLICATION-RACES. No automated queue loop or provider/domain qualification exists. Remaining sections preserve the earlier design rationale; their original proposed next actions are historical, not current missing-capability claims.
 
 ## First resolve destination and durable authorization
 

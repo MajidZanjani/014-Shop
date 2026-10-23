@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: active
-last_updated: "2026-10-23T10:54:00.459662+00:00"
-state_head: 787ac33
+last_updated: "2026-10-23T10:58:02.927590+00:00"
+state_head: 6bae131
 progress:
   total_phases: 14
   completed_phases: 1
@@ -12,13 +12,13 @@ progress:
 last_activity: 2026-10-23
 current_phase: 07
 current_phase_name: Multi-line cart, quotations, business checkout and acceptance
-stopped_at: Selected local publication/readback implemented; concurrency/fault coverage next; Country/tax pending.
-last_activity_desc: Local publication passes233 tests;151 files19 templates;07-02 partial.
+stopped_at: Local publication and same-claim/busy/corrupt regressions pass; reconciliation next; Country/tax pending.
+last_activity_desc: Local archive publication passes235 tests;151 files19 templates;07-02 partial.
 ---
 
 # Project State
 
-Updated 2026-10-23T10:54:00.459662+00:00. Canonical current summary; latest evidence: [Plan07-02 local publication](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-PUBLICATION-PARTIAL.md). Customer status: [quick261023-7s8](quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-SUMMARY.md). Prior staff/HTTP evidence remains linked there. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
+Updated 2026-10-23T10:58:02.927590+00:00. Canonical current summary; latest evidence: [Plan07-02 publication concurrency](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-PUBLICATION-RACES.md). Customer status: [quick261023-7s8](quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-SUMMARY.md). Prior staff/HTTP evidence remains linked there. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
 ## Current position
 
@@ -79,17 +79,17 @@ T03/T04 local catalog delivery remains intact; T05 local draft persistence and T
 
 Demo: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/demo.py --backend`; open http://127.0.0.1:4321 (also /support/ and /purchase/simple/).
 
-Checks: Current local publication evidence:233 core-local tests (219 Django plus14 Gunicorn observations),52.414s; owned PostgreSQL18.6/UTF8. Source151 files19 templates exact/allowlisted/no symlinks. One selected claim can publish exact prepared bytes to its bound root, reopen/readback and append fenced technical verification after fresh authority/source/lease checks. One verification per intent; current same-claim retries preserve attribution, historical metadata requires current exact permissions, and verified intents reject new claims/authorization commands. Intent states remain pending/held. No queue loop, provider retention, domain completion or business effects. Next: competing same-claim verification and remaining local fault/reconciliation coverage before worker integration. Country/tax pending; focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 remains8/18;07-02 partial.
+Checks: Current local publication evidence (runtime6bae131):235 core-local tests (221 Django plus14 Gunicorn observations),53.343s; owned PostgreSQL18.6/UTF8. Source151 files19 templates exact/allowlisted/no symlinks. Bound-root publication/reopened readback, fenced unique technical verification and original retry attribution are implemented. Deterministic same-claim publishers converge on one verification; busy/corrupt readback fails closed and retains files. No queue loop, provider retention, domain completion or business effects. Next: remaining local reconciliation/uncertain-database-acknowledgement and process/runtime qualification before worker integration. Country/tax pending; focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 remains8/18;07-02 partial.
 
 User review, 2026-10-22: **previous catalog demo checked and approved** (user: “all checked and approved”). See task evidence for scope. Verification/save-resume also passed user review (“all works fine”, 2026-10-22). Local multi-line cart demo approved by user (“approved”, 2026-10-22). Detailed browser/accessibility qualification and commercial/release gates remain pending.
 
 ## Exact next action
 
-Current local quotation/staff/status/business slices await human review. Next action: Finish competing same-claim verification and remaining local fault/reconciliation coverage before worker integration. Country/tax and commercial effects remain gated. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
+Current local quotation/staff/status/business slices await human review. Next action: Finish remaining local reconciliation/uncertain-database-acknowledgement and process/runtime qualification before worker integration. Country/tax and commercial effects remain gated. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
 
 User instruction2026-10-23: **sync to configured origin/main after every commit**, using ordinary fetch/non-force push and checking ahead/behind. This applies to implementation and planning commits. Every implementation and planning commit must be pushed immediately and ahead/behind checked. Before each commit, reconcile all affected planning files, regenerate canonical state.json and run scripts/check_planning.py; preserve historical evidence.
 
-Planning audit2026-10-23: [F-00/F-01/F-02 report](audits/2026-10-23-local-workflow.md). All three findings remain fixed; recorded audit evidence147 retains its scope. Current combined lane passes233 core-local tests; prior journey and audit evidence retain their recorded scopes. Country/tax answers stay deferred.
+Planning audit2026-10-23: [F-00/F-01/F-02 report](audits/2026-10-23-local-workflow.md). All three findings remain fixed; recorded audit evidence147 retains its scope. Current combined lane passes235 core-local tests; prior journey and audit evidence retain their recorded scopes. Country/tax answers stay deferred.
 
 Audit completion: all three local findings fixed; final core-local147 tests and source package116 files/fifteen templates pass. Full report: [local workflow audit](audits/2026-10-23-local-workflow.md). Current phase7/last complete1 and all acceptance gates unchanged.
 
@@ -101,7 +101,7 @@ Retain dependency locks, raw SBOMs, notices, validated derivative and all origin
 
 ## Session continuity
 
-Session continued2026-10-23 with selected local publication/readback and fenced technical verification. Next competing-verification/fault coverage; Country/tax pending, focus7/completed1. No exact context percentage supplied or claimed.
+Session continued after6bae131 sync with same-claim publication/failure regressions;235 local tests. Next reconciliation/uncertain-DB-acknowledgement coverage and process/runtime qualification. Country/tax pending, focus7/completed1; no exact context percentage supplied or claimed.
 
 ### Quick Tasks Completed
 
@@ -164,4 +164,4 @@ Session continued2026-10-23 with selected local publication/readback and fenced 
 | 261023-cyg | Fix audit F-01 missing cart snapshot ownership recheck | 2026-10-23 | 83e8464 | [261023-cyg-fix-customer-form-audit-f-01-by-rechecki](./quick/261023-cyg-fix-customer-form-audit-f-01-by-rechecki/) |
 | 261023-d1r | Show exact committed and current cart revisions after no-JavaScript retries | 2026-10-23 | 6171d3c | [261023-d1r-show-exact-committed-revision-and-curren](./quick/261023-d1r-show-exact-committed-revision-and-curren/) |
 
-Current local publication evidence:233 core-local tests (219 Django plus14 Gunicorn observations),52.414s; owned PostgreSQL18.6/UTF8. Source151 files19 templates exact/allowlisted/no symlinks. One selected claim can publish exact prepared bytes to its bound root, reopen/readback and append fenced technical verification after fresh authority/source/lease checks. One verification per intent; current same-claim retries preserve attribution, historical metadata requires current exact permissions, and verified intents reject new claims/authorization commands. Intent states remain pending/held. No queue loop, provider retention, domain completion or business effects. Next: competing same-claim verification and remaining local fault/reconciliation coverage before worker integration. Country/tax pending; focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 remains8/18;07-02 partial.
+Current local publication evidence (runtime6bae131):235 core-local tests (221 Django plus14 Gunicorn observations),53.343s; owned PostgreSQL18.6/UTF8. Source151 files19 templates exact/allowlisted/no symlinks. Bound-root publication/reopened readback, fenced unique technical verification and original retry attribution are implemented. Deterministic same-claim publishers converge on one verification; busy/corrupt readback fails closed and retains files. No queue loop, provider retention, domain completion or business effects. Next: remaining local reconciliation/uncertain-database-acknowledgement and process/runtime qualification before worker integration. Country/tax pending; focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 remains8/18;07-02 partial.
