@@ -2,14 +2,10 @@
 phase: 07
 status: gaps_found
 ---
-# Partial Phase7 verification
+# Partial Phase7 verification — current
 
-Plan07-01 is complete only for its bounded local synthetic adapter scope; phase goal remains unachieved. Local204 core-local tests (190 Django,14 Gunicorn observations) pass; source136 files19 templates exact. Source review is inline/same-agent, not independent certification.
+Plan07-01 is complete for its bounded local prepared archive scope.07-02 is partial: closed authorized request envelope/recovery plus atomic immutable-by-service capture and one pending/held intent. Full phase goal remains unachieved;1/4 local plan slices,11/24 overall planned records,1/14 fully complete phases. Current implementation546dead synced,204 core-local tests (190 Django/14 Gunicorn observations) pass; actual source136 files19 templates exact. Same-agent source verification, not independent certification.
 
-COM01–02: local cart/request selected scope and retry evidence; no approved purchase acceptance. COM03: immutable request/preparation snapshots and prepared archive primitive; protected offer/domain acceptance/order missing. COM04: nineteen business groups/helpers/binding partial; Country/tax explicitly deferred. COM05: source document/declaration previews only, no acceptance. COM06: protected guarded acceptance and separate commercial deadlines not implemented. DATA04 archive prerequisite is partial local evidence only; provider version/retention/custody and domain completion/outbox integration remain pending. All requirement checkboxes remain unchecked.
+COM01–02: local separate carts/request review/retry evidence; no approved purchase acceptance. COM03: immutable request/preparation snapshots, prepared archive primitive and atomic private capture/intent; destination/lease worker/protected offers/domain acceptance/order still missing. COM04: nineteen source groups/helpers/binding partial; Country/tax deferred. COM05: versioned source previews only, no acceptance. COM06: guarded acceptance and commercial deadline checks not implemented. DATA04 partial local archive/recovery/capture evidence; qualified retention, custody, domain completion and independent recovery still pending. Requirement checkboxes remain unchecked.
 
-Do not promote full phase or earlier phase acceptance. No production/bank-sandbox database, real provider/MFA/recovery/host authority inferred. See07-PROGRESS and07-01-SUMMARY for concrete evidence and limits.
-
-[07-02 envelope partial](07-02-ENVELOPE-PARTIAL.md): authorized exact request/business-scope canonical bytes and post-I/O reauthorization verified;197 combined tests pass. Durable private capture/intent now exist; no worker/offer exists. Remaining07-02/03/04 acceptance stays pending; no new summary/completion credit. Next atomic capture and semantic archive intent.
-
-[07-02 capture partial](07-02-CAPTURE-PARTIAL.md): durable outer fact+intent transaction, semantic uniqueness and actual PostgreSQL constraints verified;204 combined local tests pass.07-02 remains partial; worker/destination/retention and commercial approval gates remain open. No new plan completion credit.
+Actual0008 migration/check constraints and real PostgreSQL actor race/rollback/replay pass. Only pending/held intent states exist; no storage call from capture or HTTP worker/export path. Adapter profile is not a physical destination identity; all effect/qualification flags false. Preserve populated evidence on rollback; no production/bank-sandbox database or host operation performed. Browser/legal/provider/off-host qualification remains pending. Next proposed07-02-WORKER-DESIGN before worker implementation; never promote a local prepared receipt to completed domain/financial evidence.

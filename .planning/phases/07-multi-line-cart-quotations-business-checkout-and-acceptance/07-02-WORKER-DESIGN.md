@@ -1,0 +1,23 @@
+# Next local archive worker boundary — proposed, not implemented
+
+Atomic capture546dead commits one private envelope and one pending/held local intent. No worker, destination binding, receipt row or lease exists yet. The local-prepared-v1 profile is only a closed adapter type, not a physical destination or provider guarantee. This design must be resolved in code/tests before intent states expand.
+
+## First resolve destination and durable authorization
+
+Choose only an explicit existing owned0700 disposable local archive directory for synthetic tests. Bind an immutable destination/configuration identity to the intent before the first publication claim. Verify the actual opened directory and private metadata through its descriptor, not a caller-supplied display path. Reopen/restart must recognize the same bound destination; replacement/wrong roots fail closed, never silently rebind an uncertain operation. Namespace/receipt configuration must be versioned and testable. Do not infer remote storage, Object Lock, off-host custody or allowed production writes from a local root or profile string.
+
+Worker access is an internal restricted service capability, not a browser session or public download. Capture attribution is historical and must not be rewritten to refresh authority. Define which durable authority/revision governs archive work and how revocation/ownership/source changes hold it. A stale staff MFA timestamp cannot be relabelled recent, and a lost browser session cannot be invented. Start with conservative local holds when authorization cannot be revalidated. Held work needs explicit reconciliation/reauthorization semantics before any resume interface is added; do not silently clear holds on ordinary capture retry. Archive bytes already published remain retained after revocation and never authorize a human read or a business effect.
+
+## Proposed claim/publish/readback protocol
+
+1. Extend the intent schema additively with a bounded lease, random token, increasing generation, attempt count and explicit bound destination reference. Constraints pair leased state with all lease fields and clear lease fields for other states. Keep local/prepared classification and false qualification/effect flags enforced. A technical local-verified state never means accepted, performed, paid or provider-qualified.
+2. Claim one eligible exact envelope/destination in a short PostgreSQL transaction. Recheck immutable payload/hash/length, source scope and durable authority/hold state. Increment/fence generation. Commit before any filesystem/storage call. Never reuse Probe/FakeReceipt or hold a database transaction over publication.
+3. Publish the same stable envelope identity and exact bytes to the already bound destination; verify receipt identity/hash/size/classification, reopen/readback and compare bytes. Uncertain acknowledgement is reconciled with this identity, not a fresh key/root or deletion. Busy/unavailable local storage remains pending/held under bounded policy; no automatic paid/provider fallback.
+4. Complete in a new short transaction only when token/generation, lease validity, envelope hash/identity, destination and authorization/hold revision still match. A stale/stolen/expired/revoked worker cannot mark success. Every observation is retained with safe fixed error categories; no private values/paths/tokens in ordinary output.
+5. No publication/acceptance/payment/delivery/support effect may follow from this local verification. Qualified retention, domain-specific actual completion and later financial/dispatch ordering require their own actual contracts/evidence.
+
+## Verification before completion
+
+Use real PostgreSQL for competing claims, expiration/reclaim, stale-worker completion, cancellation/holds and immutable revision changes. In fake publish callbacks assert connection.in_atomic_block is false. Test same/different/wrong destination, root replacement/reopen, missing/corrupt receipts/blobs, busy storage, archive success with lost acknowledgement, source/owner/private grant revocation during I/O and late completion after another claim. Require no duplicate intent/effect, no deletion of retained bytes, and false qualification/effect flags on every path. Use only owned synthetic resources; actual process/host/outage/off-host recovery is separately scoped qualification.
+
+Next implementation should first introduce/test explicit local destination binding and a closed claim/fencing contract, then wire publish/readback. Do not add a generic unguarded worker/export route. Country/tax and all commercial approvals remain pending;07-02 stays partial.

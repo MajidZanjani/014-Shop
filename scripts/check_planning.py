@@ -26,6 +26,11 @@ def check(root=ROOT):
     for label,number in [('Current development focus',phase),('Last fully completed phase',int(last[1]))]:
         assert re.search(r'\*\*'+label+r':\*\*\s*'+str(number)+r'\b',state),'STATE missing explicit focus/completion label'
     assert {str(row['number']):row['status'] for row in machine['phases']}==rows,'state.json phase statuses disagree with ROADMAP'
+    handoff=planning/'HANDOFF.md'
+    if handoff.exists():
+        recorded=re.search(r'^\*\*Recorded implementation:\*\*\s*([0-9a-f]{7,40})\s*$',handoff.read_text(),re.M)
+        state_head=re.search(r'^state_head:\s*([0-9a-f]{7,40})\s*$',state,re.M)
+        assert recorded and state_head and recorded[1]==state_head[1],'HANDOFF recorded implementation disagrees with STATE'
     phases=planning/'phases'
     plans=list(phases.glob('*/*-PLAN.md'));summaries=list(phases.glob('*/*-SUMMARY.md'))
     completed=sum(value=='complete' for value in rows.values())

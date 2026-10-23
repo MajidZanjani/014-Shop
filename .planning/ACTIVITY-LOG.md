@@ -419,3 +419,8 @@ Implementation2048a57 synced0/0 and recorded in partial evidence. Proposed07-02-
 ## 2026-10-23T10:09:28.842718+00:00 — Plan07-02 atomic capture partial
 
 [STATE](STATE.md)/[ROADMAP](ROADMAP.md) and affected live references reconciled before commit. Additive0008 and durable outer fact+intent service pass204 core-local tests; source136 files19 templates exact. Real PostgreSQL actor race, replay/conflict, rollback, actual length/no-effect constraints and no-storage assertions pass. DATA04 traceability In Progress, full checkbox pending.11/24 records; focus7/completed1;07-02 incomplete; Country/tax deferred. Next destination-bound fenced local archive claims.
+
+
+## 2026-10-23T10:13:36.666988+00:00 — capture sync, worker boundary and live-status reconciliation
+
+Implementation546dead synced0/0 and recorded. Proposed07-02-WORKER-DESIGN spells out destination/durable-authority binding, lease fencing, uncertain publication and post-I/O checks before state expansion. No source runtime changes after204-test evidence. Final sweep found stale HANDOFF/Phase7 progress paragraphs; replaced with current records rather than another appended status. [STATE](STATE.md)/[ROADMAP](ROADMAP.md), affected live indexes and handoff aligned;11/24 records/focus7/completed1, Phase02 8/18, Country/tax pending.

@@ -1,5 +1,7 @@
 # Plan07-02 partial — atomic private envelope capture
 
+Implementation commit546dead, synced origin/main.
+
 Additive migration0008 creates RequestEnvelope and RequestArchiveIntent. Capture uses a durable outer PostgreSQL transaction; callers already inside a transaction fail before writes. The existing credential-first/quotation/cart source locks remain held through exact byte validation and fact+intent commit. One semantic quotation/business/schema key and one-to-one intent protect duplicates. Stable fact UUID and exact bytes/hash/size/owner must match on replay. Original actor/generation/verification-time attribution and original intent identity remain unchanged across authorized actors/retries. Missing/corrupt intent or changed same-scope data is held with a fixed error; no silent repair/overwrite. Public return contains IDs/created flag only, no payload/hash.
 
 Database checks constrain schema/version, actual bytea octet length versus recorded size, bounded payload size/hash shape, paired staff evidence and local-synthetic/prepared intent flags. Only pending/held intent states exist; execution, retention qualification and effects are prohibited. The frozen local-prepared-v1 adapter profile is not proof of a physical destination; exact destination binding and lease/worker/receipt fields are deliberately not implemented yet. No storage calls, HTTP endpoint or archive worker was added. Append-only by service is not physical production database immutability.

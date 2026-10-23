@@ -1,20 +1,16 @@
-# Phase7 progress
+# Phase7 current progress — 2026-10-23
 
-Development focus7; last fully completed phase1. Existing cart/request/business/review/preparation/UI quick slices retain their scoped evidence; no acceptance credit duplicated. Remaining plan progress1/4 local slices. Overall11/24 planned records,1/14 completed phases. Phase02 remains8/18.
+Development focus7; last fully completed phase1. Existing quick slices retain scoped historical evidence. Remaining plan progress1/4 local slices; overall11/24 planned records,1/14 completed phases (7%). Phase02 remains8/18 with ten incomplete records.
 
 | Plan | Status | Boundary |
 |---|---|---|
-|07-01|Complete locally|Private synthetic prepared archive; no retention/domain effect qualification|
-|07-02|Partial local envelope+atomic intent; worker/approval pending|Exact private envelope, domain outbox/reference and protected immutable offer; Country/tax deferred|
-|07-03|Pending07-02 and actual inputs|Guarded acceptance/single order, exact revision/document/authority checks|
-|07-04|Pending integrated/human/external evidence|Full direct/quoted/browser/commercial acceptance|
+|07-01|Complete locally|Private synthetic prepared archive; no provider-retention/effect qualification|
+|07-02|Partial|Authorized exact envelope/recovery and atomic durable capture/unexecuted intent; destination/worker/protected offers pending|
+|07-03|Pending actual07-02 inputs|Guarded acceptance/single order and exact revision/authority/documents|
+|07-04|Pending integrated/human/external evidence|Full direct/quoted/browser/commercial qualification|
 
-Local evidence204 core-local tests,190 Django plus14 loopback observations. Actual source136 files19 templates exact. No live routes consume archive receipts; no approval, acceptance/order, bank, licence/support, provider or host effect added. Receipt fields explicitly deny retention/effect qualification. Remote custody/retention/off-host restoration and real completion-envelope validation remain open. Next: design exact private quotation envelope and domain outbox/reference contract before07-02 publication implementation.
+Latest implementation546dead synced. Current core-local204 tests:190 Django plus14 actual Gunicorn observations on owned PostgreSQL18.6/UTF8. Actual source136 files19 templates exact/allowlisted/no symlinks. [Capture evidence](07-02-CAPTURE-PARTIAL.md); prior envelope197 and archive188 results retain their summaries, not new phase acceptance. Frontend/proxy unchanged, not rerun.
 
-Proposed07-EVIDENCE-CONTRACT now specifies private recoverable content, immutable semantic identity, atomic domain envelope/outbox persistence, lease fencing, out-of-transaction publication and post-archive rechecks. No schema/producer/domain-outbox implementation or approved offer added. Next: closed local request/business-scope envelope validator against existing source/model revisions.
+RequestEnvelope and RequestArchiveIntent now persist one exact private fact/unexecuted intent atomically. Constraints enforce actual size and local/prepared/no-effect states. Capture performs no storage I/O; no route, worker, qualified destination, offer or acceptance is added. Database physical immutability, provider custody/retention, actual domain completion and independent recovery remain unqualified. DATA04 traceability In Progress, full requirement unchecked. Country/tax choices remain deferred.
 
-[07-02 envelope partial](07-02-ENVELOPE-PARTIAL.md): authorized exact request/business-scope canonical bytes and post-I/O reauthorization verified;197 combined tests pass. Durable private capture/intent now exist; no worker/offer exists. Remaining07-02/03/04 acceptance stays pending; no new summary/completion credit. Next atomic capture and semantic archive intent.
-
-Implementation2048a57 synced. Proposed07-02-CAPTURE-DESIGN specifies the next immutable private capture/one semantic archive-intent transaction and PostgreSQL race/rollback tests; no migration/outbox exists yet. Plan07-02 remains incomplete.
-
-[07-02 capture partial](07-02-CAPTURE-PARTIAL.md): durable outer fact+intent transaction, semantic uniqueness and actual PostgreSQL constraints verified;204 combined local tests pass.07-02 remains partial; worker/destination/retention and commercial approval gates remain open. No new plan completion credit.
+Next: explicit immutable local destination binding/durable archive authority, fenced claims and publication/readback outside transactions per proposed07-02-WORKER-DESIGN. Do not invent targets or fresh MFA/authority; retain holds and prior evidence.07-02/03/04 remain incomplete; no new completion credit.
