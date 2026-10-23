@@ -1,0 +1,11 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Request a reviewed quotation</title></head><body><main>
+<h1>Request a reviewed quotation</h1>{% if error %}<p role="alert">{{ error }}</p>{% endif %}
+{% if snapshot %}<p>Review saved cart revision {{ snapshot.version }} below. A quotation request retains these exact lines. Later cart edits do not change the captured request.</p>
+<ol>{% for line in snapshot.lines %}<li>{% if line.kind == 'ip' %}IP · {{ line.configuration.vendor }} · Families {{ line.configuration.families|join:', ' }} · {{ line.configuration.term }} · Band {{ line.configuration.production_band|default_if_none:'not applicable' }} · Expected units {{ line.configuration.production_units|default_if_none:'not supplied' }} · Fixed nodes {{ line.configuration.fixed_nodes }} · Floating seats {{ line.configuration.floating_nodes }}{% else %}10-hour support packages: {{ line.quantity }}{% endif %}</li>{% empty %}<li>The saved cart is empty.</li>{% endfor %}</ol>
+{% else %}<p>No saved cart revision is available.</p>{% endif %}
+{% if eligible %}<form method="post" action="/purchase/request-quotation/">{% csrf_token %}<input type="hidden" name="action" value="request"><input type="hidden" name="request_id" value="{{ request_id }}"><input type="hidden" name="cart_id" value="{{ cart.id }}"><input type="hidden" name="version" value="{{ snapshot.version }}"><button type="submit">Request review of this saved cart revision</button></form>
+{% else %}<p>Save a valid nonempty cart under the current catalog before requesting review.</p>{% endif %}
+<p>This records an unpriced request for review. Prices, rights, country/tax choices, policy versions and required approvals remain pending. No offer, declaration acceptance, order, payment, licence or support credit is created. No email is sent. Attach a saved business revision explicitly from the request history when ready.</p>
+<p>After a connection failure repeat the original submission. After a reported conflict reload and review the current saved cart.</p>
+<p><a href="/purchase/cart/">Review or edit saved cart</a> · <a href="/purchase/quotations/">Your quotation requests</a> · <a href="/purchase/access/">Customer access and sign out</a></p>
+</main></body></html>

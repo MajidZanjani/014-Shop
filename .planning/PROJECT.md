@@ -6,7 +6,7 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 ## Current implementation status — 2026-10-23
 
-**Current development focus: Phase7**, implemented in local/synthetic slices with full acceptance pending. **Last fully completed phase: Phase1**. Phases2–6 remain partial or awaiting qualification; independent Phase7 work follows the October22 amendment. Total1/14 (rounded7%),10/20 planned records, Phase02 remains8/18. See [STATE.md](STATE.md) and [ROADMAP.md](ROADMAP.md) for current evidence, next action and unchanged release gates. Country/tax answers are being prepared by the user; no choices/rates are approved. Local audit is complete; newest no-JavaScript saved cart evidence is170 core-local tests. Next: add deliberate no-JavaScript quotation-request capture from an exact saved cart revision using existing retry and owner protections.
+**Current development focus: Phase7**, implemented in local/synthetic slices with full acceptance pending. **Last fully completed phase: Phase1**. Phases2–6 remain partial or awaiting qualification; independent Phase7 work follows the October22 amendment. Total1/14 (rounded7%),10/20 planned records, Phase02 remains8/18. See [STATE.md](STATE.md) and [ROADMAP.md](ROADMAP.md) for current evidence, next action and unchanged release gates. Country/tax answers are being prepared by the user; no choices/rates are approved. Local audit is complete; newest no-JavaScript quotation form evidence is177 core-local tests. Next: audit the assembled local customer forms and their owner/privacy/retry failure states, then address concrete findings without changing Country/tax or live gates.
 
 Before **every commit**, check all planning files for affected live status references, update them together, regenerate canonical state.json and run `python3 scripts/check_planning.py`. Preserve immutable sources and dated evidence; do not relabel partial local implementation as phase acceptance. Sync every commit to configured origin/main without force. This later user instruction supersedes the amendment's narrower status-maintenance convention.
 
@@ -101,4 +101,4 @@ Use the context usage indicator supplied by the session when available. If an ex
 
 Active execution policy: [2026-10-22 amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
-Latest local evidence: no-JavaScript saved cart;170 core-local tests, source126 files18 templates. History implementation120f0a5 synced. Focus7/completed1; Phase02 8/18 unchanged. Reviewed 2026-10-23T09:10:53.964791+00:00.
+Latest local evidence: deliberate quotation form;177 core-local tests, source129 files19 templates. Cart implementation691ce9f synced. Focus7/completed1 and Phase02 8/18 unchanged. Reviewed 2026-10-23T09:16:49.007175+00:00.

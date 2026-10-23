@@ -122,7 +122,7 @@ def qualify(faults=False):
                 run([python, 'manage.py', 'check'], env)
                 run([python, 'manage.py', 'migrate', '--noinput'], env)
                 run([python, 'manage.py', 'makemigrations', '--check', '--dry-run'], env)
-                test_result = dev_postgres.run([str(python), 'manage.py', 'test', 'shop.core.tests', 'shop.catalog.tests', 'shop.access.tests', 'shop.catalog.cart_tests', 'shop.catalog.quotation_tests', 'shop.access.staff_tests', 'shop.access.review_tests', 'shop.catalog.business_tests', 'shop.catalog.binding_tests', 'shop.catalog.document_tests', 'shop.catalog.timeline_tests', 'shop.access.preparation_tests', 'shop.access.preparation_snapshot_tests', 'shop.access.comparison_tests', 'shop.access.workflow_audit_tests', 'shop.access.journey_tests', 'shop.access.customer_portal_tests', 'shop.catalog.quotation_history_tests', 'shop.catalog.cart_editor_tests', '--noinput'],
+                test_result = dev_postgres.run([str(python), 'manage.py', 'test', 'shop.core.tests', 'shop.catalog.tests', 'shop.access.tests', 'shop.catalog.cart_tests', 'shop.catalog.quotation_tests', 'shop.access.staff_tests', 'shop.access.review_tests', 'shop.catalog.business_tests', 'shop.catalog.binding_tests', 'shop.catalog.document_tests', 'shop.catalog.timeline_tests', 'shop.access.preparation_tests', 'shop.access.preparation_snapshot_tests', 'shop.access.comparison_tests', 'shop.access.workflow_audit_tests', 'shop.access.journey_tests', 'shop.access.customer_portal_tests', 'shop.catalog.quotation_history_tests', 'shop.catalog.cart_editor_tests', 'shop.catalog.quotation_capture_tests', '--noinput'],
                     env=env, cwd=ROOT / 'backend', timeout=45)
                 test_output = test_result.stdout + test_result.stderr
                 match = re.search(r'Ran (\d+) tests?', test_output)
@@ -143,6 +143,7 @@ def qualify(faults=False):
                         ('/purchase/access/', 200),
                         ('/purchase/cart/', 401),
                         ('/purchase/quotations/', 401),
+                        ('/purchase/request-quotation/', 401),
                         ('/api/v1/configurations/validate/', 405),
                         ('/api/v1/configuration-drafts/00000000-0000-0000-0000-000000000001/', 401),
                         ('/admin/', 404)):

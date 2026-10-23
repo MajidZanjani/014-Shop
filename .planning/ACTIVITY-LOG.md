@@ -369,3 +369,8 @@ Implementation8e76c27 and its live planning changes committed/synced. Canonical 
 ## 2026-10-23T09:10:53.964791+00:00 — no-JavaScript saved cart
 
 [Quick261023-cll](quick/261023-cll-implement-no-javascript-multi-line-cart-/261023-cll-SUMMARY.md):170 core-local tests, exact source126 files18 templates. Shared persistence retains existing JSON behavior; mixed form editing, exact replay, conflicts, real PostgreSQL form/API race and new Gunicorn routes verified. History120f0a5 synced0/0 and registered. [STATE](STATE.md)/[ROADMAP](ROADMAP.md) and all affected live views reviewed before commit; focus7/completed1,10/20 plans, Phase02 8/18 unchanged. Country/tax and live effects pending. Continue deliberate quotation-request form after sync.
+
+
+## 2026-10-23T09:16:49.007175+00:00 — deliberate quotation-request forms
+
+[Quick261023-crh](quick/261023-crh-add-deliberate-django-quotation-request-/261023-crh-SUMMARY.md):177 core-local tests pass, source129 files19 templates exact. Complete synthetic form journey and simultaneous form/JSON request capture verified. Cart691ce9f synced0/0 and registered. All affected live planning reviewed before commit; [STATE](STATE.md)/[ROADMAP](ROADMAP.md) retain focus7/completed1,10/20 planned records, Phase02 8/18. Country/tax remains pending; no offer/acceptance/payment/credit/host/provider effects. Continue assembled-form audit after sync.
