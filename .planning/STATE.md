@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
-status: executing
-last_updated: "2026-10-23T13:48:23.112251+00:00"
-state_head: de05656
+status: paused
+last_updated: "2026-10-23T13:59:14.853Z"
+state_head: 398e077
 progress:
   total_phases: 14
   completed_phases: 1
@@ -12,13 +12,13 @@ progress:
 last_activity: 2026-10-23
 current_phase: 08
 current_phase_name: Payment domain and fault-injectable fake bank
-stopped_at: Synthetic attempt dispatch/reconciliation verified; cancellation/expiry lifecycle next.
-last_activity_desc: Delivered archive-before-dispatch synthetic claims and lookup reconciliation;305 local tests pass.
+stopped_at: Explicit user pause after verified synthetic attempt reconciliation; see HANDOFF.json.
+last_activity_desc: User requested pause; saved Phase08 cancellation/expiry next action and verified305-test baseline.
 ---
 
 # Project State
 
-Updated 2026-10-23T13:48:23.112251+00:00. Canonical current summary; latest evidence: [typed synthetic bank](phases/08-payment-domain-and-fault-injectable-fake-bank/08-BANK-BOUNDARY-PARTIAL.md). Prior observation/process evidence retains its historical scope. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
+Updated 2026-10-23T13:59:14.853Z. Canonical current summary; latest evidence: [typed synthetic bank](phases/08-payment-domain-and-fault-injectable-fake-bank/08-BANK-BOUNDARY-PARTIAL.md). Prior observation/process evidence retains its historical scope. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
 ## Current position
 
@@ -119,7 +119,7 @@ Retain dependency locks, raw SBOMs, notices, validated derivative and all origin
 
 ## Session continuity
 
-User corrected excessive context-clear requests: a task/commit is not context pressure; continue substantive work across commits/syncs. No exact percentage is available; no clear/resume request or one-shot pause handoff is pending.
+User corrected excessive context-clear requests: a task/commit is not context pressure; continue substantive work across commits/syncs. No exact percentage is available; the current pause is explicitly user-requested, with HANDOFF.json and Phase08 .continue-here.md saved.
 
 Continued implementation through4063465 staff queue/preparation history and9039679 review history, each synced0/0. Implemented a typed durable local-synthetic bank adapter, separate from worker probes. Immutable-by-service fake operations and retained key aliases arbitrate merchant/reference/key retries and conflicts; explicit post-commit timeout can be reconciled by no-write reference lookup across connections. Exact typed correlation never confirms actual money; database/observation flags remain false. CORE_LOCAL_PASS5 checks/297 tests (283 Django plus14 Gunicorn),80.242s; PostgreSQL18.6/UTF8, payments0001/catalog0012 application and no-drift pass. Exact source /nix/store/87iyj21lmi0pmbqf52iyyvx68pvy1ygf-shop-python-source176 files23 templates/no symlinks.
 

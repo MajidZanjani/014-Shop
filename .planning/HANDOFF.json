@@ -1,0 +1,73 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-10-23T13:59:14.853Z",
+  "phase": "08",
+  "phase_name": "Payment domain and fault-injectable fake bank",
+  "phase_dir": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank",
+  "plan": null,
+  "task": null,
+  "total_tasks": null,
+  "status": "paused",
+  "pause_reason": "Explicit user request; no context threshold claimed.",
+  "completed_tasks": [
+    {
+      "id": 1,
+      "name": "Typed durable synthetic-bank boundary",
+      "status": "done",
+      "commit": "de05656"
+    },
+    {
+      "id": 2,
+      "name": "Archived synthetic attempt dispatch and lookup reconciliation",
+      "status": "done",
+      "commit": "398e077"
+    }
+  ],
+  "remaining_tasks": [
+    {
+      "id": 3,
+      "name": "Plan and implement synthetic pre-dispatch cancellation/expiry and recovery inspection",
+      "status": "not_started"
+    },
+    {
+      "id": 4,
+      "name": "Complete separately gated actual order/acceptance/payment/fulfilment requirements and qualification",
+      "status": "not_started"
+    }
+  ],
+  "blockers": [],
+  "async_jobs": [],
+  "human_actions_pending": [
+    {
+      "action": "Provide approved commercial/tax/legal inputs and scoped external/deployment authority when those integrations are scheduled",
+      "context": "Deferred live gates; do not repeatedly request or block independent synthetic work",
+      "blocking": false
+    }
+  ],
+  "decisions": [
+    {
+      "decision": "Archive and recover canonical expected bytes before one-way dispatch claim; commit uncertainty before fake-bank call",
+      "rationale": "Lost response or crash cannot permit blind repeat start",
+      "phase": "08"
+    },
+    {
+      "decision": "Keep all observations synthetic and financial/effect flags false",
+      "rationale": "Fixture outcomes cannot approve offers or confirm real money",
+      "phase": "08"
+    },
+    {
+      "decision": "Continue across commits after resume; do not force routine context clears",
+      "rationale": "User corrected excessive pause requests; this pause is explicit",
+      "phase": "08"
+    }
+  ],
+  "uncommitted_files": [],
+  "next_action": "Resume Phase08 through GSD quick: inspect payments/attempts.py, models.py and attempt_tests.py, then plan explicit synthetic pre-dispatch cancellation/expiry and recovery inspection. Recheck eligibility under the dispatch claim lock after archive I/O; uncertain attempts remain lookup-only and cannot redispatch.",
+  "context_notes": "Latest implementation398e077 is synced0/0. CORE_LOCAL_PASS5 checks/305 tests (291 Django+14 Gunicorn),80.979s; real owned PostgreSQL18.6/UTF8, payments0002/catalog0012 apply/no drift. Frozen source /nix/store/3fzwshy8y8xp3na96rrby8jpn00nagvf-shop-python-source contains179 exact files/23 templates, no symlinks. No implementation in progress; next slice not planned. Only Phase01 fully complete;11/24 planned records,1/14 phases (7% phase count),Phase02 8/18. No active workflow background jobs or async manifests. Summary scan found no placeholder/TBD markers.",
+  "blocking_constraints": [
+    {
+      "severity": "advisory",
+      "constraint": "Excessive per-task context pauses and synthetic work over-gated on deferred tax/legal inputs occurred; continue independent authorized local implementation without repeating either pattern."
+    }
+  ]
+}
