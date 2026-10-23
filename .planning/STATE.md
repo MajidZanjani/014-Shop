@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: active
-last_updated: "2026-10-23T11:20:16.269570+00:00"
-state_head: 9794905
+last_updated: "2026-10-23T11:24:23.950972+00:00"
+state_head: d1e65a4
 progress:
   total_phases: 14
   completed_phases: 1
@@ -12,13 +12,13 @@ progress:
 last_activity: 2026-10-23
 current_phase: 07
 current_phase_name: Multi-line cart, quotations, business checkout and acceptance
-stopped_at: One-shot prepared worker/manual transaction guards pass; local command next; Country/tax pending.
-last_activity_desc: One-shot worker passes243 tests;155 files19 templates;07-02 partial.
+stopped_at: Selected local prepared command passes; separate-process smoke next; Country/tax pending.
+last_activity_desc: Local selected command passes246 tests;157 files19 templates;07-02 partial.
 ---
 
 # Project State
 
-Updated 2026-10-23T11:20:16.269570+00:00. Canonical current summary; latest evidence: [Plan07-02 one-shot worker](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-WORKER-PARTIAL.md). Customer status: [quick261023-7s8](quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-SUMMARY.md). Prior staff/HTTP evidence remains linked there. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
+Updated 2026-10-23T11:24:23.950972+00:00. Canonical current summary; latest evidence: [Plan07-02 selected local command](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-WORKER-COMMAND-PARTIAL.md). Customer status: [quick261023-7s8](quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-SUMMARY.md). Prior staff/HTTP evidence remains linked there. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
 ## Current position
 
@@ -83,17 +83,17 @@ T03/T04 local catalog delivery remains intact; T05 local draft persistence and T
 
 Demo: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/demo.py --backend`; open http://127.0.0.1:4321 (also /support/ and /purchase/simple/).
 
-Checks: Current one-shot worker evidence:243 core-local tests (229 Django plus14 Gunicorn observations),56.057s; owned PostgreSQL18.6/UTF8. Source155 files19 templates exact/allowlisted/no symlinks. Explicit execute_prepared_once validates one bound local destination, claims once and publishes once without probe/mail/bank effects or automatic retries. All twelve owned archive entrypoints reject manual autocommit-off before I/O. Existing probe loop/default image command unchanged; no archive queue loop or deployment qualification. Next: bounded local management-command entrypoint with safe output and selected authorization/root only. Country/tax pending; focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 remains8/18;07-02 partial.
+Checks: Current selected command evidence:246 core-local tests (232 Django plus14 Gunicorn observations),57.080s; owned PostgreSQL18.6/UTF8. Source157 files19 templates exact/allowlisted/no symlinks. run_prepared_archive executes one explicit authorization/destination/existing bound root with fixed safe stdout/errors, no initialization/adoption/queue scan/retry. One-shot prepared executor and all manual-autocommit guards remain passing. Existing probe daemon/default images unchanged. Next: separate-process owned-synthetic command smoke/failure tests; actual transport/process/outage/off-host/provider/production qualification remains pending. Country/tax pending; focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 remains8/18;07-02 partial.
 
 User review, 2026-10-22: **previous catalog demo checked and approved** (user: “all checked and approved”). See task evidence for scope. Verification/save-resume also passed user review (“all works fine”, 2026-10-22). Local multi-line cart demo approved by user (“approved”, 2026-10-22). Detailed browser/accessibility qualification and commercial/release gates remain pending.
 
 ## Exact next action
 
-Current local quotation/staff/status/business slices await human review. Next action: Add a bounded local management-command entrypoint with safe output; independent runtime/recovery qualification and production gates stay pending. Country/tax and commercial effects remain gated. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
+Current local quotation/staff/status/business slices await human review. Next action: Add separate-process owned-synthetic command smoke/failure tests; independent runtime/recovery qualification and production gates stay pending. Country/tax and commercial effects remain gated. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
 
 User instruction2026-10-23: **sync to configured origin/main after every commit**, using ordinary fetch/non-force push and checking ahead/behind. This applies to implementation and planning commits. Every implementation and planning commit must be pushed immediately and ahead/behind checked. Before each commit, reconcile all affected planning files, regenerate canonical state.json and run scripts/check_planning.py; preserve historical evidence.
 
-Planning audit2026-10-23: [F-00/F-01/F-02 report](audits/2026-10-23-local-workflow.md). All three findings remain fixed; recorded audit evidence147 retains its scope. Current combined lane passes243 core-local tests; prior journey and audit evidence retain their recorded scopes. Country/tax answers stay deferred.
+Planning audit2026-10-23: [F-00/F-01/F-02 report](audits/2026-10-23-local-workflow.md). All three findings remain fixed; recorded audit evidence147 retains its scope. Current combined lane passes246 core-local tests; prior journey and audit evidence retain their recorded scopes. Country/tax answers stay deferred.
 
 Audit completion: all three local findings fixed; final core-local147 tests and source package116 files/fifteen templates pass. Full report: [local workflow audit](audits/2026-10-23-local-workflow.md). Current phase7/last complete1 and all acceptance gates unchanged.
 
@@ -105,7 +105,7 @@ Retain dependency locks, raw SBOMs, notices, validated derivative and all origin
 
 ## Session continuity
 
-Session continued with bounded prepared executor and manual-autocommit boundary fix;243 tests. Next safe local command. User now explicitly requires continuous work across commits/syncs until context clear is needed or user asks to stop. Country/tax pending; focus7/completed1; no exact context percentage supplied or claimed.
+Session continued afterd1e65a4 sync into selected local management command;246 tests. Next separate-process owned-synthetic smoke/failure tests. Continue across commits until context clear/user stop. Country/tax pending; focus7/completed1; no exact context percentage supplied or claimed.
 
 ### Quick Tasks Completed
 
@@ -168,4 +168,4 @@ Session continued with bounded prepared executor and manual-autocommit boundary 
 | 261023-cyg | Fix audit F-01 missing cart snapshot ownership recheck | 2026-10-23 | 83e8464 | [261023-cyg-fix-customer-form-audit-f-01-by-rechecki](./quick/261023-cyg-fix-customer-form-audit-f-01-by-rechecki/) |
 | 261023-d1r | Show exact committed and current cart revisions after no-JavaScript retries | 2026-10-23 | 6171d3c | [261023-d1r-show-exact-committed-revision-and-curren](./quick/261023-d1r-show-exact-committed-revision-and-curren/) |
 
-Current one-shot worker evidence:243 core-local tests (229 Django plus14 Gunicorn observations),56.057s; owned PostgreSQL18.6/UTF8. Source155 files19 templates exact/allowlisted/no symlinks. Explicit execute_prepared_once validates one bound local destination, claims once and publishes once without probe/mail/bank effects or automatic retries. All twelve owned archive entrypoints reject manual autocommit-off before I/O. Existing probe loop/default image command unchanged; no archive queue loop or deployment qualification. Next: bounded local management-command entrypoint with safe output and selected authorization/root only. Country/tax pending; focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 remains8/18;07-02 partial.
+Current selected command evidence:246 core-local tests (232 Django plus14 Gunicorn observations),57.080s; owned PostgreSQL18.6/UTF8. Source157 files19 templates exact/allowlisted/no symlinks. run_prepared_archive executes one explicit authorization/destination/existing bound root with fixed safe stdout/errors, no initialization/adoption/queue scan/retry. One-shot prepared executor and all manual-autocommit guards remain passing. Existing probe daemon/default images unchanged. Next: separate-process owned-synthetic command smoke/failure tests; actual transport/process/outage/off-host/provider/production qualification remains pending. Country/tax pending; focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 remains8/18;07-02 partial.

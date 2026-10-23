@@ -48,3 +48,6 @@ Current read-only acknowledgement reconciliation is implemented per07-02-RECONCI
 
 
 Current bounded worker subset:07-02-WORKER-PARTIAL adds a selected one-shot prepared executor and manual-autocommit guards. This is separate from the existing synthetic probe daemon and does not change default image/service entrypoints or create an automatic archive queue. Next local management entrypoint only; no deployment authority.
+
+
+Selected local management command is implemented per07-02-WORKER-COMMAND-PARTIAL. Tests execute call_command in-process; separate-process smoke/failure is next. No automatic archive daemon/default image change or deployment qualification follows.
