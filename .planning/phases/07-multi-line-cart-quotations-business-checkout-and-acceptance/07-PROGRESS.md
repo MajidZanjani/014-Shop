@@ -10,3 +10,5 @@ Development focus7; last fully completed phase1. Existing cart/request/business/
 |07-04|Pending integrated/human/external evidence|Full direct/quoted/browser/commercial acceptance|
 
 Local evidence188 core-local tests,174 Django plus14 loopback observations. Actual source131 files19 templates exact. No live routes consume archive receipts; no approval, acceptance/order, bank, licence/support, provider or host effect added. Receipt fields explicitly deny retention/effect qualification. Remote custody/retention/off-host restoration and real completion-envelope validation remain open. Next: design exact private quotation envelope and domain outbox/reference contract before07-02 publication implementation.
+
+Proposed07-EVIDENCE-CONTRACT now specifies private recoverable content, immutable semantic identity, atomic domain envelope/outbox persistence, lease fencing, out-of-transaction publication and post-archive rechecks. No schema/producer/domain-outbox implementation or approved offer added. Next: closed local request/business-scope envelope validator against existing source/model revisions.

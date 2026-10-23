@@ -2,6 +2,7 @@
 phase: 07-multi-line-cart-quotations-business-checkout-and-acceptance
 plan: "01"
 status: complete
+implementation_commit: 3e1b811
 ---
 # Local prepared archive prerequisite
 

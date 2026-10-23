@@ -399,3 +399,8 @@ All six implementation/fix commits through6171d3c synced0/0; quick registry bind
 ## 2026-10-23T09:38:37.488188+00:00 — Plan07-01 synthetic prepared archive
 
 [STATE](STATE.md)/[ROADMAP](ROADMAP.md): local archive prerequisite complete;188 core-local tests, exact source131 files19 templates. Reopened hash/identity verification, immutable retry/conflict, fail-fast concurrency, tampering/private paths and publication/sync failure recovery tested.11/24 records; Phase7 1/4 local slices but full phase remains open, last complete1; Phase02 8/18. All affected live planning reconciled before commit. Next exact private envelope/domain outbox contract; Country/tax deferred, no effects/retention qualification.
+
+
+## 2026-10-23T09:41:28.791735+00:00 — private domain evidence contract
+
+Plan07-01 implementation3e1b811 synced0/0 and recorded. Proposed07-EVIDENCE-CONTRACT defines recoverable private fields, semantic identities, atomic domain outbox/fencing, archive readback/retention and subsequent authorization rechecks. No source/migration/effect changes;188-test implementation evidence retained, no repeat. [STATE](STATE.md)/[ROADMAP](ROADMAP.md) and affected live planning reconciled.11/24 records; focus7/completed1;07-02 incomplete; Country/tax deferred. Next closed local request/business envelope validator.

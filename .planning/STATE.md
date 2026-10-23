@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: active
-last_updated: "2026-10-23T09:38:37.488188+00:00"
-state_head: ccc6097
+last_updated: "2026-10-23T09:41:28.791735+00:00"
+state_head: 3e1b811
 progress:
   total_phases: 14
   completed_phases: 1
@@ -12,7 +12,7 @@ progress:
 last_activity: 2026-10-23
 current_phase: 07
 current_phase_name: Multi-line cart, quotations, business checkout and acceptance
-stopped_at: Plan07-01 private synthetic prepared archive complete;07-02 domain contract next; Country/tax pending.
+stopped_at: Plan07-01 synced; domain evidence contract proposed; closed request envelope next; Country/tax pending.
 last_activity_desc: Plan07-01 archive completed locally;188 core-local tests;11/24 records; Phase7 remains in progress.
 ---
 
@@ -71,7 +71,7 @@ User review, 2026-10-22: **previous catalog demo checked and approved** (user: â
 
 ## Exact next action
 
-Current local quotation/staff/status/business slices await human review. Next action: design the exact private quotation evidence envelope and domain outbox/reference contract for07-02 before offer publication; keep Country/tax and all actual approvals pending. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
+Current local quotation/staff/status/business slices await human review. Next action: implement a closed recoverable local quotation-request/business-scope envelope validator with exact owner/private-scope checks, following07-EVIDENCE-CONTRACT; no offer or Country/tax decisions. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
 
 User instruction2026-10-23: **sync to configured origin/main after every commit**, using ordinary fetch/non-force push and checking ahead/behind. This applies to implementation and planning commits. Every implementation and planning commit must be pushed immediately and ahead/behind checked. Before each commit, reconcile all affected planning files, regenerate canonical state.json and run scripts/check_planning.py; preserve historical evidence.
 
@@ -87,7 +87,7 @@ Retain dependency locks, raw SBOMs, notices, validated derivative and all origin
 
 ## Session continuity
 
-Session continued2026-10-23 across access a7d085f, history120f0a5 and cart691ce9f commits/syncs. Quotation capture passes188 core-local checks (163 Django,14 transport), actual source131 files19 templates. Focus7/completed1 unchanged. Next: design the exact private quotation evidence envelope and domain outbox/reference contract for07-02 before offer publication; keep Country/tax and all actual approvals pending. Country/tax deferred. No exact context percentage supplied or claimed.
+Session continued2026-10-23 across access a7d085f, history120f0a5 and cart691ce9f commits/syncs. Quotation capture passes188 core-local checks (163 Django,14 transport), actual source131 files19 templates. Focus7/completed1 unchanged. Next: implement a closed recoverable local quotation-request/business-scope envelope validator with exact owner/private-scope checks, following07-EVIDENCE-CONTRACT; no offer or Country/tax decisions. Country/tax deferred. No exact context percentage supplied or claimed.
 
 ### Quick Tasks Completed
 
@@ -152,6 +152,8 @@ Session continued2026-10-23 across access a7d085f, history120f0a5 and cart691ce9
 
 Batch checkpoint2026-10-23: six implementation/fix commits through6171d3c synchronized and indexed;188 core-local tests, source131 files19 templates. Live references reviewed 2026-10-23T09:27:13.668083+00:00. Next action and gates are in [HANDOFF](HANDOFF.md). Focus7/completed1 and all acceptance counts unchanged.
 
-Current Phase7 checkpoint:07-01 local archive slice complete;11/24 planned records. Next: design the exact private quotation evidence envelope and domain outbox/reference contract for07-02 before offer publication; keep Country/tax and all actual approvals pending.188 core-local tests, source131 files19 templates. Focus7/completed1 and Phase02 8/18 unchanged.
+Current Phase7 checkpoint:07-01 local archive slice complete;11/24 planned records. Next: implement a closed recoverable local quotation-request/business-scope envelope validator with exact owner/private-scope checks, following07-EVIDENCE-CONTRACT; no offer or Country/tax decisions.188 core-local tests, source131 files19 templates. Focus7/completed1 and Phase02 8/18 unchanged.
 
-Latest archive evidence: [Plan07-01](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-01-SUMMARY.md),188 core-local tests, source131 files19 templates. Reviewed 2026-10-23T09:38:37.488188+00:00;11/24 records,07-01 complete locally; phase completion remains1/14. Next: design the exact private quotation evidence envelope and domain outbox/reference contract for07-02 before offer publication; keep Country/tax and all actual approvals pending.
+Latest archive evidence: [Plan07-01](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-01-SUMMARY.md),188 core-local tests, source131 files19 templates. Reviewed 2026-10-23T09:38:37.488188+00:00;11/24 records,07-01 complete locally; phase completion remains1/14. Next: implement a closed recoverable local quotation-request/business-scope envelope validator with exact owner/private-scope checks, following07-EVIDENCE-CONTRACT; no offer or Country/tax decisions.
+
+Domain evidence design checkpoint: Plan07-01 implementation3e1b811 synced;07-EVIDENCE-CONTRACT is proposed local design only. Next: implement a closed recoverable local quotation-request/business-scope envelope validator with exact owner/private-scope checks, following07-EVIDENCE-CONTRACT; no offer or Country/tax decisions.188 core-local tests/source131 files19 templates retain their implementation scope; no source change after that result.11/24 records; focus7/completed1; Country/tax pending.
