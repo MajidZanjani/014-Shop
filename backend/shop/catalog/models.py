@@ -79,3 +79,25 @@ class QuotationReview(models.Model):
             models.CheckConstraint(condition=models.Q(version__gte=1),name='quotation_review_positive_version'),
             models.CheckConstraint(condition=models.Q(decision__in=[value for value,_ in REVIEW_DECISIONS]),name='quotation_review_known_decision'),
         ]
+
+
+class BusinessDraft(models.Model):
+    owner=models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.PROTECT)
+    version=models.PositiveIntegerField(default=0)
+
+class BusinessDraftSnapshot(models.Model):
+    draft=models.ForeignKey(BusinessDraft,on_delete=models.PROTECT)
+    version=models.PositiveIntegerField()
+    request_id=models.UUIDField()
+    schema_version=models.PositiveSmallIntegerField()
+    source_sha256=models.CharField(max_length=64)
+    submission_digest=models.CharField(max_length=64)
+    details=models.JSONField()
+    evaluation=models.JSONField()
+    created_at=models.DateTimeField(auto_now_add=True)
+    class Meta:
+        constraints=[
+            models.UniqueConstraint(fields=['draft','version'],name='business_snapshot_unique_version'),
+            models.UniqueConstraint(fields=['draft','request_id'],name='business_snapshot_unique_request'),
+            models.CheckConstraint(condition=models.Q(version__gte=1),name='business_snapshot_positive_version'),
+        ]

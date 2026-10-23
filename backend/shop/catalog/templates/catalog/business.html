@@ -1,0 +1,17 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Private business-details draft</title></head><body><main>
+<h1>Private business-details draft</h1>
+<p>Local synthetic data only. Incomplete drafts can be saved. This is not order submission or legal acceptance; no payment or rights are created.</p>
+<p>Current saved revision {{ version }}. This form is based on revision {{ expected_version }}.{% if confirmation %} Last confirmed save: revision {{ confirmation }}.{% endif %}</p>
+<p role="status">{{ message }}</p>
+{% if errors %}<ul>{% for field in errors %}<li>{{ field }}: check this field.</li>{% endfor %}</ul>{% endif %}
+<form method="post" action="/purchase/business/" autocomplete="off">{% csrf_token %}
+<input type="hidden" name="request_id" value="{{ request_id }}"><input type="hidden" name="expected_version" value="{{ expected_version }}">
+<input type="hidden" name="schema_version" value="{{ schema_version }}"><input type="hidden" name="source_sha256" value="{{ source_sha256 }}">
+{% for group in groups %}<fieldset data-source-group="{{ group.id }}"><legend>{{ group.label }}</legend><p>{{ group.hint }}</p>
+{% for field in group.fields %}<p>{{ field.label_tag }} {{ field }}</p>{% endfor %}</fieldset>{% endfor %}
+<p>Country choices, tax/status choices and country-specific address requirements are pending. Blank invoice email defaults to purchasing email; blank licensed entity defaults to the purchasing business. Different licensed and purchasing entities require later review. Contact fields grant no access to another person.</p>
+<button>Save partial business draft</button></form>
+{% if evaluation.licensed_entity_review_required %}<p>Licensed and purchasing entities differ: review required.</p>{% endif %}
+<p>If a response is lost, resubmit the same form. If another tab saved a later revision, reload and review it before editing.</p>
+<button disabled>Checkout pending commercial approval</button> <a href="/">Return to configurations and quotation requests</a>
+</main></body></html>

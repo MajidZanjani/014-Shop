@@ -69,6 +69,7 @@ export default function CustomerDrafts({configuration, onResume}: {configuration
       </form>}
     </> : <>
       <p>Verified customer session</p>
+      <p><a href="/purchase/business/">Edit private business-details draft</a> · Country/tax choices and checkout remain pending.</p>
       <DraftCart configuration={configuration} csrf={csrf} onResume={onResume}/>
       <button type="button" disabled={busy||!evaluate(configuration).valid} onClick={()=>void action(async()=>{
         const payload=JSON.stringify(configuration);

@@ -7,6 +7,7 @@ LIVE_PAYMENTS_ENABLED = False
 PAYMENT_ADAPTER = MAIL_ADAPTER = STORAGE_ADAPTER = 'fake'
 ROOT_URLCONF = 'shop.urls'
 WSGI_APPLICATION = 'shop.wsgi.application'
+TEMPLATES = [{'BACKEND':'django.template.backends.django.DjangoTemplates','APP_DIRS':True}]
 INSTALLED_APPS = ['django.contrib.auth', 'django.contrib.contenttypes', 'django.contrib.sessions', 'shop.core', 'shop.worker', 'shop.catalog', 'shop.access']
 MIDDLEWARE = ['django.middleware.security.SecurityMiddleware',
               'shop.core.middleware.ValidHostMiddleware',
