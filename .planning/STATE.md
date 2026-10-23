@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: active
-last_updated: "2026-10-23T06:03:41.062Z"
-state_head: bcf2eb57250ad91f4eafa862afe49c8a0dc28984
+last_updated: "2026-10-23T06:24:20.874Z"
+state_head: abdb159021358645206cc3ac4864bf447a8b4a2c
 progress:
   total_phases: 14
   completed_phases: 1
@@ -11,18 +11,18 @@ progress:
   percent: 7
 last_activity: 2026-10-23
 current_phase: 07
-current_phase_name: Private partial business-detail drafts
-stopped_at: Private nineteen-group business drafts implemented and verified; demo review pending.
-last_activity_desc: Private partial business drafts passed87 core-local and104 frontend tests; country/tax/commercial gates pending.
+current_phase_name: Immutable private business quotation scopes
+stopped_at: Immutable business quotation scopes implemented and verified; country/tax deferred; human review pending.
+last_activity_desc: Business quotation scopes passed97 core-local and104 frontend tests; country/tax explicitly deferred.
 ---
 
 # Project State
 
-Updated 2026-10-23T06:03:40.846983+00:00. Canonical current summary; latest evidence: [quick261023-832](quick/261023-832-capture-protected-owner-business-detail-/261023-832-SUMMARY.md). Customer status: [quick261023-7s8](quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-SUMMARY.md). Prior staff/HTTP evidence remains linked there. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
+Updated 2026-10-23T06:24:20.708215+00:00. Canonical current summary; latest evidence: [quick261023-8in](quick/261023-8in-bind-immutable-business-draft-revisions-/261023-8in-SUMMARY.md). Customer status: [quick261023-7s8](quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-SUMMARY.md). Prior staff/HTTP evidence remains linked there. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
 ## Current position
 
-T03/T04 local catalog delivery remains intact; T05 local draft persistence and T06 synthetic verified access/save-resume are implemented. T07 now has the owner-scoped versioned multi-line draft cart; protected quotation-request capture now retains exact owner snapshots and reconciles duplicate/retried submissions. Local staff password/private-code rehearsal, assigned quotation reads and append-only-by-API internal review decisions are implemented. Owner history/detail now show safe current review status and corrections without staff/MFA metadata. Private owner partial business drafts now preserve nineteen exact source groups, helpers/defaults and versioned snapshots; country/tax choices and applicability stay pending. Business/quotation revision binding, real staff MFA/delivery/recovery and approved offers remain pending. Full phase acceptance remains pending. Phase02 remains 8/18 complete with all ten incomplete qualification/implementation records preserved. Only Phase01 is fully complete: 1/14 = rounded 7%. That is completed-phase progress, not engineering effort. Existing planned records remain 10/20; later phase acceptance is not claimed from quick-task implementation.
+T03/T04 local catalog delivery remains intact; T05 local draft persistence and T06 synthetic verified access/save-resume are implemented. T07 now has the owner-scoped versioned multi-line draft cart; protected quotation-request capture now retains exact owner snapshots and reconciles duplicate/retried submissions. Local staff password/private-code rehearsal, assigned quotation reads and append-only-by-API internal review decisions are implemented. Owner history/detail now show safe current review status and corrections without staff/MFA metadata. Private owner partial business drafts now preserve nineteen exact source groups, helpers/defaults and versioned snapshots; country/tax choices and applicability stay pending. Explicit immutable business/quotation revision binding and exact-scope private staff grants are implemented. Real staff MFA/delivery/recovery and approved offers remain pending. Full phase acceptance remains pending. Phase02 remains 8/18 complete with all ten incomplete qualification/implementation records preserved. Only Phase01 is fully complete: 1/14 = rounded 7%. That is completed-phase progress, not engineering effort. Existing planned records remain 10/20; later phase acceptance is not claimed from quick-task implementation.
 
 ## Delivered behavior
 
@@ -34,19 +34,20 @@ T03/T04 local catalog delivery remains intact; T05 local draft persistence and T
 - Separate local staff process with password/private-code rehearsal, session/CSRF rotation, recent verification and explicit quotation grants. Operator reset/revocation invalidates MFA state and removes assignments; real staff MFA/recovery remains pending. Internal decisions bind actor/MFA evidence to exact request snapshots, retain correction history and reject stale/concurrent overwrites.
 - Owner-safe current review labels/revisions/update times in history/detail, with explicit reload and fixed unavailable fallback. Captured scope stays exact; no staff/MFA metadata reaches customer responses.
 - Private owner Django business editor with nineteen source groups, helper/default resolution and licensed-entity review flag. Unknown country/tax choices remain null; partial snapshots/retries/stale-edit checks work without private data in ordinary summaries or application browser storage.
+- Explicit owner-confirmed business quotation scopes preserve saved values and legacy review history; new scopes await fresh review and exact private staff grants. Ordinary summaries remain masked. Country/tax choices are explicitly deferred by the user.
 - Bounded `scripts/check.py dev` command; automatic lightweight push/PR CI prepared separately from unchanged manual specialized qualification.
 
 ## Run and evidence
 
 Demo: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/demo.py --backend`; open http://127.0.0.1:4321 (also /support/ and /purchase/simple/).
 
-Checks: current changed lanes pass core-local87 tests on fresh owned real PostgreSQL and frontend104 Node tests plus proxy1; static build/typecheck/source policy/output privacy checks pass. New private business-draft evidence/limits are in quick261023-832 SUMMARY; prior customer-status evidence remains in quick261023-7s8; prior internal-decision evidence remains in quick261023-7l0; prior staff authentication evidence remains in quick261023-72i; startup of both previews and the updated proxy1 test also passed. User explicitly approved the previously blocked disposable credential read; final manual HTTP sign-in/review/logout passed15 observations after proxy Accept/CSP forwarding fix817fd57; unchanged lanes retain prior scoped evidence. No FULL_PASS or real-browser/production/recovery/legal acceptance. Hosted CI for this slice remains unverified; no credential access retried.
+Checks: current changed lanes pass core-local97 tests on fresh owned real PostgreSQL and frontend104 Node tests plus proxy1; static build/typecheck/source policy/output privacy checks pass. Current business-scope evidence/limits are in quick261023-8in SUMMARY; prior customer-status evidence remains in quick261023-7s8; prior internal-decision evidence remains in quick261023-7l0; prior staff authentication evidence remains in quick261023-72i; startup of both previews and the updated proxy1 test also passed. User explicitly approved the previously blocked disposable credential read; final manual HTTP sign-in/review/logout passed15 observations after proxy Accept/CSP forwarding fix817fd57; unchanged lanes retain prior scoped evidence. No FULL_PASS or real-browser/production/recovery/legal acceptance. Hosted CI for this slice remains unverified; no credential access retried.
 
 User review, 2026-10-22: **previous catalog demo checked and approved** (user: “all checked and approved”). See task evidence for scope. Verification/save-resume also passed user review (“all works fine”, 2026-10-22). Local multi-line cart demo approved by user (“approved”, 2026-10-22). Detailed browser/accessibility qualification and commercial/release gates remain pending.
 
 ## Exact next action
 
-Current local quotation/staff/status/business slices await human review. Next independent local slice: explicitly bind an immutable business-draft revision to quotation review scope while preserving existing parent request/cart-snapshot retry uniqueness, prior captures and review history. Do not silently retrofit business changes into reviewed scope; authorize private business access per resource and keep ordinary summaries masked. Country/tax/applicability, offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
+Current local quotation/staff/status/business slices await human review. Next independent local step: assess source-backed document/declaration preview prerequisites for exact captured scopes, preserving unknown terms/prices as pending and keeping acceptance disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
 
 ## Remaining dependencies and protections
 
@@ -56,7 +57,7 @@ Retain dependency locks, raw SBOMs, notices, validated derivative and all origin
 
 ## Session continuity
 
-Session resumed 2026-10-23; user continued local feature slices. Quick261023-832 private business drafts committed atbcf2eb5; final87 core-local tests and104 frontend tests plus proxy1 pass. Validation-error revision/source rebasing defect found and fixed with regression coverage. No demo processes, manual credential reads, agents or async jobs for this slice. Prior scoped15-observation staff HTTP evidence retained. No exact context percentage available or claimed; retain conditional checkpoint rule.
+Session resumed 2026-10-23; user continued local feature slices with Country/tax explicitly deferred. Quick261023-8in immutable business quotation scopes committed at abdb159; final97 core-local tests and104 frontend tests plus proxy1 pass. Cross-owner inconsistent-link guard and attach/review race covered. No demo processes, manual credential reads, agents or async jobs for this slice. Prior scoped15-observation staff HTTP evidence retained. No exact context percentage available or claimed; retain conditional checkpoint rule.
 
 ### Quick Tasks Completed
 
@@ -105,3 +106,4 @@ Session resumed 2026-10-23; user continued local feature slices. Quick261023-832
 | 261023-7l0 | Record assigned staff review decisions with exact-snapshot attribution, correction history and idempotent retries | 2026-10-23 | 7cbff58 | [261023-7l0-record-assigned-staff-quotation-review-d](./quick/261023-7l0-record-assigned-staff-quotation-review-d/) |
 | 261023-7s8 | Show owner-safe review status and corrections without internal staff metadata | 2026-10-23 | 36a6201 | [261023-7s8-show-customer-safe-quotation-review-stat](./quick/261023-7s8-show-customer-safe-quotation-review-stat/) |
 | 261023-832 | Capture private nineteen-group owner business drafts with resolved helpers and retained versions | 2026-10-23 | bcf2eb5 | [261023-832-capture-protected-owner-business-detail-](./quick/261023-832-capture-protected-owner-business-detail-/) |
+| 261023-8in | Bind immutable business revisions to quotation scopes with exact private staff grants; country/tax deferred | 2026-10-23 | abdb159 | [261023-8in-bind-immutable-business-draft-revisions-](./quick/261023-8in-bind-immutable-business-draft-revisions-/) |
