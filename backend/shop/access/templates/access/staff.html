@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Local staff access</title></head>
+<body><main><h1>Local staff access</h1>
+<p>Synthetic rehearsal only. No real staff access, approved offers or payments.</p>
+{% if authenticated %}
+<p>Both local factors verified. Quotation review requires verification within the last five minutes and an explicit reviewer assignment.</p>
+<p><a href="/staff/quotation-requests/">View assigned quotation requests</a></p>
+<form method="post" action="/staff/logout/">{% csrf_token %}<button>Sign out</button></form>
+{% else %}
+{% if challenge %}
+<h2>Verify possession code</h2><p>Read the code from the private local capture directory. It expires after five minutes and can be used once in this browser.</p>
+<form method="post" action="/staff/verify/">{% csrf_token %}<label>Code <input name="code" required maxlength="128" autocomplete="one-time-code"></label><button>Verify code</button></form>
+{% endif %}
+<h2>Sign in</h2><form method="post" action="/staff/login/">{% csrf_token %}
+<label>Username <input name="username" required maxlength="150" autocomplete="username"></label>
+<label>Password <input name="password" type="password" required maxlength="150" autocomplete="current-password"></label>
+<button>Request local possession code</button></form>
+{% endif %}
+</main></body></html>

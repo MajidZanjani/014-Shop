@@ -1,0 +1,11 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Captured quotation request</title></head><body><main>
+<h1>Captured quotation request</h1><p>Request {{ quotation.id }} · Saved cart version {{ quotation.snapshot.version }}</p>
+<p>Prices and rights pending. No approved offer, acceptance, payment or support credit.</p>
+<ol>{% for line in quotation.snapshot.lines %}<li>
+{% if line.kind == 'support' %}Support · {{ line.quantity }} ten-hour packages{% else %}
+IP · Vendor: {{ line.configuration.vendor }} · Families: {{ line.configuration.families|join:', ' }} · Term: {{ line.configuration.term }} · Quantity: {{ line.quantity }}
+· Fixed nodes: {{ line.configuration.fixed_nodes }} · Floating nodes: {{ line.configuration.floating_nodes }}
+{% if line.configuration.production_band %}· Production band: {{ line.configuration.production_band }} · Estimated units: {{ line.configuration.production_units|default_if_none:'Not supplied' }}{% endif %}
+{% endif %} · Line reference: {{ line.id }}</li>{% endfor %}</ol>
+<button disabled>Offer approval pending</button> <a href="/staff/quotation-requests/">Assigned requests</a>
+</main></body></html>

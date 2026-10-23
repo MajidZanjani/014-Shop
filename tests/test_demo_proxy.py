@@ -8,7 +8,7 @@ import tempfile
 import threading
 import unittest
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
-from demo import DemoHandler
+from demo import DemoHandler, StaffDemoHandler
 
 class DemoHostTests(unittest.TestCase):
     def test_loopback_aliases_and_rebinding_hosts(self):
@@ -27,3 +27,20 @@ class DemoHostTests(unittest.TestCase):
                 for method in ('GET','POST','HEAD'):
                     self.assertEqual(request(method,'unapproved.invalid:'+str(server.server_port)),400)
             finally:server.shutdown();server.server_close();thread.join(3)
+
+            staff=ThreadingHTTPServer(('127.0.0.1',0),StaffDemoHandler)
+            staff_thread=threading.Thread(target=staff.serve_forever,daemon=True);staff_thread.start()
+            try:
+                for method in ('GET','POST','HEAD'):
+                    for host in ('127.0.0.1','localhost','unapproved.invalid'):
+                        conn=http.client.HTTPConnection('127.0.0.1',staff.server_port,timeout=3)
+                        try:
+                            conn.request(method,'/staff/',headers={'Host':host+':'+str(staff.server_port)})
+                            response=conn.getresponse();response.read();self.assertEqual(response.status,400)
+                        finally:conn.close()
+                conn=http.client.HTTPConnection('127.0.0.1',staff.server_port,timeout=3)
+                try:
+                    conn.request('GET','/staff/',headers={'Host':'staff.localhost:'+str(staff.server_port)})
+                    response=conn.getresponse();response.read();self.assertEqual(response.status,503)
+                finally:conn.close()
+            finally:staff.shutdown();staff.server_close();staff_thread.join(3)

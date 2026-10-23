@@ -68,7 +68,7 @@ def get(port, path, method='GET', host=None):
 
 
 @contextlib.contextmanager
-def gunicorn(python, env, scratch):
+def gunicorn(python, env, scratch, *, probe_path='/health/live', probe_host=None):
     with socket.socket() as reservation:
         reservation.bind(('127.0.0.1', 0))
         port = reservation.getsockname()[1]
@@ -82,7 +82,7 @@ def gunicorn(python, env, scratch):
             while True:
                 require(process.poll() is None, 'owned Gunicorn exited before readiness')
                 try:
-                    if get(port, '/health/live')[0] == 200:
+                    if get(port, probe_path, host=probe_host)[0] == 200:
                         break
                 except (OSError, urllib.error.URLError):
                     pass
@@ -122,7 +122,7 @@ def qualify(faults=False):
                 run([python, 'manage.py', 'check'], env)
                 run([python, 'manage.py', 'migrate', '--noinput'], env)
                 run([python, 'manage.py', 'makemigrations', '--check', '--dry-run'], env)
-                test_result = dev_postgres.run([str(python), 'manage.py', 'test', 'shop.core.tests', 'shop.catalog.tests', 'shop.access.tests', 'shop.catalog.cart_tests', 'shop.catalog.quotation_tests', '--noinput'],
+                test_result = dev_postgres.run([str(python), 'manage.py', 'test', 'shop.core.tests', 'shop.catalog.tests', 'shop.access.tests', 'shop.catalog.cart_tests', 'shop.catalog.quotation_tests', 'shop.access.staff_tests', '--noinput'],
                     env=env, cwd=ROOT / 'backend', timeout=45)
                 test_output = test_result.stdout + test_result.stderr
                 match = re.search(r'Ran (\d+) tests?', test_output)
