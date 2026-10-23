@@ -57,36 +57,33 @@ def session_status(request):
     if not local_enabled(): return reply({'error':'unavailable'},404)
     return reply({'authenticated':verified_identity(request) is not None,'csrf_token':get_token(request)})
 
-@require_POST
-def request_code(request):
-    if not local_enabled(): return reply({'error':'unavailable'},404)
+def start_verification(request,email):
+    if not local_enabled(): return {'error':'unavailable'},404
     try:
-        value=read_json(request,{'email'})
-        email=value['email']
         if not isinstance(email,str):raise ValueError('email')
         email=email.strip().lower()
         if len(email)>160 or re.fullmatch(r'[a-z0-9._+-]+@[a-z0-9-]+(?:\.[a-z0-9-]+)*\.invalid',email) is None:
             raise ValueError('synthetic_email')
-    except (ValueError,UnicodeError,RecursionError):return reply({'error':'synthetic_email_required'},400)
+    except (ValueError,UnicodeError,RecursionError):return {'error':'synthetic_email_required'},400
     capture_root=getattr(settings,'LOCAL_CAPTURE_ROOT',None)
-    if not capture_root:return reply({'error':'capture_unavailable'},503)
+    if not capture_root:return {'error':'capture_unavailable'},503
     # Validate private storage before reserving a challenge or mutating the session.
     try:
         with LocalStorage(capture_root):pass
-    except (OSError,ValueError):return reply({'error':'capture_unavailable'},503)
+    except (OSError,ValueError):return {'error':'capture_unavailable'},503
     now=timezone.now()
     # Each session can request at most three challenges per window, even when
     # the submitted email changes. Email limits span sessions and IP addresses.
     session_window=request.session.get('shop_request_window',0)
     count=request.session.get('shop_request_count',0)
     if now.timestamp()-session_window<WINDOW.total_seconds() and count>=MAX_REQUESTS:
-        return reply({'error':'request_limit'},429)
+        return {'error':'request_limit'},429
     if now.timestamp()-session_window>=WINDOW.total_seconds():count=0;session_window=now.timestamp()
     with transaction.atomic():
         throttle,_=VerificationThrottle.objects.get_or_create(email_digest=digest('email',email),defaults={'window_start':now})
         throttle=VerificationThrottle.objects.select_for_update().get(pk=throttle.pk)
         if now-throttle.window_start>=WINDOW:throttle.window_start=now;throttle.requests=0
-        if throttle.requests>=MAX_REQUESTS:return reply({'error':'request_limit'},429)
+        if throttle.requests>=MAX_REQUESTS:return {'error':'request_limit'},429
         throttle.requests+=1;throttle.save(update_fields=['requests','window_start'])
         binding=secrets.token_urlsafe(32)
         code=secrets.token_urlsafe(24)
@@ -98,35 +95,32 @@ def request_code(request):
             with LocalStorage(capture_root) as store:store.put(message.body)
         except (OSError,ValueError):
             transaction.set_rollback(True)
-            return reply({'error':'capture_unavailable'},503)
+            return {'error':'capture_unavailable'},503
     request.session['shop_request_window']=session_window
     request.session['shop_request_count']=count+1
     request.session['shop_challenge']=str(challenge.id)
     request.session['shop_verification_binding']=binding
     request.session.set_expiry(1800)
-    return reply({'status':'code_captured','expires_in_seconds':600})
+    return {'status':'code_captured','expires_in_seconds':600},200
 
-@require_POST
-def verify_code(request):
-    if not local_enabled():return reply({'error':'unavailable'},404)
+def complete_verification(request,code):
+    if not local_enabled():return {'error':'unavailable'},404
     try:
-        value=read_json(request,{'code'})
-        code=value['code']
         if not isinstance(code,str) or not 1<=len(code)<=128:raise ValueError('code')
         identity=uuid.UUID(request.session.get('shop_challenge',''))
         binding=request.session.get('shop_verification_binding','')
         if not isinstance(binding,str) or not binding:raise ValueError('binding')
-    except (ValueError,TypeError,UnicodeError,RecursionError):return reply({'error':'verification_failed'},400)
+    except (ValueError,TypeError,UnicodeError,RecursionError):return {'error':'verification_failed'},400
     with transaction.atomic():
         challenge=VerificationChallenge.objects.select_for_update().filter(pk=identity).first()
         now=timezone.now()
         if (challenge is None or challenge.consumed_at is not None or challenge.expires_at<=now or challenge.attempts>=MAX_ATTEMPTS
             or not constant_time_compare(challenge.binding_digest,digest('binding',binding))):
-            return reply({'error':'verification_failed'},400)
+            return {'error':'verification_failed'},400
         challenge.attempts+=1
         if not constant_time_compare(challenge.code_digest,digest('code',code)):
             challenge.save(update_fields=['attempts'])
-            return reply({'error':'verification_failed'},400)
+            return {'error':'verification_failed'},400
         # Arbitrate same-email identity creation across independent challenges.
         VerificationThrottle.objects.select_for_update().get(pk=digest('email',challenge.email))
         customer=CustomerIdentity.objects.filter(email=challenge.email).select_related('user').first()
@@ -134,7 +128,7 @@ def verify_code(request):
             user=get_user_model().objects.create_user(username='customer-'+uuid.uuid4().hex,email=challenge.email)
             customer=CustomerIdentity.objects.create(user=user,email=challenge.email,verified_at=now)
         if not customer.user.is_active or customer.user.is_staff or customer.user.is_superuser:
-            return reply({'error':'verification_failed'},400)
+            return {'error':'verification_failed'},400
         challenge.consumed_at=now;challenge.save(update_fields=['attempts','consumed_at'])
     # A lost response cannot replay the consumed credential. Always rotate both
     # the session identity and CSRF token, including same-user re-verification.
@@ -143,10 +137,28 @@ def verify_code(request):
     for key in ('shop_challenge','shop_verification_binding'):request.session.pop(key,None)
     request.session['shop_verified_identity']=str(customer.id)
     request.session.set_expiry(1800)
-    return reply({'authenticated':True,'csrf_token':get_token(request)})
+    return {'authenticated':True,'csrf_token':get_token(request)},200
+
+def end_verification(request):
+    if not local_enabled():return {'error':'unavailable'},404
+    logout(request);rotate_token(request)
+    return {'authenticated':False,'csrf_token':get_token(request)},200
+
+
+@require_POST
+def request_code(request):
+    if not local_enabled():return reply({'error':'unavailable'},404)
+    try:email=read_json(request,{'email'})['email']
+    except (ValueError,UnicodeError,RecursionError):return reply({'error':'synthetic_email_required'},400)
+    return reply(*start_verification(request,email))
+
+@require_POST
+def verify_code(request):
+    if not local_enabled():return reply({'error':'unavailable'},404)
+    try:code=read_json(request,{'code'})['code']
+    except (ValueError,TypeError,UnicodeError,RecursionError):return reply({'error':'verification_failed'},400)
+    return reply(*complete_verification(request,code))
 
 @require_POST
 def sign_out(request):
-    if not local_enabled():return reply({'error':'unavailable'},404)
-    logout(request);rotate_token(request)
-    return reply({'authenticated':False,'csrf_token':get_token(request)})
+    return reply(*end_verification(request))

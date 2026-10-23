@@ -6,7 +6,7 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 ## Current implementation status — 2026-10-23
 
-**Current development focus: Phase7**, implemented in local/synthetic slices with full acceptance pending. **Last fully completed phase: Phase1**. Phases2–6 remain partial or awaiting qualification; independent Phase7 work follows the October22 amendment. Total1/14 (rounded7%),10/20 planned records, Phase02 remains8/18. See [STATE.md](STATE.md) and [ROADMAP.md](ROADMAP.md) for current evidence, next action and unchanged release gates. Country/tax answers are being prepared by the user; no choices/rates are approved. Local audit is complete; newest supported-route journey evidence is149 core-local tests. Next: implement a Django no-JavaScript customer access entry using the existing local captured-verification flow, without real mail or new membership scope.
+**Current development focus: Phase7**, implemented in local/synthetic slices with full acceptance pending. **Last fully completed phase: Phase1**. Phases2–6 remain partial or awaiting qualification; independent Phase7 work follows the October22 amendment. Total1/14 (rounded7%),10/20 planned records, Phase02 remains8/18. See [STATE.md](STATE.md) and [ROADMAP.md](ROADMAP.md) for current evidence, next action and unchanged release gates. Country/tax answers are being prepared by the user; no choices/rates are approved. Local audit is complete; newest Django access form evidence is156 core-local tests. Next: add owner-only Django quotation history and safe navigation to retained timelines/document prerequisites without JavaScript.
 
 Before **every commit**, check all planning files for affected live status references, update them together, regenerate canonical state.json and run `python3 scripts/check_planning.py`. Preserve immutable sources and dated evidence; do not relabel partial local implementation as phase acceptance. Sync every commit to configured origin/main without force. This later user instruction supersedes the amendment's narrower status-maintenance convention.
 
@@ -101,4 +101,4 @@ Use the context usage indicator supplied by the session when available. If an ex
 
 Active execution policy: [2026-10-22 amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
-Latest local journey implementation: `8e76c27` (149 core-local tests); development focus7, last fully completed1. Registry/planning references reconciled 2026-10-23T07:57:12.497438+00:00. Phase02/full commercial acceptance unchanged.
+Latest local access evidence: no-JavaScript request/verify/logout and shared API limits pass156 core-local tests; development focus7, last fully completed1. Planning reconciled 2026-10-23T08:07:30.009909+00:00. Phase02/full commercial acceptance unchanged.

@@ -1,6 +1,6 @@
 # Phase 02 current progress
 
-Status reconciled 2026-10-23. Phase02 evidence below retains its original recorded scope through dd322e1. Current development focus is Phase7; Phases2–6 remain partial/qualification-pending; see [STATE.md](../../STATE.md) and [ROADMAP.md](../../ROADMAP.md). Latest local app evidence is149 core-local tests, not new Phase02 runtime/off-host acceptance. This is a reconciliation of recorded results, not independent goal verification, new execution of every test lane or production approval.
+Status reconciled 2026-10-23. Phase02 evidence below retains its original recorded scope through dd322e1. Current development focus is Phase7; Phases2–6 remain partial/qualification-pending; see [STATE.md](../../STATE.md) and [ROADMAP.md](../../ROADMAP.md). Latest local app evidence is156 core-local tests, not new Phase02 runtime/off-host acceptance. This is a reconciliation of recorded results, not independent goal verification, new execution of every test lane or production approval.
 
 ## Completion and activity
 
@@ -39,6 +39,6 @@ GSD parsing was also stale-prone: the old progress table omitted the canonical C
 
 
 
-Latest application evidence: [supported-route journeys](../../quick/261023-atf-exercise-synthetic-customer-to-staff-quo/261023-atf-SUMMARY.md),149 core-local tests; prior audit closed. Development focus7 differs from last-completed1; Phase02 remains8/18 with ten open qualification/implementation records. No Phase02 acceptance promoted.
+Latest application evidence: [Django access forms](../../quick/261023-b25-provide-no-javascript-django-customer-ac/261023-b25-SUMMARY.md),156 core-local tests; source package120 files16 templates. Development focus7, last fully completed1. Phase02 remains8/18; all ten incomplete records retained.
 
-Latest local journey implementation: `8e76c27` (149 core-local tests); development focus7, last fully completed1. Registry/planning references reconciled 2026-10-23T07:57:12.497438+00:00. Phase02/full commercial acceptance unchanged.
+Latest local access evidence: no-JavaScript request/verify/logout and shared API limits pass156 core-local tests; development focus7, last fully completed1. Planning reconciled 2026-10-23T08:07:30.009909+00:00. Phase02/full commercial acceptance unchanged.

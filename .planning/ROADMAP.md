@@ -12,7 +12,7 @@
 
 **Last fully completed phase:** 1. Phases2–6 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase7 work while those earlier checks remain open. Completed phases remain1/14 (rounded7%); planned records10/20. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
 
-**Current activity:** supported-route mixed/support-only customer-to-staff journeys verified; core-local149 tests pass. Next: implement a Django no-JavaScript customer access entry using the existing local captured-verification flow, without real mail or new membership scope. All three local audit findings remain fixed. Country/tax answers and commercial/production/recovery gates remain pending. See [STATE](STATE.md), [journey evidence](quick/261023-atf-exercise-synthetic-customer-to-staff-quo/261023-atf-SUMMARY.md) and [audit](audits/2026-10-23-local-workflow.md).
+**Current activity:** Django customer access forms without JavaScript verified; core-local156 tests pass (146 Django plus10 transport observations). Next: add owner-only Django quotation history and safe navigation to retained timelines/document prerequisites without JavaScript. All audit fixes retained. Country/tax and commercial/production/recovery gates pending. See [STATE](STATE.md) and [access evidence](quick/261023-b25-provide-no-javascript-django-customer-ac/261023-b25-SUMMARY.md).
 
 Before every commit, reconcile all affected planning status references, regenerate canonical state.json and run `python3 scripts/check_planning.py`; commit then sync origin/main. Historical sources/evidence remain scoped to their dates.
 
@@ -424,4 +424,4 @@ Keep public bytes in shop-owned OVH Object Storage through a fixed verified HTTP
 | 13. Integrated product, access, payment and deployment acceptance | 0 / not planned | Not started | — |
 | 14. Release handover and separately scoped live activation | 0 / not planned | Not started | — |
 
-Latest local journey implementation: `8e76c27` (149 core-local tests); development focus7, last fully completed1. Registry/planning references reconciled 2026-10-23T07:57:12.497438+00:00. Phase02/full commercial acceptance unchanged.
+Latest local access evidence: no-JavaScript request/verify/logout and shared API limits pass156 core-local tests; development focus7, last fully completed1. Planning reconciled 2026-10-23T08:07:30.009909+00:00. Phase02/full commercial acceptance unchanged.
