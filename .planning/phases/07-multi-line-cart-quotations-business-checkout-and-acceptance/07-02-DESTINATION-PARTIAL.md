@@ -1,6 +1,6 @@
 # Plan07-02 local destination binding — partial
 
-Implementation: pending commit; recorded base546dead. No plan/phase completion claimed.
+Implementation:3b9f6a1, synced0/0. No plan/phase completion claimed.
 
 Explicit private local destination identity and attributed intent binding are implemented; root replacement, copied/tampered markers and rebinding fail closed. Only pending/held intents exist; no claim, worker, publication service or durable worker authority exists. Retention/effect flags remain false.
 

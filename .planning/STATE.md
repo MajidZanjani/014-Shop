@@ -2,7 +2,7 @@
 gsd_state_version: "1.0"
 status: active
 last_updated: "2026-10-23T10:29:32.763676+00:00"
-state_head: 546dead
+state_head: 3b9f6a1
 progress:
   total_phases: 14
   completed_phases: 1
@@ -157,3 +157,5 @@ Session continued2026-10-23 with local destination binding:214 core-local tests 
 | 261023-d1r | Show exact committed and current cart revisions after no-JavaScript retries | 2026-10-23 | 6171d3c | [261023-d1r-show-exact-committed-revision-and-curren](./quick/261023-d1r-show-exact-committed-revision-and-curren/) |
 
 Latest local destination evidence: 214 core-local tests (200 Django plus14 Gunicorn observations),46.154s; owned PostgreSQL18.6/UTF8. Actual Nix source141 files19 templates, byte-identical/allowlisted/no symlinks. Explicit private local destination identity and attributed intent binding are implemented; root replacement, copied/tampered markers and rebinding fail closed. Only pending/held intents exist; no claim, worker, publication service or durable worker authority exists. Retention/effect flags remain false. Next: Define durable archive authority and fenced local claims before publication; preserve holds and retained bytes. Country/tax and commercial effects remain gated. Focus7/completed1;11/24 planned records,1/14 complete phases (7%); Phase02 remains8/18.07-02 remains partial.
+
+Recorded local implementation3b9f6a1 synced0/0. Worker design now specifies a proposed explicit bounded authorization record/source reader before claims; it adds no runtime authority or completed-plan credit. Current214-test/141-file evidence unchanged.

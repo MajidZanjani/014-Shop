@@ -1,9 +1,9 @@
 # Current handoff — 2026-10-23
 
-**Recorded implementation:** 546dead
+**Recorded implementation:** 3b9f6a1
 
 Latest local destination evidence: 214 core-local tests (200 Django plus14 Gunicorn observations),46.154s; owned PostgreSQL18.6/UTF8. Actual Nix source141 files19 templates, byte-identical/allowlisted/no symlinks. Explicit private local destination identity and attributed intent binding are implemented; root replacement, copied/tampered markers and rebinding fail closed. Only pending/held intents exist; no claim, worker, publication service or durable worker authority exists. Retention/effect flags remain false. Next: Define durable archive authority and fenced local claims before publication; preserve holds and retained bytes. Country/tax and commercial effects remain gated. Focus7/completed1;11/24 planned records,1/14 complete phases (7%); Phase02 remains8/18.07-02 remains partial.
 
-Current destination slice pending commit; prior implementation546dead synced. [Destination partial](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-DESTINATION-PARTIAL.md) records current evidence and additive0009 migration. No active demo/test process remains. Next exact action: durable authority/claim contract per07-02-WORKER-DESIGN; never derive worker authority from historical MFA or automatically clear holds.
+Destination implementation3b9f6a1 is committed and synced0/0. [Destination partial](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-DESTINATION-PARTIAL.md) records current evidence and additive0009 migration. No active demo/test process remains. Next exact action: implement/test the proposed bounded explicit work-authorization record and source reader in07-02-WORKER-DESIGN before lease states; never derive worker authority from historical MFA or automatically clear holds.
 
 Standing instructions: continue across commits/syncs. Reconcile affected live planning files before every commit, regenerate state.json/run scripts/check_planning.py, push origin/main and verify0/0 immediately after each commit. Country/tax answers pending; do not choose/repeatedly ask. Local synthetic repository work only; no real mail/provider/bank/DNS/TLS/host/deployment or credential authority. Preserve populated evidence on rollback. No exact context percentage is supplied or claimed.
