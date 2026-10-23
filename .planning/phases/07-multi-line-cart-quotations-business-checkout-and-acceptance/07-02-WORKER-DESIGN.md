@@ -43,3 +43,6 @@ Current next boundary: detached inspection commits before returning and conveys 
 
 
 Current implementation boundary: selected fenced claims are implemented (07-02-CLAIM-PARTIAL). Retained claim rows provide30-second bounded leases/generations without changing pending/held intent states; no queue loop, publication or completion exists. Earlier proposed state expansion/automatic claiming remains a proposal. Next bound-root publication/readback outside transactions and same-transaction fenced technical verification.
+
+
+Next concrete local contract:07-02-PUBLICATION-DESIGN describes three owned transaction/I/O boundaries and retained verification/retry semantics. It is a proposal;787ac33 adds no publication or terminal record. The deterministic PostgreSQL claim/revocation lock-cycle regression passes; independent runtime/outage qualification remains pending.
