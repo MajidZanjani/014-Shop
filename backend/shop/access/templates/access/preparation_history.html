@@ -1,0 +1,8 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Retained preparation history</title></head><body><main>
+<h1>Retained preparation history</h1>
+<p>Request {{ identity }}. Showing up to {{ page_size }} captures for your currently authorized retained scopes. Other business scopes stay hidden.</p>
+<p>Later attachments do not replace earlier captures or grant access to another business scope. This history records no approval, acceptance, payment or support credit.</p>
+<ol>{% for row in items %}<li><a href="/staff/quotation-requests/{{ identity }}/preparation-snapshots/{{ row.version }}/">Preparation revision {{ row.version }}</a> · Business scope {{ row.business_version }} · Review revision {{ row.review_version }} · {{ row.created_at }}</li>{% empty %}<li>No authorized retained captures on this page.</li>{% endfor %}</ol>
+<nav aria-label="Preparation history pages">{% if older %}<a href="?before={{ older }}">Older captures</a> · {% endif %}<a href="/staff/quotation-requests/{{ identity }}/preparation-snapshots/history/">Newest authorized captures</a></nav>
+<p><a href="/staff/quotation-requests/{{ identity }}/">Request details</a> · <a href="/staff/quotation-requests/">Assigned requests</a></p>
+</main></body></html>

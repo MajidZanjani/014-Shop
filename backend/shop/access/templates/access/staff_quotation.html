@@ -24,5 +24,6 @@ IP · Vendor: {{ line.configuration.vendor }} · Families: {{ line.configuration
 <p>Showing up to 20 most recent decisions.</p>
 <ol>{% for review in reviews %}<li>Revision {{ review.version }} · Business scope {{ review.business_version }} · {{ review.get_decision_display }} · Reviewer {{ review.reviewer_id }} · {{ review.created_at }}</li>{% empty %}<li>No decisions recorded.</li>{% endfor %}</ol></section>
 <p><a href="/staff/quotation-requests/{{ quotation.id }}/preparation/">Review offer preparation prerequisites</a></p>
+<p><a href="/staff/quotation-requests/{{ quotation.id }}/preparation-snapshots/history/">Browse authorized retained preparation history</a></p>
 <button disabled>Offer approval pending</button> <a href="/staff/quotation-requests/">Assigned requests</a>
 </main></body></html>

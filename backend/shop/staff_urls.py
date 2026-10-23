@@ -5,6 +5,7 @@ from shop.access.request_evidence import evidence, capture_status
 from shop.access.comparison_views import comparison
 from shop.access.preparation_snapshots import snapshots, snapshot_detail
 from shop.access.preparation_views import preparation
+from shop.access.preparation_history import preparation_history
 from shop.access.quotation_review import record_review
 urlpatterns=[
     path('staff/archive-intents/<uuid:identity>/claims/<uuid:claim_id>/reconciliation/',reconciliation),
@@ -16,6 +17,7 @@ urlpatterns=[
     path('staff/quotation-requests/<uuid:identity>/request-evidence/<int:version>/',evidence),
     path('staff/quotation-requests/<uuid:identity>/request-evidence/<int:version>/status/',capture_status),
     path('staff/quotation-requests/<uuid:identity>/preparation-snapshots/',snapshots),
+    path('staff/quotation-requests/<uuid:identity>/preparation-snapshots/history/',preparation_history),
     path('staff/quotation-requests/<uuid:identity>/preparation-snapshots/<int:version>/compare/',comparison),
     path('staff/quotation-requests/<uuid:identity>/preparation-snapshots/<int:version>/',snapshot_detail),
     path('staff/quotation-requests/<uuid:identity>/preparation/',preparation),

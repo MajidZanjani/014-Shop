@@ -22,3 +22,7 @@ Existing detailed evidence and criteria remain in Phase02 PARTIAL records; these
 ## Progress maintenance
 
 STATE.md is the canonical current summary; link task evidence instead of copying narratives across plans. Keep machine state synchronized. Preserve historical progress/evidence. HANDOFF carries only exact next action and blockers. A local-development success marker never implies FULL_PASS. Retain the user's context checkpoint rule; never invent a percentage.
+
+## User continuation correction — 2026-10-23
+
+The user rejected frequent clear/resume requests after small tasks and instructed continuing the project. A completed task, audit or commit is not evidence of context pressure. Continue substantive implementation across commits and syncs. No exact context percentage is available: do not claim the90% threshold or automatic monitoring, and do not routinely manufacture a checkpoint after each small task. Preserve a handoff only when an actual context constraint is apparent or the user requests a pause. Existing external/protected-operation gates and the original conditional checkpoint instruction remain in force.

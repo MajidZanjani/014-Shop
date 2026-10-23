@@ -1,7 +1,7 @@
 ---
 gsd_state_version: "1.0"
-status: paused
-last_updated: "2026-10-23T13:01:19.625361+00:00"
+status: executing
+last_updated: "2026-10-23T13:14:50.855392+00:00"
 state_head: b96b665
 progress:
   total_phases: 14
@@ -12,13 +12,13 @@ progress:
 last_activity: 2026-10-23
 current_phase: 07
 current_phase_name: Multi-line cart, quotations, business checkout and acceptance
-stopped_at: Saved route audit complete; no same-scope audit remains; precise domain gates retained.
-last_activity_desc: Existing-route audit clean;57 selected checks pass; runtime unchanged;07-02 partial.
+stopped_at: Staff queue/preparation history verified; continuing review-history implementation.
+last_activity_desc: Implemented staff queue/history navigation;283 local tests pass; continuing.
 ---
 
 # Project State
 
-Updated 2026-10-23T13:01:19.625361+00:00. Canonical current summary; latest evidence: [bounded route audit](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-ROUTE-REVIEW.md). Prior observation/process evidence retains its historical scope. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
+Updated 2026-10-23T13:14:50.855392+00:00. Canonical current summary; latest evidence: [staff queue/history implementation](quick/261023-i7s-add-authorized-staff-queue-and-retained-/261023-i7s-SUMMARY.md). Prior observation/process evidence retains its historical scope. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
 ## Current position
 
@@ -91,13 +91,13 @@ T03/T04 local catalog delivery remains intact; T05 local draft persistence and T
 
 Demo: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/demo.py --backend`; open http://127.0.0.1:4321 (also /support/ and /purchase/simple/).
 
-Checks:275 core-local tests/observations pass (261 Django plus14 Gunicorn),71.878s;5 producer checks. Owned PostgreSQL18.6/UTF8,0012 application/no-drift pass. Exact source /nix/store/vvwm917wanx5ad6zi60n2a8fw1m5m4k8-shop-python-source:163 files21 templates/no symlinks. Test changes only; frontend/proxy unchanged/not rerun. Independent/runtime/recovery/provider/production gates pending.
+Checks:283 core-local tests/observations pass (269 Django plus14 Gunicorn),5 checks,75.493s on owned PostgreSQL18.6/UTF8;0012 application/no-drift pass. Exact source /nix/store/71rlacdm91c40a1iv98d879z2adzmfzm-shop-python-source166 files22 templates/no symlinks. No migration; frontend/proxy unchanged/not rerun. Full human/browser/real-MFA/commercial/runtime/provider/off-host/recovery acceptance remains pending.
 
 User review, 2026-10-22: **previous catalog demo checked and approved** (user: “all checked and approved”). See task evidence for scope. Verification/save-resume also passed user review (“all works fine”, 2026-10-22). Local multi-line cart demo approved by user (“approved”, 2026-10-22). Detailed browser/accessibility qualification and commercial/release gates remain pending.
 
 ## Exact next action
 
-The saved capture/status and preparation/review/document audits are complete; do not repeat them without a source change, reproduced defect or new concern. For full07-02 offer-domain work, first reconcile actually supplied approved commercial/host/entity/tax/document/role/clock/retention interfaces against07-02-OFFER-CONTRACT-CRITIQUE and define the executable schema/lock graph. Country/tax remains user-deferred; do not repeatedly ask or guess. A different existing local plan may proceed only on concrete available prerequisites through its GSD workflow; no new candidate/approval subsystem or infrastructure expansion is selected by this handoff.
+Continue staff workflow implementation: add authorized paginated internal review-decision history so decisions older than the20-row request summary remain reachable, preserving original attribution, committed parent review counters and private digest/MFA suppression in the history projection. Reuse existing reviewer/resource permissions and canonical bounded cursors. Do not rerun the completed unchanged-scope audit or pause at commit/task boundaries.
 
 User instruction2026-10-23: **sync to configured origin/main after every commit**, using ordinary fetch/non-force push and checking ahead/behind. This applies to implementation and planning commits. Every implementation and planning commit must be pushed immediately and ahead/behind checked. Before each commit, reconcile all affected planning files, regenerate canonical state.json and run scripts/check_planning.py; preserve historical evidence.
 
@@ -113,9 +113,11 @@ Retain dependency locks, raw SBOMs, notices, validated derivative and all origin
 
 ## Session continuity
 
-Existing preparation/review/document route audit complete with no findings: [report](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-ROUTE-REVIEW.md). Selected43 Django tests plus14 Gunicorn observations pass57 total/5 checks20.856s. Runtime/source unchanged since b96b665; prior full275-test/exact-source163/21 evidence retained. No further unchanged-scope audit scheduled. Full07-02/03 and commercial/domain/external gates remain pending.
+User corrected excessive context pauses: continue substantive implementation across commits/syncs; a small task/commit is not context pressure. No exact percentage is available. Obsolete HANDOFF.json/.continue-here removed; no pending clear/resume action.
 
-User continued64b4432; old handoff consumed. Saved task11 is complete, not replaced by another speculative audit. No active processes/demo/async jobs. Context-pressure checkpoint under standing instruction; exact percentage unavailable. Clear session and run $gsd-resume-work before further implementation. No approvals, agents, credentials or protected/external operations.
+Staff assigned requests now have stable20-row older-page navigation in HTML/JSON; cursors require current assignment. A new authorized retained-preparation history reuses the existing scope filter, can browse an old granted scope independently of a newer current attachment, and exposes safe metadata only. CORE_LOCAL_PASS5 checks/283 tests (269 Django plus14 Gunicorn),75.493s; source166 files22 templates/no symlinks exact at /nix/store/71rlacdm91c40a1iv98d879z2adzmfzm-shop-python-source. No migration or commercial effect.
+
+Continue staff workflow implementation: add authorized paginated internal review-decision history so decisions older than the20-row request summary remain reachable, preserving original attribution, committed parent review counters and private digest/MFA suppression in the history projection. Reuse existing reviewer/resource permissions and canonical bounded cursors. Do not rerun the completed unchanged-scope audit or pause at commit/task boundaries. All original external/protected and commercial gates remain pending; country/tax stays deferred without repeated requests.
 
 ### Quick Tasks Completed
 
@@ -180,4 +182,5 @@ User continued64b4432; old handoff consumed. Saved task11 is complete, not repla
 | 261023-hn4 | Verify capture status against concurrent local staff revocation | 2026-10-23 | b96b665 | [261023-hn4](./quick/261023-hn4-verify-capture-status-against-concurrent/) |
 | 261023-hr2 | Propose exact protected-offer/domain contract and scoped blockers | 2026-10-23 | f2bcd66 | [261023-hr2](./quick/261023-hr2-resolve-protected-offer-domain-contract-/) |
 | 261023-hvy | Critique protected-offer contract; correct schema and publication ambiguities | 2026-10-23 | 64b4432 | [261023-hvy](./quick/261023-hvy-critique-protected-offer-contract-before/) |
-| 261023-hzz | Audit existing preparation/review/document routes; no findings | 2026-10-23 | — | [261023-hzz](./quick/261023-hzz-audit-existing-preparation-review-and-do/) |
+| 261023-hzz | Audit existing preparation/review/document routes; no findings | 2026-10-23 | e26b21a | [261023-hzz](./quick/261023-hzz-audit-existing-preparation-review-and-do/) |
+| 261023-i7s | Add authorized staff queue and retained preparation pagination | 2026-10-23 | — | [261023-i7s](./quick/261023-i7s-add-authorized-staff-queue-and-retained-/) |

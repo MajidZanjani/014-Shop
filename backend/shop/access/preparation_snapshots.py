@@ -51,6 +51,13 @@ def current_error(grant):
     return None
 
 
+def authorized_history(quotation,grant):
+    """One scope filter for current-page metadata and independent retained history."""
+    return PreparationAssessment.objects.filter(quotation=quotation,version__lte=quotation.preparation_version).filter(
+        Q(business_version=0,business_scope__isnull=True)|Q(business_version=grant.business_scope_version,business_scope__quotation=quotation,
+            business_scope__version=F('business_version'),business_scope__business_snapshot__draft__owner_id=quotation.cart.owner_id))
+
+
 def retained_error(row, grant):
     q=grant.quotation
     if row.version>q.preparation_version:return ('snapshot_unavailable',409)
@@ -120,10 +127,7 @@ def snapshots(request,identity):
                      and (not q.review_version or QuotationReview.objects.filter(quotation=q,version=q.review_version).exists()))
         digest=fingerprint(assessment,snapshot_digest(q)) if can_capture else None
         # Scope-specific list metadata; hidden historical captures are not projected.
-        rows=PreparationAssessment.objects.filter(quotation=q,version__lte=q.preparation_version).filter(
-            Q(business_version=0,business_scope__isnull=True)|Q(business_version=grant.business_scope_version,business_scope__quotation=q,
-                business_scope__version=F('business_version'),business_scope__business_snapshot__draft__owner_id=q.cart.owner_id)
-        ).order_by('-version').values('version','business_version','review_version','created_at')[:20]
+        rows=authorized_history(q,grant).order_by('-version').values('version','business_version','review_version','created_at')[:20]
         context={'quotation':q,'preparation':assessment,'expected_preparation_version':q.preparation_version,
                  'assessment_digest':digest,'request_id':str(uuid.uuid4()),'snapshots':list(rows),'history_limit':20}
         if 'text/html' in request.headers.get('Accept',''):

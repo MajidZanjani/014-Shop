@@ -1,6 +1,6 @@
 """Assigned request scope and internal review history; no commercial approvals."""
 import uuid
-from django.db.models import F
+from django.db.models import F,Q
 from django.views.decorators.http import require_GET
 from django.shortcuts import render
 from shop.catalog.quotation_views import quotation_json
@@ -14,6 +14,14 @@ from shop.catalog.business_scope import current_scope, valid_business, scope_for
 from shop.catalog.business_rules import GROUPS
 from shop.catalog.business_views import LABELS
 
+PAGE_SIZE=20
+
+
+def private_read(response):
+    response['Cache-Control']='no-store';response['Referrer-Policy']='no-referrer';response['Vary']='Cookie'
+    response['Content-Security-Policy']="default-src 'none'; form-action 'none'; frame-ancestors 'none'; base-uri 'none'"
+    return response
+
 def page(request,template,context):
     response=render(request,template,context)
     response['Cache-Control']='no-store';response['Referrer-Policy']='no-referrer'
@@ -22,12 +30,27 @@ def page(request,template,context):
 
 @require_GET
 def quotations(request):
-    if staff_credential(request,recent=True) is None:return reply({'error':'recent_staff_mfa_required'},403)
-    if request.GET:return reply({'error':'unexpected_query'},400)
-    rows=StaffQuotationGrant.objects.filter(user=request.user,quotation__snapshot__cart_id=F('quotation__cart_id')).select_related('quotation__snapshot').order_by('-quotation__created_at','-quotation_id')[:20]
+    if staff_credential(request,recent=True) is None:return private_read(reply({'error':'recent_staff_mfa_required'},403))
+    rows=StaffQuotationGrant.objects.filter(user=request.user,quotation__snapshot__cart_id=F('quotation__cart_id'))
+    if request.GET:
+        if set(request.GET)!={'before'} or len(request.GET.getlist('before'))!=1:
+            return private_read(reply({'error':'invalid_cursor'},400))
+        raw=request.GET['before']
+        try:
+            if len(raw)!=36:raise ValueError('cursor')
+            cursor=uuid.UUID(raw)
+            if str(cursor)!=raw:raise ValueError('cursor')
+        except ValueError:return private_read(reply({'error':'invalid_cursor'},400))
+        anchor=rows.filter(quotation_id=cursor).values('quotation__created_at','quotation_id').first()
+        if anchor is None:return private_read(reply({'error':'not_found'},404))
+        rows=rows.filter(Q(quotation__created_at__lt=anchor['quotation__created_at'])|
+            Q(quotation__created_at=anchor['quotation__created_at'],quotation_id__lt=anchor['quotation_id']))
+    selected=list(rows.select_related('quotation__snapshot').order_by('-quotation__created_at','-quotation_id')[:PAGE_SIZE+1])
+    rows=selected[:PAGE_SIZE]
+    older=str(rows[-1].quotation_id) if len(selected)>PAGE_SIZE else None
     if 'text/html' in request.headers.get('Accept',''):
-        return page(request,'access/staff_quotations.html',{'rows':rows})
-    return reply({'requests':[{'id':str(row.quotation_id),'version':row.quotation.snapshot.version,'state':'requested','review_version':row.quotation.review_version} for row in rows],'limit':20})
+        return private_read(page(request,'access/staff_quotations.html',{'rows':rows,'older':older,'page_size':PAGE_SIZE}))
+    return private_read(reply({'requests':[{'id':str(row.quotation_id),'version':row.quotation.snapshot.version,'state':'requested','review_version':row.quotation.review_version} for row in rows],'limit':PAGE_SIZE,'older':older}))
 
 @require_GET
 def quotation_detail(request,identity):
