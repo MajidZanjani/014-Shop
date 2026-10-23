@@ -1,6 +1,6 @@
 # Next local archive worker boundary — proposed, not implemented
 
-Atomic capture commits one private envelope and one pending/held local intent. Explicit local destination binding is now implemented (07-02-DESTINATION-PARTIAL); no worker, receipt row or lease exists yet. The local-prepared-v1 profile is only a closed adapter type, not a physical destination or provider guarantee. This design must be resolved in code/tests before intent states expand.
+Atomic capture commits one private envelope and one pending/held local intent. Explicit local destination binding and selected fenced claims are implemented (07-02-DESTINATION-PARTIAL,07-02-CLAIM-PARTIAL); no worker loop, receipt-verification row or publication service exists yet. The local-prepared-v1 profile is only a closed adapter type, not a physical destination or provider guarantee. This design must be resolved in code/tests before intent states expand.
 
 ## First resolve destination and durable authorization
 
@@ -40,3 +40,6 @@ Required actual PostgreSQL tests for the authority slice: absent grant cannot cl
 
 
 Current next boundary: detached inspection commits before returning and conveys no future authority. Factor its checks into an internal locked routine for same-transaction claim/completion. Add actual concurrent revocation/expiry/reclaim/stale completion tests before publication; current four inspection tests cover committed-state changes, not all races. No new execution state is implemented.
+
+
+Current implementation boundary: selected fenced claims are implemented (07-02-CLAIM-PARTIAL). Retained claim rows provide30-second bounded leases/generations without changing pending/held intent states; no queue loop, publication or completion exists. Earlier proposed state expansion/automatic claiming remains a proposal. Next bound-root publication/readback outside transactions and same-transaction fenced technical verification.

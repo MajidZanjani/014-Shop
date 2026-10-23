@@ -228,3 +228,22 @@ class ArchiveWorkRevocation(models.Model):
     reason=models.CharField(max_length=32,default='explicit-revocation')
     class Meta:
         constraints=[models.CheckConstraint(condition=models.Q(reason='explicit-revocation'),name='archive_revoke_known_reason')]
+
+
+class ArchiveWorkClaim(models.Model):
+    """Retained bounded local lease; no publication/completion or business effects."""
+    id=models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
+    intent=models.ForeignKey(RequestArchiveIntent,on_delete=models.PROTECT)
+    authorization=models.ForeignKey(ArchiveWorkAuthorization,on_delete=models.PROTECT)
+    generation=models.PositiveIntegerField()
+    token=models.UUIDField(default=uuid.uuid4,editable=False,unique=True)
+    started_at=models.DateTimeField()
+    expires_at=models.DateTimeField()
+    retention_qualified=models.BooleanField(default=False)
+    effects_authorized=models.BooleanField(default=False)
+    class Meta:
+        constraints=[
+            models.UniqueConstraint(fields=['intent','generation'],name='archive_claim_generation_unique'),
+            models.CheckConstraint(condition=models.Q(generation__gte=1,generation__lte=1000000000,retention_qualified=False,effects_authorized=False),name='archive_claim_local_bounds'),
+            models.CheckConstraint(condition=models.Q(expires_at__gt=models.F('started_at'),expires_at__lte=models.F('started_at')+timedelta(seconds=30)),name='archive_claim_bounded_lifetime'),
+        ]

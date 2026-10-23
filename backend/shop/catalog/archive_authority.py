@@ -1,4 +1,4 @@
-"""Explicit local authorization/revocation only. No detached reader or worker."""
+"""Explicit local authorization/revocation and locked source checks."""
 from dataclasses import dataclass
 from datetime import datetime,timedelta,timezone
 import hashlib
@@ -88,49 +88,57 @@ class ActiveAuthorizationReference:
     generation: int
 
 
-def inspect_active_authorization(authorization_id,expected_destination_id):
-    """Point-in-time detached check; no payload return, lease or future authority."""
+def locked_active_authorization(authorization_id,expected_destination_id):
+    """Internal: all authority/source locks remain held by the caller transaction."""
     from django.conf import settings
     from django.contrib.auth import get_user_model
     from django.db.models import F
     from shop.access.models import CustomerIdentity,StaffCredential,StaffQuotationGrant
     from .models import QuotationRequest
     from .request_envelope import source_bytes
-    if connection.in_atomic_block:raise EnvelopeError('authorization_transaction_active')
+    if not connection.in_atomic_block:raise EnvelopeError('authorization_transaction_required')
     if (type(authorization_id) is not uuid.UUID or type(expected_destination_id) is not uuid.UUID
         or settings.SHOP_ENV not in ('local','synthetic') or settings.STORAGE_ADAPTER!='fake'):
         raise EnvelopeError('authorization_unavailable')
     discovered=ArchiveWorkAuthorization.objects.filter(pk=authorization_id).values('authorized_by_id','staff_generation','owner_id','intent_id','intent__envelope_id','intent__envelope__quotation_id').first()
     if discovered is None:raise EnvelopeError('authorization_unavailable')
+    if discovered['staff_generation'] is not None:
+        credential=StaffCredential.objects.select_for_update().filter(user_id=discovered['authorized_by_id'],
+            enabled=True,generation=discovered['staff_generation'],user__is_active=True,user__is_staff=True).first()
+        if credential is None:raise EnvelopeError('authorization_unavailable')
+    elif discovered['authorized_by_id']!=discovered['owner_id']:raise EnvelopeError('authorization_unavailable')
+    # Allow audit foreign-key inserts while blocking account changes.
+    owner=get_user_model().objects.select_for_update(no_key=True).filter(pk=discovered['owner_id'],is_active=True,is_staff=False,is_superuser=False).first()
+    if owner is None or not CustomerIdentity.objects.filter(user=owner).exists():raise EnvelopeError('authorization_unavailable')
+    quotation=QuotationRequest.objects.select_related('cart','snapshot').select_for_update(of=('self','cart')).filter(
+        pk=discovered['intent__envelope__quotation_id'],snapshot__cart_id=F('cart_id'),cart__owner=owner).first()
+    envelope=RequestEnvelope.objects.select_for_update().filter(pk=discovered['intent__envelope_id']).first()
+    intent=RequestArchiveIntent.objects.select_for_update().filter(pk=discovered['intent_id']).first()
+    grant=ArchiveWorkAuthorization.objects.select_for_update().filter(pk=authorization_id).first()
+    if quotation is None or envelope is None or intent is None or grant is None:raise EnvelopeError('authorization_unavailable')
+    if (grant.intent_id!=intent.pk or intent.envelope_id!=envelope.pk or envelope.quotation_id!=quotation.pk
+        or grant.authorized_by_id!=discovered['authorized_by_id'] or grant.staff_generation!=discovered['staff_generation']
+        or grant.owner_id!=owner.pk or envelope.owner_id!=owner.pk or envelope.business_version>quotation.business_version
+        or intent.state!='pending' or intent.destination_id!=expected_destination_id or grant.destination_id!=expected_destination_id
+        or intent.destination_profile!='local-prepared-v1' or intent.evidence_class!='local-synthetic' or intent.evidence_kind!='prepared'
+        or intent.retention_qualified or intent.effects_authorized or grant.retention_qualified or grant.effects_authorized
+        or grant.schema_version!=envelope.schema_version or grant.envelope_sha256!=envelope.sha256 or grant.byte_length!=envelope.byte_length):
+        raise EnvelopeError('authorization_unavailable')
+    if discovered['staff_generation'] is not None:
+        if not StaffQuotationGrant.objects.filter(user_id=grant.authorized_by_id,quotation=quotation,
+            **({'business_scope_version':envelope.business_version} if envelope.business_version else {})).exists():raise EnvelopeError('authorization_unavailable')
+    latest=ArchiveWorkAuthorization.objects.filter(intent=intent).aggregate(value=Max('generation'))['value']
+    now=db_now()
+    if (latest!=grant.generation or now<grant.issued_at or now>=grant.not_after
+        or ArchiveWorkRevocation.objects.filter(authorization=grant).exists()):raise EnvelopeError('authorization_unavailable')
+    raw=source_bytes(quotation,envelope.business_version)
+    if bytes(envelope.payload)!=raw or envelope.sha256!=hashlib.sha256(raw).hexdigest() or envelope.byte_length!=len(raw):raise EnvelopeError('authorization_unavailable')
+    return grant,intent
+
+
+def inspect_active_authorization(authorization_id,expected_destination_id):
+    """Point-in-time detached check; no payload return or future authority."""
+    if connection.in_atomic_block:raise EnvelopeError("authorization_transaction_active")
     with transaction.atomic(durable=True):
-        if discovered['staff_generation'] is not None:
-            credential=StaffCredential.objects.select_for_update().filter(user_id=discovered['authorized_by_id'],
-                enabled=True,generation=discovered['staff_generation'],user__is_active=True,user__is_staff=True).first()
-            if credential is None:raise EnvelopeError('authorization_unavailable')
-        elif discovered['authorized_by_id']!=discovered['owner_id']:raise EnvelopeError('authorization_unavailable')
-        owner=get_user_model().objects.select_for_update().filter(pk=discovered['owner_id'],is_active=True,is_staff=False,is_superuser=False).first()
-        if owner is None or not CustomerIdentity.objects.filter(user=owner).exists():raise EnvelopeError('authorization_unavailable')
-        quotation=QuotationRequest.objects.select_related('cart','snapshot').select_for_update(of=('self','cart')).filter(
-            pk=discovered['intent__envelope__quotation_id'],snapshot__cart_id=F('cart_id'),cart__owner=owner).first()
-        envelope=RequestEnvelope.objects.select_for_update().filter(pk=discovered['intent__envelope_id']).first()
-        intent=RequestArchiveIntent.objects.select_for_update().filter(pk=discovered['intent_id']).first()
-        grant=ArchiveWorkAuthorization.objects.select_for_update().filter(pk=authorization_id).first()
-        if quotation is None or envelope is None or intent is None or grant is None:raise EnvelopeError('authorization_unavailable')
-        if (grant.intent_id!=intent.pk or intent.envelope_id!=envelope.pk or envelope.quotation_id!=quotation.pk
-            or grant.authorized_by_id!=discovered['authorized_by_id'] or grant.staff_generation!=discovered['staff_generation']
-            or grant.owner_id!=owner.pk or envelope.owner_id!=owner.pk or envelope.business_version>quotation.business_version
-            or intent.state!='pending' or intent.destination_id!=expected_destination_id or grant.destination_id!=expected_destination_id
-            or intent.destination_profile!='local-prepared-v1' or intent.evidence_class!='local-synthetic' or intent.evidence_kind!='prepared'
-            or intent.retention_qualified or intent.effects_authorized or grant.retention_qualified or grant.effects_authorized
-            or grant.schema_version!=envelope.schema_version or grant.envelope_sha256!=envelope.sha256 or grant.byte_length!=envelope.byte_length):
-            raise EnvelopeError('authorization_unavailable')
-        if discovered['staff_generation'] is not None:
-            if not StaffQuotationGrant.objects.filter(user_id=grant.authorized_by_id,quotation=quotation,
-                **({'business_scope_version':envelope.business_version} if envelope.business_version else {})).exists():raise EnvelopeError('authorization_unavailable')
-        latest=ArchiveWorkAuthorization.objects.filter(intent=intent).aggregate(value=Max('generation'))['value']
-        now=db_now()
-        if (latest!=grant.generation or now<grant.issued_at or now>=grant.not_after
-            or ArchiveWorkRevocation.objects.filter(authorization=grant).exists()):raise EnvelopeError('authorization_unavailable')
-        raw=source_bytes(quotation,envelope.business_version)
-        if bytes(envelope.payload)!=raw or envelope.sha256!=hashlib.sha256(raw).hexdigest() or envelope.byte_length!=len(raw):raise EnvelopeError('authorization_unavailable')
+        grant,intent=locked_active_authorization(authorization_id,expected_destination_id)
         return ActiveAuthorizationReference(grant.pk,intent.pk,expected_destination_id,grant.generation)
