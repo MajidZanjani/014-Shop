@@ -1,4 +1,7 @@
 """Real PG commit/rollback with synthetic acknowledgement loss, no wire fault claim."""
+from concurrent.futures import ThreadPoolExecutor
+from threading import Event
+from time import monotonic,sleep
 from unittest.mock import patch
 import uuid
 from django.db import connections,OperationalError,transaction
@@ -84,3 +87,40 @@ class ArchiveReconciliationTests(TransactionTestCase):
             with self.assertRaises(EnvelopeError):self.reconcile(old)
         with self.assertRaises(EnvelopeError):reconcile_archive_publication(self.owner_request(),self.intent.pk,uuid.uuid4())
         self.assertEqual(ArchiveWorkClaim.objects.count(),2);self.assertEqual(ArchivePreparedVerification.objects.count(),1)
+
+    def test_reconciliation_waits_for_actual_inflight_verification_commit(self):
+        claim=self.claim(self.authorize());request=self.owner_request()
+        inserted=Event();release=Event();reader_ready=Event();reader_pid={}
+        original_create=ArchivePreparedVerification.objects.create
+        def pause_insert(*args,**kwargs):
+            row=original_create(*args,**kwargs);inserted.set()
+            self.assertTrue(release.wait(timeout=10));return row
+        with BoundPreparedArchive(self.root,self.proof) as archive:
+            def publish():
+                try:return self.publish(claim,archive)
+                finally:connections.close_all()
+            def observe():
+                try:
+                    with connections['default'].cursor() as cursor:
+                        cursor.execute('SELECT pg_backend_pid()');reader_pid['value']=cursor.fetchone()[0]
+                    reader_ready.set();return self.reconcile(claim,request)
+                finally:connections.close_all()
+            with patch.object(ArchivePreparedVerification.objects,'create',pause_insert),ThreadPoolExecutor(max_workers=2) as pool:
+                publisher=pool.submit(publish);self.assertTrue(inserted.wait(timeout=10))
+                reader=pool.submit(observe)
+                try:
+                    self.assertTrue(reader_ready.wait(timeout=10))
+                    deadline=monotonic()+2;waiting=False
+                    while monotonic()<deadline:
+                        with connections['default'].cursor() as cursor:
+                            cursor.execute('SELECT wait_event_type FROM pg_stat_activity WHERE pid=%s',[reader_pid['value']])
+                            row=cursor.fetchone()
+                        if row and row[0]=='Lock':waiting=True;break
+                        sleep(0.01)
+                    self.assertTrue(waiting,'reconciliation must block on the in-flight publication locks')
+                    self.assertFalse(reader.done())
+                finally:release.set()
+                published=publisher.result(timeout=10);observed=reader.result(timeout=10)
+        self.assertEqual(observed.status,'verification_recorded')
+        self.assertEqual(observed.verification_id,published.verification_id)
+        self.assertEqual(ArchivePreparedVerification.objects.count(),1)

@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: active
-last_updated: "2026-10-23T11:07:29.778502+00:00"
-state_head: 6bae131
+last_updated: "2026-10-23T11:09:40.958939+00:00"
+state_head: 9794905
 progress:
   total_phases: 14
   completed_phases: 1
@@ -12,13 +12,13 @@ progress:
 last_activity: 2026-10-23
 current_phase: 07
 current_phase_name: Multi-line cart, quotations, business checkout and acceptance
-stopped_at: Read-only local acknowledgement reconciliation implemented; in-flight lock regression next; Country/tax pending.
-last_activity_desc: Local reconciliation passes238 tests;153 files19 templates;07-02 partial.
+stopped_at: Local reconciliation/in-flight lock regression pass; bounded worker integration next; Country/tax pending.
+last_activity_desc: Local reconciliation passes239 tests;153 files19 templates;07-02 partial.
 ---
 
 # Project State
 
-Updated 2026-10-23T11:07:29.778502+00:00. Canonical current summary; latest evidence: [Plan07-02 acknowledgement reconciliation](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-RECONCILIATION-PARTIAL.md). Customer status: [quick261023-7s8](quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-SUMMARY.md). Prior staff/HTTP evidence remains linked there. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
+Updated 2026-10-23T11:09:40.958939+00:00. Canonical current summary; latest evidence: [Plan07-02 acknowledgement reconciliation](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-RECONCILIATION-PARTIAL.md). Customer status: [quick261023-7s8](quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-SUMMARY.md). Prior staff/HTTP evidence remains linked there. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
 ## Current position
 
@@ -81,17 +81,17 @@ T03/T04 local catalog delivery remains intact; T05 local draft persistence and T
 
 Demo: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/demo.py --backend`; open http://127.0.0.1:4321 (also /support/ and /purchase/simple/).
 
-Checks: Current local reconciliation evidence:238 core-local tests (224 Django plus14 Gunicorn observations),54.699s; owned PostgreSQL18.6/UTF8. Source153 files19 templates exact/allowlisted/no symlinks. Read-only exact-scope reconciliation distinguishes expected-claim verification, other-claim verification and no recorded verification; it never authorizes retries or archive I/O. Actual PG commit/rollback with synthetic acknowledgement failure and reconnect are tested; real transport loss is unqualified. Local publication/verification remains prepared-only with false retention/effect flags. Next: actual concurrent in-flight commit/reconciliation lock test, then remaining process/runtime/recovery qualification before queue integration. Country/tax pending; focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 remains8/18;07-02 partial.
+Checks: Current local reconciliation evidence (runtime9794905):239 core-local tests (225 Django plus14 Gunicorn observations),55.089s; owned PostgreSQL18.6/UTF8. Source153 files19 templates exact/allowlisted/no symlinks. Read-only exact-scope expected/later/no-record reconciliation grants no retry permission or storage I/O. Actual commit/rollback with synthetic acknowledgement faults/reconnect and an observed PostgreSQL lock wait during in-flight commit are tested. Real transport loss/process/outage/off-host/provider qualification remains pending. No automated queue loop or business effects; retention/effect flags false. Next: inspect existing worker/outbox entrypoint for bounded local integration; runtime/recovery qualification and production activation remain separately gated. Country/tax pending; focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 remains8/18;07-02 partial.
 
 User review, 2026-10-22: **previous catalog demo checked and approved** (user: “all checked and approved”). See task evidence for scope. Verification/save-resume also passed user review (“all works fine”, 2026-10-22). Local multi-line cart demo approved by user (“approved”, 2026-10-22). Detailed browser/accessibility qualification and commercial/release gates remain pending.
 
 ## Exact next action
 
-Current local quotation/staff/status/business slices await human review. Next action: Test actual in-flight commit/reconciliation locking, then remaining process/runtime/recovery qualification before worker integration. Country/tax and commercial effects remain gated. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
+Current local quotation/staff/status/business slices await human review. Next action: Inspect existing worker/outbox entrypoint for bounded local integration; keep independent runtime/recovery qualification and production gates pending. Country/tax and commercial effects remain gated. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
 
 User instruction2026-10-23: **sync to configured origin/main after every commit**, using ordinary fetch/non-force push and checking ahead/behind. This applies to implementation and planning commits. Every implementation and planning commit must be pushed immediately and ahead/behind checked. Before each commit, reconcile all affected planning files, regenerate canonical state.json and run scripts/check_planning.py; preserve historical evidence.
 
-Planning audit2026-10-23: [F-00/F-01/F-02 report](audits/2026-10-23-local-workflow.md). All three findings remain fixed; recorded audit evidence147 retains its scope. Current combined lane passes238 core-local tests; prior journey and audit evidence retain their recorded scopes. Country/tax answers stay deferred.
+Planning audit2026-10-23: [F-00/F-01/F-02 report](audits/2026-10-23-local-workflow.md). All three findings remain fixed; recorded audit evidence147 retains its scope. Current combined lane passes239 core-local tests; prior journey and audit evidence retain their recorded scopes. Country/tax answers stay deferred.
 
 Audit completion: all three local findings fixed; final core-local147 tests and source package116 files/fifteen templates pass. Full report: [local workflow audit](audits/2026-10-23-local-workflow.md). Current phase7/last complete1 and all acceptance gates unchanged.
 
@@ -103,7 +103,7 @@ Retain dependency locks, raw SBOMs, notices, validated derivative and all origin
 
 ## Session continuity
 
-Session continued with read-only acknowledgement reconciliation and actual PG commit/rollback plus synthetic acknowledgement fault/reconnect tests. Next in-flight commit lock regression. Country/tax pending, focus7/completed1; no exact context percentage supplied or claimed.
+Session continued after9794905 sync with actual in-flight PostgreSQL reconciliation lock regression;239 local tests. Next bounded local worker integration, independent runtime/recovery qualification still gated. Country/tax pending, focus7/completed1; no exact context percentage supplied or claimed.
 
 ### Quick Tasks Completed
 
@@ -166,4 +166,4 @@ Session continued with read-only acknowledgement reconciliation and actual PG co
 | 261023-cyg | Fix audit F-01 missing cart snapshot ownership recheck | 2026-10-23 | 83e8464 | [261023-cyg-fix-customer-form-audit-f-01-by-rechecki](./quick/261023-cyg-fix-customer-form-audit-f-01-by-rechecki/) |
 | 261023-d1r | Show exact committed and current cart revisions after no-JavaScript retries | 2026-10-23 | 6171d3c | [261023-d1r-show-exact-committed-revision-and-curren](./quick/261023-d1r-show-exact-committed-revision-and-curren/) |
 
-Current local reconciliation evidence:238 core-local tests (224 Django plus14 Gunicorn observations),54.699s; owned PostgreSQL18.6/UTF8. Source153 files19 templates exact/allowlisted/no symlinks. Read-only exact-scope reconciliation distinguishes expected-claim verification, other-claim verification and no recorded verification; it never authorizes retries or archive I/O. Actual PG commit/rollback with synthetic acknowledgement failure and reconnect are tested; real transport loss is unqualified. Local publication/verification remains prepared-only with false retention/effect flags. Next: actual concurrent in-flight commit/reconciliation lock test, then remaining process/runtime/recovery qualification before queue integration. Country/tax pending; focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 remains8/18;07-02 partial.
+Current local reconciliation evidence (runtime9794905):239 core-local tests (225 Django plus14 Gunicorn observations),55.089s; owned PostgreSQL18.6/UTF8. Source153 files19 templates exact/allowlisted/no symlinks. Read-only exact-scope expected/later/no-record reconciliation grants no retry permission or storage I/O. Actual commit/rollback with synthetic acknowledgement faults/reconnect and an observed PostgreSQL lock wait during in-flight commit are tested. Real transport loss/process/outage/off-host/provider qualification remains pending. No automated queue loop or business effects; retention/effect flags false. Next: inspect existing worker/outbox entrypoint for bounded local integration; runtime/recovery qualification and production activation remain separately gated. Country/tax pending; focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 remains8/18;07-02 partial.
