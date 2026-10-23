@@ -4,7 +4,7 @@ Scope: access a7d085f, owner history120f0a5, saved cart691ce9f and deliberate qu
 
 | ID | Finding | Severity | Classification | Status |
 |---|---|---|---|---|
-| F-01 | Parent cart ownership read followed by snapshot read without owner recheck in cart API/editor and quotation preview | medium | auto-fixable; concrete queries and deterministic PostgreSQL regression | fixed; quick261023-cyg |
+| F-01 | Parent cart ownership read followed by snapshot read without owner recheck in cart API/editor and quotation preview | medium | auto-fixable; concrete queries and deterministic PostgreSQL regression | fixed83e8464; quick261023-cyg |
 
 Reviewed shared single-use access, local/fake gates, strict form fields/body/methods/query parsing, session/CSRF rotation, current/historical cart commands, owner cursors, snapshot/key lock/retry arbitration, closed review projections, fixed redirects, template escaping and private headers. Existing/new request-response tests cover those boundaries. No other concrete source finding identified in this scoped review; this is not independent browser/security certification.
 

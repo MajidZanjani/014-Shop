@@ -92,7 +92,7 @@ def cart_editor(request):
             value,status=command(request)
             if value is not None:result,status=store_cart(request.user,value)
             if status in (200,201):
-                request.session['cart_saved_notice']=True
+                request.session['cart_saved_notice']={'version':result['version'],'replayed':status==200}
                 response=HttpResponse(status=303);response['Location']=PATH
                 return private(response)
             error={404:'The saved line or cart revision is unavailable.',409:'The cart or catalog changed. Reload and review before submitting a new change.',422:'Check the configuration, support quantity and cart limits.'}.get(status,'The request was rejected.')
@@ -110,10 +110,14 @@ def cart_editor(request):
         edit=next((line for line in value['lines'] if line['id']==target),None)
         if edit is None:return private(reply({'error':'not_found'},404))
     items=[dict(line,remove_id=str(uuid.uuid4()),save_id=str(uuid.uuid4())) for line in value['lines']]
+    saved=request.session.pop('cart_saved_notice',None)
+    if (not isinstance(saved,dict) or set(saved)!={'version','replayed'}
+        or type(saved['version']) is not int or not 1<=saved['version']<=1000000000
+        or type(saved['replayed']) is not bool):saved=None
     response=render(request,'catalog/cart_editor.html',{
         'cart':value,'items':items,'ip_form':IPForm(initial=edit['configuration'] if edit and edit['kind']=='ip' else None),
         'ip_action':'save_ip' if edit and edit['kind']=='ip' else 'add_ip',
         'ip_line_id':edit['id'] if edit and edit['kind']=='ip' else str(uuid.uuid4()),
         'ip_request_id':str(uuid.uuid4()),'support_request_id':str(uuid.uuid4()),'support_line_id':str(uuid.uuid4()),
-        'revision':CATALOG['revision'],'error':error,'saved':request.session.pop('cart_saved_notice',False)},status=status)
+        'revision':CATALOG['revision'],'error':error,'saved':saved},status=status)
     return private(response)

@@ -67,6 +67,12 @@ class CartEditorTests(TransactionTestCase):
         next_form=self.form('save_support',line=original['line_id']);next_form['quantity']='3'
         self.assertEqual(self.post(next_form).status_code,303)
         with patch.dict(CATALOG,revision='f'*64):self.assertEqual(self.post(original).status_code,303)
+        self.assertEqual(dict(self.browser.session)['cart_saved_notice'],{'version':1,'replayed':True})
+        page=self.browser.get(PATH)
+        self.assertContains(page,'Earlier cart submission confirmed at revision 1')
+        self.assertContains(page,'Current cart revision 2 is shown below.')
+        self.assertContains(page,'Later changes remain saved.')
+        self.assertNotContains(self.browser.get(PATH),'Earlier cart submission confirmed')
         self.assertEqual(self.cart()['version'],2)
         self.assertEqual(self.cart()['lines'][0]['quantity'],3)
         self.assertEqual(CartSnapshot.objects.count(),2)
@@ -76,6 +82,15 @@ class CartEditorTests(TransactionTestCase):
         self.assertEqual(self.post(removed).status_code,303)
         self.assertEqual(self.cart()['lines'],[])
         self.assertEqual(CartSnapshot.objects.count(),3)
+        page=self.browser.get(PATH)
+        self.assertContains(page,'Earlier cart submission confirmed at revision 3')
+        self.assertNotContains(page,'Later changes remain saved.')
+        for notice in (True,{'version':True,'replayed':True},{'version':1,'replayed':'PRIVATE_NOTICE'}, {'version':1,'replayed':False,'raw':'PRIVATE_NOTICE'}):
+            session=self.browser.session;session['cart_saved_notice']=notice;session.save()
+            response=self.browser.get(PATH)
+            self.assertEqual(response.status_code,200)
+            self.assertNotContains(response,'PRIVATE_NOTICE')
+            self.assertNotContains(response,'Cart change saved at revision')
 
     def test_invalid_ip_domains_support_values_and_max_lines_never_save(self):
         for updates in ({'vendor':'amd'},{'families':['not-a-family']},{'fixed_nodes':'0'},
