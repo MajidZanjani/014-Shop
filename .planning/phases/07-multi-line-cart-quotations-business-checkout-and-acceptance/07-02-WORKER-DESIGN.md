@@ -42,3 +42,6 @@ Required actual PostgreSQL tests for the authority slice: absent grant cannot cl
 Current next boundary: detached inspection commits before returning and conveys no future authority. Factor its checks into an internal locked routine for same-transaction claim/completion. Add actual concurrent revocation/expiry/reclaim/stale completion tests before publication; current four inspection tests cover committed-state changes, not all races. No new execution state is implemented.
 
 Current runtime now includes selected bound-root publication/readback and fenced technical prepared verification; see07-02-PUBLICATION-PARTIAL. Earlier proposed worker/claim/state descriptions are historical design, not a statement that current claims/publication are absent. No automated queue loop or domain completion/qualified retention exists.
+
+
+Current read-only acknowledgement reconciliation is implemented per07-02-RECONCILIATION-PARTIAL. Expected/later/no-record categories never grant work or infer absent physical bytes. Remaining qualification includes in-flight lock interleaving, actual transport/process/runtime/recovery; no automated queue loop.

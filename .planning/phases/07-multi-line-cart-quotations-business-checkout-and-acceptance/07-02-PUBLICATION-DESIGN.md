@@ -19,3 +19,6 @@ If acknowledgement is lost after filesystem publication but before database veri
 ## Required tests before implementation is called complete
 
 Actual PostgreSQL and owned disposable local roots: success with exact reopened bytes; assert connection.in_atomic_block is false in every adapter callback; wrong destination before I/O; changed marker/root during I/O; corrupt/missing/wrong receipt/blob; busy archive; failure before/after file and directory sync; publication success followed by lost acknowledgement; database rollback after publication; grant/private-scope/account/ownership/source revocation during I/O; lease expiry and deterministic reclaim while an old publisher is paused; stale completion denied; competing verification inserts retain one exact record; no deletion of retained files/history; all effect/qualification flags false. These are proposed checks, not executed evidence. Independent process/outage/off-host/provider/production tests remain separate gates.
+
+
+Current reconciliation subset:07-02-RECONCILIATION-PARTIAL implements current-scope read-only acknowledgement observation with actual PostgreSQL commit/rollback and explicitly synthetic driver-boundary acknowledgement faults/reconnect. This does not qualify real wire loss/process/outage/off-host behavior or authorize retry.
