@@ -37,8 +37,12 @@ def review_json(row,private_scope_version=0):
             'mfa_verified_at':row.mfa_verified_at.isoformat(),'created_at':row.created_at.isoformat()}
 
 
+def history_rows(quotation):
+    return QuotationReview.objects.filter(quotation=quotation,version__lte=quotation.review_version).order_by('-version')
+
+
 def history(quotation):
-    return QuotationReview.objects.filter(quotation=quotation,version__lte=quotation.review_version).order_by('-version')[:20]
+    return history_rows(quotation)[:20]
 
 
 def result(request,quotation,row,created):

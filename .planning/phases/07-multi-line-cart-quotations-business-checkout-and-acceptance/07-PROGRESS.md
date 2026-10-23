@@ -26,3 +26,5 @@ Offer-contract critique complete with two design corrections; no executable doma
 Existing preparation/review/document audit complete:07-ROUTE-REVIEW, no findings;57 selected tests/observations pass20.856s. No runtime changes; full275-test evidence unchanged. No new same-scope audit scheduled. Original domain inputs/acceptance gates remain pending; canonical next gates in STATE.
 
 Staff queue and authorized retained-preparation history implemented;283 tests/observations75.493s, exact source166/22. See quick261023-i7s. Continuing review-history navigation under corrected no-routine-pause policy; full phase gates/counts unchanged.
+
+Full staff review-decision history navigation delivered;288 tests77.696s, source168/23 exact. See quick261023-iet. Next independent typed fake-bank boundary; source permits synthetic flows with live tax/legal values pending. Full07 acceptance/counts unchanged; no routine pause.

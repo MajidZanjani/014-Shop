@@ -1,5 +1,6 @@
 """Assigned request scope and internal review history; no commercial approvals."""
 import uuid
+import re
 from django.db.models import F,Q
 from django.views.decorators.http import require_GET
 from django.shortcuts import render
@@ -21,6 +22,14 @@ def private_read(response):
     response['Cache-Control']='no-store';response['Referrer-Policy']='no-referrer';response['Vary']='Cookie'
     response['Content-Security-Policy']="default-src 'none'; form-action 'none'; frame-ancestors 'none'; base-uri 'none'"
     return response
+
+
+def before_version(query):
+    if not query:return None
+    if set(query)!={'before'} or len(query.getlist('before'))!=1:raise ValueError('cursor')
+    raw=query['before']
+    if re.fullmatch('[1-9][0-9]{0,9}',raw) is None or int(raw)>1000000000:raise ValueError('cursor')
+    return int(raw)
 
 def page(request,template,context):
     response=render(request,template,context)

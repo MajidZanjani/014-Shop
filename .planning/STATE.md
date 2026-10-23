@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: executing
-last_updated: "2026-10-23T13:14:50.855392+00:00"
-state_head: b96b665
+last_updated: "2026-10-23T13:23:55.955951+00:00"
+state_head: 4063465
 progress:
   total_phases: 14
   completed_phases: 1
@@ -12,13 +12,13 @@ progress:
 last_activity: 2026-10-23
 current_phase: 07
 current_phase_name: Multi-line cart, quotations, business checkout and acceptance
-stopped_at: Staff queue/preparation history verified; continuing review-history implementation.
-last_activity_desc: Implemented staff queue/history navigation;283 local tests pass; continuing.
+stopped_at: Review history verified; continuing independent synthetic bank boundary.
+last_activity_desc: Delivered complete staff review navigation;288 local tests pass; continuing.
 ---
 
 # Project State
 
-Updated 2026-10-23T13:14:50.855392+00:00. Canonical current summary; latest evidence: [staff queue/history implementation](quick/261023-i7s-add-authorized-staff-queue-and-retained-/261023-i7s-SUMMARY.md). Prior observation/process evidence retains its historical scope. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
+Updated 2026-10-23T13:23:55.955951+00:00. Canonical current summary; latest evidence: [staff review history](quick/261023-iet-expose-authorized-paginated-internal-rev/261023-iet-SUMMARY.md). Prior observation/process evidence retains its historical scope. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
 ## Current position
 
@@ -29,6 +29,8 @@ Updated 2026-10-23T13:14:50.855392+00:00. Canonical current summary; latest evid
 T03/T04 local catalog delivery remains intact; T05 local draft persistence and T06 synthetic verified access/save-resume are implemented. T07 now has the owner-scoped versioned multi-line draft cart; protected quotation-request capture now retains exact owner snapshots and reconciles duplicate/retried submissions. Local staff password/private-code rehearsal, assigned quotation reads and append-only-by-API internal review decisions are implemented. Owner history/detail now show safe current review status and corrections without staff/MFA metadata. Private owner partial business drafts now preserve nineteen exact source groups, helpers/defaults and versioned snapshots; country/tax choices and applicability stay pending. Explicit immutable business/quotation revision binding and exact-scope private staff grants are implemented. Protected current-source document/declaration previews now show applicable pending document sets for retained IP/support/mixed scopes, without acceptance or consent writes. Owner-only bounded quotation history now preserves capture/attachment/review-correction metadata without private values or staff attribution. Staff exact-scope advisory offer prerequisites now distinguish internal review evidence from missing commercial inputs; all commercial actions remain disabled. Explicit staff captures now retain attributed versioned internal preparation assessments with CAS/retry arbitration and exact historical permissions. Authorized retained/current comparisons now report fixed safe delta categories with strict null handling and both-scope permissions; equality never approves an offer. Real staff MFA/delivery/recovery and approved offers remain pending. Full phase acceptance remains pending. Phase02 remains 8/18 complete with all ten incomplete qualification/implementation records preserved. Only Phase01 is fully complete: 1/14 = rounded 7%. That is completed-phase progress, not engineering effort. Existing planned records remain 11/24; later phase acceptance is not claimed from quick-task implementation.
 
 ## Delivered behavior
+
+- Staff queue and retained preparation/review history now have bounded older/newest navigation. Exact current and historical permissions remain distinct; review history preserves attribution without private digests/MFA evidence.
 
 - Exact retained capture GET observes only committed database facts using shared validation under producer locks. No writes, archive I/O or work authority; absent and inconsistent scopes stay distinct.
 
@@ -91,13 +93,13 @@ T03/T04 local catalog delivery remains intact; T05 local draft persistence and T
 
 Demo: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/demo.py --backend`; open http://127.0.0.1:4321 (also /support/ and /purchase/simple/).
 
-Checks:283 core-local tests/observations pass (269 Django plus14 Gunicorn),5 checks,75.493s on owned PostgreSQL18.6/UTF8;0012 application/no-drift pass. Exact source /nix/store/71rlacdm91c40a1iv98d879z2adzmfzm-shop-python-source166 files22 templates/no symlinks. No migration; frontend/proxy unchanged/not rerun. Full human/browser/real-MFA/commercial/runtime/provider/off-host/recovery acceptance remains pending.
+Checks:288 core-local tests/observations pass (274 Django plus14 Gunicorn),5 checks,77.696s on owned PostgreSQL18.6/UTF8;0012 application/no-drift pass. Exact source /nix/store/7f161hk8xg4anvmxhwlygvzgvd8fg2np-shop-python-source168 files23 templates/no symlinks. No migration; frontend/proxy unchanged/not rerun. Full human/production-MFA/commercial/runtime/provider/off-host/recovery qualification remains pending.
 
 User review, 2026-10-22: **previous catalog demo checked and approved** (user: “all checked and approved”). See task evidence for scope. Verification/save-resume also passed user review (“all works fine”, 2026-10-22). Local multi-line cart demo approved by user (“approved”, 2026-10-22). Detailed browser/accessibility qualification and commercial/release gates remain pending.
 
 ## Exact next action
 
-Continue staff workflow implementation: add authorized paginated internal review-decision history so decisions older than the20-row request summary remain reachable, preserving original attribution, committed parent review counters and private digest/MFA suppression in the history projection. Reuse existing reviewer/resource permissions and canonical bounded cursors. Do not rerun the completed unchanged-scope audit or pause at commit/task boundaries.
+Implement the independent typed local-synthetic bank-adapter boundary and durable fake-provider observations: explicit synthetic-only capabilities, exact merchant/currency/amount/reference correlation, key/reference idempotency and lookup after a timeout occurring after the fake operation commits. Keep worker Probe/FakeReceipt unchanged; no approved order, real-bank capability, financial confirmation, entitlement or dispatch authorization is inferred. SourceT07 permits synthetic flows while live tax/legal values remain pending. Continue across commits without routine context pauses.
 
 User instruction2026-10-23: **sync to configured origin/main after every commit**, using ordinary fetch/non-force push and checking ahead/behind. This applies to implementation and planning commits. Every implementation and planning commit must be pushed immediately and ahead/behind checked. Before each commit, reconcile all affected planning files, regenerate canonical state.json and run scripts/check_planning.py; preserve historical evidence.
 
@@ -113,11 +115,11 @@ Retain dependency locks, raw SBOMs, notices, validated derivative and all origin
 
 ## Session continuity
 
-User corrected excessive context pauses: continue substantive implementation across commits/syncs; a small task/commit is not context pressure. No exact percentage is available. Obsolete HANDOFF.json/.continue-here removed; no pending clear/resume action.
+User rejected excessive context-clear pauses; continue substantive implementation across commits/syncs. No exact percentage is available and task completion is not context pressure. No clear/resume action is pending.
 
-Staff assigned requests now have stable20-row older-page navigation in HTML/JSON; cursors require current assignment. A new authorized retained-preparation history reuses the existing scope filter, can browse an old granted scope independently of a newer current attachment, and exposes safe metadata only. CORE_LOCAL_PASS5 checks/283 tests (269 Django plus14 Gunicorn),75.493s; source166 files22 templates/no symlinks exact at /nix/store/71rlacdm91c40a1iv98d879z2adzmfzm-shop-python-source. No migration or commercial effect.
+Staff can browse all retained internal review decisions through stable20-row HTML/JSON history with original reviewer attribution. The route shares the existing committed review-counter queryset, parent assignment/consistency and canonical bounded version cursor; it omits private digests, business values and MFA evidence, including after a private-business grant is withdrawn. CORE_LOCAL_PASS5 checks/288 tests (274 Django plus14 Gunicorn),77.696s; exact source /nix/store/7f161hk8xg4anvmxhwlygvzgvd8fg2np-shop-python-source168 files23 templates/no symlinks. No migration/commercial effect.
 
-Continue staff workflow implementation: add authorized paginated internal review-decision history so decisions older than the20-row request summary remain reachable, preserving original attribution, committed parent review counters and private digest/MFA suppression in the history projection. Reuse existing reviewer/resource permissions and canonical bounded cursors. Do not rerun the completed unchanged-scope audit or pause at commit/task boundaries. All original external/protected and commercial gates remain pending; country/tax stays deferred without repeated requests.
+Implement the independent typed local-synthetic bank-adapter boundary and durable fake-provider observations: explicit synthetic-only capabilities, exact merchant/currency/amount/reference correlation, key/reference idempotency and lookup after a timeout occurring after the fake operation commits. Keep worker Probe/FakeReceipt unchanged; no approved order, real-bank capability, financial confirmation, entitlement or dispatch authorization is inferred. SourceT07 permits synthetic flows while live tax/legal values remain pending. Continue across commits without routine context pauses. No active test/demo/async jobs at verification completion. All actual external/protected/live commercial gates remain intact.
 
 ### Quick Tasks Completed
 
@@ -183,4 +185,5 @@ Continue staff workflow implementation: add authorized paginated internal review
 | 261023-hr2 | Propose exact protected-offer/domain contract and scoped blockers | 2026-10-23 | f2bcd66 | [261023-hr2](./quick/261023-hr2-resolve-protected-offer-domain-contract-/) |
 | 261023-hvy | Critique protected-offer contract; correct schema and publication ambiguities | 2026-10-23 | 64b4432 | [261023-hvy](./quick/261023-hvy-critique-protected-offer-contract-before/) |
 | 261023-hzz | Audit existing preparation/review/document routes; no findings | 2026-10-23 | e26b21a | [261023-hzz](./quick/261023-hzz-audit-existing-preparation-review-and-do/) |
-| 261023-i7s | Add authorized staff queue and retained preparation pagination | 2026-10-23 | — | [261023-i7s](./quick/261023-i7s-add-authorized-staff-queue-and-retained-/) |
+| 261023-i7s | Add authorized staff queue and retained preparation pagination | 2026-10-23 | 4063465 | [261023-i7s](./quick/261023-i7s-add-authorized-staff-queue-and-retained-/) |
+| 261023-iet | Paginate all assigned internal review decisions with safe attribution | 2026-10-23 | — | [261023-iet](./quick/261023-iet-expose-authorized-paginated-internal-rev/) |

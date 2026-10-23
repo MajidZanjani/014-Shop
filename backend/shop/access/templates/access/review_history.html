@@ -1,0 +1,7 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Internal review history</title></head><body><main>
+<h1>Internal review history</h1><p>Request {{ identity }}. Showing up to {{ page_size }} retained decisions.</p>
+<p>Corrections retain earlier decisions and their original reviewers. These internal decisions do not approve an offer or grant rights, payment or support credit. Private business details require their separate exact-scope permission.</p>
+<ol>{% for row in items %}<li>Review revision {{ row.version }} · Business scope {{ row.business_version }} · {{ row.label }} · Reviewer {{ row.reviewer_id }} · {{ row.created_at }}</li>{% empty %}<li>No retained decisions on this page.</li>{% endfor %}</ol>
+<nav aria-label="Internal review history pages">{% if older %}<a href="?before={{ older }}">Older review decisions</a> · {% endif %}<a href="/staff/quotation-requests/{{ identity }}/reviews/history/">Newest decisions</a></nav>
+<p><a href="/staff/quotation-requests/{{ identity }}/">Request details and current review</a> · <a href="/staff/quotation-requests/">Assigned requests</a></p>
+</main></body></html>

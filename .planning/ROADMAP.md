@@ -12,7 +12,7 @@
 
 **Last fully completed phase:** 1. Phases2–6 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase7 work while those earlier checks remain open. Completed phases remain1/14 (rounded7%); planned records11/24. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
 
-**Current activity:** Implemented older assigned-request and exact-scope retained-preparation navigation;283 local tests pass. [Evidence](quick/261023-i7s-add-authorized-staff-queue-and-retained-/261023-i7s-SUMMARY.md). Continuing internal review-history navigation; no automatic task/commit pauses. Canonical evidence/next action:STATE.md. Full07-02/03 gates and counts unchanged.
+**Current activity:** Completed staff queue/preparation/review history navigation;288 local tests pass. [Evidence](quick/261023-iet-expose-authorized-paginated-internal-rev/261023-iet-SUMMARY.md). Continuing independent typed synthetic-bank boundary while actual commercial/tax/legal inputs remain pending. Canonical evidence/next action:STATE.md; no per-task context pauses. Phase/record counts unchanged.
 
 Before every commit, reconcile all affected planning status references, regenerate canonical state.json and run `python3 scripts/check_planning.py`; commit then sync origin/main. Historical sources/evidence remain scoped to their dates.
 

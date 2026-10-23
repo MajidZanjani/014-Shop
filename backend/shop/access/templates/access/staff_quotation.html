@@ -22,6 +22,7 @@ IP · Vendor: {{ line.configuration.vendor }} · Families: {{ line.configuration
 <p>If the response is lost, resubmit this same form. A changed review requires reloading and reviewing the current history.</p>
 {% elif not catalog_current %}<p>The catalogue changed. A new current request is required before recording another decision; existing history is retained.</p>{% endif %}
 <p>Showing up to 20 most recent decisions.</p>
+<p><a href="/staff/quotation-requests/{{ quotation.id }}/reviews/history/">Browse all internal review decisions</a></p>
 <ol>{% for review in reviews %}<li>Revision {{ review.version }} · Business scope {{ review.business_version }} · {{ review.get_decision_display }} · Reviewer {{ review.reviewer_id }} · {{ review.created_at }}</li>{% empty %}<li>No decisions recorded.</li>{% endfor %}</ol></section>
 <p><a href="/staff/quotation-requests/{{ quotation.id }}/preparation/">Review offer preparation prerequisites</a></p>
 <p><a href="/staff/quotation-requests/{{ quotation.id }}/preparation-snapshots/history/">Browse authorized retained preparation history</a></p>
