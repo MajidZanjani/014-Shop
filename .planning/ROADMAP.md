@@ -423,3 +423,5 @@ Keep public bytes in shop-owned OVH Object Storage through a fixed verified HTTP
 | 12. Backups, operating alerts and financial/licensing restore rehearsal | 0 / not planned | Not started | — |
 | 13. Integrated product, access, payment and deployment acceptance | 0 / not planned | Not started | — |
 | 14. Release handover and separately scoped live activation | 0 / not planned | Not started | — |
+
+Latest local journey implementation: `8e76c27` (149 core-local tests); development focus7, last fully completed1. Registry/planning references reconciled 2026-10-23T07:57:12.497438+00:00. Phase02/full commercial acceptance unchanged.

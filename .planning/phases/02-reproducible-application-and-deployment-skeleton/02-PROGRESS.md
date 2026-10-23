@@ -40,3 +40,5 @@ GSD parsing was also stale-prone: the old progress table omitted the canonical C
 
 
 Latest application evidence: [supported-route journeys](../../quick/261023-atf-exercise-synthetic-customer-to-staff-quo/261023-atf-SUMMARY.md),149 core-local tests; prior audit closed. Development focus7 differs from last-completed1; Phase02 remains8/18 with ten open qualification/implementation records. No Phase02 acceptance promoted.
+
+Latest local journey implementation: `8e76c27` (149 core-local tests); development focus7, last fully completed1. Registry/planning references reconciled 2026-10-23T07:57:12.497438+00:00. Phase02/full commercial acceptance unchanged.

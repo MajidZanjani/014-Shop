@@ -350,3 +350,7 @@ F-00 F-01 F-02 fixed and local audit complete; core-local147 passes. Remaining: 
 ## 2026-10-23T07:56:23.904131+00:00 — supported-route customer/staff journey
 
 Quick261023-atf verifies mixed/support-only local flows from new customer verification and operator-provisioned staff to cart/request/business attachment/review/preparation/correction/compare/revocation/logout, with CSRF and real PG/UTF8.149 core-local tests pass; four negative planning-drift cases reject; source package117 files/fifteen templates checked. No forced login/direct domain fixture writes, real delivery/manual credentials/providers or new full-phase acceptance. Planning labels explicitly distinguish development focus7/last-completed1. Country/tax deferred. Next: implement a Django no-JavaScript customer access entry using the existing local captured-verification flow, without real mail or new membership scope.
+
+## 2026-10-23T07:57:12.497438+00:00 — journey registry synchronization
+
+Implementation8e76c27 and its live planning changes committed/synced. Canonical quick registry now references that exact implementation hash. All affected live references reviewed, canonical state.json regenerated, planning consistency guard required before this documentation commit. Development focus7/last fully complete1; counts and gates unchanged.

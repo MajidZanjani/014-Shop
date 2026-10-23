@@ -1,6 +1,7 @@
 ---
 quick_id: 261023-atf
 status: complete
+implementation_commit: 8e76c27cb4258bbe604b01437945ffaef78cdff0
 ---
 # Supported-route customer-to-staff journey
 
@@ -21,3 +22,5 @@ Flows exercise uncertain retries, Unicode partial business/helper resolution, ex
 Progress unchanged:1/14 fully completed phases (rounded7%),10/20 planned records, Phase02 remains8/18. Country/tax answers, current human/browser reviews, actual delivery/staff MFA/recovery, approved commercial inputs/acceptance/order conversion and full release gates remain pending. No FULL_PASS, hosted CI or off-host outage/recovery claim.
 
 Next local slice: Django no-JavaScript customer access entry using existing captured verification flow, with strict CSRF/body/privacy/session handling and no real delivery or new membership scope. This addresses a remaining fallback/access prerequisite without waiting for Country/tax answers. Keep all commercial gates closed.
+
+Implementation 8e76c27 was immediately synced to origin/main with0/0 ahead/behind. Registry completion also reconciles live planning before commit and must be immediately synced.
