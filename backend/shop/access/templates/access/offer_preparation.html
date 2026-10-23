@@ -1,0 +1,18 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Offer preparation prerequisites</title></head><body><main>
+<h1>Offer preparation prerequisites</h1>
+<p>Request {{ preparation.quotation_id }} · Captured cart revision {{ preparation.cart_version }} · Business scope {{ preparation.business.scope_version }} · Latest review revision {{ preparation.latest_review_version }}</p>
+<p>This read-only assessment does not create or approve an offer. Internal review readiness is separate from commercial approval. All offer creation, publication, acceptance and payment remain disabled.</p>
+<p>Review evidence: {{ preparation.review.label }} · Profile {{ preparation.profile }}</p>
+<h2>Missing prerequisites</h2><ul>{% for row in preparation.blockers %}<li>{{ row.label }} — {{ row.state }}</li>{% endfor %}</ul>
+<h2>Attached business revision</h2><p>State {{ preparation.business.state }} · Saved revision {{ preparation.business.draft_version|default_if_none:'unavailable' }}</p>
+<ul>{% for field in preparation.business.missing_required %}<li>{{ field.label }} — missing</li>{% endfor %}</ul>
+<p>Country/tax choices are explicitly deferred. Business values are available only through the separately authorized private business view.</p>
+<h2>Per-line commercial inputs</h2><ol>{% for line in preparation.lines %}<li>{{ line.kind }} · Line {{ line.line_id }} · Quantity {{ line.quantity }}
+{% if line.kind == 'ip' %}<p>Vendor {{ line.vendor }} · Term {{ line.term }} · Host binding pending</p>{% endif %}
+{% if line.quotation_required %}<p>Higher-volume quotation review required.</p>{% endif %}
+<ul>{% for row in line.inputs %}<li>{{ row.label }} — pending</li>{% endfor %}</ul></li>{% empty %}<li>Captured lines unavailable for assessment.</li>{% endfor %}</ol>
+<h2>Applicable document versions</h2><ul>{% for row in preparation.document_requirements %}<li>{{ row.title }} — approved text and version pending</li>{% empty %}<li>Document requirements unavailable; source review required.</li>{% endfor %}</ul>
+<p>Money: EUR draft intent; subtotal, tax and total remain unknown. Quote-validity and payment deadlines remain unknown. No values are treated as zero.</p>
+<p>Preview definition revision {{ preparation.definition_revision }}</p>
+<p><a href="/staff/quotation-requests/{{ preparation.quotation_id }}/">Return to captured request</a> · <a href="/staff/quotation-requests/">Assigned requests</a></p>
+</main></body></html>
