@@ -8,11 +8,11 @@
 
 ## Current implementation activity — 2026-10-23
 
-**Current phase:** 7 — Multi-line cart, quotations, business checkout and acceptance. Local implementation is in progress; this is not full phase acceptance.
+**Current development focus:** 7 — Multi-line cart, quotations, business checkout and acceptance. Local implementation is in progress; this is not full phase acceptance.
 
-**Last fully completed phase:** 1. Completed phases remain1/14 (rounded7%); planned records10/20. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
+**Last fully completed phase:** 1. Phases2–6 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase7 work while those earlier checks remain open. Completed phases remain1/14 (rounded7%); planned records10/20. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
 
-**Current focus:** local workflow audit — F-00 F-01 F-02 fixed and local audit complete; implement an automated synthetic customer-to-staff round trip through supported routes without real deliveries or commercial effects. Latest backend evidence: core-local147 tests. Current phase7 remains in progress; no phase acceptance promoted. Country/tax answers and all commercial/production/recovery gates remain pending. See [STATE](STATE.md), [audit](audits/2026-10-23-local-workflow.md) and [Phase02](phases/02-reproducible-application-and-deployment-skeleton/02-PROGRESS.md).
+**Current activity:** supported-route mixed/support-only customer-to-staff journeys verified; core-local149 tests pass. Next: implement a Django no-JavaScript customer access entry using the existing local captured-verification flow, without real mail or new membership scope. All three local audit findings remain fixed. Country/tax answers and commercial/production/recovery gates remain pending. See [STATE](STATE.md), [journey evidence](quick/261023-atf-exercise-synthetic-customer-to-staff-quo/261023-atf-SUMMARY.md) and [audit](audits/2026-10-23-local-workflow.md).
 
 Before every commit, reconcile all affected planning status references, regenerate canonical state.json and run `python3 scripts/check_planning.py`; commit then sync origin/main. Historical sources/evidence remain scoped to their dates.
 

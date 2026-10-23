@@ -346,3 +346,7 @@ F-00 and F-01 fixed; core-local145 passes. Remaining: reproduce and fix F-02 his
 ## 2026-10-23T07:44:33.692577+00:00 — local audit checkpoint
 
 F-00 F-01 F-02 fixed and local audit complete; core-local147 passes. Remaining: implement an automated synthetic customer-to-staff round trip through supported routes without real deliveries or commercial effects. Current phase7/last complete1 unchanged. Planning reconciled before commit; sync required after commit. Country/tax deferred.
+
+## 2026-10-23T07:56:23.904131+00:00 — supported-route customer/staff journey
+
+Quick261023-atf verifies mixed/support-only local flows from new customer verification and operator-provisioned staff to cart/request/business attachment/review/preparation/correction/compare/revocation/logout, with CSRF and real PG/UTF8.149 core-local tests pass; four negative planning-drift cases reject; source package117 files/fifteen templates checked. No forced login/direct domain fixture writes, real delivery/manual credentials/providers or new full-phase acceptance. Planning labels explicitly distinguish development focus7/last-completed1. Country/tax deferred. Next: implement a Django no-JavaScript customer access entry using the existing local captured-verification flow, without real mail or new membership scope.

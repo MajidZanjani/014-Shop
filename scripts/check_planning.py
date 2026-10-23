@@ -14,13 +14,17 @@ def check(root=ROOT):
     roadmap=(planning/'ROADMAP.md').read_text()
     machine=json.loads((planning/'state.json').read_text())
     phase=int(re.search(r'^current_phase:\s*["\']?(\d+)',state,re.M)[1])
-    current=re.search(r'\*\*Current phase:\*\*\s*(\d+)',roadmap)
-    assert current and int(current[1])==phase,'ROADMAP current phase disagrees with STATE'
+    current=re.search(r'\*\*Current development focus:\*\*\s*(\d+)',roadmap)
+    assert current and int(current[1])==phase,'ROADMAP development focus disagrees with STATE'
     rows={}
     for number,counts,status in re.findall(r'^\| (\d+)\. [^|]+\| ([^|]+)\| ([^|]+)\|[^\n]*$',roadmap,re.M):
         status=status.strip().lower()
         rows[number]='complete' if status.startswith('complete') else 'in_progress' if status.startswith('in progress') else 'pending'
-    assert rows and rows.get(str(phase))=='in_progress','Current roadmap phase must be In Progress'
+    assert rows and rows.get(str(phase))=='in_progress','Development-focus phase must be In Progress'
+    last=re.search(r'\*\*Last fully completed phase:\*\*\s*(\d+)',roadmap)
+    assert last and rows.get(last[1])=='complete','Last completed phase must actually be Complete'
+    for label,number in [('Current development focus',phase),('Last fully completed phase',int(last[1]))]:
+        assert re.search(r'\*\*'+label+r':\*\*\s*'+str(number)+r'\b',state),'STATE missing explicit focus/completion label'
     assert {str(row['number']):row['status'] for row in machine['phases']}==rows,'state.json phase statuses disagree with ROADMAP'
     phases=planning/'phases'
     plans=list(phases.glob('*/*-PLAN.md'));summaries=list(phases.glob('*/*-SUMMARY.md'))
@@ -35,7 +39,7 @@ def check(root=ROOT):
     for path in [planning/'PROJECT.md',planning/'REQUIREMENTS.md',planning/'ACTIVITY-LOG.md']:
         text=path.read_text()
         assert 'STATE.md' in text and 'ROADMAP.md' in text,'Live index missing status references: '+path.name
-    print(f'PLANNING_PASS phases={len(rows)} current_phase={phase} completed_phases={completed} plans={len(summaries)}/{len(plans)} files_scanned={sum(1 for p in planning.rglob("*") if p.is_file())}')
+    print(f'PLANNING_PASS phases={len(rows)} development_focus={phase} last_completed_phase={last[1]} completed_phases={completed} plans={len(summaries)}/{len(plans)} files_scanned={sum(1 for p in planning.rglob("*") if p.is_file())}')
 
 
 if __name__=='__main__':

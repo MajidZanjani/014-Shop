@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: active
-last_updated: "2026-10-23T07:44:33.692577+00:00"
-state_head: 93e9f047c65eb55436fcb92ed393292cf0cde171
+last_updated: "2026-10-23T07:56:23.904131+00:00"
+state_head: 9bca7c7b92e9a0461efe04ae3d6f1df1cd5b71ee
 progress:
   total_phases: 14
   completed_phases: 1
@@ -12,15 +12,19 @@ progress:
 last_activity: 2026-10-23
 current_phase: 07
 current_phase_name: Multi-line cart, quotations, business checkout and acceptance
-stopped_at: F-00 F-01 F-02 fixed and local audit complete; implement an automated synthetic customer-to-staff round trip through supported routes without real deliveries or commercial effects; Country/tax deferred.
-last_activity_desc: Local audit F-00 F-01 F-02 fixed and local audit complete; core-local147 tests pass; planning synchronized before commit.
+stopped_at: Supported-route mixed and support-only journeys verified; development focus7; Country/tax pending.
+last_activity_desc: Supported-route journeys passed149 core-local tests; focus7 differs from last-completed1; planning checked before commit.
 ---
 
 # Project State
 
-Updated 2026-10-23T07:44:33.692577+00:00. Canonical current summary; latest evidence: [quick261023-a30](quick/261023-a30-compare-retained-preparation-snapshots-w/261023-a30-SUMMARY.md). Customer status: [quick261023-7s8](quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-SUMMARY.md). Prior staff/HTTP evidence remains linked there. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
+Updated 2026-10-23T07:56:23.904131+00:00. Canonical current summary; latest evidence: [quick261023-atf](quick/261023-atf-exercise-synthetic-customer-to-staff-quo/261023-atf-SUMMARY.md). Customer status: [quick261023-7s8](quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-SUMMARY.md). Prior staff/HTTP evidence remains linked there. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
 ## Current position
+
+**Current development focus:** 7 — local cart/quotation/business/review/preparation work.
+
+**Last fully completed phase:** 1 — source documentation only. Phases2–6 remain partially implemented or awaiting qualification; independent Phase7 work is authorized by the October22 amendment. This is not a sequential completion claim.
 
 T03/T04 local catalog delivery remains intact; T05 local draft persistence and T06 synthetic verified access/save-resume are implemented. T07 now has the owner-scoped versioned multi-line draft cart; protected quotation-request capture now retains exact owner snapshots and reconciles duplicate/retried submissions. Local staff password/private-code rehearsal, assigned quotation reads and append-only-by-API internal review decisions are implemented. Owner history/detail now show safe current review status and corrections without staff/MFA metadata. Private owner partial business drafts now preserve nineteen exact source groups, helpers/defaults and versioned snapshots; country/tax choices and applicability stay pending. Explicit immutable business/quotation revision binding and exact-scope private staff grants are implemented. Protected current-source document/declaration previews now show applicable pending document sets for retained IP/support/mixed scopes, without acceptance or consent writes. Owner-only bounded quotation history now preserves capture/attachment/review-correction metadata without private values or staff attribution. Staff exact-scope advisory offer prerequisites now distinguish internal review evidence from missing commercial inputs; all commercial actions remain disabled. Explicit staff captures now retain attributed versioned internal preparation assessments with CAS/retry arbitration and exact historical permissions. Authorized retained/current comparisons now report fixed safe delta categories with strict null handling and both-scope permissions; equality never approves an offer. Real staff MFA/delivery/recovery and approved offers remain pending. Full phase acceptance remains pending. Phase02 remains 8/18 complete with all ten incomplete qualification/implementation records preserved. Only Phase01 is fully complete: 1/14 = rounded 7%. That is completed-phase progress, not engineering effort. Existing planned records remain 10/20; later phase acceptance is not claimed from quick-task implementation.
 
@@ -40,23 +44,24 @@ T03/T04 local catalog delivery remains intact; T05 local draft persistence and T
 - Assigned recent-MFA staff prerequisite assessment with exact-current private business permission for bound scopes; review digest checked privately, safe blockers/missing labels only, per-line/profile inputs and null commercial values. No approval/publication/acceptance/payment.
 - Attributed append-only-by-API preparation captures retain safe assessment JSON and original scope/review references. Dedicated no-JS capture/detail routes enforce expected revision/displayed digest, exact retries and historical private permissions. Unknown commercial values remain null. Fresh owned test clusters now explicitly use UTF8, with measured encoding/Unicode round-trip checks.
 - Read-only retained/current preparation comparison: fixed category flags and safe revisions, strict null/type distinctions, recorded/current scope authorization and explicit unavailable state. No arbitrary private values or write effects.
+- Mixed/support-only customer-to-staff request/response journeys create all domain records through supported APIs/forms with enforced CSRF and actual local operator commands. No direct model fixture writes/forced login; read assertions use real PostgreSQL. Browser, actual transport and full phase acceptance remain pending.
 - Bounded `scripts/check.py dev` command; automatic lightweight push/PR CI prepared separately from unchanged manual specialized qualification.
 
 ## Run and evidence
 
 Demo: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/demo.py --backend`; open http://127.0.0.1:4321 (also /support/ and /purchase/simple/).
 
-Checks: current local workflow audit passes core-local147 tests on owned PostgreSQL/UTF8. Prior15 dispatcher/scratch-boundary tests retain their original scope. Unchanged frontend110 aggregate tests (104 Node plus6 boundary) plus proxy1 retain quick261023-99a evidence and were not rerun for this staff-only slice; static build/typecheck/source policy/output privacy checks pass. Current comparison/source-package evidence/limits are in quick261023-a30 SUMMARY; retained-preparation evidence remains in quick261023-9r5; prerequisite evidence remains in quick261023-9eo; timeline evidence remains in quick261023-99a; preview evidence remains in quick261023-91u; business-scope evidence remains in quick261023-8in; prior customer-status evidence remains in quick261023-7s8; prior internal-decision evidence remains in quick261023-7l0; prior staff authentication evidence remains in quick261023-72i; startup of both previews and the updated proxy1 test also passed. User explicitly approved the previously blocked disposable credential read; final manual HTTP sign-in/review/logout passed15 observations after proxy Accept/CSP forwarding fix817fd57; unchanged lanes retain prior scoped evidence. No FULL_PASS or real-browser/production/recovery/legal acceptance. Hosted CI for this slice remains unverified; no credential access retried.
+Checks: current local workflow audit passes core-local149 tests on owned PostgreSQL/UTF8. Prior15 dispatcher/scratch-boundary tests retain their original scope. Unchanged frontend110 aggregate tests (104 Node plus6 boundary) plus proxy1 retain quick261023-99a evidence and were not rerun for this staff-only slice; static build/typecheck/source policy/output privacy checks pass. Current journey/source-package evidence/limits are in quick261023-atf SUMMARY; comparison evidence remains in quick261023-a30; retained-preparation evidence remains in quick261023-9r5; prerequisite evidence remains in quick261023-9eo; timeline evidence remains in quick261023-99a; preview evidence remains in quick261023-91u; business-scope evidence remains in quick261023-8in; prior customer-status evidence remains in quick261023-7s8; prior internal-decision evidence remains in quick261023-7l0; prior staff authentication evidence remains in quick261023-72i; startup of both previews and the updated proxy1 test also passed. User explicitly approved the previously blocked disposable credential read; final manual HTTP sign-in/review/logout passed15 observations after proxy Accept/CSP forwarding fix817fd57; unchanged lanes retain prior scoped evidence. No FULL_PASS or real-browser/production/recovery/legal acceptance. Hosted CI for this slice remains unverified; no credential access retried.
 
 User review, 2026-10-22: **previous catalog demo checked and approved** (user: “all checked and approved”). See task evidence for scope. Verification/save-resume also passed user review (“all works fine”, 2026-10-22). Local multi-line cart demo approved by user (“approved”, 2026-10-22). Detailed browser/accessibility qualification and commercial/release gates remain pending.
 
 ## Exact next action
 
-Current local quotation/staff/status/business slices await human review. Next action: implement an automated synthetic customer-to-staff round trip through supported routes without real deliveries or commercial effects. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
+Current local quotation/staff/status/business slices await human review. Next action: implement a Django no-JavaScript customer access entry using the existing local captured-verification flow, without real mail or new membership scope. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
 
 User instruction2026-10-23: **sync to configured origin/main after every commit**, using ordinary fetch/non-force push and checking ahead/behind. This applies to implementation and planning commits. Every implementation and planning commit must be pushed immediately and ahead/behind checked. Before each commit, reconcile all affected planning files, regenerate canonical state.json and run scripts/check_planning.py; preserve historical evidence.
 
-Planning audit2026-10-23: [F-00/F-01/F-02 report](audits/2026-10-23-local-workflow.md). Current status: F-00 F-01 F-02 fixed and local audit complete; implement an automated synthetic customer-to-staff round trip through supported routes without real deliveries or commercial effects. Country/tax answers stay deferred.
+Planning audit2026-10-23: [F-00/F-01/F-02 report](audits/2026-10-23-local-workflow.md). All three findings remain fixed; recorded audit evidence147 retains its scope. New supported-route journeys pass149 core-local tests. Country/tax answers stay deferred.
 
 Audit completion: all three local findings fixed; final core-local147 tests and source package116 files/fifteen templates pass. Full report: [local workflow audit](audits/2026-10-23-local-workflow.md). Current phase7/last complete1 and all acceptance gates unchanged.
 
@@ -68,7 +73,7 @@ Retain dependency locks, raw SBOMs, notices, validated derivative and all origin
 
 ## Session continuity
 
-Session continued2026-10-23. F-00 F-01 F-02 fixed and local audit complete; core-local147 tests pass. Next: implement an automated synthetic customer-to-staff round trip through supported routes without real deliveries or commercial effects. All affected live planning files reconciled before this commit; canonical state.json regenerated and planning guard required. Sync each commit. Current phase7, last completed1, counts1/14 and10/20 unchanged; Phase02 remains8/18. User is preparing Country/tax answers. Actual116-file/fifteen-template source artifact verified; prior frontend110/proxy1 and harness15 remain scoped to earlier runs. No demos, manual credential reads, agents or async test jobs remain. No exact context percentage available or claimed; retain conditional checkpoint rule.
+Session continued2026-10-23. Quick261023-atf mixed/support-only supported-route journeys pass149 core-local tests; source package117 files/fifteen templates matches source. Current development focus7 and last fully completed phase1 are explicitly distinct; Phases2–6 remain partial/qualification-pending. Planning guard passes, with four negative drift cases rejected without file mutation. Next: implement a Django no-JavaScript customer access entry using the existing local captured-verification flow, without real mail or new membership scope. All affected live planning files reconciled before each commit; regenerate state.json/check planning then sync. Country/tax answers pending. No demos, manual credentials, agents or async test jobs remain. No exact context percentage available or claimed; retain conditional checkpoint rule.
 
 ### Quick Tasks Completed
 
