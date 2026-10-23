@@ -277,4 +277,6 @@ Current development focus is Phase7, not a completed Phase7; last fully complete
 
 Latest local evidence: [exact cart retry confirmation](quick/261023-d1r-show-exact-committed-revision-and-curren/261023-d1r-SUMMARY.md),178 core-local tests; complete local form flow and owner recheck retained. Full SHOP-04/AUTH/COM requirement checkboxes remain pending. Next: plan the remaining Phase7 local acceptance and durable-evidence boundaries against the delivered customer/staff slices, keeping unknown approvals and Country/tax pending.
 
-Latest local evidence: explicit retained/current cart retry confirmation;178 core-local tests, source129 files19 templates. Ownership fix83e8464 synced. Focus7/completed1 and Phase02 8/18 unchanged. Reviewed 2026-10-23T09:26:09.128709+00:00.
+Latest local evidence: explicit retained/current cart retry confirmation;178 core-local tests, source129 files19 templates. Latest implementation6171d3c synced and indexed. Focus7/completed1 and Phase02 8/18 unchanged. Reviewed 2026-10-23T09:26:09.128709+00:00.
+
+Batch checkpoint2026-10-23: six implementation/fix commits through6171d3c synchronized and indexed;178 core-local tests, source129 files19 templates. Live references reviewed 2026-10-23T09:27:13.668083+00:00. Next action and gates are in [HANDOFF](HANDOFF.md). Focus7/completed1 and all acceptance counts unchanged.

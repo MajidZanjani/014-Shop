@@ -1,6 +1,7 @@
 ---
 quick_id: 261023-d1r
 status: complete
+implementation_commit: 6171d3c
 ---
 # Exact cart retry confirmations
 

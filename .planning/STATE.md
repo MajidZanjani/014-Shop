@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: active
-last_updated: "2026-10-23T09:26:09.128709+00:00"
-state_head: 83e8464
+last_updated: "2026-10-23T09:27:13.668083+00:00"
+state_head: 6171d3c
 progress:
   total_phases: 14
   completed_phases: 1
@@ -146,3 +146,6 @@ Session continued2026-10-23 across access a7d085f, history120f0a5 and cart691ce9
 | 261023-cll | No-JavaScript saved multi-line cart over shared PostgreSQL persistence | 2026-10-23 | 691ce9f | [261023-cll-implement-no-javascript-multi-line-cart-](./quick/261023-cll-implement-no-javascript-multi-line-cart-/) |
 | 261023-crh | Deliberate no-JavaScript quotation capture with shared owner snapshot retry arbitration | 2026-10-23 | 74b6083 | [261023-crh-add-deliberate-django-quotation-request-](./quick/261023-crh-add-deliberate-django-quotation-request-/) |
 | 261023-cyg | Fix audit F-01 missing cart snapshot ownership recheck | 2026-10-23 | 83e8464 | [261023-cyg-fix-customer-form-audit-f-01-by-rechecki](./quick/261023-cyg-fix-customer-form-audit-f-01-by-rechecki/) |
+| 261023-d1r | Show exact committed and current cart revisions after no-JavaScript retries | 2026-10-23 | 6171d3c | [261023-d1r-show-exact-committed-revision-and-curren](./quick/261023-d1r-show-exact-committed-revision-and-curren/) |
+
+Batch checkpoint2026-10-23: six implementation/fix commits through6171d3c synchronized and indexed;178 core-local tests, source129 files19 templates. Live references reviewed 2026-10-23T09:27:13.668083+00:00. Next action and gates are in [HANDOFF](HANDOFF.md). Focus7/completed1 and all acceptance counts unchanged.
