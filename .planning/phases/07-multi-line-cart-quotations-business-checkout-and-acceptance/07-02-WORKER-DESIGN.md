@@ -41,8 +41,4 @@ Required actual PostgreSQL tests for the authority slice: absent grant cannot cl
 
 Current next boundary: detached inspection commits before returning and conveys no future authority. Factor its checks into an internal locked routine for same-transaction claim/completion. Add actual concurrent revocation/expiry/reclaim/stale completion tests before publication; current four inspection tests cover committed-state changes, not all races. No new execution state is implemented.
 
-
-Current implementation boundary: selected fenced claims are implemented (07-02-CLAIM-PARTIAL). Retained claim rows provide30-second bounded leases/generations without changing pending/held intent states; no queue loop, publication or completion exists. Earlier proposed state expansion/automatic claiming remains a proposal. Next bound-root publication/readback outside transactions and same-transaction fenced technical verification.
-
-
-Next concrete local contract:07-02-PUBLICATION-DESIGN describes three owned transaction/I/O boundaries and retained verification/retry semantics. It is a proposal;787ac33 adds no publication or terminal record. The deterministic PostgreSQL claim/revocation lock-cycle regression passes; independent runtime/outage qualification remains pending.
+Current runtime now includes selected bound-root publication/readback and fenced technical prepared verification; see07-02-PUBLICATION-PARTIAL. Earlier proposed worker/claim/state descriptions are historical design, not a statement that current claims/publication are absent. No automated queue loop or domain completion/qualified retention exists.

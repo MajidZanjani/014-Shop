@@ -1,6 +1,6 @@
-# Next local prepared-byte publication boundary — proposed
+# Local prepared-byte publication boundary — design and remaining qualification
 
-Current implementation787ac33 has explicit root binding, bounded authorization/revocation and selected fenced claims. This document adds no publication service, terminal record, queue loop, commercial authority or qualification. Country/tax remains pending.
+Current selected local publication/readback and technical verification are implemented; see07-02-PUBLICATION-PARTIAL for tested scope. This earlier design describes the protocol; its remaining test matrix is not all executed evidence. No queue loop, commercial authority or provider qualification follows. Country/tax remains pending.
 
 ## One selected claim, three boundaries
 

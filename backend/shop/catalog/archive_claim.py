@@ -4,7 +4,7 @@ from datetime import timedelta
 import uuid
 from django.db import connection,transaction
 from . import archive_authority as authority
-from .models import ArchiveWorkClaim
+from .models import ArchiveWorkClaim,ArchivePreparedVerification
 from .request_envelope import EnvelopeError
 
 @dataclass(frozen=True)
@@ -24,6 +24,7 @@ def claim_request_archive(authorization_id,expected_destination_id):
     if connection.in_atomic_block:raise EnvelopeError('claim_transaction_active')
     with transaction.atomic(durable=True):
         grant,intent=authority.locked_active_authorization(authorization_id,expected_destination_id)
+        if ArchivePreparedVerification.objects.filter(intent=intent).exists():raise EnvelopeError("claim_already_verified")
         # The authority routine holds the intent lock, serializing every claimant.
         latest=ArchiveWorkClaim.objects.filter(intent=intent).order_by('-generation').first()
         now=authority.db_now()

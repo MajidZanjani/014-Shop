@@ -1,7 +1,7 @@
 ---
 gsd_state_version: "1.0"
 status: active
-last_updated: "2026-10-23T10:47:23.796460+00:00"
+last_updated: "2026-10-23T10:54:00.459662+00:00"
 state_head: 787ac33
 progress:
   total_phases: 14
@@ -12,13 +12,13 @@ progress:
 last_activity: 2026-10-23
 current_phase: 07
 current_phase_name: Multi-line cart, quotations, business checkout and acceptance
-stopped_at: Selected fenced claims implemented; bound-root publication/readback next; Country/tax pending.
-last_activity_desc: Local fenced claims pass227 tests;148 files19 templates;07-02 partial.
+stopped_at: Selected local publication/readback implemented; concurrency/fault coverage next; Country/tax pending.
+last_activity_desc: Local publication passes233 tests;151 files19 templates;07-02 partial.
 ---
 
 # Project State
 
-Updated 2026-10-23T10:47:23.796460+00:00. Canonical current summary; latest evidence: [Plan07-02 fenced claims](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CLAIM-PARTIAL.md). Customer status: [quick261023-7s8](quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-SUMMARY.md). Prior staff/HTTP evidence remains linked there. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
+Updated 2026-10-23T10:54:00.459662+00:00. Canonical current summary; latest evidence: [Plan07-02 local publication](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-PUBLICATION-PARTIAL.md). Customer status: [quick261023-7s8](quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-SUMMARY.md). Prior staff/HTTP evidence remains linked there. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
 ## Current position
 
@@ -30,13 +30,15 @@ T03/T04 local catalog delivery remains intact; T05 local draft persistence and T
 
 ## Delivered behavior
 
-- Selected local archive claims own short transactions with shared authority/source checks, random private tokens, increasing generations and30-second leases capped by grant expiry. Retained prior claims and revocation prevent stale-token validation. No publication/completion or business effects.
+- Selected local prepared-byte publication uses three transaction/I/O boundaries, exact bound-root attestation and reopened readback. Post-I/O lease/source/permission checks fence technical verification; original unique attribution survives retries. No domain completion or financial effect.
+
+- Selected local archive claims own short transactions with shared authority/source checks, random private tokens, increasing generations and30-second leases capped by grant expiry. Retained prior claims and revocation prevent stale-token validation. Claim creation performs no storage I/O or business effects.
 
 - Detached local authority inspection reconstructs exact retained bytes with the shared locked source reader and rechecks current account/owner/credential/private scope, generation, deadline and revocation. Safe metadata only; it grants no later claim or publication.
 
 - Explicit internal current-request authorization records bind one intent/destination/source with five-minute database-clock deadline, original actor/MFA and CAS generation. Revocation is retained separately. Neither historical retry nor revocation clears holds or grants executable worker capability.
 
-- Explicit private local destination identity and attributed intent binding are implemented; root replacement, copied/tampered markers and rebinding fail closed. Only pending/held intents exist; explicit bounded authorization/revocation records now exist; detached point-in-time inspection now exists; selected fenced claims now exist; no publication service or worker queue loop exists. Retention/effect flags remain false.
+- Explicit private local destination identity and attributed intent binding are implemented; root replacement, copied/tampered markers and rebinding fail closed. Only pending/held intents exist; explicit bounded authorization/revocation records now exist; detached point-in-time inspection now exists; selected fenced claims now exist; selected bound-root publication/readback now exists; no worker queue loop or domain completion exists. Retention/effect flags remain false.
 
 - Atomic request-envelope capture commits one private fact and one pending local archive intent per semantic request/business/schema scope. PostgreSQL constraints bound actual bytes and forbid execution/qualification/effects. Capture owns a durable outer transaction; exact retries preserve original IDs/attribution. No archive I/O, HTTP route or worker is added.
 
@@ -77,17 +79,17 @@ T03/T04 local catalog delivery remains intact; T05 local draft persistence and T
 
 Demo: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/demo.py --backend`; open http://127.0.0.1:4321 (also /support/ and /purchase/simple/).
 
-Checks: Current claim evidence (implementation787ac33 synced0/0):227 core-local tests (213 Django plus14 Gunicorn observations),50.727s; owned PostgreSQL18.6/UTF8. Source148 files19 templates exact/allowlisted/no symlinks. Selected local claims now retain private tokens, monotonic generations and leases capped at30 seconds/grant expiry. Authority/source checks share the claim transaction. Expiry/reclaim and revocation fence stale tokens. Intent states remain pending/held; no publication/completion service or queue loop. Retention/effect flags false. Next:07-02-PUBLICATION-DESIGN defines proposed bound-root publish/readback and fenced technical verification; terminal retry semantics and uncertainty/revocation tests are still required. Country/tax pending; focus7/completed1;11/24 records,1/14 fully complete phases (7%); Phase02 remains8/18;07-02 partial.
+Checks: Current local publication evidence:233 core-local tests (219 Django plus14 Gunicorn observations),52.414s; owned PostgreSQL18.6/UTF8. Source151 files19 templates exact/allowlisted/no symlinks. One selected claim can publish exact prepared bytes to its bound root, reopen/readback and append fenced technical verification after fresh authority/source/lease checks. One verification per intent; current same-claim retries preserve attribution, historical metadata requires current exact permissions, and verified intents reject new claims/authorization commands. Intent states remain pending/held. No queue loop, provider retention, domain completion or business effects. Next: competing same-claim verification and remaining local fault/reconciliation coverage before worker integration. Country/tax pending; focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 remains8/18;07-02 partial.
 
 User review, 2026-10-22: **previous catalog demo checked and approved** (user: “all checked and approved”). See task evidence for scope. Verification/save-resume also passed user review (“all works fine”, 2026-10-22). Local multi-line cart demo approved by user (“approved”, 2026-10-22). Detailed browser/accessibility qualification and commercial/release gates remain pending.
 
 ## Exact next action
 
-Current local quotation/staff/status/business slices await human review. Next action: Implement out-of-transaction bound-root publication/readback and fenced technical verification. Country/tax and commercial effects remain gated. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
+Current local quotation/staff/status/business slices await human review. Next action: Finish competing same-claim verification and remaining local fault/reconciliation coverage before worker integration. Country/tax and commercial effects remain gated. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
 
 User instruction2026-10-23: **sync to configured origin/main after every commit**, using ordinary fetch/non-force push and checking ahead/behind. This applies to implementation and planning commits. Every implementation and planning commit must be pushed immediately and ahead/behind checked. Before each commit, reconcile all affected planning files, regenerate canonical state.json and run scripts/check_planning.py; preserve historical evidence.
 
-Planning audit2026-10-23: [F-00/F-01/F-02 report](audits/2026-10-23-local-workflow.md). All three findings remain fixed; recorded audit evidence147 retains its scope. Current combined lane passes227 core-local tests; prior journey and audit evidence retain their recorded scopes. Country/tax answers stay deferred.
+Planning audit2026-10-23: [F-00/F-01/F-02 report](audits/2026-10-23-local-workflow.md). All three findings remain fixed; recorded audit evidence147 retains its scope. Current combined lane passes233 core-local tests; prior journey and audit evidence retain their recorded scopes. Country/tax answers stay deferred.
 
 Audit completion: all three local findings fixed; final core-local147 tests and source package116 files/fifteen templates pass. Full report: [local workflow audit](audits/2026-10-23-local-workflow.md). Current phase7/last complete1 and all acceptance gates unchanged.
 
@@ -99,7 +101,7 @@ Retain dependency locks, raw SBOMs, notices, validated derivative and all origin
 
 ## Session continuity
 
-Session continued2026-10-23 with selected fenced leases. Next bound-root publication/readback outside transactions, then fenced verification. Country/tax pending; focus7/completed1. No exact context percentage supplied or claimed.
+Session continued2026-10-23 with selected local publication/readback and fenced technical verification. Next competing-verification/fault coverage; Country/tax pending, focus7/completed1. No exact context percentage supplied or claimed.
 
 ### Quick Tasks Completed
 
@@ -162,4 +164,4 @@ Session continued2026-10-23 with selected fenced leases. Next bound-root publica
 | 261023-cyg | Fix audit F-01 missing cart snapshot ownership recheck | 2026-10-23 | 83e8464 | [261023-cyg-fix-customer-form-audit-f-01-by-rechecki](./quick/261023-cyg-fix-customer-form-audit-f-01-by-rechecki/) |
 | 261023-d1r | Show exact committed and current cart revisions after no-JavaScript retries | 2026-10-23 | 6171d3c | [261023-d1r-show-exact-committed-revision-and-curren](./quick/261023-d1r-show-exact-committed-revision-and-curren/) |
 
-Current claim evidence (implementation787ac33 synced0/0):227 core-local tests (213 Django plus14 Gunicorn observations),50.727s; owned PostgreSQL18.6/UTF8. Source148 files19 templates exact/allowlisted/no symlinks. Selected local claims now retain private tokens, monotonic generations and leases capped at30 seconds/grant expiry. Authority/source checks share the claim transaction. Expiry/reclaim and revocation fence stale tokens. Intent states remain pending/held; no publication/completion service or queue loop. Retention/effect flags false. Next:07-02-PUBLICATION-DESIGN defines proposed bound-root publish/readback and fenced technical verification; terminal retry semantics and uncertainty/revocation tests are still required. Country/tax pending; focus7/completed1;11/24 records,1/14 fully complete phases (7%); Phase02 remains8/18;07-02 partial.
+Current local publication evidence:233 core-local tests (219 Django plus14 Gunicorn observations),52.414s; owned PostgreSQL18.6/UTF8. Source151 files19 templates exact/allowlisted/no symlinks. One selected claim can publish exact prepared bytes to its bound root, reopen/readback and append fenced technical verification after fresh authority/source/lease checks. One verification per intent; current same-claim retries preserve attribution, historical metadata requires current exact permissions, and verified intents reject new claims/authorization commands. Intent states remain pending/held. No queue loop, provider retention, domain completion or business effects. Next: competing same-claim verification and remaining local fault/reconciliation coverage before worker integration. Country/tax pending; focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 remains8/18;07-02 partial.

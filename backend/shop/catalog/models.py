@@ -152,7 +152,7 @@ class RequestEnvelope(models.Model):
 
 
 class RequestArchiveIntent(models.Model):
-    """One unexecuted local archive intent; worker/destination qualification pending."""
+    """One local prepared archive intent; business effects/qualification stay disabled."""
     id=models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
     envelope=models.OneToOneField(RequestEnvelope,on_delete=models.PROTECT)
     state=models.CharField(max_length=16,default='pending')
@@ -247,3 +247,28 @@ class ArchiveWorkClaim(models.Model):
             models.CheckConstraint(condition=models.Q(generation__gte=1,generation__lte=1000000000,retention_qualified=False,effects_authorized=False),name='archive_claim_local_bounds'),
             models.CheckConstraint(condition=models.Q(expires_at__gt=models.F('started_at'),expires_at__lte=models.F('started_at')+timedelta(seconds=30)),name='archive_claim_bounded_lifetime'),
         ]
+
+
+class ArchivePreparedVerification(models.Model):
+    """Retained local prepared-byte observation; no domain completion or effects."""
+    id=models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
+    intent=models.OneToOneField(RequestArchiveIntent,on_delete=models.PROTECT)
+    envelope=models.ForeignKey(RequestEnvelope,on_delete=models.PROTECT)
+    destination=models.ForeignKey(ArchiveDestination,on_delete=models.PROTECT)
+    claim=models.OneToOneField(ArchiveWorkClaim,on_delete=models.PROTECT)
+    authorization=models.ForeignKey(ArchiveWorkAuthorization,on_delete=models.PROTECT)
+    claim_generation=models.PositiveIntegerField()
+    authorization_generation=models.PositiveIntegerField()
+    evidence_id=models.UUIDField()
+    sha256=models.CharField(max_length=64)
+    byte_length=models.PositiveIntegerField()
+    verified_at=models.DateTimeField()
+    evidence_class=models.CharField(max_length=32,default='local-synthetic')
+    evidence_kind=models.CharField(max_length=16,default='prepared')
+    retention_qualified=models.BooleanField(default=False)
+    effects_authorized=models.BooleanField(default=False)
+    class Meta:
+        constraints=[models.CheckConstraint(condition=models.Q(claim_generation__gte=1,claim_generation__lte=1000000000,
+            authorization_generation__gte=1,authorization_generation__lte=1000000000,byte_length__gte=1,byte_length__lte=131072,
+            sha256__regex=r'^[0-9a-f]{64}$',evidence_class='local-synthetic',evidence_kind='prepared',
+            retention_qualified=False,effects_authorized=False),name='archive_verification_local_bounds')]

@@ -5,7 +5,7 @@ import hashlib
 import uuid
 from django.db import connection,transaction
 from django.db.models import Max
-from .models import RequestEnvelope,RequestArchiveIntent,ArchiveWorkAuthorization,ArchiveWorkRevocation
+from .models import RequestEnvelope,RequestArchiveIntent,ArchiveWorkAuthorization,ArchiveWorkRevocation,ArchivePreparedVerification
 from .request_envelope import prepare_request_envelope,EnvelopeError
 
 @dataclass(frozen=True)
@@ -58,6 +58,7 @@ def authorize_request_archive(request,intent_id,expected_destination_id,command_
             # Historical retry is not an active-work decision and never extends a deadline.
             return AuthorizationReference(existing.pk,existing.generation,False)
         latest=ArchiveWorkAuthorization.objects.filter(intent=intent).aggregate(value=Max('generation'))['value'] or 0
+        if ArchivePreparedVerification.objects.filter(intent=intent).exists():raise EnvelopeError('authorization_already_verified')
         if intent.state!='pending' or latest!=expected_generation:raise EnvelopeError('authorization_conflict')
         now=db_now();marker=request.session.get('shop_staff_mfa') if request.user.is_staff else None
         grant=ArchiveWorkAuthorization.objects.create(intent=intent,command_id=command_id,generation=latest+1,
