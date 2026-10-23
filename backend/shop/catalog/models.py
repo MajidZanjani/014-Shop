@@ -41,6 +41,7 @@ class QuotationRequest(models.Model):
     cart=models.ForeignKey(DraftCart,on_delete=models.PROTECT)
     snapshot=models.OneToOneField(CartSnapshot,on_delete=models.PROTECT)
     review_version=models.PositiveIntegerField(default=0)
+    business_version=models.PositiveIntegerField(default=0)
     request_id=models.UUIDField()
     created_at=models.DateTimeField(auto_now_add=True)
     class Meta:
@@ -65,6 +66,7 @@ class QuotationReview(models.Model):
     """Append-only-by-API internal decision; never commercial offer approval."""
     quotation=models.ForeignKey(QuotationRequest,on_delete=models.PROTECT)
     version=models.PositiveIntegerField()
+    business_version=models.PositiveIntegerField(default=0)
     request_id=models.UUIDField()
     snapshot_digest=models.CharField(max_length=64)
     decision=models.CharField(max_length=32,choices=REVIEW_DECISIONS)
@@ -101,3 +103,21 @@ class BusinessDraftSnapshot(models.Model):
             models.UniqueConstraint(fields=['draft','request_id'],name='business_snapshot_unique_request'),
             models.CheckConstraint(condition=models.Q(version__gte=1),name='business_snapshot_positive_version'),
         ]
+
+
+class QuotationBusinessScope(models.Model):
+    quotation=models.ForeignKey(QuotationRequest,on_delete=models.PROTECT)
+    version=models.PositiveIntegerField()
+    business_snapshot=models.ForeignKey(BusinessDraftSnapshot,on_delete=models.PROTECT)
+    created_at=models.DateTimeField(auto_now_add=True)
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['quotation','version'],name='quotation_business_scope_version'),
+                     models.CheckConstraint(condition=models.Q(version__gte=1),name='quotation_business_scope_positive')]
+
+class QuotationBusinessKey(models.Model):
+    quotation=models.ForeignKey(QuotationRequest,on_delete=models.PROTECT)
+    request_id=models.UUIDField()
+    expected_version=models.PositiveIntegerField()
+    scope=models.ForeignKey(QuotationBusinessScope,on_delete=models.PROTECT)
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['quotation','request_id'],name='quotation_business_key_unique')]

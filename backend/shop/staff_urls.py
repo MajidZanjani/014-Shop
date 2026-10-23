@@ -7,4 +7,5 @@ urlpatterns=[
     path('staff/quotation-requests/',staff_views.quotations),
     path('staff/quotation-requests/<uuid:identity>/',staff_views.quotation_detail),
     path('staff/quotation-requests/<uuid:identity>/reviews/',record_review),
+    path('staff/quotation-requests/<uuid:identity>/business/',staff_views.quotation_business),
 ]

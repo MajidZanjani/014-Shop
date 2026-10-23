@@ -9,6 +9,9 @@ from .views import reply
 from .quotation_review import snapshot_digest, review_json, history
 from shop.catalog.models import REVIEW_DECISIONS
 from shop.catalog.rules import CATALOG
+from shop.catalog.business_scope import current_scope, valid_business
+from shop.catalog.business_rules import GROUPS
+from shop.catalog.business_views import LABELS
 
 def page(request,template,context):
     response=render(request,template,context)
@@ -32,11 +35,39 @@ def quotation_detail(request,identity):
     grant=StaffQuotationGrant.objects.select_related('quotation__snapshot').filter(user=request.user,quotation_id=identity).first()
     if grant is None:return reply({'error':'not_found'},404)
     quotation=grant.quotation
-    digest=snapshot_digest(quotation)
+    scope=current_scope(quotation)
+    private_access=bool(scope and grant.business_scope_version==quotation.business_version and scope.business_snapshot.draft.owner_id==quotation.cart.owner_id)
+    review_enabled=(not quotation.business_version or (private_access and valid_business(scope.business_snapshot,quotation.cart.owner_id)))
+    digest=snapshot_digest(quotation) if review_enabled else None
     records=history(quotation)
     if 'text/html' in request.headers.get('Accept',''):
         return page(request,'access/staff_quotation.html',{'quotation':quotation,'reviews':records,
             'request_id':str(uuid.uuid4()),'snapshot_digest':digest,'decisions':REVIEW_DECISIONS,
-            'catalog_current':quotation.snapshot.catalog_revision==CATALOG['revision']})
+            'catalog_current':quotation.snapshot.catalog_revision==CATALOG['revision'],'review_enabled':review_enabled,'private_access':private_access})
     return reply({**quotation_json(quotation),'review_version':quotation.review_version,'snapshot_digest':digest,
-                  'reviews':[review_json(row) for row in records],'history_limit':20})
+                  'reviews':[review_json(row,private_scope_version=grant.business_scope_version) for row in records],'history_limit':20,'review_enabled':review_enabled,'private_business_access':private_access})
+
+
+@require_GET
+def quotation_business(request,identity):
+    if staff_credential(request,recent=True) is None:return reply({'error':'recent_staff_mfa_required'},403)
+    if request.GET:return reply({'error':'unexpected_query'},400)
+    grant=StaffQuotationGrant.objects.select_related('quotation__cart').filter(user=request.user,quotation_id=identity).first()
+    if grant is None:return reply({'error':'not_found'},404)
+    quotation=grant.quotation;scope=current_scope(quotation)
+    if scope is None:return reply({'error':'not_found'},404)
+    if grant.business_scope_version!=scope.version or scope.business_snapshot.draft.owner_id!=quotation.cart.owner_id:
+        return reply({'error':'business_scope_access_required'},403)
+    snapshot=scope.business_snapshot
+    if 'text/html' not in request.headers.get('Accept',''):
+        return reply({'business_scope_version':scope.version,'business_draft_version':snapshot.version,
+                      'details':snapshot.details,'evaluation':snapshot.evaluation,'country_tax_choices':'pending'})
+    groups=[]
+    for _,label,fields,hint in GROUPS:
+        values=[]
+        for field in fields:
+            value=snapshot.details.get(field)
+            text='Pending' if value is None else ('Yes' if value else 'No') if type(value) is bool else value or 'Not supplied'
+            values.append({'label':LABELS[field],'value':text})
+        groups.append({'label':label,'hint':hint,'values':values})
+    return page(request,'access/staff_business.html',{'quotation':quotation,'scope':scope,'groups':groups})

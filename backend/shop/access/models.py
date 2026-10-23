@@ -45,5 +45,6 @@ class StaffChallenge(models.Model):
 class StaffQuotationGrant(models.Model):
     user=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT)
     quotation=models.ForeignKey('catalog.QuotationRequest',on_delete=models.PROTECT)
+    business_scope_version=models.PositiveIntegerField(default=0)
     class Meta:
         constraints=[models.UniqueConstraint(fields=['user','quotation'],name='staff_quotation_reviewer_unique')]

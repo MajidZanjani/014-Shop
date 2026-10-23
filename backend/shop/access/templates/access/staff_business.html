@@ -1,0 +1,4 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Private attached business details</title></head><body><main>
+<h1>Private attached business details</h1><p>Business scope {{ scope.version }} · Saved business revision {{ scope.business_snapshot.version }}</p><p>Country and tax choices remain pending. No commercial approval or payment.</p>
+{% for group in groups %}<section><h2>{{ group.label }}</h2><p>{{ group.hint }}</p><dl>{% for field in group.values %}<dt>{{ field.label }}</dt><dd>{{ field.value }}</dd>{% endfor %}</dl></section>{% endfor %}
+<a href="/staff/quotation-requests/{{ quotation.id }}/">Return to captured request and review</a></main></body></html>

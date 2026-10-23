@@ -99,6 +99,7 @@ export default function DraftCart({configuration,csrf,onResume}:{configuration:C
     <ol>{requests.map(row=><li key={row.id}>Saved version {row.version} · {row.created_at} · <ReviewStatusText value={row.review_status}/> <button type="button" disabled={busy||uncertain||quoteUncertain} onClick={()=>void loadReceipt(row.id)}>Review captured request</button></li>)}</ol>
     {receipt&&<section aria-label="Captured quotation request"><h4>Captured request {receipt.id}</h4>
       <p><ReviewStatusText value={receipt.review_status}/></p>
+      <p><a href={"/purchase/quotation-business/"+receipt.id+"/"}>Review and attach saved business details</a> · Country and tax choices remain pending.</p>
       <button type="button" disabled={busy||uncertain||quoteUncertain} onClick={()=>void loadReceipt(receipt.id)}>Refresh captured request status</button>
       <p>Saved version {receipt.version} · Catalogue {receipt.catalog_revision} · Prices and rights pending. Acceptance and payment disabled.</p>
       <ol>{receipt.lines.map(line=><li key={line.id}>{line.kind==='support'?`Support: ${line.quantity} ten-hour packages`:line.configuration&&<ConfigurationSummary value={line.configuration}/>} · Line {line.id} · Quantity {line.quantity}</li>)}</ol>

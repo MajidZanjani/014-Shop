@@ -8,6 +8,7 @@ from .models import DraftCart, CartSnapshot, QuotationRequest, QuotationRequestK
 from .rules import CATALOG
 from .cart_rules import evaluate_cart
 from .views import local_customer, unique_object
+from .business_scope import scope_metadata
 from .quotation_status import customer_review_status, with_review_status
 
 
@@ -16,7 +17,7 @@ def quotation_json(row):
     return {'id':str(row.id),'created_at':row.created_at.isoformat(),
             'cart_id':str(row.cart_id),'version':snapshot.version,
             'catalog_revision':snapshot.catalog_revision,'lines':snapshot.lines,
-            'evaluation':snapshot.evaluation,'state':'requested','review_status':customer_review_status(row),
+            'evaluation':snapshot.evaluation,'state':'requested','review_status':customer_review_status(row),'business_scope':scope_metadata(row),
             'prices':None,'rights':None,'acceptance_enabled':False,'checkout_enabled':False}
 
 

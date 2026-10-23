@@ -7,9 +7,11 @@ IP · Vendor: {{ line.configuration.vendor }} · Families: {{ line.configuration
 · Fixed nodes: {{ line.configuration.fixed_nodes }} · Floating nodes: {{ line.configuration.floating_nodes }}
 {% if line.configuration.production_band %}· Production band: {{ line.configuration.production_band }} · Estimated units: {{ line.configuration.production_units|default_if_none:'Not supplied' }}{% endif %}
 {% endif %} · Line reference: {{ line.id }}</li>{% endfor %}</ol>
+<p>Business scope {{ quotation.business_version }}. Country/tax choices remain pending.</p>
+{% if private_access %}<p><a href="/staff/quotation-requests/{{ quotation.id }}/business/">Review private attached business details</a> before recording a decision.</p>{% elif quotation.business_version %}<p>Explicit private-business access is required for this attached scope. No decision can be recorded until access is assigned.</p>{% endif %}
 <section aria-label="Internal review"><h2>Internal review decisions</h2>
 <p>Review revision {{ quotation.review_version }}. Decisions concern this captured request only. They do not approve an offer or grant rights. Corrections create a new decision and retain earlier records.</p>
-{% if catalog_current %}
+{% if catalog_current and review_enabled %}
 <form method="post" action="/staff/quotation-requests/{{ quotation.id }}/reviews/">{% csrf_token %}
 <input type="hidden" name="request_id" value="{{ request_id }}">
 <input type="hidden" name="expected_review_version" value="{{ quotation.review_version }}">
@@ -17,8 +19,8 @@ IP · Vendor: {{ line.configuration.vendor }} · Families: {{ line.configuration
 <label>Decision <select name="decision" required><option value="">Choose a decision</option>{% for value,label in decisions %}<option value="{{ value }}">{{ label }}</option>{% endfor %}</select></label>
 <button>Record internal review decision</button></form>
 <p>If the response is lost, resubmit this same form. A changed review requires reloading and reviewing the current history.</p>
-{% else %}<p>The catalogue changed. A new current request is required before recording another decision; existing history is retained.</p>{% endif %}
+{% elif not catalog_current %}<p>The catalogue changed. A new current request is required before recording another decision; existing history is retained.</p>{% endif %}
 <p>Showing up to 20 most recent decisions.</p>
-<ol>{% for review in reviews %}<li>Revision {{ review.version }} · {{ review.get_decision_display }} · Reviewer {{ review.reviewer_id }} · {{ review.created_at }}</li>{% empty %}<li>No decisions recorded.</li>{% endfor %}</ol></section>
+<ol>{% for review in reviews %}<li>Revision {{ review.version }} · Business scope {{ review.business_version }} · {{ review.get_decision_display }} · Reviewer {{ review.reviewer_id }} · {{ review.created_at }}</li>{% empty %}<li>No decisions recorded.</li>{% endfor %}</ol></section>
 <button disabled>Offer approval pending</button> <a href="/staff/quotation-requests/">Assigned requests</a>
 </main></body></html>

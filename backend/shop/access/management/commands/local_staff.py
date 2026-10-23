@@ -13,10 +13,11 @@ from shop.access.models import StaffCredential, StaffQuotationGrant
 class Command(BaseCommand):
     help='Local/synthetic staff provision/reset/revoke and explicit quotation reviewer grants. Credentials go to private files only.'
     def add_arguments(self,parser):
-        parser.add_argument('action',choices=['provision','reset','revoke','grant','revoke-grant'])
+        parser.add_argument('action',choices=['provision','reset','revoke','grant','revoke-grant','grant-business','revoke-business'])
         parser.add_argument('--username',required=True)
         parser.add_argument('--capture-root')
         parser.add_argument('--quotation')
+        parser.add_argument('--business-scope',type=int)
     def handle(self,*args,**options):
         if settings.SHOP_ENV not in ('local','synthetic'):raise CommandError('Synthetic staff operation unavailable')
         name=options['username'];action=options['action']
@@ -48,10 +49,19 @@ class Command(BaseCommand):
             else:
                 try:identity=uuid.UUID(options.get('quotation') or '')
                 except (ValueError,TypeError):raise CommandError('Quotation identity required') from None
-                quotation=QuotationRequest.objects.filter(pk=identity).first()
+                quotation=QuotationRequest.objects.select_for_update().filter(pk=identity).first()
                 if quotation is None:raise CommandError('Quotation unavailable')
                 if action=='grant':
                     if not credential.enabled or not user.is_active:raise CommandError('Staff identity disabled')
                     StaffQuotationGrant.objects.get_or_create(user=user,quotation=quotation)
+                elif action in ('grant-business','revoke-business'):
+                    grant=StaffQuotationGrant.objects.filter(user=user,quotation=quotation).first()
+                    if grant is None:raise CommandError('Explicit quotation assignment required')
+                    if action=='grant-business':
+                        if not credential.enabled or not user.is_active or not quotation.business_version or options.get('business_scope')!=quotation.business_version:
+                            raise CommandError('Exact current business scope required')
+                        grant.business_scope_version=quotation.business_version
+                    else:grant.business_scope_version=0
+                    grant.save(update_fields=['business_scope_version'])
                 else:StaffQuotationGrant.objects.filter(user=user,quotation=quotation).delete()
         self.stdout.write('Synthetic staff action completed; credentials, when generated, are in the private capture directory.')
