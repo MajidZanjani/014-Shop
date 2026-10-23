@@ -79,10 +79,13 @@
       '';
     };
     runtime = import ./python-runtime.nix { inherit pkgs pythonEnv postgres; };
-    # Python source and the exact public catalog manifest only; no .env/private data.
+    # Python source, exact public manifests and Django templates only; no .env/private data.
     appSource = pkgs.lib.cleanSourceWith {
       src = ../../backend;
-      filter = path: type: type == "directory" || pkgs.lib.hasSuffix ".py" path || path == toString ../../backend/shop/catalog/revision.json;
+      filter = path: type: type == "directory" || pkgs.lib.hasSuffix ".py" path
+        || builtins.elem path (map toString [ ../../backend/shop/catalog/revision.json ../../backend/shop/catalog/document_preview.json ])
+        || (pkgs.lib.hasSuffix ".html" path && builtins.any (prefix: pkgs.lib.hasPrefix prefix path)
+          (map (directory: toString directory + "/") [ ../../backend/shop/catalog/templates ../../backend/shop/access/templates ]));
     };
     appTree = pkgs.runCommand "shop-python-source" {} ''
       mkdir -p $out/app
@@ -118,7 +121,7 @@
   in {
     nixosModules.shop = import ./modules/shop.nix;
     packages.${system} = { shop-app = appImage; shop-worker = workerImage;
-      shop-postgres = postgresImage; shop-gateway = gatewayImage; shop-python-runtime = runtime; shop-database-tools-source = databaseTools; shop-operator-inspect = operatorInspection.launcher; shop-operator-schema = operatorSchema.launcher; };
+      shop-app-source = appTree; shop-postgres = postgresImage; shop-gateway = gatewayImage; shop-python-runtime = runtime; shop-database-tools-source = databaseTools; shop-operator-inspect = operatorInspection.launcher; shop-operator-schema = operatorSchema.launcher; };
     checks.${system} = {
       operator-startup-denial = operatorFailure.launcher;
       schema-startup-denial = schemaFailure.launcher;

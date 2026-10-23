@@ -11,5 +11,5 @@
 {% else %}<p>Save a partial business draft first.</p>{% endif %}
 <p>Each new attachment starts a new review scope and preserves previous attachments/decisions. Later business edits do not change this request. Repeat an uncertain submission with its original form; stale changes require reload and review.</p>
 <h2>Recent attachment history</h2><ol>{% for scope in scopes %}<li>Scope {{ scope.version }} · Saved business revision {{ scope.business_snapshot.version }}</li>{% empty %}<li>No attachments.</li>{% endfor %}</ol>
-<a href="/purchase/business/">Edit your private business draft</a> · <a href="/">Return to quotation history</a><button disabled>Checkout pending commercial approval</button>
+<a href="/purchase/quotation-documents/{{ quotation.id }}/">Preview document prerequisites</a> · <a href="/purchase/business/">Edit your private business draft</a> · <a href="/">Return to quotation history</a><button disabled>Checkout pending commercial approval</button>
 </main></body></html>

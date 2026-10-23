@@ -1,0 +1,18 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Document prerequisites preview</title></head><body><main>
+<h1>Document prerequisites preview</h1>
+<p>This is a current-source preview for a captured request. It is not an offer or a frozen contract. No declaration, consent or acceptance is recorded.</p>
+<p>Request {{ preview.quotation_id }} · Captured cart revision {{ preview.cart_version }} · Profile {{ preview.profile }}</p>
+<p>Captured catalog revision: {{ preview.catalog_revision }}</p>
+{% if not preview.current_catalog %}<p role="alert">The captured catalog differs from the current catalog. Review against approved versions is required.</p>{% endif %}
+{% if preview.business_scope %}<p>Business scope {{ preview.business_scope.version }} · Saved business revision {{ preview.business_scope.business_draft_version|default_if_none:"unavailable" }}</p>{% else %}<p>No business revision attached.</p>{% endif %}
+{% if preview.state == 'unavailable' %}<p role="alert">Preview unavailable: the source or captured scope requires review.</p>{% else %}
+<h2>Captured lines</h2><ul>{% for line in preview.lines %}<li>{% if line.kind == 'ip' %}IP · {{ line.configuration.vendor }} · {{ line.configuration.families|join:', ' }} · {{ line.configuration.term }} · Production band {{ line.configuration.production_band|default_if_none:'not applicable' }} · Fixed nodes {{ line.configuration.fixed_nodes }} · Floating seats {{ line.configuration.floating_nodes }}{% else %}Support packages: {{ line.quantity }}{% endif %}</li>{% endfor %}</ul>
+{% if preview.ip_declarations %}<h2>IP declaration wording from the product source</h2><p>Read-only wording; submitted host identifiers and approved licence terms are still required before any future acceptance.</p><ol>{% for row in preview.ip_declarations %}<li>{{ row.text }}</li>{% endfor %}</ol>{% endif %}
+{% if preview.support_confirmation %}<h2>Support purchase prerequisites</h2><p>{{ preview.support_confirmation }}</p><p>Support does not renew IP rights. Quoted packages grant no credit.</p>{% endif %}
+<h2>Documents awaiting approved versions</h2><ul>{% for row in preview.documents %}<li>{{ row.title }} — version and approved text pending.</li>{% endfor %}</ul>
+<h2>Optional marketing choice</h2><p>{{ preview.marketing.text }}</p><p>Optional, unselected and separate from purchase requirements. This preview records no marketing preference.</p>
+{% endif %}
+<p>Country and tax choices remain pending. Prices, rights, applicable terms and required approvals remain pending. Checkout and acceptance are disabled.</p>
+<p>Preview definition revision: {{ preview.definition_revision }}<br>Product source SHA-256: {{ preview.source_sha256 }}</p>
+<p><a href="/purchase/quotation-business/{{ preview.quotation_id }}/">Review attached business revision</a> · <a href="/">Return to quotation history</a></p>
+</main></body></html>

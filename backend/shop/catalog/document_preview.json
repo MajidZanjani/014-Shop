@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "source_sha256": "562dc4015c62f165df5df3e9ae1aab26b8102385d9dc76a556d5965ddc1a0263",
+  "ip_declarations": [
+    {
+      "id": "business_authority",
+      "text": "I am purchasing for business or professional purposes and am authorised to place this order for the named organisation."
+    },
+    {
+      "id": "configuration_terms",
+      "text": "I have read and accept the Terms and Conditions and the xSPI-MC IP Licence Agreement applicable to this configuration."
+    },
+    {
+      "id": "refund_policy",
+      "text": "I have read and accept the Refund and Cancellation Policy."
+    },
+    {
+      "id": "configuration_accuracy",
+      "text": "I confirm that the selected FPGA families, licence term, production band where applicable, node counts and submitted NIC / host IDs are correct."
+    }
+  ],
+  "marketing": {
+    "text": "Send me SLL product news and offers by email. I can unsubscribe at any time.",
+    "required": false,
+    "selected": false
+  },
+  "documents": [
+    {
+      "id": "general_terms",
+      "title": "Terms and Conditions",
+      "version": null,
+      "body": null,
+      "approved": false
+    },
+    {
+      "id": "ip_licence",
+      "title": "xSPI-MC IP Licence Agreement",
+      "version": null,
+      "body": null,
+      "approved": false
+    },
+    {
+      "id": "refund_policy",
+      "title": "Refund and Cancellation Policy",
+      "version": null,
+      "body": null,
+      "approved": false
+    },
+    {
+      "id": "privacy_policy",
+      "title": "Privacy Policy",
+      "version": null,
+      "body": null,
+      "approved": false
+    },
+    {
+      "id": "support_terms",
+      "title": "Engineering support terms",
+      "version": null,
+      "body": null,
+      "approved": false
+    }
+  ],
+  "revision": "ace0e8befc1e723d651fb5a8b027b8587badc2e8ff3a6fb406218124190f3e5a"
+}
