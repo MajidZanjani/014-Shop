@@ -75,9 +75,9 @@
     }
   ],
   "next": {
-    "command": "$gsd-progress --next",
-    "label": "Advance to the next step",
-    "reason": "Phase 7 of 14 · 7% · executing"
+    "command": "$gsd-progress",
+    "label": "Show progress",
+    "reason": "Unsure of state — showing progress"
   },
-  "updated_at": "2026-10-23T12:26:18.958Z"
+  "updated_at": "2026-10-23T12:27:42.869Z"
 }

@@ -1,0 +1,82 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-10-23T12:27:42.804Z",
+  "phase": "07",
+  "phase_name": "Multi-line cart, quotations, business checkout and acceptance",
+  "phase_dir": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance",
+  "plan": 2,
+  "task": 7,
+  "total_tasks": 7,
+  "status": "paused",
+  "completed_tasks": [
+    {
+      "id": 4,
+      "name": "Critique exact retained capture observation contract",
+      "status": "done",
+      "commit": "e29b0e7"
+    },
+    {
+      "id": 5,
+      "name": "Implement and verify bounded read-only exact capture status",
+      "status": "done",
+      "commit": "e29b0e7"
+    },
+    {
+      "id": 6,
+      "name": "Supported mixed/support-only status observation journeys and runbook",
+      "status": "done",
+      "commit": "35cb252"
+    }
+  ],
+  "remaining_tasks": [
+    {
+      "id": 7,
+      "name": "Bounded audit of actual prepared capture/status boundaries",
+      "status": "not_started"
+    }
+  ],
+  "blockers": [
+    {
+      "description": "Country/tax and commercial prerequisites user-deferred; real staff transport/MFA and independent runtime/outage/off-host/provider/recovery/production qualification pending.",
+      "type": "external",
+      "workaround": "Continue independent local synthetic work only; no repeated runner/tax requests or inferred authority."
+    }
+  ],
+  "async_jobs": [],
+  "human_actions_pending": [
+    {
+      "action": "Clear session and run $gsd-resume-work.",
+      "context": "Standing proactive context-pressure checkpoint instruction; exact percentage unavailable.",
+      "blocking": true
+    },
+    {
+      "action": "Country/tax answers remain deferred while user prepares them.",
+      "context": "Do not guess or repeatedly ask.",
+      "blocking": false
+    }
+  ],
+  "decisions": [
+    {
+      "decision": "Observe exact retained source/fact/intent under producer locks, never capture on GET.",
+      "rationale": "Distinguishes committed absence/inconsistency without mutations or physical-retention claims.",
+      "phase": "07"
+    },
+    {
+      "decision": "Share retained validation between capture retry and observation.",
+      "rationale": "One consistency contract, original attribution preserved; no work or financial authority.",
+      "phase": "07"
+    }
+  ],
+  "uncommitted_files": [
+    " M .planning/ACTIVITY-LOG.md",
+    " M .planning/HANDOFF.md",
+    " M .planning/PROJECT.md",
+    " M .planning/ROADMAP.md",
+    " M .planning/STATE.md",
+    " M .planning/state.json",
+    "?? .planning/HANDOFF.json",
+    "?? .planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/.continue-here.md"
+  ],
+  "next_action": "Read CAPTURE-OBSERVATION-DESIGN/PARTIAL and audit the implemented prepared capture/status slice against actual producer locks, current staff credential/grant changes, immutable attribution and closed outputs. Record concrete findings and fix only demonstrated local defects. Do not broaden infrastructure or commercial scope.",
+  "context_notes": "e29b0e7/35cb252 synced0/0.272 core-local checks (258 Django plus14 Gunicorn),70.667s; owned PostgreSQL18.6/UTF8,0012 application/no-drift checks pass. Source /nix/store/6x0vx2hhfaszqnjfj9mgznj73v58yj09-shop-python-source exact163 files21 templates/no symlinks. No migration; frontend/proxy unchanged/not rerun.07-02 remains partial; focus7/last complete1;11/24 records,1/14 complete phases (7%); Phase02 8/18. No active tests/demo/async jobs. Continuation task numbers are local slices, not original full-plan acceptance. Before every commit reconcile all affected live planning, publish canonical state.json/run scripts/check_planning.py; immediately fetch/non-force push origin/main and verify0/0. No subagents without explicit request. No credentials/.env, protected hosts or real mail/bank/DNS/TLS/provider operations. Country/tax user-deferred; do not guess/repeatedly ask. Exact context percentage unavailable; proactive context-pressure pause under standing instruction. Measured dirty files below are checkpoint files included in this commit; reconcile against actual git status on resume."
+}
