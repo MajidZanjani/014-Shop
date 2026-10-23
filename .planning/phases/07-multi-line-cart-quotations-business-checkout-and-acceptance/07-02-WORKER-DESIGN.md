@@ -51,3 +51,6 @@ Current bounded worker subset:07-02-WORKER-PARTIAL adds a selected one-shot prep
 
 
 Selected local management command is implemented per07-02-WORKER-COMMAND-PARTIAL. Tests execute call_command in-process; separate-process smoke/failure is next. No automatic archive daemon/default image change or deployment qualification follows.
+
+
+Separate-process command smoke now passes; see07-02-WORKER-PROCESS-PARTIAL. Earlier next-smoke wording is historical. Next deterministic cross-process busy-root/tampered-marker refusal; no queue or deployment qualification.

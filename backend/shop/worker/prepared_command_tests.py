@@ -1,6 +1,10 @@
 """Actual local Django command execution with safe output and fail-closed modes."""
 from io import StringIO
 import json
+import os
+from pathlib import Path
+import subprocess
+import sys
 from unittest.mock import patch
 import uuid
 from django.core.management import call_command
@@ -64,3 +68,52 @@ class PreparedCommandTests(TransactionTestCase):
                 connection.rollback();connection.set_autocommit(True)
             archive.assert_not_called()
         self.assertEqual(ArchiveWorkClaim.objects.count(),0)
+
+    def run_child(self,reference,**changes):
+        # Only frozen runtime tool/library paths are inherited (libpq discovery). No provider,
+        # credential, libpq-service or application configuration is inherited.
+        env={key:os.environ[key] for key in ('PATH','LD_LIBRARY_PATH') if key in os.environ}
+        env.update(DJANGO_SETTINGS_MODULE='shop.config.synthetic',SHOP_ENV='synthetic',
+            LIVE_PAYMENTS_ENABLED='false',PAYMENT_ADAPTER='fake',MAIL_ADAPTER='fake',
+            STORAGE_ADAPTER='fake',PSYCOPG_IMPL='python',PYTHONDONTWRITEBYTECODE='1',NO_COLOR='1')
+        for key in ('NAME','USER','HOST','PORT'):
+            env['DATABASE_'+key]=str(connection.settings_dict[key])
+        options={'authorization':str(reference.authorization_id),'destination':str(self.proof.id),'root':str(self.root)}
+        options.update(changes)
+        backend=Path(__file__).resolve().parents[2]
+        argv=[sys.executable,str(backend/'manage.py'),'run_prepared_archive']
+        for key,value in options.items():argv.extend(('--'+key,value))
+        # subprocess.run kills and waits for this single child on timeout.
+        # No shell, daemon, child process tree or automatic retry is involved.
+        return subprocess.run(argv,cwd=backend,env=env,capture_output=True,text=True,timeout=15)
+
+    def assert_child_unavailable(self,result):
+        self.assertEqual(result.returncode,1)
+        self.assertEqual(result.stdout,'')
+        self.assertEqual(result.stderr,'CommandError: Local prepared archive job unavailable\n')
+
+    def test_separate_process_commits_verification_and_duplicate_preserves_exact_files(self):
+        reference=self.authorize();result=self.run_child(reference)
+        self.assertEqual(result.returncode,0,result.stderr)
+        self.assertEqual(result.stderr,'')
+        self.assertEqual(result.stdout,'{"created":true,"effects_authorized":false,"retention_qualified":false,"status":"local_prepared_verified"}\n')
+        verification=ArchivePreparedVerification.objects.get()
+        claim=ArchiveWorkClaim.objects.get()
+        files={p.name:p.read_bytes() for p in self.root.iterdir()}
+        self.assertEqual(len(files),3)
+        self.assert_child_unavailable(self.run_child(reference))
+        self.assertEqual(ArchivePreparedVerification.objects.get().pk,verification.pk)
+        self.assertEqual(ArchiveWorkClaim.objects.get().pk,claim.pk)
+        self.assertEqual({p.name:p.read_bytes() for p in self.root.iterdir()},files)
+
+    def test_separate_process_bad_scope_missing_root_and_revocation_have_no_effects(self):
+        reference=self.authorize();files={p.name:p.read_bytes() for p in self.root.iterdir()}
+        for changes in ({'authorization':'private-invalid-value'},
+                        {'destination':str(uuid.uuid4())},{'root':str(self.root/'missing')}):
+            with self.subTest(changes=tuple(changes)):
+                self.assert_child_unavailable(self.run_child(reference,**changes))
+        self.revoke(reference)
+        self.assert_child_unavailable(self.run_child(reference))
+        self.assertEqual(ArchiveWorkClaim.objects.count(),0)
+        self.assertEqual(ArchivePreparedVerification.objects.count(),0)
+        self.assertEqual({p.name:p.read_bytes() for p in self.root.iterdir()},files)

@@ -1,0 +1,11 @@
+# Plan07-02 separate-process command smoke — partial
+
+Runtime remains ccab85a; this slice changes command regression tests only. No phase/plan completion credit.
+
+Two new real-PostgreSQL TransactionTestCase regressions launch backend/manage.py run_prepared_archive through the frozen sys.executable. Explicit child environment copies only pinned PATH/LD_LIBRARY_PATH, supplies synthetic settings/fake adapters and NAME/USER/HOST/PORT from the actual test connection, and excludes ambient provider/credential/libpq-service configuration. subprocess.run captures output, bounds each child to15 seconds and kills/waits on timeout. No shell, queue loop or automatic retry.
+
+Success returns the exact fixed safe JSON with empty stderr and commits one claim/verification visible to the parent. Repeating the command yields the exact generic error and preserves original IDs and every archive byte. Invalid authorization, unknown destination, missing root and revoked authority return exactly the safe error with empty stdout, create no claims/verification and preserve the original root bytes. Exact output assertions exclude private paths/UUIDs/tokens/hashes implicitly.
+
+Initial full and targeted runs failed because the scrubbed environment omitted pinned PATH required for libpq discovery; no pass claimed. After adding only that runtime tool path, targeted five-command tests pass (19 combined observations9.937s). Complete ordinary lane: CORE_LOCAL_PASS checks5 tests248 duration59.426s,234 Django plus14 Gunicorn observations. Owned PostgreSQL18.6/UTF8; migration application/no-drift passes. Source /nix/store/mhq0irgiqjjqwh2ry1mzqzwjkda5p6py-shop-python-source has157 exact allowlisted files19 templates and no symlinks. Frontend/proxy unchanged, not rerun.
+
+This is local owned synthetic OS-process smoke, not independent runtime/transport/outage/off-host/provider/recovery qualification. No live mail/bank/DNS/TLS/host/deployment activity. Country/tax deferred and commercial effects disabled. Next local regressions: busy bound root and tampered marker refusal through the actual process boundary. Default probe daemon/images remain unchanged. Preserve populated evidence and archive bytes on rollback.

@@ -1,7 +1,7 @@
 ---
 gsd_state_version: "1.0"
-status: paused
-last_updated: "2026-10-23T11:26:19.461Z"
+status: in_progress
+last_updated: "2026-10-23T11:33:11.675431+00:00"
 state_head: ccab85a
 progress:
   total_phases: 14
@@ -12,8 +12,8 @@ progress:
 last_activity: 2026-10-23
 current_phase: 07
 current_phase_name: Multi-line cart, quotations, business checkout and acceptance
-stopped_at: Context checkpoint after selected prepared command; clear session and resume separate-process smoke; Country/tax pending.
-last_activity_desc: Local selected command passes246 tests;157 files19 templates;07-02 partial.
+stopped_at: Resumed; separate-process command smoke verified, continuing local root-refusal regressions.
+last_activity_desc: Separate-process command smoke passes248 tests;07-02 partial.
 ---
 
 # Project State
@@ -89,7 +89,7 @@ User review, 2026-10-22: **previous catalog demo checked and approved** (user: â
 
 ## Exact next action
 
-Current local quotation/staff/status/business slices await human review. Next action: Add separate-process owned-synthetic command smoke/failure tests; independent runtime/recovery qualification and production gates stay pending. Country/tax and commercial effects remain gated. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
+Current local quotation/staff/status/business slices await human review. Next action: Add deterministic cross-process busy-root/tampered-marker refusal tests; independent runtime/recovery qualification and production gates stay pending. Country/tax and commercial effects remain gated. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
 
 User instruction2026-10-23: **sync to configured origin/main after every commit**, using ordinary fetch/non-force push and checking ahead/behind. This applies to implementation and planning commits. Every implementation and planning commit must be pushed immediately and ahead/behind checked. Before each commit, reconcile all affected planning files, regenerate canonical state.json and run scripts/check_planning.py; preserve historical evidence.
 
@@ -105,7 +105,7 @@ Retain dependency locks, raw SBOMs, notices, validated derivative and all origin
 
 ## Session continuity
 
-Session continued afterd1e65a4 sync into selected local management command;246 tests. Next separate-process owned-synthetic smoke/failure tests. Continue across commits until context clear/user stop. Country/tax pending; focus7/completed1; no exact context percentage supplied or claimed.
+Session resumed from fa98c7d; separate-process smoke/failure regression passes248 local checks. Next deterministic cross-process busy-root/tampered-marker refusal tests. Continue across commits until context clear/user stop. Country/tax pending; focus7/completed1; no exact context percentage supplied or claimed.
 
 ### Quick Tasks Completed
 
@@ -168,6 +168,4 @@ Session continued afterd1e65a4 sync into selected local management command;246 t
 | 261023-cyg | Fix audit F-01 missing cart snapshot ownership recheck | 2026-10-23 | 83e8464 | [261023-cyg-fix-customer-form-audit-f-01-by-rechecki](./quick/261023-cyg-fix-customer-form-audit-f-01-by-rechecki/) |
 | 261023-d1r | Show exact committed and current cart revisions after no-JavaScript retries | 2026-10-23 | 6171d3c | [261023-d1r-show-exact-committed-revision-and-curren](./quick/261023-d1r-show-exact-committed-revision-and-curren/) |
 
-Current selected command evidence (implementationccab85a synced0/0):246 core-local tests (232 Django plus14 Gunicorn observations),57.080s; owned PostgreSQL18.6/UTF8. Source157 files19 templates exact/allowlisted/no symlinks. run_prepared_archive executes one explicit authorization/destination/existing bound root with fixed safe stdout/errors, no initialization/adoption/queue scan/retry. One-shot prepared executor and all manual-autocommit guards remain passing. Existing probe daemon/default images unchanged. Next: separate-process owned-synthetic command smoke/failure tests; actual transport/process/outage/off-host/provider/production qualification remains pending. Country/tax pending; focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 remains8/18;07-02 partial.
-
-Context checkpoint: implementationccab85a synced0/0,246 local checks pass; waiting for cleared session and $gsd-resume-work. No exact context percentage is available; proactive handoff follows the user AGENTS.md rule. Focus7/completed1;07-02 partial; Country/tax pending.
+Local separate-process command smoke passes248 core-local checks (234 Django tests plus14 Gunicorn observations),59.426s, on owned PostgreSQL18.6/UTF8. Child success commits one prepared verification; duplicate, malformed/unknown scope, missing root and revocation fail with exact safe output and preserve files/records. Source157 exact files19 templates, no symlinks. See [process smoke evidence](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-WORKER-PROCESS-PARTIAL.md). Next: deterministic cross-process busy-root and tampered-marker refusal regressions. Independent transport/outage/off-host/provider/recovery qualification remains pending; Country/tax deferred; commercial effects disabled. Focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 8/18;07-02 partial.
