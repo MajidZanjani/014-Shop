@@ -220,10 +220,10 @@ Updated 2026-10-22: BUILD-01–08 have partial local implementation/evidence and
 | COM-05 | Phase 7 | In Progress |
 | COM-06 | Phase 7 | Pending |
 | PAY-01 | Phase 8 | Pending |
-| PAY-02 | Phase 8 | Pending |
-| PAY-03 | Phase 8 | Pending |
-| PAY-04 | Phase 8 | Pending |
-| PAY-05 | Phase 8 | Pending |
+| PAY-02 | Phase 8 | In Progress |
+| PAY-03 | Phase 8 | In Progress |
+| PAY-04 | Phase 8 | In Progress |
+| PAY-05 | Phase 8 | In Progress |
 | BANK-01 | Phase 9 | Pending |
 | BANK-02 | Phase 9 | Pending |
 | BANK-03 | Phase 9 | Pending |
@@ -274,3 +274,5 @@ Local T06/T07 prerequisite evidence: [quick261022-hrl](quick/261022-hrl-verify-l
 Current development focus is Phase7, not a completed Phase7; last fully completed phase is1 and Phases2–6 remain partial/qualification-pending. See [STATE.md](STATE.md), [ROADMAP.md](ROADMAP.md) and the [local workflow audit](audits/2026-10-23-local-workflow.md). AUTH-03 and COM-01–05 have partial local implementation: staff rehearsal, cart/quotation/review/business scopes and declaration/preparation previews. Their requirement checkboxes remain unchecked. No approved offer, tax decision, declaration acceptance or order conversion is claimed; COM-06 remains pending. Full phase counts remain1/14 and11/24 plans; Country/tax answers and release gates remain pending.
 
 Explicit recent-MFA staff prepared-request preview/capture is implemented with strict CSRF forms, exact retained scope, and source digest checked inside the durable capture transaction before insert/replay. Original actor/MFA attribution survives exact retries; no archive I/O, root binding or work authority.266 core-local checks pass (252 Django plus14 Gunicorn),68.425s; owned PostgreSQL18.6/UTF8. Source163 exact files21 templates/no symlinks. See [staff capture evidence](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-STAFF-CAPTURE-PARTIAL.md). Next: critique07-02-CAPTURE-OBSERVATION-DESIGN against actual producer/capture/observation code, then implement only its read-only exact-scope capture-status service/route if the critique confirms the boundary; country/tax, commercial actions and independent runtime/transport/outage/off-host/provider/recovery qualification remain pending. Focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 8/18;07-02 partial.
+
+Phase08 typed synthetic-bank boundary is partial local groundwork for PAY-02–05, with no requirement completion. PAY-01 actual order/acceptance/archive/dispatch preparation remains pending. Canonical evidence/next action:STATE.md and08-BANK-BOUNDARY-PARTIAL; no actual financial confirmation or live approval.

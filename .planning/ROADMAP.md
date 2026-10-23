@@ -8,11 +8,11 @@
 
 ## Current implementation activity — 2026-10-23
 
-**Current development focus:** 7 — Multi-line cart, quotations, business checkout and acceptance. Local implementation is in progress; this is not full phase acceptance.
+**Current development focus:** 8 — Payment domain and fault-injectable fake bank. Local implementation is in progress; this is not full phase acceptance.
 
-**Last fully completed phase:** 1. Phases2–6 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase7 work while those earlier checks remain open. Completed phases remain1/14 (rounded7%); planned records11/24. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
+**Last fully completed phase:** 1. Phases2–7 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase8 work while those earlier checks remain open. Completed phases remain1/14 (rounded7%); planned records11/24. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
 
-**Current activity:** Completed staff queue/preparation/review history navigation;288 local tests pass. [Evidence](quick/261023-iet-expose-authorized-paginated-internal-rev/261023-iet-SUMMARY.md). Continuing independent typed synthetic-bank boundary while actual commercial/tax/legal inputs remain pending. Canonical evidence/next action:STATE.md; no per-task context pauses. Phase/record counts unchanged.
+**Current activity:** Delivered staff queue/preparation/review history navigation and independent typed durable synthetic-bank boundary;297 local tests pass. [Phase08 evidence](phases/08-payment-domain-and-fault-injectable-fake-bank/08-BANK-BOUNDARY-PARTIAL.md). Payment-attempt/reconciliation planning next; canonical state:STATE.md. No routine task/commit context pauses. Full source/commercial/financial/external gates and phase/record completion counts unchanged.
 
 Before every commit, reconcile all affected planning status references, regenerate canonical state.json and run `python3 scripts/check_planning.py`; commit then sync origin/main. Historical sources/evidence remain scoped to their dates.
 
@@ -242,7 +242,7 @@ Local implementation: versioned owner draft cart delivered in [quick261022-iqc](
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md T08; complete companion proposal remains normative.
 **Estimate:** 4–6 engineer-days
 **UI hint:** yes
-**Plans:** Detailed executable plans created at phase planning; no completion credit from earlier task numbers.
+**Plans:** Independent typed local synthetic-bank boundary implemented; [partial evidence](phases/08-payment-domain-and-fault-injectable-fake-bank/08-BANK-BOUNDARY-PARTIAL.md). Full payment-domain plans/acceptance remain pending; no completion credit from this adapter slice.
 
 **Success Criteria:**
 
@@ -416,7 +416,7 @@ Keep public bytes in shop-owned OVH Object Storage through a fixed verified HTTP
 | 5. Transactional records, durable work and private evidence primitives | 0 / not planned | In Progress — local slice in quick261022-dj5; full acceptance pending | — |
 | 6. Verified customer access, staff MFA and private host editing | 0 / not planned | In Progress — synthetic customer verification/save-resume and staff MFA rehearsal/assigned reviews implemented; production MFA/private-host/release acceptance pending | — |
 | 7. Multi-line cart, quotations, business checkout and acceptance | 1 / 4 | In Progress — current local cart/quotation/business/review/preparation implementation; commercial acceptance pending | — |
-| 8. Payment domain and fault-injectable fake bank | 0 / not planned | Not started | — |
+| 8. Payment domain and fault-injectable fake bank | 0 / not planned | In Progress | Typed local synthetic-bank slice; full domain pending |
 | 9. Selected-bank sandbox integration and complete reconciliation | 0 / not planned | Not started | — |
 | 10. Licence delivery, renewal/rehosting and support-hours workflows | 0 / not planned | Not started | — |
 | 11. Protected-host qualification, shop-only deployment and conditional public activation | 0 / not planned | Not started | — |

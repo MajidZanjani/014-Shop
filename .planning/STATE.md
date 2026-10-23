@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: executing
-last_updated: "2026-10-23T13:23:55.955951+00:00"
-state_head: 4063465
+last_updated: "2026-10-23T13:33:30.420242+00:00"
+state_head: 9039679
 progress:
   total_phases: 14
   completed_phases: 1
@@ -10,25 +10,27 @@ progress:
   completed_plans: 11
   percent: 7
 last_activity: 2026-10-23
-current_phase: 07
-current_phase_name: Multi-line cart, quotations, business checkout and acceptance
-stopped_at: Review history verified; continuing independent synthetic bank boundary.
-last_activity_desc: Delivered complete staff review navigation;288 local tests pass; continuing.
+current_phase: 08
+current_phase_name: Payment domain and fault-injectable fake bank
+stopped_at: Typed durable synthetic-bank boundary verified; payment-attempt/reconciliation slice next.
+last_activity_desc: Delivered synthetic-bank boundary;297 local tests pass; continued project implementation.
 ---
 
 # Project State
 
-Updated 2026-10-23T13:23:55.955951+00:00. Canonical current summary; latest evidence: [staff review history](quick/261023-iet-expose-authorized-paginated-internal-rev/261023-iet-SUMMARY.md). Prior observation/process evidence retains its historical scope. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
+Updated 2026-10-23T13:33:30.420242+00:00. Canonical current summary; latest evidence: [typed synthetic bank](phases/08-payment-domain-and-fault-injectable-fake-bank/08-BANK-BOUNDARY-PARTIAL.md). Prior observation/process evidence retains its historical scope. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
 ## Current position
 
-**Current development focus:** 7 — local cart/quotation/business/review/preparation work.
+**Current development focus:** 8 — independent typed synthetic bank and payment-domain implementation; Phase07 remains partial.
 
-**Last fully completed phase:** 1 — source documentation only. Phases2–6 remain partially implemented or awaiting qualification; independent Phase7 work is authorized by the October22 amendment. This is not a sequential completion claim.
+**Last fully completed phase:** 1 — source documentation only. Phases2–7 remain partially implemented or awaiting qualification; independent Phase8 adapter work proceeds under the October22 amendment. This is not a sequential completion claim.
 
 T03/T04 local catalog delivery remains intact; T05 local draft persistence and T06 synthetic verified access/save-resume are implemented. T07 now has the owner-scoped versioned multi-line draft cart; protected quotation-request capture now retains exact owner snapshots and reconciles duplicate/retried submissions. Local staff password/private-code rehearsal, assigned quotation reads and append-only-by-API internal review decisions are implemented. Owner history/detail now show safe current review status and corrections without staff/MFA metadata. Private owner partial business drafts now preserve nineteen exact source groups, helpers/defaults and versioned snapshots; country/tax choices and applicability stay pending. Explicit immutable business/quotation revision binding and exact-scope private staff grants are implemented. Protected current-source document/declaration previews now show applicable pending document sets for retained IP/support/mixed scopes, without acceptance or consent writes. Owner-only bounded quotation history now preserves capture/attachment/review-correction metadata without private values or staff attribution. Staff exact-scope advisory offer prerequisites now distinguish internal review evidence from missing commercial inputs; all commercial actions remain disabled. Explicit staff captures now retain attributed versioned internal preparation assessments with CAS/retry arbitration and exact historical permissions. Authorized retained/current comparisons now report fixed safe delta categories with strict null handling and both-scope permissions; equality never approves an offer. Real staff MFA/delivery/recovery and approved offers remain pending. Full phase acceptance remains pending. Phase02 remains 8/18 complete with all ten incomplete qualification/implementation records preserved. Only Phase01 is fully complete: 1/14 = rounded 7%. That is completed-phase progress, not engineering effort. Existing planned records remain 11/24; later phase acceptance is not claimed from quick-task implementation.
 
 ## Delivered behavior
+
+- Typed synthetic bank operations/key aliases now persist outside caller transactions with exact correlation, distinct statuses and recoverable simulated response loss. All financial/effect flags stay false; no actual order or payment is confirmed.
 
 - Staff queue and retained preparation/review history now have bounded older/newest navigation. Exact current and historical permissions remain distinct; review history preserves attribution without private digests/MFA evidence.
 
@@ -93,13 +95,13 @@ T03/T04 local catalog delivery remains intact; T05 local draft persistence and T
 
 Demo: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/demo.py --backend`; open http://127.0.0.1:4321 (also /support/ and /purchase/simple/).
 
-Checks:288 core-local tests/observations pass (274 Django plus14 Gunicorn),5 checks,77.696s on owned PostgreSQL18.6/UTF8;0012 application/no-drift pass. Exact source /nix/store/7f161hk8xg4anvmxhwlygvzgvd8fg2np-shop-python-source168 files23 templates/no symlinks. No migration; frontend/proxy unchanged/not rerun. Full human/production-MFA/commercial/runtime/provider/off-host/recovery qualification remains pending.
+Checks:297 core-local tests/observations pass (283 Django plus14 Gunicorn),5 checks,80.242s on owned PostgreSQL18.6/UTF8. Catalog0012 and payments0001 apply/no drift. Exact source /nix/store/87iyj21lmi0pmbqf52iyyvx68pvy1ygf-shop-python-source176 files23 templates/no symlinks. No new third-party libraries; frontend/proxy unchanged/not rerun. Full human/real-MFA/commercial/runtime/provider/off-host/recovery acceptance remains pending.
 
 User review, 2026-10-22: **previous catalog demo checked and approved** (user: “all checked and approved”). See task evidence for scope. Verification/save-resume also passed user review (“all works fine”, 2026-10-22). Local multi-line cart demo approved by user (“approved”, 2026-10-22). Detailed browser/accessibility qualification and commercial/release gates remain pending.
 
 ## Exact next action
 
-Implement the independent typed local-synthetic bank-adapter boundary and durable fake-provider observations: explicit synthetic-only capabilities, exact merchant/currency/amount/reference correlation, key/reference idempotency and lookup after a timeout occurring after the fake operation commits. Keep worker Probe/FakeReceipt unchanged; no approved order, real-bank capability, financial confirmation, entitlement or dispatch authorization is inferred. SourceT07 permits synthetic flows while live tax/legal values remain pending. Continue across commits without routine context pauses.
+Plan the local-synthetic payment-attempt/reconciliation slice against the new typed fake-bank boundary and existing prepared archive primitives. Define immutable expected merchant/currency/amount/reference, uncertain/observed/reconciled states and no-blind-retry claim arbitration before implementation. Retain separate order/acceptance/archive/approval prerequisites and synthetic-only classification; no fake result can mark a real order paid or grant rights. Source permits independent synthetic work while live tax/legal inputs remain pending. Continue substantive work without per-task context-clear requests; no actual external/host operations authorized.
 
 User instruction2026-10-23: **sync to configured origin/main after every commit**, using ordinary fetch/non-force push and checking ahead/behind. This applies to implementation and planning commits. Every implementation and planning commit must be pushed immediately and ahead/behind checked. Before each commit, reconcile all affected planning files, regenerate canonical state.json and run scripts/check_planning.py; preserve historical evidence.
 
@@ -115,11 +117,11 @@ Retain dependency locks, raw SBOMs, notices, validated derivative and all origin
 
 ## Session continuity
 
-User rejected excessive context-clear pauses; continue substantive implementation across commits/syncs. No exact percentage is available and task completion is not context pressure. No clear/resume action is pending.
+User corrected excessive context-clear requests: a task/commit is not context pressure; continue substantive work across commits/syncs. No exact percentage is available; no clear/resume request or one-shot pause handoff is pending.
 
-Staff can browse all retained internal review decisions through stable20-row HTML/JSON history with original reviewer attribution. The route shares the existing committed review-counter queryset, parent assignment/consistency and canonical bounded version cursor; it omits private digests, business values and MFA evidence, including after a private-business grant is withdrawn. CORE_LOCAL_PASS5 checks/288 tests (274 Django plus14 Gunicorn),77.696s; exact source /nix/store/7f161hk8xg4anvmxhwlygvzgvd8fg2np-shop-python-source168 files23 templates/no symlinks. No migration/commercial effect.
+Continued implementation through4063465 staff queue/preparation history and9039679 review history, each synced0/0. Implemented a typed durable local-synthetic bank adapter, separate from worker probes. Immutable-by-service fake operations and retained key aliases arbitrate merchant/reference/key retries and conflicts; explicit post-commit timeout can be reconciled by no-write reference lookup across connections. Exact typed correlation never confirms actual money; database/observation flags remain false. CORE_LOCAL_PASS5 checks/297 tests (283 Django plus14 Gunicorn),80.242s; PostgreSQL18.6/UTF8, payments0001/catalog0012 application and no-drift pass. Exact source /nix/store/87iyj21lmi0pmbqf52iyyvx68pvy1ygf-shop-python-source176 files23 templates/no symlinks.
 
-Implement the independent typed local-synthetic bank-adapter boundary and durable fake-provider observations: explicit synthetic-only capabilities, exact merchant/currency/amount/reference correlation, key/reference idempotency and lookup after a timeout occurring after the fake operation commits. Keep worker Probe/FakeReceipt unchanged; no approved order, real-bank capability, financial confirmation, entitlement or dispatch authorization is inferred. SourceT07 permits synthetic flows while live tax/legal values remain pending. Continue across commits without routine context pauses. No active test/demo/async jobs at verification completion. All actual external/protected/live commercial gates remain intact.
+Plan the local-synthetic payment-attempt/reconciliation slice against the new typed fake-bank boundary and existing prepared archive primitives. Define immutable expected merchant/currency/amount/reference, uncertain/observed/reconciled states and no-blind-retry claim arbitration before implementation. Retain separate order/acceptance/archive/approval prerequisites and synthetic-only classification; no fake result can mark a real order paid or grant rights. Source permits independent synthetic work while live tax/legal inputs remain pending. Continue substantive work without per-task context-clear requests; no actual external/host operations authorized. No active test/demo/async jobs after verification. Country/tax stays deferred without repeated requests; no credentials/agents/protected/external operations.
 
 ### Quick Tasks Completed
 
@@ -186,4 +188,5 @@ Implement the independent typed local-synthetic bank-adapter boundary and durabl
 | 261023-hvy | Critique protected-offer contract; correct schema and publication ambiguities | 2026-10-23 | 64b4432 | [261023-hvy](./quick/261023-hvy-critique-protected-offer-contract-before/) |
 | 261023-hzz | Audit existing preparation/review/document routes; no findings | 2026-10-23 | e26b21a | [261023-hzz](./quick/261023-hzz-audit-existing-preparation-review-and-do/) |
 | 261023-i7s | Add authorized staff queue and retained preparation pagination | 2026-10-23 | 4063465 | [261023-i7s](./quick/261023-i7s-add-authorized-staff-queue-and-retained-/) |
-| 261023-iet | Paginate all assigned internal review decisions with safe attribution | 2026-10-23 | — | [261023-iet](./quick/261023-iet-expose-authorized-paginated-internal-rev/) |
+| 261023-iet | Paginate all assigned internal review decisions with safe attribution | 2026-10-23 | 9039679 | [261023-iet](./quick/261023-iet-expose-authorized-paginated-internal-rev/) |
+| 261023-ina | Add typed durable synthetic-bank observations and uncertain-response lookup | 2026-10-23 | — | [261023-ina](./quick/261023-ina-implement-typed-durable-synthetic-bank-o/) |
