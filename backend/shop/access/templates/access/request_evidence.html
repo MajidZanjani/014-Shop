@@ -3,11 +3,15 @@
 <p>Request {{ identity }} · Retained business scope {{ version }}{% if cart_version %} · Saved cart version {{ cart_version }}{% endif %}</p>
 {% if version == 0 %}<p>Explicit unbound cart scope. No business attachment is included.</p>{% endif %}
 <p>Local synthetic prepared evidence only. This capture does not complete or qualify an archive, authorize worker execution, or approve an offer, acceptance, payment, licence or support credit.</p>
-{% if captured %}<p role="status">{% if created %}Captured{% else %}Original capture retained{% endif %}. Original attribution is preserved.</p>
+{% if observation %}<p role="status">{{ observation }}</p>
+<p>This is a committed database observation only. An absent record can change after this read. Neither status proves physical archive retention or grants retry or work permission.</p>
+<p><a href="/staff/quotation-requests/{{ identity }}/request-evidence/{{ version }}/">Exact retained scope preview</a></p>
+{% elif captured %}<p role="status">{% if created %}Captured{% else %}Original capture retained{% endif %}. Original attribution is preserved.</p>
 <p>The existing intent remains pending or held. Retention qualification and effects authorization remain false.</p>
 {% else %}<p>Review this exact retained scope before capturing. Later attachments do not change this selection.</p>
 <form method="post">{% csrf_token %}<input type="hidden" name="action" value="capture"><input type="hidden" name="expected_source_sha256" value="{{ digest }}">
 <button>Capture prepared request evidence</button></form>
 <p>If the response is lost, explicitly resubmit this same form to reconcile its original capture. A changed source requires a new preview.</p>{% endif %}
+{% if not observation %}<p><a href="/staff/quotation-requests/{{ identity }}/request-evidence/{{ version }}/status/">Observe capture status without resubmitting</a></p>{% endif %}
 <p><a href="/staff/quotation-requests/{{ identity }}/">Request details</a></p>
 </main></body></html>

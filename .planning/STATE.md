@@ -1,7 +1,7 @@
 ---
 gsd_state_version: "1.0"
-status: paused
-last_updated: "2026-10-23T12:12:32.096Z"
+status: in_progress
+last_updated: "2026-10-23T12:21:33.058768+00:00"
 state_head: 7e8a06d
 progress:
   total_phases: 14
@@ -12,8 +12,8 @@ progress:
 last_activity: 2026-10-23
 current_phase: 07
 current_phase_name: Multi-line cart, quotations, business checkout and acceptance
-stopped_at: Proactive context checkpoint after verified staff capture journeys; critique capture-observation design next.
-last_activity_desc: Explicit staff prepared capture passes266 local checks;07-02 partial.
+stopped_at: Capture observation verified; integrate supported-route status journeys next.
+last_activity_desc: Read-only exact capture status passes272 local checks;07-02 partial.
 ---
 
 # Project State
@@ -29,6 +29,8 @@ Updated 2026-10-23T12:04:45.027833+00:00. Canonical current summary; latest evid
 T03/T04 local catalog delivery remains intact; T05 local draft persistence and T06 synthetic verified access/save-resume are implemented. T07 now has the owner-scoped versioned multi-line draft cart; protected quotation-request capture now retains exact owner snapshots and reconciles duplicate/retried submissions. Local staff password/private-code rehearsal, assigned quotation reads and append-only-by-API internal review decisions are implemented. Owner history/detail now show safe current review status and corrections without staff/MFA metadata. Private owner partial business drafts now preserve nineteen exact source groups, helpers/defaults and versioned snapshots; country/tax choices and applicability stay pending. Explicit immutable business/quotation revision binding and exact-scope private staff grants are implemented. Protected current-source document/declaration previews now show applicable pending document sets for retained IP/support/mixed scopes, without acceptance or consent writes. Owner-only bounded quotation history now preserves capture/attachment/review-correction metadata without private values or staff attribution. Staff exact-scope advisory offer prerequisites now distinguish internal review evidence from missing commercial inputs; all commercial actions remain disabled. Explicit staff captures now retain attributed versioned internal preparation assessments with CAS/retry arbitration and exact historical permissions. Authorized retained/current comparisons now report fixed safe delta categories with strict null handling and both-scope permissions; equality never approves an offer. Real staff MFA/delivery/recovery and approved offers remain pending. Full phase acceptance remains pending. Phase02 remains 8/18 complete with all ten incomplete qualification/implementation records preserved. Only Phase01 is fully complete: 1/14 = rounded 7%. That is completed-phase progress, not engineering effort. Existing planned records remain 11/24; later phase acceptance is not claimed from quick-task implementation.
 
 ## Delivered behavior
+
+- Exact retained capture GET observes only committed database facts using shared validation under producer locks. No writes, archive I/O or work authority; absent and inconsistent scopes stay distinct.
 
 - Supported mixed/support-only customer-to-staff journeys now include deliberate capture/retry, later edit stability, revoked-scope refusal and zero worker effects. All records created through supported APIs/forms/operator commands; read assertions only.
 
@@ -89,13 +91,13 @@ T03/T04 local catalog delivery remains intact; T05 local draft persistence and T
 
 Demo: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/demo.py --backend`; open http://127.0.0.1:4321 (also /support/ and /purchase/simple/).
 
-Checks:266 core-local checks pass (252 Django plus14 Gunicorn),68.425s; owned PostgreSQL18.6/UTF8. Source /nix/store/d1hwx24hz000h3afy65pld2a1ma18ni9-shop-python-source:163 exact files21 templates/no symlinks.0012 application/no-drift pass; no new migration. Frontend/proxy unchanged/not rerun. Independent/runtime/recovery/provider/production gates pending.
+Checks:272 core-local checks pass (258 Django plus14 Gunicorn),70.685s; owned PostgreSQL18.6/UTF8. Source /nix/store/j18ag5j6i8krdn4lhxpv40m97q7nakc8-shop-python-source:163 exact files21 templates/no symlinks.0012 application/no-drift pass; no new migration. Frontend/proxy unchanged/not rerun. Independent/runtime/recovery/provider/production gates pending.
 
 User review, 2026-10-22: **previous catalog demo checked and approved** (user: “all checked and approved”). See task evidence for scope. Verification/save-resume also passed user review (“all works fine”, 2026-10-22). Local multi-line cart demo approved by user (“approved”, 2026-10-22). Detailed browser/accessibility qualification and commercial/release gates remain pending.
 
 ## Exact next action
 
-Current local quotation/staff/status/business slices await human review. Next action: critique07-02-CAPTURE-OBSERVATION-DESIGN against actual producer/capture/observation code, then implement only its read-only exact-scope capture-status service/route if the critique confirms the boundary; independent runtime/recovery qualification and production gates stay pending. Country/tax and commercial effects remain gated. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
+Current local quotation/staff/status/business slices await human review. Next action: integrate exact retained capture status into supported mixed/support-only journeys using supported APIs/forms/operator commands, then review remaining local boundary gaps. Country/tax choices remain explicitly deferred; all commercial effects and real provider/runtime/recovery/production qualification stay pending. No infrastructure expansion or real credential authority inferred.
 
 User instruction2026-10-23: **sync to configured origin/main after every commit**, using ordinary fetch/non-force push and checking ahead/behind. This applies to implementation and planning commits. Every implementation and planning commit must be pushed immediately and ahead/behind checked. Before each commit, reconcile all affected planning files, regenerate canonical state.json and run scripts/check_planning.py; preserve historical evidence.
 
@@ -111,7 +113,7 @@ Retain dependency locks, raw SBOMs, notices, validated derivative and all origin
 
 ## Session continuity
 
-8aa2ad5/cc16c47/7e8a06d synced0/0.266 core-local checks (252 Django plus14 Gunicorn),68.425s; owned PostgreSQL18.6/UTF8. Final source /nix/store/d1hwx24hz000h3afy65pld2a1ma18ni9-shop-python-source:163 exact files21 templates/no symlinks.0012 application/no-drift pass; no migrations. Frontend/proxy unchanged/not rerun.07-02 partial; focus7/last complete1;11/24 planned records; Phase02 8/18. No active tests/demo/async jobs. Task numbers below describe continuation slices, not original full-plan completion. Current capture form is implemented; next observation contract is only proposed and must be critiqued. User requires continuing across commits/syncs until context clear/user stop. Before every commit reconcile affected planning, publish canonical state.json/run scripts/check_planning.py; immediately fetch/non-force push origin/main and verify0/0. No subagents without explicit request. No credentials/.env, protected hosts or external service operations. No exact context percentage available. All measured pending checkpoint files are included in its commit; dirty status recorded before checkpoint commit must be reconciled against current git status on resume.
+Resumed from clean checkpoint2bf5491; saved clear/resume action satisfied and one-shot HANDOFF.json consumed. Critique complete before runtime edits; capture-status implementation verified272 local checks/source163/21. Continuing supported-route observation journeys. No active tests/demo/async jobs. Every commit requires planning check and immediate origin/main sync. No subagents or external operations.
 
 ### Quick Tasks Completed
 
@@ -174,6 +176,7 @@ Retain dependency locks, raw SBOMs, notices, validated derivative and all origin
 | 261023-cyg | Fix audit F-01 missing cart snapshot ownership recheck | 2026-10-23 | 83e8464 | [261023-cyg-fix-customer-form-audit-f-01-by-rechecki](./quick/261023-cyg-fix-customer-form-audit-f-01-by-rechecki/) |
 | 261023-d1r | Show exact committed and current cart revisions after no-JavaScript retries | 2026-10-23 | 6171d3c | [261023-d1r-show-exact-committed-revision-and-curren](./quick/261023-d1r-show-exact-committed-revision-and-curren/) |
 
-Explicit recent-MFA staff prepared-request preview/capture is implemented with strict CSRF forms, exact retained scope, and source digest checked inside the durable capture transaction before insert/replay. Original actor/MFA attribution survives exact retries; no archive I/O, root binding or work authority.266 core-local checks pass (252 Django plus14 Gunicorn),68.425s; owned PostgreSQL18.6/UTF8. Source163 exact files21 templates/no symlinks. See [staff capture evidence](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-STAFF-CAPTURE-PARTIAL.md). Next: critique07-02-CAPTURE-OBSERVATION-DESIGN against actual producer/capture/observation code, then implement only its read-only exact-scope capture-status service/route if the critique confirms the boundary; country/tax, commercial actions and independent runtime/transport/outage/off-host/provider/recovery qualification remain pending. Focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 8/18;07-02 partial.
+Exact retained staff capture status now provides GET-only private JSON/HTML observation under recent MFA and exact historical permissions. Shared retained-fact/intent validation distinguishes absent capture from unavailable inconsistency; producer locks remain held through inspection. No database writes/archive I/O/work authority or commercial effects.272 core-local checks pass (258 Django plus14 Gunicorn),70.685s; owned PostgreSQL18.6/UTF8. Source /nix/store/j18ag5j6i8krdn4lhxpv40m97q7nakc8-shop-python-source matches163 exact files21 templates/no symlinks. See [capture observation evidence](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-OBSERVATION-PARTIAL.md). Next: integrate status observation into supported mixed/support-only journeys without direct domain fixture writes. Country/tax, commercial actions and independent runtime/transport/outage/off-host/provider/recovery qualification remain pending. Focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 8/18;07-02 partial.
 
-Proactive context-pressure checkpoint under standing user instruction; exact percentage unavailable. Work saved in HANDOFF.json and phase .continue-here.md. Clear/resume before further implementation.
+
+Session resumed2026-10-23: checkpoint2bf5491 reconciled against clean working tree. Saved clear/resume action satisfied. Continuing tasks4/5 inline; critique recorded before runtime edits.

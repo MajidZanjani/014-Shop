@@ -3,7 +3,7 @@ import hashlib
 import re
 from django.db import DatabaseError
 from django.http import HttpResponseNotAllowed
-from shop.catalog.envelope_capture import capture_request_envelope
+from shop.catalog.envelope_capture import capture_request_envelope, observe_request_capture
 from shop.catalog.request_envelope import EnvelopeError, prepare_request_envelope, validate_envelope
 from .staff_auth import payload, staff_credential
 from .staff_views import page
@@ -49,3 +49,30 @@ def evidence(request,identity,version):
         return private(reply({'error':'not_found'},404))
     except DatabaseError:
         return private(reply({'error':'capture_unavailable'},503))
+
+
+CAPTURE_LABELS={
+    'capture_not_recorded':'No capture record observed for this exact retained scope.',
+    'capture_recorded':'Prepared database capture recorded for this exact retained scope.',
+}
+
+
+def capture_status(request,identity,version):
+    from .archive_observation import private as status_private
+    if request.method!='GET':return status_private(HttpResponseNotAllowed(['GET']))
+    try:
+        if staff_credential(request,recent=True) is None:
+            return status_private(reply({'error':'recent_staff_mfa_required'},403))
+        if request.GET:return status_private(reply({'error':'unexpected_query'},400))
+        status=observe_request_capture(request,identity,version)
+    except EnvelopeError:
+        return status_private(reply({'error':'not_found'},404))
+    except DatabaseError:
+        return status_private(reply({'error':'observation_unavailable'},503))
+    if status not in CAPTURE_LABELS:
+        return status_private(reply({'error':'observation_unavailable'},503))
+    if 'text/html' in request.headers.get('Accept',''):
+        return status_private(page(request,'access/request_evidence.html',
+            {'identity':identity,'version':version,'observation':CAPTURE_LABELS[status]}))
+    return status_private(reply({'status':status,'evidence_class':'local-synthetic','evidence_kind':'prepared',
+        'retention_qualified':False,'effects_authorized':False}))
