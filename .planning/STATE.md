@@ -1,24 +1,24 @@
 ---
 gsd_state_version: "1.0"
 status: active
-last_updated: "2026-10-23T09:31:32.060541+00:00"
-state_head: 6171d3c
+last_updated: "2026-10-23T09:38:37.488188+00:00"
+state_head: ccc6097
 progress:
   total_phases: 14
   completed_phases: 1
   total_plans: 24
-  completed_plans: 10
+  completed_plans: 11
   percent: 7
 last_activity: 2026-10-23
 current_phase: 07
 current_phase_name: Multi-line cart, quotations, business checkout and acceptance
-stopped_at: Phase7 remaining plans recorded; execute07-01 local synthetic archive next; Country/tax pending.
-last_activity_desc: Explicit cart retry revision confirmation verified;178 core-local tests, source129 files19 templates.
+stopped_at: Plan07-01 private synthetic prepared archive complete;07-02 domain contract next; Country/tax pending.
+last_activity_desc: Plan07-01 archive completed locally;188 core-local tests;11/24 records; Phase7 remains in progress.
 ---
 
 # Project State
 
-Updated 2026-10-23T09:31:32.060541+00:00. Canonical current summary; latest evidence: [quick261023-d1r](quick/261023-d1r-show-exact-committed-revision-and-curren/261023-d1r-SUMMARY.md). Customer status: [quick261023-7s8](quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-SUMMARY.md). Prior staff/HTTP evidence remains linked there. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
+Updated 2026-10-23T09:38:37.488188+00:00. Canonical current summary; latest evidence: [Plan07-01](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-01-SUMMARY.md). Customer status: [quick261023-7s8](quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-SUMMARY.md). Prior staff/HTTP evidence remains linked there. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
 ## Current position
 
@@ -26,9 +26,11 @@ Updated 2026-10-23T09:31:32.060541+00:00. Canonical current summary; latest evid
 
 **Last fully completed phase:** 1 — source documentation only. Phases2–6 remain partially implemented or awaiting qualification; independent Phase7 work is authorized by the October22 amendment. This is not a sequential completion claim.
 
-T03/T04 local catalog delivery remains intact; T05 local draft persistence and T06 synthetic verified access/save-resume are implemented. T07 now has the owner-scoped versioned multi-line draft cart; protected quotation-request capture now retains exact owner snapshots and reconciles duplicate/retried submissions. Local staff password/private-code rehearsal, assigned quotation reads and append-only-by-API internal review decisions are implemented. Owner history/detail now show safe current review status and corrections without staff/MFA metadata. Private owner partial business drafts now preserve nineteen exact source groups, helpers/defaults and versioned snapshots; country/tax choices and applicability stay pending. Explicit immutable business/quotation revision binding and exact-scope private staff grants are implemented. Protected current-source document/declaration previews now show applicable pending document sets for retained IP/support/mixed scopes, without acceptance or consent writes. Owner-only bounded quotation history now preserves capture/attachment/review-correction metadata without private values or staff attribution. Staff exact-scope advisory offer prerequisites now distinguish internal review evidence from missing commercial inputs; all commercial actions remain disabled. Explicit staff captures now retain attributed versioned internal preparation assessments with CAS/retry arbitration and exact historical permissions. Authorized retained/current comparisons now report fixed safe delta categories with strict null handling and both-scope permissions; equality never approves an offer. Real staff MFA/delivery/recovery and approved offers remain pending. Full phase acceptance remains pending. Phase02 remains 8/18 complete with all ten incomplete qualification/implementation records preserved. Only Phase01 is fully complete: 1/14 = rounded 7%. That is completed-phase progress, not engineering effort. Existing planned records remain 10/24; later phase acceptance is not claimed from quick-task implementation.
+T03/T04 local catalog delivery remains intact; T05 local draft persistence and T06 synthetic verified access/save-resume are implemented. T07 now has the owner-scoped versioned multi-line draft cart; protected quotation-request capture now retains exact owner snapshots and reconciles duplicate/retried submissions. Local staff password/private-code rehearsal, assigned quotation reads and append-only-by-API internal review decisions are implemented. Owner history/detail now show safe current review status and corrections without staff/MFA metadata. Private owner partial business drafts now preserve nineteen exact source groups, helpers/defaults and versioned snapshots; country/tax choices and applicability stay pending. Explicit immutable business/quotation revision binding and exact-scope private staff grants are implemented. Protected current-source document/declaration previews now show applicable pending document sets for retained IP/support/mixed scopes, without acceptance or consent writes. Owner-only bounded quotation history now preserves capture/attachment/review-correction metadata without private values or staff attribution. Staff exact-scope advisory offer prerequisites now distinguish internal review evidence from missing commercial inputs; all commercial actions remain disabled. Explicit staff captures now retain attributed versioned internal preparation assessments with CAS/retry arbitration and exact historical permissions. Authorized retained/current comparisons now report fixed safe delta categories with strict null handling and both-scope permissions; equality never approves an offer. Real staff MFA/delivery/recovery and approved offers remain pending. Full phase acceptance remains pending. Phase02 remains 8/18 complete with all ten incomplete qualification/implementation records preserved. Only Phase01 is fully complete: 1/14 = rounded 7%. That is completed-phase progress, not engineering effort. Existing planned records remain 11/24; later phase acceptance is not claimed from quick-task implementation.
 
 ## Delivered behavior
+
+- Plan07-01 private synthetic prepared-evidence archive: immutable identity/hash/size receipts, blob-before-receipt publication, file/directory sync, reopened verification, exact retries and fail-fast contention. Prepared bytes only; no provider retention, domain completion or effect authorization.
 
 - Cart form success identifies the exact committed revision, a replayed submission and the newly loaded current revision. Older replay confirmations state that later changes remain saved. Only a closed integer/boolean notice is kept in the server session, consumed once; malformed/legacy values are suppressed.
 
@@ -63,17 +65,17 @@ T03/T04 local catalog delivery remains intact; T05 local draft persistence and T
 
 Demo: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/demo.py --backend`; open http://127.0.0.1:4321 (also /support/ and /purchase/simple/).
 
-Checks: current backend integration lane passes core-local178 tests on owned PostgreSQL/UTF8. Prior15 dispatcher/scratch-boundary tests retain their original scope. Unchanged frontend110 aggregate tests (104 Node plus6 boundary) plus proxy1 retain quick261023-99a evidence and were not rerun for this backend form slice; static build/typecheck/source policy/output privacy checks pass. Current retry-confirmation/source-package evidence/limits are in quick261023-d1r SUMMARY; audit evidence remains in quick261023-cyg SUMMARY; quotation-form evidence remains in quick261023-crh SUMMARY; cart evidence remains in quick261023-cll SUMMARY; history evidence remains in quick261023-bam SUMMARY; access evidence remains in quick261023-b25 SUMMARY; supported-route journey evidence remains in quick261023-atf SUMMARY; comparison evidence remains in quick261023-a30; retained-preparation evidence remains in quick261023-9r5; prerequisite evidence remains in quick261023-9eo; timeline evidence remains in quick261023-99a; preview evidence remains in quick261023-91u; business-scope evidence remains in quick261023-8in; prior customer-status evidence remains in quick261023-7s8; prior internal-decision evidence remains in quick261023-7l0; prior staff authentication evidence remains in quick261023-72i; startup of both previews and the updated proxy1 test also passed. User explicitly approved the previously blocked disposable credential read; final manual HTTP sign-in/review/logout passed15 observations after proxy Accept/CSP forwarding fix817fd57; unchanged lanes retain prior scoped evidence. No FULL_PASS or real-browser/production/recovery/legal acceptance. Hosted CI for this slice remains unverified; no credential access retried.
+Checks: current core-local188 tests pass (174 Django plus14 actual Gunicorn observations), owned PostgreSQL18.6/UTF8. [Plan07-01](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-01-SUMMARY.md) records archive/reopen/failure/concurrency evidence and exact source131 files19 templates. Previous UI/archive audit results retain their original summaries and scopes. Unchanged frontend110 aggregate/proxy1 and15 harness tests were not rerun. No FULL_PASS, browser, provider, off-host or production qualification claimed.
 
 User review, 2026-10-22: **previous catalog demo checked and approved** (user: “all checked and approved”). See task evidence for scope. Verification/save-resume also passed user review (“all works fine”, 2026-10-22). Local multi-line cart demo approved by user (“approved”, 2026-10-22). Detailed browser/accessibility qualification and commercial/release gates remain pending.
 
 ## Exact next action
 
-Current local quotation/staff/status/business slices await human review. Next action: plan the remaining Phase7 local acceptance and durable-evidence boundaries against the delivered customer/staff slices, keeping unknown approvals and Country/tax pending. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
+Current local quotation/staff/status/business slices await human review. Next action: design the exact private quotation evidence envelope and domain outbox/reference contract for07-02 before offer publication; keep Country/tax and all actual approvals pending. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
 
 User instruction2026-10-23: **sync to configured origin/main after every commit**, using ordinary fetch/non-force push and checking ahead/behind. This applies to implementation and planning commits. Every implementation and planning commit must be pushed immediately and ahead/behind checked. Before each commit, reconcile all affected planning files, regenerate canonical state.json and run scripts/check_planning.py; preserve historical evidence.
 
-Planning audit2026-10-23: [F-00/F-01/F-02 report](audits/2026-10-23-local-workflow.md). All three findings remain fixed; recorded audit evidence147 retains its scope. Current combined lane passes178 core-local tests; prior journey and audit evidence retain their recorded scopes. Country/tax answers stay deferred.
+Planning audit2026-10-23: [F-00/F-01/F-02 report](audits/2026-10-23-local-workflow.md). All three findings remain fixed; recorded audit evidence147 retains its scope. Current combined lane passes188 core-local tests; prior journey and audit evidence retain their recorded scopes. Country/tax answers stay deferred.
 
 Audit completion: all three local findings fixed; final core-local147 tests and source package116 files/fifteen templates pass. Full report: [local workflow audit](audits/2026-10-23-local-workflow.md). Current phase7/last complete1 and all acceptance gates unchanged.
 
@@ -85,7 +87,7 @@ Retain dependency locks, raw SBOMs, notices, validated derivative and all origin
 
 ## Session continuity
 
-Session continued2026-10-23 across access a7d085f, history120f0a5 and cart691ce9f commits/syncs. Quotation capture passes178 core-local checks (163 Django,14 transport), actual source129 files19 templates. Focus7/completed1 unchanged. Next: plan the remaining Phase7 local acceptance and durable-evidence boundaries against the delivered customer/staff slices, keeping unknown approvals and Country/tax pending. Country/tax deferred. No exact context percentage supplied or claimed.
+Session continued2026-10-23 across access a7d085f, history120f0a5 and cart691ce9f commits/syncs. Quotation capture passes188 core-local checks (163 Django,14 transport), actual source131 files19 templates. Focus7/completed1 unchanged. Next: design the exact private quotation evidence envelope and domain outbox/reference contract for07-02 before offer publication; keep Country/tax and all actual approvals pending. Country/tax deferred. No exact context percentage supplied or claimed.
 
 ### Quick Tasks Completed
 
@@ -148,6 +150,8 @@ Session continued2026-10-23 across access a7d085f, history120f0a5 and cart691ce9
 | 261023-cyg | Fix audit F-01 missing cart snapshot ownership recheck | 2026-10-23 | 83e8464 | [261023-cyg-fix-customer-form-audit-f-01-by-rechecki](./quick/261023-cyg-fix-customer-form-audit-f-01-by-rechecki/) |
 | 261023-d1r | Show exact committed and current cart revisions after no-JavaScript retries | 2026-10-23 | 6171d3c | [261023-d1r-show-exact-committed-revision-and-curren](./quick/261023-d1r-show-exact-committed-revision-and-curren/) |
 
-Batch checkpoint2026-10-23: six implementation/fix commits through6171d3c synchronized and indexed;178 core-local tests, source129 files19 templates. Live references reviewed 2026-10-23T09:27:13.668083+00:00. Next action and gates are in [HANDOFF](HANDOFF.md). Focus7/completed1 and all acceptance counts unchanged.
+Batch checkpoint2026-10-23: six implementation/fix commits through6171d3c synchronized and indexed;188 core-local tests, source131 files19 templates. Live references reviewed 2026-10-23T09:27:13.668083+00:00. Next action and gates are in [HANDOFF](HANDOFF.md). Focus7/completed1 and all acceptance counts unchanged.
 
-Current Phase7 planning checkpoint: four remaining plans added; total planned records10/24. Next: execute07-01 private synthetic prepared-evidence archive. Baseline178 core-local tests retained, not rerun for documentation. Country/tax deferred; focus7/completed1 and Phase02 8/18 unchanged.
+Current Phase7 checkpoint:07-01 local archive slice complete;11/24 planned records. Next: design the exact private quotation evidence envelope and domain outbox/reference contract for07-02 before offer publication; keep Country/tax and all actual approvals pending.188 core-local tests, source131 files19 templates. Focus7/completed1 and Phase02 8/18 unchanged.
+
+Latest archive evidence: [Plan07-01](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-01-SUMMARY.md),188 core-local tests, source131 files19 templates. Reviewed 2026-10-23T09:38:37.488188+00:00;11/24 records,07-01 complete locally; phase completion remains1/14. Next: design the exact private quotation evidence envelope and domain outbox/reference contract for07-02 before offer publication; keep Country/tax and all actual approvals pending.
