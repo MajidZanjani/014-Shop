@@ -1,12 +1,12 @@
 {
   "version": "1.0",
-  "timestamp": "2026-10-23T12:27:42.804Z",
+  "timestamp": "2026-10-23T12:39:06.902802+00:00",
   "phase": "07",
   "phase_name": "Multi-line cart, quotations, business checkout and acceptance",
   "phase_dir": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance",
   "plan": 2,
-  "task": 7,
-  "total_tasks": 7,
+  "task": 8,
+  "total_tasks": 8,
   "status": "paused",
   "completed_tasks": [
     {
@@ -26,12 +26,18 @@
       "name": "Supported mixed/support-only status observation journeys and runbook",
       "status": "done",
       "commit": "35cb252"
+    },
+    {
+      "id": 7,
+      "name": "Bounded capture/status audit; zero demonstrated findings;272 local checks70.325s",
+      "status": "done",
+      "evidence": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-REVIEW.md"
     }
   ],
   "remaining_tasks": [
     {
-      "id": 7,
-      "name": "Bounded audit of actual prepared capture/status boundaries",
+      "id": 8,
+      "name": "Deterministic supported credential/grant revocation races",
       "status": "not_started"
     }
   ],
@@ -46,7 +52,7 @@
   "human_actions_pending": [
     {
       "action": "Clear session and run $gsd-resume-work.",
-      "context": "Standing proactive context-pressure checkpoint instruction; exact percentage unavailable.",
+      "context": "Standing proactive context-pressure checkpoint; exact percentage unavailable. Restored handoff was consumed; this is a new audit-complete checkpoint.",
       "blocking": true
     },
     {
@@ -69,14 +75,17 @@
   ],
   "uncommitted_files": [
     " M .planning/ACTIVITY-LOG.md",
+    " M .planning/HANDOFF.json",
     " M .planning/HANDOFF.md",
     " M .planning/PROJECT.md",
     " M .planning/ROADMAP.md",
     " M .planning/STATE.md",
+    " M .planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/.continue-here.md",
+    " M .planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-OBSERVATION-PARTIAL.md",
+    " M .planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-PLAN.md",
     " M .planning/state.json",
-    "?? .planning/HANDOFF.json",
-    "?? .planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/.continue-here.md"
+    "?? .planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-REVIEW.md"
   ],
-  "next_action": "Read CAPTURE-OBSERVATION-DESIGN/PARTIAL and audit the implemented prepared capture/status slice against actual producer locks, current staff credential/grant changes, immutable attribution and closed outputs. Record concrete findings and fix only demonstrated local defects. Do not broaden infrastructure or commercial scope.",
-  "context_notes": "e29b0e7/35cb252 synced0/0.272 core-local checks (258 Django plus14 Gunicorn),70.667s; owned PostgreSQL18.6/UTF8,0012 application/no-drift checks pass. Source /nix/store/6x0vx2hhfaszqnjfj9mgznj73v58yj09-shop-python-source exact163 files21 templates/no symlinks. No migration; frontend/proxy unchanged/not rerun.07-02 remains partial; focus7/last complete1;11/24 records,1/14 complete phases (7%); Phase02 8/18. No active tests/demo/async jobs. Continuation task numbers are local slices, not original full-plan acceptance. Before every commit reconcile all affected live planning, publish canonical state.json/run scripts/check_planning.py; immediately fetch/non-force push origin/main and verify0/0. No subagents without explicit request. No credentials/.env, protected hosts or real mail/bank/DNS/TLS/provider operations. Country/tax user-deferred; do not guess/repeatedly ask. Exact context percentage unavailable; proactive context-pressure pause under standing instruction. Measured dirty files below are checkpoint files included in this commit; reconcile against actual git status on resume."
+  "next_action": "Add deterministic owned-PostgreSQL capture/status regressions for supported local_staff credential reset/revoke and exact business-grant withdrawal while an observation waits for producer locks. Confirm post-commit refusal, rollback preservation, unchanged capture attribution/facts and no archive I/O. Use actual local login/CSRF/operator paths where practical; do not infer process/outage or production qualification. Fix runtime only if a demonstrated defect is reproduced.",
+  "context_notes": "Bounded inline capture/status audit complete with zero demonstrated findings; see [review](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-REVIEW.md). Fresh CORE_LOCAL_PASS checks=5 tests=272 (258 Django plus14 Gunicorn),70.325s; owned PostgreSQL18.6/UTF8, migration application/no-drift pass. Runtime/source unchanged; prior exact source163 files/21 templates evidence retained, not rebuilt. Next: deterministic supported credential/grant revocation races under producer lock contention. Full07-02 acceptance remains pending; focus7/last complete1,11/24 records,1/14 phases (7%), Phase02 8/18. Country/tax deferred; commercial and external qualification gates unchanged.\n\nCheckpoint after substantial restoration/review context; exact usage percentage unavailable. Clear session and run $gsd-resume-work. No active tests/demo/async jobs. No credentials or protected/external services accessed. Continue across commits/syncs under saved user policy.\n\n\nAdd deterministic owned-PostgreSQL capture/status regressions for supported local_staff credential reset/revoke and exact business-grant withdrawal while an observation waits for producer locks. Confirm post-commit refusal, rollback preservation, unchanged capture attribution/facts and no archive I/O. Use actual local login/CSRF/operator paths where practical; do not infer process/outage or production qualification. Fix runtime only if a demonstrated defect is reproduced."
 }

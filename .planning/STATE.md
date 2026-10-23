@@ -1,7 +1,7 @@
 ---
 gsd_state_version: "1.0"
 status: paused
-last_updated: "2026-10-23T12:27:42.804Z"
+last_updated: "2026-10-23T12:39:06.902802+00:00"
 state_head: 35cb252
 progress:
   total_phases: 14
@@ -12,13 +12,13 @@ progress:
 last_activity: 2026-10-23
 current_phase: 07
 current_phase_name: Multi-line cart, quotations, business checkout and acceptance
-stopped_at: Proactive context checkpoint after verified capture-status journeys; bounded local audit next.
-last_activity_desc: Supported capture/status journeys pass272 local checks;07-02 partial.
+stopped_at: Bounded capture/status audit complete; context-pressure checkpoint before revocation-race regressions.
+last_activity_desc: Capture/status audit clean;272 local checks pass;07-02 partial.
 ---
 
 # Project State
 
-Updated 2026-10-23T12:04:45.027833+00:00. Canonical current summary; latest evidence: [staff prepared capture](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-STAFF-CAPTURE-PARTIAL.md). Prior observation/process evidence retains its historical scope. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
+Updated 2026-10-23T12:39:06.902802+00:00. Canonical current summary; latest evidence: [bounded capture/status audit](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-REVIEW.md). Prior observation/process evidence retains its historical scope. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
 ## Current position
 
@@ -97,7 +97,7 @@ User review, 2026-10-22: **previous catalog demo checked and approved** (user: â
 
 ## Exact next action
 
-Current local quotation/staff/status/business slices await human review. Next action: Audit the prepared capture/status slice against current producer locks, staff credential/grant changes, immutable attribution and closed outputs; record concrete findings and fix only demonstrated local defects. Do not broaden infrastructure or commercial scope. Country/tax choices remain explicitly deferred; all commercial effects and real provider/runtime/recovery/production qualification stay pending.
+Add deterministic owned-PostgreSQL capture/status regressions for supported local_staff credential reset/revoke and exact business-grant withdrawal while an observation waits for producer locks. Confirm post-commit refusal, rollback preservation, unchanged capture attribution/facts and no archive I/O. Use actual local login/CSRF/operator paths where practical; do not infer process/outage or production qualification. Fix runtime only if a demonstrated defect is reproduced. Country/tax remains user-deferred; no commercial or external authority is added.
 
 User instruction2026-10-23: **sync to configured origin/main after every commit**, using ordinary fetch/non-force push and checking ahead/behind. This applies to implementation and planning commits. Every implementation and planning commit must be pushed immediately and ahead/behind checked. Before each commit, reconcile all affected planning files, regenerate canonical state.json and run scripts/check_planning.py; preserve historical evidence.
 
@@ -113,7 +113,9 @@ Retain dependency locks, raw SBOMs, notices, validated derivative and all origin
 
 ## Session continuity
 
-e29b0e7/35cb252 synced0/0.272 core-local checks (258 Django plus14 Gunicorn),70.667s; owned PostgreSQL18.6/UTF8,0012 application/no-drift checks pass. Source /nix/store/6x0vx2hhfaszqnjfj9mgznj73v58yj09-shop-python-source exact163 files21 templates/no symlinks. No migration; frontend/proxy unchanged/not rerun.07-02 remains partial; focus7/last complete1;11/24 records,1/14 complete phases (7%); Phase02 8/18. No active tests/demo/async jobs. Continuation task numbers are local slices, not original full-plan acceptance. Before every commit reconcile all affected live planning, publish canonical state.json/run scripts/check_planning.py; immediately fetch/non-force push origin/main and verify0/0. No subagents without explicit request. No credentials/.env, protected hosts or real mail/bank/DNS/TLS/provider operations. Country/tax user-deferred; do not guess/repeatedly ask. Exact context percentage unavailable; proactive context-pressure pause under standing instruction. Measured dirty files below are checkpoint files included in this commit; reconcile against actual git status on resume.
+Bounded inline capture/status audit complete with zero demonstrated findings; see [review](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-REVIEW.md). Fresh CORE_LOCAL_PASS checks=5 tests=272 (258 Django plus14 Gunicorn),70.325s; owned PostgreSQL18.6/UTF8, migration application/no-drift pass. Runtime/source unchanged; prior exact source163 files/21 templates evidence retained, not rebuilt. Next: deterministic supported credential/grant revocation races under producer lock contention. Full07-02 acceptance remains pending; focus7/last complete1,11/24 records,1/14 phases (7%), Phase02 8/18. Country/tax deferred; commercial and external qualification gates unchanged.
+
+Checkpoint after substantial restoration/review context; exact usage percentage unavailable. Clear session and run $gsd-resume-work. No active tests/demo/async jobs. No credentials or protected/external services accessed. Continue across commits/syncs under saved user policy.
 
 ### Quick Tasks Completed
 
