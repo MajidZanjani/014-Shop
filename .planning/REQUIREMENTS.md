@@ -275,6 +275,6 @@ Current development focus is Phase7, not a completed Phase7; last fully complete
 
 
 
-Latest local evidence: [Django access forms](quick/261023-b25-provide-no-javascript-django-customer-ac/261023-b25-SUMMARY.md),156 core-local tests; previous supported-route journeys and audit fixes retained. AUTH-01/02/05 remain partial local evidence; real delivery/browser/full acceptance pending. Next: add owner-only Django quotation history and safe navigation to retained timelines/document prerequisites without JavaScript. Country/tax remains pending.
+Latest local evidence: [owner quotation history](quick/261023-bam-add-owner-only-no-javascript-quotation-h/261023-bam-SUMMARY.md),161 core-local tests. Access and prior journeys retained; AUTH/COM requirement checkboxes unchanged. Full browser/real delivery/commercial acceptance pending. Next: implement a no-JavaScript saved multi-line cart editor using shared cart validation, exact retries and stale-edit protection.
 
-Latest local access evidence: no-JavaScript request/verify/logout and shared API limits pass156 core-local tests; development focus7, last fully completed1. Planning reconciled 2026-10-23T08:07:30.009909+00:00. Phase02/full commercial acceptance unchanged.
+Latest local evidence: owner quotation history/navigation;161 core-local tests, source123 files17 templates. Prior access implementation a7d085f synced. Focus7/completed1 and Phase02 8/18 unchanged; reviewed 2026-10-23T09:04:08.432487+00:00.

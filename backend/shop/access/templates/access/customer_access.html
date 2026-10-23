@@ -5,7 +5,7 @@
 {% if error %}<p role="alert">{{ error }}</p>{% endif %}
 {% if notice %}<p role="status">{{ notice }}</p>{% endif %}
 {% if authenticated %}
-<p>Your customer access is verified.</p><p><a href="/purchase/business/">Business details</a></p>
+<p>Your customer access is verified.</p><p><a href="/purchase/quotations/">Your quotation requests</a></p><p><a href="/purchase/business/">Business details</a></p>
 <form method="post" action="/purchase/access/">{% csrf_token %}<input type="hidden" name="action" value="logout"><button type="submit">Sign out</button></form>
 {% else %}
 <h2>Request a code</h2><form method="post" action="/purchase/access/">{% csrf_token %}<input type="hidden" name="action" value="request"><label for="email">Synthetic email address</label><input id="email" name="email" type="email" maxlength="160" autocomplete="off" required><button type="submit">Request code</button></form>

@@ -147,8 +147,12 @@ class SupportedJourneyTests(TransactionTestCase):
         self.assertEqual(self.customer.get(owner_detail).json()['lines'],lines)
         self.save_business(self.business_form('PRIVATE_JOURNEY_UNATTACHED_BUSINESS'))
         self.assertEqual(self.staff_get(detail+'business/').json()['business_draft_version'],1)
+        history=self.customer.get('/purchase/quotations/');self.assertEqual(history.status_code,200)
+        self.assertContains(history,'/purchase/quotation-timeline/'+identity+'/')
+        self.assertContains(history,'/purchase/quotation-documents/'+identity+'/')
         timeline=self.customer.get('/purchase/quotation-timeline/'+identity+'/');self.assertEqual(timeline.status_code,200)
         other=Client(enforce_csrf_checks=True,HTTP_HOST='127.0.0.1');self.verify_customer('other@journey.synthetic.invalid',other)
+        self.assertEqual(other.get('/purchase/quotations/').context['items'],[])
         self.assertEqual(other.get(owner_detail).status_code,404);self.assertEqual(other.get('/api/v1/quotation-requests/').json()['requests'],[])
         for response in [owner,documents,timeline,self.staff_get(detail),self.staff_get(snap+'1/'),self.staff_get(compare)]:
             text=response.content.decode()

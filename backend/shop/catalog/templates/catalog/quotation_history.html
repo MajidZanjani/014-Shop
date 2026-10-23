@@ -1,0 +1,9 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Your quotation requests</title></head><body><main>
+<h1>Your quotation requests</h1><p>Saved requests, newest first. Each page shows up to {{ page_size }} requests. Reload the latest page to see new requests or review updates.</p>
+<ol>{% for item in items %}<li><h2>Request {{ item.id }}</h2><p>Captured cart revision {{ item.cart_version }} · {{ item.status.label }}</p><time datetime="{{ item.created_at|date:'c' }}">{{ item.created_at|date:'Y-m-d H:i:s T' }}</time>
+<p><a href="/purchase/quotation-timeline/{{ item.id }}/">Quotation history</a> · <a href="/purchase/quotation-business/{{ item.id }}/">Review business attachment</a> · <a href="/purchase/quotation-documents/{{ item.id }}/">Document prerequisites</a></p></li>
+{% empty %}<li>No quotation requests on this page.</li>{% endfor %}</ol>
+<nav aria-label="Quotation request pages"><a href="/purchase/quotations/">Latest requests</a>{% if older %} · <a href="?before={{ older }}">Older requests</a>{% endif %}</nav>
+<p>Country and tax choices remain pending. Review status does not approve an offer. Prices, acceptance and checkout remain unavailable.</p>
+<p><a href="/purchase/access/">Customer access and sign out</a> · <a href="/purchase/business/">Private business draft</a> · <a href="/">Shop and cart</a></p>
+</main></body></html>
