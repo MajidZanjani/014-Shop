@@ -4,6 +4,12 @@
 
 A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering and business purchasers. Customers configure separate vendor-specific licence lines, request reviewed quotes or buy approved offers, and purchase non-expiring ten-hour support packages independently or with IP. Staff use MFA-protected workflows to review acceptance/payment, issue matching private packages and keys, process renewal/rehosting cases, and account for support work.
 
+## Current implementation status — 2026-10-23
+
+Current work is **Phase7**, implemented in local/synthetic slices with full acceptance pending. Phase1 is the last completed phase; total1/14 (rounded7%),10/20 planned records, Phase02 remains8/18. See [STATE.md](STATE.md) and [ROADMAP.md](ROADMAP.md) for current evidence, next action and unchanged release gates. Country/tax answers are being prepared by the user; no choices/rates are approved.
+
+Before **every commit**, check all planning files for affected live status references, update them together, regenerate canonical state.json and run `python3 scripts/check_planning.py`. Preserve immutable sources and dated evidence; do not relabel partial local implementation as phase acceptance. Sync every commit to configured origin/main without force. This later user instruction supersedes the amendment's narrower status-maintenance convention.
+
 ## Core Value
 
 Turn an exact reviewed xSPI-MC configuration or support purchase into attributable acceptance, verified payment and recoverable licence delivery or support credit without duplicate effects.

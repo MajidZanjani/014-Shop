@@ -209,15 +209,15 @@ Updated 2026-10-22: BUILD-01–08 have partial local implementation/evidence and
 | DATA-04 | Phase 5 | Pending |
 | AUTH-01 | Phase 6 | In Progress |
 | AUTH-02 | Phase 6 | In Progress |
-| AUTH-03 | Phase 6 | Pending |
+| AUTH-03 | Phase 6 | In Progress |
 | AUTH-04 | Phase 6 | Pending |
 | AUTH-05 | Phase 6 | In Progress |
 | AUTH-06 | Phase 6 | Pending |
-| COM-01 | Phase 7 | Pending |
-| COM-02 | Phase 7 | Pending |
-| COM-03 | Phase 7 | Pending |
-| COM-04 | Phase 7 | Pending |
-| COM-05 | Phase 7 | Pending |
+| COM-01 | Phase 7 | In Progress |
+| COM-02 | Phase 7 | In Progress |
+| COM-03 | Phase 7 | In Progress |
+| COM-04 | Phase 7 | In Progress |
+| COM-05 | Phase 7 | In Progress |
 | COM-06 | Phase 7 | Pending |
 | PAY-01 | Phase 8 | Pending |
 | PAY-02 | Phase 8 | Pending |
@@ -267,3 +267,8 @@ Updated 2026-10-22: BUILD-01–08 have partial local implementation/evidence and
 Local implementation evidence for CAT/SHOP and initial owner/retry DATA/AUTH behavior: [quick261022-dj5](quick/261022-dj5-amend-local-execution-sequence-and-deliv/261022-dj5-SUMMARY.md). Checkboxes remain pending full acceptance; verified customer access, staff MFA, private approvals, approved money and release qualification are not claimed. Current sequence follows the execution amendment.
 
 Local T06/T07 prerequisite evidence: [quick261022-hrl](quick/261022-hrl-verify-local-customer-access-through-cap/261022-hrl-SUMMARY.md). AUTH-01/02/05 cover synthetic session/owner behavior only; real delivery, full memberships, staff MFA and recovery remain pending.
+
+
+## Current local implementation — 2026-10-23
+
+Current focus is Phase7, not a completed Phase7. See [STATE.md](STATE.md), [ROADMAP.md](ROADMAP.md) and the [local workflow audit](audits/2026-10-23-local-workflow.md). AUTH-03 and COM-01–05 have partial local implementation: staff rehearsal, cart/quotation/review/business scopes and declaration/preparation previews. Their requirement checkboxes remain unchecked. No approved offer, tax decision, declaration acceptance or order conversion is claimed; COM-06 remains pending. Full phase counts remain1/14 and10/20 plans; Country/tax answers and release gates remain pending.

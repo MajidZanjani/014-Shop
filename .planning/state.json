@@ -36,7 +36,7 @@
     {
       "number": "7",
       "name": "Multi-line cart, quotations, business checkout and acceptance",
-      "status": "pending"
+      "status": "in_progress"
     },
     {
       "number": "8",
@@ -75,9 +75,9 @@
     }
   ],
   "next": {
-    "command": "$gsd-progress",
-    "label": "Show progress",
-    "reason": "Unsure of state — showing progress"
+    "command": "$gsd-progress --next",
+    "label": "Advance to the next step",
+    "reason": "Phase 7 of 14 · 7% · executing"
   },
-  "updated_at": "2026-10-22T14:00:51.993Z"
+  "updated_at": "2026-10-23T07:32:45.843Z"
 }

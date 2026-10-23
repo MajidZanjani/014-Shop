@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: active
-last_updated: "2026-10-23T07:23:40.187Z"
-state_head: 972f657f58b775e4c30741f8f017387eed7aaf4e
+last_updated: "2026-10-23T07:32:05.141949+00:00"
+state_head: 49f14d2fdb1d0ec9a4285b9c91a17cff24525295
 progress:
   total_phases: 14
   completed_phases: 1
@@ -11,14 +11,14 @@ progress:
   percent: 7
 last_activity: 2026-10-23
 current_phase: 07
-current_phase_name: Authorized preparation comparison
-stopped_at: Preparation comparison verified and implementation synced; Country/tax answers and human review pending.
-last_activity_desc: Preparation comparison passed140 core-local tests; sync each commit; country/tax deferred.
+current_phase_name: Multi-line cart, quotations, business checkout and acceptance
+stopped_at: F-00 live planning reconciled; F-01/F-02 workflow boundary fixes pending; Country/tax deferred.
+last_activity_desc: Phase7 current focus aligned across live planning; Phase1 remains last completed; code audit pending.
 ---
 
 # Project State
 
-Updated 2026-10-23T07:23:40.022338+00:00. Canonical current summary; latest evidence: [quick261023-a30](quick/261023-a30-compare-retained-preparation-snapshots-w/261023-a30-SUMMARY.md). Customer status: [quick261023-7s8](quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-SUMMARY.md). Prior staff/HTTP evidence remains linked there. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
+Updated 2026-10-23T07:32:05.141949+00:00. Canonical current summary; latest evidence: [quick261023-a30](quick/261023-a30-compare-retained-preparation-snapshots-w/261023-a30-SUMMARY.md). Customer status: [quick261023-7s8](quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-SUMMARY.md). Prior staff/HTTP evidence remains linked there. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
 ## Current position
 
@@ -52,9 +52,11 @@ User review, 2026-10-22: **previous catalog demo checked and approved** (user: â
 
 ## Exact next action
 
-Current local quotation/staff/status/business slices await human review. Next independent local action: bounded GSD regression audit/fix across assembled quotation/business/review/preparation routes using owned synthetic fixtures, prioritizing cross-route authorization, stale-scope and privacy defects. Fix concrete findings; keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
+Current local quotation/staff/status/business slices await human review. Next action: reproduce and fix F-01 inconsistent quotation/cart identity across older customer/staff routes, then F-02 historical private review digest ownership checks; test and sync each atomic fix, with all planning status views refreshed first. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
 
-User instruction2026-10-23: **sync to configured origin/main after every commit**, using ordinary fetch/non-force push and checking ahead/behind. This applies to implementation and planning commits. Earlier22 local commits and current implementation have been pushed; complete this planning commit with its own immediate push.
+User instruction2026-10-23: **sync to configured origin/main after every commit**, using ordinary fetch/non-force push and checking ahead/behind. This applies to implementation and planning commits. Every implementation and planning commit must be pushed immediately and ahead/behind checked. Before each commit, reconcile all affected planning files, regenerate canonical state.json and run scripts/check_planning.py; preserve historical evidence.
+
+Planning audit2026-10-23: [F-00/F-01/F-02 report](audits/2026-10-23-local-workflow.md). F-00 aligns current Phase7 versus last-completed Phase1; code findings F-01/F-02 remain pending. Country/tax answers stay deferred.
 
 ## Remaining dependencies and protections
 
@@ -64,7 +66,7 @@ Retain dependency locks, raw SBOMs, notices, validated derivative and all origin
 
 ## Session continuity
 
-Session continued 2026-10-23; Country/tax answers pending. Quick261023-a30 comparison committed at 972f657 and immediately synced to origin/main; final140 core-local tests pass. Actual115-file/fifteen-template source package verified. User requires sync after every commit; planning completion must also be pushed. Unchanged frontend110/proxy1 and harness15 retain prior evidence. No demo processes, manual credential reads, agents or async jobs remain. Prior scoped15-observation staff HTTP evidence retained. No exact context percentage available or claimed; retain conditional checkpoint rule.
+Session continued2026-10-23; user requires every affected planning status file updated before each commit, then sync. F-00 repaired current Phase7 versus last-completed Phase1 across ROADMAP/STATE/canonical state.json and live indexes. Planning check passes14 phases/current7/completed1/10-of20 plans. Existing140 core-local,115-file/fifteen-template source package, frontend110/proxy1 and harness15 retain prior scoped evidence; none rerun for this documentation fix. F-01/F-02 code boundary fixes remain pending. No demos, manual credential reads, agents or async jobs. No exact context percentage available or claimed; retain conditional checkpoint rule.
 
 ### Quick Tasks Completed
 

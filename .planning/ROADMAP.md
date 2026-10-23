@@ -6,14 +6,15 @@
 
 **Baseline:** 2026-10-21 protected-services proposal/handoff, read in full. T01 documentation reconciled; T02 is executing with eight completed local slices and ten incomplete qualification/implementation records. Actual runtime/host criteria remain unexecuted.
 
-## Current implementation activity — 2026-10-22
+## Current implementation activity — 2026-10-23
 
-**Updated through dd322e1:** 25 implementation quick tasks completed today, plus one planning reconciliation. Phase 02 remains 8/18 locally complete because 7 qualification/review and 3 implementation/qualification records remain open. See [current Phase 02 progress](phases/02-reproducible-application-and-deployment-skeleton/02-PROGRESS.md) and the [current state/task index](STATE.md).
+**Current phase:** 7 — Multi-line cart, quotations, business checkout and acceptance. Local implementation is in progress; this is not full phase acceptance.
 
-- Plan 14 now includes source-only control publication/reopening/uncertainty lifecycle and an admission-leased Django multi-statement transaction precursor; application/worker integration and actual qualification remain open.
-- Plan 16 now has attributable named/header/marker licence evidence and offline reconciliation; all 12 package-wide reviews and complete native/OCI inventory remain pending.
-- Plans 16/17 now have one actual local PostgreSQL image archive,51 layer byte hashes and builder provenance. An actual 14,480-entry inner-layer inventory now records regular byte hashes, links, absolute names and PAX metadata. Other images, importer/merged-rootfs/runtime semantics, OCI manifests and independent image comparison remain pending. The historical blanket unbuilt status no longer applies to PostgreSQL.
-- Latest PostgreSQL-backed lane is184 tests;latest deployment evaluation16/31;archive/payload inspectors17 tests;licence-related suites40 tests. These overlap and do not constitute a full-all/CI/production pass.
+**Last fully completed phase:** 1. Completed phases remain1/14 (rounded7%); planned records10/20. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
+
+**Current focus:** bounded local workflow audit/fix. Existing cart, customer verification, quotations, business revisions, internal staff reviews, document prerequisites, retained preparation and comparison are implemented locally through 49f14d2. Latest backend evidence:140 core-local tests. Country/tax answers, production MFA/delivery/recovery, approved commercial values/documents and release gates remain pending. See [current state](STATE.md), [audit](audits/2026-10-23-local-workflow.md), and [Phase02 qualification status](phases/02-reproducible-application-and-deployment-skeleton/02-PROGRESS.md).
+
+Before every commit, reconcile all affected planning status references, regenerate canonical state.json and run `python3 scripts/check_planning.py`; commit then sync origin/main. Historical sources/evidence remain scoped to their dates.
 
 ## Scope and execution policy
 
@@ -413,8 +414,8 @@ Keep public bytes in shop-owned OVH Object Storage through a fixed verified HTTP
 | 3. Markdown catalog, schemas and approved price calculations | 0 / not planned | In Progress — local slice in quick261022-dj5; full acceptance pending | — |
 | 4. Static product, configurator, support page and accessible fallback | 0 / not planned | In Progress — local slice in quick261022-dj5; full acceptance pending | — |
 | 5. Transactional records, durable work and private evidence primitives | 0 / not planned | In Progress — local slice in quick261022-dj5; full acceptance pending | — |
-| 6. Verified customer access, staff MFA and private host editing | 0 / not planned | In Progress — synthetic customer verification/save-resume in quick261022-hrl; staff/private-host/release acceptance pending | — |
-| 7. Multi-line cart, quotations, business checkout and acceptance | 0 / not planned | Not started | — |
+| 6. Verified customer access, staff MFA and private host editing | 0 / not planned | In Progress — synthetic customer verification/save-resume and staff MFA rehearsal/assigned reviews implemented; production MFA/private-host/release acceptance pending | — |
+| 7. Multi-line cart, quotations, business checkout and acceptance | 0 / not planned | In Progress — current local cart/quotation/business/review/preparation implementation; commercial acceptance pending | — |
 | 8. Payment domain and fault-injectable fake bank | 0 / not planned | Not started | — |
 | 9. Selected-bank sandbox integration and complete reconciliation | 0 / not planned | Not started | — |
 | 10. Licence delivery, renewal/rehosting and support-hours workflows | 0 / not planned | Not started | — |

@@ -1,6 +1,6 @@
 # Historical implementation activity
 
-Moved verbatim from STATE.md on2026-10-22. Each entry describes its recorded point in time; old pending/unbuilt/paused statements are historical. Current status is in [STATE.md](STATE.md) and [Phase02 progress](phases/02-reproducible-application-and-deployment-skeleton/02-PROGRESS.md).
+Moved verbatim from STATE.md on2026-10-22. Each entry describes its recorded point in time; old pending/unbuilt/paused statements are historical. Current phase and completion status are in [ROADMAP.md](ROADMAP.md) and [STATE.md](STATE.md) and [Phase02 progress](phases/02-reproducible-application-and-deployment-skeleton/02-PROGRESS.md).
 
 ## Session continuity — SQL guard continuation
 
@@ -322,3 +322,19 @@ Quick261022-cor inventories actual51-layer payload without extraction/run;14480 
 ## 2026-10-22 — context checkpoint after image payload inventory
 
 Source dd322e1 and current planning saved. Exact context percentage unavailable;proactive pause under standing user instruction. Structured/phase handoff preserves actual format findings,17-test evidence,remaining work and canonical planning maintenance. Resume after clearing;no implementation/qualification advanced by the checkpoint.
+
+## Retained October22 roadmap activity snapshot
+
+## Current implementation activity — 2026-10-22
+
+**Updated through dd322e1:** 25 implementation quick tasks completed today, plus one planning reconciliation. Phase 02 remains 8/18 locally complete because 7 qualification/review and 3 implementation/qualification records remain open. See [current Phase 02 progress](phases/02-reproducible-application-and-deployment-skeleton/02-PROGRESS.md) and the [current state/task index](STATE.md).
+
+- Plan 14 now includes source-only control publication/reopening/uncertainty lifecycle and an admission-leased Django multi-statement transaction precursor; application/worker integration and actual qualification remain open.
+- Plan 16 now has attributable named/header/marker licence evidence and offline reconciliation; all 12 package-wide reviews and complete native/OCI inventory remain pending.
+- Plans 16/17 now have one actual local PostgreSQL image archive,51 layer byte hashes and builder provenance. An actual 14,480-entry inner-layer inventory now records regular byte hashes, links, absolute names and PAX metadata. Other images, importer/merged-rootfs/runtime semantics, OCI manifests and independent image comparison remain pending. The historical blanket unbuilt status no longer applies to PostgreSQL.
+- Latest PostgreSQL-backed lane is184 tests;latest deployment evaluation16/31;archive/payload inspectors17 tests;licence-related suites40 tests. These overlap and do not constitute a full-all/CI/production pass.
+
+
+## 2026-10-23 — F-00 live planning reconciliation
+
+Current implementation focus is Phase7; Phase1 is the last completed phase. Fixed stale Phase7 Not started status, regenerated canonical machine phase states and refreshed live indexes. Existing140 core-local evidence retained, not rerun for documentation repair. Code audit F-01/F-02 remains pending; Country/tax and all release gates remain pending. Check planning before each commit and sync after each commit.
