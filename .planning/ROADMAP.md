@@ -12,7 +12,7 @@
 
 **Last fully completed phase:** 1. Phases2–6 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase7 work while those earlier checks remain open. Completed phases remain1/14 (rounded7%); planned records11/24. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
 
-**Current activity:** Plan07-01 archive complete locally;07-02 private request envelope/recovery partial passes197 core-local tests (183 Django plus14 transport). Next: implement atomic immutable request-envelope capture and unique semantic archive intent before a leased archive worker; keep Country/tax, provider retention and commercial effects gated.11/24 records; focus7/completed1; no full phase acceptance. See [STATE](STATE.md) and [partial evidence](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-ENVELOPE-PARTIAL.md).
+**Current activity:** Plan07-02 atomic private capture/intent partial passes204 core-local tests (190 Django plus14 transport). Next: design and implement fenced local archive claims with explicit destination binding and out-of-transaction publication; keep Country/tax, retention qualification and commercial effects gated.11/24 records, focus7/completed1, no full phase acceptance. See [STATE](STATE.md) and [capture evidence](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-PARTIAL.md).
 
 Before every commit, reconcile all affected planning status references, regenerate canonical state.json and run `python3 scripts/check_planning.py`; commit then sync origin/main. Historical sources/evidence remain scoped to their dates.
 
@@ -424,11 +424,12 @@ Keep public bytes in shop-owned OVH Object Storage through a fixed verified HTTP
 | 13. Integrated product, access, payment and deployment acceptance | 0 / not planned | Not started | — |
 | 14. Release handover and separately scoped live activation | 0 / not planned | Not started | — |
 
-Latest local evidence: [request envelope](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-ENVELOPE-PARTIAL.md),197 core-local tests, source133 files19 templates. Plan07-02 remains partial; no durable outbox/offer/acceptance added.11/24 records; focus7/completed1; Phase02 8/18.
+Latest local evidence: [atomic capture](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-PARTIAL.md),204 core-local tests; actual source136 files19 templates. One private envelope/unexecuted intent per semantic scope; no worker or effects.11/24 records; focus7/completed1; Phase02 8/18.
 
 
 
 
 
 
-Current implementation2048a57 synced and recorded: request-envelope partial passes197 core-local tests; actual source133 files19 templates. Proposed07-02-CAPTURE-DESIGN narrows the next atomic record/intent slice; no schema/outbox or new test run for this design-only update.11/24 planned records, focus7/completed1; Country/tax and commercial/provider gates pending.
+
+Atomic capture checkpoint: private envelope plus one unexecuted semantic archive intent now commit together;204 core-local tests, source136 files19 templates.07-02 remains partial and no worker/qualified destination/effect exists.11/24 records; focus7/completed1. Next: design and implement fenced local archive claims with explicit destination binding and out-of-transaction publication; keep Country/tax, retention qualification and commercial effects gated.

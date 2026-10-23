@@ -5,14 +5,16 @@ Development focus7; last fully completed phase1. Existing cart/request/business/
 | Plan | Status | Boundary |
 |---|---|---|
 |07-01|Complete locally|Private synthetic prepared archive; no retention/domain effect qualification|
-|07-02|Partial local request envelope; domain capture/outbox/approval pending|Exact private envelope, domain outbox/reference and protected immutable offer; Country/tax deferred|
+|07-02|Partial local envelope+atomic intent; worker/approval pending|Exact private envelope, domain outbox/reference and protected immutable offer; Country/tax deferred|
 |07-03|Pending07-02 and actual inputs|Guarded acceptance/single order, exact revision/document/authority checks|
 |07-04|Pending integrated/human/external evidence|Full direct/quoted/browser/commercial acceptance|
 
-Local evidence197 core-local tests,183 Django plus14 loopback observations. Actual source133 files19 templates exact. No live routes consume archive receipts; no approval, acceptance/order, bank, licence/support, provider or host effect added. Receipt fields explicitly deny retention/effect qualification. Remote custody/retention/off-host restoration and real completion-envelope validation remain open. Next: design exact private quotation envelope and domain outbox/reference contract before07-02 publication implementation.
+Local evidence204 core-local tests,190 Django plus14 loopback observations. Actual source136 files19 templates exact. No live routes consume archive receipts; no approval, acceptance/order, bank, licence/support, provider or host effect added. Receipt fields explicitly deny retention/effect qualification. Remote custody/retention/off-host restoration and real completion-envelope validation remain open. Next: design exact private quotation envelope and domain outbox/reference contract before07-02 publication implementation.
 
 Proposed07-EVIDENCE-CONTRACT now specifies private recoverable content, immutable semantic identity, atomic domain envelope/outbox persistence, lease fencing, out-of-transaction publication and post-archive rechecks. No schema/producer/domain-outbox implementation or approved offer added. Next: closed local request/business-scope envelope validator against existing source/model revisions.
 
-[07-02 envelope partial](07-02-ENVELOPE-PARTIAL.md): authorized exact request/business-scope canonical bytes and post-I/O reauthorization verified;197 combined tests pass. No durable record/intent/outbox or offer exists. Remaining07-02/03/04 acceptance stays pending; no new summary/completion credit. Next atomic capture and semantic archive intent.
+[07-02 envelope partial](07-02-ENVELOPE-PARTIAL.md): authorized exact request/business-scope canonical bytes and post-I/O reauthorization verified;197 combined tests pass. Durable private capture/intent now exist; no worker/offer exists. Remaining07-02/03/04 acceptance stays pending; no new summary/completion credit. Next atomic capture and semantic archive intent.
 
 Implementation2048a57 synced. Proposed07-02-CAPTURE-DESIGN specifies the next immutable private capture/one semantic archive-intent transaction and PostgreSQL race/rollback tests; no migration/outbox exists yet. Plan07-02 remains incomplete.
+
+[07-02 capture partial](07-02-CAPTURE-PARTIAL.md): durable outer fact+intent transaction, semantic uniqueness and actual PostgreSQL constraints verified;204 combined local tests pass.07-02 remains partial; worker/destination/retention and commercial approval gates remain open. No new plan completion credit.

@@ -414,3 +414,8 @@ Plan07-01 implementation3e1b811 synced0/0 and recorded. Proposed07-EVIDENCE-CONT
 ## 2026-10-23T09:58:12.543064+00:00 — envelope sync and atomic capture design
 
 Implementation2048a57 synced0/0 and recorded in partial evidence. Proposed07-02-CAPTURE-DESIGN defines one immutable semantic envelope/intent transaction and required race/rollback/no-I/O tests. No new source/migration/test run;197-test evidence retained. [STATE](STATE.md)/[ROADMAP](ROADMAP.md), HANDOFF and affected live indexes reconciled before commit; duplicate stale checkpoint footers removed while chronological evidence retained here.11/24 records; focus7/completed1, Phase02 8/18; Country/tax pending.
+
+
+## 2026-10-23T10:09:28.842718+00:00 — Plan07-02 atomic capture partial
+
+[STATE](STATE.md)/[ROADMAP](ROADMAP.md) and affected live references reconciled before commit. Additive0008 and durable outer fact+intent service pass204 core-local tests; source136 files19 templates exact. Real PostgreSQL actor race, replay/conflict, rollback, actual length/no-effect constraints and no-storage assertions pass. DATA04 traceability In Progress, full checkbox pending.11/24 records; focus7/completed1;07-02 incomplete; Country/tax deferred. Next destination-bound fenced local archive claims.

@@ -13,3 +13,5 @@ CORE_LOCAL_PASS checks5 tests197 duration42.658s:183 Django plus14 actual Gunico
 Actual Nix source /nix/store/8pl59ck5k3frx05ihfq378snxkfbr3h5-shop-python-source:133 files19 templates; exact bytes/allowlist/no symlinks pass. Frontend/proxy unchanged, earlier scoped evidence retained. No new HTTP route, database migration/capture/outbox, domain effect, commercial approval, Country/tax choice, provider/host or off-host qualification.07-02 remains partial;07-01 remains1/4 local remaining plans; overall11/24 records, completed phases1/14, Phase02 8/18.
 
 Next: atomically persist exact request-envelope bytes/reference and one semantic archive intent; then leased worker/fencing/reconciliation outside transactions. No archive or intent can enable live publication/acceptance without actual domain and provider qualification.
+
+Subsequent local progress: atomic durable capture/intent now exists; see07-02-CAPTURE-PARTIAL. This earlier197-test envelope-only result retains its original scope. No worker/offer/acceptance or provider qualification follows.

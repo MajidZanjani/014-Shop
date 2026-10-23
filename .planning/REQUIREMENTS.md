@@ -206,7 +206,7 @@ Updated 2026-10-22: BUILD-01–08 have partial local implementation/evidence and
 | DATA-01 | Phase 5 | In Progress |
 | DATA-02 | Phase 5 | In Progress |
 | DATA-03 | Phase 5 | Pending |
-| DATA-04 | Phase 5 | Pending |
+| DATA-04 | Phase 5 | In Progress |
 | AUTH-01 | Phase 6 | In Progress |
 | AUTH-02 | Phase 6 | In Progress |
 | AUTH-03 | Phase 6 | In Progress |
@@ -275,13 +275,14 @@ Current development focus is Phase7, not a completed Phase7; last fully complete
 
 
 
-Latest local evidence: [request envelope](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-ENVELOPE-PARTIAL.md),197 core-local tests, source133 files19 templates. Plan07-02 remains partial; no durable outbox/offer/acceptance added.11/24 records; focus7/completed1; Phase02 8/18.
+Latest local evidence: [atomic capture](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-PARTIAL.md),204 core-local tests; actual source136 files19 templates. One private envelope/unexecuted intent per semantic scope; no worker or effects.11/24 records; focus7/completed1; Phase02 8/18.
 
-Latest local evidence: [request envelope](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-ENVELOPE-PARTIAL.md),197 core-local tests, source133 files19 templates. Plan07-02 remains partial; no durable outbox/offer/acceptance added.11/24 records; focus7/completed1; Phase02 8/18.
-
-
+Latest local evidence: [atomic capture](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-PARTIAL.md),204 core-local tests; actual source136 files19 templates. One private envelope/unexecuted intent per semantic scope; no worker or effects.11/24 records; focus7/completed1; Phase02 8/18.
 
 
 
 
-Current implementation2048a57 synced and recorded: request-envelope partial passes197 core-local tests; actual source133 files19 templates. Proposed07-02-CAPTURE-DESIGN narrows the next atomic record/intent slice; no schema/outbox or new test run for this design-only update.11/24 planned records, focus7/completed1; Country/tax and commercial/provider gates pending.
+
+
+
+Atomic capture checkpoint: private envelope plus one unexecuted semantic archive intent now commit together;204 core-local tests, source136 files19 templates.07-02 remains partial and no worker/qualified destination/effect exists.11/24 records; focus7/completed1. Next: design and implement fenced local archive claims with explicit destination binding and out-of-transaction publication; keep Country/tax, retention qualification and commercial effects gated.

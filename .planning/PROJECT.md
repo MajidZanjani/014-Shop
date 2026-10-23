@@ -6,7 +6,7 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 ## Current implementation status — 2026-10-23
 
-**Current development focus: Phase7**, implemented in local/synthetic slices with full acceptance pending. **Last fully completed phase: Phase1**. Phases2–6 remain partial or awaiting qualification; independent Phase7 work follows the October22 amendment. Total1/14 (rounded7%),11/24 planned records, Phase02 remains8/18. See [STATE.md](STATE.md) and [ROADMAP.md](ROADMAP.md) for current evidence, next action and unchanged release gates. Country/tax answers are being prepared by the user; no choices/rates are approved. Local audit is complete; newest private request-envelope evidence is197 core-local tests. Next: implement atomic immutable request-envelope capture and unique semantic archive intent before a leased archive worker; keep Country/tax, provider retention and commercial effects gated.
+**Current development focus: Phase7**, implemented in local/synthetic slices with full acceptance pending. **Last fully completed phase: Phase1**. Phases2–6 remain partial or awaiting qualification; independent Phase7 work follows the October22 amendment. Total1/14 (rounded7%),11/24 planned records, Phase02 remains8/18. See [STATE.md](STATE.md) and [ROADMAP.md](ROADMAP.md) for current evidence, next action and unchanged release gates. Country/tax answers are being prepared by the user; no choices/rates are approved. Local audit is complete; newest atomic capture/intent evidence is204 core-local tests. Next: design and implement fenced local archive claims with explicit destination binding and out-of-transaction publication; keep Country/tax, retention qualification and commercial effects gated.
 
 Before **every commit**, check all planning files for affected live status references, update them together, regenerate canonical state.json and run `python3 scripts/check_planning.py`. Preserve immutable sources and dated evidence; do not relabel partial local implementation as phase acceptance. Sync every commit to configured origin/main without force. This later user instruction supersedes the amendment's narrower status-maintenance convention.
 
@@ -101,11 +101,12 @@ Use the context usage indicator supplied by the session when available. If an ex
 
 Active execution policy: [2026-10-22 amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
-Latest local evidence: [request envelope](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-ENVELOPE-PARTIAL.md),197 core-local tests, source133 files19 templates. Plan07-02 remains partial; no durable outbox/offer/acceptance added.11/24 records; focus7/completed1; Phase02 8/18.
+Latest local evidence: [atomic capture](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-PARTIAL.md),204 core-local tests; actual source136 files19 templates. One private envelope/unexecuted intent per semantic scope; no worker or effects.11/24 records; focus7/completed1; Phase02 8/18.
 
 
 
 
 
 
-Current implementation2048a57 synced and recorded: request-envelope partial passes197 core-local tests; actual source133 files19 templates. Proposed07-02-CAPTURE-DESIGN narrows the next atomic record/intent slice; no schema/outbox or new test run for this design-only update.11/24 planned records, focus7/completed1; Country/tax and commercial/provider gates pending.
+
+Atomic capture checkpoint: private envelope plus one unexecuted semantic archive intent now commit together;204 core-local tests, source136 files19 templates.07-02 remains partial and no worker/qualified destination/effect exists.11/24 records; focus7/completed1. Next: design and implement fenced local archive claims with explicit destination binding and out-of-transaction publication; keep Country/tax, retention qualification and commercial effects gated.

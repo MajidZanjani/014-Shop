@@ -1,3 +1,4 @@
+from django.db.models.lookups import Exact
 """Local product draft snapshots. No acceptance, entitlement, hosts or payment."""
 import uuid
 from django.conf import settings
@@ -122,3 +123,46 @@ class QuotationBusinessKey(models.Model):
     scope=models.ForeignKey(QuotationBusinessScope,on_delete=models.PROTECT)
     class Meta:
         constraints=[models.UniqueConstraint(fields=['quotation','request_id'],name='quotation_business_key_unique')]
+
+
+class RequestEnvelope(models.Model):
+    """Private prepared fact, append-only by service; never an approved offer."""
+    id=models.UUIDField(primary_key=True,editable=False)
+    quotation=models.ForeignKey(QuotationRequest,on_delete=models.PROTECT)
+    business_version=models.PositiveIntegerField(default=0)
+    schema_version=models.PositiveSmallIntegerField(default=1)
+    owner=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT,related_name='+')
+    captured_by=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT,related_name='+')
+    staff_generation=models.UUIDField(null=True,editable=False)
+    mfa_verified_at=models.DateTimeField(null=True)
+    payload=models.BinaryField(editable=False)
+    sha256=models.CharField(max_length=64)
+    byte_length=models.PositiveIntegerField()
+    created_at=models.DateTimeField(auto_now_add=True)
+    class Meta:
+        constraints=[
+            models.UniqueConstraint(fields=['quotation','business_version','schema_version'],name='request_envelope_semantic_unique'),
+            models.CheckConstraint(condition=models.Q(schema_version=1,business_version__lte=1000000000),name='request_envelope_known_version'),
+            models.CheckConstraint(condition=models.Q(byte_length__gte=1,byte_length__lte=131072),name='request_envelope_bounded_bytes'),
+            models.CheckConstraint(condition=Exact(models.Func('payload',function='octet_length',output_field=models.IntegerField()),models.F('byte_length')),name='request_envelope_actual_length'),
+            models.CheckConstraint(condition=models.Q(sha256__regex=r'^[0-9a-f]{64}$'),name='request_envelope_hash_shape'),
+            models.CheckConstraint(condition=models.Q(staff_generation__isnull=True,mfa_verified_at__isnull=True)|models.Q(staff_generation__isnull=False,mfa_verified_at__isnull=False),name='request_envelope_staff_evidence'),
+        ]
+
+
+class RequestArchiveIntent(models.Model):
+    """One unexecuted local archive intent; worker/destination qualification pending."""
+    id=models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
+    envelope=models.OneToOneField(RequestEnvelope,on_delete=models.PROTECT)
+    state=models.CharField(max_length=16,default='pending')
+    destination_profile=models.CharField(max_length=32,default='local-prepared-v1')
+    evidence_class=models.CharField(max_length=32,default='local-synthetic')
+    evidence_kind=models.CharField(max_length=16,default='prepared')
+    retention_qualified=models.BooleanField(default=False)
+    effects_authorized=models.BooleanField(default=False)
+    created_at=models.DateTimeField(auto_now_add=True)
+    class Meta:
+        constraints=[
+            models.CheckConstraint(condition=models.Q(state__in=['pending','held']),name='request_archive_unexecuted_state'),
+            models.CheckConstraint(condition=models.Q(destination_profile='local-prepared-v1',evidence_class='local-synthetic',evidence_kind='prepared',retention_qualified=False,effects_authorized=False),name='request_archive_no_effects'),
+        ]

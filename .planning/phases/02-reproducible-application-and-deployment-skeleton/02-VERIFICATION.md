@@ -6,7 +6,7 @@ scope: recorded-evidence-reconciliation
 ---
 # Current recorded-evidence audit — full phase not verified
 
-Status reconciled2026-10-23; Phase02 lane results below retain their recorded scope through dd322e1. Current Phase7 application evidence is197 core-local tests; see [STATE](../../STATE.md) and [ROADMAP](../../ROADMAP.md). No new full Phase02 qualification is claimed. This refresh reconciles recorded evidence; it is not an independent rerun of all lanes or full goal verification. See [current progress](02-PROGRESS.md) for evidence pointers and next work.
+Status reconciled2026-10-23; Phase02 lane results below retain their recorded scope through dd322e1. Current Phase7 application evidence is204 core-local tests; see [STATE](../../STATE.md) and [ROADMAP](../../ROADMAP.md). No new full Phase02 qualification is claimed. This refresh reconciles recorded evidence; it is not an independent rerun of all lanes or full goal verification. See [current progress](02-PROGRESS.md) for evidence pointers and next work.
 
 Phase 02 remains8 local slices complete(00–05, 09, 15), 7 qualification/review pending(06–08, 10–13), 3 implementation/qualification incomplete(14, 16, 17). Actual filesystem has18 PLAN, 8 SUMMARY, 10 PARTIAL records. Phase 01 has2 documentation SUMMARY records. On2026-10-22,25 implementation quick tasks advanced the incomplete plans; completed phase/BUILD acceptance is not inferred.
 
@@ -22,13 +22,14 @@ Required external/human evidence remains assigned independent off-host lifecycle
 
 
 
-Latest application evidence: [exact cart retry confirmation](../../quick/261023-d1r-show-exact-committed-revision-and-curren/261023-d1r-SUMMARY.md),197 core-local tests; source133 files19 templates. Focus7/completed1; Phase02 remains8/18 with ten incomplete records. No new qualification acceptance.
+Latest application evidence: [exact cart retry confirmation](../../quick/261023-d1r-show-exact-committed-revision-and-curren/261023-d1r-SUMMARY.md),204 core-local tests; source136 files19 templates. Focus7/completed1; Phase02 remains8/18 with ten incomplete records. No new qualification acceptance.
 
-Latest local evidence: [request envelope](../07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-ENVELOPE-PARTIAL.md),197 core-local tests, source133 files19 templates. Plan07-02 remains partial; no durable outbox/offer/acceptance added.11/24 records; focus7/completed1; Phase02 8/18.
-
-
+Latest local evidence: [atomic capture](../07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-PARTIAL.md),204 core-local tests; actual source136 files19 templates. One private envelope/unexecuted intent per semantic scope; no worker or effects.11/24 records; focus7/completed1; Phase02 8/18.
 
 
 
 
-Current implementation2048a57 synced and recorded: request-envelope partial passes197 core-local tests; actual source133 files19 templates. Proposed07-02-CAPTURE-DESIGN narrows the next atomic record/intent slice; no schema/outbox or new test run for this design-only update.11/24 planned records, focus7/completed1; Country/tax and commercial/provider gates pending.
+
+
+
+Atomic capture checkpoint: private envelope plus one unexecuted semantic archive intent now commit together;204 core-local tests, source136 files19 templates.07-02 remains partial and no worker/qualified destination/effect exists.11/24 records; focus7/completed1. Next: design and implement fenced local archive claims with explicit destination binding and out-of-transaction publication; keep Country/tax, retention qualification and commercial effects gated.

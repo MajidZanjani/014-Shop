@@ -1,7 +1,7 @@
 ---
 gsd_state_version: "1.0"
 status: active
-last_updated: "2026-10-23T09:58:12.543064+00:00"
+last_updated: "2026-10-23T10:09:28.842718+00:00"
 state_head: 2048a57
 progress:
   total_phases: 14
@@ -12,13 +12,13 @@ progress:
 last_activity: 2026-10-23
 current_phase: 07
 current_phase_name: Multi-line cart, quotations, business checkout and acceptance
-stopped_at: Private request envelope and recovery authorization implemented; atomic capture/archive intent next; Country/tax pending.
-last_activity_desc: Plan07-02 request envelope partial passed197 core-local tests;133 source files19 templates.
+stopped_at: Atomic private request capture/intent implemented; fenced archive worker next; Country/tax pending.
+last_activity_desc: Plan07-02 atomic capture partial passed204 core-local tests;136 files19 templates; phase remains open.
 ---
 
 # Project State
 
-Updated 2026-10-23T09:58:12.543064+00:00. Canonical current summary; latest evidence: [Plan07-02 partial](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-ENVELOPE-PARTIAL.md). Customer status: [quick261023-7s8](quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-SUMMARY.md). Prior staff/HTTP evidence remains linked there. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
+Updated 2026-10-23T10:09:28.842718+00:00. Canonical current summary; latest evidence: [Plan07-02 capture](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-PARTIAL.md). Customer status: [quick261023-7s8](quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-SUMMARY.md). Prior staff/HTTP evidence remains linked there. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
 ## Current position
 
@@ -30,7 +30,9 @@ T03/T04 local catalog delivery remains intact; T05 local draft persistence and T
 
 ## Delivered behavior
 
-- Private local quotation-request envelopes freeze exact cart/business scope, source/evaluation and original immutable request IDs in closed canonical UTF8 bytes. Verified owners or recent-MFA assigned staff need exact historical private grants. Recovery binds the exact receipt, forbids outer database transactions and rechecks authorization after archive I/O. No route, durable capture/outbox, offer or acceptance added.
+- Atomic request-envelope capture commits one private fact and one pending local archive intent per semantic request/business/schema scope. PostgreSQL constraints bound actual bytes and forbid execution/qualification/effects. Capture owns a durable outer transaction; exact retries preserve original IDs/attribution. No archive I/O, HTTP route or worker is added.
+
+- Private local quotation-request envelopes freeze exact cart/business scope, source/evaluation and original immutable request IDs in closed canonical UTF8 bytes. Verified owners or recent-MFA assigned staff need exact historical private grants. Recovery binds the exact receipt, forbids outer database transactions and rechecks authorization after archive I/O. Atomic private capture and an unexecuted intent now exist; no route, worker, offer or acceptance added.
 
 - Plan07-01 private synthetic prepared-evidence archive: immutable identity/hash/size receipts, blob-before-receipt publication, file/directory sync, reopened verification, exact retries and fail-fast contention. Prepared bytes only; no provider retention, domain completion or effect authorization.
 
@@ -67,17 +69,17 @@ T03/T04 local catalog delivery remains intact; T05 local draft persistence and T
 
 Demo: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/demo.py --backend`; open http://127.0.0.1:4321 (also /support/ and /purchase/simple/).
 
-Checks: current core-local197 tests pass (183 Django plus14 Gunicorn observations), owned PostgreSQL18.6/UTF8. [Envelope partial](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-ENVELOPE-PARTIAL.md) records nine new authorization/source/tamper/recovery cases and exact source133 files19 templates. Previous archive/UI/audit results retain their original summaries and scopes. Frontend110 aggregate/proxy1 and15 harness tests unchanged and not rerun. No FULL_PASS/browser/provider/off-host/production qualification.
+Checks: core-local204 tests pass (190 Django plus14 Gunicorn observations), owned PostgreSQL18.6/UTF8. [Capture partial](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-PARTIAL.md) records seven new transaction/concurrency/constraint tests, migration checks and source136 files19 templates. Previous envelope/archive/UI/audit results retain scoped summaries. Frontend/proxy unchanged and not rerun. No FULL_PASS/browser/provider/off-host/production qualification.
 
 User review, 2026-10-22: **previous catalog demo checked and approved** (user: “all checked and approved”). See task evidence for scope. Verification/save-resume also passed user review (“all works fine”, 2026-10-22). Local multi-line cart demo approved by user (“approved”, 2026-10-22). Detailed browser/accessibility qualification and commercial/release gates remain pending.
 
 ## Exact next action
 
-Current local quotation/staff/status/business slices await human review. Next action: implement atomic immutable request-envelope capture and unique semantic archive intent before a leased archive worker; keep Country/tax, provider retention and commercial effects gated. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
+Current local quotation/staff/status/business slices await human review. Next action: design and implement fenced local archive claims with explicit destination binding and out-of-transaction publication; keep Country/tax, retention qualification and commercial effects gated. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
 
 User instruction2026-10-23: **sync to configured origin/main after every commit**, using ordinary fetch/non-force push and checking ahead/behind. This applies to implementation and planning commits. Every implementation and planning commit must be pushed immediately and ahead/behind checked. Before each commit, reconcile all affected planning files, regenerate canonical state.json and run scripts/check_planning.py; preserve historical evidence.
 
-Planning audit2026-10-23: [F-00/F-01/F-02 report](audits/2026-10-23-local-workflow.md). All three findings remain fixed; recorded audit evidence147 retains its scope. Current combined lane passes197 core-local tests; prior journey and audit evidence retain their recorded scopes. Country/tax answers stay deferred.
+Planning audit2026-10-23: [F-00/F-01/F-02 report](audits/2026-10-23-local-workflow.md). All three findings remain fixed; recorded audit evidence147 retains its scope. Current combined lane passes204 core-local tests; prior journey and audit evidence retain their recorded scopes. Country/tax answers stay deferred.
 
 Audit completion: all three local findings fixed; final core-local147 tests and source package116 files/fifteen templates pass. Full report: [local workflow audit](audits/2026-10-23-local-workflow.md). Current phase7/last complete1 and all acceptance gates unchanged.
 
@@ -89,7 +91,7 @@ Retain dependency locks, raw SBOMs, notices, validated derivative and all origin
 
 ## Session continuity
 
-Session continued2026-10-23 across access a7d085f, history120f0a5 and cart691ce9f commits/syncs. Quotation capture passes197 core-local checks (163 Django,14 transport), actual source133 files19 templates. Focus7/completed1 unchanged. Next: implement atomic immutable request-envelope capture and unique semantic archive intent before a leased archive worker; keep Country/tax, provider retention and commercial effects gated. Country/tax deferred. No exact context percentage supplied or claimed.
+Session continued2026-10-23 across access a7d085f, history120f0a5 and cart691ce9f commits/syncs. Quotation capture passes204 core-local checks (163 Django,14 transport), actual source136 files19 templates. Focus7/completed1 unchanged. Next: design and implement fenced local archive claims with explicit destination binding and out-of-transaction publication; keep Country/tax, retention qualification and commercial effects gated. Country/tax deferred. No exact context percentage supplied or claimed.
 
 ### Quick Tasks Completed
 
@@ -157,4 +159,5 @@ Session continued2026-10-23 across access a7d085f, history120f0a5 and cart691ce9
 
 
 
-Current implementation2048a57 synced and recorded: request-envelope partial passes197 core-local tests; actual source133 files19 templates. Proposed07-02-CAPTURE-DESIGN narrows the next atomic record/intent slice; no schema/outbox or new test run for this design-only update.11/24 planned records, focus7/completed1; Country/tax and commercial/provider gates pending.
+
+Atomic capture checkpoint: private envelope plus one unexecuted semantic archive intent now commit together;204 core-local tests, source136 files19 templates.07-02 remains partial and no worker/qualified destination/effect exists.11/24 records; focus7/completed1. Next: design and implement fenced local archive claims with explicit destination binding and out-of-transaction publication; keep Country/tax, retention qualification and commercial effects gated.
