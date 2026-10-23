@@ -1,16 +1,14 @@
 # Phase7 current progress — 2026-10-23
 
-Development focus7; last fully completed phase1. Existing quick slices retain scoped historical evidence. Remaining plan progress1/4 local slices; overall11/24 planned records,1/14 completed phases (7%). Phase02 remains8/18 with ten incomplete records.
+Focus7; last fully completed1. Overall11/24 planned records,1/14 complete phases (7%). Phase02 remains8/18. Remaining Phase7 plans1/4 locally complete.
 
 | Plan | Status | Boundary |
 |---|---|---|
-|07-01|Complete locally|Private synthetic prepared archive; no provider-retention/effect qualification|
-|07-02|Partial|Authorized exact envelope/recovery and atomic durable capture/unexecuted intent; destination/worker/protected offers pending|
-|07-03|Pending actual07-02 inputs|Guarded acceptance/single order and exact revision/authority/documents|
-|07-04|Pending integrated/human/external evidence|Full direct/quoted/browser/commercial qualification|
+|07-01|Complete locally|Synthetic prepared archive only|
+|07-02|Partial|Envelope/capture/intent/destination binding; worker and protected offers pending|
+|07-03|Pending actual inputs|Guarded acceptance/order/document authority|
+|07-04|Pending integrated/human/external evidence|Full phase qualification|
 
-Latest implementation546dead synced. Current core-local204 tests:190 Django plus14 actual Gunicorn observations on owned PostgreSQL18.6/UTF8. Actual source136 files19 templates exact/allowlisted/no symlinks. [Capture evidence](07-02-CAPTURE-PARTIAL.md); prior envelope197 and archive188 results retain their summaries, not new phase acceptance. Frontend/proxy unchanged, not rerun.
+Latest local destination evidence: 214 core-local tests (200 Django plus14 Gunicorn observations),46.154s; owned PostgreSQL18.6/UTF8. Actual Nix source141 files19 templates, byte-identical/allowlisted/no symlinks. Explicit private local destination identity and attributed intent binding are implemented; root replacement, copied/tampered markers and rebinding fail closed. Only pending/held intents exist; no claim, worker, publication service or durable worker authority exists. Retention/effect flags remain false. Next: Define durable archive authority and fenced local claims before publication; preserve holds and retained bytes. Country/tax and commercial effects remain gated. Focus7/completed1;11/24 planned records,1/14 complete phases (7%); Phase02 remains8/18.07-02 remains partial.
 
-RequestEnvelope and RequestArchiveIntent now persist one exact private fact/unexecuted intent atomically. Constraints enforce actual size and local/prepared/no-effect states. Capture performs no storage I/O; no route, worker, qualified destination, offer or acceptance is added. Database physical immutability, provider custody/retention, actual domain completion and independent recovery remain unqualified. DATA04 traceability In Progress, full requirement unchecked. Country/tax choices remain deferred.
-
-Next: explicit immutable local destination binding/durable archive authority, fenced claims and publication/readback outside transactions per proposed07-02-WORKER-DESIGN. Do not invent targets or fresh MFA/authority; retain holds and prior evidence.07-02/03/04 remain incomplete; no new completion credit.
+[Latest destination evidence](07-02-DESTINATION-PARTIAL.md). Historical capture204/envelope197/archive188 results retain their own scope. DATA04 remains In Progress and unchecked; no requirement acceptance promoted.

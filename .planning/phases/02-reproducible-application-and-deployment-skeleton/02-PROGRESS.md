@@ -1,6 +1,6 @@
 # Phase 02 current progress
 
-Status reconciled 2026-10-23. Phase02 evidence below retains its original recorded scope through dd322e1. Current development focus is Phase7; Phases2–6 remain partial/qualification-pending; see [STATE.md](../../STATE.md) and [ROADMAP.md](../../ROADMAP.md). Latest local app evidence is204 core-local tests, not new Phase02 runtime/off-host acceptance. This is a reconciliation of recorded results, not independent goal verification, new execution of every test lane or production approval.
+Status reconciled 2026-10-23. Phase02 evidence below retains its original recorded scope through dd322e1. Current development focus is Phase7; Phases2–6 remain partial/qualification-pending; see [STATE.md](../../STATE.md) and [ROADMAP.md](../../ROADMAP.md). Latest local app evidence is214 core-local tests, not new Phase02 runtime/off-host acceptance. This is a reconciliation of recorded results, not independent goal verification, new execution of every test lane or production approval.
 
 ## Completion and activity
 
@@ -37,18 +37,4 @@ The previous state.json and02-VERIFICATION were dated2026-10-21, STATE's first e
 
 GSD parsing was also stale-prone: the old progress table omitted the canonical Completed column and used an unrecognized Executing status token. Canonical publication then fell back to checkboxes and did not match padded current_phase02 to Phase2. The repaired four-column table uses Complete / In Progress / Not started tokens and explicit phase names; canonical regeneration now has an unambiguous source.
 
-
-
-Latest application evidence: [exact cart retry confirmation](../../quick/261023-d1r-show-exact-committed-revision-and-curren/261023-d1r-SUMMARY.md),204 core-local tests; source136 files19 templates. Focus7/completed1; Phase02 remains8/18 with ten incomplete records. No new qualification acceptance.
-
-Latest local evidence: [atomic capture](../07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-PARTIAL.md),204 core-local tests; actual source136 files19 templates. One private envelope/unexecuted intent per semantic scope; no worker or effects.11/24 records; focus7/completed1; Phase02 8/18.
-
-
-
-
-
-
-
-Atomic capture checkpoint: private envelope plus one unexecuted semantic archive intent now commit together;204 core-local tests, source136 files19 templates.07-02 remains partial and no worker/qualified destination/effect exists.11/24 records; focus7/completed1. Next: design and implement fenced local archive claims with explicit destination binding and out-of-transaction publication; keep Country/tax, retention qualification and commercial effects gated.
-
-Recorded implementation546dead is synced. Current204-test capture evidence and source136 files19 templates remain scoped; proposed worker design adds no runtime capability. Handoff/current progress reconciled 2026-10-23T10:13:36.666988+00:00;11/24 records, focus7/completed1; Country/tax pending.
+Latest local destination evidence: 214 core-local tests (200 Django plus14 Gunicorn observations),46.154s; owned PostgreSQL18.6/UTF8. Actual Nix source141 files19 templates, byte-identical/allowlisted/no symlinks. Explicit private local destination identity and attributed intent binding are implemented; root replacement, copied/tampered markers and rebinding fail closed. Only pending/held intents exist; no claim, worker, publication service or durable worker authority exists. Retention/effect flags remain false. Next: Define durable archive authority and fenced local claims before publication; preserve holds and retained bytes. Country/tax and commercial effects remain gated. Focus7/completed1;11/24 planned records,1/14 complete phases (7%); Phase02 remains8/18.07-02 remains partial.

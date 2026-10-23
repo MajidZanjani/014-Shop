@@ -1,6 +1,6 @@
 # Next local archive worker boundary — proposed, not implemented
 
-Atomic capture546dead commits one private envelope and one pending/held local intent. No worker, destination binding, receipt row or lease exists yet. The local-prepared-v1 profile is only a closed adapter type, not a physical destination or provider guarantee. This design must be resolved in code/tests before intent states expand.
+Atomic capture commits one private envelope and one pending/held local intent. Explicit local destination binding is now implemented (07-02-DESTINATION-PARTIAL); no worker, receipt row or lease exists yet. The local-prepared-v1 profile is only a closed adapter type, not a physical destination or provider guarantee. This design must be resolved in code/tests before intent states expand.
 
 ## First resolve destination and durable authorization
 
@@ -20,4 +20,4 @@ Worker access is an internal restricted service capability, not a browser sessio
 
 Use real PostgreSQL for competing claims, expiration/reclaim, stale-worker completion, cancellation/holds and immutable revision changes. In fake publish callbacks assert connection.in_atomic_block is false. Test same/different/wrong destination, root replacement/reopen, missing/corrupt receipts/blobs, busy storage, archive success with lost acknowledgement, source/owner/private grant revocation during I/O and late completion after another claim. Require no duplicate intent/effect, no deletion of retained bytes, and false qualification/effect flags on every path. Use only owned synthetic resources; actual process/host/outage/off-host recovery is separately scoped qualification.
 
-Next implementation should first introduce/test explicit local destination binding and a closed claim/fencing contract, then wire publish/readback. Do not add a generic unguarded worker/export route. Country/tax and all commercial approvals remain pending;07-02 stays partial.
+Destination identity/binding is implemented. Next define/test durable authority and a closed claim/fencing contract, then wire publish/readback. Do not add a generic unguarded worker/export route. Country/tax and all commercial approvals remain pending;07-02 stays partial.

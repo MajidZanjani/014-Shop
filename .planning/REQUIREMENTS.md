@@ -273,18 +273,4 @@ Local T06/T07 prerequisite evidence: [quick261022-hrl](quick/261022-hrl-verify-l
 
 Current development focus is Phase7, not a completed Phase7; last fully completed phase is1 and Phases2–6 remain partial/qualification-pending. See [STATE.md](STATE.md), [ROADMAP.md](ROADMAP.md) and the [local workflow audit](audits/2026-10-23-local-workflow.md). AUTH-03 and COM-01–05 have partial local implementation: staff rehearsal, cart/quotation/review/business scopes and declaration/preparation previews. Their requirement checkboxes remain unchecked. No approved offer, tax decision, declaration acceptance or order conversion is claimed; COM-06 remains pending. Full phase counts remain1/14 and11/24 plans; Country/tax answers and release gates remain pending.
 
-
-
-Latest local evidence: [atomic capture](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-PARTIAL.md),204 core-local tests; actual source136 files19 templates. One private envelope/unexecuted intent per semantic scope; no worker or effects.11/24 records; focus7/completed1; Phase02 8/18.
-
-Latest local evidence: [atomic capture](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-PARTIAL.md),204 core-local tests; actual source136 files19 templates. One private envelope/unexecuted intent per semantic scope; no worker or effects.11/24 records; focus7/completed1; Phase02 8/18.
-
-
-
-
-
-
-
-Atomic capture checkpoint: private envelope plus one unexecuted semantic archive intent now commit together;204 core-local tests, source136 files19 templates.07-02 remains partial and no worker/qualified destination/effect exists.11/24 records; focus7/completed1. Next: design and implement fenced local archive claims with explicit destination binding and out-of-transaction publication; keep Country/tax, retention qualification and commercial effects gated.
-
-Recorded implementation546dead is synced. Current204-test capture evidence and source136 files19 templates remain scoped; proposed worker design adds no runtime capability. Handoff/current progress reconciled 2026-10-23T10:13:36.666988+00:00;11/24 records, focus7/completed1; Country/tax pending.
+Latest local destination evidence: 214 core-local tests (200 Django plus14 Gunicorn observations),46.154s; owned PostgreSQL18.6/UTF8. Actual Nix source141 files19 templates, byte-identical/allowlisted/no symlinks. Explicit private local destination identity and attributed intent binding are implemented; root replacement, copied/tampered markers and rebinding fail closed. Only pending/held intents exist; no claim, worker, publication service or durable worker authority exists. Retention/effect flags remain false. Next: Define durable archive authority and fenced local claims before publication; preserve holds and retained bytes. Country/tax and commercial effects remain gated. Focus7/completed1;11/24 planned records,1/14 complete phases (7%); Phase02 remains8/18.07-02 remains partial.

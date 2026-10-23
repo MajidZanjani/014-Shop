@@ -160,9 +160,32 @@ class RequestArchiveIntent(models.Model):
     evidence_kind=models.CharField(max_length=16,default='prepared')
     retention_qualified=models.BooleanField(default=False)
     effects_authorized=models.BooleanField(default=False)
+    destination=models.ForeignKey('ArchiveDestination',null=True,on_delete=models.PROTECT)
+    destination_bound_by=models.ForeignKey(settings.AUTH_USER_MODEL,null=True,on_delete=models.PROTECT,related_name='+')
+    destination_bound_at=models.DateTimeField(null=True)
+    binding_staff_generation=models.UUIDField(null=True,editable=False)
+    binding_mfa_verified_at=models.DateTimeField(null=True)
     created_at=models.DateTimeField(auto_now_add=True)
     class Meta:
         constraints=[
+            models.CheckConstraint(condition=models.Q(destination__isnull=True,destination_bound_by__isnull=True,destination_bound_at__isnull=True,binding_staff_generation__isnull=True,binding_mfa_verified_at__isnull=True)|models.Q(destination__isnull=False,destination_bound_by__isnull=False,destination_bound_at__isnull=False),name='request_archive_binding_present'),
+            models.CheckConstraint(condition=models.Q(binding_staff_generation__isnull=True,binding_mfa_verified_at__isnull=True)|models.Q(binding_staff_generation__isnull=False,binding_mfa_verified_at__isnull=False),name='request_archive_binding_mfa'),
             models.CheckConstraint(condition=models.Q(state__in=['pending','held']),name='request_archive_unexecuted_state'),
             models.CheckConstraint(condition=models.Q(destination_profile='local-prepared-v1',evidence_class='local-synthetic',evidence_kind='prepared',retention_qualified=False,effects_authorized=False),name='request_archive_no_effects'),
+        ]
+
+
+class ArchiveDestination(models.Model):
+    """Private explicit local root reference; not provider/retention qualification."""
+    id=models.UUIDField(primary_key=True,editable=False)
+    device=models.PositiveBigIntegerField()
+    inode=models.PositiveBigIntegerField()
+    manifest_sha256=models.CharField(max_length=64)
+    profile=models.CharField(max_length=32,default='local-prepared-v1')
+    created_by=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT,related_name='+')
+    created_at=models.DateTimeField(auto_now_add=True)
+    class Meta:
+        constraints=[
+            models.UniqueConstraint(fields=['device','inode'],name='archive_destination_root_unique'),
+            models.CheckConstraint(condition=models.Q(inode__gte=1,profile='local-prepared-v1',manifest_sha256__regex=r'^[0-9a-f]{64}$'),name='archive_destination_known_local'),
         ]

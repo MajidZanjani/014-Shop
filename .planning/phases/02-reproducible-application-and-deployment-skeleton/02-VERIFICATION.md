@@ -6,7 +6,7 @@ scope: recorded-evidence-reconciliation
 ---
 # Current recorded-evidence audit — full phase not verified
 
-Status reconciled2026-10-23; Phase02 lane results below retain their recorded scope through dd322e1. Current Phase7 application evidence is204 core-local tests; see [STATE](../../STATE.md) and [ROADMAP](../../ROADMAP.md). No new full Phase02 qualification is claimed. This refresh reconciles recorded evidence; it is not an independent rerun of all lanes or full goal verification. See [current progress](02-PROGRESS.md) for evidence pointers and next work.
+Status reconciled2026-10-23; Phase02 lane results below retain their recorded scope through dd322e1. Current Phase7 application evidence is214 core-local tests; see [STATE](../../STATE.md) and [ROADMAP](../../ROADMAP.md). No new full Phase02 qualification is claimed. This refresh reconciles recorded evidence; it is not an independent rerun of all lanes or full goal verification. See [current progress](02-PROGRESS.md) for evidence pointers and next work.
 
 Phase 02 remains8 local slices complete(00–05, 09, 15), 7 qualification/review pending(06–08, 10–13), 3 implementation/qualification incomplete(14, 16, 17). Actual filesystem has18 PLAN, 8 SUMMARY, 10 PARTIAL records. Phase 01 has2 documentation SUMMARY records. On2026-10-22,25 implementation quick tasks advanced the incomplete plans; completed phase/BUILD acceptance is not inferred.
 
@@ -20,18 +20,4 @@ One PostgreSQL Docker save archive now actually exists locally:125653410 bytes, 
 
 Required external/human evidence remains assigned independent off-host lifecycle/outage/interruption/exhaustion/recovery, full CI, browser/source/licence/probe/prohibition review and actual host/runtime evidence in T11/T12. No runner assigned; do not block unrelated implementation or auto-provision. No disruptive tests on mx1/existing guests, protected service/resource changes, real provider/DNS/TLS/bank/mail operations or credential reads occurred. Rootless/resource/storage definitions remain operationally unqualified. Keep phase gaps_found and BUILD-01–08 unchecked/In Progress.
 
-
-
-Latest application evidence: [exact cart retry confirmation](../../quick/261023-d1r-show-exact-committed-revision-and-curren/261023-d1r-SUMMARY.md),204 core-local tests; source136 files19 templates. Focus7/completed1; Phase02 remains8/18 with ten incomplete records. No new qualification acceptance.
-
-Latest local evidence: [atomic capture](../07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-PARTIAL.md),204 core-local tests; actual source136 files19 templates. One private envelope/unexecuted intent per semantic scope; no worker or effects.11/24 records; focus7/completed1; Phase02 8/18.
-
-
-
-
-
-
-
-Atomic capture checkpoint: private envelope plus one unexecuted semantic archive intent now commit together;204 core-local tests, source136 files19 templates.07-02 remains partial and no worker/qualified destination/effect exists.11/24 records; focus7/completed1. Next: design and implement fenced local archive claims with explicit destination binding and out-of-transaction publication; keep Country/tax, retention qualification and commercial effects gated.
-
-Recorded implementation546dead is synced. Current204-test capture evidence and source136 files19 templates remain scoped; proposed worker design adds no runtime capability. Handoff/current progress reconciled 2026-10-23T10:13:36.666988+00:00;11/24 records, focus7/completed1; Country/tax pending.
+Latest local destination evidence: 214 core-local tests (200 Django plus14 Gunicorn observations),46.154s; owned PostgreSQL18.6/UTF8. Actual Nix source141 files19 templates, byte-identical/allowlisted/no symlinks. Explicit private local destination identity and attributed intent binding are implemented; root replacement, copied/tampered markers and rebinding fail closed. Only pending/held intents exist; no claim, worker, publication service or durable worker authority exists. Retention/effect flags remain false. Next: Define durable archive authority and fenced local claims before publication; preserve holds and retained bytes. Country/tax and commercial effects remain gated. Focus7/completed1;11/24 planned records,1/14 complete phases (7%); Phase02 remains8/18.07-02 remains partial.
