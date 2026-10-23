@@ -17,13 +17,16 @@ test('customer transport restricts paths, sends same-origin CSRF and hides error
   const old=globalThis.window;const calls=[];
   globalThis.window={fetch:async(path,options)=>{calls.push({path,options});return {ok:true,headers:new Headers({'content-type':'application/json'}),json:async()=>({authenticated:false})};}};
   try{
-    for(const path of ['https://external.invalid/','//external.invalid/','/api/v1/configuration-drafts/../../private/','/api/v1/customer/session/?code=secret'])await assert.rejects(api.customerRequest(path),/Unapproved/);
+    for(const path of ['https://external.invalid/','//external.invalid/','/api/v1/configuration-drafts/../../private/','/api/v1/customer/session/?code=secret','/api/v1/quotation-requests/?owner=other','/api/v1/quotation-requests/../../private/'])await assert.rejects(api.customerRequest(path),/Unapproved/);
     assert.equal(calls.length,0);
     await assert.rejects(api.customerRequest('/api/v1/customer/verify/','POST',{code:'synthetic'}),/CSRF/);
     await api.customerRequest('/api/v1/customer/verify/','POST',{code:'synthetic'},'synthetic-csrf');
     assert.equal(calls[0].options.credentials,'same-origin');assert.equal(calls[0].options.cache,'no-store');assert.equal(calls[0].options.redirect,'error');
     assert.equal(calls[0].options.headers['X-CSRFToken'],'synthetic-csrf');
     assert.equal(calls[0].path,'/api/v1/customer/verify/');assert.deepEqual(JSON.parse(calls[0].options.body),{code:'synthetic'});
+    await api.customerRequest('/api/v1/quotation-requests/','POST',{request_id:'synthetic',cart_id:'synthetic',version:1},'synthetic-csrf');
+    await api.customerRequest('/api/v1/quotation-requests/22222222-2222-4222-8222-222222222222/');
+    assert.equal(calls[1].options.cache,'no-store');assert.equal(calls[2].options.credentials,'same-origin');
     globalThis.window.fetch=async()=>({ok:false,status:403});
     await assert.rejects(api.customerRequest('/api/v1/customer/session/'),error=>error.status===403&&error.message==='Customer request failed');
   }finally{if(old===undefined)delete globalThis.window;else globalThis.window=old;}

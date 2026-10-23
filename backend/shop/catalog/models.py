@@ -33,3 +33,22 @@ class CartSnapshot(models.Model):
             models.UniqueConstraint(fields=['cart','request_id'],name='cart_snapshot_unique_request'),
             models.CheckConstraint(condition=models.Q(version__gte=1),name='cart_snapshot_positive_version'),
         ]
+
+
+class QuotationRequest(models.Model):
+    """Unpriced request bound to a retained snapshot; never an approved offer."""
+    id=models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
+    cart=models.ForeignKey(DraftCart,on_delete=models.PROTECT)
+    snapshot=models.OneToOneField(CartSnapshot,on_delete=models.PROTECT)
+    request_id=models.UUIDField()
+    created_at=models.DateTimeField(auto_now_add=True)
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['cart','request_id'],name='quotation_cart_request_unique')]
+
+
+class QuotationRequestKey(models.Model):
+    cart=models.ForeignKey(DraftCart,on_delete=models.PROTECT)
+    request_id=models.UUIDField()
+    quotation=models.ForeignKey(QuotationRequest,on_delete=models.PROTECT)
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['cart','request_id'],name='quotation_retry_key_unique')]

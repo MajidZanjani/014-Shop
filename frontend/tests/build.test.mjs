@@ -170,13 +170,22 @@ test('cart React flow preserves exact uncertain retry and separate support lines
   const {default:Cart}=await import(pathToFileURL(join(scratch,'DraftCart.mjs')));
   const {evaluateCart}=await import(pathToFileURL(join(scratch,'cart.mjs')));
   const fixtures=JSON.parse(await readFile(join(project,'tests/conformance.json'),'utf8'));
-  let state={version:0,current_version:0,lines:[],evaluation:evaluateCart([])},uncertain=true;
-  const requests=[];
+  let state={cart_id:'11111111-1111-4111-8111-111111111111',version:0,current_version:0,lines:[],evaluation:evaluateCart([])},uncertain=true;
+  const requests=[],quoteRequests=[];let quoteReceipt=null,quoteLost=true;
   host.window.fetch=async(path,options)=>{
+   if(path.startsWith('/api/v1/quotation-requests/')){
+    if(options.method==='POST'){
+     const payload=JSON.parse(options.body);quoteRequests.push(payload);
+     quoteReceipt??={...structuredClone(state),id:'22222222-2222-4222-8222-222222222222',created_at:'synthetic'};
+     if(quoteLost){quoteLost=false;throw new Error('synthetic quote response loss');}
+     return new Response(JSON.stringify(quoteReceipt),{headers:{'content-type':'application/json'}});
+    }
+    return new Response(JSON.stringify(path==='/api/v1/quotation-requests/'?{requests:quoteReceipt?[quoteReceipt]:[]}:quoteReceipt),{headers:{'content-type':'application/json'}});
+   }
    if(options.method==='POST'){
     const payload=JSON.parse(options.body);requests.push(payload);
-    if(uncertain){uncertain=false;state={version:1,current_version:1,lines:payload.lines,evaluation:evaluateCart(payload.lines)};throw new Error('synthetic response loss');}
-    if(requests.length>2)state={version:state.version+1,current_version:state.version+1,lines:payload.lines,evaluation:evaluateCart(payload.lines)};
+    if(uncertain){uncertain=false;state={...state,version:1,current_version:1,lines:payload.lines,evaluation:evaluateCart(payload.lines)};throw new Error('synthetic response loss');}
+    if(requests.length>2)state={...state,version:state.version+1,current_version:state.version+1,lines:payload.lines,evaluation:evaluateCart(payload.lines)};
    }
    return new Response(JSON.stringify(state),{headers:{'content-type':'application/json'}});
   };
@@ -193,6 +202,14 @@ test('cart React flow preserves exact uncertain retry and separate support lines
   await click('Add support packages only');assert.equal(state.lines.length,3);assert.equal(state.evaluation.quoted_support_seconds,108000);
   await click('Remove line');assert.equal(state.lines.length,2);assert.equal(state.lines[0].kind,'support');
   assert.match(container.textContent,/Checkout pending commercial approval/);
+  await click('Request quotation for saved cart');assert.match(container.textContent,/Quotation request outcome uncertain/);
+  assert.equal(findNode(container,n=>n.tagName==='FIELDSET').attrs.has('disabled'),true);
+  await click('Retry quotation request');assert.deepEqual(quoteRequests[0],quoteRequests[1]);
+  assert.equal(quoteRequests[0].version,state.version);assert.equal(quoteRequests[0].cart_id,state.cart_id);
+  assert.match(container.textContent,/Captured request/);assert.match(container.textContent,/Prices and rights pending/);
+  const captured=structuredClone(quoteReceipt.lines);
+  await click('Add support packages only');assert.deepEqual(quoteReceipt.lines,captured);
+  await click('Review captured request');assert.match(container.textContent,/Captured request/);
   await act(async()=>root.unmount());root=null;
  }finally{
   if(root){const {act}=await import('react');await act(async()=>root.unmount());}

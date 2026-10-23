@@ -5,15 +5,44 @@ import { evaluate } from '../lib/configuration';
 import type { Configuration } from '../lib/configuration';
 import { ApiError, customerRequest } from '../lib/customer-api';
 type Line = {id:string;kind:'ip'|'support';product_id:string;quantity:number;configuration?:Configuration};
-type Snapshot = {version:number;current_version:number;catalog_revision:string;lines:Line[];evaluation:{status:string;quoted_support_seconds:number|null}};
+function ConfigurationSummary({value}:{value:Configuration}) {
+  return <span><strong>{value.vendor}</strong> · {value.families.join(', ')} · {value.term}
+    {' '}· Fixed nodes: {value.fixed_nodes} · Floating nodes: {value.floating_nodes}
+    {value.production_band&&<> · Production band: {value.production_band} · Estimated units: {value.production_units??'Not supplied'}</>}
+  </span>;
+}
+type Snapshot = {cart_id:string|null;version:number;current_version:number;catalog_revision:string;lines:Line[];evaluation:{status:string;quoted_support_seconds:number|null}};
 export default function DraftCart({configuration,csrf,onResume}:{configuration:Configuration;csrf:string;onResume:(v:Configuration)=>void}) {
   const [cart,setCart]=useState<Snapshot|null>(null),[busy,setBusy]=useState(false),[message,setMessage]=useState('Loading draft cart…'),[quantity,setQuantity]=useState(1),[uncertain,setUncertain]=useState(false);
   const pending=useRef<object|null>(null);
+  const quotePending=useRef<object|null>(null);
+  const [quoteUncertain,setQuoteUncertain]=useState(false);
+  const [requests,setRequests]=useState<{id:string;version:number;created_at:string}[]>([]);
+  const [receipt,setReceipt]=useState<(Snapshot & {id:string})|null>(null);
+  const loadRequests=async()=>{const value=await customerRequest('/api/v1/quotation-requests/');setRequests(value.requests);};
+  useEffect(()=>{void loadRequests().catch(()=>setMessage('Quotation request history unavailable. Reload to retry.'));},[]);
+  const requestQuote=async()=>{
+    if(busy||uncertain||!cart)return;
+    if(!quotePending.current){
+      if(!cart.cart_id||!cart.lines.length)return;
+      quotePending.current={request_id:crypto.randomUUID(),cart_id:cart.cart_id,version:cart.version};
+    }
+    setBusy(true);
+    try{
+      const value=await customerRequest('/api/v1/quotation-requests/','POST',quotePending.current,csrf);
+      quotePending.current=null;setQuoteUncertain(false);setReceipt(value);
+      setMessage('Quotation request captured for the saved version below. No approved offer, order, payment or support credit was created.');
+      try{await loadRequests();}catch{setMessage('Request captured. Reload request history to see the latest list.');}
+    }catch(error){
+      if(error instanceof ApiError&&error.status<500){quotePending.current=null;setQuoteUncertain(false);setMessage('Request rejected. Reload the cart and review its saved version before requesting again.');}
+      else{setQuoteUncertain(true);setMessage('Quotation request outcome uncertain. Retry the exact request before editing the cart.');}
+    }finally{setBusy(false);}
+  };
   const [editing,setEditing]=useState<string|null>(null);
   const refresh=async()=>{setCart(await customerRequest('/api/v1/cart/'));};
   useEffect(()=>{let live=true;customerRequest('/api/v1/cart/').then(value=>{if(live){setCart(value);setMessage('');}}).catch(()=>{if(live)setMessage('Cart unavailable. Refresh and verify your session.');});return()=>{live=false;};},[]);
   const save=async(lines?:Line[])=>{
-    if(busy||!cart)return;
+    if(busy||quoteUncertain||!cart)return;
     if(lines){if(!evaluateCart(lines).valid){setMessage('A draft cart can contain at most 20 lines.');return;}pending.current={request_id:crypto.randomUUID(),expected_version:cart.current_version,catalog_revision:catalog.revision,lines};}
     if(!pending.current)return;setBusy(true);
     try {await customerRequest('/api/v1/cart/','POST',pending.current,csrf);pending.current=null;setUncertain(false);setEditing(null);try{await refresh();setMessage('Draft cart saved. No order, payment or support credit was created.');}catch{setCart(null);setMessage('Save confirmed. Reload the cart before editing again.');}}
@@ -30,19 +59,30 @@ export default function DraftCart({configuration,csrf,onResume}:{configuration:C
   };
   return <section aria-label="Draft cart"><h3>Your draft cart</h3>
     <p>Each IP line has one vendor and quantity one. Support packages are separate, non-expiring ten-hour packages. Prices and rights await approval; checkout is disabled.</p>
-    <fieldset disabled={busy||uncertain||!cart}>
+    <fieldset disabled={busy||uncertain||quoteUncertain||!cart}>
       <button type="button" disabled={!evaluate(configuration).valid} onClick={addConfiguration}>Add current configuration to cart</button>
       <label>Support package quantity <input type="number" min="1" max="1000000" step="1" value={quantity} onChange={e=>setQuantity(Number(e.target.value))}/></label>
       <button type="button" disabled={!Number.isSafeInteger(quantity)||quantity<1||quantity>1000000} onClick={()=>cart&&void save([...cart.lines,{id:crypto.randomUUID(),kind:'support',product_id:catalog.support_product_id,quantity}])}>Add support packages only</button>
       {editing&&<button type="button" disabled={!evaluate(configuration).valid} onClick={()=>cart&&void save(cart.lines.map(line=>line.id===editing?{...line,configuration:{...configuration,families:[...configuration.families],support_packages:0}}:line))}>Replace selected IP line with current configuration (support unchanged)</button>}
       <ol>{cart?.lines.map(line=><li key={line.id}>
-        {line.kind==='ip'?<><strong>{line.configuration?.vendor}</strong> · {line.configuration?.families.join(', ')} · {line.configuration?.term} · quantity 1 <button type="button" onClick={()=>{if(line.configuration){onResume({...line.configuration,families:[...line.configuration.families]});setEditing(line.id);}}}>Load configuration</button></>:<>Support · {line.quantity} packages · {line.quantity*10} hours <button type="button" disabled={!Number.isSafeInteger(quantity)||quantity<1||quantity>1000000} onClick={()=>void save(cart.lines.map(item=>item.id===line.id?{...item,quantity}:item))}>Use support quantity above</button></>}
+        {line.kind==='ip'?<>{line.configuration&&<ConfigurationSummary value={line.configuration}/>} · quantity 1 <button type="button" onClick={()=>{if(line.configuration){onResume({...line.configuration,families:[...line.configuration.families]});setEditing(line.id);}}}>Load configuration</button></>:<>Support · {line.quantity} packages · {line.quantity*10} hours <button type="button" disabled={!Number.isSafeInteger(quantity)||quantity<1||quantity>1000000} onClick={()=>void save(cart.lines.map(item=>item.id===line.id?{...item,quantity}:item))}>Use support quantity above</button></>}
         {' '}· Price pending <button type="button" onClick={()=>void save(cart.lines.filter(item=>item.id!==line.id))}>Remove line</button>
       </li>)}</ol>
     </fieldset>
     {uncertain&&<button type="button" disabled={busy} onClick={()=>void save()}>Retry last cart save</button>}
-    <button type="button" disabled={busy||uncertain} onClick={()=>{setBusy(true);void refresh().then(()=>setMessage('Current cart loaded.')).catch(()=>setMessage('Unable to reload cart. Verify your session.')).finally(()=>setBusy(false));}}>Reload cart</button>
+    <button type="button" disabled={busy||uncertain||quoteUncertain} onClick={()=>{setBusy(true);void refresh().then(()=>setMessage('Current cart loaded.')).catch(()=>setMessage('Unable to reload cart. Verify your session.')).finally(()=>setBusy(false));}}>Reload cart</button>
     <p>Version {cart?.current_version??0} · {cart?.evaluation.status??'loading'} · Quoted support hours: {(cart?.evaluation.quoted_support_seconds??0)/3600}</p>
+    <p>Request a quotation for all lines in the saved cart version shown above. Later cart edits leave that request unchanged. This local demo captures requests without sending email or starting staff review.</p>
+    <button type="button" disabled={busy||uncertain||quoteUncertain||!cart?.lines.length} onClick={()=>void requestQuote()}>Request quotation for saved cart</button>
+    {quoteUncertain&&<button type="button" disabled={busy} onClick={()=>void requestQuote()}>Retry quotation request</button>}
+    <h4>Your quotation requests</h4>
+    <button type="button" disabled={busy||uncertain||quoteUncertain} onClick={()=>{setBusy(true);void loadRequests().catch(()=>setMessage('Unable to load request history. Verify your session.')).finally(()=>setBusy(false));}}>Reload request history</button>
+    <p>Showing up to 20 most recent requests.</p>
+    <ol>{requests.map(row=><li key={row.id}>Saved version {row.version} · {row.created_at} <button type="button" disabled={busy||uncertain||quoteUncertain} onClick={()=>{setBusy(true);void customerRequest('/api/v1/quotation-requests/'+row.id+'/').then(setReceipt).catch(()=>setMessage('Request unavailable. Verify your session.')).finally(()=>setBusy(false));}}>Review captured request</button></li>)}</ol>
+    {receipt&&<section aria-label="Captured quotation request"><h4>Captured request {receipt.id}</h4>
+      <p>Saved version {receipt.version} · Catalogue {receipt.catalog_revision} · Prices and rights pending. Acceptance and payment disabled.</p>
+      <ol>{receipt.lines.map(line=><li key={line.id}>{line.kind==='support'?`Support: ${line.quantity} ten-hour packages`:line.configuration&&<ConfigurationSummary value={line.configuration}/>} · Line {line.id} · Quantity {line.quantity}</li>)}</ol>
+    </section>}
     <button type="button" disabled>Checkout pending commercial approval</button><p role="status">{message}</p>
   </section>;
 }
