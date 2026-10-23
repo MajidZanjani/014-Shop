@@ -5,7 +5,7 @@ GSD audit-fix, inline under its Codex fallback; user authorized local workflow a
 | ID | Finding | Severity | Classification | Status |
 |---|---|---|---|---|
 | F-00 | ROADMAP Phase7 Not started and stale state.json disagree with current implementation focus; live entry points stale | medium | auto-fixable: known current/completed distinction and canonical publication | Fixed; planning check verifies phase/status/count agreement |
-| F-01 | Older quotation detail/list/capture retry/binding/staff-review routes lack consistent parent-cart/snapshot identity checks; a malformed retained FK can cross resource boundaries | high | auto-fixable: apply existing exact resource identity rule, no new access model | Pending reproduction/fix |
+| F-01 | Older quotation detail/list/capture retry/binding/staff-review routes lack consistent parent-cart/snapshot identity checks; a malformed retained FK can cross resource boundaries | high | auto-fixable: apply existing exact resource identity rule, no new access model | Fixed; five regression methods and full145 core-local pass |
 | F-02 | Historical review digest projection/replay trusts matching grant version without rechecking historical business-snapshot ownership | medium | auto-fixable: reuse owner-filtered scope resolution, preserve old-source retry semantics | Pending reproduction/fix |
 
 F-00 reproduction: new scripts/check_planning.py failed on unmodified ROADMAP/STATE mismatch. Reconciled live ROADMAP, STATE, canonical state.json, PROJECT, requirement traceability, ACTIVITY-LOG and Phase02 status/reconciliation views. Current phase7 is in progress; phase1 last fully complete. Unchanged1/14 completed phases (rounded7%),10/20 planned records, Phase02 remains8/18. All planning files reviewed for live status references; historical quick summaries/source/verification scopes preserved rather than rewriting past evidence. October22 roadmap activity moved verbatim into activity history.
@@ -13,3 +13,7 @@ F-00 reproduction: new scripts/check_planning.py failed on unmodified ROADMAP/ST
 Before every commit: update all affected planning status references, regenerate state.json with canonical GSD publisher and run planning check. After every commit: non-force sync origin/main and verify ahead/behind.
 
 Existing manual/external gates remain pending: user human/browser review; Country/tax and commercial/source approvals; actual customer delivery/staff MFA/recovery; off-host runtime/full-pool-loss recovery/full CI and protected-host qualification. No new acceptance inferred.
+
+## F-01 — fixed and verified
+
+Pre-fix probes on fresh owned PostgreSQL reproduced5 failing methods/9 assertions across customer detail/list/document/binding, staff detail/list, cross-cart retry aliases, existing review replay and a controlled owner change before the attachment lock. Applied exact parent/cart/snapshot checks before dereference/replay and rechecked ownership under the business-attachment lock. New review writes also reject inconsistent parent identity. Existing stale-source/idempotent behavior on valid resources remains intact. Full CORE_LOCAL_PASS checks5/tests145/35.382 seconds; no production or actual customer fault injection. F-02 remains pending.

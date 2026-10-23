@@ -1,4 +1,5 @@
 """Verified-owner document prerequisites. GET has no domain writes."""
+from django.db.models import F
 from django.shortcuts import render
 from django.views.decorators.http import require_GET
 from .cart_views import reply
@@ -15,7 +16,7 @@ def document_preview(request, identity):
         return denied
     if request.GET:
         return reply({'error': 'unexpected_query'}, 400)
-    quotation = QuotationRequest.objects.select_related('cart', 'snapshot').filter(pk=identity, cart__owner=request.user).first()
+    quotation = QuotationRequest.objects.select_related('cart', 'snapshot').filter(pk=identity, cart__owner=request.user, snapshot__cart_id=F('cart_id')).first()
     if quotation is None:
         return reply({'error': 'not_found'}, 404)
     value = preview(quotation)

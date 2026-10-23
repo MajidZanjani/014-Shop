@@ -2,6 +2,7 @@
 import re
 import uuid
 from django.db import transaction
+from django.db.models import F
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.decorators.http import require_http_methods
@@ -11,6 +12,7 @@ from .business_scope import current_scope, valid_business
 from .models import QuotationRequest, BusinessDraftSnapshot, QuotationBusinessScope, QuotationBusinessKey
 from .rules import CATALOG
 from .views import local_customer
+from .cart_views import reply
 
 
 def page(request,quotation,*,selected=None,expected=None,key=None,status=200,message=''):
@@ -45,9 +47,8 @@ def redirect(quotation):
 def bind_business(request,identity):
     denied=local_customer(request)
     if denied is not None:denied['Cache-Control']='no-store';return denied
-    quotation=QuotationRequest.objects.select_related('cart').filter(pk=identity,cart__owner=request.user).first()
+    quotation=QuotationRequest.objects.select_related('cart').filter(pk=identity,cart__owner=request.user,snapshot__cart_id=F('cart_id')).first()
     if quotation is None:
-        from .cart_views import reply
         return reply({'error':'not_found'},404)
     if request.GET:return page(request,quotation,status=400,message='Query parameters are not accepted.')
     if request.method=='GET':return page(request,quotation)
@@ -68,7 +69,8 @@ def bind_business(request,identity):
         # Never rebase a previewed form onto a concurrent attachment.
         return page(request,quotation,selected=selected,expected=expected,key=key)
     with transaction.atomic():
-        quotation=QuotationRequest.objects.select_for_update().select_related('cart').get(pk=quotation.pk)
+        quotation=QuotationRequest.objects.select_for_update().select_related('cart').filter(pk=quotation.pk,cart__owner=request.user,snapshot__cart_id=F('cart_id')).first()
+        if quotation is None:return reply({'error':'not_found'},404)
         old=QuotationBusinessKey.objects.select_related('scope__business_snapshot').filter(quotation=quotation,request_id=key).first()
         error=None
         if old:

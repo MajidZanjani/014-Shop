@@ -2,6 +2,7 @@
 import json
 import uuid
 from django.db import transaction
+from django.db.models import F
 from django.views.decorators.http import require_GET, require_http_methods
 from .cart_views import reply
 from .models import DraftCart, CartSnapshot, QuotationRequest, QuotationRequestKey
@@ -29,7 +30,7 @@ def quotations(request):
         return denied
     if request.GET:return reply({'error':'unexpected_query'},400)
     if request.method=='GET':
-        rows=with_review_status(QuotationRequest.objects.filter(cart__owner=request.user)).select_related('snapshot').order_by('-created_at','-id')[:20]
+        rows=with_review_status(QuotationRequest.objects.filter(cart__owner=request.user,snapshot__cart_id=F('cart_id'))).select_related('snapshot').order_by('-created_at','-id')[:20]
         return reply({'requests':[{'id':str(row.id),'version':row.snapshot.version,
                                   'created_at':row.created_at.isoformat(),'state':'requested','review_status':customer_review_status(row)} for row in rows],'limit':20})
     if request.content_type!='application/json':return reply({'error':'content_type'},415)
@@ -50,6 +51,7 @@ def quotations(request):
         key=QuotationRequestKey.objects.select_related('quotation__snapshot').filter(cart=cart,request_id=request_id).first()
         old=key.quotation if key else None
         if old is not None:
+            if old.cart_id!=cart.pk or old.snapshot.cart_id!=cart.pk:return reply({'error':'not_found'},404)
             if old.snapshot.version!=value['version']:return reply({'error':'request_conflict'},409)
             return reply(quotation_json(old))
         snapshot=CartSnapshot.objects.filter(cart=cart,version=value['version']).first()
@@ -57,6 +59,7 @@ def quotations(request):
         # A second key/tab for the same exact snapshot returns the existing request.
         old=QuotationRequest.objects.select_related('snapshot').filter(snapshot=snapshot).first()
         if old is not None:
+            if old.cart_id!=cart.pk:return reply({'error':'not_found'},404)
             QuotationRequestKey.objects.create(cart=cart,request_id=request_id,quotation=old)
             return reply(quotation_json(old))
         if cart.version!=snapshot.version:return reply({'error':'cart_changed'},409)
@@ -75,6 +78,6 @@ def quotation_detail(request,identity):
         denied['Cache-Control']='no-store'
         return denied
     if request.GET:return reply({'error':'unexpected_query'},400)
-    row=with_review_status(QuotationRequest.objects.filter(pk=identity,cart__owner=request.user)).select_related('snapshot').first()
+    row=with_review_status(QuotationRequest.objects.filter(pk=identity,cart__owner=request.user,snapshot__cart_id=F('cart_id'))).select_related('snapshot').first()
     if row is None:return reply({'error':'not_found'},404)
     return reply(quotation_json(row))

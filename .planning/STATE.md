@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: active
-last_updated: "2026-10-23T07:32:05.141949+00:00"
-state_head: 49f14d2fdb1d0ec9a4285b9c91a17cff24525295
+last_updated: "2026-10-23T07:37:37.108854+00:00"
+state_head: a70b38dfafbf076cf7649f080045fac6159f0d00
 progress:
   total_phases: 14
   completed_phases: 1
@@ -12,13 +12,13 @@ progress:
 last_activity: 2026-10-23
 current_phase: 07
 current_phase_name: Multi-line cart, quotations, business checkout and acceptance
-stopped_at: F-00 live planning reconciled; F-01/F-02 workflow boundary fixes pending; Country/tax deferred.
-last_activity_desc: Phase7 current focus aligned across live planning; Phase1 remains last completed; code audit pending.
+stopped_at: F-00 and F-01 fixed; reproduce and fix F-02 historical private review ownership checks; Country/tax deferred.
+last_activity_desc: Local audit F-00 and F-01 fixed; core-local145 tests pass; planning synchronized before commit.
 ---
 
 # Project State
 
-Updated 2026-10-23T07:32:05.141949+00:00. Canonical current summary; latest evidence: [quick261023-a30](quick/261023-a30-compare-retained-preparation-snapshots-w/261023-a30-SUMMARY.md). Customer status: [quick261023-7s8](quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-SUMMARY.md). Prior staff/HTTP evidence remains linked there. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
+Updated 2026-10-23T07:37:37.108854+00:00. Canonical current summary; latest evidence: [quick261023-a30](quick/261023-a30-compare-retained-preparation-snapshots-w/261023-a30-SUMMARY.md). Customer status: [quick261023-7s8](quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-SUMMARY.md). Prior staff/HTTP evidence remains linked there. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
 ## Current position
 
@@ -46,17 +46,17 @@ T03/T04 local catalog delivery remains intact; T05 local draft persistence and T
 
 Demo: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/demo.py --backend`; open http://127.0.0.1:4321 (also /support/ and /purchase/simple/).
 
-Checks: current staff/backend slice passes core-local140 tests; prior15 dispatcher/scratch-boundary tests retain their original scope on fresh owned real PostgreSQL. Unchanged frontend110 aggregate tests (104 Node plus6 boundary) plus proxy1 retain quick261023-99a evidence and were not rerun for this staff-only slice; static build/typecheck/source policy/output privacy checks pass. Current comparison/source-package evidence/limits are in quick261023-a30 SUMMARY; retained-preparation evidence remains in quick261023-9r5; prerequisite evidence remains in quick261023-9eo; timeline evidence remains in quick261023-99a; preview evidence remains in quick261023-91u; business-scope evidence remains in quick261023-8in; prior customer-status evidence remains in quick261023-7s8; prior internal-decision evidence remains in quick261023-7l0; prior staff authentication evidence remains in quick261023-72i; startup of both previews and the updated proxy1 test also passed. User explicitly approved the previously blocked disposable credential read; final manual HTTP sign-in/review/logout passed15 observations after proxy Accept/CSP forwarding fix817fd57; unchanged lanes retain prior scoped evidence. No FULL_PASS or real-browser/production/recovery/legal acceptance. Hosted CI for this slice remains unverified; no credential access retried.
+Checks: current local workflow audit passes core-local145 tests on owned PostgreSQL/UTF8. Prior15 dispatcher/scratch-boundary tests retain their original scope. Unchanged frontend110 aggregate tests (104 Node plus6 boundary) plus proxy1 retain quick261023-99a evidence and were not rerun for this staff-only slice; static build/typecheck/source policy/output privacy checks pass. Current comparison/source-package evidence/limits are in quick261023-a30 SUMMARY; retained-preparation evidence remains in quick261023-9r5; prerequisite evidence remains in quick261023-9eo; timeline evidence remains in quick261023-99a; preview evidence remains in quick261023-91u; business-scope evidence remains in quick261023-8in; prior customer-status evidence remains in quick261023-7s8; prior internal-decision evidence remains in quick261023-7l0; prior staff authentication evidence remains in quick261023-72i; startup of both previews and the updated proxy1 test also passed. User explicitly approved the previously blocked disposable credential read; final manual HTTP sign-in/review/logout passed15 observations after proxy Accept/CSP forwarding fix817fd57; unchanged lanes retain prior scoped evidence. No FULL_PASS or real-browser/production/recovery/legal acceptance. Hosted CI for this slice remains unverified; no credential access retried.
 
 User review, 2026-10-22: **previous catalog demo checked and approved** (user: “all checked and approved”). See task evidence for scope. Verification/save-resume also passed user review (“all works fine”, 2026-10-22). Local multi-line cart demo approved by user (“approved”, 2026-10-22). Detailed browser/accessibility qualification and commercial/release gates remain pending.
 
 ## Exact next action
 
-Current local quotation/staff/status/business slices await human review. Next action: reproduce and fix F-01 inconsistent quotation/cart identity across older customer/staff routes, then F-02 historical private review digest ownership checks; test and sync each atomic fix, with all planning status views refreshed first. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
+Current local quotation/staff/status/business slices await human review. Next action: reproduce and fix F-02 historical private review ownership checks. Keep all commercial actions disabled. Country/tax choices are explicitly deferred to a later step by the user on 2026-10-23; user is preparing the requested seller/tax/territory answers; do not implement or unblock them during unrelated continuation. Offers, acceptance/payment and financial effects remain gated. No infrastructure expansion or real credential authority inferred.
 
 User instruction2026-10-23: **sync to configured origin/main after every commit**, using ordinary fetch/non-force push and checking ahead/behind. This applies to implementation and planning commits. Every implementation and planning commit must be pushed immediately and ahead/behind checked. Before each commit, reconcile all affected planning files, regenerate canonical state.json and run scripts/check_planning.py; preserve historical evidence.
 
-Planning audit2026-10-23: [F-00/F-01/F-02 report](audits/2026-10-23-local-workflow.md). F-00 aligns current Phase7 versus last-completed Phase1; code findings F-01/F-02 remain pending. Country/tax answers stay deferred.
+Planning audit2026-10-23: [F-00/F-01/F-02 report](audits/2026-10-23-local-workflow.md). Current status: F-00 and F-01 fixed; reproduce and fix F-02 historical private review ownership checks. Country/tax answers stay deferred.
 
 ## Remaining dependencies and protections
 
@@ -66,7 +66,7 @@ Retain dependency locks, raw SBOMs, notices, validated derivative and all origin
 
 ## Session continuity
 
-Session continued2026-10-23; user requires every affected planning status file updated before each commit, then sync. F-00 repaired current Phase7 versus last-completed Phase1 across ROADMAP/STATE/canonical state.json and live indexes. Planning check passes14 phases/current7/completed1/10-of20 plans. Existing140 core-local,115-file/fifteen-template source package, frontend110/proxy1 and harness15 retain prior scoped evidence; none rerun for this documentation fix. F-01/F-02 code boundary fixes remain pending. No demos, manual credential reads, agents or async jobs. No exact context percentage available or claimed; retain conditional checkpoint rule.
+Session continued2026-10-23. F-00 and F-01 fixed; core-local145 tests pass. Next: reproduce and fix F-02 historical private review ownership checks. All affected live planning files reconciled before this commit; canonical state.json regenerated and planning guard required. Sync each commit. Current phase7, last completed1, counts1/14 and10/20 unchanged; Phase02 remains8/18. User is preparing Country/tax answers. No demos, manual credential reads, agents or async test jobs remain. No exact context percentage available or claimed; retain conditional checkpoint rule.
 
 ### Quick Tasks Completed
 

@@ -12,7 +12,7 @@
 
 **Last fully completed phase:** 1. Completed phases remain1/14 (rounded7%); planned records10/20. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
 
-**Current focus:** bounded local workflow audit/fix. Existing cart, customer verification, quotations, business revisions, internal staff reviews, document prerequisites, retained preparation and comparison are implemented locally through 49f14d2. Latest backend evidence:140 core-local tests. Country/tax answers, production MFA/delivery/recovery, approved commercial values/documents and release gates remain pending. See [current state](STATE.md), [audit](audits/2026-10-23-local-workflow.md), and [Phase02 qualification status](phases/02-reproducible-application-and-deployment-skeleton/02-PROGRESS.md).
+**Current focus:** local workflow audit — F-00 and F-01 fixed; reproduce and fix F-02 historical private review ownership checks. Latest backend evidence: core-local145 tests. Current phase7 remains in progress; no phase acceptance promoted. Country/tax answers and all commercial/production/recovery gates remain pending. See [STATE](STATE.md), [audit](audits/2026-10-23-local-workflow.md) and [Phase02](phases/02-reproducible-application-and-deployment-skeleton/02-PROGRESS.md).
 
 Before every commit, reconcile all affected planning status references, regenerate canonical state.json and run `python3 scripts/check_planning.py`; commit then sync origin/main. Historical sources/evidence remain scoped to their dates.
 

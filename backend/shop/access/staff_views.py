@@ -1,5 +1,6 @@
 """Assigned request scope and internal review history; no commercial approvals."""
 import uuid
+from django.db.models import F
 from django.views.decorators.http import require_GET
 from django.shortcuts import render
 from shop.catalog.quotation_views import quotation_json
@@ -23,7 +24,7 @@ def page(request,template,context):
 def quotations(request):
     if staff_credential(request,recent=True) is None:return reply({'error':'recent_staff_mfa_required'},403)
     if request.GET:return reply({'error':'unexpected_query'},400)
-    rows=StaffQuotationGrant.objects.filter(user=request.user).select_related('quotation__snapshot').order_by('-quotation__created_at','-quotation_id')[:20]
+    rows=StaffQuotationGrant.objects.filter(user=request.user,quotation__snapshot__cart_id=F('quotation__cart_id')).select_related('quotation__snapshot').order_by('-quotation__created_at','-quotation_id')[:20]
     if 'text/html' in request.headers.get('Accept',''):
         return page(request,'access/staff_quotations.html',{'rows':rows})
     return reply({'requests':[{'id':str(row.quotation_id),'version':row.quotation.snapshot.version,'state':'requested','review_version':row.quotation.review_version} for row in rows],'limit':20})
@@ -32,7 +33,7 @@ def quotations(request):
 def quotation_detail(request,identity):
     if staff_credential(request,recent=True) is None:return reply({'error':'recent_staff_mfa_required'},403)
     if request.GET:return reply({'error':'unexpected_query'},400)
-    grant=StaffQuotationGrant.objects.select_related('quotation__snapshot').filter(user=request.user,quotation_id=identity).first()
+    grant=StaffQuotationGrant.objects.select_related('quotation__snapshot').filter(user=request.user,quotation_id=identity,quotation__snapshot__cart_id=F('quotation__cart_id')).first()
     if grant is None:return reply({'error':'not_found'},404)
     quotation=grant.quotation
     scope=current_scope(quotation)
@@ -52,7 +53,7 @@ def quotation_detail(request,identity):
 def quotation_business(request,identity):
     if staff_credential(request,recent=True) is None:return reply({'error':'recent_staff_mfa_required'},403)
     if request.GET:return reply({'error':'unexpected_query'},400)
-    grant=StaffQuotationGrant.objects.select_related('quotation__cart').filter(user=request.user,quotation_id=identity).first()
+    grant=StaffQuotationGrant.objects.select_related('quotation__cart').filter(user=request.user,quotation_id=identity,quotation__snapshot__cart_id=F('quotation__cart_id')).first()
     if grant is None:return reply({'error':'not_found'},404)
     quotation=grant.quotation;scope=current_scope(quotation)
     if scope is None:return reply({'error':'not_found'},404)

@@ -272,3 +272,5 @@ Local T06/T07 prerequisite evidence: [quick261022-hrl](quick/261022-hrl-verify-l
 ## Current local implementation — 2026-10-23
 
 Current focus is Phase7, not a completed Phase7. See [STATE.md](STATE.md), [ROADMAP.md](ROADMAP.md) and the [local workflow audit](audits/2026-10-23-local-workflow.md). AUTH-03 and COM-01–05 have partial local implementation: staff rehearsal, cart/quotation/review/business scopes and declaration/preparation previews. Their requirement checkboxes remain unchecked. No approved offer, tax decision, declaration acceptance or order conversion is claimed; COM-06 remains pending. Full phase counts remain1/14 and10/20 plans; Country/tax answers and release gates remain pending.
+
+Audit implementation status: F-00 and F-01 fixed; reproduce and fix F-02 historical private review ownership checks. Core-local145 passes. AUTH/COM checkboxes remain unchanged; no new commercial acceptance.

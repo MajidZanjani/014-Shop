@@ -1,6 +1,6 @@
 # Phase 02 current progress
 
-Status reconciled 2026-10-23. Phase02 evidence below retains its original recorded scope through dd322e1. Current application work is Phase7; see [STATE.md](../../STATE.md) and [ROADMAP.md](../../ROADMAP.md). Latest local app evidence is140 core-local tests, not new Phase02 runtime/off-host acceptance. This is a reconciliation of recorded results, not independent goal verification, new execution of every test lane or production approval.
+Status reconciled 2026-10-23. Phase02 evidence below retains its original recorded scope through dd322e1. Current application work is Phase7; see [STATE.md](../../STATE.md) and [ROADMAP.md](../../ROADMAP.md). Latest local app evidence is145 core-local tests, not new Phase02 runtime/off-host acceptance. This is a reconciliation of recorded results, not independent goal verification, new execution of every test lane or production approval.
 
 ## Completion and activity
 
@@ -36,3 +36,5 @@ Next local work: retain/review image notice candidates, map native provenance, q
 The previous state.json and02-VERIFICATION were dated2026-10-21, STATE's first evidence block had stale counts, roadmap lacked today's within-plan updates and10 completed quick tasks were missing from its index. Today's repair refreshes those views, backfills the exact commit rows and separates historical prose. The8/18 and 1/14 completion figures remain unchanged for evidence-based acceptance reasons, not lack of implementation progress.
 
 GSD parsing was also stale-prone: the old progress table omitted the canonical Completed column and used an unrecognized Executing status token. Canonical publication then fell back to checkboxes and did not match padded current_phase02 to Phase2. The repaired four-column table uses Complete / In Progress / Not started tokens and explicit phase names; canonical regeneration now has an unambiguous source.
+
+Current application audit status: F-00 and F-01 fixed; reproduce and fix F-02 historical private review ownership checks. Phase02 acceptance and all ten open records are unchanged. See [STATE](../../STATE.md) and [ROADMAP](../../ROADMAP.md).

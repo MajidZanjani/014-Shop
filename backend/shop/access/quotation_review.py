@@ -5,6 +5,7 @@ import json
 import re
 import uuid
 from django.db import transaction
+from django.db.models import F
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.decorators.http import require_POST
@@ -91,7 +92,7 @@ def record_review(request,identity):
             generation=admitted.generation,user__is_active=True,user__is_staff=True).first()
         if credential is None or staff_credential(request,recent=True) is None:
             return reject(request,'recent_staff_mfa_required',403)
-        quotation=QuotationRequest.objects.select_for_update().filter(pk=identity).first()
+        quotation=QuotationRequest.objects.select_for_update().filter(pk=identity,snapshot__cart_id=F('cart_id')).first()
         grant=StaffQuotationGrant.objects.filter(user=request.user,quotation=quotation).first() if quotation else None
         if grant is None:return reject(request,'not_found',404)
         old=QuotationReview.objects.filter(quotation=quotation,request_id=request_id).first()

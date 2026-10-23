@@ -338,3 +338,7 @@ Source dd322e1 and current planning saved. Exact context percentage unavailable;
 ## 2026-10-23 — F-00 live planning reconciliation
 
 Current implementation focus is Phase7; Phase1 is the last completed phase. Fixed stale Phase7 Not started status, regenerated canonical machine phase states and refreshed live indexes. Existing140 core-local evidence retained, not rerun for documentation repair. Code audit F-01/F-02 remains pending; Country/tax and all release gates remain pending. Check planning before each commit and sync after each commit.
+
+## 2026-10-23T07:37:37.108854+00:00 — local audit checkpoint
+
+F-00 and F-01 fixed; core-local145 passes. Remaining: reproduce and fix F-02 historical private review ownership checks. Current phase7/last complete1 unchanged. Planning reconciled before commit; sync required after commit. Country/tax deferred.
