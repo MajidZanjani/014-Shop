@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: active
-last_updated: "2026-10-23T10:39:07.240108+00:00"
-state_head: 9f79fc3
+last_updated: "2026-10-23T10:39:41.675301+00:00"
+state_head: d2590d8
 progress:
   total_phases: 14
   completed_phases: 1
@@ -160,4 +160,4 @@ Session continued2026-10-23 through synced9f79fc3 authorization and current deta
 | 261023-cyg | Fix audit F-01 missing cart snapshot ownership recheck | 2026-10-23 | 83e8464 | [261023-cyg-fix-customer-form-audit-f-01-by-rechecki](./quick/261023-cyg-fix-customer-form-audit-f-01-by-rechecki/) |
 | 261023-d1r | Show exact committed and current cart revisions after no-JavaScript retries | 2026-10-23 | 6171d3c | [261023-d1r-show-exact-committed-revision-and-curren](./quick/261023-d1r-show-exact-committed-revision-and-curren/) |
 
-Current detached inspection evidence:223 core-local tests (209 Django plus14 Gunicorn observations),50.004s; owned PostgreSQL18.6/UTF8. Source145 files19 templates exact/allowlisted/no symlinks. Explicit bounded authorization/revocation and shared-source detached point-in-time inspection are implemented. Only pending/held intents exist; no claim/lease, worker or publication service. Inspection returns safe metadata, never bytes or future-work permission. Retention/effect flags false. Next: factor the locked authority checks for same-transaction fenced claims and add actual PostgreSQL lease/revocation races before publication. Country/tax pending; focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 remains8/18;07-02 partial.
+Current detached inspection evidence (implementationd2590d8 synced0/0):223 core-local tests (209 Django plus14 Gunicorn observations),50.004s; owned PostgreSQL18.6/UTF8. Source145 files19 templates exact/allowlisted/no symlinks. Explicit bounded authorization/revocation and shared-source detached point-in-time inspection are implemented. Only pending/held intents exist; no claim/lease, worker or publication service. Inspection returns safe metadata, never bytes or future-work permission. Retention/effect flags false. Next: factor the locked authority checks for same-transaction fenced claims and add actual PostgreSQL lease/revocation races before publication. Country/tax pending; focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 remains8/18;07-02 partial.
