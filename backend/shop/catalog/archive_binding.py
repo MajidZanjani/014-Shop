@@ -18,7 +18,7 @@ class DestinationReference:
 
 
 def bind_request_destination(request,quotation_id,business_version,archive):
-    if connection.in_atomic_block:raise EnvelopeError('binding_transaction_active')
+    if connection.in_atomic_block or not connection.get_autocommit():raise EnvelopeError('binding_transaction_active')
     if type(archive) is not BoundPreparedArchive:raise EnvelopeError('destination_unavailable')
     try:proof=archive.attest()
     except ArchiveError:raise EnvelopeError('destination_unavailable') from None

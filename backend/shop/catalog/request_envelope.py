@@ -148,7 +148,7 @@ def recover_request_envelope(request,quotation_id,business_version,receipt,archi
     import hashlib
     from django.db import connection
     from shop.adapters.evidence_archive import PreparedReceipt,ArchiveError,manifest
-    if connection.in_atomic_block:raise EnvelopeError('archive_transaction_active')
+    if connection.in_atomic_block or not connection.get_autocommit():raise EnvelopeError('archive_transaction_active')
     expected=prepare_request_envelope(request,quotation_id,business_version)
     reference=PreparedReceipt(identity(quotation_id,business_version),hashlib.sha256(expected).hexdigest(),len(expected))
     try:

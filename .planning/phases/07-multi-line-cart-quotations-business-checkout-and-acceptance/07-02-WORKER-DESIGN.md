@@ -45,3 +45,6 @@ Current runtime now includes selected bound-root publication/readback and fenced
 
 
 Current read-only acknowledgement reconciliation is implemented per07-02-RECONCILIATION-PARTIAL. Expected/later/no-record categories never grant work or infer absent physical bytes. The in-flight lock interleaving now passes with actual PostgreSQL wait-event observation; actual transport/process/runtime/recovery remains unqualified and no automated queue loop exists.
+
+
+Current bounded worker subset:07-02-WORKER-PARTIAL adds a selected one-shot prepared executor and manual-autocommit guards. This is separate from the existing synthetic probe daemon and does not change default image/service entrypoints or create an automatic archive queue. Next local management entrypoint only; no deployment authority.

@@ -39,7 +39,7 @@ def locked_scope(request,intent_id):
 
 
 def check_call(intent_id):
-    if connection.in_atomic_block:raise EnvelopeError('authorization_transaction_active')
+    if connection.in_atomic_block or not connection.get_autocommit():raise EnvelopeError('authorization_transaction_active')
     if type(intent_id) is not uuid.UUID:raise EnvelopeError('authorization_unavailable')
 
 
@@ -139,7 +139,7 @@ def locked_active_authorization(authorization_id,expected_destination_id):
 
 def inspect_active_authorization(authorization_id,expected_destination_id):
     """Point-in-time detached check; no payload return or future authority."""
-    if connection.in_atomic_block:raise EnvelopeError("authorization_transaction_active")
+    if connection.in_atomic_block or not connection.get_autocommit():raise EnvelopeError("authorization_transaction_active")
     with transaction.atomic(durable=True):
         grant,intent=locked_active_authorization(authorization_id,expected_destination_id)
         return ActiveAuthorizationReference(grant.pk,intent.pk,expected_destination_id,grant.generation)

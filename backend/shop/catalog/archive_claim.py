@@ -21,7 +21,7 @@ class ClaimObservation:
 
 
 def claim_request_archive(authorization_id,expected_destination_id):
-    if connection.in_atomic_block:raise EnvelopeError('claim_transaction_active')
+    if connection.in_atomic_block or not connection.get_autocommit():raise EnvelopeError('claim_transaction_active')
     with transaction.atomic(durable=True):
         grant,intent=authority.locked_active_authorization(authorization_id,expected_destination_id)
         if ArchivePreparedVerification.objects.filter(intent=intent).exists():raise EnvelopeError("claim_already_verified")
@@ -55,7 +55,7 @@ def locked_claim(claim_id,token):
 
 def inspect_archive_claim(claim_id,token):
     """Safe metadata only; not permission for a later write or completion."""
-    if connection.in_atomic_block:raise EnvelopeError('claim_transaction_active')
+    if connection.in_atomic_block or not connection.get_autocommit():raise EnvelopeError('claim_transaction_active')
     with transaction.atomic(durable=True):
         claim,intent=locked_claim(claim_id,token)
         return ClaimObservation(claim.pk,intent.pk,claim.generation)

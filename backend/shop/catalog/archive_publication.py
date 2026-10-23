@@ -40,7 +40,7 @@ def matching(row,intent,claim=None):
 
 
 def publish_request_archive(claim_id,token,archive):
-    if connection.in_atomic_block:raise EnvelopeError('publication_transaction_active')
+    if connection.in_atomic_block or not connection.get_autocommit():raise EnvelopeError('publication_transaction_active')
     if type(archive) is not BoundPreparedArchive:raise EnvelopeError('publication_unavailable')
     try:proof=archive.attest()
     except ArchiveError:raise EnvelopeError('publication_unavailable') from None

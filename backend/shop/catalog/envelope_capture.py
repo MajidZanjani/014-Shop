@@ -15,7 +15,7 @@ class CaptureReference:
 
 
 def capture_request_envelope(request,quotation_id,business_version):
-    if connection.in_atomic_block:raise EnvelopeError('capture_transaction_active')
+    if connection.in_atomic_block or not connection.get_autocommit():raise EnvelopeError('capture_transaction_active')
     try:
         with transaction.atomic(durable=True):
             # Nested producer authorization acquires credential/parent/cart locks
