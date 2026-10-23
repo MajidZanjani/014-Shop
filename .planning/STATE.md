@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: active
-last_updated: "2026-10-23T05:03:15.480Z"
-state_head: a919f0c3fa60aa0445d97aa780f31d5b82b8cf423fa60aa0445d97aa780f31d5b82b8cf42
+last_updated: "2026-10-23T05:15:23.880Z"
+state_head: 8af50988e514924eb9ca0d13680af8b686972723
 progress:
   total_phases: 14
   completed_phases: 1
@@ -11,18 +11,18 @@ progress:
   percent: 7
 last_activity: 2026-10-23
 current_phase: 07
-current_phase_name: Local protected quotation requests
-stopped_at: Quotation request capture implemented and tested; awaiting local demo review.
-last_activity_desc: Protected quotation capture and exact retry verified locally; commercial and release gates pending.
+current_phase_name: Local staff access and quotation review
+stopped_at: Local staff rehearsal implemented; optional manual HTTP check awaits specific synthetic-credential authorization.
+last_activity_desc: Local two-factor staff rehearsal and assigned quotation reads verified; real staff MFA and release qualification pending.
 ---
 
 # Project State
 
-Updated 2026-10-23T05:03:15.357956+00:00. Canonical current summary; current evidence: [quick261023-6w3](quick/261023-6w3-implement-protected-quotation-requests-f/261023-6w3-SUMMARY.md). Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
+Updated 2026-10-23T05:15:23.673734+00:00. Canonical current summary; latest evidence: [quick261023-72i](quick/261023-72i-implement-local-staff-mfa-and-quotation-/261023-72i-SUMMARY.md), quotation capture: [quick261023-6w3](quick/261023-6w3-implement-protected-quotation-requests-f/261023-6w3-SUMMARY.md). Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
 ## Current position
 
-T03/T04 local catalog delivery remains intact; T05 local draft persistence and T06 synthetic verified access/save-resume are implemented. T07 now has the owner-scoped versioned multi-line draft cart; protected quotation-request capture now retains exact owner snapshots and reconciles duplicate/retried submissions. Staff MFA/review and approved offers remain pending. Full phase acceptance remains pending. Phase02 remains 8/18 complete with all ten incomplete qualification/implementation records preserved. Only Phase01 is fully complete: 1/14 = rounded 7%. That is completed-phase progress, not engineering effort. Existing planned records remain 10/20; later phase acceptance is not claimed from quick-task implementation.
+T03/T04 local catalog delivery remains intact; T05 local draft persistence and T06 synthetic verified access/save-resume are implemented. T07 now has the owner-scoped versioned multi-line draft cart; protected quotation-request capture now retains exact owner snapshots and reconciles duplicate/retried submissions. Local staff password/private-code rehearsal and assigned read-only quotation review are implemented; real staff MFA/delivery/recovery, review decisions and approved offers remain pending. Full phase acceptance remains pending. Phase02 remains 8/18 complete with all ten incomplete qualification/implementation records preserved. Only Phase01 is fully complete: 1/14 = rounded 7%. That is completed-phase progress, not engineering effort. Existing planned records remain 10/20; later phase acceptance is not claimed from quick-task implementation.
 
 ## Delivered behavior
 
@@ -31,19 +31,20 @@ T03/T04 local catalog delivery remains intact; T05 local draft persistence and T
 - Local/synthetic captured-code verification, rotated sessions/CSRF, expiry/attempt/request bounds and owner-only draft save/list/resume UI. No real email, shared contact roles, staff MFA or production activation.
 - Owner-only multi-line cart: separate IP and support lines, add/edit/remove, version conflicts, exact uncertain retry, resume; prices null and checkout disabled.
 - Owner-only quotation requests capture exact saved cart versions, with protected list/detail, duplicate-key arbitration and unchanged captured lines after later edits. Local/synthetic only; no email or commercial effects.
+- Separate local staff process with password/private-code rehearsal, session/CSRF rotation, recent verification and explicit quotation grants. Operator reset/revocation invalidates MFA state and removes assignments; real staff MFA/recovery remains pending.
 - Bounded `scripts/check.py dev` command; automatic lightweight push/PR CI prepared separately from unchanged manual specialized qualification.
 
 ## Run and evidence
 
 Demo: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/demo.py --backend`; open http://127.0.0.1:4321 (also /support/ and /purchase/simple/).
 
-Checks: current changed lanes pass core-local60 tests on fresh owned real PostgreSQL and frontend104 Node tests plus proxy1; static build/typecheck/source policy/output privacy checks pass. Evidence and scope are in quick261023-6w3 SUMMARY; unchanged lanes retain prior scoped evidence. No FULL_PASS or real-browser/production/recovery/legal acceptance. Hosted CI for this slice remains unverified; no credential access retried.
+Checks: current changed lanes pass core-local68 tests on fresh owned real PostgreSQL and frontend104 Node tests plus proxy1; static build/typecheck/source policy/output privacy checks pass. New staff evidence and limits are in quick261023-72i SUMMARY; startup of both previews and the updated proxy1 test also passed. Optional manual HTTP sign-in was rejected before synthetic credential access by automatic approval review and remains pending specific authorization; unchanged lanes retain prior scoped evidence. No FULL_PASS or real-browser/production/recovery/legal acceptance. Hosted CI for this slice remains unverified; no credential access retried.
 
 User review, 2026-10-22: **previous catalog demo checked and approved** (user: “all checked and approved”). See task evidence for scope. Verification/save-resume also passed user review (“all works fine”, 2026-10-22). Local multi-line cart demo approved by user (“approved”, 2026-10-22). Detailed browser/accessibility qualification and commercial/release gates remain pending.
 
 ## Exact next action
 
-Review the local quotation-request demo; next independent implementation is staff MFA/resource authorization prerequisites for protected quotation review. Keep prices/rights null and approved offers, acceptance/payment disabled until actual commercial/durability prerequisites are satisfied. Shared contact roles and private host editing remain pending.
+Specific user authorization is needed only to read freshly generated disposable staff demo passwords/codes for the optional manual HTTP sign-in/review check; automatic approval review rejected that action before any read. Do not bypass or retry credential access without that authorization. The owned demo is stopped. Next independent local feature: record staff quotation-review decisions against the exact assigned request snapshot, keeping approved offers, acceptance/payment and financial effects disabled pending commercial/durability prerequisites. Current quotation/staff demos await user review.
 
 ## Remaining dependencies and protections
 
@@ -53,7 +54,7 @@ Retain dependency locks, raw SBOMs, notices, validated derivative and all origin
 
 ## Session continuity
 
-Session resumed 2026-10-23 through `$gsd-resume-work`; user selected quotation implementation. Quick261023-6w3 complete at a919f0c; local demo review pending. Consumed HANDOFF.json and root .continue-here.md after successful restoration. No owned demo/check processes or agents remain active. Retain the user context-checkpoint rule; no exact percentage is available or claimed.
+Session resumed 2026-10-23 through `$gsd-resume-work`; user selected quotation implementation then requested continuation. Quick261023-72i implemented at8af5098, with68 core-local tests passing. Optional manual synthetic-credential HTTP check blocked by automatic approval review; specific authorization pending. Existing isolated tests passed before that attempted manual check; do not use alternate execution to bypass the rejection. No owned demo/check processes or agents remain active; disposable capture/database directories removed. No exact context percentage available or claimed; retain conditional context-checkpoint rule.
 
 ### Quick Tasks Completed
 
@@ -98,3 +99,4 @@ Session resumed 2026-10-23 through `$gsd-resume-work`; user selected quotation i
 | 261022-iqc | Implement versioned owner multi-line IP and support draft cart | 2026-10-22 | f5f78d1 | [261022-iqc-implement-verified-owner-multi-line-draf](./quick/261022-iqc-implement-verified-owner-multi-line-draf/) |
 | 38 | Record user approval of local multi-line cart demo | 2026-10-22 | fdfdc4f | — |
 | 261023-6w3 | Capture protected owner quotation requests from exact cart snapshots with idempotent retries | 2026-10-23 | a919f0c | [261023-6w3-implement-protected-quotation-requests-f](./quick/261023-6w3-implement-protected-quotation-requests-f/) |
+| 261023-72i | Implement local staff two-factor rehearsal and assigned read-only quotation review | 2026-10-23 | 8af5098 | [261023-72i-implement-local-staff-mfa-and-quotation-](./quick/261023-72i-implement-local-staff-mfa-and-quotation-/) |
