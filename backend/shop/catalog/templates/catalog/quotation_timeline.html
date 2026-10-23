@@ -1,0 +1,17 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Quotation history</title></head><body><main>
+<h1>Quotation history</h1>
+<p>Request {{ quotation.id }} · Captured cart revision {{ quotation.snapshot.version }}</p>
+<p>Current review status: {{ timeline.status.label }}</p>
+<p>Current business scope {{ timeline.business_version }} · Latest review revision {{ timeline.review_version }}</p>
+<p>Newest retained events first, ordered by scope and review revision. Each page shows up to {{ timeline.page_size }} attachments and decisions; the oldest page also shows the original request. Earlier decisions stay with their original scope and do not approve a new attachment. A later review revision preserves and replaces the earlier outcome for its scope.</p>
+<ol>{% for event in timeline.events %}<li>
+<p>{{ event.label }}</p>
+{% if event.kind == 'review' %}<p>Review revision {{ event.version }} · {% if event.business_scope %}Business scope {{ event.business_scope }}{% else %}Original scope without attached business details{% endif %}</p>
+{% elif event.kind == 'business_attachment' %}<p>Business scope {{ event.business_scope }} · Saved business draft revision {{ event.business_draft_version }}</p>
+{% else %}<p>Captured cart revision {{ event.version }}</p>{% endif %}
+<time datetime="{{ event.created_at|date:'c' }}">{{ event.created_at|date:'Y-m-d H:i:s T' }}</time>
+</li>{% endfor %}</ol>
+<nav aria-label="Quotation history pages"><a href="/purchase/quotation-timeline/{{ quotation.id }}/">Latest events</a>{% if timeline.older_query %} · <a href="?{{ timeline.older_query }}">Older events</a>{% endif %}</nav>
+<p>Reload latest events to see new attachments or review corrections. Unavailable business details remain hidden. No offer, acceptance, payment, licence or support credit is created. Country and tax choices remain pending.</p>
+<p><a href="/purchase/quotation-business/{{ quotation.id }}/">Review business attachment</a> · <a href="/purchase/quotation-documents/{{ quotation.id }}/">Preview document prerequisites</a> · <a href="/">Return to quotation requests</a></p>
+</main></body></html>
