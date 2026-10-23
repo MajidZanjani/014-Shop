@@ -12,7 +12,7 @@
 
 **Last fully completed phase:** 1. Phases2–6 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase7 work while those earlier checks remain open. Completed phases remain1/14 (rounded7%); planned records10/20. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
 
-**Current activity:** owner-only quotation history/navigation without JavaScript verified; core-local161 tests pass (151 Django plus10 transport observations). Next: implement a no-JavaScript saved multi-line cart editor using shared cart validation, exact retries and stale-edit protection. Country/tax and all commercial/release gates pending. See [STATE](STATE.md) and [history evidence](quick/261023-bam-add-owner-only-no-javascript-quotation-h/261023-bam-SUMMARY.md).
+**Current activity:** no-JavaScript multi-line saved cart verified; core-local170 tests pass (157 Django plus13 transport observations). Next: add deliberate no-JavaScript quotation-request capture from an exact saved cart revision using existing retry and owner protections. Country/tax and all commercial/release gates pending. See [STATE](STATE.md) and [cart evidence](quick/261023-cll-implement-no-javascript-multi-line-cart-/261023-cll-SUMMARY.md).
 
 Before every commit, reconcile all affected planning status references, regenerate canonical state.json and run `python3 scripts/check_planning.py`; commit then sync origin/main. Historical sources/evidence remain scoped to their dates.
 
@@ -424,4 +424,4 @@ Keep public bytes in shop-owned OVH Object Storage through a fixed verified HTTP
 | 13. Integrated product, access, payment and deployment acceptance | 0 / not planned | Not started | — |
 | 14. Release handover and separately scoped live activation | 0 / not planned | Not started | — |
 
-Latest local evidence: owner quotation history/navigation;161 core-local tests, source123 files17 templates. Prior access implementation a7d085f synced. Focus7/completed1 and Phase02 8/18 unchanged; reviewed 2026-10-23T09:04:08.432487+00:00.
+Latest local evidence: no-JavaScript saved cart;170 core-local tests, source126 files18 templates. History implementation120f0a5 synced. Focus7/completed1; Phase02 8/18 unchanged. Reviewed 2026-10-23T09:10:53.964791+00:00.

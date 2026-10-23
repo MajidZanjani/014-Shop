@@ -1,6 +1,7 @@
 ---
 quick_id: 261023-bam
 status: complete
+implementation_commit: 120f0a5
 ---
 # Owner quotation history without JavaScript
 

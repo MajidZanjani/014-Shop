@@ -39,24 +39,29 @@ def current_cart(request):
         if type(value['expected_version']) is not int or not 0<=value['expected_version']<=1000000000:raise ValueError('version')
         if not isinstance(value['catalog_revision'],str) or len(value['catalog_revision'])!=64:raise ValueError('revision')
     except (ValueError,TypeError,UnicodeError,RecursionError):return reply({'error':'invalid_request'},400)
+    return reply(*store_cart(request.user,value))
+
+
+def store_cart(user,value):
+    request_id=uuid.UUID(value['request_id']) if isinstance(value['request_id'],str) else value['request_id']
     with transaction.atomic():
-        cart,_=DraftCart.objects.get_or_create(owner=request.user)
+        cart,_=DraftCart.objects.get_or_create(owner=user)
         cart=DraftCart.objects.select_for_update().get(pk=cart.pk)
         old=CartSnapshot.objects.filter(cart=cart,request_id=request_id).first()
         # Reconcile an already committed request before current-catalog admission.
         if old is not None:
             if json.dumps(old.lines,sort_keys=True)!=json.dumps(value['lines'],sort_keys=True) or old.catalog_revision!=value['catalog_revision'] or old.version-1!=value['expected_version']:
-                return reply({'error':'request_conflict'},409)
-            return reply(snapshot_json(cart,old))
+                return {'error':'request_conflict'},409
+            return snapshot_json(cart,old),200
         if value['catalog_revision']!=CATALOG['revision']:
-            transaction.set_rollback(True);return reply({'error':'stale_catalog'},409)
+            transaction.set_rollback(True);return {'error':'stale_catalog'},409
         evaluation=evaluate_cart(value['lines'])
         if not evaluation['valid']:
-            transaction.set_rollback(True);return reply(evaluation,422)
+            transaction.set_rollback(True);return evaluation,422
         if cart.version!=value['expected_version']:
-            transaction.set_rollback(True);return reply({'error':'cart_changed','current_version':cart.version},409)
-        if cart.version>=1000000000:return reply({'error':'version_limit'},409)
+            transaction.set_rollback(True);return {'error':'cart_changed','current_version':cart.version},409
+        if cart.version>=1000000000:return {'error':'version_limit'},409
         cart.version+=1
         snapshot=CartSnapshot.objects.create(cart=cart,version=cart.version,request_id=request_id,catalog_revision=value['catalog_revision'],lines=value['lines'],evaluation=evaluation)
         cart.save(update_fields=['version'])
-    return reply(snapshot_json(cart,snapshot),201)
+    return snapshot_json(cart,snapshot),201

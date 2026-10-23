@@ -188,3 +188,12 @@ Core-local now includes mixed IP/support and support-only customer-to-staff jour
 Evidence:149 core-local tests (139 Django plus ten loopback observations), two new complete journeys. This is request/response integration, not new browser/actual customer-staff HTTP transport or production qualification. Existing frontend/proxy evidence retains its original scope. Country/tax stays null/deferred and all commercial actions remain disabled.
 
 Planning uses **current development focus** separately from **last fully completed phase**. Focus7 does not imply Phases2–6 are complete; their qualification/implementation gaps remain. The planning guard requires both labels and canonical state/count agreement before every commit; four negative drift cases passed. Review/update all affected `.planning` files, regenerate state.json, check, commit and sync.
+
+
+## Customer forms without JavaScript
+
+In the disposable `--backend` demo, open `/purchase/access/`. Request a code using a synthetic `.invalid` address, obtain the privately captured code from the local operator using the existing capture procedure, and deliberately submit it in the same browser. No email is sent. The form and JSON flows share challenge/attempt/request limits, browser binding and session/CSRF rotation. Access and sign-out responses contain no submitted address/code; successful forms redirect to a fixed local path.
+
+Verified customers can open `/purchase/cart/` to save separate vendor-specific IP lines and independent positive support-package quantities. Edit IP from its saved line link, update support quantity or remove a line. At most20 lines are accepted. Cart forms use the same rules and locked snapshots as the JSON API. The displayed base revision, line ID and request ID identify the command: after a lost response repeat that original form; after a reported conflict reload and review. Later changes never replace retained snapshots. This saves a draft only; it creates no order, acceptance, price or support credit.
+
+Open `/purchase/quotations/` for owner-only saved quotation requests, current safe review labels and older pages. Its links lead to retained timelines, explicit business attachments and document prerequisites. This list is read-only. Existing API/React quotation submission remains available; the cart form does not yet submit a quotation request. Country/tax choices, live mail/HTTPS, real-browser/accessibility qualification and full phase acceptance remain pending. No browser persistence is used for these forms.

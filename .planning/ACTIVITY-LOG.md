@@ -364,3 +364,8 @@ Implementation8e76c27 and its live planning changes committed/synced. Canonical 
 ## 2026-10-23T09:04:08.432487+00:00 — owner quotation history
 
 [Quick261023-bam](quick/261023-bam-add-owner-only-no-javascript-quotation-h/261023-bam-SUMMARY.md):161 core-local tests pass; actual source123 files17 templates exact. Access commit a7d085f synced0/0 and registered. Reviewed affected live planning before commit; [STATE](STATE.md)/[ROADMAP](ROADMAP.md) retain focus7/completed1,10/20 planned records, Phase02 8/18. Country/tax and commercial effects pending. Continue saved no-JavaScript cart after sync.
+
+
+## 2026-10-23T09:10:53.964791+00:00 — no-JavaScript saved cart
+
+[Quick261023-cll](quick/261023-cll-implement-no-javascript-multi-line-cart-/261023-cll-SUMMARY.md):170 core-local tests, exact source126 files18 templates. Shared persistence retains existing JSON behavior; mixed form editing, exact replay, conflicts, real PostgreSQL form/API race and new Gunicorn routes verified. History120f0a5 synced0/0 and registered. [STATE](STATE.md)/[ROADMAP](ROADMAP.md) and all affected live views reviewed before commit; focus7/completed1,10/20 plans, Phase02 8/18 unchanged. Country/tax and live effects pending. Continue deliberate quotation-request form after sync.
