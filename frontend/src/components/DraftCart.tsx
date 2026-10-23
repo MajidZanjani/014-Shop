@@ -11,15 +11,33 @@ function ConfigurationSummary({value}:{value:Configuration}) {
     {value.production_band&&<> · Production band: {value.production_band} · Estimated units: {value.production_units??'Not supplied'}</>}
   </span>;
 }
+type ReviewStatus = {code:string;label:string;version:number|null;updated_at:string|null};
+function ReviewStatusText({value}:{value?:ReviewStatus}) {
+  let label='Review status unavailable';
+  switch(value?.code){
+    case 'awaiting_review':label='Awaiting review';break;
+    case 'needs_information':label='Scope clarification needed';break;
+    case 'ready_for_commercial_review':label='Ready for commercial review — no offer approved';break;
+    case 'declined':label='Request declined';break;
+  }
+  return <span>{label}{value?.updated_at&&<> · Last status update: {value.updated_at}</>}</span>;
+}
 type Snapshot = {cart_id:string|null;version:number;current_version:number;catalog_revision:string;lines:Line[];evaluation:{status:string;quoted_support_seconds:number|null}};
 export default function DraftCart({configuration,csrf,onResume}:{configuration:Configuration;csrf:string;onResume:(v:Configuration)=>void}) {
   const [cart,setCart]=useState<Snapshot|null>(null),[busy,setBusy]=useState(false),[message,setMessage]=useState('Loading draft cart…'),[quantity,setQuantity]=useState(1),[uncertain,setUncertain]=useState(false);
   const pending=useRef<object|null>(null);
   const quotePending=useRef<object|null>(null);
   const [quoteUncertain,setQuoteUncertain]=useState(false);
-  const [requests,setRequests]=useState<{id:string;version:number;created_at:string}[]>([]);
-  const [receipt,setReceipt]=useState<(Snapshot & {id:string})|null>(null);
+  const [requests,setRequests]=useState<{id:string;version:number;created_at:string;review_status?:ReviewStatus}[]>([]);
+  const [receipt,setReceipt]=useState<(Snapshot & {id:string;review_status?:ReviewStatus})|null>(null);
   const loadRequests=async()=>{const value=await customerRequest('/api/v1/quotation-requests/');setRequests(value.requests);};
+  const loadReceipt=async(id:string)=>{
+    if(busy||uncertain||quoteUncertain)return;
+    setBusy(true);
+    try{setReceipt(await customerRequest('/api/v1/quotation-requests/'+id+'/'));}
+    catch{setMessage('Request unavailable. Verify your session.');}
+    finally{setBusy(false);}
+  };
   useEffect(()=>{void loadRequests().catch(()=>setMessage('Quotation request history unavailable. Reload to retry.'));},[]);
   const requestQuote=async()=>{
     if(busy||uncertain||!cart)return;
@@ -72,14 +90,16 @@ export default function DraftCart({configuration,csrf,onResume}:{configuration:C
     {uncertain&&<button type="button" disabled={busy} onClick={()=>void save()}>Retry last cart save</button>}
     <button type="button" disabled={busy||uncertain||quoteUncertain} onClick={()=>{setBusy(true);void refresh().then(()=>setMessage('Current cart loaded.')).catch(()=>setMessage('Unable to reload cart. Verify your session.')).finally(()=>setBusy(false));}}>Reload cart</button>
     <p>Version {cart?.current_version??0} · {cart?.evaluation.status??'loading'} · Quoted support hours: {(cart?.evaluation.quoted_support_seconds??0)/3600}</p>
-    <p>Request a quotation for all lines in the saved cart version shown above. Later cart edits leave that request unchanged. This local demo captures requests without sending email or starting staff review.</p>
+    <p>Request a quotation for all lines in the saved cart version shown above. Later cart edits leave that request unchanged. This local demo captures requests. Staff review is manual; no email is sent.</p>
     <button type="button" disabled={busy||uncertain||quoteUncertain||!cart?.lines.length} onClick={()=>void requestQuote()}>Request quotation for saved cart</button>
     {quoteUncertain&&<button type="button" disabled={busy} onClick={()=>void requestQuote()}>Retry quotation request</button>}
     <h4>Your quotation requests</h4>
     <button type="button" disabled={busy||uncertain||quoteUncertain} onClick={()=>{setBusy(true);void loadRequests().catch(()=>setMessage('Unable to load request history. Verify your session.')).finally(()=>setBusy(false));}}>Reload request history</button>
-    <p>Showing up to 20 most recent requests.</p>
-    <ol>{requests.map(row=><li key={row.id}>Saved version {row.version} · {row.created_at} <button type="button" disabled={busy||uncertain||quoteUncertain} onClick={()=>{setBusy(true);void customerRequest('/api/v1/quotation-requests/'+row.id+'/').then(setReceipt).catch(()=>setMessage('Request unavailable. Verify your session.')).finally(()=>setBusy(false));}}>Review captured request</button></li>)}</ol>
+    <p>Showing up to 20 most recent requests. Reload history or review a captured request to load its latest status.</p>
+    <ol>{requests.map(row=><li key={row.id}>Saved version {row.version} · {row.created_at} · <ReviewStatusText value={row.review_status}/> <button type="button" disabled={busy||uncertain||quoteUncertain} onClick={()=>void loadReceipt(row.id)}>Review captured request</button></li>)}</ol>
     {receipt&&<section aria-label="Captured quotation request"><h4>Captured request {receipt.id}</h4>
+      <p><ReviewStatusText value={receipt.review_status}/></p>
+      <button type="button" disabled={busy||uncertain||quoteUncertain} onClick={()=>void loadReceipt(receipt.id)}>Refresh captured request status</button>
       <p>Saved version {receipt.version} · Catalogue {receipt.catalog_revision} · Prices and rights pending. Acceptance and payment disabled.</p>
       <ol>{receipt.lines.map(line=><li key={line.id}>{line.kind==='support'?`Support: ${line.quantity} ten-hour packages`:line.configuration&&<ConfigurationSummary value={line.configuration}/>} · Line {line.id} · Quantity {line.quantity}</li>)}</ol>
     </section>}

@@ -8,6 +8,7 @@ from .models import DraftCart, CartSnapshot, QuotationRequest, QuotationRequestK
 from .rules import CATALOG
 from .cart_rules import evaluate_cart
 from .views import local_customer, unique_object
+from .quotation_status import customer_review_status, with_review_status
 
 
 def quotation_json(row):
@@ -15,7 +16,7 @@ def quotation_json(row):
     return {'id':str(row.id),'created_at':row.created_at.isoformat(),
             'cart_id':str(row.cart_id),'version':snapshot.version,
             'catalog_revision':snapshot.catalog_revision,'lines':snapshot.lines,
-            'evaluation':snapshot.evaluation,'state':'requested',
+            'evaluation':snapshot.evaluation,'state':'requested','review_status':customer_review_status(row),
             'prices':None,'rights':None,'acceptance_enabled':False,'checkout_enabled':False}
 
 
@@ -27,9 +28,9 @@ def quotations(request):
         return denied
     if request.GET:return reply({'error':'unexpected_query'},400)
     if request.method=='GET':
-        rows=QuotationRequest.objects.filter(cart__owner=request.user).select_related('snapshot').order_by('-created_at','-id')[:20]
+        rows=with_review_status(QuotationRequest.objects.filter(cart__owner=request.user)).select_related('snapshot').order_by('-created_at','-id')[:20]
         return reply({'requests':[{'id':str(row.id),'version':row.snapshot.version,
-                                  'created_at':row.created_at.isoformat(),'state':'requested'} for row in rows],'limit':20})
+                                  'created_at':row.created_at.isoformat(),'state':'requested','review_status':customer_review_status(row)} for row in rows],'limit':20})
     if request.content_type!='application/json':return reply({'error':'content_type'},415)
     try:
         if int(request.META.get('CONTENT_LENGTH') or 0)>1024:raise ValueError('size')
@@ -73,6 +74,6 @@ def quotation_detail(request,identity):
         denied['Cache-Control']='no-store'
         return denied
     if request.GET:return reply({'error':'unexpected_query'},400)
-    row=QuotationRequest.objects.select_related('snapshot').filter(pk=identity,cart__owner=request.user).first()
+    row=with_review_status(QuotationRequest.objects.filter(pk=identity,cart__owner=request.user)).select_related('snapshot').first()
     if row is None:return reply({'error':'not_found'},404)
     return reply(quotation_json(row))

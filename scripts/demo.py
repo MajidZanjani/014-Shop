@@ -103,11 +103,13 @@ if __name__=='__main__':
             manage(python,staff_runtime,'shell','-c','''
 import uuid
 from django.contrib.auth import get_user_model
-from shop.access.models import StaffQuotationGrant
+from shop.access.models import CustomerIdentity,StaffQuotationGrant
+from django.utils import timezone
 from shop.catalog.models import DraftCart,CartSnapshot,QuotationRequest
 from shop.catalog.cart_rules import evaluate_cart
 from shop.catalog.rules import CATALOG
 owner=get_user_model().objects.create_user(username='staff-demo-owner-'+uuid.uuid4().hex)
+CustomerIdentity.objects.create(user=owner,email='staff-demo-owner@synthetic.invalid',verified_at=timezone.now())
 cart=DraftCart.objects.create(owner=owner,version=1)
 lines=[{'id':str(uuid.uuid4()),'kind':'support','product_id':CATALOG['support_product_id'],'quantity':1}]
 snapshot=CartSnapshot.objects.create(cart=cart,version=1,request_id=uuid.uuid4(),catalog_revision=CATALOG['revision'],lines=lines,evaluation=evaluate_cart(lines))
@@ -120,6 +122,7 @@ StaffQuotationGrant.objects.create(user=get_user_model().objects.get(username='d
             def stop_staff():
                 staff_server.shutdown();staff_server.server_close();staff_thread.join(3)
             stack.callback(stop_staff)
+            print('Fixture customer: staff-demo-owner@synthetic.invalid · verify through the customer page to view the assigned fixture request and its review status.',flush=True)
             print('Local staff preview: http://staff.localhost:4322/staff/ · private credentials/codes directory: '+str(staff_capture),flush=True)
         server=ThreadingHTTPServer(('127.0.0.1',4321),partial(DemoHandler,directory=str(ROOT/'frontend/dist')))
         print('Local preview: http://127.0.0.1:4321 · fallback: /purchase/simple/ with --backend (Ctrl-C stops owned processes)',flush=True)

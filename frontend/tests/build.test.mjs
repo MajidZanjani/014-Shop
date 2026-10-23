@@ -176,7 +176,7 @@ test('cart React flow preserves exact uncertain retry and separate support lines
    if(path.startsWith('/api/v1/quotation-requests/')){
     if(options.method==='POST'){
      const payload=JSON.parse(options.body);quoteRequests.push(payload);
-     quoteReceipt??={...structuredClone(state),id:'22222222-2222-4222-8222-222222222222',created_at:'synthetic'};
+     quoteReceipt??={...structuredClone(state),review_status:{code:'awaiting_review',label:'Awaiting review',version:0,updated_at:null},id:'22222222-2222-4222-8222-222222222222',created_at:'synthetic'};
      if(quoteLost){quoteLost=false;throw new Error('synthetic quote response loss');}
      return new Response(JSON.stringify(quoteReceipt),{headers:{'content-type':'application/json'}});
     }
@@ -210,6 +210,17 @@ test('cart React flow preserves exact uncertain retry and separate support lines
   const captured=structuredClone(quoteReceipt.lines);
   await click('Add support packages only');assert.deepEqual(quoteReceipt.lines,captured);
   await click('Review captured request');assert.match(container.textContent,/Captured request/);
+  assert.match(container.textContent,/Awaiting review/);
+  for(const [code,label] of [['needs_information','Scope clarification needed'],['ready_for_commercial_review','Ready for commercial review — no offer approved'],['declined','Request declined'],['ready_for_commercial_review','Ready for commercial review — no offer approved']]){
+   quoteReceipt.review_status={code,label,version:(quoteReceipt.review_status.version??0)+1,updated_at:'2026-10-23T05:00:00+00:00'};
+   await click('Reload request history');await click('Refresh captured request status');
+   const receiptNode=findNode(container,n=>n.tagName==='SECTION'&&n.attrs.get('aria-label')==='Captured quotation request');
+   assert.ok(receiptNode.textContent.includes(label));assert.deepEqual(quoteReceipt.lines,captured);
+  }
+  quoteReceipt.review_status={code:'unrecognized_future_status',label:'UNAPPROVED_STATUS_TEXT_MUST_NOT_RENDER',version:null,updated_at:null};
+  await click('Reload request history');await click('Refresh captured request status');
+  assert.match(container.textContent,/Review status unavailable/);assert.ok(!container.textContent.includes('UNAPPROVED_STATUS_TEXT_MUST_NOT_RENDER'));
+  assert.match(container.textContent,/Acceptance and payment disabled/);
   await act(async()=>root.unmount());root=null;
  }finally{
   if(root){const {act}=await import('react');await act(async()=>root.unmount());}

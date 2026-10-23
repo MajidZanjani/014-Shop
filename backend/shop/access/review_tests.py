@@ -146,3 +146,29 @@ class ReviewTests(TransactionTestCase):
         self.quotation.refresh_from_db();self.assertEqual(self.quotation.review_version,1)
     def test_concurrent_exact_retry(self):self.race(True)
     def test_concurrent_reviewers(self):self.race(False)
+
+    def test_staff_write_is_visible_only_as_owner_safe_status(self):
+        from shop.catalog.tests import verified_login
+        self.prepare()
+        result=self.submit(dict(self.value,decision='ready_for_commercial_review'))
+        self.assertEqual(result.status_code,201)
+        middleware=[name for name in staff_tests.STAFF_SETTINGS['MIDDLEWARE'] if name not in
+                    ('shop.access.staff_middleware.StaffHostMiddleware','shop.access.staff_middleware.StaffMFAMiddleware')]
+        with override_settings(ROOT_URLCONF='shop.urls',LOCAL_STAFF_ENABLED=False,MIDDLEWARE=middleware,
+                               SESSION_COOKIE_NAME='sessionid',CSRF_COOKIE_NAME='csrftoken'):
+            customer=Client(HTTP_HOST='127.0.0.1')
+            verified_login(customer,self.quotation.cart.owner)
+            path='/api/v1/quotation-requests/'+str(self.quotation.id)+'/'
+            detail=customer.get(path).json()
+            listing=customer.get('/api/v1/quotation-requests/').json()['requests'][0]
+            self.assertEqual(detail['review_status']['code'],'ready_for_commercial_review')
+            self.assertEqual(detail['review_status']['version'],1)
+            self.assertEqual(listing['review_status'],detail['review_status'])
+            self.assertEqual(detail['lines'],self.quotation.snapshot.lines)
+            self.assertFalse(detail['checkout_enabled']);self.assertFalse(detail['acceptance_enabled'])
+            for key in ['reviews','reviewer_id','reviewer_generation','mfa_verified_at','snapshot_digest']:
+                self.assertNotIn(key,json.dumps(detail))
+            another=get_user_model().objects.create_user(username='unrelated-customer')
+            verified_login(customer,another)
+            self.assertEqual(customer.get(path).status_code,404)
+            self.assertEqual(customer.get('/api/v1/quotation-requests/').json()['requests'],[])

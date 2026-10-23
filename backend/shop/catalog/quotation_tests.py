@@ -6,9 +6,13 @@ from threading import Barrier
 from unittest.mock import patch
 from django.contrib.auth import get_user_model
 from django.db import connections
+from django.utils import timezone
+from datetime import timedelta
+from types import SimpleNamespace
 from django.test import Client, TransactionTestCase, override_settings
 from .cart_tests import CASES
-from .models import QuotationRequest, QuotationRequestKey
+from .models import QuotationRequest, QuotationRequestKey, QuotationReview
+from .quotation_status import customer_review_status
 from .rules import CATALOG
 from .tests import verified_login
 
@@ -123,3 +127,51 @@ class QuotationTests(TransactionTestCase):
             self.assertEqual(results[0][1]['lines'],self.saved['lines'])
             self.assertEqual(results[0][1]['version'],1)
         else:self.assertEqual(QuotationRequest.objects.count(),0)
+
+    def test_owner_status_corrections_without_internal_metadata_or_capture_changes(self):
+        first=self.post().json()
+        self.assertEqual(first['review_status'],{'code':'awaiting_review','label':'Awaiting review','version':0,'updated_at':None})
+        row=QuotationRequest.objects.get()
+        reviewer=get_user_model().objects.create_user(username='STAFF_IDENTITY_PRIVATE_SYNTHETIC',is_staff=True)
+        generation=uuid.uuid4();private_key=uuid.uuid4();private_mfa=timezone.now()-timedelta(minutes=1)
+        for version,decision in enumerate(['needs_information','ready_for_commercial_review','declined','ready_for_commercial_review'],start=1):
+            review=QuotationReview.objects.create(quotation=row,version=version,request_id=private_key if version==1 else uuid.uuid4(),
+                snapshot_digest='f'*64,decision=decision,reviewer=reviewer,reviewer_generation=generation,mfa_verified_at=private_mfa)
+            row.review_version=version;row.save(update_fields=['review_version'])
+            detail_response=self.client.get(URL+first['id']+'/');detail=detail_response.json()
+            listing=self.client.get(URL).json()['requests'][0]
+            status=detail['review_status']
+            self.assertEqual(status['code'],decision);self.assertEqual(status['version'],version)
+            self.assertEqual(status['updated_at'],review.created_at.isoformat())
+            self.assertEqual(set(status),{'code','label','version','updated_at'})
+            self.assertEqual(listing['review_status'],status)
+            self.assertEqual(detail['lines'],first['lines']);self.assertEqual(detail['evaluation'],first['evaluation'])
+            self.assertIsNone(detail['prices']);self.assertIsNone(detail['rights'])
+            self.assertFalse(detail['checkout_enabled']);self.assertFalse(detail['acceptance_enabled'])
+            self.assertEqual(detail_response['Cache-Control'],'no-store')
+            replay=self.post().json()
+            self.assertEqual(replay['id'],first['id']);self.assertEqual(replay['review_status'],status)
+            for response in [detail,listing,replay]:
+                raw=json.dumps(response)
+                for value in ['reviewer','mfa_verified_at','reviewer_generation','snapshot_digest','request_id','reviews',reviewer.username,str(generation),str(private_key),private_mfa.isoformat(),'f'*64]:
+                    self.assertNotIn(value,raw)
+        self.assertEqual(QuotationRequest.objects.count(),1)
+        self.assertEqual(QuotationReview.objects.count(),4)
+        self.save_cart(1,CASES[2]['lines'])
+        with patch.dict(CATALOG,revision='0'*64):
+            detail=self.client.get(URL+first['id']+'/').json()
+            self.assertEqual(detail['review_status']['version'],4)
+            self.assertEqual(detail['lines'],first['lines'])
+        verified_login(self.client,self.other)
+        self.assertEqual(self.client.get(URL).json()['requests'],[])
+        self.assertEqual(self.client.get(URL+first['id']+'/').status_code,404)
+
+    def test_unavailable_status_fails_closed_for_missing_or_unknown_revision(self):
+        first=self.post().json();row=QuotationRequest.objects.get()
+        row.review_version=3;row.save(update_fields=['review_version'])
+        response=self.client.get(URL+first['id']+'/').json()
+        self.assertEqual(response['review_status'],{'code':'unavailable','label':'Review status unavailable','version':None,'updated_at':None})
+        self.assertEqual(self.client.get(URL).json()['requests'][0]['review_status'],response['review_status'])
+        unknown=SimpleNamespace(review_version=3,customer_review_decision='approved',customer_review_time=timezone.now())
+        self.assertEqual(customer_review_status(unknown),response['review_status'])
+        self.assertFalse(response['checkout_enabled']);self.assertFalse(response['acceptance_enabled'])
