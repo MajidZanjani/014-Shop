@@ -15,3 +15,7 @@ Full07-02 domain/commercial contract remains incomplete. Country/tax deferred; r
 ## Deviations from saved slice
 
 One bounded test-harness repair: Django suite timeout60→90seconds after measured exhaustion. No scope/authority change. Confirmation wording explicitly handles an existing held intent rather than incorrectly promising unbound state.
+
+## Continued route audit after8aa2ad5
+
+Added actual simultaneous staff CSRF form submissions on separate PostgreSQL connections: one201 plus one200, one semantic fact/intent. Added owner-original capture followed by staff form retry of a held intent: original owner/no MFA attribution and all intent values remain unchanged; no work records. These address route-level gaps beyond the earlier internal concurrency tests; runtime behavior unchanged. Focused16 Django plus14 Gunicorn checks pass12.126s. Full CORE_LOCAL_PASS266 checks (252 Django plus14 Gunicorn),67.977s, owned PostgreSQL18.6/UTF8;0012 application/no-drift pass. Updated source /nix/store/8n6c9k4klxd7kb7w4kj9wa2chzsd4ym1-shop-python-source byte-compares163 files21 templates/no symlinks. Next: extend existing supported-route mixed/support-only journeys through this capture form without direct domain fixture writes or forced login. All external/commercial/full-plan gates unchanged.

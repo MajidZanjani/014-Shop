@@ -1,11 +1,13 @@
 """Actual synthetic staff/CSRF requests and durable captures on owned PostgreSQL."""
 import copy
+from concurrent.futures import ThreadPoolExecutor
+from threading import Barrier
 import re
 from unittest.mock import patch
 from urllib.parse import urlencode
 import uuid
-from django.db import DatabaseError, connection
-from django.test import TransactionTestCase, override_settings
+from django.db import DatabaseError, connection, connections
+from django.test import Client, TransactionTestCase, override_settings
 from shop.catalog import request_envelope_tests as fixtures
 from shop.catalog.envelope_capture import capture_request_envelope
 from shop.catalog.request_envelope import EnvelopeError, prepare_request_envelope
@@ -148,3 +150,32 @@ class RequestEvidenceTests(TransactionTestCase):
         with patch('shop.catalog.envelope_capture.prepare_request_envelope',side_effect=locked):
             reference=capture_request_envelope(request,self.quotation.pk,1,expected_source_sha256=digest)
         self.assertEqual(observed,[True]);self.assertTrue(reference.created);self.assert_no_work()
+
+    def test_concurrent_exact_staff_form_submissions_commit_one_fact_and_intent(self):
+        self.staff();value=self.form();barrier=Barrier(2)
+        clients=[Client(enforce_csrf_checks=True,HTTP_HOST='staff.localhost') for _ in range(2)]
+        for client in clients:client.cookies=self.browser.cookies.copy()
+        def run(client):
+            try:
+                barrier.wait(timeout=10)
+                response=client.post(self.url(),data=urlencode(value),content_type='application/x-www-form-urlencoded')
+                return response.status_code,response.content.decode()
+            finally:connections.close_all()
+        with ThreadPoolExecutor(max_workers=2) as pool:results=list(pool.map(run,clients))
+        self.assertEqual(sorted(status for status,_ in results),[200,201])
+        self.assertEqual(sum('Original capture retained' in body for _,body in results),1)
+        self.assertEqual(RequestEnvelope.objects.count(),1);self.assertEqual(RequestArchiveIntent.objects.count(),1)
+        self.assertEqual(RequestEnvelope.objects.get().captured_by_id,self.user.pk);self.assert_no_work()
+
+    def test_staff_retry_of_owner_capture_preserves_attribution_and_held_intent(self):
+        self.staff();value=self.form()
+        with self.owner_context():request=self.owner_client.get('/api/v1/customer/session/').wsgi_request
+        first=capture_request_envelope(request,self.quotation.pk,1,expected_source_sha256=value['expected_source_sha256'])
+        self.assertTrue(first.created)
+        RequestArchiveIntent.objects.filter(pk=first.intent_id).update(state='held')
+        original=list(RequestEnvelope.objects.values());intent=list(RequestArchiveIntent.objects.values())
+        response=self.submit(value);self.assertContains(response,'Original capture retained')
+        self.assertNotContains(response,'unbound');self.assert_private(response)
+        self.assertEqual(list(RequestEnvelope.objects.values()),original);self.assertEqual(list(RequestArchiveIntent.objects.values()),intent)
+        row=RequestEnvelope.objects.get();self.assertEqual(row.captured_by_id,self.owner.pk)
+        self.assertIsNone(row.staff_generation);self.assertIsNone(row.mfa_verified_at);self.assert_no_work()
