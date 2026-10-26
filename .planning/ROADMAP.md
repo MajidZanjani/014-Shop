@@ -8,13 +8,13 @@
 
 **Baseline:** 2026-10-21 protected-services proposal/handoff, read in full. T01 documentation reconciled; T02 is executing with eight completed local slices and ten incomplete qualification/implementation records. Actual runtime/host criteria remain unexecuted.
 
-## Current implementation activity — 2026-10-23
+## Current implementation activity — 2026-10-26
 
 **Current development focus:** 3 — final purchase-flow platform/catalog and seller offer/support rules, followed by4/7/10/13. [Amendment/task map](PURCHASE-FLOW-AMENDMENT.md).
 
 **Last fully completed phase:** 1. Phases2–7 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase8 work while those earlier checks remain open. Completed phases remain1/14 (rounded7%); planned records11/29. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
 
-**Current activity:** Final26October revision2 applied once; minimal platform path and synthetic standard-offer/staged delivery implemented. Next complete-cart/business/document binding and guarded short checkout; STATE.md owns exact evidence and pending gates.
+**Current activity:** Final26October revision2 applied once; platform/synthetic staged purchase and complete-cart/business/document checkout rehearsal implemented. Next bind retained complete-cart scope to synthetic acceptance and one archived payment attempt; STATE.md owns exact evidence and pending gates.
 
 Before every commit, reconcile all affected planning status references, regenerate canonical state.json and run `python3 scripts/check_planning.py`; commit then sync origin/main. Historical sources/evidence remain scoped to their dates.
 

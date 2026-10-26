@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: in_progress
-last_updated: "2026-10-26T07:31:11.138Z"
-state_head: 8f76a35c06692bed797bee2d31cfb52a652b06db
+last_updated: "2026-10-26T07:51:27.647Z"
+state_head: 309f634a4511f73d3c6da71f234e7e23d0c721e4
 progress:
   total_phases: 14
   completed_phases: 1
@@ -12,8 +12,8 @@ progress:
 last_activity: 2026-10-26
 current_phase: 03
 current_phase_name: Catalog, platform choices and approved offer/support policies
-stopped_at: Final purchase-flow amendment reconciled; minimal platform and synthetic staged purchase verified. Next complete-cart checkout binding.
-last_activity_desc: Replan and implementation verified338 backend/12 focused/118 frontend tests; actual commercial and external qualification pending.
+stopped_at: Complete-cart checkout rehearsal retained and verified. Next synthetic acceptance and payment binding.
+last_activity_desc: Complete-cart private checkout implemented with full353 and final focused14 checks passing; actual acceptance and external gates pending.
 ---
 
 # Project state — final purchase-flow revision2
@@ -31,9 +31,9 @@ last_activity_desc: Replan and implementation verified338 backend/12 focused/118
 
 ## Current result and next action
 
-quick261026-8x7 complete: final revision2 registered/reconciled, one platform question and conditional detail integrated into existing local paths, shared seller-controlled synthetic offer/support policy and archived purchase/staged-delivery rehearsal implemented. CORE_LOCAL_PASS338 tests/5 checks,89.159s; final focused12 purchase tests,1.383s; shared104 conformance cases/108 tests; frontend118 tests/32 checks,10.842s on installed Node24.15.0/npm11.12.1. Exact pinned24.22 frontend qualification remains pending; tool graph/pins unchanged. Backend-only Nix shell reproduces the demo with pinned Python3.13.16/PostgreSQL18.6. Source191 exact files/23 templates; payments0005/catalog0012 and no drift. [Evidence and eight-case map](phases/03-catalog-platform-and-offer-policies/03-PURCHASE-FLOW-PARTIAL.md).
+Complete-cart checkout rehearsal implemented under03-01/04-01/07-02–03. One guarded API/no-JavaScript service retains every cart line and exact business/document/offer/support/delivery revisions. Whole-basket holds, seller-controlled support minima, once-only new-package allocation, stale-review protection and concurrent retry arbitration are verified. CORE_LOCAL_PASS353 tests/5 checks,93.302s; final focused14 checkout tests,1.652s, covers the final per-line-total assertion. Extended demo PURCHASE_FLOW_DEMO_PASS includes complete-cart archive recovery and API/form same capture. [Exact evidence and limits](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-CHECKOUT-PARTIAL.md). Original platform/single-draft/staged-payment evidence remains retained; no full plan/phase acceptance inferred.
 
-Next usable local feature: bind standard-offer/platform/support/delivery snapshots to complete saved cart plus existing business/document revisions and shared guarded short checkout (03-01/04-01/07-02–03). Use explicitly synthetic fixtures while actual seller values remain pending. Do not drop/split unapproved lines or silently change ready design into development. Preserve later reference-design obligation and once-only effects. No further old audit/observation task is the current route.
+Next usable local feature: bind the retained complete-cart checkout to explicit synthetic acceptance/document fixtures and one payment attempt/order reference, including archive-before-dispatch and lookup-only uncertainty. Do not use the separate single-draft synthetic purchase as complete-cart payment evidence. Actual acceptance, business country/tax, terms/host/commercial and licence/support ledger/fulfilment gates remain pending. Continue local work without invented approvals or external/protected-service actions.
 
 ## Pending actual gates
 
