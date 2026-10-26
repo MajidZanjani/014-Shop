@@ -8,7 +8,7 @@ from shop.access.models import CustomerIdentity
 from shop.adapters.evidence_archive import PreparedArchive
 from shop.catalog.rules import CATALOG
 from shop.catalog.purchase_policy import quote
-from shop.catalog import business_rules, checkout, checkout_payment
+from shop.catalog import business_rules, checkout, checkout_payment, fulfilment
 from django.test import override_settings
 from . import purchase_demo as purchase,synthetic_bank
 
@@ -87,13 +87,27 @@ def run(archive_root):
             if paid.status_code!=200 or not paid.json()['simulated_paid'] or repeated.json()['order_reference']!=paid.json()['order_reference']:
                 raise RuntimeError('synthetic complete-cart payment mismatch')
             row=checkout_payment.accepted(owner,retained.pk);checkout_payment.retained(row,archive)
+            granted=client.post(payment_url,data=json.dumps({'action':'provision'}),content_type='application/json',HTTP_X_CSRFTOKEN=csrf)
+            if granted.status_code!=200 or granted.json()['fulfilment']['support_seconds']!=72000:
+                raise RuntimeError('synthetic cart grant mismatch')
+            line_id=lines[0]['id']
+            initial=client.post(payment_url,data=json.dumps({'action':'deliver_initial','line_id':line_id}),content_type='application/json',HTTP_X_CSRFTOKEN=csrf)
+            if initial.status_code!=200 or initial.json()['fulfilment']['lines'][0]['reference_delivered']:
+                raise RuntimeError('synthetic cart later obligation lost')
+            later=client.post(payment_url,data=json.dumps({'action':'deliver_reference','line_id':line_id}),content_type='application/json',HTTP_X_CSRFTOKEN=csrf)
+            if later.status_code!=200 or later.json()['fulfilment']['entitlement_count']!=1 or not later.json()['fulfilment']['lines'][0]['reference_delivered']:
+                raise RuntimeError('synthetic cart staged completion mismatch')
+            repeated=client.post(payment_url,data=json.dumps({'action':'provision'}),content_type='application/json',HTTP_X_CSRFTOKEN=csrf)
+            if repeated.json()['fulfilment']['support_seconds']!=72000:raise RuntimeError('synthetic support duplicate grant')
+
             from .models import SyntheticBankOperation
             if SyntheticBankOperation.objects.filter(merchant='synthetic-checkout',reference=row.pk).count()!=1:
                 raise RuntimeError('duplicate synthetic complete-cart payment')
         complete_cart={'all_lines_retained':True,'business_revision':retained.snapshot['business']['version'],
             'document_revision':retained.snapshot['documents']['revision'],'archive_recovered':bool(retained.archive_receipt),
             'api_and_no_javascript_same_capture':True,'acceptance_enabled':False,
-            'synthetic_acceptance_recorded':True,'simulated_payment_captured':True,'single_order_reference_and_bank_operation':True}
+            'synthetic_acceptance_recorded':True,'simulated_payment_captured':True,'single_order_reference_and_bank_operation':True,'cart_entitlement_once':True,
+            'cart_staged_delivery_preserves_later_obligation':True,'cart_support_seconds_once':72000,'actual_support_spendable':False}
 
     return {'status':'PURCHASE_FLOW_DEMO_PASS','evidence_class':'local-synthetic','financial_confirmation':False,
         'effects_authorized':False,'real_email_verification':False,'ready_kit_zero_support':True,'required_support_tamper_refused':True,

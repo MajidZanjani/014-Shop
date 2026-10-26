@@ -124,6 +124,9 @@ def run():
                     status, _, raw = browser.request(payment, {'action':'pay'})
                     require(status == 200 and b'Simulated payment captured' in raw, 'fixture payment failed')
                     require(browser.request(payment, {'action':'pay'})[0] == 200, 'fixture payment retry failed')
+                    status, _, raw = browser.request(payment, {'action':'provision'})
+                    require(status == 200 and b'36000 integer seconds' in raw, 'support-only grant failed')
+                    require(browser.request(payment, {'action':'provision'})[0] == 200, 'support grant retry failed')
                     browser.request('/purchase/access/')
                     for origin in ('null', 'http://untrusted.invalid'):
                         require(browser.request('/purchase/access/', {'action': 'logout'}, origin=origin)[0] == 403, 'untrusted origin accepted')
@@ -131,7 +134,7 @@ def run():
                     status, location, _ = browser.request('/purchase/access/', {'action': 'logout'})
                     require(status == 303 and location == '/purchase/access/', 'logout redirect failed')
                     require(b'Request a code' in browser.request(location)[2], 'logout not effective')
-                    checks += 23
+                    checks += 25
             finally:
                 server.shutdown();server.server_close();thread.join(3)
     print('DEMO_ACCESS_PASS checks=' + str(checks) + ' aliases=2 evidence=local-synthetic-header-level')

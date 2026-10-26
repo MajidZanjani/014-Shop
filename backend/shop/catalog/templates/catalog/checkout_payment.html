@@ -19,7 +19,14 @@
 {% elif attempt_state == 'observed' %}<p>Simulated provider result: {{ provider_status }}. No replacement payment attempt is created.</p>
 {% elif attempt_state == 'expired' or attempt_state == 'cancelled' %}<p>Simulated payment attempt {{ attempt_state }}. No replacement attempt is created.</p>
 {% else %}<form method="post">{% csrf_token %}<input type="hidden" name="action" value="pay"><button type="submit">Simulate payment once</button></form>{% endif %}
-{% endif %}{% endif %}
+{% endif %}
+{% if simulated_paid %}<section class="next-action"><h2>Fulfilment rehearsal</h2>
+{% if not fulfilment %}<p>Prepare one synthetic licence record per IP line and exactly ten support hours per purchased package. No real package, key or spendable support is issued.</p><form method="post">{% csrf_token %}<input type="hidden" name="action" value="provision"><button type="submit">Simulate licence and support grants</button></form>
+{% else %}<p role="status">{{ fulfilment.entitlement_count }} synthetic IP licence records · {{ fulfilment.support_packages }} support packages · {{ fulfilment.support_hours }} hours ({{ fulfilment.support_seconds }} integer seconds) · No expiry.</p><p class="hint">Real support spendability remains disabled. Each package is counted once.</p>
+<ol class="cart-items">{% for line in fulfilment.lines %}<li>{{ line.vendor }} · {{ line.families|join:', ' }}
+{% if not line.initial_delivered %}<p>Initial RTL/key/documents pending. {% if line.later_reference_design %}Later reference design remains outstanding.{% endif %}</p><form method="post">{% csrf_token %}<input type="hidden" name="action" value="deliver_initial"><input type="hidden" name="line_id" value="{{ line.line_id }}"><button type="submit">Simulate initial delivery</button></form>
+{% elif not line.reference_delivered %}<p>Initial materials simulated as delivered. The later reference design remains outstanding.</p><form method="post">{% csrf_token %}<input type="hidden" name="action" value="deliver_reference"><input type="hidden" name="line_id" value="{{ line.line_id }}"><button type="submit">Simulate later reference design</button></form>
+{% else %}<p>Promised deliveries complete in this simulation. The same single licence record is retained.</p>{% endif %}</li>{% endfor %}</ol>{% endif %}</section>{% endif %}{% endif %}
 <p><a href="/purchase/checkout-rehearsal/">Current checkout rehearsal</a> · <a href="/purchase/cart/">Saved cart</a> · <a href="/purchase/access/">Customer access</a></p>
 
 {% endblock %}

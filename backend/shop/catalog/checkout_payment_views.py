@@ -8,7 +8,7 @@ from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.http import require_http_methods
 from shop.adapters.evidence_archive import PreparedArchive, ArchiveError
 from shop.payments.bank_contract import BankError
-from . import checkout, checkout_payment as service
+from . import checkout, checkout_payment as service, fulfilment
 from .cart_editor import private
 from .cart_views import reply
 from .views import local_customer, unique_object
@@ -33,7 +33,12 @@ def command(request, api):
         if set(value) != {'action', 'sha256', 'confirmed'}: raise ValueError('fields')
         if not isinstance(value['sha256'], str) or re.fullmatch('[0-9a-f]{64}', value['sha256']) is None: raise ValueError('sha256')
         if not api: value['confirmed'] = value['confirmed'] == 'on'
-    elif action in ('pay', 'reconcile'):
+    elif action in ('deliver_initial', 'deliver_reference'):
+        if set(value) != {'action','line_id'} or not isinstance(value['line_id'],str): raise ValueError('fields')
+        from .cart_editor import canonical_uuid
+        value['line_id'] = canonical_uuid(value['line_id'])
+    elif action in ('pay', 'reconcile', 'provision'):
+
         if set(value) != {'action'}: raise ValueError('fields')
     else: raise ValueError('action')
     return value
@@ -46,6 +51,7 @@ def summary(value, sha256, row):
             'attempt_state': attempt.state if attempt else None,
             'bank_session_expires_at': attempt.expires_at.isoformat() if attempt and attempt.expires_at else None,
             'provider_status': attempt.provider_status if attempt else None,
+            'fulfilment': fulfilment.status(row),
             'simulated_paid': bool(attempt and attempt.state == 'observed' and attempt.provider_status == 'captured'),
             'evidence_class': 'local-synthetic', 'acceptance_enabled': False,
             'financial_confirmation': False, 'effects_authorized': False}
@@ -64,7 +70,9 @@ def handle(request, identity, api):
             with PreparedArchive(Path(root)) as archive:
                 if value['action'] == 'accept': service.accept(request.user, identity, value['sha256'], value['confirmed'], archive)
                 elif value['action'] == 'pay': service.pay(request.user, identity, archive)
-                else: service.reconcile(request.user, identity, archive)
+                elif value['action'] == 'reconcile': service.reconcile(request.user, identity, archive)
+                elif value['action'] == 'provision': fulfilment.provision(request.user, identity, archive)
+                else: fulfilment.deliver(request.user, identity, value['line_id'], 'initial' if value['action']=='deliver_initial' else 'reference', archive)
         value, sha256, row = service.review(request.user, identity)
         context = summary(value, sha256, row)
     except checkout.CheckoutError as error:

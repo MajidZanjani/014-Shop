@@ -4,6 +4,7 @@ from django.db.models.lookups import Exact
 import uuid
 from django.conf import settings
 from django.db import models
+from django.db.models.functions import Cast
 class ConfigurationDraft(models.Model):
     id=models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
     owner=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT)
@@ -322,3 +323,40 @@ class SyntheticCheckoutAcceptance(models.Model):
             models.CheckConstraint(condition=models.Q(evidence_class='local-synthetic',financial_confirmation=False,effects_authorized=False,sha256__regex=r'^[0-9a-f]{64}$',review_sha256__regex=r'^[0-9a-f]{64}$'),name='synthetic_acceptance_no_commerce'),
             models.CheckConstraint(condition=(models.Q(simulated_accepted_at__isnull=True,attempt__isnull=True)|models.Q(simulated_accepted_at__isnull=False)&~models.Q(archive_receipt={})),name='synthetic_acceptance_archive_gate'),
         ]
+
+
+class SyntheticFulfilment(models.Model):
+    """Archived once-only cart licence/support grants; no real rights or spendability."""
+    id=models.UUIDField(primary_key=True,editable=False)
+    acceptance=models.OneToOneField(SyntheticCheckoutAcceptance,on_delete=models.PROTECT)
+    payload=models.JSONField()
+    sha256=models.CharField(max_length=64)
+    archive_receipt=models.JSONField()
+    support_packages=models.PositiveIntegerField()
+    support_seconds=models.BigIntegerField()
+    expires_at=models.DateTimeField(null=True)
+    evidence_class=models.CharField(max_length=32,default='local-synthetic')
+    financial_confirmation=models.BooleanField(default=False)
+    effects_authorized=models.BooleanField(default=False)
+    class Meta:
+        constraints=[models.CheckConstraint(condition=models.Q(support_seconds=Cast('support_packages',models.BigIntegerField())*36000,expires_at__isnull=True,evidence_class='local-synthetic',financial_confirmation=False,effects_authorized=False,sha256__regex=r'^[0-9a-f]{64}$'),name='synthetic_fulfilment_fixed_grant')]
+
+
+class SyntheticLineEntitlement(models.Model):
+    id=models.UUIDField(primary_key=True,editable=False)
+    fulfilment=models.ForeignKey(SyntheticFulfilment,on_delete=models.PROTECT)
+    line_id=models.UUIDField()
+    snapshot=models.JSONField()
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['fulfilment','line_id'],name='synthetic_entitlement_line_unique')]
+
+
+class SyntheticLineDelivery(models.Model):
+    entitlement=models.ForeignKey(SyntheticLineEntitlement,on_delete=models.PROTECT)
+    stage=models.CharField(max_length=16)
+    payload=models.JSONField()
+    sha256=models.CharField(max_length=64)
+    archive_receipt=models.JSONField()
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['entitlement','stage'],name='synthetic_delivery_stage_unique'),
+            models.CheckConstraint(condition=models.Q(stage__in=['initial','reference'],sha256__regex=r'^[0-9a-f]{64}$'),name='synthetic_delivery_stage_known')]
