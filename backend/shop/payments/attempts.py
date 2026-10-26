@@ -1,7 +1,9 @@
 """Local fixture orchestration. No order, acceptance or financial effects."""
 import json
+from dataclasses import dataclass,field
+from datetime import datetime, timezone
 from uuid import UUID
-from django.db import transaction,IntegrityError
+from django.db import connection,transaction,IntegrityError
 from shop.adapters.evidence_archive import PreparedArchive,PreparedReceipt,manifest
 from . import synthetic_bank
 from .bank_contract import BankStart,BankError,validate,correlates
@@ -14,19 +16,25 @@ def request_for(row):
 
 def payload(row):
     request=request_for(row);validate(request)
-    return json.dumps({'schema':1,'kind':'synthetic-payment-attempt','attempt':str(row.pk),
+    value={'schema':1,'kind':'synthetic-payment-attempt','attempt':str(row.pk),
         'merchant':request.merchant,'reference':str(request.reference),'key':str(request.idempotency_key),
         'currency':request.currency,'amount_minor':request.amount_minor,'evidence_class':'local-synthetic',
-        'financial_confirmation':False,'effects_authorized':False},sort_keys=True,separators=(',',':')).encode('ascii')
+        'financial_confirmation':False,'effects_authorized':False}
+    if row.expires_at is not None:value['expires_at']=row.expires_at.astimezone(timezone.utc).isoformat()
+    return json.dumps(value,sort_keys=True,separators=(',',':')).encode('ascii')
 
 
-def prepare(request):
+def prepare(request,*,expires_at=None):
     synthetic_bank.guard();validate(request)
+    if expires_at is not None:
+        if type(expires_at) is not datetime or expires_at.tzinfo is None or expires_at.utcoffset() is None:
+            raise BankError('invalid_synthetic_deadline')
+        expires_at=expires_at.astimezone(timezone.utc)
     try:
         with transaction.atomic(durable=True):
             row,_=SyntheticPaymentAttempt.objects.get_or_create(merchant=request.merchant,reference=request.reference,
-                defaults={'idempotency_key':request.idempotency_key,'currency':request.currency,'amount_minor':request.amount_minor})
-            if request_for(row)!=request:raise BankError('synthetic_attempt_conflict')
+                defaults={'idempotency_key':request.idempotency_key,'currency':request.currency,'amount_minor':request.amount_minor,'expires_at':expires_at})
+            if request_for(row)!=request or row.expires_at!=expires_at:raise BankError('synthetic_attempt_conflict')
             return row
     except IntegrityError:raise BankError('synthetic_attempt_conflict') from None
 
@@ -41,16 +49,77 @@ def retained(row,archive):
     if archive.recover(value)!=payload(row):raise BankError('synthetic_archive_mismatch')
 
 
+def database_now():
+    # Called after row lock acquisition; transaction-start time can precede a wait.
+    with connection.cursor() as cursor:
+        cursor.execute('SELECT clock_timestamp()')
+        return cursor.fetchone()[0]
+
+
+def expire_locked(row,now):
+    if row.state=='prepared' and row.expires_at is not None and row.expires_at<=now:
+        row.state='expired';row.stopped_at=now
+        row.save(update_fields=['state','stopped_at'])
+    return row
+
+
+def cancel(attempt_id):
+    synthetic_bank.guard()
+    with transaction.atomic(durable=True):
+        row=SyntheticPaymentAttempt.objects.select_for_update().get(pk=attempt_id)
+        expire_locked(row,database_now())
+        if row.state in ('cancelled','expired'):return row
+        if row.state!='prepared':raise BankError('synthetic_attempt_already_dispatched')
+        row.state='cancelled';row.stopped_at=database_now()
+        row.save(update_fields=['state','stopped_at'])
+        return row
+
+
+def expire(attempt_id):
+    synthetic_bank.guard()
+    with transaction.atomic(durable=True):
+        row=SyntheticPaymentAttempt.objects.select_for_update().get(pk=attempt_id)
+        return expire_locked(row,database_now())
+
+
+@dataclass(frozen=True)
+class RecoveryInspection:
+    state: str
+    expires_at: datetime | None
+    stopped_at: datetime | None
+    expiry_due: bool
+    provider_status: str
+    lookup_required: bool
+    evidence_class: str=field(default='local-synthetic',init=False)
+    retry_authorized: bool=field(default=False,init=False)
+    financial_confirmation: bool=field(default=False,init=False)
+    effects_authorized: bool=field(default=False,init=False)
+
+
+def inspect(attempt_id):
+    """Point-in-time local metadata; no archive/provider I/O or mutations."""
+    synthetic_bank.guard()
+    with transaction.atomic(durable=True):
+        row=SyntheticPaymentAttempt.objects.select_for_update().get(pk=attempt_id)
+        now=database_now()
+        return RecoveryInspection(row.state,row.expires_at,row.stopped_at,
+            row.state=='prepared' and row.expires_at is not None and row.expires_at<=now,
+            row.provider_status,row.state in ('uncertain','observed'))
+
+
 def dispatch(attempt_id,archive,*,outcome='captured',fault=None):
     synthetic_bank.guard()
-    row=SyntheticPaymentAttempt.objects.get(pk=attempt_id)
-    if row.state!='prepared':return row
+    with transaction.atomic(durable=True):
+        row=SyntheticPaymentAttempt.objects.select_for_update().get(pk=attempt_id)
+        expire_locked(row,database_now())
+        if row.state!='prepared':return row
     if type(archive) is not PreparedArchive:raise BankError('synthetic_archive_required')
     receipt=archive.publish(row.pk,payload(row))
     # Recover actual bytes before committing permission to call the fake provider.
     row.archive_receipt=manifest(receipt);retained(row,archive)
     with transaction.atomic(durable=True):
         current=SyntheticPaymentAttempt.objects.select_for_update().get(pk=row.pk)
+        expire_locked(current,database_now())
         if current.state!='prepared':return current
         if payload(current)!=payload(row):raise BankError('synthetic_attempt_conflict')
         current.archive_receipt=row.archive_receipt;current.state='uncertain'
@@ -64,7 +133,7 @@ def _record(attempt_id,observation):
     synthetic_bank.guard()
     with transaction.atomic(durable=True):
         row=SyntheticPaymentAttempt.objects.select_for_update().get(pk=attempt_id)
-        if row.state=='prepared':raise BankError('synthetic_attempt_not_dispatched')
+        if row.state not in ('uncertain','observed'):raise BankError('synthetic_attempt_not_dispatched')
         if observation is None:return row
         if not correlates(request_for(row),observation):raise BankError('synthetic_observation_mismatch')
         if row.state=='observed' and (row.provider_operation_id,row.provider_status)!=(observation.provider_operation_id,observation.status):
@@ -77,6 +146,6 @@ def _record(attempt_id,observation):
 def reconcile(attempt_id,archive):
     synthetic_bank.guard()
     row=SyntheticPaymentAttempt.objects.get(pk=attempt_id)
-    if row.state=='prepared':raise BankError('synthetic_attempt_not_dispatched')
+    if row.state not in ('uncertain','observed'):raise BankError('synthetic_attempt_not_dispatched')
     retained(row,archive)
     return _record(row.pk,synthetic_bank.lookup(row.merchant,row.reference))
