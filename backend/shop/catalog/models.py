@@ -473,3 +473,27 @@ class SyntheticLicenceCaseStaffGrant(models.Model):
     case=models.ForeignKey(SyntheticLicenceCase,on_delete=models.PROTECT)
     class Meta:
         constraints=[models.UniqueConstraint(fields=['user','case'],name='synthetic_licence_case_staff')]
+
+
+class SyntheticDocumentReservation(models.Model):
+    id=models.UUIDField(primary_key=True,editable=False)
+    kind=models.CharField(max_length=8)
+    number=models.PositiveBigIntegerField()
+    request_id=models.UUIDField(unique=True)
+    subject=models.UUIDField()
+    payload=models.JSONField()
+    sha256=models.CharField(max_length=64)
+    archive_receipt=models.JSONField()
+    class Meta:
+        constraints=[
+            models.UniqueConstraint(fields=['kind','number'],name='synthetic_document_number_unique'),
+            models.CheckConstraint(condition=models.Q(kind__in=['invoice','credit'],number__gte=1),name='synthetic_document_number_bounds'),
+        ]
+
+
+class SyntheticDocumentIssue(models.Model):
+    id=models.UUIDField(primary_key=True,editable=False)
+    reservation=models.OneToOneField(SyntheticDocumentReservation,on_delete=models.PROTECT)
+    payload=models.JSONField()
+    sha256=models.CharField(max_length=64)
+    archive_receipt=models.JSONField()

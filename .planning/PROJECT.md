@@ -8,13 +8,13 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current development focus:** 10 — staged licence/reference-design delivery and support ledger, under the [final purchase-flow amendment](PURCHASE-FLOW-AMENDMENT.md).
 
-**Current plan:** 10-03 — Reviewed licence change cases and held revised orders.
+**Current plan:** 10-04 — Synthetic document reservations and statement delivery.
 
-**Execution status:** verification pending — local10-03 reviewed licence cases and held revised-scope/orders implemented;10-01/02 local slices retained; actual qualification and full acceptance remain pending.
+**Execution status:** executing — local10-04 synthetic reservation/issue journal implemented; statement outbox and actual qualification pending.
 
-**Next implementation task:** Plan durable document/invoice/credit-number reservations and scoped synthetic statement/mail retry integration under FUL-02/FUL-06; preserve actual numbering, mail and publication authority gates.
+**Next implementation task:** Implement scoped durable synthetic statement mail retries in the existing worker; preserve legal numbering, actual document publication, SMTP and restore reconciliation gates.
 
-Complete-cart synthetic checkout, acceptance/payment, once-only grants and staged completion are implemented, now with archived reservations/releases, scoped staff work, reverse/replace corrections and committed-revision statements. Supported complete-cart demo now covers both local staff login factors, exact assignment and work/correction/release/statement retries. Private versioned synthetic material releases and owner-only session-bound single-use POST downloads are now implemented. Local reviewed licence-change cases and held revised-scope/orders now preserve originals and unknown policies. Latest retained results:420-test full backend regression before the final catalog-family/same-band validation changes, final16 focused case tests and102 proxy header-level checks; complete-cart two-factor staff/customer demo includes all five case kinds and review corrections alongside retained-version release/download. Actual material/rights/retention/host qualifications remain pending. Only Phase1 is fully accepted;11/30 plan records complete. Counts are not engineering-effort estimates. [STATE.md](STATE.md) and [ROADMAP.md](ROADMAP.md) retain exact evidence and actual qualification gates.
+Complete-cart synthetic checkout, acceptance/payment, once-only grants and staged completion are implemented, now with archived reservations/releases, scoped staff work, reverse/replace corrections and committed-revision statements. Supported complete-cart demo now covers both local staff login factors, exact assignment and work/correction/release/statement retries. Private versioned synthetic material releases and owner-only session-bound single-use POST downloads are now implemented. Local reviewed licence-change cases and held revised-scope/orders now preserve originals and unknown policies. Latest retained results:420-test full backend regression before the final catalog-family/same-band validation changes, final16 focused case tests and102 proxy header-level checks; complete-cart two-factor staff/customer demo includes all five case kinds and review corrections alongside retained-version release/download. Actual material/rights/retention/host qualifications remain pending. Only Phase1 is fully accepted;11/31 plan records complete. Counts are not engineering-effort estimates. [STATE.md](STATE.md) and [ROADMAP.md](ROADMAP.md) retain exact evidence and actual qualification gates.
 
 Before every commit reconcile affected current references, publish state.json and run python3 scripts/check_planning.py. Sync commits to origin/main without force. Historical evidence retains its original scope.
 
@@ -114,3 +114,9 @@ User continuation policy2026-10-23: continue across commits/syncs without ending
 
 
 Current requirement delta and routing: [PURCHASE-FLOW-AMENDMENT.md](PURCHASE-FLOW-AMENDMENT.md), STATE.md and ROADMAP.md. Historical continuation/status narratives are retained in the dated pre-amendment archive, not active instructions.
+
+## Local10-04 document reservations — 2026-10-26
+
+Synthetic invoice/credit reservations and separate simulated issue records now archive/read back before commit, retain exact retries and immutable history, and serialize empty/existing series on PostgreSQL. Full recovery of lost terminal history and actual numbering/publication remain gated. [Exact evidence](phases/10-staged-delivery-and-support-ledger/10-DOCUMENT-NUMBERS-PARTIAL.md). Next is scoped durable statement mail integration. Counts1/14 phases and11/31 plan records; full Phase10 acceptance remains0/4.
+
+Latest10-04 verification: `CORE_LOCAL_PASS checks=5 tests=431 duration_seconds=119.017`; migration0020/no drift and source229 exact files/30 templates/1 CSS/no symlinks pass. Actual off-host recovery remains pending.

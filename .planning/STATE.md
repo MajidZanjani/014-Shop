@@ -1,21 +1,21 @@
 ---
 gsd_state_version: "1.0"
-current_plan: 03
-status: verifying
+current_plan: 04
+status: executing
 last_updated: "2026-10-26T11:22:48.702Z"
 state_head: 72548179ad7bb3b24725af5f844eb8c919801df0
 progress:
   total_phases: 14
   completed_phases: 1
-  total_plans: 30
+  total_plans: 31
   completed_plans: 11
   percent: 7
-current_task: 3
+current_task: 2
 last_activity: 2026-10-26
 current_phase: 10
 current_phase_name: Staged licence/reference-design delivery and support ledger
-stopped_at: Local10-03 reviewed cases/held orders verified; document reservations and synthetic statement mail retry next.
-last_activity_desc: Local renewal/rehosting/upgrades implemented;420 full backend tests, final16 focused,102 proxy checks; actual policy/rights pending.
+stopped_at: Local10-04 synthetic numbering journal implemented; statement mail outbox next.
+last_activity_desc: Local archived synthetic document reservations and separate issue journal; actual numbering and statement mail pending.
 ---
 
 # Project state — final purchase-flow revision2
@@ -24,11 +24,11 @@ last_activity_desc: Local renewal/rehosting/upgrades implemented;420 full backen
 
 **Last fully completed phase:** 1 — baseline documentary acceptance only. SRC-05 final-amendment documentary reconciliation is complete and does not revalidate actual commercial or external behavior. All other phases remain partial or pending. Counts are completed-phase/planned-record counts, not engineering effort.
 
-**Current plan:** 10-03 — Reviewed licence change cases and held revised orders.
+**Current plan:** 10-04 — Synthetic document reservations and statement delivery.
 
-**Execution status:** verification pending — local10-03 reviewed licence cases and held revised-scope/orders implemented;10-01/02 local slices retained; actual qualification and full acceptance remain pending.
+**Execution status:** executing — local10-04 synthetic reservation/issue journal implemented; statement outbox and actual qualification pending.
 
-**Next implementation task:** Plan durable document/invoice/credit-number reservations and scoped synthetic statement/mail retry integration under FUL-02/FUL-06; preserve actual numbering, mail and publication authority gates.
+**Next implementation task:** Implement scoped durable synthetic statement mail retries in the existing worker; preserve legal numbering, actual document publication, SMTP and restore reconciliation gates.
 
 ## Preserved implementation/evidence
 
@@ -140,3 +140,9 @@ User instructed adopting the complete final26October revision2 and replacing sta
 ## Historical pause — 2026-10-26T10:21:33.041Z
 
 Paused at the user's request. Resume via `$gsd-resume-work`; read [structured handoff](HANDOFF.json) and [Phase10 checkpoint](phases/10-staged-delivery-and-support-ledger/.continue-here.md). No implementation or tests remain active. Pending actual approvals and existing phase/plan completion counts are unchanged. No context threshold is claimed.
+
+## Local10-04 document reservations — 2026-10-26
+
+Synthetic invoice/credit reservations and separate simulated issue records now archive/read back before commit, retain exact retries and immutable history, and serialize empty/existing series on PostgreSQL. Full recovery of lost terminal history and actual numbering/publication remain gated. [Exact evidence](phases/10-staged-delivery-and-support-ledger/10-DOCUMENT-NUMBERS-PARTIAL.md). Next is scoped durable statement mail integration. Counts1/14 phases and11/31 plan records; full Phase10 acceptance remains0/4.
+
+Latest10-04 verification: `CORE_LOCAL_PASS checks=5 tests=431 duration_seconds=119.017`; migration0020/no drift and source229 exact files/30 templates/1 CSS/no symlinks pass. Actual off-host recovery remains pending.

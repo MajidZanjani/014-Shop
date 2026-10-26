@@ -584,7 +584,17 @@
       "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
     },
     {
+      "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-04-PLAN.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
       "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-DOCUMENT-NUMBERS-PARTIAL.md",
       "role": "historical-evidence",
       "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
     },
