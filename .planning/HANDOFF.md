@@ -8,7 +8,7 @@
 
 **Next implementation task:** Plan durable document/invoice/credit-number reservations and scoped synthetic statement/mail retry integration under FUL-02/FUL-06; preserve actual numbering, mail and publication authority gates.
 
-**Recorded implementation:** 2f9fba9df379dd1d5ffe68fe36244c84d92cdf59
+**Recorded implementation:** 72548179ad7bb3b24725af5f844eb8c919801df0
 
 [Final purchase-flow revision2](PURCHASE-FLOW-AMENDMENT.md) remains current authority. Development focus10 now covers complete-cart synthetic grants/staged delivery and the implemented local support ledger; earlier phases are not implicitly complete. [Evidence](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md). One captured cart payment yields an archived deterministic grant plan, one licence record per IP line and exactly36000 integer support seconds/package once, non-expiring. Initial delivery leaves promised later reference design outstanding; later completion never adds another entitlement/grant. Ready-kit/support-only cases stay scoped. Archive readback precedes all simulated records/effects; uncertain funding cannot provision. No actual keys/files/rights or spendable support.
 
