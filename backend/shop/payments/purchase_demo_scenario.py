@@ -349,6 +349,10 @@ def run(archive_root):
                     or SyntheticOverpaymentCase.objects.filter(acceptance=accepted_cart).count()!=1
                     or SyntheticOverpaymentReview.objects.filter(case__acceptance=accepted_cart).count()!=1
                     or SyntheticLineEntitlement.objects.filter(fulfilment=grant).count()!=1):raise RuntimeError('overpayment duplicated financial review or entitlement')
+            from shop.payments.models import SyntheticPaymentObservation
+            if (SyntheticPaymentObservation.objects.filter(attempt=accepted_cart.attempt).count()!=1
+                    or SyntheticPaymentObservation.objects.filter(attempt=extra_capture).count()!=1):
+                raise RuntimeError('normalized payment observations missing or duplicated')
             final=client.get(support_url,HTTP_ACCEPT='application/json').json()['ledger']
             if (final['spent_seconds']!=1800 or final['available_seconds']!=70200
                     or len(final['statements'])!=1 or final['statements'][0]['statement']['revision']!=4
@@ -366,6 +370,7 @@ def run(archive_root):
                 'statement_committed_revision':final['statements'][0]['statement']['revision'],
                 'local_staff_two_factors_and_exact_grant':True,'reverse_replace_history_preserved':True,
                 'statement_mail_capture_once_after_lost_response':True,'actual_email_sent':False},
+            'normalized_observations':{'canonical_receipt_once':True,'extra_capture_receipt_once':True,'actual_financial_confirmation':False},
             'overpayment_review':{'independent_fixture_capture':True,'two_observations_retained':True,
                 'exact_pair_assignment':True,'case_and_review_retry_once':True,'additional_fulfilment':False,'actual_refund':False},
             'support_refund_review':{'consumed_credit_retained':True,'separate_case_assignment':True,

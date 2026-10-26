@@ -10,7 +10,7 @@ from django.db.models import Q
 from django.db.models.functions import Now
 from shop.adapters.evidence_archive import PreparedArchive,manifest
 from shop.catalog import checkout,checkout_payment as payment
-from . import synthetic_bank,attempts
+from . import synthetic_bank,attempts,observations
 from .bank_contract import BankError,BankObservation,correlates
 from .models import (SyntheticPaymentAttempt as Attempt,SyntheticBankNotification as Notification,
     SyntheticNotificationDelivery as Delivery,SyntheticNotificationResult as Result)
@@ -110,8 +110,11 @@ def process(owned,archive):
         if prior:
             if prior.pk!=identity or prior.payload!=value:fail()
             retained(prior,archive)
-        # Recheck wall-clock expiry after any row-lock/archive wait, not statement start.
-        if delivery.lease_until<=attempts.database_now():return False
+        observations.record_locked(row,observed,archive)
+        # Recheck wall-clock expiry after every row-lock/archive/journal wait.
+        if delivery.lease_until<=attempts.database_now():
+            transaction.set_rollback(True)
+            return False
         if prior is None:Result.objects.create(id=identity,notification=note,**prepared)
         attempts._apply_locked(row,observed)
         delivery.state='checked';delivery.token=None;delivery.lease_until=None;delivery.save()

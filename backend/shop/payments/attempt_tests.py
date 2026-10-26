@@ -4,7 +4,7 @@ from dataclasses import replace
 from datetime import datetime,timedelta,timezone
 from pathlib import Path
 from tempfile import TemporaryDirectory
-from threading import Barrier,Event
+from threading import Barrier,Event,local
 from unittest.mock import patch
 import uuid
 from django.db import connection,connections,transaction,IntegrityError
@@ -83,9 +83,13 @@ class SyntheticAttemptTests(TransactionTestCase):
         self.row.refresh_from_db();self.assertEqual(self.row.state,'uncertain')
 
     def test_two_dispatchers_commit_only_one_send_claim(self):
-        barrier=Barrier(2);original=PreparedArchive.recover
+        barrier=Barrier(2);original=PreparedArchive.recover;synchronized=local()
         def recover(archive,receipt):
-            value=original(archive,receipt);barrier.wait(timeout=10);return value
+            value=original(archive,receipt)
+            # Synchronize the initial pre-claim read only; journal verification adds later reads.
+            if not getattr(synchronized,"done",False):
+                synchronized.done=True;barrier.wait(timeout=10)
+            return value
         # Separate roots avoid sharing the archive's intentionally nonblocking lock.
         second=TemporaryDirectory();self.addCleanup(second.cleanup)
         def dispatch(directory):

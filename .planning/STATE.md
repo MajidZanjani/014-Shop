@@ -2,7 +2,7 @@
 gsd_state_version: "1.0"
 current_plan: 02
 status: executing
-last_updated: "2026-10-26T12:42:17.716Z"
+last_updated: "2026-10-26T13:41:32.505Z"
 state_head: ad101646725aa6ee2707f1132deea6ac8b98eb22
 progress:
   total_phases: 14
@@ -10,12 +10,12 @@ progress:
   total_plans: 35
   completed_plans: 11
   percent: 7
-current_task: 1
+current_task: 4
 last_activity: 2026-10-26
 current_phase: 8
 current_phase_name: Payment domain and fault-injectable fake bank
-stopped_at: Phase8 gap audit recorded;08-02 observation journal selected.
-last_activity_desc: Local08-02 direct/manual/inbox archived observation journal selected; actual qualification pending.
+stopped_at: Local08-02 journal verified; bounded synthetic authorization/capture planning next.
+last_activity_desc: Local08-02 journal verified with525 backend tests; actual qualification pending.
 ---
 
 # Project state — final purchase-flow revision2
@@ -26,9 +26,9 @@ last_activity_desc: Local08-02 direct/manual/inbox archived observation journal 
 
 **Current plan:** 08-02 — Archived synthetic observation journal.
 
-**Execution status:** executing — Phase8 acceptance-gap audit recorded; local08-02 observation journal selected; actual financial/provider qualification pending.
+**Execution status:** executing — local08-02 observation journal implemented and locally verified; synthetic authorization/capture lifecycle planning next; actual financial/provider qualification pending.
 
-**Next implementation task:** Implement immutable archived normalized observation receipts for direct dispatch/manual reconciliation and inbox processing, with atomic projection and fresh lease fences.
+**Next implementation task:** Plan bounded synthetic authorization-to-capture intents and immutable evolving history, preserving lookup-only uncertainty and original money facts; keep actual provider/refund/callback/financial authority pending.
 
 ## Preserved implementation/evidence
 
@@ -194,3 +194,5 @@ Explicit exact-pair operator assignments and recent staff MFA now protect archiv
 Final local evidence: backend509 tests/5 checks,150.356s; focused17,6.346s; worker24/6 checks,16.173s (one initial unqualified baseline subprocess failure, unchanged-code rerun passes); supported two-factor complete-cart demo and proxy132 header-level checks/2 aliases pass. Final inert source `/nix/store/58w1hg7cskgjw2w72fwrn0jpi0h3mwi4-shop-python-source`:249 exact files/32 templates/1 CSS/no symlinks. Original intended entitlement/support grant remains once, ledger revision5/spent1800/available70200. Actual callback/financial/provider/runtime/host/off-host recovery/full acceptance remains pending. Counts1/14 phases,11/34 completed plan records; Phase8 full acceptance0/1, Phase10 full acceptance0/6. Next audit remaining Phase8 gaps and select independent authorized local work.
 
 Latest Phase8 routing: [acceptance-gap audit](phases/08-payment-domain-and-fault-injectable-fake-bank/08-ACCEPTANCE-GAPS.md) selects08-02 archived normalized observation journal.08-01 local tasks1–4 are implemented/verified/audited; actual acceptance remains pending. Project1/14 completed phases and11/35 completed plan records; Phase8 full acceptance0/2 and Phase10 full acceptance0/6. Denominator change is a new planned record, not engineering effort.
+
+Latest08-02 local evidence: [archived observation journal](phases/08-payment-domain-and-fault-injectable-fake-bank/08-OBSERVATION-JOURNAL-PARTIAL.md): backend525/5 checks153.829s, combined focused58 including16 journal tests8.902s, worker24/6 checks12.033s, proxy132 header-level checks/2 aliases and final purchase fixture pass. Source253 exact files/32 templates/1 CSS/no symlinks. Local tasks1–4 implemented/verified/audited; actual/full acceptance remains pending. Next plan bounded synthetic authorization/capture intents/history. Counts1/14 phases,11/35 completed plan records; Phase8 full acceptance0/2 and Phase10 full acceptance0/6. Counts are not engineering effort.

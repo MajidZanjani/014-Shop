@@ -69,3 +69,13 @@ These are append-only-by-service fixture control records, without staff attribut
 ## Final purchase-flow rehearsal
 
 The final26October amendment reuses this existing adapter/claim boundary for the [owned synthetic purchase/staged-delivery demo](purchase-flow.md). Actual orders, commercial approvals, acceptance and real ledger/delivery remain pending; synthetic fixture balances/entitlements cannot authorize actual effects.
+
+### Archived normalized observation receipts
+
+New direct dispatch responses, manual reconciliation lookups and inbox lookups retain immutable normalized receipts before updating the attempt projection. Each exact observation has a stable identity within its attempt. Repeating it reuses the original receipt; a missing lookup is a separate inert fact and never clears prior capture or confirms money. Receipt revisions/hash links start at the retained request digest. Strict typed correlation and the existing status-conflict rule remain; this journal does not enable provider status progression, separate capture, refund or public callbacks.
+
+Provider I/O remains outside database transactions/locks. Receipt bytes archive/read back before receipt/projection commit. If archive publication fails after the fake provider captured, the attempt stays uncertain: dispatch cannot start again, and typed lookup is the recovery path. Inbox workers recheck the lease after journal archive waits; stale workers cannot publish a receipt, result or projection. Prepared bytes after DB failure are inert and require identical retained scope on recovery.
+
+`python manage.py inspect_synthetic_observations --attempt <canonical-UUID>` verifies retained request/receipt bytes and the immutable chain under the attempt lock. It emits only counts, retained statuses/miss presence and false financial/effect/retry flags. It performs no provider calls or writes, and prints no identifiers, amount, currency, merchant, reference, key, receipt or archive path. It requires the configured existing local checkout archive root. Unknown IDs, absent evidence, production/live modes and database/archive errors fail closed with a fixed error.
+
+Existing observed projections are not backfilled as if their original responses were retained. A later typed lookup may retain a newly observed fact; inspection never claims original-response coverage or a provider event time. SQL immutability is not independent suffix-loss recovery or qualified retention. All evidence remains local-synthetic; actual merchant/provider/authentication/financial/capture/refund/recovery qualification is pending.

@@ -182,3 +182,18 @@ class SyntheticOverpaymentReview(models.Model):
             models.UniqueConstraint(fields=['case','revision'],name='synthetic_overpayment_review_revision'),
             models.CheckConstraint(condition=models.Q(revision__gte=1,revision__lte=1000),name='synthetic_overpayment_review_bound'),
         ]
+
+
+class SyntheticPaymentObservation(models.Model):
+    """Newly retained local observations, never backfilled provider-event provenance."""
+    id=models.UUIDField(primary_key=True,editable=False)
+    attempt=models.ForeignKey(SyntheticPaymentAttempt,on_delete=models.PROTECT)
+    revision=models.PositiveIntegerField()
+    payload=models.JSONField()
+    sha256=models.CharField(max_length=64)
+    archive_receipt=models.JSONField()
+    class Meta:
+        constraints=[
+            models.UniqueConstraint(fields=['attempt','revision'],name='synthetic_observation_revision'),
+            models.CheckConstraint(condition=models.Q(revision__gte=1,revision__lte=1000),name='synthetic_observation_bound'),
+        ]

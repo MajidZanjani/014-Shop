@@ -87,7 +87,9 @@ def worker_checks(python, env, pg, database, *, full=False):
             pass
         else:
             raise ValueError('unbounded worker argument accepted')
-    args = ['test', 'shop.worker.tests', '--noinput']
+    # This database belongs to one fresh disposable cluster. The outer context
+    # destroys it; avoid DROP DATABASE hitting the application's 1s statement limit.
+    args = ['test', 'shop.worker.tests', '--noinput', '--keepdb']
     if full:
         env['SHOP_OFFHOST_WORKER_AUTHORIZED'] = '1'
     else:
@@ -132,7 +134,7 @@ def mutation_checks(python, env, scratch):
                          (locked, 'test_claim_commits_before_adapter_wait')):
         path.write_text(source)
         try:
-            dev_postgres.run([str(python), 'manage.py', 'test', 'shop.worker.tests.OwnershipTests.' + case, '--noinput'],
+            dev_postgres.run([str(python), 'manage.py', 'test', 'shop.worker.tests.OwnershipTests.' + case, '--noinput', '--keepdb'],
                 env=env, cwd=backend, timeout=30)
         except subprocess.CalledProcessError as error:
             require('Ran 1 test' in error.stderr and 'FAILED (' in error.stderr, 'mutation did not execute its focused test')
