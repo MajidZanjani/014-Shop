@@ -1,9 +1,9 @@
 ---
 gsd_state_version: "1.0"
 current_plan: 02
-status: in_progress
-last_updated: "2026-10-26T10:41:33.438Z"
-state_head: 0bfb7db2ea8a022329b8ce61675745891ebb7d2a
+status: verifying
+last_updated: "2026-10-26T10:44:40.147Z"
+state_head: 27a9dc857235df718733b183210e853c2a076266
 progress:
   total_phases: 14
   completed_phases: 1
@@ -14,8 +14,8 @@ current_task: 4
 last_activity: 2026-10-26
 current_phase: 10
 current_phase_name: Staged licence/reference-design delivery and support ledger
-stopped_at: Local10-02 ledger implemented and verified; continuing supported demo integration.
-last_activity_desc: Archived local support reservations, staff work, corrections and statements pass391 backend tests and66 proxy checks.
+stopped_at: Local10-02 ledger and supported complete-cart demo verified; remaining10-01 scope next.
+last_activity_desc: All four local ledger tasks implemented; complete-cart two-factor staff work/correction/statement demo passes; actual gates pending.
 ---
 
 # Project state — final purchase-flow revision2
@@ -26,9 +26,9 @@ last_activity_desc: Archived local support reservations, staff work, corrections
 
 **Current plan:** 10-02 — SLL support top-ups and reserved existing credit.
 
-**Execution status:** in progress — task 4 of 4, integrating the implemented local ledger into the supported complete-cart demo; actual acceptance remains pending.
+**Execution status:** verification pending — all four local10-02 ledger tasks implemented and integrated; actual qualification and full plan/phase acceptance remain pending.
 
-**Next implementation task:** 4 of 4 — extend the supported complete-cart demo through scoped staff work, reverse/replace correction and committed-revision statement; retain all actual qualification gates.
+**Next implementation task:** Review and scope remaining10-01 private package/versioned follow-up and rehosting/renewal rehearsal; do not repeat the completed local10-02 ledger. Actual affected operations remain gated.
 
 ## Preserved implementation/evidence
 
@@ -41,13 +41,13 @@ last_activity_desc: Archived local support reservations, staff work, corrections
 
 Complete-cart synthetic captured payment now produces one archived grant plan, one licence record per IP line and exactly36000 integer seconds per support package once with no expiry. Initial and later reference-design completion are separate archived per-line events; the later event never duplicates licence or support grants. Support-only and ready-kit fixtures preserve their narrower scope. Actual spendable credit, files, keys and rights remain disabled. [Exact evidence/remaining work](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md).
 
-Latest full backend CORE_LOCAL_PASS391 tests/5 checks,103.505s; focused13 ledger tests,4.136s; actual proxy/Gunicorn/owned PostgreSQL66 header-level checks across both loopback aliases, including support reservation/release retries and CSRF denial. Source215 exact files/27 templates/1 CSS/no symlinks. Existing bounded120-second test runner and request/provider timeouts are unchanged. [Ledger evidence](phases/10-staged-delivery-and-support-ledger/10-SUPPORT-LEDGER-PARTIAL.md).
+Latest full backend CORE_LOCAL_PASS391 tests/5 checks,103.505s; focused13 ledger tests,4.136s; actual proxy/Gunicorn/owned PostgreSQL66 header-level checks across both loopback aliases, including support reservation/release retries and CSRF denial. Final source215 exact files/27 templates/1 CSS/no symlinks, /nix/store/bb2szblxiwyha1k2c5nmd4zyln2vr3vp-shop-python-source. Full391 backend run precedes this final demo-only integration; the extended demo passes against the final source. Existing bounded120-second test runner and request/provider timeouts are unchanged. [Ledger evidence](phases/10-staged-delivery-and-support-ledger/10-SUPPORT-LEDGER-PARTIAL.md).
 
 The user-requested shared shop-style customer UI remains in use for fulfilment status/actions. [UI contract](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-UI-SPEC.md). User reports all browser simulations completed on2026-10-26, following the styled checkout/payment/grant/staged-delivery test instructions. This records user-reported functional completion, not an independently observed run or formal accessibility/visual approval. No real commercial approval or full phase/plan acceptance is inferred.
 
 Recorded synthetic reservations/releases, recent-MFA exact-grant staff work, immutable reverse/replace corrections and archived committed-revision statements are implemented with private shared-style customer/staff pages. PostgreSQL serialization prevents competing allocation/spend/correction; database triggers prohibit event update/delete. All simulated work-completion evidence archives before the debit; every statement verifies the committed grant/event archive chain. Local operator reset/revoke removes support grants. Actual support spending, technical work, retention and private packages/keys remain disabled/unqualified.
 
-Continuing10-02 task4: integrate these paths into the supported complete-cart demonstration. No new platform/licence questionnaire, automatic pooling or technical portal.
+The supported complete-cart demo now also exercises both local staff login factors, explicit support assignment, work/retry, correction, release and statement/retry. Final grant72000, spent1800, reserved0, available70200; ledger revision5 retains one statement for committed revision4. Local10-02 tasks1–4 are implemented; full acceptance remains pending. No new platform/licence questionnaire, automatic pooling or technical portal.
 
 ## Pending actual gates
 

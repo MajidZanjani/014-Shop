@@ -1,7 +1,8 @@
 """Synthetic example executed only by the fresh-owned-database demo wrapper."""
 from pathlib import Path
-import json,uuid
+import json,uuid,re,secrets,tempfile
 from django.contrib.auth import get_user_model
+from django.conf import settings
 from django.test import Client
 from django.utils import timezone
 from shop.access.models import CustomerIdentity
@@ -103,11 +104,79 @@ def run(archive_root):
             from .models import SyntheticBankOperation
             if SyntheticBankOperation.objects.filter(merchant='synthetic-checkout',reference=row.pk).count()!=1:
                 raise RuntimeError('duplicate synthetic complete-cart payment')
+        # Drive the new ledger through supported customer/staff routes, with both
+        # local staff factors and one explicit support assignment. No MFA bypass.
+        support_url='/purchase/checkout-rehearsal/'+str(retained.pk)+'/support/'
+        grant=fulfilment.SyntheticFulfilment.objects.get(acceptance=row)
+        with override_settings(LOCAL_CHECKOUT_ARCHIVE_ROOT=str(archive_root)):
+            key=str(uuid.uuid4());task=str(uuid.uuid4())
+            reserve={'action':'reserve','request_id':key,'task_id':task,'seconds':7200}
+            reserved=client.post(support_url,data=json.dumps(reserve),content_type='application/json',HTTP_X_CSRFTOKEN=csrf)
+            repeated=client.post(support_url,data=json.dumps(reserve),content_type='application/json',HTTP_X_CSRFTOKEN=csrf)
+            if reserved.status_code!=200 or repeated.json()['ledger']['revision']!=1:
+                raise RuntimeError('synthetic ledger reservation/retry failed')
+            reservation_id=next(iter(reserved.json()['ledger']['reservations']))
+            from shop.access.models import StaffCredential
+            from shop.catalog.models import SyntheticSupportStaffGrant
+            staff_name='support-demo-'+uuid.uuid4().hex;password=secrets.token_urlsafe(32)
+            staff_user=get_user_model().objects.create_user(username=staff_name,password=password,is_staff=True)
+            StaffCredential.objects.create(user=staff_user)
+            staff=Client(enforce_csrf_checks=True,HTTP_HOST='staff.localhost')
+            staff_url='/staff/support/'+str(retained.pk)+'/'
+            middleware=[settings.MIDDLEWARE[0],'shop.access.staff_middleware.StaffHostMiddleware',
+                *settings.MIDDLEWARE[1:],'shop.access.staff_middleware.StaffMFAMiddleware']
+            staff_settings={'ROOT_URLCONF':'shop.staff_urls','LOCAL_STAFF_ENABLED':True,
+                'ALLOWED_HOSTS':['staff.localhost'],'MIDDLEWARE':middleware,
+                'SESSION_COOKIE_NAME':'shop_staff_sessionid','CSRF_COOKIE_NAME':'shop_staff_csrftoken'}
+            with tempfile.TemporaryDirectory(prefix='staff-ledger-',dir=Path(archive_root).parent) as capture:
+                with override_settings(**staff_settings,LOCAL_STAFF_CAPTURE_ROOT=capture):
+                    staff_token=staff.get('/staff/session/').json()['csrf_token']
+                    logged=staff.post('/staff/login/',data=json.dumps({'username':staff_name,'password':password}),
+                        content_type='application/json',HTTP_X_CSRFTOKEN=staff_token)
+                    if logged.status_code!=200:raise RuntimeError('synthetic ledger staff password failed')
+                    files=list(Path(capture).iterdir())
+                    if len(files)!=1:raise RuntimeError('synthetic ledger possession capture failed')
+                    code=re.search(r'^Code: (.+)$',files[0].read_text(),re.M)[1]
+                    verified=staff.post('/staff/verify/',data=json.dumps({'code':code}),
+                        content_type='application/json',HTTP_X_CSRFTOKEN=logged.json()['csrf_token'])
+                    if verified.status_code!=200:raise RuntimeError('synthetic ledger staff second factor failed')
+                    staff_token=verified.json()['csrf_token']
+                    if staff.get(staff_url).status_code!=404:raise RuntimeError('unassigned synthetic ledger exposed')
+                    SyntheticSupportStaffGrant.objects.create(user=staff_user,fulfilment=grant)
+                    work_command={'action':'work','request_id':str(uuid.uuid4()),'target_id':reservation_id,'seconds':3600}
+                    worked=staff.post(staff_url,data=json.dumps(work_command),content_type='application/json',HTTP_X_CSRFTOKEN=staff_token)
+                    repeated=staff.post(staff_url,data=json.dumps(work_command),content_type='application/json',HTTP_X_CSRFTOKEN=staff_token)
+                    if worked.status_code!=200 or repeated.json()['ledger']['revision']!=2:
+                        raise RuntimeError('synthetic ledger work/retry failed')
+                    work_id=next(iter(worked.json()['ledger']['work']))
+                    corrected=staff.post(staff_url,data=json.dumps({'action':'correct','request_id':str(uuid.uuid4()),
+                        'target_id':work_id,'seconds':1800}),content_type='application/json',HTTP_X_CSRFTOKEN=staff_token)
+                    if corrected.status_code!=200 or corrected.json()['ledger']['spent_seconds']!=1800:
+                        raise RuntimeError('synthetic ledger correction failed')
+                released=client.post(support_url,data=json.dumps({'action':'release','request_id':str(uuid.uuid4()),
+                    'target_id':reservation_id}),content_type='application/json',HTTP_X_CSRFTOKEN=csrf)
+                if released.status_code!=200 or released.json()['ledger']['reserved_seconds']!=0:
+                    raise RuntimeError('synthetic ledger remainder release failed')
+                with override_settings(**staff_settings,LOCAL_STAFF_CAPTURE_ROOT=capture):
+                    statement_command={'action':'statement','request_id':str(uuid.uuid4())}
+                    for _ in range(2):
+                        published=staff.post(staff_url,data=json.dumps(statement_command),content_type='application/json',HTTP_X_CSRFTOKEN=staff_token)
+                        if published.status_code!=200 or published.json()['ledger']['revision']!=5:
+                            raise RuntimeError('synthetic ledger statement/retry failed')
+            final=client.get(support_url,HTTP_ACCEPT='application/json').json()['ledger']
+            if (final['spent_seconds']!=1800 or final['available_seconds']!=70200
+                    or len(final['statements'])!=1 or final['statements'][0]['statement']['revision']!=4
+                    or final['actual_support_spendable'] is not False):
+                raise RuntimeError('synthetic committed ledger statement mismatch')
         complete_cart={'all_lines_retained':True,'business_revision':retained.snapshot['business']['version'],
             'document_revision':retained.snapshot['documents']['revision'],'archive_recovered':bool(retained.archive_receipt),
             'api_and_no_javascript_same_capture':True,'acceptance_enabled':False,
             'synthetic_acceptance_recorded':True,'simulated_payment_captured':True,'single_order_reference_and_bank_operation':True,'cart_entitlement_once':True,
-            'cart_staged_delivery_preserves_later_obligation':True,'cart_support_seconds_once':72000,'actual_support_spendable':False}
+            'cart_staged_delivery_preserves_later_obligation':True,'cart_support_seconds_once':72000,'actual_support_spendable':False,
+            'support_ledger':{'revision':final['revision'],'reserved_seconds':final['reserved_seconds'],
+                'spent_seconds':final['spent_seconds'],'available_seconds':final['available_seconds'],
+                'statement_committed_revision':final['statements'][0]['statement']['revision'],
+                'local_staff_two_factors_and_exact_grant':True,'reverse_replace_history_preserved':True}}
 
     return {'status':'PURCHASE_FLOW_DEMO_PASS','evidence_class':'local-synthetic','financial_confirmation':False,
         'effects_authorized':False,'real_email_verification':False,'ready_kit_zero_support':True,'required_support_tamper_refused':True,
