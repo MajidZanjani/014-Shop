@@ -322,6 +322,33 @@ def run(archive_root):
                 raise RuntimeError('owner licence case status/privacy mismatch')
             if SyntheticBankOperation.objects.count()!=case_bank_count or SyntheticLineEntitlement.objects.filter(fulfilment=grant).count()!=1:
                 raise RuntimeError('licence cases duplicated money or original entitlement')
+            # Independently dispatched fixture capture, never another customer pay/retry path.
+            from shop.payments import attempts as payment_attempts
+            from shop.payments.bank_contract import BankStart
+            from shop.payments.models import SyntheticOverpaymentStaffGrant,SyntheticOverpaymentCase,SyntheticOverpaymentReview
+            from shop.catalog.models import SyntheticCheckoutAcceptance
+            accepted_cart=SyntheticCheckoutAcceptance.objects.get(checkout=retained)
+            extra_capture=payment_attempts.prepare(BankStart('synthetic-checkout',uuid.uuid4(),uuid.uuid4(),
+                accepted_cart.attempt.currency,accepted_cart.attempt.amount_minor))
+            with PreparedArchive(Path(archive_root)) as finance_archive:
+                payment_attempts.dispatch(extra_capture.pk,finance_archive)
+            finance_scope=SyntheticOverpaymentStaffGrant.objects.create(user=staff_user,acceptance=accepted_cart,extra_attempt=extra_capture)
+            finance_url='/staff/overpayments/'+str(finance_scope.pk)+'/'
+            with override_settings(**staff_settings,LOCAL_STAFF_CAPTURE_ROOT=capture):
+                if staff.get('/staff/overpayments/').status_code!=200:raise RuntimeError('overpayment assignment list unavailable')
+                finance_command={'action':'capture'}
+                for _ in range(2):
+                    response=staff.post(finance_url,data=json.dumps(finance_command),content_type='application/json',HTTP_X_CSRFTOKEN=staff_token)
+                    if response.status_code!=200 or response.json()['case']['capture_count']!=2:raise RuntimeError('overpayment capture/retry failed')
+                finance_command={'action':'review','request_id':str(uuid.uuid4()),'expected_revision':0,'decision':'ready_for_financial_review'}
+                for _ in range(2):
+                    response=staff.post(finance_url,data=json.dumps(finance_command),content_type='application/json',HTTP_X_CSRFTOKEN=staff_token)
+                    if response.status_code!=200 or response.json()['case']['revision']!=1:raise RuntimeError('overpayment review/retry failed')
+                if response.json()['case']['refund_authorized']:raise RuntimeError('overpayment authorized a refund')
+            if (SyntheticBankOperation.objects.count()!=case_bank_count+1
+                    or SyntheticOverpaymentCase.objects.filter(acceptance=accepted_cart).count()!=1
+                    or SyntheticOverpaymentReview.objects.filter(case__acceptance=accepted_cart).count()!=1
+                    or SyntheticLineEntitlement.objects.filter(fulfilment=grant).count()!=1):raise RuntimeError('overpayment duplicated financial review or entitlement')
             final=client.get(support_url,HTTP_ACCEPT='application/json').json()['ledger']
             if (final['spent_seconds']!=1800 or final['available_seconds']!=70200
                     or len(final['statements'])!=1 or final['statements'][0]['statement']['revision']!=4
@@ -330,7 +357,7 @@ def run(archive_root):
         complete_cart={'all_lines_retained':True,'business_revision':retained.snapshot['business']['version'],
             'document_revision':retained.snapshot['documents']['revision'],'archive_recovered':bool(retained.archive_receipt),
             'api_and_no_javascript_same_capture':True,'acceptance_enabled':False,
-            'synthetic_acceptance_recorded':True,'simulated_payment_captured':True,'single_order_reference_and_bank_operation':True,'cart_entitlement_once':True,
+            'synthetic_acceptance_recorded':True,'simulated_payment_captured':True,'canonical_customer_payment_once':True,'cart_entitlement_once':True,
             'cart_staged_delivery_preserves_later_obligation':True,'cart_support_seconds_once':72000,'actual_support_spendable':False,
             'notification_lookup':{'uncertain_payment_recovered':True,'duplicate_hint_once':True,
                 'blind_payment_retry':False,'public_callbacks_enabled':False},
@@ -339,6 +366,8 @@ def run(archive_root):
                 'statement_committed_revision':final['statements'][0]['statement']['revision'],
                 'local_staff_two_factors_and_exact_grant':True,'reverse_replace_history_preserved':True,
                 'statement_mail_capture_once_after_lost_response':True,'actual_email_sent':False},
+            'overpayment_review':{'independent_fixture_capture':True,'two_observations_retained':True,
+                'exact_pair_assignment':True,'case_and_review_retry_once':True,'additional_fulfilment':False,'actual_refund':False},
             'support_refund_review':{'consumed_credit_retained':True,'separate_case_assignment':True,
                 'request_and_review_retries_once':True,'correction_history_preserved':True,'actual_refund':False},
             'private_packages':{'retained_versions':3,'old_version_downloaded_once':True,'bearer_in_url':False,'actual_delivery':False,

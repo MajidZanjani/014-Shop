@@ -574,6 +574,11 @@
       "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
     },
     {
+      "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-OVERPAYMENT-REVIEW-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
       "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-PROGRESS.md",
       "role": "current",
       "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"

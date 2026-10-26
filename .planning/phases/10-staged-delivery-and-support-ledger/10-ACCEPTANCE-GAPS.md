@@ -21,4 +21,4 @@ After that local slice, prepare a requirements-to-evidence handover and prioriti
 
 Selected subsequent independent local work: Phase8 PAY-03/PAY-04 durable notification inbox/typed-fake-bank lookup and overpayment exception review, retaining one intended fulfilment. Current code has per-attempt lookup reconciliation (`payments/attempts.py`) but no durable callback inbox/overpayment case producer. The amended ROADMAP Phase8 success criteria explicitly require both. Prepare that plan next; this does not complete Phase10 or permit actual bank/refund effects.
 
-Routing execution: Phase8 plan08-01 is now active with a local durable notification inbox; its scoped overpayment-review task remains next. Phase10 full acceptance remains pending and all actual gates above are unchanged.
+Routing execution: Phase8 plan08-01 now has locally verified durable notification inbox and scoped overpayment review. Remaining Phase8 acceptance-gap audit/routing is next; see STATE/HANDOFF and08-OVERPAYMENT-REVIEW-PARTIAL.md. Phase10 full acceptance remains pending and all actual gates above are unchanged.

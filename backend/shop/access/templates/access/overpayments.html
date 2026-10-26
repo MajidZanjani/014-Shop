@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Local overpayment review</title></head>
+<body><main><h1>Local overpayment review</h1>
+<p>Synthetic captures only. Assignment identifies a pair to investigate; matching amounts do not establish actual attribution. No refund or additional licence/support grant is authorized.</p>
+<p><a href="/staff/">Staff home</a> · <a href="/staff/overpayments/">Assigned investigations</a></p>
+{% if assigned %}
+{% if case %}<p>Two captured observations retained. Review revision {{ case.revision }}. Decision: {{ case.decision }}.</p>
+<ul>{% for capture in case.captures %}<li>Capture {{ forloop.counter }}: {{ capture.amount_minor }} minor units {{ capture.currency }}; {{ capture.status }}.</li>{% endfor %}</ul>
+<ul>{% for review in case.history %}<li>Revision {{ review.revision }}: {{ review.decision }}</li>{% endfor %}</ul>{% if case.next_before %}<p><a href="?before={{ case.next_before }}">Older reviews</a></p>{% endif %}
+<p>Actual attribution, refund eligibility, amount, currency, seller approval, bank operation and credit document remain pending.</p>
+<form method="post">{% csrf_token %}<input type="hidden" name="action" value="review"><input type="hidden" name="request_id" value="{{ request_id }}"><input type="hidden" name="expected_revision" value="{{ case.revision }}"><label>Review decision <select name="decision">{% for decision in decisions %}<option value="{{ decision }}">{{ decision }}</option>{% endfor %}</select></label><button>Record review</button></form>
+{% else %}<p>Archive both typed lookup observations for this assigned pair before review.</p><form method="post">{% csrf_token %}<input type="hidden" name="action" value="capture"><button>Capture investigation evidence</button></form>{% endif %}
+{% else %}<ul>{% for assignment in assignments %}<li><a href="/staff/overpayments/{{ assignment.id }}/">Assigned investigation {{ assignment.id }}</a></li>{% empty %}<li>No assigned investigations.</li>{% endfor %}</ul>{% if next_before %}<a href="?before={{ next_before }}">Older assignments</a>{% endif %}{% endif %}
+</main></body></html>

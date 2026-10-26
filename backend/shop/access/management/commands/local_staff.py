@@ -8,18 +8,22 @@ from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
 from shop.adapters.local_storage import LocalStorage
 from shop.catalog.models import QuotationRequest, SyntheticFulfilment, SyntheticSupportStaffGrant, SyntheticDeliveryStaffGrant, SyntheticLineEntitlement, SyntheticLicenceCase, SyntheticLicenceCaseStaffGrant, SyntheticSupportRefundCase, SyntheticSupportRefundStaffGrant
+from shop.payments.models import SyntheticOverpaymentStaffGrant, SyntheticPaymentAttempt
+from shop.catalog.models import SyntheticCheckoutAcceptance
 from shop.access.models import StaffCredential, StaffQuotationGrant
 
 class Command(BaseCommand):
     help='Local/synthetic staff provision/reset/revoke and explicit quotation reviewer grants. Credentials go to private files only.'
     def add_arguments(self,parser):
-        parser.add_argument('action',choices=['provision','reset','revoke','grant','revoke-grant','grant-business','revoke-business','grant-support','revoke-support','grant-delivery','revoke-delivery','grant-case','revoke-case','grant-refund','revoke-refund'])
+        parser.add_argument('action',choices=['provision','reset','revoke','grant','revoke-grant','grant-business','revoke-business','grant-support','revoke-support','grant-delivery','revoke-delivery','grant-case','revoke-case','grant-refund','revoke-refund','grant-overpayment','revoke-overpayment'])
         parser.add_argument('--username',required=True)
         parser.add_argument('--capture-root')
         parser.add_argument('--quotation')
         parser.add_argument('--checkout')
         parser.add_argument('--entitlement')
         parser.add_argument('--case')
+        parser.add_argument('--attempt')
+        parser.add_argument('--acceptance')
         parser.add_argument('--business-scope',type=int)
     def handle(self,*args,**options):
         if settings.SHOP_ENV not in ('local','synthetic'):raise CommandError('Synthetic staff operation unavailable')
@@ -47,6 +51,7 @@ class Command(BaseCommand):
                 SyntheticDeliveryStaffGrant.objects.filter(user=user).delete()
                 SyntheticLicenceCaseStaffGrant.objects.filter(user=user).delete()
                 SyntheticSupportRefundStaffGrant.objects.filter(user=user).delete()
+                SyntheticOverpaymentStaffGrant.objects.filter(user=user).delete()
                 try:
                     with LocalStorage(root) as store:store.put(('Synthetic staff credentials only.\nUsername: '+name+'\nPassword: '+password+'\n').encode())
                 except (OSError,ValueError):raise CommandError('Private synthetic capture unavailable') from None
@@ -57,6 +62,19 @@ class Command(BaseCommand):
                 SyntheticDeliveryStaffGrant.objects.filter(user=user).delete()
                 SyntheticLicenceCaseStaffGrant.objects.filter(user=user).delete()
                 SyntheticSupportRefundStaffGrant.objects.filter(user=user).delete()
+                SyntheticOverpaymentStaffGrant.objects.filter(user=user).delete()
+            elif action in ('grant-overpayment','revoke-overpayment'):
+                try:
+                    acceptance_id=uuid.UUID(options.get('acceptance') or '')
+                    attempt_id=uuid.UUID(options.get('attempt') or '')
+                except (ValueError,TypeError):raise CommandError('Exact synthetic acceptance and extra attempt required') from None
+                accepted=SyntheticCheckoutAcceptance.objects.filter(pk=acceptance_id).first()
+                extra=SyntheticPaymentAttempt.objects.filter(pk=attempt_id).first()
+                if accepted is None or extra is None or accepted.attempt_id==extra.pk:raise CommandError('Synthetic pair unavailable')
+                if action=='grant-overpayment':
+                    if not credential.enabled or not user.is_active:raise CommandError('Staff identity disabled')
+                    SyntheticOverpaymentStaffGrant.objects.get_or_create(user=user,acceptance=accepted,extra_attempt=extra)
+                else:SyntheticOverpaymentStaffGrant.objects.filter(user=user,acceptance=accepted,extra_attempt=extra).delete()
             elif action in ('grant-refund','revoke-refund'):
                 try:identity=uuid.UUID(options.get('case') or '')
                 except (ValueError,TypeError):raise CommandError('Support refund case identity required') from None

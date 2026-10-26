@@ -148,3 +148,37 @@ class SyntheticNotificationResult(models.Model):
     payload=models.JSONField()
     sha256=models.CharField(max_length=64)
     archive_receipt=models.JSONField()
+
+
+class SyntheticOverpaymentStaffGrant(models.Model):
+    """Explicit local operator assertion of the exact pair to investigate, not bank attribution."""
+    user=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT)
+    acceptance=models.ForeignKey('catalog.SyntheticCheckoutAcceptance',on_delete=models.PROTECT)
+    extra_attempt=models.ForeignKey(SyntheticPaymentAttempt,on_delete=models.PROTECT)
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['user','acceptance','extra_attempt'],name='synthetic_overpayment_staff_pair')]
+
+
+class SyntheticOverpaymentCase(models.Model):
+    id=models.UUIDField(primary_key=True,editable=False)
+    acceptance=models.ForeignKey('catalog.SyntheticCheckoutAcceptance',on_delete=models.PROTECT)
+    extra_attempt=models.OneToOneField(SyntheticPaymentAttempt,on_delete=models.PROTECT)
+    payload=models.JSONField()
+    sha256=models.CharField(max_length=64)
+    archive_receipt=models.JSONField()
+
+
+class SyntheticOverpaymentReview(models.Model):
+    id=models.UUIDField(primary_key=True,editable=False)
+    case=models.ForeignKey(SyntheticOverpaymentCase,on_delete=models.PROTECT)
+    request_id=models.UUIDField()
+    revision=models.PositiveIntegerField()
+    payload=models.JSONField()
+    sha256=models.CharField(max_length=64)
+    archive_receipt=models.JSONField()
+    class Meta:
+        constraints=[
+            models.UniqueConstraint(fields=['case','request_id'],name='synthetic_overpayment_review_request'),
+            models.UniqueConstraint(fields=['case','revision'],name='synthetic_overpayment_review_revision'),
+            models.CheckConstraint(condition=models.Q(revision__gte=1,revision__lte=1000),name='synthetic_overpayment_review_bound'),
+        ]

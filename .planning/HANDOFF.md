@@ -4,9 +4,9 @@
 
 **Current plan:** 08-01 — Durable synthetic notification inbox and overpayment review.
 
-**Execution status:** executing — local08-01 durable hint inbox and typed lookup receipts implemented; scoped overpayment review next; actual callbacks/financial qualification pending.
+**Execution status:** executing — local08-01 inbox and scoped overpayment review implemented and locally verified; remaining Phase8 acceptance-gap audit next; actual callbacks/financial qualification pending.
 
-**Next implementation task:** Implement scoped finance overpayment attribution/review for independently captured observations against one intended accepted order; preserve both money facts, one fulfilment and no automatic refund.
+**Next implementation task:** Audit remaining Phase8 requirements against retained local evidence and select the next independent authorized local slice; keep actual provider/merchant/attribution/refund/recovery gates pending.
 
 **Recorded implementation:** 646fa79cc772a46a3d002b3e994528a29c5744cb
 
@@ -65,3 +65,9 @@ Archived known-dispatched-attempt hints now feed bounded leases in the existing 
 Final existing worker regression/mutation lane: `WORKER_LOCAL_PASS checks=6 tests=24 duration_seconds=15.547`; probe ownership/claim-before-adapter behavior and both required broken-control mutations pass/reject as expected. Forced process interruption/off-host worker qualification remains pending.
 
 Final `DEMO_ACCESS_PASS checks=132 aliases=2 evidence=local-synthetic-header-level` and supported complete-cart demo pass on current code. Demo deliberately loses the fake bank response after commit, enqueues/retries one hint through the local operator, verifies pending state/no inferred payment, and recovers via the existing worker with a failing guard against any second start. Original single bank operation/order/entitlement and72000 support seconds remain once; later ledger remains revision5/spent1800/available70200. Proxy fixture reruns that current demo before both owned loopback aliases. Header-level evidence is not an actual browser-engine/financial/provider qualification.
+
+## Local08-01 overpayment review — 2026-10-26
+
+Explicit exact-pair operator assignments and recent staff MFA now protect archived typed dual-capture evidence, immutable revision/CAS reviews and assigned private staff pages/history. Actual attribution and all refund policies/approvals remain null. Matching amounts do not establish ownership; no new customer payment retry, refund, additional fulfilment or support mutation. [Exact scope/evidence](phases/08-payment-domain-and-fault-injectable-fake-bank/08-OVERPAYMENT-REVIEW-PARTIAL.md).
+
+Final local evidence: backend509 tests/5 checks,150.356s; focused17,6.346s; worker24/6 checks,16.173s (one initial unqualified baseline subprocess failure, unchanged-code rerun passes); supported two-factor complete-cart demo and proxy132 header-level checks/2 aliases pass. Final inert source `/nix/store/58w1hg7cskgjw2w72fwrn0jpi0h3mwi4-shop-python-source`:249 exact files/32 templates/1 CSS/no symlinks. Original intended entitlement/support grant remains once, ledger revision5/spent1800/available70200. Actual callback/financial/provider/runtime/host/off-host recovery/full acceptance remains pending. Counts1/14 phases,11/34 completed plan records; Phase8 full acceptance0/1, Phase10 full acceptance0/6. Next audit remaining Phase8 gaps and select independent authorized local work.
