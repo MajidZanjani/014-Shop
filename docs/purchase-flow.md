@@ -10,7 +10,7 @@ The actual catalog has no supplied approved ready-kit entries or commercial poli
 
 ## Reproducible synthetic purchase rehearsal
 
-`nix develop --max-jobs 1 --cores 4 ./ops/nixos#backend --command python3 scripts/demo_purchase_flow.py`
+`nix --extra-experimental-features 'nix-command flakes' develop --max-jobs 1 --cores 4 ./ops/nixos#backend --command python3 scripts/demo_purchase_flow.py`
 
 The wrapper creates a fresh owned PostgreSQL18.6 cluster/database and private temporary archive, then cleans them up. It seeds a clearly synthetic verified identity, uses the existing owner/CSRF-protected configuration-draft API and guarded bank/archive interfaces, and prints a fixed synthetic result without customer/host/key values. It uses no real email/bank/cloud service or credentials. Seeding is not evidence of actual email/access delivery.
 
