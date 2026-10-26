@@ -1,21 +1,21 @@
 ---
 gsd_state_version: "1.0"
-current_plan: 04
+current_plan: 05
 status: verifying
-last_updated: "2026-10-26T11:42:18.508Z"
+last_updated: "2026-10-26T11:59:42.512Z"
 state_head: b02fd768a8070ad2061770dde82bc403f2a29685
 progress:
   total_phases: 14
   completed_phases: 1
-  total_plans: 31
+  total_plans: 32
   completed_plans: 11
   percent: 7
 current_task: 3
 last_activity: 2026-10-26
 current_phase: 10
 current_phase_name: Staged licence/reference-design delivery and support ledger
-stopped_at: Local10-04 document numbering and durable statement capture implemented; reviewed support-refund cases next.
-last_activity_desc: Archived local statement intent/capture and existing single worker retries preserve support spend; actual mail and qualification pending.
+stopped_at: Local10-05 support-refund review implemented; Phase10 acceptance gap audit next.
+last_activity_desc: Archived local support-refund request/review snapshots preserve performed work and balances; actual financial policy and refunds pending.
 ---
 
 # Project state — final purchase-flow revision2
@@ -24,11 +24,11 @@ last_activity_desc: Archived local statement intent/capture and existing single 
 
 **Last fully completed phase:** 1 — baseline documentary acceptance only. SRC-05 final-amendment documentary reconciliation is complete and does not revalidate actual commercial or external behavior. All other phases remain partial or pending. Counts are completed-phase/planned-record counts, not engineering effort.
 
-**Current plan:** 10-04 — Synthetic document reservations and statement delivery.
+**Current plan:** 10-05 — Reviewed support-refund requests.
 
-**Execution status:** verification pending — local10-04 document reservations and durable synthetic statement capture implemented; actual qualification remains pending.
+**Execution status:** verification pending — local10-05 archived support-refund requests and scoped current-revision review implemented; actual refunds remain gated.
 
-**Next implementation task:** Plan reviewed support-refund cases distinguishing available, reserved and consumed credit without erasing work or automatically refunding money; preserve actual support/refund policy gates.
+**Next implementation task:** Audit remaining Phase10 acceptance gaps against FUL-01–06 and route the next executable local slice from source evidence; retain all actual policy, private delivery, financial and recovery gates.
 
 ## Preserved implementation/evidence
 
@@ -41,7 +41,7 @@ last_activity_desc: Archived local statement intent/capture and existing single 
 
 Complete-cart synthetic captured payment now produces one archived grant plan, one licence record per IP line and exactly36000 integer seconds per support package once with no expiry. Initial and later reference-design completion are separate archived per-line events; the later event never duplicates licence or support grants. Support-only and ready-kit fixtures preserve their narrower scope. Actual spendable credit, files, keys and rights remain disabled. [Exact evidence/remaining work](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md).
 
-Latest full backend CORE_LOCAL_PASS420 tests/5 checks,118.041s; final16 focused change-case tests,6.357s. Full regression precedes the final catalog-family/same-band validation changes; the final focused suite covers those changes and historical retries. Actual owned proxy/Gunicorn/PostgreSQL102 header-level checks across both loopback aliases pass; supported two-factor staff/customer demo captures/retries/reviews/proposes all five change kinds, corrects/supersedes a renewal proposal, keeps higher volume on quotation and preserves original entitlement/bank count. Prior private-material/ledger/staged-delivery cases remain. Final inert source /nix/store/zfx8931wwpnh29zzm88b2mb6kxm52lx0-shop-python-source:226 exact files/30 templates/1 CSS/no symlinks. Bounded120-second full test runner and production/provider/request/database timeouts unchanged. [Change-case evidence](phases/10-staged-delivery-and-support-ledger/10-LICENCE-CHANGES-PARTIAL.md).
+Retained10-03 full backend CORE_LOCAL_PASS420 tests/5 checks,118.041s; final16 focused change-case tests,6.357s. Full regression precedes the final catalog-family/same-band validation changes; the final focused suite covers those changes and historical retries. Actual owned proxy/Gunicorn/PostgreSQL102 header-level checks across both loopback aliases pass; supported two-factor staff/customer demo captures/retries/reviews/proposes all five change kinds, corrects/supersedes a renewal proposal, keeps higher volume on quotation and preserves original entitlement/bank count. Prior private-material/ledger/staged-delivery cases remain. Final inert source /nix/store/zfx8931wwpnh29zzm88b2mb6kxm52lx0-shop-python-source:226 exact files/30 templates/1 CSS/no symlinks. Bounded120-second full test runner and production/provider/request/database timeouts unchanged. [Change-case evidence](phases/10-staged-delivery-and-support-ledger/10-LICENCE-CHANGES-PARTIAL.md).
 
 The user-requested shared shop-style customer UI remains in use for fulfilment status/actions. [UI contract](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-UI-SPEC.md). User reports all browser simulations completed on2026-10-26, following the styled checkout/payment/grant/staged-delivery test instructions. This records user-reported functional completion, not an independently observed run or formal accessibility/visual approval. No real commercial approval or full phase/plan acceptance is inferred.
 
@@ -143,16 +143,26 @@ Paused at the user's request. Resume via `$gsd-resume-work`; read [structured ha
 
 ## Local10-04 document reservations — 2026-10-26
 
-Synthetic invoice/credit reservations and separate simulated issue records now archive/read back before commit, retain exact retries and immutable history, and serialize empty/existing series on PostgreSQL. Full recovery of lost terminal history and actual numbering/publication remain gated. [Exact evidence](phases/10-staged-delivery-and-support-ledger/10-DOCUMENT-NUMBERS-PARTIAL.md). Durable statement mail integration is now implemented locally; see the latest statement-capture evidence below. Counts1/14 phases and11/31 plan records; full Phase10 acceptance remains0/4.
+Synthetic invoice/credit reservations and separate simulated issue records now archive/read back before commit, retain exact retries and immutable history, and serialize empty/existing series on PostgreSQL. Full recovery of lost terminal history and actual numbering/publication remain gated. [Exact evidence](phases/10-staged-delivery-and-support-ledger/10-DOCUMENT-NUMBERS-PARTIAL.md). Durable statement mail integration is now implemented locally; see the latest statement-capture evidence below. Counts1/14 phases and11/32 plan records; full Phase10 acceptance remains0/5.
 
 Latest10-04 verification: `CORE_LOCAL_PASS checks=5 tests=431 duration_seconds=119.017`; migration0020/no drift and source229 exact files/30 templates/1 CSS/no symlinks pass. Actual off-host recovery remains pending.
 
 ## Local10-04 statement capture — 2026-10-26
 
-Archived immutable statement intents now feed the existing leased worker and a durable local capture sink. New-process response-loss retry recovers the same receipt without a new support debit. Current staff generation/assignment and verified owner are rechecked; private status never claims actual email sent. Final focused17 tests and complete-cart demo pass. [Exact evidence and pending gates](phases/10-staged-delivery-and-support-ledger/10-STATEMENT-MAIL-PARTIAL.md). Counts remain1/14 phases and11/31 plans; Phase10 full acceptance0/4.
+Archived immutable statement intents now feed the existing leased worker and a durable local capture sink. New-process response-loss retry recovers the same receipt without a new support debit. Current staff generation/assignment and verified owner are rechecked; private status never claims actual email sent. Final focused17 tests and complete-cart demo pass. [Exact evidence and pending gates](phases/10-staged-delivery-and-support-ledger/10-STATEMENT-MAIL-PARTIAL.md). Counts remain1/14 phases and11/32 plans; Phase10 full acceptance0/5.
 
-Latest verification: full backend448 tests/5 checks,127.821s across two bounded120-second batches; final focused17 tests,7.030s; migration0021/no drift; source232 exact files/30 templates/1 CSS/no symlinks. Supported complete-cart staff/customer response-loss demo passes.
+Retained10-04 verification: full backend448 tests/5 checks,127.821s across two bounded120-second batches; final focused17 tests,7.030s; migration0021/no drift; source232 exact files/30 templates/1 CSS/no symlinks. Supported complete-cart staff/customer response-loss demo passes.
 
 Existing worker regression/mutation lane: `WORKER_LOCAL_PASS checks=6 tests=24 duration_seconds=14.789`. Both required broken-ownership mutations are rejected; forced process interruption/off-host worker qualification remains pending.
 
 Final proxy evidence: `DEMO_ACCESS_PASS checks=102 aliases=2 evidence=local-synthetic-header-level`; owned loopback proxy/Gunicorn/PostgreSQL and current complete-cart fixture, not an independently observed browser engine or formal visual/accessibility approval.
+
+## Local10-05 support refund review — 2026-10-26
+
+Archived owner requests retain available/reserved/consumed support snapshots; distinct recent-MFA per-case staff reviews compare both case and current ledger revisions, append corrections and become outdated after later support activity. All actual refund-policy/amount/eligibility/bank/document approvals remain null. No balance hold, erased work, credit reversal or bank refund. Final focused16 tests pass; [exact evidence](phases/10-staged-delivery-and-support-ledger/10-SUPPORT-REFUNDS-PARTIAL.md). Counts1/14 phases,11/32 plan records and Phase10 full acceptance0/5.
+
+Latest10-05 verification: full backend464 tests/5 checks,141.290s across two finite120-second batches; focused16 tests,6.498s; migration0022/no drift and237-file source/31 templates/1 CSS/no symlinks pass. Actual off-host/core recovery remains pending.
+
+Supported complete-cart staff/customer refund review demo passes: exact request/review retries, distinct assignment and immutable correction; existing ledger revision5/spent1800/available70200 and original bank/entitlement count unchanged. No actual refund.
+
+Final proxy `DEMO_ACCESS_PASS checks=118 aliases=2 evidence=local-synthetic-header-level`: owned loopback proxy/Gunicorn/PostgreSQL. Eight added checks per alias cover refund form/policy, capture redirect, retry identity, consumed-credit detail, owner list, null-origin and missing-CSRF denial, and unchanged ledger balances. Header-level simulation is not independently observed browser-engine or formal visual/accessibility acceptance.

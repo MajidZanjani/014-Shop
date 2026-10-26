@@ -233,6 +233,32 @@ def run(archive_root):
             if (mail_status.status_code!=200 or mail_status.json()['ledger']['statements'][0]['mail_capture']!='captured'
                     or mail_status.json()['ledger']['spent_seconds']!=1800 or mail_status.json()['ledger']['revision']!=5):
                 raise RuntimeError('synthetic statement capture changed ledger')
+            from shop.catalog.models import SyntheticSupportRefundCase,SyntheticSupportRefundStaffGrant
+            refund_url=support_url+'refunds/'
+            if client.get(refund_url).status_code!=200:raise RuntimeError('support refund owner form unavailable')
+            refund_command={'request_id':str(uuid.uuid4()),'seconds':72000}
+            refund_id=None
+            for _ in range(2):
+                requested=client.post(refund_url,data=json.dumps(refund_command),content_type='application/json',HTTP_X_CSRFTOKEN=csrf)
+                if requested.status_code!=201 or (refund_id and requested.json()['case_id']!=refund_id):
+                    raise RuntimeError('support refund request/retry mismatch')
+                refund_id=requested.json()['case_id']
+            refund_case=SyntheticSupportRefundCase.objects.get(identity=refund_id)
+            refund_staff_url='/staff/support-refunds/'+refund_id+'/'
+            with override_settings(**staff_settings,LOCAL_STAFF_CAPTURE_ROOT=capture):
+                if staff.get(refund_staff_url).status_code!=404:raise RuntimeError('support refund assignment boundary failed')
+                SyntheticSupportRefundStaffGrant.objects.create(user=staff_user,case=refund_case)
+                refund_review={'request_id':str(uuid.uuid4()),'expected_revision':0,'ledger_revision':5,'decision':'ready_for_financial_review'}
+                for _ in range(2):
+                    reviewed=staff.post(refund_staff_url,data=json.dumps(refund_review),content_type='application/json',HTTP_X_CSRFTOKEN=staff_token)
+                    if reviewed.status_code!=200 or reviewed.json()['case']['revision']!=1:raise RuntimeError('support refund review/retry failed')
+                corrected=staff.post(refund_staff_url,data=json.dumps({'request_id':str(uuid.uuid4()),'expected_revision':1,
+                    'ledger_revision':5,'decision':'needs_information'}),content_type='application/json',HTTP_X_CSRFTOKEN=staff_token)
+                if corrected.status_code!=200 or corrected.json()['case']['revision']!=2:raise RuntimeError('support refund correction history failed')
+            refund_state=client.get(refund_url+refund_id+'/',HTTP_ACCEPT='application/json')
+            if (refund_state.status_code!=200 or not refund_state.json()['case']['consumed_support_present']
+                    or not refund_state.json()['case']['request_exceeds_available'] or refund_state.json()['case']['refund_authorized']
+                    or b'credential_generation' in refund_state.content):raise RuntimeError('support refund status/privacy mismatch')
             materials_url='/purchase/checkout-rehearsal/'+str(retained.pk)+'/packages/'
             listed=client.get(materials_url,HTTP_ACCEPT='application/json')
             if listed.status_code!=200 or len(listed.json()['packages'])!=3:raise RuntimeError('private package revision listing failed')
@@ -266,6 +292,8 @@ def run(archive_root):
                 'statement_committed_revision':final['statements'][0]['statement']['revision'],
                 'local_staff_two_factors_and_exact_grant':True,'reverse_replace_history_preserved':True,
                 'statement_mail_capture_once_after_lost_response':True,'actual_email_sent':False},
+            'support_refund_review':{'consumed_credit_retained':True,'separate_case_assignment':True,
+                'request_and_review_retries_once':True,'correction_history_preserved':True,'actual_refund':False},
             'private_packages':{'retained_versions':3,'old_version_downloaded_once':True,'bearer_in_url':False,'actual_delivery':False},
             'licence_change_cases':{'kinds_captured_and_reviewed':5,'higher_volume_requires_quote':True,
                 'corrected_review_supersedes_prior_proposal':True,'original_entitlement_unchanged':True,'automatic_charge':False}}

@@ -187,6 +187,22 @@ print(json.dumps({'email':c.owner.customeridentity.email,'checkout_id':str(c.pk)
                     require(materials.request(access,{'artifact':'sll-synthetic-rtl.txt'},token=False)[0]==403,'private download missing-CSRF accepted')
                     require(materials.request(download)[0]==405,'private download GET accepted')
                     checks += 11
+                    refunds='/purchase/checkout-rehearsal/'+material_fixture['checkout_id']+'/support/refunds/'
+                    status,_,raw=materials.request(refunds)
+                    require(status==200 and materials.policy=='same-origin' and b'Request simulated refund review' in raw,'refund request form/policy unavailable')
+                    refund_command={'request_id':str(uuid.uuid4()),'seconds':'72000'}
+                    status,location,_=materials.request(refunds,refund_command)
+                    require(status==303 and location and location.startswith(refunds),'refund request redirect failed')
+                    require(materials.request(refunds,refund_command)[1]==location,'refund request retry changed identity')
+                    status,_,raw=materials.request(location)
+                    require(status==200 and b'Consumed support requires explicit review' in raw and b'awaiting_review' in raw,'refund consumed-credit status failed')
+                    status,_,raw=materials.request(refunds)
+                    require(status==200 and location.rsplit('/',2)[1].encode() in raw,'refund owner list missing request')
+                    require(materials.request(refunds,refund_command,origin='null')[0]==403,'refund null origin accepted')
+                    require(materials.request(refunds,refund_command,token=False)[0]==403,'refund missing-CSRF accepted')
+                    status,_,raw=materials.request(refunds.removesuffix('refunds/'))
+                    require(status==200 and b'Spent: 1800' in raw and b'Available: 70200' in raw,'refund request changed support balance')
+                    checks += 8
                     changes='/purchase/checkout-rehearsal/'+material_fixture['checkout_id']+'/changes/'
                     create=changes+'new/'+material_fixture['entitlement_id']+'/'
                     status,_,raw=materials.request(create)

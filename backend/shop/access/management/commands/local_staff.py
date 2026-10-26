@@ -7,13 +7,13 @@ from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
 from shop.adapters.local_storage import LocalStorage
-from shop.catalog.models import QuotationRequest, SyntheticFulfilment, SyntheticSupportStaffGrant, SyntheticDeliveryStaffGrant, SyntheticLineEntitlement, SyntheticLicenceCase, SyntheticLicenceCaseStaffGrant
+from shop.catalog.models import QuotationRequest, SyntheticFulfilment, SyntheticSupportStaffGrant, SyntheticDeliveryStaffGrant, SyntheticLineEntitlement, SyntheticLicenceCase, SyntheticLicenceCaseStaffGrant, SyntheticSupportRefundCase, SyntheticSupportRefundStaffGrant
 from shop.access.models import StaffCredential, StaffQuotationGrant
 
 class Command(BaseCommand):
     help='Local/synthetic staff provision/reset/revoke and explicit quotation reviewer grants. Credentials go to private files only.'
     def add_arguments(self,parser):
-        parser.add_argument('action',choices=['provision','reset','revoke','grant','revoke-grant','grant-business','revoke-business','grant-support','revoke-support','grant-delivery','revoke-delivery','grant-case','revoke-case'])
+        parser.add_argument('action',choices=['provision','reset','revoke','grant','revoke-grant','grant-business','revoke-business','grant-support','revoke-support','grant-delivery','revoke-delivery','grant-case','revoke-case','grant-refund','revoke-refund'])
         parser.add_argument('--username',required=True)
         parser.add_argument('--capture-root')
         parser.add_argument('--quotation')
@@ -46,6 +46,7 @@ class Command(BaseCommand):
                 SyntheticSupportStaffGrant.objects.filter(user=user).delete()
                 SyntheticDeliveryStaffGrant.objects.filter(user=user).delete()
                 SyntheticLicenceCaseStaffGrant.objects.filter(user=user).delete()
+                SyntheticSupportRefundStaffGrant.objects.filter(user=user).delete()
                 try:
                     with LocalStorage(root) as store:store.put(('Synthetic staff credentials only.\nUsername: '+name+'\nPassword: '+password+'\n').encode())
                 except (OSError,ValueError):raise CommandError('Private synthetic capture unavailable') from None
@@ -55,7 +56,18 @@ class Command(BaseCommand):
                 SyntheticSupportStaffGrant.objects.filter(user=user).delete()
                 SyntheticDeliveryStaffGrant.objects.filter(user=user).delete()
                 SyntheticLicenceCaseStaffGrant.objects.filter(user=user).delete()
+                SyntheticSupportRefundStaffGrant.objects.filter(user=user).delete()
+            elif action in ('grant-refund','revoke-refund'):
+                try:identity=uuid.UUID(options.get('case') or '')
+                except (ValueError,TypeError):raise CommandError('Support refund case identity required') from None
+                case=SyntheticSupportRefundCase.objects.select_for_update().filter(identity=identity).first()
+                if case is None:raise CommandError('Synthetic support refund case unavailable')
+                if action=='grant-refund':
+                    if not credential.enabled or not user.is_active:raise CommandError('Staff identity disabled')
+                    SyntheticSupportRefundStaffGrant.objects.get_or_create(user=user,case=case)
+                else:SyntheticSupportRefundStaffGrant.objects.filter(user=user,case=case).delete()
             elif action in ('grant-case','revoke-case'):
+
                 try:identity=uuid.UUID(options.get('case') or '')
                 except (ValueError,TypeError):raise CommandError('Licence case identity required') from None
                 case=SyntheticLicenceCase.objects.select_for_update().filter(identity=identity).first()

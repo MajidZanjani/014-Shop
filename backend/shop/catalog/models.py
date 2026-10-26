@@ -526,3 +526,37 @@ class SyntheticStatementCapture(models.Model):
     payload=models.JSONField()
     sha256=models.CharField(max_length=64)
     archive_receipt=models.JSONField()
+
+
+class SyntheticSupportRefundCase(models.Model):
+    identity=models.UUIDField(unique=True,editable=False)
+    fulfilment=models.ForeignKey(SyntheticFulfilment,on_delete=models.PROTECT)
+    request_id=models.UUIDField()
+    payload=models.JSONField()
+    sha256=models.CharField(max_length=64)
+    archive_receipt=models.JSONField()
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['fulfilment','request_id'],name='synthetic_support_refund_request')]
+
+
+class SyntheticSupportRefundReview(models.Model):
+    id=models.UUIDField(primary_key=True,editable=False)
+    case=models.ForeignKey(SyntheticSupportRefundCase,on_delete=models.PROTECT)
+    request_id=models.UUIDField()
+    revision=models.PositiveIntegerField()
+    payload=models.JSONField()
+    sha256=models.CharField(max_length=64)
+    archive_receipt=models.JSONField()
+    class Meta:
+        constraints=[
+            models.UniqueConstraint(fields=['case','request_id'],name='synthetic_support_refund_review_retry'),
+            models.UniqueConstraint(fields=['case','revision'],name='synthetic_support_refund_review_revision'),
+            models.CheckConstraint(condition=models.Q(revision__gte=1),name='synthetic_support_refund_review_positive'),
+        ]
+
+
+class SyntheticSupportRefundStaffGrant(models.Model):
+    user=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT)
+    case=models.ForeignKey(SyntheticSupportRefundCase,on_delete=models.PROTECT)
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['user','case'],name='synthetic_support_refund_staff')]

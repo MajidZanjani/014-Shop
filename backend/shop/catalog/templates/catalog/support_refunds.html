@@ -1,0 +1,25 @@
+{% extends "catalog/base.html" %}
+{% block title %}Support refund review rehearsal{% endblock %}
+{% block content %}
+<h1>Support refund review rehearsal</h1>
+<p>Local simulation only. A request records support seconds for review. It does not hold credit, erase performed work or refund money. Refund policy, eligibility, amount and financial approval remain pending.</p>
+{% if case %}
+<p>Requested: {{ case.requested_seconds }} seconds. Review {{ case.revision }}: {{ case.decision }}.</p>
+<p>Captured ledger revision {{ case.captured_credit.revision }}: available {{ case.captured_credit.available_seconds }}, reserved {{ case.captured_credit.reserved_seconds }}, consumed {{ case.captured_credit.spent_seconds }} seconds.</p>
+<p>Current ledger revision {{ case.current_credit.revision }}: available {{ case.current_credit.available_seconds }}, reserved {{ case.current_credit.reserved_seconds }}, consumed {{ case.current_credit.spent_seconds }} seconds.</p>
+{% if case.consumed_support_present %}<p>Performed work is present and must remain in the history. Consumed support requires explicit review.</p>{% endif %}
+{% if case.request_exceeds_available %}<p>The request exceeds currently available credit. Reserved and consumed credit are not automatically refundable.</p>{% endif %}
+{% if case.revision and not case.review_current %}<p role="status">The ledger changed after this review. Review the current revision before proceeding.</p>{% endif %}
+{% if staff %}
+<form method="post">{% csrf_token %}<input type="hidden" name="request_id" value="{{ request_id }}"><input type="hidden" name="expected_revision" value="{{ case.revision }}"><input type="hidden" name="ledger_revision" value="{{ case.current_credit.revision }}"><label>Review decision <select name="decision" required>{% for decision in decisions %}<option value="{{ decision }}">{{ decision }}</option>{% endfor %}</select></label><button type="submit">Record simulated review</button></form>
+<p>Ready for financial review does not authorize a refund.</p>
+{% endif %}
+<h2>Review history</h2><ul>{% for row in case.history %}<li>Review {{ row.revision }} · {{ row.decision }} · Ledger {{ row.credit.revision }} · Consumed {{ row.credit.spent_seconds }} seconds.</li>{% empty %}<li>No review recorded.</li>{% endfor %}</ul>
+{% else %}
+{% if not staff %}<p>Available {{ current_credit.available_seconds }} · Reserved {{ current_credit.reserved_seconds }} · Consumed {{ current_credit.spent_seconds }} seconds.</p>
+<form method="post">{% csrf_token %}<input type="hidden" name="request_id" value="{{ request_id }}"><label>Support seconds to request for review <input type="number" name="seconds" min="1" max="{{ current_credit.granted_seconds }}" required></label><button type="submit">Request simulated refund review</button></form>{% endif %}
+<ul>{% for row in cases %}<li><a href="{% if staff %}/staff/support-refunds/{% endif %}{{ row.case_id }}/">Request for {{ row.requested_seconds }} seconds</a></li>{% empty %}<li>No assigned/requested refund cases.</li>{% endfor %}</ul>
+{% endif %}
+{% if next_before %}<p><a href="?before={{ next_before }}">Earlier records</a></p>{% endif %}
+{% if staff %}<p><a href="/staff/support-refunds/">Assigned refund cases</a> · <a href="/staff/">Staff home</a></p>{% else %}<p><a href="/purchase/checkout-rehearsal/{{ checkout_id }}/support/">Support ledger</a> · <a href="/purchase/checkout-rehearsal/{{ checkout_id }}/support/refunds/">Refund requests</a></p>{% endif %}
+{% endblock %}

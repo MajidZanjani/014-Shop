@@ -1,3 +1,4 @@
+from shop.catalog.support_refund_views import staff_refunds,staff_detail as staff_refund_detail
 from shop.catalog.licence_change_views import staff_cases,staff_case
 from shop.catalog.package_views import delivery_queue,delivery_page
 from shop.catalog.support_views import staff_support_page
@@ -13,6 +14,8 @@ from shop.access.preparation_history import preparation_history
 from shop.access.quotation_review import record_review
 from shop.access.review_history import review_history
 urlpatterns=[
+    path("staff/support-refunds/",staff_refunds),
+    path("staff/support-refunds/<uuid:identity>/",staff_refund_detail),
     path('staff/licence-cases/',staff_cases),
     path('staff/licence-cases/<uuid:identity>/',staff_case),
     path('staff/delivery/',delivery_queue),
