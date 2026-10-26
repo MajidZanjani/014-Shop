@@ -1,34 +1,34 @@
 ---
 gsd_state_version: "1.0"
-current_plan: 06
-status: verifying
-last_updated: "2026-10-26T12:17:43.311Z"
+current_plan: 01
+status: executing
+last_updated: "2026-10-26T12:42:17.716Z"
 state_head: 9dc04202d97268ae811ebc413b4a7f975bc7b9f6
 progress:
   total_phases: 14
   completed_phases: 1
-  total_plans: 33
+  total_plans: 34
   completed_plans: 11
   percent: 7
-current_task: 3
+current_task: 2
 last_activity: 2026-10-26
-current_phase: 10
-current_phase_name: Staged licence/reference-design delivery and support ledger
-stopped_at: Phase10 audit and local10-06 delivery holds implemented; Phase8 notification inbox/overpayment planning next.
-last_activity_desc: Archived local delivery holds and revision-bound grants preserve accepted scope/support; actual qualification pending.
+current_phase: 8
+current_phase_name: Payment domain and fault-injectable fake bank
+stopped_at: Local08-01 durable notification inbox implemented; scoped overpayment review next.
+last_activity_desc: Local archived hints/typed lookup receipts and existing bounded worker; actual callbacks/financial qualification pending.
 ---
 
 # Project state — final purchase-flow revision2
 
-**Current development focus:** 10 — complete-cart staged delivery and support ledger. Earlier catalog/commercial/runtime/acceptance gates remain pending; current focus does not imply prior phase completion. [Current clauses](PURCHASE-FLOW-AMENDMENT.md), [ROADMAP.md](ROADMAP.md).
+**Current development focus:** 8 — payment domain and fault-injectable fake bank; Phase10 local slices retained with full acceptance pending. [Current purchase-flow authority](PURCHASE-FLOW-AMENDMENT.md).
 
 **Last fully completed phase:** 1 — baseline documentary acceptance only. SRC-05 final-amendment documentary reconciliation is complete and does not revalidate actual commercial or external behavior. All other phases remain partial or pending. Counts are completed-phase/planned-record counts, not engineering effort.
 
-**Current plan:** 10-06 — Archived delivery access holds.
+**Current plan:** 08-01 — Durable synthetic notification inbox and overpayment review.
 
-**Execution status:** verification pending — Phase10 gap audit and local10-06 archived delivery holds/revision-bound downloads implemented; actual fulfilment remains unqualified.
+**Execution status:** executing — local08-01 durable hint inbox and typed lookup receipts implemented; scoped overpayment review next; actual callbacks/financial qualification pending.
 
-**Next implementation task:** Plan Phase8 durable notification inbox and overpayment review using typed fake-bank observations; preserve one intended fulfilment and disabled actual bank/refund capabilities.
+**Next implementation task:** Implement scoped finance overpayment attribution/review for independently captured observations against one intended accepted order; preserve both money facts, one fulfilment and no automatic refund.
 
 ## Preserved implementation/evidence
 
@@ -139,17 +139,17 @@ User instructed adopting the complete final26October revision2 and replacing sta
 
 ## Historical pause — 2026-10-26T10:21:33.041Z
 
-Paused at the user's request. Resume via `$gsd-resume-work`; read [structured handoff](HANDOFF.json) and [Phase10 checkpoint](phases/10-staged-delivery-and-support-ledger/.continue-here.md). No implementation or tests remain active. Pending actual approvals and existing phase/plan completion counts are unchanged. No context threshold is claimed.
+The user's requested pause was consumed on continuation. Retained [Phase10 local handoff](phases/10-staged-delivery-and-support-ledger/10-LOCAL-IMPLEMENTATION-HANDOFF.md) preserves that implementation scope; active routing is now STATE/HANDOFF and the Phase8 checkpoint. The consumed structured handoff is not an active resume file. Pending actual approvals remain pending; no context threshold was claimed.
 
 ## Local10-04 document reservations — 2026-10-26
 
-Synthetic invoice/credit reservations and separate simulated issue records now archive/read back before commit, retain exact retries and immutable history, and serialize empty/existing series on PostgreSQL. Full recovery of lost terminal history and actual numbering/publication remain gated. [Exact evidence](phases/10-staged-delivery-and-support-ledger/10-DOCUMENT-NUMBERS-PARTIAL.md). Durable statement mail integration is now implemented locally; see the latest statement-capture evidence below. Counts1/14 phases and11/33 plan records; full Phase10 acceptance remains0/6.
+Synthetic invoice/credit reservations and separate simulated issue records now archive/read back before commit, retain exact retries and immutable history, and serialize empty/existing series on PostgreSQL. Full recovery of lost terminal history and actual numbering/publication remain gated. [Exact evidence](phases/10-staged-delivery-and-support-ledger/10-DOCUMENT-NUMBERS-PARTIAL.md). Durable statement mail integration is now implemented locally; see the latest statement-capture evidence below. Counts1/14 phases and11/34 plan records; full Phase10 acceptance remains0/6.
 
 Latest10-04 verification: `CORE_LOCAL_PASS checks=5 tests=431 duration_seconds=119.017`; migration0020/no drift and source229 exact files/30 templates/1 CSS/no symlinks pass. Actual off-host recovery remains pending.
 
 ## Local10-04 statement capture — 2026-10-26
 
-Archived immutable statement intents now feed the existing leased worker and a durable local capture sink. New-process response-loss retry recovers the same receipt without a new support debit. Current staff generation/assignment and verified owner are rechecked; private status never claims actual email sent. Final focused17 tests and complete-cart demo pass. [Exact evidence and pending gates](phases/10-staged-delivery-and-support-ledger/10-STATEMENT-MAIL-PARTIAL.md). Counts remain1/14 phases and11/33 plans; Phase10 full acceptance0/6.
+Archived immutable statement intents now feed the existing leased worker and a durable local capture sink. New-process response-loss retry recovers the same receipt without a new support debit. Current staff generation/assignment and verified owner are rechecked; private status never claims actual email sent. Final focused17 tests and complete-cart demo pass. [Exact evidence and pending gates](phases/10-staged-delivery-and-support-ledger/10-STATEMENT-MAIL-PARTIAL.md). Counts remain1/14 phases and11/34 plans; Phase10 full acceptance0/6.
 
 Retained10-04 verification: full backend448 tests/5 checks,127.821s across two bounded120-second batches; final focused17 tests,7.030s; migration0021/no drift; source232 exact files/30 templates/1 CSS/no symlinks. Supported complete-cart staff/customer response-loss demo passes.
 
@@ -159,7 +159,7 @@ Final proxy evidence: `DEMO_ACCESS_PASS checks=102 aliases=2 evidence=local-synt
 
 ## Local10-05 support refund review — 2026-10-26
 
-Archived owner requests retain available/reserved/consumed support snapshots; distinct recent-MFA per-case staff reviews compare both case and current ledger revisions, append corrections and become outdated after later support activity. All actual refund-policy/amount/eligibility/bank/document approvals remain null. No balance hold, erased work, credit reversal or bank refund. Final focused16 tests pass; [exact evidence](phases/10-staged-delivery-and-support-ledger/10-SUPPORT-REFUNDS-PARTIAL.md). Counts1/14 phases,11/33 plan records and Phase10 full acceptance0/6.
+Archived owner requests retain available/reserved/consumed support snapshots; distinct recent-MFA per-case staff reviews compare both case and current ledger revisions, append corrections and become outdated after later support activity. All actual refund-policy/amount/eligibility/bank/document approvals remain null. No balance hold, erased work, credit reversal or bank refund. Final focused16 tests pass; [exact evidence](phases/10-staged-delivery-and-support-ledger/10-SUPPORT-REFUNDS-PARTIAL.md). Counts1/14 phases,11/34 plan records and Phase10 full acceptance0/6.
 
 Latest10-05 verification: full backend464 tests/5 checks,141.290s across two finite120-second batches; focused16 tests,6.498s; migration0022/no drift and237-file source/31 templates/1 CSS/no symlinks pass. Actual off-host/core recovery remains pending.
 
@@ -169,10 +169,20 @@ Final proxy `DEMO_ACCESS_PASS checks=118 aliases=2 evidence=local-synthetic-head
 
 ## Local10-06 delivery holds and Phase10 audit — 2026-10-26
 
-The [FUL-01–06 acceptance audit](phases/10-staged-delivery-and-support-ledger/10-ACCEPTANCE-GAPS.md) records implemented local evidence and actual pending inputs. Archived per-entitlement hold/clear controls now gate material/stage publication and private access; cleared holds never resurrect older download grants. Rights/support/money and retained material history remain unchanged. Final focused12 tests and240-file inert source pass; [exact evidence](phases/10-staged-delivery-and-support-ledger/10-DELIVERY-HOLDS-PARTIAL.md). Full acceptance remains pending; counts1/14 phases,11/33 plan records and Phase10 full acceptance0/6.
+The [FUL-01–06 acceptance audit](phases/10-staged-delivery-and-support-ledger/10-ACCEPTANCE-GAPS.md) records implemented local evidence and actual pending inputs. Archived per-entitlement hold/clear controls now gate material/stage publication and private access; cleared holds never resurrect older download grants. Rights/support/money and retained material history remain unchanged. Final focused12 tests and240-file inert source pass; [exact evidence](phases/10-staged-delivery-and-support-ledger/10-DELIVERY-HOLDS-PARTIAL.md). Full acceptance remains pending; counts1/14 phases,11/34 plan records and Phase10 full acceptance0/6.
 
 Latest10-06 full backend476 tests/5 checks,140.823s; focused12 tests,4.648s; migration0023/no drift; source240 exact files/31 templates/1 CSS/no symlinks pass. Application/provider/request/database timeouts unchanged.
 
 Extended `PURCHASE_FLOW_DEMO_PASS` covers actual local staff password/second factor and exact delivery assignment, hold/retry, owner-held status, denied new/old grants, clear, stale-token rejection and fresh post-clear download. Prior three retained material revisions, one intended entitlement/bank operation and support ledger revision5/spent1800/available70200 remain unchanged. No actual delivery/physical recall/rights change.
 
 Final proxy `DEMO_ACCESS_PASS checks=132 aliases=2 evidence=local-synthetic-header-level`: owned loopback proxy/Gunicorn/PostgreSQL; seven additional hold checks per alias cover pre-hold grant, retained held listing/no download forms, new/old grant denial, clear/stale-token denial and fresh access. Control transitions in this HTTP harness use a trusted disposable staff fixture; actual two-factor staff control routes are exercised by the supported complete-cart demo. No real browser-engine/visual/accessibility or actual delivery qualification inferred.
+
+Final full backend `CORE_LOCAL_PASS checks=5 tests=492 duration_seconds=143.124`; both finite120-second batches pass, including16 notification tests, fresh clock/inspection consistency and prior attempt/fulfilment/support/material/number/mail/refund/control suites. Payments0006 applies with no drift. Actual off-host core recovery remains unexecuted.
+
+## Local08-01 notification inbox — 2026-10-26
+
+Archived known-dispatched-attempt hints now feed bounded leases in the existing single worker. Typed fake-bank lookup runs outside DB locks; normalized result/archive readback precedes atomic observation/result/acknowledgement. Hints cannot provide payment fields, start a payment, infer approval or grant fulfilment. Actual callbacks remain disabled. [Exact evidence](phases/08-payment-domain-and-fault-injectable-fake-bank/08-NOTIFICATION-INBOX-PARTIAL.md). Next: scoped overpayment attribution/review. Phase10 local slices retained/full acceptance0/6. Counts1/14 phases and11/34 plan records.
+
+Final existing worker regression/mutation lane: `WORKER_LOCAL_PASS checks=6 tests=24 duration_seconds=15.547`; probe ownership/claim-before-adapter behavior and both required broken-control mutations pass/reject as expected. Forced process interruption/off-host worker qualification remains pending.
+
+Final `DEMO_ACCESS_PASS checks=132 aliases=2 evidence=local-synthetic-header-level` and supported complete-cart demo pass on current code. Demo deliberately loses the fake bank response after commit, enqueues/retries one hint through the local operator, verifies pending state/no inferred payment, and recovers via the existing worker with a failing guard against any second start. Original single bank operation/order/entitlement and72000 support seconds remain once; later ledger remains revision5/spent1800/available70200. Proxy fixture reruns that current demo before both owned loopback aliases. Header-level evidence is not an actual browser-engine/financial/provider qualification.

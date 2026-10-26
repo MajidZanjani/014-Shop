@@ -242,7 +242,7 @@ Updated 2026-10-22: BUILD-01–08 have partial local implementation/evidence and
 | COM-04 | Phase 7 | In Progress |
 | COM-05 | Phase 7 | In Progress |
 | COM-06 | Phase 7 | Pending |
-| PAY-01 | Phase 8 | Pending |
+| PAY-01 | Phase 8 | In Progress |
 | PAY-02 | Phase 8 | In Progress |
 | PAY-03 | Phase 8 | In Progress |
 | PAY-04 | Phase 8 | In Progress |
@@ -298,7 +298,7 @@ Current development focus is Phase7, not a completed Phase7; last fully complete
 
 Explicit recent-MFA staff prepared-request preview/capture is implemented with strict CSRF forms, exact retained scope, and source digest checked inside the durable capture transaction before insert/replay. Original actor/MFA attribution survives exact retries; no archive I/O, root binding or work authority.266 core-local checks pass (252 Django plus14 Gunicorn),68.425s; owned PostgreSQL18.6/UTF8. Source163 exact files21 templates/no symlinks. See [staff capture evidence](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-STAFF-CAPTURE-PARTIAL.md). Next: critique07-02-CAPTURE-OBSERVATION-DESIGN against actual producer/capture/observation code, then implement only its read-only exact-scope capture-status service/route if the critique confirms the boundary; country/tax, commercial actions and independent runtime/transport/outage/off-host/provider/recovery qualification remain pending. Focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 8/18;07-02 partial.
 
-Phase08 typed synthetic-bank boundary is partial local groundwork for PAY-02–05, with no requirement completion. PAY-01 actual order/acceptance/archive/dispatch preparation remains pending. Canonical evidence/next action:STATE.md and08-BANK-BOUNDARY-PARTIAL; no actual financial confirmation or live approval.
+Phase08 PAY-01–05 have partial local groundwork: archived synthetic accepted-cart/attempt/dispatch ordering, typed fake bank, lookup-only uncertainty and durable notification hints. No requirement is fully accepted. Actual commercial/legal order acceptance, provider/archive/dispatch qualification and scoped financial operations remain pending. Canonical current evidence/routing:STATE.md, ROADMAP.md and08-NOTIFICATION-INBOX-PARTIAL; prior08-BANK-BOUNDARY-PARTIAL remains scoped historical evidence. No actual financial confirmation or live approval.
 
 Synthetic attempt groundwork additionally retains exact fixture requests, recovers prepared bytes before a durable dispatch claim and reconciles uncertainty through lookup without redispatch. All PAY requirements remain partial/pending; no live order/acceptance or financial confirmation is supplied. See08-ATTEMPTS-PARTIAL and STATE.md.
 

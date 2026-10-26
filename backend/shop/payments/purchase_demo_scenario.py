@@ -1,5 +1,8 @@
 """Synthetic example executed only by the fresh-owned-database demo wrapper."""
 from pathlib import Path
+from unittest.mock import patch
+from io import StringIO
+from django.core.management import call_command
 import json,uuid,re,secrets,tempfile
 from django.contrib.auth import get_user_model
 from django.conf import settings
@@ -83,8 +86,27 @@ def run(archive_root):
             confirmed=client.post(page_url,data=urlencode({'action':'accept','sha256':review.json()['sha256'],'confirmed':'on'}),
                 content_type='application/x-www-form-urlencoded',HTTP_X_CSRFTOKEN=csrf)
             if confirmed.status_code!=200:raise RuntimeError('synthetic confirmation rejected')
-            paid=client.post(payment_url,data=json.dumps({'action':'pay'}),content_type='application/json',HTTP_X_CSRFTOKEN=csrf)
-            repeated=client.post(payment_url,data=json.dumps({'action':'pay'}),content_type='application/json',HTTP_X_CSRFTOKEN=csrf)
+            original_start=synthetic_bank.start
+            def lose_response(request,**options):
+                options['fault']='after_commit'
+                return original_start(request,**options)
+            with patch.object(synthetic_bank,'start',side_effect=lose_response):
+                uncertain=client.post(payment_url,data=json.dumps({'action':'pay'}),content_type='application/json',HTTP_X_CSRFTOKEN=csrf)
+            if uncertain.status_code!=409 or uncertain.json()['error']!='payment_uncertain_use_lookup':raise RuntimeError('synthetic notification uncertainty fixture failed')
+            pending=checkout_payment.accepted(owner,retained.pk)
+            notice=uuid.uuid4()
+            from . import notifications
+            from shop.worker.services import execute_once as worker_once
+            for _ in range(2):
+                call_command('local_bank_notification','enqueue',attempt=str(pending.attempt_id),notification=str(notice),stdout=StringIO())
+            if notifications.inspect(notice,archive)['state']!='pending':raise RuntimeError('synthetic hint prematurely applied money')
+            with patch.object(synthetic_bank,'start',side_effect=AssertionError('blind payment retry')):
+                not_paid=client.post(payment_url,data=json.dumps({'action':'pay'}),content_type='application/json',HTTP_X_CSRFTOKEN=csrf)
+                if not_paid.status_code!=200 or not_paid.json()['simulated_paid']:raise RuntimeError('uncertain payment was resent or inferred')
+                if not worker_once():raise RuntimeError('notification worker did not process hint')
+                paid=client.get(payment_url)
+                repeated=client.post(payment_url,data=json.dumps({'action':'pay'}),content_type='application/json',HTTP_X_CSRFTOKEN=csrf)
+            if notifications.inspect(notice,archive)['state']!='checked':raise RuntimeError('synthetic lookup evidence not committed')
             if paid.status_code!=200 or not paid.json()['simulated_paid'] or repeated.json()['order_reference']!=paid.json()['order_reference']:
                 raise RuntimeError('synthetic complete-cart payment mismatch')
             row=checkout_payment.accepted(owner,retained.pk);checkout_payment.retained(row,archive)
@@ -310,6 +332,8 @@ def run(archive_root):
             'api_and_no_javascript_same_capture':True,'acceptance_enabled':False,
             'synthetic_acceptance_recorded':True,'simulated_payment_captured':True,'single_order_reference_and_bank_operation':True,'cart_entitlement_once':True,
             'cart_staged_delivery_preserves_later_obligation':True,'cart_support_seconds_once':72000,'actual_support_spendable':False,
+            'notification_lookup':{'uncertain_payment_recovered':True,'duplicate_hint_once':True,
+                'blind_payment_retry':False,'public_callbacks_enabled':False},
             'support_ledger':{'revision':final['revision'],'reserved_seconds':final['reserved_seconds'],
                 'spent_seconds':final['spent_seconds'],'available_seconds':final['available_seconds'],
                 'statement_committed_revision':final['statements'][0]['statement']['revision'],

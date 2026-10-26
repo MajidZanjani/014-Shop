@@ -539,6 +539,16 @@
       "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
     },
     {
+      "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/.continue-here.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-01-PLAN.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
       "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-ATTEMPTS-PARTIAL.md",
       "role": "historical-evidence",
       "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
@@ -559,14 +569,14 @@
       "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
     },
     {
+      "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-NOTIFICATION-INBOX-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
       "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-PROGRESS.md",
       "role": "current",
       "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
-    },
-    {
-      "path": ".planning/phases/10-staged-delivery-and-support-ledger/.continue-here.md",
-      "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
     },
     {
       "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-01-PLAN.md",
@@ -620,6 +630,11 @@
     },
     {
       "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-LICENCE-CHANGES-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-LOCAL-IMPLEMENTATION-HANDOFF.md",
       "role": "historical-evidence",
       "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
     },

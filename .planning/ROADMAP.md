@@ -4,7 +4,7 @@
 
 **Active sequencing:** [2026-10-22 execution amendment](EXECUTION-AMENDMENT-2026-10-22.md); T03 and ready local slices proceed independently of pending release qualification.
 
-**Latest verification:**476 backend tests/5 checks,140.823s across two finite batches; focused12 delivery-control tests,132 proxy checks/2 aliases and two-factor hold/clear demo pass; migration0023/no drift and240-file source packaging pass. [Delivery holds](phases/10-staged-delivery-and-support-ledger/10-DELIVERY-HOLDS-PARTIAL.md); [Phase10 gap audit](phases/10-staged-delivery-and-support-ledger/10-ACCEPTANCE-GAPS.md).
+**Latest verification:**492 backend tests/5 checks,143.124s across two bounded batches;16 focused notification tests, worker24 regression/mutation checks/tests and132 proxy checks/2 aliases pass; payments0006/no drift and244-file source packaging pass. [Inbox evidence](phases/08-payment-domain-and-fault-injectable-fake-bank/08-NOTIFICATION-INBOX-PARTIAL.md). Retained Phase10 full acceptance remains0/6.
 
 **Retained evidence:** [reviewed changes/held orders](phases/10-staged-delivery-and-support-ledger/10-LICENCE-CHANGES-PARTIAL.md); retained material/ledger/staged-delivery results and all release gates are in [STATE.md](STATE.md).
 
@@ -12,17 +12,17 @@
 
 ## Current implementation activity — 2026-10-26
 
-**Current development focus:** 10 — complete-cart staged delivery and support ledger; earlier catalog/commercial/runtime/acceptance qualification remains pending. [Amendment/task map](PURCHASE-FLOW-AMENDMENT.md).
+**Current development focus:** 8 — payment domain and fault-injectable fake bank; Phase10 local slices retained with full acceptance pending. [Current purchase-flow authority](PURCHASE-FLOW-AMENDMENT.md).
 
-**Current plan:** 10-06 — Archived delivery access holds.
+**Current plan:** 08-01 — Durable synthetic notification inbox and overpayment review.
 
-**Execution status:** verification pending — Phase10 gap audit and local10-06 archived delivery holds/revision-bound downloads implemented; actual fulfilment remains unqualified.
+**Execution status:** executing — local08-01 durable hint inbox and typed lookup receipts implemented; scoped overpayment review next; actual callbacks/financial qualification pending.
 
-**Next implementation task:** Plan Phase8 durable notification inbox and overpayment review using typed fake-bank observations; preserve one intended fulfilment and disabled actual bank/refund capabilities.
+**Next implementation task:** Implement scoped finance overpayment attribution/review for independently captured observations against one intended accepted order; preserve both money facts, one fulfilment and no automatic refund.
 
-**Last fully completed phase:** 1. Phases2–7 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase8 work while those earlier checks remain open. Completed phases remain1/14 (rounded7%); planned records11/33. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
+**Last fully completed phase:** 1. Phases2–7 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase8 work while those earlier checks remain open. Completed phases remain1/14 (rounded7%); planned records11/34. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
 
-**Current activity:** Phase10 FUL-01–06 gap audit recorded. Local10-06 archived per-entitlement delivery hold/clear controls block material/stage publication, new download grants and consumption. Clearing advances control revision and does not revive old bearers. Accepted licence/support/money facts remain unchanged. Local10-01–05 slices retained; actual term/host/key/tool/coverage, policy, financial, delivery/retention/recovery acceptance pending. Next independent local work is Phase8 PAY-03/PAY-04.
+**Current activity:** Local08-01 archived notification hints now feed bounded leases in the existing single worker. Typed fake-bank lookup runs outside locks; verified lookup evidence archives before atomic observation/result/acknowledgement. Hints cannot supply status, dispatch or grant fulfilment. Scoped overpayment review remains next. Phase10 local10-01–06 retained; full acceptance0/6 and all actual qualification gates remain pending.
 
 Before every commit, reconcile all affected planning status references, regenerate canonical state.json and run `python3 scripts/check_planning.py`; commit then sync origin/main. Historical sources/evidence remain scoped to their dates.
 
@@ -47,9 +47,9 @@ The October21 reset completed documentation replanning. Later user continuation 
 - [ ] **Phase 5: Transactional records, durable work and private evidence primitives** — October 21 handoff T05
 - [ ] **Phase 6: Verified customer access, staff MFA and private host editing** — October 21 handoff T06
 - [ ] **Phase 7: Short business checkout, standard offers and acceptance** — October 21 handoff T07
-- [ ] **Phase 8: Payment domain and fault-injectable fake bank** — October 21 handoff T08
+- [ ] **Phase 8: Payment domain and fault-injectable fake bank** — CURRENT DEVELOPMENT FOCUS; local08-01 inbox implemented; overpayment review next; full acceptance pending — October 21 handoff T08
 - [ ] **Phase 9: Selected-bank sandbox integration and complete reconciliation** — October 21 handoff T09
-- [ ] **Phase 10: Staged licence/reference-design delivery and support ledger** — CURRENT DEVELOPMENT FOCUS; local10-01 materials,10-02 ledger,10-03 licence changes,10-04 numbering/mail,10-05 refund review and10-06 delivery holds implemented; full acceptance pending — October 21 handoff T10
+- [ ] **Phase 10: Staged licence/reference-design delivery and support ledger** — local10-01 materials,10-02 ledger,10-03 licence changes,10-04 numbering/mail,10-05 refund review and10-06 delivery holds implemented; full acceptance pending — October 21 handoff T10
 - [ ] **Phase 11: Protected-host qualification, shop-only deployment and conditional public activation** — October 21 handoff T11
 - [ ] **Phase 12: Backups, operating alerts and financial/licensing restore rehearsal** — October 21 handoff T12
 - [ ] **Phase 13: Purchase-flow, fulfilment and release acceptance** — October 21 handoff T13
@@ -260,7 +260,7 @@ Local implementation: versioned owner draft cart delivered in [quick261022-iqc](
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md T08; complete companion proposal remains normative.
 **Estimate:** 4–6 engineer-days
 **UI hint:** yes
-**Plans:** Independent typed local synthetic-bank boundary implemented; [partial evidence](phases/08-payment-domain-and-fault-injectable-fake-bank/08-BANK-BOUNDARY-PARTIAL.md). Synthetic attempt claims and lookup reconciliation are also implemented. Full payment-domain plans/acceptance remain pending; no completion credit from these slices.
+**Plans:** 0/1 fully accepted; [08-01](phases/08-payment-domain-and-fault-injectable-fake-bank/08-01-PLAN.md) covers the implemented local inbox and pending scoped overpayment-review task. Independent typed local synthetic-bank boundary implemented; [partial evidence](phases/08-payment-domain-and-fault-injectable-fake-bank/08-BANK-BOUNDARY-PARTIAL.md). Synthetic attempt claims and lookup reconciliation are also implemented. Full payment-domain plans/acceptance remain pending; no completion credit from these slices.
 
 **Success Criteria:**
 
@@ -440,9 +440,9 @@ Unchecked phase boxes mean full acceptance is outstanding. They do not mean deve
 | 5. Transactional records, durable work and private evidence primitives | 0 / not planned | In Progress — local slice in quick261022-dj5; full acceptance pending | — |
 | 6. Verified customer access, staff MFA and private host editing | 0 / not planned | In Progress — synthetic customer verification/save-resume and staff MFA rehearsal/assigned reviews implemented; production MFA/private-host/release acceptance pending | — |
 | 7. Short business checkout, standard offers and acceptance | 1 / 4 | In Progress — current local cart/quotation/business/review/preparation implementation; commercial acceptance pending | — |
-| 8. Payment domain and fault-injectable fake bank | 0 / not planned | In Progress | Typed local synthetic-bank slice; full domain pending |
+| 8. Payment domain and fault-injectable fake bank | 0 / 1 | In Progress — CURRENT DEVELOPMENT FOCUS; local08-01 inbox implemented; overpayment review pending | Typed fake bank/attempt slices retained; actual/full domain pending |
 | 9. Selected-bank sandbox integration and complete reconciliation | 0 / not planned | Not started | — |
-| 10. Staged licence/reference-design delivery and support ledger | 0 / 6 | In Progress — CURRENT DEVELOPMENT FOCUS; local private fixtures/downloads, staged grants and support ledger implemented; local10-03 reviewed cases/held orders implemented; local10-04 document reservations implemented; durable statement capture and local10-05 support-refund review and10-06 delivery holds implemented; actual qualification pending | — |
+| 10. Staged licence/reference-design delivery and support ledger | 0 / 6 | In Progress — local private fixtures/downloads, staged grants and support ledger implemented; local10-03 reviewed cases/held orders implemented; local10-04 document reservations implemented; durable statement capture and local10-05 support-refund review and10-06 delivery holds implemented; actual qualification pending | — |
 | 11. Protected-host qualification, shop-only deployment and conditional public activation | 0 / not planned | Not started | — |
 | 12. Backups, operating alerts and financial/licensing restore rehearsal | 0 / not planned | Not started | — |
 | 13. Purchase-flow, fulfilment and release acceptance | 0 / 1 | In Progress — focused local amendment cases; full release/qualification pending | — |

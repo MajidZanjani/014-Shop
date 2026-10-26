@@ -119,3 +119,32 @@ class SyntheticCreditReservation(models.Model):
             models.UniqueConstraint(fields=['purchase','request_id'],name='synthetic_reservation_request'),
             models.CheckConstraint(condition=models.Q(seconds__gte=1),name='synthetic_reservation_positive'),
         ]
+
+
+class SyntheticBankNotification(models.Model):
+    id=models.UUIDField(primary_key=True,editable=False)
+    attempt=models.ForeignKey(SyntheticPaymentAttempt,on_delete=models.PROTECT)
+    payload=models.JSONField()
+    sha256=models.CharField(max_length=64)
+    archive_receipt=models.JSONField()
+
+
+class SyntheticNotificationDelivery(models.Model):
+    notification=models.OneToOneField(SyntheticBankNotification,primary_key=True,on_delete=models.PROTECT)
+    state=models.CharField(max_length=16,default='pending')
+    token=models.UUIDField(null=True)
+    lease_until=models.DateTimeField(null=True)
+    attempts=models.PositiveSmallIntegerField(default=0)
+    class Meta:
+        constraints=[
+            models.CheckConstraint(condition=models.Q(attempts__lte=5,state__in=['pending','claimed','checked','held']),name='synthetic_notification_bounds'),
+            models.CheckConstraint(condition=models.Q(state='claimed',token__isnull=False,lease_until__isnull=False)|models.Q(state__in=['pending','checked','held'],token__isnull=True,lease_until__isnull=True),name='synthetic_notification_claim'),
+        ]
+
+
+class SyntheticNotificationResult(models.Model):
+    id=models.UUIDField(primary_key=True,editable=False)
+    notification=models.OneToOneField(SyntheticBankNotification,on_delete=models.PROTECT)
+    payload=models.JSONField()
+    sha256=models.CharField(max_length=64)
+    archive_receipt=models.JSONField()

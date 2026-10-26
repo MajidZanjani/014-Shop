@@ -157,14 +157,20 @@ def _record(attempt_id,observation):
     synthetic_bank.guard()
     with transaction.atomic(durable=True):
         row=SyntheticPaymentAttempt.objects.select_for_update().get(pk=attempt_id)
-        if row.state not in ('uncertain','observed'):raise BankError('synthetic_attempt_not_dispatched')
-        if observation is None:return row
-        if not correlates(request_for(row),observation):raise BankError('synthetic_observation_mismatch')
-        if row.state=='observed' and (row.provider_operation_id,row.provider_status)!=(observation.provider_operation_id,observation.status):
-            raise BankError('synthetic_observation_conflict')
-        row.state='observed';row.provider_operation_id=observation.provider_operation_id;row.provider_status=observation.status
-        row.save(update_fields=['state','provider_operation_id','provider_status'])
-        return row
+        return _apply_locked(row,observation)
+
+
+def _apply_locked(row,observation):
+    # Internal validated commit helper; callers own the attempt row lock. No adapter I/O.
+    if not connection.in_atomic_block:raise BankError('synthetic_attempt_lock_required')
+    if row.state not in ('uncertain','observed'):raise BankError('synthetic_attempt_not_dispatched')
+    if observation is None:return row
+    if not correlates(request_for(row),observation):raise BankError('synthetic_observation_mismatch')
+    if row.state=='observed' and (row.provider_operation_id,row.provider_status)!=(observation.provider_operation_id,observation.status):
+        raise BankError('synthetic_observation_conflict')
+    row.state='observed';row.provider_operation_id=observation.provider_operation_id;row.provider_status=observation.status
+    row.save(update_fields=['state','provider_operation_id','provider_status'])
+    return row
 
 
 def reconcile(attempt_id,archive):

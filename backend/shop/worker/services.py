@@ -59,6 +59,8 @@ def execute_once(*, lease_seconds=10, max_attempts=3):
     if settings.LOCAL_CHECKOUT_ARCHIVE_ROOT:
         from .statement_mail import execute_once as capture_statement
         if capture_statement(lease_seconds=lease_seconds,max_attempts=max_attempts):return True
+        from shop.payments.notifications import execute_once as check_notification
+        if check_notification(lease_seconds=lease_seconds,max_attempts=max_attempts):return True
     claim = claim_probe(lease_seconds=lease_seconds, max_attempts=max_attempts)
     if claim is None:
         return False
