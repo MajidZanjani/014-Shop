@@ -170,7 +170,7 @@ class CheckoutTests(TransactionTestCase):
         self.assertEqual(client.post(API, data='{}', content_type='application/json').status_code, 403)
         response = client.get(PAGE)
         self.assertEqual(response['Cache-Control'], 'no-store')
-        self.assertEqual(response['Referrer-Policy'], 'no-referrer')
+        self.assertEqual(response['Referrer-Policy'], 'same-origin')
         self.assertIn("default-src 'none'", response['Content-Security-Policy'])
         csrf = client.cookies['csrftoken'].value
         value = {'request_id': str(uuid.uuid4()), 'sha256': self.preview()['sha256']}

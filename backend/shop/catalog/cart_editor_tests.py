@@ -56,7 +56,7 @@ class CartEditorTests(TransactionTestCase):
         result=access_tests.csrf_post(self.browser,'/api/v1/cart/',{'request_id':str(uuid.uuid4()),'expected_version':current['version'],'catalog_revision':CATALOG['revision'],'lines':current['lines']})
         self.assertEqual(result.status_code,201)
         page=self.browser.get(PATH);self.assertContains(page,'Saved cart revision 6')
-        self.assertEqual(page['Cache-Control'],'no-store');self.assertEqual(page['Referrer-Policy'],'no-referrer')
+        self.assertEqual(page['Cache-Control'],'no-store');self.assertEqual(page['Referrer-Policy'],'same-origin')
         self.assertIn("form-action 'self'",page['Content-Security-Policy'])
         self.assertNotContains(page,'<script');self.assertNotContains(page,'engineer@synthetic.invalid')
         self.assertEqual(QuotationRequest.objects.count(),0)

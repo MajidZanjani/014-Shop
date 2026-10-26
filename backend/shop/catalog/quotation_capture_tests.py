@@ -48,7 +48,7 @@ class QuotationCaptureTests(TransactionTestCase):
             result=self.browser.get(path);self.assertEqual(result.status_code,200)
             self.assertEqual(result['Cache-Control'],'no-store')
             self.assertNotContains(result,'engineer@synthetic.invalid')
-        self.assertEqual(response['Referrer-Policy'],'no-referrer')
+        self.assertEqual(response['Referrer-Policy'],'same-origin')
 
     def test_support_only_entire_customer_entry_cart_and_quote_use_forms(self):
         self.browser=Client(enforce_csrf_checks=True)

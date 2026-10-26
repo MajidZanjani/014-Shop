@@ -40,8 +40,8 @@ class RequestEvidenceTests(TransactionTestCase):
     def submit(self,value,version=1,raw=None,**kwargs):
         return self.browser.post(self.url(version),data=urlencode(value) if raw is None else raw,
             content_type='application/x-www-form-urlencoded',**kwargs)
-    def assert_private(self,response):
-        self.assertEqual(response['Cache-Control'],'no-store');self.assertEqual(response['Referrer-Policy'],'no-referrer')
+    def assert_private(self,response,policy='same-origin'):
+        self.assertEqual(response['Cache-Control'],'no-store');self.assertEqual(response['Referrer-Policy'],policy)
         self.assertIn('Cookie',response['Vary']);self.assertIn("form-action 'self'",response['Content-Security-Policy'])
     def assert_no_work(self):
         for model in (ArchiveDestination,ArchiveWorkAuthorization,ArchiveWorkClaim,ArchivePreparedVerification):
@@ -131,7 +131,7 @@ class RequestEvidenceTests(TransactionTestCase):
         for target in ('prepare_request_envelope','capture_request_envelope','staff_credential'):
             with patch('shop.access.request_evidence.'+target,side_effect=DatabaseError('PRIVATE_DB_CANARY')):
                 response=self.submit(value) if target=='capture_request_envelope' else self.browser.get(self.url())
-                self.assertEqual(response.status_code,503);self.assert_private(response);self.assertNotIn(b'PRIVATE_DB_CANARY',response.content)
+                self.assertEqual(response.status_code,503);self.assert_private(response,policy='no-referrer');self.assertNotIn(b'PRIVATE_DB_CANARY',response.content)
         with patch('shop.access.request_evidence.prepare_request_envelope',side_effect=EnvelopeError('PRIVATE_SOURCE_CANARY')):
             response=self.browser.get(self.url());self.assertEqual(response.status_code,404);self.assertNotIn(b'PRIVATE_SOURCE_CANARY',response.content)
         self.assertEqual(RequestEnvelope.objects.count(),0);self.assert_no_work()

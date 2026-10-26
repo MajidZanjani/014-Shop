@@ -197,3 +197,15 @@ with patch('shop.core.checks.runtime_secret_file', return_value='synthetic-only-
             result = subprocess.run([sys.executable, '-c', program], env=env,
                                     capture_output=True, text=True, timeout=8)
             self.assertEqual(result.returncode, 0, result.stderr)
+
+
+class FormPolicyTests(SimpleTestCase):
+    def test_only_form_html_allows_same_origin_referrers(self):
+        from django.http import HttpResponse, JsonResponse
+        from .middleware import FormReferrerPolicyMiddleware
+        for form, html, expected in ((True, True, 'same-origin'), (False, True, 'no-referrer'), (True, False, 'no-referrer')):
+            response = HttpResponse('synthetic') if html else JsonResponse({'synthetic': True})
+            response['Referrer-Policy'] = 'no-referrer'
+            response['Content-Security-Policy'] = "default-src 'none'; form-action " + ("'self'" if form else "'none'")
+            middleware = FormReferrerPolicyMiddleware(lambda request: response)
+            self.assertEqual(middleware(None)['Referrer-Policy'], expected)

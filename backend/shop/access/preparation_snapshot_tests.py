@@ -145,7 +145,7 @@ class PreparationSnapshotTests(TransactionTestCase):
         self.prepare(bound=True)
         self.assertEqual(PreparationAssessment.objects.count(),0)
         page=self.browser.get(self.snap,HTTP_ACCEPT='text/html');self.assertEqual(PreparationAssessment.objects.count(),0)
-        self.assertEqual(page['Cache-Control'],'no-store');self.assertEqual(page['Referrer-Policy'],'no-referrer')
+        self.assertEqual(page['Cache-Control'],'no-store');self.assertEqual(page['Referrer-Policy'],'same-origin')
         original=self.submit_capture().json()['snapshot'];row=PreparationAssessment.objects.get()
         for text in [json.dumps(original),self.browser.get(self.snap+'1/',HTTP_ACCEPT='text/html').content.decode()]:
             for secret in ['BUSINESS_SCOPE_ONE_PRIVATE_SYNTHETIC','owner@scope.synthetic.invalid',row.scope_digest,row.assessment_digest,str(self.credential.generation),str(row.request_id)]:self.assertNotIn(secret,text)

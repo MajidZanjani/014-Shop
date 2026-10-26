@@ -67,7 +67,7 @@ class BusinessDraftTests(TransactionTestCase):
         self.assertEqual(get_user_model().objects.count(),before_users);self.assertEqual(CustomerIdentity.objects.count(),before_identities)
         page=self.client.get(URL)
         self.assertContains(page,self.value['legal_business_name']);self.assertEqual(page['Cache-Control'],'no-store')
-        self.assertEqual(page['Referrer-Policy'],'no-referrer');self.assertIn("frame-ancestors 'none'",page['Content-Security-Policy'])
+        self.assertEqual(page['Referrer-Policy'],'same-origin');self.assertIn("frame-ancestors 'none'",page['Content-Security-Policy'])
         self.assertContains(page,'autocomplete="off"')
         self.assertNotIn(self.value['legal_business_name'],str(self.client.session.items()))
         for path in ['/api/v1/cart/','/api/v1/catalog/','/api/v1/quotation-requests/','/api/v1/configuration-drafts/']:

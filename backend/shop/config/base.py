@@ -10,6 +10,7 @@ WSGI_APPLICATION = 'shop.wsgi.application'
 TEMPLATES = [{'BACKEND':'django.template.backends.django.DjangoTemplates','APP_DIRS':True}]
 INSTALLED_APPS = ['django.contrib.auth', 'django.contrib.contenttypes', 'django.contrib.sessions', 'shop.core', 'shop.worker', 'shop.catalog', 'shop.access', 'shop.payments']
 MIDDLEWARE = ['django.middleware.security.SecurityMiddleware',
+              'shop.core.middleware.FormReferrerPolicyMiddleware',
               'shop.core.middleware.ValidHostMiddleware',
               'django.contrib.sessions.middleware.SessionMiddleware',
               'django.middleware.csrf.CsrfViewMiddleware',

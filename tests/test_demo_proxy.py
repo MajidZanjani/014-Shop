@@ -48,7 +48,9 @@ class DemoHostTests(unittest.TestCase):
                     def do_GET(self):
                         is_html=self.headers.get('Accept')=='text/html'
                         body=b'synthetic staff HTML' if is_html else b'{}'
-                        self.send_response(200)
+                        self.send_response(303 if self.path == '/staff/redirect/' else 200)
+                        if self.path == '/staff/redirect/':self.send_header('Location','/staff/')
+                        self.send_header('Vary','Cookie')
                         self.send_header('Content-Type','text/html' if is_html else 'application/json')
                         self.send_header('Content-Security-Policy',"default-src 'none'")
                         self.end_headers();self.wfile.write(body)
@@ -62,7 +64,12 @@ class DemoHostTests(unittest.TestCase):
                     self.assertEqual(response.status,200)
                     self.assertEqual(response.getheader('Content-Type'),'text/html')
                     self.assertEqual(response.getheader('Content-Security-Policy'),"default-src 'none'")
+                    self.assertEqual(response.getheader('Vary'),'Cookie')
                     self.assertEqual(response.read(),b'synthetic staff HTML')
+                    conn.request('GET','/staff/redirect/',headers={'Host':'staff.localhost:'+str(staff.server_port)})
+                    response=conn.getresponse();response.read()
+                    self.assertEqual(response.status,303)
+                    self.assertEqual(response.getheader('Location'),'/staff/')
                 finally:
                     conn.close();StaffDemoHandler.backend_port=None
                     backend.shutdown();backend.server_close();backend_thread.join(3)

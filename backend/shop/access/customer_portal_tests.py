@@ -47,7 +47,7 @@ class CustomerPortalTests(TestCase):
         self.assertContains(page,'Your customer access is verified.')
         self.assertNotContains(page,'portal@synthetic.invalid');self.assertNotContains(page,code)
         self.assertEqual(self.browser.get('/purchase/business/').status_code,200)
-        self.assertEqual(page['Cache-Control'],'no-store');self.assertEqual(page['Referrer-Policy'],'no-referrer')
+        self.assertEqual(page['Cache-Control'],'no-store');self.assertEqual(page['Referrer-Policy'],'same-origin')
         self.assertIn("form-action 'self'",page['Content-Security-Policy'])
         self.assertIn('Cookie',page['Vary'])
         self.assertEqual(self.browser.post(PATH,data={'action':'logout'},HTTP_X_CSRFTOKEN=old_csrf).status_code,403)
