@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: in_progress
-last_updated: "2026-10-26T05:20:39.273Z"
-state_head: be14fe05593e1b84d638fc9600cf8809914b199f
+last_updated: "2026-10-26T05:25:43.489Z"
+state_head: 21ae81ae8af8bc7f104227289469f22a90cb41e9
 progress:
   total_phases: 14
   completed_phases: 1
@@ -12,13 +12,13 @@ progress:
 last_activity: 2026-10-26
 current_phase: 08
 current_phase_name: Payment domain and fault-injectable fake bank
-stopped_at: Lifecycle and recovery command verified; continuing synthetic dispatch holds.
-last_activity_desc: Lifecycle and recovery command verified319 local tests; next synthetic dispatch holds.
+stopped_at: Verified local lifecycle, recovery command and retained dispatch holds; actual payment-domain integration remains pending.
+last_activity_desc: Cancellation expiry recovery tooling and retained dispatch holds verified327 local tests.
 ---
 
 # Project State
 
-Updated2026-10-26. Canonical current summary; latest evidence: [synthetic lifecycle](phases/08-payment-domain-and-fault-injectable-fake-bank/08-LIFECYCLE-PARTIAL.md). Prior observation/process evidence retains its historical scope. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
+Updated2026-10-26. Canonical current summary; latest evidence: [synthetic controls](phases/08-payment-domain-and-fault-injectable-fake-bank/08-CONTROLS-PARTIAL.md). Prior observation/process evidence retains its historical scope. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
 ## Current position
 
@@ -30,7 +30,9 @@ T03/T04 local catalog delivery remains intact; T05 local draft persistence and T
 
 ## Delivered behavior
 
-- Synthetic cancellation/expiry and read-only recovery inspection plus supported local command now verified. Post-archive claim checks prevent stale sends; uncertain claims remain lookup-only. CORE_LOCAL_PASS5 checks/319 tests,86.218s; source184 exact files/23 templates. [Evidence](phases/08-payment-domain-and-fault-injectable-fake-bank/08-LIFECYCLE-PARTIAL.md). Next: durable synthetic dispatch holds.
+- Retained synthetic hold/release commands now use exact revisions and historical retry arbitration under the dispatch lock. Holds arriving during archive I/O prevent claim; a stale release cannot clear a newer hold. CORE_LOCAL_PASS5 checks/327 tests,87.552s; migrations/no drift pass and source186 exact files/23 templates. [Evidence](phases/08-payment-domain-and-fault-injectable-fake-bank/08-CONTROLS-PARTIAL.md).
+
+- Synthetic cancellation/expiry and read-only recovery inspection plus supported local command now verified. Post-archive claim checks prevent stale sends; uncertain claims remain lookup-only. CORE_LOCAL_PASS5 checks/319 tests,86.218s; source184 exact files/23 templates. [Evidence](phases/08-payment-domain-and-fault-injectable-fake-bank/08-LIFECYCLE-PARTIAL.md). Retained synthetic dispatch holds are now implemented; see latest evidence above.
 
 - Synthetic attempts now recover archived expected bytes before a durable one-way dispatch claim. Lost responses remain uncertain; lookup-only reconciliation cannot blindly resend or authorize commerce. CORE_LOCAL_PASS5 checks/305 tests (291 Django plus14 Gunicorn),80.979s; owned PostgreSQL18.6/UTF8; payments0002/catalog0012 application and no-drift pass. Frozen source179 files23 templates/exact bytes/no symlinks. [Evidence](phases/08-payment-domain-and-fault-injectable-fake-bank/08-ATTEMPTS-PARTIAL.md).
 
@@ -105,27 +107,7 @@ User review, 2026-10-22: **previous catalog demo checked and approved** (user: �
 
 ## Exact next action
 
-Continue the synthetic attempt lifecycle with explicit pre-dispatch cancellation/expiry and recovery inspection, rechecking eligibility after archive I/O under the same claim lock. Preserve uncertain claims and lookup-only reconciliation; do not add automatic redispatch. Actual immutable approved order/acceptance, live archive authority, authenticated bank evidence and commerce effects remain separately pending. Continue substantive implementation without per-task context-clear requests; no external/host operations authorized.
-
-User instruction2026-10-23: **sync to configured origin/main after every commit**, using ordinary fetch/non-force push and checking ahead/behind. This applies to implementation and planning commits. Every implementation and planning commit must be pushed immediately and ahead/behind checked. Before each commit, reconcile all affected planning files, regenerate canonical state.json and run scripts/check_planning.py; preserve historical evidence.
-
-Planning audit2026-10-23: [F-00/F-01/F-02 report](audits/2026-10-23-local-workflow.md). All three findings remain fixed; recorded audit evidence147 retains its scope. Current combined lane passes272 core-local checks; prior journey and audit evidence retain their recorded scopes. Country/tax answers stay deferred.
-
-Audit completion: all three local findings fixed; final core-local147 tests and source package116 files/fifteen templates pass. Full report: [local workflow audit](audits/2026-10-23-local-workflow.md). Current phase7/last complete1 and all acceptance gates unchanged.
-
-## Remaining dependencies and protections
-
-Finite release gate register: [amendment](EXECUTION-AMENDMENT-2026-10-22.md#finite-qualification-register), linked to original requirements/T02 evidence. One unresolved host/application attestation design task; production/bank-sandbox DB gate closed. No additional infrastructure/collector expansion without concrete need. No off-host runner assigned; do not repeatedly request, purchase or provision. No protected-host operations, real bank/mail/DNS/TLS or automatic billing changes authorized.
-
-Retain dependency locks, raw SBOMs, notices, validated derivative and all original source/evidence. Local tests use fresh owned synthetic PostgreSQL and unchanged existing allocations. Existing-service inventory/allowlist/DB identity/full activation-impact review and exact authority still precede any separately authorized host write. `.env` credentials remain private and unused by this slice.
-
-## Session continuity
-
-User corrected excessive context-clear requests: a task/commit is not context pressure; continue substantive work across commits/syncs. No exact percentage is available. Session resumed2026-10-26; consumed pause artifacts removed. Quick261026-72e/7av verified319 local tests; continuing durable synthetic dispatch holds.
-
-Continued implementation through4063465 staff queue/preparation history and9039679 review history, each synced0/0. Implemented a typed durable local-synthetic bank adapter, separate from worker probes. Immutable-by-service fake operations and retained key aliases arbitrate merchant/reference/key retries and conflicts; explicit post-commit timeout can be reconciled by no-write reference lookup across connections. Exact typed correlation never confirms actual money; database/observation flags remain false. CORE_LOCAL_PASS5 checks/297 tests (283 Django plus14 Gunicorn),80.242s; PostgreSQL18.6/UTF8, payments0001/catalog0012 application and no-drift pass. Exact source /nix/store/87iyj21lmi0pmbqf52iyyvx68pvy1ygf-shop-python-source176 files23 templates/no symlinks.
-
-Continue the synthetic attempt lifecycle with explicit pre-dispatch cancellation/expiry and recovery inspection, rechecking eligibility after archive I/O under the same claim lock. Preserve uncertain claims and lookup-only reconciliation; do not add automatic redispatch. Actual immutable approved order/acceptance, live archive authority, authenticated bank evidence and commerce effects remain separately pending. Continue substantive implementation without per-task context-clear requests; no external/host operations authorized. No active test/demo/async jobs after verification. Country/tax stays deferred without repeated requests; no credentials/agents/protected/external operations.
+Completed synthetic pre-dispatch cancellation/expiry, recovery inspection/command and retained revision-checked dispatch holds. Final327 local tests pass; [current evidence](phases/08-payment-domain-and-fault-injectable-fake-bank/08-CONTROLS-PARTIAL.md). Next independent payment slice: specify durable synthetic observation/reconciliation history, preserving original and conflicting observations without turning them into financial confirmation or allowing redispatch. Review existing typed bank/attempt correlation, immutable snapshot identity and transaction arbitration before runtime changes. Actual immutable approved order/acceptance, live archive authority, authenticated bank evidence and commerce effects remain separately pending. No active tests or async jobs after verification; no external/host operations authorized. Country/tax remains deferred without repeated requests.
 
 ### Quick Tasks Completed
 
@@ -198,7 +180,8 @@ Continue the synthetic attempt lifecycle with explicit pre-dispatch cancellation
 | 261023-j1r | Archive synthetic attempts before single dispatch and reconcile uncertainty by lookup | 2026-10-23 | — | [261023-j1r](./quick/261023-j1r-implement-synthetic-payment-attempt-disp/) |
 | 261026-72e | Implement synthetic cancellation expiry and recovery inspection | 2026-10-26 | be14fe0 | [261026-72e-implement-synthetic-cancellation-expiry-](./quick/261026-72e-implement-synthetic-cancellation-expiry-/) |
 | 261026-7av | Expose read-only local synthetic payment recovery inspection command | 2026-10-26 | be14fe0 | [261026-7av-expose-read-only-local-synthetic-payment](./quick/261026-7av-expose-read-only-local-synthetic-payment/) |
+| 261026-7e6 | Retain synthetic dispatch holds with exact revision release | 2026-10-26 | 21ae81a | [261026-7e6-retain-synthetic-dispatch-holds-with-exa](./quick/261026-7e6-retain-synthetic-dispatch-holds-with-exa/) |
 
 ## Active session — 2026-10-26
 
-Resumed after user-selected payment review. User authorized filling lifecycle gaps then continuing independent project work. Quick261026-72e/7av completed cancellation/expiry/recovery inspection and supported command;319 local tests pass. Next: durable synthetic dispatch holds (quick261026-7e6). Historical305-test baseline retains its original scope. No external/protected operations or subagents.
+Resumed after user-selected payment review. User authorized filling lifecycle gaps then continuing independent project work. Quick261026-72e/7av completed cancellation/expiry/recovery inspection and supported command;319 local tests pass. Quick261026-7e6 then implemented retained dispatch holds; final327 local tests pass. Actual approved payment-domain integration remains pending. Historical305-test baseline retains its original scope. No external/protected operations or subagents.
