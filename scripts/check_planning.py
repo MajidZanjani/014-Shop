@@ -26,6 +26,31 @@ def check(root=ROOT):
     for label,number in [('Current development focus',phase),('Last fully completed phase',int(last[1]))]:
         assert re.search(r'\*\*'+label+r':\*\*\s*'+str(number)+r'\b',state),'STATE missing explicit focus/completion label'
     assert {str(row['number']):row['status'] for row in machine['phases']}==rows,'state.json phase statuses disagree with ROADMAP'
+    # Live reporting indexes must describe the same work, not merely link STATE.
+    labels=('Current plan','Execution status','Next implementation task')
+    def field(text,label):
+        match=re.search(r'^\*\*'+re.escape(label)+r':\*\*\s*(.+)$',text,re.M)
+        assert match,'Live status missing '+label
+        return match[1].strip()
+    plan=re.search(r'^current_plan:\s*["\']?(\d+)',state,re.M)
+    assert plan,'STATE missing current_plan'
+    plan_id=f'{phase:02d}-{int(plan[1]):02d}'
+    assert field(state,'Current plan').startswith(plan_id+' '),'STATE current plan disagrees with frontmatter'
+    assert any(path.name==plan_id+'-PLAN.md' for path in (planning/'phases').glob('*/*-PLAN.md')),'Current plan file missing'
+    for name in ('ROADMAP.md','PROJECT.md','HANDOFF.md'):
+        text=(planning/name).read_text()
+        focus=re.search(r'^\*\*Current development focus:\*\*\s*(\d+)\b',text,re.M)
+        assert focus and int(focus[1])==phase,name+' development focus disagrees with STATE'
+        for label in labels:
+            assert field(text,label)==field(state,label),name+' disagrees with STATE: '+label
+    status=re.search(r'^status:\s*(\w+)',state,re.M)[1]
+    if status=='paused':
+        assert field(state,'Execution status').startswith('paused '),'Paused STATE has contradictory execution status'
+        assert re.search(r'^paused_at:\s*\S+',state,re.M),'Paused STATE missing routing timestamp'
+        assert machine['next']['command']=='$gsd-resume-work','Paused state.json must route to resume'
+    elif status=='in_progress':
+        assert field(state,'Execution status').startswith('in progress'),'Active STATE has contradictory execution status'
+        assert not re.search(r'^paused_at:\s*\S+',state,re.M),'Active STATE retains paused routing timestamp'
     handoff=planning/'HANDOFF.md'
     if handoff.exists():
         recorded=re.search(r'^\*\*Recorded implementation:\*\*\s*([0-9a-f]{7,40})\s*$',handoff.read_text(),re.M)

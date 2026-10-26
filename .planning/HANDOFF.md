@@ -1,5 +1,13 @@
 # Current execution continuity
 
+**Current development focus:** 10 — staged licence/reference-design delivery and support ledger.
+
+**Current plan:** 10-02 — SLL support top-ups and reserved existing credit.
+
+**Execution status:** paused before task 1 of 4; context restored, implementation has not restarted. Latest activity: planning-report correction completed.
+
+**Next implementation task:** 1 of 4 — recorded synthetic support reservations/releases, exact retries and real-PostgreSQL competing-reservation verification. Then committed work spend, reverse/replace corrections and committed-revision statements.
+
 **Recorded implementation:** 0bfb7db2ea8a022329b8ce61675745891ebb7d2a
 
 [Final purchase-flow revision2](PURCHASE-FLOW-AMENDMENT.md) remains current authority. Development focus10 now covers complete-cart synthetic grants/staged delivery and remaining support ledger; earlier phases are not implicitly complete. [Evidence](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md). One captured cart payment yields an archived deterministic grant plan, one licence record per IP line and exactly36000 integer support seconds/package once, non-expiring. Initial delivery leaves promised later reference design outstanding; later completion never adds another entitlement/grant. Ready-kit/support-only cases stay scoped. Archive readback precedes all simulated records/effects; uncertain funding cannot provision. No actual keys/files/rights or spendable support.

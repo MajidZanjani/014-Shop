@@ -6,7 +6,15 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 ## Current implementation status — 2026-10-26
 
-Current development focus: Phase3 — catalog/platform and seller-controlled offer/support rules, then Phase4/7/10/13 under the [final purchase-flow amendment](PURCHASE-FLOW-AMENDMENT.md). Prior local/synthetic configuration/cart/customer/staff/archive/payment work is preserved; current local evidence338 backend/12 focused/118 frontend tests with tool scope recorded in STATE.md. Only Phase1 is fully accepted. Current counts/evidence: [STATE.md](STATE.md) and [ROADMAP.md](ROADMAP.md). No live commercial or external qualification is inferred.
+**Current development focus:** 10 — staged licence/reference-design delivery and support ledger, under the [final purchase-flow amendment](PURCHASE-FLOW-AMENDMENT.md).
+
+**Current plan:** 10-02 — SLL support top-ups and reserved existing credit.
+
+**Execution status:** paused before task 1 of 4; context restored, implementation has not restarted. Latest activity: planning-report correction completed.
+
+**Next implementation task:** 1 of 4 — recorded synthetic support reservations/releases, exact retries and real-PostgreSQL competing-reservation verification. Then committed work spend, reverse/replace corrections and committed-revision statements.
+
+Complete-cart synthetic checkout, acceptance/payment, once-only licence/support grants and staged completion are implemented. Latest retained backend run:378 tests/5 checks; final focused fulfilment11 tests; proxy50 header-level checks. These are dated local/synthetic results, not newly executed tests or actual commercial/production acceptance. Only Phase1 is fully accepted;11/29 plan records complete. Counts are not an engineering-effort estimate. Current evidence and gates: [STATE.md](STATE.md) and [ROADMAP.md](ROADMAP.md).
 
 Before every commit reconcile affected current references, publish state.json and run python3 scripts/check_planning.py. Sync commits to origin/main without force. Historical evidence retains its original scope.
 

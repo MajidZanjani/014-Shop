@@ -4,13 +4,19 @@
 
 **Active sequencing:** [2026-10-22 execution amendment](EXECUTION-AMENDMENT-2026-10-22.md); T03 and ready local slices proceed independently of pending release qualification.
 
-**Local evidence:** [catalog/configurator and draft/fallback delivery](quick/261022-dj5-amend-local-execution-sequence-and-deliv/261022-dj5-SUMMARY.md); canonical current status is STATE.md.
+**Local evidence:** [latest complete-cart grants/staged delivery](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md); exact results and release gates are in [STATE.md](STATE.md).
 
 **Baseline:** 2026-10-21 protected-services proposal/handoff, read in full. T01 documentation reconciled; T02 is executing with eight completed local slices and ten incomplete qualification/implementation records. Actual runtime/host criteria remain unexecuted.
 
 ## Current implementation activity — 2026-10-26
 
 **Current development focus:** 10 — complete-cart staged delivery and support ledger; earlier catalog/commercial/runtime/acceptance qualification remains pending. [Amendment/task map](PURCHASE-FLOW-AMENDMENT.md).
+
+**Current plan:** 10-02 — SLL support top-ups and reserved existing credit.
+
+**Execution status:** paused before task 1 of 4; context restored, implementation has not restarted. Latest activity: planning-report correction completed.
+
+**Next implementation task:** 1 of 4 — recorded synthetic support reservations/releases, exact retries and real-PostgreSQL competing-reservation verification. Then committed work spend, reverse/replace corrections and committed-revision statements.
 
 **Last fully completed phase:** 1. Phases2–7 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase8 work while those earlier checks remain open. Completed phases remain1/14 (rounded7%); planned records11/29. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
 
@@ -41,7 +47,7 @@ The October21 reset completed documentation replanning. Later user continuation 
 - [ ] **Phase 7: Short business checkout, standard offers and acceptance** — October 21 handoff T07
 - [ ] **Phase 8: Payment domain and fault-injectable fake bank** — October 21 handoff T08
 - [ ] **Phase 9: Selected-bank sandbox integration and complete reconciliation** — October 21 handoff T09
-- [ ] **Phase 10: Staged licence/reference-design delivery and support ledger** — October 21 handoff T10
+- [ ] **Phase 10: Staged licence/reference-design delivery and support ledger** — CURRENT DEVELOPMENT FOCUS; paused before10-02 task1; partial local implementation, full acceptance pending — October 21 handoff T10
 - [ ] **Phase 11: Protected-host qualification, shop-only deployment and conditional public activation** — October 21 handoff T11
 - [ ] **Phase 12: Backups, operating alerts and financial/licensing restore rehearsal** — October 21 handoff T12
 - [ ] **Phase 13: Purchase-flow, fulfilment and release acceptance** — October 21 handoff T13
@@ -301,7 +307,7 @@ Local implementation: versioned owner draft cart delivered in [quick261022-iqc](
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md T10; complete companion proposal remains normative.
 **Estimate:** 5–8 engineer-days
 **UI hint:** yes
-**Plans:** Applicable executable phase plans below/on disk define remaining work; original completion evidence retains its scope.
+**Plans:** 0/2 fully accepted; both partially implemented locally. [10-01](phases/10-staged-delivery-and-support-ledger/10-01-PLAN.md): once-only synthetic grants and staged completion implemented; actual private package/key delivery and fulfilment qualification pending. [10-02](phases/10-staged-delivery-and-support-ledger/10-02-PLAN.md): synthetic credit grants implemented; paused before reservation task1. Remaining: reservations/releases, committed work spending, reverse/replace corrections and committed-revision statements. [Retained evidence](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md).
 
 **Success Criteria:**
 
@@ -421,6 +427,8 @@ Keep public bytes in shop-owned OVH Object Storage through a fixed verified HTTP
 
 ## Progress
 
+Unchecked phase boxes mean full acceptance is outstanding. They do not mean development has not started. Current focus is Phase10; only Phase1 is fully accepted. The7% figure is1/14 accepted phases, not an engineering-effort or schedule estimate.
+
 | Phase | Plans Complete | Status | Completed |
 |---|---|---|---|
 | 1. Product authority, repository review and decision register | 2 / 2 | Complete — documentation reconciled | 2026-10-21 |
@@ -432,7 +440,7 @@ Keep public bytes in shop-owned OVH Object Storage through a fixed verified HTTP
 | 7. Short business checkout, standard offers and acceptance | 1 / 4 | In Progress — current local cart/quotation/business/review/preparation implementation; commercial acceptance pending | — |
 | 8. Payment domain and fault-injectable fake bank | 0 / not planned | In Progress | Typed local synthetic-bank slice; full domain pending |
 | 9. Selected-bank sandbox integration and complete reconciliation | 0 / not planned | Not started | — |
-| 10. Staged licence/reference-design delivery and support ledger | 0 / 2 | In Progress — complete-cart synthetic grants/staged completion; full-cart work ledger and actual fulfilment pending | — |
+| 10. Staged licence/reference-design delivery and support ledger | 0 / 2 | In Progress — CURRENT DEVELOPMENT FOCUS; paused before10-02 task1; synthetic grants/staged completion implemented; reservations/work/corrections/statements and actual fulfilment pending | — |
 | 11. Protected-host qualification, shop-only deployment and conditional public activation | 0 / not planned | Not started | — |
 | 12. Backups, operating alerts and financial/licensing restore rehearsal | 0 / not planned | Not started | — |
 | 13. Purchase-flow, fulfilment and release acceptance | 0 / 1 | In Progress — focused local amendment cases; full release/qualification pending | — |

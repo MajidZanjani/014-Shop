@@ -1249,6 +1249,16 @@
       "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
     },
     {
+      "path": ".planning/quick/261026-ehs-reconcile-manager-facing-planning-status/261026-ehs-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261026-ehs-reconcile-manager-facing-planning-status/261026-ehs-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
       "path": ".planning/research/ARCHITECTURE.md",
       "role": "current",
       "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
