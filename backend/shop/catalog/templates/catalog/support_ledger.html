@@ -21,7 +21,7 @@
 {% if staff %}<form method="post">{% csrf_token %}<input type="hidden" name="action" value="correct"><input type="hidden" name="request_id" value="{{ item.request_id }}"><input type="hidden" name="target_id" value="{{ item.id }}"><label>Replacement whole seconds (zero reverses the spend) <input type="number" name="seconds" min="0" required></label><button type="submit">Reverse and replace simulated work</button></form>{% endif %}</li>{% empty %}<li>No work committed.</li>{% endfor %}</ul>
 <h2>Published synthetic statements</h2>
 {% if staff %}<form method="post">{% csrf_token %}<input type="hidden" name="action" value="statement"><input type="hidden" name="request_id" value="{{ request_id }}"><button type="submit">Archive and publish simulated statement</button></form>{% endif %}
-<ul>{% for item in ledger.statements %}<li>Committed revision {{ item.statement.revision }} · Spent {{ item.statement.spent_seconds }} seconds · Remaining {{ item.statement.available_seconds }} · Reserved {{ item.statement.reserved_seconds }}.</li>{% empty %}<li>No statement published.</li>{% endfor %}</ul>
+<ul>{% for item in ledger.statements %}<li>Committed revision {{ item.statement.revision }} · Spent {{ item.statement.spent_seconds }} seconds · Remaining {{ item.statement.available_seconds }} · Reserved {{ item.statement.reserved_seconds }}. Local mail capture: {{ item.mail_capture }}; no email sent.</li>{% empty %}<li>No statement published.</li>{% endfor %}</ul>
 {% endif %}
 {% if staff %}<p><a href="/staff/">Staff home</a></p>{% else %}<p><a href="/purchase/checkout-rehearsal/{{ checkout_id }}/payment/">Purchase rehearsal</a> · <a href="/purchase/cart/">Saved cart</a></p>{% endif %}
 {% endblock %}

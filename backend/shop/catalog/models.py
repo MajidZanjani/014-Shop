@@ -497,3 +497,32 @@ class SyntheticDocumentIssue(models.Model):
     payload=models.JSONField()
     sha256=models.CharField(max_length=64)
     archive_receipt=models.JSONField()
+
+
+class SyntheticStatementMail(models.Model):
+    id=models.UUIDField(primary_key=True,editable=False)
+    statement=models.OneToOneField(SyntheticSupportEvent,on_delete=models.PROTECT)
+    payload=models.JSONField()
+    sha256=models.CharField(max_length=64)
+    archive_receipt=models.JSONField()
+
+
+class SyntheticStatementDelivery(models.Model):
+    mail=models.OneToOneField(SyntheticStatementMail,primary_key=True,on_delete=models.PROTECT)
+    state=models.CharField(max_length=16,default='pending')
+    token=models.UUIDField(null=True)
+    lease_until=models.DateTimeField(null=True)
+    attempts=models.PositiveSmallIntegerField(default=0)
+    class Meta:
+        constraints=[
+            models.CheckConstraint(condition=models.Q(attempts__lte=5,state__in=['pending','claimed','captured','held']),name='synthetic_statement_delivery_bounds'),
+            models.CheckConstraint(condition=models.Q(state='claimed',token__isnull=False,lease_until__isnull=False)|models.Q(state__in=['pending','captured','held'],token__isnull=True,lease_until__isnull=True),name='synthetic_statement_delivery_claim'),
+        ]
+
+
+class SyntheticStatementCapture(models.Model):
+    id=models.UUIDField(primary_key=True,editable=False)
+    mail=models.OneToOneField(SyntheticStatementMail,on_delete=models.PROTECT)
+    payload=models.JSONField()
+    sha256=models.CharField(max_length=64)
+    archive_receipt=models.JSONField()

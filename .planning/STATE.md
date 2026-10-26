@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 current_plan: 04
-status: executing
-last_updated: "2026-10-26T11:22:48.702Z"
+status: verifying
+last_updated: "2026-10-26T11:42:18.508Z"
 state_head: 6141905bdad05c4dacf1a5ba40b80c710f66e5df
 progress:
   total_phases: 14
@@ -10,12 +10,12 @@ progress:
   total_plans: 31
   completed_plans: 11
   percent: 7
-current_task: 2
+current_task: 3
 last_activity: 2026-10-26
 current_phase: 10
 current_phase_name: Staged licence/reference-design delivery and support ledger
-stopped_at: Local10-04 synthetic numbering journal implemented; statement mail outbox next.
-last_activity_desc: Local archived synthetic document reservations and separate issue journal; actual numbering and statement mail pending.
+stopped_at: Local10-04 document numbering and durable statement capture implemented; reviewed support-refund cases next.
+last_activity_desc: Archived local statement intent/capture and existing single worker retries preserve support spend; actual mail and qualification pending.
 ---
 
 # Project state — final purchase-flow revision2
@@ -26,9 +26,9 @@ last_activity_desc: Local archived synthetic document reservations and separate 
 
 **Current plan:** 10-04 — Synthetic document reservations and statement delivery.
 
-**Execution status:** executing — local10-04 synthetic reservation/issue journal implemented; statement outbox and actual qualification pending.
+**Execution status:** verification pending — local10-04 document reservations and durable synthetic statement capture implemented; actual qualification remains pending.
 
-**Next implementation task:** Implement scoped durable synthetic statement mail retries in the existing worker; preserve legal numbering, actual document publication, SMTP and restore reconciliation gates.
+**Next implementation task:** Plan reviewed support-refund cases distinguishing available, reserved and consumed credit without erasing work or automatically refunding money; preserve actual support/refund policy gates.
 
 ## Preserved implementation/evidence
 
@@ -143,6 +143,16 @@ Paused at the user's request. Resume via `$gsd-resume-work`; read [structured ha
 
 ## Local10-04 document reservations — 2026-10-26
 
-Synthetic invoice/credit reservations and separate simulated issue records now archive/read back before commit, retain exact retries and immutable history, and serialize empty/existing series on PostgreSQL. Full recovery of lost terminal history and actual numbering/publication remain gated. [Exact evidence](phases/10-staged-delivery-and-support-ledger/10-DOCUMENT-NUMBERS-PARTIAL.md). Next is scoped durable statement mail integration. Counts1/14 phases and11/31 plan records; full Phase10 acceptance remains0/4.
+Synthetic invoice/credit reservations and separate simulated issue records now archive/read back before commit, retain exact retries and immutable history, and serialize empty/existing series on PostgreSQL. Full recovery of lost terminal history and actual numbering/publication remain gated. [Exact evidence](phases/10-staged-delivery-and-support-ledger/10-DOCUMENT-NUMBERS-PARTIAL.md). Durable statement mail integration is now implemented locally; see the latest statement-capture evidence below. Counts1/14 phases and11/31 plan records; full Phase10 acceptance remains0/4.
 
 Latest10-04 verification: `CORE_LOCAL_PASS checks=5 tests=431 duration_seconds=119.017`; migration0020/no drift and source229 exact files/30 templates/1 CSS/no symlinks pass. Actual off-host recovery remains pending.
+
+## Local10-04 statement capture — 2026-10-26
+
+Archived immutable statement intents now feed the existing leased worker and a durable local capture sink. New-process response-loss retry recovers the same receipt without a new support debit. Current staff generation/assignment and verified owner are rechecked; private status never claims actual email sent. Final focused17 tests and complete-cart demo pass. [Exact evidence and pending gates](phases/10-staged-delivery-and-support-ledger/10-STATEMENT-MAIL-PARTIAL.md). Counts remain1/14 phases and11/31 plans; Phase10 full acceptance0/4.
+
+Latest verification: full backend448 tests/5 checks,127.821s across two bounded120-second batches; final focused17 tests,7.030s; migration0021/no drift; source232 exact files/30 templates/1 CSS/no symlinks. Supported complete-cart staff/customer response-loss demo passes.
+
+Existing worker regression/mutation lane: `WORKER_LOCAL_PASS checks=6 tests=24 duration_seconds=14.789`. Both required broken-ownership mutations are rejected; forced process interruption/off-host worker qualification remains pending.
+
+Final proxy evidence: `DEMO_ACCESS_PASS checks=102 aliases=2 evidence=local-synthetic-header-level`; owned loopback proxy/Gunicorn/PostgreSQL and current complete-cart fixture, not an independently observed browser engine or formal visual/accessibility approval.

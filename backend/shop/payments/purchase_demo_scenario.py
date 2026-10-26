@@ -215,6 +215,24 @@ def run(archive_root):
                         published=staff.post(staff_url,data=json.dumps(statement_command),content_type='application/json',HTTP_X_CSRFTOKEN=staff_token)
                         if published.status_code!=200 or published.json()['ledger']['revision']!=5:
                             raise RuntimeError('synthetic ledger statement/retry failed')
+            from shop.worker import statement_mail
+            from shop.catalog.models import SyntheticStatementMail,SyntheticStatementCapture,SyntheticStatementDelivery
+            mail=SyntheticStatementMail.objects.get(statement__fulfilment=grant)
+            claimed=statement_mail.claim()
+            if claimed is None or claimed.effect_id!=mail.pk:raise RuntimeError('synthetic statement claim failed')
+            with PreparedArchive(Path(archive_root)) as mail_archive:
+                if not statement_mail.capture(claimed,mail_archive):raise RuntimeError('synthetic durable statement capture failed')
+                # Simulate response loss after durable sink commit, before acknowledgement.
+                from datetime import timedelta
+                SyntheticStatementDelivery.objects.filter(pk=mail.pk).update(lease_until=timezone.now()-timedelta(seconds=1))
+                retried=statement_mail.claim()
+                if retried is None or not statement_mail.capture(retried,mail_archive) or not statement_mail.complete(retried,mail_archive):
+                    raise RuntimeError('synthetic statement recovery failed')
+            if SyntheticStatementCapture.objects.filter(mail=mail).count()!=1:raise RuntimeError('synthetic statement duplicate capture')
+            mail_status=client.get(support_url,HTTP_ACCEPT='application/json')
+            if (mail_status.status_code!=200 or mail_status.json()['ledger']['statements'][0]['mail_capture']!='captured'
+                    or mail_status.json()['ledger']['spent_seconds']!=1800 or mail_status.json()['ledger']['revision']!=5):
+                raise RuntimeError('synthetic statement capture changed ledger')
             materials_url='/purchase/checkout-rehearsal/'+str(retained.pk)+'/packages/'
             listed=client.get(materials_url,HTTP_ACCEPT='application/json')
             if listed.status_code!=200 or len(listed.json()['packages'])!=3:raise RuntimeError('private package revision listing failed')
@@ -246,7 +264,8 @@ def run(archive_root):
             'support_ledger':{'revision':final['revision'],'reserved_seconds':final['reserved_seconds'],
                 'spent_seconds':final['spent_seconds'],'available_seconds':final['available_seconds'],
                 'statement_committed_revision':final['statements'][0]['statement']['revision'],
-                'local_staff_two_factors_and_exact_grant':True,'reverse_replace_history_preserved':True},
+                'local_staff_two_factors_and_exact_grant':True,'reverse_replace_history_preserved':True,
+                'statement_mail_capture_once_after_lost_response':True,'actual_email_sent':False},
             'private_packages':{'retained_versions':3,'old_version_downloaded_once':True,'bearer_in_url':False,'actual_delivery':False},
             'licence_change_cases':{'kinds_captured_and_reviewed':5,'higher_volume_requires_quote':True,
                 'corrected_review_supersedes_prior_proposal':True,'original_entitlement_unchanged':True,'automatic_charge':False}}

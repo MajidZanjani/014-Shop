@@ -103,15 +103,24 @@ def worker_checks(python, env, pg, database, *, full=False):
 def mutation_checks(python, env, scratch):
     """Prove focused tests reject broken controls in a disposable source copy."""
     backend = scratch / 'mutation-backend'
-    files = list((ROOT / 'backend').rglob('*'))
-    require(len(files) < 200, 'bounded synthetic backend source copy required')
+    source_root = ROOT / 'backend'
+    entries = list(source_root.rglob('*'))
+    require(not any(path.is_symlink() for path in entries), 'symlink forbidden in mutation source copy')
+    # Copy the inert app source allowlist, excluding interpreter caches and tool locks.
+    # The old 200-entry bound predates the current 232-file app and counted cache directories.
+    def included(path):
+        relative = str(path.relative_to(source_root))
+        return (path.suffix == '.py'
+            or relative in {'shop/catalog/revision.json', 'shop/catalog/document_preview.json', 'shop/catalog/shop.css'}
+            or path.suffix == '.html' and relative.startswith(('shop/catalog/templates/', 'shop/access/templates/')))
+    files = [path for path in entries if path.is_file() and included(path)]
+    require(len(files) <= 512 and sum(path.stat().st_size for path in files) <= 8388608,
+            'bounded synthetic backend source copy required')
     for source in files:
-        require(not source.is_symlink(), 'symlink forbidden in mutation source copy')
-        if source.is_file():
-            require(source.stat().st_size <= 1048576, 'oversized backend source input')
-            target = backend / source.relative_to(ROOT / 'backend')
-            target.parent.mkdir(parents=True, exist_ok=True)
-            target.write_bytes(source.read_bytes())
+        require(source.stat().st_size <= 1048576, 'oversized backend source input')
+        target = backend / source.relative_to(source_root)
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(source.read_bytes())
     path = backend / 'shop/worker/services.py'
     original = path.read_text()
     fence = original.replace('claim_token=claim.token, lease_until__gt=Now()).update', 'lease_until__gt=Now()).update')

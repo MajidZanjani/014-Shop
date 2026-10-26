@@ -10,9 +10,9 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current plan:** 10-04 — Synthetic document reservations and statement delivery.
 
-**Execution status:** executing — local10-04 synthetic reservation/issue journal implemented; statement outbox and actual qualification pending.
+**Execution status:** verification pending — local10-04 document reservations and durable synthetic statement capture implemented; actual qualification remains pending.
 
-**Next implementation task:** Implement scoped durable synthetic statement mail retries in the existing worker; preserve legal numbering, actual document publication, SMTP and restore reconciliation gates.
+**Next implementation task:** Plan reviewed support-refund cases distinguishing available, reserved and consumed credit without erasing work or automatically refunding money; preserve actual support/refund policy gates.
 
 Complete-cart synthetic checkout, acceptance/payment, once-only grants and staged completion are implemented, now with archived reservations/releases, scoped staff work, reverse/replace corrections and committed-revision statements. Supported complete-cart demo now covers both local staff login factors, exact assignment and work/correction/release/statement retries. Private versioned synthetic material releases and owner-only session-bound single-use POST downloads are now implemented. Local reviewed licence-change cases and held revised-scope/orders now preserve originals and unknown policies. Latest retained results:420-test full backend regression before the final catalog-family/same-band validation changes, final16 focused case tests and102 proxy header-level checks; complete-cart two-factor staff/customer demo includes all five case kinds and review corrections alongside retained-version release/download. Actual material/rights/retention/host qualifications remain pending. Only Phase1 is fully accepted;11/31 plan records complete. Counts are not engineering-effort estimates. [STATE.md](STATE.md) and [ROADMAP.md](ROADMAP.md) retain exact evidence and actual qualification gates.
 
@@ -117,6 +117,16 @@ Current requirement delta and routing: [PURCHASE-FLOW-AMENDMENT.md](PURCHASE-FLO
 
 ## Local10-04 document reservations — 2026-10-26
 
-Synthetic invoice/credit reservations and separate simulated issue records now archive/read back before commit, retain exact retries and immutable history, and serialize empty/existing series on PostgreSQL. Full recovery of lost terminal history and actual numbering/publication remain gated. [Exact evidence](phases/10-staged-delivery-and-support-ledger/10-DOCUMENT-NUMBERS-PARTIAL.md). Next is scoped durable statement mail integration. Counts1/14 phases and11/31 plan records; full Phase10 acceptance remains0/4.
+Synthetic invoice/credit reservations and separate simulated issue records now archive/read back before commit, retain exact retries and immutable history, and serialize empty/existing series on PostgreSQL. Full recovery of lost terminal history and actual numbering/publication remain gated. [Exact evidence](phases/10-staged-delivery-and-support-ledger/10-DOCUMENT-NUMBERS-PARTIAL.md). Durable statement mail integration is now implemented locally; see the latest statement-capture evidence below. Counts1/14 phases and11/31 plan records; full Phase10 acceptance remains0/4.
 
 Latest10-04 verification: `CORE_LOCAL_PASS checks=5 tests=431 duration_seconds=119.017`; migration0020/no drift and source229 exact files/30 templates/1 CSS/no symlinks pass. Actual off-host recovery remains pending.
+
+## Local10-04 statement capture — 2026-10-26
+
+Archived immutable statement intents now feed the existing leased worker and a durable local capture sink. New-process response-loss retry recovers the same receipt without a new support debit. Current staff generation/assignment and verified owner are rechecked; private status never claims actual email sent. Final focused17 tests and complete-cart demo pass. [Exact evidence and pending gates](phases/10-staged-delivery-and-support-ledger/10-STATEMENT-MAIL-PARTIAL.md). Counts remain1/14 phases and11/31 plans; Phase10 full acceptance0/4.
+
+Latest verification: full backend448 tests/5 checks,127.821s across two bounded120-second batches; final focused17 tests,7.030s; migration0021/no drift; source232 exact files/30 templates/1 CSS/no symlinks. Supported complete-cart staff/customer response-loss demo passes.
+
+Existing worker regression/mutation lane: `WORKER_LOCAL_PASS checks=6 tests=24 duration_seconds=14.789`. Both required broken-ownership mutations are rejected; forced process interruption/off-host worker qualification remains pending.
+
+Final proxy evidence: `DEMO_ACCESS_PASS checks=102 aliases=2 evidence=local-synthetic-header-level`; owned loopback proxy/Gunicorn/PostgreSQL and current complete-cart fixture, not an independently observed browser engine or formal visual/accessibility approval.

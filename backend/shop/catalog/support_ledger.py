@@ -114,6 +114,10 @@ def record(owner,identity,request_id,kind,archive,*,seconds=None,task_id=None,ta
             actor_key='staff_id' if 'staff_id' in actor else 'owner_id'
             if (previous.kind!=kind or previous.payload['command']!=supplied
                     or prior_actor.get(actor_key)!=actor[actor_key]):fail('support_request_conflict')
+            if kind=='statement':
+                from shop.worker.statement_mail import enqueue
+                enqueue(previous,archive)
+                authorize(staff_request,grant)
             return previous
         if len(events)>=10000:fail('support_ledger_limit',422)
         value={'schema':1,'kind':kind,'command':supplied,'actor':actor,'grant_sha256':grant.sha256,
@@ -143,6 +147,10 @@ def record(owner,identity,request_id,kind,archive,*,seconds=None,task_id=None,ta
         # Recheck staff session age after local archive work, before committing chargeable facts.
         if kind in ('work','correct','statement'):authorize(staff_request,grant)
         event.save(force_insert=True)
+        if kind=='statement':
+            from shop.worker.statement_mail import enqueue
+            enqueue(event,archive)
+            authorize(staff_request,grant)
         return event
 
 
@@ -157,5 +165,6 @@ def read(owner,identity,archive,*,staff_request=None):
         fulfilment.retained(grant,grant.acceptance,archive)
         events=list(SyntheticSupportEvent.objects.filter(fulfilment=grant).order_by('revision'))
         result=replay(grant,events,archive)
-        result['statements']=[{'event_id':str(e.pk),'statement':e.payload['statement']} for e in events if e.kind=='statement']
+        from shop.worker.statement_mail import status
+        result['statements']=[{'event_id':str(e.pk),'statement':e.payload['statement'],'mail_capture':status(e,archive)} for e in events if e.kind=='statement']
         return result

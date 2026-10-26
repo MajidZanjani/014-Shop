@@ -609,6 +609,11 @@
       "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
     },
     {
+      "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-STATEMENT-MAIL-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
       "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-SUPPORT-LEDGER-PARTIAL.md",
       "role": "historical-evidence",
       "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
