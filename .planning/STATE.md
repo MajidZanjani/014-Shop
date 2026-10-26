@@ -1,19 +1,19 @@
 ---
 gsd_state_version: "1.0"
-status: paused
-last_updated: "2026-10-23T13:59:14.853Z"
-state_head: 398e077
+status: in_progress
+last_updated: "2026-10-26T05:20:39.273Z"
+state_head: be14fe05593e1b84d638fc9600cf8809914b199f
 progress:
   total_phases: 14
   completed_phases: 1
   total_plans: 24
   completed_plans: 11
   percent: 7
-last_activity: 2026-10-23
+last_activity: 2026-10-26
 current_phase: 08
 current_phase_name: Payment domain and fault-injectable fake bank
-stopped_at: Explicit user pause after verified synthetic attempt reconciliation; see HANDOFF.json.
-last_activity_desc: User requested pause; saved Phase08 cancellation/expiry next action and verified305-test baseline.
+stopped_at: Lifecycle and recovery command verified; continuing synthetic dispatch holds.
+last_activity_desc: Lifecycle and recovery command verified319 local tests; next synthetic dispatch holds.
 ---
 
 # Project State
@@ -29,6 +29,8 @@ Updated 2026-10-23T13:59:14.853Z. Canonical current summary; latest evidence: [t
 T03/T04 local catalog delivery remains intact; T05 local draft persistence and T06 synthetic verified access/save-resume are implemented. T07 now has the owner-scoped versioned multi-line draft cart; protected quotation-request capture now retains exact owner snapshots and reconciles duplicate/retried submissions. Local staff password/private-code rehearsal, assigned quotation reads and append-only-by-API internal review decisions are implemented. Owner history/detail now show safe current review status and corrections without staff/MFA metadata. Private owner partial business drafts now preserve nineteen exact source groups, helpers/defaults and versioned snapshots; country/tax choices and applicability stay pending. Explicit immutable business/quotation revision binding and exact-scope private staff grants are implemented. Protected current-source document/declaration previews now show applicable pending document sets for retained IP/support/mixed scopes, without acceptance or consent writes. Owner-only bounded quotation history now preserves capture/attachment/review-correction metadata without private values or staff attribution. Staff exact-scope advisory offer prerequisites now distinguish internal review evidence from missing commercial inputs; all commercial actions remain disabled. Explicit staff captures now retain attributed versioned internal preparation assessments with CAS/retry arbitration and exact historical permissions. Authorized retained/current comparisons now report fixed safe delta categories with strict null handling and both-scope permissions; equality never approves an offer. Real staff MFA/delivery/recovery and approved offers remain pending. Full phase acceptance remains pending. Phase02 remains 8/18 complete with all ten incomplete qualification/implementation records preserved. Only Phase01 is fully complete: 1/14 = rounded 7%. That is completed-phase progress, not engineering effort. Existing planned records remain 11/24; later phase acceptance is not claimed from quick-task implementation.
 
 ## Delivered behavior
+
+- Synthetic cancellation/expiry and read-only recovery inspection plus supported local command now verified. Post-archive claim checks prevent stale sends; uncertain claims remain lookup-only. CORE_LOCAL_PASS5 checks/319 tests,86.218s; source184 exact files/23 templates. [Evidence](phases/08-payment-domain-and-fault-injectable-fake-bank/08-LIFECYCLE-PARTIAL.md). Next: durable synthetic dispatch holds.
 
 - Synthetic attempts now recover archived expected bytes before a durable one-way dispatch claim. Lost responses remain uncertain; lookup-only reconciliation cannot blindly resend or authorize commerce. CORE_LOCAL_PASS5 checks/305 tests (291 Django plus14 Gunicorn),80.979s; owned PostgreSQL18.6/UTF8; payments0002/catalog0012 application and no-drift pass. Frozen source179 files23 templates/exact bytes/no symlinks. [Evidence](phases/08-payment-domain-and-fault-injectable-fake-bank/08-ATTEMPTS-PARTIAL.md).
 
@@ -119,7 +121,7 @@ Retain dependency locks, raw SBOMs, notices, validated derivative and all origin
 
 ## Session continuity
 
-User corrected excessive context-clear requests: a task/commit is not context pressure; continue substantive work across commits/syncs. No exact percentage is available; the current pause is explicitly user-requested, with HANDOFF.json and Phase08 .continue-here.md saved.
+User corrected excessive context-clear requests: a task/commit is not context pressure; continue substantive work across commits/syncs. No exact percentage is available. Session resumed2026-10-26; consumed pause artifacts removed. Quick261026-72e/7av verified319 local tests; continuing durable synthetic dispatch holds.
 
 Continued implementation through4063465 staff queue/preparation history and9039679 review history, each synced0/0. Implemented a typed durable local-synthetic bank adapter, separate from worker probes. Immutable-by-service fake operations and retained key aliases arbitrate merchant/reference/key retries and conflicts; explicit post-commit timeout can be reconciled by no-write reference lookup across connections. Exact typed correlation never confirms actual money; database/observation flags remain false. CORE_LOCAL_PASS5 checks/297 tests (283 Django plus14 Gunicorn),80.242s; PostgreSQL18.6/UTF8, payments0001/catalog0012 application and no-drift pass. Exact source /nix/store/87iyj21lmi0pmbqf52iyyvx68pvy1ygf-shop-python-source176 files23 templates/no symlinks.
 
@@ -194,3 +196,9 @@ Continue the synthetic attempt lifecycle with explicit pre-dispatch cancellation
 | 261023-ina | Add typed durable synthetic-bank observations and uncertain-response lookup | 2026-10-23 | de05656 | [261023-ina](./quick/261023-ina-implement-typed-durable-synthetic-bank-o/) |
 
 | 261023-j1r | Archive synthetic attempts before single dispatch and reconcile uncertainty by lookup | 2026-10-23 | — | [261023-j1r](./quick/261023-j1r-implement-synthetic-payment-attempt-disp/) |
+| 261026-72e | Implement synthetic cancellation expiry and recovery inspection | 2026-10-26 | be14fe0 | [261026-72e-implement-synthetic-cancellation-expiry-](./quick/261026-72e-implement-synthetic-cancellation-expiry-/) |
+| 261026-7av | Expose read-only local synthetic payment recovery inspection command | 2026-10-26 | be14fe0 | [261026-7av-expose-read-only-local-synthetic-payment](./quick/261026-7av-expose-read-only-local-synthetic-payment/) |
+
+## Active session — 2026-10-26
+
+Resumed after user-selected payment review. User authorized filling lifecycle gaps then continuing independent project work. Quick261026-72e/7av completed cancellation/expiry/recovery inspection and supported command;319 local tests pass. Next: durable synthetic dispatch holds (quick261026-7e6). Historical305-test baseline retains its original scope. No external/protected operations or subagents.
