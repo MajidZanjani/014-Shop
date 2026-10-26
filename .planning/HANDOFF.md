@@ -1,6 +1,6 @@
 # Current execution continuity
 
-**Recorded implementation:** 21ae81ae8af8bc7f104227289469f22a90cb41e9
+**Recorded implementation:** 1df0a789a1f1b39da5660a1f425a2c399e50f71a
 
 [Final purchase-flow revision2](PURCHASE-FLOW-AMENDMENT.md) is registered and reconciled; quick261026-8x7 implemented the minimal platform path and synthetic standard-offer/payment/staged-delivery rehearsal. [Evidence/commands/eight-case map](phases/03-catalog-platform-and-offer-policies/03-PURCHASE-FLOW-PARTIAL.md). Current focus3, then4/7/10/13;338 backend/12 focused/118 frontend tests pass for recorded tool scope. Exact frontend Node24.22 qualification and actual commercial/external gates remain pending. STATE.md is canonical; no context pause is claimed.
 

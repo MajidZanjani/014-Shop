@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: in_progress
-last_updated: "2026-10-26T07:18:39.980274+00:00"
-state_head: 21ae81ae8af8bc7f104227289469f22a90cb41e9
+last_updated: "2026-10-26T07:23:11.765Z"
+state_head: 1df0a789a1f1b39da5660a1f425a2c399e50f71a
 progress:
   total_phases: 14
   completed_phases: 1
@@ -115,3 +115,4 @@ User instructed adopting the complete final26October revision2 and replacing sta
 | 261026-72e | Implement synthetic cancellation expiry and recovery inspection | 2026-10-26 | be14fe0 | [261026-72e-implement-synthetic-cancellation-expiry-](./quick/261026-72e-implement-synthetic-cancellation-expiry-/) |
 | 261026-7av | Expose read-only local synthetic payment recovery inspection command | 2026-10-26 | be14fe0 | [261026-7av-expose-read-only-local-synthetic-payment](./quick/261026-7av-expose-read-only-local-synthetic-payment/) |
 | 261026-7e6 | Retain synthetic dispatch holds with exact revision release | 2026-10-26 | 21ae81a | [261026-7e6-retain-synthetic-dispatch-holds-with-exa](./quick/261026-7e6-retain-synthetic-dispatch-holds-with-exa/) |
+| 261026-8x7 | Apply final purchase-flow amendment and implement minimal platform/synthetic purchase flow | 2026-10-26 | 1df0a78 | [261026-8x7-apply-final-purchase-flow-amendment-reco](./quick/261026-8x7-apply-final-purchase-flow-amendment-reco/) |
