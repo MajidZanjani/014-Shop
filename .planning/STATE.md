@@ -1,7 +1,7 @@
 ---
 gsd_state_version: "1.0"
-status: in_progress
-last_updated: "2026-10-26T10:17:50.900Z"
+status: paused
+last_updated: "2026-10-26T10:21:33.041Z"
 state_head: 0bfb7db2ea8a022329b8ce61675745891ebb7d2a
 progress:
   total_phases: 14
@@ -12,8 +12,8 @@ progress:
 last_activity: 2026-10-26
 current_phase: 10
 current_phase_name: Staged licence/reference-design delivery and support ledger
-stopped_at: Complete-cart synthetic grants/staged delivery verified. Next support reservations, work ledger and corrections.
-last_activity_desc: User reports all browser simulations completed; next support reservations, work accounting and corrections; actual effects remain disabled.
+stopped_at: User-requested pause before10-02 reservation/work-ledger continuation. Resume from HANDOFF.json and Phase10 .continue-here.md.
+last_activity_desc: User-requested pause saved after completed browser simulations; next recorded support reservations and work ledger.
 ---
 
 # Project state — final purchase-flow revision2
@@ -121,3 +121,7 @@ User instructed adopting the complete final26October revision2 and replacing sta
 | 261026-7e6 | Retain synthetic dispatch holds with exact revision release | 2026-10-26 | 21ae81a | [261026-7e6-retain-synthetic-dispatch-holds-with-exa](./quick/261026-7e6-retain-synthetic-dispatch-holds-with-exa/) |
 | 261026-8x7 | Apply final purchase-flow amendment and implement minimal platform/synthetic purchase flow | 2026-10-26 | 1df0a78 | [261026-8x7-apply-final-purchase-flow-amendment-reco](./quick/261026-8x7-apply-final-purchase-flow-amendment-reco/) |
 | 64 | Enable nix-command and flakes in local development commands | 2026-10-26 | 8f76a35 | — |
+
+## Explicit pause — 2026-10-26T10:21:33.041Z
+
+Paused at the user's request. Resume via `$gsd-resume-work`; read [structured handoff](HANDOFF.json) and [Phase10 checkpoint](phases/10-staged-delivery-and-support-ledger/.continue-here.md). No implementation or tests remain active. Pending actual approvals and existing phase/plan completion counts are unchanged. No context threshold is claimed.

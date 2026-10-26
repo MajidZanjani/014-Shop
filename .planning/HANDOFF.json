@@ -1,0 +1,118 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-10-26T10:21:33.041Z",
+  "phase": "10",
+  "phase_name": "Staged licence/reference-design delivery and support ledger",
+  "phase_dir": ".planning/phases/10-staged-delivery-and-support-ledger",
+  "plan": 2,
+  "task": 1,
+  "total_tasks": 4,
+  "status": "paused",
+  "pause_reason": "Explicit user request via $gsd-pause-work",
+  "head_before_pause": "550d705e8fc80fc9ad766442ccf4f8dcb60cafd4",
+  "implementation_head": "0bfb7db2ea8a022329b8ce61675745891ebb7d2a",
+  "completed_tasks": [
+    {
+      "id": "purchase-flow",
+      "name": "Final revision2 replan, platform choices and seller-controlled synthetic policies",
+      "status": "done",
+      "commit": "1df0a78"
+    },
+    {
+      "id": "checkout",
+      "name": "Frozen complete-cart/business/document checkout rehearsal",
+      "status": "done",
+      "commit": "309f634"
+    },
+    {
+      "id": "browser-csrf",
+      "name": "Scoped form referrer policy and proxy redirect fix",
+      "status": "done",
+      "commit": "8c319a0"
+    },
+    {
+      "id": "acceptance-ui",
+      "name": "Synthetic acceptance/payment and production-like customer UI",
+      "status": "done",
+      "commit": "33e6cf3"
+    },
+    {
+      "id": "fulfilment",
+      "name": "Once-only complete-cart grants and staged delivery",
+      "status": "done",
+      "commit": "0bfb7db"
+    },
+    {
+      "id": "user-test",
+      "name": "User reports all browser simulations completed",
+      "status": "done",
+      "commit": "550d705"
+    }
+  ],
+  "remaining_tasks": [
+    {
+      "id": 1,
+      "name": "Recorded synthetic support reservations/releases with concurrency and exact retries",
+      "status": "not_started"
+    },
+    {
+      "id": 2,
+      "name": "Committed support work spend with scoped staff authority and archived completion",
+      "status": "not_started"
+    },
+    {
+      "id": 3,
+      "name": "Reverse/replace corrections preserving immutable ledger history",
+      "status": "not_started"
+    },
+    {
+      "id": 4,
+      "name": "Statements from committed ledger revisions with archive-before-publication",
+      "status": "not_started"
+    }
+  ],
+  "blockers": [],
+  "async_jobs": [],
+  "human_actions_pending": [
+    {
+      "action": "Supply actual ready-kit/commercial/rights/support/terms/country-tax/host and eligible-credit approvals when needed for live offers",
+      "context": "P-02/03/05/06/08 remain pending; explicit synthetic fixtures permit local implementation",
+      "blocking": false
+    },
+    {
+      "action": "Separate actual staff MFA, providers, runtime/host/protected ingress/deployment and independent recovery qualification",
+      "context": "No external/protected authority is inferred from local tests or user demo completion",
+      "blocking": false
+    }
+  ],
+  "decisions": [
+    {
+      "decision": "Keep actual financial/effect flags false and actual support spending disabled",
+      "rationale": "Only local-synthetic facts and user-reported demo completion have been proved",
+      "phase": "10"
+    },
+    {
+      "decision": "Retain public-shop cream/green customer layout and required-field guidance",
+      "rationale": "User requested a production-like UI to reduce test-entry mistakes",
+      "phase": "07"
+    },
+    {
+      "decision": "Use immutable append-only events, recorded reservations and integer seconds with exact retries",
+      "rationale": "Prevent double spending and preserve corrections without automatic cross-project pooling",
+      "phase": "10"
+    }
+  ],
+  "uncommitted_files": [],
+  "uncommitted_files_elided": 0,
+  "uncommitted_measurement": "git status --porcelain immediately before handoff generation; handoff artifacts committed afterward",
+  "next_action": "Read 10-02-PLAN.md and the current SyntheticFulfilment grant model; implement an append-only synthetic reservation/release service with same-owner SLL scope, integer seconds, exact retry keys, archive-before-commit and a real-PostgreSQL competing-reservation test. Then extend work spend, reverse/replace corrections and committed-revision statements without enabling actual support spending.",
+  "context_notes": "Pausing between completed local slices, not during an uncommitted implementation. Plan10-02 remains partial; four remaining work items above are a resume breakdown, not completed plan acceptance. Counts1/14 completed phases and11/29 completed plan records unchanged. No active agent-owned demo/test/build/async jobs found; user workstation demo state is outside this workspace. No exact context percentage supplied; pause is user-requested.",
+  "evidence": {
+    "full_backend": "CORE_LOCAL_PASS checks=5 tests=378 duration_seconds=98.547",
+    "final_focused": "11 fulfilment tests pass in2.950s after scalar-ID guard",
+    "proxy": "DEMO_ACCESS_PASS checks=50 aliases=2 evidence=local-synthetic-header-level",
+    "demo": "PURCHASE_FLOW_DEMO_PASS includes complete-cart acceptance/payment/grants/staging",
+    "source": "/nix/store/nqvf0wvcgr70919qjgpzq5s4rwhi1r3v-shop-python-source;210 exact files/26 templates/1 CSS/no symlinks",
+    "user_report": "All simulations completed; user-reported functional completion, not formal legal/visual/accessibility approval"
+  }
+}
