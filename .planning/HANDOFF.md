@@ -8,7 +8,7 @@
 
 **Next implementation task:** Audit remaining Phase10 acceptance gaps against FUL-01–06 and route the next executable local slice from source evidence; retain all actual policy, private delivery, financial and recovery gates.
 
-**Recorded implementation:** b02fd768a8070ad2061770dde82bc403f2a29685
+**Recorded implementation:** ba8286ec827e00a67fe311294948cafdc0c5b848
 
 [Final purchase-flow revision2](PURCHASE-FLOW-AMENDMENT.md) remains current authority. Development focus10 now covers complete-cart synthetic grants/staged delivery and the implemented local support ledger; earlier phases are not implicitly complete. [Evidence](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md). One captured cart payment yields an archived deterministic grant plan, one licence record per IP line and exactly36000 integer support seconds/package once, non-expiring. Initial delivery leaves promised later reference design outstanding; later completion never adds another entitlement/grant. Ready-kit/support-only cases stay scoped. Archive readback precedes all simulated records/effects; uncertain funding cannot provision. No actual keys/files/rights or spendable support.
 
