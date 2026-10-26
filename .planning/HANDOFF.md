@@ -8,7 +8,7 @@
 
 **Next implementation task:** Plan and implement reviewed local renewal/rehosting/family-node-production upgrade cases under FUL-03, preserving accepted rights/history and avoiding automatic charges. Actual rights and operations remain gated.
 
-**Recorded implementation:** 27a9dc857235df718733b183210e853c2a076266
+**Recorded implementation:** 2f9fba9df379dd1d5ffe68fe36244c84d92cdf59
 
 [Final purchase-flow revision2](PURCHASE-FLOW-AMENDMENT.md) remains current authority. Development focus10 now covers complete-cart synthetic grants/staged delivery and the implemented local support ledger; earlier phases are not implicitly complete. [Evidence](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md). One captured cart payment yields an archived deterministic grant plan, one licence record per IP line and exactly36000 integer support seconds/package once, non-expiring. Initial delivery leaves promised later reference design outstanding; later completion never adds another entitlement/grant. Ready-kit/support-only cases stay scoped. Archive readback precedes all simulated records/effects; uncertain funding cannot provision. No actual keys/files/rights or spendable support.
 
