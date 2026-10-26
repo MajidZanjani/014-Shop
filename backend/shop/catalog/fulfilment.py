@@ -84,10 +84,7 @@ def deliver(owner, identity, line_id, stage, archive):
         initial = SyntheticLineDelivery.objects.get(entitlement=entitlement, stage='initial')
         if checkout.digest(initial.payload) != initial.sha256:raise checkout.CheckoutError('delivery_mismatch')
         payment.recover(archive, initial.archive_receipt, uuid.uuid5(entitlement.pk, 'initial-completion-v1'), checkout.canonical(initial.payload))
-    value = {'kind':'synthetic-line-completion', 'grant_sha256':grant.sha256, 'entitlement_id':str(entitlement.pk),
-             'line_id':str(line_id), 'stage':stage, 'version':'synthetic-completion-v1',
-             'materials':['synthetic-rtl','synthetic-key','synthetic-documents'] if stage=='initial' else ['synthetic-reference-design'],
-             'simulated_completion':True, 'evidence_class':'local-synthetic', 'effects_authorized':False}
+    value = completion_value(grant, entitlement, line_id, stage)
     evidence_id = uuid.uuid5(entitlement.pk, stage+'-completion-v1')
     body = checkout.canonical(value);receipt = archive.publish(evidence_id, body)
     payment.recover(archive, manifest(receipt), evidence_id, body)
@@ -122,3 +119,10 @@ def status(row):
     return {'entitlement_count':len(lines),'lines':lines,'support_packages':grant.support_packages,
             'support_seconds':grant.support_seconds,'support_hours':grant.support_seconds//3600,'expires_at':None,
             'actual_support_spendable':False,'effects_authorized':False}
+
+
+def completion_value(grant, entitlement, line_id, stage):
+    return {'kind':'synthetic-line-completion', 'grant_sha256':grant.sha256, 'entitlement_id':str(entitlement.pk),
+             'line_id':str(line_id), 'stage':stage, 'version':'synthetic-completion-v1',
+             'materials':['synthetic-rtl','synthetic-key','synthetic-documents'] if stage=='initial' else ['synthetic-reference-design'],
+             'simulated_completion':True, 'evidence_class':'local-synthetic', 'effects_authorized':False}

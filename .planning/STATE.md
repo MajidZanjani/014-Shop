@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
-current_plan: 02
+current_plan: 01
 status: verifying
-last_updated: "2026-10-26T10:44:40.147Z"
+last_updated: "2026-10-26T11:00:34.244Z"
 state_head: 27a9dc857235df718733b183210e853c2a076266
 progress:
   total_phases: 14
@@ -10,12 +10,12 @@ progress:
   total_plans: 29
   completed_plans: 11
   percent: 7
-current_task: 4
+current_task: 3
 last_activity: 2026-10-26
 current_phase: 10
 current_phase_name: Staged licence/reference-design delivery and support ledger
-stopped_at: Local10-02 ledger and supported complete-cart demo verified; remaining10-01 scope next.
-last_activity_desc: All four local ledger tasks implemented; complete-cart two-factor staff work/correction/statement demo passes; actual gates pending.
+stopped_at: Private synthetic packages and body-only single-use downloads verified; FUL-03 reviewed change cases next.
+last_activity_desc: Private versioned synthetic packages implemented;406 backend tests/15 focused/88 proxy checks pass; actual fulfilment pending.
 ---
 
 # Project state — final purchase-flow revision2
@@ -24,11 +24,11 @@ last_activity_desc: All four local ledger tasks implemented; complete-cart two-f
 
 **Last fully completed phase:** 1 — baseline documentary acceptance only. SRC-05 final-amendment documentary reconciliation is complete and does not revalidate actual commercial or external behavior. All other phases remain partial or pending. Counts are completed-phase/planned-record counts, not engineering effort.
 
-**Current plan:** 10-02 — SLL support top-ups and reserved existing credit.
+**Current plan:** 10-01 — Initial R&D delivery and outstanding reference design.
 
-**Execution status:** verification pending — all four local10-02 ledger tasks implemented and integrated; actual qualification and full plan/phase acceptance remain pending.
+**Execution status:** verification pending — local10-01 private package release/download slice implemented; local10-02 ledger retained; actual qualification and full plan/phase acceptance remain pending.
 
-**Next implementation task:** Review and scope remaining10-01 private package/versioned follow-up and rehosting/renewal rehearsal; do not repeat the completed local10-02 ledger. Actual affected operations remain gated.
+**Next implementation task:** Plan and implement reviewed local renewal/rehosting/family-node-production upgrade cases under FUL-03, preserving accepted rights/history and avoiding automatic charges. Actual rights and operations remain gated.
 
 ## Preserved implementation/evidence
 
@@ -41,13 +41,15 @@ last_activity_desc: All four local ledger tasks implemented; complete-cart two-f
 
 Complete-cart synthetic captured payment now produces one archived grant plan, one licence record per IP line and exactly36000 integer seconds per support package once with no expiry. Initial and later reference-design completion are separate archived per-line events; the later event never duplicates licence or support grants. Support-only and ready-kit fixtures preserve their narrower scope. Actual spendable credit, files, keys and rights remain disabled. [Exact evidence/remaining work](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md).
 
-Latest full backend CORE_LOCAL_PASS391 tests/5 checks,103.505s; focused13 ledger tests,4.136s; actual proxy/Gunicorn/owned PostgreSQL66 header-level checks across both loopback aliases, including support reservation/release retries and CSRF denial. Final source215 exact files/27 templates/1 CSS/no symlinks, /nix/store/bb2szblxiwyha1k2c5nmd4zyln2vr3vp-shop-python-source. Full391 backend run precedes this final demo-only integration; the extended demo passes against the final source. Existing bounded120-second test runner and request/provider timeouts are unchanged. [Ledger evidence](phases/10-staged-delivery-and-support-ledger/10-SUPPORT-LEDGER-PARTIAL.md).
+Latest full backend CORE_LOCAL_PASS406 tests/5 checks,111.850s; focused15 private-package tests,7.383s; actual proxy/Gunicorn/owned PostgreSQL88 header-level checks across both loopback aliases. Supported complete-cart two-factor staff demo also passes private initialv1/referencev1/initialv2 release/retry and a single old-version owner download with replay denial, alongside prior grant/ledger checks. Final source221 exact files/29 templates/1 CSS/no symlinks at /nix/store/qdgvrdzidayyc8sssz5hmvhsxm91fnnl-shop-python-source. Bounded120-second full test runner and provider/request/database timeouts remain unchanged. [Private package evidence](phases/10-staged-delivery-and-support-ledger/10-PRIVATE-PACKAGES-PARTIAL.md); [retained ledger evidence](phases/10-staged-delivery-and-support-ledger/10-SUPPORT-LEDGER-PARTIAL.md).
 
 The user-requested shared shop-style customer UI remains in use for fulfilment status/actions. [UI contract](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-UI-SPEC.md). User reports all browser simulations completed on2026-10-26, following the styled checkout/payment/grant/staged-delivery test instructions. This records user-reported functional completion, not an independently observed run or formal accessibility/visual approval. No real commercial approval or full phase/plan acceptance is inferred.
 
 Recorded synthetic reservations/releases, recent-MFA exact-grant staff work, immutable reverse/replace corrections and archived committed-revision statements are implemented with private shared-style customer/staff pages. PostgreSQL serialization prevents competing allocation/spend/correction; database triggers prohibit event update/delete. All simulated work-completion evidence archives before the debit; every statement verifies the committed grant/event archive chain. Local operator reset/revoke removes support grants. Actual support spending, technical work, retention and private packages/keys remain disabled/unqualified.
 
 The supported complete-cart demo now also exercises both local staff login factors, explicit support assignment, work/retry, correction, release and statement/retry. Final grant72000, spent1800, reserved0, available70200; ledger revision5 retains one statement for committed revision4. Local10-02 tasks1–4 are implemented; full acceptance remains pending. No new platform/licence questionnaire, automatic pooling or technical portal.
+
+Private synthetic material revisions now require recent local MFA and an explicit entitlement assignment. Artifact bytes/manifests archive before atomic stage/revision publication; older revisions stay immutable and downloadable without another entitlement/support grant. Owner-only access is session/version/artifact-bound,120-second and one-use; raw bearers stay in private POST/response bodies. Every download verifies current resource authority and archive bytes. Account/session change, expiry, replay, missing archives and concurrent reuse deny. No actual encrypted RTL, key, host data or technical upload is accepted.
 
 ## Pending actual gates
 

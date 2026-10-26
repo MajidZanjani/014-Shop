@@ -389,3 +389,43 @@ class SyntheticSupportStaffGrant(models.Model):
     fulfilment=models.ForeignKey(SyntheticFulfilment,on_delete=models.PROTECT)
     class Meta:
         constraints=[models.UniqueConstraint(fields=['user','fulfilment'],name='synthetic_support_staff_unique')]
+
+
+class SyntheticDeliveryStaffGrant(models.Model):
+    user=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT)
+    entitlement=models.ForeignKey(SyntheticLineEntitlement,on_delete=models.PROTECT)
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['user','entitlement'],name='synthetic_delivery_staff_unique')]
+
+
+class SyntheticPackageRevision(models.Model):
+    identity=models.UUIDField(unique=True,editable=False)
+    entitlement=models.ForeignKey(SyntheticLineEntitlement,on_delete=models.PROTECT)
+    request_id=models.UUIDField()
+    stage=models.CharField(max_length=16)
+    version=models.PositiveIntegerField()
+    payload=models.JSONField()
+    sha256=models.CharField(max_length=64)
+    archive_receipt=models.JSONField()
+    evidence_class=models.CharField(max_length=32,default='local-synthetic')
+    effects_authorized=models.BooleanField(default=False)
+    created_at=models.DateTimeField(auto_now_add=True)
+    class Meta:
+        constraints=[
+            models.UniqueConstraint(fields=['entitlement','request_id'],name='synthetic_package_request_unique'),
+            models.UniqueConstraint(fields=['entitlement','stage','version'],name='synthetic_package_version_unique'),
+            models.CheckConstraint(condition=models.Q(version__gte=1,stage__in=['initial','reference'],sha256__regex=r'^[0-9a-f]{64}$',evidence_class='local-synthetic',effects_authorized=False),name='synthetic_package_local_bounds'),
+        ]
+
+
+class SyntheticPackageAccess(models.Model):
+    id=models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
+    package=models.ForeignKey(SyntheticPackageRevision,on_delete=models.PROTECT)
+    owner=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT)
+    artifact=models.CharField(max_length=64)
+    token_digest=models.CharField(max_length=64,unique=True)
+    session_digest=models.CharField(max_length=64)
+    expires_at=models.DateTimeField()
+    consumed_at=models.DateTimeField(null=True)
+    class Meta:
+        constraints=[models.CheckConstraint(condition=models.Q(token_digest__regex=r'^[0-9a-f]{64}$',session_digest__regex=r'^[0-9a-f]{64}$'),name='synthetic_package_access_digests')]

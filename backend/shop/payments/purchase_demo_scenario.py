@@ -117,7 +117,7 @@ def run(archive_root):
                 raise RuntimeError('synthetic ledger reservation/retry failed')
             reservation_id=next(iter(reserved.json()['ledger']['reservations']))
             from shop.access.models import StaffCredential
-            from shop.catalog.models import SyntheticSupportStaffGrant
+            from shop.catalog.models import SyntheticSupportStaffGrant,SyntheticDeliveryStaffGrant,SyntheticLineEntitlement
             staff_name='support-demo-'+uuid.uuid4().hex;password=secrets.token_urlsafe(32)
             staff_user=get_user_model().objects.create_user(username=staff_name,password=password,is_staff=True)
             StaffCredential.objects.create(user=staff_user)
@@ -143,6 +143,15 @@ def run(archive_root):
                     staff_token=verified.json()['csrf_token']
                     if staff.get(staff_url).status_code!=404:raise RuntimeError('unassigned synthetic ledger exposed')
                     SyntheticSupportStaffGrant.objects.create(user=staff_user,fulfilment=grant)
+                    delivery_line=SyntheticLineEntitlement.objects.get(fulfilment=grant)
+                    delivery_url='/staff/delivery/'+str(delivery_line.pk)+'/'
+                    if staff.get(delivery_url).status_code!=404:raise RuntimeError('unassigned private delivery exposed')
+                    SyntheticDeliveryStaffGrant.objects.create(user=staff_user,entitlement=delivery_line)
+                    for delivery_stage,fixture_version in (('initial','synthetic-materials-v1'),('reference','synthetic-materials-v1'),('initial','synthetic-materials-v2')):
+                        package_command={'request_id':str(uuid.uuid4()),'stage':delivery_stage,'fixture':fixture_version}
+                        for _ in range(2):
+                            response=staff.post(delivery_url,data=urlencode(package_command),content_type='application/x-www-form-urlencoded',HTTP_X_CSRFTOKEN=staff_token)
+                            if response.status_code!=303:raise RuntimeError('synthetic private package release/retry failed')
                     work_command={'action':'work','request_id':str(uuid.uuid4()),'target_id':reservation_id,'seconds':3600}
                     worked=staff.post(staff_url,data=json.dumps(work_command),content_type='application/json',HTTP_X_CSRFTOKEN=staff_token)
                     repeated=staff.post(staff_url,data=json.dumps(work_command),content_type='application/json',HTTP_X_CSRFTOKEN=staff_token)
@@ -163,6 +172,19 @@ def run(archive_root):
                         published=staff.post(staff_url,data=json.dumps(statement_command),content_type='application/json',HTTP_X_CSRFTOKEN=staff_token)
                         if published.status_code!=200 or published.json()['ledger']['revision']!=5:
                             raise RuntimeError('synthetic ledger statement/retry failed')
+            materials_url='/purchase/checkout-rehearsal/'+str(retained.pk)+'/packages/'
+            listed=client.get(materials_url,HTTP_ACCEPT='application/json')
+            if listed.status_code!=200 or len(listed.json()['packages'])!=3:raise RuntimeError('private package revision listing failed')
+            old=next(item for item in listed.json()['packages'] if item['stage']=='initial' and item['version']==1)
+            access_url=materials_url+old['id']+'/access/'
+            download_url=materials_url+old['id']+'/download/'
+            issued=client.post(access_url,data=json.dumps({'artifact':'sll-synthetic-rtl.txt'}),content_type='application/json',HTTP_X_CSRFTOKEN=csrf)
+            if issued.status_code!=200:raise RuntimeError('private download grant failed')
+            bearer=issued.json()['token']
+            downloaded=client.post(download_url,data=json.dumps({'token':bearer}),content_type='application/json',HTTP_X_CSRFTOKEN=csrf)
+            repeated=client.post(download_url,data=json.dumps({'token':bearer}),content_type='application/json',HTTP_X_CSRFTOKEN=csrf)
+            if downloaded.status_code!=200 or b'synthetic-materials-v1' not in downloaded.content or repeated.status_code!=404:
+                raise RuntimeError('private version-bound single-use download mismatch')
             final=client.get(support_url,HTTP_ACCEPT='application/json').json()['ledger']
             if (final['spent_seconds']!=1800 or final['available_seconds']!=70200
                     or len(final['statements'])!=1 or final['statements'][0]['statement']['revision']!=4
@@ -176,7 +198,8 @@ def run(archive_root):
             'support_ledger':{'revision':final['revision'],'reserved_seconds':final['reserved_seconds'],
                 'spent_seconds':final['spent_seconds'],'available_seconds':final['available_seconds'],
                 'statement_committed_revision':final['statements'][0]['statement']['revision'],
-                'local_staff_two_factors_and_exact_grant':True,'reverse_replace_history_preserved':True}}
+                'local_staff_two_factors_and_exact_grant':True,'reverse_replace_history_preserved':True},
+            'private_packages':{'retained_versions':3,'old_version_downloaded_once':True,'bearer_in_url':False,'actual_delivery':False}}
 
     return {'status':'PURCHASE_FLOW_DEMO_PASS','evidence_class':'local-synthetic','financial_confirmation':False,
         'effects_authorized':False,'real_email_verification':False,'ready_kit_zero_support':True,'required_support_tamper_refused':True,

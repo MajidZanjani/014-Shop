@@ -251,12 +251,12 @@ Updated 2026-10-22: BUILD-01–08 have partial local implementation/evidence and
 | BANK-02 | Phase 9 | Pending |
 | BANK-03 | Phase 9 | Pending |
 | BANK-04 | Phase 9 | Pending |
-| FUL-01 | Phase 10 | Pending |
-| FUL-02 | Phase 10 | Pending |
+| FUL-01 | Phase 10 | In Progress |
+| FUL-02 | Phase 10 | In Progress |
 | FUL-03 | Phase 10 | Pending |
-| FUL-04 | Phase 10 | Pending |
-| FUL-05 | Phase 10 | Pending |
-| FUL-06 | Phase 10 | Pending |
+| FUL-04 | Phase 10 | In Progress |
+| FUL-05 | Phase 10 | In Progress |
+| FUL-06 | Phase 10 | In Progress |
 | HOST-01 | Phase 11 | Pending |
 | HOST-02 | Phase 11 | Pending |
 | HOST-03 | Phase 11 | Pending |
@@ -301,3 +301,5 @@ Explicit recent-MFA staff prepared-request preview/capture is implemented with s
 Phase08 typed synthetic-bank boundary is partial local groundwork for PAY-02–05, with no requirement completion. PAY-01 actual order/acceptance/archive/dispatch preparation remains pending. Canonical evidence/next action:STATE.md and08-BANK-BOUNDARY-PARTIAL; no actual financial confirmation or live approval.
 
 Synthetic attempt groundwork additionally retains exact fixture requests, recovers prepared bytes before a durable dispatch claim and reconciles uncertainty through lookup without redispatch. All PAY requirements remain partial/pending; no live order/acceptance or financial confirmation is supplied. See08-ATTEMPTS-PARTIAL and STATE.md.
+
+Phase10 current local evidence: [private package revisions/downloads](phases/10-staged-delivery-and-support-ledger/10-PRIVATE-PACKAGES-PARTIAL.md) and [support ledger](phases/10-staged-delivery-and-support-ledger/10-SUPPORT-LEDGER-PARTIAL.md). FUL-01/02/04/05/06 are In Progress for implemented local/synthetic slices; their unchecked acceptance boxes retain every actual qualification gate. FUL-03 remains Pending implementation. STATE.md and ROADMAP.md own current routing/status.

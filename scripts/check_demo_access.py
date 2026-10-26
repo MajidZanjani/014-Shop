@@ -77,6 +77,17 @@ def run():
         env['SHOP_LOCAL_CAPTURE_ROOT'] = str(mailbox)
         archive = scratch / 'checkout-archive';archive.mkdir(mode=0o700)
         env['SHOP_LOCAL_CHECKOUT_ARCHIVE_ROOT'] = str(archive)
+        # Fresh complete-cart fixture, released through supported two-factor staff routes.
+        seed_code = '''
+from shop.payments.purchase_demo_scenario import run
+from shop.catalog.models import SyntheticPackageRevision
+import json
+run(ARCHIVE_ROOT)
+p=SyntheticPackageRevision.objects.select_related('entitlement__fulfilment__acceptance__checkout__owner__customeridentity').filter(stage='initial',version=1).latest('pk')
+c=p.entitlement.fulfilment.acceptance.checkout
+print(json.dumps({'email':c.owner.customeridentity.email,'checkout_id':str(c.pk),'package_id':str(p.identity)}))
+'''.replace('ARCHIVE_ROOT', repr(str(archive)))
+        material_fixture=json.loads(manage(python,env,'shell','--no-imports','-c',seed_code,timeout=30).stdout)
         with gunicorn(python, env, scratch) as backend_port:
             handler = type('OwnedDemoHandler', (DemoHandler,), {'backend_port': backend_port})
             server = ThreadingHTTPServer(('127.0.0.1', 0), partial(handler, directory=str(scratch)))
@@ -152,6 +163,30 @@ def run():
                     status, location, _ = browser.request('/purchase/access/', {'action': 'logout'})
                     require(status == 303 and location == '/purchase/access/', 'logout redirect failed')
                     require(b'Request a code' in browser.request(location)[2], 'logout not effective')
+                    materials=BrowserHeaders(server.server_port,alias)
+                    require(materials.request('/purchase/access/')[0]==200,'private material login form missing')
+                    before=set(mailbox.iterdir())
+                    require(materials.request('/purchase/access/',{'action':'request','email':material_fixture['email']})[0]==303,'private material verification request failed')
+                    added=set(mailbox.iterdir())-before
+                    require(len(added)==1,'private material verification capture missing')
+                    match=re.search(r'^Verification code: ([A-Za-z0-9_-]+)$',added.pop().read_text(),re.M)
+                    require(match is not None,'private material code unavailable')
+                    materials.request('/purchase/access/')
+                    require(materials.request('/purchase/access/',{'action':'verify','code':match[1]})[0]==303,'private material verification failed')
+                    material_base='/purchase/checkout-rehearsal/'+material_fixture['checkout_id']+'/packages/'
+                    status,_,raw=materials.request(material_base)
+                    require(status==200 and materials.policy=='same-origin' and b'Prepare private download' in raw,'private material page/policy unavailable')
+                    access=material_base+material_fixture['package_id']+'/access/'
+                    download=material_base+material_fixture['package_id']+'/download/'
+                    status,_,raw=materials.request(access,{'artifact':'sll-synthetic-rtl.txt'})
+                    parsed=FormToken();parsed.feed(raw.decode());bearer=parsed.hidden.get('token')
+                    require(status==200 and bearer and bearer not in download,'private download form or body-only bearer missing')
+                    status,_,raw=materials.request(download,{'token':bearer})
+                    require(status==200 and b'synthetic-materials-v1' in raw,'private archived-version download failed')
+                    require(materials.request(download,{'token':bearer})[0]==404,'private download replay accepted')
+                    require(materials.request(access,{'artifact':'sll-synthetic-rtl.txt'},token=False)[0]==403,'private download missing-CSRF accepted')
+                    require(materials.request(download)[0]==405,'private download GET accepted')
+                    checks += 11
                     checks += 25
             finally:
                 server.shutdown();server.server_close();thread.join(3)

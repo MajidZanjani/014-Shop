@@ -1,0 +1,7 @@
+{% extends "catalog/base.html" %}
+{% block title %}Private synthetic download{% endblock %}
+{% block content %}
+<h1>Private synthetic download</h1><p>This single-use download expires after two minutes and requires this verified browser session. The file is an inert synthetic text placeholder.</p>
+<form method="post" action="/purchase/checkout-rehearsal/{{ checkout_id }}/packages/{{ package_id }}/download/">{% csrf_token %}<input type="hidden" name="token" value="{{ token }}"><button type="submit">Download synthetic fixture</button></form>
+<p><a href="/purchase/checkout-rehearsal/{{ checkout_id }}/packages/">Retained material revisions</a></p>
+{% endblock %}

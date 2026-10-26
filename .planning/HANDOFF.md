@@ -2,11 +2,11 @@
 
 **Current development focus:** 10 — staged licence/reference-design delivery and support ledger.
 
-**Current plan:** 10-02 — SLL support top-ups and reserved existing credit.
+**Current plan:** 10-01 — Initial R&D delivery and outstanding reference design.
 
-**Execution status:** verification pending — all four local10-02 ledger tasks implemented and integrated; actual qualification and full plan/phase acceptance remain pending.
+**Execution status:** verification pending — local10-01 private package release/download slice implemented; local10-02 ledger retained; actual qualification and full plan/phase acceptance remain pending.
 
-**Next implementation task:** Review and scope remaining10-01 private package/versioned follow-up and rehosting/renewal rehearsal; do not repeat the completed local10-02 ledger. Actual affected operations remain gated.
+**Next implementation task:** Plan and implement reviewed local renewal/rehosting/family-node-production upgrade cases under FUL-03, preserving accepted rights/history and avoiding automatic charges. Actual rights and operations remain gated.
 
 **Recorded implementation:** 27a9dc857235df718733b183210e853c2a076266
 
@@ -14,8 +14,8 @@
 
 Shared public-shop-style customer UI now exposes grant/initial/later simulation buttons after simulated payment. User reports all browser simulations completed on2026-10-26 after the updated checkout/payment/grants/staged-delivery instructions. Record this as user-reported functional completion; no independently observed browser run, formal visual/accessibility acceptance or actual commercial approval is inferred. [UI contract](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-UI-SPEC.md).
 
-Latest verification: full backend391 tests/5 checks,103.505s; focused13 ledger tests,4.136s; actual proxy/Gunicorn/owned PostgreSQL66 header-level checks across both aliases; final source215 exact files/27 templates/1 CSS/no symlinks at /nix/store/bb2szblxiwyha1k2c5nmd4zyln2vr3vp-shop-python-source. The391 regression precedes the final demo-only extension, which separately passes. [Exact ledger evidence](phases/10-staged-delivery-and-support-ledger/10-SUPPORT-LEDGER-PARTIAL.md). Earlier378/11/50 results remain dated fulfilment evidence. Full phases1/14 and plans11/29 unchanged.
+Latest verification: full backend406 tests/5 checks,111.850s; focused15 package tests,7.383s; actual proxy/Gunicorn/owned PostgreSQL88 header-level checks across both aliases; supported complete-cart demo passes both local staff factors/exact delivery grant,3 retained package versions and a one-use old-version owner download, plus ledger/staged delivery. Final source /nix/store/qdgvrdzidayyc8sssz5hmvhsxm91fnnl-shop-python-source:221 exact files/29 templates/1 CSS/no symlinks. [Exact private package scope](phases/10-staged-delivery-and-support-ledger/10-PRIVATE-PACKAGES-PARTIAL.md). Counts1/14 phases,11/29 plan records unchanged.
 
-Reservations/releases, scoped recent-MFA staff work, reverse/replace corrections and committed-revision statements are implemented locally. Supported complete-cart demo integration passes: both local staff factors/exact grant; work/retry, reverse/replace correction, release and statement/retry;72000 granted/1800 spent/0 reserved/70200 available, statement revision4 within ledger revision5. Next inspect remaining10-01 scope. Actual spending/work completion, commercial/privacy/retention/provider/runtime/host/recovery and browser visual/accessibility acceptance remain pending.
+Local private fixture revisions/releases/download grants now supplement the implemented ledger. They do not handle actual RTL/keys/host data or approve materials, rights, retention, technical uploads or production access. Next: FUL-03 reviewed renewal/rehosting/upgrades; no historical-rights rewrite or automatic charge. All commercial/entity/tax/licensing/provider/runtime/host/recovery/browser-visual/accessibility gates remain scoped and pending.
 
-Previous user-requested pause consumed on continuation. Local Phase10-02 tasks1–4 are implemented; full acceptance remains pending; no external/protected authority inferred.
+Previous user-requested pause consumed on continuation. Local10-01 private package/download slice and10-02 ledger are implemented; full acceptance remains pending; no external/protected authority inferred.
