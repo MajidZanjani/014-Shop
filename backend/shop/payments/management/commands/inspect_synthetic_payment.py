@@ -23,7 +23,7 @@ class Command(BaseCommand):
             if str(attempt_id)!=value or connection.vendor!='postgresql':raise ValueError()
             result=inspect(attempt_id)
             report={key:getattr(result,key) for key in (
-                'state','expires_at','stopped_at','expiry_due','provider_status','lookup_required',
+                'state','expires_at','stopped_at','dispatch_held','control_revision','expiry_due','provider_status','lookup_required',
                 'evidence_class','retry_authorized','financial_confirmation','effects_authorized')}
         except (ValueError,TypeError,BankError,SyntheticPaymentAttempt.DoesNotExist,DatabaseError):
             raise CommandError('Local synthetic payment inspection unavailable') from None

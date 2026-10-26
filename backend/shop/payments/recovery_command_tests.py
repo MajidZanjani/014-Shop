@@ -16,7 +16,7 @@ from django.test import TransactionTestCase,override_settings
 from shop.adapters.evidence_archive import PreparedArchive
 from . import attempts,synthetic_bank
 from .bank_contract import BankStart
-from .models import SyntheticPaymentAttempt,SyntheticBankOperation,SyntheticBankKey
+from .models import SyntheticPaymentAttempt,SyntheticBankOperation,SyntheticBankKey,SyntheticAttemptControl
 
 
 class RecoveryCommandTests(TransactionTestCase):
@@ -42,10 +42,12 @@ class RecoveryCommandTests(TransactionTestCase):
     def snapshot(self):
         return (list(SyntheticPaymentAttempt.objects.order_by('pk').values()),
             list(SyntheticBankOperation.objects.order_by('pk').values()),
-            list(SyntheticBankKey.objects.order_by('pk').values()))
+            list(SyntheticBankKey.objects.order_by('pk').values()),
+            list(SyntheticAttemptControl.objects.order_by('pk').values()))
 
     def test_separate_process_reports_prepared_due_cancelled_uncertain_and_observed_without_writes(self):
         prepared=self.prepare()
+        attempts.set_hold(prepared.pk,held=True,expected_revision=0,command_id=uuid4())
         due=self.prepare(expires_at=datetime.now(timezone.utc)-timedelta(seconds=1))
         cancelled=self.prepare();attempts.cancel(cancelled.pk)
         uncertain=self.prepare();observed=self.prepare()
@@ -58,9 +60,11 @@ class RecoveryCommandTests(TransactionTestCase):
                 (cancelled,'cancelled',False,False),(uncertain,'uncertain',False,True),(observed,'observed',False,True)):
             result=self.child(row.pk);self.assertEqual(result.returncode,0,result.stderr);self.assertEqual(result.stderr,'')
             value=json.loads(result.stdout)
-            self.assertEqual(set(value),{'state','expires_at','stopped_at','expiry_due','provider_status',
+            self.assertEqual(set(value),{'state','expires_at','stopped_at','dispatch_held','control_revision','expiry_due','provider_status',
                 'lookup_required','evidence_class','retry_authorized','financial_confirmation','effects_authorized'})
             self.assertEqual(value['state'],state);self.assertEqual(value['expiry_due'],is_due)
+            self.assertEqual(value['dispatch_held'],row.pk==prepared.pk)
+            self.assertEqual(value['control_revision'],1 if row.pk==prepared.pk else 0)
             self.assertEqual(value['lookup_required'],lookup);self.assertEqual(value['evidence_class'],'local-synthetic')
             for key in ('retry_authorized','financial_confirmation','effects_authorized'):self.assertIs(value[key],False)
             for private in (str(row.pk),row.merchant,str(row.reference),str(row.idempotency_key),'amount_minor','archive_receipt','provider_operation_id'):

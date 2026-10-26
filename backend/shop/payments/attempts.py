@@ -7,7 +7,7 @@ from django.db import connection,transaction,IntegrityError
 from shop.adapters.evidence_archive import PreparedArchive,PreparedReceipt,manifest
 from . import synthetic_bank
 from .bank_contract import BankStart,BankError,validate,correlates
-from .models import SyntheticPaymentAttempt
+from .models import SyntheticPaymentAttempt,SyntheticAttemptControl
 
 
 def request_for(row):
@@ -75,6 +75,28 @@ def cancel(attempt_id):
         return row
 
 
+def set_hold(attempt_id,*,held,expected_revision,command_id):
+    """Retain a fixture control event, never live staff/approval authority."""
+    synthetic_bank.guard()
+    if (type(held) is not bool or type(expected_revision) is not int
+        or not 0<=expected_revision<2147483647 or type(command_id) is not UUID):
+        raise BankError('invalid_synthetic_control')
+    with transaction.atomic(durable=True):
+        row=SyntheticPaymentAttempt.objects.select_for_update().get(pk=attempt_id)
+        previous=SyntheticAttemptControl.objects.filter(attempt=row,command_id=command_id).first()
+        if previous is not None:
+            if previous.held!=held or previous.revision!=expected_revision+1:
+                raise BankError('synthetic_control_conflict')
+            return previous
+        if row.state!='prepared':raise BankError('synthetic_attempt_not_prepared')
+        if row.control_revision!=expected_revision:raise BankError('synthetic_control_conflict')
+        event=SyntheticAttemptControl.objects.create(attempt=row,revision=expected_revision+1,
+            command_id=command_id,held=held)
+        row.dispatch_held=held;row.control_revision=event.revision
+        row.save(update_fields=['dispatch_held','control_revision'])
+        return event
+
+
 def expire(attempt_id):
     synthetic_bank.guard()
     with transaction.atomic(durable=True):
@@ -87,6 +109,8 @@ class RecoveryInspection:
     state: str
     expires_at: datetime | None
     stopped_at: datetime | None
+    dispatch_held: bool
+    control_revision: int
     expiry_due: bool
     provider_status: str
     lookup_required: bool
@@ -102,7 +126,7 @@ def inspect(attempt_id):
     with transaction.atomic(durable=True):
         row=SyntheticPaymentAttempt.objects.select_for_update().get(pk=attempt_id)
         now=database_now()
-        return RecoveryInspection(row.state,row.expires_at,row.stopped_at,
+        return RecoveryInspection(row.state,row.expires_at,row.stopped_at,row.dispatch_held,row.control_revision,
             row.state=='prepared' and row.expires_at is not None and row.expires_at<=now,
             row.provider_status,row.state in ('uncertain','observed'))
 
@@ -112,7 +136,7 @@ def dispatch(attempt_id,archive,*,outcome='captured',fault=None):
     with transaction.atomic(durable=True):
         row=SyntheticPaymentAttempt.objects.select_for_update().get(pk=attempt_id)
         expire_locked(row,database_now())
-        if row.state!='prepared':return row
+        if row.state!='prepared' or row.dispatch_held:return row
     if type(archive) is not PreparedArchive:raise BankError('synthetic_archive_required')
     receipt=archive.publish(row.pk,payload(row))
     # Recover actual bytes before committing permission to call the fake provider.
@@ -120,7 +144,7 @@ def dispatch(attempt_id,archive,*,outcome='captured',fault=None):
     with transaction.atomic(durable=True):
         current=SyntheticPaymentAttempt.objects.select_for_update().get(pk=row.pk)
         expire_locked(current,database_now())
-        if current.state!='prepared':return current
+        if current.state!='prepared' or current.dispatch_held:return current
         if payload(current)!=payload(row):raise BankError('synthetic_attempt_conflict')
         current.archive_receipt=row.archive_receipt;current.state='uncertain'
         current.save(update_fields=['archive_receipt','state'])

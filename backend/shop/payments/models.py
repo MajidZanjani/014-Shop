@@ -38,6 +38,8 @@ class SyntheticPaymentAttempt(models.Model):
     currency=models.CharField(max_length=3)
     amount_minor=models.BigIntegerField()
     state=models.CharField(max_length=16,default='prepared')
+    dispatch_held=models.BooleanField(default=False)
+    control_revision=models.PositiveIntegerField(default=0)
     expires_at=models.DateTimeField(null=True)
     stopped_at=models.DateTimeField(null=True)
     archive_receipt=models.JSONField(default=dict)
@@ -62,4 +64,18 @@ class SyntheticPaymentAttempt(models.Model):
                            stopped_at__gte=models.F('expires_at'),provider_operation_id__isnull=True,
                            provider_status='')
             ),name='synthetic_attempt_state'),
+        ]
+
+
+class SyntheticAttemptControl(models.Model):
+    attempt=models.ForeignKey(SyntheticPaymentAttempt,on_delete=models.PROTECT)
+    revision=models.PositiveIntegerField()
+    command_id=models.UUIDField()
+    held=models.BooleanField()
+    created_at=models.DateTimeField(auto_now_add=True)
+    class Meta:
+        constraints=[
+            models.UniqueConstraint(fields=['attempt','revision'],name='synthetic_control_revision_unique'),
+            models.UniqueConstraint(fields=['attempt','command_id'],name='synthetic_control_command_unique'),
+            models.CheckConstraint(condition=models.Q(revision__gte=1),name='synthetic_control_positive_revision'),
         ]
