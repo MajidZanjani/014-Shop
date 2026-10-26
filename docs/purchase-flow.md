@@ -34,6 +34,12 @@ The local demo provisions its own private temporary checkout archive. Checkout, 
 
 Customer access, business, cart and review/payment pages now share the public shop's cream/green layout, step navigation, grouped business fields and readable EUR totals. The persistent demo label distinguishes simulated actions. Country/tax fields remain pending; incomplete business drafts still save, and checkout names any missing required fields. No new project-stage or technical upload fields are introduced.
 
+## Complete-cart fulfilment rehearsal
+
+After simulated capture, choose **Simulate licence and support grants**. Expect one synthetic licence record per IP line and36000 integer support seconds per purchased package, with no expiry. Repeating the action preserves the same counts. Support-only carts create no IP licence. For each development IP line choose **Simulate initial delivery**: initial materials complete while the later reference design remains outstanding. **Simulate later reference design** closes that obligation without another licence/support grant. Ready-kit fixtures need no later event when their initial design is already covered.
+
+These actions publish/recover their grant/completion snapshots before changing simulated records. No real file/key, entitlement or spendable support is issued. Work reservations, charges, corrections and statements are the next ledger implementation; actual fulfilment and private custody qualifications remain pending.
+
 ## Pending actual work
 
 - P-02/03/05/06/08: initial real kit variants, standard development offers/price/required support minimum, annual rights/start trigger, exact legal/entity/tax and honest initial/later design/work scope; approved existing-credit ownership/scope.

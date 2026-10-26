@@ -10,11 +10,11 @@
 
 ## Current implementation activity — 2026-10-26
 
-**Current development focus:** 3 — final purchase-flow platform/catalog and seller offer/support rules, followed by4/7/10/13. [Amendment/task map](PURCHASE-FLOW-AMENDMENT.md).
+**Current development focus:** 10 — complete-cart staged delivery and support ledger; earlier catalog/commercial/runtime/acceptance qualification remains pending. [Amendment/task map](PURCHASE-FLOW-AMENDMENT.md).
 
 **Last fully completed phase:** 1. Phases2–7 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase8 work while those earlier checks remain open. Completed phases remain1/14 (rounded7%); planned records11/29. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
 
-**Current activity:** Final26October revision2 applied once; platform/synthetic staged purchase, complete-cart synthetic acceptance/payment and shared customer UI implemented. Next bind captured complete-cart simulation to per-line staged fulfilment and support ledger; STATE.md owns exact evidence and pending gates.
+**Current activity:** Final26October revision2 applied once; platform/synthetic staged purchase, complete-cart synthetic acceptance/payment and shared customer UI implemented. Complete-cart once-only per-line grants/staged completion are implemented; next support reservations/work/corrections/statements; STATE.md owns exact evidence and pending gates.
 
 Before every commit, reconcile all affected planning status references, regenerate canonical state.json and run `python3 scripts/check_planning.py`; commit then sync origin/main. Historical sources/evidence remain scoped to their dates.
 
@@ -432,7 +432,7 @@ Keep public bytes in shop-owned OVH Object Storage through a fixed verified HTTP
 | 7. Short business checkout, standard offers and acceptance | 1 / 4 | In Progress — current local cart/quotation/business/review/preparation implementation; commercial acceptance pending | — |
 | 8. Payment domain and fault-injectable fake bank | 0 / not planned | In Progress | Typed local synthetic-bank slice; full domain pending |
 | 9. Selected-bank sandbox integration and complete reconciliation | 0 / not planned | Not started | — |
-| 10. Staged licence/reference-design delivery and support ledger | 0 / 2 | In Progress — synthetic staged delivery/top-up/reservation slice; actual fulfilment/ledger pending | — |
+| 10. Staged licence/reference-design delivery and support ledger | 0 / 2 | In Progress — complete-cart synthetic grants/staged completion; full-cart work ledger and actual fulfilment pending | — |
 | 11. Protected-host qualification, shop-only deployment and conditional public activation | 0 / not planned | Not started | — |
 | 12. Backups, operating alerts and financial/licensing restore rehearsal | 0 / not planned | Not started | — |
 | 13. Purchase-flow, fulfilment and release acceptance | 0 / 1 | In Progress — focused local amendment cases; full release/qualification pending | — |

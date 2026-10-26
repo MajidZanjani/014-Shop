@@ -25,3 +25,5 @@ Verification: rendered shared shell and labels, CSS HTTP/content type/privacy bo
 | Implementation/privacy | Self-only CSS, explicit retained-source path, no scripts/external assets; CSRF/origin/resource checks pass |
 
 Structural verification passes in the13 focused tests and full367 backend lane. Visual/human browser review remains pending; this is not production UI acceptance.
+
+Phase10 continuation adds synthetic licence/support grant and per-line initial/later completion controls to the same page. Show exact package/hour/second totals, no expiry, remaining later obligation and explicit actual-spending-disabled notice. Status/actions remain synthetic; no technical file upload or actual download. Latest full378/final focused11 and live proxy50 structural checks pass; visual/browser review remains pending.

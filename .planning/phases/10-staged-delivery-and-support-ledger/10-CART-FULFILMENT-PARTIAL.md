@@ -1,0 +1,24 @@
+# Complete-cart synthetic grants and staged completion — 2026-10-26
+
+Partial execution of10-01/10-02 under [final purchase-flow revision2](../../PURCHASE-FLOW-AMENDMENT.md). Current routing is STATE.md and ROADMAP.md; this is dated local evidence, not full plan/phase completion or actual delivery/support spendability.
+
+## Implemented
+
+Captured/observed synthetic complete-cart payment, exact accepted scope and recoverable checkout/acceptance/attempt evidence are required before one SyntheticFulfilment record is created. Its deterministic plan creates one SyntheticLineEntitlement per IP line and exactly36000 integer seconds per purchased support package once, regardless of IP-line count. Support-only top-ups create no IP entitlement/platform questionnaire. Expiry is null, with database constraints for the fixed grant quantum, no expiry and false actual financial/effect flags. Cast to PostgreSQL bigint prevents overflow for valid large package quantities; the1,000,000-package test grants36,000,000,000 seconds correctly. Catalog migration0016.
+
+Grant plan bytes publish/recover before atomic grant/entitlement creation. Completion events are separately published/recovered before per-line initial/reference delivery records. Unknown/unfinished development boards preserve the later reference-design obligation after initial materials; later completion closes only that obligation, never adding licence/support grants. Ready-kit initial completion satisfies its already-covered reference-design obligation without requiring a later event. Reference completion requires recoverable prior initial-completion evidence. Unique grant/line/stage keys and owner locks arbitrate competing/repeated requests. Archive contention is a retryable local failure, never an additional grant.
+
+Styled customer acceptance/payment page continues with Simulate licence and support grants, per-line Simulate initial delivery and Simulate later reference design. Status reports licence count, support hours/integer seconds/no expiry and remaining obligations. Strict API/no-JavaScript commands never accept customer amounts/material versions/credit policy; invalid line IDs, unrelated owners, production mode and uncertain/unfunded payment cannot grant effects. All materials/version labels are synthetic, with no actual file/key or technical upload portal. Real support spending stays disabled.
+
+## Verification
+
+- Full backend CORE_LOCAL_PASS checks=5 tests=378 duration_seconds=98.547, owned PostgreSQL18.6, migration/no-drift and loopback Gunicorn. The enlarged suite exceeded the old90-second subprocess budget; only its bounded test-runner budget changed to120 seconds, not request/provider/database timeouts. Full run precedes the final scalar delivery-ID parser guard; the focused final lane covers it.
+- Final focused fulfilment11 tests,2.950s, pass. Covers once-only grants and both completion stages, prior initial archive recovery, uncertain payment, archive failure, multi-line quantities, support-only and real-path synthetic ready-kit fixtures, concurrent grants/contended archive retry, correct bigint seconds, database no-expiry/no-commerce constraints, scoped form/API and malformed IDs.
+- Extended PURCHASE_FLOW_DEMO_PASS now includes complete-cart entitlement once, later obligation preserved, eventual reference completion and support72000 seconds once, all actual financial/spendability flags false.
+- Actual proxy/Gunicorn/owned PostgreSQL DEMO_ACCESS_PASS checks=50 aliases=2 evidence=local-synthetic-header-level. Both aliases traverse styled verification/business/cart/confirmation/payment and support-only grant/retry; untrusted/null origins and missing CSRF still fail. Actual browser-engine/visual/accessibility qualification remains pending.
+- Final retained source `/nix/store/nqvf0wvcgr70919qjgpzq5s4rwhi1r3v-shop-python-source`:210 exact path/byte files,26 templates,1 explicit public stylesheet, no symlinks. Tool/dependency graph unchanged. No frontend/host/provider qualification inferred.
+- Canonical planning/source reconciliation and whitespace checks pass. Phase/plan completion counts remain1/14 and11/29; development focus advances to10, with earlier commercial/source/runtime gates still open.
+
+## Remaining
+
+Extend the complete-cart synthetic support ledger with recorded reservations, committed work spend, reverse/replace corrections and statements from committed revisions. Preserve existing-credit owner/SLL scope, prevent competing spend and never introduce automatic cross-project pooling. Archive actual support completion before any final statement publication. Actual staff/MFA authority, legal/commercial/tax/host/licensing prerequisites, production package/key delivery, approved document/design versions and all external/protected/recovery gates remain pending. A synthetic completion event is not real technical work or actual delivery evidence.

@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: in_progress
-last_updated: "2026-10-26T09:23:09.493Z"
-state_head: 33e6cf3baed185e7afd853d5afeea728476ac841
+last_updated: "2026-10-26T09:40:31.210Z"
+state_head: 0bfb7db2ea8a022329b8ce61675745891ebb7d2a
 progress:
   total_phases: 14
   completed_phases: 1
@@ -10,15 +10,15 @@ progress:
   completed_plans: 11
   percent: 7
 last_activity: 2026-10-26
-current_phase: 03
-current_phase_name: Catalog, platform choices and approved offer/support policies
-stopped_at: Synthetic complete-cart acceptance/payment and shop-style UI verified. Next complete-cart staged fulfilment and support ledger.
-last_activity_desc: Archived synthetic acceptance/payment and shared customer UI implemented;367 backend and46 live proxy checks pass; actual gates pending.
+current_phase: 10
+current_phase_name: Staged licence/reference-design delivery and support ledger
+stopped_at: Complete-cart synthetic grants/staged delivery verified. Next support reservations, work ledger and corrections.
+last_activity_desc: Complete-cart once-only per-line and fixed non-expiring support grants verified;378 backend and50 proxy checks pass; real effects remain disabled.
 ---
 
 # Project state — final purchase-flow revision2
 
-**Current development focus:** 3 — minimal platform/catalog and seller-controlled offer/support rules; then4/7/10/13 in actual dependency order. [Current clauses](PURCHASE-FLOW-AMENDMENT.md), [ROADMAP.md](ROADMAP.md).
+**Current development focus:** 10 — complete-cart staged delivery and support ledger. Earlier catalog/commercial/runtime/acceptance gates remain pending; current focus does not imply prior phase completion. [Current clauses](PURCHASE-FLOW-AMENDMENT.md), [ROADMAP.md](ROADMAP.md).
 
 **Last fully completed phase:** 1 — baseline documentary acceptance only. SRC-05 final-amendment documentary reconciliation is complete and does not revalidate actual commercial or external behavior. All other phases remain partial or pending. Counts are completed-phase/planned-record counts, not engineering effort.
 
@@ -31,13 +31,13 @@ last_activity_desc: Archived synthetic acceptance/payment and shared customer UI
 
 ## Current result and next action
 
-Complete-cart synthetic acceptance/payment implemented under07-03/08, following the retained checkout/platform work. One explicitly confirmed fixture acceptance/order reference and one typed fake-bank attempt bind the exact cart/business/document/offer/support/delivery snapshots. Recoverable checkout/confirmation/attempt bytes precede dispatch; uncertain responses remain lookup-only. Separate illustrative offer/order-payment/bank-session deadlines and once-only retries/concurrency are verified. No actual contract, payment or rights are created.
+Complete-cart synthetic captured payment now produces one archived grant plan, one licence record per IP line and exactly36000 integer seconds per support package once with no expiry. Initial and later reference-design completion are separate archived per-line events; the later event never duplicates licence or support grants. Support-only and ready-kit fixtures preserve their narrower scope. Actual spendable credit, files, keys and rights remain disabled. [Exact evidence/remaining work](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md).
 
-User requested a simple production-like UI to reduce entry mistakes. Customer screens now reuse the public cream/green style, shared layout/step navigation, grouped business fields with required/pending guidance, readable EUR and specific missing-field labels. CSS is self-hosted and exactly allowlisted; no new script/external font/dependency. [UI contract](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-UI-SPEC.md). User confirmed the preceding corrected browser access/business/cart checkout-recording path; latest styling/payment browser review remains pending.
+Latest full backend CORE_LOCAL_PASS378 tests/5 checks,98.547s; final focused11 fulfilment tests,2.950s, covers final scalar-ID parser guard. Extended purchase demo passes complete-cart acceptance/payment/grants/staging and prior separately labelled cases. Actual proxy/Gunicorn/owned PostgreSQL50 header-level checks across both loopback aliases pass including grant/retry. Final source210 exact files/26 templates/1 CSS, no symlinks. Full-suite test subprocess budget is bounded120 seconds after the enlarged lane exceeded90; request/provider timeouts unchanged.
 
-Latest full backend CORE_LOCAL_PASS367 tests/5 checks,95.233s; focused13 tests,2.580s; extended PURCHASE_FLOW_DEMO_PASS includes synthetic acceptance/capture/same-reference retry. Actual proxy/Gunicorn/owned PostgreSQL46 header-level checks across both loopback aliases pass through business/cart/confirm/pay; null/foreign origins and missing tokens fail. Source207 exact files/26 templates/1 CSS, no symlinks. [Exact evidence and limits](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-ACCEPTANCE-PAYMENT-PARTIAL.md). Prior evidence remains dated, including the separate single-draft staged delivery and [resolved CSRF issue](debug/resolved/demo-csrf.md). No plan/phase completion inferred.
+The user-requested shared shop-style customer UI remains in use for fulfilment status/actions. [UI contract](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-UI-SPEC.md). User confirmed the prior corrected browser access/business/cart checkout recording; latest UI/payment/fulfilment browser review remains pending. No actual browser-engine/accessibility/visual approval or full phase/plan acceptance is inferred.
 
-Next usable local feature: bind captured complete-cart simulated payment to once-only per-line licence/staged-delivery records and non-expiring support-credit ledger behavior under10-01/10-02, preserving later reference-design obligations, reservations and archive-before-effects/completion. The separate single-draft flags do not prove full-cart fulfilment. Actual commercial/legal/tax/entity/host/ledger/fulfilment and all external/protected gates remain pending. Continue local work without invented approvals.
+Next usable local feature: extend complete-cart synthetic support ledger with recorded reservations, committed work spend, reverse/replace corrections and committed-revision statements under10-02. Preserve same-owner SLL scope, no competing spend or automatic cross-project pooling, and archive-before-spend/completion/publication rules. Actual staff/terms/tax/host/commercial/financial/licensing/provider/protected/recovery gates remain scoped and pending.
 
 ## Pending actual gates
 
