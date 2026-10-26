@@ -272,3 +272,33 @@ class ArchivePreparedVerification(models.Model):
             authorization_generation__gte=1,authorization_generation__lte=1000000000,byte_length__gte=1,byte_length__lte=131072,
             sha256__regex=r'^[0-9a-f]{64}$',evidence_class='local-synthetic',evidence_kind='prepared',
             retention_qualified=False,effects_authorized=False),name='archive_verification_local_bounds')]
+
+
+class SyntheticCheckout(models.Model):
+    """Private frozen complete-cart rehearsal, never an accepted order."""
+    id=models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
+    owner=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT)
+    request_id=models.UUIDField()
+    cart_snapshot=models.ForeignKey(CartSnapshot,on_delete=models.PROTECT)
+    business_snapshot=models.ForeignKey(BusinessDraftSnapshot,on_delete=models.PROTECT)
+    snapshot=models.JSONField()
+    sha256=models.CharField(max_length=64)
+    archive_receipt=models.JSONField(default=dict)
+    evidence_class=models.CharField(max_length=32,default='local-synthetic')
+    financial_confirmation=models.BooleanField(default=False)
+    effects_authorized=models.BooleanField(default=False)
+    created_at=models.DateTimeField(auto_now_add=True)
+    class Meta:
+        constraints=[
+            models.UniqueConstraint(fields=['owner','request_id'],name='synthetic_checkout_request_unique'),
+            models.UniqueConstraint(fields=['owner','sha256'],name='synthetic_checkout_snapshot_unique'),
+            models.CheckConstraint(condition=models.Q(sha256__regex=r'^[0-9a-f]{64}$',evidence_class='local-synthetic',financial_confirmation=False,effects_authorized=False),name='synthetic_checkout_no_effects'),
+        ]
+
+
+class SyntheticCheckoutKey(models.Model):
+    owner=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT)
+    request_id=models.UUIDField()
+    checkout=models.ForeignKey(SyntheticCheckout,on_delete=models.PROTECT)
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['owner','request_id'],name='synthetic_checkout_retry_unique')]
