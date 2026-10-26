@@ -8,7 +8,7 @@
 
 **Next implementation task:** Plan bounded synthetic authorization-to-capture intents and immutable evolving history, preserving lookup-only uncertainty and original money facts; keep actual provider/refund/callback/financial authority pending.
 
-**Recorded implementation:** ad101646725aa6ee2707f1132deea6ac8b98eb22
+**Recorded implementation:** cfdb75e716e1cd6c8a3842188ae1abcf14044ccf
 
 [Final purchase-flow revision2](PURCHASE-FLOW-AMENDMENT.md) remains current authority. Development focus10 now covers complete-cart synthetic grants/staged delivery and the implemented local support ledger; earlier phases are not implicitly complete. [Evidence](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md). One captured cart payment yields an archived deterministic grant plan, one licence record per IP line and exactly36000 integer support seconds/package once, non-expiring. Initial delivery leaves promised later reference design outstanding; later completion never adds another entitlement/grant. Ready-kit/support-only cases stay scoped. Archive readback precedes all simulated records/effects; uncertain funding cannot provision. No actual keys/files/rights or spendable support.
 
