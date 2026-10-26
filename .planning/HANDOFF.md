@@ -8,7 +8,7 @@
 
 **Next implementation task:** Implement scoped finance overpayment attribution/review for independently captured observations against one intended accepted order; preserve both money facts, one fulfilment and no automatic refund.
 
-**Recorded implementation:** 9dc04202d97268ae811ebc413b4a7f975bc7b9f6
+**Recorded implementation:** 646fa79cc772a46a3d002b3e994528a29c5744cb
 
 [Final purchase-flow revision2](PURCHASE-FLOW-AMENDMENT.md) remains current authority. Development focus10 now covers complete-cart synthetic grants/staged delivery and the implemented local support ledger; earlier phases are not implicitly complete. [Evidence](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md). One captured cart payment yields an archived deterministic grant plan, one licence record per IP line and exactly36000 integer support seconds/package once, non-expiring. Initial delivery leaves promised later reference design outstanding; later completion never adds another entitlement/grant. Ready-kit/support-only cases stay scoped. Archive readback precedes all simulated records/effects; uncertain funding cannot provision. No actual keys/files/rights or spendable support.
 
