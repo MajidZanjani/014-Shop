@@ -1,3 +1,4 @@
+from shop.catalog.licence_change_views import case_list,new_case,case_detail
 from shop.catalog.package_views import package_page,package_access,package_download
 from shop.catalog.support_views import support_page
 from django.urls import path
@@ -19,6 +20,9 @@ from shop.catalog.checkout_views import checkout_api, checkout_page
 from shop.catalog.checkout_payment_views import payment_page, payment_api
 from shop.catalog.presentation import stylesheet
 urlpatterns = [
+    path('purchase/checkout-rehearsal/<uuid:identity>/changes/',case_list),
+    path('purchase/checkout-rehearsal/<uuid:identity>/changes/new/<uuid:line_id>/',new_case),
+    path('purchase/checkout-rehearsal/<uuid:identity>/changes/<uuid:case_id>/',case_detail),
     path('purchase/checkout-rehearsal/<uuid:identity>/packages/',package_page),
     path('purchase/checkout-rehearsal/<uuid:identity>/packages/<uuid:package_id>/access/',package_access),
     path('purchase/checkout-rehearsal/<uuid:identity>/packages/<uuid:package_id>/download/',package_download),

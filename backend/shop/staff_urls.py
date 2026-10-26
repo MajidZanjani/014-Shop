@@ -1,3 +1,4 @@
+from shop.catalog.licence_change_views import staff_cases,staff_case
 from shop.catalog.package_views import delivery_queue,delivery_page
 from shop.catalog.support_views import staff_support_page
 from shop.catalog.presentation import stylesheet
@@ -12,6 +13,8 @@ from shop.access.preparation_history import preparation_history
 from shop.access.quotation_review import record_review
 from shop.access.review_history import review_history
 urlpatterns=[
+    path('staff/licence-cases/',staff_cases),
+    path('staff/licence-cases/<uuid:identity>/',staff_case),
     path('staff/delivery/',delivery_queue),
     path('staff/delivery/<uuid:identity>/',delivery_page),
     path('staff/support/<uuid:identity>/',staff_support_page),

@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 current_plan: 03
-status: in_progress
-last_updated: "2026-10-26T11:06:03.876Z"
+status: verifying
+last_updated: "2026-10-26T11:19:03.495Z"
 state_head: 2f9fba9df379dd1d5ffe68fe36244c84d92cdf59
 progress:
   total_phases: 14
@@ -10,12 +10,12 @@ progress:
   total_plans: 30
   completed_plans: 11
   percent: 7
-current_task: 1
+current_task: 3
 last_activity: 2026-10-26
 current_phase: 10
 current_phase_name: Staged licence/reference-design delivery and support ledger
-stopped_at: Executing new10-03 reviewed change-case plan; existing material/support slices retained.
-last_activity_desc: Planned FUL-03 owner cases, attributed review and held revised orders;30 plan records,11 fully complete.
+stopped_at: Local10-03 reviewed cases/held orders verified; document reservations and synthetic statement mail retry next.
+last_activity_desc: Local renewal/rehosting/upgrades implemented;420 full backend tests, final16 focused,102 proxy checks; actual policy/rights pending.
 ---
 
 # Project state — final purchase-flow revision2
@@ -26,9 +26,9 @@ last_activity_desc: Planned FUL-03 owner cases, attributed review and held revis
 
 **Current plan:** 10-03 — Reviewed licence change cases and held revised orders.
 
-**Execution status:** in progress — owner change-case capture, scoped staff review and held revised-scope/order rehearsal;10-01/02 local slices retained.
+**Execution status:** verification pending — local10-03 reviewed licence cases and held revised-scope/orders implemented;10-01/02 local slices retained; actual qualification and full acceptance remain pending.
 
-**Next implementation task:** Implement archived owner requests, exact-case recent-MFA review/proposals and private customer/staff UI; preserve original rights and all pending commercial policies.
+**Next implementation task:** Plan durable document/invoice/credit-number reservations and scoped synthetic statement/mail retry integration under FUL-02/FUL-06; preserve actual numbering, mail and publication authority gates.
 
 ## Preserved implementation/evidence
 
@@ -41,7 +41,7 @@ last_activity_desc: Planned FUL-03 owner cases, attributed review and held revis
 
 Complete-cart synthetic captured payment now produces one archived grant plan, one licence record per IP line and exactly36000 integer seconds per support package once with no expiry. Initial and later reference-design completion are separate archived per-line events; the later event never duplicates licence or support grants. Support-only and ready-kit fixtures preserve their narrower scope. Actual spendable credit, files, keys and rights remain disabled. [Exact evidence/remaining work](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md).
 
-Latest full backend CORE_LOCAL_PASS406 tests/5 checks,111.850s; focused15 private-package tests,7.383s; actual proxy/Gunicorn/owned PostgreSQL88 header-level checks across both loopback aliases. Supported complete-cart two-factor staff demo also passes private initialv1/referencev1/initialv2 release/retry and a single old-version owner download with replay denial, alongside prior grant/ledger checks. Final source221 exact files/29 templates/1 CSS/no symlinks at /nix/store/qdgvrdzidayyc8sssz5hmvhsxm91fnnl-shop-python-source. Bounded120-second full test runner and provider/request/database timeouts remain unchanged. [Private package evidence](phases/10-staged-delivery-and-support-ledger/10-PRIVATE-PACKAGES-PARTIAL.md); [retained ledger evidence](phases/10-staged-delivery-and-support-ledger/10-SUPPORT-LEDGER-PARTIAL.md).
+Latest full backend CORE_LOCAL_PASS420 tests/5 checks,118.041s; final16 focused change-case tests,6.357s. Full regression precedes the final catalog-family/same-band validation changes; the final focused suite covers those changes and historical retries. Actual owned proxy/Gunicorn/PostgreSQL102 header-level checks across both loopback aliases pass; supported two-factor staff/customer demo captures/retries/reviews/proposes all five change kinds, corrects/supersedes a renewal proposal, keeps higher volume on quotation and preserves original entitlement/bank count. Prior private-material/ledger/staged-delivery cases remain. Final inert source /nix/store/zfx8931wwpnh29zzm88b2mb6kxm52lx0-shop-python-source:226 exact files/30 templates/1 CSS/no symlinks. Bounded120-second full test runner and production/provider/request/database timeouts unchanged. [Change-case evidence](phases/10-staged-delivery-and-support-ledger/10-LICENCE-CHANGES-PARTIAL.md).
 
 The user-requested shared shop-style customer UI remains in use for fulfilment status/actions. [UI contract](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-UI-SPEC.md). User reports all browser simulations completed on2026-10-26, following the styled checkout/payment/grant/staged-delivery test instructions. This records user-reported functional completion, not an independently observed run or formal accessibility/visual approval. No real commercial approval or full phase/plan acceptance is inferred.
 
@@ -50,6 +50,8 @@ Recorded synthetic reservations/releases, recent-MFA exact-grant staff work, imm
 The supported complete-cart demo now also exercises both local staff login factors, explicit support assignment, work/retry, correction, release and statement/retry. Final grant72000, spent1800, reserved0, available70200; ledger revision5 retains one statement for committed revision4. Local10-02 tasks1–4 are implemented; full acceptance remains pending. No new platform/licence questionnaire, automatic pooling or technical portal.
 
 Private synthetic material revisions now require recent local MFA and an explicit entitlement assignment. Artifact bytes/manifests archive before atomic stage/revision publication; older revisions stay immutable and downloadable without another entitlement/support grant. Owner-only access is session/version/artifact-bound,120-second and one-use; raw bearers stay in private POST/response bodies. Every download verifies current resource authority and archive bytes. Account/session change, expiry, replay, missing archives and concurrent reuse deny. No actual encrypted RTL, key, host data or technical upload is accepted.
+
+Local10-03 now captures exact-entitlement renewal/rehosting/family/node/production requests with archived original/proposed scope and immutable review history. Explicit per-case recent-MFA staff authority and revision checks gate held revised-scope/order snapshots. Review corrections supersede the active proposal without erasing it. Fees/currency/annual dates/recurrence/host/allowance/overlap/revocation/maintenance/rights/coverage/terms/seller policy remain null; no payment, activation, new licence/support effect or physical recall occurs. New catalog scope cannot silently remove a licensed family; existing-case exact retries retain captured options. [10-03 plan/status](phases/10-staged-delivery-and-support-ledger/10-03-PLAN.md).
 
 ## Pending actual gates
 

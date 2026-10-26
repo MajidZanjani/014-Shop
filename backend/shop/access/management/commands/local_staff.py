@@ -7,18 +7,19 @@ from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
 from shop.adapters.local_storage import LocalStorage
-from shop.catalog.models import QuotationRequest, SyntheticFulfilment, SyntheticSupportStaffGrant, SyntheticDeliveryStaffGrant, SyntheticLineEntitlement
+from shop.catalog.models import QuotationRequest, SyntheticFulfilment, SyntheticSupportStaffGrant, SyntheticDeliveryStaffGrant, SyntheticLineEntitlement, SyntheticLicenceCase, SyntheticLicenceCaseStaffGrant
 from shop.access.models import StaffCredential, StaffQuotationGrant
 
 class Command(BaseCommand):
     help='Local/synthetic staff provision/reset/revoke and explicit quotation reviewer grants. Credentials go to private files only.'
     def add_arguments(self,parser):
-        parser.add_argument('action',choices=['provision','reset','revoke','grant','revoke-grant','grant-business','revoke-business','grant-support','revoke-support','grant-delivery','revoke-delivery'])
+        parser.add_argument('action',choices=['provision','reset','revoke','grant','revoke-grant','grant-business','revoke-business','grant-support','revoke-support','grant-delivery','revoke-delivery','grant-case','revoke-case'])
         parser.add_argument('--username',required=True)
         parser.add_argument('--capture-root')
         parser.add_argument('--quotation')
         parser.add_argument('--checkout')
         parser.add_argument('--entitlement')
+        parser.add_argument('--case')
         parser.add_argument('--business-scope',type=int)
     def handle(self,*args,**options):
         if settings.SHOP_ENV not in ('local','synthetic'):raise CommandError('Synthetic staff operation unavailable')
@@ -44,6 +45,7 @@ class Command(BaseCommand):
                 StaffQuotationGrant.objects.filter(user=user).delete()
                 SyntheticSupportStaffGrant.objects.filter(user=user).delete()
                 SyntheticDeliveryStaffGrant.objects.filter(user=user).delete()
+                SyntheticLicenceCaseStaffGrant.objects.filter(user=user).delete()
                 try:
                     with LocalStorage(root) as store:store.put(('Synthetic staff credentials only.\nUsername: '+name+'\nPassword: '+password+'\n').encode())
                 except (OSError,ValueError):raise CommandError('Private synthetic capture unavailable') from None
@@ -52,6 +54,16 @@ class Command(BaseCommand):
                 StaffQuotationGrant.objects.filter(user=user).delete()
                 SyntheticSupportStaffGrant.objects.filter(user=user).delete()
                 SyntheticDeliveryStaffGrant.objects.filter(user=user).delete()
+                SyntheticLicenceCaseStaffGrant.objects.filter(user=user).delete()
+            elif action in ('grant-case','revoke-case'):
+                try:identity=uuid.UUID(options.get('case') or '')
+                except (ValueError,TypeError):raise CommandError('Licence case identity required') from None
+                case=SyntheticLicenceCase.objects.select_for_update().filter(identity=identity).first()
+                if case is None:raise CommandError('Synthetic licence case unavailable')
+                if action=='grant-case':
+                    if not credential.enabled or not user.is_active:raise CommandError('Staff identity disabled')
+                    SyntheticLicenceCaseStaffGrant.objects.get_or_create(user=user,case=case)
+                else:SyntheticLicenceCaseStaffGrant.objects.filter(user=user,case=case).delete()
             elif action in ('grant-delivery','revoke-delivery'):
                 try:identity=uuid.UUID(options.get('entitlement') or '')
                 except (ValueError,TypeError):raise CommandError('Entitlement identity required') from None

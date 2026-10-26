@@ -253,7 +253,7 @@ Updated 2026-10-22: BUILD-01–08 have partial local implementation/evidence and
 | BANK-04 | Phase 9 | Pending |
 | FUL-01 | Phase 10 | In Progress |
 | FUL-02 | Phase 10 | In Progress |
-| FUL-03 | Phase 10 | Pending |
+| FUL-03 | Phase 10 | In Progress |
 | FUL-04 | Phase 10 | In Progress |
 | FUL-05 | Phase 10 | In Progress |
 | FUL-06 | Phase 10 | In Progress |
@@ -302,4 +302,6 @@ Phase08 typed synthetic-bank boundary is partial local groundwork for PAY-02–0
 
 Synthetic attempt groundwork additionally retains exact fixture requests, recovers prepared bytes before a durable dispatch claim and reconciles uncertainty through lookup without redispatch. All PAY requirements remain partial/pending; no live order/acceptance or financial confirmation is supplied. See08-ATTEMPTS-PARTIAL and STATE.md.
 
-Phase10 current local evidence: [private package revisions/downloads](phases/10-staged-delivery-and-support-ledger/10-PRIVATE-PACKAGES-PARTIAL.md) and [support ledger](phases/10-staged-delivery-and-support-ledger/10-SUPPORT-LEDGER-PARTIAL.md). FUL-01/02/04/05/06 are In Progress for implemented local/synthetic slices; their unchecked acceptance boxes retain every actual qualification gate. FUL-03 remains Pending implementation. STATE.md and ROADMAP.md own current routing/status.
+Phase10 current local evidence: [private package revisions/downloads](phases/10-staged-delivery-and-support-ledger/10-PRIVATE-PACKAGES-PARTIAL.md) and [support ledger](phases/10-staged-delivery-and-support-ledger/10-SUPPORT-LEDGER-PARTIAL.md). FUL-01/02/04/05/06 are In Progress for implemented local/synthetic slices; their unchecked acceptance boxes retain every actual qualification gate. FUL-03 now also has an implemented local reviewed-case/held-proposal slice; actual policies, payable orders and rights remain pending. STATE.md and ROADMAP.md own current routing/status.
+
+FUL-03 local change-case evidence: [10-LICENCE-CHANGES-PARTIAL.md](phases/10-staged-delivery-and-support-ledger/10-LICENCE-CHANGES-PARTIAL.md). No full acceptance checkbox is completed by synthetic review/proposal or an unknown actual policy.

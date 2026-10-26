@@ -117,7 +117,21 @@ def run(archive_root):
                 raise RuntimeError('synthetic ledger reservation/retry failed')
             reservation_id=next(iter(reserved.json()['ledger']['reservations']))
             from shop.access.models import StaffCredential
-            from shop.catalog.models import SyntheticSupportStaffGrant,SyntheticDeliveryStaffGrant,SyntheticLineEntitlement
+            from shop.catalog.models import SyntheticSupportStaffGrant,SyntheticDeliveryStaffGrant,SyntheticLineEntitlement,SyntheticLicenceCase,SyntheticLicenceCaseStaffGrant
+            change_line=SyntheticLineEntitlement.objects.get(fulfilment=grant)
+            change_url='/purchase/checkout-rehearsal/'+str(retained.pk)+'/changes/new/'+str(change_line.pk)+'/'
+            case_bank_count=SyntheticBankOperation.objects.count()
+            case_requests=[{'kind':'renewal'},{'kind':'rehost'},{'kind':'family-addition','families':['altera-cyclone-10']},
+                {'kind':'node-addition','fixed_nodes':1,'floating_nodes':0},
+                {'kind':'production-upgrade','term':'rdp-yearly','production_band':'higher-volume','production_units':6500}]
+            case_ids=[]
+            for change in case_requests:
+                command=change|{'request_id':str(uuid.uuid4())}
+                captured=client.post(change_url,data=json.dumps(command),content_type='application/json',HTTP_X_CSRFTOKEN=csrf)
+                repeated=client.post(change_url,data=json.dumps(command),content_type='application/json',HTTP_X_CSRFTOKEN=csrf)
+                if captured.status_code!=201 or repeated.json()['case_id']!=captured.json()['case_id']:
+                    raise RuntimeError('synthetic licence case capture/retry failed')
+                case_ids.append(captured.json()['case_id'])
             staff_name='support-demo-'+uuid.uuid4().hex;password=secrets.token_urlsafe(32)
             staff_user=get_user_model().objects.create_user(username=staff_name,password=password,is_staff=True)
             StaffCredential.objects.create(user=staff_user)
@@ -152,6 +166,35 @@ def run(archive_root):
                         for _ in range(2):
                             response=staff.post(delivery_url,data=urlencode(package_command),content_type='application/x-www-form-urlencoded',HTTP_X_CSRFTOKEN=staff_token)
                             if response.status_code!=303:raise RuntimeError('synthetic private package release/retry failed')
+                    for case_id in case_ids:
+                        case_url='/staff/licence-cases/'+case_id+'/'
+                        if staff.get(case_url).status_code!=404:raise RuntimeError('unassigned licence case exposed')
+                        change_case=SyntheticLicenceCase.objects.get(identity=case_id)
+                        SyntheticLicenceCaseStaffGrant.objects.create(user=staff_user,case=change_case)
+                        review_command={'action':'review','request_id':str(uuid.uuid4()),'expected_revision':0,'decision':'ready_for_commercial_review'}
+                        for _ in range(2):
+                            reviewed=staff.post(case_url,data=json.dumps(review_command),content_type='application/json',HTTP_X_CSRFTOKEN=staff_token)
+                            if reviewed.status_code!=200 or reviewed.json()['revision']!=1:raise RuntimeError('licence case review/retry failed')
+                        proposal_command={'action':'proposal','request_id':str(uuid.uuid4()),'expected_revision':1}
+                        for _ in range(2):
+                            proposed=staff.post(case_url,data=json.dumps(proposal_command),content_type='application/json',HTTP_X_CSRFTOKEN=staff_token)
+                            if proposed.status_code!=200 or proposed.json()['revision']!=2:raise RuntimeError('held licence proposal/retry failed')
+                        value=proposed.json()
+                        if value['payment_enabled'] or value['actual_rights_changed'] or value['proposal']['order']['policies']['fee_minor'] is not None:
+                            raise RuntimeError('licence case invented rights or financial policy')
+                        if change_case.kind=='production-upgrade' and not value['proposal']['order']['quotation_required']:
+                            raise RuntimeError('higher-volume quote requirement lost')
+                    corrected_case_url='/staff/licence-cases/'+case_ids[0]+'/'
+                    corrected=staff.post(corrected_case_url,data=json.dumps({'action':'review','request_id':str(uuid.uuid4()),
+                        'expected_revision':2,'decision':'needs_information'}),content_type='application/json',HTTP_X_CSRFTOKEN=staff_token)
+                    if corrected.status_code!=200 or corrected.json()['proposal']['active']:
+                        raise RuntimeError('corrected licence review left prior proposal active')
+                    reconsidered=staff.post(corrected_case_url,data=json.dumps({'action':'review','request_id':str(uuid.uuid4()),
+                        'expected_revision':3,'decision':'ready_for_commercial_review'}),content_type='application/json',HTTP_X_CSRFTOKEN=staff_token)
+                    replaced=staff.post(corrected_case_url,data=json.dumps({'action':'proposal','request_id':str(uuid.uuid4()),
+                        'expected_revision':4}),content_type='application/json',HTTP_X_CSRFTOKEN=staff_token)
+                    if reconsidered.status_code!=200 or replaced.status_code!=200 or replaced.json()['revision']!=5:
+                        raise RuntimeError('licence proposal correction history failed')
                     work_command={'action':'work','request_id':str(uuid.uuid4()),'target_id':reservation_id,'seconds':3600}
                     worked=staff.post(staff_url,data=json.dumps(work_command),content_type='application/json',HTTP_X_CSRFTOKEN=staff_token)
                     repeated=staff.post(staff_url,data=json.dumps(work_command),content_type='application/json',HTTP_X_CSRFTOKEN=staff_token)
@@ -185,6 +228,11 @@ def run(archive_root):
             repeated=client.post(download_url,data=json.dumps({'token':bearer}),content_type='application/json',HTTP_X_CSRFTOKEN=csrf)
             if downloaded.status_code!=200 or b'synthetic-materials-v1' not in downloaded.content or repeated.status_code!=404:
                 raise RuntimeError('private version-bound single-use download mismatch')
+            owner_case=client.get('/purchase/checkout-rehearsal/'+str(retained.pk)+'/changes/'+case_ids[0]+'/',HTTP_ACCEPT='application/json')
+            if owner_case.status_code!=200 or not owner_case.json()['proposal']['active'] or b'credential_generation' in owner_case.content:
+                raise RuntimeError('owner licence case status/privacy mismatch')
+            if SyntheticBankOperation.objects.count()!=case_bank_count or SyntheticLineEntitlement.objects.filter(fulfilment=grant).count()!=1:
+                raise RuntimeError('licence cases duplicated money or original entitlement')
             final=client.get(support_url,HTTP_ACCEPT='application/json').json()['ledger']
             if (final['spent_seconds']!=1800 or final['available_seconds']!=70200
                     or len(final['statements'])!=1 or final['statements'][0]['statement']['revision']!=4
@@ -199,7 +247,9 @@ def run(archive_root):
                 'spent_seconds':final['spent_seconds'],'available_seconds':final['available_seconds'],
                 'statement_committed_revision':final['statements'][0]['statement']['revision'],
                 'local_staff_two_factors_and_exact_grant':True,'reverse_replace_history_preserved':True},
-            'private_packages':{'retained_versions':3,'old_version_downloaded_once':True,'bearer_in_url':False,'actual_delivery':False}}
+            'private_packages':{'retained_versions':3,'old_version_downloaded_once':True,'bearer_in_url':False,'actual_delivery':False},
+            'licence_change_cases':{'kinds_captured_and_reviewed':5,'higher_volume_requires_quote':True,
+                'corrected_review_supersedes_prior_proposal':True,'original_entitlement_unchanged':True,'automatic_charge':False}}
 
     return {'status':'PURCHASE_FLOW_DEMO_PASS','evidence_class':'local-synthetic','financial_confirmation':False,
         'effects_authorized':False,'real_email_verification':False,'ready_kit_zero_support':True,'required_support_tamper_refused':True,

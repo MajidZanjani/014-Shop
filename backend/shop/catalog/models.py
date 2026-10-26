@@ -429,3 +429,47 @@ class SyntheticPackageAccess(models.Model):
     consumed_at=models.DateTimeField(null=True)
     class Meta:
         constraints=[models.CheckConstraint(condition=models.Q(token_digest__regex=r'^[0-9a-f]{64}$',session_digest__regex=r'^[0-9a-f]{64}$'),name='synthetic_package_access_digests')]
+
+
+class SyntheticLicenceCase(models.Model):
+    identity=models.UUIDField(unique=True,editable=False)
+    entitlement=models.ForeignKey(SyntheticLineEntitlement,on_delete=models.PROTECT)
+    request_id=models.UUIDField()
+    kind=models.CharField(max_length=24)
+    payload=models.JSONField()
+    sha256=models.CharField(max_length=64)
+    archive_receipt=models.JSONField()
+    evidence_class=models.CharField(max_length=32,default='local-synthetic')
+    effects_authorized=models.BooleanField(default=False)
+    created_at=models.DateTimeField(auto_now_add=True)
+    class Meta:
+        constraints=[
+            models.UniqueConstraint(fields=['entitlement','request_id'],name='synthetic_licence_case_retry'),
+            models.CheckConstraint(condition=models.Q(kind__in=['renewal','rehost','family-addition','node-addition','production-upgrade'],sha256__regex=r'^[0-9a-f]{64}$',evidence_class='local-synthetic',effects_authorized=False),name='synthetic_licence_case_local'),
+        ]
+
+
+class SyntheticLicenceCaseEvent(models.Model):
+    id=models.UUIDField(primary_key=True,editable=False)
+    case=models.ForeignKey(SyntheticLicenceCase,on_delete=models.PROTECT)
+    revision=models.PositiveIntegerField()
+    request_id=models.UUIDField()
+    kind=models.CharField(max_length=16)
+    payload=models.JSONField()
+    sha256=models.CharField(max_length=64)
+    archive_receipt=models.JSONField()
+    evidence_class=models.CharField(max_length=32,default='local-synthetic')
+    effects_authorized=models.BooleanField(default=False)
+    class Meta:
+        constraints=[
+            models.UniqueConstraint(fields=['case','revision'],name='synthetic_case_event_revision'),
+            models.UniqueConstraint(fields=['case','request_id'],name='synthetic_case_event_retry'),
+            models.CheckConstraint(condition=models.Q(revision__gte=1,kind__in=['review','proposal'],sha256__regex=r'^[0-9a-f]{64}$',evidence_class='local-synthetic',effects_authorized=False),name='synthetic_case_event_local'),
+        ]
+
+
+class SyntheticLicenceCaseStaffGrant(models.Model):
+    user=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT)
+    case=models.ForeignKey(SyntheticLicenceCase,on_delete=models.PROTECT)
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['user','case'],name='synthetic_licence_case_staff')]

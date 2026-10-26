@@ -85,7 +85,7 @@ import json
 run(ARCHIVE_ROOT)
 p=SyntheticPackageRevision.objects.select_related('entitlement__fulfilment__acceptance__checkout__owner__customeridentity').filter(stage='initial',version=1).latest('pk')
 c=p.entitlement.fulfilment.acceptance.checkout
-print(json.dumps({'email':c.owner.customeridentity.email,'checkout_id':str(c.pk),'package_id':str(p.identity)}))
+print(json.dumps({'email':c.owner.customeridentity.email,'checkout_id':str(c.pk),'package_id':str(p.identity),'entitlement_id':str(p.entitlement_id)}))
 '''.replace('ARCHIVE_ROOT', repr(str(archive)))
         material_fixture=json.loads(manage(python,env,'shell','--no-imports','-c',seed_code,timeout=30).stdout)
         with gunicorn(python, env, scratch) as backend_port:
@@ -187,6 +187,20 @@ print(json.dumps({'email':c.owner.customeridentity.email,'checkout_id':str(c.pk)
                     require(materials.request(access,{'artifact':'sll-synthetic-rtl.txt'},token=False)[0]==403,'private download missing-CSRF accepted')
                     require(materials.request(download)[0]==405,'private download GET accepted')
                     checks += 11
+                    changes='/purchase/checkout-rehearsal/'+material_fixture['checkout_id']+'/changes/'
+                    create=changes+'new/'+material_fixture['entitlement_id']+'/'
+                    status,_,raw=materials.request(create)
+                    require(status==200 and materials.policy=='same-origin' and b'Capture rehosting request' in raw,'licence change form/policy unavailable')
+                    change_command={'kind':'rehost','request_id':str(uuid.uuid4())}
+                    status,location,_=materials.request(create,change_command)
+                    require(status==303 and location and location.startswith(changes),'licence case capture redirect failed')
+                    require(materials.request(create,change_command)[1]==location,'licence case retry changed identity')
+                    status,_,raw=materials.request(location)
+                    require(status==200 and b'awaiting_review' in raw,'licence case owner status failed')
+                    require(materials.request(create,change_command,origin='null')[0]==403,'licence case null origin accepted')
+                    require(materials.request(create,change_command,token=False)[0]==403,'licence case missing-CSRF accepted')
+                    require(materials.request(changes)[0]==200,'owner licence case list unavailable')
+                    checks += 7
                     checks += 25
             finally:
                 server.shutdown();server.server_close();thread.join(3)

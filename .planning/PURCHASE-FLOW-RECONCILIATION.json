@@ -589,6 +589,11 @@
       "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
     },
     {
+      "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-LICENCE-CHANGES-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
       "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-PRIVATE-PACKAGES-PARTIAL.md",
       "role": "historical-evidence",
       "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
