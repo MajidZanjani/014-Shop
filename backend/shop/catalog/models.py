@@ -360,3 +360,32 @@ class SyntheticLineDelivery(models.Model):
     class Meta:
         constraints=[models.UniqueConstraint(fields=['entitlement','stage'],name='synthetic_delivery_stage_unique'),
             models.CheckConstraint(condition=models.Q(stage__in=['initial','reference'],sha256__regex=r'^[0-9a-f]{64}$'),name='synthetic_delivery_stage_known')]
+
+
+class SyntheticSupportEvent(models.Model):
+    """Append-only, archived local support ledger; never actual spendable credit."""
+    id=models.UUIDField(primary_key=True,editable=False)
+    fulfilment=models.ForeignKey(SyntheticFulfilment,on_delete=models.PROTECT)
+    revision=models.PositiveIntegerField()
+    request_id=models.UUIDField()
+    kind=models.CharField(max_length=16)
+    payload=models.JSONField()
+    sha256=models.CharField(max_length=64)
+    archive_receipt=models.JSONField()
+    evidence_class=models.CharField(max_length=32,default='local-synthetic')
+    effects_authorized=models.BooleanField(default=False)
+    created_at=models.DateTimeField(auto_now_add=True)
+    class Meta:
+        constraints=[
+            models.UniqueConstraint(fields=['fulfilment','revision'],name='synthetic_support_revision_unique'),
+            models.UniqueConstraint(fields=['fulfilment','request_id'],name='synthetic_support_request_unique'),
+            models.CheckConstraint(condition=models.Q(revision__gte=1,kind__in=['reserve','release','work','correct','statement'],sha256__regex=r'^[0-9a-f]{64}$',evidence_class='local-synthetic',effects_authorized=False),name='synthetic_support_event_bounds'),
+        ]
+
+
+class SyntheticSupportStaffGrant(models.Model):
+    """Explicit local staff authority over one synthetic support grant."""
+    user=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT)
+    fulfilment=models.ForeignKey(SyntheticFulfilment,on_delete=models.PROTECT)
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['user','fulfilment'],name='synthetic_support_staff_unique')]

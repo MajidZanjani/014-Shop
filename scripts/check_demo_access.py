@@ -127,6 +127,24 @@ def run():
                     status, _, raw = browser.request(payment, {'action':'provision'})
                     require(status == 200 and b'36000 integer seconds' in raw, 'support-only grant failed')
                     require(browser.request(payment, {'action':'provision'})[0] == 200, 'support grant retry failed')
+                    support = payment.replace('/payment/', '/support/')
+                    status, _, raw = browser.request(support)
+                    require(status == 200 and browser.policy == 'same-origin' and b'Simulate support reservation' in raw, 'support form/policy unavailable')
+                    reserve = {key:browser.hidden[key] for key in ('request_id','task_id')}
+                    reserve.update(action='reserve',seconds='3600')
+                    status, location, _ = browser.request(support, reserve)
+                    require(status == 303 and location == support, 'support reservation redirect failed')
+                    require(browser.request(support, reserve)[0] == 303, 'support reservation retry failed')
+                    status, _, raw = browser.request(support)
+                    require(status == 200 and b'Reserved: 3600' in raw and b'Available: 32400' in raw, 'support reservation balance mismatch')
+                    release = {key:browser.hidden[key] for key in ('request_id','target_id')}
+                    release['action'] = 'release'
+                    require(browser.request(support, release)[0] == 303, 'support release failed')
+                    require(browser.request(support, release)[0] == 303, 'support release retry failed')
+                    status, _, raw = browser.request(support)
+                    require(status == 200 and b'Reserved: 0' in raw and b'Available: 36000' in raw, 'support release balance mismatch')
+                    require(browser.request(support, reserve, origin='null')[0] == 403, 'support null origin accepted')
+                    checks += 8
                     browser.request('/purchase/access/')
                     for origin in ('null', 'http://untrusted.invalid'):
                         require(browser.request('/purchase/access/', {'action': 'logout'}, origin=origin)[0] == 403, 'untrusted origin accepted')

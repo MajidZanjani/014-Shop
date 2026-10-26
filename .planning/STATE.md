@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 current_plan: 02
-status: paused
-last_updated: "2026-10-26T10:27:54.135Z"
+status: in_progress
+last_updated: "2026-10-26T10:41:33.438Z"
 state_head: 0bfb7db2ea8a022329b8ce61675745891ebb7d2a
 progress:
   total_phases: 14
@@ -10,13 +10,12 @@ progress:
   total_plans: 29
   completed_plans: 11
   percent: 7
-current_task: 1
+current_task: 4
 last_activity: 2026-10-26
 current_phase: 10
 current_phase_name: Staged licence/reference-design delivery and support ledger
-stopped_at: User-requested pause before10-02 reservation/work-ledger continuation. Resume from HANDOFF.json and Phase10 .continue-here.md.
-paused_at: "2026-10-26T10:21:33.041Z"
-last_activity_desc: Reconciled manager-facing planning status; Phase10 implementation remains paused before10-02 task1.
+stopped_at: Local10-02 ledger implemented and verified; continuing supported demo integration.
+last_activity_desc: Archived local support reservations, staff work, corrections and statements pass391 backend tests and66 proxy checks.
 ---
 
 # Project state — final purchase-flow revision2
@@ -27,9 +26,9 @@ last_activity_desc: Reconciled manager-facing planning status; Phase10 implement
 
 **Current plan:** 10-02 — SLL support top-ups and reserved existing credit.
 
-**Execution status:** paused before task 1 of 4; context restored, implementation has not restarted. Latest activity: planning-report correction completed.
+**Execution status:** in progress — task 4 of 4, integrating the implemented local ledger into the supported complete-cart demo; actual acceptance remains pending.
 
-**Next implementation task:** 1 of 4 — recorded synthetic support reservations/releases, exact retries and real-PostgreSQL competing-reservation verification. Then committed work spend, reverse/replace corrections and committed-revision statements.
+**Next implementation task:** 4 of 4 — extend the supported complete-cart demo through scoped staff work, reverse/replace correction and committed-revision statement; retain all actual qualification gates.
 
 ## Preserved implementation/evidence
 
@@ -42,11 +41,13 @@ last_activity_desc: Reconciled manager-facing planning status; Phase10 implement
 
 Complete-cart synthetic captured payment now produces one archived grant plan, one licence record per IP line and exactly36000 integer seconds per support package once with no expiry. Initial and later reference-design completion are separate archived per-line events; the later event never duplicates licence or support grants. Support-only and ready-kit fixtures preserve their narrower scope. Actual spendable credit, files, keys and rights remain disabled. [Exact evidence/remaining work](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md).
 
-Latest full backend CORE_LOCAL_PASS378 tests/5 checks,98.547s; final focused11 fulfilment tests,2.950s, covers final scalar-ID parser guard. Extended purchase demo passes complete-cart acceptance/payment/grants/staging and prior separately labelled cases. Actual proxy/Gunicorn/owned PostgreSQL50 header-level checks across both loopback aliases pass including grant/retry. Final source210 exact files/26 templates/1 CSS, no symlinks. Full-suite test subprocess budget is bounded120 seconds after the enlarged lane exceeded90; request/provider timeouts unchanged.
+Latest full backend CORE_LOCAL_PASS391 tests/5 checks,103.505s; focused13 ledger tests,4.136s; actual proxy/Gunicorn/owned PostgreSQL66 header-level checks across both loopback aliases, including support reservation/release retries and CSRF denial. Source215 exact files/27 templates/1 CSS/no symlinks. Existing bounded120-second test runner and request/provider timeouts are unchanged. [Ledger evidence](phases/10-staged-delivery-and-support-ledger/10-SUPPORT-LEDGER-PARTIAL.md).
 
 The user-requested shared shop-style customer UI remains in use for fulfilment status/actions. [UI contract](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-UI-SPEC.md). User reports all browser simulations completed on2026-10-26, following the styled checkout/payment/grant/staged-delivery test instructions. This records user-reported functional completion, not an independently observed run or formal accessibility/visual approval. No real commercial approval or full phase/plan acceptance is inferred.
 
-Next usable local feature: extend complete-cart synthetic support ledger with recorded reservations, committed work spend, reverse/replace corrections and committed-revision statements under10-02. Preserve same-owner SLL scope, no competing spend or automatic cross-project pooling, and archive-before-spend/completion/publication rules. Actual staff/terms/tax/host/commercial/financial/licensing/provider/protected/recovery gates remain scoped and pending.
+Recorded synthetic reservations/releases, recent-MFA exact-grant staff work, immutable reverse/replace corrections and archived committed-revision statements are implemented with private shared-style customer/staff pages. PostgreSQL serialization prevents competing allocation/spend/correction; database triggers prohibit event update/delete. All simulated work-completion evidence archives before the debit; every statement verifies the committed grant/event archive chain. Local operator reset/revoke removes support grants. Actual support spending, technical work, retention and private packages/keys remain disabled/unqualified.
+
+Continuing10-02 task4: integrate these paths into the supported complete-cart demonstration. No new platform/licence questionnaire, automatic pooling or technical portal.
 
 ## Pending actual gates
 
@@ -132,6 +133,6 @@ User instructed adopting the complete final26October revision2 and replacing sta
 | 64 | Enable nix-command and flakes in local development commands | 2026-10-26 | 8f76a35 | — |
 | 261026-ehs | Reconcile manager-facing Phase10 plan/status and guard live index consistency | 2026-10-26 | 0ffb64f | [261026-ehs-reconcile-manager-facing-planning-status](./quick/261026-ehs-reconcile-manager-facing-planning-status/) |
 
-## Explicit pause — 2026-10-26T10:21:33.041Z
+## Historical pause — 2026-10-26T10:21:33.041Z
 
 Paused at the user's request. Resume via `$gsd-resume-work`; read [structured handoff](HANDOFF.json) and [Phase10 checkpoint](phases/10-staged-delivery-and-support-ledger/.continue-here.md). No implementation or tests remain active. Pending actual approvals and existing phase/plan completion counts are unchanged. No context threshold is claimed.

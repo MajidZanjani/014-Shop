@@ -14,13 +14,13 @@
 
 **Current plan:** 10-02 — SLL support top-ups and reserved existing credit.
 
-**Execution status:** paused before task 1 of 4; context restored, implementation has not restarted. Latest activity: planning-report correction completed.
+**Execution status:** in progress — task 4 of 4, integrating the implemented local ledger into the supported complete-cart demo; actual acceptance remains pending.
 
-**Next implementation task:** 1 of 4 — recorded synthetic support reservations/releases, exact retries and real-PostgreSQL competing-reservation verification. Then committed work spend, reverse/replace corrections and committed-revision statements.
+**Next implementation task:** 4 of 4 — extend the supported complete-cart demo through scoped staff work, reverse/replace correction and committed-revision statement; retain all actual qualification gates.
 
 **Last fully completed phase:** 1. Phases2–7 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase8 work while those earlier checks remain open. Completed phases remain1/14 (rounded7%); planned records11/29. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
 
-**Current activity:** Final26October revision2 applied once; platform/synthetic staged purchase, complete-cart synthetic acceptance/payment and shared customer UI implemented. Complete-cart once-only per-line grants/staged completion are implemented; next support reservations/work/corrections/statements; STATE.md owns exact evidence and pending gates.
+**Current activity:** Complete-cart synthetic checkout/payment/grants/staged completion plus support reservations, scoped staff work, reverse/replace corrections and committed-revision statements implemented. Full391 backend/13 focused ledger/66 proxy checks pass. Integrating the supported complete-cart demo next. [Exact ledger evidence and actual gates](phases/10-staged-delivery-and-support-ledger/10-SUPPORT-LEDGER-PARTIAL.md).
 
 Before every commit, reconcile all affected planning status references, regenerate canonical state.json and run `python3 scripts/check_planning.py`; commit then sync origin/main. Historical sources/evidence remain scoped to their dates.
 
@@ -47,7 +47,7 @@ The October21 reset completed documentation replanning. Later user continuation 
 - [ ] **Phase 7: Short business checkout, standard offers and acceptance** — October 21 handoff T07
 - [ ] **Phase 8: Payment domain and fault-injectable fake bank** — October 21 handoff T08
 - [ ] **Phase 9: Selected-bank sandbox integration and complete reconciliation** — October 21 handoff T09
-- [ ] **Phase 10: Staged licence/reference-design delivery and support ledger** — CURRENT DEVELOPMENT FOCUS; paused before10-02 task1; partial local implementation, full acceptance pending — October 21 handoff T10
+- [ ] **Phase 10: Staged licence/reference-design delivery and support ledger** — CURRENT DEVELOPMENT FOCUS; executing10-02 task4; partial local implementation, full acceptance pending — October 21 handoff T10
 - [ ] **Phase 11: Protected-host qualification, shop-only deployment and conditional public activation** — October 21 handoff T11
 - [ ] **Phase 12: Backups, operating alerts and financial/licensing restore rehearsal** — October 21 handoff T12
 - [ ] **Phase 13: Purchase-flow, fulfilment and release acceptance** — October 21 handoff T13
@@ -307,7 +307,7 @@ Local implementation: versioned owner draft cart delivered in [quick261022-iqc](
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md T10; complete companion proposal remains normative.
 **Estimate:** 5–8 engineer-days
 **UI hint:** yes
-**Plans:** 0/2 fully accepted; both partially implemented locally. [10-01](phases/10-staged-delivery-and-support-ledger/10-01-PLAN.md): once-only synthetic grants and staged completion implemented; actual private package/key delivery and fulfilment qualification pending. [10-02](phases/10-staged-delivery-and-support-ledger/10-02-PLAN.md): synthetic credit grants implemented; paused before reservation task1. Remaining: reservations/releases, committed work spending, reverse/replace corrections and committed-revision statements. [Retained evidence](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md).
+**Plans:** 0/2 fully accepted; both partially implemented locally. [10-01](phases/10-staged-delivery-and-support-ledger/10-01-PLAN.md): once-only synthetic grants and staged completion implemented; actual private package/key delivery and fulfilment qualification pending. [10-02](phases/10-staged-delivery-and-support-ledger/10-02-PLAN.md): synthetic credit grants implemented; integrating task4 demo. Local reservations/releases, scoped staff work, corrections and statements implemented; task4 supported demo integration in progress. Actual retention/completion/spendability and full acceptance pending. [Retained evidence](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md).
 
 **Success Criteria:**
 
@@ -440,7 +440,7 @@ Unchecked phase boxes mean full acceptance is outstanding. They do not mean deve
 | 7. Short business checkout, standard offers and acceptance | 1 / 4 | In Progress — current local cart/quotation/business/review/preparation implementation; commercial acceptance pending | — |
 | 8. Payment domain and fault-injectable fake bank | 0 / not planned | In Progress | Typed local synthetic-bank slice; full domain pending |
 | 9. Selected-bank sandbox integration and complete reconciliation | 0 / not planned | Not started | — |
-| 10. Staged licence/reference-design delivery and support ledger | 0 / 2 | In Progress — CURRENT DEVELOPMENT FOCUS; paused before10-02 task1; synthetic grants/staged completion implemented; reservations/work/corrections/statements and actual fulfilment pending | — |
+| 10. Staged licence/reference-design delivery and support ledger | 0 / 2 | In Progress — CURRENT DEVELOPMENT FOCUS; executing10-02 task4; synthetic grants/staged completion and reservations/work/corrections/statements implemented; supported demo integration and actual qualification pending | — |
 | 11. Protected-host qualification, shop-only deployment and conditional public activation | 0 / not planned | Not started | — |
 | 12. Backups, operating alerts and financial/licensing restore rehearsal | 0 / not planned | Not started | — |
 | 13. Purchase-flow, fulfilment and release acceptance | 0 / 1 | In Progress — focused local amendment cases; full release/qualification pending | — |

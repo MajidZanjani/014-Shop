@@ -1,0 +1,27 @@
+{% extends "catalog/base.html" %}
+{% block title %}SLL support rehearsal{% endblock %}
+{% block content %}
+<h1>SLL support rehearsal</h1>
+<p>Local simulation only. Actual support spending and technical work remain disabled. Guidance covers SLL IP and its integration. Credit does not expire or extend IP licence rights.</p>
+{% if error %}<p role="alert">{{ error }}</p><p><a href="">Reload committed support status</a></p>{% endif %}
+{% if ledger %}
+<p role="status">Granted: {{ ledger.granted_seconds }} seconds · Reserved: {{ ledger.reserved_seconds }} · Spent: {{ ledger.spent_seconds }} · Available: {{ ledger.available_seconds }}.</p>
+<p>Committed ledger revision {{ ledger.revision }}. This balance applies to this purchase only.</p>
+{% if not staff %}
+<h2>Reserve support time</h2>
+<form method="post">{% csrf_token %}<input type="hidden" name="action" value="reserve"><input type="hidden" name="request_id" value="{{ request_id }}"><input type="hidden" name="task_id" value="{{ task_id }}"><label>Time to reserve, in whole seconds <input type="number" name="seconds" min="1" max="{{ ledger.available_seconds }}" required></label><button type="submit">Simulate support reservation</button></form>
+{% endif %}
+<h2>Active reservations</h2>
+<ul>{% for reservation in reservations %}<li>Task {{ reservation.task_id }} · {{ reservation.remaining }} seconds reserved.
+<form method="post">{% csrf_token %}<input type="hidden" name="request_id" value="{{ reservation.request_id }}"><input type="hidden" name="target_id" value="{{ reservation.id }}">
+{% if staff %}<input type="hidden" name="action" value="work"><label>Completed work, whole seconds <input type="number" name="seconds" min="1" max="{{ reservation.remaining }}" required></label><button type="submit">Simulate completed support work</button>
+{% else %}<input type="hidden" name="action" value="release"><button type="submit">Release this reservation</button>{% endif %}</form></li>{% empty %}<li>No active reservations.</li>{% endfor %}</ul>
+<h2>Committed work</h2>
+<ul>{% for item in work %}<li>Task {{ item.task_id }} · {{ item.seconds }} seconds.
+{% if staff %}<form method="post">{% csrf_token %}<input type="hidden" name="action" value="correct"><input type="hidden" name="request_id" value="{{ item.request_id }}"><input type="hidden" name="target_id" value="{{ item.id }}"><label>Replacement whole seconds (zero reverses the spend) <input type="number" name="seconds" min="0" required></label><button type="submit">Reverse and replace simulated work</button></form>{% endif %}</li>{% empty %}<li>No work committed.</li>{% endfor %}</ul>
+<h2>Published synthetic statements</h2>
+{% if staff %}<form method="post">{% csrf_token %}<input type="hidden" name="action" value="statement"><input type="hidden" name="request_id" value="{{ request_id }}"><button type="submit">Archive and publish simulated statement</button></form>{% endif %}
+<ul>{% for item in ledger.statements %}<li>Committed revision {{ item.statement.revision }} · Spent {{ item.statement.spent_seconds }} seconds · Remaining {{ item.statement.available_seconds }} · Reserved {{ item.statement.reserved_seconds }}.</li>{% empty %}<li>No statement published.</li>{% endfor %}</ul>
+{% endif %}
+{% if staff %}<p><a href="/staff/">Staff home</a></p>{% else %}<p><a href="/purchase/checkout-rehearsal/{{ checkout_id }}/payment/">Purchase rehearsal</a> · <a href="/purchase/cart/">Saved cart</a></p>{% endif %}
+{% endblock %}

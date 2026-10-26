@@ -4,9 +4,9 @@
 
 **Current plan:** 10-02 — SLL support top-ups and reserved existing credit.
 
-**Execution status:** paused before task 1 of 4; context restored, implementation has not restarted. Latest activity: planning-report correction completed.
+**Execution status:** in progress — task 4 of 4, integrating the implemented local ledger into the supported complete-cart demo; actual acceptance remains pending.
 
-**Next implementation task:** 1 of 4 — recorded synthetic support reservations/releases, exact retries and real-PostgreSQL competing-reservation verification. Then committed work spend, reverse/replace corrections and committed-revision statements.
+**Next implementation task:** 4 of 4 — extend the supported complete-cart demo through scoped staff work, reverse/replace correction and committed-revision statement; retain all actual qualification gates.
 
 **Recorded implementation:** 0bfb7db2ea8a022329b8ce61675745891ebb7d2a
 
@@ -14,8 +14,8 @@
 
 Shared public-shop-style customer UI now exposes grant/initial/later simulation buttons after simulated payment. User reports all browser simulations completed on2026-10-26 after the updated checkout/payment/grants/staged-delivery instructions. Record this as user-reported functional completion; no independently observed browser run, formal visual/accessibility acceptance or actual commercial approval is inferred. [UI contract](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-UI-SPEC.md).
 
-Verification: full backend378 tests/5 checks,98.547s; final focused11,2.950s after scalar-ID guard; full purchase demo pass; actual proxy/Gunicorn/owned PostgreSQL50 header-level checks across both aliases pass. Source210 exact files/26 templates/1 CSS. Full-suite test timeout only is bounded120 seconds after90 proved too short. Dependency pins unchanged. Exact pinned frontend Node24.22, automated browser-engine/formal visual/accessibility qualification and all actual commercial/external gates remain pending. Completed phases1/14/plans11/29 unchanged. No active build/test/async jobs after checks. No exact context percentage available or threshold pause claimed; continuity is saved.
+Latest verification: full backend391 tests/5 checks,103.505s; focused13 ledger tests,4.136s; actual proxy/Gunicorn/owned PostgreSQL66 header-level checks across both aliases; source215 exact files/27 templates/1 CSS/no symlinks. [Exact ledger evidence](phases/10-staged-delivery-and-support-ledger/10-SUPPORT-LEDGER-PARTIAL.md). Earlier378/11/50 results remain dated fulfilment evidence. Full phases1/14 and plans11/29 unchanged.
 
-Next action: extend complete-cart synthetic support ledger with reservations, committed work spend, reverse/replace corrections and statements based on committed revisions under10-02. Keep owner/SLL scope and prevent competing spend; no automatic cross-project pooling or technical portal. Archive actual support completion before final statement publication. Actual staff/MFA/commercial/legal/tax/host/licensing/financial/retention and protected/external operations remain separately scoped and pending.
+Reservations/releases, scoped recent-MFA staff work, reverse/replace corrections and committed-revision statements are implemented locally. Continue supported complete-cart demo integration. Actual spending/work completion, commercial/privacy/retention/provider/runtime/host/recovery and browser visual/accessibility acceptance remain pending.
 
-Explicit user-requested pause saved at 2026-10-26T10:21:33.041Z. Resume with `$gsd-resume-work`, consuming [HANDOFF.json](HANDOFF.json) and [Phase10 checkpoint](phases/10-staged-delivery-and-support-ledger/.continue-here.md). Next task is10-02 recorded reservations; no unfinished implementation or agent-owned process. All actual gates remain pending.
+Previous user-requested pause consumed on continuation. Phase10-02 task4 is in progress; no external/protected authority inferred.

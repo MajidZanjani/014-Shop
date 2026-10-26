@@ -10,11 +10,11 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current plan:** 10-02 — SLL support top-ups and reserved existing credit.
 
-**Execution status:** paused before task 1 of 4; context restored, implementation has not restarted. Latest activity: planning-report correction completed.
+**Execution status:** in progress — task 4 of 4, integrating the implemented local ledger into the supported complete-cart demo; actual acceptance remains pending.
 
-**Next implementation task:** 1 of 4 — recorded synthetic support reservations/releases, exact retries and real-PostgreSQL competing-reservation verification. Then committed work spend, reverse/replace corrections and committed-revision statements.
+**Next implementation task:** 4 of 4 — extend the supported complete-cart demo through scoped staff work, reverse/replace correction and committed-revision statement; retain all actual qualification gates.
 
-Complete-cart synthetic checkout, acceptance/payment, once-only licence/support grants and staged completion are implemented. Latest retained backend run:378 tests/5 checks; final focused fulfilment11 tests; proxy50 header-level checks. These are dated local/synthetic results, not newly executed tests or actual commercial/production acceptance. Only Phase1 is fully accepted;11/29 plan records complete. Counts are not an engineering-effort estimate. Current evidence and gates: [STATE.md](STATE.md) and [ROADMAP.md](ROADMAP.md).
+Complete-cart synthetic checkout, acceptance/payment, once-only grants and staged completion are implemented, now with archived reservations/releases, scoped staff work, reverse/replace corrections and committed-revision statements. Latest retained local results:391 backend tests/5 checks,13 focused ledger tests and66 proxy header-level checks. Only Phase1 is fully accepted;11/29 plan records complete. Counts are not engineering-effort estimates. [STATE.md](STATE.md) and [ROADMAP.md](ROADMAP.md) retain exact evidence and actual qualification gates.
 
 Before every commit reconcile affected current references, publish state.json and run python3 scripts/check_planning.py. Sync commits to origin/main without force. Historical evidence retains its original scope.
 
