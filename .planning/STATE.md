@@ -18,7 +18,7 @@ last_activity_desc: Lifecycle and recovery command verified319 local tests; next
 
 # Project State
 
-Updated 2026-10-23T13:59:14.853Z. Canonical current summary; latest evidence: [typed synthetic bank](phases/08-payment-domain-and-fault-injectable-fake-bank/08-BANK-BOUNDARY-PARTIAL.md). Prior observation/process evidence retains its historical scope. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
+Updated2026-10-26. Canonical current summary; latest evidence: [synthetic lifecycle](phases/08-payment-domain-and-fault-injectable-fake-bank/08-LIFECYCLE-PARTIAL.md). Prior observation/process evidence retains its historical scope. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
 
 ## Current position
 
