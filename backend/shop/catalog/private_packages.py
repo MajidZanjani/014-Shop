@@ -43,7 +43,7 @@ def line_locked(owner,checkout_id,line_id,archive):
     fulfilment.retained(grant,row,archive)
     expected=next((entry for entry in grant.payload['entitlements'] if entry['id']==str(line.pk)),None)
     if expected is None or expected['offer']!=line.snapshot or expected['line_id']!=str(line.line_id):fail()
-    if row.attempt.state!='observed' or row.attempt.provider_status!='captured':fail('synthetic_captured_payment_required',422)
+    if row.attempt.state!='observed' or row.attempt.provider_status not in ('captured','refunded'):fail('synthetic_captured_payment_required',422)
     return line
 
 

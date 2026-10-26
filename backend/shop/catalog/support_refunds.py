@@ -18,7 +18,7 @@ def grant_locked(owner,checkout_id,archive):
     payment.locked(owner,checkout_id)
     grant=SyntheticFulfilment.objects.select_for_update(of=('self',)).select_related('acceptance__checkout','acceptance__attempt').filter(acceptance__checkout_id=checkout_id).first()
     if grant is None:fail('not_found',404)
-    if grant.acceptance.attempt is None or grant.acceptance.attempt.state!='observed' or grant.acceptance.attempt.provider_status!='captured':fail('captured_payment_required',422)
+    if grant.acceptance.attempt is None or grant.acceptance.attempt.state!='observed' or grant.acceptance.attempt.provider_status not in ('captured','refunded'):fail('captured_payment_required',422)
     fulfilment.retained(grant,grant.acceptance,archive)
     events=list(SyntheticSupportEvent.objects.filter(fulfilment=grant).order_by('revision'))
     state=ledger.replay(grant,events,archive)

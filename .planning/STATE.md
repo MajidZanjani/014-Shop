@@ -1,21 +1,22 @@
 ---
 gsd_state_version: "1.0"
-current_plan: 02
-status: executing
-last_updated: "2026-10-26T13:42:29.037Z"
+current_plan: 03
+status: paused
+paused_at: "2026-10-26T14:06:09.943Z"
+last_updated: "2026-10-26T14:06:09.943Z"
 state_head: cfdb75e716e1cd6c8a3842188ae1abcf14044ccf
 progress:
   total_phases: 14
   completed_phases: 1
-  total_plans: 35
+  total_plans: 36
   completed_plans: 11
   percent: 7
 current_task: 4
 last_activity: 2026-10-26
 current_phase: 8
 current_phase_name: Payment domain and fault-injectable fake bank
-stopped_at: Local08-02 journal verified; bounded synthetic authorization/capture planning next.
-last_activity_desc: Local08-02 journal verified with525 backend tests; actual qualification pending.
+stopped_at: User-requested pause;08-03 focused88 pass, final integration gates pending.
+last_activity_desc: Paused08-03 code and harness/CI batch with final full qualification pending.
 ---
 
 # Project state — final purchase-flow revision2
@@ -24,11 +25,11 @@ last_activity_desc: Local08-02 journal verified with525 backend tests; actual qu
 
 **Last fully completed phase:** 1 — baseline documentary acceptance only. SRC-05 final-amendment documentary reconciliation is complete and does not revalidate actual commercial or external behavior. All other phases remain partial or pending. Counts are completed-phase/planned-record counts, not engineering effort.
 
-**Current plan:** 08-02 — Archived synthetic observation journal.
+**Current plan:** 08-03 — Integrated purchase revisions, payment lifecycle and ordinary development gates.
 
-**Execution status:** executing — local08-02 observation journal implemented and locally verified; synthetic authorization/capture lifecycle planning next; actual financial/provider qualification pending.
+**Execution status:** paused — user-requested pause during08-03 verification; current focused88 tests pass; final full/integration/clean-checkout gates pending; no production activation.
 
-**Next implementation task:** Plan bounded synthetic authorization-to-capture intents and immutable evolving history, preserving lookup-only uncertainty and original money facts; keep actual provider/refund/callback/financial authority pending.
+**Next implementation task:** Run $gsd-resume-work, then finish08-03 final clean-checkout inventory, full enclosing core-local, worker/demo/proxy and source checks; fix only demonstrated defects and retain all actual qualification gates.
 
 ## Preserved implementation/evidence
 

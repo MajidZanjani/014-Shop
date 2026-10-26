@@ -46,6 +46,56 @@
           "run": "python3 scripts/check_frontend_dev.py\npython3 scripts/check_catalog.py"
         }
       ]
+    },
+    "backend-worker": {
+      "runs-on": "ubuntu-24.04",
+      "timeout-minutes": 45,
+      "env": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "steps": [
+        {
+          "uses": "actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "with": {
+            "persist-credentials": false,
+            "fetch-depth": 0
+          }
+        },
+        {
+          "name": "Install Nix for the committed toolchain lock",
+          "uses": "cachix/install-nix-action@75c75c31ebece974e48ebc36b4ad125bd97bd97b",
+          "with": {
+            "extra_nix_config": "experimental-features = nix-command flakes",
+            "enable_kvm": false,
+            "set_as_trusted_user": false,
+            "install_url": "https://releases.nixos.org/nix/nix-2.34.7/install"
+          }
+        },
+        {
+          "name": "Create exclusively owned short scratch directory",
+          "id": "scratch",
+          "shell": "bash",
+          "run": "scratch=$(mktemp -d /tmp/shop-ci-XXXXXXXX)\nchmod 700 \"$scratch\"\nprintf \"path=%s\\n\" \"$scratch\" >> \"$GITHUB_OUTPUT\""
+        },
+        {
+          "name": "Ordinary backend and worker checks (synthetic adapters; real isolated PostgreSQL)",
+          "env": {
+            "SHOP_TEST_SCRATCH": "${{ steps.scratch.outputs.path }}",
+            "TMPDIR": "${{ steps.scratch.outputs.path }}"
+          },
+          "shell": "bash",
+          "run": "nix develop --max-jobs 1 --cores 4 ./ops/nixos#backend --command python3 - <<'PY_CHECKS'\nimport subprocess\nfor pattern in ('test_check.py','test_purchase_plan_inventory.py'):\n subprocess.run(['python3','-m','unittest','discover','-s','tests','-p',pattern],check=True,timeout=30)\n# Each producer retains its own finite subprocess/database limits. These outer\n# limits include dependency setup and cleanup; qualification lanes stay separate.\nfor argv, timeout, marker in [\n (['python3','scripts/check_backend.py','core-local'],900,'CORE_LOCAL_PASS'),\n (['python3','scripts/check_worker.py','worker-local'],900,'WORKER_LOCAL_PASS'),\n]:\n result=subprocess.run(argv,text=True,capture_output=True,timeout=timeout)\n print(result.stdout,flush=True)\n print(result.stderr,flush=True)\n if result.returncode: raise SystemExit(result.returncode)\n if marker not in result.stdout: raise SystemExit('Required ordinary producer did not complete')\nPY_CHECKS"
+        },
+        {
+          "name": "Remove only this job-owned scratch directory",
+          "if": "always() && steps.scratch.outputs.path != ''",
+          "env": {
+            "SHOP_CI_OWNED_SCRATCH": "${{ steps.scratch.outputs.path }}"
+          },
+          "shell": "bash",
+          "run": "python3 - <<'PY_CLEAN'\nimport os,shutil\nfrom pathlib import Path\np=Path(os.environ['SHOP_CI_OWNED_SCRATCH'])\nassert p.parent==Path('/tmp') and p.name.startswith('shop-ci-')\nassert not p.is_symlink() and p.is_dir() and p.stat().st_uid==os.getuid()\nshutil.rmtree(p)\nPY_CLEAN"
+        }
+      ]
     }
   }
 }

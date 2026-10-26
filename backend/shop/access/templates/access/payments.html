@@ -1,0 +1,8 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Local payment operations</title></head><body><main>
+<h1>Local payment operations</h1><p>Synthetic adapter only. No real capture, refund, tax document, licence revocation or support reversal is authorized. Only full-amount refunds are implemented in this synthetic adapter. Actual commercial and provider qualification remain pending.</p><p><a href="/staff/">Staff home</a> · <a href="/staff/payments/">Assigned payment operations</a></p>
+{% if assigned %}<p>Assigned operation: {{ kind }}.</p>{% if operation %}<p>Intent: {{ operation.state }}. Payment observation: {{ operation.status }}.</p>
+{% if operation.state == 'prepared' %}<form method="post">{% csrf_token %}<input type="hidden" name="action" value="dispatch"><button>Dispatch synthetic {{ kind }} once</button></form>{% endif %}
+{% if operation.state != 'prepared' %}<form method="post">{% csrf_token %}<input type="hidden" name="action" value="reconcile"><button>Look up retained operation</button></form><p>An uncertain operation cannot be dispatched again.</p>{% endif %}
+{% else %}<form method="post">{% csrf_token %}<input type="hidden" name="action" value="prepare"><input type="hidden" name="request_id" value="{{ request_id }}"><button>Archive synthetic {{ kind }} intent</button></form>{% endif %}
+{% else %}<ul>{% for scope in assignments %}<li><a href="/staff/payments/{{ scope.pk }}/">Assigned {{ scope.kind }} operation {{ scope.pk }}</a></li>{% empty %}<li>No assigned payment operations.</li>{% endfor %}</ul>{% if next_before %}<a href="?before={{ next_before }}">Older assignments</a>{% endif %}{% endif %}
+</main></body></html>

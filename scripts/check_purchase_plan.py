@@ -7,11 +7,18 @@ P=ROOT/'.planning'
 AMENDMENT='014-Shop-Board-Support-Amendment-2026-10-26.md'
 
 
+def planning_artifacts():
+    # GSD's process-local execution lock is not a committed planning artifact.
+    # Exclude only this exact root-relative name, never a broader lock glob.
+    return (path for path in P.rglob('*') if path.is_file()
+            and path.relative_to(P).as_posix() not in
+            {'PURCHASE-FLOW-RECONCILIATION.json', 'milestone.lock'})
+
+
 def refresh_inventory():
     current={'PROJECT.md','REQUIREMENTS.md','ROADMAP.md','STATE.md','HANDOFF.md','SOURCES.md','SOURCE-MATRIX.md','REPLAN-VERIFICATION.md','EXECUTION-AMENDMENT-2026-10-22.md','PURCHASE-FLOW-AMENDMENT.md','state.json'}
     files=[]
-    for path in sorted(P.rglob('*')):
-        if not path.is_file() or path.name=='PURCHASE-FLOW-RECONCILIATION.json':continue
+    for path in sorted(planning_artifacts()):
         name=str(path.relative_to(P))
         if name=='config.json':role='workflow-config'
         elif name in current or name.startswith('research/') or path.name.endswith('-UI-SPEC.md'):role='current'
@@ -52,7 +59,7 @@ def main():
     # Every existing planning artifact is classified, including historical quick/evidence files.
     inventory=json.loads((P/'PURCHASE-FLOW-RECONCILIATION.json').read_text())
     paths={item['path'] for item in inventory['files']}
-    actual={str(p.relative_to(ROOT)) for p in P.rglob('*') if p.is_file() and p.name!='PURCHASE-FLOW-RECONCILIATION.json'}
+    actual={str(p.relative_to(ROOT)) for p in planning_artifacts()}
     assert paths==actual,'planning inventory missing or stale paths'
     for item in inventory['files']:
         assert item['role'] in ('current','historical-evidence','retained-infrastructure-plan','workflow-config')

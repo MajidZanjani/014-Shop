@@ -210,3 +210,18 @@ class CheckoutPaymentTests(TransactionTestCase):
         response = self.client.get('/purchase/checkout-rehearsal/')
         self.assertContains(response, 'Complete these business fields', status_code=422)
         self.assertContains(response, 'Purchasing contact name', status_code=422)
+
+    def test_checkout_pins_same_commercial_contract_to_buyer_and_documents(self):
+        value,_=checkout.current(self.owner)
+        pins=[line['commercial_policy'] for line in value['priced_lines']]
+        self.assertTrue(pins);self.assertTrue(all(pin['evidence_class']=='local-synthetic' for pin in pins))
+        self.assertTrue(all(pin['documents']['general_terms']==value['documents']['revision'] for pin in pins))
+        buyer=value['business'];expected=checkout.digest(buyer)
+        self.assertTrue(all(pin['buyer_scope_revision']==expected for pin in pins))
+        self.assertTrue(all(pin['activation_authorized'] is False for pin in pins))
+        self.assertEqual(value['total_minor'],sum(line['total_minor'] for line in value['priced_lines']))
+
+    def test_revision_consumption_failure_holds_existing_checkout(self):
+        from .commercial_revisions import CommercialRevisionError
+        with patch('shop.catalog.commercial_revisions.consume',side_effect=CommercialRevisionError('untrusted')):
+            with self.assertRaises(checkout.CheckoutError):checkout.current(self.owner)

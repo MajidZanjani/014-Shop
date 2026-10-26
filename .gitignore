@@ -12,3 +12,5 @@
 **/.pgpass
 /result
 /result-*
+
+/.planning/milestone.lock

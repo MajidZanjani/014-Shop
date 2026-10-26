@@ -102,7 +102,7 @@ def record(owner,identity,request_id,kind,archive,*,seconds=None,task_id=None,ta
         grant = SyntheticFulfilment.objects.select_for_update(of=('self',)).select_related('acceptance__checkout','acceptance__attempt').filter(acceptance__checkout_id=identity).first()
         if grant is None:fail('synthetic_fulfilment_required',422)
         accepted=grant.acceptance
-        if accepted.attempt_id is None or accepted.attempt.state!='observed' or accepted.attempt.provider_status!='captured':fail('synthetic_captured_payment_required',422)
+        if accepted.attempt_id is None or accepted.attempt.state!='observed' or accepted.attempt.provider_status not in ('captured','refunded'):fail('synthetic_captured_payment_required',422)
         fulfilment.retained(grant,accepted,archive)
         actor=authorize(staff_request,grant) if kind in ('work','correct','statement') else {'owner_id':owner.pk}
         events=list(SyntheticSupportEvent.objects.filter(fulfilment=grant).order_by('revision'))

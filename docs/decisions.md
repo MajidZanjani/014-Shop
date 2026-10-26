@@ -42,3 +42,17 @@ No new compute/cloud block/public-IP purchase, monthly billing conversion, autom
 - P-08: Preserve applicable business/tax/acceptance requirements and existing helpers. No compulsory stage, uploads, engineering interview or individual staff approval for every standard purchase.
 
 These are requirements, not supplied rate/kit/rights/terms/compatibility approvals. Unknown values keep only the affected live offer pending. Explicit synthetic fixtures and unrelated local implementation continue.
+
+
+## Current blocker routing — 2026-10-26
+
+This is the concise execution view of the existing P-register and October22 qualification register, not a replacement approval list. Owner roles remain proposed until assigned. All unaffected local implementation continues.
+
+| Task/reference | Exact missing input or authority | Proposed owner | Affected operation | Next independent action |
+|---|---|---|---|---|
+| T03/T07; P-01/02/03/05/06/08 | Approved exact offer/component rates, rights/start/delivery/support/tax/legal/document facts and authenticated protected approval evidence | SLL commercial/legal/engineering/support | Actual payable offer and legal acceptance | Exercise immutable revision consumer and existing checkout with explicit fixtures; qualified approval-selection adapter remains pending |
+| T08/T09; P-07 | Selected eligible bank/merchant specification, normalized capture/refund/partial/uncertainty/callback/reconciliation contract and sandbox authority | SLL finance/acquirer owner | Actual bank calls and verified financial confirmation | Complete typed local lifecycle, exact-correlation and recovery tests; retain unsupported real operations closed |
+| T06/T10; P-04/06/12 | Qualified customer/staff delivery channels, actual host-manager formats/custody and approved private artifacts | SLL licensing/operations | Real access/key/package issue and staff production access | Preserve resource MFA/private synthetic interfaces; finish qualified adapter bindings when supplied |
+| T02/T12 existing qualification register | Assigned independent authorized runtime/recovery runner and source/image/DB qualification evidence | SLL infrastructure/release owner | Production/bank-sandbox DB, distribution, outage/exhaustion/complete-loss acceptance | Ordinary pinned backend/worker CI and app work continue; no paid provision or runner grant |
+| T11/T14; P-10/11 | Complete protected-resource read-only inventory/allowlist, activation-impact review and exact service/action authority; proved ingress/certificate path | SLL infrastructure/DNS owner | mx1 mutation, migrations/public activation/DNS/TLS | Prepare shop-only artifacts/protection review; no protected host action |
+| T14 repository release protection | Owner-approved exact check contexts/review policy and any required repository-rule action authority | Repository/release owner | Applying repository access/protection rules | Review docs/release-protection-review.md; run ordinary CI, retain manual qualification blocker |

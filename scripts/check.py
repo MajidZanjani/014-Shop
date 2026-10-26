@@ -17,14 +17,18 @@ QUICK = ("environment", "frontend", "core", "worker", "adapters", "contracts", "
 DEVELOPMENT = ("frontend", "core-local", "worker-smoke", "adapters", "contracts-local", "catalog")
 EXTRA = ("catalog", "inventory", "locks", "reproducibility", "deployment-profiles",
          "deployment-eval", "postgres-diagnostics", "postgresql-config", "bootstrap-local", "database-destination", "database-tools", "operator-runtime", "native-closure", "native-source-notices", "deployment-build", "deployment-boot")
+# Core owns two 120s test batches, up to 390s hash-locked environment setup,
+# and bounded database/migration/HTTP/cleanup work. This enclosing 900s budget
+# does not change any inner test, database, request or production limit.
+CORE_TIMEOUT_SECONDS = 900
 # (producer, commands, timeout). No optional producers or inferred skips.
 LANES = {
-    "core-local": ("scripts/check_backend.py", (("python3", "scripts/check_backend.py", "core-local"),), 120),
+    "core-local": ("scripts/check_backend.py", (("python3", "scripts/check_backend.py", "core-local"),), CORE_TIMEOUT_SECONDS),
     "contracts-local": ("scripts/check_contracts.py", (("python3", "scripts/check_contracts.py", "--local"),), 120),
     "catalog": ("scripts/check_catalog.py", (("python3", "scripts/check_catalog.py"),), 120),
     "environment": ("scripts/dev_postgres.py", (), 60),
     "frontend": ("scripts/check_frontend.py", (("python3", "scripts/check_frontend.py"),), 180),
-    "core": ("scripts/check_backend.py", (("python3", "scripts/check_backend.py", "core"),), 120),
+    "core": ("scripts/check_backend.py", (("python3", "scripts/check_backend.py", "core"),), CORE_TIMEOUT_SECONDS),
     "worker-smoke": ("scripts/check_worker.py", (("python3", "scripts/check_worker.py", "worker-smoke"),), 120),
     "worker": ("scripts/check_worker.py", (("python3", "scripts/check_worker.py", "worker"),), 180),
     "adapters": ("backend/shop/adapters/tests.py", (("python3", "scripts/check_backend.py", "adapters"),), 120),

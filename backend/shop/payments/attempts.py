@@ -6,7 +6,7 @@ from uuid import UUID
 from django.db import connection,transaction,IntegrityError
 from shop.adapters.evidence_archive import PreparedArchive,PreparedReceipt,manifest
 from . import synthetic_bank
-from .bank_contract import BankStart,BankError,validate,correlates
+from .bank_contract import BankStart,BankError,validate,correlates,progresses,precedes
 from .models import SyntheticPaymentAttempt,SyntheticAttemptControl
 
 
@@ -169,13 +169,19 @@ def _validate_observation(row,observation):
     if row.state not in ('uncertain','observed'):raise BankError('synthetic_attempt_not_dispatched')
     if observation is None:return row
     if not correlates(request_for(row),observation):raise BankError('synthetic_observation_mismatch')
-    if row.state=='observed' and (row.provider_operation_id,row.provider_status)!=(observation.provider_operation_id,observation.status):
-        raise BankError('synthetic_observation_conflict')
+    if row.state=='observed':
+        if row.provider_operation_id!=observation.provider_operation_id:raise BankError('synthetic_observation_conflict')
+        if row.provider_status!=observation.status and not progresses(row.provider_status,observation.status):
+            from .observations import identity,normalized
+            from .models import SyntheticPaymentObservation
+            if not (precedes(observation.status,row.provider_status) and SyntheticPaymentObservation.objects.filter(
+                    attempt=row,id=identity(row,normalized(observation))).exists()):raise BankError('synthetic_observation_conflict')
 
 
 def _apply_locked(row,observation):
     _validate_observation(row,observation)
     if observation is None:return row
+    if row.state=='observed' and precedes(observation.status,row.provider_status):return row
     row.state='observed';row.provider_operation_id=observation.provider_operation_id;row.provider_status=observation.status
     row.save(update_fields=['state','provider_operation_id','provider_status'])
     return row

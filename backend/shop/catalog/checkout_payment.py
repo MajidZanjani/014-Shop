@@ -124,7 +124,7 @@ def request_for(row):
     return BankStart('synthetic-checkout', row.pk, uuid.uuid5(row.pk, 'bank-key'), value['currency'], value['total_minor'])
 
 
-def pay(owner, identity, archive, *, fault=None):
+def pay(owner, identity, archive, *, fault=None, outcome='captured'):
     synthetic_bank.guard()
     row = accepted(owner, identity)
     retained(row, archive)
@@ -140,7 +140,7 @@ def pay(owner, identity, archive, *, fault=None):
         if current.attempt_id not in (None, attempt.pk): raise checkout.CheckoutError('attempt_mismatch')
         current.attempt = attempt;current.save(update_fields=['attempt'])
     # Existing one-way claim means an uncertain attempt is never sent again.
-    attempts.dispatch(attempt.pk, archive, fault=fault)
+    attempts.dispatch(attempt.pk, archive, fault=fault, outcome=outcome)
     return accepted(owner, identity)
 
 

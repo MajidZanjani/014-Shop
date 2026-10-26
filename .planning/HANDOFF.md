@@ -2,15 +2,17 @@
 
 **Current development focus:** 8 — payment domain and fault-injectable fake bank; Phase10 local slices retained with full acceptance pending. [Current purchase-flow authority](PURCHASE-FLOW-AMENDMENT.md).
 
-**Current plan:** 08-02 — Archived synthetic observation journal.
+**Current plan:** 08-03 — Integrated purchase revisions, payment lifecycle and ordinary development gates.
 
-**Execution status:** executing — local08-02 observation journal implemented and locally verified; synthetic authorization/capture lifecycle planning next; actual financial/provider qualification pending.
+**Execution status:** paused — user-requested pause during08-03 verification; current focused88 tests pass; final full/integration/clean-checkout gates pending; no production activation.
 
-**Next implementation task:** Plan bounded synthetic authorization-to-capture intents and immutable evolving history, preserving lookup-only uncertainty and original money facts; keep actual provider/refund/callback/financial authority pending.
+**Next implementation task:** Run $gsd-resume-work, then finish08-03 final clean-checkout inventory, full enclosing core-local, worker/demo/proxy and source checks; fix only demonstrated defects and retain all actual qualification gates.
 
 **Recorded implementation:** cfdb75e716e1cd6c8a3842188ae1abcf14044ccf
 
-[Final purchase-flow revision2](PURCHASE-FLOW-AMENDMENT.md) remains current authority. Development focus10 now covers complete-cart synthetic grants/staged delivery and the implemented local support ledger; earlier phases are not implicitly complete. [Evidence](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md). One captured cart payment yields an archived deterministic grant plan, one licence record per IP line and exactly36000 integer support seconds/package once, non-expiring. Initial delivery leaves promised later reference design outstanding; later completion never adds another entitlement/grant. Ready-kit/support-only cases stay scoped. Archive readback precedes all simulated records/effects; uncertain funding cannot provision. No actual keys/files/rights or spendable support.
+This SHA is the last fully verified pre-batch feature. Current08-03 partial implementation is saved by the WIP pause commit containing HANDOFF.json and the active .continue-here.md. Do not reset to either this anchor or historical review c830297.
+
+[Final purchase-flow revision2](PURCHASE-FLOW-AMENDMENT.md) remains current authority. Retained Phase10 local work covers complete-cart synthetic grants/staged delivery and the implemented local support ledger; earlier phases are not implicitly complete. [Evidence](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md). One captured cart payment yields an archived deterministic grant plan, one licence record per IP line and exactly36000 integer support seconds/package once, non-expiring. Initial delivery leaves promised later reference design outstanding; later completion never adds another entitlement/grant. Ready-kit/support-only cases stay scoped. Archive readback precedes all simulated records/effects; uncertain funding cannot provision. No actual keys/files/rights or spendable support.
 
 Shared public-shop-style customer UI now exposes grant/initial/later simulation buttons after simulated payment. User reports all browser simulations completed on2026-10-26 after the updated checkout/payment/grants/staged-delivery instructions. Record this as user-reported functional completion; no independently observed browser run, formal visual/accessibility acceptance or actual commercial approval is inferred. [UI contract](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-UI-SPEC.md).
 

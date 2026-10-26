@@ -20,7 +20,7 @@ class SyntheticBankTests(TransactionTestCase):
         request=self.request();observed=start(request)
         self.assertTrue(CAPABILITIES.idempotent_start);self.assertTrue(CAPABILITIES.reference_lookup)
         self.assertTrue(CAPABILITIES.authorization_status);self.assertTrue(CAPABILITIES.capture_status)
-        self.assertFalse(CAPABILITIES.separate_capture);self.assertFalse(CAPABILITIES.refunds);self.assertFalse(CAPABILITIES.callbacks)
+        self.assertTrue(CAPABILITIES.separate_capture);self.assertTrue(CAPABILITIES.refunds);self.assertFalse(CAPABILITIES.callbacks)
         self.assertFalse(CAPABILITIES.financial_confirmation);self.assertEqual(CAPABILITIES.evidence_class,'local-synthetic')
         self.assertTrue(correlates(request,observed));self.assertEqual(observed.status,'captured')
         self.assertFalse(observed.financial_confirmation);self.assertFalse(observed.effects_authorized)

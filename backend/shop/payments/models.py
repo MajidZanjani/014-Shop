@@ -3,7 +3,7 @@ import uuid
 from django.conf import settings
 from django.db import models
 
-SYNTHETIC_STATUSES=('authorized','captured','declined','pending')
+SYNTHETIC_STATUSES=('authorized','captured','declined','pending','refunded')
 
 
 class SyntheticBankOperation(models.Model):
@@ -26,6 +26,7 @@ class SyntheticBankOperation(models.Model):
 
 
 class SyntheticBankKey(models.Model):
+    status=models.CharField(max_length=16,blank=True,default='')
     id=models.UUIDField(primary_key=True,editable=False)
     operation=models.ForeignKey(SyntheticBankOperation,on_delete=models.PROTECT)
     created_at=models.DateTimeField(auto_now_add=True)
@@ -197,3 +198,54 @@ class SyntheticPaymentObservation(models.Model):
             models.UniqueConstraint(fields=['attempt','revision'],name='synthetic_observation_revision'),
             models.CheckConstraint(condition=models.Q(revision__gte=1,revision__lte=1000),name='synthetic_observation_bound'),
         ]
+
+
+class SyntheticBankTransition(models.Model):
+    id=models.UUIDField(primary_key=True,editable=False)
+    operation=models.ForeignKey(SyntheticBankOperation,on_delete=models.PROTECT)
+    kind=models.CharField(max_length=8)
+    before=models.CharField(max_length=16)
+    after=models.CharField(max_length=16)
+    currency=models.CharField(max_length=3)
+    amount_minor=models.BigIntegerField()
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['operation','kind'],name='synthetic_bank_transition_once'),
+            models.CheckConstraint(condition=models.Q(kind='capture',before='authorized',after='captured')|models.Q(kind='refund',before='captured',after='refunded'),name='synthetic_bank_transition_shape')]
+
+
+class SyntheticPaymentStaffGrant(models.Model):
+    user=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT)
+    acceptance=models.ForeignKey('catalog.SyntheticCheckoutAcceptance',on_delete=models.PROTECT)
+    kind=models.CharField(max_length=8)
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['user','acceptance','kind'],name='synthetic_payment_staff_scope'),
+            models.CheckConstraint(condition=models.Q(kind__in=['capture','refund']),name='synthetic_payment_staff_kind')]
+
+
+class SyntheticPaymentOperation(models.Model):
+    id=models.UUIDField(primary_key=True,editable=False)
+    attempt=models.ForeignKey(SyntheticPaymentAttempt,on_delete=models.PROTECT)
+    acceptance=models.ForeignKey('catalog.SyntheticCheckoutAcceptance',on_delete=models.PROTECT)
+    kind=models.CharField(max_length=8)
+    request_id=models.UUIDField()
+    payload=models.JSONField()
+    sha256=models.CharField(max_length=64)
+    archive_receipt=models.JSONField()
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['attempt','kind'],name='synthetic_payment_operation_once'),
+            models.UniqueConstraint(fields=['attempt','request_id'],name='synthetic_payment_operation_request'),
+            models.CheckConstraint(condition=models.Q(kind__in=['capture','refund']),name='synthetic_payment_operation_kind')]
+
+
+class SyntheticOperationDispatch(models.Model):
+    operation=models.OneToOneField(SyntheticPaymentOperation,primary_key=True,on_delete=models.PROTECT)
+    state=models.CharField(max_length=16,default='prepared')
+    class Meta:
+        constraints=[models.CheckConstraint(condition=models.Q(state__in=['prepared','uncertain','observed']),name='synthetic_operation_dispatch_state')]
+
+
+class SyntheticOperationResult(models.Model):
+    operation=models.OneToOneField(SyntheticPaymentOperation,primary_key=True,on_delete=models.PROTECT)
+    payload=models.JSONField()
+    sha256=models.CharField(max_length=64)
+    archive_receipt=models.JSONField()

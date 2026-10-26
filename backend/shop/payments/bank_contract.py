@@ -31,13 +31,14 @@ class BankObservation:
 
 @dataclass(frozen=True)
 class SyntheticCapabilities:
-    adapter: str=field(default='synthetic-bank-v1',init=False)
+    adapter: str=field(default='synthetic-bank-v2',init=False)
     reference_lookup: bool=field(default=True,init=False)
     idempotent_start: bool=field(default=True,init=False)
     authorization_status: bool=field(default=True,init=False)
     capture_status: bool=field(default=True,init=False)
-    separate_capture: bool=field(default=False,init=False)
-    refunds: bool=field(default=False,init=False)
+    separate_capture: bool=field(default=True,init=False)
+    refunds: bool=field(default=True,init=False)
+    partial_refunds: bool=field(default=False,init=False)
     callbacks: bool=field(default=False,init=False)
     evidence_class: str=field(default='local-synthetic',init=False)
     financial_confirmation: bool=field(default=False,init=False)
@@ -65,8 +66,40 @@ def correlates(request,observation):
             observation.currency,observation.amount_minor))
     except BankError:return False
     return (type(observation.provider_operation_id) is UUID
-        and observation.status in ('authorized','captured','declined','pending')
+        and observation.status in ('authorized','captured','declined','pending','refunded')
         and observation.evidence_class=='local-synthetic' and observation.financial_confirmation is False
         and observation.effects_authorized is False
         and (request.merchant,request.reference,request.currency,request.amount_minor)==
             (observation.merchant,observation.reference,observation.currency,observation.amount_minor))
+
+
+@dataclass(frozen=True)
+class BankMutation:
+    merchant:str
+    reference:UUID
+    provider_operation_id:UUID
+    idempotency_key:UUID
+    currency:str
+    amount_minor:int
+    kind:str
+
+
+@dataclass(frozen=True)
+class BankMutationResult:
+    request:BankMutation
+    observation:BankObservation
+
+
+def validate_mutation(request):
+    if type(request) is not BankMutation or type(request.provider_operation_id) is not UUID or request.kind not in ('capture','refund'):
+        raise BankError('invalid_synthetic_mutation')
+    validate(BankStart(request.merchant,request.reference,request.idempotency_key,request.currency,request.amount_minor))
+
+
+def progresses(before,after):
+    return after in {'pending':('authorized','captured','declined'), 'authorized':('captured','declined'),
+                     'captured':('refunded',),'declined':(),'refunded':()}.get(before,())
+
+
+def precedes(before,after):
+    return progresses(before,after) or (after=='refunded' and before in ('pending','authorized'))

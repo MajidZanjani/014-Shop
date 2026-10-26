@@ -4,7 +4,7 @@
 <p>Synthetic rehearsal only. No real staff access, approved offers or payments.</p>
 {% if authenticated %}
 <p>Both local factors verified. Quotation review requires verification within the last five minutes and an explicit reviewer assignment.</p>
-<p><a href="/staff/quotation-requests/">View assigned quotation requests</a> · <a href="/staff/delivery/">Assigned private deliveries</a> · <a href="/staff/licence-cases/">Assigned licence change cases</a> · <a href="/staff/support-refunds/">Assigned support refund cases</a> · <a href="/staff/overpayments/">Assigned overpayment investigations</a></p>
+<p><a href="/staff/quotation-requests/">View assigned quotation requests</a> · <a href="/staff/delivery/">Assigned private deliveries</a> · <a href="/staff/licence-cases/">Assigned licence change cases</a> · <a href="/staff/support-refunds/">Assigned support refund cases</a> · <a href="/staff/overpayments/">Assigned overpayment investigations</a> · <a href="/staff/payments/">Assigned payment operations</a></p>
 <form method="post" action="/staff/logout/">{% csrf_token %}<button>Sign out</button></form>
 {% else %}
 {% if challenge %}

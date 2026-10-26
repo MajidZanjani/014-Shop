@@ -60,6 +60,22 @@ class DispatcherTests(unittest.TestCase):
                 with contextlib.redirect_stdout(io.StringIO()), self.assertRaisesRegex(RuntimeError, "marker"):
                     check.execute("frontend")
 
+    def test_core_enclosing_budget_preserves_inner_bounds(self):
+        from subprocess import CompletedProcess, TimeoutExpired
+        for lane in ('core-local', 'core'):
+            with self.subTest(lane=lane), patch.object(check.subprocess, 'run') as run:
+                run.return_value = CompletedProcess([], 0, lane.upper().replace('-', '_') + '_PASS tests=1', '')
+                with contextlib.redirect_stdout(io.StringIO()):
+                    check.execute(lane)
+                self.assertEqual(run.call_args.kwargs['timeout'], 900)
+                self.assertFalse(run.call_args.kwargs['check'])
+                run.return_value = CompletedProcess([], 9, 'tests=1', '')
+                with contextlib.redirect_stdout(io.StringIO()), self.assertRaisesRegex(RuntimeError, r'failed \(9\)'):
+                    check.execute(lane)
+                run.side_effect = TimeoutExpired(['python3'], 900)
+                with self.assertRaises(TimeoutExpired):
+                    check.execute(lane)
+
     def test_no_database_tools_is_nonzero(self):
         with patch.dict(os.environ, {}, clear=True):
             with self.assertRaisesRegex(RuntimeError, "SHOP_POSTGRES_BIN"):

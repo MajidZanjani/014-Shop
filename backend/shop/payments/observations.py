@@ -5,7 +5,7 @@ from django.db import connection
 from shop.adapters.evidence_archive import manifest
 from shop.catalog import checkout,checkout_payment as payment
 from . import attempts
-from .bank_contract import BankObservation,correlates,BankError
+from .bank_contract import BankObservation,correlates,BankError,precedes
 from .models import SyntheticPaymentObservation as Receipt
 
 FLAGS={'evidence_class':'local-synthetic','financial_confirmation':False,'effects_authorized':False}
@@ -52,7 +52,7 @@ def history_locked(row,archive):
                 or event.sha256!=checkout.digest(value)):fail()
         payment.recover(archive,event.archive_receipt,event.pk,checkout.canonical(value))
         if observation is not None and (row.state!='observed' or
-                (row.provider_operation_id,row.provider_status)!=(observation.provider_operation_id,observation.status)):fail()
+                (row.provider_operation_id!=observation.provider_operation_id or not (row.provider_status==observation.status or precedes(observation.status,row.provider_status)))):fail()
         previous=event.sha256;seen.add(event.pk)
     return rows,previous
 

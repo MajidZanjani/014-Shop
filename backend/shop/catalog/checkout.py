@@ -7,7 +7,7 @@ from django.db import transaction
 from shop.payments.purchase_demo import owner_locked
 from shop.payments import synthetic_bank
 from shop.adapters.evidence_archive import PreparedArchive, manifest
-from . import business_rules
+from . import business_rules,commercial_revisions
 from .business_scope import valid_business
 from .cart_rules import evaluate_cart
 from .document_preview import DEFINITION
@@ -48,14 +48,24 @@ def build(cart, business):
             or definition['source_sha256'] != CATALOG['source_sha256']):
         errors.append('document_source_requires_review')
     priced = []
+    buyer_pin=digest({'id':business.pk,'version':business.version,'schema_version':business.schema_version,
+                      'source_sha256':business.source_sha256,'details':business.details})
     support = sum(line['quantity'] for line in cart.lines if line.get('kind') == 'support') if not errors else 0
     allocated = 0
-    total = support * 2345  # Explicit synthetic fixture, never a real price.
+    total = 0
+    support_policy=None
     if not errors:
         for line in cart.lines:
             if line['kind'] == 'support':
-                priced.append({'line_id': line['id'], 'kind': 'support', 'quantity': line['quantity'],
-                               'scope': CATALOG['product_id'], 'total_minor': line['quantity'] * 2345})
+                try:
+                    support_policy=commercial_revisions.fixture_support_revision(buyer_scope_revision=buyer_pin,documents_revision=definition['revision'])
+                    support_snapshot=commercial_revisions.quote_support(support_policy,quantity=line['quantity'])
+                except commercial_revisions.CommercialRevisionError:
+                    errors.append('commercial_revision_requires_review');continue
+                total+=support_snapshot['total_minor']
+                priced.append({'line_id':line['id'],'kind':'support','quantity':line['quantity'],
+                               'scope':CATALOG['product_id'],'total_minor':support_snapshot['total_minor'],
+                               'commercial_policy':support_snapshot})
                 continue
             configuration = deepcopy(line['configuration'])
             platform = configuration.get('platform') or {}
@@ -64,14 +74,20 @@ def build(cart, business):
             packages = policy.minimum_packages if policy and type(policy.minimum_packages) is int and policy.minimum_packages >= 0 else 0
             configuration['support_packages'] = packages
             result = quote(configuration, offer)
-            if result['status'] != 'synthetic_purchasable' or (support and policy.support_minor != 2345):
+            if result['status'] != 'synthetic_purchasable':
                 errors.append('line_requires_review')
                 continue
+            try:
+                consumed=commercial_revisions.fixture_revision(configuration,offer,buyer_scope_revision=buyer_pin,documents_revision=definition['revision'])
+                policy_snapshot=commercial_revisions.quote(consumed,configuration,offer,support_packages=packages)
+            except commercial_revisions.CommercialRevisionError:
+                errors.append('commercial_revision_requires_review');continue
             allocated += packages
-            total += result['total_minor'] - packages * 2345
+            licence_minor=policy_snapshot['offer']['licence_minor']
+            total += licence_minor
             priced.append({'line_id': line['id'], 'kind': 'ip', 'offer': result['snapshot'],
-                           'allocated_purchased_packages': packages,
-                           'total_minor': result['total_minor'] - packages * 2345})
+                           'allocated_purchased_packages': packages, 'commercial_policy':policy_snapshot,
+                           'total_minor': licence_minor})
     if allocated > support:
         errors.append('required_support_minimum')
     if not 1 <= total <= 9223372036854775807:

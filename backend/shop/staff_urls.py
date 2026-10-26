@@ -1,3 +1,4 @@
+from shop.payments.operation_views import queue as payment_queue,detail as payment_detail
 from shop.payments.overpayment_views import queue as overpayment_queue,detail as overpayment_detail
 from shop.catalog.support_refund_views import staff_refunds,staff_detail as staff_refund_detail
 from shop.catalog.licence_change_views import staff_cases,staff_case
@@ -15,6 +16,8 @@ from shop.access.preparation_history import preparation_history
 from shop.access.quotation_review import record_review
 from shop.access.review_history import review_history
 urlpatterns=[
+    path("staff/payments/",payment_queue),
+    path("staff/payments/<int:identity>/",payment_detail),
     path("staff/overpayments/",overpayment_queue),
     path("staff/overpayments/<int:identity>/",overpayment_detail),
     path("staff/support-refunds/",staff_refunds),

@@ -9,9 +9,11 @@ from shop.adapters.evidence_archive import manifest
 
 def funded(owner, identity):
     row = payment.accepted(owner, identity)
-    if (row.attempt_id is None or row.attempt.state != 'observed' or row.attempt.provider_status != 'captured'
+    if (row.attempt_id is None or row.attempt.state != 'observed' or row.attempt.provider_status not in ('captured','refunded')
             or attempts.request_for(row.attempt) != payment.request_for(row)):
         raise checkout.CheckoutError('synthetic_captured_payment_required', 422)
+    if row.attempt.provider_status=='refunded' and not SyntheticFulfilment.objects.filter(acceptance=row).exists():
+        raise checkout.CheckoutError('synthetic_captured_payment_required',422)
     return row
 
 
@@ -30,6 +32,14 @@ def plan(row):
 def retained(grant, row, archive):
     payment.retained(row, archive)
     attempts.retained(row.attempt, archive)
+    if row.attempt.provider_status=='refunded':
+        from shop.payments import observations
+        from shop.payments.models import SyntheticPaymentAttempt
+        with transaction.atomic():
+            current=SyntheticPaymentAttempt.objects.select_for_update().get(pk=row.attempt_id)
+            facts,_=observations.history_locked(current,archive)
+            if not any(event.payload['observation'] and event.payload['observation']['status']=='captured' for event in facts):
+                raise checkout.CheckoutError('original_capture_required',422)
     if (grant.payload != plan(row) or checkout.digest(grant.payload) != grant.sha256
             or grant.support_packages != grant.payload['support_packages']
             or grant.support_seconds != grant.payload['support_seconds']):
@@ -40,6 +50,8 @@ def retained(grant, row, archive):
 def provision(owner, identity, archive):
     synthetic_bank.guard()
     row = funded(owner, identity)
+    if row.attempt.provider_status=='refunded':
+        prior=SyntheticFulfilment.objects.get(acceptance=row);retained(prior,row,archive);return prior
     payment.retained(row, archive);attempts.retained(row.attempt, archive)
     value = plan(row);grant_id = uuid.uuid5(row.pk, 'cart-fulfilment-v1')
     body = checkout.canonical(value)
@@ -94,7 +106,7 @@ def deliver(owner, identity, line_id, stage, archive):
         accepted_row = SyntheticCheckoutAcceptance.objects.select_related('checkout','attempt').get(pk=row.pk)
         payment.verify(accepted_row)
         if (current.payload != grant.payload or accepted_row.attempt_id is None
-                or accepted_row.attempt.state != 'observed' or accepted_row.attempt.provider_status != 'captured'
+                or accepted_row.attempt.state != 'observed' or accepted_row.attempt.provider_status not in ('captured','refunded')
                 or plan(accepted_row) != current.payload):raise checkout.CheckoutError('fulfilment_mismatch')
         line = SyntheticLineEntitlement.objects.select_for_update().get(pk=entitlement.pk, fulfilment=current)
         if line.snapshot != entitlement.snapshot:raise checkout.CheckoutError('fulfilment_mismatch')
