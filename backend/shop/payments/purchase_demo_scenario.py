@@ -8,7 +8,8 @@ from shop.access.models import CustomerIdentity
 from shop.adapters.evidence_archive import PreparedArchive
 from shop.catalog.rules import CATALOG
 from shop.catalog.purchase_policy import quote
-from shop.catalog import business_rules, checkout
+from shop.catalog import business_rules, checkout, checkout_payment
+from django.test import override_settings
 from . import purchase_demo as purchase,synthetic_bank
 
 
@@ -73,9 +74,26 @@ def run(archive_root):
         replay=client.post('/purchase/checkout-rehearsal/',data=urlencode(command),
             content_type='application/x-www-form-urlencoded',HTTP_X_CSRFTOKEN=csrf)
         if replay.status_code!=200 or retained.snapshot['cart']['lines']!=lines:raise RuntimeError('synthetic checkout replay mismatch')
+        payment_url='/api/v1/checkout-rehearsal/'+str(retained.pk)+'/payment/'
+        page_url='/purchase/checkout-rehearsal/'+str(retained.pk)+'/payment/'
+        with override_settings(LOCAL_CHECKOUT_ARCHIVE_ROOT=str(archive_root)):
+            review=client.get(payment_url)
+            if review.status_code!=200:raise RuntimeError('synthetic acceptance review failed')
+            confirmed=client.post(page_url,data=urlencode({'action':'accept','sha256':review.json()['sha256'],'confirmed':'on'}),
+                content_type='application/x-www-form-urlencoded',HTTP_X_CSRFTOKEN=csrf)
+            if confirmed.status_code!=200:raise RuntimeError('synthetic confirmation rejected')
+            paid=client.post(payment_url,data=json.dumps({'action':'pay'}),content_type='application/json',HTTP_X_CSRFTOKEN=csrf)
+            repeated=client.post(payment_url,data=json.dumps({'action':'pay'}),content_type='application/json',HTTP_X_CSRFTOKEN=csrf)
+            if paid.status_code!=200 or not paid.json()['simulated_paid'] or repeated.json()['order_reference']!=paid.json()['order_reference']:
+                raise RuntimeError('synthetic complete-cart payment mismatch')
+            row=checkout_payment.accepted(owner,retained.pk);checkout_payment.retained(row,archive)
+            from .models import SyntheticBankOperation
+            if SyntheticBankOperation.objects.filter(merchant='synthetic-checkout',reference=row.pk).count()!=1:
+                raise RuntimeError('duplicate synthetic complete-cart payment')
         complete_cart={'all_lines_retained':True,'business_revision':retained.snapshot['business']['version'],
             'document_revision':retained.snapshot['documents']['revision'],'archive_recovered':bool(retained.archive_receipt),
-            'api_and_no_javascript_same_capture':True,'acceptance_enabled':False}
+            'api_and_no_javascript_same_capture':True,'acceptance_enabled':False,
+            'synthetic_acceptance_recorded':True,'simulated_payment_captured':True,'single_order_reference_and_bank_operation':True}
 
     return {'status':'PURCHASE_FLOW_DEMO_PASS','evidence_class':'local-synthetic','financial_confirmation':False,
         'effects_authorized':False,'real_email_verification':False,'ready_kit_zero_support':True,'required_support_tamper_refused':True,

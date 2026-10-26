@@ -25,9 +25,10 @@ def digest(value):
 
 
 class CheckoutError(ValueError):
-    def __init__(self, code, status=409):
+    def __init__(self, code, status=409, fields=None):
         super().__init__(code)
         self.status = status
+        self.fields = fields or []
 
 
 def build(cart, business):
@@ -76,7 +77,7 @@ def build(cart, business):
     if not 1 <= total <= 9223372036854775807:
         errors.append('total_unavailable')
     if errors:
-        raise CheckoutError(errors[0], 422)
+        raise CheckoutError(errors[0], 422, fields=[field for field in missing if field not in business_rules.PENDING] if errors[0] == 'business_details_required' else [])
     kinds = {line['kind'] for line in cart.lines}
     required = {'general_terms', 'refund_policy', 'privacy_policy'}
     if 'ip' in kinds: required.add('ip_licence')

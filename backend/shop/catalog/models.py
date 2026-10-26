@@ -302,3 +302,23 @@ class SyntheticCheckoutKey(models.Model):
     checkout=models.ForeignKey(SyntheticCheckout,on_delete=models.PROTECT)
     class Meta:
         constraints=[models.UniqueConstraint(fields=['owner','request_id'],name='synthetic_checkout_retry_unique')]
+
+
+class SyntheticCheckoutAcceptance(models.Model):
+    """One local fixture confirmation/order reference; never legal acceptance."""
+    id=models.UUIDField(primary_key=True,editable=False)
+    checkout=models.OneToOneField(SyntheticCheckout,on_delete=models.PROTECT)
+    review_sha256=models.CharField(max_length=64)
+    payload=models.JSONField()
+    sha256=models.CharField(max_length=64)
+    archive_receipt=models.JSONField(default=dict)
+    simulated_accepted_at=models.DateTimeField(null=True)
+    attempt=models.OneToOneField('payments.SyntheticPaymentAttempt',null=True,on_delete=models.PROTECT)
+    evidence_class=models.CharField(max_length=32,default='local-synthetic')
+    financial_confirmation=models.BooleanField(default=False)
+    effects_authorized=models.BooleanField(default=False)
+    class Meta:
+        constraints=[
+            models.CheckConstraint(condition=models.Q(evidence_class='local-synthetic',financial_confirmation=False,effects_authorized=False,sha256__regex=r'^[0-9a-f]{64}$',review_sha256__regex=r'^[0-9a-f]{64}$'),name='synthetic_acceptance_no_commerce'),
+            models.CheckConstraint(condition=(models.Q(simulated_accepted_at__isnull=True,attempt__isnull=True)|models.Q(simulated_accepted_at__isnull=False)&~models.Q(archive_receipt={})),name='synthetic_acceptance_archive_gate'),
+        ]

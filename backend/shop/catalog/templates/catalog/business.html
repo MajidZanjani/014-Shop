@@ -1,4 +1,7 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Private business-details draft</title></head><body><main>
+{% extends "catalog/base.html" %}
+{% block title %}Private business-details draft{% endblock %}
+{% block content %}
+
 <h1>Private business-details draft</h1>
 <p>Local synthetic data only. Incomplete drafts can be saved. This is not order submission or legal acceptance; no payment or rights are created.</p>
 <p>Current saved revision {{ version }}. This form is based on revision {{ expected_version }}.{% if confirmation %} Last confirmed save: revision {{ confirmation }}.{% endif %}</p>
@@ -7,11 +10,12 @@
 <form method="post" action="/purchase/business/" autocomplete="off">{% csrf_token %}
 <input type="hidden" name="request_id" value="{{ request_id }}"><input type="hidden" name="expected_version" value="{{ expected_version }}">
 <input type="hidden" name="schema_version" value="{{ schema_version }}"><input type="hidden" name="source_sha256" value="{{ source_sha256 }}">
-{% for group in groups %}<fieldset data-source-group="{{ group.id }}"><legend>{{ group.label }}</legend><p>{{ group.hint }}</p>
-{% for field in group.fields %}<p>{{ field.label_tag }} {{ field }}</p>{% endfor %}</fieldset>{% endfor %}
+<div class="business-grid">{% for group in groups %}<fieldset class="{% if group.wide %}wide{% endif %}" data-source-group="{{ group.id }}"><legend>{{ group.label }}{% if group.required %}<span class="badge">Required for checkout</span>{% elif group.pending %}<span class="badge pending">Pending</span>{% else %}<span class="badge">Optional / conditional</span>{% endif %}</legend><p>{{ group.hint }}</p>
+{% for field in group.fields %}<p>{{ field.label_tag }} {{ field }}</p>{% endfor %}</fieldset>{% endfor %}</div>
 <p>Country choices, tax/status choices and country-specific address requirements are pending. Blank invoice email defaults to purchasing email; blank licensed entity defaults to the purchasing business. Different licensed and purchasing entities require later review. Contact fields grant no access to another person.</p>
 <button>Save partial business draft</button></form>
 {% if evaluation.licensed_entity_review_required %}<p>Licensed and purchasing entities differ: review required.</p>{% endif %}
 <p>If a response is lost, resubmit the same form. If another tab saved a later revision, reload and review it before editing.</p>
-<button disabled>Checkout pending commercial approval</button> <a href="/">Return to configurations and quotation requests</a>
-</main></body></html>
+<p class="next-action"><a class="button-link" href="/purchase/checkout-rehearsal/">Review checkout rehearsal</a></p><p class="hint">Real checkout awaits commercial approval. Partial business drafts can still be saved.</p>
+
+{% endblock %}

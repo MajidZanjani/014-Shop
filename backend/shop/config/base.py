@@ -7,7 +7,7 @@ LIVE_PAYMENTS_ENABLED = False
 PAYMENT_ADAPTER = MAIL_ADAPTER = STORAGE_ADAPTER = 'fake'
 ROOT_URLCONF = 'shop.urls'
 WSGI_APPLICATION = 'shop.wsgi.application'
-TEMPLATES = [{'BACKEND':'django.template.backends.django.DjangoTemplates','APP_DIRS':True}]
+TEMPLATES = [{'BACKEND':'django.template.backends.django.DjangoTemplates','APP_DIRS':True,'OPTIONS':{'context_processors':['shop.catalog.presentation.customer_navigation']}}]
 INSTALLED_APPS = ['django.contrib.auth', 'django.contrib.contenttypes', 'django.contrib.sessions', 'shop.core', 'shop.worker', 'shop.catalog', 'shop.access', 'shop.payments']
 MIDDLEWARE = ['django.middleware.security.SecurityMiddleware',
               'shop.core.middleware.FormReferrerPolicyMiddleware',
@@ -22,6 +22,7 @@ SESSION_COOKIE_SECURE = CSRF_COOKIE_SECURE = SHOP_ENV not in ('local','synthetic
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 SESSION_COOKIE_AGE = 1800
 LOCAL_CAPTURE_ROOT = os.environ.get('SHOP_LOCAL_CAPTURE_ROOT') if SHOP_ENV in ('local','synthetic') else None
+LOCAL_CHECKOUT_ARCHIVE_ROOT = os.environ.get('SHOP_LOCAL_CHECKOUT_ARCHIVE_ROOT') if SHOP_ENV in ('local','synthetic') else None
 DATA_UPLOAD_MAX_MEMORY_SIZE = 32768
 USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

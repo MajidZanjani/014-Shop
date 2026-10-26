@@ -39,7 +39,7 @@ def page(request,*,status=200,message='',initial=None,errors=None,expected_versi
     draft,snapshot=current(request.user)
     details=initial if initial is not None else snapshot.details if snapshot else rules.empty_details()
     form=BusinessForm(initial=details)
-    groups=[{'id':key,'label':label,'hint':hint,'fields':[form[field] for field in fields]} for key,label,fields,hint in rules.GROUPS]
+    groups=[{'id':key,'label':label,'hint':hint,'fields':[form[field] for field in fields],'required':key in ('legal_business_name','registered_address','billing_address','purchasing_name','business_email','technical_contact'),'pending':key in rules.PENDING,'wide':key in ('registered_address','billing_address','notes')} for key,label,fields,hint in rules.GROUPS]
     response=render(request,'catalog/business.html',{'groups':groups,'version':draft.version if draft else 0,
         'expected_version':expected_version if expected_version is not None else draft.version if draft else 0,
         'request_id':str(uuid.uuid4()),'schema_version':rules.SCHEMA_VERSION,'source_sha256':submitted_source if submitted_source is not None else rules.SOURCE_SHA256,

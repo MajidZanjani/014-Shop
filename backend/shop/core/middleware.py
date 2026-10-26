@@ -21,4 +21,6 @@ class FormReferrerPolicyMiddleware:
         if (response.get('Content-Type', '').split(';')[0] == 'text/html'
                 and any(part.strip() == "form-action 'self'" for part in directives)):
             response['Referrer-Policy'] = 'same-origin'
+            if not any(part.strip().startswith('style-src ') for part in directives):
+                response['Content-Security-Policy'] += "; style-src 'self'"
         return response

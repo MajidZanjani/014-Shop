@@ -75,6 +75,8 @@ def checkout_page(request):
             context['request_id'] = str(uuid.uuid4())
     except checkout.CheckoutError as error:
         context['error'] = str(error);status = error.status
+        from .business_views import LABELS
+        context['missing_fields'] = [LABELS.get(field, field) for field in error.fields]
     except BankError:
         context['error'] = 'unavailable';status = 403
     except (ValueError, TypeError, UnicodeError, AttributeError):

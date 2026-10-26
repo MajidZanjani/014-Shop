@@ -14,7 +14,7 @@ def refresh_inventory():
         if not path.is_file() or path.name=='PURCHASE-FLOW-RECONCILIATION.json':continue
         name=str(path.relative_to(P))
         if name=='config.json':role='workflow-config'
-        elif name in current or name.startswith('research/'):role='current'
+        elif name in current or name.startswith('research/') or path.name.endswith('-UI-SPEC.md'):role='current'
         elif name.startswith('quick/') and path.name.endswith('-PLAN.md') and not path.with_name(path.name.replace('PLAN','SUMMARY')).exists():role='current'
         elif path.name.endswith('-PLAN.md') and name.startswith('phases/02-') and not path.with_name(path.name.replace('PLAN','SUMMARY')).exists():role='retained-infrastructure-plan'
         elif path.name.endswith('-PLAN.md') and name.startswith('phases/') and not path.with_name(path.name.replace('PLAN','SUMMARY')).exists():role='current'

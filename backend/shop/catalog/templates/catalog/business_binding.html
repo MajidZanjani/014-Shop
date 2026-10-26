@@ -1,4 +1,7 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Business details for quotation review</title></head><body><main>
+{% extends "catalog/base.html" %}
+{% block title %}Business details for quotation review{% endblock %}
+{% block content %}
+
 <h1>Business details for quotation review</h1><p>Request {{ quotation.id }} · Captured cart revision {{ quotation.snapshot.version }} · Current business scope {{ quotation.business_version }}</p>
 <p>Country and tax choices remain pending. This partial attachment creates no offer, acceptance, payment or rights.</p><p role="status">{{ message }}</p>
 {% if attached %}<p>Currently attached: saved business draft revision {{ attached.business_snapshot.version }}.</p>{% else %}<p>No business details attached.</p>{% endif %}
@@ -12,4 +15,5 @@
 <p>Each new attachment starts a new review scope and preserves previous attachments/decisions. Later business edits do not change this request. Repeat an uncertain submission with its original form; stale changes require reload and review.</p>
 <h2>Recent attachment history</h2><ol>{% for scope in scopes %}<li>Scope {{ scope.version }} · Saved business revision {{ scope.business_snapshot.version }}</li>{% empty %}<li>No attachments.</li>{% endfor %}</ol>
 <a href="/purchase/quotation-documents/{{ quotation.id }}/">Preview document prerequisites</a> · <a href="/purchase/quotation-timeline/{{ quotation.id }}/">View quotation history</a> · <a href="/purchase/business/">Edit your private business draft</a> · <a href="/purchase/quotations/">Return to quotation history</a><button disabled>Checkout pending commercial approval</button>
-</main></body></html>
+
+{% endblock %}

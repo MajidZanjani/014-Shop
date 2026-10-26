@@ -1,18 +1,24 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Local checkout rehearsal</title></head><body><main>
+{% extends "catalog/base.html" %}
+{% load shop_money %}
+{% block title %}Local checkout rehearsal{% endblock %}
+{% block content %}
+
 <h1>Local checkout rehearsal</h1>
 <p>Synthetic offers and prices only. Recording this rehearsal does not accept terms, place an order, take payment or grant licence or support rights.</p>
 {% if error %}<p role="alert">Checkout held: {{ error }}. Review your saved cart and business details, then reload this page.</p>{% endif %}
-{% if receipt %}<p>Recorded the exact reviewed cart revision {{ receipt.cart_version }} and business revision {{ receipt.business_version }}. Repeating the same submission returns the same record.</p>{% endif %}
+{% if missing_fields %}<div role="alert"><strong>Complete these business fields:</strong><ul>{% for field in missing_fields %}<li>{{ field }}</li>{% endfor %}</ul><a href="/purchase/business/">Edit business details</a><p>Billing and technical contact helpers can copy the required details. Save, then return to review.</p></div>{% endif %}
+{% if receipt %}<p>Recorded the exact reviewed cart revision {{ receipt.cart_version }} and business revision {{ receipt.business_version }}. Repeating the same submission returns the same record.</p><p><a href="/purchase/checkout-rehearsal/{{ receipt.id }}/payment/">Continue synthetic acceptance and payment</a></p>{% endif %}
 {% if snapshot %}
 <p>Cart revision {{ snapshot.cart.version }} · Business revision {{ snapshot.business.version }}</p>
 <h2>Complete cart</h2><ol>{% for line in snapshot.priced_lines %}<li>{% if line.kind == 'ip' %}IP · {{ line.offer.configuration.vendor }} · {{ line.offer.configuration.families|join:', ' }} · {{ line.offer.configuration.term }} · {{ line.offer.configuration.platform.choice }}{% if line.offer.configuration.platform.name %} · {{ line.offer.configuration.platform.name }}{% endif %}{% if line.offer.configuration.platform.kit_id %} · {{ line.offer.configuration.platform.kit_id }}{% endif %}
 <p>Support {{ line.offer.support_policy }} · Minimum {{ line.offer.minimum_packages }} packages · {{ line.allocated_purchased_packages }} purchased packages allocated to this line.</p><p>{{ line.offer.rights }} · Start: {{ line.offer.annual_start }} · {{ line.offer.delivery }}</p>{% if line.offer.later_reference_design %}<p>The initial RTL, key and documents precede the reference design. The later reference design remains owed.</p>{% endif %}
 {% else %}SLL xSPI-MC support · {{ line.quantity }} ten-hour packages · No expiry{% endif %}</li>{% endfor %}</ol>
-<p>Illustrative total: {{ snapshot.total_minor }} EUR minor units. Support is priced once. {{ snapshot.unallocated_purchased_packages }} purchased packages remain unallocated. No existing credit is pooled.</p>
+<p class="summary-total">Illustrative total: {{ snapshot.total_minor|euro_minor }}. Support is priced once. {{ snapshot.unallocated_purchased_packages }} purchased packages remain unallocated. No existing credit is pooled.</p>
 <h2>Saved business details</h2><p>{{ snapshot.business.details.legal_business_name }} · Licensed entity: {{ snapshot.business.details.licensed_entity }} · Invoice email: {{ snapshot.business.details.invoice_email }}</p>
 <p><a href="/purchase/business/">Review all business details</a>. Country and tax applicability remain pending.</p>
 <h2>Documents</h2><p>Exact source declarations and document definition are retained with this snapshot. Legal document bodies and approvals remain pending; acceptance is disabled.</p>
 <form method="post" action="/purchase/checkout-rehearsal/">{% csrf_token %}<input type="hidden" name="request_id" value="{{ request_id }}"><input type="hidden" name="sha256" value="{{ sha256 }}"><button type="submit">Record synthetic checkout</button></form>
 {% endif %}
 <p><a href="/purchase/cart/">Saved cart</a> · <a href="/purchase/business/">Business details</a> · <a href="/purchase/access/">Customer access</a></p>
-</main></body></html>
+
+{% endblock %}

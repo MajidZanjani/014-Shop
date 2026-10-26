@@ -1,6 +1,7 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Customer access — SLL xSPI-MC</title></head>
-<body><main><h1>Customer access</h1>
+{% extends "catalog/base.html" %}
+{% block title %}Customer access — SLL xSPI-MC{% endblock %}
+{% block content %}
+<h1>Customer access</h1>
 <p>Local verification rehearsal: use a synthetic address ending in .invalid. A local operator supplies the privately captured code; no email is sent.</p>
 {% if error %}<p role="alert">{{ error }}</p>{% endif %}
 {% if notice %}<p role="status">{{ notice }}</p>{% endif %}
@@ -13,4 +14,5 @@
 {% endif %}
 <p><a href="/purchase/simple/">Configure without JavaScript</a> · <a href="/">Shop</a></p>
 <p>Prices and country/tax choices remain pending. Purchases are unavailable.</p>
-</main></body></html>
+
+{% endblock %}

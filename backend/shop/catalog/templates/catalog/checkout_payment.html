@@ -1,0 +1,25 @@
+{% extends "catalog/base.html" %}
+{% load shop_money %}
+{% block title %}Synthetic acceptance and payment{% endblock %}
+{% block content %}
+
+<h1>Synthetic acceptance and payment</h1>
+<p>Local rehearsal only. No real contract, payment, licence or support credit is created. Actual commercial, legal, tax and host approvals remain pending.</p>
+{% if error %}<p role="alert">{{ error }}</p><p><a href="/purchase/checkout-rehearsal/{{ checkout_id }}/payment/">Reload the retained rehearsal status</a>. An uncertain payment requires lookup; do not start another payment.</p>{% endif %}
+{% if review %}
+<p>Frozen cart revision {{ review.checkout.cart.version }} · Business revision {{ review.checkout.business.version }} · {{ review.checkout.cart.lines|length }} complete cart lines.</p>
+<ol>{% for line in review.checkout.priced_lines %}<li>{% if line.kind == 'ip' %}IP · {{ line.offer.configuration.vendor }} · {{ line.offer.configuration.families|join:', ' }} · {{ line.offer.configuration.term }} · {{ line.offer.configuration.platform.choice }}<p>{{ line.offer.delivery }}</p>{% if line.offer.later_reference_design %}<p>The later reference design remains owed after initial materials.</p>{% endif %}{% else %}SLL xSPI-MC support · {{ line.quantity }} ten-hour packages · No expiry{% endif %}</li>{% endfor %}</ol>
+<p class="summary-total">Illustrative total {{ review.checkout.total_minor|euro_minor }}. No real charge.</p>
+<p>Illustrative offer deadline: {{ review.offer_expires_at }}. Order-payment deadline: {{ review.order_payment_expires_at }}. Bank-session deadline: {{ bank_session_expires_at|default:'set when the single attempt is prepared' }}. These are separate synthetic fixture deadlines.</p>
+<h2>Synthetic document fixtures</h2>{% for document in review.fixture_documents %}<h3>{{ document.title }} · {{ document.version }}</h3><p>{{ document.body }}</p>{% endfor %}
+{% if not synthetic_accepted %}<form method="post">{% csrf_token %}<input type="hidden" name="action" value="accept"><input type="hidden" name="sha256" value="{{ sha256 }}"><label><input type="checkbox" name="confirmed" required> {{ review.declaration }}</label><button type="submit">Record synthetic acceptance</button></form>
+{% else %}<p>Synthetic acceptance recorded once. Rehearsal order reference: {{ order_reference }}.</p>
+{% if simulated_paid %}<p role="status">Simulated payment captured. Real payment confirmation and licence/support effects remain disabled.</p>
+{% elif attempt_state == 'uncertain' %}<p>Payment result uncertain. Lookup is required; starting it again is disabled.</p><form method="post">{% csrf_token %}<input type="hidden" name="action" value="reconcile"><button type="submit">Look up simulated payment</button></form>
+{% elif attempt_state == 'observed' %}<p>Simulated provider result: {{ provider_status }}. No replacement payment attempt is created.</p>
+{% elif attempt_state == 'expired' or attempt_state == 'cancelled' %}<p>Simulated payment attempt {{ attempt_state }}. No replacement attempt is created.</p>
+{% else %}<form method="post">{% csrf_token %}<input type="hidden" name="action" value="pay"><button type="submit">Simulate payment once</button></form>{% endif %}
+{% endif %}{% endif %}
+<p><a href="/purchase/checkout-rehearsal/">Current checkout rehearsal</a> · <a href="/purchase/cart/">Saved cart</a> · <a href="/purchase/access/">Customer access</a></p>
+
+{% endblock %}

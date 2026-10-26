@@ -24,7 +24,15 @@ The verified local customer path `/purchase/checkout-rehearsal/` and private `/a
 
 The no-JavaScript page links from the saved cart. It asks only for deliberate recording of the reviewed synthetic checkout, with no project stage, technical upload or engineering approval ID. Receipts contain revision metadata without business values. Concurrent retries and different keys for the same snapshot yield one retained record; committed retries reconcile before current-cart checks. The demo now saves cart/business through supported CSRF-protected routes, records through the API, repeats through the no-JavaScript route and publishes/recovers the exact private checkout snapshot in its temporary archive.
 
-`SyntheticCheckout` and its retry keys are prepared local facts. No bank dispatch, legal acceptance, actual order or entitlement follows from recording them. Country/tax, document bodies/approvals and applicable host bindings remain pending in the retained snapshot. The existing single-draft synthetic payment/staged-delivery rehearsal remains separately labelled; a complete-cart accepted-order/payment connection is still required.
+`SyntheticCheckout` and its retry keys are prepared local facts. No bank dispatch, legal acceptance, actual order or entitlement follows from recording them. Country/tax, document bodies/approvals and applicable host bindings remain pending in the retained snapshot. The existing single-draft synthetic payment/staged-delivery rehearsal remains separately labelled; the complete-cart synthetic acceptance/payment connection is described below; actual order and fulfilment remain pending.
+
+## Synthetic acceptance and payment
+
+After recording a checkout, follow **Continue synthetic acceptance and payment**. Review the frozen cart/business revisions and clearly labelled document fixtures, select the unchecked rehearsal declaration and choose **Record synthetic acceptance**. Then choose **Simulate payment once**. A successful result says **Simulated payment captured** and preserves the same rehearsal order reference on retries. A lost response shows an uncertain state with a **Look up simulated payment** action; no new start is authorized. Real terms/acceptance, charges and licence/support rights remain disabled.
+
+The local demo provisions its own private temporary checkout archive. Checkout, explicit fixture confirmation and payment-attempt bytes are published and recovered before fake bank dispatch. The fixture uses separate30-minute offer,45-minute order-payment and10-minute bank-session windows, with the bank window bounded by the order deadline. These are illustrative test values, not actual commercial rules. API and no-JavaScript routes share the same owner/CSRF/archive/once-only guards.
+
+Customer access, business, cart and review/payment pages now share the public shop's cream/green layout, step navigation, grouped business fields and readable EUR totals. The persistent demo label distinguishes simulated actions. Country/tax fields remain pending; incomplete business drafts still save, and checkout names any missing required fields. No new project-stage or technical upload fields are introduced.
 
 ## Pending actual work
 

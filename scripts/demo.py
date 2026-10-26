@@ -91,6 +91,8 @@ if __name__=='__main__':
             manage(python,runtime,'migrate','--noinput')
             mailbox=scratch/'captured-mail';mailbox.mkdir(mode=0o700)
             runtime['SHOP_LOCAL_CAPTURE_ROOT']=str(mailbox)
+            checkout_archive=scratch/'checkout-archive';checkout_archive.mkdir(mode=0o700)
+            runtime['SHOP_LOCAL_CHECKOUT_ARCHIVE_ROOT']=str(checkout_archive)
             print('Private synthetic email capture directory: '+str(mailbox),flush=True)
             print('Read the newest private file there to obtain the verification code. No real email is sent.',flush=True)
             DemoHandler.backend_port=stack.enter_context(gunicorn(python,runtime,backend_scratch))
