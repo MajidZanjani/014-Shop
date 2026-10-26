@@ -12,13 +12,13 @@
 
 **Current development focus:** 10 — complete-cart staged delivery and support ledger; earlier catalog/commercial/runtime/acceptance qualification remains pending. [Amendment/task map](PURCHASE-FLOW-AMENDMENT.md).
 
-**Current plan:** 10-01 — Initial R&D delivery and outstanding reference design.
+**Current plan:** 10-03 — Reviewed licence change cases and held revised orders.
 
-**Execution status:** verification pending — local10-01 private package release/download slice implemented; local10-02 ledger retained; actual qualification and full plan/phase acceptance remain pending.
+**Execution status:** in progress — owner change-case capture, scoped staff review and held revised-scope/order rehearsal;10-01/02 local slices retained.
 
-**Next implementation task:** Plan and implement reviewed local renewal/rehosting/family-node-production upgrade cases under FUL-03, preserving accepted rights/history and avoiding automatic charges. Actual rights and operations remain gated.
+**Next implementation task:** Implement archived owner requests, exact-case recent-MFA review/proposals and private customer/staff UI; preserve original rights and all pending commercial policies.
 
-**Last fully completed phase:** 1. Phases2–7 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase8 work while those earlier checks remain open. Completed phases remain1/14 (rounded7%); planned records11/29. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
+**Last fully completed phase:** 1. Phases2–7 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase8 work while those earlier checks remain open. Completed phases remain1/14 (rounded7%); planned records11/30. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
 
 **Current activity:** Local10-01 now includes archived immutable synthetic material revisions, exact staff release authority and owner/session/version/artifact-bound single-use POST downloads. Local10-02 ledger remains implemented. Full406 backend/15 focused package/88 proxy checks and the extended complete-cart staff/customer demo pass. Next scope: FUL-03 reviewed change cases; full phase/plan acceptance and actual delivery remain pending. [Private package evidence](phases/10-staged-delivery-and-support-ledger/10-PRIVATE-PACKAGES-PARTIAL.md).
 
@@ -307,7 +307,7 @@ Local implementation: versioned owner draft cart delivered in [quick261022-iqc](
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md T10; complete companion proposal remains normative.
 **Estimate:** 5–8 engineer-days
 **UI hint:** yes
-**Plans:** 0/2 fully accepted; both partially implemented locally. [10-01](phases/10-staged-delivery-and-support-ledger/10-01-PLAN.md): once-only synthetic grants/staged completion plus immutable private fixture revisions and scoped single-use owner downloads implemented; actual private package/key delivery and fulfilment qualification pending. [10-02](phases/10-staged-delivery-and-support-ledger/10-02-PLAN.md): synthetic credit grants implemented; local task4 demo implemented. Local reservations/releases, scoped staff work, corrections and statements implemented; task4 supported demo integration also passes. Actual retention/completion/spendability and full acceptance pending. [Retained evidence](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md).
+**Plans:** 0/3 fully accepted.10-01/02 partially implemented locally; [10-03](phases/10-staged-delivery-and-support-ledger/10-03-PLAN.md) now executes reviewed renewal/rehosting/upgrade cases and held revised orders. [10-01](phases/10-staged-delivery-and-support-ledger/10-01-PLAN.md): once-only synthetic grants/staged completion plus immutable private fixture revisions and scoped single-use owner downloads implemented; actual private package/key delivery and fulfilment qualification pending. [10-02](phases/10-staged-delivery-and-support-ledger/10-02-PLAN.md): synthetic credit grants implemented; local task4 demo implemented. Local reservations/releases, scoped staff work, corrections and statements implemented; task4 supported demo integration also passes. Actual retention/completion/spendability and full acceptance pending. [Retained evidence](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md).
 
 **Success Criteria:**
 
@@ -440,7 +440,7 @@ Unchecked phase boxes mean full acceptance is outstanding. They do not mean deve
 | 7. Short business checkout, standard offers and acceptance | 1 / 4 | In Progress — current local cart/quotation/business/review/preparation implementation; commercial acceptance pending | — |
 | 8. Payment domain and fault-injectable fake bank | 0 / not planned | In Progress | Typed local synthetic-bank slice; full domain pending |
 | 9. Selected-bank sandbox integration and complete reconciliation | 0 / not planned | Not started | — |
-| 10. Staged licence/reference-design delivery and support ledger | 0 / 2 | In Progress — CURRENT DEVELOPMENT FOCUS; local private fixtures/downloads, staged grants and support ledger implemented; FUL-03 cases and actual qualification pending | — |
+| 10. Staged licence/reference-design delivery and support ledger | 0 / 3 | In Progress — CURRENT DEVELOPMENT FOCUS; local private fixtures/downloads, staged grants and support ledger implemented; 10-03 FUL-03 cases in progress; actual qualification pending | — |
 | 11. Protected-host qualification, shop-only deployment and conditional public activation | 0 / not planned | Not started | — |
 | 12. Backups, operating alerts and financial/licensing restore rehearsal | 0 / not planned | Not started | — |
 | 13. Purchase-flow, fulfilment and release acceptance | 0 / 1 | In Progress — focused local amendment cases; full release/qualification pending | — |

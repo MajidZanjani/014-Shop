@@ -8,13 +8,13 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current development focus:** 10 — staged licence/reference-design delivery and support ledger, under the [final purchase-flow amendment](PURCHASE-FLOW-AMENDMENT.md).
 
-**Current plan:** 10-01 — Initial R&D delivery and outstanding reference design.
+**Current plan:** 10-03 — Reviewed licence change cases and held revised orders.
 
-**Execution status:** verification pending — local10-01 private package release/download slice implemented; local10-02 ledger retained; actual qualification and full plan/phase acceptance remain pending.
+**Execution status:** in progress — owner change-case capture, scoped staff review and held revised-scope/order rehearsal;10-01/02 local slices retained.
 
-**Next implementation task:** Plan and implement reviewed local renewal/rehosting/family-node-production upgrade cases under FUL-03, preserving accepted rights/history and avoiding automatic charges. Actual rights and operations remain gated.
+**Next implementation task:** Implement archived owner requests, exact-case recent-MFA review/proposals and private customer/staff UI; preserve original rights and all pending commercial policies.
 
-Complete-cart synthetic checkout, acceptance/payment, once-only grants and staged completion are implemented, now with archived reservations/releases, scoped staff work, reverse/replace corrections and committed-revision statements. Supported complete-cart demo now covers both local staff login factors, exact assignment and work/correction/release/statement retries. Private versioned synthetic material releases and owner-only session-bound single-use POST downloads are now implemented. Latest retained local results:406 backend tests/5 checks,15 focused package tests and88 proxy header-level checks; complete-cart staff/customer demo includes retained-version release/download. Actual material/rights/retention/host qualifications remain pending. Only Phase1 is fully accepted;11/29 plan records complete. Counts are not engineering-effort estimates. [STATE.md](STATE.md) and [ROADMAP.md](ROADMAP.md) retain exact evidence and actual qualification gates.
+Complete-cart synthetic checkout, acceptance/payment, once-only grants and staged completion are implemented, now with archived reservations/releases, scoped staff work, reverse/replace corrections and committed-revision statements. Supported complete-cart demo now covers both local staff login factors, exact assignment and work/correction/release/statement retries. Private versioned synthetic material releases and owner-only session-bound single-use POST downloads are now implemented. Latest retained local results:406 backend tests/5 checks,15 focused package tests and88 proxy header-level checks; complete-cart staff/customer demo includes retained-version release/download. Actual material/rights/retention/host qualifications remain pending. Only Phase1 is fully accepted;11/30 plan records complete. Counts are not engineering-effort estimates. [STATE.md](STATE.md) and [ROADMAP.md](ROADMAP.md) retain exact evidence and actual qualification gates.
 
 Before every commit reconcile affected current references, publish state.json and run python3 scripts/check_planning.py. Sync commits to origin/main without force. Historical evidence retains its original scope.
 
