@@ -69,6 +69,30 @@ class BrowserHeaders:
         finally: connection.close()
 
 
+
+def fixture_delivery_control(python,env,fixture,archive,action):
+    """Trusted disposable actor fixture; actual two-factor route is exercised by demo."""
+    code="""from pathlib import Path
+import uuid
+from django.test import RequestFactory,override_settings
+from django.utils import timezone
+from shop.access.models import StaffCredential
+from shop.catalog.models import SyntheticDeliveryStaffGrant,SyntheticDeliveryControl
+from shop.catalog.delivery_controls import record
+from shop.adapters.evidence_archive import PreparedArchive
+scope=SyntheticDeliveryStaffGrant.objects.select_related('user','entitlement__fulfilment__acceptance__checkout__owner').get(entitlement_id=LINE_ID)
+credential=StaffCredential.objects.get(user=scope.user)
+saved=scope.entitlement.fulfilment.acceptance.checkout
+request=RequestFactory().post('/staff/delivery/',HTTP_HOST='staff.localhost')
+request.user=scope.user
+request.session={'shop_staff_mfa':{'generation':str(credential.generation),'verified_at':timezone.now().timestamp()}}
+with override_settings(LOCAL_STAFF_ENABLED=True,ALLOWED_HOSTS=['staff.localhost']):
+    with PreparedArchive(Path(ARCHIVE_ROOT)) as retained:
+        event=record(request,saved.owner,saved.pk,scope.entitlement_id,uuid.uuid4(),SyntheticDeliveryControl.objects.filter(entitlement=scope.entitlement).count(),CONTROL_ACTION,retained)
+""".replace('LINE_ID',repr(fixture['entitlement_id'])).replace('ARCHIVE_ROOT',repr(str(archive))).replace('CONTROL_ACTION',repr(action))
+    manage(python,env,'shell','--no-imports','-c',code,timeout=15)
+
+
 def run():
     checks = 0
     with prepared_database() as (python, env, pg, database, scratch):
@@ -187,6 +211,25 @@ print(json.dumps({'email':c.owner.customeridentity.email,'checkout_id':str(c.pk)
                     require(materials.request(access,{'artifact':'sll-synthetic-rtl.txt'},token=False)[0]==403,'private download missing-CSRF accepted')
                     require(materials.request(download)[0]==405,'private download GET accepted')
                     checks += 11
+                    materials.request(material_base)
+                    status,_,raw=materials.request(access,{'artifact':'sll-synthetic-rtl.txt'})
+                    pending=FormToken();pending.feed(raw.decode());old_grant=pending.hidden.get('token')
+                    require(status==200 and old_grant,'pre-hold proxy grant unavailable')
+                    retained_csrf=materials.token
+                    fixture_delivery_control(python,env,material_fixture,archive,'hold')
+                    status,_,raw=materials.request(material_base)
+                    require(status==200 and b'Delivery held' in raw and b'Prepare private download' not in raw,'held proxy material listing incorrect')
+                    materials.token=retained_csrf
+                    require(materials.request(access,{'artifact':'sll-synthetic-rtl.txt'},origin=materials.origin)[0]==423,'held proxy grant accepted')
+                    require(materials.request(download,{'token':old_grant},origin=materials.origin)[0]==423,'held proxy download accepted')
+                    fixture_delivery_control(python,env,material_fixture,archive,'clear')
+                    require(materials.request(download,{'token':old_grant},origin=materials.origin)[0]==404,'cleared proxy hold resurrected old token')
+                    materials.request(material_base)
+                    status,_,raw=materials.request(access,{'artifact':'sll-synthetic-rtl.txt'})
+                    fresh=FormToken();fresh.feed(raw.decode());fresh_grant=fresh.hidden.get('token')
+                    require(status==200 and fresh_grant,'fresh post-hold proxy grant unavailable')
+                    require(materials.request(download,{'token':fresh_grant})[0]==200,'fresh post-hold proxy download failed')
+                    checks += 7
                     refunds='/purchase/checkout-rehearsal/'+material_fixture['checkout_id']+'/support/refunds/'
                     status,_,raw=materials.request(refunds)
                     require(status==200 and materials.policy=='same-origin' and b'Request simulated refund review' in raw,'refund request form/policy unavailable')

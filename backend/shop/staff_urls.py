@@ -1,6 +1,6 @@
 from shop.catalog.support_refund_views import staff_refunds,staff_detail as staff_refund_detail
 from shop.catalog.licence_change_views import staff_cases,staff_case
-from shop.catalog.package_views import delivery_queue,delivery_page
+from shop.catalog.package_views import delivery_queue,delivery_page,delivery_control
 from shop.catalog.support_views import staff_support_page
 from shop.catalog.presentation import stylesheet
 from django.urls import path
@@ -20,6 +20,7 @@ urlpatterns=[
     path('staff/licence-cases/<uuid:identity>/',staff_case),
     path('staff/delivery/',delivery_queue),
     path('staff/delivery/<uuid:identity>/',delivery_page),
+    path('staff/delivery/<uuid:identity>/control/',delivery_control),
     path('staff/support/<uuid:identity>/',staff_support_page),
     path('purchase/assets/shop.css',stylesheet),
     path('staff/archive-intents/<uuid:identity>/claims/<uuid:claim_id>/reconciliation/',reconciliation),

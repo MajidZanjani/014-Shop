@@ -98,6 +98,8 @@ def deliver(owner, identity, line_id, stage, archive):
                 or plan(accepted_row) != current.payload):raise checkout.CheckoutError('fulfilment_mismatch')
         line = SyntheticLineEntitlement.objects.select_for_update().get(pk=entitlement.pk, fulfilment=current)
         if line.snapshot != entitlement.snapshot:raise checkout.CheckoutError('fulfilment_mismatch')
+        from .delivery_controls import require_open
+        require_open(line,archive)
         if stage=='reference' and not SyntheticLineDelivery.objects.filter(entitlement=line,stage='initial').exists():
             raise checkout.CheckoutError('initial_delivery_required', 422)
         event, _ = SyntheticLineDelivery.objects.get_or_create(entitlement=line, stage=stage,

@@ -4,7 +4,7 @@
 
 **Active sequencing:** [2026-10-22 execution amendment](EXECUTION-AMENDMENT-2026-10-22.md); T03 and ready local slices proceed independently of pending release qualification.
 
-**Latest verification:**464 backend tests/5 checks,141.290s across two finite batches; final16 focused refund tests,118 proxy checks/2 aliases and extended complete-cart refund demo pass; migration0022/no drift and237-file source packaging pass. [Refund-review evidence](phases/10-staged-delivery-and-support-ledger/10-SUPPORT-REFUNDS-PARTIAL.md).
+**Latest verification:**476 backend tests/5 checks,140.823s across two finite batches; focused12 delivery-control tests,132 proxy checks/2 aliases and two-factor hold/clear demo pass; migration0023/no drift and240-file source packaging pass. [Delivery holds](phases/10-staged-delivery-and-support-ledger/10-DELIVERY-HOLDS-PARTIAL.md); [Phase10 gap audit](phases/10-staged-delivery-and-support-ledger/10-ACCEPTANCE-GAPS.md).
 
 **Retained evidence:** [reviewed changes/held orders](phases/10-staged-delivery-and-support-ledger/10-LICENCE-CHANGES-PARTIAL.md); retained material/ledger/staged-delivery results and all release gates are in [STATE.md](STATE.md).
 
@@ -14,15 +14,15 @@
 
 **Current development focus:** 10 — complete-cart staged delivery and support ledger; earlier catalog/commercial/runtime/acceptance qualification remains pending. [Amendment/task map](PURCHASE-FLOW-AMENDMENT.md).
 
-**Current plan:** 10-05 — Reviewed support-refund requests.
+**Current plan:** 10-06 — Archived delivery access holds.
 
-**Execution status:** verification pending — local10-05 archived support-refund requests and scoped current-revision review implemented; actual refunds remain gated.
+**Execution status:** verification pending — Phase10 gap audit and local10-06 archived delivery holds/revision-bound downloads implemented; actual fulfilment remains unqualified.
 
-**Next implementation task:** Audit remaining Phase10 acceptance gaps against FUL-01–06 and route the next executable local slice from source evidence; retain all actual policy, private delivery, financial and recovery gates.
+**Next implementation task:** Plan Phase8 durable notification inbox and overpayment review using typed fake-bank observations; preserve one intended fulfilment and disabled actual bank/refund capabilities.
 
-**Last fully completed phase:** 1. Phases2–7 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase8 work while those earlier checks remain open. Completed phases remain1/14 (rounded7%); planned records11/32. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
+**Last fully completed phase:** 1. Phases2–7 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase8 work while those earlier checks remain open. Completed phases remain1/14 (rounded7%); planned records11/33. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
 
-**Current activity:** Local10-05 support-refund cases retain available/reserved/consumed credit snapshots, exact request/review retries, separate recent-MFA case assignments and immutable corrections. Reviews compare current ledger revision and become outdated after later ledger changes. No balance hold, work erasure, credit reversal, financial approval or bank refund. Prior local10-01–04 slices remain implemented; actual/full acceptance remains pending.
+**Current activity:** Phase10 FUL-01–06 gap audit recorded. Local10-06 archived per-entitlement delivery hold/clear controls block material/stage publication, new download grants and consumption. Clearing advances control revision and does not revive old bearers. Accepted licence/support/money facts remain unchanged. Local10-01–05 slices retained; actual term/host/key/tool/coverage, policy, financial, delivery/retention/recovery acceptance pending. Next independent local work is Phase8 PAY-03/PAY-04.
 
 Before every commit, reconcile all affected planning status references, regenerate canonical state.json and run `python3 scripts/check_planning.py`; commit then sync origin/main. Historical sources/evidence remain scoped to their dates.
 
@@ -49,7 +49,7 @@ The October21 reset completed documentation replanning. Later user continuation 
 - [ ] **Phase 7: Short business checkout, standard offers and acceptance** — October 21 handoff T07
 - [ ] **Phase 8: Payment domain and fault-injectable fake bank** — October 21 handoff T08
 - [ ] **Phase 9: Selected-bank sandbox integration and complete reconciliation** — October 21 handoff T09
-- [ ] **Phase 10: Staged licence/reference-design delivery and support ledger** — CURRENT DEVELOPMENT FOCUS; local10-01 materials,10-02 ledger,10-03 licence changes,10-04 numbering/mail and10-05 refund review implemented; full acceptance pending — October 21 handoff T10
+- [ ] **Phase 10: Staged licence/reference-design delivery and support ledger** — CURRENT DEVELOPMENT FOCUS; local10-01 materials,10-02 ledger,10-03 licence changes,10-04 numbering/mail,10-05 refund review and10-06 delivery holds implemented; full acceptance pending — October 21 handoff T10
 - [ ] **Phase 11: Protected-host qualification, shop-only deployment and conditional public activation** — October 21 handoff T11
 - [ ] **Phase 12: Backups, operating alerts and financial/licensing restore rehearsal** — October 21 handoff T12
 - [ ] **Phase 13: Purchase-flow, fulfilment and release acceptance** — October 21 handoff T13
@@ -309,7 +309,7 @@ Local implementation: versioned owner draft cart delivered in [quick261022-iqc](
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md T10; complete companion proposal remains normative.
 **Estimate:** 5–8 engineer-days
 **UI hint:** yes
-**Plans:** 0/5 fully accepted. [10-05](phases/10-staged-delivery-and-support-ledger/10-05-PLAN.md): local support-refund request/review snapshots implemented; actual support/refund policy and money effects pending. [10-04](phases/10-staged-delivery-and-support-ledger/10-04-PLAN.md): synthetic document reservation/issue journal plus durable statement outbox/capture implemented; actual numbering/mail pending.10-01/02 partially implemented locally; [10-03](phases/10-staged-delivery-and-support-ledger/10-03-PLAN.md) has implemented the local reviewed renewal/rehosting/upgrade case and held revised-order slice; actual policies/rights/payable orders remain pending. [10-01](phases/10-staged-delivery-and-support-ledger/10-01-PLAN.md): once-only synthetic grants/staged completion plus immutable private fixture revisions and scoped single-use owner downloads implemented; actual private package/key delivery and fulfilment qualification pending. [10-02](phases/10-staged-delivery-and-support-ledger/10-02-PLAN.md): synthetic credit grants implemented; local task4 demo implemented. Local reservations/releases, scoped staff work, corrections and statements implemented; task4 supported demo integration also passes. Actual retention/completion/spendability and full acceptance pending. [Retained evidence](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md).
+**Plans:** 0/6 fully accepted. [Gap audit](phases/10-staged-delivery-and-support-ledger/10-ACCEPTANCE-GAPS.md); [10-06](phases/10-staged-delivery-and-support-ledger/10-06-PLAN.md) implements local archived delivery holds and revision-bound access; actual fulfilment qualifications remain pending. [10-05](phases/10-staged-delivery-and-support-ledger/10-05-PLAN.md): local support-refund request/review snapshots implemented; actual support/refund policy and money effects pending. [10-04](phases/10-staged-delivery-and-support-ledger/10-04-PLAN.md): synthetic document reservation/issue journal plus durable statement outbox/capture implemented; actual numbering/mail pending.10-01/02 partially implemented locally; [10-03](phases/10-staged-delivery-and-support-ledger/10-03-PLAN.md) has implemented the local reviewed renewal/rehosting/upgrade case and held revised-order slice; actual policies/rights/payable orders remain pending. [10-01](phases/10-staged-delivery-and-support-ledger/10-01-PLAN.md): once-only synthetic grants/staged completion plus immutable private fixture revisions and scoped single-use owner downloads implemented; actual private package/key delivery and fulfilment qualification pending. [10-02](phases/10-staged-delivery-and-support-ledger/10-02-PLAN.md): synthetic credit grants implemented; local task4 demo implemented. Local reservations/releases, scoped staff work, corrections and statements implemented; task4 supported demo integration also passes. Actual retention/completion/spendability and full acceptance pending. [Retained evidence](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md).
 
 **Success Criteria:**
 
@@ -442,7 +442,7 @@ Unchecked phase boxes mean full acceptance is outstanding. They do not mean deve
 | 7. Short business checkout, standard offers and acceptance | 1 / 4 | In Progress — current local cart/quotation/business/review/preparation implementation; commercial acceptance pending | — |
 | 8. Payment domain and fault-injectable fake bank | 0 / not planned | In Progress | Typed local synthetic-bank slice; full domain pending |
 | 9. Selected-bank sandbox integration and complete reconciliation | 0 / not planned | Not started | — |
-| 10. Staged licence/reference-design delivery and support ledger | 0 / 5 | In Progress — CURRENT DEVELOPMENT FOCUS; local private fixtures/downloads, staged grants and support ledger implemented; local10-03 reviewed cases/held orders implemented; local10-04 document reservations implemented; durable statement capture and local10-05 support-refund review implemented; actual qualification pending | — |
+| 10. Staged licence/reference-design delivery and support ledger | 0 / 6 | In Progress — CURRENT DEVELOPMENT FOCUS; local private fixtures/downloads, staged grants and support ledger implemented; local10-03 reviewed cases/held orders implemented; local10-04 document reservations implemented; durable statement capture and local10-05 support-refund review and10-06 delivery holds implemented; actual qualification pending | — |
 | 11. Protected-host qualification, shop-only deployment and conditional public activation | 0 / not planned | Not started | — |
 | 12. Backups, operating alerts and financial/licensing restore rehearsal | 0 / not planned | Not started | — |
 | 13. Purchase-flow, fulfilment and release acceptance | 0 / 1 | In Progress — focused local amendment cases; full release/qualification pending | — |

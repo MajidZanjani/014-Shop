@@ -10,7 +10,7 @@ from shop.access.staff_auth import staff_credential
 from shop.access.views import digest
 from shop.adapters.evidence_archive import manifest
 from shop.payments import synthetic_bank,attempts
-from . import checkout,checkout_payment as payment,fulfilment
+from . import checkout,checkout_payment as payment,fulfilment,delivery_controls as controls
 from .models import (SyntheticLineEntitlement,SyntheticLineDelivery,SyntheticDeliveryStaffGrant,
                      SyntheticPackageRevision,SyntheticPackageAccess)
 
@@ -80,6 +80,7 @@ def release(request,owner,checkout_id,line_id,request_id,stage,fixture,archive):
     with transaction.atomic(durable=True):
         staff_locked(request)
         line=line_locked(owner,checkout_id,line_id,archive);actor=staff_locked(request,line)
+        controls.require_open(line,archive)
         prior=SyntheticPackageRevision.objects.filter(entitlement=line,request_id=request_id).first()
         if prior:
             if prior.stage!=stage or prior.payload['fixture']!=fixture or prior.payload['actor']['staff_id']!=actor['staff_id']:fail('package_request_conflict')
@@ -143,13 +144,14 @@ def issue(request,checkout_id,identity,artifact,archive):
     with transaction.atomic(durable=True):
         payment.locked(request.user,checkout_id)
         package=package_locked(request.user,checkout_id,identity,archive)
+        authority_revision=controls.require_open(package.entitlement,archive)
         if artifact not in package.payload['artifacts']:fail('not_found',404)
         now=attempts.database_now()
         if SyntheticPackageAccess.objects.filter(owner=request.user,expires_at__gt=now,consumed_at__isnull=True).count()>=20:
             fail('download_grant_limit',429)
         token=secrets.token_urlsafe(32)
         SyntheticPackageAccess.objects.create(package=package,owner=request.user,artifact=artifact,
-            token_digest=digest('package-token',token),session_digest=session_binding(request),expires_at=now+timedelta(seconds=LIFETIME))
+            token_digest=digest('package-token',token),session_digest=session_binding(request),expires_at=now+timedelta(seconds=LIFETIME),authority_revision=authority_revision)
         return token
 
 
@@ -159,10 +161,11 @@ def download(request,checkout_id,identity,token,archive):
     with transaction.atomic(durable=True):
         payment.locked(request.user,checkout_id)
         package=package_locked(request.user,checkout_id,identity,archive)
+        authority_revision=controls.require_open(package.entitlement,archive)
         now=attempts.database_now()
         access=SyntheticPackageAccess.objects.select_for_update().filter(package=package,owner=request.user,
             token_digest=digest('package-token',token),session_digest=session_binding(request),expires_at__gt=now,consumed_at__isnull=True).first()
-        if access is None:fail('download_unavailable',404)
+        if access is None or access.authority_revision!=authority_revision:fail('download_unavailable',404)
         body=material_bytes(package.entitlement,package.stage,package.payload['fixture'])[access.artifact]
         payment.recover(archive,package.payload['artifacts'][access.artifact]['receipt'],uuid.uuid5(package.identity,access.artifact),body)
         completed_at=attempts.database_now()

@@ -427,6 +427,7 @@ class SyntheticPackageAccess(models.Model):
     session_digest=models.CharField(max_length=64)
     expires_at=models.DateTimeField()
     consumed_at=models.DateTimeField(null=True)
+    authority_revision=models.PositiveIntegerField(default=0)
     class Meta:
         constraints=[models.CheckConstraint(condition=models.Q(token_digest__regex=r'^[0-9a-f]{64}$',session_digest__regex=r'^[0-9a-f]{64}$'),name='synthetic_package_access_digests')]
 
@@ -560,3 +561,19 @@ class SyntheticSupportRefundStaffGrant(models.Model):
     case=models.ForeignKey(SyntheticSupportRefundCase,on_delete=models.PROTECT)
     class Meta:
         constraints=[models.UniqueConstraint(fields=['user','case'],name='synthetic_support_refund_staff')]
+
+
+class SyntheticDeliveryControl(models.Model):
+    id=models.UUIDField(primary_key=True,editable=False)
+    entitlement=models.ForeignKey(SyntheticLineEntitlement,on_delete=models.PROTECT)
+    revision=models.PositiveIntegerField()
+    request_id=models.UUIDField()
+    payload=models.JSONField()
+    sha256=models.CharField(max_length=64)
+    archive_receipt=models.JSONField()
+    class Meta:
+        constraints=[
+            models.UniqueConstraint(fields=['entitlement','revision'],name='synthetic_delivery_control_revision'),
+            models.UniqueConstraint(fields=['entitlement','request_id'],name='synthetic_delivery_control_retry'),
+            models.CheckConstraint(condition=models.Q(revision__gte=1),name='synthetic_delivery_control_positive'),
+        ]

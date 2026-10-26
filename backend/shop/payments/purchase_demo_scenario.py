@@ -272,6 +272,29 @@ def run(archive_root):
             repeated=client.post(download_url,data=json.dumps({'token':bearer}),content_type='application/json',HTTP_X_CSRFTOKEN=csrf)
             if downloaded.status_code!=200 or b'synthetic-materials-v1' not in downloaded.content or repeated.status_code!=404:
                 raise RuntimeError('private version-bound single-use download mismatch')
+            waiting=client.post(access_url,data=json.dumps({'artifact':'sll-synthetic-rtl.txt'}),content_type='application/json',HTTP_X_CSRFTOKEN=csrf)
+            if waiting.status_code!=200:raise RuntimeError('pre-hold download grant failed')
+            old_grant=waiting.json()['token']
+            with override_settings(**staff_settings,LOCAL_STAFF_CAPTURE_ROOT=capture):
+                control_command={'request_id':str(uuid.uuid4()),'expected_revision':'0','action':'hold'}
+                for _ in range(2):
+                    held=staff.post(delivery_url+'control/',data=urlencode(control_command),content_type='application/x-www-form-urlencoded',HTTP_X_CSRFTOKEN=staff_token)
+                    if held.status_code!=303:raise RuntimeError('delivery hold/retry failed')
+            held_list=client.get(materials_url,HTTP_ACCEPT='application/json')
+            if held_list.status_code!=200 or not all(item['delivery_held'] for item in held_list.json()['packages']):
+                raise RuntimeError('held delivery owner status failed')
+            if client.post(download_url,data=json.dumps({'token':old_grant}),content_type='application/json',HTTP_X_CSRFTOKEN=csrf).status_code!=423:
+                raise RuntimeError('delivery hold allowed download')
+            if client.post(access_url,data=json.dumps({'artifact':'sll-synthetic-rtl.txt'}),content_type='application/json',HTTP_X_CSRFTOKEN=csrf).status_code!=423:
+                raise RuntimeError('delivery hold allowed grant')
+            with override_settings(**staff_settings,LOCAL_STAFF_CAPTURE_ROOT=capture):
+                cleared=staff.post(delivery_url+'control/',data=urlencode({'request_id':str(uuid.uuid4()),'expected_revision':'1','action':'clear'}),content_type='application/x-www-form-urlencoded',HTTP_X_CSRFTOKEN=staff_token)
+                if cleared.status_code!=303:raise RuntimeError('delivery hold clear failed')
+            if client.post(download_url,data=json.dumps({'token':old_grant}),content_type='application/json',HTTP_X_CSRFTOKEN=csrf).status_code!=404:
+                raise RuntimeError('cleared hold resurrected old grant')
+            refreshed=client.post(access_url,data=json.dumps({'artifact':'sll-synthetic-rtl.txt'}),content_type='application/json',HTTP_X_CSRFTOKEN=csrf)
+            if refreshed.status_code!=200 or client.post(download_url,data=json.dumps({'token':refreshed.json()['token']}),content_type='application/json',HTTP_X_CSRFTOKEN=csrf).status_code!=200:
+                raise RuntimeError('fresh post-hold download failed')
             owner_case=client.get('/purchase/checkout-rehearsal/'+str(retained.pk)+'/changes/'+case_ids[0]+'/',HTTP_ACCEPT='application/json')
             if owner_case.status_code!=200 or not owner_case.json()['proposal']['active'] or b'credential_generation' in owner_case.content:
                 raise RuntimeError('owner licence case status/privacy mismatch')
@@ -294,7 +317,8 @@ def run(archive_root):
                 'statement_mail_capture_once_after_lost_response':True,'actual_email_sent':False},
             'support_refund_review':{'consumed_credit_retained':True,'separate_case_assignment':True,
                 'request_and_review_retries_once':True,'correction_history_preserved':True,'actual_refund':False},
-            'private_packages':{'retained_versions':3,'old_version_downloaded_once':True,'bearer_in_url':False,'actual_delivery':False},
+            'private_packages':{'retained_versions':3,'old_version_downloaded_once':True,'bearer_in_url':False,'actual_delivery':False,
+                'delivery_hold_blocks_access':True,'clear_does_not_revive_old_grant':True},
             'licence_change_cases':{'kinds_captured_and_reviewed':5,'higher_volume_requires_quote':True,
                 'corrected_review_supersedes_prior_proposal':True,'original_entitlement_unchanged':True,'automatic_charge':False}}
 

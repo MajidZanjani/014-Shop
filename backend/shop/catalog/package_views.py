@@ -12,7 +12,7 @@ from django.views.decorators.http import require_http_methods,require_GET
 from shop.access.staff_auth import staff_credential
 from shop.adapters.evidence_archive import PreparedArchive,ArchiveError
 from shop.payments.bank_contract import BankError
-from . import checkout,checkout_payment as payment,private_packages as packages
+from . import checkout,checkout_payment as payment,private_packages as packages,delivery_controls as controls
 from .models import SyntheticDeliveryStaffGrant,SyntheticPackageRevision
 from .cart_editor import private,canonical_uuid
 from .cart_views import reply
@@ -47,10 +47,10 @@ def cursor(request):
     return int(raw)
 
 
-def summary(row):
+def summary(row,control):
     return {'id':str(row.identity),'stage':row.stage,'version':row.version,'fixture':row.payload['fixture'],
             'entitlement_id':str(row.entitlement_id),'artifacts':sorted(row.payload['artifacts']),
-            'actual_delivery':False,'effects_authorized':False}
+            'actual_delivery':False,'effects_authorized':False,'delivery_held':control['held'],'delivery_revision':control['revision']}
 
 
 def error_response(error):
@@ -73,7 +73,7 @@ def package_page(request,identity):
             rows=list(query[:21]);items=[]
             for row in rows[:20]:
                 line=packages.line_locked(request.user,identity,row.entitlement_id,archive)
-                packages.retained(row,line,archive);items.append(summary(row))
+                packages.retained(row,line,archive);control,_=controls.state(line,archive);items.append(summary(row,control))
         value={'packages':items,'next_before':rows[19].pk if len(rows)>20 else None}
         if request.headers.get('Accept')=='application/json':return private(reply(value))
         return private(render(request,'catalog/private_packages.html',value|{'checkout_id':str(identity)}))
@@ -142,12 +142,32 @@ def delivery_page(request,identity):
             packages.staff_locked(request)
             line=packages.line_locked(checkout_row.owner,checkout_row.pk,identity,archive)
             packages.staff_locked(request,line)
+            control,history=controls.state(line,archive)
             query=SyntheticPackageRevision.objects.filter(entitlement=line).order_by('-pk')
             if before:query=query.filter(pk__lt=before)
             rows=list(query[:21])
             for row in rows[:20]:packages.retained(row,line,archive)
-            context={'staff':True,'entitlement_id':str(identity),'packages':[summary(row) for row in rows[:20]],
+            context={'staff':True,'entitlement_id':str(identity),'packages':[summary(row,control) for row in rows[:20]],'control':control,
+                'control_history':[{'revision':row.revision,'held':row.payload['held']} for row in reversed(history[-20:])],
+                'control_key':str(uuid.uuid4()),
                 'next_before':rows[19].pk if len(rows)>20 else None,'request_id':str(uuid.uuid4()),'fixtures':packages.FIXTURES,
                 'later_reference_design':line.snapshot['later_reference_design']}
         return private(render(request,'catalog/private_packages.html',context))
+    except (checkout.CheckoutError,BankError,ArchiveError,OSError,ValueError,TypeError,UnicodeError,RecursionError) as error:return error_response(error)
+
+
+@require_http_methods(['POST'])
+@sensitive_post_parameters()
+def delivery_control(request,identity):
+    if staff_credential(request,recent=True) is None:return private(reply({'error':'recent_staff_mfa_required'},403))
+    scope=SyntheticDeliveryStaffGrant.objects.select_related('entitlement__fulfilment__acceptance__checkout__owner').filter(user=request.user,entitlement_id=identity).first()
+    if scope is None:return private(reply({'error':'not_found'},404))
+    saved=scope.entitlement.fulfilment.acceptance.checkout
+    try:
+        if request.GET:raise ValueError()
+        value=data(request,{'request_id','action','expected_revision'})
+        if re.fullmatch(r'0|[1-9][0-9]{0,2}',value['expected_revision']) is None:raise ValueError()
+        with PreparedArchive(archive_root()) as archive:
+            controls.record(request,saved.owner,saved.pk,identity,canonical_uuid(value['request_id']),int(value['expected_revision']),value['action'],archive)
+        response=HttpResponseRedirect(f'/staff/delivery/{identity}/');response.status_code=303;return private(response)
     except (checkout.CheckoutError,BankError,ArchiveError,OSError,ValueError,TypeError,UnicodeError,RecursionError) as error:return error_response(error)
