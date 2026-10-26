@@ -484,6 +484,11 @@
       "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
     },
     {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-ACCEPTANCE-PAYMENT-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-CHECK.md",
       "role": "historical-evidence",
       "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
@@ -522,6 +527,11 @@
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-ROUTE-REVIEW.md",
       "role": "historical-evidence",
       "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-UI-SPEC.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-VERIFICATION.md",

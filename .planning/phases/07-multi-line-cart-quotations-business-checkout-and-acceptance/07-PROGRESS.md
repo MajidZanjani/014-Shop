@@ -1,7 +1,9 @@
 # Phase7 current progress
 
-Current scope/routing: [STATE.md](../../STATE.md), [ROADMAP.md](../../ROADMAP.md) and [final purchase-flow amendment](../../PURCHASE-FLOW-AMENDMENT.md). Existing local implementation/evidence retains its dated scope; full acceptance is pending except Phase1. Prior progress text is archived under docs/archive/2026-10-26-before-purchase-flow. Do not execute its old next-step instructions.
+Current scope/routing: [STATE.md](../../STATE.md), [ROADMAP.md](../../ROADMAP.md) and [final purchase-flow amendment](../../PURCHASE-FLOW-AMENDMENT.md). Existing local evidence retains its dated scope. Full-phase acceptance remains pending; prior progress is archived under docs/archive/2026-10-26-before-purchase-flow and historical next-step text is not active routing.
 
-## Local continuation — 2026-10-26
+## Latest continuation — 2026-10-26
 
-Complete-cart guarded API/no-JavaScript checkout review/capture implemented; exact private cart/business/document/offer/support/delivery snapshots, whole-basket holds, seller minima, new-package allocation and concurrent retry keys. Full353/final focused14 tests pass and extended demo recovers the archive. [Evidence](07-CHECKOUT-PARTIAL.md). This is a partial slice, not actual acceptance or full-phase completion. Next bind retained complete-cart scope to synthetic acceptance/document fixtures and one archived payment attempt; actual commercial/legal/host/tax/ledger and external gates stay pending.
+Complete-cart review/capture now continues to explicit synthetic document confirmation and one archived payment/order reference, with distinct fixture deadlines and lookup-only uncertainty. User-requested production-like customer layout, grouped business guidance and readable totals are implemented. Full367 backend/focused13 tests, extended demo and46 live header-level proxy checks pass. [Acceptance/payment evidence](07-ACCEPTANCE-PAYMENT-PARTIAL.md), [UI contract](07-UI-SPEC.md). Latest visual/browser review remains pending. Earlier [checkout evidence](07-CHECKOUT-PARTIAL.md) is retained with its exact scope.
+
+Next local integration is complete-cart per-line staged fulfilment and support ledger under10-01/10-02. Actual commercial/legal/tax/host/financial/rights and external gates remain pending; no full plan/phase completion is inferred from synthetic fixtures.

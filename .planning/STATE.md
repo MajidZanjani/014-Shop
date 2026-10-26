@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: in_progress
-last_updated: "2026-10-26T08:18:32.239Z"
-state_head: 8c319a0c723bd19a99c727011997bd9a549197e7
+last_updated: "2026-10-26T09:23:09.493Z"
+state_head: 33e6cf3baed185e7afd853d5afeea728476ac841
 progress:
   total_phases: 14
   completed_phases: 1
@@ -12,8 +12,8 @@ progress:
 last_activity: 2026-10-26
 current_phase: 03
 current_phase_name: Catalog, platform choices and approved offer/support policies
-stopped_at: Complete-cart checkout rehearsal retained and verified. Next synthetic acceptance and payment binding.
-last_activity_desc: Browser form CSRF and redirect fix verified with354 backend and32 live proxy checks; complete-cart acceptance integration remains next.
+stopped_at: Synthetic complete-cart acceptance/payment and shop-style UI verified. Next complete-cart staged fulfilment and support ledger.
+last_activity_desc: Archived synthetic acceptance/payment and shared customer UI implemented;367 backend and46 live proxy checks pass; actual gates pending.
 ---
 
 # Project state — final purchase-flow revision2
@@ -31,11 +31,13 @@ last_activity_desc: Browser form CSRF and redirect fix verified with354 backend 
 
 ## Current result and next action
 
-Complete-cart checkout rehearsal implemented under03-01/04-01/07-02–03. One guarded API/no-JavaScript service retains every cart line and exact business/document/offer/support/delivery revisions. Whole-basket holds, seller-controlled support minima, once-only new-package allocation, stale-review protection and concurrent retry arbitration are verified. Latest regression after browser-form fix CORE_LOCAL_PASS354 tests/5 checks,94.845s, includes all checkout tests; initial checkout evidence retains its dated scope. Extended demo PURCHASE_FLOW_DEMO_PASS includes complete-cart archive recovery and API/form same capture. [Exact evidence and limits](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-CHECKOUT-PARTIAL.md). Original platform/single-draft/staged-payment evidence remains retained; no full plan/phase acceptance inferred.
+Complete-cart synthetic acceptance/payment implemented under07-03/08, following the retained checkout/platform work. One explicitly confirmed fixture acceptance/order reference and one typed fake-bank attempt bind the exact cart/business/document/offer/support/delivery snapshots. Recoverable checkout/confirmation/attempt bytes precede dispatch; uncertain responses remain lookup-only. Separate illustrative offer/order-payment/bank-session deadlines and once-only retries/concurrency are verified. No actual contract, payment or rights are created.
 
-Browser demo blocker resolved: scoped form HTML uses same-origin referrer policy and proxy preserves303 Location/Vary. Live proxy/Gunicorn/owned PostgreSQL32 checks across both loopback aliases pass; null/foreign origins and missing CSRF tokens still fail. [Debug evidence and restart steps](debug/resolved/demo-csrf.md). No actual browser-engine qualification or external authority inferred.
+User requested a simple production-like UI to reduce entry mistakes. Customer screens now reuse the public cream/green style, shared layout/step navigation, grouped business fields with required/pending guidance, readable EUR and specific missing-field labels. CSS is self-hosted and exactly allowlisted; no new script/external font/dependency. [UI contract](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-UI-SPEC.md). User confirmed the preceding corrected browser access/business/cart checkout-recording path; latest styling/payment browser review remains pending.
 
-Next usable local feature: bind the retained complete-cart checkout to explicit synthetic acceptance/document fixtures and one payment attempt/order reference, including archive-before-dispatch and lookup-only uncertainty. Do not use the separate single-draft synthetic purchase as complete-cart payment evidence. Actual acceptance, business country/tax, terms/host/commercial and licence/support ledger/fulfilment gates remain pending. Continue local work without invented approvals or external/protected-service actions.
+Latest full backend CORE_LOCAL_PASS367 tests/5 checks,95.233s; focused13 tests,2.580s; extended PURCHASE_FLOW_DEMO_PASS includes synthetic acceptance/capture/same-reference retry. Actual proxy/Gunicorn/owned PostgreSQL46 header-level checks across both loopback aliases pass through business/cart/confirm/pay; null/foreign origins and missing tokens fail. Source207 exact files/26 templates/1 CSS, no symlinks. [Exact evidence and limits](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-ACCEPTANCE-PAYMENT-PARTIAL.md). Prior evidence remains dated, including the separate single-draft staged delivery and [resolved CSRF issue](debug/resolved/demo-csrf.md). No plan/phase completion inferred.
+
+Next usable local feature: bind captured complete-cart simulated payment to once-only per-line licence/staged-delivery records and non-expiring support-credit ledger behavior under10-01/10-02, preserving later reference-design obligations, reservations and archive-before-effects/completion. The separate single-draft flags do not prove full-cart fulfilment. Actual commercial/legal/tax/entity/host/ledger/fulfilment and all external/protected gates remain pending. Continue local work without invented approvals.
 
 ## Pending actual gates
 
