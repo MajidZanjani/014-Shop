@@ -1,3 +1,5 @@
+> Current purchase/support/staged-delivery delta: [final26October revision2](../.planning/PURCHASE-FLOW-AMENDMENT.md). Baseline source/evidence below retains its exact scope; it does not require a universal engineering questionnaire, portal or custom-board review.
+
 # Synthetic skeleton service boundaries
 
 ```mermaid

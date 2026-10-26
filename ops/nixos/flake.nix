@@ -138,7 +138,16 @@
       databaseTools = { source = toString databaseTools; manifest = "${databaseTools}/share/shop/database-tools.json"; executable = false; runtimeQualified = false; productionActivation = false; };
       productionActivation = false;
     };
-    devShells.${system}.default = pkgs.mkShell {
+    # Same pinned backend tools; backend demos/checks need no frontend compiler.
+    devShells.${system} = {
+    backend = pkgs.mkShell {
+      packages = [ pythonEnv postgres ];
+      PYTHONDONTWRITEBYTECODE = "1";
+      PYTHONNOUSERSITE = "1";
+      SHOP_PYTHON = "${pythonEnv}/bin/python3";
+      SHOP_POSTGRES_BIN = "${postgres}/bin";
+    };
+    default = pkgs.mkShell {
       PYTHONDONTWRITEBYTECODE = "1";
       PYTHONNOUSERSITE = "1";
       packages = [ node pythonEnv postgres
@@ -149,6 +158,7 @@
       SHOP_NODE = "${node}/bin/node";
       SHOP_NPM = "${node}/bin/npm";
       SHOP_POSTGRES_BIN = "${postgres}/bin";
+    };
     };
   };
 }

@@ -1,3 +1,5 @@
+> Final purchase-flow revision2 supersedes conflicting future requirements in this earlier design. Use [current clauses](../../PURCHASE-FLOW-AMENDMENT.md) and the updated07-02–04 plans. Historical critique/evidence below does not require universal per-sale approval, a technical dossier/portal or actual commercial inputs before independent synthetic work. No old next-action paragraph routes execution.
+
 # Protected-offer pre-execution critique
 
 Reviewed f2bcd66 against COM-02–06/DATA-01–04, the embedded product and P register, actual offer_preparation, preparation_snapshots, access/catalog models, document_preview, request_envelope/envelope_capture and constrained local archive records. Inline source critique, not independent review, commercial/legal approval or runtime qualification.

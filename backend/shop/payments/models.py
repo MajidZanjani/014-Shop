@@ -1,5 +1,6 @@
 """Fake-provider observations only, never shop payment confirmation or orders."""
 import uuid
+from django.conf import settings
 from django.db import models
 
 SYNTHETIC_STATUSES=('authorized','captured','declined','pending')
@@ -78,4 +79,43 @@ class SyntheticAttemptControl(models.Model):
             models.UniqueConstraint(fields=['attempt','revision'],name='synthetic_control_revision_unique'),
             models.UniqueConstraint(fields=['attempt','command_id'],name='synthetic_control_command_unique'),
             models.CheckConstraint(condition=models.Q(revision__gte=1),name='synthetic_control_positive_revision'),
+        ]
+
+
+class SyntheticPurchase(models.Model):
+    """Local rehearsal linked to existing drafts, never an actual accepted order."""
+    id=models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
+    owner=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT)
+    request_id=models.UUIDField()
+    draft=models.OneToOneField('catalog.ConfigurationDraft',null=True,on_delete=models.PROTECT)
+    attempt=models.OneToOneField(SyntheticPaymentAttempt,on_delete=models.PROTECT)
+    snapshot=models.JSONField()
+    archive_receipt=models.JSONField(default=dict)
+    simulated_funded=models.BooleanField(default=False)
+    simulated_credit_seconds=models.BigIntegerField(default=0)
+    simulated_entitlements=models.PositiveSmallIntegerField(default=0)
+    initial_delivered=models.BooleanField(default=False)
+    reference_delivered=models.BooleanField(default=False)
+    reserved_seconds=models.BigIntegerField(default=0)
+    evidence_class=models.CharField(max_length=32,default='local-synthetic')
+    financial_confirmation=models.BooleanField(default=False)
+    effects_authorized=models.BooleanField(default=False)
+    class Meta:
+        constraints=[
+            models.UniqueConstraint(fields=['owner','request_id'],name='synthetic_purchase_owner_request'),
+            models.CheckConstraint(condition=models.Q(evidence_class='local-synthetic',financial_confirmation=False,effects_authorized=False),name='synthetic_purchase_no_commerce'),
+            models.CheckConstraint(condition=models.Q(simulated_credit_seconds__gte=0,reserved_seconds__gte=0,reserved_seconds__lte=models.F('simulated_credit_seconds'),simulated_entitlements__lte=1),name='synthetic_purchase_balances'),
+            models.CheckConstraint(condition=(models.Q(simulated_funded=True)|models.Q(simulated_credit_seconds=0,simulated_entitlements=0,initial_delivered=False,reference_delivered=False)),name='synthetic_purchase_funding_gate'),
+            models.CheckConstraint(condition=(models.Q(reference_delivered=False)|models.Q(initial_delivered=True)),name='synthetic_purchase_staged_delivery'),
+        ]
+
+
+class SyntheticCreditReservation(models.Model):
+    purchase=models.ForeignKey(SyntheticPurchase,on_delete=models.PROTECT)
+    request_id=models.UUIDField()
+    seconds=models.BigIntegerField()
+    class Meta:
+        constraints=[
+            models.UniqueConstraint(fields=['purchase','request_id'],name='synthetic_reservation_request'),
+            models.CheckConstraint(condition=models.Q(seconds__gte=1),name='synthetic_reservation_positive'),
         ]

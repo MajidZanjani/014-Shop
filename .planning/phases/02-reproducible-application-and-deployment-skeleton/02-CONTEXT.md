@@ -1,3 +1,5 @@
+> Current execution precedence: [final26October purchase-flow revision2](../../PURCHASE-FLOW-AMENDMENT.md) and STATE.md/ROADMAP.md. This file retains applicable baseline infrastructure work and qualification gates; any old next-step routing or conflicting purchase/delivery requirement is superseded. No protected/external authority changes.
+
 Active local sequence and authorization: [2026-10-22 amendment](../../EXECUTION-AMENDMENT-2026-10-22.md). Historical replan-only statements below describe that earlier pass. T02 release qualifications no longer block independent local features.
 
 # Phase 2 — October 21 locked context

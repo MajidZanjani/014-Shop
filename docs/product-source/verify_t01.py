@@ -15,6 +15,7 @@ MATRIX = ".planning/SOURCE-MATRIX.md"
 REQS = ".planning/REQUIREMENTS.md"
 LEDGER = ".planning/SOURCES.md"
 IDENTITIES = {
+    "014-Shop-Board-Support-Amendment-2026-10-26.md": (19147, "01cc63210f2202462b76108196c55a0f483d56c7f20e5134832b109724571c41"),
     PROPOSAL: (222085, "26a7359624ea4a9625005b39a3fa43beff01c31c830e3b6f122c1ad7417787d0"),
     HANDOFF: (70623, "3ff0ecffe4432514bab4a29d500fff05c5537a79c0a8fa494faeb8dfda1c6fac"),
     PRODUCT: (23969, "562dc4015c62f165df5df3e9ae1aab26b8102385d9dc76a556d5965ddc1a0263"),
@@ -69,9 +70,11 @@ def source(inputs):
                          identity + ": requirement/owning phase")
     definitions = re.findall(r"^- \[[ x]\] \*\*([A-Z]+-\d\d)\*\*:", reqs, re.M)
     mappings = re.findall(r"^\| ([A-Z]+-\d\d) \| Phase (\d+) \|", reqs, re.M)
-    count += require(len(definitions) == len(set(definitions)) == 80, "80 unique current requirements")
-    count += require(len(mappings) == len(dict(mappings)) == 80
+    count += require(len(definitions) == len(set(definitions)) == 89, "89 unique current requirements, including final26October revision2")
+    count += require(len(mappings) == len(dict(mappings)) == 89
                      and set(definitions) == set(dict(mappings)), "exact current primary mappings")
+    amendment_owners={'SRC-05':'1','FLOW-01':'3','FLOW-02':'4','FLOW-03':'7','FLOW-04':'7','FLOW-05':'7','FLOW-06':'10','FLOW-07':'10','FLOW-08':'13'}
+    count += require(all(dict(mappings).get(identity)==phase for identity,phase in amendment_owners.items()), 'final amendment primary ownership')
     return count
 
 def load_source():

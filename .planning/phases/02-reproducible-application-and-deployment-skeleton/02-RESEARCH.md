@@ -1,3 +1,5 @@
+> Current execution precedence: [final26October purchase-flow revision2](../../PURCHASE-FLOW-AMENDMENT.md) and STATE.md/ROADMAP.md. This file retains applicable baseline infrastructure work and qualification gates; any old next-step routing or conflicting purchase/delivery requirement is superseded. No protected/external authority changes.
+
 # Phase 2 implementation guidance — revised 2026-10-21
 
 Source synthesis, not a fresh registry/runtime/provider audit. Read complete new sources and 02-CONTEXT.md. Historical research remains in docs/archive/2026-10-20-planning for provenance only; its deployment instructions and old source locators are superseded.

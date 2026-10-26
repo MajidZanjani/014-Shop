@@ -29,3 +29,16 @@ No new compute/cloud block/public-IP purchase, monthly billing conversion, autom
 - User expressly replaces obsolete cloud architecture with the selected existing host. No unresolved conflict remains about the hosting direction.
 - Preserve exact artifact approval/development evidence with explicit scope; new runtime/protection/ingress/restore acceptance is pending.
 - Source facts and budgets are inputs, not fresh host observations. This task changes documentation only.
+
+
+## Final purchase-flow revision2 — 2026-10-26
+
+[Current amendment](../014-Shop-Board-Support-Amendment-2026-10-26.md) supersedes conflicting earlier board/support requirements. Reuse P-01–P-12; no parallel approval register or per-board launch-approval prerequisite.
+
+- P-02: Approve standard ready-kit/development offer prices and compulsory support minima as applicable. No universal one-package rule; required support is visible before acceptance/payment.
+- P-03: Reuse or approve R&D annual start trigger/rights; unknown board is acceptable under applicable standard development rights, unknown licensed scope is not.
+- P-05: SLL IP and integration guidance only; optional/required is seller-controlled. Approved eligible-credit exceptions use recorded reservation/staff confirmation; no invented pooling rights.
+- P-06: Approve small ready-kit variants and design description, standard development scope, initial deliverables, honest later reference-design commitment and which work consumes support. Initial RTL/key/docs can precede later design, with one entitlement and outstanding obligation.
+- P-08: Preserve applicable business/tax/acceptance requirements and existing helpers. No compulsory stage, uploads, engineering interview or individual staff approval for every standard purchase.
+
+These are requirements, not supplied rate/kit/rights/terms/compatibility approvals. Unknown values keep only the affected live offer pending. Explicit synthetic fixtures and unrelated local implementation continue.

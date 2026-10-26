@@ -156,7 +156,17 @@
     "tax_minor": null,
     "total_minor": null
   },
-  "support_seconds_per_package": 36000
+  "support_seconds_per_package": 36000,
+  "purchase_flow": {
+    "amendment_sha256": "01cc63210f2202462b76108196c55a0f483d56c7f20e5134832b109724571c41",
+    "platform_choices": [
+      "listed-kit",
+      "other-board",
+      "not-designed"
+    ],
+    "ready_kits": [],
+    "offer_policy_revision": null
+  }
 }
 ---
 

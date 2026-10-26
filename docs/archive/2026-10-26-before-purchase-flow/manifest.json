@@ -1,0 +1,266 @@
+[
+  {
+    "path": ".planning/PROJECT.md",
+    "before_sha256": "a476b8f5c3a1315d377be76a34768fb328f6a3071658936d750f77fcb65dcaad"
+  },
+  {
+    "path": ".planning/REQUIREMENTS.md",
+    "before_sha256": "bc2bebdb5afa2f13b82bee9d6bbe23410fe6023b7f86a0c2229b328afe911293"
+  },
+  {
+    "path": ".planning/ROADMAP.md",
+    "before_sha256": "28c4507c7a8fc9179a2f426b7e0585cfd77b9b399d4f8b648ed5bce550cd9a77"
+  },
+  {
+    "path": ".planning/SOURCES.md",
+    "before_sha256": "e2dc76022756a9e2f81a056b109e8c3b123ac0ba02b9b928260271df9e4e4629"
+  },
+  {
+    "path": ".planning/SOURCE-MATRIX.md",
+    "before_sha256": "319d29caf4706f64017348c37e1cbd6ad59231db909134b21c078cc08dbdbec3"
+  },
+  {
+    "path": ".planning/REPLAN-VERIFICATION.md",
+    "before_sha256": "95472f670231aebeedf3a8f737518bbfe8678b236fe92d9e014cb5a42295532d"
+  },
+  {
+    "path": ".planning/STATE.md",
+    "before_sha256": "455b40fb11d98cc87bc95b788a548d7c9514a14323f767d0b168de45e1328492"
+  },
+  {
+    "path": ".planning/HANDOFF.md",
+    "before_sha256": "60bd3edd2f2fd4eefc2f4eb8eda204cc1f97f64e2d3deb886ef7f2f1f343dbc5"
+  },
+  {
+    "path": ".planning/EXECUTION-AMENDMENT-2026-10-22.md",
+    "before_sha256": "b1a12b19c2cbd4d64d7246efbe60292098bcea1aaae66a69b151d95e3932d4b5"
+  },
+  {
+    "path": "AGENTS.md",
+    "before_sha256": "0e17ef00b563db7641abc88377aad122d09c36123d9abfae216a6bab452c3128"
+  },
+  {
+    "path": "README.md",
+    "before_sha256": "b70902afc91ab79de8c991e8fe77dcb2f51b64cd2e3d58459325ce5f3d4ff23d"
+  },
+  {
+    "path": "docs/decisions.md",
+    "before_sha256": "28708da84758fc0c62a3ee01a5baeb200b302810b06dcea74289be733da8cc71"
+  },
+  {
+    "path": ".planning/research/SUMMARY.md",
+    "before_sha256": "8ab736c851cdad6200ea29dbd1c59a36ddacea56023ae2ea881ced45321c3025"
+  },
+  {
+    "path": ".planning/research/PITFALLS.md",
+    "before_sha256": "53224f39657aba35f380be24674b66ffd3d63e0540db735d00b5e088dd5c94ef"
+  },
+  {
+    "path": ".planning/research/STACK.md",
+    "before_sha256": "da774209de4baddc8eb70dd1ce19cb2a157a37e362733e5aecdddd43cb2427e2"
+  },
+  {
+    "path": ".planning/research/FEATURES.md",
+    "before_sha256": "2906c2dbaa7c496c188d2eed2fdd95e8427e01e08ddfe0486d89f1733b2ec88d"
+  },
+  {
+    "path": ".planning/research/ARCHITECTURE.md",
+    "before_sha256": "8e61b9c2d1f3084165d4861764f18e24ed2ff191402fb58550bfdf587782c94c"
+  },
+  {
+    "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-PROGRESS.md",
+    "before_sha256": "53116fd04fc808cec0be70c82f28b38b6b1bf0959ebceec2d46ca6ec9baba452"
+  },
+  {
+    "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-04-PLAN.md",
+    "before_sha256": "e936f14fa674cedda71afc762d695585b59618fdd6b1f8604e457f15155bc180"
+  },
+  {
+    "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-PROGRESS.md",
+    "before_sha256": "9eeb0189c2b3f9b1c22ac3168147672d5b9cb45a675a2d650c6002d439569f89"
+  },
+  {
+    "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-03-PLAN.md",
+    "before_sha256": "843c08432e54ea8c4e6a002fb425c2f1f2a5f02cdbdcd582d2a7efb547b1f623"
+  },
+  {
+    "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-CONTEXT.md",
+    "before_sha256": "047d8e2dfc95260b4228bc4e71d00e5217b3fd2e8f48b0bd382974fc6ce46dc1"
+  },
+  {
+    "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-CHECK.md",
+    "before_sha256": "8551ea7f15237454eafe36d414a20254eb8257d7abac727644e891c3588e0941"
+  },
+  {
+    "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-RESEARCH.md",
+    "before_sha256": "5425a044729ca55c858055f5825eca13d6be8ff3ef3d83624aab3b006054c9a3"
+  },
+  {
+    "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-PLAN.md",
+    "before_sha256": "eb9fb870551b81f19b5e6cc01f15f32b8fe7c16cced17c1ecdd831e89f814831"
+  },
+  {
+    "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-01-PLAN.md",
+    "before_sha256": "9097ee87b9b122254b26787f7e08f1bf96d5062fe22535ce8837d3b2ccebc7a4"
+  },
+  {
+    "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-PATTERNS.md",
+    "before_sha256": "5e584bb0e8bc651e21a3f815bfeb8f763ac7d9855bc18e06fff64222b40f37e3"
+  },
+  {
+    "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-11-PLAN.md",
+    "before_sha256": "4859a81b0664e3a659d41daab34a91468e955ef1a62e7763b45e579b6bb370ce"
+  },
+  {
+    "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-04-PLAN.md",
+    "before_sha256": "af72a0cd61885d31ecbc9432cc03c642c17af8a044f143cb5a0fbc16c186bc8c"
+  },
+  {
+    "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-15-PLAN.md",
+    "before_sha256": "e2d39546763a6d559a63a4f9d1e3d78d241b7738552beb9266d8b7d05c9e4bb8"
+  },
+  {
+    "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-08-PLAN.md",
+    "before_sha256": "b573bbd88200a6164448054ff146885e29946eacea5f363790584b66b70bd7ec"
+  },
+  {
+    "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-CONTEXT.md",
+    "before_sha256": "64ab8701f35f4893c39efc9fbe83358100eb8f2975aac6e8e7b267b19fc92654"
+  },
+  {
+    "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-17-PLAN.md",
+    "before_sha256": "5e9f2c1a0e4a2ccdce72e7a584483160e8da50850927a79ecf191ac6aad3477c"
+  },
+  {
+    "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-RESEARCH.md",
+    "before_sha256": "46b8eb003eeef0c8f3b92f632ecdaa8b9981f5c2d45818d664d0afa2d66087c2"
+  },
+  {
+    "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-10-PLAN.md",
+    "before_sha256": "e1a9d63ddb2f0260529e95b0e115c980e9e4c05ef00557b3c8db7efc242b5495"
+  },
+  {
+    "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-07-PLAN.md",
+    "before_sha256": "e8ed541aff84ac317ae3d0f2b863396870da045c1f2db5285774b97723c64877"
+  },
+  {
+    "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-03-PLAN.md",
+    "before_sha256": "c34964ca56e1c257966ff9e62ff7c9e696f237b2000bc673563150290ca35e29"
+  },
+  {
+    "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-12-PLAN.md",
+    "before_sha256": "77a6945c03fe858e7f2ad96f8c884368f9ad4714760a40fb92661cb11983f94a"
+  },
+  {
+    "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-13-PLAN.md",
+    "before_sha256": "d55cb7cca8805eedecbabd8c190bb7abbdd1137350c6088bebe13fb564ea9259"
+  },
+  {
+    "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-01-PLAN.md",
+    "before_sha256": "bd9de3c6537d38c5a9c737a5125b1d1c57ce9558b65b6ce81a4756e47ca8260a"
+  },
+  {
+    "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-00-PLAN.md",
+    "before_sha256": "8af814687b9db33e677bafd91bdd9cf48db9d801395e0433ff92441664f8d638"
+  },
+  {
+    "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-14-PLAN.md",
+    "before_sha256": "d729744cd9c0104eaf026a369ca410843ccdf806c663bbc9c47aa67350ccdb5b"
+  },
+  {
+    "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-PROGRESS.md",
+    "before_sha256": "5e43931ebae95bfe057c1d26661f6734a3f00c0128cc9257356f4478ddb04781"
+  },
+  {
+    "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-VALIDATION.md",
+    "before_sha256": "70afe9afc8e89af28480466eac80001885e59f2aaadbf9da4d5547bc487cb666"
+  },
+  {
+    "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-CHECK.md",
+    "before_sha256": "937ac085ae24c91c4aac5bfa62fb5e1fa23efb69ac6cc75bcaa81c6998364d12"
+  },
+  {
+    "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-05-PLAN.md",
+    "before_sha256": "24f4805cc672ea3e3295bd51538ccc207fed49530393d299c08473dc049993e4"
+  },
+  {
+    "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-09-PLAN.md",
+    "before_sha256": "69439f94df3ba21738cb69c808714194f0472fb4d0b820ef14583c4c20045828"
+  },
+  {
+    "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-16-PLAN.md",
+    "before_sha256": "1d782d38c6f70583ce7eb763ae6e3834605d55dc4af532ecd777111b579fefe7"
+  },
+  {
+    "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-02-PLAN.md",
+    "before_sha256": "1bd1d6dc3a60be7c6dc580bc7ee5db2958ac0c60760f0bf9d06e6242a514fb20"
+  },
+  {
+    "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-06-PLAN.md",
+    "before_sha256": "72a45b9b973a5acdb1c750967f49fa9de3a490a87587f92225c03320dd3e2024"
+  },
+  {
+    "path": ".planning/phases/01-product-authority-repository-review-and-decision-register/01-01-PLAN.md",
+    "before_sha256": "ad2cd2be6bd5384836054a815ee6a627578cfbe1cc87b447c1d76c9f65611a50"
+  },
+  {
+    "path": ".planning/phases/01-product-authority-repository-review-and-decision-register/01-02-PLAN.md",
+    "before_sha256": "09df3d05a80dffe2be6d50440ae4306b35b1e5285bda24ccf2ca2dee475516e5"
+  },
+  {
+    "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-EVIDENCE-CONTRACT.md",
+    "before_sha256": "db6bf257b05465366c5100a0adf3d86886f922df91b5b39e0ed53f91566dc067"
+  },
+  {
+    "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-DESIGN.md",
+    "before_sha256": "933cdfdd7291e471bb930d02314d7bdce584f9c375df9d6a7b71d4da69c72ce9"
+  },
+  {
+    "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-WORKER-DESIGN.md",
+    "before_sha256": "5a3b2e3abcde72fe40cb94b43d88bc3244e44715c8eb219525a5d0286682784c"
+  },
+  {
+    "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-STAFF-CAPTURE-DESIGN.md",
+    "before_sha256": "c66429f42ad82c915aa3ca191cfcee606ba68cc35d89194b19b5073823ba9f54"
+  },
+  {
+    "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-OBSERVATION-DESIGN.md",
+    "before_sha256": "0ff70f1d63093e02f64925c95d930b4b68dc6ac54efc990832474fdce1538fe2"
+  },
+  {
+    "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-OFFER-CONTRACT-DESIGN.md",
+    "before_sha256": "6785bf4aba6789b449ea8eb4a85a6ce84b740070c01d4e2c1ff2adb2e4ae1629"
+  },
+  {
+    "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-PUBLICATION-DESIGN.md",
+    "before_sha256": "dc48a389e3fde63a8ad20d509e62933b9b54232347daddfc77c786f497238686"
+  },
+  {
+    "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-OFFER-CONTRACT-CRITIQUE.md",
+    "before_sha256": "662218f7a6b7310954d0f0d4105a2c3461808dcd69bffdae40ee9023eeecea37"
+  },
+  {
+    "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-STAFF-OBSERVATION-DESIGN.md",
+    "before_sha256": "15268f4a9d438c24650b4a4b7c2cb2f59890b144823849c31426863f243443f0"
+  },
+  {
+    "path": "docs/local-development.md",
+    "before_sha256": "ff728c135c33439c164b46b9f30bbf4e26f37aa7a79ab92a22d4af0ae4fa929e"
+  },
+  {
+    "path": "docs/synthetic-bank.md",
+    "before_sha256": "8cb4b25a9046ffbced45d25b9f0f53c329cedc73f96532ad216484b33b472a1a"
+  },
+  {
+    "path": "docs/service-boundaries.md",
+    "before_sha256": "8e38479c98456b1e838d6ef1d3baf52ee916e3d4ef6b7248c36e72ed3e42f57c"
+  },
+  {
+    "path": "docs/product-source/t01-scope.md",
+    "before_sha256": "e20afc470cc860c14cc975eb4346ba78e2c25756f60fa96ca6bda763f94ccc8a"
+  },
+  {
+    "path": "docs/product-source/verify_t01.py",
+    "before_sha256": "3b136a3bf4e28403b120730719a28aecd0c9490cefa472bd63b78f3cafdd85fc"
+  }
+]

@@ -1,3 +1,5 @@
+> Final purchase-flow revision2 supersedes conflicting future requirements in this earlier design. Use [current clauses](../../PURCHASE-FLOW-AMENDMENT.md) and the updated07-02–04 plans. Historical critique/evidence below does not require universal per-sale approval, a technical dossier/portal or actual commercial inputs before independent synthetic work. No old next-action paragraph routes execution.
+
 # Next local capture/intent slice — proposed design
 
 This narrows07-EVIDENCE-CONTRACT to the implemented request-only schema. It is not a migration, live approval or completed07-02. Request envelope implementation2048a57 supplies authorized immutable bytes and stable semantic UUID identity; it does not yet commit a durable domain record or outbox intent.

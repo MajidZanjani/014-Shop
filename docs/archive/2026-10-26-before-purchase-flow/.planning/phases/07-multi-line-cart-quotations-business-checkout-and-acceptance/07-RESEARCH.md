@@ -1,0 +1,7 @@
+# Local implementation research
+
+Evidence inspected: catalog.models exact cart/business/review revisions; access preparation captures/comparisons; quotation capture row locks and unique snapshot/key arbitration; adapters/local_storage.py private directory/descriptor checks; worker.models/services probe-only semantics; handoff T05/T07/T08 archive ordering; REQUIREMENTS COM01–06 and DATA04. No new library or provider dependency needed for a bounded POSIX synthetic adapter.
+
+Use a descriptor to an existing canonical owned0700 directory; exact canonical UUID identities, closed metadata and bounded bytes. Publish immutable files with exclusive temporary writes, file fsync, no-overwrite hard-link publication and directory fsync. Blob first, receipt last; deterministic retry keys identify one exact payload. Reopen and verify receipt/object hashes, lengths, modes, owner, regular-file/no-symlink/single-link state. Never delete committed evidence during error handling. A blob orphan before receipt publication is prepared/unacknowledged, not completion. Fixed errors omit paths/payloads.
+
+Synthetic storage cannot prove Object Lock, retention, off-host survival or effect authorization. Receipts explicitly identify local-synthetic/prepared evidence and deny retention/effect qualification. No domain integration until a domain-specific retained envelope and durable outbox/reference semantics are designed and tested. Filesystem corruption/retry/concurrency tests are ordinary owned-directory tests; no process/host faults or off-host qualification inferred.

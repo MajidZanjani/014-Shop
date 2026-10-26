@@ -1,3 +1,5 @@
+> Final purchase-flow revision2 supersedes conflicting future requirements in this earlier design. Use [current clauses](../../PURCHASE-FLOW-AMENDMENT.md) and the updated07-02–04 plans. Historical critique/evidence below does not require universal per-sale approval, a technical dossier/portal or actual commercial inputs before independent synthetic work. No old next-action paragraph routes execution.
+
 # Local archive worker boundary — design and current scope
 
 Current local runtime6bae131 has exact capture/root binding, explicit bounded authority, fenced claims and bound-root publication/reopened readback with unique technical verification. See07-02-PUBLICATION-PARTIAL and07-02-PUBLICATION-RACES. No automated queue loop or provider/domain qualification exists. Remaining sections preserve the earlier design rationale; their original proposed next actions are historical, not current missing-capability claims.

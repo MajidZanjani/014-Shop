@@ -1,6 +1,16 @@
-# Planning Sources — current October 21 authority
+# Planning sources — final26October purchase-flow amendment over October21 baseline
 
-The user explicitly requested this replan on 2026-10-21. The two October 21 files supersede earlier architectural/deployment instructions; the embedded product remains the sole product-definition source. Latest explicit SLL scope controls authorization. Both files were read completely, including all 1,798 proposal lines and 330 handoff lines and the complete product appendix.
+## Current precedence
+
+1. [Final26October revision2](../014-Shop-Board-Support-Amendment-2026-10-26.md) (SHA256 `01cc63210f2202462b76108196c55a0f483d56c7f20e5134832b109724571c41`) controls specific changed purchase/support/staged-delivery requirements and supersedes earlier26October variants.
+2. October22 execution amendment controls local sequencing and preserves protected-service authority gates.
+3. October21 proposal/handoff and exact embedded product remain the immutable baseline elsewhere.
+
+The final amendment was read completely. [Current clauses/task mapping](PURCHASE-FLOW-AMENDMENT.md) replace stale active routing; baseline and historical evidence remain unchanged.
+
+## Historical baseline identity
+
+The user explicitly requested this replan on 2026-10-21. The two October 21 files supersede earlier architectural/deployment instructions; the embedded product remains the baseline product-definition source, subject to the final26October delta. Latest explicit SLL scope controls authorization. Both files were read completely, including all 1,798 proposal lines and 330 handoff lines and the complete product appendix.
 
 | Source | Lines | UTF-8 bytes | SHA-256 |
 |---|---:|---:|---|
@@ -20,4 +30,4 @@ The historical docs/product-source/verify_t01.py hard-codes the October 20 filen
 
 ## Evidence and traceability
 
-REQUIREMENTS.md maps 80 atomic requirements exactly once; ROADMAP.md retains all T01–T14 dependencies and verbatim handoff outputs/acceptance/evidence. SOURCE-MATRIX.md preserves exact product inventories and adds hosting deltas. docs/decisions.md is the single P register: P-10 hosting selected, qualification pending; all other affected approvals remain pending. Distinguish local/synthetic, bank sandbox, actual Object Storage, current mx1 observations, independent off-host drills and production. No remote audit, purchase, DNS/TLS issuance, message, bank action or deployment occurred.
+REQUIREMENTS.md maps the80 baseline requirements and9 amendment requirements exactly once; ROADMAP.md retains all T01–T14 dependencies and verbatim handoff outputs/acceptance/evidence. SOURCE-MATRIX.md preserves exact product inventories and adds hosting deltas. docs/decisions.md is the single P register: P-10 hosting selected, qualification pending; all other affected approvals remain pending. Distinguish local/synthetic, bank sandbox, actual Object Storage, current mx1 observations, independent off-host drills and production. No remote audit, purchase, DNS/TLS issuance, message, bank action or deployment occurred.

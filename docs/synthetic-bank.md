@@ -65,3 +65,7 @@ Unknown/malformed IDs, service guards, database failures and lock timeouts produ
 Dispatch checks the current held flag before archive I/O and again after recovery, with due expiry taking precedence. A hold that wins before the claim prevents sending; a later hold cannot cancel an uncertain operation. A separately revision-checked release permits a fresh eligibility check for an otherwise prepared attempt. Hold controls do not change canonical request bytes or clear cancellation/expiry/uncertainty. Inspection reports the current held flag and revision, without command IDs or control history values. No command or HTTP endpoint mutates holds.
 
 These are append-only-by-service fixture control records, without staff attribution, live approval/activation or production archive authority. Actual commercial/source/recovery holds and their protected approvals remain separate pending work. No synthetic control can authorize actual commerce.
+
+## Final purchase-flow rehearsal
+
+The final26October amendment reuses this existing adapter/claim boundary for the [owned synthetic purchase/staged-delivery demo](purchase-flow.md). Actual orders, commercial approvals, acceptance and real ledger/delivery remain pending; synthetic fixture balances/entitlements cannot authorize actual effects.

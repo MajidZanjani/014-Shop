@@ -1,3 +1,5 @@
+> Current execution precedence: [final26October purchase-flow revision2](../../PURCHASE-FLOW-AMENDMENT.md) and STATE.md/ROADMAP.md. This file retains applicable baseline infrastructure work and qualification gates; any old next-step routing or conflicting purchase/delivery requirement is superseded. No protected/external authority changes.
+
 # Revised plan review — 2026-10-21
 
 The previous October 20 plan-check verdict is archived and does not approve this revision. Current review is inline static source/structure/coverage inspection; no subagent/engine verdict or application test is claimed.

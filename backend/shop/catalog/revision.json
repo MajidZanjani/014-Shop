@@ -1,5 +1,5 @@
 {
-  "revision": "e22d838dc8b0753767c066cd49d4fc72055bd2b4dbeded9825dacb512b9d967a",
+  "revision": "6f538ca5eba083e0845354f740c5ce83fe5877b4409e994d5770405c5cf85b3b",
   "schema_version": 1,
   "product_id": "sll-xspi-mc",
   "support_product_id": "sll-xspi-mc-support-10h",
@@ -156,5 +156,15 @@
     "tax_minor": null,
     "total_minor": null
   },
-  "support_seconds_per_package": 36000
+  "support_seconds_per_package": 36000,
+  "purchase_flow": {
+    "amendment_sha256": "01cc63210f2202462b76108196c55a0f483d56c7f20e5134832b109724571c41",
+    "platform_choices": [
+      "listed-kit",
+      "other-board",
+      "not-designed"
+    ],
+    "ready_kits": [],
+    "offer_policy_revision": null
+  }
 }

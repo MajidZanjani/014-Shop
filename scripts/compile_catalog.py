@@ -17,7 +17,7 @@ def unique_object(pairs):
 def compile_catalog(check=False):
     text = SOURCE.read_text()
     data = json.loads(text.split('---', 2)[1],object_pairs_hook=unique_object) # JSON is a strict YAML subset.
-    expected = {'schema_version','product_id','support_product_id','profile_id','title','site','source_sha256','vendors','terms','production_bands','approvals','money','support_seconds_per_package'}
+    expected = {'schema_version','product_id','support_product_id','profile_id','title','site','source_sha256','vendors','terms','production_bands','approvals','money','support_seconds_per_package','purchase_flow'}
     assert set(data) == expected, 'unknown/missing catalog field'
     assert type(data['schema_version']) is int and data['schema_version'] == 1 and data['product_id'] == 'sll-xspi-mc'
     assert data['support_product_id'] == 'sll-xspi-mc-support-10h' and data['profile_id'] == 'sll-xspi-mc-v1'
@@ -49,6 +49,11 @@ def compile_catalog(check=False):
     assert set(data['money']) == {'currency','currency_status','base_minor','additional_family_minor','production_minor','mode_minor','node_minor','support_minor','tax_minor','total_minor'}
     assert data['money']['currency'] == 'EUR' and data['money']['currency_status'] == 'draft'
     assert all(v is None for k,v in data['money'].items() if k.endswith('_minor')), 'unapproved draft rates forbidden'
+    flow=data['purchase_flow']
+    assert set(flow)=={'amendment_sha256','platform_choices','ready_kits','offer_policy_revision'}
+    assert flow['amendment_sha256']==hashlib.sha256((ROOT/'014-Shop-Board-Support-Amendment-2026-10-26.md').read_bytes()).hexdigest()
+    assert flow['platform_choices']==['listed-kit','other-board','not-designed']
+    assert flow['ready_kits']==[] and flow['offer_policy_revision'] is None, 'actual kit/offer approvals not supplied'
     raw = json.dumps(data,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()
     revision = hashlib.sha256(raw).hexdigest()
     manifest = dict(revision=revision, **data)

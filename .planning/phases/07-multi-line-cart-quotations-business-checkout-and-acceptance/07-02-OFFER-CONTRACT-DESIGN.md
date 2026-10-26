@@ -1,3 +1,5 @@
+> Final purchase-flow revision2 supersedes conflicting future requirements in this earlier design. Use [current clauses](../../PURCHASE-FLOW-AMENDMENT.md) and the updated07-02–04 plans. Historical critique/evidence below does not require universal per-sale approval, a technical dossier/portal or actual commercial inputs before independent synthetic work. No old next-action paragraph routes execution.
+
 # Protected offer/domain contract — proposed, not implemented
 
 This resolves the next design boundary in [07-02](07-02-PLAN.md) and extends [07-EVIDENCE-CONTRACT](07-EVIDENCE-CONTRACT.md). It does not approve an offer or authorize runtime implementation before its named prerequisites exist. Source: COM-02–06, the October21 T07 contract, the immutable embedded [product](../../../docs/product-source/SLL_xSPI_MC_Product_Page.md) and the single [P register](../../../docs/decisions.md). Current implementation inspected at b96b665; only request/preparation and local prepared archive facts exist.

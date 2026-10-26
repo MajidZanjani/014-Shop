@@ -1,3 +1,5 @@
+> Final purchase-flow revision2 supersedes conflicting future requirements in this earlier design. Use [current clauses](../../PURCHASE-FLOW-AMENDMENT.md) and the updated07-02–04 plans. Historical critique/evidence below does not require universal per-sale approval, a technical dossier/portal or actual commercial inputs before independent synthetic work. No old next-action paragraph routes execution.
+
 # Quotation evidence and domain archive contract — proposed local design
 
 This document retains the original07-02 repository design and current implementation notes. Request-only local schemas/authority/claims/publication are now implemented; full protected-offer/domain contracts and commercial policy remain pending. It follows source handoffT05/T07/T08 and DATA01–04/COM02–06. Country/tax remains user-deferred. Plan07-01 proves bounded local prepared bytes only; its receipts cannot satisfy provider retention or authorize any business effect.

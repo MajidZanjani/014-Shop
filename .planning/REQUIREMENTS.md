@@ -1,18 +1,32 @@
 # Requirements: SLL xSPI-MC Shop
 
 **Defined:** 2026-10-21
-**Status:** October 21 protected-services replan. SRC documentation reconciled; Phase 2 partial; all new host/runtime criteria pending execution.
-**Core Value:** Turn an exact reviewed xSPI-MC configuration or support purchase into attributable acceptance, verified payment and recoverable licence delivery or support credit without duplicate effects.
+**Status:** Final26October revision2 purchase-flow amendment applied; completed baseline evidence retained; local implementation and actual qualification remain separate.
+**Core Value:** Turn an exact approved standard or reviewed xSPI-MC configuration or support purchase into attributable acceptance, verified payment and recoverable licence delivery or support credit without duplicate effects.
 
 ## v1 Requirements
+### Final purchase-flow amendment — revision2
+
+Source: [final amendment](../014-Shop-Board-Support-Amendment-2026-10-26.md), reconciled by [current clauses](PURCHASE-FLOW-AMENDMENT.md). No new live approvals are inferred.
+
+- [x] **SRC-05**: Register final revision2, preserve historical bytes/evidence and reconcile active phase/task/source precedence once.
+- [ ] **FLOW-01**: One platform question: listed kit with meaningful variant; other/custom/modified board with optional short name/unknown; board not selected/designed or guidance. Vendor/families/rights still mandatory at sale.
+- [ ] **FLOW-02**: Existing configurator/API/no-JavaScript share platform and offer rules; no compulsory stage, pinout, schematic, full FPGA/memory/tools/performance dossier or customer-entered policy/approval/design identifiers.
+- [ ] **FLOW-03**: Approved ready-kit policy can permit zero support; applicable approved standard R&D/support offer covers unknown/custom/unfinished board without automatic manual review.
+- [ ] **FLOW-04**: Seller derives optional/required support and approved minimum/price; browser/API tampering cannot remove required support. Undefined price/rights/delivery or unsupported ready-design promise blocks the affected sale; preserve unapproved-basket holds and no silent substitution.
+- [ ] **FLOW-05**: Snapshot accepted platform/offer/support/delivery with existing records and checkout helpers; no project registration/interview/per-sale engineering sign-off; exception asks only necessary facts.
+- [ ] **FLOW-06**: Accepted/funded R&D/support grants credit once; initial approved materials do not complete later reference design. Later design delivery closes its obligation without another IP entitlement.
+- [ ] **FLOW-07**: SLL-only support top-ups require no new licence/platform questionnaire. Eligible existing-credit exceptions use approved owner/scope and recorded reservation without double allocation; no invented sharing or automated pooling prerequisite.
+- [ ] **FLOW-08**: Later technical data stays private and versioned when needed through authorized channels; no EDA execution/public uploads. Accepted history stays immutable. Integrated checks cover all eight source acceptance cases.
+
 
 ### Product authority and decisions
 
 Source: new handoff T01; full proposal supplies normative detail.
 
-- [x] **SRC-01**: Operators can verify the exact embedded product snapshot by filename, 23,969-byte length and SHA-256, using only the October 21 package as new product authority.
+- [x] **SRC-01**: Operators can verify the exact embedded product snapshot by filename, 23,969-byte length and SHA-256, preserving October21 baseline authority and applying the registered final26October revision2 delta.
 - [x] **SRC-02**: Reviewers can trace all three ordered vendors, thirteen families, thirteen logical controls, nineteen checkout groups, two helpers, four IP declarations and separate marketing control to source locations.
-- [x] **SRC-03**: Operators can inspect one P-01–P-12 register with status, owner, evidence and the exact affected live operation; pending decisions do not block unrelated planning.
+- [x] **SRC-03**: Operators can inspect one P-01–P-12 register with the26October seller-policy clarification with status, owner, evidence and the exact affected live operation; pending decisions do not block unrelated planning.
 - [x] **SRC-04**: Reviewers can identify repository scope, new product/profile IDs, superseded assumptions and customer hostname without treating old task completion as new acceptance.
 
 ### Reproducible foundation
@@ -103,10 +117,10 @@ Source: new handoff T09; full proposal supplies normative detail.
 
 Source: new handoff T10; full proposal supplies normative detail.
 
-- [ ] **FUL-01**: Staff manually release one approved encrypted RTL/manual/reference design/key package per intended paid/accepted scope after checking entity, release/tool/coverage, host, term, production and holds.
+- [ ] **FUL-01**: Staff manually release approved encrypted RTL/manual/key materials and the promised reference design per intended paid/accepted scope, allowing initial R&D materials before a later design while retaining its outstanding obligation and one IP entitlement after checking entity, release/tool/coverage, host, term, production and holds.
 - [ ] **FUL-02**: Private artifacts/delivery manifests and invoice/credit-number reservations are archived before activation/issue; every artifact/document download checks resource entitlement and uses short-lived version-bound bearer access.
 - [ ] **FUL-03**: Renewal, rehosting and family/node/production upgrades create reviewed cases and applicable new revisions/orders without rewriting historical rights, promising physical recall or automatically charging.
-- [ ] **FUL-04**: Each paid/accepted support package credits exactly 36,000 seconds once after archival and never expires or renews IP rights; standalone top-ups require no new IP configuration.
+- [ ] **FUL-04**: Each paid/accepted support package credits exactly 36,000 seconds once after archival and never expires or renews IP rights; standalone SLL top-ups require no new IP licence/configuration or platform questionnaire.
 - [ ] **FUL-05**: Support reservations/authority are archived before work; concurrent task posting cannot overspend or duplicate debits, completion is archived before publication, and corrections reverse/replace history.
 - [ ] **FUL-06**: Committed task statements show task/cumulative/remaining usage; mail retry never debits again and refunds of consumed credit require review without erasing work or negative usable balances.
 
@@ -181,6 +195,15 @@ Updated 2026-10-22: BUILD-01–08 have partial local implementation/evidence and
 
 | Requirement | Phase | Status |
 |---|---|---|
+| SRC-05 | Phase 1 | Complete |
+| FLOW-01 | Phase 3 | In Progress |
+| FLOW-02 | Phase 4 | In Progress |
+| FLOW-03 | Phase 7 | In Progress |
+| FLOW-04 | Phase 7 | In Progress |
+| FLOW-05 | Phase 7 | In Progress |
+| FLOW-06 | Phase 10 | In Progress |
+| FLOW-07 | Phase 10 | In Progress |
+| FLOW-08 | Phase 13 | In Progress |
 | SRC-01 | Phase 1 | Complete |
 | SRC-02 | Phase 1 | Complete |
 | SRC-03 | Phase 1 | Complete |

@@ -1,3 +1,5 @@
+> Historical activity log; current requirements and routing are STATE.md, ROADMAP.md and PURCHASE-FLOW-AMENDMENT.md. Old next-step/checkpoint entries below are dated observations, not execution instructions.
+
 # Historical implementation activity
 
 Moved verbatim from STATE.md on2026-10-22. Each entry describes its recorded point in time; old pending/unbuilt/paused statements are historical. Current phase and completion status are in [ROADMAP.md](ROADMAP.md) and [STATE.md](STATE.md) and [Phase02 progress](phases/02-reproducible-application-and-deployment-skeleton/02-PROGRESS.md).
@@ -524,3 +526,5 @@ Continuation 2026-10-23T12:50:29.624318+00:00: Quick261023-hn4 revocation races 
 2026-10-23T13:59:14.853Z — Explicit user-requested pause after398e077 synced0/0; saved structured/human Phase08 handoffs.305-test baseline preserved; next synthetic cancellation/expiry/recovery inspection. No context threshold claimed; no active jobs.
 
 2026-10-26 — quick261026-72e/7av/7e6 completed synthetic cancellation/expiry, recovery inspection/command and revision-checked dispatch holds. CORE_LOCAL_PASS327 tests; [evidence](phases/08-payment-domain-and-fault-injectable-fake-bank/08-CONTROLS-PARTIAL.md). STATE.md/ROADMAP.md retain acceptance scope.
+
+2026-10-26 — Applied complete final purchase-flow revision2, reconciled active requirements/tasks/descriptions, preserved baseline/evidence and continued minimal platform/synthetic purchase/staged-delivery work. [Current evidence](phases/03-catalog-platform-and-offer-policies/03-PURCHASE-FLOW-PARTIAL.md); actual commercial/external gates remain pending.

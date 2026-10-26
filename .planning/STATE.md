@@ -1,113 +1,47 @@
 ---
 gsd_state_version: "1.0"
 status: in_progress
-last_updated: "2026-10-26T05:25:43.489Z"
+last_updated: "2026-10-26T07:18:39.980274+00:00"
 state_head: 21ae81ae8af8bc7f104227289469f22a90cb41e9
 progress:
   total_phases: 14
   completed_phases: 1
-  total_plans: 24
+  total_plans: 29
   completed_plans: 11
   percent: 7
 last_activity: 2026-10-26
-current_phase: 08
-current_phase_name: Payment domain and fault-injectable fake bank
-stopped_at: Verified local lifecycle, recovery command and retained dispatch holds; actual payment-domain integration remains pending.
-last_activity_desc: Cancellation expiry recovery tooling and retained dispatch holds verified327 local tests.
+current_phase: 03
+current_phase_name: Catalog, platform choices and approved offer/support policies
+stopped_at: Final purchase-flow amendment reconciled; minimal platform and synthetic staged purchase verified. Next complete-cart checkout binding.
+last_activity_desc: Replan and implementation verified338 backend/12 focused/118 frontend tests; actual commercial and external qualification pending.
 ---
 
-# Project State
+# Project state — final purchase-flow revision2
 
-Updated2026-10-26. Canonical current summary; latest evidence: [synthetic controls](phases/08-payment-domain-and-fault-injectable-fake-bank/08-CONTROLS-PARTIAL.md). Prior observation/process evidence retains its historical scope. Active policy: [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md).
+**Current development focus:** 3 — minimal platform/catalog and seller-controlled offer/support rules; then4/7/10/13 in actual dependency order. [Current clauses](PURCHASE-FLOW-AMENDMENT.md), [ROADMAP.md](ROADMAP.md).
 
-## Current position
+**Last fully completed phase:** 1 — baseline documentary acceptance only. SRC-05 final-amendment documentary reconciliation is complete and does not revalidate actual commercial or external behavior. All other phases remain partial or pending. Counts are completed-phase/planned-record counts, not engineering effort.
 
-**Current development focus:** 8 — independent typed synthetic bank and payment-domain implementation; Phase07 remains partial.
+## Preserved implementation/evidence
 
-**Last fully completed phase:** 1 — source documentation only. Phases2–7 remain partially implemented or awaiting qualification; independent Phase8 adapter work proceeds under the October22 amendment. This is not a sequential completion claim.
+- Existing static configurator/catalog, owner drafts/cart/quotation/business, customer verification and staff review/preparation/permissions remain implemented for their documented local/synthetic scope.
+- Prepared archive/destination/authorization/claim/publication/reconciliation and process tests retain exact scope; no live retention or domain completion inferred.
+- Typed synthetic bank, one-way archived attempt claims, lookup-only uncertainty, cancellation/expiry, read-only recovery tooling and retained revision-checked dispatch holds are preserved. Latest pre-amendment CORE_LOCAL_PASS327 tests/5 checks,87.552s; PostgreSQL18.6/UTF8; payments0004/catalog0012 and no drift; source186 exact files/23 templates. [Evidence](phases/08-payment-domain-and-fault-injectable-fake-bank/08-CONTROLS-PARTIAL.md).
+- Phase02 remains8/18 complete with qualification/implementation findings retained. This amendment is not a host/runtime/legal/merchant approval.
 
-T03/T04 local catalog delivery remains intact; T05 local draft persistence and T06 synthetic verified access/save-resume are implemented. T07 now has the owner-scoped versioned multi-line draft cart; protected quotation-request capture now retains exact owner snapshots and reconciles duplicate/retried submissions. Local staff password/private-code rehearsal, assigned quotation reads and append-only-by-API internal review decisions are implemented. Owner history/detail now show safe current review status and corrections without staff/MFA metadata. Private owner partial business drafts now preserve nineteen exact source groups, helpers/defaults and versioned snapshots; country/tax choices and applicability stay pending. Explicit immutable business/quotation revision binding and exact-scope private staff grants are implemented. Protected current-source document/declaration previews now show applicable pending document sets for retained IP/support/mixed scopes, without acceptance or consent writes. Owner-only bounded quotation history now preserves capture/attachment/review-correction metadata without private values or staff attribution. Staff exact-scope advisory offer prerequisites now distinguish internal review evidence from missing commercial inputs; all commercial actions remain disabled. Explicit staff captures now retain attributed versioned internal preparation assessments with CAS/retry arbitration and exact historical permissions. Authorized retained/current comparisons now report fixed safe delta categories with strict null handling and both-scope permissions; equality never approves an offer. Real staff MFA/delivery/recovery and approved offers remain pending. Full phase acceptance remains pending. Phase02 remains 8/18 complete with all ten incomplete qualification/implementation records preserved. Only Phase01 is fully complete: 1/14 = rounded 7%. That is completed-phase progress, not engineering effort. Existing planned records remain 11/24; later phase acceptance is not claimed from quick-task implementation.
+## Current result and next action
 
-## Delivered behavior
+quick261026-8x7 complete: final revision2 registered/reconciled, one platform question and conditional detail integrated into existing local paths, shared seller-controlled synthetic offer/support policy and archived purchase/staged-delivery rehearsal implemented. CORE_LOCAL_PASS338 tests/5 checks,89.159s; final focused12 purchase tests,1.383s; shared104 conformance cases/108 tests; frontend118 tests/32 checks,10.842s on installed Node24.15.0/npm11.12.1. Exact pinned24.22 frontend qualification remains pending; tool graph/pins unchanged. Backend-only Nix shell reproduces the demo with pinned Python3.13.16/PostgreSQL18.6. Source191 exact files/23 templates; payments0005/catalog0012 and no drift. [Evidence and eight-case map](phases/03-catalog-platform-and-offer-policies/03-PURCHASE-FLOW-PARTIAL.md).
 
-- Retained synthetic hold/release commands now use exact revisions and historical retry arbitration under the dispatch lock. Holds arriving during archive I/O prevent claim; a stale release cannot clear a newer hold. CORE_LOCAL_PASS5 checks/327 tests,87.552s; migrations/no drift pass and source186 exact files/23 templates. [Evidence](phases/08-payment-domain-and-fault-injectable-fake-bank/08-CONTROLS-PARTIAL.md).
+Next usable local feature: bind standard-offer/platform/support/delivery snapshots to complete saved cart plus existing business/document revisions and shared guarded short checkout (03-01/04-01/07-02–03). Use explicitly synthetic fixtures while actual seller values remain pending. Do not drop/split unapproved lines or silently change ready design into development. Preserve later reference-design obligation and once-only effects. No further old audit/observation task is the current route.
 
-- Synthetic cancellation/expiry and read-only recovery inspection plus supported local command now verified. Post-archive claim checks prevent stale sends; uncertain claims remain lookup-only. CORE_LOCAL_PASS5 checks/319 tests,86.218s; source184 exact files/23 templates. [Evidence](phases/08-payment-domain-and-fault-injectable-fake-bank/08-LIFECYCLE-PARTIAL.md). Retained synthetic dispatch holds are now implemented; see latest evidence above.
+## Pending actual gates
 
-- Synthetic attempts now recover archived expected bytes before a durable one-way dispatch claim. Lost responses remain uncertain; lookup-only reconciliation cannot blindly resend or authorize commerce. CORE_LOCAL_PASS5 checks/305 tests (291 Django plus14 Gunicorn),80.979s; owned PostgreSQL18.6/UTF8; payments0002/catalog0012 application and no-drift pass. Frozen source179 files23 templates/exact bytes/no symlinks. [Evidence](phases/08-payment-domain-and-fault-injectable-fake-bank/08-ATTEMPTS-PARTIAL.md).
+P-02/03/05/06/08 cover actual ready-kit variants, standard development prices/rights/support minimum, annual start, honest staged design/work scope and eligible-credit ownership. These block only affected live offers, not synthetic/local work. Preserve existing business/tax/end-use/host/terms requirements and all protected staff/retention/bank/mail/DNS/deployment/recovery gates. No actual approvals invented, no external/protected operations authorized. No new portal/workflow engine/automated credit-pooling system.
 
-- Typed synthetic bank operations/key aliases now persist outside caller transactions with exact correlation, distinct statuses and recoverable simulated response loss. All financial/effect flags stay false; no actual order or payment is confirmed.
+## Session continuity
 
-- Staff queue and retained preparation/review history now have bounded older/newest navigation. Exact current and historical permissions remain distinct; review history preserves attribution without private digests/MFA evidence.
-
-- Exact retained capture GET observes only committed database facts using shared validation under producer locks. No writes, archive I/O or work authority; absent and inconsistent scopes stay distinct.
-
-- Supported mixed/support-only customer-to-staff journeys now include deliberate capture/retry, later edit stability, revoked-scope refusal and zero worker effects. All records created through supported APIs/forms/operator commands; read assertions only.
-
-- Explicit exact retained-scope staff prepared preview/capture uses strict CSRF forms and digest arbitration inside the durable capture transaction. GET has no capture effects; retries preserve original actor/MFA, no archive I/O or worker authority. Safe private confirmation only.
-
-- Recent-MFA staff exact-attempt reconciliation GET uses current locked retained-scope permissions and fixed private HTML/JSON. No archive I/O, work controls or new authority. Local command process tests cover source/revocation/root/database-lock refusals.
-
-- One-shot prepared worker validates the explicit local bound root and executes one claim/publication without synthetic probe effects or automatic retries. All owned archive entrypoints reject manually disabled autocommit as well as nested transactions before storage I/O.
-
-- Read-only exact-scope acknowledgement reconciliation observes the committed verification for an expected claim or a later claim, or reports no recorded verification. No archive I/O, lease renewal, hold clearing or retry permission follows from any observation.
-
-- Selected local prepared-byte publication uses three transaction/I/O boundaries, exact bound-root attestation and reopened readback. Post-I/O lease/source/permission checks fence technical verification; original unique attribution survives retries. No domain completion or financial effect.
-
-- Selected local archive claims own short transactions with shared authority/source checks, random private tokens, increasing generations and30-second leases capped by grant expiry. Retained prior claims and revocation prevent stale-token validation. Claim creation performs no storage I/O or business effects.
-
-- Detached local authority inspection reconstructs exact retained bytes with the shared locked source reader and rechecks current account/owner/credential/private scope, generation, deadline and revocation. Safe metadata only; it grants no later claim or publication.
-
-- Explicit internal current-request authorization records bind one intent/destination/source with five-minute database-clock deadline, original actor/MFA and CAS generation. Revocation is retained separately. Neither historical retry nor revocation clears holds or grants executable worker capability.
-
-- Explicit private local destination identity and attributed intent binding are implemented; root replacement, copied/tampered markers and rebinding fail closed. Only pending/held intents exist; explicit bounded authorization/revocation records now exist; detached point-in-time inspection now exists; selected fenced claims now exist; selected bound-root publication/readback now exists; no worker queue loop or domain completion exists. Retention/effect flags remain false.
-
-- Atomic request-envelope capture commits one private fact and one pending local archive intent per semantic request/business/schema scope. PostgreSQL constraints bound actual bytes and forbid execution/qualification/effects. Capture owns a durable outer transaction; exact retries preserve original IDs/attribution. Capture itself performs no archive I/O or worker execution; separate selected worker/observation boundaries are described above.
-
-- Private local quotation-request envelopes freeze exact cart/business scope, source/evaluation and original immutable request IDs in closed canonical UTF8 bytes. Verified owners or recent-MFA assigned staff need exact historical private grants. Recovery binds the exact receipt, forbids outer database transactions and rechecks authorization after archive I/O. Atomic private capture and an unexecuted intent now exist; no payload-download route, offer or acceptance is added by this envelope service.
-
-- Plan07-01 private synthetic prepared-evidence archive: immutable identity/hash/size receipts, blob-before-receipt publication, file/directory sync, reopened verification, exact retries and fail-fast contention. Prepared bytes only; no provider retention, domain completion or effect authorization.
-
-- Cart form success identifies the exact committed revision, a replayed submission and the newly loaded current revision. Older replay confirmations state that later changes remain saved. Only a closed integer/boolean notice is kept in the server session, consumed once; malformed/legacy values are suppressed.
-
-- Customer form audit F-01 repaired: owner-qualified snapshot reads in cart API/editor/base commands and quotation preview reject a committed ownership change after the parent lookup. Deterministic real-PostgreSQL regression reproduced the prior200 and now expects safe404 on all three current read paths.
-
-- Deliberate Django quotation-request form reviews exact saved cart lines/revision and shares owner locks, snapshot/key duplicate arbitration and stale-catalog protection with JSON. Complete support-only verification/cart/request forms tested with enforced CSRF; mixed form/API captures retain immutable scopes. Unpriced review requests only, no financial/licence/support effects.
-
-- Django saved cart without JavaScript adds/edits/removes separate vendor IP and positive support lines using the same locked persistence and validation as JSON. Commands reconstruct their exact owner base revision for retry after later changes; stale/new competing saves conflict. Cart edits have no order, acceptance or support-credit effect; quotation capture is a separate deliberate action.
-
-- Owner-only Django quotation request list without JavaScript, bounded stable keyset pages, closed safe review/status projection and fixed links to retained timeline/document/business pages. Exact parent/snapshot checks and cursor ownership apply on each read; no domain writes.
-
-- Django no-JavaScript local customer request/verify/logout forms reuse the API verification operations, enforce strict bounded fields and CSRF, rotate session/CSRF, and use fixed redirects and private responses. Synthetic .invalid addresses only; no real mail.
-
-- Source-faithful Markdown catalog, strict compiler and matching browser/backend validation; three vendors, thirteen ordered families, source IDs, RDP bands and higher-volume quote behavior.
-- Static Astro/React configurator, dependent resets, fixed/floating counts, optional non-expiring support packages, support page and Django no-JavaScript preview. Unknown money/rights remain null/pending; purchase disabled; no host IDs or browser persistence.
-- Local/synthetic captured-code verification, rotated sessions/CSRF, expiry/attempt/request bounds and owner-only draft save/list/resume UI. No real email, shared contact roles, staff MFA or production activation.
-- Owner-only multi-line cart: separate IP and support lines, add/edit/remove, version conflicts, exact uncertain retry, resume; prices null and checkout disabled.
-- Owner-only quotation requests capture exact saved cart versions, with protected list/detail, duplicate-key arbitration and unchanged captured lines after later edits. Local/synthetic only; no email or commercial effects.
-- Separate local staff process with password/private-code rehearsal, session/CSRF rotation, recent verification and explicit quotation grants. Operator reset/revocation invalidates MFA state and removes assignments; real staff MFA/recovery remains pending. Internal decisions bind actor/MFA evidence to exact request snapshots, retain correction history and reject stale/concurrent overwrites.
-- Owner-safe current review labels/revisions/update times in history/detail, with explicit reload and fixed unavailable fallback. Captured scope stays exact; no staff/MFA metadata reaches customer responses.
-- Private owner Django business editor with nineteen source groups, helper/default resolution and licensed-entity review flag. Unknown country/tax choices remain null; partial snapshots/retries/stale-edit checks work without private data in ordinary summaries or application browser storage.
-- Explicit owner-confirmed business quotation scopes preserve saved values and legacy review history; new scopes await fresh review and exact private staff grants. Ordinary summaries remain masked. Country/tax choices are explicitly deferred by the user.
-- Owner-only read-only document prerequisites: exact source declaration labels, separate optional marketing, retained cart/profile and safe business-revision metadata. Policy versions/text remain null; no acceptance. Candidate source packaging includes exact manifests and required templates, locally inspected only.
-- Owner quotation timeline with fixed safe labels and bounded older-event paging; retained logical scope/review order, committed-prefix reads and owner-checked business metadata. No private values, staff identities or hashes.
-- Assigned recent-MFA staff prerequisite assessment with exact-current private business permission for bound scopes; review digest checked privately, safe blockers/missing labels only, per-line/profile inputs and null commercial values. No approval/publication/acceptance/payment.
-- Attributed append-only-by-API preparation captures retain safe assessment JSON and original scope/review references. Dedicated no-JS capture/detail routes enforce expected revision/displayed digest, exact retries and historical private permissions. Unknown commercial values remain null. Fresh owned test clusters now explicitly use UTF8, with measured encoding/Unicode round-trip checks.
-- Read-only retained/current preparation comparison: fixed category flags and safe revisions, strict null/type distinctions, recorded/current scope authorization and explicit unavailable state. No arbitrary private values or write effects.
-- Mixed/support-only customer-to-staff request/response journeys create all domain records through supported APIs/forms with enforced CSRF and actual local operator commands. No direct model fixture writes/forced login; read assertions use real PostgreSQL. Browser, actual transport and full phase acceptance remain pending.
-- Bounded `scripts/check.py dev` command; automatic lightweight push/PR CI prepared separately from unchanged manual specialized qualification.
-
-## Run and evidence
-
-Demo: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/demo.py --backend`; open http://127.0.0.1:4321 (also /support/ and /purchase/simple/).
-
-Checks:297 core-local tests/observations pass (283 Django plus14 Gunicorn),5 checks,80.242s on owned PostgreSQL18.6/UTF8. Catalog0012 and payments0001 apply/no drift. Exact source /nix/store/87iyj21lmi0pmbqf52iyyvx68pvy1ygf-shop-python-source176 files23 templates/no symlinks. No new third-party libraries; frontend/proxy unchanged/not rerun. Full human/real-MFA/commercial/runtime/provider/off-host/recovery acceptance remains pending.
-
-User review, 2026-10-22: **previous catalog demo checked and approved** (user: “all checked and approved”). See task evidence for scope. Verification/save-resume also passed user review (“all works fine”, 2026-10-22). Local multi-line cart demo approved by user (“approved”, 2026-10-22). Detailed browser/accessibility qualification and commercial/release gates remain pending.
-
-## Exact next action
-
-Completed synthetic pre-dispatch cancellation/expiry, recovery inspection/command and retained revision-checked dispatch holds. Final327 local tests pass; [current evidence](phases/08-payment-domain-and-fault-injectable-fake-bank/08-CONTROLS-PARTIAL.md). Next independent payment slice: specify durable synthetic observation/reconciliation history, preserving original and conflicting observations without turning them into financial confirmation or allowing redispatch. Review existing typed bank/attempt correlation, immutable snapshot identity and transaction arbitration before runtime changes. Actual immutable approved order/acceptance, live archive authority, authenticated bank evidence and commerce effects remain separately pending. No active tests or async jobs after verification; no external/host operations authorized. Country/tax remains deferred without repeated requests.
+User instructed adopting the complete final26October revision2 and replacing stale active phases/tasks/descriptions across the project, then continuing implementation. Prior active planning bytes are archived outside .planning; dated completed artifacts remain historical evidence. Current routing is this state, HANDOFF, ROADMAP and PURCHASE-FLOW-AMENDMENT, not old quick/evidence next-action text. No pause/context percentage claimed. Continue to a usable local result.
 
 ### Quick Tasks Completed
 
@@ -181,7 +115,3 @@ Completed synthetic pre-dispatch cancellation/expiry, recovery inspection/comman
 | 261026-72e | Implement synthetic cancellation expiry and recovery inspection | 2026-10-26 | be14fe0 | [261026-72e-implement-synthetic-cancellation-expiry-](./quick/261026-72e-implement-synthetic-cancellation-expiry-/) |
 | 261026-7av | Expose read-only local synthetic payment recovery inspection command | 2026-10-26 | be14fe0 | [261026-7av-expose-read-only-local-synthetic-payment](./quick/261026-7av-expose-read-only-local-synthetic-payment/) |
 | 261026-7e6 | Retain synthetic dispatch holds with exact revision release | 2026-10-26 | 21ae81a | [261026-7e6-retain-synthetic-dispatch-holds-with-exa](./quick/261026-7e6-retain-synthetic-dispatch-holds-with-exa/) |
-
-## Active session — 2026-10-26
-
-Resumed after user-selected payment review. User authorized filling lifecycle gaps then continuing independent project work. Quick261026-72e/7av completed cancellation/expiry/recovery inspection and supported command;319 local tests pass. Quick261026-7e6 then implemented retained dispatch holds; final327 local tests pass. Actual approved payment-domain integration remains pending. Historical305-test baseline retains its original scope. No external/protected operations or subagents.

@@ -1,3 +1,5 @@
+> Current requirements delta: [final26October purchase flow](../PURCHASE-FLOW-AMENDMENT.md). Baseline research below is dated; no compulsory technical checkout dossier/portal, blanket custom-board review or automated pooling prerequisite. Preserve unchanged architecture/protection and exact pending qualifications.
+
 # Features: source-derived scope
 
 Source: October 21 proposal and exact embedded product; no additional market research.

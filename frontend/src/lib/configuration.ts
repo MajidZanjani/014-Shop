@@ -1,5 +1,6 @@
 import { catalog } from './catalog';
-export type Configuration = { product_id: string; profile_id: string; quantity: number; vendor: string; families: string[]; term: string; production_band: string | null; production_units: number | null; fixed_nodes: number; floating_nodes: number; support_packages: number };
+export type Platform = {choice:string;kit_id:string|null;name:string|null};
+export type Configuration = { platform?: Platform; product_id: string; profile_id: string; quantity: number; vendor: string; families: string[]; term: string; production_band: string | null; production_units: number | null; fixed_nodes: number; floating_nodes: number; support_packages: number };
 export const initialConfiguration = (): Configuration => ({ product_id: catalog.product_id, profile_id: catalog.profile_id, quantity: 1, vendor: '', families: [], term: '', production_band: null, production_units: null, fixed_nodes: 0, floating_nodes: 0, support_packages: 0 });
 export function changeVendor(value: Configuration, vendor: string): Configuration {
   return { ...value, vendor, families: [], term: '', production_band: null, production_units: null, fixed_nodes: 0, floating_nodes: 0 };
@@ -13,7 +14,7 @@ export function evaluate(input: unknown) {
   const errors: {field: string; code: string}[] = [];
   const error = (field: string, code: string) => { errors.push({ field, code }); };
   let value = input as Configuration;
-  if (!input || typeof input !== 'object' || Array.isArray(input) || Object.keys(input).sort().join(',') !== keys) {
+  if (!input || typeof input !== 'object' || Array.isArray(input) || Object.keys(input).filter(k=>k!=='platform').sort().join(',') !== keys) {
     error('configuration','fields'); value = initialConfiguration();
   } else {
     if (value.product_id !== catalog.product_id) error('product_id','invalid');
@@ -42,6 +43,16 @@ export function evaluate(input: unknown) {
       if (value.vendor === 'altera') { if (value.fixed_nodes + value.floating_nodes === 0) error('access','required'); }
       else if (value.fixed_nodes || value.floating_nodes) error('access','not_applicable');
     }
+  }
+  if ('platform' in value) {
+    const p=value.platform;
+    if(!p || typeof p!=='object' || Array.isArray(p) || Object.keys(p).sort().join(',')!=='choice,kit_id,name') error('platform','fields');
+    else if(!(catalog.purchase_flow.platform_choices as readonly string[]).includes(p.choice)) error('platform','choice');
+    else if(p.choice==='listed-kit') {
+      if(typeof p.kit_id!=='string' || p.name!==null || !(catalog.purchase_flow.ready_kits as readonly {id:string}[]).some(k=>k.id===p.kit_id)) error('platform','kit');
+    } else if(p.kit_id!==null) error('platform','kit_not_applicable');
+    else if(p.choice==='not-designed' && p.name!==null) error('platform','name_not_applicable');
+    else if(p.name!==null && (typeof p.name!=='string' || [...p.name].length<1 || [...p.name].length>120 || /[\x00-\x1f\x7f]/.test(p.name))) error('platform','short_name');
   }
   const reasons = Object.keys(catalog.approvals).map(k => 'pending_'+k);
   const higher = errors.length === 0 && value.production_band === 'higher-volume';

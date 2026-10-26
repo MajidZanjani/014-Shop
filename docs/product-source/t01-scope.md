@@ -1,3 +1,5 @@
+> Current purchase/support/staged-delivery delta: [final26October revision2](../../.planning/PURCHASE-FLOW-AMENDMENT.md). Baseline source/evidence below retains its exact scope; it does not require a universal engineering questionnaire, portal or custom-board review.
+
 > Historical October 20 observations retained unchanged below. Current authority is .planning/SOURCES.md; hosting changed on October 21. These results do not establish current rootless/mx1/protection compliance. The old executable verifier is explicitly migrated by 02-00; no current pass is claimed here.
 
 # T01 repository scope and execution provenance

@@ -1,3 +1,5 @@
+> Current execution precedence: [final26October purchase-flow revision2](../../PURCHASE-FLOW-AMENDMENT.md) and STATE.md/ROADMAP.md. This file retains applicable baseline infrastructure work and qualification gates; any old next-step routing or conflicting purchase/delivery requirement is superseded. No protected/external authority changes.
+
 # Phase 2 pattern map — October 21
 
 Existing executable utilities use bounded argument-list subprocesses, named errors, root-relative paths and finally cleanup. docs/product-source/verify_t01.py is an analog for those mechanics only; 02-00 must migrate its obsolete authority/status constants. scripts/check.py is the actual dispatcher; scripts/dev_postgres.py owns scratch-only local PostgreSQL. Historical data in docs/implementation-evidence.md is an evidence-language analog, not current application or deployment proof.

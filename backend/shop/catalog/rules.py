@@ -8,10 +8,10 @@ MAX_COUNT = 1000000 # parser/resource bound, not an approved commercial entitlem
 def integer(value):
     return type(value) is int or (type(value) is float and value.is_integer())
 
-def evaluate(value):
+def evaluate(value,*,kit_catalog=None):
     errors = []
     def error(field, code): errors.append({'field':field,'code':code})
-    if not isinstance(value, dict) or set(value) != KEYS:
+    if not isinstance(value, dict) or set(value) not in (KEYS,KEYS|{'platform'}):
         error('configuration','fields'); value = {}
     else:
         if value['product_id'] != CATALOG['product_id']: error('product_id','invalid')
@@ -40,6 +40,23 @@ def evaluate(value):
             if value['vendor'] == 'altera':
                 if value['fixed_nodes'] + value['floating_nodes'] == 0: error('access','required')
             elif value['fixed_nodes'] or value['floating_nodes']: error('access','not_applicable')
+    if 'platform' in value:
+        platform=value['platform']
+        if not isinstance(platform,dict) or set(platform)!={'choice','kit_id','name'}:
+            error('platform','fields')
+        elif platform['choice'] not in CATALOG['purchase_flow']['platform_choices']:
+            error('platform','choice')
+        elif platform['choice']=='listed-kit':
+            if (not isinstance(platform['kit_id'],str) or platform['name'] is not None
+                or not any(kit['id']==platform['kit_id'] for kit in (CATALOG['purchase_flow']['ready_kits'] if kit_catalog is None else kit_catalog))):
+                error('platform','kit')
+        elif platform['kit_id'] is not None:
+            error('platform','kit_not_applicable')
+        elif platform['choice']=='not-designed' and platform['name'] is not None:
+            error('platform','name_not_applicable')
+        elif platform['name'] is not None and (type(platform['name']) is not str or not 1<=len(platform['name'])<=120
+                or any(ord(c)<32 or ord(c)==127 for c in platform['name'])):
+            error('platform','short_name')
     reasons = ['pending_'+key for key in CATALOG['approvals']]
     higher = not errors and value.get('production_band') == 'higher-volume'
     return {'revision':CATALOG['revision'], 'status':'invalid' if errors else ('requires_quote' if higher else 'awaiting_review'),

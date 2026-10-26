@@ -1,3 +1,5 @@
+> Final purchase-flow revision2 supersedes conflicting future requirements in this earlier design. Use [current clauses](../../PURCHASE-FLOW-AMENDMENT.md) and the updated07-02–04 plans. Historical critique/evidence below does not require universal per-sale approval, a technical dossier/portal or actual commercial inputs before independent synthetic work. No old next-action paragraph routes execution.
+
 # Staff exact-attempt archive observation — local contract
 
 Problem: the selected command intentionally emits no private record identifiers and uses one safe failure category. Authorized staff who already retain an exact intent/expected-claim reference need a supported read-only application entrypoint for the existing reconciliation service. No claim discovery, automatic retry, archive read or new work authority follows from this observation.

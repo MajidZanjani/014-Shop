@@ -15,12 +15,12 @@
     },
     {
       "number": "3",
-      "name": "Markdown catalog, schemas and approved price calculations",
+      "name": "Catalog, platform choices and approved offer/support policies",
       "status": "in_progress"
     },
     {
       "number": "4",
-      "name": "Static product, configurator, support page and accessible fallback",
+      "name": "Minimal configurator and shared no-JavaScript purchase flow",
       "status": "in_progress"
     },
     {
@@ -35,7 +35,7 @@
     },
     {
       "number": "7",
-      "name": "Multi-line cart, quotations, business checkout and acceptance",
+      "name": "Short business checkout, standard offers and acceptance",
       "status": "in_progress"
     },
     {
@@ -50,8 +50,8 @@
     },
     {
       "number": "10",
-      "name": "Licence delivery, renewal/rehosting and support-hours workflows",
-      "status": "pending"
+      "name": "Staged licence/reference-design delivery and support ledger",
+      "status": "in_progress"
     },
     {
       "number": "11",
@@ -65,8 +65,8 @@
     },
     {
       "number": "13",
-      "name": "Integrated product, access, payment and deployment acceptance",
-      "status": "pending"
+      "name": "Purchase-flow, fulfilment and release acceptance",
+      "status": "in_progress"
     },
     {
       "number": "14",
@@ -77,7 +77,7 @@
   "next": {
     "command": "$gsd-progress --next",
     "label": "Advance to the next step",
-    "reason": "Phase 8 of 14 · 7% · executing"
+    "reason": "Phase 3 of 14 · 7% · executing"
   },
-  "updated_at": "2026-10-26T05:25:43.589Z"
+  "updated_at": "2026-10-26T07:21:43.126Z"
 }

@@ -1,3 +1,5 @@
+> Current execution precedence: [final26October purchase-flow revision2](../../PURCHASE-FLOW-AMENDMENT.md) and STATE.md/ROADMAP.md. This file retains applicable baseline context; any old next-step routing or conflicting purchase/delivery requirement is superseded. No protected/external authority changes.
+
 # Local implementation research
 
 Evidence inspected: catalog.models exact cart/business/review revisions; access preparation captures/comparisons; quotation capture row locks and unique snapshot/key arbitration; adapters/local_storage.py private directory/descriptor checks; worker.models/services probe-only semantics; handoff T05/T07/T08 archive ordering; REQUIREMENTS COM01–06 and DATA04. No new library or provider dependency needed for a bounded POSIX synthetic adapter.

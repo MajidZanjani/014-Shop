@@ -1,3 +1,5 @@
+> Current requirements delta: [final26October purchase flow](../PURCHASE-FLOW-AMENDMENT.md). Baseline research below is dated; no compulsory technical checkout dossier/portal, blanket custom-board review or automated pooling prerequisite. Preserve unchanged architecture/protection and exact pending qualifications.
+
 # Stack — selected October 21 architecture
 
 Source-derived planning; no new upstream/current-host compatibility audit in this replan. Software/tariff research is dated October 20; actual recorded 02-01/02-02 artifacts are retained only for development.

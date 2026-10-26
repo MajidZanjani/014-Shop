@@ -1,3 +1,5 @@
+> Final purchase-flow revision2 supersedes conflicting future requirements in this earlier design. Use [current clauses](../../PURCHASE-FLOW-AMENDMENT.md) and the updated07-02–04 plans. Historical critique/evidence below does not require universal per-sale approval, a technical dossier/portal or actual commercial inputs before independent synthetic work. No old next-action paragraph routes execution.
+
 # Local prepared-byte publication boundary — design and remaining qualification
 
 Current selected local publication/readback and technical verification are implemented; see07-02-PUBLICATION-PARTIAL for tested scope. This earlier design describes the protocol; its remaining test matrix is not all executed evidence. No queue loop, commercial authority or provider qualification follows. Country/tax remains pending.

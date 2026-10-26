@@ -1,0 +1,1247 @@
+{
+  "schema": 1,
+  "amendment": "014-Shop-Board-Support-Amendment-2026-10-26.md",
+  "revision": 2,
+  "files": [
+    {
+      "path": ".planning/ACTIVITY-LOG.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/EXECUTION-AMENDMENT-2026-10-22.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/HANDOFF.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/PROJECT.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/PURCHASE-FLOW-AMENDMENT.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/REPLAN-VERIFICATION.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/REQUIREMENTS.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/ROADMAP.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/SOURCE-MATRIX.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/SOURCES.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/STATE.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/audits/2026-10-23-customer-forms.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/audits/2026-10-23-local-workflow.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/config.json",
+      "role": "workflow-config",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/milestone.lock",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/01-product-authority-repository-review-and-decision-register/01-01-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/01-product-authority-repository-review-and-decision-register/01-01-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/01-product-authority-repository-review-and-decision-register/01-02-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/01-product-authority-repository-review-and-decision-register/01-02-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/01-product-authority-repository-review-and-decision-register/01-VERIFICATION.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-00-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-00-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-01-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-01-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-02-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-02-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-03-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-03-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-04-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-04-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-05-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-05-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-06-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-06-PLAN.md",
+      "role": "retained-infrastructure-plan",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-07-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-07-PLAN.md",
+      "role": "retained-infrastructure-plan",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-08-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-08-PLAN.md",
+      "role": "retained-infrastructure-plan",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-09-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-09-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-10-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-10-PLAN.md",
+      "role": "retained-infrastructure-plan",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-11-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-11-PLAN.md",
+      "role": "retained-infrastructure-plan",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-12-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-12-PLAN.md",
+      "role": "retained-infrastructure-plan",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-13-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-13-PLAN.md",
+      "role": "retained-infrastructure-plan",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-14-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-14-PLAN.md",
+      "role": "retained-infrastructure-plan",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-15-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-15-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-16-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-16-PLAN.md",
+      "role": "retained-infrastructure-plan",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-17-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-17-PLAN.md",
+      "role": "retained-infrastructure-plan",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-CHECK.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-CONTEXT.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-PATTERNS.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-PROGRESS.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-RESEARCH.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-VALIDATION.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-VERIFICATION.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/COVERAGE.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/03-catalog-platform-and-offer-policies/03-01-PLAN.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/phases/03-catalog-platform-and-offer-policies/03-PURCHASE-FLOW-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/04-minimal-configurator-and-shared-purchase-flow/04-01-PLAN.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-01-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-01-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-AUTHORITY-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-DESIGN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-OBSERVATION-DESIGN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-OBSERVATION-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CLAIM-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-DESTINATION-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-ENVELOPE-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-INSPECTION-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-OFFER-CONTRACT-CRITIQUE.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-OFFER-CONTRACT-DESIGN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-PLAN.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-PUBLICATION-DESIGN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-PUBLICATION-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-PUBLICATION-RACES.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-RECONCILIATION-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-STAFF-CAPTURE-DESIGN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-STAFF-CAPTURE-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-STAFF-OBSERVATION-DESIGN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-STAFF-OBSERVATION-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-WORKER-COMMAND-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-WORKER-DESIGN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-WORKER-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-WORKER-PROCESS-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-03-PLAN.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-04-PLAN.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-CHECK.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-CONTEXT.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-EVIDENCE-CONTRACT.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-PROGRESS.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-RESEARCH.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-REVIEW.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-ROUTE-REVIEW.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-VERIFICATION.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-ATTEMPTS-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-BANK-BOUNDARY-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-CONTROLS-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-LIFECYCLE-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-PROGRESS.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-01-PLAN.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-02-PLAN.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-01-PLAN.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/quick/261021-8cb-replan-from-october-21-proposal-and-hand/261021-8cb-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261021-8cb-replan-from-october-21-proposal-and-hand/261021-8cb-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261021-8cb-replan-from-october-21-proposal-and-hand/261021-8cb-VERIFICATION.json",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261021-h2i-reject-control-records-changed-during-de/261021-h2i-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261021-h2i-reject-control-records-changed-during-de/261021-h2i-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261021-hk6-exercise-real-operator-scram-inspection-/261021-hk6-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261021-hk6-exercise-real-operator-scram-inspection-/261021-hk6-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261021-i2j-stage-private-unverified-control-candida/261021-i2j-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261021-i2j-stage-private-unverified-control-candida/261021-i2j-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261021-j0i-inspect-retained-private-candidate-gener/261021-j0i-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261021-j0i-inspect-retained-private-candidate-gener/261021-j0i-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261021-j6p-derive-traceable-schema-valid-npm-invent/261021-j6p-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261021-j6p-derive-traceable-schema-valid-npm-invent/261021-j6p-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-6n6-trace-missing-incorporated-licence-texts/261022-6n6-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-6n6-trace-missing-incorporated-licence-texts/261022-6n6-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-6s2-retain-exact-embedded-licence-headers-fr/261022-6s2-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-6s2-retain-exact-embedded-licence-headers-fr/261022-6s2-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-6vp-inventory-actual-cached-operator-native-/261022-6vp-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-6vp-inventory-actual-cached-operator-native-/261022-6vp-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-700-prepare-root-owned-generator-discovery-f/261022-700-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-700-prepare-root-owned-generator-discovery-f/261022-700-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-73q-integrate-private-fd-guarded-schema-comm/261022-73q-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-73q-integrate-private-fd-guarded-schema-comm/261022-73q-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-799-retain-notices-from-cached-exact-python-/261022-799-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-799-retain-notices-from-cached-exact-python-/261022-799-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-7l3-package-separate-pinned-candidate-schema/261022-7l3-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-7l3-package-separate-pinned-candidate-schema/261022-7l3-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-89m-qualify-guarded-schema-operations-with-a/261022-89m-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-89m-qualify-guarded-schema-operations-with-a/261022-89m-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-8ci-enforce-restricted-schema-login-attribut/261022-8ci-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-8ci-enforce-restricted-schema-login-attribut/261022-8ci-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-8fv-bind-operator-unix-socket-peers-to-appro/261022-8fv-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-8fv-bind-operator-unix-socket-peers-to-appro/261022-8fv-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-8m7-hold-durable-control-admission-during-op/261022-8m7-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-8m7-hold-durable-control-admission-during-op/261022-8m7-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-8so-prepare-separately-authorized-persistent/261022-8so-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-8so-prepare-separately-authorized-persistent/261022-8so-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-9ba-reconcile-uncertain-admission-blocks-wit/261022-9ba-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-9ba-reconcile-uncertain-admission-blocks-wit/261022-9ba-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-9fo-retain-exact-admitted-control-generation/261022-9fo-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-9fo-retain-exact-admitted-control-generation/261022-9fo-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-9m7-inspect-retained-generation-custody-with/261022-9m7-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-9m7-inspect-retained-generation-custody-with/261022-9m7-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-9uf-publish-reviewed-control-generations-whi/261022-9uf-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-9uf-publish-reviewed-control-generations-whi/261022-9uf-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-a80-reconcile-blocked-physical-publication-o/261022-a80-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-a80-reconcile-blocked-physical-publication-o/261022-a80-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-afa-prepare-exact-reviewed-admission-reopeni/261022-afa-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-afa-prepare-exact-reviewed-admission-reopeni/261022-afa-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-ajs-implement-separately-authorized-admissio/261022-ajs-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-ajs-implement-separately-authorized-admissio/261022-ajs-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-aql-integrate-admission-lifetime-into-a-clos/261022-aql-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-aql-integrate-admission-lifetime-into-a-clos/261022-aql-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-b5y-audit-prefixed-licence-filenames-in-exac/261022-b5y-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-b5y-audit-prefixed-licence-filenames-in-exac/261022-b5y-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-bb9-inspect-bounded-embedded-notice-candidat/261022-bb9-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-bb9-inspect-bounded-embedded-notice-candidat/261022-bb9-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-bqg-reconcile-supplemental-licence-observati/261022-bqg-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-bqg-reconcile-supplemental-licence-observati/261022-bqg-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-bw3-build-and-inspect-the-prepared-postgresq/261022-bw3-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-bw3-build-and-inspect-the-prepared-postgresq/261022-bw3-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-cci-reconcile-stale-planning-summaries-and-m/261022-cci-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-cci-reconcile-stale-planning-summaries-and-m/261022-cci-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-cor-inventory-actual-postgresql-image-inner-/261022-cor-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-cor-inventory-actual-postgresql-image-inner-/261022-cor-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-dj5-amend-local-execution-sequence-and-deliv/261022-dj5-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-dj5-amend-local-execution-sequence-and-deliv/261022-dj5-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-hrl-verify-local-customer-access-through-cap/261022-hrl-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-hrl-verify-local-customer-access-through-cap/261022-hrl-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-iqc-implement-verified-owner-multi-line-draf/261022-iqc-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261022-iqc-implement-verified-owner-multi-line-draf/261022-iqc-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-6w3-implement-protected-quotation-requests-f/261023-6w3-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-6w3-implement-protected-quotation-requests-f/261023-6w3-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-72i-implement-local-staff-mfa-and-quotation-/261023-72i-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-72i-implement-local-staff-mfa-and-quotation-/261023-72i-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-7l0-record-assigned-staff-quotation-review-d/261023-7l0-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-7l0-record-assigned-staff-quotation-review-d/261023-7l0-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-832-capture-protected-owner-business-detail-/261023-832-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-832-capture-protected-owner-business-detail-/261023-832-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-8in-bind-immutable-business-draft-revisions-/261023-8in-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-8in-bind-immutable-business-draft-revisions-/261023-8in-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-91u-preview-source-faithful-declarations-and/261023-91u-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-91u-preview-source-faithful-declarations-and/261023-91u-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-99a-show-an-owner-safe-bounded-quotation-tim/261023-99a-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-99a-show-an-owner-safe-bounded-quotation-tim/261023-99a-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-9eo-show-assigned-staff-exact-scope-offer-pr/261023-9eo-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-9eo-show-assigned-staff-exact-scope-offer-pr/261023-9eo-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-9r5-retain-versioned-internal-staff-preparat/261023-9r5-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-9r5-retain-versioned-internal-staff-preparat/261023-9r5-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-a30-compare-retained-preparation-snapshots-w/261023-a30-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-a30-compare-retained-preparation-snapshots-w/261023-a30-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-atf-exercise-synthetic-customer-to-staff-quo/261023-atf-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-atf-exercise-synthetic-customer-to-staff-quo/261023-atf-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-b25-provide-no-javascript-django-customer-ac/261023-b25-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-b25-provide-no-javascript-django-customer-ac/261023-b25-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-bam-add-owner-only-no-javascript-quotation-h/261023-bam-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-bam-add-owner-only-no-javascript-quotation-h/261023-bam-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-cll-implement-no-javascript-multi-line-cart-/261023-cll-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-cll-implement-no-javascript-multi-line-cart-/261023-cll-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-crh-add-deliberate-django-quotation-request-/261023-crh-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-crh-add-deliberate-django-quotation-request-/261023-crh-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-cyg-fix-customer-form-audit-f-01-by-rechecki/261023-cyg-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-cyg-fix-customer-form-audit-f-01-by-rechecki/261023-cyg-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-d1r-show-exact-committed-revision-and-curren/261023-d1r-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-d1r-show-exact-committed-revision-and-curren/261023-d1r-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-hn4-verify-capture-status-against-concurrent/261023-hn4-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-hn4-verify-capture-status-against-concurrent/261023-hn4-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-hr2-resolve-protected-offer-domain-contract-/261023-hr2-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-hr2-resolve-protected-offer-domain-contract-/261023-hr2-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-hvy-critique-protected-offer-contract-before/261023-hvy-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-hvy-critique-protected-offer-contract-before/261023-hvy-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-hzz-audit-existing-preparation-review-and-do/261023-hzz-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-hzz-audit-existing-preparation-review-and-do/261023-hzz-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-i7s-add-authorized-staff-queue-and-retained-/261023-i7s-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-i7s-add-authorized-staff-queue-and-retained-/261023-i7s-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-iet-expose-authorized-paginated-internal-rev/261023-iet-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-iet-expose-authorized-paginated-internal-rev/261023-iet-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-ina-implement-typed-durable-synthetic-bank-o/261023-ina-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-ina-implement-typed-durable-synthetic-bank-o/261023-ina-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-j1r-implement-synthetic-payment-attempt-disp/261023-j1r-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261023-j1r-implement-synthetic-payment-attempt-disp/261023-j1r-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261026-72e-implement-synthetic-cancellation-expiry-/261026-72e-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261026-72e-implement-synthetic-cancellation-expiry-/261026-72e-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261026-7av-expose-read-only-local-synthetic-payment/261026-7av-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261026-7av-expose-read-only-local-synthetic-payment/261026-7av-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261026-7e6-retain-synthetic-dispatch-holds-with-exa/261026-7e6-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261026-7e6-retain-synthetic-dispatch-holds-with-exa/261026-7e6-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261026-8x7-apply-final-purchase-flow-amendment-reco/261026-8x7-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261026-8x7-apply-final-purchase-flow-amendment-reco/261026-8x7-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/research/ARCHITECTURE.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/research/FEATURES.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/research/PITFALLS.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/research/STACK.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/research/SUMMARY.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/state.json",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    }
+  ]
+}

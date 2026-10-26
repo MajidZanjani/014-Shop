@@ -7,6 +7,7 @@ import { ApiError, customerRequest } from '../lib/customer-api';
 type Line = {id:string;kind:'ip'|'support';product_id:string;quantity:number;configuration?:Configuration};
 function ConfigurationSummary({value}:{value:Configuration}) {
   return <span><strong>{value.vendor}</strong> · {value.families.join(', ')} · {value.term}
+    {value.platform&&<> · Platform: {value.platform.choice}{value.platform.name&&<> · {value.platform.name}</>}</>}
     {' '}· Fixed nodes: {value.fixed_nodes} · Floating nodes: {value.floating_nodes}
     {value.production_band&&<> · Production band: {value.production_band} · Estimated units: {value.production_units??'Not supplied'}</>}
   </span>;

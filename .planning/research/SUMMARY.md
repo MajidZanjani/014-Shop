@@ -1,3 +1,5 @@
+> Current requirements delta: [final26October purchase flow](../PURCHASE-FLOW-AMENDMENT.md). Baseline research below is dated; no compulsory technical checkout dossier/portal, blanket custom-board review or automated pooling prerequisite. Preserve unchanged architecture/protection and exact pending qualifications.
+
 # Research synthesis — October 21 replan
 
 Both new sources were read completely. No new live upstream/account/provider audit was performed. Package hashes/product equality are in SOURCES.md. Product meaning and commerce/access/payment/support invariants are unchanged; hosting/protection are replaced by the new source.

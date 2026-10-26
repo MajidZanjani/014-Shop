@@ -32,7 +32,9 @@ def command(request):
     common={'action','request_id','expected_version','catalog_revision','line_id'}
     ip_fields=set(IPForm.base_fields)
     extra={'add_ip':ip_fields,'save_ip':ip_fields,'add_support':{'quantity'},'save_support':{'quantity'},'remove':set()}
-    if action not in extra or set(data)-{'csrfmiddlewaretoken'}!=common|extra[action]:raise ValueError('fields')
+    optional={'platform_choice','kit_id','board_name'} if action in ('add_ip','save_ip') else set()
+    if action not in extra:raise ValueError('fields')
+    if (set(data)-{'csrfmiddlewaretoken'}-optional)!=(common|extra[action])-optional:raise ValueError('fields')
     for key in data:
         if key!='families' and len(data.getlist(key))!=1:raise ValueError('duplicate')
     line_id=str(canonical_uuid(data['line_id']));request_id=str(canonical_uuid(data['request_id']))
@@ -55,9 +57,8 @@ def command(request):
         for key in list(values):
             if key not in ip_fields:values.pop(key)
         form=IPForm(values)
-        if not form.is_valid():return None,422
-        config=dict(form.cleaned_data,product_id=CATALOG['product_id'],profile_id=CATALOG['profile_id'],quantity=1,support_packages=0)
-        config['production_band']=config['production_band'] or None
+        if set(values)-set(form.fields) or not form.is_valid():return None,422
+        config=form.configuration();config['support_packages']=0
         line={'id':line_id,'kind':'ip','product_id':CATALOG['product_id'],'quantity':1,'configuration':config}
         if action=='save_ip':
             if lines[index]['kind']!='ip':return None,404

@@ -46,9 +46,21 @@ export default function Configurator() {
         <p className="hint">Node allowances and charges await approval. No provisional rate is applied.</p>
       </fieldset>}
       {vendor && value.vendor !== 'altera' && <p className="notice">Licence-access conditions for {vendor.label} await review. No host identifiers are requested.</p>}
-      <fieldset><legend>04 / Optional engineering support</legend>
+      <fieldset><legend>04 / Board or development kit</legend>
+        <label htmlFor="platform">Which board or development kit will you use?</label>
+        <select id="platform" value={value.platform?.choice ?? ''} onChange={e=>setValue(v=>({...v,platform:{choice:e.target.value,kit_id:null,name:null}}))}>
+          <option value="">Choose a platform</option><option value="listed-kit">A listed development kit</option>
+          <option value="other-board">Another kit or a custom/modified board</option>
+          <option value="not-designed">Board not designed or selected / I need board-design guidance</option>
+        </select>
+        {value.platform?.choice==='listed-kit' && <p>No approved ready-kit entries have been supplied yet. A ready-design offer remains pending.</p>}
+        {value.platform?.choice==='other-board' && <label htmlFor="board-name">Short board name/model (optional; blank means not yet named/unknown)
+          <input id="board-name" maxLength={120} value={value.platform.name ?? ''} onChange={e=>setValue(v=>({...v,platform:{choice:'other-board',kit_id:null,name:e.target.value || null}}))}/></label>}
+        <p className="hint">An approved standard R&amp;D development offer can cover an unknown or unfinished board. Detailed pinouts and engineering information are requested privately when the work needs them.</p>
+      </fieldset>
+      <fieldset><legend>05 / Support for SLL IP</legend>
         <label htmlFor="support">10-hour packages</label><input id="support" type="number" min="0" max="1000000" step="1" value={Number.isNaN(value.support_packages) ? '' : value.support_packages} onChange={e => update('support_packages',e.target.value)} />
-        <p className="hint">Purchased hours do not expire. Support never extends IP rights. Each package grants exactly 10 hours once accepted and paid.</p>
+        <p className="hint">Additional support is optional or required according to the seller offer. Its approved minimum and price will be shown before purchase. Current policy is pending. Purchased hours do not expire. Support never extends IP rights. Each package grants exactly 10 hours once accepted and paid.</p>
       </fieldset>
     </div>
     <aside aria-label="Configuration summary">
@@ -56,12 +68,14 @@ export default function Configurator() {
         <dl><dt>Vendor</dt><dd>{vendor?.label ?? 'Not selected'}</dd><dt>Families</dt><dd>{vendor?.families.filter(f => value.families.includes(f.id)).map(f => f.label).join(', ') || 'Not selected'}</dd>
         <dt>Term</dt><dd>{term?.label ?? 'Not selected'}</dd><dt>Production</dt><dd>{catalog.production_bands.find(b => b.id === value.production_band)?.label ?? 'Not applicable'}</dd>
         <dt>Access</dt><dd>{value.vendor === 'altera' ? `${value.fixed_nodes} fixed / ${value.floating_nodes} floating` : 'Conditions pending'}</dd>
+        <dt>Platform</dt><dd>{value.platform?.choice==='not-designed'?'Board not designed or selected':value.platform?.choice==='other-board'?(value.platform.name || 'Other/custom board · not yet named'):value.platform?.choice==='listed-kit'?'Ready-kit offer pending':'Not selected'}</dd>
+        <dt>Reference design</dt><dd>Approved kit design or an agreed later design. Initial R&amp;D materials do not complete a promised later design.</dd>
         <dt>Support</dt><dd>{Number.isSafeInteger(value.support_packages) && value.support_packages >= 0 ? `${value.support_packages * 10} hours` : 'Check quantity'}</dd><dt>Price &amp; VAT</dt><dd>Pending approval · EUR draft</dd></dl>
         <div aria-live="polite" aria-atomic="true" className="validation">
           <strong>{result.valid ? (result.status === 'requires_quote' ? 'Quotation required' : 'Configuration ready for review') : 'Complete your configuration'}</strong>
-          {result.errors.length > 0 && <ul>{result.errors.map(e => <li key={e.field+e.code}>{({vendor:'Choose a vendor.',families:'Select families from this vendor.',term:'Choose an applicable term.',production_band:'Choose an RDP production band.',production_units:'Enter whole units within the selected band.',access:'Enable at least one development access mode.',fixed_nodes:'Enter a whole fixed-node count.',floating_nodes:'Enter a whole floating-seat count.',support_packages:'Enter a whole support quantity.'} as Record<string,string>)[e.field] ?? 'Check your configuration.'}</li>)}</ul>}
+          {result.errors.length > 0 && <ul>{result.errors.map(e => <li key={e.field+e.code}>{({vendor:'Choose a vendor.',families:'Select families from this vendor.',term:'Choose an applicable term.',production_band:'Choose an RDP production band.',production_units:'Enter whole units within the selected band.',access:'Enable at least one development access mode.',fixed_nodes:'Enter a whole fixed-node count.',floating_nodes:'Enter a whole floating-seat count.',support_packages:'Enter a whole support quantity.',platform:'Choose an applicable platform and only its relevant detail.'} as Record<string,string>)[e.field] ?? 'Check your configuration.'}</li>)}</ul>}
         </div>
-        <p>{result.status === 'requires_quote' ? 'Higher-volume configurations require a reviewed quotation.' : 'Pricing, rights, access, family coverage and final terms require review.'}</p>
+        <p>{result.status === 'requires_quote' ? 'Higher-volume configurations require a reviewed quotation.' : 'Actual prices, rights, access, coverage and delivery terms are pending. Applicable approved standard offers do not require individual engineering approval.'}</p>
         <button type="button" disabled>Purchase unavailable · approvals pending</button>
         <p className="hint">Local preview. No order is submitted, no payment is collected, and unsaved selections stay in memory only.</p>
         <CustomerDrafts configuration={value} onResume={setValue} />

@@ -1,3 +1,5 @@
+> Current authority: [final26October revision2](PURCHASE-FLOW-AMENDMENT.md). Phase IDs retain T01–T14 traceability; changed titles/tasks below reflect the final purchase flow. Historical observations do not route execution.
+
 # Roadmap: SLL xSPI-MC Shop
 
 **Active sequencing:** [2026-10-22 execution amendment](EXECUTION-AMENDMENT-2026-10-22.md); T03 and ready local slices proceed independently of pending release qualification.
@@ -8,11 +10,11 @@
 
 ## Current implementation activity — 2026-10-23
 
-**Current development focus:** 8 — Payment domain and fault-injectable fake bank. Local implementation is in progress; this is not full phase acceptance.
+**Current development focus:** 3 — final purchase-flow platform/catalog and seller offer/support rules, followed by4/7/10/13. [Amendment/task map](PURCHASE-FLOW-AMENDMENT.md).
 
-**Last fully completed phase:** 1. Phases2–7 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase8 work while those earlier checks remain open. Completed phases remain1/14 (rounded7%); planned records11/24. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
+**Last fully completed phase:** 1. Phases2–7 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase8 work while those earlier checks remain open. Completed phases remain1/14 (rounded7%); planned records11/29. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
 
-**Current activity:** Delivered staff queue/preparation/review history navigation and independent typed durable synthetic-bank boundary;305 local tests pass. [Phase08 evidence](phases/08-payment-domain-and-fault-injectable-fake-bank/08-BANK-BOUNDARY-PARTIAL.md). Synthetic attempt dispatch/reconciliation now implemented; verification evidence in STATE.md; canonical state:STATE.md. No routine task/commit context pauses. Full source/commercial/financial/external gates and phase/record completion counts unchanged.
+**Current activity:** Final26October revision2 applied once; minimal platform path and synthetic standard-offer/staged delivery implemented. Next complete-cart/business/document binding and guarded short checkout; STATE.md owns exact evidence and pending gates.
 
 Before every commit, reconcile all affected planning status references, regenerate canonical state.json and run `python3 scripts/check_planning.py`; commit then sync origin/main. Historical sources/evidence remain scoped to their dates.
 
@@ -32,26 +34,28 @@ The October21 reset completed documentation replanning. Later user continuation 
 
 - [x] **Phase 1: Product authority, repository review and decision register** — October 21 handoff T01
 - [ ] **Phase 2: Reproducible application and deployment skeleton** — October 21 handoff T02
-- [ ] **Phase 3: Markdown catalog, schemas and approved price calculations** — October 21 handoff T03
-- [ ] **Phase 4: Static product, configurator, support page and accessible fallback** — October 21 handoff T04
+- [ ] **Phase 3: Catalog, platform choices and approved offer/support policies** — October 21 handoff T03
+- [ ] **Phase 4: Minimal configurator and shared no-JavaScript purchase flow** — October 21 handoff T04
 - [ ] **Phase 5: Transactional records, durable work and private evidence primitives** — October 21 handoff T05
 - [ ] **Phase 6: Verified customer access, staff MFA and private host editing** — October 21 handoff T06
-- [ ] **Phase 7: Multi-line cart, quotations, business checkout and acceptance** — October 21 handoff T07
+- [ ] **Phase 7: Short business checkout, standard offers and acceptance** — October 21 handoff T07
 - [ ] **Phase 8: Payment domain and fault-injectable fake bank** — October 21 handoff T08
 - [ ] **Phase 9: Selected-bank sandbox integration and complete reconciliation** — October 21 handoff T09
-- [ ] **Phase 10: Licence delivery, renewal/rehosting and support-hours workflows** — October 21 handoff T10
+- [ ] **Phase 10: Staged licence/reference-design delivery and support ledger** — October 21 handoff T10
 - [ ] **Phase 11: Protected-host qualification, shop-only deployment and conditional public activation** — October 21 handoff T11
 - [ ] **Phase 12: Backups, operating alerts and financial/licensing restore rehearsal** — October 21 handoff T12
-- [ ] **Phase 13: Integrated product, access, payment and deployment acceptance** — October 21 handoff T13
+- [ ] **Phase 13: Purchase-flow, fulfilment and release acceptance** — October 21 handoff T13
 - [ ] **Phase 14: Release handover and separately scoped live activation** — October 21 handoff T14
 
 ## Phase Details
 
 ### Phase 1: Product authority, repository review and decision register
 
+**Final26October revision2:** SRC-05. Register precedence; preserve immutable baseline and completed evidence. [Current clauses](PURCHASE-FLOW-AMENDMENT.md) override conflicting baseline purchase/delivery wording below.
+
 **Goal:** Operators can verify the exact embedded product snapshot by filename, 23,969-byte length and SHA-256, using only the October 21 package as new product authority.
 **Depends on:** Implementation authorized; see 2026-10-22 execution amendment
-**Requirements:** SRC-01, SRC-02, SRC-03, SRC-04
+**Requirements:** SRC-01, SRC-02, SRC-03, SRC-04, SRC-05
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md T01; complete companion proposal remains normative.
 **Estimate:** 1–2 engineer-days
 **UI hint:** no
@@ -113,15 +117,17 @@ The October21 reset completed documentation replanning. Later user continuation 
 
 **Verification/evidence:** Build commands/results, artifact/lockfile identities, dependency compatibility and SBOM, prepared rootless cgroup/storage/database identity maps, inventory/allowlist templates and complete NixOS dependency/restart/reload impact plan. Separate executable shop-only additions from blocked protected-service proposals. Qualify fault/lifecycle behavior off-host; mark actual host enforcement unproven until T11's non-disruptive observations.
 
-### Phase 3: Markdown catalog, schemas and approved price calculations
+### Phase 3: Catalog, platform choices and approved offer/support policies
+
+**Final26October revision2:** FLOW-01. 03-01: one platform choice, small ready-kit/standard-development mapping, seller optional/required support and bounded minimum/price rules. [Current clauses](PURCHASE-FLOW-AMENDMENT.md) override conflicting baseline purchase/delivery wording below.
 
 **Goal:** Editors can compile one reviewed Markdown/YAML catalog into immutable public/private manifests with the same revision; incomplete approvals cannot be activated through editable content.
 **Depends on:** T01 and available T02 local interfaces; remaining release qualifications run separately under the [execution amendment](EXECUTION-AMENDMENT-2026-10-22.md)
-**Requirements:** CAT-01, CAT-02, CAT-03, CAT-04, CAT-05
+**Requirements:** CAT-01, CAT-02, CAT-03, CAT-04, CAT-05, FLOW-01
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md T03; complete companion proposal remains normative.
 **Estimate:** 4–6 engineer-days
 **UI hint:** no
-**Plans:** Detailed executable plans created at phase planning; no completion credit from earlier task numbers.
+**Plans:** Applicable executable phase plans below/on disk define remaining work; original completion evidence retains its scope.
 
 **Success Criteria:**
 
@@ -137,15 +143,17 @@ The October21 reset completed documentation replanning. Later user continuation 
 
 **Verification/evidence:** Parsed catalog and schema checks, exact vendor/family list comparison, valid/invalid/quote/review cases in both runtimes, provisional node-price boundary cases and annual-versus-one-time calculation evidence.
 
-### Phase 4: Static product, configurator, support page and accessible fallback
+### Phase 4: Minimal configurator and shared no-JavaScript purchase flow
+
+**Final26October revision2:** FLOW-02. 04-01: shared React/Django/no-JavaScript platform choice and concise seller offer/support/delivery summary. [Current clauses](PURCHASE-FLOW-AMENDMENT.md) override conflicting baseline purchase/delivery wording below.
 
 **Goal:** Customers can read static product/support/legal pages and select only the exact ordered vendor/family/term/band options, including Altera-only RDP and higher-volume quotation.
 **Depends on:** Available local T03 catalog/validation interfaces; approval/release gates remain separate under the execution amendment
-**Requirements:** SHOP-01, SHOP-02, SHOP-03, SHOP-04, SHOP-05
+**Requirements:** SHOP-01, SHOP-02, SHOP-03, SHOP-04, SHOP-05, FLOW-02
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md T04; complete companion proposal remains normative.
 **Estimate:** 4–6 engineer-days
 **UI hint:** yes
-**Plans:** Detailed executable plans created at phase planning; no completion credit from earlier task numbers.
+**Plans:** Applicable executable phase plans below/on disk define remaining work; original completion evidence retains its scope.
 
 **Success Criteria:**
 
@@ -169,7 +177,7 @@ The October21 reset completed documentation replanning. Later user continuation 
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md T05; complete companion proposal remains normative.
 **Estimate:** 3–5 engineer-days
 **UI hint:** no
-**Plans:** Detailed executable plans created at phase planning; no completion credit from earlier task numbers.
+**Plans:** Applicable executable phase plans below/on disk define remaining work; original completion evidence retains its scope.
 
 **Success Criteria:**
 
@@ -192,7 +200,7 @@ The October21 reset completed documentation replanning. Later user continuation 
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md T06; complete companion proposal remains normative.
 **Estimate:** 3–5 engineer-days
 **UI hint:** yes
-**Plans:** Detailed executable plans created at phase planning; no completion credit from earlier task numbers.
+**Plans:** Applicable executable phase plans below/on disk define remaining work; original completion evidence retains its scope.
 
 **Success Criteria:**
 
@@ -208,13 +216,15 @@ The October21 reset completed documentation replanning. Later user continuation 
 
 **Verification/evidence:** Cross-customer/contact/role denial cases, scanner/replay/session/CSRF checks, raw-host data-flow inspection, canonicalization/duplicate cases for the actual supplied profile, private encryption/recovery key-version checks using synthetic values.
 
-### Phase 7: Multi-line cart, quotations, business checkout and acceptance
+### Phase 7: Short business checkout, standard offers and acceptance
+
+**Final26October revision2:** FLOW-03, FLOW-04, FLOW-05. 07-02–04: approved standard checkout, narrow exceptions, support tamper prevention and exact acceptance snapshots; no blanket custom-board review. [Current clauses](PURCHASE-FLOW-AMENDMENT.md) override conflicting baseline purchase/delivery wording below.
 
 Local implementation: versioned owner draft cart delivered in [quick261022-iqc](quick/261022-iqc-implement-verified-owner-multi-line-draf/261022-iqc-SUMMARY.md). Quotation requests, partial business drafts, review/preparation and no-JavaScript flows are implemented locally; protected offers/acceptance and full COM-01–06 acceptance remain pending.
 
 **Goal:** Customers retain separate configured IP lines at quantity one across vendors and explicit duplicate scopes; support has positive real package quantity and zero selector value omits its line.
 **Depends on:** T03,T05–T06
-**Requirements:** COM-01, COM-02, COM-03, COM-04, COM-05, COM-06
+**Requirements:** COM-01, COM-02, COM-03, COM-04, COM-05, COM-06, FLOW-03, FLOW-04, FLOW-05
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md T07; complete companion proposal remains normative.
 **Estimate:** 4–6 engineer-days
 **UI hint:** yes
@@ -266,7 +276,7 @@ Local implementation: versioned owner draft cart delivered in [quick261022-iqc](
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md T09; complete companion proposal remains normative.
 **Estimate:** 4–7 engineer-days
 **UI hint:** yes
-**Plans:** Detailed executable plans created at phase planning; no completion credit from earlier task numbers.
+**Plans:** Applicable executable phase plans below/on disk define remaining work; original completion evidence retains its scope.
 
 **Success Criteria:**
 
@@ -281,15 +291,17 @@ Local implementation: versioned owner draft cart delivered in [quick261022-iqc](
 
 **Verification/evidence:** Primary bank documentation and dated capability matrix, sanitized sandbox outcomes, complete-window evidence/cutoffs and explicit gaps. Missing bank details block only this integration and its dependent real proof.
 
-### Phase 10: Licence delivery, renewal/rehosting and support-hours workflows
+### Phase 10: Staged licence/reference-design delivery and support ledger
+
+**Final26October revision2:** FLOW-06, FLOW-07. 10-01 staged R&D/reference-design obligations;10-02 SLL support top-ups, ledger and recorded existing-credit reservations. [Current clauses](PURCHASE-FLOW-AMENDMENT.md) override conflicting baseline purchase/delivery wording below.
 
 **Goal:** Staff manually release one approved encrypted RTL/manual/reference design/key package per intended paid/accepted scope after checking entity, release/tool/coverage, host, term, production and holds.
 **Depends on:** T05–T08; actual access/rights profiles for real fulfilment
-**Requirements:** FUL-01, FUL-02, FUL-03, FUL-04, FUL-05, FUL-06
+**Requirements:** FUL-01, FUL-02, FUL-03, FUL-04, FUL-05, FUL-06, FLOW-06, FLOW-07
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md T10; complete companion proposal remains normative.
 **Estimate:** 5–8 engineer-days
 **UI hint:** yes
-**Plans:** Detailed executable plans created at phase planning; no completion credit from earlier task numbers.
+**Plans:** Applicable executable phase plans below/on disk define remaining work; original completion evidence retains its scope.
 
 **Success Criteria:**
 
@@ -313,7 +325,7 @@ Local implementation: versioned owner draft cart delivered in [quick261022-iqc](
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md T11; complete companion proposal remains normative.
 **Estimate:** 3–5 engineer-days
 **UI hint:** no
-**Plans:** Detailed executable plans created at phase planning; no completion credit from earlier task numbers.
+**Plans:** Applicable executable phase plans below/on disk define remaining work; original completion evidence retains its scope.
 
 **Success Criteria:**
 
@@ -341,7 +353,7 @@ Keep public bytes in shop-owned OVH Object Storage through a fixed verified HTTP
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md T12; complete companion proposal remains normative.
 **Estimate:** 3–5 engineer-days
 **UI hint:** no
-**Plans:** Detailed executable plans created at phase planning; no completion credit from earlier task numbers.
+**Plans:** Applicable executable phase plans below/on disk define remaining work; original completion evidence retains its scope.
 
 **Success Criteria:**
 
@@ -357,15 +369,17 @@ Keep public bytes in shop-owned OVH Object Storage through a fixed verified HTTP
 
 **Verification/evidence:** Dated isolated off-host drill representing unavailable production storage, without touching it; recovery inputs/custody, replacement runtime and conditional traffic plan, externally completed operations beyond the restore point, data-loss/technical/safe-reopen timings, retained versions/keys and no unintended bank/email effects. Prove denied revoked/restored access and recovery of a debit committed before completion-archive acknowledgement. Record shop-owned reporting for archive/retention/growth/resource faults and existing unchanged alert delivery where provisioned; otherwise list the specific deferred monitoring integration and named response owner.
 
-### Phase 13: Integrated product, access, payment and deployment acceptance
+### Phase 13: Purchase-flow, fulfilment and release acceptance
+
+**Final26October revision2:** FLOW-08. 13-01: all eight final-amendment acceptance checks, privacy, retained scope and separate evidence classes. [Current clauses](PURCHASE-FLOW-AMENDMENT.md) override conflicting baseline purchase/delivery wording below.
 
 **Goal:** Release reviewers can trace every source field/option/rule to exercised customer/staff journeys, exact new IDs/hostnames and source/profile/approval revisions.
 **Depends on:** T04,T06–T12, with conditional external evidence
-**Requirements:** UAT-01, UAT-02, UAT-03, UAT-04, UAT-05
+**Requirements:** UAT-01, UAT-02, UAT-03, UAT-04, UAT-05, FLOW-08
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md T13; complete companion proposal remains normative.
 **Estimate:** 3–5 engineer-days
 **UI hint:** yes
-**Plans:** Detailed executable plans created at phase planning; no completion credit from earlier task numbers.
+**Plans:** Applicable executable phase plans below/on disk define remaining work; original completion evidence retains its scope.
 
 **Success Criteria:**
 
@@ -389,7 +403,7 @@ Keep public bytes in shop-owned OVH Object Storage through a fixed verified HTTP
 **Source:** SLL-xSPI-MC-Shop-Codex-Handoff-2026-10-21.md T14; complete companion proposal remains normative.
 **Estimate:** 2–3 engineer-days
 **UI hint:** no
-**Plans:** Detailed executable plans created at phase planning; no completion credit from earlier task numbers.
+**Plans:** Applicable executable phase plans below/on disk define remaining work; original completion evidence retains its scope.
 
 **Success Criteria:**
 
@@ -411,19 +425,18 @@ Keep public bytes in shop-owned OVH Object Storage through a fixed verified HTTP
 |---|---|---|---|
 | 1. Product authority, repository review and decision register | 2 / 2 | Complete — documentation reconciled | 2026-10-21 |
 | 2. Reproducible application and deployment skeleton | 8 / 18 | In Progress; updated 2026-10-22: 25 implementation quick tasks; 7 qualification/review and 3 implementation/qualification records open | — |
-| 3. Markdown catalog, schemas and approved price calculations | 0 / not planned | In Progress — local slice in quick261022-dj5; full acceptance pending | — |
-| 4. Static product, configurator, support page and accessible fallback | 0 / not planned | In Progress — local slice in quick261022-dj5; full acceptance pending | — |
+| 3. Catalog, platform choices and approved offer/support policies | 0 / 1 | In Progress — local slice in quick261022-dj5; full acceptance pending | — |
+| 4. Minimal configurator and shared no-JavaScript purchase flow | 0 / 1 | In Progress — local slice in quick261022-dj5; full acceptance pending | — |
 | 5. Transactional records, durable work and private evidence primitives | 0 / not planned | In Progress — local slice in quick261022-dj5; full acceptance pending | — |
 | 6. Verified customer access, staff MFA and private host editing | 0 / not planned | In Progress — synthetic customer verification/save-resume and staff MFA rehearsal/assigned reviews implemented; production MFA/private-host/release acceptance pending | — |
-| 7. Multi-line cart, quotations, business checkout and acceptance | 1 / 4 | In Progress — current local cart/quotation/business/review/preparation implementation; commercial acceptance pending | — |
+| 7. Short business checkout, standard offers and acceptance | 1 / 4 | In Progress — current local cart/quotation/business/review/preparation implementation; commercial acceptance pending | — |
 | 8. Payment domain and fault-injectable fake bank | 0 / not planned | In Progress | Typed local synthetic-bank slice; full domain pending |
 | 9. Selected-bank sandbox integration and complete reconciliation | 0 / not planned | Not started | — |
-| 10. Licence delivery, renewal/rehosting and support-hours workflows | 0 / not planned | Not started | — |
+| 10. Staged licence/reference-design delivery and support ledger | 0 / 2 | In Progress — synthetic staged delivery/top-up/reservation slice; actual fulfilment/ledger pending | — |
 | 11. Protected-host qualification, shop-only deployment and conditional public activation | 0 / not planned | Not started | — |
 | 12. Backups, operating alerts and financial/licensing restore rehearsal | 0 / not planned | Not started | — |
-| 13. Integrated product, access, payment and deployment acceptance | 0 / not planned | Not started | — |
+| 13. Purchase-flow, fulfilment and release acceptance | 0 / 1 | In Progress — focused local amendment cases; full release/qualification pending | — |
 | 14. Release handover and separately scoped live activation | 0 / not planned | Not started | — |
 
-Exact retained staff capture status and supported mixed/support-only observation journeys are verified. GET uses current recent MFA/exact historical scope and shared locked source/fact/intent validation; absence is distinct from inconsistency. Supported journeys observe before capture, after capture/retry/later edits and operator revocation/logout; facts and private local files stay unchanged.272 core-local checks pass (258 Django plus14 Gunicorn),70.667s; owned PostgreSQL18.6/UTF8. Source /nix/store/6x0vx2hhfaszqnjfj9mgznj73v58yj09-shop-python-source matches163 exact files21 templates/no symlinks. See [capture observation evidence](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-OBSERVATION-PARTIAL.md). Next: bounded audit of the completed local capture/status slice. No archive I/O/work authority/commercial effects. Country/tax and independent runtime/transport/outage/off-host/provider/recovery qualification remain pending. Focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 8/18;07-02 partial.
 
-Session checkpoint 2026-10-23T12:27:42.804Z:272 local checks/source163/21 retained;35cb252 synced0/0. Proactive context-pressure pause, exact percentage unavailable. Bounded local capture/status audit next; see HANDOFF.json/STATE.md. All acceptance gates unchanged.
+Current evidence/routing: STATE.md and HANDOFF.md. Historical activity and source qualification retain their scope; no old checkpoint is an active instruction.

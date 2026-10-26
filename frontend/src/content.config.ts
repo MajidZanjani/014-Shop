@@ -22,6 +22,7 @@ const products = defineCollection({
     approvals: z.object({prices:z.null(),rights:z.null(),access:z.null(),coverage:z.null(),terms:z.null(),recurrence:z.null(),production_accounting:z.null()}).strict(),
     money: z.object({currency:z.literal('EUR'),currency_status:z.literal('draft'),base_minor:z.null(),additional_family_minor:z.null(),production_minor:z.null(),mode_minor:z.null(),node_minor:z.null(),support_minor:z.null(),tax_minor:z.null(),total_minor:z.null()}).strict(),
     support_seconds_per_package:z.literal(36000),
+    purchase_flow:z.object({amendment_sha256:z.string().regex(/^[a-f0-9]{64}$/),platform_choices:z.tuple([z.literal('listed-kit'),z.literal('other-board'),z.literal('not-designed')]),ready_kits:z.array(z.never()).max(0),offer_policy_revision:z.null()}).strict(),
   }).strict(),
 });
 export const collections = { probes, products };
