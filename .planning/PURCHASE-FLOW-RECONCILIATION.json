@@ -74,6 +74,11 @@
       "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
     },
     {
+      "path": ".planning/debug/resolved/demo-csrf.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
       "path": ".planning/milestone.lock",
       "role": "historical-evidence",
       "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"

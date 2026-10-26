@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
 status: in_progress
-last_updated: "2026-10-26T07:51:27.647Z"
-state_head: 309f634a4511f73d3c6da71f234e7e23d0c721e4
+last_updated: "2026-10-26T08:18:32.239Z"
+state_head: 8c319a0c723bd19a99c727011997bd9a549197e7
 progress:
   total_phases: 14
   completed_phases: 1
@@ -13,7 +13,7 @@ last_activity: 2026-10-26
 current_phase: 03
 current_phase_name: Catalog, platform choices and approved offer/support policies
 stopped_at: Complete-cart checkout rehearsal retained and verified. Next synthetic acceptance and payment binding.
-last_activity_desc: Complete-cart private checkout implemented with full353 and final focused14 checks passing; actual acceptance and external gates pending.
+last_activity_desc: Browser form CSRF and redirect fix verified with354 backend and32 live proxy checks; complete-cart acceptance integration remains next.
 ---
 
 # Project state — final purchase-flow revision2
@@ -31,7 +31,9 @@ last_activity_desc: Complete-cart private checkout implemented with full353 and 
 
 ## Current result and next action
 
-Complete-cart checkout rehearsal implemented under03-01/04-01/07-02–03. One guarded API/no-JavaScript service retains every cart line and exact business/document/offer/support/delivery revisions. Whole-basket holds, seller-controlled support minima, once-only new-package allocation, stale-review protection and concurrent retry arbitration are verified. CORE_LOCAL_PASS353 tests/5 checks,93.302s; final focused14 checkout tests,1.652s, covers the final per-line-total assertion. Extended demo PURCHASE_FLOW_DEMO_PASS includes complete-cart archive recovery and API/form same capture. [Exact evidence and limits](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-CHECKOUT-PARTIAL.md). Original platform/single-draft/staged-payment evidence remains retained; no full plan/phase acceptance inferred.
+Complete-cart checkout rehearsal implemented under03-01/04-01/07-02–03. One guarded API/no-JavaScript service retains every cart line and exact business/document/offer/support/delivery revisions. Whole-basket holds, seller-controlled support minima, once-only new-package allocation, stale-review protection and concurrent retry arbitration are verified. Latest regression after browser-form fix CORE_LOCAL_PASS354 tests/5 checks,94.845s, includes all checkout tests; initial checkout evidence retains its dated scope. Extended demo PURCHASE_FLOW_DEMO_PASS includes complete-cart archive recovery and API/form same capture. [Exact evidence and limits](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-CHECKOUT-PARTIAL.md). Original platform/single-draft/staged-payment evidence remains retained; no full plan/phase acceptance inferred.
+
+Browser demo blocker resolved: scoped form HTML uses same-origin referrer policy and proxy preserves303 Location/Vary. Live proxy/Gunicorn/owned PostgreSQL32 checks across both loopback aliases pass; null/foreign origins and missing CSRF tokens still fail. [Debug evidence and restart steps](debug/resolved/demo-csrf.md). No actual browser-engine qualification or external authority inferred.
 
 Next usable local feature: bind the retained complete-cart checkout to explicit synthetic acceptance/document fixtures and one payment attempt/order reference, including archive-before-dispatch and lookup-only uncertainty. Do not use the separate single-draft synthetic purchase as complete-cart payment evidence. Actual acceptance, business country/tax, terms/host/commercial and licence/support ledger/fulfilment gates remain pending. Continue local work without invented approvals or external/protected-service actions.
 
