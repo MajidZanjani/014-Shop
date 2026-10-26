@@ -1,7 +1,7 @@
 ---
 gsd_state_version: "1.0"
 status: in_progress
-last_updated: "2026-10-26T09:40:31.210Z"
+last_updated: "2026-10-26T10:17:50.900Z"
 state_head: 0bfb7db2ea8a022329b8ce61675745891ebb7d2a
 progress:
   total_phases: 14
@@ -13,7 +13,7 @@ last_activity: 2026-10-26
 current_phase: 10
 current_phase_name: Staged licence/reference-design delivery and support ledger
 stopped_at: Complete-cart synthetic grants/staged delivery verified. Next support reservations, work ledger and corrections.
-last_activity_desc: Complete-cart once-only per-line and fixed non-expiring support grants verified;378 backend and50 proxy checks pass; real effects remain disabled.
+last_activity_desc: User reports all browser simulations completed; next support reservations, work accounting and corrections; actual effects remain disabled.
 ---
 
 # Project state — final purchase-flow revision2
@@ -35,7 +35,7 @@ Complete-cart synthetic captured payment now produces one archived grant plan, o
 
 Latest full backend CORE_LOCAL_PASS378 tests/5 checks,98.547s; final focused11 fulfilment tests,2.950s, covers final scalar-ID parser guard. Extended purchase demo passes complete-cart acceptance/payment/grants/staging and prior separately labelled cases. Actual proxy/Gunicorn/owned PostgreSQL50 header-level checks across both loopback aliases pass including grant/retry. Final source210 exact files/26 templates/1 CSS, no symlinks. Full-suite test subprocess budget is bounded120 seconds after the enlarged lane exceeded90; request/provider timeouts unchanged.
 
-The user-requested shared shop-style customer UI remains in use for fulfilment status/actions. [UI contract](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-UI-SPEC.md). User confirmed the prior corrected browser access/business/cart checkout recording; latest UI/payment/fulfilment browser review remains pending. No actual browser-engine/accessibility/visual approval or full phase/plan acceptance is inferred.
+The user-requested shared shop-style customer UI remains in use for fulfilment status/actions. [UI contract](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-UI-SPEC.md). User reports all browser simulations completed on2026-10-26, following the styled checkout/payment/grant/staged-delivery test instructions. This records user-reported functional completion, not an independently observed run or formal accessibility/visual approval. No real commercial approval or full phase/plan acceptance is inferred.
 
 Next usable local feature: extend complete-cart synthetic support ledger with recorded reservations, committed work spend, reverse/replace corrections and committed-revision statements under10-02. Preserve same-owner SLL scope, no competing spend or automatic cross-project pooling, and archive-before-spend/completion/publication rules. Actual staff/terms/tax/host/commercial/financial/licensing/provider/protected/recovery gates remain scoped and pending.
 
