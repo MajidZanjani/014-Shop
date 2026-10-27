@@ -8,7 +8,7 @@
 
 **Next implementation task:** Select the next unverified locally authorized UAT-03 risk or concrete implementation gap; public logout denial/reload is verified. Retain prior backend578/proxy148 as pre-header-change evidence; do not rerun unchanged checks or infer external authority.
 
-**Recorded implementation:** fee40d167c09b6c60e70680a8635f62c460c19c5
+**Recorded implementation:** 92ef98ec79b9c4bc56c184232dfd0e25a275c6c3
 
 This SHA contains the required-platform/no-JavaScript fixes and prepared public browser tooling; follow-up evidence records the570-test regression and58-check browser expansion. The one-shot structured handoff has been consumed; the checkpoint now records active task5 qualification. Final evidence and the narrow source-validator correction are in the current verification commit; do not reset to historical review c830297.
 

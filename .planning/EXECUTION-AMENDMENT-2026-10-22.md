@@ -40,3 +40,7 @@ The user reports to their manager from .planning. Before every implementation/st
 ## Standing Git push authorization — user instruction, 2026-10-27
 
 The user explicitly instructed: "yes push and don't ask again. please write in your plan to push after each commit without asking". Push each project commit to `origin/main` immediately after committing, without requesting confirmation again. This includes the previously local `f18d98c` commit and the commit recording this instruction. Use ordinary non-force pushes; this authorization does not extend to deployment or other protected external operations.
+
+## Push authorization reaffirmed — user instruction, 2026-10-27
+
+After automatic review rejected the push of92ef98e, the user explicitly replied in the active session: "approve push after each commit". This renews standing authorization for immediate ordinary non-force pushes to origin/main after every project commit, including92ef98e and this authorization record. Do not ask again for each push. Deployment and other protected/external operations retain their separate gates.
