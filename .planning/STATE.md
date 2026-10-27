@@ -1,9 +1,8 @@
 ---
 gsd_state_version: "1.0"
 current_plan: 01
-status: paused
-paused_at: "2026-10-27T11:48:02.623Z"
-last_updated: "2026-10-27T11:48:02.623Z"
+status: in_progress
+last_updated: "2026-10-27T11:54:01.451919+00:00"
 state_head: fee40d167c09b6c60e70680a8635f62c460c19c5
 progress:
   total_phases: 14
@@ -15,8 +14,8 @@ current_task: 5
 last_activity: 2026-10-27
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: User-requested pause at13-01 task5 after verified stale-cart/quotation browser coverage.
-last_activity_desc: Pause handoff saved; browser134+public39/14, backend578/5 checks and proxy148 retained.
+stopped_at: Public logout privacy slice verified; task5 actual/formal gates pending.
+last_activity_desc: Public logout cache denial fixed and verified;191 browser checks,32 focused PG tests,13 contracts.
 ---
 
 # Project state — final purchase-flow revision2
@@ -27,9 +26,9 @@ last_activity_desc: Pause handoff saved; browser134+public39/14, backend578/5 ch
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** paused — user requested $gsd-pause-work at13-01 task5; browser134+public39/14 and backend578/proxy148 verified locally; formal/manual and actual/full acceptance pending.
+**Execution status:** in progress —13-01 task5 public logout privacy verified locally: browser134+public43/14,32 focused PostgreSQL tests and13 contracts pass; formal/manual and actual/full acceptance pending.
 
-**Next implementation task:** Run $gsd-resume-work; restore this checkpoint at fee40d1, read the latest public-browser evidence and UAT-03/actual qualification register, then select the next unverified locally authorized risk case or concrete implementation gap. Do not rerun unchanged browser/frontend/backend checks or infer external authority.
+**Next implementation task:** Select the next unverified locally authorized UAT-03 risk or concrete implementation gap; public logout denial/reload is verified. Retain prior backend578/proxy148 as pre-header-change evidence; do not rerun unchanged checks or infer external authority.
 
 ## Preserved implementation/evidence
 
@@ -284,3 +283,5 @@ Actual browser rejects a stale cart edit after a competing normal API save, free
 ## User-requested pause —2026-10-27
 
 Paused at13-01 task5 after fee40d1. No uncommitted implementation or running owned process; structured HANDOFF.json and phase .continue-here.md carry exact restoration context. Current local evidence is browser134+public39/14(187 aggregate),13 browser contracts, backend578/5 checks171.478s and proxy148/2 aliases. Source264/33 templates remains6k4lq06jcsm8vssp1clq19l35dpdfxzv; frontend exact fresh Node24.22.0/npm11.19.1. Phase13/full acceptance remains pending; counts1/14 and11/36 are documentary completion counts, not effort.
+
+Public logout continuation: shared customer denials now include no-store without changing status/body or authorization. Browser134+public43/14 and32 focused PostgreSQL tests pass; [exact evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md). Prior backend578/proxy148 precede this header-only change. No full acceptance inferred.

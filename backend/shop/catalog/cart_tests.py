@@ -52,6 +52,25 @@ class CartTests(TransactionTestCase):
                 with self.subTest(case=case['name']):self.assertEqual(self.post(dict(self.value,lines=case['lines'])).status_code,422)
         self.assertEqual(DraftCart.objects.count(),0)
         self.assertEqual(CartSnapshot.objects.count(),0)
+    def test_denied_customer_resources_are_not_cacheable(self):
+        paths=('/api/v1/configuration-drafts/','/api/v1/cart/',
+               '/api/v1/quotation-requests/'+str(uuid.uuid4())+'/')
+        clients=[(Client(),401)]
+        unverified=Client();unverified.force_login(self.owner);clients.append((unverified,403))
+        staff=get_user_model().objects.create_user(username='denied-staff',is_staff=True)
+        privileged=Client();privileged.force_login(staff);clients.append((privileged,403))
+        for client,status in clients:
+            for path in paths:
+                with self.subTest(status=status,path=path):
+                    response=client.get(path)
+                    self.assertEqual(response.status_code,status)
+                    self.assertEqual(response['Cache-Control'],'no-store')
+                    self.assertEqual(set(response.json()),{'error'})
+        with override_settings(SHOP_ENV='production'):
+            response=Client().get('/api/v1/cart/')
+            self.assertEqual(response.status_code,404)
+            self.assertEqual(response['Cache-Control'],'no-store')
+
     def test_auth_csrf_parser_and_scope(self):
         self.assertEqual(self.post(client=Client()).status_code,401)
         strict=Client(enforce_csrf_checks=True);verified_login(strict,self.owner)

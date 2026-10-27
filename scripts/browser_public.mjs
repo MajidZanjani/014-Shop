@@ -206,5 +206,16 @@ export async function publicSmoke({index,javascript,config,navigate,evaluate,wai
   await click('Sign out');
   await wait('document.body.innerText.includes("Signed out.") && document.querySelector("#vendor").value===""');
   require(await evaluate('!document.querySelector("section[aria-label=\\"Draft cart\\"]") && !document.querySelector("#customer-code")'));checks++;
+  mark('public-logout-denial-'+index);
+  require(await evaluate(`(async()=>{
+    const paths=['/api/v1/configuration-drafts/','/api/v1/cart/',${JSON.stringify(refreshPath)}];
+    const replies=await Promise.all(paths.map(path=>fetch(path,{credentials:'same-origin',cache:'no-store',redirect:'error'})));
+    return replies.every(r=>r.status===401 && r.headers.get('cache-control')?.includes('no-store'));
+  })()`));checks++;
+  require(await evaluate(`(async()=>{const r=await fetch('/api/v1/customer/session/',{credentials:'same-origin',cache:'no-store',redirect:'error'});const s=await r.json();return r.status===200 && s.authenticated===false;})()`));checks++;
+  await navigate('/');
+  await wait('document.querySelector("#customer-email") && !document.querySelector("#customer-email").disabled');
+  require(await evaluate(`!document.querySelector('section[aria-label="Draft cart"]') && !document.querySelector('section[aria-label="Captured quotation request"]') && !document.querySelector('#customer-code') && ![...document.querySelectorAll('button')].some(e=>e.textContent.startsWith('Resume draft')) && document.querySelector('#vendor').value===''`));checks++;
+  require(await evaluate('localStorage.length===0 && sessionStorage.length===0 && !location.search && !location.hash'));checks++;
   return checks;
 }

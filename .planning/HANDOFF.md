@@ -4,9 +4,9 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** paused — user requested $gsd-pause-work at13-01 task5; browser134+public39/14 and backend578/proxy148 verified locally; formal/manual and actual/full acceptance pending.
+**Execution status:** in progress —13-01 task5 public logout privacy verified locally: browser134+public43/14,32 focused PostgreSQL tests and13 contracts pass; formal/manual and actual/full acceptance pending.
 
-**Next implementation task:** Run $gsd-resume-work; restore this checkpoint at fee40d1, read the latest public-browser evidence and UAT-03/actual qualification register, then select the next unverified locally authorized risk case or concrete implementation gap. Do not rerun unchanged browser/frontend/backend checks or infer external authority.
+**Next implementation task:** Select the next unverified locally authorized UAT-03 risk or concrete implementation gap; public logout denial/reload is verified. Retain prior backend578/proxy148 as pre-header-change evidence; do not rerun unchanged checks or infer external authority.
 
 **Recorded implementation:** fee40d167c09b6c60e70680a8635f62c460c19c5
 
@@ -157,3 +157,7 @@ The stale-cart continuation is verified in [evidence](phases/13-purchase-flow-fu
 ## User-requested pause —2026-10-27
 
 Implementation is saved and pushed through fee40d1. HANDOFF.json and the phase .continue-here.md supersede earlier continuation routing. No pending implementation edits, owned processes, async jobs or placeholder phase summaries were found. Resume with $gsd-resume-work and preserve standing ordinary push-after-each-commit authority. No actual/formal release gate changed.
+
+Resumed task5 for public logout denial/cache/reload privacy; the current fields above supersede the historical pause paragraphs.
+
+Public logout continuation: shared customer denials now include no-store without changing status/body or authorization. Browser134+public43/14 and32 focused PostgreSQL tests pass; [exact evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md). Prior backend578/proxy148 precede this header-only change. No full acceptance inferred.

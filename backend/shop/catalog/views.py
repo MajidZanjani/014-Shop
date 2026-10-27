@@ -37,15 +37,19 @@ def validate(request):
 
 def local_customer(request):
     from django.conf import settings
+    def denied(error,status):
+        response=JsonResponse({'error':error},status=status)
+        response['Cache-Control']='no-store'
+        return response
     if settings.SHOP_ENV not in ('local','synthetic'):
-        return JsonResponse({'error':'unavailable'},status=404)
+        return denied('unavailable',404)
     if not request.user.is_authenticated:
-        return JsonResponse({'error':'authentication_required'},status=401)
+        return denied('authentication_required',401)
     if request.user.is_staff or request.user.is_superuser or not request.user.is_active:
-        return JsonResponse({'error':'customer_access_required'},status=403)
+        return denied('customer_access_required',403)
     from shop.access.views import verified_identity
     if verified_identity(request) is None:
-        return JsonResponse({'error':'verification_required'},status=403)
+        return denied('verification_required',403)
     return None
 
 
