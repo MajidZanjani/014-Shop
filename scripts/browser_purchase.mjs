@@ -219,6 +219,29 @@ async function smoke() {
       require(lastDocumentStatus===422
         && await evaluate('document.querySelector("form:has(input[value=add_ip]) input[name=expected_version]").value')===cartRevision
         && await evaluate('document.querySelectorAll("ol.cart-items>li").length')===cartLines);checks++;
+      stage='checkout-preview-'+index;
+      await navigate('/purchase/checkout-rehearsal/');
+      const checkoutHash=await evaluate('document.querySelector("input[name=sha256]").value');
+      require(lastDocumentStatus===200 && /^[0-9a-f]{64}$/.test(checkoutHash) && await evaluate('document.body.innerText.includes("does not accept terms, place an order, take payment or grant licence or support rights")'));checks++;
+      stage='checkout-reflow-'+index;
+      await send('Emulation.setDeviceMetricsOverride',{width:320,height:900,deviceScaleFactor:1,mobile:false});
+      require(await evaluate('document.documentElement.scrollWidth<=innerWidth+1 && [...document.styleSheets].some(s=>s.href?.includes("/purchase/assets/shop.css"))'));checks++;
+      await send('Page.bringToFront');
+      const checkoutButton='document.querySelector("form[action=\'/purchase/checkout-rehearsal/\'] button")';
+      // Only the submitted digest is changed; the existing reviewed fixture is never captured.
+      await evaluate('document.querySelector("input[name=sha256]").value="0".repeat(64);true');
+      for(let n=0;n<32 && !await evaluate(`document.activeElement===${checkoutButton}`);n++) await key('Tab','Tab',9);
+      stage='checkout-keyboard-focus-'+index;
+      require(await evaluate(`document.activeElement===${checkoutButton} && document.activeElement.matches(':focus-visible') && parseFloat(getComputedStyle(document.activeElement).outlineWidth)>=2`));checks++;
+      await key('Enter','Enter',13);
+      await wait('document.readyState==="complete" && document.querySelector("[role=alert]")!==null');
+      stage='checkout-stale-denied-'+index;
+      await send('Accessibility.enable');
+      const checkoutTree=await send('Accessibility.getFullAXTree');
+      require(lastDocumentStatus===409 && checkoutTree.nodes.some(n=>!n.ignored && n.role?.value==='alert') && await evaluate('document.querySelector("[role=alert]").innerText.includes("Checkout held") && document.querySelector("form[action=\'/purchase/checkout-rehearsal/\']")===null && !document.body.innerText.includes("0".repeat(64)) && !location.search'));checks++;
+      await navigate('/purchase/checkout-rehearsal/');
+      require(lastDocumentStatus===200 && await evaluate('document.querySelector("input[name=sha256]").value')===checkoutHash);checks++;
+      await send('Emulation.setDeviceMetricsOverride',{width:javascript?1280:390,height:900,deviceScaleFactor:1,mobile:!javascript});
       stage='support-'+index;
       await navigate(config.support);
       require(await evaluate('document.body.innerText.includes("Optional private support follow-up") && document.body.innerText.includes("Available: 70200")')); checks++;

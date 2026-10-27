@@ -2,8 +2,8 @@
 gsd_state_version: "1.0"
 current_plan: 01
 status: in_progress
-last_updated: "2026-10-27T09:45:15.430523+00:00"
-state_head: 081f21edbd3503e0683b9606ee6bfba9941c2a51
+last_updated: "2026-10-27T09:58:25.708775+00:00"
+state_head: 63c3bbfa65f6ebc3f40910062fccd917e705e0b9
 progress:
   total_phases: 14
   completed_phases: 1
@@ -14,8 +14,8 @@ current_task: 5
 last_activity: 2026-10-27
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Business form accessible validation and320px reflow verified; formal/manual and actual gates pending.
-last_activity_desc: Exact browser98 plus public25/14, focused10 business and13 contracts pass; current inert source264 verified.
+stopped_at: Checkout keyboard stale-review rejection/recovery and320px layout verified; formal/manual and actual gates pending.
+last_activity_desc: Exact browser108 plus public25/14, focused15 checkout and13 contracts pass; current source264 verified.
 ---
 
 # Project state — final purchase-flow revision2
@@ -26,9 +26,9 @@ last_activity_desc: Exact browser98 plus public25/14, focused10 business and13 c
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — business form styles, accessible validation and320px reflow verified; browser98 plus public25/14 pass; formal/manual and actual/full acceptance pending.
+**Execution status:** in progress — checkout keyboard stale-review rejection/recovery and320px layout verified; browser108 plus public25/14 pass; formal/manual and actual/full acceptance pending.
 
-**Next implementation task:** Continue remaining local UAT-03 checkout/accessibility review and actual source/commercial/private-intake/transport/provider/runtime/recovery/host qualification only under existing scoped authority. Retain browser98+public25/14, focused10 business tests and prior23 staff tests at their exact scope; do not repeat unchanged runs.
+**Next implementation task:** Continue remaining local UAT-03 accessibility review and actual source/commercial/private-intake/transport/provider/runtime/recovery/host qualification only under existing scoped authority. Retain browser108+public25/14, focused15 checkout tests and prior business/staff results at their exact scope; do not repeat unchanged runs.
 
 ## Preserved implementation/evidence
 
@@ -251,3 +251,7 @@ Exact browser90 customer/staff plus25 JavaScript/14 no-JavaScript checks pass, i
 ##13-01 business validation accessibility —2026-10-27
 
 Business form now permits only existing same-origin CSS, exposes a validation alert and links errors to invalid fields with safe descriptions. Exact browser98 plus public25/14 pass;10 real-PostgreSQL business privacy/version/concurrency tests(1.424s),13 browser contracts and264-file/33-template inert source pass. Rejected synthetic email is absent, original revision/source retained and invalid submission saves nothing. Prior broad backend570/proxy148 and focused23 staff tests retain earlier scope. Formal/manual and actual/full acceptance remain pending. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md).
+
+##13-01 checkout keyboard review regression —2026-10-27
+
+Exact browser108 plus public25 JavaScript/14 no-JavaScript checks pass, including320px checkout preview, visible keyboard focus, native Enter stale-review409/AX alert and unchanged preview recovery in both modes. Checkout behavior remains unchanged: existing form middleware already permits same-origin CSS. Focused15 real-PostgreSQL checkout tests(2.180s),13 browser contracts and exact264-file/33-template source pass. Prior backend570/proxy148 and other focused tests retain earlier scope. Formal/manual and actual/full acceptance remain pending. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md).

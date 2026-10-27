@@ -163,6 +163,30 @@ class CheckoutTests(TransactionTestCase):
         self.assertEqual(self.client.post(PAGE, data=urlencode(value | {'support_policy': 'optional'}), content_type='application/x-www-form-urlencoded').status_code, 400)
         self.assertEqual(self.client.post(API, data='{"request_id":1,"request_id":2}', content_type='application/json').status_code, 400)
 
+    def test_html_styles_and_stale_review_recovery_preserve_exact_capture(self):
+        policy={'default-src':"'none'",'style-src':"'self'",'form-action':"'self'",'frame-ancestors':"'none'",'base-uri':"'none'"}
+        def directives(response):
+            return dict(part.strip().split(' ',1) for part in response['Content-Security-Policy'].split(';'))
+        page=self.client.get(PAGE)
+        self.assertEqual(directives(page),policy)
+        original=self.preview()['sha256']
+        bad={'request_id':str(uuid.uuid4()),'sha256':'0'*64}
+        response=self.client.post(PAGE,data=urlencode(bad),content_type='application/x-www-form-urlencoded')
+        self.assertEqual(response.status_code,409)
+        self.assertEqual(directives(response),policy)
+        self.assertContains(response,'role="alert"',status_code=409)
+        self.assertNotContains(response,'Record synthetic checkout',status_code=409)
+        self.assertNotContains(response,bad['sha256'],status_code=409)
+        self.assertEqual(SyntheticCheckout.objects.count(),0)
+        self.assertEqual(SyntheticCheckoutKey.objects.count(),0)
+        self.assertEqual(SyntheticBankOperation.objects.count(),0)
+        self.assertEqual(self.preview()['sha256'],original)
+        self.assertEqual(self.client.get(PAGE).status_code,200)
+        self.assertNotIn('style-src',self.client.get(API)['Content-Security-Policy'])
+        verified_login(self.client,self.other)
+        self.assertNotContains(self.client.get(PAGE),'SYNTHETIC_BUSINESS_CANARY',status_code=422)
+        self.assertNotIn('style-src',Client().get(PAGE)['Content-Security-Policy'])
+
     def test_csrf_access_privacy_and_live_mode(self):
         client = Client(enforce_csrf_checks=True)
         self.assertEqual(client.get(API).status_code, 401)

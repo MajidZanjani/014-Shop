@@ -4,11 +4,11 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — business form styles, accessible validation and320px reflow verified; browser98 plus public25/14 pass; formal/manual and actual/full acceptance pending.
+**Execution status:** in progress — checkout keyboard stale-review rejection/recovery and320px layout verified; browser108 plus public25/14 pass; formal/manual and actual/full acceptance pending.
 
-**Next implementation task:** Continue remaining local UAT-03 checkout/accessibility review and actual source/commercial/private-intake/transport/provider/runtime/recovery/host qualification only under existing scoped authority. Retain browser98+public25/14, focused10 business tests and prior23 staff tests at their exact scope; do not repeat unchanged runs.
+**Next implementation task:** Continue remaining local UAT-03 accessibility review and actual source/commercial/private-intake/transport/provider/runtime/recovery/host qualification only under existing scoped authority. Retain browser108+public25/14, focused15 checkout tests and prior business/staff results at their exact scope; do not repeat unchanged runs.
 
-**Recorded implementation:** 081f21edbd3503e0683b9606ee6bfba9941c2a51
+**Recorded implementation:** 63c3bbfa65f6ebc3f40910062fccd917e705e0b9
 
 This SHA contains the required-platform/no-JavaScript fixes and prepared public browser tooling; follow-up evidence records the570-test regression and58-check browser expansion. The one-shot structured handoff has been consumed; the checkpoint now records active task5 qualification. Final evidence and the narrow source-validator correction are in the current verification commit; do not reset to historical review c830297.
 
@@ -127,3 +127,9 @@ Expanded exact public browser58 customer/staff plus25 JavaScript/14 no-JavaScrip
 Business form now permits only existing same-origin CSS, exposes a validation alert and links errors to invalid fields with safe descriptions. Exact browser98 plus public25/14 pass;10 real-PostgreSQL business privacy/version/concurrency tests(1.424s),13 browser contracts and264-file/33-template inert source pass. Rejected synthetic email is absent, original revision/source retained and invalid submission saves nothing. Prior broad backend570/proxy148 and focused23 staff tests retain earlier scope. Formal/manual and actual/full acceptance remain pending. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md).
 
 Recorded implementation SHA is the preceding verified staff slice; the business continuation and exact source evidence below are authoritative for this commit. Current source: `/nix/store/ilxk6c3731l3ifrd38778l024hh8i8mr-shop-python-source`.
+
+##13-01 checkout keyboard review regression —2026-10-27
+
+Exact browser108 plus public25 JavaScript/14 no-JavaScript checks pass, including320px checkout preview, visible keyboard focus, native Enter stale-review409/AX alert and unchanged preview recovery in both modes. Checkout behavior remains unchanged: existing form middleware already permits same-origin CSS. Focused15 real-PostgreSQL checkout tests(2.180s),13 browser contracts and exact264-file/33-template source pass. Prior backend570/proxy148 and other focused tests retain earlier scope. Formal/manual and actual/full acceptance remain pending. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md).
+
+Recorded implementation is the preceding verified business slice; the checkout continuation and exact source evidence are authoritative for this commit. Current source: `/nix/store/7r3b2w45jgh1wrbgjnszbxh8qcm0q5fk-shop-python-source`. No owned process remains.
