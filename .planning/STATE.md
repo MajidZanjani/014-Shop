@@ -1,9 +1,8 @@
 ---
 gsd_state_version: "1.0"
 current_plan: 01
-status: paused
-paused_at: "2026-10-27T06:46:50.819Z"
-last_updated: "2026-10-27T06:46:50.819Z"
+status: in_progress
+last_updated: "2026-10-27T07:09:53.985910+00:00"
 state_head: c50a4c1f0e30a6e2a7b4702af06fe7fe3278c3e1
 progress:
   total_phases: 14
@@ -15,8 +14,8 @@ current_task: 5
 last_activity: 2026-10-27
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: User-requested pause after verified current-entry fixes; exact frontend qualification next.
-last_activity_desc: Verified backend570/browser58 and retained explicit public-graph qualification boundary.
+stopped_at: Exact frontend qualification attempted; native build timed out at900 seconds; no owned build remains.
+last_activity_desc: Two-core exact Node24.22 build reached545/1971 at900-second limit; public qualification remains pending.
 ---
 
 # Project state — final purchase-flow revision2
@@ -27,9 +26,9 @@ last_activity_desc: Verified backend570/browser58 and retained explicit public-g
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** paused — user-requested checkpoint after backend570/browser58/proxy148 verification; frozen public frontend and actual/full qualification pending.
+**Execution status:** in progress — task5 exact frontend qualification attempted; two-core900-second native build timed out; public/full acceptance pending.
 
-**Next implementation task:** Read13-PUBLIC-BROWSER-PARTIAL.md and the exact frontend producer; qualify frozen Node24.22.0/npm11.19.1 in an uninterrupted bounded local build window using owned persistent TMPDIR, then run scripts/check_browser_access.py --public. Preserve all actual gates; do not substitute diagnostic output or repeat unchanged backend tests.
+**Next implementation task:** Resolve the exact Node24.22.0/npm11.19.1 native-build prerequisite before scripts/check_browser_access.py --public. The two-core900-second attempt reached545/1971; do not repeat that insufficient envelope or change pins/test limits. Preserve backend570/browser58/proxy148 and all actual gates.
 
 ## Preserved implementation/evidence
 

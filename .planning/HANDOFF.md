@@ -4,13 +4,13 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** paused — user-requested checkpoint after backend570/browser58/proxy148 verification; frozen public frontend and actual/full qualification pending.
+**Execution status:** in progress — task5 exact frontend qualification attempted; two-core900-second native build timed out; public/full acceptance pending.
 
-**Next implementation task:** Read13-PUBLIC-BROWSER-PARTIAL.md and the exact frontend producer; qualify frozen Node24.22.0/npm11.19.1 in an uninterrupted bounded local build window using owned persistent TMPDIR, then run scripts/check_browser_access.py --public. Preserve all actual gates; do not substitute diagnostic output or repeat unchanged backend tests.
+**Next implementation task:** Resolve the exact Node24.22.0/npm11.19.1 native-build prerequisite before scripts/check_browser_access.py --public. The two-core900-second attempt reached545/1971; do not repeat that insufficient envelope or change pins/test limits. Preserve backend570/browser58/proxy148 and all actual gates.
 
 **Recorded implementation:** c50a4c1f0e30a6e2a7b4702af06fe7fe3278c3e1
 
-This SHA contains the required-platform/no-JavaScript fixes and prepared public browser tooling; follow-up evidence records the570-test regression and58-check browser expansion. The one-shot structured handoff and active pause checkpoint have been consumed. Final evidence and the narrow source-validator correction are in the current verification commit; do not reset to historical review c830297.
+This SHA contains the required-platform/no-JavaScript fixes and prepared public browser tooling; follow-up evidence records the570-test regression and58-check browser expansion. The one-shot structured handoff has been consumed; the checkpoint now records active task5 qualification. Final evidence and the narrow source-validator correction are in the current verification commit; do not reset to historical review c830297.
 
 [Final purchase-flow revision2](PURCHASE-FLOW-AMENDMENT.md) remains current authority. Retained Phase10 local work covers complete-cart synthetic grants/staged delivery and the implemented local support ledger; earlier phases are not implicitly complete. [Evidence](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md). One captured cart payment yields an archived deterministic grant plan, one licence record per IP line and exactly36000 integer support seconds/package once, non-expiring. Initial delivery leaves promised later reference design outstanding; later completion never adds another entitlement/grant. Ready-kit/support-only cases stay scoped. Archive readback precedes all simulated records/effects; uncertain funding cannot provision. No actual keys/files/rights or spendable support.
 

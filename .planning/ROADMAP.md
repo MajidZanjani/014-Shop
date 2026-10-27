@@ -4,7 +4,7 @@
 
 **Active sequencing:** [2026-10-22 execution amendment](EXECUTION-AMENDMENT-2026-10-22.md); T03 and ready local slices proceed independently of pending release qualification.
 
-**Latest verification:**525 backend tests/5 checks153.829s; combined focused58/all16 journal cases, worker24 and proxy132/2 aliases pass; payments0008/no drift and253-file exact source. [Journal evidence](phases/08-payment-domain-and-fault-injectable-fake-bank/08-OBSERVATION-JOURNAL-PARTIAL.md). Retained Phase10 full acceptance remains0/6.
+**Latest verification:** Retained backend570/5 checks, browser58/2 roles/2 modes and proxy148/2 aliases pass. Exact frontend two-core native qualification reached900-second limit/exit124 at545/1971; public20/7 remains diagnostic. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md).
 
 **Retained evidence:** [reviewed changes/held orders](phases/10-staged-delivery-and-support-ledger/10-LICENCE-CHANGES-PARTIAL.md); retained material/ledger/staged-delivery results and all release gates are in [STATE.md](STATE.md).
 
@@ -16,9 +16,9 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** paused — user-requested checkpoint after backend570/browser58/proxy148 verification; frozen public frontend and actual/full qualification pending.
+**Execution status:** in progress — task5 exact frontend qualification attempted; two-core900-second native build timed out; public/full acceptance pending.
 
-**Next implementation task:** Read13-PUBLIC-BROWSER-PARTIAL.md and the exact frontend producer; qualify frozen Node24.22.0/npm11.19.1 in an uninterrupted bounded local build window using owned persistent TMPDIR, then run scripts/check_browser_access.py --public. Preserve all actual gates; do not substitute diagnostic output or repeat unchanged backend tests.
+**Next implementation task:** Resolve the exact Node24.22.0/npm11.19.1 native-build prerequisite before scripts/check_browser_access.py --public. The two-core900-second attempt reached545/1971; do not repeat that insufficient envelope or change pins/test limits. Preserve backend570/browser58/proxy148 and all actual gates.
 
 **Last fully completed phase:** 1. Phases2–7 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase8 work while those earlier checks remain open. Completed phases remain1/14; planned records11/36. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
 
