@@ -76,8 +76,8 @@
   ],
   "next": {
     "command": "$gsd-execute-phase 13",
-    "label": "Continue grouped task5 review",
-    "reason": "Continue the grouped UAT-01\u201305 review across this commit: record concrete remaining implementation/qualification dependencies and route the next substantive authorized action without speculative browser-count expansion. Preserve actual/formal gates."
+    "label": "Continue against registered qualification inputs",
+    "reason": "Use13-QUALIFICATION-REGISTER.md to qualify the next supplied commercial/channel/provider contract or assigned independent runner; implement concrete binding gaps against that contract. Do not repeat unchanged local checks or infer protected/external authority."
   },
-  "updated_at": "2026-10-27T13:01:59.283825+00:00"
+  "updated_at": "2026-10-27T13:07:09.320865+00:00"
 }

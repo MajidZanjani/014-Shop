@@ -8,6 +8,16 @@ import sys
 ROOT=Path(__file__).resolve().parents[1]
 
 
+
+def check_activity_views(roadmap,phase,execution_status):
+    summary='CURRENT DEVELOPMENT FOCUS; '+execution_status
+    listing=re.search(r'^- \[[x ]\] \*\*Phase '+str(phase)+r':.*$',roadmap,re.M)
+    detail=re.search(r'^### Phase '+str(phase)+r':.*?(?=^### Phase |\Z)',roadmap,re.M|re.S)
+    progress=re.search(r'^\| '+str(phase)+r'\. [^\n]+$',roadmap,re.M)
+    for name,view in (('phase list',listing),('phase detail',detail),('progress row',progress)):
+        assert view and summary in view[0],'ROADMAP '+name+' disagrees with current execution status'
+
+
 def check(root=ROOT):
     planning=root/'.planning'
     state=(planning/'STATE.md').read_text()
@@ -43,6 +53,7 @@ def check(root=ROOT):
         assert focus and int(focus[1])==phase,name+' development focus disagrees with STATE'
         for label in labels:
             assert field(text,label)==field(state,label),name+' disagrees with STATE: '+label
+    check_activity_views(roadmap,phase,field(state,'Execution status'))
     status=re.search(r'^status:\s*(\w+)',state,re.M)[1]
     if status=='paused':
         assert field(state,'Execution status').startswith('paused '),'Paused STATE has contradictory execution status'

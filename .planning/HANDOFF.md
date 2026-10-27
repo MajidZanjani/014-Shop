@@ -4,11 +4,11 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress —13-01 task5 grouped session isolation verified locally: browser134+public76/14, backend580/5 checks, proxy148/2 aliases and264-file source pass; actual/formal gates pending.
+**Execution status:** in progress —13-01 task5 grouped local risks verified: browser224, backend580/5 checks, proxy148/2 aliases and264-file source; actual/formal qualification remains pending in13-QUALIFICATION-REGISTER.md.
 
-**Next implementation task:** Continue the grouped UAT-01–05 review across this commit: record concrete remaining implementation/qualification dependencies and route the next substantive authorized action without speculative browser-count expansion. Preserve actual/formal gates.
+**Next implementation task:** Use13-QUALIFICATION-REGISTER.md to qualify the next supplied commercial/channel/provider contract or assigned independent runner; implement concrete binding gaps against that contract. Do not repeat unchanged local checks or infer protected/external authority.
 
-**Recorded implementation:** 3965767b9acd2b16e62650e0c4d0b759dde1966b
+**Recorded implementation:** 44322c57c209f54f87031664f350425097bd5473
 
 This SHA contains the required-platform/no-JavaScript fixes and prepared public browser tooling; follow-up evidence records the570-test regression and58-check browser expansion. The one-shot structured handoff has been consumed; the checkpoint now records active task5 qualification. Final evidence and the narrow source-validator correction are in the current verification commit; do not reset to historical review c830297.
 

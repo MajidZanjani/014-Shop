@@ -2,8 +2,8 @@
 gsd_state_version: "1.0"
 current_plan: 01
 status: in_progress
-last_updated: "2026-10-27T13:01:59.283825+00:00"
-state_head: 3965767b9acd2b16e62650e0c4d0b759dde1966b
+last_updated: "2026-10-27T13:07:09.320865+00:00"
+state_head: 44322c57c209f54f87031664f350425097bd5473
 progress:
   total_phases: 14
   completed_phases: 1
@@ -14,8 +14,8 @@ current_task: 5
 last_activity: 2026-10-27
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Session-context isolation verified; continuing grouped UAT review across commit/sync.
-last_activity_desc: Opaque response-context guard;224 browser checks,580 backend tests/5 checks, proxy148 and exact source pass.
+stopped_at: Grouped local UAT batch verified; remaining release qualification requires registered inputs/runner.
+last_activity_desc: Session isolation verified; active roadmap drift caught and repaired; finite qualification routing recorded.
 ---
 
 # Project state — final purchase-flow revision2
@@ -26,9 +26,9 @@ last_activity_desc: Opaque response-context guard;224 browser checks,580 backend
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress —13-01 task5 grouped session isolation verified locally: browser134+public76/14, backend580/5 checks, proxy148/2 aliases and264-file source pass; actual/formal gates pending.
+**Execution status:** in progress —13-01 task5 grouped local risks verified: browser224, backend580/5 checks, proxy148/2 aliases and264-file source; actual/formal qualification remains pending in13-QUALIFICATION-REGISTER.md.
 
-**Next implementation task:** Continue the grouped UAT-01–05 review across this commit: record concrete remaining implementation/qualification dependencies and route the next substantive authorized action without speculative browser-count expansion. Preserve actual/formal gates.
+**Next implementation task:** Use13-QUALIFICATION-REGISTER.md to qualify the next supplied commercial/channel/provider contract or assigned independent runner; implement concrete binding gaps against that contract. Do not repeat unchanged local checks or infer protected/external authority.
 
 ## Preserved implementation/evidence
 
