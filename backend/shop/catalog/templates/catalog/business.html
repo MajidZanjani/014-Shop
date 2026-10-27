@@ -6,12 +6,12 @@
 <p>Local synthetic data only. Incomplete drafts can be saved. This is not order submission or legal acceptance; no payment or rights are created.</p>
 <p>Current saved revision {{ version }}. This form is based on revision {{ expected_version }}.{% if confirmation %} Last confirmed save: revision {{ confirmation }}.{% endif %}</p>
 <p role="status">{{ message }}</p>
-{% if errors %}<ul>{% for field in errors %}<li>{{ field }}: check this field.</li>{% endfor %}</ul>{% endif %}
+{% if errors %}<div role="alert"><p>Check the following fields:</p><ul>{% for error in errors %}<li>{% if error.target %}<a href="#{{ error.target }}">{{ error.label }}: check this field.</a>{% else %}{{ error.label }}: check this submission.{% endif %}</li>{% endfor %}</ul></div>{% endif %}
 <form method="post" action="/purchase/business/" autocomplete="off">{% csrf_token %}
 <input type="hidden" name="request_id" value="{{ request_id }}"><input type="hidden" name="expected_version" value="{{ expected_version }}">
 <input type="hidden" name="schema_version" value="{{ schema_version }}"><input type="hidden" name="source_sha256" value="{{ source_sha256 }}">
 <div class="business-grid">{% for group in groups %}<fieldset class="{% if group.wide %}wide{% endif %}" data-source-group="{{ group.id }}"><legend>{{ group.label }}{% if group.required %}<span class="badge">Required for checkout</span>{% elif group.pending %}<span class="badge pending">Pending</span>{% else %}<span class="badge">Optional / conditional</span>{% endif %}</legend><p>{{ group.hint }}</p>
-{% for field in group.fields %}<p>{{ field.label_tag }} {{ field }}</p>{% endfor %}</fieldset>{% endfor %}</div>
+{% for field in group.fields %}<p>{{ field.label_tag }} {{ field }}{% if field.field.has_submission_error %}<span id="{{ field.auto_id }}_error">Check this field. Use fictional details and .invalid email addresses.</span>{% endif %}</p>{% endfor %}</fieldset>{% endfor %}</div>
 <p>Country choices, tax/status choices and country-specific address requirements are pending. Blank invoice email defaults to purchasing email; blank licensed entity defaults to the purchasing business. Different licensed and purchasing entities require later review. Contact fields grant no access to another person.</p>
 <button>Save partial business draft</button></form>
 {% if evaluation.licensed_entity_review_required %}<p>Licensed and purchasing entities differ: review required.</p>{% endif %}

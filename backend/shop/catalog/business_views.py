@@ -39,14 +39,21 @@ def page(request,*,status=200,message='',initial=None,errors=None,expected_versi
     draft,snapshot=current(request.user)
     details=initial if initial is not None else snapshot.details if snapshot else rules.empty_details()
     form=BusinessForm(initial=details)
+    error_fields=[]
+    for key in errors or []:
+        if key in form.fields:
+            form.fields[key].has_submission_error=True
+            form.fields[key].widget.attrs.update({'aria-invalid':'true','aria-describedby':f'id_{key}_error'})
+            error_fields.append({'label':LABELS[key],'target':f'id_{key}'})
+        else:error_fields.append({'label':'Submission','target':None})
     groups=[{'id':key,'label':label,'hint':hint,'fields':[form[field] for field in fields],'required':key in ('legal_business_name','registered_address','billing_address','purchasing_name','business_email','technical_contact'),'pending':key in rules.PENDING,'wide':key in ('registered_address','billing_address','notes')} for key,label,fields,hint in rules.GROUPS]
     response=render(request,'catalog/business.html',{'groups':groups,'version':draft.version if draft else 0,
         'expected_version':expected_version if expected_version is not None else draft.version if draft else 0,
         'request_id':str(uuid.uuid4()),'schema_version':rules.SCHEMA_VERSION,'source_sha256':submitted_source if submitted_source is not None else rules.SOURCE_SHA256,
-        'message':message,'errors':[LABELS.get(key,'Submission') for key in (errors or [])],
+        'message':message,'errors':error_fields,
         'evaluation':rules.evaluate_details(details),'confirmation':request.session.get('business_last_confirmed_version')},status=status)
     response['Cache-Control']='no-store';response['Referrer-Policy']='no-referrer';response['Vary']='Cookie'
-    response['Content-Security-Policy']="default-src 'none'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'"
+    response['Content-Security-Policy']="default-src 'none'; style-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'"
     return response
 
 

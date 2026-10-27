@@ -145,6 +145,25 @@ class BusinessDraftTests(TransactionTestCase):
     def test_concurrent_exact_retry(self):self.race(True)
     def test_concurrent_edits(self):self.race(False)
 
+    def test_accessible_validation_keeps_rejected_values_and_revisions_private(self):
+        page=self.client.get(URL)
+        self.assertEqual(page['Content-Security-Policy'],"default-src 'none'; style-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'")
+        self.assertNotContains(page,'aria-invalid="true"')
+        invalid=dict(self.value,business_email='INVALID_PRIVATE@example.com')
+        response=self.post(invalid)
+        self.assertEqual(response.status_code,422)
+        self.assertContains(response,'role="alert"',status_code=422)
+        self.assertContains(response,'href="#id_business_email"',status_code=422)
+        self.assertContains(response,'id="id_business_email_error"',status_code=422)
+        field=next(field for group in response.context['groups'] for field in group['fields'] if field.name=='business_email')
+        self.assertEqual(field.field.widget.attrs['aria-invalid'],'true')
+        self.assertEqual(field.field.widget.attrs['aria-describedby'],'id_business_email_error')
+        self.assertEqual(field.value(),'')
+        self.assertNotContains(response,invalid['business_email'],status_code=422)
+        self.assertEqual(BusinessDraftSnapshot.objects.count(),0)
+        self.assertEqual(self.post().status_code,303)
+        self.assertNotContains(self.client.get(URL),'aria-invalid="true"')
+
     def test_validation_error_preserves_original_revision_and_source(self):
         self.assertEqual(self.post().status_code,303)
         stale=dict(self.value,request_id=str(uuid.uuid4()),expected_version='1',business_email='INVALID_MUST_NOT_REFLECT',legal_business_name='STALE_PRIVATE_SYNTHETIC')

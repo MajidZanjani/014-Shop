@@ -193,6 +193,18 @@ async function smoke() {
       stage='keyboard-valid-submit-'+index;
       await key('Enter','Enter',13);
       await wait('document.body.innerText.includes("Your customer access is verified.")'); checks++;
+      stage='business-validation-'+index;
+      await navigate('/purchase/business/');
+      const businessRevision=await evaluate('document.querySelector("input[name=expected_version]").value');
+      await form('form[action="/purchase/business/"]',{business_email:'SYNTHETIC_REJECTED@example.com'});
+      require(lastDocumentStatus===422 && await evaluate('document.querySelector("input[name=expected_version]").value')===businessRevision);checks++;
+      require(await evaluate(`(() => {const f=document.querySelector('#id_business_email');return f.value==='' && f.getAttribute('aria-invalid')==='true' && document.getElementById(f.getAttribute('aria-describedby')).innerText.includes('.invalid') && document.querySelector('[role=alert] a').getAttribute('href')==='#id_business_email' && !document.body.innerText.includes('SYNTHETIC_REJECTED@example.com') && !location.search;})()`));checks++;
+      await send('Accessibility.enable');
+      const businessTree=await send('Accessibility.getFullAXTree');
+      require(businessTree.nodes.some(n=>!n.ignored && n.role?.value==='alert'));checks++;
+      await send('Emulation.setDeviceMetricsOverride',{width:320,height:900,deviceScaleFactor:1,mobile:false});
+      require(await evaluate('document.documentElement.scrollWidth<=innerWidth+1 && [...document.styleSheets].some(s=>s.href?.includes("/purchase/assets/shop.css"))'));checks++;
+      await send('Emulation.setDeviceMetricsOverride',{width:javascript?1280:390,height:900,deviceScaleFactor:1,mobile:!javascript});
       stage='cart-current-entry-'+index;
       await navigate('/purchase/cart/');
       const cartRevision=await evaluate('document.querySelector("form:has(input[value=add_ip]) input[name=expected_version]").value');

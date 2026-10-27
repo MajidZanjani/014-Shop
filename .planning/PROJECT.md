@@ -10,9 +10,9 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — staff keyboard MFA/320px layout and private form-error recovery verified; browser90 plus public25/14 pass; formal/manual and actual/full acceptance pending.
+**Execution status:** in progress — business form styles, accessible validation and320px reflow verified; browser98 plus public25/14 pass; formal/manual and actual/full acceptance pending.
 
-**Next implementation task:** Continue remaining local UAT-03 accessibility review and actual source/commercial/private-intake/transport/provider/runtime/recovery/host qualification only under existing scoped authority. Retain browser90+public25/14, focused23 staff security/navigation tests and current264-file inert source; do not repeat unchanged runs.
+**Next implementation task:** Continue remaining local UAT-03 checkout/accessibility review and actual source/commercial/private-intake/transport/provider/runtime/recovery/host qualification only under existing scoped authority. Retain browser98+public25/14, focused10 business tests and prior23 staff tests at their exact scope; do not repeat unchanged runs.
 
 Complete-cart synthetic checkout, acceptance/payment, once-only grants and staged completion are implemented, now with archived reservations/releases, scoped staff work, reverse/replace corrections and committed-revision statements. Supported complete-cart demo now covers both local staff login factors, exact assignment and work/correction/release/statement retries. Private versioned synthetic material releases and owner-only session-bound single-use POST downloads are now implemented. Local reviewed licence-change cases and held revised-scope/orders now preserve originals and unknown policies. Latest retained results:420-test full backend regression before the final catalog-family/same-band validation changes, final16 focused case tests and102 proxy header-level checks; complete-cart two-factor staff/customer demo includes all five case kinds and review corrections alongside retained-version release/download. Actual material/rights/retention/host qualifications remain pending. Only Phase1 is fully accepted;11/34 plan records complete. Counts are not engineering-effort estimates. [STATE.md](STATE.md) and [ROADMAP.md](ROADMAP.md) retain exact evidence and actual qualification gates.
 
@@ -210,3 +210,7 @@ Retained backend570/5 checks and proxy148/2 aliases; newly qualified exact front
 ##13-01 keyboard and narrow-screen follow-up —2026-10-27
 
 Expanded exact public browser58 customer/staff plus25 JavaScript/14 no-JavaScript checks pass, including real keyboard/focus, vendor accessibility-tree naming and320px reflow. The observed Django fallback overflow is fixed with the existing shared stylesheet. Focused20 form/cart tests and13 browser-contract tests pass; current inert source264 files/33 templates/1 CSS/no symlinks. Prior backend570 and proxy148 are retained pre-layout-change evidence. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md). Formal/manual and actual/full acceptance remain pending.
+
+##13-01 business validation accessibility —2026-10-27
+
+Business form now permits only existing same-origin CSS, exposes a validation alert and links errors to invalid fields with safe descriptions. Exact browser98 plus public25/14 pass;10 real-PostgreSQL business privacy/version/concurrency tests(1.424s),13 browser contracts and264-file/33-template inert source pass. Rejected synthetic email is absent, original revision/source retained and invalid submission saves nothing. Prior broad backend570/proxy148 and focused23 staff tests retain earlier scope. Formal/manual and actual/full acceptance remain pending. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md).

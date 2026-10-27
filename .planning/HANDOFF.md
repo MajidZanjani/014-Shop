@@ -4,11 +4,11 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — staff keyboard MFA/320px layout and private form-error recovery verified; browser90 plus public25/14 pass; formal/manual and actual/full acceptance pending.
+**Execution status:** in progress — business form styles, accessible validation and320px reflow verified; browser98 plus public25/14 pass; formal/manual and actual/full acceptance pending.
 
-**Next implementation task:** Continue remaining local UAT-03 accessibility review and actual source/commercial/private-intake/transport/provider/runtime/recovery/host qualification only under existing scoped authority. Retain browser90+public25/14, focused23 staff security/navigation tests and current264-file inert source; do not repeat unchanged runs.
+**Next implementation task:** Continue remaining local UAT-03 checkout/accessibility review and actual source/commercial/private-intake/transport/provider/runtime/recovery/host qualification only under existing scoped authority. Retain browser98+public25/14, focused10 business tests and prior23 staff tests at their exact scope; do not repeat unchanged runs.
 
-**Recorded implementation:** 3aaa5812dca0177ec065a2b19f645b0d50a1afa2
+**Recorded implementation:** 081f21edbd3503e0683b9606ee6bfba9941c2a51
 
 This SHA contains the required-platform/no-JavaScript fixes and prepared public browser tooling; follow-up evidence records the570-test regression and58-check browser expansion. The one-shot structured handoff has been consumed; the checkpoint now records active task5 qualification. Final evidence and the narrow source-validator correction are in the current verification commit; do not reset to historical review c830297.
 
@@ -121,3 +121,9 @@ Retained backend570/5 checks and proxy148/2 aliases; newly qualified exact front
 Expanded exact public browser58 customer/staff plus25 JavaScript/14 no-JavaScript checks pass, including real keyboard/focus, vendor accessibility-tree naming and320px reflow. The observed Django fallback overflow is fixed with the existing shared stylesheet. Focused20 form/cart tests and13 browser-contract tests pass; current inert source264 files/33 templates/1 CSS/no symlinks. Prior backend570 and proxy148 are retained pre-layout-change evidence. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md). Formal/manual and actual/full acceptance remain pending.
 
 **Current verified continuation:** staff keyboard MFA and private native-form retry pages; current inert source `/nix/store/a5y1jcv7xln5d4fa126gjcip87qscdkx-shop-python-source`. The recorded SHA is the preceding implementation base; [current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md) records the exact new source/results.
+
+##13-01 business validation accessibility —2026-10-27
+
+Business form now permits only existing same-origin CSS, exposes a validation alert and links errors to invalid fields with safe descriptions. Exact browser98 plus public25/14 pass;10 real-PostgreSQL business privacy/version/concurrency tests(1.424s),13 browser contracts and264-file/33-template inert source pass. Rejected synthetic email is absent, original revision/source retained and invalid submission saves nothing. Prior broad backend570/proxy148 and focused23 staff tests retain earlier scope. Formal/manual and actual/full acceptance remain pending. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md).
+
+Recorded implementation SHA is the preceding verified staff slice; the business continuation and exact source evidence below are authoritative for this commit. Current source: `/nix/store/ilxk6c3731l3ifrd38778l024hh8i8mr-shop-python-source`.
