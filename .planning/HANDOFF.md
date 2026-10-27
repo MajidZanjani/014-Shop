@@ -8,9 +8,9 @@
 
 **Next implementation task:** Continue13-01 public React/browser coverage using its exact frozen frontend graph and manual accessibility review; preserve all pending actual qualification gates.
 
-**Recorded implementation:** c48f4bdafddbaa6b33612c627476151d9df46d7c
+**Recorded implementation:** f18d98c15ea8aaa62540e7bf389a73724d0f8bdf
 
-This SHA records the preceding verified48-check browser implementation; the current change extends it with live revocation. The one-shot structured handoff and active pause checkpoint have been consumed. Final evidence and the narrow source-validator correction are in the current verification commit; do not reset to historical review c830297.
+This SHA records the verified54-check browser implementation including live staff revocation. The one-shot structured handoff and active pause checkpoint have been consumed. Final evidence and the narrow source-validator correction are in the current verification commit; do not reset to historical review c830297.
 
 [Final purchase-flow revision2](PURCHASE-FLOW-AMENDMENT.md) remains current authority. Retained Phase10 local work covers complete-cart synthetic grants/staged delivery and the implemented local support ledger; earlier phases are not implicitly complete. [Evidence](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md). One captured cart payment yields an archived deterministic grant plan, one licence record per IP line and exactly36000 integer support seconds/package once, non-expiring. Initial delivery leaves promised later reference design outstanding; later completion never adds another entitlement/grant. Ready-kit/support-only cases stay scoped. Archive readback precedes all simulated records/effects; uncertain funding cannot provision. No actual keys/files/rights or spendable support.
 

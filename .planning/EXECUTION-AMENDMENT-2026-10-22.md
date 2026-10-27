@@ -36,3 +36,7 @@ Apply [revision2](PURCHASE-FLOW-AMENDMENT.md) once, then implement platform/offe
 ## Manager-facing planning consistency — 2026-10-26
 
 The user reports to their manager from .planning. Before every implementation/status commit, update ROADMAP.md, STATE.md, PROJECT.md and HANDOFF.md together for current development focus, current plan, execution status and next implementation task; regenerate state.json and run scripts/check_planning.py. Show current focus in the phase list, phase details and progress row. Keep implementation progress separate from full acceptance and preserve dated evidence/actual gates. Update active structured/checkpoint handoffs when their task or status changes. A restored context does not establish that implementation has restarted. Completion counts must not be presented as engineering-effort percentages.
+
+## Standing Git push authorization — user instruction, 2026-10-27
+
+The user explicitly instructed: "yes push and don't ask again. please write in your plan to push after each commit without asking". Push each project commit to `origin/main` immediately after committing, without requesting confirmation again. This includes the previously local `f18d98c` commit and the commit recording this instruction. Use ordinary non-force pushes; this authorization does not extend to deployment or other protected external operations.
