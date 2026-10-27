@@ -2,7 +2,7 @@
 gsd_state_version: "1.0"
 current_plan: 01
 status: in_progress
-last_updated: "2026-10-27T08:57:23.089660+00:00"
+last_updated: "2026-10-27T09:10:24.625446+00:00"
 state_head: c50a4c1f0e30a6e2a7b4702af06fe7fe3278c3e1
 progress:
   total_phases: 14
@@ -14,8 +14,8 @@ current_task: 5
 last_activity: 2026-10-27
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Exact native/frontend/public browser qualification passed locally; formal/manual and actual gates pending.
-last_activity_desc: Exact Node24.22/npm11.19 build and fresh public browser58 plus20/7 passed; no owned process remains.
+stopped_at: Local keyboard/reflow slice verified and fallback overflow fixed; formal/manual and actual gates pending.
+last_activity_desc: Exact public25/14 plus browser58, focused20 and13 contracts pass; inert source264 verified.
 ---
 
 # Project state — final purchase-flow revision2
@@ -26,9 +26,9 @@ last_activity_desc: Exact Node24.22/npm11.19 build and fresh public browser58 pl
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — exact frozen frontend/public browser qualification verified locally (58 customer/staff plus20 JavaScript/7 no-JavaScript); formal/manual and actual/full acceptance pending.
+**Execution status:** in progress — local keyboard/accessibility-tree/320px reflow verified; Django fallback styling fixed; browser58 plus public25/14 pass; formal/manual and actual/full acceptance pending.
 
-**Next implementation task:** Complete manual/formal accessibility review and the existing actual source/commercial/private-intake/transport/provider/runtime/recovery/host qualification gates under their scoped authority. Exact frontend/public local qualification is complete; do not repeat unchanged backend/native/browser runs.
+**Next implementation task:** Complete the remaining manual/formal accessibility review and actual source/commercial/private-intake/transport/provider/runtime/recovery/host qualification under existing scoped authority. Preserve exact browser58+public25/14, focused20 form/cart tests and current264-file source evidence; do not repeat unchanged runs.
 
 ## Preserved implementation/evidence
 
@@ -235,3 +235,7 @@ Final13-01 verification: full backend570 tests/5 checks169.832s (enclosing171.12
 ##13-01 exact public qualification —2026-10-27
 
 Retained backend570/5 checks and proxy148/2 aliases; newly qualified exact frontend Node24.22.0/npm11.19.1 with browser58 customer/staff plus public20 JavaScript/7 no-JavaScript checks. Formal/manual and actual/full acceptance remain pending. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md). Native build/check completed with unchanged pins; separate preparation used two jobs/5400-second bound after observed four-job memory pressure. Acceptance-test limits are unchanged. No actual/full acceptance, phase completion or new commercial/external authority is inferred.
+
+##13-01 keyboard and narrow-screen follow-up —2026-10-27
+
+Expanded exact public browser58 customer/staff plus25 JavaScript/14 no-JavaScript checks pass, including real keyboard/focus, vendor accessibility-tree naming and320px reflow. The observed Django fallback overflow is fixed with the existing shared stylesheet. Focused20 form/cart tests and13 browser-contract tests pass; current inert source264 files/33 templates/1 CSS/no symlinks. Prior backend570 and proxy148 are retained pre-layout-change evidence. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md). Formal/manual and actual/full acceptance remain pending.

@@ -5,6 +5,36 @@ import { setTimeout as delay } from 'node:timers/promises';
 const require = value => { if (!value) throw new Error('public browser assertion'); };
 export async function publicSmoke({index,javascript,config,navigate,evaluate,wait,send,cdp,browserContextId,mark,form}) {
   let checks=0;
+  const key=async (key,code,number) => {
+    for (const type of ['keyDown','keyUp']) await send('Input.dispatchKeyEvent',{
+      type,key,code,windowsVirtualKeyCode:number,nativeVirtualKeyCode:number});
+  };
+  const reflow=async label => {
+    mark('public-reflow-'+label+'-'+index);
+    await send('Emulation.setDeviceMetricsOverride',{width:320,height:900,deviceScaleFactor:1,mobile:false});
+    require(await evaluate('innerWidth===320 && document.documentElement.scrollWidth<=innerWidth+1'));checks++;
+    await send('Emulation.setDeviceMetricsOverride',{width:javascript?1280:390,height:900,deviceScaleFactor:1,mobile:!javascript});
+  };
+  const keyboardTarget=async (selector,label) => {
+    mark('public-keyboard-'+label+'-'+index);
+    await send('Page.bringToFront');
+    const focused=`document.activeElement===document.querySelector(${JSON.stringify(selector)})`;
+    for(let n=0;n<32 && !await evaluate(focused);n++) await key('Tab','Tab',9);
+    require(await evaluate(focused));checks++;
+    require(await evaluate(`(() => {const e=document.activeElement,s=getComputedStyle(e),r=e.getBoundingClientRect();
+      return e.matches(':focus-visible') && s.outlineStyle!=='none' && parseFloat(s.outlineWidth)>=2
+        && r.width>0 && r.height>0 && r.top>=0 && r.bottom<=innerHeight+1;})()`));checks++;
+  };
+  const namedVendor=async selector => {
+    mark('public-accessible-vendor-'+index);
+    await send('Accessibility.enable');
+    const {root}=await send('DOM.getDocument');
+    const {nodeId}=await send('DOM.querySelector',{nodeId:root.nodeId,selector});
+    const {node}=await send('DOM.describeNode',{nodeId});
+    const {nodes}=await send('Accessibility.getPartialAXTree',{backendNodeId:node.backendNodeId,fetchRelatives:false});
+    require(nodes.some(n=>n.backendDOMNodeId===node.backendNodeId && !n.ignored
+      && n.role?.value==='combobox' && /vendor/i.test(n.name?.value??'')));checks++;
+  };
   mark('public-page-'+index);
   await navigate('/');
   require(await evaluate('document.title.includes("Configure your licence") && document.querySelectorAll("h1").length===1 && document.documentElement.lang==="en"'));checks++;
@@ -12,9 +42,14 @@ export async function publicSmoke({index,javascript,config,navigate,evaluate,wai
   if (!javascript) {
     require(await evaluate('getComputedStyle(document.querySelector("astro-island")).display==="none"'));checks++;
     require(await evaluate('document.querySelector("noscript a[href=\\"/purchase/simple/\\"]")!==null'));checks++;
-    await evaluate('document.querySelector("noscript a").click();true');
+    await reflow('static');
+    await keyboardTarget('noscript a','fallback');
+    await key('Enter','Enter',13);
     await wait('location.pathname==="/purchase/simple/" && document.readyState==="complete"');
     require(await evaluate('document.querySelector("select[name=vendor]")!==null'));checks++;
+    await reflow('django');
+    await keyboardTarget('select[name=vendor]','django-vendor');
+    await namedVendor('select[name=vendor]');
     await evaluate('document.querySelector("input[name=families][value=altera-agilex-5]").checked=true;true');
     await form('form',{vendor:'altera',term:'rd-annual',fixed_nodes:'1',floating_nodes:'0',support_packages:'0',platform_choice:'not-designed'});
     require(await evaluate('document.body.innerText.includes("Configuration ready for review.") && !document.querySelector("input[name=board_name]")'));checks++;
@@ -23,6 +58,11 @@ export async function publicSmoke({index,javascript,config,navigate,evaluate,wai
   }
   await wait('document.querySelector("astro-island") && !document.querySelector("astro-island").hasAttribute("ssr") && !document.querySelector("#customer-email").disabled');
   require(await evaluate('document.querySelector("#vendor").value===""'));checks++;
+  await reflow('react');
+  await keyboardTarget('#vendor','react-vendor');
+  await namedVendor('#vendor');
+  await key('ArrowDown','ArrowDown',40);
+  await wait('document.querySelector("#vendor").value==="altera"');checks++;
   const input=async (selector,value) => {
     await evaluate(`(() => {const e=document.querySelector(${JSON.stringify(selector)});if(!e)throw Error();
       const p=e.tagName==='SELECT'?HTMLSelectElement.prototype:HTMLInputElement.prototype;

@@ -4,9 +4,9 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — exact frozen frontend/public browser qualification verified locally (58 customer/staff plus20 JavaScript/7 no-JavaScript); formal/manual and actual/full acceptance pending.
+**Execution status:** in progress — local keyboard/accessibility-tree/320px reflow verified; Django fallback styling fixed; browser58 plus public25/14 pass; formal/manual and actual/full acceptance pending.
 
-**Next implementation task:** Complete manual/formal accessibility review and the existing actual source/commercial/private-intake/transport/provider/runtime/recovery/host qualification gates under their scoped authority. Exact frontend/public local qualification is complete; do not repeat unchanged backend/native/browser runs.
+**Next implementation task:** Complete the remaining manual/formal accessibility review and actual source/commercial/private-intake/transport/provider/runtime/recovery/host qualification under existing scoped authority. Preserve exact browser58+public25/14, focused20 form/cart tests and current264-file source evidence; do not repeat unchanged runs.
 
 **Recorded implementation:** c50a4c1f0e30a6e2a7b4702af06fe7fe3278c3e1
 
@@ -115,3 +115,7 @@ User requested $gsd-pause-work at 2026-10-27T06:46:50.819Z. Structured HANDOFF.j
 ##13-01 exact public qualification —2026-10-27
 
 Retained backend570/5 checks and proxy148/2 aliases; newly qualified exact frontend Node24.22.0/npm11.19.1 with browser58 customer/staff plus public20 JavaScript/7 no-JavaScript checks. Formal/manual and actual/full acceptance remain pending. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md). Native build/check completed with unchanged pins; separate preparation used two jobs/5400-second bound after observed four-job memory pressure. Acceptance-test limits are unchanged. No actual/full acceptance, phase completion or new commercial/external authority is inferred.
+
+##13-01 keyboard and narrow-screen follow-up —2026-10-27
+
+Expanded exact public browser58 customer/staff plus25 JavaScript/14 no-JavaScript checks pass, including real keyboard/focus, vendor accessibility-tree naming and320px reflow. The observed Django fallback overflow is fixed with the existing shared stylesheet. Focused20 form/cart tests and13 browser-contract tests pass; current inert source264 files/33 templates/1 CSS/no symlinks. Prior backend570 and proxy148 are retained pre-layout-change evidence. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md). Formal/manual and actual/full acceptance remain pending.

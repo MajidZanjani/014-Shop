@@ -1,6 +1,6 @@
 # Public React/browser qualification and required-platform fixes —2026-10-27
 
-**Current result:** Exact frozen frontend and the real fresh public browser producer now pass locally:58 customer/staff plus20 JavaScript/7 no-JavaScript assertions. Earlier diagnostic/failure/pending-build statements below are dated attempt history, superseded only for this exact local frontend/public qualification. Formal/manual accessibility and all actual/full gates remain pending.
+**Current result:** Exact frozen frontend and the real fresh public browser producer now pass locally:58 customer/staff plus25 JavaScript/14 no-JavaScript assertions, including the keyboard/reflow follow-up below. Earlier diagnostic/failure/pending-build statements below are dated attempt history, superseded only for this exact local frontend/public qualification. Formal/manual accessibility and all actual/full gates remain pending.
 
 ## Implemented behavior
 
@@ -84,3 +84,38 @@ The actual closed, validated report was:
 This supersedes diagnostic-only public20/7 with fresh actual local execution of the committed exact producer. The older diagnostic envelope remains diagnostic; it was not promoted. Browser controller Node24.21.0 remains separate from frontend Node24.22.0. Current JS-on/off customer/staff/auth/revocation/privacy/form-rejection checks and actual public React/no-JavaScript scenarios pass. Retained backend570/5 checks and proxy148/2 aliases were not repeated for these documentation-only changes. Formal/manual accessibility/assistive-technology approval, actual confidential intake/custody/transport, commercial/source/provider/retention/runtime/recovery/host/activation and full Phase13 acceptance remain pending. No actual customer materials, bank/mail, deployment or protected-service action occurred.
 
 Reproduce once exact native outputs are available: `TMPDIR=<new-owned-workspace-directory> nix develop --max-jobs 1 --cores 1 ./ops/nixos#browser --command python3 scripts/check_browser_access.py --public`. The committed command uses hash-locked index downloads; this run's retained-wheel substitution is explicitly scoped above. No hosted CI execution or independent off-host qualification is claimed.
+
+## Keyboard, accessibility-tree and320px reflow follow-up —2026-10-27
+
+User continued after the exact public baseline. Existing UAT-03 local accessibility coverage now uses actual CDP keyboard events, without DOM `.focus()` or synthetic click substitution for the tested keyboard path. Bounded Tab traversal reaches the React vendor selector, the public no-JavaScript fallback link and the Django vendor selector; each asserts a visible focus outline and vertical viewport visibility. Enter activates the fallback link; ArrowDown selects the React vendor. Chromium's actual accessibility tree must expose each tested vendor selector as a nonignored named combobox. Device emulation must report320 CSS pixels and no horizontal document overflow on hydrated React, static no-JavaScript public content and the Django fallback, then restore the original viewport.
+
+The first real expanded run failed at `public-reflow-django-1`. The fallback response lacked the shared stylesheet, so its long native select options exceeded the narrow viewport. The fix adds only the existing `/purchase/assets/shop.css?v=20261026` link and existing `shop-container panel` classes to that response. Licence/platform/form inputs, privacy sanitization, CSRF/no-store and local/synthetic-only production denial remain unchanged. No new dependency, template, questionnaire or private intake. The real browser subsequently passes the same reflow assertion and keyboard/focus checks with that shared styling.
+
+The closed public report now requires25 JavaScript/14 no-JavaScript assertions; the previous20/7 report is deliberately rejected for this expanded scope. The additional12 assertions cover five React checks and seven no-JavaScript checks; Enter activation strengthens the existing fallback navigation assertion. These are finite local checks, not formal accessibility, complete keyboard journeys, contrast,200%/400% text zoom or actual assistive-technology approval.
+
+Actual report after the fix:
+
+```json
+{
+  "browser_sandbox": "disabled-for-owned-local-root-smoke",
+  "browser_version": "155.0.8059.84",
+  "checks": 58,
+  "evidence_class": "local-synthetic-browser-engine",
+  "formal_accessibility": false,
+  "frontend_toolchain": {
+    "node": "24.22.0",
+    "npm": "11.19.1"
+  },
+  "modes": 2,
+  "node_version": "24.21.0",
+  "production_qualified": false,
+  "public_checks": {
+    "javascript": 25,
+    "no_javascript": 14
+  },
+  "roles": 2,
+  "status": "BROWSER_LOCAL_PASS"
+}
+```
+
+Verification: real exact fresh `--public` build/browser pass above; all13 browser report/control/public contract tests pass;20 existing real-PostgreSQL catalog/form/cart tests pass in1.706 seconds, including CSRF/private-input and production-denial behavior. No broad backend rerun is inferred for this narrow response markup/style change; retained backend570/proxy148 predate it. Current inert source `/nix/store/xwz80mphdkzly6h8d471j6sb9n4qphi1-shop-python-source` matches264 exact files/33 templates/1 stylesheet/no symlinks. Only the inert source was built; no image/deployment operation occurred. All existing timeout/toolchain/source/privacy/formal/actual gates remain. No owned browser/server/database/compiler process remains.
