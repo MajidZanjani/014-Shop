@@ -36,6 +36,7 @@ export async function publicSmoke({index,javascript,config,navigate,evaluate,wai
       && n.role?.value==='combobox' && /vendor/i.test(n.name?.value??'')));checks++;
   };
   mark('public-page-'+index);
+  if(javascript) await send('Network.setBlockedURLs',{urls:[config.origin+'/api/v1/customer/session/']});
   await navigate('/');
   require(await evaluate('document.title.includes("Configure your licence") && document.querySelectorAll("h1").length===1 && document.documentElement.lang==="en"'));checks++;
   require(await evaluate('document.body.innerText.includes("Local product preview") && document.querySelector("button").disabled'));checks++;
@@ -56,13 +57,19 @@ export async function publicSmoke({index,javascript,config,navigate,evaluate,wai
     require(await evaluate('localStorage.length===0 && sessionStorage.length===0 && !location.search && !location.hash'));checks++;
     return checks;
   }
-  await wait('document.querySelector("astro-island") && !document.querySelector("astro-island").hasAttribute("ssr") && !document.querySelector("#customer-email").disabled');
+  await wait('document.querySelector("astro-island") && !document.querySelector("astro-island").hasAttribute("ssr") && document.body.innerText.includes("The shop connection is unavailable")');
+  require(await evaluate('document.querySelector("#customer-email").disabled && document.body.innerText.includes("Your selections stay in this page") && !document.body.innerText.includes("--backend")'));checks++;
   require(await evaluate('document.querySelector("#vendor").value===""'));checks++;
   await reflow('react');
   await keyboardTarget('#vendor','react-vendor');
   await namedVendor('#vendor');
   await key('ArrowDown','ArrowDown',40);
   await wait('document.querySelector("#vendor").value==="altera"');checks++;
+  mark('public-reconnect-'+index);
+  await send('Network.setBlockedURLs',{urls:[]});
+  await evaluate('[...document.querySelectorAll("button")].find(e=>e.textContent==="Retry connection").click();true');
+  await wait('!document.querySelector("#customer-email").disabled');
+  require(await evaluate('document.querySelector("#vendor").value==="altera" && ![...document.querySelectorAll("button")].some(e=>e.textContent==="Retry connection")'));checks++;
   const input=async (selector,value) => {
     await evaluate(`(() => {const e=document.querySelector(${JSON.stringify(selector)});if(!e)throw Error();
       const p=e.tagName==='SELECT'?HTMLSelectElement.prototype:HTMLInputElement.prototype;
@@ -128,9 +135,16 @@ export async function publicSmoke({index,javascript,config,navigate,evaluate,wai
   const code=mail.match(/^Verification code: ([A-Za-z0-9_-]+)$/m)?.[1];require(code);
   await input('#customer-code',code);await click('Verify and continue');
   await wait('document.body.innerText.includes("Verified customer session") && !document.querySelector("section[aria-label=\\"Draft cart\\"] fieldset").disabled');checks++;
+  mark('public-offline-save-'+index);
+  await send('Network.emulateNetworkConditions',{offline:true,latency:0,downloadThroughput:-1,uploadThroughput:-1});
+  await click('Save configuration draft');
+  await wait('document.body.innerText.includes("The backend could not confirm this action")');
+  require(await evaluate('document.querySelector("#platform").value==="not-designed" && document.querySelector("#support").value==="2" && ![...document.querySelectorAll("button")].some(e=>e.textContent.startsWith("Resume draft")) && localStorage.length===0 && sessionStorage.length===0'));checks++;
+  await send('Network.emulateNetworkConditions',{offline:false,latency:0,downloadThroughput:-1,uploadThroughput:-1});
   mark('public-save-'+index);
   await click('Save configuration draft');
   await wait('document.body.innerText.includes("Configuration saved as a local draft") && [...document.querySelectorAll("button")].some(e=>e.textContent.startsWith("Resume draft"))');checks++;
+  require(await evaluate('[...document.querySelectorAll("button")].filter(e=>e.textContent.startsWith("Resume draft")).length===1'));checks++;
   mark('public-cart-'+index);
   await click('Add current configuration to cart');
   await wait('document.querySelector("section[aria-label=\\"Draft cart\\"]").innerText.includes("Version 1")');

@@ -14,20 +14,28 @@ export default function CustomerDrafts({configuration, onResume}: {configuration
   const [code,setCode]=useState('');
   const [requested,setRequested]=useState(false);
   const [busy,setBusy]=useState(false);
-  const [message,setMessage]=useState('Connecting to the local backend…');
+  const [message,setMessage]=useState('Connecting to the shop…');
   const [drafts,setDrafts]=useState<Draft[]>([]);
   const pending=useRef<{payload:string;id:string}|null>(null);
   const mounted=useRef(true);
-  useEffect(()=>{
-    mounted.current=true;
-    customerRequest('/api/v1/customer/session/').then(async session=>{
+  const connect=async()=>{
+    setBusy(true);setMessage('Connecting to the shop…');
+    try {
+      const session=await customerRequest('/api/v1/customer/session/');
       if (!mounted.current) return;
-      setAvailable(true);setCsrf(session.csrf_token);setAuthenticated(session.authenticated===true);setMessage('');
+      setCsrf(session.csrf_token);setAuthenticated(session.authenticated===true);
       if (session.authenticated) {
         const result=await customerRequest('/api/v1/configuration-drafts/');
-        if (mounted.current) setDrafts(result.drafts);
+        if (!mounted.current) return;
+        setDrafts(result.drafts);
       }
-    }).catch(()=>{if(mounted.current)setMessage('Start the demo with --backend to use local save/resume.');});
+      setAvailable(true);setMessage('');
+    }catch{
+      if(mounted.current){setAvailable(false);setMessage('The shop connection is unavailable. You can keep configuring here, then retry the connection. Your selections stay in this page.');}
+    }finally{if(mounted.current)setBusy(false);}
+  };
+  useEffect(()=>{
+    mounted.current=true;void connect();
     return ()=>{mounted.current=false;};
   },[]);
   const refresh=async()=>{
@@ -49,6 +57,7 @@ export default function CustomerDrafts({configuration, onResume}: {configuration
   return <section className="customer-drafts" aria-label="Protected local drafts">
     <h3>Save your configuration</h3>
     <p className="hint">Local synthetic access only. No real email is sent. Your demo drafts remain available until the demo backend stops.</p>
+    {!available && <button type="button" disabled={busy} onClick={()=>{if(!busy)void connect();}}>Retry connection</button>}
     {!authenticated ? <>
       <form onSubmit={e=>{e.preventDefault();void action(async()=>{
         await customerRequest('/api/v1/customer/request-code/','POST',{email},csrf);

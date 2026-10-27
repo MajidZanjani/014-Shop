@@ -2,8 +2,8 @@
 gsd_state_version: "1.0"
 current_plan: 01
 status: in_progress
-last_updated: "2026-10-27T11:16:54.831626+00:00"
-state_head: a959c4f1ff866cc04795216286fab95c23bd5cc9
+last_updated: "2026-10-27T11:27:14.156288+00:00"
+state_head: e12b1ac1b070cba7df78ded50c98b2a24200838b
 progress:
   total_phases: 14
   completed_phases: 1
@@ -14,8 +14,8 @@ current_task: 5
 last_activity: 2026-10-27
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Current full backend and proxy/demo regression verified; formal/manual and actual gates pending.
-last_activity_desc: Current full backend/proxy pass; exact browser134 plus public25/14 and source264 retained.
+stopped_at: Public connection retry and offline save recovery verified; formal/manual and actual gates pending.
+last_activity_desc: Exact browser134+public29/14 and13 contracts pass; backend578/proxy148 retained.
 ---
 
 # Project state — final purchase-flow revision2
@@ -26,9 +26,9 @@ last_activity_desc: Current full backend/proxy pass; exact browser134 plus publi
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — accumulated form/authentication changes pass current full local regression and proxy/demo; browser134 plus public25/14 retained; formal/manual and actual/full acceptance pending.
+**Execution status:** in progress — public connection retry/offline-save recovery verified; browser134 plus public29/14 pass; backend578/proxy148 retained; formal/manual and actual/full acceptance pending.
 
-**Next implementation task:** Continue remaining local UAT-03 accessibility/offline review and actual source/commercial/private-intake/transport/provider/runtime/recovery/host qualification only under existing scoped authority. Retain current full regression/proxy and browser134+public25/14 evidence; do not repeat unchanged runs.
+**Next implementation task:** Continue remaining local UAT-03 review and actual source/commercial/private-intake/transport/provider/runtime/recovery/host qualification only under existing scoped authority. Retain browser134+public29/14 and backend578/proxy148 at exact scope; do not repeat unchanged runs.
 
 ## Preserved implementation/evidence
 
@@ -267,3 +267,7 @@ Support HTML now uses fixed recovery guidance and an explicit query-free authori
 ##13-01 accumulated-change regression —2026-10-27
 
 Current-source full backend 578 tests/5 checks pass in171.478s; sequential local proxy/demo pass (see exact evidence). Existing browser134+public25/14, focused24 support tests and264-file source retain their verified scope. Formal/manual and actual/full acceptance remain pending. [Exact evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md).
+
+##13-01 public offline recovery —2026-10-27
+
+Initial public connection failure now offers an explicit in-page retry with readable guidance, preserving configuration selections. Exact fresh browser134+public29/14 passes, including blocked initial session/reconnect and offline failed-save/manual retry with one saved draft.13 browser contracts pass. Backend/source are unchanged; full backend578/proxy148 remain valid for their local scope. Formal/manual and actual/full acceptance remain pending. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md).

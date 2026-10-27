@@ -1,6 +1,6 @@
 # Public React/browser qualification and required-platform fixes —2026-10-27
 
-**Current result:** Exact frozen frontend and the real fresh public browser producer now pass locally:134 customer/staff/business/checkout/payment/support plus25 JavaScript/14 no-JavaScript assertions, including staff/customer keyboard MFA/access, error recovery and reflow below. Earlier diagnostic/failure/pending-build statements below are dated attempt history, superseded only for this exact local frontend/public qualification. Formal/manual accessibility and all actual/full gates remain pending.
+**Current result:** Exact frozen frontend and the real fresh public browser producer now pass locally:134 customer/staff/business/checkout/payment/support plus29 JavaScript/14 no-JavaScript assertions, including staff/customer keyboard MFA/access, error recovery and reflow below. Earlier diagnostic/failure/pending-build statements below are dated attempt history, superseded only for this exact local frontend/public qualification. Formal/manual accessibility and all actual/full gates remain pending.
 
 ## Implemented behavior
 
@@ -249,3 +249,17 @@ DEMO_ACCESS_PASS checks=148 aliases=2 evidence=local-synthetic-header-level
 ```
 
 Both existing120-second Django batch limits and900-second outer lane remain unchanged. The temporary wrapper only substitutes the retained hash-locked wheel cache for download sourcing, preserving frozen installs/hash checks. Core verifies real PostgreSQL18.6/UTF8 identity, migrations/no drift, all required application labels and Gunicorn health/routes. Proxy evidence is local synthetic/header-level; it is separate from retained actual browser134+public25/14. Backend code/source is unchanged from `/nix/store/6k4lq06jcsm8vssp1clq19l35dpdfxzv-shop-python-source` (264 files/33 templates/1 CSS/no symlinks); this continuation changes planning evidence only. No repeated browser/frontend build, hosted CI, formal accessibility, actual provider/host/recovery or full phase acceptance is inferred. All actual gates remain pending.
+
+## Public connection and offline-save recovery —2026-10-27
+
+Initial customer-session failure previously offered only a developer --backend command. CustomerDrafts now gives readable unavailable-connection guidance and an explicit Retry connection button. The bounded same-origin session GET/optional authenticated draft refresh can run again without reloading or resetting parent configuration. Busy state disables retry during connection work. No timer/automatic POST retry, browser persistence, new endpoint, dependency or server behavior was introduced. Existing save pending identity is preserved for explicit same-selection retries.
+
+Exact fresh producer output:
+
+```json
+{"browser_sandbox": "disabled-for-owned-local-root-smoke", "browser_version": "155.0.8059.84", "checks": 134, "evidence_class": "local-synthetic-browser-engine", "formal_accessibility": false, "frontend_toolchain": {"node": "24.22.0", "npm": "11.19.1"}, "modes": 2, "node_version": "24.21.0", "production_qualified": false, "public_checks": {"javascript": 29, "no_javascript": 14}, "roles": 2, "status": "BROWSER_LOCAL_PASS"}
+```
+
+Four new JavaScript assertions cover a real browser Network.setBlockedURLs failure of only the initial session endpoint (static assets/hydration remain available), disabled verification/readable guidance, explicit reconnect with selected vendor retained, then Network.emulateNetworkConditions offline during save, unconfirmed action/configuration retained/no draft or browser persistence, and explicit restored-network save yielding exactly one listed draft. Existing save/resume/cart/quote/logout paths still pass. This is pre-dispatch offline failure coverage, not a claim of committed response-loss fault injection. No-JavaScript14 and private134 remain unchanged. Older public25/14 reports fail the closed contract;13 report/controller/public tests pass.
+
+Fresh allowlisted npm ci, TypeScript/Astro check/build and frontend tests run under exact Node24.22.0/npm11.19.1 with source/output/privacy/hash controls intact; browser controller remains Node24.21.0/Chromium155.0.8059.84. All existing150-second command/720-second enclosing frontend/90-second browser bounds remain. Temporary backend bootstrap alone retains disclosed hash-locked wheel-cache sourcing. Backend code/source remains unchanged from `/nix/store/6k4lq06jcsm8vssp1clq19l35dpdfxzv-shop-python-source`; existing578-test/5-check full local regression and148 proxy checks retain their exact scope, with no repeat backend run claimed. Formal accessibility, actual offline device/network qualification, provider/host/recovery/full acceptance remain pending; formal_accessibility and production_qualified stay false.
