@@ -47,8 +47,12 @@ export default function CustomerDrafts({configuration, onResume}: {configuration
     setEmail('');setCode('');setRequested(false);pending.current=null;
     onResume(initialConfiguration());
   };
-  const sessionExpired=()=>{
+  const accessDenied=(status:401|403)=>{
     clearPrivateState();
+    if(status===403){
+      setMessage('Access or CSRF verification failed. Private information has been cleared from this page. Retry the connection to check your session before continuing.');
+      return;
+    }
     setMessage('Your session expired. Verify again to access your drafts.');
     void customerRequest('/api/v1/customer/session/').then(session=>{
       if(mounted.current){setCsrf(session.csrf_token);setAvailable(true);}
@@ -71,10 +75,9 @@ export default function CustomerDrafts({configuration, onResume}: {configuration
     if(busy)return;setBusy(true);setMessage('');
     try{await run();}
     catch(error){
-      if(error instanceof ApiError && error.status===401){sessionExpired();}
+      if(error instanceof ApiError && (error.status===401||error.status===403)){accessDenied(error.status);}
       else if(error instanceof ApiError && error.status===429)setMessage('Verification request limit reached. Wait ten minutes before trying again.');
       else if(error instanceof ApiError && error.status===400)setMessage('Verification failed. Check the code, its expiry and the requesting browser.');
-      else if(error instanceof ApiError && error.status===403)setMessage('Access or CSRF verification failed. Refresh this page and verify again.');
       else if(error instanceof ApiError && error.status===409)setMessage('The catalog or save request changed. Refresh and review the configuration.');
       else setMessage('The backend could not confirm this action. A save can be retried with the same selections; no order was placed.');
     }finally{setBusy(false);}
@@ -104,7 +107,7 @@ export default function CustomerDrafts({configuration, onResume}: {configuration
     </> : <>
       <p>Verified customer session</p>
       <p><a href="/purchase/business/">Edit private business-details draft</a> · Country/tax choices and checkout remain pending.</p>
-      <DraftCart configuration={configuration} csrf={csrf} onResume={onResume} onSessionExpired={sessionExpired}/>
+      <DraftCart configuration={configuration} csrf={csrf} onResume={onResume} onAccessDenied={accessDenied}/>
       <button type="button" disabled={busy||!evaluate(configuration).valid} onClick={()=>void action(async()=>{
         const payload=JSON.stringify(configuration);
         if(pending.current?.payload!==payload)pending.current={payload,id:crypto.randomUUID()};

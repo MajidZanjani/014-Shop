@@ -24,7 +24,7 @@ function ReviewStatusText({value}:{value?:ReviewStatus}) {
   return <span>{label}{value?.updated_at&&<> · Last status update: {value.updated_at}</>}</span>;
 }
 type Snapshot = {cart_id:string|null;version:number;current_version:number;catalog_revision:string;lines:Line[];evaluation:{status:string;quoted_support_seconds:number|null}};
-export default function DraftCart({configuration,csrf,onResume,onSessionExpired}:{configuration:Configuration;csrf:string;onResume:(v:Configuration)=>void;onSessionExpired:()=>void}) {
+export default function DraftCart({configuration,csrf,onResume,onAccessDenied}:{configuration:Configuration;csrf:string;onResume:(v:Configuration)=>void;onAccessDenied:(status:401|403)=>void}) {
   const [cart,setCart]=useState<Snapshot|null>(null),[busy,setBusy]=useState(false),[message,setMessage]=useState('Loading draft cart…'),[quantity,setQuantity]=useState(1),[uncertain,setUncertain]=useState(false);
   const pending=useRef<object|null>(null);
   const quotePending=useRef<object|null>(null);
@@ -33,7 +33,7 @@ export default function DraftCart({configuration,csrf,onResume,onSessionExpired}
   const [receipt,setReceipt]=useState<(Snapshot & {id:string;review_status?:ReviewStatus})|null>(null);
   const request=async(...args:Parameters<typeof customerRequest>)=>{
     try{return await customerRequest(...args);}
-    catch(error){if(error instanceof ApiError&&error.status===401)onSessionExpired();throw error;}
+    catch(error){if(error instanceof ApiError&&(error.status===401||error.status===403))onAccessDenied(error.status);throw error;}
   };
   const loadRequests=async()=>{const value=await request('/api/v1/quotation-requests/');setRequests(value.requests);};
   const loadReceipt=async(id:string)=>{

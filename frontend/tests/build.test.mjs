@@ -191,7 +191,7 @@ test('cart React flow preserves exact uncertain retry and separate support lines
   };
   const {act,createElement}=await import('react');const {createRoot}=await import('react-dom/client');
   const container=host.document.createElement('div');host.document.body.appendChild(container);root=createRoot(container);
-  await act(async()=>root.render(createElement(Cart,{configuration:fixtures[1].value,csrf:'synthetic-csrf',onResume(){},onSessionExpired(){}})));
+  await act(async()=>root.render(createElement(Cart,{configuration:fixtures[1].value,csrf:'synthetic-csrf',onResume(){},onAccessDenied(){}})));
   const click=async(label)=>{const button=findNode(container,n=>n.tagName==='BUTTON'&&n.textContent===label);assert.ok(button,label);await act(async()=>{
    const event={type:'click',target:button,button:0,bubbles:true,timeStamp:Date.now(),preventDefault(){},stopPropagation(){}};
    for(const key of ['click:true','click:false'])for(const listener of container.events.get(key)??[])listener(event);
