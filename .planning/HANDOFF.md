@@ -4,11 +4,11 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — customer/staff support error guidance and keyboard recovery verified; browser134 plus public25/14 pass; formal/manual and actual/full acceptance pending.
+**Execution status:** in progress — accumulated form/authentication changes pass current full local regression and proxy/demo; browser134 plus public25/14 retained; formal/manual and actual/full acceptance pending.
 
-**Next implementation task:** Continue remaining local UAT-03 accessibility review and actual source/commercial/private-intake/transport/provider/runtime/recovery/host qualification only under existing scoped authority. Retain browser134+public25/14, focused24 support ledger/context tests and earlier scoped results; do not repeat unchanged runs.
+**Next implementation task:** Continue remaining local UAT-03 accessibility/offline review and actual source/commercial/private-intake/transport/provider/runtime/recovery/host qualification only under existing scoped authority. Retain current full regression/proxy and browser134+public25/14 evidence; do not repeat unchanged runs.
 
-**Recorded implementation:** b2cbc98f599cab3103907f87bf94f983d4172683
+**Recorded implementation:** a959c4f1ff866cc04795216286fab95c23bd5cc9
 
 This SHA contains the required-platform/no-JavaScript fixes and prepared public browser tooling; follow-up evidence records the570-test regression and58-check browser expansion. The one-shot structured handoff has been consumed; the checkpoint now records active task5 qualification. Final evidence and the narrow source-validator correction are in the current verification commit; do not reset to historical review c830297.
 
@@ -145,3 +145,5 @@ Recorded implementation is the preceding checkout regression; this continuation 
 Support HTML now uses fixed recovery guidance and an explicit query-free authorized-route link. Exact browser134 plus public25 JavaScript/14 no-JavaScript checks pass, including customer/staff AX alerts,320px visible Tab focus and Enter recovery to unchanged ledger revisions/balances in both modes. Focused24 real-PostgreSQL support ledger/context tests(8.253s),13 browser contracts and exact264-file/33-template source pass. JSON codes/statuses, recent MFA/exact scope, reservation/concurrency/archive controls remain unchanged. Formal/manual and actual/full acceptance remain pending. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md).
 
 Recorded implementation is the preceding payment slice; the current support continuation and exact source /nix/store/6k4lq06jcsm8vssp1clq19l35dpdfxzv-shop-python-source are authoritative for this commit. No owned process remains.
+
+Current-source consolidated local regression and exact next action are recorded in [evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md). Recorded SHA is the verified support implementation base; this continuation changes evidence only. No owned process remains.

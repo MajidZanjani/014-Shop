@@ -233,3 +233,19 @@ Exact fresh --public BROWSER_LOCAL_PASS134+25 JavaScript/14 no-JavaScript passes
 Focused real PostgreSQL ledger/context24 tests pass in8.253s, including reservation competition, retries, corrections, archive/CAS, exact recent-MFA grants and new unchanged-state/customer-staff recovery/API-parity checks. Invalid zero/excess seconds create no event or balance effect; unknown private synthetic error text is absent from HTML. An initial focused test failed because customer requests were incorrectly inside the staff-only host/URL/session override. The fixture now checks each client in its actual configuration; no host/protection policy changed. That failed attempt is diagnostic, superseded by the final focused pass.
 
 Exact inert source `/nix/store/6k4lq06jcsm8vssp1clq19l35dpdfxzv-shop-python-source`:264 byte-matched files/33 templates/1 CSS/no symlinks. Temporary runners retain disclosed hash-locked wheel-cache sourcing with all install controls. No broad backend/proxy rerun or actual provider/host action is claimed. Formal_accessibility and production_qualified stay false; all actual/full gates remain pending.
+
+## Consolidated current-source local regression —2026-10-27
+
+Accumulated staff/customer authentication and business/checkout/payment/support HTML changes justified one isolated full core-local run, followed sequentially by proxy/demo checks. Exact producer output:
+
+```json
+{"backend_duration_seconds": 171.478, "checks": 5, "elapsed_seconds": 172.77996964706108, "evidence_class": "local-synthetic", "failures": 0, "lane": "core-local", "tests": 578, "tool_identity": {}}
+```
+
+Proxy/demo output:
+
+```text
+DEMO_ACCESS_PASS checks=148 aliases=2 evidence=local-synthetic-header-level
+```
+
+Both existing120-second Django batch limits and900-second outer lane remain unchanged. The temporary wrapper only substitutes the retained hash-locked wheel cache for download sourcing, preserving frozen installs/hash checks. Core verifies real PostgreSQL18.6/UTF8 identity, migrations/no drift, all required application labels and Gunicorn health/routes. Proxy evidence is local synthetic/header-level; it is separate from retained actual browser134+public25/14. Backend code/source is unchanged from `/nix/store/6k4lq06jcsm8vssp1clq19l35dpdfxzv-shop-python-source` (264 files/33 templates/1 CSS/no symlinks); this continuation changes planning evidence only. No repeated browser/frontend build, hosted CI, formal accessibility, actual provider/host/recovery or full phase acceptance is inferred. All actual gates remain pending.
