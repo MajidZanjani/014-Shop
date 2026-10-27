@@ -1,4 +1,5 @@
 // Headless local browser-engine smoke. No Playwright dependency or production Node service.
+import { Socket } from 'node:net';
 import { spawn, execFileSync } from 'node:child_process';
 import { readFile, readdir, mkdtemp, rm, realpath } from 'node:fs/promises';
 import { join } from 'node:path';
@@ -43,6 +44,26 @@ async function smoke() {
   const browser=process.env.SHOP_BROWSER, version=process.env.SHOP_BROWSER_VERSION;
   require(browser?.startsWith('/nix/store/') && version);
   require(execFileSync(browser,['--version'],{timeout:10000,encoding:'utf8'}).trim().includes(version));
+  const control=new Socket({fd:Number(process.env.SHOP_BROWSER_CONTROL_FD),readable:true,writable:true});
+  control.on('error',() => {});
+  const operator=async (index,action) => {
+    await new Promise((resolve,reject) => {
+      let response='';
+      const cleanup=() => {clearTimeout(timer);control.off('data',data);control.off('error',fail);control.off('end',fail);};
+      const fail=() => {cleanup();reject(new Error('operator refused'));};
+      const data=chunk => {
+        response+=chunk.toString('utf8');
+        if (response.length>128) return fail();
+        if (response.endsWith('\n')) {
+          cleanup();
+          if (response!=='{"ok":true}\n') reject(new Error('operator refused')); else resolve();
+        }
+      };
+      const timer=setTimeout(fail,15000);
+      control.on('data',data);control.once('error',fail);control.once('end',fail);
+      control.write(JSON.stringify({index,action})+'\n');
+    });
+  };
   const profile=await mkdtemp(join(config.scratch,'chromium-'));
   const child=spawn(browser,['--headless','--disable-gpu','--no-sandbox','--no-first-run',
     '--no-default-browser-check','--disable-background-networking','--disable-component-update',
@@ -175,21 +196,24 @@ async function smoke() {
       require(await evaluate('document.querySelector("input[name=email]")!==null && !document.body.innerText.includes("Your customer access is verified.")')); checks++;
       await navigate(config.support);
       require(lastDocumentStatus===401 && await evaluate('!document.body.innerText.includes("Available: 70200") && !document.body.innerText.includes("Synthetic prototype")')); checks++;
-      stage='staff-password-'+index;
-      await staffNavigate('/staff/');
-      const staffBefore=new Set(await readdir(config.staff.capture));
-      await form('form[action="/staff/login/"]',{username:config.staff.username,password:config.staff.password});
-      require(await evaluate('document.querySelector("input[name=code]")!==null')); checks++;
-      const staffAdded=(await readdir(config.staff.capture)).filter(name => !staffBefore.has(name));
-      require(staffAdded.length===1);
-      const staffMail=await readFile(join(config.staff.capture,staffAdded[0]),'utf8'); require(staffMail.length<16384);
-      const staffCode=staffMail.match(/^Code: ([A-Za-z0-9_-]+)$/m)?.[1]; require(staffCode);
-      await staffNavigate(config.staff.support);
-      require(lastDocumentStatus===403); checks++;
-      stage='staff-second-factor-'+index;
-      await staffNavigate('/staff/');
-      await form('form[action="/staff/verify/"]',{code:staffCode});
-      require(await evaluate('document.body.innerText.includes("Both local factors verified.")')); checks++;
+      const staffLogin=async (countChecks=true) => {
+        stage='staff-password-'+index;
+        await staffNavigate('/staff/');
+        const staffBefore=new Set(await readdir(config.staff.capture));
+        await form('form[action="/staff/login/"]',{username:config.staff.actors[index].username,password:config.staff.actors[index].password});
+        require(await evaluate('document.querySelector("input[name=code]")!==null')); if (countChecks) checks++;
+        const staffAdded=(await readdir(config.staff.capture)).filter(name => !staffBefore.has(name));
+        require(staffAdded.length===1);
+        const staffMail=await readFile(join(config.staff.capture,staffAdded[0]),'utf8'); require(staffMail.length<16384);
+        const staffCode=staffMail.match(/^Code: ([A-Za-z0-9_-]+)$/m)?.[1]; require(staffCode);
+        await staffNavigate(config.staff.support);
+        require(lastDocumentStatus===403); if (countChecks) checks++;
+        stage='staff-second-factor-'+index;
+        await staffNavigate('/staff/');
+        await form('form[action="/staff/verify/"]',{code:staffCode});
+        require(await evaluate('document.body.innerText.includes("Both local factors verified.")')); if (countChecks) checks++;
+      };
+      await staffLogin();
       await staffNavigate(config.staff.support);
       require(lastDocumentStatus===200 && await evaluate('document.body.innerText.includes("Available: 70200") && document.body.innerText.includes("Optional private support follow-up")')); checks++;
       await staffNavigate(config.staff.unassigned);
@@ -198,16 +222,40 @@ async function smoke() {
       const staffCookies=await cdp.send('Storage.getCookies',{browserContextId});
       require(staffCookies.cookies.some(cookie => cookie.name===config.staff.session_cookie && cookie.httpOnly)
         && await evaluate('localStorage.length===0 && sessionStorage.length===0 && !location.search && !location.hash')); checks++;
+      const staffCookie=async () => (await cdp.send('Storage.getCookies',{browserContextId})).cookies
+        .find(cookie => cookie.name===config.staff.session_cookie)?.value;
+      const scopeCookie=await staffCookie(); require(scopeCookie);
+      stage='staff-scope-revoke-'+index;
+      await operator(index,'revoke-support');
+      await staffNavigate(config.staff.support);
+      require(lastDocumentStatus===404 && await staffCookie()===scopeCookie
+        && await evaluate('!document.body.innerText.includes("Available: 70200")')); checks++;
+      stage='staff-scope-regrant-'+index;
+      await operator(index,'grant-support');
+      await staffNavigate(config.staff.support);
+      require(lastDocumentStatus===200 && await staffCookie()===scopeCookie
+        && await evaluate('document.body.innerText.includes("Available: 70200")')); checks++;
+      await staffNavigate('/staff/');
       stage='staff-logout-'+index;
       await form('form[action="/staff/logout/"]',{});
       await staffNavigate(config.staff.support);
       require(lastDocumentStatus===403 && escaped===0 && blocked===1 && await evaluate('!document.body.innerText.includes("Available: 70200")')); checks++;
+      // Reauthenticate through both supported forms after the ordinary logout check.
+      await staffLogin(false);
+      const staleCookie=await staffCookie(); require(staleCookie);
+      stage='staff-credential-revoke-'+index;
+      await operator(index,'revoke');
+      await staffNavigate(config.staff.support);
+      require(lastDocumentStatus===403 && await staffCookie()===staleCookie
+        && await evaluate('!document.body.innerText.includes("Available: 70200")')); checks++;
       await cdp.send('Target.disposeBrowserContext',{browserContextId});
     }
+    control.end();
     return {status:'BROWSER_LOCAL_PASS',checks,modes:2,roles:2,browser_version:version,node_version:process.versions.node,
       evidence_class:'local-synthetic-browser-engine',formal_accessibility:false,production_qualified:false,
       browser_sandbox:'disabled-for-owned-local-root-smoke'};
   } finally {
+    control.destroy();
     cdp?.socket.close(); child.kill('SIGTERM');
     for (let count=0; count<50 && child.exitCode===null && child.signalCode===null; count++) await delay(50);
     if (child.exitCode===null && child.signalCode===null) child.kill('SIGKILL');
