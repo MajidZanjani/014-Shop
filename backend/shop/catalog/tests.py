@@ -145,6 +145,7 @@ class SimplePurchaseTests(SimpleTestCase):
         self.assertContains(r,'Purchase unavailable')
         value=CASES[0]['value']
         data={k:v for k,v in value.items() if k not in ('product_id','profile_id','quantity') and v is not None}
+        data['platform_choice']='not-designed'
         data['csrfmiddlewaretoken']=client.cookies['csrftoken'].value
         r=client.post('/purchase/simple/',data=data)
         self.assertEqual(r.status_code,200)
@@ -161,3 +162,21 @@ class SimplePurchaseTests(SimpleTestCase):
         self.assertNotIn('SYNTHETIC_HOST_CANARY',r.content.decode())
         with override_settings(SHOP_ENV='production'):
             self.assertEqual(self.client.get('/purchase/simple/').status_code,404)
+
+
+    def test_new_form_requires_platform_without_invalidating_legacy_snapshot(self):
+        from .simple import ConfigurationForm
+        value=CASES[0]['value']
+        self.assertTrue(evaluate(value)['valid'])  # Historical snapshot rules stay recoverable.
+        data={k:v for k,v in value.items() if k not in ('product_id','profile_id','quantity') and v is not None}
+        for choice in (None,'','not-designed','other-board'):
+            payload=dict(data)
+            if choice is not None:payload['platform_choice']=choice
+            form=ConfigurationForm(payload)
+            self.assertEqual(form.is_valid(),choice in ('not-designed','other-board'))
+            response=self.client.post('/purchase/simple/',data=payload)
+            if choice in ('not-designed','other-board'):
+                self.assertContains(response,'Configuration ready for review.')
+            else:
+                self.assertContains(response,'platform_choice: check this field.')
+                self.assertNotContains(response,'Configuration ready for review.')

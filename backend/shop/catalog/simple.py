@@ -8,7 +8,7 @@ from django.views.decorators.http import require_http_methods
 from .rules import CATALOG, evaluate
 
 class ConfigurationForm(forms.Form):
-    platform_choice=forms.ChoiceField(required=False,label='Which board or development kit will you use?',choices=[('', 'Choose a platform'),('listed-kit','A listed development kit'),('other-board','Another kit or a custom/modified board'),('not-designed','Board not designed or selected / I need board-design guidance')])
+    platform_choice=forms.ChoiceField(required=True,label='Which board or development kit will you use?',choices=[('', 'Choose a platform'),('listed-kit','A listed development kit'),('other-board','Another kit or a custom/modified board'),('not-designed','Board not designed or selected / I need board-design guidance')])
     kit_id=forms.ChoiceField(required=False,label='Listed kit (listed-kit choice only)',choices=[('', 'No approved ready-kit entries supplied yet')])
     board_name=forms.CharField(required=False,max_length=120,label='Short board name/model (other/custom choice only; blank means not yet named/unknown)')
     vendor=forms.ChoiceField(choices=[('', 'Choose a vendor')]+[(v['id'],v['label']) for v in CATALOG['vendors']],error_messages={'invalid_choice':'Choose a listed vendor.'})

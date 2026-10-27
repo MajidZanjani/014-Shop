@@ -32,7 +32,7 @@ class CartEditorTests(TransactionTestCase):
 
     def ip(self,**changes):
         result=self.form('add_ip')
-        result.update(vendor='altera',families=['altera-agilex-5'],term='rd-annual',production_band='',production_units='',fixed_nodes='1',floating_nodes='0')
+        result.update(platform_choice='not-designed',vendor='altera',families=['altera-agilex-5'],term='rd-annual',production_band='',production_units='',fixed_nodes='1',floating_nodes='0')
         result.update(changes);return result
 
     def cart(self):return self.browser.get('/api/v1/cart/').json()
@@ -44,7 +44,7 @@ class CartEditorTests(TransactionTestCase):
         support=self.form('add_support');support['quantity']='2'
         self.assertEqual(self.post(support).status_code,303)
         self.assertEqual(self.cart()['evaluation']['quoted_support_seconds'],72000)
-        edit=self.form('save_ip',PATH+'?edit='+line);edit.update(vendor='altera',families=['altera-agilex-5'],term='rd-annual',production_band='',production_units='',fixed_nodes='2',floating_nodes='0')
+        edit=self.form('save_ip',PATH+'?edit='+line);edit.update(platform_choice='not-designed',vendor='altera',families=['altera-agilex-5'],term='rd-annual',production_band='',production_units='',fixed_nodes='2',floating_nodes='0')
         self.assertEqual(self.post(edit).status_code,303)
         self.assertEqual(self.cart()['lines'][0]['configuration']['fixed_nodes'],2)
         quantity=self.form('save_support',line=support['line_id']);quantity['quantity']='3'
@@ -93,7 +93,7 @@ class CartEditorTests(TransactionTestCase):
             self.assertNotContains(response,'Cart change saved at revision')
 
     def test_invalid_ip_domains_support_values_and_max_lines_never_save(self):
-        for updates in ({'vendor':'amd'},{'families':['not-a-family']},{'fixed_nodes':'0'},
+        for updates in ({'platform_choice':''},{'vendor':'amd'},{'families':['not-a-family']},{'fixed_nodes':'0'},
                         {'term':'rdp-yearly','production_band':''},{'production_units':'1'}):
             self.assertEqual(self.post(self.ip(**updates)).status_code,422,updates)
         for quantity in ('0','-1','1.5','1000001','true','01'):

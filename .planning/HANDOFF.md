@@ -4,9 +4,9 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — local staff browser scope/credential revocation verified54 checks/2 roles/2 modes; actual/full qualification pending.
+**Execution status:** in progress — required-platform and no-JavaScript UI fixes locally verified; exact public frontend build and isolated full regression pending.
 
-**Next implementation task:** Continue13-01 public React/browser coverage using its exact frozen frontend graph and manual accessibility review; preserve all pending actual qualification gates.
+**Next implementation task:** Finish the bounded exact Node24.22 frontend build attempt; rerun backend regression in isolation, then qualify the fresh public browser path without diagnostic substitution.
 
 **Recorded implementation:** f18d98c15ea8aaa62540e7bf389a73724d0f8bdf
 
@@ -103,3 +103,7 @@ Latest browser evidence: [48 checks/2 roles/2 modes](phases/13-purchase-flow-ful
 ##13-01 live staff browser revocation —2026-10-27
 
 Pinned browser54 checks/2 roles/2 JS modes passes: retained-cookie scope revoke404, explicit regrant200 and credential revoke403; ordinary logout remains covered. Private inherited controller socket allows six exact ordered fixture operations only, never exposes DB credentials to Node and never retries an uncertain effect. Seven Python report/controller tests and pinned Node origin-policy test pass. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-REVOCATION-BROWSER-PARTIAL.md). Actual/full qualification remains pending; no backend/application bytes changed.
+
+##13-01 public browser preparation —2026-10-27
+
+Required-platform validation now covers current React/Django IP entry; no-JavaScript pages hide inactive React controls. Focused20 backend tests,13 browser-contract tests, default browser54 and proxy148/2 aliases pass. Public20/7 browser and112 frontend tests are explicitly diagnostic only; exact frontend graph/full regression/formal accessibility remain pending. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md).

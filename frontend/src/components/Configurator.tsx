@@ -5,7 +5,9 @@ import { initialConfiguration, changeVendor, changeTerm, evaluate } from '../lib
 
 export default function Configurator() {
   const [value, setValue] = useState(initialConfiguration);
-  const result = evaluate(value);
+  // Old saved snapshots may omit platform; new saves still need an explicit answer.
+  const configuration = {...value, platform: value.platform ?? {choice:'',kit_id:null,name:null}};
+  const result = evaluate(configuration);
   const vendor = catalog.vendors.find(v => v.id === value.vendor);
   const term = catalog.terms.find(t => t.id === value.term);
   const update = (key: 'fixed_nodes' | 'floating_nodes' | 'support_packages', raw: string) => setValue(v => ({...v, [key]: raw === '' ? NaN : Number(raw)}));
@@ -78,7 +80,7 @@ export default function Configurator() {
         <p>{result.status === 'requires_quote' ? 'Higher-volume configurations require a reviewed quotation.' : 'Actual prices, rights, access, coverage and delivery terms are pending. Applicable approved standard offers do not require individual engineering approval.'}</p>
         <button type="button" disabled>Purchase unavailable · approvals pending</button>
         <p className="hint">Local preview. No order is submitted, no payment is collected, and unsaved selections stay in memory only.</p>
-        <CustomerDrafts configuration={value} onResume={setValue} />
+        <CustomerDrafts configuration={configuration} onResume={setValue} />
       </div>
     </aside>
   </div>;

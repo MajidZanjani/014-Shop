@@ -3,6 +3,7 @@
 from contextlib import ExitStack
 from functools import partial
 from http.server import ThreadingHTTPServer
+import argparse
 import json
 import os
 import re
@@ -30,6 +31,38 @@ def validate_result(value,browser_version,node_version):
             or value['formal_accessibility'] is not False or value['production_qualified'] is not False
             or value['browser_sandbox']!='disabled-for-owned-local-root-smoke'):
         raise ValueError('browser evidence incomplete')
+
+
+PUBLIC_FIELDS={'public_checks','frontend_toolchain'}
+
+
+def validate_public_result(value,browser_version,node_version):
+    if (not isinstance(value,dict) or not PUBLIC_FIELDS<=set(value)
+            or value['public_checks']!={'javascript':20,'no_javascript':7}
+            or any(type(count) is not int for count in value['public_checks'].values())
+            or value['frontend_toolchain']!={'node':'24.22.0','npm':'11.19.1'}):
+        raise ValueError('public browser evidence incomplete')
+    validate_result({key:item for key,item in value.items() if key not in PUBLIC_FIELDS},browser_version,node_version)
+
+
+def prepare_public(public):
+    from check_frontend import scan_output
+    nix_temporary=public.parent/'frontend-nix-tmp';nix_temporary.mkdir(mode=0o700)
+    build_env={key:os.environ[key] for key in ('PATH','LANG','SSL_CERT_FILE','NIX_SSL_CERT_FILE','HOME') if key in os.environ}
+    build_env['TMPDIR']=str(nix_temporary)
+    result=subprocess.run(['nix','develop','--max-jobs','1','--cores','1','./ops/nixos#default',
+                           '--command','python3','scripts/check_browser_public.py',str(public)],
+                          cwd=ROOT,env=build_env,capture_output=True,text=True,timeout=720)
+    if result.returncode:raise ValueError('fresh frozen public build unavailable')
+    try:receipt=json.loads(result.stdout)
+    except ValueError:raise ValueError('fresh frozen public build unavailable') from None
+    inventory,_=scan_output(public)
+    if (not isinstance(receipt,dict) or set(receipt)!={'status','frontend_toolchain','artifacts'}
+            or receipt['status']!='PUBLIC_BROWSER_BUILD_PASS'
+            or receipt['frontend_toolchain']!={'node':'24.22.0','npm':'11.19.1'}
+            or receipt['artifacts']!=inventory):
+        raise ValueError('fresh frozen public build unavailable')
+    return receipt['frontend_toolchain']
 
 
 CONTROL_ACTIONS=('revoke-support','grant-support','revoke')
@@ -81,7 +114,7 @@ class OwnedBrowserServer(ThreadingHTTPServer):
         super().handle_error(request,client_address)
 
 
-def main():
+def main(include_public=False):
     node=os.environ.get('SHOP_NODE','');browser=os.environ.get('SHOP_BROWSER','')
     if not node.startswith('/nix/store/') or not browser.startswith('/nix/store/'):
         raise ValueError('pinned browser shell required')
@@ -94,6 +127,7 @@ def main():
         code='''from shop.payments.purchase_demo_scenario import run
 from shop.catalog.models import SyntheticPackageRevision,SyntheticFulfilment
 from django.conf import settings
+import argparse
 import json
 run(ARCHIVE_ROOT)
 p=SyntheticPackageRevision.objects.select_related('entitlement__fulfilment__acceptance__checkout__owner__customeridentity').filter(stage='initial',version=1).latest('pk')
@@ -127,6 +161,8 @@ print(json.dumps({'email':c.owner.customeridentity.email,'support':'/purchase/ch
             if action!='revoke':arguments+=['--checkout',fixture['checkout_id']]
             manage(python,staff_env,*arguments,timeout=10)
         public=scratch/'public';public.mkdir(mode=0o700)
+        if include_public:
+            fixture['frontend_toolchain']=prepare_public(public)
         (public/'browser-fixture.html').write_text('<!doctype html><html lang="en"><title>Owned browser mode probe</title><main><h1>Owned local mode probe</h1></main><script>window.shop_page_script_ran=true;</script></html>')
         with ExitStack() as stack:
             backend_port=stack.enter_context(gunicorn(python,env,scratch))
@@ -161,7 +197,8 @@ print(json.dumps({'email':c.owner.customeridentity.email,'support':'/purchase/ch
                 control_thread.join(2)
                 if control_thread.is_alive() or control_errors:raise ValueError('browser control failed')
                 value=json.loads(stdout)
-                validate_result(value,os.environ['SHOP_BROWSER_VERSION'],os.environ['SHOP_BROWSER_NODE_VERSION'])
+                validator=validate_public_result if include_public else validate_result
+                validator(value,os.environ['SHOP_BROWSER_VERSION'],os.environ['SHOP_BROWSER_NODE_VERSION'])
                 print(json.dumps(value,sort_keys=True))
             finally:
                 if process is not None:
@@ -181,6 +218,9 @@ print(json.dumps({'email':c.owner.customeridentity.email,'support':'/purchase/ch
 
 
 if __name__=='__main__':
-    try:main()
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--public',action='store_true',help='Require a fresh exact frontend build and public React/browser checks')
+    arguments=parser.parse_args()
+    try:main(include_public=arguments.public)
     except (ValueError,OSError,subprocess.SubprocessError) as error:
         raise SystemExit('BROWSER_LOCAL_FAIL: '+(str(error) if type(error) is ValueError else 'owned operation failed')) from None

@@ -4,6 +4,7 @@ import { spawn, execFileSync } from 'node:child_process';
 import { readFile, readdir, mkdtemp, rm, realpath } from 'node:fs/promises';
 import { join } from 'node:path';
 import { setTimeout as delay } from 'node:timers/promises';
+import { publicSmoke } from './browser_public.mjs';
 import { allowedRequest } from './browser_policy.mjs';
 let stage = 'startup';
 const require = value => { if (!value) throw new Error('local browser assertion'); };
@@ -80,7 +81,7 @@ async function smoke() {
     }
     require(lines?.length===2 && /^\d+$/.test(lines[0]));
     cdp=await connect('ws://127.0.0.1:'+lines[0]+lines[1]);
-    let checks=0;
+    let checks=0;const publicChecks={};
     for (const [index,javascript] of [true,false].entries()) {
       stage='session-'+index;
       const {browserContextId}=await cdp.send('Target.createBrowserContext');
@@ -133,6 +134,10 @@ async function smoke() {
         }
         require(navigated); await wait('document.readyState==="complete"');
       };
+      if (config.frontend_toolchain) {
+        stage='public-'+index;
+        publicChecks[javascript?'javascript':'no_javascript']=await publicSmoke({index,javascript,config,navigate,evaluate,wait,send,cdp,browserContextId,form,mark:value=>{stage=value;}});
+      }
       stage='probe-navigation-'+index;
       await navigate('/browser-fixture.html');
       stage='probe-script-mode-'+index;
@@ -253,7 +258,8 @@ async function smoke() {
     control.end();
     return {status:'BROWSER_LOCAL_PASS',checks,modes:2,roles:2,browser_version:version,node_version:process.versions.node,
       evidence_class:'local-synthetic-browser-engine',formal_accessibility:false,production_qualified:false,
-      browser_sandbox:'disabled-for-owned-local-root-smoke'};
+      browser_sandbox:'disabled-for-owned-local-root-smoke',
+      ...(config.frontend_toolchain?{public_checks:publicChecks,frontend_toolchain:config.frontend_toolchain}:{})};
   } finally {
     control.destroy();
     cdp?.socket.close(); child.kill('SIGTERM');
