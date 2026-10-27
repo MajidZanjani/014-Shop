@@ -4,9 +4,9 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress —13-01 task5 public logout privacy verified locally: browser134+public43/14,32 focused PostgreSQL tests and13 contracts pass; formal/manual and actual/full acceptance pending.
+**Execution status:** in progress —13-01 task5 expired-session private UI cleanup verified locally: browser134+public47/14 and13 contracts pass; formal/manual and actual/full acceptance pending.
 
-**Next implementation task:** Select the next unverified locally authorized UAT-03 risk or concrete implementation gap; public logout denial/reload is verified. Retain prior backend578/proxy148 as pre-header-change evidence; do not rerun unchanged checks or infer external authority.
+**Next implementation task:** Select the next unverified locally authorized UAT-03 risk or concrete implementation gap; logout and detected401 session recovery are verified. Retain prior scoped backend/proxy evidence without repeating unchanged checks; actual/formal gates remain pending.
 
 **Recorded implementation:** 92ef98ec79b9c4bc56c184232dfd0e25a275c6c3
 
@@ -161,3 +161,5 @@ Implementation is saved and pushed through fee40d1. HANDOFF.json and the phase .
 Resumed task5 for public logout denial/cache/reload privacy; the current fields above supersede the historical pause paragraphs.
 
 Public logout continuation: shared customer denials now include no-store without changing status/body or authorization. Browser134+public43/14 and32 focused PostgreSQL tests pass; [exact evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md). Prior backend578/proxy148 precede this header-only change. No full acceptance inferred.
+
+Detected401 continuation: cart/quotation requests notify customer access, clear private/configuration/pending state and obtain an anonymous CSRF token for verification. Exact fresh browser134+public47/14 and13 contracts pass; [evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md). Backend bytes unchanged from the preceding logout-header fix; actual/formal acceptance pending.

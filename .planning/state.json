@@ -77,7 +77,7 @@
   "next": {
     "command": "$gsd-execute-phase 13",
     "label": "Continue task5",
-    "reason": "Select the next unverified locally authorized UAT-03 risk or concrete implementation gap; public logout denial/reload is verified. Retain prior backend578/proxy148 as pre-header-change evidence; do not rerun unchanged checks or infer external authority."
+    "reason": "Select the next unverified locally authorized UAT-03 risk or concrete implementation gap; logout and detected401 session recovery are verified. Retain prior scoped backend/proxy evidence without repeating unchanged checks; actual/formal gates remain pending."
   },
-  "updated_at": "2026-10-27T11:54:01.451919+00:00"
+  "updated_at": "2026-10-27T12:16:32.158385+00:00"
 }

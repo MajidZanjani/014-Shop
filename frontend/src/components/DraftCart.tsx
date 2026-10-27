@@ -24,18 +24,22 @@ function ReviewStatusText({value}:{value?:ReviewStatus}) {
   return <span>{label}{value?.updated_at&&<> · Last status update: {value.updated_at}</>}</span>;
 }
 type Snapshot = {cart_id:string|null;version:number;current_version:number;catalog_revision:string;lines:Line[];evaluation:{status:string;quoted_support_seconds:number|null}};
-export default function DraftCart({configuration,csrf,onResume}:{configuration:Configuration;csrf:string;onResume:(v:Configuration)=>void}) {
+export default function DraftCart({configuration,csrf,onResume,onSessionExpired}:{configuration:Configuration;csrf:string;onResume:(v:Configuration)=>void;onSessionExpired:()=>void}) {
   const [cart,setCart]=useState<Snapshot|null>(null),[busy,setBusy]=useState(false),[message,setMessage]=useState('Loading draft cart…'),[quantity,setQuantity]=useState(1),[uncertain,setUncertain]=useState(false);
   const pending=useRef<object|null>(null);
   const quotePending=useRef<object|null>(null);
   const [quoteUncertain,setQuoteUncertain]=useState(false);
   const [requests,setRequests]=useState<{id:string;version:number;created_at:string;review_status?:ReviewStatus}[]>([]);
   const [receipt,setReceipt]=useState<(Snapshot & {id:string;review_status?:ReviewStatus})|null>(null);
-  const loadRequests=async()=>{const value=await customerRequest('/api/v1/quotation-requests/');setRequests(value.requests);};
+  const request=async(...args:Parameters<typeof customerRequest>)=>{
+    try{return await customerRequest(...args);}
+    catch(error){if(error instanceof ApiError&&error.status===401)onSessionExpired();throw error;}
+  };
+  const loadRequests=async()=>{const value=await request('/api/v1/quotation-requests/');setRequests(value.requests);};
   const loadReceipt=async(id:string)=>{
     if(busy||uncertain||quoteUncertain)return;
     setBusy(true);
-    try{setReceipt(await customerRequest('/api/v1/quotation-requests/'+id+'/'));}
+    try{setReceipt(await request('/api/v1/quotation-requests/'+id+'/'));}
     catch{setMessage('Request unavailable. Verify your session.');}
     finally{setBusy(false);}
   };
@@ -48,7 +52,7 @@ export default function DraftCart({configuration,csrf,onResume}:{configuration:C
     }
     setBusy(true);
     try{
-      const value=await customerRequest('/api/v1/quotation-requests/','POST',quotePending.current,csrf);
+      const value=await request('/api/v1/quotation-requests/','POST',quotePending.current,csrf);
       quotePending.current=null;setQuoteUncertain(false);setReceipt(value);
       setMessage('Quotation request captured for the saved version below. No approved offer, order, payment or support credit was created.');
       try{await loadRequests();}catch{setMessage('Request captured. Reload request history to see the latest list.');}
@@ -58,13 +62,13 @@ export default function DraftCart({configuration,csrf,onResume}:{configuration:C
     }finally{setBusy(false);}
   };
   const [editing,setEditing]=useState<string|null>(null);
-  const refresh=async()=>{setCart(await customerRequest('/api/v1/cart/'));};
-  useEffect(()=>{let live=true;customerRequest('/api/v1/cart/').then(value=>{if(live){setCart(value);setMessage('');}}).catch(()=>{if(live)setMessage('Cart unavailable. Refresh and verify your session.');});return()=>{live=false;};},[]);
+  const refresh=async()=>{setCart(await request('/api/v1/cart/'));};
+  useEffect(()=>{let live=true;request('/api/v1/cart/').then(value=>{if(live){setCart(value);setMessage('');}}).catch(()=>{if(live)setMessage('Cart unavailable. Refresh and verify your session.');});return()=>{live=false;};},[]);
   const save=async(lines?:Line[])=>{
     if(busy||quoteUncertain||!cart)return;
     if(lines){if(!evaluateCart(lines).valid){setMessage('A draft cart can contain at most 20 lines.');return;}pending.current={request_id:crypto.randomUUID(),expected_version:cart.current_version,catalog_revision:catalog.revision,lines};}
     if(!pending.current)return;setBusy(true);
-    try {await customerRequest('/api/v1/cart/','POST',pending.current,csrf);pending.current=null;setUncertain(false);setEditing(null);try{await refresh();setMessage('Draft cart saved. No order, payment or support credit was created.');}catch{setCart(null);setMessage('Save confirmed. Reload the cart before editing again.');}}
+    try {await request('/api/v1/cart/','POST',pending.current,csrf);pending.current=null;setUncertain(false);setEditing(null);try{await refresh();setMessage('Draft cart saved. No order, payment or support credit was created.');}catch{setCart(null);setMessage('Save confirmed. Reload the cart before editing again.');}}
     catch(error){
       if(error instanceof ApiError && error.status<500){pending.current=null;setUncertain(false);setCart(null);setMessage(error.status===409?'Cart changed in another tab or catalog revision. Reload the cart and review before editing.':'Save rejected. Refresh and verify your session or configuration.');}
       else {setUncertain(true);setMessage('Save outcome uncertain. Retry the same request before making another change.');}

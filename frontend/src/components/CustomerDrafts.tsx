@@ -42,11 +42,22 @@ export default function CustomerDrafts({configuration, onResume}: {configuration
     const result=await customerRequest('/api/v1/configuration-drafts/');
     setDrafts(result.drafts);
   };
+  const sessionExpired=()=>{
+    setAuthenticated(false);setAvailable(false);setCsrf('');setDrafts([]);
+    setEmail('');setCode('');setRequested(false);pending.current=null;
+    onResume(initialConfiguration());
+    setMessage('Your session expired. Verify again to access your drafts.');
+    void customerRequest('/api/v1/customer/session/').then(session=>{
+      if(mounted.current){setCsrf(session.csrf_token);setAvailable(true);}
+    }).catch(()=>{
+      if(mounted.current)setMessage('Your session expired. Retry the connection, then verify again.');
+    });
+  };
   const action=async(run:()=>Promise<void>)=>{
     if(busy)return;setBusy(true);setMessage('');
     try{await run();}
     catch(error){
-      if(error instanceof ApiError && error.status===401){setAuthenticated(false);setDrafts([]);setMessage('Your session expired. Verify again to access your drafts.');}
+      if(error instanceof ApiError && error.status===401){sessionExpired();}
       else if(error instanceof ApiError && error.status===429)setMessage('Verification request limit reached. Wait ten minutes before trying again.');
       else if(error instanceof ApiError && error.status===400)setMessage('Verification failed. Check the code, its expiry and the requesting browser.');
       else if(error instanceof ApiError && error.status===403)setMessage('Access or CSRF verification failed. Refresh this page and verify again.');
@@ -79,7 +90,7 @@ export default function CustomerDrafts({configuration, onResume}: {configuration
     </> : <>
       <p>Verified customer session</p>
       <p><a href="/purchase/business/">Edit private business-details draft</a> · Country/tax choices and checkout remain pending.</p>
-      <DraftCart configuration={configuration} csrf={csrf} onResume={onResume}/>
+      <DraftCart configuration={configuration} csrf={csrf} onResume={onResume} onSessionExpired={sessionExpired}/>
       <button type="button" disabled={busy||!evaluate(configuration).valid} onClick={()=>void action(async()=>{
         const payload=JSON.stringify(configuration);
         if(pending.current?.payload!==payload)pending.current={payload,id:crypto.randomUUID()};

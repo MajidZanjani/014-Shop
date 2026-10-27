@@ -202,6 +202,28 @@ export async function publicSmoke({index,javascript,config,navigate,evaluate,wai
   require(await evaluate('localStorage.length===0 && sessionStorage.length===0 && !location.search && !location.hash'));checks++;
   const cookies=await cdp.send('Storage.getCookies',{browserContextId});
   require(cookies.cookies.some(e=>e.name===config.session_cookie&&e.httpOnly));checks++;
+  mark('public-expired-session-'+index);
+  require(await evaluate(`(async()=>{const options={credentials:'same-origin',cache:'no-store',redirect:'error'};const s=await fetch('/api/v1/customer/session/',options).then(r=>r.json());const r=await fetch('/api/v1/customer/logout/',{...options,method:'POST',headers:{'Content-Type':'application/json','X-CSRFToken':s.csrf_token},body:'{}'});return r.status===200 && (await r.json()).authenticated===false;})()`));checks++;
+  await click('Reload cart');
+  await wait('document.body.innerText.includes("Your session expired.")');
+  require(await evaluate(`!document.querySelector('section[aria-label="Draft cart"]') && !document.querySelector('section[aria-label="Captured quotation request"]') && document.querySelector('#vendor').value==='' && document.querySelector('#customer-email').value==='' && !document.querySelector('#customer-code') && ![...document.querySelectorAll('button')].some(e=>e.textContent.startsWith('Resume draft'))`));checks++;
+  mark('public-expired-reverify-'+index);
+  await wait('document.querySelector("#customer-email") && !document.querySelector("#customer-email").disabled');
+  const priorMail=new Set(await readdir(config.mailbox));
+  await input('#customer-email','browser-public-'+index+'@synthetic.invalid');
+  await click('Request verification code');
+  await wait('document.querySelector("#customer-code")!==null');
+  let renewed=[];
+  for(let n=0;n<50;n++){renewed=(await readdir(config.mailbox)).filter(n=>!priorMail.has(n));if(renewed.length)break;await delay(50);}
+  require(renewed.length===1);
+  const renewedMail=await readFile(join(config.mailbox,renewed[0]),'utf8');require(renewedMail.length<16384);
+  const renewedCode=renewedMail.match(/^Verification code: ([A-Za-z0-9_-]+)$/m)?.[1];require(renewedCode);
+  await input('#customer-code',renewedCode);await click('Verify and continue');
+  await wait(`document.querySelector('section[aria-label="Draft cart"]')?.innerText.includes('Version 2') && [...document.querySelectorAll('button')].some(e=>e.textContent.startsWith('Resume draft'))`);checks++;
+  await wait(`document.querySelectorAll('section[aria-label="Draft cart"] > ol > li').length===1`);
+  await click('Review captured request');
+  await wait(`document.querySelector('section[aria-label="Captured quotation request"]')?.innerText.includes('Saved version 1')`);
+  require(await evaluate(`document.querySelector('section[aria-label="Captured quotation request"]').innerText.includes('Support: 2 ten-hour packages') && document.querySelector('section[aria-label="Draft cart"] fieldset').innerText.includes('3 packages') && localStorage.length===0 && sessionStorage.length===0`));checks++;
   mark('public-logout-'+index);
   await click('Sign out');
   await wait('document.body.innerText.includes("Signed out.") && document.querySelector("#vendor").value===""');

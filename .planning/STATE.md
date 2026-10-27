@@ -2,7 +2,7 @@
 gsd_state_version: "1.0"
 current_plan: 01
 status: in_progress
-last_updated: "2026-10-27T12:00:31.218Z"
+last_updated: "2026-10-27T12:16:32.158385+00:00"
 state_head: 92ef98ec79b9c4bc56c184232dfd0e25a275c6c3
 progress:
   total_phases: 14
@@ -14,8 +14,8 @@ current_task: 5
 last_activity: 2026-10-27
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Public logout privacy slice verified; task5 actual/formal gates pending.
-last_activity_desc: Public logout cache denial fixed and verified;191 browser checks,32 focused PG tests,13 contracts.
+stopped_at: Expired-session UI cleanup verified; task5 actual/formal gates pending.
+last_activity_desc: Detected401 clears private UI and recovers verification;195 browser checks and13 contracts pass.
 ---
 
 # Project state — final purchase-flow revision2
@@ -26,9 +26,9 @@ last_activity_desc: Public logout cache denial fixed and verified;191 browser ch
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress —13-01 task5 public logout privacy verified locally: browser134+public43/14,32 focused PostgreSQL tests and13 contracts pass; formal/manual and actual/full acceptance pending.
+**Execution status:** in progress —13-01 task5 expired-session private UI cleanup verified locally: browser134+public47/14 and13 contracts pass; formal/manual and actual/full acceptance pending.
 
-**Next implementation task:** Select the next unverified locally authorized UAT-03 risk or concrete implementation gap; public logout denial/reload is verified. Retain prior backend578/proxy148 as pre-header-change evidence; do not rerun unchanged checks or infer external authority.
+**Next implementation task:** Select the next unverified locally authorized UAT-03 risk or concrete implementation gap; logout and detected401 session recovery are verified. Retain prior scoped backend/proxy evidence without repeating unchanged checks; actual/formal gates remain pending.
 
 ## Preserved implementation/evidence
 
@@ -286,3 +286,5 @@ Actual browser rejects a stale cart edit after a competing normal API save, free
 Paused at13-01 task5 after fee40d1. No uncommitted implementation or running owned process; structured HANDOFF.json and phase .continue-here.md carry exact restoration context. Current local evidence is browser134+public39/14(187 aggregate),13 browser contracts, backend578/5 checks171.478s and proxy148/2 aliases. Source264/33 templates remains6k4lq06jcsm8vssp1clq19l35dpdfxzv; frontend exact fresh Node24.22.0/npm11.19.1. Phase13/full acceptance remains pending; counts1/14 and11/36 are documentary completion counts, not effort.
 
 Public logout continuation: shared customer denials now include no-store without changing status/body or authorization. Browser134+public43/14 and32 focused PostgreSQL tests pass; [exact evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md). Prior backend578/proxy148 precede this header-only change. No full acceptance inferred.
+
+Detected401 continuation: cart/quotation requests notify customer access, clear private/configuration/pending state and obtain an anonymous CSRF token for verification. Exact fresh browser134+public47/14 and13 contracts pass; [evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md). Backend bytes unchanged from the preceding logout-header fix; actual/formal acceptance pending.
