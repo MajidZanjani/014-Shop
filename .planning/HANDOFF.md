@@ -4,11 +4,11 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress —13-01 task5 unavailable-quotation refresh cleanup/recovery verified locally: browser134+public63/14, synthetic404 React regression and13 contracts pass; formal/manual and actual/full acceptance pending.
+**Execution status:** in progress —13-01 task5 cart/history reload cleanup/recovery verified locally: browser134+public71/14, synthetic503 React regressions and13 contracts pass; formal/manual and actual/full acceptance pending.
 
-**Next implementation task:** Select the next unverified locally authorized UAT-03 risk or concrete implementation gap; unavailable quotation refresh,401/403 and uncertain-logout recoveries are verified. Preserve scoped prior evidence; actual/formal release gates remain pending.
+**Next implementation task:** Select the next unverified locally authorized UAT-03 risk or concrete implementation gap; cart/history/quotation refresh,401/403 and uncertain-logout recoveries are verified. Preserve scoped prior evidence; actual/formal release gates remain pending.
 
-**Recorded implementation:** e1a31dadeb8c2cec86946ff1c4e58c5e038664b9
+**Recorded implementation:** d2e5efdf3fe5717a184b1a7a683e79fd23170aad
 
 This SHA contains the required-platform/no-JavaScript fixes and prepared public browser tooling; follow-up evidence records the570-test regression and58-check browser expansion. The one-shot structured handoff has been consumed; the checkpoint now records active task5 qualification. Final evidence and the narrow source-validator correction are in the current verification commit; do not reset to historical review c830297.
 

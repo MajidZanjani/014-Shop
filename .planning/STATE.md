@@ -2,8 +2,8 @@
 gsd_state_version: "1.0"
 current_plan: 01
 status: in_progress
-last_updated: "2026-10-27T12:39:13.450168+00:00"
-state_head: e1a31dadeb8c2cec86946ff1c4e58c5e038664b9
+last_updated: "2026-10-27T12:42:47.006289+00:00"
+state_head: d2e5efdf3fe5717a184b1a7a683e79fd23170aad
 progress:
   total_phases: 14
   completed_phases: 1
@@ -14,8 +14,8 @@ current_task: 5
 last_activity: 2026-10-27
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Unavailable-quotation refresh cleanup/recovery verified; task5 actual/formal gates pending.
-last_activity_desc: Clear stale quotation before refresh;211 browser checks, synthetic404 React regression and13 contracts pass.
+stopped_at: Cart/history reload cleanup/recovery verified; task5 actual/formal gates pending.
+last_activity_desc: Clear stale cart/history before reload;219 browser checks, synthetic503 React regressions and13 contracts pass.
 ---
 
 # Project state — final purchase-flow revision2
@@ -26,9 +26,9 @@ last_activity_desc: Clear stale quotation before refresh;211 browser checks, syn
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress —13-01 task5 unavailable-quotation refresh cleanup/recovery verified locally: browser134+public63/14, synthetic404 React regression and13 contracts pass; formal/manual and actual/full acceptance pending.
+**Execution status:** in progress —13-01 task5 cart/history reload cleanup/recovery verified locally: browser134+public71/14, synthetic503 React regressions and13 contracts pass; formal/manual and actual/full acceptance pending.
 
-**Next implementation task:** Select the next unverified locally authorized UAT-03 risk or concrete implementation gap; unavailable quotation refresh,401/403 and uncertain-logout recoveries are verified. Preserve scoped prior evidence; actual/formal release gates remain pending.
+**Next implementation task:** Select the next unverified locally authorized UAT-03 risk or concrete implementation gap; cart/history/quotation refresh,401/403 and uncertain-logout recoveries are verified. Preserve scoped prior evidence; actual/formal release gates remain pending.
 
 ## Preserved implementation/evidence
 

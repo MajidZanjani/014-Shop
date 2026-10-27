@@ -35,7 +35,7 @@ export default function DraftCart({configuration,csrf,onResume,onAccessDenied}:{
     try{return await customerRequest(...args);}
     catch(error){if(error instanceof ApiError&&(error.status===401||error.status===403))onAccessDenied(error.status);throw error;}
   };
-  const loadRequests=async()=>{const value=await request('/api/v1/quotation-requests/');setRequests(value.requests);};
+  const loadRequests=async()=>{setRequests([]);const value=await request('/api/v1/quotation-requests/');setRequests(value.requests);};
   const loadReceipt=async(id:string)=>{
     if(busy||uncertain||quoteUncertain)return;
     setBusy(true);setReceipt(null);setMessage('Loading captured request…');
@@ -65,7 +65,7 @@ export default function DraftCart({configuration,csrf,onResume,onAccessDenied}:{
     }finally{setBusy(false);}
   };
   const [editing,setEditing]=useState<string|null>(null);
-  const refresh=async()=>{setCart(await request('/api/v1/cart/'));};
+  const refresh=async()=>{setCart(null);setEditing(null);setCart(await request('/api/v1/cart/'));};
   useEffect(()=>{let live=true;request('/api/v1/cart/').then(value=>{if(live){setCart(value);setMessage('');}}).catch(()=>{if(live)setMessage('Cart unavailable. Refresh and verify your session.');});return()=>{live=false;};},[]);
   const save=async(lines?:Line[])=>{
     if(busy||quoteUncertain||!cart)return;
@@ -96,13 +96,13 @@ export default function DraftCart({configuration,csrf,onResume,onAccessDenied}:{
       </li>)}</ol>
     </fieldset>
     {uncertain&&<button type="button" disabled={busy} onClick={()=>void save()}>Retry last cart save</button>}
-    <button type="button" disabled={busy||uncertain||quoteUncertain} onClick={()=>{setBusy(true);void refresh().then(()=>setMessage('Current cart loaded.')).catch(()=>setMessage('Unable to reload cart. Verify your session.')).finally(()=>setBusy(false));}}>Reload cart</button>
+    <button type="button" disabled={busy||uncertain||quoteUncertain} onClick={()=>{setBusy(true);void refresh().then(()=>setMessage('Current cart loaded.')).catch(()=>setMessage('Unable to reload cart. Previous cart details have been cleared. Reload cart to retry.')).finally(()=>setBusy(false));}}>Reload cart</button>
     <p>Version {cart?.current_version??0} · {cart?.evaluation.status??'loading'} · Quoted support hours: {(cart?.evaluation.quoted_support_seconds??0)/3600}</p>
     <p>Request a quotation for all lines in the saved cart version shown above. Later cart edits leave that request unchanged. This local demo captures requests. Staff review is manual; no email is sent.</p>
     <button type="button" disabled={busy||uncertain||quoteUncertain||!cart?.lines.length} onClick={()=>void requestQuote()}>Request quotation for saved cart</button>
     {quoteUncertain&&<button type="button" disabled={busy} onClick={()=>void requestQuote()}>Retry quotation request</button>}
     <h4>Your quotation requests</h4>
-    <button type="button" disabled={busy||uncertain||quoteUncertain} onClick={()=>{setBusy(true);void loadRequests().catch(()=>setMessage('Unable to load request history. Verify your session.')).finally(()=>setBusy(false));}}>Reload request history</button>
+    <button type="button" disabled={busy||uncertain||quoteUncertain} onClick={()=>{setBusy(true);void loadRequests().then(()=>setMessage('Current request history loaded.')).catch(()=>setMessage('Unable to load request history. Previous request history has been cleared. Reload request history to retry.')).finally(()=>setBusy(false));}}>Reload request history</button>
     <p>Showing up to 20 most recent requests. Reload history or review a captured request to load its latest status.</p>
     <ol>{requests.map(row=><li key={row.id}>Saved version {row.version} · {row.created_at} · <ReviewStatusText value={row.review_status}/> <button type="button" disabled={busy||uncertain||quoteUncertain} onClick={()=>void loadReceipt(row.id)}>Review captured request</button></li>)}</ol>
     {receipt&&<section aria-label="Captured quotation request"><h4>Captured request {receipt.id}</h4>

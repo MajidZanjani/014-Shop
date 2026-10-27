@@ -235,6 +235,30 @@ test('cart React flow preserves exact uncertain retry and separate support lines
   assert.match(container.textContent,/Captured request loaded/);
   assert.ok(!container.textContent.includes('Previously displayed details have been cleared'));
   assert.deepEqual(quoteReceipt.lines,captured);assert.equal(requests.length,postCount);assert.equal(quoteRequests.length,quotePostCount);
+  const beforeUnavailableFetch=host.window.fetch,savedCart=structuredClone(state);
+  host.window.fetch=async(path,options)=>path==='/api/v1/cart/'&&options.method==='GET'
+   ?new Response(JSON.stringify({error:'unavailable'}),{status:503,headers:{'content-type':'application/json'}})
+   :beforeUnavailableFetch(path,options);
+  await click('Reload cart');
+  assert.equal(findNode(container,n=>n.tagName==='FIELDSET').attrs.has('disabled'),true);
+  assert.equal(findNode(container,n=>n.tagName==='BUTTON'&&n.textContent==='Remove line'),undefined);
+  assert.match(container.textContent,/Previous cart details have been cleared/);
+  host.window.fetch=beforeUnavailableFetch;await click('Reload cart');
+  assert.equal(findNode(container,n=>n.tagName==='FIELDSET').attrs.has('disabled'),false);
+  assert.ok(findNode(container,n=>n.tagName==='BUTTON'&&n.textContent==='Remove line'));
+  assert.deepEqual(state,savedCart);assert.equal(requests.length,postCount);assert.equal(quoteRequests.length,quotePostCount);
+  host.window.fetch=async(path,options)=>path==='/api/v1/quotation-requests/'&&options.method==='GET'
+   ?new Response(JSON.stringify({error:'unavailable'}),{status:503,headers:{'content-type':'application/json'}})
+   :beforeUnavailableFetch(path,options);
+  await click('Reload request history');
+  assert.equal(findNode(container,n=>n.tagName==='BUTTON'&&n.textContent==='Review captured request'),undefined);
+  assert.match(container.textContent,/Previous request history has been cleared/);
+  host.window.fetch=beforeUnavailableFetch;await click('Reload request history');
+  assert.ok(findNode(container,n=>n.tagName==='BUTTON'&&n.textContent==='Review captured request'));
+  assert.match(container.textContent,/Current request history loaded/);
+  assert.ok(!container.textContent.includes('Previous request history has been cleared'));
+  assert.deepEqual(state,savedCart);assert.deepEqual(quoteReceipt.lines,captured);
+  assert.equal(requests.length,postCount);assert.equal(quoteRequests.length,quotePostCount);
   await act(async()=>root.unmount());root=null;
  }finally{
   if(root){const {act}=await import('react');await act(async()=>root.unmount());}
