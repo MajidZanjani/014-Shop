@@ -3,7 +3,7 @@ import { readFile, readdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { setTimeout as delay } from 'node:timers/promises';
 const require = value => { if (!value) throw new Error('public browser assertion'); };
-export async function publicSmoke({index,javascript,config,navigate,evaluate,wait,send,cdp,browserContextId,mark,form}) {
+export async function publicSmoke({index,javascript,config,navigate,evaluate,wait,send,cdp,browserContextId,mark,form,responseFault}) {
   let checks=0;
   const key=async (key,code,number) => {
     for (const type of ['keyDown','keyUp']) await send('Input.dispatchKeyEvent',{
@@ -145,14 +145,31 @@ export async function publicSmoke({index,javascript,config,navigate,evaluate,wai
   await click('Save configuration draft');
   await wait('document.body.innerText.includes("Configuration saved as a local draft") && [...document.querySelectorAll("button")].some(e=>e.textContent.startsWith("Resume draft"))');checks++;
   require(await evaluate('[...document.querySelectorAll("button")].filter(e=>e.textContent.startsWith("Resume draft")).length===1'));checks++;
+  const armLoss=path=>{responseFault.url=config.origin+path;responseFault.armed=true;responseFault.posts=[];responseFault.dropped=0;};
+  const exactReplay=()=>{
+    require(responseFault.dropped===1 && responseFault.posts.length===2 && responseFault.posts[0]===responseFault.posts[1]);checks++;
+    responseFault.url=null;responseFault.posts=[];
+  };
   mark('public-cart-'+index);
+  armLoss('/api/v1/cart/');
   await click('Add current configuration to cart');
+  await wait('document.body.innerText.includes("Save outcome uncertain")');
+  require(await evaluate(`document.querySelector('section[aria-label="Draft cart"] fieldset').disabled && [...document.querySelectorAll('button')].filter(e=>['Reload cart','Request quotation for saved cart'].includes(e.textContent.trim())).every(e=>e.disabled)`));checks++;
+  await click('Retry last cart save');
   await wait('document.querySelector("section[aria-label=\\"Draft cart\\"]").innerText.includes("Version 1")');
   require(await evaluate('document.querySelectorAll("section[aria-label=\\"Draft cart\\"] fieldset ol>li").length===2 && document.querySelector("section[aria-label=\\"Draft cart\\"]").innerText.includes("2 packages")'));checks++;
+  exactReplay();
   mark('public-quote-'+index);
+  armLoss('/api/v1/quotation-requests/');
   await click('Request quotation for saved cart');
+  await wait('document.body.innerText.includes("Quotation request outcome uncertain")');
+  require(await evaluate(`document.querySelector('section[aria-label="Draft cart"] fieldset').disabled && [...document.querySelectorAll('button')].filter(e=>['Reload cart','Reload request history'].includes(e.textContent.trim())).every(e=>e.disabled)`));checks++;
+  await click('Retry quotation request');
   await wait('document.querySelector("section[aria-label=\\"Captured quotation request\\"]")!==null');
   require(await evaluate('document.querySelector("section[aria-label=\\"Captured quotation request\\"]").innerText.includes("Acceptance and payment disabled")'));checks++;
+  exactReplay();
+  await wait(`document.querySelectorAll('section[aria-label="Draft cart"] > ol > li').length===1`);
+  require(await evaluate(`document.querySelectorAll('section[aria-label="Draft cart"] > ol > li').length===1`));checks++;
   await input('#platform','other-board');await wait('document.querySelector("#board-name")!==null');
   await evaluate('[...document.querySelectorAll("button")].find(e=>e.textContent.startsWith("Resume draft")).click();true');
   await wait('document.querySelector("#platform").value==="not-designed" && !document.querySelector("#board-name")');checks++;

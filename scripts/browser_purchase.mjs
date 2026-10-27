@@ -89,6 +89,7 @@ async function smoke() {
       const {sessionId}=await cdp.send('Target.attachToTarget',{targetId,flatten:true});
       const send=(method,params) => cdp.send(method,params,sessionId);
       let escaped=0,blocked=0,cspDenied=0,lastDocumentStatus=0;
+      const responseFault={url:null,armed:false,posts:[],dropped:0};
       cdp.events.push(event => {
         if (event.sessionId!==sessionId) return;
         if (event.method==='Network.responseReceived' && event.params.type==='Document') lastDocumentStatus=event.params.response.status;
@@ -97,12 +98,24 @@ async function smoke() {
         const {requestId,request}=event.params;
         const allowed=allowedRequest(request.url,config.origin) || allowedRequest(request.url,config.staff.origin);
         if (!allowed) {blocked++; if (request.url!=='https://browser-egress-canary.invalid/pixel') escaped++;}
-        send(allowed ? 'Fetch.continueRequest':'Fetch.failRequest',allowed ? {requestId}:{requestId,errorReason:'BlockedByClient'})
+        const responseStage=event.params.responseStatusCode!==undefined || event.params.responseErrorReason!==undefined;
+        if(allowed && responseFault.url===request.url && request.method==='POST') {
+          if(!responseStage) {
+            if(typeof request.postData!=='string' || request.postData.length>32768 || responseFault.posts.length>=2) {
+              escaped++;void send('Fetch.failRequest',{requestId,errorReason:'BlockedByClient'});return;
+            }
+            responseFault.posts.push(request.postData);
+          } else if(responseFault.armed && event.params.responseStatusCode>=200 && event.params.responseStatusCode<300) {
+            responseFault.armed=false;responseFault.dropped++;
+            void send('Fetch.failRequest',{requestId,errorReason:'ConnectionClosed'}).catch(()=>{escaped++;});return;
+          }
+        }
+        send(allowed ? (responseStage?'Fetch.continueResponse':'Fetch.continueRequest'):'Fetch.failRequest',allowed ? {requestId}:{requestId,errorReason:'BlockedByClient'})
           .catch(() => {escaped++;});
       });
       stage='protocol-setup-'+index;
       await send('Page.enable'); await send('Runtime.enable'); await send('Network.enable');
-      await send('Fetch.enable',{patterns:[{urlPattern:'*',requestStage:'Request'}]});
+      await send('Fetch.enable',{patterns:[{urlPattern:'*',requestStage:'Request'},...(config.frontend_toolchain?['/api/v1/cart/','/api/v1/quotation-requests/'].map(path=>({urlPattern:config.origin+path,requestStage:'Response'})):[])]});
       await send('Emulation.setDeviceMetricsOverride',{width:javascript ? 1280:390,height:900,deviceScaleFactor:1,mobile:!javascript});
       await send('Emulation.setScriptExecutionDisabled',{value:!javascript});
       const evaluate=async expression => {
@@ -136,7 +149,7 @@ async function smoke() {
       };
       if (config.frontend_toolchain) {
         stage='public-'+index;
-        publicChecks[javascript?'javascript':'no_javascript']=await publicSmoke({index,javascript,config,navigate,evaluate,wait,send,cdp,browserContextId,form,mark:value=>{stage=value;}});
+        publicChecks[javascript?'javascript':'no_javascript']=await publicSmoke({index,javascript,config,navigate,evaluate,wait,send,cdp,browserContextId,form,responseFault,mark:value=>{stage=value;}});
       }
       stage='probe-navigation-'+index;
       await navigate('/browser-fixture.html');

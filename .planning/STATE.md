@@ -2,8 +2,8 @@
 gsd_state_version: "1.0"
 current_plan: 01
 status: in_progress
-last_updated: "2026-10-27T11:27:14.156288+00:00"
-state_head: e12b1ac1b070cba7df78ded50c98b2a24200838b
+last_updated: "2026-10-27T11:33:12.594855+00:00"
+state_head: dcfb71c4e1fc9f0c58bfe2792ce0c2413c0adf5b
 progress:
   total_phases: 14
   completed_phases: 1
@@ -14,8 +14,8 @@ current_task: 5
 last_activity: 2026-10-27
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Public connection retry and offline save recovery verified; formal/manual and actual gates pending.
-last_activity_desc: Exact browser134+public29/14 and13 contracts pass; backend578/proxy148 retained.
+stopped_at: Committed cart/quotation browser response-loss recovery verified; formal/manual and actual gates pending.
+last_activity_desc: Exact browser134+public34/14 and13 contracts pass; backend578/proxy148 retained.
 ---
 
 # Project state — final purchase-flow revision2
@@ -26,9 +26,9 @@ last_activity_desc: Exact browser134+public29/14 and13 contracts pass; backend57
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — public connection retry/offline-save recovery verified; browser134 plus public29/14 pass; backend578/proxy148 retained; formal/manual and actual/full acceptance pending.
+**Execution status:** in progress — committed cart/quotation response-loss recovery verified; browser134 plus public34/14 pass; backend578/proxy148 retained; formal/manual and actual/full acceptance pending.
 
-**Next implementation task:** Continue remaining local UAT-03 review and actual source/commercial/private-intake/transport/provider/runtime/recovery/host qualification only under existing scoped authority. Retain browser134+public29/14 and backend578/proxy148 at exact scope; do not repeat unchanged runs.
+**Next implementation task:** Continue remaining local UAT-03 review and actual source/commercial/private-intake/transport/provider/runtime/recovery/host qualification only under existing scoped authority. Retain browser134+public34/14 and backend578/proxy148 at exact scope; do not repeat unchanged runs.
 
 ## Preserved implementation/evidence
 
@@ -271,3 +271,7 @@ Current-source full backend 578 tests/5 checks pass in171.478s; sequential local
 ##13-01 public offline recovery —2026-10-27
 
 Initial public connection failure now offers an explicit in-page retry with readable guidance, preserving configuration selections. Exact fresh browser134+public29/14 passes, including blocked initial session/reconnect and offline failed-save/manual retry with one saved draft.13 browser contracts pass. Backend/source are unchanged; full backend578/proxy148 remain valid for their local scope. Formal/manual and actual/full acceptance remain pending. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md).
+
+##13-01 committed response-loss recovery —2026-10-27
+
+Actual browser drops one successful cart response and one successful quotation response after the server replies. Existing UI blocks edits and explicitly replays identical request bodies, retaining one cart revision/two lines and one quotation. Exact fresh browser134+public34/14 and13 browser contracts pass; product/backend code unchanged. Backend578/proxy148 retain their exact scope. Formal/manual and actual/full acceptance remain pending. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md).
