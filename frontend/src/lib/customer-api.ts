@@ -7,6 +7,7 @@ const allowed = new Set([
   '/api/v1/customer/session/', '/api/v1/customer/request-code/',
   '/api/v1/customer/verify/', '/api/v1/customer/logout/', '/api/v1/configuration-drafts/',
 ]);
+let accessContext: string | null = null;
 export async function customerRequest(path: string, method: 'GET' | 'POST' = 'GET', body?: unknown, csrf?: string): Promise<any> {
   if (!allowed.has(path) && !/^\/api\/v1\/(?:configuration-drafts|quotation-requests)\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\/$/.test(path)) throw new Error('Unapproved customer endpoint');
   if (typeof window === 'undefined') throw new Error('Customer API is browser-only');
@@ -14,9 +15,19 @@ export async function customerRequest(path: string, method: 'GET' | 'POST' = 'GE
   if (method === 'POST' && !csrf) throw new Error('CSRF token required');
   const headers: Record<string,string> = { Accept: 'application/json' };
   if (method === 'POST') { headers['Content-Type'] = 'application/json'; headers['X-CSRFToken'] = csrf!; }
+  const expectedContext = accessContext;
   const response = await window.fetch(path,{ method, credentials: 'same-origin', cache: 'no-store', redirect: 'error', headers,
     ...(method === 'POST' ? {body:JSON.stringify(body)} : {}), signal:AbortSignal.timeout(10000) });
   if (!response.ok) throw new ApiError(response.status);
   if (!response.headers.get('content-type')?.startsWith('application/json')) throw new Error('Unexpected customer response');
-  return response.json();
+  const rebase=path==='/api/v1/customer/session/'||path==='/api/v1/customer/verify/'||path==='/api/v1/customer/logout/';
+  const protectedResource=!path.startsWith('/api/v1/customer/');
+  const incoming=response.headers.get('X-Shop-Access-Context');
+  if ((rebase||protectedResource)&&(!incoming||!/^[a-f0-9]{64}$/.test(incoming)))throw new ApiError(403);
+  const contextMatches=()=>expectedContext!==null&&expectedContext===accessContext&&incoming===expectedContext;
+  if(protectedResource&&!contextMatches())throw new ApiError(403);
+  const value=await response.json();
+  if(protectedResource&&!contextMatches())throw new ApiError(403);
+  if(rebase)accessContext=incoming;
+  return value;
 }

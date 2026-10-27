@@ -2,8 +2,8 @@
 gsd_state_version: "1.0"
 current_plan: 01
 status: in_progress
-last_updated: "2026-10-27T12:42:47.006289+00:00"
-state_head: d2e5efdf3fe5717a184b1a7a683e79fd23170aad
+last_updated: "2026-10-27T13:01:59.283825+00:00"
+state_head: 3965767b9acd2b16e62650e0c4d0b759dde1966b
 progress:
   total_phases: 14
   completed_phases: 1
@@ -14,8 +14,8 @@ current_task: 5
 last_activity: 2026-10-27
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Cart/history reload cleanup/recovery verified; task5 actual/formal gates pending.
-last_activity_desc: Clear stale cart/history before reload;219 browser checks, synthetic503 React regressions and13 contracts pass.
+stopped_at: Session-context isolation verified; continuing grouped UAT review across commit/sync.
+last_activity_desc: Opaque response-context guard;224 browser checks,580 backend tests/5 checks, proxy148 and exact source pass.
 ---
 
 # Project state — final purchase-flow revision2
@@ -26,9 +26,9 @@ last_activity_desc: Clear stale cart/history before reload;219 browser checks, s
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress —13-01 task5 cart/history reload cleanup/recovery verified locally: browser134+public71/14, synthetic503 React regressions and13 contracts pass; formal/manual and actual/full acceptance pending.
+**Execution status:** in progress —13-01 task5 grouped session isolation verified locally: browser134+public76/14, backend580/5 checks, proxy148/2 aliases and264-file source pass; actual/formal gates pending.
 
-**Next implementation task:** Select the next unverified locally authorized UAT-03 risk or concrete implementation gap; cart/history/quotation refresh,401/403 and uncertain-logout recoveries are verified. Preserve scoped prior evidence; actual/formal release gates remain pending.
+**Next implementation task:** Continue the grouped UAT-01–05 review across this commit: record concrete remaining implementation/qualification dependencies and route the next substantive authorized action without speculative browser-count expansion. Preserve actual/formal gates.
 
 ## Preserved implementation/evidence
 

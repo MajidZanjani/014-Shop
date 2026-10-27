@@ -14,7 +14,8 @@ MIDDLEWARE = ['django.middleware.security.SecurityMiddleware',
               'shop.core.middleware.ValidHostMiddleware',
               'django.contrib.sessions.middleware.SessionMiddleware',
               'django.middleware.csrf.CsrfViewMiddleware',
-              'django.contrib.auth.middleware.AuthenticationMiddleware']
+              'django.contrib.auth.middleware.AuthenticationMiddleware',
+              'shop.core.middleware.CustomerAccessContextMiddleware']
 SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SAMESITE = 'Strict'
 CSRF_COOKIE_SAMESITE = 'Strict'

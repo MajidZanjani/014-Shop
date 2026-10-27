@@ -44,3 +44,7 @@ The user explicitly instructed: "yes push and don't ask again. please write in y
 ## Push authorization reaffirmed — user instruction, 2026-10-27
 
 After automatic review rejected the push of92ef98e, the user explicitly replied in the active session: "approve push after each commit". This renews standing authorization for immediate ordinary non-force pushes to origin/main after every project commit, including92ef98e and this authorization record. Do not ask again for each push. Deployment and other protected/external operations retain their separate gates.
+
+## Sustained continuation — user instruction, 2026-10-27
+
+The user explicitly instructed: "continue and don't pause/stop after each commit/sync". Continue substantive authorized work across commits and ordinary pushes. A commit/sync is not a stopping condition. Stop only at an actual missing prerequisite/authority or a real context constraint under the existing checkpoint rule; never invent context percentages, approvals or completion. Group remaining UAT risks and keep next actions concrete rather than generating an endless sequence of speculative browser assertions.

@@ -15,7 +15,7 @@ test('customer transport cannot run during static builds',async()=>{
 });
 test('customer transport restricts paths, sends same-origin CSRF and hides error bodies',async()=>{
   const old=globalThis.window;const calls=[];
-  globalThis.window={fetch:async(path,options)=>{calls.push({path,options});return {ok:true,headers:new Headers({'content-type':'application/json'}),json:async()=>({authenticated:false})};}};
+  globalThis.window={fetch:async(path,options)=>{calls.push({path,options});return {ok:true,headers:new Headers({'content-type':'application/json','X-Shop-Access-Context':'a'.repeat(64)}),json:async()=>({authenticated:false})};}};
   try{
     for(const path of ['https://external.invalid/','//external.invalid/','/api/v1/configuration-drafts/../../private/','/api/v1/customer/session/?code=secret','/api/v1/quotation-requests/?owner=other','/api/v1/quotation-requests/../../private/'])await assert.rejects(api.customerRequest(path),/Unapproved/);
     assert.equal(calls.length,0);
@@ -30,4 +30,31 @@ test('customer transport restricts paths, sends same-origin CSRF and hides error
     globalThis.window.fetch=async()=>({ok:false,status:403});
     await assert.rejects(api.customerRequest('/api/v1/customer/session/'),error=>error.status===403&&error.message==='Customer request failed');
   }finally{if(old===undefined)delete globalThis.window;else globalThis.window=old;}
+});
+
+test('private responses cannot cross access context or expose mismatched bodies',async()=>{
+ const old=globalThis.window;let context='a'.repeat(64),parsed=0;
+ globalThis.window={fetch:async()=>({ok:true,headers:new Headers({'content-type':'application/json','X-Shop-Access-Context':context}),json:async()=>{parsed++;return {};}})};
+ try{
+  await api.customerRequest('/api/v1/customer/session/');
+  await api.customerRequest('/api/v1/cart/');
+  const before=parsed;context='b'.repeat(64);
+  await assert.rejects(api.customerRequest('/api/v1/cart/'),e=>e.status===403);
+  assert.equal(parsed,before);
+  await api.customerRequest('/api/v1/customer/session/');
+  await api.customerRequest('/api/v1/cart/');
+  for(context of ['', 'b'.repeat(63), 'b'.repeat(65), 'z'.repeat(64)]){
+   await assert.rejects(api.customerRequest('/api/v1/cart/'),e=>e.status===403);
+  }
+  context='b'.repeat(64);
+  let release,started;
+  const waiting=new Promise(resolve=>{started=resolve;});
+  globalThis.window.fetch=async path=>({ok:true,headers:new Headers({'content-type':'application/json','X-Shop-Access-Context':context}),json:async()=>{
+   if(path==='/api/v1/cart/'){started();await new Promise(resolve=>{release=resolve;});}
+   return {};
+  }});
+  const pending=api.customerRequest('/api/v1/cart/');await waiting;
+  context='c'.repeat(64);await api.customerRequest('/api/v1/customer/session/');
+  release();await assert.rejects(pending,e=>e.status===403);
+ }finally{if(old===undefined)delete globalThis.window;else globalThis.window=old;}
 });

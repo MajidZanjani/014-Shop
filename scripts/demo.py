@@ -43,7 +43,7 @@ class DemoHandler(SimpleHTTPRequestHandler):
                 self.send_error(502);return
             self.send_response(response.status)
             for key,value in response.getheaders():
-                if key.lower() in ('content-type','set-cookie','cache-control','etag','x-content-type-options','referrer-policy','content-security-policy','location','vary'):
+                if key.lower() in ('content-type','set-cookie','cache-control','etag','x-content-type-options','referrer-policy','content-security-policy','location','vary','x-shop-access-context'):
                     self.send_header(key,value)
             self.send_header('Content-Length',str(len(data)));self.end_headers();self.wfile.write(data)
         finally:connection.close()

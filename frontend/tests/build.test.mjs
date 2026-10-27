@@ -178,17 +178,18 @@ test('cart React flow preserves exact uncertain retry and separate support lines
      const payload=JSON.parse(options.body);quoteRequests.push(payload);
      quoteReceipt??={...structuredClone(state),review_status:{code:'awaiting_review',label:'Awaiting review',version:0,updated_at:null},id:'22222222-2222-4222-8222-222222222222',created_at:'synthetic'};
      if(quoteLost){quoteLost=false;throw new Error('synthetic quote response loss');}
-     return new Response(JSON.stringify(quoteReceipt),{headers:{'content-type':'application/json'}});
+     return new Response(JSON.stringify(quoteReceipt),{headers:{'content-type':'application/json','X-Shop-Access-Context':'a'.repeat(64)}});
     }
-    return new Response(JSON.stringify(path==='/api/v1/quotation-requests/'?{requests:quoteReceipt?[quoteReceipt]:[]}:quoteReceipt),{headers:{'content-type':'application/json'}});
+    return new Response(JSON.stringify(path==='/api/v1/quotation-requests/'?{requests:quoteReceipt?[quoteReceipt]:[]}:quoteReceipt),{headers:{'content-type':'application/json','X-Shop-Access-Context':'a'.repeat(64)}});
    }
    if(options.method==='POST'){
     const payload=JSON.parse(options.body);requests.push(payload);
     if(uncertain){uncertain=false;state={...state,version:1,current_version:1,lines:payload.lines,evaluation:evaluateCart(payload.lines)};throw new Error('synthetic response loss');}
     if(requests.length>2)state={...state,version:state.version+1,current_version:state.version+1,lines:payload.lines,evaluation:evaluateCart(payload.lines)};
    }
-   return new Response(JSON.stringify(state),{headers:{'content-type':'application/json'}});
+   return new Response(JSON.stringify(state),{headers:{'content-type':'application/json','X-Shop-Access-Context':'a'.repeat(64)}});
   };
+  await (await import(pathToFileURL(join(scratch,'customer-api.mjs')))).customerRequest('/api/v1/customer/session/');
   const {act,createElement}=await import('react');const {createRoot}=await import('react-dom/client');
   const container=host.document.createElement('div');host.document.body.appendChild(container);root=createRoot(container);
   await act(async()=>root.render(createElement(Cart,{configuration:fixtures[1].value,csrf:'synthetic-csrf',onResume(){},onAccessDenied(){}})));
@@ -223,7 +224,7 @@ test('cart React flow preserves exact uncertain retry and separate support lines
   assert.match(container.textContent,/Acceptance and payment disabled/);
   const beforeDeniedFetch=host.window.fetch,postCount=requests.length,quotePostCount=quoteRequests.length;
   host.window.fetch=async(path,options)=>path==='/api/v1/quotation-requests/'+quoteReceipt.id+'/'
-   ?new Response(JSON.stringify({error:'not_found'}),{status:404,headers:{'content-type':'application/json'}})
+   ?new Response(JSON.stringify({error:'not_found'}),{status:404,headers:{'content-type':'application/json','X-Shop-Access-Context':'a'.repeat(64)}})
    :beforeDeniedFetch(path,options);
   await click('Refresh captured request status');
   assert.equal(findNode(container,n=>n.tagName==='SECTION'&&n.attrs.get('aria-label')==='Captured quotation request'),undefined);
@@ -237,7 +238,7 @@ test('cart React flow preserves exact uncertain retry and separate support lines
   assert.deepEqual(quoteReceipt.lines,captured);assert.equal(requests.length,postCount);assert.equal(quoteRequests.length,quotePostCount);
   const beforeUnavailableFetch=host.window.fetch,savedCart=structuredClone(state);
   host.window.fetch=async(path,options)=>path==='/api/v1/cart/'&&options.method==='GET'
-   ?new Response(JSON.stringify({error:'unavailable'}),{status:503,headers:{'content-type':'application/json'}})
+   ?new Response(JSON.stringify({error:'unavailable'}),{status:503,headers:{'content-type':'application/json','X-Shop-Access-Context':'a'.repeat(64)}})
    :beforeUnavailableFetch(path,options);
   await click('Reload cart');
   assert.equal(findNode(container,n=>n.tagName==='FIELDSET').attrs.has('disabled'),true);
@@ -248,7 +249,7 @@ test('cart React flow preserves exact uncertain retry and separate support lines
   assert.ok(findNode(container,n=>n.tagName==='BUTTON'&&n.textContent==='Remove line'));
   assert.deepEqual(state,savedCart);assert.equal(requests.length,postCount);assert.equal(quoteRequests.length,quotePostCount);
   host.window.fetch=async(path,options)=>path==='/api/v1/quotation-requests/'&&options.method==='GET'
-   ?new Response(JSON.stringify({error:'unavailable'}),{status:503,headers:{'content-type':'application/json'}})
+   ?new Response(JSON.stringify({error:'unavailable'}),{status:503,headers:{'content-type':'application/json','X-Shop-Access-Context':'a'.repeat(64)}})
    :beforeUnavailableFetch(path,options);
   await click('Reload request history');
   assert.equal(findNode(container,n=>n.tagName==='BUTTON'&&n.textContent==='Review captured request'),undefined);

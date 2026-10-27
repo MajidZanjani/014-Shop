@@ -78,6 +78,31 @@ class DraftTests(TestCase):
     def save(self,payload=None):
         return self.client.post(self.url,data=json.dumps(payload or self.payload),content_type='application/json')
 
+    def test_response_context_tracks_identity_and_session_without_raw_identifiers(self):
+        header='X-Shop-Access-Context'
+        verified_login(self.client,self.owner)
+        first=self.client.get('/api/v1/customer/session/')[header]
+        self.assertRegex(first,r'^[a-f0-9]{64}$')
+        for path in (self.url,'/api/v1/cart/','/api/v1/quotation-requests/'):
+            response=self.client.get(path)
+            self.assertEqual(response[header],first)
+            self.assertEqual(response['Cache-Control'],'no-store')
+        other_session=Client();verified_login(other_session,self.owner)
+        self.assertNotEqual(other_session.get('/api/v1/customer/session/')[header],first)
+        session=self.client.session;session.cycle_key();session.save()
+        self.client.cookies['sessionid']=session.session_key
+        rotated=self.client.get('/api/v1/customer/session/')[header]
+        self.assertNotEqual(rotated,first)
+        verified_login(self.client,self.other)
+        switched=self.client.get('/api/v1/cart/')[header]
+        self.assertNotEqual(switched,rotated)
+        self.assertNotIn(header,self.client.get('/api/v1/catalog/'))
+        self.assertNotIn(header,self.client.get('/health/live'))
+        anonymous=Client().get('/api/v1/cart/',HTTP_X_SHOP_ACCESS_CONTEXT=first)
+        self.assertEqual(anonymous.status_code,401)
+        self.assertRegex(anonymous[header],r'^[a-f0-9]{64}$')
+        self.assertEqual(set(anonymous.json()),{'error'})
+
     def test_authenticated_owner_and_idempotency(self):
         self.assertEqual(self.save().status_code,401)
         verified_login(self.client,self.owner)
