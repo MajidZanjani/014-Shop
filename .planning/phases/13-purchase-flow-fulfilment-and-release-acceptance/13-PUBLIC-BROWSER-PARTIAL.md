@@ -1,6 +1,6 @@
 # Public React/browser qualification and required-platform fixes —2026-10-27
 
-**Current result:** Exact frozen frontend and the real fresh public browser producer now pass locally:134 customer/staff/business/checkout/payment/support plus34 JavaScript/14 no-JavaScript assertions, including staff/customer keyboard MFA/access, error recovery and reflow below. Earlier diagnostic/failure/pending-build statements below are dated attempt history, superseded only for this exact local frontend/public qualification. Formal/manual accessibility and all actual/full gates remain pending.
+**Current result:** Exact frozen frontend and the real fresh public browser producer now pass locally:134 customer/staff/business/checkout/payment/support plus39 JavaScript/14 no-JavaScript assertions, including staff/customer keyboard MFA/access, error recovery and reflow below. Earlier diagnostic/failure/pending-build statements below are dated attempt history, superseded only for this exact local frontend/public qualification. Formal/manual accessibility and all actual/full gates remain pending.
 
 ## Implemented behavior
 
@@ -277,3 +277,17 @@ Exact fresh producer output:
 ```
 
 Five added JavaScript checks expand public29 to34; no-JavaScript14/private134 remain. Earlier29/14 reports fail the closed contract;13 report/controller/public tests pass. All fresh frozen frontend checks/build/tests, privacy/hash scanning and finite bounds remain unchanged. Product/backend bytes are unchanged, including source `/nix/store/6k4lq06jcsm8vssp1clq19l35dpdfxzv-shop-python-source`; backend578/5 checks and proxy148 retain their exact verified scope without repeat runs. Formal_accessibility/production_qualified remain false. Actual provider/host/recovery and full acceptance remain pending.
+
+## Stale cart conflict and retained quotation scope —2026-10-27
+
+After the existing committed-response-loss cart/quotation scenarios, a normal same-origin authenticated customer API call saves cart revision2 with support quantity3 while the rendered cart still shows revision1. The actual UI then attempts a support-line addition from its stale state. It shows the409 conflict message, clears the editable cart, exposes no uncertain-save retry and requires explicit Reload cart. Reload recovers revision2 with the same two lines and quantity3. A fresh direct current-cart GET verifies no third revision or duplicate line. All API calls use the existing CSRF/session/allowed endpoints; there is no DB bypass or test control endpoint. This models a competing request in one browser session, not an independently observed second tab/process race; existing real-PostgreSQL concurrency tests retain that separate scope.
+
+The existing quotation captured revision1/quantity2 before the competing edit. The browser explicitly refreshes its captured request, waits for the actual Network.responseReceived200 from that exact same-origin resource, then waits for the refresh control to become enabled before checking revision1/quantity2 and absence of quantity3. No private resource/body/header is emitted in reports. Product code already behaves correctly; no application change was necessary.
+
+Final exact fresh producer output:
+
+```json
+{"browser_sandbox": "disabled-for-owned-local-root-smoke", "browser_version": "155.0.8059.84", "checks": 134, "evidence_class": "local-synthetic-browser-engine", "formal_accessibility": false, "frontend_toolchain": {"node": "24.22.0", "npm": "11.19.1"}, "modes": 2, "node_version": "24.21.0", "production_qualified": false, "public_checks": {"javascript": 39, "no_javascript": 14}, "roles": 2, "status": "BROWSER_LOCAL_PASS"}
+```
+
+Five new JavaScript assertions expand34 to39; no-JavaScript14/private134 remain. Earlier34/14 reports fail the closed contract;13 report/controller/public tests pass. An intermediate39-check run before the explicit quotation-response wait also passed but is not the final-source evidence. Final source includes that stronger wait. All frozen fresh frontend check/build/test/privacy/hash requirements and finite bounds remain unchanged. Product/backend bytes are unchanged; source `/nix/store/6k4lq06jcsm8vssp1clq19l35dpdfxzv-shop-python-source`, backend578/5 checks and proxy148 retain exact scope without repeat runs. Formal_accessibility/production_qualified remain false; actual/full gates remain pending.

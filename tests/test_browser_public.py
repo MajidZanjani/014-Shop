@@ -13,7 +13,7 @@ from test_browser_report import report
 
 
 def public_report():
-    return report()|{'public_checks':{'javascript':34,'no_javascript':14},
+    return report()|{'public_checks':{'javascript':39,'no_javascript':14},
                      'frontend_toolchain':{'node':'24.22.0','npm':'11.19.1'}}
 
 
@@ -21,9 +21,9 @@ class PublicBrowserTests(unittest.TestCase):
     def test_closed_qualified_public_report(self):
         validate_public_result(public_report(),'155.0.8059.84','24.21.0')
         with self.assertRaises(ValueError):validate_result(public_report(),'155.0.8059.84','24.21.0')
-        for changed in ({'public_checks':{'javascript':29,'no_javascript':14}}, {'public_checks':{'javascript':25,'no_javascript':14}}, {'public_checks':{'javascript':20}}, {'public_checks':{'javascript':34.,'no_javascript':14}},
+        for changed in ({'public_checks':{'javascript':34,'no_javascript':14}}, {'public_checks':{'javascript':29,'no_javascript':14}}, {'public_checks':{'javascript':25,'no_javascript':14}}, {'public_checks':{'javascript':20}}, {'public_checks':{'javascript':39.,'no_javascript':14}},
                         {'public_checks':{'javascript':20,'no_javascript':7}},
-                        {'public_checks':{'javascript':34,'no_javascript':13}},
+                        {'public_checks':{'javascript':39,'no_javascript':13}},
                         {'frontend_toolchain':{'node':'24.21.0','npm':'11.19.1'}},
                         {'production_qualified':True}, {'status':'BROWSER_PUBLIC_DIAGNOSTIC_PASS'},
                         {'private_extra':'CANARY'}):

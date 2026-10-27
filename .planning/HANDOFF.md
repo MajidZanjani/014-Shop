@@ -4,11 +4,11 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — committed cart/quotation response-loss recovery verified; browser134 plus public34/14 pass; backend578/proxy148 retained; formal/manual and actual/full acceptance pending.
+**Execution status:** in progress — stale cart rejection/reload and immutable quotation refresh verified; browser134 plus public39/14 pass; backend578/proxy148 retained; formal/manual and actual/full acceptance pending.
 
-**Next implementation task:** Continue remaining local UAT-03 review and actual source/commercial/private-intake/transport/provider/runtime/recovery/host qualification only under existing scoped authority. Retain browser134+public34/14 and backend578/proxy148 at exact scope; do not repeat unchanged runs.
+**Next implementation task:** Continue remaining local UAT-03 review and actual source/commercial/private-intake/transport/provider/runtime/recovery/host qualification only under existing scoped authority. Retain browser134+public39/14 and backend578/proxy148 at exact scope; do not repeat unchanged runs.
 
-**Recorded implementation:** dcfb71c4e1fc9f0c58bfe2792ce0c2413c0adf5b
+**Recorded implementation:** 4bccdc545a1d34a748e801f9165fb4656490c35e
 
 This SHA contains the required-platform/no-JavaScript fixes and prepared public browser tooling; follow-up evidence records the570-test regression and58-check browser expansion. The one-shot structured handoff has been consumed; the checkpoint now records active task5 qualification. Final evidence and the narrow source-validator correction are in the current verification commit; do not reset to historical review c830297.
 
@@ -151,3 +151,5 @@ Current-source consolidated local regression and exact next action are recorded 
 Public offline continuation is verified in [evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md). Recorded SHA is the preceding regression base; this commit contains the frontend recovery change. Backend source6k4lq06jcsm8vssp1clq19l35dpdfxzv remains exact. No owned process remains.
 
 The response-loss regression continuation is verified in [evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md). Recorded SHA is the preceding public reconnect implementation; this commit changes browser verification/evidence only. No owned process remains.
+
+The stale-cart continuation is verified in [evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md). Recorded SHA is the preceding response-loss baseline; this commit changes browser verification/evidence only. No owned process remains.
