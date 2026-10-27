@@ -21,7 +21,7 @@ NOTICES={'request':'Code captured privately. Ask the local operator for the code
 def private(response):
     response['Cache-Control']='no-store'
     response['Referrer-Policy']='no-referrer'
-    response['Content-Security-Policy']="default-src 'none'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'"
+    response['Content-Security-Policy']="default-src 'none'; style-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'"
     patch_vary_headers(response,['Cookie'])
     return response
 

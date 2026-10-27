@@ -142,11 +142,33 @@ async function smoke() {
       await navigate('/browser-fixture.html');
       stage='probe-script-mode-'+index;
       require(await evaluate('Boolean(window.shop_page_script_ran)')===javascript); checks++;
+      const key=async (key,code,number) => {
+        for(const type of ['keyDown','keyUp']) await send('Input.dispatchKeyEvent',{
+          type,key,code,windowsVirtualKeyCode:number,nativeVirtualKeyCode:number,
+          ...(type==='keyDown' && key==='Enter'?{text:'\r',unmodifiedText:'\r'}:{})});
+      };
+      const keyboardInput=async (selector,value,label) => {
+        stage='keyboard-'+label+'-'+index;
+        await send('Page.bringToFront');
+        const focused=`document.activeElement===document.querySelector(${JSON.stringify(selector)})`;
+        for(let n=0;n<32 && !await evaluate(focused);n++) await key('Tab','Tab',9);
+        stage='keyboard-reach-'+label+'-'+index;
+        require(await evaluate(focused));
+        stage='keyboard-focus-'+label+'-'+index;
+        require(await evaluate(`(() => {const e=document.activeElement,s=getComputedStyle(e),r=e.getBoundingClientRect();
+          return e.value==='' && e.matches(':focus-visible') && s.outlineStyle!=='none' && parseFloat(s.outlineWidth)>=2
+            && r.width>0 && r.height>0 && r.top>=0 && r.bottom<=innerHeight+1;})()`));
+        stage='keyboard-entry-'+label+'-'+index;
+        await send('Input.insertText',{text:value});
+        require(await evaluate(`document.activeElement.value===${JSON.stringify(value)}`));checks++;
+      };
       stage='login-'+index;
       await navigate('/purchase/access/');
       require(await evaluate('document.querySelector("h1")!==null && document.querySelector("main")!==null')); checks++;
       const before=new Set(await readdir(config.mailbox));
-      await form('form:has(input[value="request"])',{email:config.email});
+      await keyboardInput('input[name=email]',config.email,'email');
+      stage='keyboard-request-submit-'+index;
+      await key('Enter','Enter',13);
       await wait('document.querySelector("input[name=code]")!==null && document.readyState==="complete"');
       let added=[];
       for (let count=0; count<50; count++) {
@@ -156,7 +178,20 @@ async function smoke() {
       require(added.length===1);
       const mail=await readFile(join(config.mailbox,added[0]),'utf8'); require(mail.length<16384);
       const code=mail.match(/^Verification code: ([A-Za-z0-9_-]+)$/m)?.[1]; require(code);
-      await form('form:has(input[value="verify"])',{code});
+      const invalidCode='SYNTHETIC_KEYBOARD_INVALID_CODE';
+      await keyboardInput('input[name=code]',invalidCode,'invalid-code');
+      stage='keyboard-invalid-submit-'+index;
+      await key('Enter','Enter',13);
+      await wait('document.readyState==="complete" && document.querySelector("[role=alert]")!==null');
+      stage='keyboard-invalid-denied-'+index;
+      require(lastDocumentStatus===400 && await evaluate('document.querySelector("[role=alert]").innerText.includes("could not be verified") && !document.body.innerText.includes("Your customer access is verified.")'));checks++;
+      require(await evaluate(`!document.body.innerText.includes(${JSON.stringify(invalidCode)}) && document.querySelector('input[name=code]').value==='' && !location.search && !location.hash`));checks++;
+      await send('Accessibility.enable');
+      const tree=await send('Accessibility.getFullAXTree');
+      require(tree.nodes.some(n=>!n.ignored && n.role?.value==='alert'));checks++;
+      await keyboardInput('input[name=code]',code,'valid-code');
+      stage='keyboard-valid-submit-'+index;
+      await key('Enter','Enter',13);
       await wait('document.body.innerText.includes("Your customer access is verified.")'); checks++;
       stage='cart-current-entry-'+index;
       await navigate('/purchase/cart/');

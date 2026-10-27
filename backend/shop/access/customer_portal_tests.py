@@ -49,6 +49,9 @@ class CustomerPortalTests(TestCase):
         self.assertEqual(self.browser.get('/purchase/business/').status_code,200)
         self.assertEqual(page['Cache-Control'],'no-store');self.assertEqual(page['Referrer-Policy'],'same-origin')
         self.assertIn("form-action 'self'",page['Content-Security-Policy'])
+        directives=dict(part.strip().split(' ',1) for part in page['Content-Security-Policy'].split(';'))
+        self.assertEqual(directives,{'default-src':"'none'",'style-src':"'self'",'form-action':"'self'",
+                                     'frame-ancestors':"'none'",'base-uri':"'none'"})
         self.assertIn('Cookie',page['Vary'])
         self.assertEqual(self.browser.post(PATH,data={'action':'logout'},HTTP_X_CSRFTOKEN=old_csrf).status_code,403)
         self.assertEqual(self.post({'action':'logout'}).status_code,303)

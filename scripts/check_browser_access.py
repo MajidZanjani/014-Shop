@@ -23,7 +23,7 @@ def validate_result(value,browser_version,node_version):
     fields={'status','checks','modes','roles','browser_version','node_version','evidence_class',
             'formal_accessibility','production_qualified','browser_sandbox'}
     if (not isinstance(value,dict) or set(value)!=fields or value['status']!='BROWSER_LOCAL_PASS'
-            or type(value['checks']) is not int or value['checks']!=58
+            or type(value['checks']) is not int or value['checks']!=70
             or type(value['modes']) is not int or value['modes']!=2
             or type(value['roles']) is not int or value['roles']!=2
             or value['node_version']!=node_version or value['browser_version']!=browser_version

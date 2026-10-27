@@ -2,8 +2,8 @@
 gsd_state_version: "1.0"
 current_plan: 01
 status: in_progress
-last_updated: "2026-10-27T09:10:24.625446+00:00"
-state_head: c50a4c1f0e30a6e2a7b4702af06fe7fe3278c3e1
+last_updated: "2026-10-27T09:24:10.802571+00:00"
+state_head: d60b5f533ce3ef99dd992546a47dd8304b1b19b4
 progress:
   total_phases: 14
   completed_phases: 1
@@ -14,8 +14,8 @@ current_task: 5
 last_activity: 2026-10-27
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Local keyboard/reflow slice verified and fallback overflow fixed; formal/manual and actual gates pending.
-last_activity_desc: Exact public25/14 plus browser58, focused20 and13 contracts pass; inert source264 verified.
+stopped_at: Keyboard-only customer verification/error recovery verified; formal/manual and actual gates pending.
+last_activity_desc: Exact browser70 plus public25/14, focused17 and13 contracts pass; current inert source264 verified.
 ---
 
 # Project state — final purchase-flow revision2
@@ -26,9 +26,9 @@ last_activity_desc: Exact public25/14 plus browser58, focused20 and13 contracts 
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — local keyboard/accessibility-tree/320px reflow verified; Django fallback styling fixed; browser58 plus public25/14 pass; formal/manual and actual/full acceptance pending.
+**Execution status:** in progress — keyboard-only customer verification/error recovery and scoped style policy verified; browser70 plus public25/14 pass; formal/manual and actual/full acceptance pending.
 
-**Next implementation task:** Complete the remaining manual/formal accessibility review and actual source/commercial/private-intake/transport/provider/runtime/recovery/host qualification under existing scoped authority. Preserve exact browser58+public25/14, focused20 form/cart tests and current264-file source evidence; do not repeat unchanged runs.
+**Next implementation task:** Complete remaining manual/formal accessibility and actual source/commercial/private-intake/transport/provider/runtime/recovery/host qualification under existing scoped authority. Retain browser70+public25/14, focused17 verification/security tests and current264-file inert source; do not repeat unchanged runs.
 
 ## Preserved implementation/evidence
 
@@ -239,3 +239,7 @@ Retained backend570/5 checks and proxy148/2 aliases; newly qualified exact front
 ##13-01 keyboard and narrow-screen follow-up —2026-10-27
 
 Expanded exact public browser58 customer/staff plus25 JavaScript/14 no-JavaScript checks pass, including real keyboard/focus, vendor accessibility-tree naming and320px reflow. The observed Django fallback overflow is fixed with the existing shared stylesheet. Focused20 form/cart tests and13 browser-contract tests pass; current inert source264 files/33 templates/1 CSS/no symlinks. Prior backend570 and proxy148 are retained pre-layout-change evidence. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md). Formal/manual and actual/full acceptance remain pending.
+
+##13-01 customer keyboard verification —2026-10-27
+
+Exact browser70 customer/staff plus25 JavaScript/14 no-JavaScript checks pass, including keyboard-only customer request/invalid-code/correct-code recovery, accessible alert and privacy assertions. Customer access now permits only same-origin styles while retaining other restrictive CSP directives. Focused17 verification/security tests and13 browser contracts pass; exact inert source264 files/33 templates/1 CSS/no symlinks. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md). Prior backend570/proxy148 and focused20 form/cart evidence retain their earlier scope. Formal/manual and actual/full acceptance remain pending.

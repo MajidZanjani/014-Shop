@@ -1,6 +1,6 @@
 # Public React/browser qualification and required-platform fixes —2026-10-27
 
-**Current result:** Exact frozen frontend and the real fresh public browser producer now pass locally:58 customer/staff plus25 JavaScript/14 no-JavaScript assertions, including the keyboard/reflow follow-up below. Earlier diagnostic/failure/pending-build statements below are dated attempt history, superseded only for this exact local frontend/public qualification. Formal/manual accessibility and all actual/full gates remain pending.
+**Current result:** Exact frozen frontend and the real fresh public browser producer now pass locally:70 customer/staff plus25 JavaScript/14 no-JavaScript assertions, including keyboard/reflow and customer verification/error recovery below. Earlier diagnostic/failure/pending-build statements below are dated attempt history, superseded only for this exact local frontend/public qualification. Formal/manual accessibility and all actual/full gates remain pending.
 
 ## Implemented behavior
 
@@ -119,3 +119,40 @@ Actual report after the fix:
 ```
 
 Verification: real exact fresh `--public` build/browser pass above; all13 browser report/control/public contract tests pass;20 existing real-PostgreSQL catalog/form/cart tests pass in1.706 seconds, including CSRF/private-input and production-denial behavior. No broad backend rerun is inferred for this narrow response markup/style change; retained backend570/proxy148 predate it. Current inert source `/nix/store/xwz80mphdkzly6h8d471j6sb9n4qphi1-shop-python-source` matches264 exact files/33 templates/1 stylesheet/no symlinks. Only the inert source was built; no image/deployment operation occurred. All existing timeout/toolchain/source/privacy/formal/actual gates remain. No owned browser/server/database/compiler process remains.
+
+## Keyboard-only customer verification and error recovery —2026-10-27
+
+The existing customer-access browser journey now reaches email/code controls through bounded actual Tab events, asserts visible focus/in-viewport geometry, enters text through Chromium `Input.insertText` and submits using native Enter events. It no longer uses inspector value assignment or `requestSubmit` for the selected customer request/verification forms. One deliberately invalid fixed synthetic code must return400 with the error in a DOM alert and a nonignored accessibility-tree alert; access remains unverified, the code field is empty and the failed code is absent from rendered body and URL. The original privately captured valid code then succeeds through the same keyboard path. This runs with page JavaScript both enabled and disabled. Existing customer/staff/MFA/revocation/privacy/cart checks remain. The six additional assertions per mode raise the required base report from58 to70; old58-check evidence cannot satisfy the expanded contract.
+
+The first run failed at `keyboard-email-0`. The access page inherited the shared stylesheet link, but its route-specific `default-src 'none'` policy had no style source and prevented the shared focus styling. Adding only `style-src 'self'` gets the run past its focus assertion. `default-src 'none'`, self-only form actions, no framing and no base URI remain; the focused test now verifies the exact closed directive set. This permits the existing same-origin static stylesheet, not inline/external styles, scripts, images or a new service. Cache/referrer/session/CSRF/attempt/production gates and authentication operations are unchanged.
+
+A follow-up reached `keyboard-entry-email-0` but failed before completing the request. This was a driver issue: input Enter submission requires the carriage-return text/unmodifiedText on keyDown. The driver now emits that native sequence and uses fixed reach/focus/entry/submit stage names. No app authentication workaround, DOM-submit fallback or automatic retry was introduced. The corrected default and combined exact public runs pass. Failure output contains only fixed stage metadata, never entered email, bearer code, cookies, request bodies or private URLs.
+
+Actual combined report:
+
+```json
+{
+  "browser_sandbox": "disabled-for-owned-local-root-smoke",
+  "browser_version": "155.0.8059.84",
+  "checks": 70,
+  "evidence_class": "local-synthetic-browser-engine",
+  "formal_accessibility": false,
+  "frontend_toolchain": {
+    "node": "24.22.0",
+    "npm": "11.19.1"
+  },
+  "modes": 2,
+  "node_version": "24.21.0",
+  "production_qualified": false,
+  "public_checks": {
+    "javascript": 25,
+    "no_javascript": 14
+  },
+  "roles": 2,
+  "status": "BROWSER_LOCAL_PASS"
+}
+```
+
+Focused real-PostgreSQL verification/customer-portal/race/security tests:17 pass in0.603 seconds. Browser report/controller/public tests:13 pass. Current inert source `/nix/store/6npnxy6mq6qa3xh3h0l3m22wyapsi07j-shop-python-source` matches264 exact files/33 templates/1 CSS/no symlinks. No full backend/proxy rerun is inferred; their earlier results retain their scope. Fresh exact frontend/native pins and all finite setup/build/browser/application/database limits remain unchanged. No owned browser/server/database process remains.
+
+This covers the selected local customer-access forms and renderer accessibility tree, not every private/business/staff keyboard journey, spoken screen-reader behavior, contrast/text zoom or formal accessibility approval. Synthetic capture is not real mail/HTTPS transport or production MFA/customer-access qualification. Every commercial/source/private-intake/provider/retention/runtime/recovery/host/activation/full-acceptance gate remains pending.
