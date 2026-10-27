@@ -7,7 +7,7 @@ from check_browser_access import validate_result
 
 
 def report():
-    return {'status':'BROWSER_LOCAL_PASS','checks':70,'modes':2,'roles':2,'browser_version':'155.0.8059.84',
+    return {'status':'BROWSER_LOCAL_PASS','checks':90,'modes':2,'roles':2,'browser_version':'155.0.8059.84',
             'node_version':'24.21.0','evidence_class':'local-synthetic-browser-engine',
             'formal_accessibility':False,'production_qualified':False,
             'browser_sandbox':'disabled-for-owned-local-root-smoke'}
@@ -23,7 +23,7 @@ class BrowserReportTests(unittest.TestCase):
             with self.subTest(update=update),self.assertRaises(ValueError):validate_result(report()|update,'155.0.8059.84','24.21.0')
 
     def test_incomplete_counts_and_promoted_boundaries_fail(self):
-        for update in ({'checks':69}, {'checks':58}, {'checks':57}, {'checks':54}, {'checks':48},{'modes':1},{'roles':1},{'roles':True},{'modes':True},{'formal_accessibility':True},
+        for update in ({'checks':89}, {'checks':80}, {'checks':79}, {'checks':70}, {'checks':69}, {'checks':58}, {'checks':57}, {'checks':54}, {'checks':48},{'modes':1},{'roles':1},{'roles':True},{'modes':True},{'formal_accessibility':True},
                        {'production_qualified':True},{'browser_sandbox':'qualified'}):
             with self.subTest(update=update),self.assertRaises(ValueError):validate_result(report()|update,'155.0.8059.84','24.21.0')
 

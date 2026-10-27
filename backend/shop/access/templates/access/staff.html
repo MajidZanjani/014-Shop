@@ -1,7 +1,8 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Local staff access</title></head>
-<body><main><h1>Local staff access</h1>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Local staff access</title><style>{{ staff_style|safe }}</style></head>
+<body><main class="shop-container panel"><h1>Local staff access</h1>
 <p>Synthetic rehearsal only. No real staff access, approved offers or payments.</p>
+{% if error %}<p role="alert">{{ error }}</p>{% endif %}
 {% if authenticated %}
 <p>Both local factors verified. Quotation review requires verification within the last five minutes and an explicit reviewer assignment.</p>
 <p><a href="/staff/quotation-requests/">View assigned quotation requests</a> · <a href="/staff/delivery/">Assigned private deliveries</a> · <a href="/staff/licence-cases/">Assigned licence change cases</a> · <a href="/staff/support-refunds/">Assigned support refund cases</a> · <a href="/staff/overpayments/">Assigned overpayment investigations</a> · <a href="/staff/payments/">Assigned payment operations</a></p>

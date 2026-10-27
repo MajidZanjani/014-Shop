@@ -147,7 +147,7 @@ async function smoke() {
           type,key,code,windowsVirtualKeyCode:number,nativeVirtualKeyCode:number,
           ...(type==='keyDown' && key==='Enter'?{text:'\r',unmodifiedText:'\r'}:{})});
       };
-      const keyboardInput=async (selector,value,label) => {
+      const keyboardInput=async (selector,value,label,countChecks=true) => {
         stage='keyboard-'+label+'-'+index;
         await send('Page.bringToFront');
         const focused=`document.activeElement===document.querySelector(${JSON.stringify(selector)})`;
@@ -160,7 +160,7 @@ async function smoke() {
             && r.width>0 && r.height>0 && r.top>=0 && r.bottom<=innerHeight+1;})()`));
         stage='keyboard-entry-'+label+'-'+index;
         await send('Input.insertText',{text:value});
-        require(await evaluate(`document.activeElement.value===${JSON.stringify(value)}`));checks++;
+        require(await evaluate(`document.activeElement.value===${JSON.stringify(value)}`));if(countChecks)checks++;
       };
       stage='login-'+index;
       await navigate('/purchase/access/');
@@ -250,11 +250,23 @@ async function smoke() {
       require(await evaluate('document.querySelector("input[name=email]")!==null && !document.body.innerText.includes("Your customer access is verified.")')); checks++;
       await navigate(config.support);
       require(lastDocumentStatus===401 && await evaluate('!document.body.innerText.includes("Available: 70200") && !document.body.innerText.includes("Synthetic prototype")')); checks++;
+      const staffReflow=async (label,countChecks) => {
+        stage='staff-reflow-'+label+'-'+index;
+        await send('Emulation.setDeviceMetricsOverride',{width:320,height:900,deviceScaleFactor:1,mobile:false});
+        require(await evaluate('innerWidth===320 && document.documentElement.scrollWidth<=innerWidth+1'));
+        if(countChecks)checks++;
+        await send('Emulation.setDeviceMetricsOverride',{width:javascript?1280:390,height:900,deviceScaleFactor:1,mobile:!javascript});
+      };
       const staffLogin=async (countChecks=true) => {
         stage='staff-password-'+index;
         await staffNavigate('/staff/');
         const staffBefore=new Set(await readdir(config.staff.capture));
-        await form('form[action="/staff/login/"]',{username:config.staff.actors[index].username,password:config.staff.actors[index].password});
+        await staffReflow('password',countChecks);
+        await keyboardInput('input[name=username]',config.staff.actors[index].username,'staff-username',countChecks);
+        await keyboardInput('input[name=password]',config.staff.actors[index].password,'staff-password',countChecks);
+        stage='staff-keyboard-password-submit-'+index;
+        await key('Enter','Enter',13);
+        await wait('document.readyState==="complete" && document.querySelector("input[name=code]")!==null');
         require(await evaluate('document.querySelector("input[name=code]")!==null')); if (countChecks) checks++;
         const staffAdded=(await readdir(config.staff.capture)).filter(name => !staffBefore.has(name));
         require(staffAdded.length===1);
@@ -264,7 +276,23 @@ async function smoke() {
         require(lastDocumentStatus===403); if (countChecks) checks++;
         stage='staff-second-factor-'+index;
         await staffNavigate('/staff/');
-        await form('form[action="/staff/verify/"]',{code:staffCode});
+        await staffReflow('challenge',countChecks);
+        const badStaffCode='SYNTHETIC_STAFF_KEYBOARD_INVALID';
+        await keyboardInput('input[name=code]',badStaffCode,'staff-invalid-code',countChecks);
+        stage='staff-keyboard-invalid-submit-'+index;
+        await key('Enter','Enter',13);
+        await wait('document.readyState==="complete" && document.querySelector("[role=alert]")!==null');
+        require(lastDocumentStatus===400 && await evaluate('!document.body.innerText.includes("Both local factors verified.")'));if(countChecks)checks++;
+        const staffAlert=await send('Accessibility.getFullAXTree');
+        require(staffAlert.nodes.some(n=>!n.ignored && n.role?.value==='alert'));if(countChecks)checks++;
+        require(await evaluate(`document.querySelector('input[name=code]').value==='' && !document.body.innerText.includes(${JSON.stringify(badStaffCode)}) && !location.search && !location.hash`));if(countChecks)checks++;
+        await staffNavigate(config.staff.support);
+        require(lastDocumentStatus===403);if(countChecks)checks++;
+        await staffNavigate('/staff/');
+        await keyboardInput('input[name=code]',staffCode,'staff-code',countChecks);
+        stage='staff-keyboard-code-submit-'+index;
+        await key('Enter','Enter',13);
+        await wait('document.body.innerText.includes("Both local factors verified.")');
         require(await evaluate('document.body.innerText.includes("Both local factors verified.")')); if (countChecks) checks++;
       };
       await staffLogin();

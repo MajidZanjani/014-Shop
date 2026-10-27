@@ -1,6 +1,6 @@
 # Public React/browser qualification and required-platform fixes —2026-10-27
 
-**Current result:** Exact frozen frontend and the real fresh public browser producer now pass locally:70 customer/staff plus25 JavaScript/14 no-JavaScript assertions, including keyboard/reflow and customer verification/error recovery below. Earlier diagnostic/failure/pending-build statements below are dated attempt history, superseded only for this exact local frontend/public qualification. Formal/manual accessibility and all actual/full gates remain pending.
+**Current result:** Exact frozen frontend and the real fresh public browser producer now pass locally:90 customer/staff plus25 JavaScript/14 no-JavaScript assertions, including staff/customer keyboard MFA/access, error recovery and reflow below. Earlier diagnostic/failure/pending-build statements below are dated attempt history, superseded only for this exact local frontend/public qualification. Formal/manual accessibility and all actual/full gates remain pending.
 
 ## Implemented behavior
 
@@ -156,3 +156,44 @@ Actual combined report:
 Focused real-PostgreSQL verification/customer-portal/race/security tests:17 pass in0.603 seconds. Browser report/controller/public tests:13 pass. Current inert source `/nix/store/6npnxy6mq6qa3xh3h0l3m22wyapsi07j-shop-python-source` matches264 exact files/33 templates/1 CSS/no symlinks. No full backend/proxy rerun is inferred; their earlier results retain their scope. Fresh exact frontend/native pins and all finite setup/build/browser/application/database limits remain unchanged. No owned browser/server/database process remains.
 
 This covers the selected local customer-access forms and renderer accessibility tree, not every private/business/staff keyboard journey, spoken screen-reader behavior, contrast/text zoom or formal accessibility approval. Synthetic capture is not real mail/HTTPS transport or production MFA/customer-access qualification. Every commercial/source/private-intake/provider/retention/runtime/recovery/host/activation/full-acceptance gate remains pending.
+
+## Staff keyboard MFA, narrow layout and safe retry pages —2026-10-27
+
+User continued local UAT-03. Actual keyboard events now enter staff username/password/possession code and submit the supported forms in both JavaScript modes, including reauthentication after logout.320-CSS-pixel reflow is checked on password and challenge states. The prior password-only403, exact resource assignments, recent-MFA grant/revoke/regrant, logout and retained-cookie credential revocation checks remain. Earlier70-check reports cannot satisfy the expanded90-check contract; the intermediate80-check staff happy-path run also passed but remains narrower than the final result.
+
+First real staff run failed at `keyboard-focus-staff-username-0`: the sign-in page had no shared focus styling. The exact existing fixed shared CSS is now embedded in one staff-home style block with an exact SHA-256 CSP allowance. The template receives only that trusted source string, never submitted values. Tests compare the rendered block to the shared CSS, recompute its hash and require the closed CSP directive set: default resources denied, only that style hash, self-only form actions, no framing/base URI. No `unsafe-inline`, self/external style source or pre-MFA asset exception was added. The existing stylesheet route remains403 before MFA and after password alone, and200 after both factors; the middleware allowlist/route set is unchanged.
+
+The next keyboard run reproduced a second gap at `staff-keyboard-invalid-submit-0`: native form failures returned JSON without an alert/retry form. Exact URL-encoded form failures now render fixed safe error text and empty retry controls with the existing400/429/503 status; JSON clients retain their original error bodies and statuses. Enabled/host/CSRF checks, throttles, challenge consumption, session rotation, current MFA state and resource authorization are unchanged. No submitted username/password/code is placed into template context or reflected in the error body. The new test covers wrong password, duplicate fields, wrong-code attempt count and successful correction; replay still fails without revoking an already verified session.
+
+`TemplateResponse` and a deferred challenge-pending boolean evaluate the retry template only after the authentication transaction exits. A real-PG fault test starts with an existing database-backed session, forces local capture failure after challenge creation, and verifies safe503 HTML after rollback, no challenge/throttle residue, unchanged prior session state and no credential/exception reflection. No whole session object is passed as template context. This avoids querying a session while its transaction is marked for rollback.
+
+Actual final combined report:
+
+```json
+{
+  "browser_sandbox": "disabled-for-owned-local-root-smoke",
+  "browser_version": "155.0.8059.84",
+  "checks": 90,
+  "evidence_class": "local-synthetic-browser-engine",
+  "formal_accessibility": false,
+  "frontend_toolchain": {
+    "node": "24.22.0",
+    "npm": "11.19.1"
+  },
+  "modes": 2,
+  "node_version": "24.21.0",
+  "production_qualified": false,
+  "public_checks": {
+    "javascript": 25,
+    "no_javascript": 14
+  },
+  "roles": 2,
+  "status": "BROWSER_LOCAL_PASS"
+}
+```
+
+This staff continuation adds ten assertions per mode: three keyboard-entry checks and two reflow checks, followed by invalid-code entry, rejection, accessible-alert presence, credential privacy and denied privileged access. Correct-code success remains an existing assertion, strengthened by actual keyboard entry/submission. Native key entry uses no inspector assignment/focus/requestSubmit fallback for these selected staff/customer sign-in forms. The invalid staff code cannot grant access; the privately captured correct code subsequently succeeds in the same browser. The renderer's alert tree is checked, not actual spoken screen-reader output.
+
+Final focused staff security/navigation suite:23 tests,11.494 seconds;13 browser-report/controller/public contracts pass. Exact inert source `/nix/store/a5y1jcv7xln5d4fa126gjcip87qscdkx-shop-python-source`:264 byte-identical files/33 templates/1 stylesheet/no symlinks. Earlier21-test staff happy-path and23-test pre-boolean checks remain intermediate evidence, not substitutes for the final run. No full backend/proxy rerun is inferred; their earlier scope remains dated. Only inert source was built; no runtime image, host mutation, real staff transport or external service operation occurred. Existing setup/build/browser/application/database limits and exact frontend/controller pins are unchanged. No owned browser/server/database/compiler remains.
+
+Formal/manual accessibility, complete keyboard coverage beyond these selected journeys, contrast/text zoom/real assistive technology, actual MFA/customer transport, commercial/source/private-intake/provider/retention/runtime/recovery/host/activation and full Phase13 acceptance remain pending. No approval, actual payment, entitlement or support-credit effect is inferred.

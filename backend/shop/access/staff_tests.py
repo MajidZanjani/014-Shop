@@ -1,6 +1,8 @@
 """Synthetic staff MFA, host/cookie isolation and explicit resource grants on real PG."""
 from concurrent.futures import ThreadPoolExecutor
 from datetime import timedelta
+from base64 import b64encode
+from hashlib import sha256
 import io
 import json
 from pathlib import Path
@@ -8,6 +10,8 @@ import re
 import stat
 import tempfile
 from threading import Barrier
+from urllib.parse import urlencode
+from unittest.mock import patch
 import uuid
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -61,12 +65,23 @@ class StaffTests(TransactionTestCase):
         first=self.browser.get(BASE);self.assertEqual(first.status_code,200)
         self.assertContains(first,'type="password"');self.assertContains(first,'csrfmiddlewaretoken')
         self.assertIn("frame-ancestors 'none'",first['Content-Security-Policy'])
+        styles=re.findall(r'<style>(.*?)</style>',first.content.decode(),re.S)
+        self.assertEqual(len(styles),1)
+        from shop.catalog.presentation import CSS
+        self.assertEqual(styles[0],CSS)
+        style_hash=b64encode(sha256(styles[0].encode('utf-8')).digest()).decode('ascii')
+        directives=dict(part.strip().split(' ',1) for part in first['Content-Security-Policy'].split(';'))
+        self.assertEqual(directives,{'default-src':"'none'",'style-src':"'sha256-"+style_hash+"'",
+                                     'form-action':"'self'",'frame-ancestors':"'none'",'base-uri':"'none'"})
+        self.assertEqual(self.browser.get('/purchase/assets/shop.css').status_code,403)
         code=self.challenge();old_key=self.browser.session.session_key;old_csrf=self.browser.cookies['shop_staff_csrftoken'].value
         self.assertEqual(self.browser.get(BASE+'quotation-requests/').status_code,403)
         self.assertFalse(self.browser.get(BASE+'session/').json()['authenticated'])
+        self.assertEqual(self.browser.get('/purchase/assets/shop.css').status_code,403)
         response=self.post('verify/',{'code':code});self.assertEqual(response.status_code,200)
         self.assertNotEqual(old_key,self.browser.session.session_key)
         self.assertNotEqual(old_csrf,self.browser.cookies['shop_staff_csrftoken'].value)
+        self.assertEqual(self.browser.get('/purchase/assets/shop.css').status_code,200)
         self.assertTrue(self.browser.cookies['shop_staff_sessionid']['httponly'])
         self.assertFalse(self.browser.cookies['shop_staff_sessionid']['domain'])
         self.assertEqual(self.browser.cookies['shop_staff_sessionid']['samesite'],'Strict')
@@ -169,3 +184,53 @@ class StaffTests(TransactionTestCase):
         with ThreadPoolExecutor(max_workers=2) as pool:results=list(pool.map(run,range(2)))
         self.assertEqual(sorted(results),[200,400])
         self.assertEqual(StaffChallenge.objects.get().attempts,1)
+
+    def form_post(self,path,values):
+        self.browser.get(BASE)
+        return self.browser.post(BASE+path,data=urlencode(values),content_type='application/x-www-form-urlencoded',
+            HTTP_X_CSRFTOKEN=self.browser.cookies['shop_staff_csrftoken'].value)
+
+    def test_form_error_recovery_keeps_credentials_private_and_mfa_closed(self):
+        bad_password='private-invalid-password'
+        failed=self.form_post('login/',{'username':'reviewer','password':bad_password})
+        self.assertEqual(failed.status_code,400)
+        self.assertContains(failed,'role="alert"',status_code=400)
+        self.assertNotContains(failed,bad_password,status_code=400)
+        self.assertNotContains(failed,'reviewer',status_code=400)
+        self.assertEqual(failed['Cache-Control'],'no-store')
+        self.assertEqual(self.browser.get(BASE+'quotation-requests/').status_code,403)
+        malformed=self.form_post('login/',[('username','reviewer'),('username','other'),('password',self.password)])
+        self.assertEqual(malformed.status_code,400)
+        self.assertContains(malformed,'role="alert"',status_code=400)
+        self.assertNotContains(malformed,self.password,status_code=400)
+        code=self.challenge()
+        bad_code='private-invalid-code'
+        failed=self.form_post('verify/',{'code':bad_code})
+        self.assertEqual(failed.status_code,400)
+        self.assertContains(failed,'role="alert"',status_code=400)
+        self.assertContains(failed,'name="code"',status_code=400)
+        self.assertNotContains(failed,bad_code,status_code=400)
+        self.assertNotContains(failed,code,status_code=400)
+        self.assertNotContains(failed,'Both local factors verified.',status_code=400)
+        challenge=StaffChallenge.objects.get()
+        self.assertEqual(challenge.attempts,1);self.assertIsNone(challenge.consumed_at)
+        self.assertFalse(self.browser.get(BASE+'session/').json()['authenticated'])
+        self.assertEqual(self.browser.get(BASE+'quotation-requests/').status_code,403)
+        self.assertEqual(self.form_post('verify/',{'code':code}).status_code,302)
+        self.assertTrue(self.browser.get(BASE+'session/').json()['authenticated'])
+        self.assertEqual(self.form_post('verify/',{'code':code}).status_code,400)
+        self.assertTrue(self.browser.get(BASE+'session/').json()['authenticated'])
+
+    def test_form_capture_failure_renders_after_transaction_rollback(self):
+        session=self.browser.session;session['synthetic_prior_state']='retained';session.save()
+        with patch('shop.access.staff_auth.LocalStorage',side_effect=OSError('private-capture-failure')):
+            response=self.form_post('login/',{'username':'reviewer','password':self.password})
+        self.assertEqual(response.status_code,503)
+        self.assertContains(response,'role="alert"',status_code=503)
+        self.assertNotContains(response,self.password,status_code=503)
+        self.assertNotContains(response,'private-capture-failure',status_code=503)
+        self.assertEqual(StaffChallenge.objects.count(),0)
+        from .models import StaffLoginThrottle
+        self.assertEqual(StaffLoginThrottle.objects.count(),0)
+        self.assertEqual(self.browser.session['synthetic_prior_state'],'retained')
+        self.assertFalse(self.browser.get(BASE+'session/').json()['authenticated'])

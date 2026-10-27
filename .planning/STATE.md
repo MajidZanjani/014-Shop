@@ -2,8 +2,8 @@
 gsd_state_version: "1.0"
 current_plan: 01
 status: in_progress
-last_updated: "2026-10-27T09:24:10.802571+00:00"
-state_head: d60b5f533ce3ef99dd992546a47dd8304b1b19b4
+last_updated: "2026-10-27T09:45:15.430523+00:00"
+state_head: 3aaa5812dca0177ec065a2b19f645b0d50a1afa2
 progress:
   total_phases: 14
   completed_phases: 1
@@ -14,8 +14,8 @@ current_task: 5
 last_activity: 2026-10-27
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Keyboard-only customer verification/error recovery verified; formal/manual and actual gates pending.
-last_activity_desc: Exact browser70 plus public25/14, focused17 and13 contracts pass; current inert source264 verified.
+stopped_at: Staff keyboard MFA and safe native-form error recovery verified; formal/manual and actual gates pending.
+last_activity_desc: Exact browser90 plus public25/14, focused23 and13 contracts pass; current inert source264 verified.
 ---
 
 # Project state — final purchase-flow revision2
@@ -26,9 +26,9 @@ last_activity_desc: Exact browser70 plus public25/14, focused17 and13 contracts 
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — keyboard-only customer verification/error recovery and scoped style policy verified; browser70 plus public25/14 pass; formal/manual and actual/full acceptance pending.
+**Execution status:** in progress — staff keyboard MFA/320px layout and private form-error recovery verified; browser90 plus public25/14 pass; formal/manual and actual/full acceptance pending.
 
-**Next implementation task:** Complete remaining manual/formal accessibility and actual source/commercial/private-intake/transport/provider/runtime/recovery/host qualification under existing scoped authority. Retain browser70+public25/14, focused17 verification/security tests and current264-file inert source; do not repeat unchanged runs.
+**Next implementation task:** Continue remaining local UAT-03 accessibility review and actual source/commercial/private-intake/transport/provider/runtime/recovery/host qualification only under existing scoped authority. Retain browser90+public25/14, focused23 staff security/navigation tests and current264-file inert source; do not repeat unchanged runs.
 
 ## Preserved implementation/evidence
 
@@ -243,3 +243,7 @@ Expanded exact public browser58 customer/staff plus25 JavaScript/14 no-JavaScrip
 ##13-01 customer keyboard verification —2026-10-27
 
 Exact browser70 customer/staff plus25 JavaScript/14 no-JavaScript checks pass, including keyboard-only customer request/invalid-code/correct-code recovery, accessible alert and privacy assertions. Customer access now permits only same-origin styles while retaining other restrictive CSP directives. Focused17 verification/security tests and13 browser contracts pass; exact inert source264 files/33 templates/1 CSS/no symlinks. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md). Prior backend570/proxy148 and focused20 form/cart evidence retain their earlier scope. Formal/manual and actual/full acceptance remain pending.
+
+##13-01 staff keyboard and retry pages —2026-10-27
+
+Exact browser90 customer/staff plus25 JavaScript/14 no-JavaScript checks pass, including native-keyboard staff two-factor sign-in, invalid-code recovery, password-only denial and320px login/challenge layout. Fixed CSS is hash-authorized without a pre-MFA asset exception; safe form retry responses retain API/status/attempt controls. Focused23 staff security/navigation tests and13 browser contracts pass; current source264 files/33 templates/1 CSS/no symlinks. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md). Prior broad backend570/proxy148 and customer-focused17 evidence retain their earlier scope. Formal/manual and actual/full acceptance remain pending.
