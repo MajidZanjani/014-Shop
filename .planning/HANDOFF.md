@@ -4,11 +4,11 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress —13-01 supported staff finance rehearsal verified locally; continuing eight-case API/no-JavaScript acceptance coverage; actual/full qualification pending.
+**Execution status:** in progress —13-01 eight-case local report and supported support-removal checks verified; private technical intake remains partial; continuing independent local work.
 
-**Next implementation task:** Complete13-01 explicit eight-case acceptance report and supported API/no-JavaScript required-support/offer-hold checks; retain all actual qualification gates.
+**Next implementation task:** Complete the existing private support follow-up boundary for source check8 without a mandatory portal; preserve accepted scope, resource authority and actual intake qualification gates.
 
-**Recorded implementation:** 4b9df737f0f440a91909bdb95c3e39f5c183ab13
+**Recorded implementation:** e6f9af264e7ac7826d07b9eb040ec9f68a532fab
 
 This SHA contains the08-03 implementation now covered by final local verification. The one-shot structured handoff and active pause checkpoint have been consumed. Final evidence and the narrow source-validator correction are in the current verification commit; do not reset to historical review c830297.
 
@@ -85,3 +85,7 @@ Backend559 tests/5 checks167.965s (enclosing169.214s), worker24/6 checks13.374s,
 ##13-01 staff finance integration —2026-10-27
 
 Backend560/5 checks168.659s (enclosing169.928s), focused89/19.033s, supported two-factor demo/proxy132/2 aliases and exact261-file source pass. Capture response-loss recovery uses lookup only; full synthetic refund preserves36000 granted seconds and60 reserved seconds. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-STAFF-FINANCE-PARTIAL.md). Actual/full qualification remains pending; continuing local eight-case acceptance.
+
+##13-01 eight-case report —2026-10-27
+
+Supported demo and proxy132/2 aliases pass; four evidence-contract tests reject missing/duplicate/promoted cases. Source checks1–7 pass synthetically;8 remains partial for confidential customer technical intake/custody. Exact261-file source matches. Prepared CI now runs the supported demo; hosted execution remains unverified. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-EIGHT-CASES-PARTIAL.md).

@@ -1,5 +1,6 @@
 """Synthetic example executed only by the fresh-owned-database demo wrapper."""
 from pathlib import Path
+from dataclasses import replace
 from unittest.mock import patch
 from io import StringIO
 from django.core.management import call_command
@@ -11,7 +12,7 @@ from django.utils import timezone
 from shop.access.models import CustomerIdentity
 from shop.adapters.evidence_archive import PreparedArchive
 from shop.catalog.rules import CATALOG
-from shop.catalog.purchase_policy import quote
+from shop.catalog.purchase_policy import quote,FIXTURE_OFFERS
 from shop.catalog import business_rules, checkout, checkout_payment, fulfilment
 from django.test import override_settings
 from . import purchase_demo as purchase,synthetic_bank
@@ -48,11 +49,25 @@ def run(archive_root):
         if quote(ready,'synthetic-ready-kit')['status']!='synthetic_purchasable':raise RuntimeError('synthetic ready-kit rule mismatch')
         tampered=base|{'support_packages':0,'platform':{'choice':'not-designed','kit_id':None,'name':None}}
         if 'required_support_minimum' not in quote(tampered,'synthetic-development')['errors']:raise RuntimeError('synthetic support rule mismatch')
+        # Undefined applicable terms and unsupported ready-design promises hold.
+        for field in ('licence_minor','rights','delivery'):
+            held_offer=replace(FIXTURE_OFFERS[1],**{field:None})
+            if quote(base|{'platform':{'choice':'not-designed','kit_id':None,'name':None}},
+                     held_offer.id,offers=(held_offer,))['status']!='awaiting_review':
+                raise RuntimeError('undefined synthetic commercial fact accepted')
+        if quote(base|{'platform':{'choice':'other-board','kit_id':None,'name':None}},
+                 'synthetic-ready-kit')['status']!='unavailable':
+            raise RuntimeError('unsupported ready-design promise accepted')
         topup=purchase.prepare(owner,uuid.uuid4(),support_packages=1)
         topup=purchase.fund(topup.pk,owner,archive)
         key=uuid.uuid4();first=purchase.reserve_credit(topup.pk,owner,key,36000)
         second=purchase.reserve_credit(topup.pk,owner,key,36000)
         if first.pk!=second.pk or topup.simulated_entitlements!=0:raise RuntimeError('synthetic topup result mismatch')
+        from .bank_contract import BankError
+        try:purchase.reserve_credit(topup.pk,owner,uuid.uuid4(),1)
+        except BankError as error:
+            if str(error)!='synthetic_credit_unavailable':raise
+        else:raise RuntimeError('synthetic credit double allocation')
         # Use the same supported cart/business/checkout routes as API and no-JavaScript customers.
         ip_configuration=base|{'support_packages':0,'platform':{'choice':'not-designed','kit_id':None,'name':None}}
         lines=[{'id':str(uuid.uuid4()),'kind':'ip','product_id':CATALOG['product_id'],'quantity':1,'configuration':ip_configuration},
@@ -71,6 +86,26 @@ def run(archive_root):
         if response.status_code!=303:raise RuntimeError('synthetic business details rejected')
         reviewed=client.get('/api/v1/checkout-rehearsal/')
         if reviewed.status_code!=200:raise RuntimeError('synthetic checkout held')
+        original_digest=reviewed.json()['sha256']
+        removed=client.post('/api/v1/cart/',data=json.dumps({'request_id':str(uuid.uuid4()),
+            'expected_version':1,'catalog_revision':CATALOG['revision'],'lines':[lines[0]]}),
+            content_type='application/json',HTTP_X_CSRFTOKEN=csrf)
+        if removed.status_code!=201:raise RuntimeError('synthetic support removal fixture failed')
+        blocked={'request_id':str(uuid.uuid4()),'sha256':original_digest}
+        for url in ('/api/v1/checkout-rehearsal/','/purchase/checkout-rehearsal/'):
+            review=client.get(url)
+            if review.status_code!=422:raise RuntimeError('removed support allowed checkout review')
+            is_api=url.startswith('/api/')
+            rejected=client.post(url,data=json.dumps(blocked) if is_api else urlencode(blocked),
+                content_type='application/json' if is_api else 'application/x-www-form-urlencoded',
+                HTTP_X_CSRFTOKEN=csrf)
+            if rejected.status_code!=422:raise RuntimeError('removed support allowed checkout capture')
+        restored=client.post('/api/v1/cart/',data=json.dumps({'request_id':str(uuid.uuid4()),
+            'expected_version':2,'catalog_revision':CATALOG['revision'],'lines':lines}),
+            content_type='application/json',HTTP_X_CSRFTOKEN=csrf)
+        if restored.status_code!=201:raise RuntimeError('synthetic support restoration failed')
+        reviewed=client.get('/api/v1/checkout-rehearsal/')
+        if reviewed.status_code!=200:raise RuntimeError('restored synthetic support did not unblock')
         command={'request_id':str(uuid.uuid4()),'sha256':reviewed.json()['sha256']}
         response=client.post('/api/v1/checkout-rehearsal/',data=json.dumps(command),content_type='application/json',HTTP_X_CSRFTOKEN=csrf)
         if response.status_code!=201:raise RuntimeError('synthetic checkout capture rejected')
@@ -383,7 +418,12 @@ def run(archive_root):
             'licence_change_cases':{'kinds_captured_and_reviewed':5,'higher_volume_requires_quote':True,
                 'corrected_review_supersedes_prior_proposal':True,'original_entitlement_unchanged':True,'automatic_charge':False}}
 
-    return {'status':'PURCHASE_FLOW_DEMO_PASS','evidence_class':'local-synthetic','financial_confirmation':False,
+    # Source section8 numbers are distinct from the broader FLOW requirement IDs.
+    source_checks=[{'source_check':number,'status':'synthetic_pass','evidence_class':'local-synthetic'}
+                   for number in range(1,8)]
+    source_checks.append({'source_check':8,'status':'partial','evidence_class':'local-synthetic',
+        'remaining':'Qualified confidential customer technical-data intake and actual accepted-scope custody remain pending; private synthetic seller materials/history exercised.'})
+    return {'source_acceptance_checks':source_checks,'status':'PURCHASE_FLOW_DEMO_PASS','evidence_class':'local-synthetic','financial_confirmation':False,
         'effects_authorized':False,'real_email_verification':False,'ready_kit_zero_support':True,'required_support_tamper_refused':True,
         'staff_finance_lifecycle':finance_result,'complete_cart_checkout':complete_cart,'topup_without_platform_or_new_licence':True,'reservation_retry_once':True,'development_cases':results,
         'pending':['actual commercial/kit/rights/support/terms approvals','actual order acceptance and entitlement/ledger delivery','qualified private technical follow-up','external bank/mail/host/recovery qualification']}
