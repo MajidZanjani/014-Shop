@@ -4,11 +4,11 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — stale cart rejection/reload and immutable quotation refresh verified; browser134 plus public39/14 pass; backend578/proxy148 retained; formal/manual and actual/full acceptance pending.
+**Execution status:** paused — user requested $gsd-pause-work at13-01 task5; browser134+public39/14 and backend578/proxy148 verified locally; formal/manual and actual/full acceptance pending.
 
-**Next implementation task:** Continue remaining local UAT-03 review and actual source/commercial/private-intake/transport/provider/runtime/recovery/host qualification only under existing scoped authority. Retain browser134+public39/14 and backend578/proxy148 at exact scope; do not repeat unchanged runs.
+**Next implementation task:** Run $gsd-resume-work; restore this checkpoint at fee40d1, read the latest public-browser evidence and UAT-03/actual qualification register, then select the next unverified locally authorized risk case or concrete implementation gap. Do not rerun unchanged browser/frontend/backend checks or infer external authority.
 
-**Recorded implementation:** 4bccdc545a1d34a748e801f9165fb4656490c35e
+**Recorded implementation:** fee40d167c09b6c60e70680a8635f62c460c19c5
 
 This SHA contains the required-platform/no-JavaScript fixes and prepared public browser tooling; follow-up evidence records the570-test regression and58-check browser expansion. The one-shot structured handoff has been consumed; the checkpoint now records active task5 qualification. Final evidence and the narrow source-validator correction are in the current verification commit; do not reset to historical review c830297.
 
@@ -153,3 +153,7 @@ Public offline continuation is verified in [evidence](phases/13-purchase-flow-fu
 The response-loss regression continuation is verified in [evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md). Recorded SHA is the preceding public reconnect implementation; this commit changes browser verification/evidence only. No owned process remains.
 
 The stale-cart continuation is verified in [evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md). Recorded SHA is the preceding response-loss baseline; this commit changes browser verification/evidence only. No owned process remains.
+
+## User-requested pause —2026-10-27
+
+Implementation is saved and pushed through fee40d1. HANDOFF.json and the phase .continue-here.md supersede earlier continuation routing. No pending implementation edits, owned processes, async jobs or placeholder phase summaries were found. Resume with $gsd-resume-work and preserve standing ordinary push-after-each-commit authority. No actual/formal release gate changed.

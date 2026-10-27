@@ -16,9 +16,9 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — stale cart rejection/reload and immutable quotation refresh verified; browser134 plus public39/14 pass; backend578/proxy148 retained; formal/manual and actual/full acceptance pending.
+**Execution status:** paused — user requested $gsd-pause-work at13-01 task5; browser134+public39/14 and backend578/proxy148 verified locally; formal/manual and actual/full acceptance pending.
 
-**Next implementation task:** Continue remaining local UAT-03 review and actual source/commercial/private-intake/transport/provider/runtime/recovery/host qualification only under existing scoped authority. Retain browser134+public39/14 and backend578/proxy148 at exact scope; do not repeat unchanged runs.
+**Next implementation task:** Run $gsd-resume-work; restore this checkpoint at fee40d1, read the latest public-browser evidence and UAT-03/actual qualification register, then select the next unverified locally authorized risk case or concrete implementation gap. Do not rerun unchanged browser/frontend/backend checks or infer external authority.
 
 **Last fully completed phase:** 1. Phases2–7 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase8 work while those earlier checks remain open. Completed phases remain1/14; planned records11/36. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
 
@@ -52,7 +52,7 @@ The October21 reset completed documentation replanning. Later user continuation 
 - [ ] **Phase 10: Staged licence/reference-design delivery and support ledger** — local10-01 materials,10-02 ledger,10-03 licence changes,10-04 numbering/mail,10-05 refund review and10-06 delivery holds implemented; full acceptance pending — October 21 handoff T10
 - [ ] **Phase 11: Protected-host qualification, shop-only deployment and conditional public activation** — October 21 handoff T11
 - [ ] **Phase 12: Backups, operating alerts and financial/licensing restore rehearsal** — October 21 handoff T12
-- [ ] **Phase 13: Purchase-flow, fulfilment and release acceptance** — CURRENT DEVELOPMENT FOCUS; current backend578/proxy148 and browser134+public39/14 verified locally; exact frontend qualified; formal/manual and actual/full acceptance pending — October 21 handoff T13
+- [ ] **Phase 13: Purchase-flow, fulfilment and release acceptance** — CURRENT DEVELOPMENT FOCUS; PAUSED at user request; backend578/proxy148 and browser134+public39/14 verified locally; exact frontend qualified; formal/manual and actual/full acceptance pending — October 21 handoff T13
 - [ ] **Phase 14: Release handover and separately scoped live activation** — October 21 handoff T14
 
 ## Phase Details
@@ -379,7 +379,7 @@ Keep public bytes in shop-owned OVH Object Storage through a fixed verified HTTP
 
 ### Phase 13: Purchase-flow, fulfilment and release acceptance
 
-**Final26October revision2:** CURRENT DEVELOPMENT FOCUS; current backend578/proxy148 and browser134+public39/14 verified locally; exact frontend qualified; formal/manual and actual/full qualification pending. FLOW-08. 13-01: all eight final-amendment acceptance checks, privacy, retained scope and separate evidence classes. [Current clauses](PURCHASE-FLOW-AMENDMENT.md) override conflicting baseline purchase/delivery wording below.
+**Final26October revision2:** CURRENT DEVELOPMENT FOCUS; PAUSED at user request; backend578/proxy148 and browser134+public39/14 verified locally; exact frontend qualified; formal/manual and actual/full qualification pending. FLOW-08. 13-01: all eight final-amendment acceptance checks, privacy, retained scope and separate evidence classes. [Current clauses](PURCHASE-FLOW-AMENDMENT.md) override conflicting baseline purchase/delivery wording below.
 
 **Goal:** Release reviewers can trace every source field/option/rule to exercised customer/staff journeys, exact new IDs/hostnames and source/profile/approval revisions.
 **Depends on:** T04,T06–T12, with conditional external evidence
@@ -445,7 +445,7 @@ Unchecked phase boxes mean full acceptance is outstanding. They do not mean deve
 | 10. Staged licence/reference-design delivery and support ledger | 0 / 6 | In Progress — local private fixtures/downloads, staged grants and support ledger implemented; local10-03 reviewed cases/held orders implemented; local10-04 document reservations implemented; durable statement capture and local10-05 support-refund review and10-06 delivery holds implemented; actual qualification pending | — |
 | 11. Protected-host qualification, shop-only deployment and conditional public activation | 0 / not planned | Not started | — |
 | 12. Backups, operating alerts and financial/licensing restore rehearsal | 0 / not planned | Not started | — |
-| 13. Purchase-flow, fulfilment and release acceptance | 0 / 1 | In Progress — CURRENT DEVELOPMENT FOCUS; current backend578/proxy148 and browser134+public39/14 verified locally; exact frontend qualified; formal/manual and actual/full qualification pending | — |
+| 13. Purchase-flow, fulfilment and release acceptance | 0 / 1 | In Progress — CURRENT DEVELOPMENT FOCUS; PAUSED at user request; backend578/proxy148 and browser134+public39/14 verified locally; exact frontend qualified; formal/manual and actual/full qualification pending | — |
 | 14. Release handover and separately scoped live activation | 0 / not planned | Not started | — |
 
 
