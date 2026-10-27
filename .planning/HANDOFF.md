@@ -4,11 +4,11 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress —13-01 task5 expired-session private UI cleanup verified locally: browser134+public47/14 and13 contracts pass; formal/manual and actual/full acceptance pending.
+**Execution status:** in progress —13-01 task5 uncertain-logout privacy/reconciliation verified locally: browser134+public55/14 and13 contracts pass; formal/manual and actual/full acceptance pending.
 
-**Next implementation task:** Select the next unverified locally authorized UAT-03 risk or concrete implementation gap; logout and detected401 session recovery are verified. Retain prior scoped backend/proxy evidence without repeating unchanged checks; actual/formal gates remain pending.
+**Next implementation task:** Select the next unverified locally authorized UAT-03 risk or concrete implementation gap; detected401 and both uncertain-logout recovery paths are verified. Preserve exact prior evidence; actual/formal release gates remain pending.
 
-**Recorded implementation:** 92ef98ec79b9c4bc56c184232dfd0e25a275c6c3
+**Recorded implementation:** 29d89972c0b6505b1cefb0d1ab24376d834ca1e0
 
 This SHA contains the required-platform/no-JavaScript fixes and prepared public browser tooling; follow-up evidence records the570-test regression and58-check browser expansion. The one-shot structured handoff has been consumed; the checkpoint now records active task5 qualification. Final evidence and the narrow source-validator correction are in the current verification commit; do not reset to historical review c830297.
 

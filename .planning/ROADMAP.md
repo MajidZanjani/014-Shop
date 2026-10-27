@@ -16,9 +16,9 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress —13-01 task5 expired-session private UI cleanup verified locally: browser134+public47/14 and13 contracts pass; formal/manual and actual/full acceptance pending.
+**Execution status:** in progress —13-01 task5 uncertain-logout privacy/reconciliation verified locally: browser134+public55/14 and13 contracts pass; formal/manual and actual/full acceptance pending.
 
-**Next implementation task:** Select the next unverified locally authorized UAT-03 risk or concrete implementation gap; logout and detected401 session recovery are verified. Retain prior scoped backend/proxy evidence without repeating unchanged checks; actual/formal gates remain pending.
+**Next implementation task:** Select the next unverified locally authorized UAT-03 risk or concrete implementation gap; detected401 and both uncertain-logout recovery paths are verified. Preserve exact prior evidence; actual/formal release gates remain pending.
 
 **Last fully completed phase:** 1. Phases2–7 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase8 work while those earlier checks remain open. Completed phases remain1/14; planned records11/36. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
 

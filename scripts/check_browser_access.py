@@ -38,7 +38,7 @@ PUBLIC_FIELDS={'public_checks','frontend_toolchain'}
 
 def validate_public_result(value,browser_version,node_version):
     if (not isinstance(value,dict) or not PUBLIC_FIELDS<=set(value)
-            or value['public_checks']!={'javascript':47,'no_javascript':14}
+            or value['public_checks']!={'javascript':55,'no_javascript':14}
             or any(type(count) is not int for count in value['public_checks'].values())
             or value['frontend_toolchain']!={'node':'24.22.0','npm':'11.19.1'}):
         raise ValueError('public browser evidence incomplete')

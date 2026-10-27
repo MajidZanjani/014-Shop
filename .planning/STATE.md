@@ -2,8 +2,8 @@
 gsd_state_version: "1.0"
 current_plan: 01
 status: in_progress
-last_updated: "2026-10-27T12:16:32.158385+00:00"
-state_head: 92ef98ec79b9c4bc56c184232dfd0e25a275c6c3
+last_updated: "2026-10-27T12:23:22.453867+00:00"
+state_head: 29d89972c0b6505b1cefb0d1ab24376d834ca1e0
 progress:
   total_phases: 14
   completed_phases: 1
@@ -14,8 +14,8 @@ current_task: 5
 last_activity: 2026-10-27
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Expired-session UI cleanup verified; task5 actual/formal gates pending.
-last_activity_desc: Detected401 clears private UI and recovers verification;195 browser checks and13 contracts pass.
+stopped_at: Uncertain logout privacy/reconciliation verified; task5 actual/formal gates pending.
+last_activity_desc: Clear private state on signout intent;203 browser checks and13 contracts pass.
 ---
 
 # Project state — final purchase-flow revision2
@@ -26,9 +26,9 @@ last_activity_desc: Detected401 clears private UI and recovers verification;195 
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress —13-01 task5 expired-session private UI cleanup verified locally: browser134+public47/14 and13 contracts pass; formal/manual and actual/full acceptance pending.
+**Execution status:** in progress —13-01 task5 uncertain-logout privacy/reconciliation verified locally: browser134+public55/14 and13 contracts pass; formal/manual and actual/full acceptance pending.
 
-**Next implementation task:** Select the next unverified locally authorized UAT-03 risk or concrete implementation gap; logout and detected401 session recovery are verified. Retain prior scoped backend/proxy evidence without repeating unchanged checks; actual/formal gates remain pending.
+**Next implementation task:** Select the next unverified locally authorized UAT-03 risk or concrete implementation gap; detected401 and both uncertain-logout recovery paths are verified. Preserve exact prior evidence; actual/formal release gates remain pending.
 
 ## Preserved implementation/evidence
 

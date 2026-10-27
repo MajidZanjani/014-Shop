@@ -115,7 +115,7 @@ async function smoke() {
       });
       stage='protocol-setup-'+index;
       await send('Page.enable'); await send('Runtime.enable'); await send('Network.enable');
-      await send('Fetch.enable',{patterns:[{urlPattern:'*',requestStage:'Request'},...(config.frontend_toolchain?['/api/v1/cart/','/api/v1/quotation-requests/'].map(path=>({urlPattern:config.origin+path,requestStage:'Response'})):[])]});
+      await send('Fetch.enable',{patterns:[{urlPattern:'*',requestStage:'Request'},...(config.frontend_toolchain?['/api/v1/cart/','/api/v1/quotation-requests/','/api/v1/customer/logout/'].map(path=>({urlPattern:config.origin+path,requestStage:'Response'})):[])]});
       await send('Emulation.setDeviceMetricsOverride',{width:javascript ? 1280:390,height:900,deviceScaleFactor:1,mobile:!javascript});
       await send('Emulation.setScriptExecutionDisabled',{value:!javascript});
       const evaluate=async expression => {

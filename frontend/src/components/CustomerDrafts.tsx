@@ -42,16 +42,30 @@ export default function CustomerDrafts({configuration, onResume}: {configuration
     const result=await customerRequest('/api/v1/configuration-drafts/');
     setDrafts(result.drafts);
   };
-  const sessionExpired=()=>{
+  const clearPrivateState=()=>{
     setAuthenticated(false);setAvailable(false);setCsrf('');setDrafts([]);
     setEmail('');setCode('');setRequested(false);pending.current=null;
     onResume(initialConfiguration());
+  };
+  const sessionExpired=()=>{
+    clearPrivateState();
     setMessage('Your session expired. Verify again to access your drafts.');
     void customerRequest('/api/v1/customer/session/').then(session=>{
       if(mounted.current){setCsrf(session.csrf_token);setAvailable(true);}
     }).catch(()=>{
       if(mounted.current)setMessage('Your session expired. Retry the connection, then verify again.');
     });
+  };
+  const signOut=async()=>{
+    if(busy)return;
+    setBusy(true);clearPrivateState();setMessage('Signing out…');
+    try{
+      const session=await customerRequest('/api/v1/customer/logout/','POST',{},csrf);
+      setCsrf(session.csrf_token);setAvailable(true);
+      setMessage('Signed out. Saved drafts remain on the running local backend.');
+    }catch{
+      setMessage('Sign-out could not be confirmed. Private information has been cleared from this page. Retry the connection to check your session before continuing.');
+    }finally{setBusy(false);}
   };
   const action=async(run:()=>Promise<void>)=>{
     if(busy)return;setBusy(true);setMessage('');
@@ -104,11 +118,7 @@ export default function CustomerDrafts({configuration, onResume}: {configuration
         onResume(snapshot.configuration);pending.current=null;setMessage('Saved configuration resumed. Purchase approvals remain pending.');
       })}>Resume draft · {new Date(d.created_at).toLocaleString()}</button></li>)}</ul>
       {drafts.length===0&&<p className="hint">No saved drafts yet. Only this verified customer’s latest 20 drafts are listed.</p>}
-      <button type="button" disabled={busy} onClick={()=>void action(async()=>{
-        const session=await customerRequest('/api/v1/customer/logout/','POST',{},csrf);
-        setAuthenticated(false);setCsrf(session.csrf_token);setDrafts([]);setEmail('');setCode('');setRequested(false);pending.current=null;
-        onResume(initialConfiguration());setMessage('Signed out. Saved drafts remain on the running local backend.');
-      })}>Sign out</button>
+      <button type="button" disabled={busy} onClick={()=>void signOut()}>Sign out</button>
     </>}
     <p role="status" aria-live="polite">{message}</p>
   </section>;
