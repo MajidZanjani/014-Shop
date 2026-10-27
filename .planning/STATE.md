@@ -2,8 +2,8 @@
 gsd_state_version: "1.0"
 current_plan: 01
 status: in_progress
-last_updated: "2026-10-27T05:58:08.555510+00:00"
-state_head: 8579e32d86595f906ac583e4827744bd467cfb7e
+last_updated: "2026-10-27T06:06:21.242928+00:00"
+state_head: 4873ab05dcab776924755d097c53dd6ae70ff781
 progress:
   total_phases: 14
   completed_phases: 1
@@ -14,8 +14,8 @@ current_task: 4
 last_activity: 2026-10-27
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: 13-01 customer browser verified; staff browser continuation.
-last_activity_desc: Verified pinned Chromium customer32 browser checks; staff browser coverage next.
+stopped_at: 13-01 two-role browser verified; live-revocation coverage next.
+last_activity_desc: Verified48 browser checks across customer/staff and two page-script modes.
 ---
 
 # Project state — final purchase-flow revision2
@@ -26,9 +26,9 @@ last_activity_desc: Verified pinned Chromium customer32 browser checks; staff br
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress —13-01 pinned customer browser smoke verified32 checks/2 modes; continuing staff browser coverage; actual/full qualification pending.
+**Execution status:** in progress —13-01 pinned customer/staff browser48 checks/2 roles/2 modes verified; live-revocation browser coverage next; actual/full qualification pending.
 
-**Next implementation task:** Extend the bounded pinned browser runner to actual local staff password/second-factor, exact-resource access and logout using owned loopback services only.
+**Next implementation task:** Extend local browser regression for live staff credential/resource revocation using the existing local operator; add no privileged HTTP route and preserve all actual qualification gates.
 
 ## Preserved implementation/evidence
 
@@ -216,3 +216,5 @@ Backend569/5 checks171.634s (enclosing172.938s), focused42/16.068s, supported tw
 ##13-01 customer browser engine —2026-10-27
 
 Pinned Chromium155.0.8059.84/test-client Node24.21.0 browser32 checks/2 modes pass; explicit page-script probe proves JS on/off. Four report rejection tests and pinned Node request-policy controls pass. Test tooling only; app source remains exact264-file artifact and frontend Node24.22 native build remains unqualified. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-BROWSER-PARTIAL.md).
+
+Latest browser evidence: [48 checks/2 roles/2 modes](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-STAFF-BROWSER-PARTIAL.md), pinned Chromium155/Node24.21. Both local staff factors, exact assigned/unassigned access and logout are exercised. Actual qualification remains pending.

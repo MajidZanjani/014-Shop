@@ -47,7 +47,7 @@ async function smoke() {
   const child=spawn(browser,['--headless','--disable-gpu','--no-sandbox','--no-first-run',
     '--no-default-browser-check','--disable-background-networking','--disable-component-update',
     '--disable-sync','--disable-extensions','--disable-breakpad','--disable-features=MediaRouter',
-    '--metrics-recording-only','--host-resolver-rules=MAP * ~NOTFOUND, EXCLUDE localhost, EXCLUDE 127.0.0.1',
+    '--metrics-recording-only','--host-resolver-rules=MAP staff.localhost 127.0.0.1, MAP * ~NOTFOUND, EXCLUDE localhost, EXCLUDE 127.0.0.1',
     '--remote-debugging-address=127.0.0.1','--remote-debugging-port=0','--user-data-dir='+profile,'about:blank'],
     {env:{...process.env,XDG_CONFIG_HOME:join(profile,'config'),XDG_CACHE_HOME:join(profile,'cache')},stdio:'ignore'});
   let cdp;
@@ -73,7 +73,7 @@ async function smoke() {
         if (event.method==='Network.loadingFailed' && event.params.blockedReason==='csp' && event.params.type==='Image') cspDenied++;
         if (event.method!=='Fetch.requestPaused') return;
         const {requestId,request}=event.params;
-        const allowed=allowedRequest(request.url,config.origin);
+        const allowed=allowedRequest(request.url,config.origin) || allowedRequest(request.url,config.staff.origin);
         if (!allowed) {blocked++; if (request.url!=='https://browser-egress-canary.invalid/pixel') escaped++;}
         send(allowed ? 'Fetch.continueRequest':'Fetch.failRequest',allowed ? {requestId}:{requestId,errorReason:'BlockedByClient'})
           .catch(() => {escaped++;});
@@ -94,10 +94,12 @@ async function smoke() {
         }
         throw new Error('bounded page wait');
       };
-      const navigate=async path => {
-        await send('Page.navigate',{url:config.origin+path});
-        await wait('location.pathname==='+JSON.stringify(path)+' && document.readyState==="complete"');
+      const navigateTo=async (origin,path) => {
+        await send('Page.navigate',{url:origin+path});
+        await wait('location.origin==='+JSON.stringify(origin)+' && location.pathname==='+JSON.stringify(path)+' && document.readyState==="complete"');
       };
+      const navigate=path => navigateTo(config.origin,path);
+      const staffNavigate=path => navigateTo(config.staff.origin,path);
       const form=async (selector,values) => {
         const loader=(await send('Page.getFrameTree')).frameTree.frame.loaderId;
         await evaluate(`(() => { const f=document.querySelector(${JSON.stringify(selector)}); if (!f) throw Error();
@@ -150,6 +152,10 @@ async function smoke() {
       await form('form:has(input[value="context"])',{fixture:'synthetic-context-v2',request_id:requestId,expected_revision:String(initial)});
       await wait('document.readyState==="complete" && Number(document.querySelector("input[name=expected_revision]")?.value)==='+String(initial+1)); checks++;
       require(await evaluate('document.body.innerText.includes("Spent: 1800") && document.body.innerText.includes("Available: 70200")')); checks++;
+      stage='customer-staff-boundary-'+index;
+      await staffNavigate(config.staff.support);
+      require(lastDocumentStatus===403 && await evaluate('!document.body.innerText.includes("Available: 70200")')); checks++;
+      await navigate(config.support);
       stage='privacy-storage-'+index;
       require(await evaluate('localStorage.length===0 && sessionStorage.length===0 && !location.search && !location.hash')); checks++;
       stage='privacy-cookie-'+index;
@@ -169,9 +175,36 @@ async function smoke() {
       require(await evaluate('document.querySelector("input[name=email]")!==null && !document.body.innerText.includes("Your customer access is verified.")')); checks++;
       await navigate(config.support);
       require(lastDocumentStatus===401 && await evaluate('!document.body.innerText.includes("Available: 70200") && !document.body.innerText.includes("Synthetic prototype")')); checks++;
+      stage='staff-password-'+index;
+      await staffNavigate('/staff/');
+      const staffBefore=new Set(await readdir(config.staff.capture));
+      await form('form[action="/staff/login/"]',{username:config.staff.username,password:config.staff.password});
+      require(await evaluate('document.querySelector("input[name=code]")!==null')); checks++;
+      const staffAdded=(await readdir(config.staff.capture)).filter(name => !staffBefore.has(name));
+      require(staffAdded.length===1);
+      const staffMail=await readFile(join(config.staff.capture,staffAdded[0]),'utf8'); require(staffMail.length<16384);
+      const staffCode=staffMail.match(/^Code: ([A-Za-z0-9_-]+)$/m)?.[1]; require(staffCode);
+      await staffNavigate(config.staff.support);
+      require(lastDocumentStatus===403); checks++;
+      stage='staff-second-factor-'+index;
+      await staffNavigate('/staff/');
+      await form('form[action="/staff/verify/"]',{code:staffCode});
+      require(await evaluate('document.body.innerText.includes("Both local factors verified.")')); checks++;
+      await staffNavigate(config.staff.support);
+      require(lastDocumentStatus===200 && await evaluate('document.body.innerText.includes("Available: 70200") && document.body.innerText.includes("Optional private support follow-up")')); checks++;
+      await staffNavigate(config.staff.unassigned);
+      require(lastDocumentStatus===404 && await evaluate('!document.body.innerText.includes("Optional private support follow-up")')); checks++;
+      await staffNavigate('/staff/');
+      const staffCookies=await cdp.send('Storage.getCookies',{browserContextId});
+      require(staffCookies.cookies.some(cookie => cookie.name===config.staff.session_cookie && cookie.httpOnly)
+        && await evaluate('localStorage.length===0 && sessionStorage.length===0 && !location.search && !location.hash')); checks++;
+      stage='staff-logout-'+index;
+      await form('form[action="/staff/logout/"]',{});
+      await staffNavigate(config.staff.support);
+      require(lastDocumentStatus===403 && escaped===0 && blocked===1 && await evaluate('!document.body.innerText.includes("Available: 70200")')); checks++;
       await cdp.send('Target.disposeBrowserContext',{browserContextId});
     }
-    return {status:'BROWSER_LOCAL_PASS',checks,modes:2,browser_version:version,node_version:process.versions.node,
+    return {status:'BROWSER_LOCAL_PASS',checks,modes:2,roles:2,browser_version:version,node_version:process.versions.node,
       evidence_class:'local-synthetic-browser-engine',formal_accessibility:false,production_qualified:false,
       browser_sandbox:'disabled-for-owned-local-root-smoke'};
   } finally {
