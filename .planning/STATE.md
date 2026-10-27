@@ -2,7 +2,7 @@
 gsd_state_version: "1.0"
 current_plan: 01
 status: in_progress
-last_updated: "2026-10-27T13:07:09.320865+00:00"
+last_updated: "2026-10-27T13:33:12.703664+00:00"
 state_head: 44322c57c209f54f87031664f350425097bd5473
 progress:
   total_phases: 14
@@ -14,8 +14,8 @@ current_task: 5
 last_activity: 2026-10-27
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Grouped local UAT batch verified; remaining release qualification requires registered inputs/runner.
-last_activity_desc: Session isolation verified; active roadmap drift caught and repaired; finite qualification routing recorded.
+stopped_at: Commercial revision boundary verified; explicit user pause follows.
+last_activity_desc: Normalized malformed revision and approval-verifier failures; all current local checks pass.
 ---
 
 # Project state — final purchase-flow revision2
@@ -26,9 +26,9 @@ last_activity_desc: Session isolation verified; active roadmap drift caught and 
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress —13-01 task5 grouped local risks verified: browser224, backend580/5 checks, proxy148/2 aliases and264-file source; actual/formal qualification remains pending in13-QUALIFICATION-REGISTER.md.
+**Execution status:** in progress —13-01 task5 commercial revision boundary verified: backend584/5 checks, focused46, proxy148/2 aliases and264-file source; user-requested pause follows this step; actual/formal qualification remains pending.
 
-**Next implementation task:** Use13-QUALIFICATION-REGISTER.md to qualify the next supplied commercial/channel/provider contract or assigned independent runner; implement concrete binding gaps against that contract. Do not repeat unchanged local checks or infer protected/external authority.
+**Next implementation task:** Run $gsd-pause-work, commit and sync the verified handoff; on resume investigate lone-surrogate platform names with shared conformance and real PostgreSQL HTTP regression before fixing both validators.
 
 ## Preserved implementation/evidence
 

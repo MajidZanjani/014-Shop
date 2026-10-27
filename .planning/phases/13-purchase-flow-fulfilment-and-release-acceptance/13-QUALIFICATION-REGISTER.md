@@ -35,3 +35,7 @@ Underlying registers: [execution qualification register](../../EXECUTION-AMENDME
 The prior canonical fields were active, but ROADMAP's current phase list/detail/progress row still said PAUSED with older counts. The strengthened check rejects each view unless it contains the same canonical execution summary; a controlled pre-repair check failed. Current views are synchronized and mutation tests cover each stale view plus legitimate explicit paused summaries. Dated historical evidence remains unchanged. The user-requested continue-across-commits instruction is retained; this register records where missing prerequisites affect further acceptance, not a new user-requested pause.
 
 Ordinary CI preparation now runs both planning consistency/source-authority checks and the activity-view mutation tests in the existing backend job, with30-second limits and no new job/runner. Workflow JSON and embedded Python parse locally; actual hosted execution/check-context identities remain unverified. Runtime checks are not repeated for this reporting/CI change.
+
+## Commercial-boundary continuation and requested pause
+
+[Current parser evidence](13-COMMERCIAL-BOUNDARY-PARTIAL.md): backend584/5 checks, focused46 and proxy148/2 aliases pass; source264 exact files. Browser224 retains pre-parser-change scope. Independent local Unicode platform-name diagnostic remains for reproduction/fix on resume. The latest explicit user instruction requests pause after the commercial step, superseding continued activity until resume. All actual/formal gates above remain pending.

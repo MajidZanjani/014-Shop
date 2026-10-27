@@ -699,6 +699,11 @@
       "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
     },
     {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-COMMERCIAL-BOUNDARY-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-EIGHT-CASES-PARTIAL.md",
       "role": "historical-evidence",
       "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"

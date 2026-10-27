@@ -75,9 +75,9 @@
     }
   ],
   "next": {
-    "command": "$gsd-execute-phase 13",
-    "label": "Continue against registered qualification inputs",
-    "reason": "Use13-QUALIFICATION-REGISTER.md to qualify the next supplied commercial/channel/provider contract or assigned independent runner; implement concrete binding gaps against that contract. Do not repeat unchanged local checks or infer protected/external authority."
+    "command": "$gsd-pause-work",
+    "label": "Save explicitly requested pause",
+    "reason": "Run $gsd-pause-work, commit and sync the verified handoff; on resume investigate lone-surrogate platform names with shared conformance and real PostgreSQL HTTP regression before fixing both validators."
   },
-  "updated_at": "2026-10-27T13:07:09.320865+00:00"
+  "updated_at": "2026-10-27T13:33:12.703664+00:00"
 }

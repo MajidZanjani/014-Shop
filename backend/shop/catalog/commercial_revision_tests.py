@@ -1,6 +1,7 @@
 """Immutable commercial consumption; fixtures never establish actual approval."""
+import hashlib
 from copy import deepcopy
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 from django.test import SimpleTestCase
 from shop.payments.purchase_flow_tests import configuration
 from . import commercial_revisions as revisions
@@ -147,3 +148,49 @@ class CommercialRevisionTests(SimpleTestCase):
                 value = deepcopy(self.policy['policy']); value['offers'][0][field] = invalid
                 with self.assertRaises(revisions.CommercialRevisionError):
                     revisions.quote(self.consume(value), self.configuration, 'synthetic-development', support_packages=2)
+
+    def test_nonfinite_deep_and_integer_overflow_bytes_use_domain_rejection(self):
+        bodies=[b'NaN',b'Infinity',b'-Infinity',b'1e9999',b'1'*5000,
+                b'['*2000+b'0'+b']'*2000]
+        for body in bodies:
+            verifier=Mock(return_value=True)
+            with self.subTest(body_kind=body[:8]),self.assertRaises(revisions.CommercialRevisionError):
+                revisions.consume(body,revision=hashlib.sha256(body).hexdigest(),
+                    catalog_revision=CATALOG['revision'],buyer_scope_revision='b'*64,
+                    verify_approval=verifier,synthetic=False)
+            verifier.assert_not_called()
+
+    def test_approval_adapter_failures_hold_once_without_private_diagnostics(self):
+        value=deepcopy(self.policy['policy']);value['evidence_class']='approved-commercial'
+        for failure in (RuntimeError,TimeoutError,OSError,ValueError):
+            with self.subTest(failure=failure):
+                verifier=Mock(side_effect=failure('SYNTHETIC_PRIVATE_APPROVAL_CANARY'))
+                with self.assertRaises(revisions.CommercialRevisionError) as caught:
+                    self.consume(value,synthetic=False,verify_approval=verifier)
+                self.assertEqual(str(caught.exception),'protected_approval_required')
+                self.assertNotIn('CANARY',str(caught.exception))
+                verifier.assert_called_once()
+        verifier=Mock(side_effect=RuntimeError('fixture must not use actual adapter'))
+        result=self.consume(verify_approval=verifier)
+        verifier.assert_not_called()
+        self.assertEqual(result['policy']['evidence_class'],'local-synthetic')
+        self.assertFalse(result['effects_authorized'])
+
+    def test_nonserializable_mutated_policy_quotes_use_domain_rejection(self):
+        for invalid in (float('nan'),float('inf'),object()):
+            value=deepcopy(self.policy)
+            value['policy']['offers'][0]['licence_minor']=invalid
+            for quote in (lambda:revisions.quote(value,self.configuration,'synthetic-development',support_packages=2),
+                          lambda:revisions.quote_support(value,quantity=1)):
+                with self.subTest(kind=type(invalid).__name__),self.assertRaises(revisions.CommercialRevisionError):quote()
+        value=deepcopy(self.policy);value['policy']['cycle']=value['policy']
+        with self.assertRaises(revisions.CommercialRevisionError):
+            revisions.quote_support(value,quantity=1)
+
+    def test_detachment_failure_is_a_fixed_domain_hold(self):
+        body=revisions.canonical(self.policy['policy'])
+        with patch.object(revisions,'deepcopy',side_effect=RecursionError('SYNTHETIC_PRIVATE_COPY_CANARY')):
+            with self.assertRaises(revisions.CommercialRevisionError) as caught:
+                revisions.consume(body,revision=hashlib.sha256(body).hexdigest(),
+                    catalog_revision=CATALOG['revision'],buyer_scope_revision='b'*64,synthetic=True)
+        self.assertEqual(str(caught.exception),'revision_unavailable')

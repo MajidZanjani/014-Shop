@@ -14,7 +14,10 @@ class CommercialRevisionError(ValueError):
 
 
 def canonical(value):
-    return json.dumps(value, sort_keys=True, separators=(',', ':'), ensure_ascii=False, allow_nan=False).encode()
+    try:
+        return json.dumps(value, sort_keys=True, separators=(',', ':'), ensure_ascii=False, allow_nan=False).encode()
+    except (TypeError, ValueError, RecursionError, OverflowError) as exc:
+        raise CommercialRevisionError('revision_unavailable') from exc
 
 
 def digest(value):
@@ -28,6 +31,10 @@ def _reject_duplicates(pairs):
             raise CommercialRevisionError('duplicate_field')
         result[key] = value
     return result
+
+
+def _reject_constant(value):
+    raise CommercialRevisionError('nonfinite_number')
 
 
 FACTS = {'rights', 'access', 'coverage', 'terms', 'recurrence', 'production_accounting',
@@ -48,7 +55,7 @@ def consume(body, *, revision, catalog_revision, buyer_scope_revision, verify_ap
     if hashlib.sha256(body).hexdigest() != revision:
         raise CommercialRevisionError('revision_mismatch')
     try:
-        value = json.loads(body, object_pairs_hook=_reject_duplicates)
+        value = json.loads(body, object_pairs_hook=_reject_duplicates, parse_constant=_reject_constant)
         if canonical(value) != body:
             raise CommercialRevisionError('noncanonical_revision')
         if set(value) != {'schema', 'evidence_class', 'catalog_revision', 'source_sha256',
@@ -62,10 +69,17 @@ def consume(body, *, revision, catalog_revision, buyer_scope_revision, verify_ap
                 or not isinstance(buyer_scope_revision, str) or len(buyer_scope_revision) != 64
                 or any(c not in '0123456789abcdef' for c in buyer_scope_revision)):
             raise CommercialRevisionError('revision_scope_mismatch')
-        if not synthetic and (verify_approval is None or verify_approval(
-                revision=revision, catalog_revision=catalog_revision,
-                source_sha256=value['source_sha256'], buyer_scope_revision=buyer_scope_revision) is not True):
-            raise CommercialRevisionError('protected_approval_required')
+        if not synthetic:
+            if verify_approval is None:
+                raise CommercialRevisionError('protected_approval_required')
+            try:
+                approved=verify_approval(revision=revision,catalog_revision=catalog_revision,
+                    source_sha256=value['source_sha256'],buyer_scope_revision=buyer_scope_revision)
+            except Exception as exc:
+                # A failed trusted observation is unavailable, never approval or a retry.
+                raise CommercialRevisionError('protected_approval_required') from exc
+            if approved is not True:
+                raise CommercialRevisionError('protected_approval_required')
         if value['currency'] != 'EUR':
             raise CommercialRevisionError('currency_unavailable')
         support = value['support']
@@ -91,9 +105,12 @@ def consume(body, *, revision, catalog_revision, buyer_scope_revision, verify_ap
         if (not isinstance(documents, dict) or not set(documents) <= {'general_terms', 'refund_policy', 'privacy_policy', 'ip_licence', 'support_terms'}
                 or any(pin is not None and (not isinstance(pin, str) or len(pin) != 64 or any(c not in '0123456789abcdef' for c in pin)) for pin in documents.values())):
             raise CommercialRevisionError('document_policy_unavailable')
-    except (TypeError, KeyError, UnicodeError, json.JSONDecodeError, OverflowError) as exc:
+        detached=deepcopy(value)
+    except CommercialRevisionError:
+        raise
+    except (TypeError, KeyError, ValueError, RecursionError, OverflowError) as exc:
         raise CommercialRevisionError('revision_unavailable') from exc
-    return {'revision': revision, 'policy': deepcopy(value), 'financial_confirmation': False, 'effects_authorized': False}
+    return {'revision': revision, 'policy': detached, 'financial_confirmation': False, 'effects_authorized': False}
 
 
 def _fact_shape(value):
