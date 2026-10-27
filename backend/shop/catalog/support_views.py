@@ -18,6 +18,25 @@ from .cart_editor import private, canonical_uuid
 from .cart_views import reply
 
 
+
+# HTML guidance never changes machine codes or ledger decisions.
+ERROR_MESSAGES = {
+    'unexpected_query': 'This page does not accept query parameters. Reload the committed support status.',
+    'invalid_request': 'This submission could not be read. Reload the committed support status before continuing.',
+    'invalid_support_command': 'This support action could not be read. Reload the committed support status.',
+    'invalid_support_seconds': 'Enter a valid number of whole seconds. Reload the committed support status before trying again.',
+    'support_credit_unavailable': 'This action exceeds the available support balance or reservation. Reload the committed status and review the available time.',
+    'support_reservation_unavailable': 'This reservation is no longer available. Reload the committed support status before continuing.',
+    'support_work_unavailable': 'This work record is no longer available for correction. Reload the committed support status.',
+    'support_context_conflict': 'The private follow-up changed or this submission was already used for different details. Reload and review the committed status.',
+    'invalid_support_context': 'Choose an available synthetic follow-up example after reloading the committed status.',
+    'support_request_conflict': 'This submission was already used for different details. Reload and review the committed support status.',
+    'archive_unavailable': 'Required recovery evidence is unavailable. Support actions are on hold; reload the committed status before continuing.',
+    'local_archive_unavailable': 'Required recovery evidence is unavailable. Support actions are on hold; reload the committed status before continuing.',
+}
+DEFAULT_ERROR_MESSAGE = 'This support rehearsal is on hold. Reload the committed status and review the recorded balance before continuing.'
+
+
 def command(request,staff):
     if int(request.META.get('CONTENT_LENGTH') or 0)>1024:raise ValueError()
     if request.content_type=='application/json':
@@ -88,6 +107,9 @@ def handle(request,identity,staff=False):
     except BankError:context['error']='unavailable';status=404
     except (ArchiveError,OSError):context['error']='archive_unavailable';status=503
     if api:return private(reply({'ledger':context['ledger'],'followup':context['followup']} if 'ledger' in context else {'error':context['error']},status))
+    if 'error' in context:
+        context['error_message']=ERROR_MESSAGES.get(context['error'],DEFAULT_ERROR_MESSAGE)
+    context['support_path']=request.path
     return private(render(request,'catalog/support_ledger.html',context,status=status))
 
 

@@ -214,6 +214,51 @@ class SupportLedgerTests(TransactionTestCase):
         self.assertEqual(self.client.get(route).status_code,404)
         with override_settings(SHOP_ENV='production'):self.assertEqual(self.client.get(route).status_code,404)
 
+    def test_support_html_recovery_strips_query_and_preserves_customer_staff_ledger(self):
+        from django.test import Client
+        from shop.access.staff_tests import STAFF_SETTINGS
+        customer=f'/purchase/checkout-rehearsal/{self.saved.pk}/support/'
+        before=self.state()
+        def check_recovery(client,path):
+            response=client.get(path+'?invalid=synthetic')
+            self.assertContains(response,'does not accept query parameters',status_code=400)
+            self.assertContains(response,'role="alert"',status_code=400)
+            self.assertContains(response,f'href="{path}"',status_code=400)
+            self.assertNotContains(response,'href=""',status_code=400)
+            self.assertNotContains(response,'unexpected_query',status_code=400)
+            self.assertNotContains(response,'<form',status_code=400)
+            api=client.get(path+'?invalid=synthetic',HTTP_ACCEPT='application/json')
+            self.assertEqual(api.status_code,400);self.assertEqual(api.json(),{'error':'unexpected_query'})
+            self.assertEqual(client.get(path).status_code,200)
+        check_recovery(self.client,customer)
+        with override_settings(**STAFF_SETTINGS):
+            browser=Client(HTTP_HOST='staff.localhost');browser.force_login(self.staff)
+            session=browser.session;session['shop_staff_mfa']=self.request.session['shop_staff_mfa'];session.save()
+            check_recovery(browser,f'/staff/support/{self.saved.pk}/')
+        self.assertEqual(self.state(),before)
+
+    def test_support_form_rejections_hide_codes_and_preserve_balances(self):
+        import json
+        from urllib.parse import urlencode
+        path=f'/purchase/checkout-rehearsal/{self.saved.pk}/support/'
+        before=self.state()
+        value={'action':'reserve','request_id':str(uuid.uuid4()),'task_id':str(uuid.uuid4()),'seconds':0}
+        for seconds,status,code,phrase in ((0,400,'invalid_support_seconds','whole seconds'),
+                (before['available_seconds']+1,422,'support_credit_unavailable','available support balance')):
+            value['seconds']=seconds
+            response=self.client.post(path,data=urlencode(value),content_type='application/x-www-form-urlencoded')
+            self.assertContains(response,phrase,status_code=status)
+            self.assertNotContains(response,code,status_code=status)
+            self.assertNotContains(response,'<form',status_code=status)
+            api=self.client.post(path,data=json.dumps(value),content_type='application/json')
+            self.assertEqual(api.status_code,status);self.assertEqual(api.json(),{'error':code})
+        with patch.object(ledger,'read',side_effect=checkout.CheckoutError('PRIVATE_SYNTHETIC_UNKNOWN')):
+            response=self.client.get(path)
+            self.assertContains(response,'support rehearsal is on hold',status_code=409)
+            self.assertNotContains(response,'PRIVATE_SYNTHETIC_UNKNOWN',status_code=409)
+        self.assertEqual(self.state(),before)
+        self.assertEqual(SyntheticSupportEvent.objects.count(),0)
+
     def test_staff_routes_require_recent_mfa_grant_and_command_recovery_revokes_scope(self):
         import json
         from django.test import Client

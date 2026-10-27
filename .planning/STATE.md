@@ -2,8 +2,8 @@
 gsd_state_version: "1.0"
 current_plan: 01
 status: in_progress
-last_updated: "2026-10-27T10:33:40.011165+00:00"
-state_head: 24bab9e6e6cbc919730ffe789afe90e260a8212b
+last_updated: "2026-10-27T10:49:42.990528+00:00"
+state_head: b2cbc98f599cab3103907f87bf94f983d4172683
 progress:
   total_phases: 14
   completed_phases: 1
@@ -14,8 +14,8 @@ current_task: 5
 last_activity: 2026-10-27
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Payment actionable HTML errors and keyboard recovery verified; formal/manual and actual gates pending.
-last_activity_desc: Exact browser118 plus public25/14, focused17 payment and13 contracts pass; source264 verified.
+stopped_at: Customer/staff support accessible error recovery verified; formal/manual and actual gates pending.
+last_activity_desc: Exact browser134 plus public25/14, focused24 support and13 contracts pass; source264 verified.
 ---
 
 # Project state — final purchase-flow revision2
@@ -26,9 +26,9 @@ last_activity_desc: Exact browser118 plus public25/14, focused17 payment and13 c
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — payment HTML recovery guidance and keyboard/reflow verified; browser118 plus public25/14 pass; formal/manual and actual/full acceptance pending.
+**Execution status:** in progress — customer/staff support error guidance and keyboard recovery verified; browser134 plus public25/14 pass; formal/manual and actual/full acceptance pending.
 
-**Next implementation task:** Continue remaining local UAT-03 accessibility review and actual source/commercial/private-intake/transport/provider/runtime/recovery/host qualification only under existing scoped authority. Retain browser118+public25/14, focused17 payment tests and earlier scoped results; do not repeat unchanged runs.
+**Next implementation task:** Continue remaining local UAT-03 accessibility review and actual source/commercial/private-intake/transport/provider/runtime/recovery/host qualification only under existing scoped authority. Retain browser134+public25/14, focused24 support ledger/context tests and earlier scoped results; do not repeat unchanged runs.
 
 ## Preserved implementation/evidence
 
@@ -259,3 +259,7 @@ Exact browser108 plus public25 JavaScript/14 no-JavaScript checks pass, includin
 ##13-01 payment HTML recovery guidance —2026-10-27
 
 Payment HTML now uses fixed actionable recovery messages while API codes/statuses and service decisions remain unchanged. Exact browser118 plus public25 JavaScript/14 no-JavaScript checks pass, including paid-state disclaimer,320px layout, query-error AX alert, visible Tab focus and Enter retained-status recovery in both modes. Focused17 real-PostgreSQL payment tests(3.619s),13 browser contracts and exact264-file/33-template source pass. Real local response-loss reconciliation retains one attempt/operation and blocks blind resend. Formal/manual and actual/full acceptance remain pending. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md).
+
+##13-01 support error recovery —2026-10-27
+
+Support HTML now uses fixed recovery guidance and an explicit query-free authorized-route link. Exact browser134 plus public25 JavaScript/14 no-JavaScript checks pass, including customer/staff AX alerts,320px visible Tab focus and Enter recovery to unchanged ledger revisions/balances in both modes. Focused24 real-PostgreSQL support ledger/context tests(8.253s),13 browser contracts and exact264-file/33-template source pass. JSON codes/statuses, recent MFA/exact scope, reservation/concurrency/archive controls remain unchanged. Formal/manual and actual/full acceptance remain pending. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md).

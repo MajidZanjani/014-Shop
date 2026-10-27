@@ -3,7 +3,7 @@
 {% block content %}
 <h1>SLL support rehearsal</h1>
 <p>Local simulation only. Actual support spending and technical work remain disabled. Guidance covers SLL IP and its integration. Credit does not expire or extend IP licence rights.</p>
-{% if error %}<p role="alert">{{ error }}</p><p><a href="">Reload committed support status</a></p>{% endif %}
+{% if error %}<p role="alert">{{ error_message }}</p><p><a href="{{ support_path }}">Reload committed support status</a></p>{% endif %}
 {% if ledger %}
 {% if not staff %}<p><a href="refunds/">Request support refund review</a></p>{% endif %}
 <p role="status">Granted: {{ ledger.granted_seconds }} seconds · Reserved: {{ ledger.reserved_seconds }} · Spent: {{ ledger.spent_seconds }} · Available: {{ ledger.available_seconds }}.</p>

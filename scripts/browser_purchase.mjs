@@ -263,6 +263,25 @@ async function smoke() {
       await wait('location.search==="" && document.readyState==="complete" && document.body.innerText.includes("Simulated payment captured")');
       require(lastDocumentStatus===200 && await evaluate('document.body.innerText.includes("Real payment confirmation and licence/support effects remain disabled")'));checks++;
       await send('Emulation.setDeviceMetricsOverride',{width:javascript?1280:390,height:900,deviceScaleFactor:1,mobile:!javascript});
+      const supportRecovery=async (origin,path,label) => {
+        stage='support-recovery-'+label+'-'+index;
+        const revision=await evaluate('document.body.innerText.match(/Committed ledger revision ([0-9]+)/)[1]');
+        await send('Page.navigate',{url:origin+path+'?invalid=synthetic'});
+        await wait('location.search==="?invalid=synthetic" && document.readyState==="complete" && document.querySelector("[role=alert]")!==null');
+        await send('Accessibility.enable');
+        const tree=await send('Accessibility.getFullAXTree');
+        require(lastDocumentStatus===400 && tree.nodes.some(n=>!n.ignored && n.role?.value==='alert') && await evaluate('document.querySelector("[role=alert]").innerText.includes("does not accept query parameters") && !document.body.innerText.includes("unexpected_query") && document.querySelectorAll("form").length===0'));checks++;
+        const link=`[...document.querySelectorAll('a')].find(a=>a.innerText==='Reload committed support status')`;
+        require(await evaluate(`${link}.getAttribute('href')===${JSON.stringify(path)}`));checks++;
+        await send('Emulation.setDeviceMetricsOverride',{width:320,height:900,deviceScaleFactor:1,mobile:false});
+        await send('Page.bringToFront');
+        for(let n=0;n<32 && !await evaluate(`document.activeElement===${link}`);n++) await key('Tab','Tab',9);
+        require(await evaluate(`document.activeElement===${link} && document.activeElement.matches(':focus-visible') && parseFloat(getComputedStyle(document.activeElement).outlineWidth)>=2 && document.documentElement.scrollWidth<=innerWidth+1`));checks++;
+        await key('Enter','Enter',13);
+        await wait('location.search==="" && document.readyState==="complete" && document.body.innerText.includes("Committed ledger revision")');
+        require(lastDocumentStatus===200 && await evaluate('document.body.innerText.match(/Committed ledger revision ([0-9]+)/)[1]')===revision && await evaluate('document.body.innerText.includes("Available: 70200")'));checks++;
+        await send('Emulation.setDeviceMetricsOverride',{width:javascript?1280:390,height:900,deviceScaleFactor:1,mobile:!javascript});
+      };
       stage='support-'+index;
       await navigate(config.support);
       require(await evaluate('document.body.innerText.includes("Optional private support follow-up") && document.body.innerText.includes("Available: 70200")')); checks++;
@@ -276,6 +295,7 @@ async function smoke() {
       require(await evaluate(`(() => {const element=document.activeElement; const bounds=element.getBoundingClientRect();
         return element.matches('a,button,input,select,textarea') && bounds.width>0 && bounds.height>0
           && getComputedStyle(element).outlineStyle!=='none';})()`)); checks++;
+      await supportRecovery(config.origin,config.support,'customer');
       const initial=await evaluate('Number(document.querySelector("input[name=expected_revision]").value)');
       const requestId=await evaluate('document.querySelector("form:has(input[value=context]) input[name=request_id]").value');
       await form('form:has(input[value="context"])',{fixture:'synthetic-context-v2'});
@@ -354,6 +374,7 @@ async function smoke() {
       await staffLogin();
       await staffNavigate(config.staff.support);
       require(lastDocumentStatus===200 && await evaluate('document.body.innerText.includes("Available: 70200") && document.body.innerText.includes("Optional private support follow-up")')); checks++;
+      await supportRecovery(config.staff.origin,config.staff.support,'staff');
       await staffNavigate(config.staff.unassigned);
       require(lastDocumentStatus===404 && await evaluate('!document.body.innerText.includes("Optional private support follow-up")')); checks++;
       await staffNavigate('/staff/');
