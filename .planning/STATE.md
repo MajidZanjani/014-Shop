@@ -2,8 +2,8 @@
 gsd_state_version: "1.0"
 current_plan: 01
 status: in_progress
-last_updated: "2026-10-27T09:58:25.708775+00:00"
-state_head: 63c3bbfa65f6ebc3f40910062fccd917e705e0b9
+last_updated: "2026-10-27T10:33:40.011165+00:00"
+state_head: 24bab9e6e6cbc919730ffe789afe90e260a8212b
 progress:
   total_phases: 14
   completed_phases: 1
@@ -14,8 +14,8 @@ current_task: 5
 last_activity: 2026-10-27
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Checkout keyboard stale-review rejection/recovery and320px layout verified; formal/manual and actual gates pending.
-last_activity_desc: Exact browser108 plus public25/14, focused15 checkout and13 contracts pass; current source264 verified.
+stopped_at: Payment actionable HTML errors and keyboard recovery verified; formal/manual and actual gates pending.
+last_activity_desc: Exact browser118 plus public25/14, focused17 payment and13 contracts pass; source264 verified.
 ---
 
 # Project state — final purchase-flow revision2
@@ -26,9 +26,9 @@ last_activity_desc: Exact browser108 plus public25/14, focused15 checkout and13 
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — checkout keyboard stale-review rejection/recovery and320px layout verified; browser108 plus public25/14 pass; formal/manual and actual/full acceptance pending.
+**Execution status:** in progress — payment HTML recovery guidance and keyboard/reflow verified; browser118 plus public25/14 pass; formal/manual and actual/full acceptance pending.
 
-**Next implementation task:** Continue remaining local UAT-03 accessibility review and actual source/commercial/private-intake/transport/provider/runtime/recovery/host qualification only under existing scoped authority. Retain browser108+public25/14, focused15 checkout tests and prior business/staff results at their exact scope; do not repeat unchanged runs.
+**Next implementation task:** Continue remaining local UAT-03 accessibility review and actual source/commercial/private-intake/transport/provider/runtime/recovery/host qualification only under existing scoped authority. Retain browser118+public25/14, focused17 payment tests and earlier scoped results; do not repeat unchanged runs.
 
 ## Preserved implementation/evidence
 
@@ -255,3 +255,7 @@ Business form now permits only existing same-origin CSS, exposes a validation al
 ##13-01 checkout keyboard review regression —2026-10-27
 
 Exact browser108 plus public25 JavaScript/14 no-JavaScript checks pass, including320px checkout preview, visible keyboard focus, native Enter stale-review409/AX alert and unchanged preview recovery in both modes. Checkout behavior remains unchanged: existing form middleware already permits same-origin CSS. Focused15 real-PostgreSQL checkout tests(2.180s),13 browser contracts and exact264-file/33-template source pass. Prior backend570/proxy148 and other focused tests retain earlier scope. Formal/manual and actual/full acceptance remain pending. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md).
+
+##13-01 payment HTML recovery guidance —2026-10-27
+
+Payment HTML now uses fixed actionable recovery messages while API codes/statuses and service decisions remain unchanged. Exact browser118 plus public25 JavaScript/14 no-JavaScript checks pass, including paid-state disclaimer,320px layout, query-error AX alert, visible Tab focus and Enter retained-status recovery in both modes. Focused17 real-PostgreSQL payment tests(3.619s),13 browser contracts and exact264-file/33-template source pass. Real local response-loss reconciliation retains one attempt/operation and blocks blind resend. Formal/manual and actual/full acceptance remain pending. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md).

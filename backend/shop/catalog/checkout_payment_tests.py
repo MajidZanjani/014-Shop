@@ -190,6 +190,52 @@ class CheckoutPaymentTests(TransactionTestCase):
         with self.assertRaises(IntegrityError), transaction.atomic():
             SyntheticCheckoutAcceptance.objects.filter(pk=row.pk).update(financial_confirmation=True)
 
+    def test_html_errors_are_actionable_without_changing_api_codes_or_effects(self):
+        for code,status,phrase in (
+                ('review_changed',409,'review has changed'),
+                ('synthetic_confirmation_required',422,'Confirm the synthetic declaration'),
+                ('local_archive_unavailable',503,'recovery evidence'),
+                ('PRIVATE_SYNTHETIC_UNRECOGNIZED',409,'rehearsal is on hold')):
+            with self.subTest(code=code),patch.object(service,'review',side_effect=checkout.CheckoutError(code,status)):
+                response=self.client.get(self.page)
+                self.assertEqual(response.status_code,status)
+                self.assertContains(response,'role="alert"',status_code=status)
+                self.assertContains(response,phrase,status_code=status)
+                self.assertNotContains(response,code,status_code=status)
+                self.assertContains(response,'Reload the retained rehearsal status',status_code=status)
+                self.assertNotContains(response,'<form',status_code=status)
+                self.assertEqual(self.client.get(self.api).json(),{'error':code})
+        query=self.client.get(self.page+'?invalid=synthetic')
+        self.assertContains(query,'does not accept query parameters',status_code=400)
+        self.assertNotContains(query,'unexpected_query',status_code=400)
+        self.assertEqual(self.client.get(self.api+'?invalid=synthetic').json(),{'error':'unexpected_query'})
+        bad=self.client.post(self.page,data='action=invalid',content_type='application/x-www-form-urlencoded')
+        self.assertContains(bad,'could not be read',status_code=400)
+        self.assertNotContains(bad,'invalid_request',status_code=400)
+        self.assertEqual(SyntheticCheckoutAcceptance.objects.count(),0)
+        self.assertEqual(SyntheticPaymentAttempt.objects.count(),0)
+        self.assertEqual(SyntheticBankOperation.objects.count(),0)
+
+    def test_html_uncertain_payment_requires_lookup_without_blind_resend(self):
+        self.accept()
+        with patch.object(service,'pay',side_effect=TimeoutError):
+            response=self.client.post(self.page,data='action=pay',content_type='application/x-www-form-urlencoded')
+        self.assertContains(response,'result is uncertain',status_code=409)
+        self.assertContains(response,'Use lookup',status_code=409)
+        self.assertNotContains(response,'payment_uncertain_use_lookup',status_code=409)
+        self.assertNotContains(response,'Simulate payment once',status_code=409)
+        self.assertEqual(SyntheticBankOperation.objects.count(),0)
+        # A real local response-loss attempt remains lookup-only on the retained page.
+        with self.assertRaises(TimeoutError):service.pay(self.owner,self.saved.pk,self.archive,fault='after_commit')
+        with patch.object(synthetic_bank,'start',side_effect=AssertionError('blind resend')):
+            page=self.client.get(self.page)
+            self.assertContains(page,'Look up simulated payment')
+            self.assertNotContains(page,'Simulate payment once')
+            response=self.client.post(self.page,data='action=reconcile',content_type='application/x-www-form-urlencoded')
+            self.assertContains(response,'Simulated payment captured')
+        self.assertEqual(SyntheticBankOperation.objects.count(),1)
+        self.assertEqual(SyntheticPaymentAttempt.objects.count(),1)
+
     def test_shared_shop_ui_currency_stylesheet_and_actionable_business_errors(self):
         from .templatetags.shop_money import euro_minor
         self.assertEqual(euro_minor(17035), '€170.35')

@@ -5,7 +5,7 @@
 
 <h1>Synthetic acceptance and payment</h1>
 <p>Local rehearsal only. No real contract, payment, licence or support credit is created. Actual commercial, legal, tax and host approvals remain pending.</p>
-{% if error %}<p role="alert">{{ error }}</p><p><a href="/purchase/checkout-rehearsal/{{ checkout_id }}/payment/">Reload the retained rehearsal status</a>. An uncertain payment requires lookup; do not start another payment.</p>{% endif %}
+{% if error %}<p role="alert">{{ error_message }}</p><p><a href="/purchase/checkout-rehearsal/{{ checkout_id }}/payment/">Reload the retained rehearsal status</a>. An uncertain payment requires lookup; do not start another payment.</p>{% endif %}
 {% if review %}
 <p>Frozen cart revision {{ review.checkout.cart.version }} · Business revision {{ review.checkout.business.version }} · {{ review.checkout.cart.lines|length }} complete cart lines.</p>
 <ol>{% for line in review.checkout.priced_lines %}<li>{% if line.kind == 'ip' %}IP · {{ line.offer.configuration.vendor }} · {{ line.offer.configuration.families|join:', ' }} · {{ line.offer.configuration.term }} · {{ line.offer.configuration.platform.choice }}<p>{{ line.offer.delivery }}</p>{% if line.offer.later_reference_design %}<p>The later reference design remains owed after initial materials.</p>{% endif %}{% else %}SLL xSPI-MC support · {{ line.quantity }} ten-hour packages · No expiry{% endif %}</li>{% endfor %}</ol>

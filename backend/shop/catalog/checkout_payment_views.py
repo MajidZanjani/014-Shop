@@ -14,6 +14,25 @@ from .cart_views import reply
 from .views import local_customer, unique_object
 
 
+
+# Fixed HTML guidance only; API codes and all service decisions remain unchanged.
+ERROR_MESSAGES = {
+    'unexpected_query': 'This page does not accept query parameters. Reload the retained rehearsal status.',
+    'invalid_request': 'This submission could not be read. Reload the retained rehearsal status before continuing.',
+    'synthetic_confirmation_required': 'Confirm the synthetic declaration before recording this rehearsal.',
+    'review_changed': 'The synthetic review has changed. Reload and review the retained details before continuing.',
+    'synthetic_offer_expired': 'This synthetic offer has expired. Return to the current checkout rehearsal to review the available scope.',
+    'synthetic_acceptance_required': 'Review and record the synthetic acceptance before simulating payment.',
+    'payment_attempt_required': 'There is no retained payment attempt to look up. Reload the rehearsal status.',
+    'payment_uncertain_use_lookup': 'The simulated payment result is uncertain. Use lookup from the retained status; do not start another payment.',
+    'archive_unavailable': 'Required recovery evidence is unavailable. This rehearsal is on hold; reload the retained status before continuing.',
+    'local_archive_unavailable': 'Required recovery evidence is unavailable. This rehearsal is on hold; reload the retained status before continuing.',
+    'synthetic_operation_unavailable': 'This synthetic operation is unavailable. Reload the retained rehearsal status before continuing.',
+    'not_found': 'This rehearsal is unavailable for your customer access.',
+}
+DEFAULT_ERROR_MESSAGE = 'This rehearsal is on hold. Reload the retained status before continuing. If payment is uncertain, use lookup; do not start another payment.'
+
+
 def command(request, api):
     limit = 1024
     if int(request.META.get('CONTENT_LENGTH') or 0) > limit: raise ValueError('size')
@@ -86,6 +105,8 @@ def handle(request, identity, api):
     except (ValueError, TypeError, UnicodeError, RecursionError):
         context = {'error': 'invalid_request'};status = 400
     if api: return private(reply(context, status))
+    if 'error' in context:
+        context['error_message'] = ERROR_MESSAGES.get(context['error'], DEFAULT_ERROR_MESSAGE)
     context['checkout_id'] = str(identity)
     return private(render(request, 'catalog/checkout_payment.html', context, status=status))
 
