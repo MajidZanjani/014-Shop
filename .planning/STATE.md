@@ -2,8 +2,8 @@
 gsd_state_version: "1.0"
 current_plan: 01
 status: in_progress
-last_updated: "2026-10-27T12:28:29.873921+00:00"
-state_head: e2b2d23ba6a952cdc687ed82880ed2009b2bd0c3
+last_updated: "2026-10-27T12:39:13.450168+00:00"
+state_head: e1a31dadeb8c2cec86946ff1c4e58c5e038664b9
 progress:
   total_phases: 14
   completed_phases: 1
@@ -14,8 +14,8 @@ current_task: 5
 last_activity: 2026-10-27
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Rejected-CSRF privacy/reconnect verified; task5 actual/formal gates pending.
-last_activity_desc: Clear private state after403 and reconnect explicitly;207 browser checks and13 contracts pass.
+stopped_at: Unavailable-quotation refresh cleanup/recovery verified; task5 actual/formal gates pending.
+last_activity_desc: Clear stale quotation before refresh;211 browser checks, synthetic404 React regression and13 contracts pass.
 ---
 
 # Project state — final purchase-flow revision2
@@ -26,9 +26,9 @@ last_activity_desc: Clear private state after403 and reconnect explicitly;207 br
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress —13-01 task5 rejected-CSRF private UI cleanup/reconnect verified locally: browser134+public59/14 and13 contracts pass; formal/manual and actual/full acceptance pending.
+**Execution status:** in progress —13-01 task5 unavailable-quotation refresh cleanup/recovery verified locally: browser134+public63/14, synthetic404 React regression and13 contracts pass; formal/manual and actual/full acceptance pending.
 
-**Next implementation task:** Select the next unverified locally authorized UAT-03 risk or concrete implementation gap; detected401,403-cookie-mismatch and both uncertain-logout recoveries are verified. Preserve exact prior evidence; actual/formal release gates remain pending.
+**Next implementation task:** Select the next unverified locally authorized UAT-03 risk or concrete implementation gap; unavailable quotation refresh,401/403 and uncertain-logout recoveries are verified. Preserve scoped prior evidence; actual/formal release gates remain pending.
 
 ## Preserved implementation/evidence
 

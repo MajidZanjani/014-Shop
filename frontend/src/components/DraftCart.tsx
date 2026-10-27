@@ -38,9 +38,12 @@ export default function DraftCart({configuration,csrf,onResume,onAccessDenied}:{
   const loadRequests=async()=>{const value=await request('/api/v1/quotation-requests/');setRequests(value.requests);};
   const loadReceipt=async(id:string)=>{
     if(busy||uncertain||quoteUncertain)return;
-    setBusy(true);
-    try{setReceipt(await request('/api/v1/quotation-requests/'+id+'/'));}
-    catch{setMessage('Request unavailable. Verify your session.');}
+    setBusy(true);setReceipt(null);setMessage('Loading captured request…');
+    try{
+      setReceipt(await request('/api/v1/quotation-requests/'+id+'/'));
+      setMessage('Captured request loaded. Prices and rights remain pending.');
+    }
+    catch{setMessage('Request unavailable. Previously displayed details have been cleared. Reload request history and open the request to retry.');}
     finally{setBusy(false);}
   };
   useEffect(()=>{void loadRequests().catch(()=>setMessage('Quotation request history unavailable. Reload to retry.'));},[]);

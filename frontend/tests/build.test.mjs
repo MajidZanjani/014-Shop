@@ -221,6 +221,20 @@ test('cart React flow preserves exact uncertain retry and separate support lines
   await click('Reload request history');await click('Refresh captured request status');
   assert.match(container.textContent,/Review status unavailable/);assert.ok(!container.textContent.includes('UNAPPROVED_STATUS_TEXT_MUST_NOT_RENDER'));
   assert.match(container.textContent,/Acceptance and payment disabled/);
+  const beforeDeniedFetch=host.window.fetch,postCount=requests.length,quotePostCount=quoteRequests.length;
+  host.window.fetch=async(path,options)=>path==='/api/v1/quotation-requests/'+quoteReceipt.id+'/'
+   ?new Response(JSON.stringify({error:'not_found'}),{status:404,headers:{'content-type':'application/json'}})
+   :beforeDeniedFetch(path,options);
+  await click('Refresh captured request status');
+  assert.equal(findNode(container,n=>n.tagName==='SECTION'&&n.attrs.get('aria-label')==='Captured quotation request'),undefined);
+  assert.match(container.textContent,/Previously displayed details have been cleared/);
+  assert.deepEqual(quoteReceipt.lines,captured);assert.equal(requests.length,postCount);assert.equal(quoteRequests.length,quotePostCount);
+  host.window.fetch=beforeDeniedFetch;
+  await click('Review captured request');
+  assert.ok(findNode(container,n=>n.tagName==='SECTION'&&n.attrs.get('aria-label')==='Captured quotation request'));
+  assert.match(container.textContent,/Captured request loaded/);
+  assert.ok(!container.textContent.includes('Previously displayed details have been cleared'));
+  assert.deepEqual(quoteReceipt.lines,captured);assert.equal(requests.length,postCount);assert.equal(quoteRequests.length,quotePostCount);
   await act(async()=>root.unmount());root=null;
  }finally{
   if(root){const {act}=await import('react');await act(async()=>root.unmount());}
