@@ -16,13 +16,13 @@
 
 **Current plan:** 08-03 — Integrated purchase revisions, payment lifecycle and ordinary development gates.
 
-**Execution status:** paused — user-requested pause during08-03 verification; current focused88 tests pass; final full/integration/clean-checkout gates pending; no production activation.
+**Execution status:** in progress —08-03 local implementation and final ordinary checks verified; actual/full acceptance and hosted CI remain pending; no production activation.
 
-**Next implementation task:** Run $gsd-resume-work, then finish08-03 final clean-checkout inventory, full enclosing core-local, worker/demo/proxy and source checks; fix only demonstrated defects and retain all actual qualification gates.
+**Next implementation task:** Resolve scoped actual approval/provider/runtime/recovery inputs in docs/decisions.md when available; continue only independent authorized local work;08-03 local verification is complete.
 
 **Last fully completed phase:** 1. Phases2–7 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase8 work while those earlier checks remain open. Completed phases remain1/14; planned records11/36. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
 
-**Current activity:** Paused by user during08-03 final verification. Commercial revision consumer/checkout provenance, staff-scoped synthetic capture/full-refund lifecycle and ordinary gate/CI repairs are implemented; focused88 tests pass. Full final backend/worker/demo/proxy/clean-checkout/source checks remain pending. Existing fully verified525 baseline is historical; no actual approval or activation inferred.
+**Current activity:**08-03 local tasks1–4 verified; final backend559/worker24/proxy132/source260 evidence retained; actual/full acceptance remains pending.
 
 Before every commit, reconcile all affected planning status references, regenerate canonical state.json and run `python3 scripts/check_planning.py`; commit then sync origin/main. Historical sources/evidence remain scoped to their dates.
 
@@ -47,7 +47,7 @@ The October21 reset completed documentation replanning. Later user continuation 
 - [ ] **Phase 5: Transactional records, durable work and private evidence primitives** — October 21 handoff T05
 - [ ] **Phase 6: Verified customer access, staff MFA and private host editing** — October 21 handoff T06
 - [ ] **Phase 7: Short business checkout, standard offers and acceptance** — October 21 handoff T07
-- [ ] **Phase 8: Payment domain and fault-injectable fake bank** — CURRENT DEVELOPMENT FOCUS; local08-01/02 verified;08-03 paused during final verification; full acceptance pending — October 21 handoff T08
+- [ ] **Phase 8: Payment domain and fault-injectable fake bank** — CURRENT DEVELOPMENT FOCUS; local08-01/02 verified;08-03 local verification complete; full acceptance pending — October 21 handoff T08
 - [ ] **Phase 9: Selected-bank sandbox integration and complete reconciliation** — October 21 handoff T09
 - [ ] **Phase 10: Staged licence/reference-design delivery and support ledger** — local10-01 materials,10-02 ledger,10-03 licence changes,10-04 numbering/mail,10-05 refund review and10-06 delivery holds implemented; full acceptance pending — October 21 handoff T10
 - [ ] **Phase 11: Protected-host qualification, shop-only deployment and conditional public activation** — October 21 handoff T11
@@ -440,7 +440,7 @@ Unchecked phase boxes mean full acceptance is outstanding. They do not mean deve
 | 5. Transactional records, durable work and private evidence primitives | 0 / not planned | In Progress — local slice in quick261022-dj5; full acceptance pending | — |
 | 6. Verified customer access, staff MFA and private host editing | 0 / not planned | In Progress — synthetic customer verification/save-resume and staff MFA rehearsal/assigned reviews implemented; production MFA/private-host/release acceptance pending | — |
 | 7. Short business checkout, standard offers and acceptance | 1 / 4 | In Progress — current local cart/quotation/business/review/preparation implementation; commercial acceptance pending | — |
-| 8. Payment domain and fault-injectable fake bank | 0 / 3 | In Progress — CURRENT DEVELOPMENT FOCUS; local08-01/02 verified;08-03 paused during final verification | Typed fake bank/attempt slices retained; actual/full domain pending |
+| 8. Payment domain and fault-injectable fake bank | 0 / 3 | In Progress — CURRENT DEVELOPMENT FOCUS; local08-01/02 verified;08-03 local verification complete | Typed fake bank/attempt slices retained; actual/full domain pending |
 | 9. Selected-bank sandbox integration and complete reconciliation | 0 / not planned | Not started | — |
 | 10. Staged licence/reference-design delivery and support ledger | 0 / 6 | In Progress — local private fixtures/downloads, staged grants and support ledger implemented; local10-03 reviewed cases/held orders implemented; local10-04 document reservations implemented; durable statement capture and local10-05 support-refund review and10-06 delivery holds implemented; actual qualification pending | — |
 | 11. Protected-host qualification, shop-only deployment and conditional public activation | 0 / not planned | Not started | — |
@@ -454,3 +454,7 @@ Current evidence/routing: STATE.md and HANDOFF.md. Historical activity and sourc
 Latest Phase8 routing: [acceptance-gap audit](phases/08-payment-domain-and-fault-injectable-fake-bank/08-ACCEPTANCE-GAPS.md) selects08-02 archived normalized observation journal.08-01 local tasks1–4 are implemented/verified/audited; actual acceptance remains pending. Project1/14 completed phases and11/35 completed plan records; Phase8 full acceptance0/2 and Phase10 full acceptance0/6. Denominator change is a new planned record, not engineering effort.
 
 Latest08-02 local evidence: [archived observation journal](phases/08-payment-domain-and-fault-injectable-fake-bank/08-OBSERVATION-JOURNAL-PARTIAL.md): backend525/5 checks153.829s, combined focused58 including16 journal tests8.902s, worker24/6 checks12.033s, proxy132 header-level checks/2 aliases and final purchase fixture pass. Source253 exact files/32 templates/1 CSS/no symlinks. Local tasks1–4 implemented/verified/audited; actual/full acceptance remains pending. Next plan bounded synthetic authorization/capture intents/history. Counts1/14 phases,11/35 completed plan records; Phase8 full acceptance0/2 and Phase10 full acceptance0/6. Counts are not engineering effort.
+
+##08-03 final local verification —2026-10-27
+
+Backend559 tests/5 checks167.965s (enclosing169.214s), worker24/6 checks13.374s, supported complete-cart two-factor demo and proxy132 header-level checks/2 aliases pass. Exact inert source260 files/33 templates/1 CSS/no symlinks. [Scope and remaining gates](phases/08-payment-domain-and-fault-injectable-fake-bank/08-03-VERIFICATION-PARTIAL.md). Local tasks1–4 complete; actual/full acceptance and hosted CI remain pending. Counts1/14 phases and11/36 completed plan records are not engineering effort.

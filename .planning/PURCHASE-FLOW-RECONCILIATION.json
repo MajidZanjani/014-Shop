@@ -14,11 +14,6 @@
       "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
     },
     {
-      "path": ".planning/HANDOFF.json",
-      "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
-    },
-    {
       "path": ".planning/HANDOFF.md",
       "role": "current",
       "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
@@ -539,11 +534,6 @@
       "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
     },
     {
-      "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/.continue-here.md",
-      "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
-    },
-    {
       "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-01-PLAN.md",
       "role": "current",
       "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
@@ -557,6 +547,11 @@
       "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-03-PLAN.md",
       "role": "current",
       "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-03-VERIFICATION-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
     },
     {
       "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-03-WIP.md",

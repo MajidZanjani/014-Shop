@@ -229,8 +229,18 @@ DECISION_HEADER = ["ID", "Decision or supplied fact", "Recommended handling", "A
 
 def decisions(data, inputs):
     value = text(data, "decisions")
-    lines = [line for line in value.splitlines() if line.startswith("|")]
+    document = value.splitlines()
+    headers = [i for i, line in enumerate(document)
+               if line.startswith("|") and cells(line) == DECISION_HEADER]
+    require(len(headers) == 1, "unique decision register header")
+    lines = []
+    for line in document[headers[0]:]:
+        if not line.startswith("|"):
+            break
+        lines.append(line)
     count = require(len(lines) == 14, "one complete decision table")
+    count += require(sum(bool(re.match(r"\|\s*P-\d+\s*\|", line)) for line in document) == 12,
+                     "no decisions outside bounded register")
     count += require(cells(lines[0]) == DECISION_HEADER, "decision header")
     count += require(len(cells(lines[1])) == 8 and all(re.fullmatch(r"-+", c) for c in cells(lines[1])),
                      "decision delimiter width")
@@ -484,6 +494,12 @@ def self_check():
     require(decisions(register, inputs) > 0 and (ROOT / DECISIONS).read_bytes() == register,
             "repeated read-only decisions")
     rows = [line for line in register.decode().splitlines() if line.startswith("| P-")]
+    unrelated = b"\n## Independent blocker routing\n\n| Scope | Input |\n|---|---|\n| T08 | Pending |\n"
+    require(decisions(register + unrelated, inputs) > 0, "unrelated routing table preserves register")
+    header = next(line for line in register.decode().splitlines()
+                  if line.startswith("|") and cells(line) == DECISION_HEADER)
+    reject("duplicate register header", lambda: decisions(register + ("\n" + header).encode(), inputs))
+    reject("decision outside register", lambda: decisions(register + ("\n" + rows[0]).encode(), inputs))
     for name, old, new in (
         ("malformed six-cell baseline", rows[0], rows[0].replace(" | " + PHASES[0], "").replace(" | " + ROLES[0], "  " + ROLES[0])),
         ("duplicate decision", rows[1], rows[0]),
