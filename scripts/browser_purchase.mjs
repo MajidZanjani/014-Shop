@@ -158,6 +158,20 @@ async function smoke() {
       const code=mail.match(/^Verification code: ([A-Za-z0-9_-]+)$/m)?.[1]; require(code);
       await form('form:has(input[value="verify"])',{code});
       await wait('document.body.innerText.includes("Your customer access is verified.")'); checks++;
+      stage='cart-current-entry-'+index;
+      await navigate('/purchase/cart/');
+      const cartRevision=await evaluate('document.querySelector("form:has(input[value=add_ip]) input[name=expected_version]").value');
+      const cartLines=await evaluate('document.querySelectorAll("ol.cart-items>li").length');
+      await evaluate('(() => {const f=document.querySelector("form:has(input[value=add_ip])");f.noValidate=true;f.querySelector("input[name=families][value=altera-agilex-5]").checked=true;return true;})()');
+      await form('form:has(input[value=add_ip])',{vendor:'altera',term:'rd-annual',fixed_nodes:'1',floating_nodes:'0',platform_choice:''});
+      require(lastDocumentStatus===422
+        && await evaluate('document.querySelector("form:has(input[value=add_ip]) input[name=expected_version]").value')===cartRevision
+        && await evaluate('document.querySelectorAll("ol.cart-items>li").length')===cartLines);checks++;
+      await evaluate('document.querySelector("form:has(input[value=add_support])").noValidate=true;true');
+      await form('form:has(input[value=add_support])',{quantity:'0'});
+      require(lastDocumentStatus===422
+        && await evaluate('document.querySelector("form:has(input[value=add_ip]) input[name=expected_version]").value')===cartRevision
+        && await evaluate('document.querySelectorAll("ol.cart-items>li").length')===cartLines);checks++;
       stage='support-'+index;
       await navigate(config.support);
       require(await evaluate('document.body.innerText.includes("Optional private support follow-up") && document.body.innerText.includes("Available: 70200")')); checks++;

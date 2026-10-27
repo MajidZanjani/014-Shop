@@ -10,9 +10,9 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — required-platform and no-JavaScript UI fixes locally verified; exact public frontend build and isolated full regression pending.
+**Execution status:** in progress — required-platform/no-JavaScript fixes verified; backend570/browser58/proxy148 pass; frozen public frontend and actual/full qualification pending.
 
-**Next implementation task:** Finish the bounded exact Node24.22 frontend build attempt; rerun backend regression in isolation, then qualify the fresh public browser path without diagnostic substitution.
+**Next implementation task:** Continue13-01 exact frontend build qualification in an uninterrupted local build window, then run the fresh --public browser path; retain manual accessibility and all actual release gates.
 
 Complete-cart synthetic checkout, acceptance/payment, once-only grants and staged completion are implemented, now with archived reservations/releases, scoped staff work, reverse/replace corrections and committed-revision statements. Supported complete-cart demo now covers both local staff login factors, exact assignment and work/correction/release/statement retries. Private versioned synthetic material releases and owner-only session-bound single-use POST downloads are now implemented. Local reviewed licence-change cases and held revised-scope/orders now preserve originals and unknown policies. Latest retained results:420-test full backend regression before the final catalog-family/same-band validation changes, final16 focused case tests and102 proxy header-level checks; complete-cart two-factor staff/customer demo includes all five case kinds and review corrections alongside retained-version release/download. Actual material/rights/retention/host qualifications remain pending. Only Phase1 is fully accepted;11/34 plan records complete. Counts are not engineering-effort estimates. [STATE.md](STATE.md) and [ROADMAP.md](ROADMAP.md) retain exact evidence and actual qualification gates.
 
@@ -200,3 +200,5 @@ Pinned browser54 checks/2 roles/2 JS modes passes: retained-cookie scope revoke4
 ##13-01 public browser preparation —2026-10-27
 
 Required-platform validation now covers current React/Django IP entry; no-JavaScript pages hide inactive React controls. Focused20 backend tests,13 browser-contract tests, default browser54 and proxy148/2 aliases pass. Public20/7 browser and112 frontend tests are explicitly diagnostic only; exact frontend graph/full regression/formal accessibility remain pending. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md).
+
+Final13-01 verification: full backend570 tests/5 checks169.832s (enclosing171.128s), qualified browser58/2 roles/2 modes, proxy148/2 aliases,13 Python browser-contract tests and exact264-file backend source pass. Public20/7 is diagnostic only. Exact Node24.22 native build reached900-second bound/exit124; no build remains. No shared pruning, timeout increase or pin substitution. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md).

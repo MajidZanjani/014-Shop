@@ -2,8 +2,8 @@
 gsd_state_version: "1.0"
 current_plan: 01
 status: in_progress
-last_updated: "2026-10-27T06:38:31.856484+00:00"
-state_head: f18d98c15ea8aaa62540e7bf389a73724d0f8bdf
+last_updated: "2026-10-27T06:46:03.750170+00:00"
+state_head: ade87e2
 progress:
   total_phases: 14
   completed_phases: 1
@@ -14,8 +14,8 @@ current_task: 5
 last_activity: 2026-10-27
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Session resumed; local browser revocation verified; remaining qualification pending.
-last_activity_desc: Fixed current platform entry and inactive no-JavaScript UI; public graph qualification pending.
+stopped_at: Current-entry fixes verified and pushed; exact frontend/full qualification remains pending.
+last_activity_desc: Verified backend570/browser58 and retained explicit public-graph qualification boundary.
 ---
 
 # Project state — final purchase-flow revision2
@@ -26,9 +26,9 @@ last_activity_desc: Fixed current platform entry and inactive no-JavaScript UI; 
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — required-platform and no-JavaScript UI fixes locally verified; exact public frontend build and isolated full regression pending.
+**Execution status:** in progress — required-platform/no-JavaScript fixes verified; backend570/browser58/proxy148 pass; frozen public frontend and actual/full qualification pending.
 
-**Next implementation task:** Finish the bounded exact Node24.22 frontend build attempt; rerun backend regression in isolation, then qualify the fresh public browser path without diagnostic substitution.
+**Next implementation task:** Continue13-01 exact frontend build qualification in an uninterrupted local build window, then run the fresh --public browser path; retain manual accessibility and all actual release gates.
 
 ## Preserved implementation/evidence
 
@@ -229,3 +229,5 @@ Session resumed 2026-10-27T06:17:14.391957+00:00 from13-01 task5; structured han
 ##13-01 public browser preparation —2026-10-27
 
 Required-platform validation now covers current React/Django IP entry; no-JavaScript pages hide inactive React controls. Focused20 backend tests,13 browser-contract tests, default browser54 and proxy148/2 aliases pass. Public20/7 browser and112 frontend tests are explicitly diagnostic only; exact frontend graph/full regression/formal accessibility remain pending. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md).
+
+Final13-01 verification: full backend570 tests/5 checks169.832s (enclosing171.128s), qualified browser58/2 roles/2 modes, proxy148/2 aliases,13 Python browser-contract tests and exact264-file backend source pass. Public20/7 is diagnostic only. Exact Node24.22 native build reached900-second bound/exit124; no build remains. No shared pruning, timeout increase or pin substitution. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md).
