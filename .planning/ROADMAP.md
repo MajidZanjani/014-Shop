@@ -12,13 +12,13 @@
 
 ## Current implementation activity — 2026-10-26
 
-**Current development focus:** 8 — payment domain and fault-injectable fake bank; Phase10 local slices retained with full acceptance pending. [Current purchase-flow authority](PURCHASE-FLOW-AMENDMENT.md).
+**Current development focus:** 13 — purchase-flow, fulfilment and release acceptance; verified Phase8/10 local slices retained with actual acceptance pending. [Current purchase-flow authority](PURCHASE-FLOW-AMENDMENT.md).
 
-**Current plan:** 08-03 — Integrated purchase revisions, payment lifecycle and ordinary development gates.
+**Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress —08-03 local implementation and final ordinary checks verified; actual/full acceptance and hosted CI remain pending; no production activation.
+**Execution status:** in progress —13-01 supported staff finance rehearsal verified locally; continuing eight-case API/no-JavaScript acceptance coverage; actual/full qualification pending.
 
-**Next implementation task:** Resolve scoped actual approval/provider/runtime/recovery inputs in docs/decisions.md when available; continue only independent authorized local work;08-03 local verification is complete.
+**Next implementation task:** Complete13-01 explicit eight-case acceptance report and supported API/no-JavaScript required-support/offer-hold checks; retain all actual qualification gates.
 
 **Last fully completed phase:** 1. Phases2–7 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase8 work while those earlier checks remain open. Completed phases remain1/14; planned records11/36. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
 
@@ -47,12 +47,12 @@ The October21 reset completed documentation replanning. Later user continuation 
 - [ ] **Phase 5: Transactional records, durable work and private evidence primitives** — October 21 handoff T05
 - [ ] **Phase 6: Verified customer access, staff MFA and private host editing** — October 21 handoff T06
 - [ ] **Phase 7: Short business checkout, standard offers and acceptance** — October 21 handoff T07
-- [ ] **Phase 8: Payment domain and fault-injectable fake bank** — CURRENT DEVELOPMENT FOCUS; local08-01/02 verified;08-03 local verification complete; full acceptance pending — October 21 handoff T08
+- [ ] **Phase 8: Payment domain and fault-injectable fake bank** — local08-01/02/03 verified; full acceptance pending — October 21 handoff T08
 - [ ] **Phase 9: Selected-bank sandbox integration and complete reconciliation** — October 21 handoff T09
 - [ ] **Phase 10: Staged licence/reference-design delivery and support ledger** — local10-01 materials,10-02 ledger,10-03 licence changes,10-04 numbering/mail,10-05 refund review and10-06 delivery holds implemented; full acceptance pending — October 21 handoff T10
 - [ ] **Phase 11: Protected-host qualification, shop-only deployment and conditional public activation** — October 21 handoff T11
 - [ ] **Phase 12: Backups, operating alerts and financial/licensing restore rehearsal** — October 21 handoff T12
-- [ ] **Phase 13: Purchase-flow, fulfilment and release acceptance** — October 21 handoff T13
+- [ ] **Phase 13: Purchase-flow, fulfilment and release acceptance** — CURRENT DEVELOPMENT FOCUS; integrated local finance rehearsal in progress; actual/full acceptance pending — October 21 handoff T13
 - [ ] **Phase 14: Release handover and separately scoped live activation** — October 21 handoff T14
 
 ## Phase Details
@@ -379,7 +379,7 @@ Keep public bytes in shop-owned OVH Object Storage through a fixed verified HTTP
 
 ### Phase 13: Purchase-flow, fulfilment and release acceptance
 
-**Final26October revision2:** FLOW-08. 13-01: all eight final-amendment acceptance checks, privacy, retained scope and separate evidence classes. [Current clauses](PURCHASE-FLOW-AMENDMENT.md) override conflicting baseline purchase/delivery wording below.
+**Final26October revision2:** CURRENT DEVELOPMENT FOCUS; integrated staff finance rehearsal in progress. FLOW-08. 13-01: all eight final-amendment acceptance checks, privacy, retained scope and separate evidence classes. [Current clauses](PURCHASE-FLOW-AMENDMENT.md) override conflicting baseline purchase/delivery wording below.
 
 **Goal:** Release reviewers can trace every source field/option/rule to exercised customer/staff journeys, exact new IDs/hostnames and source/profile/approval revisions.
 **Depends on:** T04,T06–T12, with conditional external evidence
@@ -440,12 +440,12 @@ Unchecked phase boxes mean full acceptance is outstanding. They do not mean deve
 | 5. Transactional records, durable work and private evidence primitives | 0 / not planned | In Progress — local slice in quick261022-dj5; full acceptance pending | — |
 | 6. Verified customer access, staff MFA and private host editing | 0 / not planned | In Progress — synthetic customer verification/save-resume and staff MFA rehearsal/assigned reviews implemented; production MFA/private-host/release acceptance pending | — |
 | 7. Short business checkout, standard offers and acceptance | 1 / 4 | In Progress — current local cart/quotation/business/review/preparation implementation; commercial acceptance pending | — |
-| 8. Payment domain and fault-injectable fake bank | 0 / 3 | In Progress — CURRENT DEVELOPMENT FOCUS; local08-01/02 verified;08-03 local verification complete | Typed fake bank/attempt slices retained; actual/full domain pending |
+| 8. Payment domain and fault-injectable fake bank | 0 / 3 | In Progress — local08-01/02/03 verified; actual/full acceptance pending | Typed fake bank/attempt slices retained; actual/full domain pending |
 | 9. Selected-bank sandbox integration and complete reconciliation | 0 / not planned | Not started | — |
 | 10. Staged licence/reference-design delivery and support ledger | 0 / 6 | In Progress — local private fixtures/downloads, staged grants and support ledger implemented; local10-03 reviewed cases/held orders implemented; local10-04 document reservations implemented; durable statement capture and local10-05 support-refund review and10-06 delivery holds implemented; actual qualification pending | — |
 | 11. Protected-host qualification, shop-only deployment and conditional public activation | 0 / not planned | Not started | — |
 | 12. Backups, operating alerts and financial/licensing restore rehearsal | 0 / not planned | Not started | — |
-| 13. Purchase-flow, fulfilment and release acceptance | 0 / 1 | In Progress — focused local amendment cases; full release/qualification pending | — |
+| 13. Purchase-flow, fulfilment and release acceptance | 0 / 1 | In Progress — CURRENT DEVELOPMENT FOCUS; integrated staff finance rehearsal; full qualification pending | — |
 | 14. Release handover and separately scoped live activation | 0 / not planned | Not started | — |
 
 
@@ -458,3 +458,7 @@ Latest08-02 local evidence: [archived observation journal](phases/08-payment-dom
 ##08-03 final local verification —2026-10-27
 
 Backend559 tests/5 checks167.965s (enclosing169.214s), worker24/6 checks13.374s, supported complete-cart two-factor demo and proxy132 header-level checks/2 aliases pass. Exact inert source260 files/33 templates/1 CSS/no symlinks. [Scope and remaining gates](phases/08-payment-domain-and-fault-injectable-fake-bank/08-03-VERIFICATION-PARTIAL.md). Local tasks1–4 complete; actual/full acceptance and hosted CI remain pending. Counts1/14 phases and11/36 completed plan records are not engineering effort.
+
+##13-01 staff finance integration —2026-10-27
+
+Backend560/5 checks168.659s (enclosing169.928s), focused89/19.033s, supported two-factor demo/proxy132/2 aliases and exact261-file source pass. Capture response-loss recovery uses lookup only; full synthetic refund preserves36000 granted seconds and60 reserved seconds. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-STAFF-FINANCE-PARTIAL.md). Actual/full qualification remains pending; continuing local eight-case acceptance.

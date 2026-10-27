@@ -46,3 +46,10 @@ These actions publish/recover their grant/completion snapshots before changing s
 - Actual immutable order/acceptance integration, approved commercial application across complete baskets and real licence/support ledger/fulfilment. Synthetic flags are not acceptance or money evidence.
 - Authorized confidential engineering follow-up and resource-scoped technical document custody/versioning before receiving technical files. No new portal is mandatory; no public bucket/form or EDA execution is permitted.
 - Existing live staff MFA, actual bank/mail, retained evidence, host/ingress/deployment and independent off-host recovery qualifications. No protected service authority is added by this amendment.
+
+
+## Integrated staff finance rehearsal
+
+The supported `python3 scripts/demo_purchase_flow.py` rehearsal now includes a separate support-only accepted checkout and uses the same real local two-factor staff session as the complete-cart scenario. The local operator explicitly grants each acceptance/kind. Staff forms and JSON actions prepare/retry capture, lose its response after fake-provider commit, reject a blind second mutation, and recover through lookup. Authorization alone cannot provision credit. A later full synthetic refund keeps the original36000 support seconds and60-second reservation, creates no extra grant/work event, and changes no accepted snapshot. Revoking the exact refund assignment denies further access.
+
+The result includes `staff_finance_lifecycle`; no identifiers or private business details are printed. Provider timeouts return409 `payment_operation_uncertain_use_lookup`; archive failures retain their separate503 response. This is local simulator evidence, with null actual refund policy and false financial/effect flags. It does not establish real staff delivery/MFA, actual bank guarantees, refund eligibility or rights/credit reversal.

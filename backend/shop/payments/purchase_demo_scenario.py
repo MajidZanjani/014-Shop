@@ -358,6 +358,9 @@ def run(archive_root):
                     or len(final['statements'])!=1 or final['statements'][0]['statement']['revision']!=4
                     or final['actual_support_spendable'] is not False):
                 raise RuntimeError('synthetic committed ledger statement mismatch')
+        with override_settings(LOCAL_CHECKOUT_ARCHIVE_ROOT=str(archive_root)):
+            from .finance_demo_scenario import run as run_finance
+            finance_result=run_finance(staff,staff_token,staff_name,staff_settings,archive)
         complete_cart={'all_lines_retained':True,'business_revision':retained.snapshot['business']['version'],
             'document_revision':retained.snapshot['documents']['revision'],'archive_recovered':bool(retained.archive_receipt),
             'api_and_no_javascript_same_capture':True,'acceptance_enabled':False,
@@ -382,5 +385,5 @@ def run(archive_root):
 
     return {'status':'PURCHASE_FLOW_DEMO_PASS','evidence_class':'local-synthetic','financial_confirmation':False,
         'effects_authorized':False,'real_email_verification':False,'ready_kit_zero_support':True,'required_support_tamper_refused':True,
-        'complete_cart_checkout':complete_cart,'topup_without_platform_or_new_licence':True,'reservation_retry_once':True,'development_cases':results,
+        'staff_finance_lifecycle':finance_result,'complete_cart_checkout':complete_cart,'topup_without_platform_or_new_licence':True,'reservation_retry_once':True,'development_cases':results,
         'pending':['actual commercial/kit/rights/support/terms approvals','actual order acceptance and entitlement/ledger delivery','qualified private technical follow-up','external bank/mail/host/recovery qualification']}

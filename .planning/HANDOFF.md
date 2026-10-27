@@ -1,14 +1,14 @@
 # Current execution continuity
 
-**Current development focus:** 8 — payment domain and fault-injectable fake bank; Phase10 local slices retained with full acceptance pending. [Current purchase-flow authority](PURCHASE-FLOW-AMENDMENT.md).
+**Current development focus:** 13 — purchase-flow, fulfilment and release acceptance; verified Phase8/10 local slices retained with actual acceptance pending. [Current purchase-flow authority](PURCHASE-FLOW-AMENDMENT.md).
 
-**Current plan:** 08-03 — Integrated purchase revisions, payment lifecycle and ordinary development gates.
+**Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress —08-03 local implementation and final ordinary checks verified; actual/full acceptance and hosted CI remain pending; no production activation.
+**Execution status:** in progress —13-01 supported staff finance rehearsal verified locally; continuing eight-case API/no-JavaScript acceptance coverage; actual/full qualification pending.
 
-**Next implementation task:** Resolve scoped actual approval/provider/runtime/recovery inputs in docs/decisions.md when available; continue only independent authorized local work;08-03 local verification is complete.
+**Next implementation task:** Complete13-01 explicit eight-case acceptance report and supported API/no-JavaScript required-support/offer-hold checks; retain all actual qualification gates.
 
-**Recorded implementation:** e60a34fc9d0cd61e1f0d8166843900e69fe9829b
+**Recorded implementation:** 4b9df737f0f440a91909bdb95c3e39f5c183ab13
 
 This SHA contains the08-03 implementation now covered by final local verification. The one-shot structured handoff and active pause checkpoint have been consumed. Final evidence and the narrow source-validator correction are in the current verification commit; do not reset to historical review c830297.
 
@@ -81,3 +81,7 @@ Latest08-02 local evidence: [archived observation journal](phases/08-payment-dom
 ##08-03 final local verification —2026-10-27
 
 Backend559 tests/5 checks167.965s (enclosing169.214s), worker24/6 checks13.374s, supported complete-cart two-factor demo and proxy132 header-level checks/2 aliases pass. Exact inert source260 files/33 templates/1 CSS/no symlinks. [Scope and remaining gates](phases/08-payment-domain-and-fault-injectable-fake-bank/08-03-VERIFICATION-PARTIAL.md). Local tasks1–4 complete; actual/full acceptance and hosted CI remain pending. Counts1/14 phases and11/36 completed plan records are not engineering effort.
+
+##13-01 staff finance integration —2026-10-27
+
+Backend560/5 checks168.659s (enclosing169.928s), focused89/19.033s, supported two-factor demo/proxy132/2 aliases and exact261-file source pass. Capture response-loss recovery uses lookup only; full synthetic refund preserves36000 granted seconds and60 reserved seconds. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-STAFF-FINANCE-PARTIAL.md). Actual/full qualification remains pending; continuing local eight-case acceptance.

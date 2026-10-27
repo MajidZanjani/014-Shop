@@ -5,6 +5,7 @@ from io import StringIO
 from threading import Barrier
 from unittest.mock import patch
 from urllib.parse import urlencode
+import json
 import uuid
 from django.contrib.auth import get_user_model
 from django.core.management import call_command
@@ -239,3 +240,26 @@ with override_settings(LOCAL_STAFF_ENABLED=True,ALLOWED_HOSTS=['staff.localhost'
         current=self.current();captured=synthetic_bank.lookup(current.merchant,current.reference)
         with self.assertRaises(BankError):attempts._record(current.pk,replace(captured,status='pending'),self.archive)
         self.assertEqual(self.current().provider_status,'captured')
+
+    def test_http_timeout_requires_lookup_without_another_mutation(self):
+        row=self.prepare()
+        with override_settings(ROOT_URLCONF='shop.staff_urls'):
+            browser=Client(enforce_csrf_checks=True,HTTP_HOST='staff.localhost');browser.force_login(self.staff)
+            session=browser.session;session['shop_staff_mfa']=self.request.session['shop_staff_mfa'];session.save()
+            path=f'/staff/payments/{self.scope.pk}/';self.assertEqual(browser.get(path).status_code,200)
+            headers={'HTTP_X_CSRFTOKEN':browser.cookies['csrftoken'].value,'HTTP_ORIGIN':'http://staff.localhost'}
+            original=synthetic_bank.mutate
+            def lost(command,**options):return original(command,fault='after_commit')
+            with patch.object(synthetic_bank,'mutate',side_effect=lost):
+                result=browser.post(path,data=json.dumps({'action':'dispatch'}),content_type='application/json',**headers)
+            self.assertEqual(result.status_code,409)
+            self.assertEqual(result.json(),{'error':'payment_operation_uncertain_use_lookup'})
+            self.assertEqual(Dispatch.objects.get(operation=row).state,'uncertain')
+            self.assertEqual(self.current().provider_status,'authorized')
+            with patch.object(synthetic_bank,'mutate',side_effect=AssertionError('blind HTTP retry')):
+                for action in ('dispatch','reconcile'):
+                    result=browser.post(path,data=json.dumps({'action':action}),content_type='application/json',**headers)
+                    self.assertEqual(result.status_code,200)
+                    self.assertEqual(result.json()['operation']['state'],'uncertain' if action=='dispatch' else 'observed')
+            self.assertEqual(self.current().provider_status,'captured')
+            self.assertEqual(Transition.objects.count(),1);self.assertEqual(Result.objects.count(),1)

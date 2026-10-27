@@ -1,34 +1,34 @@
 ---
 gsd_state_version: "1.0"
-current_plan: 03
+current_plan: 01
 status: in_progress
-last_updated: "2026-10-27T04:55:26.157691+00:00"
-state_head: e60a34fc9d0cd61e1f0d8166843900e69fe9829b
+last_updated: "2026-10-27T05:13:12.062151+00:00"
+state_head: 4b9df737f0f440a91909bdb95c3e39f5c183ab13
 progress:
   total_phases: 14
   completed_phases: 1
   total_plans: 36
   completed_plans: 11
   percent: 7
-current_task: 4
+current_task: 1
 last_activity: 2026-10-27
-current_phase: 8
-current_phase_name: Payment domain and fault-injectable fake bank
-stopped_at: 08-03 local verification complete; actual qualification pending.
-last_activity_desc: Verified08-03 final local integration; actual qualification remains pending.
+current_phase: 13
+current_phase_name: Purchase-flow, fulfilment and release acceptance
+stopped_at: 13-01 staff finance verified; eight-case local acceptance continues.
+last_activity_desc: Verified13-01 staff finance integration; continuing eight-case acceptance.
 ---
 
 # Project state — final purchase-flow revision2
 
-**Current development focus:** 8 — payment domain and fault-injectable fake bank; Phase10 local slices retained with full acceptance pending. [Current purchase-flow authority](PURCHASE-FLOW-AMENDMENT.md).
+**Current development focus:** 13 — purchase-flow, fulfilment and release acceptance; verified Phase8/10 local slices retained with actual acceptance pending. [Current purchase-flow authority](PURCHASE-FLOW-AMENDMENT.md).
 
 **Last fully completed phase:** 1 — baseline documentary acceptance only. SRC-05 final-amendment documentary reconciliation is complete and does not revalidate actual commercial or external behavior. All other phases remain partial or pending. Counts are completed-phase/planned-record counts, not engineering effort.
 
-**Current plan:** 08-03 — Integrated purchase revisions, payment lifecycle and ordinary development gates.
+**Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress —08-03 local implementation and final ordinary checks verified; actual/full acceptance and hosted CI remain pending; no production activation.
+**Execution status:** in progress —13-01 supported staff finance rehearsal verified locally; continuing eight-case API/no-JavaScript acceptance coverage; actual/full qualification pending.
 
-**Next implementation task:** Resolve scoped actual approval/provider/runtime/recovery inputs in docs/decisions.md when available; continue only independent authorized local work;08-03 local verification is complete.
+**Next implementation task:** Complete13-01 explicit eight-case acceptance report and supported API/no-JavaScript required-support/offer-hold checks; retain all actual qualification gates.
 
 ## Preserved implementation/evidence
 
@@ -200,3 +200,7 @@ Latest08-02 local evidence: [archived observation journal](phases/08-payment-dom
 ##08-03 final local verification —2026-10-27
 
 Backend559 tests/5 checks167.965s (enclosing169.214s), worker24/6 checks13.374s, supported complete-cart two-factor demo and proxy132 header-level checks/2 aliases pass. Exact inert source260 files/33 templates/1 CSS/no symlinks. [Scope and remaining gates](phases/08-payment-domain-and-fault-injectable-fake-bank/08-03-VERIFICATION-PARTIAL.md). Local tasks1–4 complete; actual/full acceptance and hosted CI remain pending. Counts1/14 phases and11/36 completed plan records are not engineering effort.
+
+##13-01 staff finance integration —2026-10-27
+
+Backend560/5 checks168.659s (enclosing169.928s), focused89/19.033s, supported two-factor demo/proxy132/2 aliases and exact261-file source pass. Capture response-loss recovery uses lookup only; full synthetic refund preserves36000 granted seconds and60 reserved seconds. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-STAFF-FINANCE-PARTIAL.md). Actual/full qualification remains pending; continuing local eight-case acceptance.

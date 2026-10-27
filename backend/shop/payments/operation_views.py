@@ -50,5 +50,6 @@ def detail(request,identity):
         context={'assigned':True,'kind':scope.kind,'operation':state,'request_id':str(uuid.uuid4())}
         if request.content_type=='application/json' or request.headers.get('Accept')=='application/json':return private(reply(context))
         return private(render(request,'access/payments.html',context))
+    except TimeoutError:return private(reply({'error':'payment_operation_uncertain_use_lookup'},409))
     except ObjectDoesNotExist:return private(reply({'error':'not_found'},404))
     except (checkout.CheckoutError,BankError,ArchiveError,OSError,ValueError,TypeError,UnicodeError) as error:return error_response(error)
