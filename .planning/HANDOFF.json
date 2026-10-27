@@ -1,0 +1,94 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-10-27T06:46:50.819Z",
+  "phase": "13",
+  "phase_name": "Purchase-flow, fulfilment and release acceptance",
+  "phase_dir": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance",
+  "plan": 1,
+  "task": 5,
+  "total_tasks": 5,
+  "status": "paused",
+  "pause_reason": "explicit_user_request",
+  "completed_tasks": [
+    {
+      "id": 1,
+      "name": "supported local staff finance",
+      "status": "locally_verified",
+      "commit": "e6f9af2"
+    },
+    {
+      "id": 2,
+      "name": "eight-source-check report",
+      "status": "locally_verified_actual_check8_partial",
+      "commit": "7b7755f"
+    },
+    {
+      "id": 3,
+      "name": "optional private synthetic follow-up",
+      "status": "locally_verified",
+      "commit": "9310ff3"
+    },
+    {
+      "id": 4,
+      "name": "pinned customer/staff browser baseline",
+      "status": "locally_verified",
+      "commit": "c48f4bd"
+    },
+    {
+      "id": 5,
+      "name": "live revocation/current-entry fixes/public browser preparation",
+      "status": "in_progress",
+      "commit": "c50a4c1",
+      "progress": "Local backend570/browser58/proxy148 verified. Exact frontend/public graph and actual acceptance pending."
+    }
+  ],
+  "remaining_tasks": [
+    {
+      "id": 5,
+      "name": "exact frozen frontend/public browser qualification; manual/formal accessibility and actual acceptance",
+      "status": "pending_qualification"
+    }
+  ],
+  "blockers": [
+    {
+      "description": "Exact frontend Node24.22 native build did not finish within900-second one-core bound; public20/7 remains diagnostic only.",
+      "type": "technical",
+      "workaround": "Use an uninterrupted bounded ordinary local build window and task-owned persistent TMPDIR; preserve pins and exact build gate."
+    },
+    {
+      "description": "Actual commercial/source/transport/private-intake/provider/runtime/recovery/host/full qualification remains pending in docs/decisions.md and evidence registers.",
+      "type": "external",
+      "workaround": "Continue only independent authorized local work; no new runner assigned and no external/protected operation authorized."
+    }
+  ],
+  "human_actions_pending": [
+    {
+      "action": "Manual/formal accessibility and source/commercial approval review",
+      "context": "Existing release gates; no new immediate decision required to restore context or continue independent local work.",
+      "blocking": false
+    }
+  ],
+  "background_processes": [],
+  "async_jobs": [],
+  "decisions": [
+    "Push every commit to origin/main without asking again: explicit user instruction recorded in13-01-PLAN.md and EXECUTION-AMENDMENT-2026-10-22.md.",
+    "Keep frontend Node24.22.0/npm11.19.1 distinct from test-only browser controller Node24.21.0; diagnostic envelopes cannot satisfy acceptance.",
+    "Current UI/form entry requires a platform answer; legacy shared/API snapshot evaluation remains unchanged.",
+    "Use owned persistent workspace TMPDIR; never prune shared /tmp/store to make a test fit.",
+    "Keep existing120-second test/application/database limits; full regression passed in isolation.",
+    "Pause is explicitly user-requested; no exact context percentage is available or claimed."
+  ],
+  "uncommitted_files": [
+    " M .planning/HANDOFF.md",
+    " M .planning/PROJECT.md",
+    " M .planning/ROADMAP.md",
+    " M .planning/STATE.md",
+    " M .planning/state.json",
+    "?? .planning/HANDOFF.json",
+    "?? .planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/.continue-here.md"
+  ],
+  "uncommitted_files_elided": 0,
+  "uncommitted_files_measured_at": "before containing checkpoint commit",
+  "next_action": "Read13-PUBLIC-BROWSER-PARTIAL.md and the exact frontend producer; qualify frozen Node24.22.0/npm11.19.1 in an uninterrupted bounded local build window using owned persistent TMPDIR, then run scripts/check_browser_access.py --public. Preserve all actual gates; do not substitute diagnostic output or repeat unchanged backend tests.",
+  "context_notes": "Current verified/pushed implementation c50a4c1. No native build/browser/server/test/agent remains. Default browser58 is qualified locally; public20/7 and112 frontend tests are diagnostic only. Source264 exact files/33 templates. Do not reset to older reviews or redo broad audits/collectors."
+}

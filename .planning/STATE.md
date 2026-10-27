@@ -1,9 +1,10 @@
 ---
 gsd_state_version: "1.0"
 current_plan: 01
-status: in_progress
-last_updated: "2026-10-27T06:46:03.750170+00:00"
-state_head: ade87e2
+status: paused
+paused_at: "2026-10-27T06:46:50.819Z"
+last_updated: "2026-10-27T06:46:50.819Z"
+state_head: c50a4c1f0e30a6e2a7b4702af06fe7fe3278c3e1
 progress:
   total_phases: 14
   completed_phases: 1
@@ -14,7 +15,7 @@ current_task: 5
 last_activity: 2026-10-27
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Current-entry fixes verified and pushed; exact frontend/full qualification remains pending.
+stopped_at: User-requested pause after verified current-entry fixes; exact frontend qualification next.
 last_activity_desc: Verified backend570/browser58 and retained explicit public-graph qualification boundary.
 ---
 
@@ -26,9 +27,9 @@ last_activity_desc: Verified backend570/browser58 and retained explicit public-g
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — required-platform/no-JavaScript fixes verified; backend570/browser58/proxy148 pass; frozen public frontend and actual/full qualification pending.
+**Execution status:** paused — user-requested checkpoint after backend570/browser58/proxy148 verification; frozen public frontend and actual/full qualification pending.
 
-**Next implementation task:** Continue13-01 exact frontend build qualification in an uninterrupted local build window, then run the fresh --public browser path; retain manual accessibility and all actual release gates.
+**Next implementation task:** Read13-PUBLIC-BROWSER-PARTIAL.md and the exact frontend producer; qualify frozen Node24.22.0/npm11.19.1 in an uninterrupted bounded local build window using owned persistent TMPDIR, then run scripts/check_browser_access.py --public. Preserve all actual gates; do not substitute diagnostic output or repeat unchanged backend tests.
 
 ## Preserved implementation/evidence
 

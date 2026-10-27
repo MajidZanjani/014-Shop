@@ -4,11 +4,11 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — required-platform/no-JavaScript fixes verified; backend570/browser58/proxy148 pass; frozen public frontend and actual/full qualification pending.
+**Execution status:** paused — user-requested checkpoint after backend570/browser58/proxy148 verification; frozen public frontend and actual/full qualification pending.
 
-**Next implementation task:** Continue13-01 exact frontend build qualification in an uninterrupted local build window, then run the fresh --public browser path; retain manual accessibility and all actual release gates.
+**Next implementation task:** Read13-PUBLIC-BROWSER-PARTIAL.md and the exact frontend producer; qualify frozen Node24.22.0/npm11.19.1 in an uninterrupted bounded local build window using owned persistent TMPDIR, then run scripts/check_browser_access.py --public. Preserve all actual gates; do not substitute diagnostic output or repeat unchanged backend tests.
 
-**Recorded implementation:** ade87e2
+**Recorded implementation:** c50a4c1f0e30a6e2a7b4702af06fe7fe3278c3e1
 
 This SHA contains the required-platform/no-JavaScript fixes and prepared public browser tooling; follow-up evidence records the570-test regression and58-check browser expansion. The one-shot structured handoff and active pause checkpoint have been consumed. Final evidence and the narrow source-validator correction are in the current verification commit; do not reset to historical review c830297.
 
@@ -109,3 +109,5 @@ Pinned browser54 checks/2 roles/2 JS modes passes: retained-cookie scope revoke4
 Required-platform validation now covers current React/Django IP entry; no-JavaScript pages hide inactive React controls. Focused20 backend tests,13 browser-contract tests, default browser54 and proxy148/2 aliases pass. Public20/7 browser and112 frontend tests are explicitly diagnostic only; exact frontend graph/full regression/formal accessibility remain pending. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md).
 
 Final13-01 verification: full backend570 tests/5 checks169.832s (enclosing171.128s), qualified browser58/2 roles/2 modes, proxy148/2 aliases,13 Python browser-contract tests and exact264-file backend source pass. Public20/7 is diagnostic only. Exact Node24.22 native build reached900-second bound/exit124; no build remains. No shared pruning, timeout increase or pin substitution. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md).
+
+User requested $gsd-pause-work at 2026-10-27T06:46:50.819Z. Structured HANDOFF.json and Phase13 .continue-here.md are now the primary resumption sources. No context-percentage claim or automatic pause. All implementation through c50a4c1 is verified/pushed; no background task remains.
