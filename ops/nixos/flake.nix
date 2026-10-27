@@ -121,7 +121,7 @@
   in {
     nixosModules.shop = import ./modules/shop.nix;
     packages.${system} = { shop-app = appImage; shop-worker = workerImage;
-      shop-app-source = appTree; shop-postgres = postgresImage; shop-gateway = gatewayImage; shop-python-runtime = runtime; shop-database-tools-source = databaseTools; shop-operator-inspect = operatorInspection.launcher; shop-operator-schema = operatorSchema.launcher; };
+      shop-app-source = appTree; shop-browser = pkgs.chromium; shop-postgres = postgresImage; shop-gateway = gatewayImage; shop-python-runtime = runtime; shop-database-tools-source = databaseTools; shop-operator-inspect = operatorInspection.launcher; shop-operator-schema = operatorSchema.launcher; };
     checks.${system} = {
       operator-startup-denial = operatorFailure.launcher;
       schema-startup-denial = schemaFailure.launcher;
@@ -140,6 +140,18 @@
     };
     # Same pinned backend tools; backend demos/checks need no frontend compiler.
     devShells.${system} = {
+    # Acceptance tooling only; never included in application/worker images.
+    browser = pkgs.mkShell {
+      packages = [ pythonEnv postgres pkgs.nodejs_24 pkgs.chromium ];
+      PYTHONDONTWRITEBYTECODE = "1";
+      PYTHONNOUSERSITE = "1";
+      SHOP_PYTHON = "${pythonEnv}/bin/python3";
+      SHOP_POSTGRES_BIN = "${postgres}/bin";
+      SHOP_NODE = "${pkgs.nodejs_24}/bin/node";
+      SHOP_BROWSER_NODE_VERSION = pkgs.nodejs_24.version;
+      SHOP_BROWSER = "${pkgs.chromium}/bin/chromium";
+      SHOP_BROWSER_VERSION = pkgs.chromium.version;
+    };
     backend = pkgs.mkShell {
       packages = [ pythonEnv postgres ];
       PYTHONDONTWRITEBYTECODE = "1";

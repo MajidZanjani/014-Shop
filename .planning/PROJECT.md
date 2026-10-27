@@ -10,9 +10,9 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** paused — proactive context-pressure checkpoint after verified13-01 local slices; exact context percentage unavailable; actual/full qualification pending.
+**Execution status:** in progress —13-01 pinned customer browser smoke verified32 checks/2 modes; continuing staff browser coverage; actual/full qualification pending.
 
-**Next implementation task:** Resume13-01 browser/privacy/source-coverage qualification from the verified current branch; inspect available pinned local browser tooling, then implement bounded local engine coverage without external/protected operations.
+**Next implementation task:** Extend the bounded pinned browser runner to actual local staff password/second-factor, exact-resource access and logout using owned loopback services only.
 
 Complete-cart synthetic checkout, acceptance/payment, once-only grants and staged completion are implemented, now with archived reservations/releases, scoped staff work, reverse/replace corrections and committed-revision statements. Supported complete-cart demo now covers both local staff login factors, exact assignment and work/correction/release/statement retries. Private versioned synthetic material releases and owner-only session-bound single-use POST downloads are now implemented. Local reviewed licence-change cases and held revised-scope/orders now preserve originals and unknown policies. Latest retained results:420-test full backend regression before the final catalog-family/same-band validation changes, final16 focused case tests and102 proxy header-level checks; complete-cart two-factor staff/customer demo includes all five case kinds and review corrections alongside retained-version release/download. Actual material/rights/retention/host qualifications remain pending. Only Phase1 is fully accepted;11/34 plan records complete. Counts are not engineering-effort estimates. [STATE.md](STATE.md) and [ROADMAP.md](ROADMAP.md) retain exact evidence and actual qualification gates.
 
@@ -186,3 +186,7 @@ Supported demo and proxy132/2 aliases pass; four evidence-contract tests reject 
 ##13-01 optional private follow-up —2026-10-27
 
 Backend569/5 checks171.634s (enclosing172.938s), focused42/16.068s, supported two-factor demo, proxy148/2 aliases and exact264-file source pass. Optional fixed synthetic context revisions preserve accepted scope and ledger, with archive/readback before immutable records and exact owner/recent-MFA staff access. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PRIVATE-FOLLOWUP-PARTIAL.md). Actual technical intake and full qualification remain pending.
+
+##13-01 customer browser engine —2026-10-27
+
+Pinned Chromium155.0.8059.84/test-client Node24.21.0 browser32 checks/2 modes pass; explicit page-script probe proves JS on/off. Four report rejection tests and pinned Node request-policy controls pass. Test tooling only; app source remains exact264-file artifact and frontend Node24.22 native build remains unqualified. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-BROWSER-PARTIAL.md).

@@ -1,10 +1,9 @@
 ---
 gsd_state_version: "1.0"
 current_plan: 01
-status: paused
-paused_at: "2026-10-27T05:26:04.246149+00:00"
-last_updated: "2026-10-27T05:26:04.246149+00:00"
-state_head: 9310ff346264679e08ad672c41dc39b74f8b4adc
+status: in_progress
+last_updated: "2026-10-27T05:58:08.555510+00:00"
+state_head: 8579e32d86595f906ac583e4827744bd467cfb7e
 progress:
   total_phases: 14
   completed_phases: 1
@@ -15,8 +14,8 @@ current_task: 4
 last_activity: 2026-10-27
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Proactive context-pressure checkpoint;13-01 local finance/eight-case/follow-up slices verified.
-last_activity_desc: Verified569 backend tests,148 proxy checks and264-file source; saved context checkpoint.
+stopped_at: 13-01 customer browser verified; staff browser continuation.
+last_activity_desc: Verified pinned Chromium customer32 browser checks; staff browser coverage next.
 ---
 
 # Project state — final purchase-flow revision2
@@ -27,9 +26,9 @@ last_activity_desc: Verified569 backend tests,148 proxy checks and264-file sourc
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** paused — proactive context-pressure checkpoint after verified13-01 local slices; exact context percentage unavailable; actual/full qualification pending.
+**Execution status:** in progress —13-01 pinned customer browser smoke verified32 checks/2 modes; continuing staff browser coverage; actual/full qualification pending.
 
-**Next implementation task:** Resume13-01 browser/privacy/source-coverage qualification from the verified current branch; inspect available pinned local browser tooling, then implement bounded local engine coverage without external/protected operations.
+**Next implementation task:** Extend the bounded pinned browser runner to actual local staff password/second-factor, exact-resource access and logout using owned loopback services only.
 
 ## Preserved implementation/evidence
 
@@ -213,3 +212,7 @@ Supported demo and proxy132/2 aliases pass; four evidence-contract tests reject 
 ##13-01 optional private follow-up —2026-10-27
 
 Backend569/5 checks171.634s (enclosing172.938s), focused42/16.068s, supported two-factor demo, proxy148/2 aliases and exact264-file source pass. Optional fixed synthetic context revisions preserve accepted scope and ledger, with archive/readback before immutable records and exact owner/recent-MFA staff access. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PRIVATE-FOLLOWUP-PARTIAL.md). Actual technical intake and full qualification remain pending.
+
+##13-01 customer browser engine —2026-10-27
+
+Pinned Chromium155.0.8059.84/test-client Node24.21.0 browser32 checks/2 modes pass; explicit page-script probe proves JS on/off. Four report rejection tests and pinned Node request-policy controls pass. Test tooling only; app source remains exact264-file artifact and frontend Node24.22 native build remains unqualified. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-BROWSER-PARTIAL.md).
