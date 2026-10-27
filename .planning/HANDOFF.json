@@ -1,0 +1,73 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-10-27T13:34:17.591Z",
+  "phase": "13",
+  "phase_name": "Purchase-flow, fulfilment and release acceptance",
+  "phase_dir": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance",
+  "plan": 1,
+  "task": 5,
+  "total_tasks": 5,
+  "status": "paused",
+  "implementation_commit": "73167fcf02ed311d8a5cc612b81ab5a575707d2c",
+  "completed_tasks": [
+    {
+      "id": 5,
+      "name": "Commercial revision boundary local verification",
+      "status": "in_progress",
+      "commit": "73167fcf02ed311d8a5cc612b81ab5a575707d2c",
+      "progress": "focused46; backend584/5; proxy148/2;264-file exact source; full acceptance pending"
+    }
+  ],
+  "remaining_tasks": [
+    {
+      "id": 5,
+      "name": "Reproduce and fix unpaired-surrogate platform-name validation; finish scoped acceptance",
+      "status": "in_progress"
+    }
+  ],
+  "blockers": [
+    {
+      "description": "Actual contracts, scoped channels/provider authority, independent runtime/recovery runner and formal review remain pending",
+      "type": "external",
+      "workaround": "Concrete authorized local fixes may continue after resume"
+    }
+  ],
+  "async_jobs": [],
+  "human_actions_pending": [
+    {
+      "action": "Supply actual commercial/channel/provider contracts and scoped authority",
+      "context": "Actual binding/qualification remains gated",
+      "blocking": true
+    },
+    {
+      "action": "Assign independent authorized runtime/recovery runner and formal release reviewers",
+      "context": "Local synthetic evidence cannot substitute",
+      "blocking": true
+    }
+  ],
+  "decisions": [
+    {
+      "decision": "Pause after this verified step, then commit and sync",
+      "rationale": "Latest explicit user instruction",
+      "phase": "13"
+    },
+    {
+      "decision": "Push every commit ordinarily without force",
+      "rationale": "Standing explicit authorization",
+      "phase": "13"
+    }
+  ],
+  "uncommitted_files": [
+    " M .planning/HANDOFF.md",
+    " M .planning/PROJECT.md",
+    " M .planning/PURCHASE-FLOW-RECONCILIATION.json",
+    " M .planning/ROADMAP.md",
+    " M .planning/STATE.md",
+    " M .planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/.continue-here.md",
+    " M .planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-01-PLAN.md",
+    " M .planning/state.json",
+    "?? .planning/HANDOFF.json"
+  ],
+  "next_action": "Run $gsd-resume-work; reproduce lone-surrogate platform-name acceptance with shared conformance and real PostgreSQL draft/cart HTTP tests, then fix Python/TypeScript validation while preserving valid Unicode/emoji and120-codepoint bounds.",
+  "context_notes": "No Unicode implementation edit; diagnostic only. All owned test sessions exited. No async jobs or placeholder SUMMARY matches. Shared /tmp full; owned TMPDIR required; no cleanup authorized. No exact context percentage available."
+}

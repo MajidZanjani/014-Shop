@@ -10,9 +10,9 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress —13-01 task5 commercial revision boundary verified: backend584/5 checks, focused46, proxy148/2 aliases and264-file source; user-requested pause follows this step; actual/formal qualification remains pending.
+**Execution status:** paused — user requested pause after commercial revision hardening;73167fc verified/pushed: backend584/5 checks, focused46, proxy148/2 aliases and264-file source; actual/formal acceptance pending.
 
-**Next implementation task:** Run $gsd-pause-work, commit and sync the verified handoff; on resume investigate lone-surrogate platform names with shared conformance and real PostgreSQL HTTP regression before fixing both validators.
+**Next implementation task:** Run $gsd-resume-work; reproduce lone-surrogate platform-name acceptance with shared conformance and real PostgreSQL draft/cart HTTP tests, then fix Python/TypeScript validation while preserving valid Unicode/emoji and120-codepoint bounds.
 
 Complete-cart synthetic checkout, acceptance/payment, once-only grants and staged completion are implemented, now with archived reservations/releases, scoped staff work, reverse/replace corrections and committed-revision statements. Supported complete-cart demo now covers both local staff login factors, exact assignment and work/correction/release/statement retries. Private versioned synthetic material releases and owner-only session-bound single-use POST downloads are now implemented. Local reviewed licence-change cases and held revised-scope/orders now preserve originals and unknown policies. Latest retained results:420-test full backend regression before the final catalog-family/same-band validation changes, final16 focused case tests and102 proxy header-level checks; complete-cart two-factor staff/customer demo includes all five case kinds and review corrections alongside retained-version release/download. Actual material/rights/retention/host qualifications remain pending. Only Phase1 is fully accepted;11/34 plan records complete. Counts are not engineering-effort estimates. [STATE.md](STATE.md) and [ROADMAP.md](ROADMAP.md) retain exact evidence and actual qualification gates.
 

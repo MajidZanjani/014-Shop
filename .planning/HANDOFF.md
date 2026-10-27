@@ -4,13 +4,13 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress —13-01 task5 commercial revision boundary verified: backend584/5 checks, focused46, proxy148/2 aliases and264-file source; user-requested pause follows this step; actual/formal qualification remains pending.
+**Execution status:** paused — user requested pause after commercial revision hardening;73167fc verified/pushed: backend584/5 checks, focused46, proxy148/2 aliases and264-file source; actual/formal acceptance pending.
 
-**Next implementation task:** Run $gsd-pause-work, commit and sync the verified handoff; on resume investigate lone-surrogate platform names with shared conformance and real PostgreSQL HTTP regression before fixing both validators.
+**Next implementation task:** Run $gsd-resume-work; reproduce lone-surrogate platform-name acceptance with shared conformance and real PostgreSQL draft/cart HTTP tests, then fix Python/TypeScript validation while preserving valid Unicode/emoji and120-codepoint bounds.
 
-**Recorded implementation:** 44322c57c209f54f87031664f350425097bd5473
+**Recorded implementation:** 73167fcf02ed311d8a5cc612b81ab5a575707d2c
 
-This SHA contains the required-platform/no-JavaScript fixes and prepared public browser tooling; follow-up evidence records the570-test regression and58-check browser expansion. The one-shot structured handoff has been consumed; the checkpoint now records active task5 qualification. Final evidence and the narrow source-validator correction are in the current verification commit; do not reset to historical review c830297.
+Current implementation73167fc is verified and pushed. Structured HANDOFF.json and the Phase13 checkpoint are primary resume sources. Historical continuation paragraphs below retain only their dated scope. No Unicode implementation edit or owned test process remains.
 
 [Final purchase-flow revision2](PURCHASE-FLOW-AMENDMENT.md) remains current authority. Retained Phase10 local work covers complete-cart synthetic grants/staged delivery and the implemented local support ledger; earlier phases are not implicitly complete. [Evidence](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md). One captured cart payment yields an archived deterministic grant plan, one licence record per IP line and exactly36000 integer support seconds/package once, non-expiring. Initial delivery leaves promised later reference design outstanding; later completion never adds another entitlement/grant. Ready-kit/support-only cases stay scoped. Archive readback precedes all simulated records/effects; uncertain funding cannot provision. No actual keys/files/rights or spendable support.
 

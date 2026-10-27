@@ -1,9 +1,10 @@
 ---
 gsd_state_version: "1.0"
 current_plan: 01
-status: in_progress
-last_updated: "2026-10-27T13:33:12.703664+00:00"
-state_head: 44322c57c209f54f87031664f350425097bd5473
+status: paused
+last_updated: "2026-10-27T13:34:17.591Z"
+paused_at: "2026-10-27T13:34:17.591Z"
+state_head: 73167fcf02ed311d8a5cc612b81ab5a575707d2c
 progress:
   total_phases: 14
   completed_phases: 1
@@ -14,7 +15,7 @@ current_task: 5
 last_activity: 2026-10-27
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Commercial revision boundary verified; explicit user pause follows.
+stopped_at: Explicit user-requested pause after verified commercial revision step.
 last_activity_desc: Normalized malformed revision and approval-verifier failures; all current local checks pass.
 ---
 
@@ -26,9 +27,9 @@ last_activity_desc: Normalized malformed revision and approval-verifier failures
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress —13-01 task5 commercial revision boundary verified: backend584/5 checks, focused46, proxy148/2 aliases and264-file source; user-requested pause follows this step; actual/formal qualification remains pending.
+**Execution status:** paused — user requested pause after commercial revision hardening;73167fc verified/pushed: backend584/5 checks, focused46, proxy148/2 aliases and264-file source; actual/formal acceptance pending.
 
-**Next implementation task:** Run $gsd-pause-work, commit and sync the verified handoff; on resume investigate lone-surrogate platform names with shared conformance and real PostgreSQL HTTP regression before fixing both validators.
+**Next implementation task:** Run $gsd-resume-work; reproduce lone-surrogate platform-name acceptance with shared conformance and real PostgreSQL draft/cart HTTP tests, then fix Python/TypeScript validation while preserving valid Unicode/emoji and120-codepoint bounds.
 
 ## Preserved implementation/evidence
 
