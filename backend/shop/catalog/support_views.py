@@ -11,7 +11,7 @@ from django.views.decorators.http import require_http_methods
 from shop.access.staff_auth import staff_credential
 from shop.adapters.evidence_archive import PreparedArchive, ArchiveError
 from shop.payments.bank_contract import BankError
-from . import checkout, support_ledger as ledger
+from . import checkout, support_ledger as ledger, support_context as followup
 from .models import SyntheticFulfilment
 from .views import local_customer, unique_object
 from .cart_editor import private, canonical_uuid
@@ -30,10 +30,11 @@ def command(request,staff):
         value={k:v for k,v in request.POST.items() if k!='csrfmiddlewaretoken'}
     if not isinstance(value,dict):raise ValueError()
     action=value.get('action')
-    allowed={'work','correct','statement'} if staff else {'reserve','release'}
+    allowed={'work','correct','statement'} if staff else {'reserve','release','context'}
     if not isinstance(action,str) or action not in allowed:raise ValueError()
     fields={'action','request_id'}
     if action=='reserve':fields|={'seconds','task_id'}
+    if action=='context':fields|={'fixture','expected_revision'}
     if action in ('release','work','correct'):fields.add('target_id')
     if action in ('work','correct'):fields.add('seconds')
     if set(value)!=fields:raise ValueError()
@@ -44,6 +45,9 @@ def command(request,staff):
     if 'seconds' in value and request.content_type!='application/json':
         if re.fullmatch(r'0|[1-9][0-9]{0,18}',value['seconds']) is None:raise ValueError()
         value['seconds']=int(value['seconds'])
+    if action=='context' and request.content_type!='application/json':
+        if re.fullmatch(r'0|[1-9][0-9]{0,2}',value['expected_revision']) is None:raise ValueError()
+        value['expected_revision']=int(value['expected_revision'])
     return value
 
 
@@ -68,10 +72,12 @@ def handle(request,identity,staff=False):
             if request.method=='POST':
                 value=command(request,staff)
                 action=value.pop('action');key=value.pop('request_id')
-                ledger.record(owner,identity,key,action,archive,staff_request=request if staff else None,**value)
+                if action=='context':followup.record(owner,identity,key,archive=archive,**value)
+                else:ledger.record(owner,identity,key,action,archive,staff_request=request if staff else None,**value)
                 if not api:
                     response=HttpResponseRedirect(request.path);response.status_code=303;return private(response)
             state=ledger.read(owner,identity,archive,staff_request=request if staff else None)
+            context['followup']=followup.read(owner,identity,archive,staff_request=request if staff else None)
         # Customer summaries expose usage, never internal staff attribution/generation/MFA markers.
         context['ledger']=state
         context['request_id']=str(uuid.uuid4());context['task_id']=str(uuid.uuid4())
@@ -81,7 +87,7 @@ def handle(request,identity,staff=False):
     except (ValueError,TypeError,UnicodeError,RecursionError):context['error']='invalid_request';status=400
     except BankError:context['error']='unavailable';status=404
     except (ArchiveError,OSError):context['error']='archive_unavailable';status=503
-    if api:return private(reply({'ledger':context['ledger']} if 'ledger' in context else {'error':context['error']},status))
+    if api:return private(reply({'ledger':context['ledger'],'followup':context['followup']} if 'ledger' in context else {'error':context['error']},status))
     return private(render(request,'catalog/support_ledger.html',context,status=status))
 
 

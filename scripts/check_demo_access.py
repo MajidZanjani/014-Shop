@@ -246,6 +246,25 @@ print(json.dumps({'email':c.owner.customeridentity.email,'checkout_id':str(c.pk)
                     status,_,raw=materials.request(refunds.removesuffix('refunds/'))
                     require(status==200 and b'Spent: 1800' in raw and b'Available: 70200' in raw,'refund request changed support balance')
                     checks += 8
+                    support=refunds.removesuffix('refunds/')
+                    status,_,raw=materials.request(support)
+                    require(status==200 and b'Optional private support follow-up' in raw and b'No actual technical data' in raw,
+                            'private follow-up boundary unavailable')
+                    context_command={'action':'context','request_id':str(uuid.uuid4()),
+                        'fixture':'synthetic-context-v1','expected_revision':materials.hidden['expected_revision']}
+                    require(materials.request(support,context_command,origin='null')[0]==403,'private context null origin accepted')
+                    require(materials.request(support,context_command,token=False)[0]==403,'private context missing CSRF accepted')
+                    require(materials.request(support,context_command)[0]==303,'private context form rejected')
+                    require(materials.request(support,context_command)[0]==303,'private context retry rejected')
+                    stale=context_command|{'request_id':str(uuid.uuid4())}
+                    require(materials.request(support,stale)[0]==409,'stale private context accepted')
+                    status,_,raw=materials.request(support,json_body=context_command|{'expected_revision':int(context_command['expected_revision']),
+                        'technical_text':'PRIVATE_HTTP_CANARY'})
+                    require(status==400 and b'PRIVATE_HTTP_CANARY' not in raw,'actual technical text accepted or echoed')
+                    status,_,raw=materials.request(support)
+                    require(status==200 and b'Spent: 1800' in raw and b'Available: 70200' in raw,
+                            'private context changed ledger')
+                    checks += 8
                     changes='/purchase/checkout-rehearsal/'+material_fixture['checkout_id']+'/changes/'
                     create=changes+'new/'+material_fixture['entitlement_id']+'/'
                     status,_,raw=materials.request(create)

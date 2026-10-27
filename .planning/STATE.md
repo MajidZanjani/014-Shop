@@ -2,8 +2,8 @@
 gsd_state_version: "1.0"
 current_plan: 01
 status: in_progress
-last_updated: "2026-10-27T05:16:50.087586+00:00"
-state_head: e6f9af264e7ac7826d07b9eb040ec9f68a532fab
+last_updated: "2026-10-27T05:24:07.957253+00:00"
+state_head: 7b7755faa342cbbad0987dcdb55f5d5d0b8f74f4
 progress:
   total_phases: 14
   completed_phases: 1
@@ -14,8 +14,8 @@ current_task: 1
 last_activity: 2026-10-27
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: 13-01 staff finance verified; eight-case local acceptance continues.
-last_activity_desc: Verified13-01 staff finance integration; continuing eight-case acceptance.
+stopped_at: 13-01 private follow-up verified; local acceptance continues.
+last_activity_desc: Verified optional private follow-up and569 backend tests; continuing13-01.
 ---
 
 # Project state — final purchase-flow revision2
@@ -26,9 +26,9 @@ last_activity_desc: Verified13-01 staff finance integration; continuing eight-ca
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress —13-01 eight-case local report and supported support-removal checks verified; private technical intake remains partial; continuing independent local work.
+**Execution status:** in progress —13-01 optional private follow-up verified locally; actual technical intake and full qualification remain pending; continuing local acceptance work.
 
-**Next implementation task:** Complete the existing private support follow-up boundary for source check8 without a mandatory portal; preserve accepted scope, resource authority and actual intake qualification gates.
+**Next implementation task:** Continue13-01 remaining browser/privacy/source-coverage qualification on existing local interfaces; preserve actual commercial/provider/private-intake/runtime/recovery gates.
 
 ## Preserved implementation/evidence
 
@@ -208,3 +208,7 @@ Backend560/5 checks168.659s (enclosing169.928s), focused89/19.033s, supported tw
 ##13-01 eight-case report —2026-10-27
 
 Supported demo and proxy132/2 aliases pass; four evidence-contract tests reject missing/duplicate/promoted cases. Source checks1–7 pass synthetically;8 remains partial for confidential customer technical intake/custody. Exact261-file source matches. Prepared CI now runs the supported demo; hosted execution remains unverified. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-EIGHT-CASES-PARTIAL.md).
+
+##13-01 optional private follow-up —2026-10-27
+
+Backend569/5 checks171.634s (enclosing172.938s), focused42/16.068s, supported two-factor demo, proxy148/2 aliases and exact264-file source pass. Optional fixed synthetic context revisions preserve accepted scope and ledger, with archive/readback before immutable records and exact owner/recent-MFA staff access. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PRIVATE-FOLLOWUP-PARTIAL.md). Actual technical intake and full qualification remain pending.

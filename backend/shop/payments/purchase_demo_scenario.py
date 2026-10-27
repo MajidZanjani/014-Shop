@@ -394,6 +394,23 @@ def run(archive_root):
                     or final['actual_support_spendable'] is not False):
                 raise RuntimeError('synthetic committed ledger statement mismatch')
         with override_settings(LOCAL_CHECKOUT_ARCHIVE_ROOT=str(archive_root)):
+            # Optional later context stays with this existing private support purchase.
+            scope_digest=checkout_payment.accepted(owner,retained.pk).sha256
+            first_context={'action':'context','request_id':str(uuid.uuid4()),
+                           'fixture':'synthetic-context-v1','expected_revision':0}
+            for value in (first_context,first_context|{'request_id':str(uuid.uuid4()),
+                          'fixture':'synthetic-context-v2','expected_revision':1},first_context):
+                response=client.post(support_url,data=json.dumps(value),content_type='application/json',HTTP_X_CSRFTOKEN=csrf)
+                if response.status_code!=200:raise RuntimeError('private synthetic context/retry failed')
+            if response.json()['followup']['revision']!=2 or response.json()['ledger']!=final:
+                raise RuntimeError('private context changed support accounting')
+            with override_settings(**staff_settings):
+                staff_context=staff.get(staff_url,HTTP_ACCEPT='application/json')
+                if staff_context.status_code!=200 or staff_context.json()['followup']!=response.json()['followup']:
+                    raise RuntimeError('assigned staff private context read failed')
+            if checkout_payment.accepted(owner,retained.pk).sha256!=scope_digest:
+                raise RuntimeError('private context changed accepted scope')
+        with override_settings(LOCAL_CHECKOUT_ARCHIVE_ROOT=str(archive_root)):
             from .finance_demo_scenario import run as run_finance
             finance_result=run_finance(staff,staff_token,staff_name,staff_settings,archive)
         complete_cart={'all_lines_retained':True,'business_revision':retained.snapshot['business']['version'],
@@ -413,6 +430,7 @@ def run(archive_root):
                 'exact_pair_assignment':True,'case_and_review_retry_once':True,'additional_fulfilment':False,'actual_refund':False},
             'support_refund_review':{'consumed_credit_retained':True,'separate_case_assignment':True,
                 'request_and_review_retries_once':True,'correction_history_preserved':True,'actual_refund':False},
+            'private_support_followup':{'versions':2,'accepted_scope_unchanged':True,'support_ledger_unchanged':True,'actual_technical_intake':False},
             'private_packages':{'retained_versions':3,'old_version_downloaded_once':True,'bearer_in_url':False,'actual_delivery':False,
                 'delivery_hold_blocks_access':True,'clear_does_not_revive_old_grant':True},
             'licence_change_cases':{'kinds_captured_and_reviewed':5,'higher_volume_requires_quote':True,

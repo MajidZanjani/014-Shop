@@ -16,9 +16,9 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress —13-01 eight-case local report and supported support-removal checks verified; private technical intake remains partial; continuing independent local work.
+**Execution status:** in progress —13-01 optional private follow-up verified locally; actual technical intake and full qualification remain pending; continuing local acceptance work.
 
-**Next implementation task:** Complete the existing private support follow-up boundary for source check8 without a mandatory portal; preserve accepted scope, resource authority and actual intake qualification gates.
+**Next implementation task:** Continue13-01 remaining browser/privacy/source-coverage qualification on existing local interfaces; preserve actual commercial/provider/private-intake/runtime/recovery gates.
 
 **Last fully completed phase:** 1. Phases2–7 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase8 work while those earlier checks remain open. Completed phases remain1/14; planned records11/36. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
 
@@ -466,3 +466,7 @@ Backend560/5 checks168.659s (enclosing169.928s), focused89/19.033s, supported tw
 ##13-01 eight-case report —2026-10-27
 
 Supported demo and proxy132/2 aliases pass; four evidence-contract tests reject missing/duplicate/promoted cases. Source checks1–7 pass synthetically;8 remains partial for confidential customer technical intake/custody. Exact261-file source matches. Prepared CI now runs the supported demo; hosted execution remains unverified. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-EIGHT-CASES-PARTIAL.md).
+
+##13-01 optional private follow-up —2026-10-27
+
+Backend569/5 checks171.634s (enclosing172.938s), focused42/16.068s, supported two-factor demo, proxy148/2 aliases and exact264-file source pass. Optional fixed synthetic context revisions preserve accepted scope and ledger, with archive/readback before immutable records and exact owner/recent-MFA staff access. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PRIVATE-FOLLOWUP-PARTIAL.md). Actual technical intake and full qualification remain pending.

@@ -577,3 +577,20 @@ class SyntheticDeliveryControl(models.Model):
             models.UniqueConstraint(fields=['entitlement','request_id'],name='synthetic_delivery_control_retry'),
             models.CheckConstraint(condition=models.Q(revision__gte=1),name='synthetic_delivery_control_positive'),
         ]
+
+
+class SyntheticSupportContext(models.Model):
+    """Optional private fixture follow-up; never actual technical intake or work."""
+    id=models.UUIDField(primary_key=True,editable=False)
+    fulfilment=models.ForeignKey(SyntheticFulfilment,on_delete=models.PROTECT)
+    revision=models.PositiveIntegerField()
+    request_id=models.UUIDField()
+    payload=models.JSONField()
+    sha256=models.CharField(max_length=64)
+    archive_receipt=models.JSONField()
+    class Meta:
+        constraints=[
+            models.UniqueConstraint(fields=['fulfilment','revision'],name='synthetic_context_revision'),
+            models.UniqueConstraint(fields=['fulfilment','request_id'],name='synthetic_context_retry'),
+            models.CheckConstraint(condition=models.Q(revision__gte=1),name='synthetic_context_positive'),
+        ]

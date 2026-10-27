@@ -12,6 +12,10 @@
 <h2>Reserve support time</h2>
 <form method="post">{% csrf_token %}<input type="hidden" name="action" value="reserve"><input type="hidden" name="request_id" value="{{ request_id }}"><input type="hidden" name="task_id" value="{{ task_id }}"><label>Time to reserve, in whole seconds <input type="number" name="seconds" min="1" max="{{ ledger.available_seconds }}" required></label><button type="submit">Simulate support reservation</button></form>
 {% endif %}
+<h2>Optional private support follow-up</h2>
+<p>These fixed synthetic examples rehearse later support context. No actual technical data or files are accepted. This does not change your accepted purchase or spend support time.</p>
+{% if not staff %}<form method="post">{% csrf_token %}<input type="hidden" name="action" value="context"><input type="hidden" name="request_id" value="{{ request_id }}"><input type="hidden" name="expected_revision" value="{{ followup.revision }}"><label>Example revision <select name="fixture"><option value="synthetic-context-v1">Synthetic prototype A</option><option value="synthetic-context-v2">Synthetic prototype B</option></select></label><button type="submit">Record private synthetic follow-up</button></form>{% endif %}
+<ul>{% for version in followup.versions %}<li>Revision {{ version.revision }}: {{ version.context.board }} · {{ version.context.integration }}</li>{% empty %}<li>No follow-up recorded.</li>{% endfor %}</ul>
 <h2>Active reservations</h2>
 <ul>{% for reservation in reservations %}<li>Task {{ reservation.task_id }} · {{ reservation.remaining }} seconds reserved.
 <form method="post">{% csrf_token %}<input type="hidden" name="request_id" value="{{ reservation.request_id }}"><input type="hidden" name="target_id" value="{{ reservation.id }}">

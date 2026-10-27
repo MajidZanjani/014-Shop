@@ -60,3 +60,10 @@ The result includes `staff_finance_lifecycle`; no identifiers or private busines
 The supported demo emits `source_acceptance_checks` numbered1–8 in final amendment §8 order. Seven scenarios report `synthetic_pass`; check8 remains `partial` with explicit pending confidential customer technical-data intake/custody. Private synthetic seller materials do not establish that intake qualification. The runner rejects omitted, duplicated or reordered cases and actual-authority promotion. Required support removal is now attempted through the actual cart API, then rejected by both API/no-JavaScript review and capture before support restoration. Separate fixture checks refuse missing price/rights/delivery and an unsupported ready-design promise; a distinct reservation cannot reallocate exhausted top-up credit.
 
 Run `python3 -m unittest discover -s tests -p test_purchase_demo_report.py` for negative report controls. Prepared ordinary CI also runs the supported database-backed demo; hosted execution and actual qualification remain separate.
+
+
+## Optional private synthetic follow-up
+
+The existing customer support page now offers fixed synthetic follow-up examples after a captured purchase has its retained grant. Each optional submission appends an archived/read-back immutable context revision; a stale base conflicts and an exact historical request retry returns its original revision. The same purchase's assigned recent-MFA staff can read the version history. No separate engineering portal, checkout questionnaire or support debit is introduced. Accepted order scope, grants, reservations, work and statements remain unchanged.
+
+Only named fixed fixture examples are accepted. Arbitrary technical text, files, raw hosts, keys and unknown fields are rejected. The page does not accept actual technical data; actual confidential intake/transport/custody remains pending. PostgreSQL forbids updates/deletes of retained context revisions. Owner isolation and current staff resource assignment remain mandatory on every read; ordinary command receipts omit owner/acceptance/archive hashes.
