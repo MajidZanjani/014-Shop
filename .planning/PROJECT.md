@@ -10,9 +10,9 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress —13-01 optional private follow-up verified locally; actual technical intake and full qualification remain pending; continuing local acceptance work.
+**Execution status:** paused — proactive context-pressure checkpoint after verified13-01 local slices; exact context percentage unavailable; actual/full qualification pending.
 
-**Next implementation task:** Continue13-01 remaining browser/privacy/source-coverage qualification on existing local interfaces; preserve actual commercial/provider/private-intake/runtime/recovery gates.
+**Next implementation task:** Resume13-01 browser/privacy/source-coverage qualification from the verified current branch; inspect available pinned local browser tooling, then implement bounded local engine coverage without external/protected operations.
 
 Complete-cart synthetic checkout, acceptance/payment, once-only grants and staged completion are implemented, now with archived reservations/releases, scoped staff work, reverse/replace corrections and committed-revision statements. Supported complete-cart demo now covers both local staff login factors, exact assignment and work/correction/release/statement retries. Private versioned synthetic material releases and owner-only session-bound single-use POST downloads are now implemented. Local reviewed licence-change cases and held revised-scope/orders now preserve originals and unknown policies. Latest retained results:420-test full backend regression before the final catalog-family/same-band validation changes, final16 focused case tests and102 proxy header-level checks; complete-cart two-factor staff/customer demo includes all five case kinds and review corrections alongside retained-version release/download. Actual material/rights/retention/host qualifications remain pending. Only Phase1 is fully accepted;11/34 plan records complete. Counts are not engineering-effort estimates. [STATE.md](STATE.md) and [ROADMAP.md](ROADMAP.md) retain exact evidence and actual qualification gates.
 
