@@ -1,4 +1,6 @@
-# Public React/browser preparation and required-platform fixes —2026-10-27
+# Public React/browser qualification and required-platform fixes —2026-10-27
+
+**Current result:** Exact frozen frontend and the real fresh public browser producer now pass locally:58 customer/staff plus20 JavaScript/7 no-JavaScript assertions. Earlier diagnostic/failure/pending-build statements below are dated attempt history, superseded only for this exact local frontend/public qualification. Formal/manual accessibility and all actual/full gates remain pending.
 
 ## Implemented behavior
 
@@ -39,3 +41,46 @@ The user selected continuation of task5. One isolated native attempt used the un
 Exact invocation: `env TMPDIR=/home/claude/project/014-Shop/.scratch/frontend-qualification-20261027 timeout --signal=TERM --kill-after=10 900 nix develop --max-jobs 1 --cores 2 ./ops/nixos#default --command python3 -c 'import os,subprocess,json; print(json.dumps({k:os.environ.get(k) for k in ("SHOP_NODE","SHOP_NPM")})); subprocess.run([os.environ["SHOP_NODE"],"--version"],check=True); subprocess.run([os.environ["SHOP_NPM"],"--version"],check=True)'`.
 
 This is a failed local native-toolchain qualification, not a successful frontend or public-browser run. The real `--public` path was not run because its exact prerequisite remains unavailable. The two-core900-second envelope is demonstrably insufficient and must not be repeated unchanged. No pins, acceptance gate, test/application/database limit, shared resource, protected service or external operation changed. No broad backend rerun was warranted. Retained backend570/browser58/proxy148 and diagnostic-only public20/7 classifications remain unchanged; formal/manual and all actual qualification gates remain pending. Planning views now record the attempted resumption and exact prerequisite rather than a user pause or build still running.
+
+## Native-build capacity investigation —2026-10-27
+
+Following user continuation, an unchanged exact derivation was tried with four compiler jobs and a separate3600-second native-preparation bound. It progressed to1274/1971, then available memory dropped below0.5GiB with no swap and compilation stalled. Temporarily pausing positively identified task-owned compiler children did not recover headroom; all held children were resumed for cleanup and only the owned build client was stopped. The client returned1 after the explicit signal; it did not exhaust the3600-second bound. No make/ninja/compiler remained and available memory recovered to about6.7GiB. No memory/swap/cgroup/host-service setting was changed. The cgroup's cumulative OOM-kill count was observed without a baseline, so no new OOM event or victim is attributed to this attempt.
+
+The next materially different attempt uses two compiler jobs and a5400-second native-preparation bound with fresh owned persistent TMPDIR. This combines the previously observed two-job memory behavior with a sufficient preparation window rather than repeating900 seconds. The720-second fresh frontend gate, per-command150-second frontend checks,90-second browser and existing application/database/backend-test limits remain unchanged. Exact native qualification remains pending until successful tool identity checks and the real public producer complete.
+
+## Exact native/frontend/public local qualification passed —2026-10-27
+
+The unchanged exact derivation completed successfully with one Nix build/two compiler jobs and a5400-second separate native-preparation bound, using owned persistent TMPDIR. Nix reports `buildPhase completed in 59 minutes 3 seconds`, `checkPhase completed in 3 minutes 56 seconds` and `All tests passed.` Its TAP output ends at5505 entries, including the pinned recipe's existing platform/environment skips and exclusions; this is not a claim that every upstream test ran. Approximately63 minutes elapsed for the complete preparation. No compiler/make/ninja remains. No pin, test/application/database/browser/frontend timeout, host memory/swap/cgroup setting, protected service or external-operation authority changed. Earlier900-second failure and four-job memory-pressure stop remain valid attempt history.
+
+Exact selected executables: `/nix/store/x6a7dbhj1fmhwk0d9124zkszdfhd7k91-nodejs-24.22.0/bin/node` and `/nix/store/x6a7dbhj1fmhwk0d9124zkszdfhd7k91-nodejs-24.22.0/bin/npm`; actual versions `v24.22.0` and `11.19.1`. Source/native derivation remains `/nix/store/zkv9pcjdv9h73qcr6zbpnhln4xqsdw2w-nodejs-slim-24.22.0.drv`.
+
+The committed `scripts/check_browser_access.py --public` CLI ran through the unchanged pinned browser shell. A task-local Python launcher only replaced the locked wheel download source with the retained `/tmp/shop-ledger-wheels` cache; the exact lock/hash/inventory/install/runtime checks remained active. It used `runpy` to execute that committed CLI with `--public`; no browser/public producer or validator was patched or bypassed. The frontend nested producer ran unchanged with newly created allowlisted inputs/output, exact executable/version checks, fresh `npm ci`, source policy, Astro check/build, frontend tests, public-output privacy scanning and final artifact inventory recheck. The720-second fresh-build,150-second frontend-command and90-second browser bounds stayed unchanged.
+
+The actual closed, validated report was:
+
+```json
+{
+  "browser_sandbox": "disabled-for-owned-local-root-smoke",
+  "browser_version": "155.0.8059.84",
+  "checks": 58,
+  "evidence_class": "local-synthetic-browser-engine",
+  "formal_accessibility": false,
+  "frontend_toolchain": {
+    "node": "24.22.0",
+    "npm": "11.19.1"
+  },
+  "modes": 2,
+  "node_version": "24.21.0",
+  "production_qualified": false,
+  "public_checks": {
+    "javascript": 20,
+    "no_javascript": 7
+  },
+  "roles": 2,
+  "status": "BROWSER_LOCAL_PASS"
+}
+```
+
+This supersedes diagnostic-only public20/7 with fresh actual local execution of the committed exact producer. The older diagnostic envelope remains diagnostic; it was not promoted. Browser controller Node24.21.0 remains separate from frontend Node24.22.0. Current JS-on/off customer/staff/auth/revocation/privacy/form-rejection checks and actual public React/no-JavaScript scenarios pass. Retained backend570/5 checks and proxy148/2 aliases were not repeated for these documentation-only changes. Formal/manual accessibility/assistive-technology approval, actual confidential intake/custody/transport, commercial/source/provider/retention/runtime/recovery/host/activation and full Phase13 acceptance remain pending. No actual customer materials, bank/mail, deployment or protected-service action occurred.
+
+Reproduce once exact native outputs are available: `TMPDIR=<new-owned-workspace-directory> nix develop --max-jobs 1 --cores 1 ./ops/nixos#browser --command python3 scripts/check_browser_access.py --public`. The committed command uses hash-locked index downloads; this run's retained-wheel substitution is explicitly scoped above. No hosted CI execution or independent off-host qualification is claimed.

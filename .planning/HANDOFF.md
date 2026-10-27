@@ -4,9 +4,9 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — task5 exact frontend qualification attempted; two-core900-second native build timed out; public/full acceptance pending.
+**Execution status:** in progress — exact frozen frontend/public browser qualification verified locally (58 customer/staff plus20 JavaScript/7 no-JavaScript); formal/manual and actual/full acceptance pending.
 
-**Next implementation task:** Resolve the exact Node24.22.0/npm11.19.1 native-build prerequisite before scripts/check_browser_access.py --public. The two-core900-second attempt reached545/1971; do not repeat that insufficient envelope or change pins/test limits. Preserve backend570/browser58/proxy148 and all actual gates.
+**Next implementation task:** Complete manual/formal accessibility review and the existing actual source/commercial/private-intake/transport/provider/runtime/recovery/host qualification gates under their scoped authority. Exact frontend/public local qualification is complete; do not repeat unchanged backend/native/browser runs.
 
 **Recorded implementation:** c50a4c1f0e30a6e2a7b4702af06fe7fe3278c3e1
 
@@ -111,3 +111,7 @@ Required-platform validation now covers current React/Django IP entry; no-JavaSc
 Final13-01 verification: full backend570 tests/5 checks169.832s (enclosing171.128s), qualified browser58/2 roles/2 modes, proxy148/2 aliases,13 Python browser-contract tests and exact264-file backend source pass. Public20/7 is diagnostic only. Exact Node24.22 native build reached900-second bound/exit124; no build remains. No shared pruning, timeout increase or pin substitution. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md).
 
 User requested $gsd-pause-work at 2026-10-27T06:46:50.819Z. Structured HANDOFF.json and Phase13 .continue-here.md are now the primary resumption sources. No context-percentage claim or automatic pause. All implementation through c50a4c1 is verified/pushed; no background task remains.
+
+##13-01 exact public qualification —2026-10-27
+
+Retained backend570/5 checks and proxy148/2 aliases; newly qualified exact frontend Node24.22.0/npm11.19.1 with browser58 customer/staff plus public20 JavaScript/7 no-JavaScript checks. Formal/manual and actual/full acceptance remain pending. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md). Native build/check completed with unchanged pins; separate preparation used two jobs/5400-second bound after observed four-job memory pressure. Acceptance-test limits are unchanged. No actual/full acceptance, phase completion or new commercial/external authority is inferred.
