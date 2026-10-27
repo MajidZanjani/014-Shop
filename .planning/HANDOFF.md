@@ -4,11 +4,11 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress —13-01 pinned customer/staff browser48 checks/2 roles/2 modes verified; live-revocation browser coverage next; actual/full qualification pending.
+**Execution status:** paused — proactive context-pressure checkpoint after verified48-check customer/staff browser smoke; exact usage percentage unavailable; actual/full qualification pending.
 
-**Next implementation task:** Extend local browser regression for live staff credential/resource revocation using the existing local operator; add no privileged HTTP route and preserve all actual qualification gates.
+**Next implementation task:** Resume13-01 and add browser-observed live staff scope/credential revocation through the existing local operator; use private bounded test-controller IPC, no privileged HTTP route or application backdoor.
 
-**Recorded implementation:** 4873ab05dcab776924755d097c53dd6ae70ff781
+**Recorded implementation:** c48f4bdafddbaa6b33612c627476151d9df46d7c
 
 This SHA contains the08-03 implementation now covered by final local verification. The one-shot structured handoff and active pause checkpoint have been consumed. Final evidence and the narrow source-validator correction are in the current verification commit; do not reset to historical review c830297.
 
