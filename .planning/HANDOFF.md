@@ -4,15 +4,15 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — local recovery commit boundary verified at 13-01 task 5; actual/full acceptance awaits recorded prerequisites.
+**Execution status:** in progress — local recovery commit boundary verified and pushed; 13-01 task 5 actual/full acceptance awaits recorded prerequisites.
 
 **Next implementation task:** Bind post-point customer/resource/MFA recovery after authoritative evidence, approved channel/custody procedures and an assigned authorized independent target are supplied; continue concrete independent local fixes if identified. Keep company commercial inputs pending without re-asking promised evidence.
 
-**Recorded implementation:** 526acfb232a9905ae3b1afcd8aa34a0f787af49c
+**Recorded implementation:** e71e2f22d3a5846a46a00bae75179143d2ce0870
 
 The reproduced recovery commit gap is fixed: supported quarantine/release commits before return, and caller atomic/manual transactions reject before changes. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-RECOVERY-COMMIT-PARTIAL.md). Focused102/backend650/5/exact276-file source pass. Earlier startup/staff reset remains covered; prior proxy148/2, frontend137/32 and browser227 retain their documented preceding scopes. Actual customer/resource/MFA reconciliation, custody/runner and full acceptance remain pending; company commercial inputs will be supplied later.
 
-User continued after055e240. Quick261028-dq8 fixes four reproduced caller-transaction cases; focused102/backend650/5/source276 pass. Verification applies to the current working-tree source; its implementation hash will be recorded after commit. The saved startup/staff reset components remain verified. Actual reconciliation/custody/MFA/runner inputs are still required. Commercial inputs remain pending, and ordinary non-force push after every project commit remains authorized.
+User continued after055e240. Quick261028-dq8 fixes four reproduced caller-transaction cases; focused102/backend650/5/source276 pass. Current implementation e71e2f22d3a5846a46a00bae75179143d2ce0870 is committed/pushed, and its quick completion record retains exact evidence. The saved startup/staff reset components remain verified. Actual reconciliation/custody/MFA/runner inputs are still required. Commercial inputs remain pending, and ordinary non-force push after every project commit remains authorized.
 
 [Final purchase-flow revision2](PURCHASE-FLOW-AMENDMENT.md) remains current authority. Retained Phase10 local work covers complete-cart synthetic grants/staged delivery and the implemented local support ledger; earlier phases are not implicitly complete. [Evidence](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md). One captured cart payment yields an archived deterministic grant plan, one licence record per IP line and exactly36000 integer support seconds/package once, non-expiring. Initial delivery leaves promised later reference design outstanding; later completion never adds another entitlement/grant. Ready-kit/support-only cases stay scoped. Archive readback precedes all simulated records/effects; uncertain funding cannot provision. No actual keys/files/rights or spendable support.
 

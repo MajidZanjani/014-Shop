@@ -2,6 +2,8 @@
 
 Status: the concrete local transaction gap is reproduced, fixed and verified by the current full backend, focused checks and exact source comparison. OPS-02/AUTH-04/UAT-03 and actual/full acceptance remain partial.
 
+Implementation: `e71e2f22d3a5846a46a00bae75179143d2ce0870`, committed and pushed.
+
 ## Behavior and scope
 
 Previously, the internal local recovery function could nest its transaction inside a caller's atomic block or a manually managed transaction. It returned successful quarantine/release results while an independent PostgreSQL connection still saw the pre-transition state. A caller rollback could then discard the reported transition and its session/challenge/credential changes.

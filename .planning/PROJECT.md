@@ -10,7 +10,7 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — local recovery commit boundary verified at 13-01 task 5; actual/full acceptance awaits recorded prerequisites.
+**Execution status:** in progress — local recovery commit boundary verified and pushed; 13-01 task 5 actual/full acceptance awaits recorded prerequisites.
 
 **Next implementation task:** Bind post-point customer/resource/MFA recovery after authoritative evidence, approved channel/custody procedures and an assigned authorized independent target are supplied; continue concrete independent local fixes if identified. Keep company commercial inputs pending without re-asking promised evidence.
 
