@@ -10,11 +10,11 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** paused — proactive context checkpoint after verified checkout recovery fence; focused174, backend693/5, proxy148/2 and source276 pass; cart recovery reproduction and actual/full acceptance pending.
+**Execution status:** in progress — customer cart recovery fence verified locally (focused136, backend716/5, proxy148/2, source276); actual/full acceptance pending.
 
-**Next implementation task:** Clear the session, run $gsd-resume-work, restore13-01 task5 and reproduce the normal cart POST/quarantine overlap before store_cart. Keep company commercial and actual qualification inputs pending without re-asking.
+**Next implementation task:** Start a finite configuration-draft recovery reproduction from the saved entry-only list/get/save source observation; reproduce before product edits. Keep company commercial and actual qualification inputs pending without re-asking.
 
-Customer checkout acceptance, dispatch and grant/stage commits now require their originating customer epoch; prepared state cannot adopt a released epoch. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-CHECKOUT-RECOVERY-PARTIAL.md). Original22-test/36-failure control, fixed focused174/53.986s, backend693/5/224.151s (outer225.773s), supported demo/proxy148/2 and exact276-file source pass. Prior support/package/recovery components retain their documented scope; actual/company inputs remain pending.
+Customer cart JSON/native commands and private/base/error-page reads now lock their originating epoch before cart access. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-CART-RECOVERY-PARTIAL.md). Original23-test/36-failure control, fixed focused136/34.029s, current backend716/5/228.412s, supported demo/proxy148/2 and exact276-file source pass. Earlier checkout/support/recovery evidence retains its scope; actual/company inputs remain pending.
 
 Before every commit reconcile affected current references, publish state.json and run python3 scripts/check_planning.py. Sync commits to origin/main without force. Historical evidence retains its original scope.
 

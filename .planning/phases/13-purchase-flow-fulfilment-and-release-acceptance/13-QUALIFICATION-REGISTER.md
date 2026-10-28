@@ -1,6 +1,6 @@
 # Phase13 grouped qualification register —2026-10-27
 
-Current local continuation: proactive context checkpoint after verified/pushed checkout recovery; next unimplemented reproduction is customer cart POST after parsing and before store_cart. [Current exact evidence](13-CHECKOUT-RECOVERY-PARTIAL.md). Canonical routing: [STATE](../../STATE.md), [ROADMAP](../../ROADMAP.md), [purchase-flow authority](../../PURCHASE-FLOW-AMENDMENT.md). No exact context percentage is available; this preserves apparent context pressure without a measured90% claim. The finite actual prerequisites remain pending; no universal audit/full acceptance is inferred.
+Current local continuation: quick261028-hb4 verifies the cart command/private-read recovery fence; focused136/backend716/5/proxy148/source276 pass. [Current exact evidence](13-CART-RECOVERY-PARTIAL.md). Next source observation is entry-only configuration-draft list/get/save; it remains unreproduced/unimplemented. Canonical routing: [STATE](../../STATE.md), [ROADMAP](../../ROADMAP.md), [purchase-flow authority](../../PURCHASE-FLOW-AMENDMENT.md). The finite actual/company prerequisites remain pending; no universal audit/full acceptance is inferred.
 
 ## Current local evidence
 
@@ -114,3 +114,7 @@ The user directly approved the pending ordinary origin/main push; implementation
 [Evidence](13-CHECKOUT-RECOVERY-PARTIAL.md): original22-test/36-failure PostgreSQL control, focused174/53.986s, backend693/5/224.151s (outer225.773s), supported demo/proxy148/2 and exact276-file source pass. Customer acceptance and grant/stage publication recheck the originating epoch at their existing commit boundaries; dispatch admission additionally rejects a stale original epoch under the existing lock. Prepared evidence never becomes completion after reset. Existing lookup-only uncertainty, held internal lookup and no bank I/O under caller transactions remain. Actual post-point customer/resource/MFA/channel/custody/provider/independent-target/formal and company commercial inputs remain pending. No full Phase13 SUMMARY or actual qualification.
 
 Local implementation2e373a5 and schema-backed quick261028-fy8 completion are recorded. Automatic review rejected the initial ordinary push; current Git refs determine synchronization and any unpushed task commits require actual direct authorization. No remote qualification or actual approval is inferred from local completion.
+
+## Resumed cart recovery boundary — 2026-10-28
+
+[Cart evidence](13-CART-RECOVERY-PARTIAL.md): original19 tests/31 failures, final23/36 control and fixed focused136/34.029s; current backend716/5/228.412s, supported demo/proxy148/2 and exact276-file source pass. JSON/native create/update/replay and private/current/base/error reads require their originating epoch before cart access. Fresh exact retries and trusted internal callers retain their scope. The one-shot handoff is consumed and active manager views are synchronized. Actual/company/full acceptance gates remain pending. Configuration-draft source observation is not a reproduced defect or completed fix.

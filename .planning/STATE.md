@@ -1,10 +1,9 @@
 ---
 gsd_state_version: "1.0"
 current_plan: 01
-status: paused
-paused_at: "2026-10-28T12:11:59.251Z"
-last_updated: "2026-10-28T12:11:59.251Z"
-state_head: 2e373a50faccc62a587cb4577452eda1ae26f651
+status: in_progress
+last_updated: "2026-10-28T12:48:31.138Z"
+state_head: c92538a50e191949c5265236663a4bb53cd715f5
 progress:
   total_phases: 14
   completed_phases: 1
@@ -15,8 +14,8 @@ current_task: 5
 last_activity: 2026-10-28
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: "Proactive context handoff after synchronized36cc4c6; cart source observation saved for reproduction."
-last_activity_desc: "Checkout focused174/backend693/5/proxy148/source276 retained; no new cart reproduction or product edit."
+stopped_at: Cart recovery fence verified locally; configuration-draft source observation awaits reproduction.
+last_activity_desc: Cart focused136/backend716/5/228.412s/proxy148/source276 pass; actual/full acceptance pending.
 ---
 
 # Project state — final purchase-flow revision2
@@ -27,13 +26,13 @@ last_activity_desc: "Checkout focused174/backend693/5/proxy148/source276 retaine
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** paused — proactive context checkpoint after verified checkout recovery fence; focused174, backend693/5, proxy148/2 and source276 pass; cart recovery reproduction and actual/full acceptance pending.
+**Execution status:** in progress — customer cart recovery fence verified locally (focused136, backend716/5, proxy148/2, source276); actual/full acceptance pending.
 
-**Next implementation task:** Clear the session, run $gsd-resume-work, restore13-01 task5 and reproduce the normal cart POST/quarantine overlap before store_cart. Keep company commercial and actual qualification inputs pending without re-asking.
+**Next implementation task:** Start a finite configuration-draft recovery reproduction from the saved entry-only list/get/save source observation; reproduce before product edits. Keep company commercial and actual qualification inputs pending without re-asking.
 
 ## Current local continuation
 
-Customer checkout acceptance, dispatch and grant/stage commits now require their originating customer epoch; prepared state cannot adopt a released epoch. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-CHECKOUT-RECOVERY-PARTIAL.md). Original22-test/36-failure control, fixed focused174/53.986s, backend693/5/224.151s (outer225.773s), supported demo/proxy148/2 and exact276-file source pass. Prior support/package/recovery components retain their documented scope; actual/company inputs remain pending.
+Customer cart JSON/native commands and private/base/error-page reads now lock their originating epoch before cart access. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-CART-RECOVERY-PARTIAL.md). Original23-test/36-failure control, fixed focused136/34.029s, current backend716/5/228.412s, supported demo/proxy148/2 and exact276-file source pass. Earlier checkout/support/recovery evidence retains its scope; actual/company inputs remain pending.
 
 ## Preserved implementation/evidence
 
@@ -64,7 +63,7 @@ P-02/03/05/06/08 cover actual ready-kit variants, standard development prices/ri
 
 ## Session continuity
 
-Proactive context handoff at 2026-10-28T12:11:59.251Z after synchronized 36cc4c6e23c6f80eb34942bf764163e1ca2b8797. No exact context percentage is supplied, so this is preservation for apparent context pressure under the user AGENTS.md rule, not a measured90% trigger or automatic monitoring claim. Checkout quick261028-fy8 and support quick261028-f72 are complete locally and pushed; all owned producers exited. A read-only source check found current_cart checks access before parsing, then passes only the cached user to store_cart, whose transaction does not check the originating epoch. That cart observation is not yet reproduced, designed or fixed; start a new GSD quick task and baseline before product edits on resume. Actual/company inputs remain pending without another request. HANDOFF.json and the phase checkpoint preserve the exact continuation.
+Session resumed from d43f1fe at2026-10-28; quick261028-hb4 now verifies the cart command/private-read recovery fence. Original19/31 and final23/36 controls retained; focused136, current backend716/5/228.412s, proxy148/2 and exact276-file source pass. The controlled baseline restored both fixed product files exactly. Next independent source observation: configuration-draft entry-only list/get/save; no draft reproduction/design/fix yet. One-shot HANDOFF.json consumed. Shared /tmp untouched; owned .scratch/auth-unicode-tmp used. All actual/company inputs remain pending without another request.
 
 ### Quick Tasks Completed
 
@@ -153,6 +152,7 @@ Proactive context handoff at 2026-10-28T12:11:59.251Z after synchronized 36cc4c6
 | 261028-elk | Fence private package access across local recovery transitions | 2026-10-28 | 7e410f9 | [261028-elk-fence-private-package-access-across-loca](./quick/261028-elk-fence-private-package-access-across-loca/) |
 | 261028-f72 | Fence customer support commands and private reads across recovery; focused147/backend671/5/proxy148/source276 | 2026-10-28 | 99c7e9a | [261028-f72-fence-customer-support-transactions-acro](./quick/261028-f72-fence-customer-support-transactions-acro/) |
 | 261028-fy8 | Fence customer checkout and fulfilment across recovery; focused174/backend693/5/proxy148/source276 | 2026-10-28 | 2e373a5 | [261028-fy8-fence-customer-checkout-and-fulfilment-a](./quick/261028-fy8-fence-customer-checkout-and-fulfilment-a/) |
+| 261028-hb4 | Fence customer cart JSON/native commands and private reads across recovery | 2026-10-28 | c92538a | [261028-hb4-reproduce-and-fence-customer-cart-reques](./quick/261028-hb4-reproduce-and-fence-customer-cart-reques/) |
 
 ## Historical pause — 2026-10-26T10:21:33.041Z
 
