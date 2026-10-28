@@ -2,6 +2,8 @@
 
 Status: concrete local package authority gap reproduced, fixed and verified; focused136 tests, current backend657/5 and exact source pass. Actual recovery, confidential material delivery and full acceptance remain pending.
 
+Implementation: `7e410f97160abf2b92cb9ce25fa1b392928141a2`, committed and pushed.
+
 ## Behavior
 
 The package services previously relied on the request's cached session key after the view's customer check. A request already admitted before local quarantine could still issue a new bearer or consume an existing download after quarantine or release. A newly selected external restore identity also failed to stop these cached service calls before explicit quarantine.

@@ -10,9 +10,9 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — private package recovery fence verified; 13-01 task 5 actual/full acceptance remains pending.
+**Execution status:** paused — context checkpoint after verified package recovery fence; focused136, backend657/5 and source276 pass; actual/full acceptance pending.
 
-**Next implementation task:** Reproduce the customer support POST/quarantine overlap in support_views.handle after command parsing and before ledger/follow-up service entry, then fix only confirmed defects. Keep company commercial and actual qualification inputs pending.
+**Next implementation task:** Run $gsd-resume-work; restore 13-01 task 5 and reproduce customer support POST/quarantine overlap after command parsing and before ledger/follow-up service entry. Keep company commercial and actual qualification inputs pending.
 
 The private package recovery gap is fixed: cached pre-reset requests cannot issue or consume a download, and the epoch locks before owner/resource work through commit. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PACKAGE-RECOVERY-PARTIAL.md). Focused136/backend657/5/exact276-file source pass. Earlier recovery commit/startup/staff reset components remain covered; prior proxy/frontend/browser evidence retains its documented scope. Customer support entry-to-service overlap is the next unimplemented reproduction. Company commercial and actual qualification inputs remain pending. Counts1/14 completed phases and11/36 completed phase-plan records are not engineering effort.
 

@@ -4,15 +4,15 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — private package recovery fence verified; 13-01 task 5 actual/full acceptance remains pending.
+**Execution status:** paused — context checkpoint after verified package recovery fence; focused136, backend657/5 and source276 pass; actual/full acceptance pending.
 
-**Next implementation task:** Reproduce the customer support POST/quarantine overlap in support_views.handle after command parsing and before ledger/follow-up service entry, then fix only confirmed defects. Keep company commercial and actual qualification inputs pending.
+**Next implementation task:** Run $gsd-resume-work; restore 13-01 task 5 and reproduce customer support POST/quarantine overlap after command parsing and before ledger/follow-up service entry. Keep company commercial and actual qualification inputs pending.
 
-**Recorded implementation:** e71e2f22d3a5846a46a00bae75179143d2ce0870
+**Recorded implementation:** 7e410f97160abf2b92cb9ce25fa1b392928141a2
 
 The private package recovery gap is fixed: cached pre-reset requests cannot issue or consume a download, and the epoch locks before owner/resource work through commit. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PACKAGE-RECOVERY-PARTIAL.md). Focused136/backend657/5/exact276-file source pass. Earlier recovery commit/startup/staff reset components remain covered; prior proxy/frontend/browser evidence retains its documented scope. Customer support entry-to-service overlap is the next unimplemented reproduction. Company commercial and actual qualification inputs remain pending.
 
-User continued after b3259ac. Quick261028-elk passes focused136/backend657/5/source276 after final original-code seven-test/nine-failure reproduction. Current working-tree implementation will be recorded by actual commit after push. Next review is the normal customer support command-to-service/quarantine overlap, not a confirmed support defect. Existing actual qualification gates and promised commercial inputs remain pending; standing ordinary non-force push authority remains.
+Verified implementation 7e410f97160abf2b92cb9ce25fa1b392928141a2 is committed/pushed; quick261028-elk is complete locally. Context checkpoint at 2026-10-28T10:51:30.537Z under the user AGENTS.md rule: no exact percentage is available and no90% claim is made. HANDOFF.json and the phase checkpoint retain the exact next support POST/quarantine reproduction and every pending actual gate. No support fix/design is implemented. All owned producers exited; ordinary non-force push after each commit remains authorized.
 
 [Final purchase-flow revision2](PURCHASE-FLOW-AMENDMENT.md) remains current authority. Retained Phase10 local work covers complete-cart synthetic grants/staged delivery and the implemented local support ledger; earlier phases are not implicitly complete. [Evidence](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md). One captured cart payment yields an archived deterministic grant plan, one licence record per IP line and exactly36000 integer support seconds/package once, non-expiring. Initial delivery leaves promised later reference design outstanding; later completion never adds another entitlement/grant. Ready-kit/support-only cases stay scoped. Archive readback precedes all simulated records/effects; uncertain funding cannot provision. No actual keys/files/rights or spendable support.
 
