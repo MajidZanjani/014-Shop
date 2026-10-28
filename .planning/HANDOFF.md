@@ -8,7 +8,7 @@
 
 **Next implementation task:** Design local post-point resource-revocation reconciliation from explicitly synthetic external fixture evidence; inspect current grants/operator-reset paths and preserve startup/effect holds, read-only lookup and fresh MFA. Commercial inputs remain pending.
 
-**Recorded implementation:** db56df35b1f979f8bc21d9a686712c9d419b5fd9
+**Recorded implementation:** 35f02017558114d2c5d2a48f7eb88920775894ad
 
 The local restore-startup fence is verified: a fresh external identity closes access/authentication/new effects despite an unheld or missing restored epoch until its matching synthetic quarantine/release. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-STARTUP-RECOVERY-PARTIAL.md). Focused89, current backend637/5 and exact274-file source pass; unchanged frontend137/32 and browser227 retain db56df3 scope. Actual isolation/restoration, post-point reconciliation/MFA recovery and off-host/full acceptance remain pending. Next independent review is explicitly synthetic post-point resource-revocation reconciliation. Commercial inputs remain pending by user instruction.
 

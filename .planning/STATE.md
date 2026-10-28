@@ -2,8 +2,8 @@
 gsd_state_version: "1.0"
 current_plan: 01
 status: in_progress
-last_updated: "2026-10-28T09:15:41.639991+00:00"
-state_head: db56df35b1f979f8bc21d9a686712c9d419b5fd9
+last_updated: "2026-10-28T09:16:44.292Z"
+state_head: 35f02017558114d2c5d2a48f7eb88920775894ad
 progress:
   total_phases: 14
   completed_phases: 1
@@ -15,7 +15,7 @@ last_activity: 2026-10-28
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
 stopped_at: Local startup fence verified; continuing13-01 task5 with post-point revocation review.
-last_activity_desc: "Startup baseline1 reproduced; focused89, backend637/5, source274 pass; post-point revocation review next."
+last_activity_desc: Startup baseline1 reproduced; focused89, backend637/5, source274 pass; post-point revocation review next.
 ---
 
 # Project state — final purchase-flow revision2
@@ -146,6 +146,7 @@ User instructed adopting the complete final26October revision2 and replacing sta
 | 261028-a3m | Implement local recovery effect admission and drain reporting; actual recovery remains pending | 2026-10-28 | d3ea121 | [261028-a3m-implement-local-recovery-effect-admissio](./quick/261028-a3m-implement-local-recovery-effect-admissio/) |
 | 261028-aq1 | Fence customer and staff authentication across local recovery quarantine; actual recovery remains pending | 2026-10-28 | 0f4a063 | [261028-aq1-fence-authentication-scopes-across-local](./quick/261028-aq1-fence-authentication-scopes-across-local/) |
 | 261028-b7f | Handle explicit recovery responses and fence late private/session bodies without changing ordinary uncertainty | 2026-10-28 | db56df3 | [261028-b7f-handle-explicit-recovery-holds-in-the-pu](./quick/261028-b7f-handle-explicit-recovery-holds-in-the-pu/) |
+| 261028-cgz | Fence local restore startup before access and effects | 2026-10-28 | 35f0201 | [261028-cgz-fence-local-restore-startup-with-an-exte](./quick/261028-cgz-fence-local-restore-startup-with-an-exte/) |
 
 ## Historical pause — 2026-10-26T10:21:33.041Z
 

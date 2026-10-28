@@ -1,6 +1,6 @@
 ---
 status: complete
-implementation_commit: pending-local-commit
+implementation_commit: 35f02017558114d2c5d2a48f7eb88920775894ad
 requirements: [OPS-02, UAT-03]
 evidence_class: local-synthetic
 actual_recovery_qualified: false
