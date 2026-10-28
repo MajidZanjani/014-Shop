@@ -2,8 +2,8 @@
 gsd_state_version: "1.0"
 current_plan: 01
 status: in_progress
-last_updated: "2026-10-28T09:34:00.247579+00:00"
-state_head: 35f02017558114d2c5d2a48f7eb88920775894ad
+last_updated: "2026-10-28T09:36:05.066Z"
+state_head: 526acfb232a9905ae3b1afcd8aa34a0f787af49c
 progress:
   total_phases: 14
   completed_phases: 1
@@ -15,7 +15,7 @@ last_activity: 2026-10-28
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
 stopped_at: Local startup/staff reset batch verified; actual revocation/MFA binding awaits scoped evidence.
-last_activity_desc: "Two local recovery gaps reproduced/fixed; focused97, backend645/5, proxy148/2 and source276 pass."
+last_activity_desc: Two local recovery gaps reproduced/fixed; focused97, backend645/5, proxy148/2 and source276 pass.
 ---
 
 # Project state — final purchase-flow revision2
@@ -147,6 +147,7 @@ User instructed adopting the complete final26October revision2 and replacing sta
 | 261028-aq1 | Fence customer and staff authentication across local recovery quarantine; actual recovery remains pending | 2026-10-28 | 0f4a063 | [261028-aq1-fence-authentication-scopes-across-local](./quick/261028-aq1-fence-authentication-scopes-across-local/) |
 | 261028-b7f | Handle explicit recovery responses and fence late private/session bodies without changing ordinary uncertainty | 2026-10-28 | db56df3 | [261028-b7f-handle-explicit-recovery-holds-in-the-pu](./quick/261028-b7f-handle-explicit-recovery-holds-in-the-pu/) |
 | 261028-cgz | Fence local restore startup before access and effects | 2026-10-28 | 35f0201 | [261028-cgz-fence-local-restore-startup-with-an-exte](./quick/261028-cgz-fence-local-restore-startup-with-an-exte/) |
+| 261028-cy5 | Require explicit staff reset and reassignment after selected local restore | 2026-10-28 | 526acfb | [261028-cy5-require-explicit-staff-reset-and-reassig](./quick/261028-cy5-require-explicit-staff-reset-and-reassig/) |
 
 ## Historical pause — 2026-10-26T10:21:33.041Z
 

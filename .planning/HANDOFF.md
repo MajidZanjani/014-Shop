@@ -8,7 +8,7 @@
 
 **Next implementation task:** Bind and qualify post-point customer/resource revocations and consumed-MFA recovery using authoritative channel/custody evidence and an assigned authorized off-host target when available. Keep commercial inputs pending; implement concrete independent local defects as identified.
 
-**Recorded implementation:** 35f02017558114d2c5d2a48f7eb88920775894ad
+**Recorded implementation:** 526acfb232a9905ae3b1afcd8aa34a0f787af49c
 
 The two reproduced local recovery gaps are resolved: fresh external startup identity fences unheld/missing restored epochs, and matching selected quarantine disables restored staff credentials and clears all seven resource-grant types before explicit reset/two-factor login/reassignment. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-STAFF-RESTORE-PARTIAL.md). Current backend645/5, focused97, proxy148/2 and exact276-file source pass; unchanged frontend137/32 and browser227 retain db56df3 scope. Actual isolation/restoration, authoritative post-point customer/resource/MFA reconciliation, custody/runner and full acceptance remain pending. Commercial company inputs will be supplied later by the user.
 
