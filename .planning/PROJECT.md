@@ -10,9 +10,9 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — local recovery startup/staff reset batch verified: backend645/5, focused97, proxy148/2 and source276; remaining actual bindings/full acceptance await scoped evidence.
+**Execution status:** paused — user-requested checkpoint after ba563b1; local startup/staff reset verified: backend645/5, focused97, proxy148/2 and source276; actual/full acceptance pending.
 
-**Next implementation task:** Bind and qualify post-point customer/resource revocations and consumed-MFA recovery using authoritative channel/custody evidence and an assigned authorized off-host target when available. Keep commercial inputs pending; implement concrete independent local defects as identified.
+**Next implementation task:** Run $gsd-resume-work; restore13-01 task5, review the finite qualification register and any newly supplied authoritative inputs, then continue concrete independent local fixes or qualified post-point revocation/MFA binding. Keep commercial inputs pending without re-asking promised company evidence.
 
 The two reproduced local recovery gaps are resolved: fresh external startup identity fences unheld/missing restored epochs, and matching selected quarantine disables restored staff credentials and clears all seven resource-grant types before explicit reset/two-factor login/reassignment. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-STAFF-RESTORE-PARTIAL.md). Current backend645/5, focused97, proxy148/2 and exact276-file source pass; unchanged frontend137/32 and browser227 retain db56df3 scope. Actual isolation/restoration, authoritative post-point customer/resource/MFA reconciliation, custody/runner and full acceptance remain pending. Commercial company inputs will be supplied later by the user. Counts1/14 completed phases and11/36 completed phase-plan records are not engineering effort.
 

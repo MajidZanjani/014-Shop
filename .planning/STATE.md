@@ -1,8 +1,9 @@
 ---
 gsd_state_version: "1.0"
 current_plan: 01
-status: in_progress
-last_updated: "2026-10-28T09:36:05.066Z"
+status: paused
+paused_at: "2026-10-28T09:40:22.562Z"
+last_updated: "2026-10-28T09:40:22.562Z"
 state_head: 526acfb232a9905ae3b1afcd8aa34a0f787af49c
 progress:
   total_phases: 14
@@ -14,7 +15,7 @@ current_task: 5
 last_activity: 2026-10-28
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Local startup/staff reset batch verified; actual revocation/MFA binding awaits scoped evidence.
+stopped_at: User-requested pause after ba563b1; local recovery batch verified and pushed.
 last_activity_desc: Two local recovery gaps reproduced/fixed; focused97, backend645/5, proxy148/2 and source276 pass.
 ---
 
@@ -26,9 +27,9 @@ last_activity_desc: Two local recovery gaps reproduced/fixed; focused97, backend
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — local recovery startup/staff reset batch verified: backend645/5, focused97, proxy148/2 and source276; remaining actual bindings/full acceptance await scoped evidence.
+**Execution status:** paused — user-requested checkpoint after ba563b1; local startup/staff reset verified: backend645/5, focused97, proxy148/2 and source276; actual/full acceptance pending.
 
-**Next implementation task:** Bind and qualify post-point customer/resource revocations and consumed-MFA recovery using authoritative channel/custody evidence and an assigned authorized off-host target when available. Keep commercial inputs pending; implement concrete independent local defects as identified.
+**Next implementation task:** Run $gsd-resume-work; restore13-01 task5, review the finite qualification register and any newly supplied authoritative inputs, then continue concrete independent local fixes or qualified post-point revocation/MFA binding. Keep commercial inputs pending without re-asking promised company evidence.
 
 ## Current local continuation
 
@@ -63,7 +64,7 @@ P-02/03/05/06/08 cover actual ready-kit variants, standard development prices/ri
 
 ## Session continuity
 
-User instructed adopting the complete final26October revision2 and replacing stale active phases/tasks/descriptions across the project, then continuing implementation. Prior active planning bytes are archived outside .planning; dated completed artifacts remain historical evidence. Current routing is this state, HANDOFF, ROADMAP and PURCHASE-FLOW-AMENDMENT, not old quick/evidence next-action text. No pause/context percentage claimed. Continue to a usable local result.
+User requested $gsd-pause-work at 2026-10-28T09:40:22.562Z. Paused at13-01 task5 after verified/pushed ba563b1. HANDOFF.json and the Phase13 .continue-here.md preserve exact completed work, scoped evidence, pending inputs and next action. No context-percentage or automatic-pause claim. All owned producers exited; no async jobs or unfilled phase SUMMARY markers were found. Current routing comes from STATE/HANDOFF and the purchase-flow authority; historical next-action text does not supersede them.
 
 ### Quick Tasks Completed
 

@@ -79,3 +79,6 @@ Context-pressure checkpoint saved after verified/pushed db56df3. No exact usage 
 ## Selected-restore staff authority reset —2026-10-28
 
 [Evidence](13-STAFF-RESTORE-PARTIAL.md): baseline1 shows the restored credential remained enabled after synthetic release. Matching selected quarantine now disables restored staff credentials and clears all7 mutable assignment types atomically with reset history. Focused97, current backend645/5, fresh proxy148/2 and exact276-file source pass; ordinary holds, per-user operator scope, rollback and replay after real two-factor/reassignment are verified. Actual post-point customer/resource/MFA/custody/retention, selected-bank and assigned independent recovery evidence remain required. This finite batch resolves the two concrete independent local gaps; do not invent actual facts or speculative checks to manufacture more progress. Company commercial inputs remain pending and will be supplied later.
+
+
+User requested $gsd-pause-work at 2026-10-28T09:40:22.562Z after verified/pushed ba563b1. HANDOFF.json and .continue-here.md preserve13-01 task5, current645/5 backend/focused97/proxy148/source276 evidence and remaining actual inputs. No full acceptance or context-percentage trigger is claimed.

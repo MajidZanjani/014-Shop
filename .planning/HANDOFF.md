@@ -4,15 +4,15 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — local recovery startup/staff reset batch verified: backend645/5, focused97, proxy148/2 and source276; remaining actual bindings/full acceptance await scoped evidence.
+**Execution status:** paused — user-requested checkpoint after ba563b1; local startup/staff reset verified: backend645/5, focused97, proxy148/2 and source276; actual/full acceptance pending.
 
-**Next implementation task:** Bind and qualify post-point customer/resource revocations and consumed-MFA recovery using authoritative channel/custody evidence and an assigned authorized off-host target when available. Keep commercial inputs pending; implement concrete independent local defects as identified.
+**Next implementation task:** Run $gsd-resume-work; restore13-01 task5, review the finite qualification register and any newly supplied authoritative inputs, then continue concrete independent local fixes or qualified post-point revocation/MFA binding. Keep commercial inputs pending without re-asking promised company evidence.
 
 **Recorded implementation:** 526acfb232a9905ae3b1afcd8aa34a0f787af49c
 
 The two reproduced local recovery gaps are resolved: fresh external startup identity fences unheld/missing restored epochs, and matching selected quarantine disables restored staff credentials and clears all seven resource-grant types before explicit reset/two-factor login/reassignment. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-STAFF-RESTORE-PARTIAL.md). Current backend645/5, focused97, proxy148/2 and exact276-file source pass; unchanged frontend137/32 and browser227 retain db56df3 scope. Actual isolation/restoration, authoritative post-point customer/resource/MFA reconciliation, custody/runner and full acceptance remain pending. Commercial company inputs will be supplied later by the user.
 
-User continued2026-10-28. Structured checkpoint restored and consumed; workspace was clean after06c56a0. Startup and selected-restore staff authority are verified in quick261028-cgz/cy5. All owned producers exited. The finite qualification register retains actual binding prerequisites; no user-requested pause or full completion is inferred. Ordinary non-force push after every commit remains authorized; independent local work continues with commercial/actual inputs pending.
+User requested $gsd-pause-work at 2026-10-28T09:40:22.562Z. Startup and staff reset implementations plus GSD records are pushed through ba563b1; current implementation is526acfb. Structured HANDOFF.json and the phase .continue-here.md are primary resume sources. All owned producers exited; no async jobs or false-summary markers were found. Commercial inputs remain pending by user instruction. Resume with $gsd-resume-work. Ordinary non-force push after every project commit remains authorized.
 
 [Final purchase-flow revision2](PURCHASE-FLOW-AMENDMENT.md) remains current authority. Retained Phase10 local work covers complete-cart synthetic grants/staged delivery and the implemented local support ledger; earlier phases are not implicitly complete. [Evidence](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md). One captured cart payment yields an archived deterministic grant plan, one licence record per IP line and exactly36000 integer support seconds/package once, non-expiring. Initial delivery leaves promised later reference design outstanding; later completion never adds another entitlement/grant. Ready-kit/support-only cases stay scoped. Archive readback precedes all simulated records/effects; uncertain funding cannot provision. No actual keys/files/rights or spendable support.
 
