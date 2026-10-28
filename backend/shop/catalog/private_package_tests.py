@@ -6,10 +6,11 @@ from types import SimpleNamespace
 from unittest.mock import patch
 import json
 import uuid
-from django.db import connections,transaction,IntegrityError
+from django.db import connection,connections,transaction,IntegrityError,DatabaseError
 from django.test import Client,RequestFactory,TransactionTestCase,override_settings
 from django.utils import timezone
-from shop.access.models import StaffCredential
+from shop.access.models import StaffCredential,AccessEpoch,LocalAccessRecoveryOperation
+from shop.access.recovery import local_recovery_operation
 from shop.adapters.evidence_archive import ArchiveError
 from . import private_packages as packages,fulfilment,checkout,checkout_payment as payment
 from . import support_ledger_tests as fixture
@@ -42,6 +43,80 @@ class PrivatePackageTests(TransactionTestCase):
 
     def download(self,row,token,request=None):
         return packages.download(request or self.customer,self.saved.pk,row.identity,token,self.archive)
+
+    def recover(self,action='quarantine',*,request_id=None,basis_reset=None):
+        return local_recovery_operation(action=action,request_id=request_id or uuid.uuid4(),
+            expected_database=connection.settings_dict['NAME'],basis_reset=basis_reset)
+
+    def stale_package_request(self,kind,*,released=False):
+        row=self.release();token=self.issue(row);dict(self.customer.session)
+        from shop.access.views import verified_identity
+        self.assertIsNotNone(verified_identity(self.customer))
+        reset=uuid.uuid4();self.recover(request_id=reset)
+        if released:self.recover('release',basis_reset=reset)
+        with self.assertRaisesRegex(checkout.CheckoutError,'download_unavailable'):
+            self.issue(row) if kind=='issue' else self.download(row,token)
+        self.assertEqual(SyntheticPackageAccess.objects.count(),1)
+        self.assertIsNone(SyntheticPackageAccess.objects.get().consumed_at)
+        if not released:self.recover('release',basis_reset=reset)
+        from .tests import verified_login
+        verified_login(self.client,self.owner);self.customer.session=self.client.session
+        with self.assertRaisesRegex(checkout.CheckoutError,'download_unavailable'):self.download(row,token)
+        fresh=self.issue(row);self.assertTrue(self.download(row,fresh)[1])
+
+    def test_cached_customer_cannot_issue_after_quarantine(self):
+        self.stale_package_request('issue')
+
+    def test_cached_customer_cannot_issue_after_release(self):
+        self.stale_package_request('issue',released=True)
+
+    def test_cached_customer_cannot_download_after_quarantine(self):
+        self.stale_package_request('download')
+
+    def test_cached_customer_cannot_download_after_release(self):
+        self.stale_package_request('download',released=True)
+
+    def test_selected_restore_blocks_cached_package_access_before_quarantine(self):
+        row=self.release();token=self.issue(row);dict(self.customer.session)
+        epoch=AccessEpoch.objects.get().value
+        with override_settings(LOCAL_RESTORE_ID=uuid.uuid4()):
+            for kind in ('issue','download'):
+                with self.subTest(kind=kind),self.assertRaisesRegex(checkout.CheckoutError,'download_unavailable'):
+                    self.issue(row) if kind=='issue' else self.download(row,token)
+        self.assertEqual(AccessEpoch.objects.get().value,epoch)
+        self.assertEqual(LocalAccessRecoveryOperation.objects.count(),0)
+        self.assertEqual(SyntheticPackageAccess.objects.count(),1)
+        self.assertIsNone(SyntheticPackageAccess.objects.get().consumed_at)
+
+    def package_epoch_lock(self,kind):
+        row=self.release();token=self.issue(row);original=self.archive.recover
+        original_locked=packages.payment.locked;observed=[]
+        def observe(stage):
+            if stage in observed:return
+            def contender():
+                try:
+                    with transaction.atomic():AccessEpoch.objects.select_for_update(nowait=True).get(pk=1)
+                except DatabaseError as error:return getattr(error.__cause__,'sqlstate',None)
+                finally:connections.close_all()
+                return 'unlocked'
+            with ThreadPoolExecutor(max_workers=1) as pool:
+                self.assertEqual(pool.submit(contender).result(timeout=10),'55P03')
+            observed.append(stage)
+        def locked(*args,**kwargs):
+            observe('before-owner')
+            return original_locked(*args,**kwargs)
+        def recover(receipt):
+            observe('archive')
+            return original(receipt)
+        with patch.object(packages.payment,'locked',side_effect=locked),patch.object(self.archive,'recover',side_effect=recover):
+            result=self.issue(row) if kind=='issue' else self.download(row,token)
+        self.assertEqual(observed,['before-owner','archive']);self.assertTrue(result)
+
+    def test_issuance_holds_epoch_before_private_archive_and_resource_work(self):
+        self.package_epoch_lock('issue')
+
+    def test_download_holds_epoch_before_private_archive_and_resource_work(self):
+        self.package_epoch_lock('download')
 
     def test_archive_initial_and_reference_versions_keep_one_entitlement_and_credit(self):
         original=self.saved.snapshot.copy();key=uuid.uuid4()

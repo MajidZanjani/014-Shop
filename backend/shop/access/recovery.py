@@ -24,12 +24,17 @@ def recovery_held():
     epoch=AccessEpoch.objects.filter(pk=1).first()
     return bool(epoch and epoch.quarantined) or restore_startup_pending(epoch)
 
-def current_session_epoch(request):
+def current_session_epoch(request,*,lock=False):
+    # Protected local transactions acquire this before owner/resource locks.
+    # Ordinary authorization remains a read and never initializes an epoch.
+    if lock and (connection.vendor!='postgresql' or not connection.in_atomic_block):return False
     marker=request.session.get(SESSION_EPOCH)
     if not isinstance(marker,str):return False
     try:value=uuid.UUID(marker)
     except ValueError:return False
-    epoch=AccessEpoch.objects.filter(pk=1,value=value,quarantined=False).first()
+    epochs=AccessEpoch.objects.filter(pk=1,value=value,quarantined=False)
+    if lock:epochs=epochs.select_for_update()
+    epoch=epochs.first()
     return epoch is not None and not restore_startup_pending(epoch)
 
 def stamp_session_epoch(sender,request,user,**kwargs):

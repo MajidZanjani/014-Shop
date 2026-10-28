@@ -10,11 +10,11 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — local recovery commit boundary verified and pushed; 13-01 task 5 actual/full acceptance awaits recorded prerequisites.
+**Execution status:** in progress — private package recovery fence verified; 13-01 task 5 actual/full acceptance remains pending.
 
-**Next implementation task:** Bind post-point customer/resource/MFA recovery after authoritative evidence, approved channel/custody procedures and an assigned authorized independent target are supplied; continue concrete independent local fixes if identified. Keep company commercial inputs pending without re-asking promised evidence.
+**Next implementation task:** Reproduce the customer support POST/quarantine overlap in support_views.handle after command parsing and before ledger/follow-up service entry, then fix only confirmed defects. Keep company commercial and actual qualification inputs pending.
 
-The reproduced recovery commit gap is fixed: supported quarantine/release commits before return, and caller atomic/manual transactions reject before changes. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-RECOVERY-COMMIT-PARTIAL.md). Focused102/backend650/5/exact276-file source pass. Earlier startup/staff reset remains covered; prior proxy148/2, frontend137/32 and browser227 retain their documented preceding scopes. Actual customer/resource/MFA reconciliation, custody/runner and full acceptance remain pending; company commercial inputs will be supplied later. Counts1/14 completed phases and11/36 completed phase-plan records are not engineering effort.
+The private package recovery gap is fixed: cached pre-reset requests cannot issue or consume a download, and the epoch locks before owner/resource work through commit. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PACKAGE-RECOVERY-PARTIAL.md). Focused136/backend657/5/exact276-file source pass. Earlier recovery commit/startup/staff reset components remain covered; prior proxy/frontend/browser evidence retains its documented scope. Customer support entry-to-service overlap is the next unimplemented reproduction. Company commercial and actual qualification inputs remain pending. Counts1/14 completed phases and11/36 completed phase-plan records are not engineering effort.
 
 Before every commit reconcile affected current references, publish state.json and run python3 scripts/check_planning.py. Sync commits to origin/main without force. Historical evidence retains its original scope.
 

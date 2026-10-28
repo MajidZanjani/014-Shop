@@ -7,6 +7,7 @@ import uuid
 from django.db import transaction
 from shop.access.models import StaffCredential
 from shop.access.staff_auth import staff_credential
+from shop.access.recovery import current_session_epoch
 from shop.access.views import digest
 from shop.adapters.evidence_archive import manifest
 from shop.payments import synthetic_bank,attempts
@@ -138,10 +139,18 @@ def session_binding(request):
     return digest('package-session',key)
 
 
+def require_customer_epoch(request):
+    # Lock before owner/resource work, matching recovery's epoch-first order.
+    if (not callable(getattr(getattr(request,'session',None),'get',None))
+            or not current_session_epoch(request,lock=True)):
+        fail('download_unavailable',404)
+
+
 def issue(request,checkout_id,identity,artifact,archive):
     synthetic_bank.guard()
     if not isinstance(artifact,str) or len(artifact)>64:fail('invalid_artifact',400)
     with transaction.atomic(durable=True):
+        require_customer_epoch(request)
         payment.locked(request.user,checkout_id)
         package=package_locked(request.user,checkout_id,identity,archive)
         authority_revision=controls.require_open(package.entitlement,archive)
@@ -159,6 +168,7 @@ def download(request,checkout_id,identity,token,archive):
     synthetic_bank.guard()
     if not isinstance(token,str) or re.fullmatch(r'[A-Za-z0-9_-]{43}',token) is None:fail('download_unavailable',404)
     with transaction.atomic(durable=True):
+        require_customer_epoch(request)
         payment.locked(request.user,checkout_id)
         package=package_locked(request.user,checkout_id,identity,archive)
         authority_revision=controls.require_open(package.entitlement,archive)
