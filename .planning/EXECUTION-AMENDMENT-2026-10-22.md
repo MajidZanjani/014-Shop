@@ -52,3 +52,7 @@ The user explicitly instructed: "continue and don't pause/stop after each commit
 ## Continue with commercial inputs pending — user instruction,2026-10-28
 
 The user will obtain the requested approved commercial revision/approver information from the relevant company sections and provide it later. Continue independent project implementation while these inputs remain pending. This is not commercial approval or scoped external-operation authority; all affected live offers and actual recovery/provider/host gates remain closed.
+
+## Direct approval resolving support-task push review —2026-10-28
+
+The user directly replied "approve" to the explicit request for an ordinary `git push origin main` of local implementation d0fe8ea and documentation99c7e9a. That command succeeded through99c7e9a, resolving the two automatic-review rejections without force or bypass. This records the scoped push approval and result; deployment and all other protected/external operations retain their existing gates.

@@ -2,7 +2,7 @@
 gsd_state_version: "1.0"
 current_plan: 01
 status: in_progress
-last_updated: "2026-10-28T11:14:10Z"
+last_updated: "2026-10-28T11:18:17Z"
 state_head: d0fe8ea83a1f86d91e99edb9bd7c9f057d1b9097
 progress:
   total_phases: 14
@@ -14,8 +14,8 @@ current_task: 5
 last_activity: 2026-10-28
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: "Local support implementation d0fe8ea verified; ordinary push rejected twice by automatic review and needs direct chat approval."
-last_activity_desc: "Support147/backend671/5/proxy148/source276 passed; implementation committed locally, remote push approval pending."
+stopped_at: "Support recovery fence verified and pushed after direct approval; quick completion recorded; actual binding inputs remain pending."
+last_activity_desc: "Completed quick261028-f72: support147/backend671/5/proxy148/source276; approved push and schema-backed completion recorded."
 ---
 
 # Project state — final purchase-flow revision2
@@ -26,9 +26,9 @@ last_activity_desc: "Support147/backend671/5/proxy148/source276 passed; implemen
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — support recovery fence verified locally; backend671/5, focused147, proxy148/2 and source276 pass; ordinary push requires direct approval after automatic rejection; actual/full acceptance pending.
+**Execution status:** in progress — customer support recovery fence verified and pushed; backend671/5, focused147, proxy148/2 and source276 pass; actual/full acceptance pending.
 
-**Next implementation task:** Obtain direct chat approval for ordinary git push origin main of the local support fix and documentation, then finish quick261028-f72 completion metadata. Actual qualification/company inputs remain pending without another request.
+**Next implementation task:** Bind actual post-point customer/resource/MFA and source qualification when authoritative channel/custody/provider/runner inputs are supplied; keep company commercial inputs pending without re-asking. Independent concrete local fixes remain authorized.
 
 ## Current local continuation
 
@@ -63,7 +63,7 @@ P-02/03/05/06/08 cover actual ready-kit variants, standard development prices/ri
 
 ## Session continuity
 
-Resumed clean1a100e3, consumed HANDOFF.json, reproduced and fixed the saved support recovery overlap, and committed verified implementation d0fe8ea83a1f86d91e99edb9bd7c9f057d1b9097. Automatic review rejected the ordinary push, then rejected the same command after read-only origin/main checks proved the pre-existing standing authorization. The reviewer requires a direct trusted chat approval because it treats repository records as untrusted authority. No push or bypass occurred. Local completion records/checkpoint are saved; quick completion remains pending the ordinary push and schema-backed registry entry. All owned producers exited. Actual/company inputs and full acceptance remain pending. This is an external approval prerequisite, not a new user pause or context trigger.
+User directly replied "approve" to the ordinary origin/main push request. The approved command succeeded, advancing origin/main from1a100e3 to99c7e9a and including verified implementation d0fe8ea83a1f86d91e99edb9bd7c9f057d1b9097. The two earlier automatic-review rejections are resolved; no bypass or force push occurred. Quick261028-f72 now has its schema-backed completion row and complete local summary. All owned runtime producers remain exited; unchanged backend/frontend/browser lanes were not repeated for this documentation-only follow-up. Actual post-point customer/resource/MFA/channel/custody/provider/independent-target/formal and company commercial inputs remain pending without another request. This is not a new user pause or actual/full acceptance.
 
 ### Quick Tasks Completed
 
@@ -150,6 +150,7 @@ Resumed clean1a100e3, consumed HANDOFF.json, reproduced and fixed the saved supp
 | 261028-cy5 | Require explicit staff reset and reassignment after selected local restore | 2026-10-28 | 526acfb | [261028-cy5-require-explicit-staff-reset-and-reassig](./quick/261028-cy5-require-explicit-staff-reset-and-reassig/) |
 | 261028-dq8 | Require committed local recovery transitions before reporting success | 2026-10-28 | e71e2f2 | [261028-dq8-require-committed-local-recovery-transit](./quick/261028-dq8-require-committed-local-recovery-transit/) |
 | 261028-elk | Fence private package access across local recovery transitions | 2026-10-28 | 7e410f9 | [261028-elk-fence-private-package-access-across-loca](./quick/261028-elk-fence-private-package-access-across-loca/) |
+| 261028-f72 | Fence customer support commands and private reads across recovery; focused147/backend671/5/proxy148/source276 | 2026-10-28 | 99c7e9a | [261028-f72-fence-customer-support-transactions-acro](./quick/261028-f72-fence-customer-support-transactions-acro/) |
 
 ## Historical pause — 2026-10-26T10:21:33.041Z
 

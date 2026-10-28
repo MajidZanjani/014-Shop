@@ -10,9 +10,9 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — support recovery fence verified locally; backend671/5, focused147, proxy148/2 and source276 pass; ordinary push requires direct approval after automatic rejection; actual/full acceptance pending.
+**Execution status:** in progress — customer support recovery fence verified and pushed; backend671/5, focused147, proxy148/2 and source276 pass; actual/full acceptance pending.
 
-**Next implementation task:** Obtain direct chat approval for ordinary git push origin main of the local support fix and documentation, then finish quick261028-f72 completion metadata. Actual qualification/company inputs remain pending without another request.
+**Next implementation task:** Bind actual post-point customer/resource/MFA and source qualification when authoritative channel/custody/provider/runner inputs are supplied; keep company commercial inputs pending without re-asking. Independent concrete local fixes remain authorized.
 
 Customer support commands and both private reads now lock the originating customer epoch before owner/resource work. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-SUPPORT-RECOVERY-PARTIAL.md). Original7-test/14-failure HTTP baseline, fixed focused147/59.780s, backend671/5/214.355s (outer215.913s), supported demo/proxy148/2 aliases and exact276-file source pass. Earlier package/commit/startup/staff-reset evidence retains its scope. Actual/company inputs remain pending.
 
