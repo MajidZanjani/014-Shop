@@ -2,14 +2,14 @@
 from datetime import timedelta
 import tempfile
 from urllib.parse import urlencode
-from django.test import Client,TestCase,override_settings
+from django.test import Client,TransactionTestCase,override_settings
 from django.utils import timezone
 from . import tests as access_tests
 from .models import CustomerIdentity,VerificationChallenge
 
 PATH='/purchase/access/'
 
-class CustomerPortalTests(TestCase):
+class CustomerPortalTests(TransactionTestCase):
     def setUp(self):
         self.directory=tempfile.TemporaryDirectory();self.addCleanup(self.directory.cleanup)
         config=override_settings(LOCAL_CAPTURE_ROOT=self.directory.name)

@@ -19,6 +19,7 @@ from shop.catalog.presentation import CSS
 from .models import StaffCredential, StaffLoginThrottle, StaffChallenge
 from .views import digest, reply, read_json
 from .recovery import current_session_epoch,recovery_held
+from .effects import local_effect,RecoveryEffectError
 
 LIFETIME=900
 RECENT=300
@@ -104,6 +105,12 @@ def password_login(request):
         value=payload(request,{'username','password'})
         if any(not isinstance(value[k],str) or not 1<=len(value[k])<=150 for k in value):raise ValueError('input')
     except (ValueError,TypeError,UnicodeError,RecursionError):return failure(request,'invalid_request',400)
+    try:return _password_login_admitted(request,value)
+    except RecoveryEffectError:return failure(request,'access_recovery_pending',503)
+
+
+@local_effect('staff-password',require_current_epoch=True)
+def _password_login_admitted(request,value):
     now=timezone.now()
     with transaction.atomic():
         throttle,_=StaffLoginThrottle.objects.get_or_create(identity_digest=digest('staff-login',value['username']),defaults={'window_start':now})
@@ -143,6 +150,12 @@ def verify(request):
         binding=request.session.get('shop_staff_binding')
         if not isinstance(binding,str) or not binding:raise ValueError('binding')
     except (ValueError,TypeError,UnicodeError,RecursionError):return failure(request,'verification_failed',400)
+    try:return _verify_admitted(request,code,identity,binding)
+    except RecoveryEffectError:return failure(request,'access_recovery_pending',503)
+
+
+@local_effect('staff-verify',require_current_epoch=True)
+def _verify_admitted(request,code,identity,binding):
     with transaction.atomic():
         # Lock credential first, matching local operator reset/revocation.
         candidate=StaffChallenge.objects.filter(pk=identity).first()

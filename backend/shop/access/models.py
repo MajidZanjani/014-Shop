@@ -43,7 +43,8 @@ class LocalAccessRecoveryOperation(models.Model):
 
 LOCAL_EFFECT_KINDS=('worker-run','probe-claim','probe-bank','statement-run','statement-claim',
     'statement-capture','notification-run','notification-claim','notification-process',
-    'payment-dispatch','finance-dispatch','bank-start','bank-mutation')
+    'payment-dispatch','finance-dispatch','bank-start','bank-mutation',
+    'customer-code','customer-verify','staff-password','staff-verify')
 
 class LocalEffectAdmission(models.Model):
     """A local call scope, never a financial result or permission to retry."""

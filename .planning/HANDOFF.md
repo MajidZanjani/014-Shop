@@ -4,15 +4,15 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — local recovery effect commit d3ea121 verified and pushed; backend618/5, focused112, worker24/6, adapters6/3, proxy148/2 and source270 pass; actual/full acceptance pending.
+**Execution status:** in progress — local recovery effects and authentication overlap verified; backend624/5, focused63, proxy148/2 and source272 pass; actual/full acceptance pending.
 
-**Next implementation task:** Reproduce and fence customer/staff sign-in or challenge capture that overlaps quarantine/release; extend durable local admission as needed, preserve fresh verification and keep commercial/actual inputs pending.
+**Next implementation task:** Review and reproduce public customer-interface handling of explicit recovery503 responses; clear private state when required while preserving ordinary offline and uncertain-write behavior. Keep commercial inputs pending.
 
 **Recorded implementation:** d3ea12155b89d77e4823a79be809e70cbf94fcd8
 
-Local recovery now blocks new worker/provider admissions and reports unfinished call scopes; synthetic release refuses unfinished records without expiry or automatic clearing. Read-only typed bank lookup and internal attempt reconciliation remain available, while uncertain claims stay lookup-only. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-RECOVERY-EFFECTS-PARTIAL.md). Actual isolation/reconciliation/off-host recovery and safe reopening remain pending. Next concrete local risk is sign-in/challenge work overlapping quarantine and release; commercial inputs stay pending by user instruction.
+Local customer/staff authentication and code capture now participate in durable recovery admission. The reproduced old-code login after quarantine/release is denied; active authentication blocks synthetic release, origin-epoch changes return fixed private503 and fresh customer/both-staff-factor recovery passes. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-AUTHENTICATION-RECOVERY-PARTIAL.md). Existing worker/provider admission and lookup-only uncertainty remain. Actual recovery/channel/provider/host/full acceptance stays pending. Continue with the public-interface recovery503 contract; commercial inputs remain pending by user instruction.
 
-GSD resume consumed the one-shot HANDOFF.json from9bff859. All owned qualification sessions exited. Shared /tmp remains full and untouched; use owned TMPDIR and narrow justified execution. Continue across commits/pushes under standing authorization.
+All owned local qualification processes exited. Retain .scratch/auth-recovery-* logs and frozen cache wrappers. Shared /tmp remains full and untouched; use owned TMPDIR and narrow justified execution. Continue across commits/pushes under standing authorization.
 
 [Final purchase-flow revision2](PURCHASE-FLOW-AMENDMENT.md) remains current authority. Retained Phase10 local work covers complete-cart synthetic grants/staged delivery and the implemented local support ledger; earlier phases are not implicitly complete. [Evidence](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md). One captured cart payment yields an archived deterministic grant plan, one licence record per IP line and exactly36000 integer support seconds/package once, non-expiring. Initial delivery leaves promised later reference design outstanding; later completion never adds another entitlement/grant. Ready-kit/support-only cases stay scoped. Archive readback precedes all simulated records/effects; uncertain funding cannot provision. No actual keys/files/rights or spendable support.
 

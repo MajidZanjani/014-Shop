@@ -2,7 +2,7 @@
 gsd_state_version: "1.0"
 current_plan: 01
 status: in_progress
-last_updated: "2026-10-28T07:40:39.341Z"
+last_updated: "2026-10-28T08:01:13Z"
 state_head: d3ea12155b89d77e4823a79be809e70cbf94fcd8
 progress:
   total_phases: 14
@@ -14,8 +14,8 @@ current_task: 5
 last_activity: 2026-10-28
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Verified local effect admission/drain; continuing to sign-in/quarantine overlap.
-last_activity_desc: "Recovery effects verified: focused112, backend618/5, worker24/6, adapters6/3, proxy148/2, source270."
+stopped_at: Authentication/quarantine overlap verified; continuing to public recovery-response handling.
+last_activity_desc: "Authentication recovery: baseline reproduced; focused63, backend624/5, proxy148/2 and source272 pass."
 ---
 
 # Project state — final purchase-flow revision2
@@ -26,13 +26,13 @@ last_activity_desc: "Recovery effects verified: focused112, backend618/5, worker
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — local recovery effect commit d3ea121 verified and pushed; backend618/5, focused112, worker24/6, adapters6/3, proxy148/2 and source270 pass; actual/full acceptance pending.
+**Execution status:** in progress — local recovery effects and authentication overlap verified; backend624/5, focused63, proxy148/2 and source272 pass; actual/full acceptance pending.
 
-**Next implementation task:** Reproduce and fence customer/staff sign-in or challenge capture that overlaps quarantine/release; extend durable local admission as needed, preserve fresh verification and keep commercial/actual inputs pending.
+**Next implementation task:** Review and reproduce public customer-interface handling of explicit recovery503 responses; clear private state when required while preserving ordinary offline and uncertain-write behavior. Keep commercial inputs pending.
 
 ## Current local continuation
 
-Local recovery now blocks new worker/provider admissions and reports unfinished call scopes; synthetic release refuses unfinished records without expiry or automatic clearing. Read-only typed bank lookup and internal attempt reconciliation remain available, while uncertain claims stay lookup-only. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-RECOVERY-EFFECTS-PARTIAL.md). Actual isolation/reconciliation/off-host recovery and safe reopening remain pending. Next concrete local risk is sign-in/challenge work overlapping quarantine and release; commercial inputs stay pending by user instruction.
+Local customer/staff authentication and code capture now participate in durable recovery admission. The reproduced old-code login after quarantine/release is denied; active authentication blocks synthetic release, origin-epoch changes return fixed private503 and fresh customer/both-staff-factor recovery passes. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-AUTHENTICATION-RECOVERY-PARTIAL.md). Existing worker/provider admission and lookup-only uncertainty remain. Actual recovery/channel/provider/host/full acceptance stays pending. Continue with the public-interface recovery503 contract; commercial inputs remain pending by user instruction.
 
 ## Preserved implementation/evidence
 

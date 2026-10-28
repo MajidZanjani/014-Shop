@@ -694,6 +694,11 @@
       "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
     },
     {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-AUTHENTICATION-RECOVERY-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-AUTHENTICATION-TEXT-PARTIAL.md",
       "role": "historical-evidence",
       "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
@@ -1445,6 +1450,16 @@
     },
     {
       "path": ".planning/quick/261028-a3m-implement-local-recovery-effect-admissio/261028-a3m-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261028-aq1-fence-authentication-scopes-across-local/261028-aq1-PLAN.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261028-aq1-fence-authentication-scopes-across-local/261028-aq1-SUMMARY.md",
       "role": "historical-evidence",
       "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
     },

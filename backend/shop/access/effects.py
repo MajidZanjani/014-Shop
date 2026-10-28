@@ -44,11 +44,12 @@ def _finish(identity,status):
             raise RecoveryEffectError('effect_exit_conflict')
 
 
-def local_effect(kind,*,guard=None,error=RecoveryEffectError,held_result=_RAISE):
+def local_effect(kind,*,guard=None,error=RecoveryEffectError,held_result=_RAISE,require_current_epoch=False):
     """Admit before the existing claim/mutation; record exit after its scope ends.
 
     Nested boundaries admit separately and therefore recheck a new quarantine.
     A denial after a one-way claim leaves that claim uncertain, never retryable.
+    Authentication additionally requires its original unheld epoch on return.
     """
     if kind not in LOCAL_EFFECT_KINDS:raise RecoveryEffectError('invalid_effect_kind')
     def decorate(function):
@@ -61,7 +62,10 @@ def local_effect(kind,*,guard=None,error=RecoveryEffectError,held_result=_RAISE)
                 raise error(str(failure)) from None
             status='raised'
             try:
+                epoch=LocalEffectAdmission.objects.values_list('epoch',flat=True).get(pk=identity) if require_current_epoch else None
                 result=function(*args,**kwargs)
+                if require_current_epoch and not AccessEpoch.objects.filter(pk=1,value=epoch,quarantined=False).exists():
+                    raise RecoveryEffectError('recovery_effects_pending')
                 status='returned'
                 return result
             finally:

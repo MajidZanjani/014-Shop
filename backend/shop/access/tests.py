@@ -11,7 +11,7 @@ from unittest.mock import patch
 import uuid
 from django.contrib.auth import get_user_model
 from django.db import connections
-from django.test import Client,TestCase,TransactionTestCase,override_settings
+from django.test import Client,TransactionTestCase,override_settings
 from django.utils import timezone
 from shop.catalog.models import ConfigurationDraft
 from shop.catalog.rules import CATALOG
@@ -42,7 +42,7 @@ def request_capture(client,root,email='engineer@synthetic.invalid'):
     assert response.status_code==200,response.content
     return captured_code(root,before)
 
-class VerificationTests(TestCase):
+class VerificationTests(TransactionTestCase):
     def setUp(self):
         self.directory=tempfile.TemporaryDirectory()
         self.addCleanup(self.directory.cleanup)

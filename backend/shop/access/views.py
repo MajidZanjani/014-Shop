@@ -16,6 +16,7 @@ from shop.adapters.capture_mail import CaptureMail
 from shop.adapters.local_storage import LocalStorage
 from shop.adapters.ports import MailRequest
 from .models import CustomerIdentity,VerificationChallenge,VerificationThrottle
+from .effects import local_effect,RecoveryEffectError
 
 WINDOW=timedelta(minutes=10)
 MAX_ATTEMPTS=5
@@ -68,6 +69,11 @@ def start_verification(request,email):
     if not local_enabled(): return {'error':'unavailable'},404
     from .recovery import recovery_held
     if recovery_held():return {'error':'access_recovery_pending'},503
+    try:return _start_verification_admitted(request,email)
+    except RecoveryEffectError:return {'error':'access_recovery_pending'},503
+
+@local_effect('customer-code',require_current_epoch=True)
+def _start_verification_admitted(request,email):
     try:
         if not isinstance(email,str):raise ValueError('email')
         email=email.strip().lower()
@@ -116,6 +122,11 @@ def complete_verification(request,code):
     if not local_enabled():return {'error':'unavailable'},404
     from .recovery import recovery_held
     if recovery_held():return {'error':'access_recovery_pending'},503
+    try:return _complete_verification_admitted(request,code)
+    except RecoveryEffectError:return {'error':'access_recovery_pending'},503
+
+@local_effect('customer-verify',require_current_epoch=True)
+def _complete_verification_admitted(request,code):
     try:
         if not isinstance(code,str) or not 1<=len(code)<=128:raise ValueError('code')
         identity=uuid.UUID(request.session.get('shop_challenge',''))

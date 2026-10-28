@@ -9,6 +9,7 @@ from .recovery import recovery_held
 
 PATH='/purchase/access/'
 ERRORS={
+    'access_recovery_pending':'Customer access is temporarily paused for recovery review.',
     'synthetic_email_required':'Enter a synthetic address ending in .invalid.',
     'verification_failed':'The code could not be verified. Request a new code if needed.',
     'request_limit':'Too many requests. Wait ten minutes before trying again.',
