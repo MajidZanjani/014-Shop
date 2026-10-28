@@ -10,9 +10,9 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — quick261028-iw9 complete locally (focused126, backend761/5, proxy148/2, source276); actual/full acceptance pending.
+**Execution status:** paused — proactive context checkpoint after two verified quotation recovery batches; backend761/5, focused126, proxy148/2 and source276 pass; actual/full acceptance pending.
 
-**Next implementation task:** Start a new GSD quick task and reproduce business-draft save/private reads and quotation business-attachment recovery boundaries at normal form/access aliases before product edits. Company commercial and actual inputs remain pending without another request.
+**Next implementation task:** Clear the session, run $gsd-resume-work, restore13-01 task5 and start a new GSD quick task to reproduce business-draft save/private reads and quotation business-attachment recovery overlap before product edits. Company commercial and actual inputs remain pending without another request.
 
 Native quotation history/cursor/timeline/document-preview reads now lock their originating epoch through bounded projection/rendering. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-QUOTATION-PAGES-RECOVERY-PARTIAL.md). Original9/9 controls, focused126/27.980s, backend761/5/234.820s, supported proxy148/2 and exact276-file source pass. Prior quotation capture/cart/draft/checkout/support evidence retains scope; actual/company inputs remain pending.
 
