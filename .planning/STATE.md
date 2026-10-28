@@ -1,9 +1,10 @@
 ---
 gsd_state_version: "1.0"
 current_plan: 01
-status: in_progress
-last_updated: "2026-10-28T08:28:58Z"
-state_head: 0f4a063ff15883e3b7e58af22fd02a3be6591312
+status: paused
+paused_at: "2026-10-28T08:35:57.406Z"
+last_updated: "2026-10-28T08:35:57.406Z"
+state_head: db56df35b1f979f8bc21d9a686712c9d419b5fd9
 progress:
   total_phases: 14
   completed_phases: 1
@@ -14,7 +15,7 @@ current_task: 5
 last_activity: 2026-10-28
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Verified public recovery response and late-rebase fence; startup-quarantine design next.
+stopped_at: Context-pressure checkpoint after three verified recovery slices; exact percentage unavailable.
 last_activity_desc: "Recovery UI: original3/intermediate2 failures reproduced; backend63, frontend137/32, browser227, source272 pass."
 ---
 
@@ -26,9 +27,9 @@ last_activity_desc: "Recovery UI: original3/intermediate2 failures reproduced; b
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — local recovery effects/authentication/UI verified; focused backend63, frontend137/32, browser227 and source272 pass; actual/full acceptance pending.
+**Execution status:** paused — context-pressure checkpoint after db56df3; current backend63, frontend137/32, browser227 and source272 verified; exact context percentage unavailable; actual/full acceptance pending.
 
-**Next implementation task:** Design local restore-startup quarantine before any access/effect when a restored database still contains an unheld epoch; preserve read-only bank reconciliation and keep commercial/actual qualification inputs pending.
+**Next implementation task:** Run $gsd-resume-work; design local restore-startup quarantine before access/effects when the restored database epoch is unheld. Review config/base.py, synthetic.py, production.py and access recovery/effects; preserve read-only lookup and keep commercial/actual inputs pending.
 
 ## Current local continuation
 
@@ -145,6 +146,7 @@ User instructed adopting the complete final26October revision2 and replacing sta
 | 261028-8h5 | Implement and verify local recovery access quarantine, challenge invalidation and exact retry fencing; actual recovery remains pending | 2026-10-28 | b17dc8a | [261028-8h5-implement-local-recovery-access-invalida](./quick/261028-8h5-implement-local-recovery-access-invalida/) |
 | 261028-a3m | Implement local recovery effect admission and drain reporting; actual recovery remains pending | 2026-10-28 | d3ea121 | [261028-a3m-implement-local-recovery-effect-admissio](./quick/261028-a3m-implement-local-recovery-effect-admissio/) |
 | 261028-aq1 | Fence customer and staff authentication across local recovery quarantine; actual recovery remains pending | 2026-10-28 | 0f4a063 | [261028-aq1-fence-authentication-scopes-across-local](./quick/261028-aq1-fence-authentication-scopes-across-local/) |
+| 261028-b7f | Handle explicit recovery responses and fence late private/session bodies without changing ordinary uncertainty | 2026-10-28 | db56df3 | [261028-b7f-handle-explicit-recovery-holds-in-the-pu](./quick/261028-b7f-handle-explicit-recovery-holds-in-the-pu/) |
 
 ## Historical pause — 2026-10-26T10:21:33.041Z
 

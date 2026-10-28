@@ -10,9 +10,9 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — local recovery effects/authentication/UI verified; focused backend63, frontend137/32, browser227 and source272 pass; actual/full acceptance pending.
+**Execution status:** paused — context-pressure checkpoint after db56df3; current backend63, frontend137/32, browser227 and source272 verified; exact context percentage unavailable; actual/full acceptance pending.
 
-**Next implementation task:** Design local restore-startup quarantine before any access/effect when a restored database still contains an unheld epoch; preserve read-only bank reconciliation and keep commercial/actual qualification inputs pending.
+**Next implementation task:** Run $gsd-resume-work; design local restore-startup quarantine before access/effects when the restored database epoch is unheld. Review config/base.py, synthetic.py, production.py and access recovery/effects; preserve read-only lookup and keep commercial/actual inputs pending.
 
 Three local recovery slices are verified: durable worker/provider admission/drain, active-authentication origin-epoch fencing, and explicit recovery-response privacy cleanup with late-response generation checks. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-RECOVERY-PARTIAL.md). Current focused backend63, frontend137/32, fresh browser227 and exact272-file source pass; backend624/5 retains its pre-header scope. Actual startup/traffic/egress isolation, external reconciliation/MFA recovery and off-host/full acceptance remain pending. Next independent design is restore-startup quarantine for an unheld restored epoch. Commercial inputs remain pending by user instruction. Counts1/14 completed phases and11/36 completed phase-plan records are not engineering effort.
 

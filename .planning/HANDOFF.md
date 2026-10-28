@@ -4,15 +4,15 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — local recovery effects/authentication/UI verified; focused backend63, frontend137/32, browser227 and source272 pass; actual/full acceptance pending.
+**Execution status:** paused — context-pressure checkpoint after db56df3; current backend63, frontend137/32, browser227 and source272 verified; exact context percentage unavailable; actual/full acceptance pending.
 
-**Next implementation task:** Design local restore-startup quarantine before any access/effect when a restored database still contains an unheld epoch; preserve read-only bank reconciliation and keep commercial/actual qualification inputs pending.
+**Next implementation task:** Run $gsd-resume-work; design local restore-startup quarantine before access/effects when the restored database epoch is unheld. Review config/base.py, synthetic.py, production.py and access recovery/effects; preserve read-only lookup and keep commercial/actual inputs pending.
 
-**Recorded implementation:** 0f4a063ff15883e3b7e58af22fd02a3be6591312
+**Recorded implementation:** db56df35b1f979f8bc21d9a686712c9d419b5fd9
 
 Three local recovery slices are verified: durable worker/provider admission/drain, active-authentication origin-epoch fencing, and explicit recovery-response privacy cleanup with late-response generation checks. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-RECOVERY-PARTIAL.md). Current focused backend63, frontend137/32, fresh browser227 and exact272-file source pass; backend624/5 retains its pre-header scope. Actual startup/traffic/egress isolation, external reconciliation/MFA recovery and off-host/full acceptance remain pending. Next independent design is restore-startup quarantine for an unheld restored epoch. Commercial inputs remain pending by user instruction.
 
-All owned producers exited. Retain .scratch/public-recovery-* logs, exact frontend graph and frozen wheel-cache wrappers. Shared /tmp remains full and untouched; use owned TMPDIR and narrow justified execution. Ordinary non-force push after every commit remains authorized.
+Context pressure is apparent after sustained implementation; no exact session percentage is available. The standing AGENTS.md checkpoint instruction authorizes this handoff. HANDOFF.json and the phase checkpoint preserve the exact next action. All owned producers exited. Retain .scratch/public-recovery-* logs, exact frontend graph and frozen wheel-cache wrappers. Shared /tmp remains full and untouched; use owned TMPDIR and narrow justified execution. Ordinary non-force push after every commit remains authorized.
 
 [Final purchase-flow revision2](PURCHASE-FLOW-AMENDMENT.md) remains current authority. Retained Phase10 local work covers complete-cart synthetic grants/staged delivery and the implemented local support ledger; earlier phases are not implicitly complete. [Evidence](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md). One captured cart payment yields an archived deterministic grant plan, one licence record per IP line and exactly36000 integer support seconds/package once, non-expiring. Initial delivery leaves promised later reference design outstanding; later completion never adds another entitlement/grant. Ready-kit/support-only cases stay scoped. Archive readback precedes all simulated records/effects; uncertain funding cannot provision. No actual keys/files/rights or spendable support.
 

@@ -1,5 +1,6 @@
 ---
 status: complete
+implementation_commit: db56df35b1f979f8bc21d9a686712c9d419b5fd9
 requirements: [OPS-02, AUTH-01, UAT-03]
 evidence_class: local-synthetic
 actual_recovery_qualified: false
