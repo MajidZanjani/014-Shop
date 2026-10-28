@@ -4,15 +4,15 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — customer support recovery fence verified locally; focused147, backend671/5, proxy148/2 and source276 pass; actual/full acceptance pending.
+**Execution status:** in progress — support recovery fence verified locally; backend671/5, focused147, proxy148/2 and source276 pass; ordinary push requires direct approval after automatic rejection; actual/full acceptance pending.
 
-**Next implementation task:** Bind actual post-point customer/resource/MFA and source qualification when authoritative channel/custody/provider/runner inputs are supplied; keep company commercial inputs pending without re-asking. Independent concrete local fixes remain authorized.
+**Next implementation task:** Obtain direct chat approval for ordinary git push origin main of the local support fix and documentation, then finish quick261028-f72 completion metadata. Actual qualification/company inputs remain pending without another request.
 
-**Recorded implementation:** 7e410f97160abf2b92cb9ce25fa1b392928141a2
+**Recorded implementation:** d0fe8ea83a1f86d91e99edb9bd7c9f057d1b9097
 
 Customer support commands and both private reads now lock the originating customer epoch before owner/resource work. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-SUPPORT-RECOVERY-PARTIAL.md). Original7-test/14-failure HTTP baseline, fixed focused147/59.780s, backend671/5/214.355s (outer215.913s), supported demo/proxy148/2 aliases and exact276-file source pass. Earlier package/commit/startup/staff-reset evidence retains its scope. Actual/company inputs remain pending.
 
-Explicit resume restored clean1a100e3; the one-shot HANDOFF.json was consumed. Quick261028-f72 resolves the reproduced support boundary with focused147/backend671/5/proxy148/source276 local evidence. The phase checkpoint carries current position and remaining actual gates. Ordinary non-force push after each commit remains authorized.
+Explicit resume restored clean1a100e3; the one-shot HANDOFF.json was consumed. Quick261028-f72 resolves the reproduced support boundary with focused147/backend671/5/proxy148/source276 local evidence. Implementation d0fe8ea is committed locally. Automatic review rejected the ordinary push twice and now requires direct chat approval, treating the pre-existing standing repository authorization as untrusted. No push or bypass occurred. The phase checkpoint preserves the exact remaining action and actual gates.
 
 [Final purchase-flow revision2](PURCHASE-FLOW-AMENDMENT.md) remains current authority. Retained Phase10 local work covers complete-cart synthetic grants/staged delivery and the implemented local support ledger; earlier phases are not implicitly complete. [Evidence](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md). One captured cart payment yields an archived deterministic grant plan, one licence record per IP line and exactly36000 integer support seconds/package once, non-expiring. Initial delivery leaves promised later reference design outstanding; later completion never adds another entitlement/grant. Ready-kit/support-only cases stay scoped. Archive readback precedes all simulated records/effects; uncertain funding cannot provision. No actual keys/files/rights or spendable support.
 
