@@ -1,0 +1,110 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-10-28T12:11:59.251Z",
+  "phase": "13",
+  "phase_name": "Purchase-flow, fulfilment and release acceptance",
+  "phase_dir": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance",
+  "plan": 1,
+  "task": 5,
+  "total_tasks": 5,
+  "status": "paused",
+  "pause_reason": "context_pressure",
+  "context_usage_percentage": null,
+  "implementation_commit": "2e373a50faccc62a587cb4577452eda1ae26f651",
+  "pre_pause_tip": "36cc4c6e23c6f80eb34942bf764163e1ca2b8797",
+  "completed_tasks": [
+    {
+      "id": "261028-f72",
+      "name": "Customer support recovery fence",
+      "status": "done",
+      "commit": "d0fe8ea",
+      "progress": "focused147/backend671/5/proxy148/source276"
+    },
+    {
+      "id": "261028-fy8",
+      "name": "Customer checkout/dispatch/fulfilment recovery fence",
+      "status": "done",
+      "commit": "2e373a50faccc62a587cb4577452eda1ae26f651",
+      "progress": "focused174/backend693/5/proxy148/source276; completion36cc4c6 pushed"
+    },
+    {
+      "id": 5,
+      "name": "Phase13 integrated/full source acceptance",
+      "status": "in_progress",
+      "progress": "Current local batch complete; actual qualification pending"
+    }
+  ],
+  "remaining_tasks": [
+    {
+      "id": "cart-recovery-reproduction",
+      "name": "Reproduce normal customer cart POST/quarantine overlap before store_cart",
+      "status": "not_started"
+    },
+    {
+      "id": 5,
+      "name": "Bind actual post-point customer/resource/MFA and complete source qualification when scoped inputs arrive",
+      "status": "not_started"
+    }
+  ],
+  "blockers": [
+    {
+      "description": "Actual channel/custody/revocation/MFA/provider/independent-target/formal inputs pending",
+      "type": "external",
+      "workaround": "Keep affected actual scopes closed; independent cart reproduction can proceed"
+    },
+    {
+      "description": "Company commercial revisions/approver evidence pending",
+      "type": "human_action",
+      "workaround": "User will provide later; do not re-ask"
+    },
+    {
+      "description": "Shared /tmp full prevents ordinary sandbox startup",
+      "type": "technical",
+      "workaround": "Project-owned .scratch/auth-unicode-tmp and narrow justified execution; no shared cleanup"
+    }
+  ],
+  "async_jobs": [],
+  "human_actions_pending": [
+    {
+      "action": "Provide company commercial revision/approver information when available",
+      "context": "Promised by user; does not block independent local work",
+      "blocking": false
+    },
+    {
+      "action": "Supply authoritative actual recovery/channel/custody/revocation/MFA evidence and assigned independent target",
+      "context": "Required for actual qualification only",
+      "blocking": true
+    }
+  ],
+  "decisions": [
+    {
+      "decision": "Preserve proactive context checkpoint after verified/pushed local batches",
+      "rationale": "User AGENTS.md rule; exact percentage unavailable and no90% claim",
+      "phase": "13"
+    },
+    {
+      "decision": "Reproduce cart parsing-to-store recovery gap next",
+      "rationale": "Concrete source observation; no reproduced cart defect/design yet",
+      "phase": "13"
+    },
+    {
+      "decision": "Retain epoch-before-owner/resource ordering and origin-bound dispatch admission",
+      "rationale": "Verified PostgreSQL lock probes and retained one-way/lookup-only semantics",
+      "phase": "13"
+    }
+  ],
+  "uncommitted_files": [
+    " M .planning/HANDOFF.md",
+    " M .planning/PROJECT.md",
+    " M .planning/PURCHASE-FLOW-RECONCILIATION.json",
+    " M .planning/ROADMAP.md",
+    " M .planning/STATE.md",
+    " M .planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/.continue-here.md",
+    " M .planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-01-PLAN.md",
+    " M .planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-QUALIFICATION-REGISTER.md",
+    " M .planning/state.json",
+    "?? .planning/HANDOFF.json"
+  ],
+  "next_action": "Clear the session, run $gsd-resume-work, restore13-01 task5 and reproduce the normal cart POST/quarantine overlap before store_cart. Keep company commercial and actual qualification inputs pending without re-asking.",
+  "context_notes": "Runtime implementation2e373a5 and completion36cc4c6 are pushed; core693/5/focused174/proxy148/source276 pass. Cart review is only a source observation, not reproduced/designed/fixed. No new product edits/tests this continuation. All owned producers exited; no async jobs or phase SUMMARY placeholders. uncommitted_files will be measured before the checkpoint commit and metadata committed afterward. Compare current refs for any checkpoint push; do not create a recursive push-status commit chain. Exact context percentage unavailable."
+}

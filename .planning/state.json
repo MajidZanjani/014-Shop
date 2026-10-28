@@ -75,9 +75,9 @@
     }
   ],
   "next": {
-    "command": "$gsd-progress --next",
-    "label": "Advance to the next step",
-    "reason": "Phase 13 of 14 · 7% · executing"
+    "command": "$gsd-resume-work",
+    "label": "Resume work",
+    "reason": "Work is paused — pick up where you left off"
   },
-  "updated_at": "2026-10-28T11:49:21.027Z"
+  "updated_at": "2026-10-28T12:11:59.318Z"
 }

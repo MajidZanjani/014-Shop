@@ -4,15 +4,15 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — customer checkout/payment/fulfilment recovery fence verified locally; focused174, backend693/5, proxy148/2 and source276 pass; actual/full acceptance pending.
+**Execution status:** paused — proactive context checkpoint after verified checkout recovery fence; focused174, backend693/5, proxy148/2 and source276 pass; cart recovery reproduction and actual/full acceptance pending.
 
-**Next implementation task:** Push any unpushed quick261028-fy8 commits with direct authorization, then continue actual customer/resource/MFA qualification when its channel/custody/provider/runner inputs arrive. Keep company commercial inputs pending without re-asking.
+**Next implementation task:** Clear the session, run $gsd-resume-work, restore13-01 task5 and reproduce the normal cart POST/quarantine overlap before store_cart. Keep company commercial and actual qualification inputs pending without re-asking.
 
 **Recorded implementation:** 2e373a50faccc62a587cb4577452eda1ae26f651
 
 Customer checkout acceptance, dispatch and grant/stage commits now require their originating customer epoch; prepared state cannot adopt a released epoch. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-CHECKOUT-RECOVERY-PARTIAL.md). Original22-test/36-failure control, fixed focused174/53.986s, backend693/5/224.151s (outer225.773s), supported demo/proxy148/2 and exact276-file source pass. Prior support/package/recovery components retain their documented scope; actual/company inputs remain pending.
 
-User continued after synchronized81c4992. Quick261028-fy8 is complete locally in implementation 2e373a50faccc62a587cb4577452eda1ae26f651 with focused174/backend693/5/proxy148/source276 and schema-backed completion records. All owned producers exited. Check local/remote refs for synchronization: automatic review rejected an initial ordinary push and unpushed task commits require their actual direct approval. Once synchronized, proceed to the finite actual/company prerequisites; no recursive push-status documentation commit is required.
+Proactive context handoff after synchronized 36cc4c6e23c6f80eb34942bf764163e1ca2b8797. Exact context percentage is unavailable; no measured90% or automatic monitoring is claimed. Quick261028-fy8 and261028-f72 are complete/pushed for their local scope. HANDOFF.json and the phase checkpoint preserve the unimplemented cart command-to-store recovery reproduction and all actual/company prerequisites. No new product edit, test run or actual qualification is inferred.
 
 [Final purchase-flow revision2](PURCHASE-FLOW-AMENDMENT.md) remains current authority. Retained Phase10 local work covers complete-cart synthetic grants/staged delivery and the implemented local support ledger; earlier phases are not implicitly complete. [Evidence](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md). One captured cart payment yields an archived deterministic grant plan, one licence record per IP line and exactly36000 integer support seconds/package once, non-expiring. Initial delivery leaves promised later reference design outstanding; later completion never adds another entitlement/grant. Ready-kit/support-only cases stay scoped. Archive readback precedes all simulated records/effects; uncertain funding cannot provision. No actual keys/files/rights or spendable support.
 
