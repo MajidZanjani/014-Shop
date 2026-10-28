@@ -1,5 +1,6 @@
 ---
 status: complete
+implementation_commit: d3ea12155b89d77e4823a79be809e70cbf94fcd8
 requirements: [OPS-02, PAY-03, BANK-03, UAT-03]
 evidence_class: local-synthetic
 actual_recovery_qualified: false

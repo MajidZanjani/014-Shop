@@ -4,11 +4,11 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — local recovery access and effect admission/drain verified; backend618/5, focused112, worker24/6, adapters6/3, proxy148/2 and source270 pass; actual/full acceptance pending.
+**Execution status:** in progress — local recovery effect commit d3ea121 verified and pushed; backend618/5, focused112, worker24/6, adapters6/3, proxy148/2 and source270 pass; actual/full acceptance pending.
 
 **Next implementation task:** Reproduce and fence customer/staff sign-in or challenge capture that overlaps quarantine/release; extend durable local admission as needed, preserve fresh verification and keep commercial/actual inputs pending.
 
-**Recorded implementation:** b17dc8a8eaca900a8bc825734fe9f9beb7d0cafc
+**Recorded implementation:** d3ea12155b89d77e4823a79be809e70cbf94fcd8
 
 Local recovery now blocks new worker/provider admissions and reports unfinished call scopes; synthetic release refuses unfinished records without expiry or automatic clearing. Read-only typed bank lookup and internal attempt reconciliation remain available, while uncertain claims stay lookup-only. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-RECOVERY-EFFECTS-PARTIAL.md). Actual isolation/reconciliation/off-host recovery and safe reopening remain pending. Next concrete local risk is sign-in/challenge work overlapping quarantine and release; commercial inputs stay pending by user instruction.
 

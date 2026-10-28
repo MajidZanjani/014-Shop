@@ -10,7 +10,7 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — local recovery access and effect admission/drain verified; backend618/5, focused112, worker24/6, adapters6/3, proxy148/2 and source270 pass; actual/full acceptance pending.
+**Execution status:** in progress — local recovery effect commit d3ea121 verified and pushed; backend618/5, focused112, worker24/6, adapters6/3, proxy148/2 and source270 pass; actual/full acceptance pending.
 
 **Next implementation task:** Reproduce and fence customer/staff sign-in or challenge capture that overlaps quarantine/release; extend durable local admission as needed, preserve fresh verification and keep commercial/actual inputs pending.
 
