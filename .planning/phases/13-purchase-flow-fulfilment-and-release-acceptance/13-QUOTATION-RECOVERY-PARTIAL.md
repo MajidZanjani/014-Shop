@@ -2,7 +2,7 @@
 
 Status: concrete local quotation recovery gap reproduced and fixed. Focused166/32.359s, current backend752/5/234.449s, supported proxy148/2 and exact276-file source pass. Actual recovery and full Phase13 acceptance remain pending.
 
-Implementation is verified locally; its commit identity is recorded in the quick completion artifacts. This evidence is local/synthetic only; Git refs determine actual remote synchronization.
+Implementation `c356d75b13c66f3f58bb98069bfb18e652dfeb67` is committed locally and recorded in the quick completion artifacts. This evidence is local/synthetic only; Git refs determine actual remote synchronization.
 
 ## Behavior
 

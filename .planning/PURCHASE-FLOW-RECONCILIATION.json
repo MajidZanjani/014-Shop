@@ -1605,8 +1605,13 @@
     },
     {
       "path": ".planning/quick/261028-il4-reproduce-and-fence-quotation-capture-an/261028-il4-PLAN.md",
-      "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261028-il4-reproduce-and-fence-quotation-capture-an/261028-il4-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
     },
     {
       "path": ".planning/research/ARCHITECTURE.md",
