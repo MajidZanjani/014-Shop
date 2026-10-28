@@ -2,7 +2,7 @@
 gsd_state_version: "1.0"
 current_plan: 01
 status: in_progress
-last_updated: "2026-10-28T09:16:44.292Z"
+last_updated: "2026-10-28T09:34:00.247579+00:00"
 state_head: 35f02017558114d2c5d2a48f7eb88920775894ad
 progress:
   total_phases: 14
@@ -14,8 +14,8 @@ current_task: 5
 last_activity: 2026-10-28
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Local startup fence verified; continuing13-01 task5 with post-point revocation review.
-last_activity_desc: Startup baseline1 reproduced; focused89, backend637/5, source274 pass; post-point revocation review next.
+stopped_at: Local startup/staff reset batch verified; actual revocation/MFA binding awaits scoped evidence.
+last_activity_desc: "Two local recovery gaps reproduced/fixed; focused97, backend645/5, proxy148/2 and source276 pass."
 ---
 
 # Project state — final purchase-flow revision2
@@ -26,13 +26,13 @@ last_activity_desc: Startup baseline1 reproduced; focused89, backend637/5, sourc
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — local restore-startup identity fence verified: focused89, backend637/5 and source274 pass; post-point resource revocation review next; commercial/actual/full acceptance pending.
+**Execution status:** in progress — local recovery startup/staff reset batch verified: backend645/5, focused97, proxy148/2 and source276; remaining actual bindings/full acceptance await scoped evidence.
 
-**Next implementation task:** Design local post-point resource-revocation reconciliation from explicitly synthetic external fixture evidence; inspect current grants/operator-reset paths and preserve startup/effect holds, read-only lookup and fresh MFA. Commercial inputs remain pending.
+**Next implementation task:** Bind and qualify post-point customer/resource revocations and consumed-MFA recovery using authoritative channel/custody evidence and an assigned authorized off-host target when available. Keep commercial inputs pending; implement concrete independent local defects as identified.
 
 ## Current local continuation
 
-The local restore-startup fence is verified: a fresh external identity closes access/authentication/new effects despite an unheld or missing restored epoch until its matching synthetic quarantine/release. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-STARTUP-RECOVERY-PARTIAL.md). Focused89, current backend637/5 and exact274-file source pass; unchanged frontend137/32 and browser227 retain db56df3 scope. Actual isolation/restoration, post-point reconciliation/MFA recovery and off-host/full acceptance remain pending. Next independent review is explicitly synthetic post-point resource-revocation reconciliation. Commercial inputs remain pending by user instruction.
+The two reproduced local recovery gaps are resolved: fresh external startup identity fences unheld/missing restored epochs, and matching selected quarantine disables restored staff credentials and clears all seven resource-grant types before explicit reset/two-factor login/reassignment. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-STAFF-RESTORE-PARTIAL.md). Current backend645/5, focused97, proxy148/2 and exact276-file source pass; unchanged frontend137/32 and browser227 retain db56df3 scope. Actual isolation/restoration, authoritative post-point customer/resource/MFA reconciliation, custody/runner and full acceptance remain pending. Commercial company inputs will be supplied later by the user.
 
 ## Preserved implementation/evidence
 

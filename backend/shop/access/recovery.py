@@ -13,6 +13,7 @@ from django.utils import timezone
 from .models import AccessEpoch,LocalAccessRecoveryOperation,StaffChallenge,StaffCredential,VerificationChallenge
 from .effects import drain_state
 from .startup import restore_startup_pending
+from .grants import revoke_staff_resource_grants
 
 SESSION_EPOCH='shop_access_epoch'
 
@@ -80,6 +81,11 @@ def local_recovery_operation(*,action,request_id,expected_database,basis_reset=N
                 'staff_challenges':StaffChallenge.objects.filter(consumed_at__isnull=True).update(consumed_at=timezone.now()),
                 'staff_credentials':StaffCredential.objects.update(generation=Func(function='gen_random_uuid',output_field=UUIDField()))}
             counts['sessions']=Session.objects.all().delete()[0]
+            if action=='quarantine' and request_id==getattr(settings,'LOCAL_RESTORE_ID',None):
+                # A selected restore cannot revive old staff authority through
+                # fresh login. Reset and exact reassignment are explicit later.
+                counts['staff_credentials_disabled']=StaffCredential.objects.filter(enabled=True).update(enabled=False)
+                counts['staff_resource_grants']=revoke_staff_resource_grants(user_id=None)
             epoch.value=uuid.uuid4();epoch.quarantined=action=='quarantine'
             epoch.active_reset=request_id if epoch.quarantined else None
             epoch.save(update_fields=['value','quarantined','active_reset'])

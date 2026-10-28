@@ -11,6 +11,7 @@ from shop.catalog.models import QuotationRequest, SyntheticFulfilment, Synthetic
 from shop.payments.models import SyntheticOverpaymentStaffGrant, SyntheticPaymentAttempt, SyntheticPaymentStaffGrant
 from shop.catalog.models import SyntheticCheckoutAcceptance
 from shop.access.models import StaffCredential, StaffQuotationGrant
+from shop.access.grants import revoke_staff_resource_grants
 
 class Command(BaseCommand):
     help='Local/synthetic staff provision/reset/revoke and explicit quotation reviewer grants. Credentials go to private files only.'
@@ -47,25 +48,13 @@ class Command(BaseCommand):
                 user.set_password(password);user.save(update_fields=['password'])
                 credential.generation=uuid.uuid4();credential.enabled=True;credential.save()
                 # Recovery never silently restores old resource authority.
-                StaffQuotationGrant.objects.filter(user=user).delete()
-                SyntheticSupportStaffGrant.objects.filter(user=user).delete()
-                SyntheticDeliveryStaffGrant.objects.filter(user=user).delete()
-                SyntheticLicenceCaseStaffGrant.objects.filter(user=user).delete()
-                SyntheticSupportRefundStaffGrant.objects.filter(user=user).delete()
-                SyntheticOverpaymentStaffGrant.objects.filter(user=user).delete()
-                SyntheticPaymentStaffGrant.objects.filter(user=user).delete()
+                revoke_staff_resource_grants(user_id=user.pk)
                 try:
                     with LocalStorage(root) as store:store.put(('Synthetic staff credentials only.\nUsername: '+name+'\nPassword: '+password+'\n').encode())
                 except (OSError,ValueError):raise CommandError('Private synthetic capture unavailable') from None
             elif action=='revoke':
                 credential.enabled=False;credential.generation=uuid.uuid4();credential.save()
-                StaffQuotationGrant.objects.filter(user=user).delete()
-                SyntheticSupportStaffGrant.objects.filter(user=user).delete()
-                SyntheticDeliveryStaffGrant.objects.filter(user=user).delete()
-                SyntheticLicenceCaseStaffGrant.objects.filter(user=user).delete()
-                SyntheticSupportRefundStaffGrant.objects.filter(user=user).delete()
-                SyntheticOverpaymentStaffGrant.objects.filter(user=user).delete()
-                SyntheticPaymentStaffGrant.objects.filter(user=user).delete()
+                revoke_staff_resource_grants(user_id=user.pk)
             elif action in ('grant-payment','revoke-payment'):
                 try:identity=uuid.UUID(options.get('acceptance') or '')
                 except (ValueError,TypeError):raise CommandError('Exact acceptance required') from None
