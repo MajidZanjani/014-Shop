@@ -181,6 +181,120 @@ class DraftRaceTests(TransactionTestCase):
         self.assertEqual(ConfigurationDraft.objects.count(),1)
 
 
+class DraftRecoveryTests(TransactionTestCase):
+    def setUp(self):
+        import copy
+        DraftTests.setUp(self)
+        self.payload=copy.deepcopy(self.payload)
+        self.payload['configuration']['platform']={'choice':'other-board','kit_id':None,'name':'DRAFT_PRIVATE_RECOVERY_CANARY'}
+        self.client=Client(enforce_csrf_checks=True)
+        verified_login(self.client,self.owner)
+        self.assertEqual(self.client.get('/api/v1/customer/session/').status_code,200)
+
+    def recover(self,action='quarantine',*,basis_reset=None):
+        from django.db import connection
+        from shop.access.recovery import local_recovery_operation
+        return local_recovery_operation(action=action,request_id=uuid.uuid4(),
+            expected_database=connection.settings_dict['NAME'],basis_reset=basis_reset)
+
+    def reset(self,released):
+        reset=self.recover()
+        if released:self.recover('release',basis_reset=reset['operation_id'])
+
+    def fresh(self):
+        from shop.access.models import AccessEpoch
+        epoch=AccessEpoch.objects.get(pk=1)
+        if epoch.quarantined:self.recover('release',basis_reset=epoch.active_reset)
+        verified_login(self.client,self.owner)
+        self.assertEqual(self.client.get('/api/v1/customer/session/').status_code,200)
+
+    def facts(self):
+        return list(ConfigurationDraft.objects.order_by('id').values_list(
+            'id','owner_id','request_id','revision','configuration','evaluation','created_at'))
+
+    def post(self):
+        return self.client.post(self.url,data=json.dumps(self.payload),content_type='application/json',
+            HTTP_X_CSRFTOKEN=self.client.cookies['csrftoken'].value)
+
+    def save_overlap(self,released,replay=False):
+        from unittest.mock import patch
+        from . import views
+        if replay:self.assertEqual(self.post().status_code,201)
+        before=self.facts();evaluate=views.evaluate
+        def interleave(value):
+            result=evaluate(value);self.assertTrue(result['valid'])
+            self.reset(released)
+            return result
+        with patch.object(views,'evaluate',side_effect=interleave):response=self.post()
+        with self.subTest(check='response'):
+            self.assertEqual(response.status_code,403,response.content)
+            self.assertEqual(response.json(),{'error':'verification_required'})
+            self.assertEqual(response['Cache-Control'],'no-store')
+        with self.subTest(check='facts'):self.assertEqual(self.facts(),before)
+        self.fresh()
+        first=self.post();self.assertEqual(first.status_code,200 if replay else 201)
+        committed=self.facts()
+        retry=self.post();self.assertEqual(retry.status_code,200)
+        self.assertEqual(retry.json(),first.json());self.assertEqual(self.facts(),committed)
+
+    def test_save_after_quarantine_denies(self):self.save_overlap(False)
+    def test_save_after_quarantine_release_denies(self):self.save_overlap(True)
+    def test_exact_retry_after_quarantine_denies(self):self.save_overlap(False,True)
+    def test_exact_retry_after_quarantine_release_denies(self):self.save_overlap(True,True)
+
+    def read_overlap(self,released,single=False):
+        from unittest.mock import patch
+        from . import views
+        saved=self.post();self.assertEqual(saved.status_code,201)
+        path=self.url+saved.json()['id']+'/' if single else self.url
+        before=self.facts();access=views.local_customer
+        def interleave(request):
+            result=access(request);self.assertIsNone(result)
+            self.reset(released)
+            return result
+        with patch.object(views,'local_customer',side_effect=interleave):response=self.client.get(path)
+        with self.subTest(check='response'):
+            self.assertEqual(response.status_code,403,response.content)
+            self.assertEqual(response.json(),{'error':'verification_required'})
+            self.assertEqual(response['Cache-Control'],'no-store')
+        with self.subTest(check='facts'):self.assertEqual(self.facts(),before)
+        self.fresh();response=self.client.get(path);self.assertEqual(response.status_code,200)
+        if single:self.assertEqual(response.json(),saved.json())
+        else:self.assertEqual(response.json()['drafts'][0]['id'],saved.json()['id'])
+        self.assertEqual(self.facts(),before)
+
+    def test_list_after_quarantine_denies(self):self.read_overlap(False)
+    def test_list_after_quarantine_release_denies(self):self.read_overlap(True)
+    def test_get_after_quarantine_denies(self):self.read_overlap(False,True)
+    def test_get_after_quarantine_release_denies(self):self.read_overlap(True,True)
+
+    def test_epoch_is_locked_before_draft_queries(self):
+        from unittest.mock import patch
+        from django.db.models.query import QuerySet
+        from .cart_tests import CartRecoveryMixin
+        saved=self.post();self.assertEqual(saved.status_code,201)
+        path=self.url+saved.json()['id']+'/'
+        self.payload['request_id']=str(uuid.uuid4())
+        fetch=QuerySet._fetch_all;seen=set();active=[]
+        def observe(query):
+            if query.model is ConfigurationDraft:
+                CartRecoveryMixin.assert_epoch_locked(self);seen.add(active[0])
+            return fetch(query)
+        with patch.object(QuerySet,'_fetch_all',observe):
+            active[:]=['list'];self.assertEqual(self.client.get(self.url).status_code,200)
+            active[:]=['get'];self.assertEqual(self.client.get(path).status_code,200)
+            active[:]=['create'];self.assertEqual(self.post().status_code,201)
+            active[:]=['replay'];self.assertEqual(self.post().status_code,200)
+        self.assertEqual(seen,{'list','get','create','replay'})
+
+    def test_exact_retry_preserves_current_catalog_admission(self):
+        from unittest.mock import patch
+        self.assertEqual(self.post().status_code,201)
+        before=self.facts()
+        with patch.dict(CATALOG,revision='f'*64):self.assertEqual(self.post().status_code,409)
+        self.assertEqual(self.facts(),before)
+
+
 class SimplePurchaseTests(SimpleTestCase):
     def test_actual_csrf_get_and_post_without_javascript(self):
         client=Client(enforce_csrf_checks=True)

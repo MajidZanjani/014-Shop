@@ -1,7 +1,9 @@
 import json
+from django.db import transaction
 from django.http import JsonResponse
 from django.views.decorators.http import require_GET, require_POST, require_http_methods
 from django.views.decorators.csrf import csrf_exempt
+from shop.access.recovery import current_session_epoch
 from .rules import CATALOG, evaluate
 
 @require_GET
@@ -53,6 +55,14 @@ def local_customer(request):
     return None
 
 
+def draft_epoch_denied(request):
+    # Called only within the bounded draft transaction, before private queries.
+    if current_session_epoch(request,lock=True):return None
+    response=JsonResponse({'error':'verification_required'},status=403)
+    response['Cache-Control']='no-store'
+    return response
+
+
 def draft_json(row):
     return {'id':str(row.id),'revision':row.revision,'configuration':row.configuration,
             'evaluation':row.evaluation,'created_at':row.created_at.isoformat(),'state':'draft'}
@@ -61,15 +71,17 @@ def draft_json(row):
 @require_http_methods(['GET','POST'])
 def save_draft(request):
     from uuid import UUID
-    from django.db import transaction
     from .models import ConfigurationDraft
     denied=local_customer(request)
     if denied is not None: return denied
     if request.method=='GET':
-        rows=ConfigurationDraft.objects.filter(owner=request.user).order_by('-created_at','-id')[:20]
-        response=JsonResponse({'drafts':[{'id':str(row.id),'revision':row.revision,'created_at':row.created_at.isoformat()} for row in rows],'limit':20})
-        response['Cache-Control']='no-store'
-        return response
+        with transaction.atomic():
+            denied=draft_epoch_denied(request)
+            if denied is not None:return denied
+            rows=ConfigurationDraft.objects.filter(owner=request.user).order_by('-created_at','-id')[:20]
+            response=JsonResponse({'drafts':[{'id':str(row.id),'revision':row.revision,'created_at':row.created_at.isoformat()} for row in rows],'limit':20})
+            response['Cache-Control']='no-store'
+            return response
     if request.content_type != 'application/json': return JsonResponse({'error':'content_type'},status=415)
     try:
         if int(request.META.get('CONTENT_LENGTH') or 0)>8192: raise ValueError('size')
@@ -87,13 +99,15 @@ def save_draft(request):
     # This is an unaccepted local draft, never an approved offer or host binding.
     # get_or_create's unique-key arbitration handles concurrent retries on PostgreSQL.
     with transaction.atomic():
+        denied=draft_epoch_denied(request)
+        if denied is not None:return denied
         row,created=ConfigurationDraft.objects.get_or_create(owner=request.user,request_id=request_id,defaults={
             'revision':CATALOG['revision'],'configuration':value['configuration'],'evaluation':evaluation})
         if row.revision!=value['revision'] or row.configuration!=value['configuration']:
             return JsonResponse({'error':'request_conflict'},status=409)
-    response=JsonResponse(draft_json(row),status=201 if created else 200)
-    response['Cache-Control']='no-store'
-    return response
+        response=JsonResponse(draft_json(row),status=201 if created else 200)
+        response['Cache-Control']='no-store'
+        return response
 
 
 @require_GET
@@ -101,8 +115,11 @@ def get_draft(request,identity):
     from .models import ConfigurationDraft
     denied=local_customer(request)
     if denied is not None: return denied
-    row=ConfigurationDraft.objects.filter(pk=identity,owner=request.user).first()
-    if row is None: return JsonResponse({'error':'not_found'},status=404)
-    response=JsonResponse(draft_json(row))
-    response['Cache-Control']='no-store'
-    return response
+    with transaction.atomic():
+        denied=draft_epoch_denied(request)
+        if denied is not None:return denied
+        row=ConfigurationDraft.objects.filter(pk=identity,owner=request.user).first()
+        if row is None: return JsonResponse({'error':'not_found'},status=404)
+        response=JsonResponse(draft_json(row))
+        response['Cache-Control']='no-store'
+        return response
