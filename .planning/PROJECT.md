@@ -10,11 +10,11 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — quick261028-il4 complete locally (focused166, backend752/5, proxy148/2, source276); ordinary push awaits direct approval; actual/full acceptance pending.
+**Execution status:** in progress — native quotation-page recovery verified locally (focused126, backend761/5, proxy148/2, source276); actual/full acceptance pending.
 
-**Next implementation task:** Start a new GSD quick task and reproduce native quotation history/timeline/document-preview reads across recovery before product edits; preserve bounded pagination and private immutable projections. Company commercial and actual inputs remain pending without another request.
+**Next implementation task:** Start a new GSD quick task and reproduce business-draft save/private reads and quotation business-attachment recovery boundaries at normal form/access aliases before product edits. Company commercial and actual inputs remain pending without another request.
 
-Quotation JSON/native capture and private API list/detail/native capture-page reads now bind their originating epoch before resource work. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-QUOTATION-RECOVERY-PARTIAL.md). Original26-test/34-failure controls, focused166/32.359s, backend752/5/234.449s, supported proxy148/2 and exact276-file source pass. Prior cart/draft/checkout/support evidence retains its scope; actual/company inputs remain pending.
+Native quotation history/cursor/timeline/document-preview reads now lock their originating epoch through bounded projection/rendering. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-QUOTATION-PAGES-RECOVERY-PARTIAL.md). Original9/9 controls, focused126/27.980s, backend761/5/234.820s, supported proxy148/2 and exact276-file source pass. Prior quotation capture/cart/draft/checkout/support evidence retains scope; actual/company inputs remain pending.
 
 Before every commit reconcile affected current references, publish state.json and run python3 scripts/check_planning.py. Sync commits to origin/main without force. Historical evidence retains its original scope.
 

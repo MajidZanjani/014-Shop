@@ -85,3 +85,71 @@ class QuotationHistoryTests(TransactionTestCase):
         QuotationRequest.objects.filter(pk=self.quotation.pk).update(cart=old.cart)
         DraftCart.objects.filter(pk=old.cart_id).update(owner=self.other)
         self.assertEqual(self.client.get(PATH).context['items'],[])
+
+
+class QuotationPageRecoveryTests(fixtures.QuotationRecoveryMixin,TransactionTestCase):
+    save_cart=fixtures.QuotationRecoveryTests.save_cart
+    post=fixtures.QuotationRecoveryTests.post
+
+    def setUp(self):
+        fixtures.QuotationRecoveryTests.setUp(self)
+        self.assertEqual(self.post().status_code,201)
+        self.quotation=QuotationRequest.objects.get()
+
+    def page(self,kind):
+        from . import quotation_history,timeline_views,document_views
+        if kind=='history':return quotation_history,PATH
+        if kind=='cursor':return quotation_history,PATH+'?before='+str(self.quotation.pk)
+        if kind=='timeline':return timeline_views,'/purchase/quotation-timeline/'+str(self.quotation.pk)+'/'
+        return document_views,'/purchase/quotation-documents/'+str(self.quotation.pk)+'/'
+
+    def read_overlap(self,kind,released):
+        from unittest.mock import patch
+        module,path=self.page(kind);access=module.local_customer;before=self.facts()
+        def interleave(request):
+            result=access(request);self.assertIsNone(result)
+            self.reset(released)
+            return result
+        with patch.object(module,'local_customer',side_effect=interleave):response=self.client.get(path)
+        with self.subTest(check='response'):
+            self.assertEqual(response.status_code,403,response.content)
+            self.assertEqual(response.json(),{'error':'verification_required'})
+            self.assertEqual(response['Cache-Control'],'no-store')
+            self.assertNotContains(response,str(self.quotation.pk),status_code=403)
+        with self.subTest(check='facts'):self.assertEqual(self.facts(),before)
+        self.fresh();response=self.client.get(path);self.assertEqual(response.status_code,200)
+        self.assertEqual(response['Cache-Control'],'no-store')
+        self.assertEqual(response['Referrer-Policy'],'no-referrer')
+        self.assertEqual(self.facts(),before)
+
+    def test_history_after_quarantine_denies(self):self.read_overlap('history',False)
+    def test_history_after_quarantine_release_denies(self):self.read_overlap('history',True)
+    def test_cursor_after_quarantine_denies(self):self.read_overlap('cursor',False)
+    def test_cursor_after_quarantine_release_denies(self):self.read_overlap('cursor',True)
+    def test_timeline_after_quarantine_denies(self):self.read_overlap('timeline',False)
+    def test_timeline_after_quarantine_release_denies(self):self.read_overlap('timeline',True)
+    def test_documents_after_quarantine_denies(self):self.read_overlap('documents',False)
+    def test_documents_after_quarantine_release_denies(self):self.read_overlap('documents',True)
+
+    def test_epoch_locked_before_page_queries_and_rendering(self):
+        from contextlib import ExitStack
+        from unittest.mock import patch
+        from django.db.models.query import QuerySet
+        from .models import QuotationBusinessScope,BusinessDraft,BusinessDraftSnapshot
+        fetch=QuerySet._fetch_all;active=[];seen=set()
+        def observe(query):
+            if query.model in (QuotationRequest,QuotationReview,QuotationBusinessScope,CartSnapshot,DraftCart,BusinessDraft,BusinessDraftSnapshot):
+                self.assert_epoch_locked();seen.add(active[0])
+            return fetch(query)
+        with ExitStack() as stack:
+            stack.enter_context(patch.object(QuerySet,'_fetch_all',observe))
+            for kind in ('history','timeline','documents'):
+                module,_=self.page(kind);render=module.render
+                def materialize(*args,_render=render,**kwargs):
+                    self.assert_epoch_locked();seen.add(active[0]+'-render')
+                    return _render(*args,**kwargs)
+                stack.enter_context(patch.object(module,'render',side_effect=materialize))
+            for kind in ('history','cursor','timeline','documents'):
+                active[:]=[kind];_,path=self.page(kind)
+                self.assertEqual(self.client.get(path).status_code,200)
+        self.assertEqual(seen,{kind+suffix for kind in ('history','cursor','timeline','documents') for suffix in ('','-render')})

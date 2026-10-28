@@ -1,6 +1,6 @@
 # Phase13 grouped qualification register —2026-10-27
 
-Current local continuation: quick261028-il4 verifies quotation capture/private-read recovery; focused166/backend752/5/proxy148/source276 pass. [Exact evidence](13-QUOTATION-RECOVERY-PARTIAL.md). Native history/timeline/document-preview source observation remains unreproduced/unimplemented; company/actual/full acceptance stays pending.
+Current local continuation: quick261028-iw9 verifies native quotation page recovery; focused126/backend761/5/proxy148/source276 pass. [Exact evidence](13-QUOTATION-PAGES-RECOVERY-PARTIAL.md). Business draft/attachment source observation remains unreproduced/unimplemented; company/actual/full acceptance stays pending.
 
 ## Current local evidence
 
@@ -126,3 +126,7 @@ Local implementation2e373a5 and schema-backed quick261028-fy8 completion are rec
 ## Quotation capture/private-read recovery boundary — 2026-10-28
 
 [Evidence](13-QUOTATION-RECOVERY-PARTIAL.md): original26/34 controls, focused166/32.359s, backend752/5/234.449s, supported proxy148/2 and exact276-file source pass. New capture, exact replay, second-key alias and private API/native capture-page reads require the originating epoch before resource work; immutable snapshot/review history and fresh historical retries remain. Native history/timeline/document reads remain a separate source observation. Actual/company/full acceptance inputs stay pending.
+
+## Native quotation page recovery — 2026-10-28
+
+[Evidence](13-QUOTATION-PAGES-RECOVERY-PARTIAL.md): original9/9 controls, focused126/27.980s, backend761/5/234.820s, proxy148/2 and exact276-file source pass. Native history/cursor/timeline/document reads lock the originating epoch through bounded projection/rendering, preserving private owner/source/history behavior. Business draft/attachment boundaries remain a separate source observation. Company/actual/full acceptance stays pending.

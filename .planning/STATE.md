@@ -2,7 +2,7 @@
 gsd_state_version: "1.0"
 current_plan: 01
 status: in_progress
-last_updated: "2026-10-28T13:35:38.913Z"
+last_updated: "2026-10-28T13:46:10.806Z"
 state_head: c356d75b13c66f3f58bb98069bfb18e652dfeb67
 progress:
   total_phases: 14
@@ -14,8 +14,8 @@ current_task: 5
 last_activity: 2026-10-28
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Quotation recovery verified locally; native history/timeline/document reads await reproduction.
-last_activity_desc: Quotation focused166/backend752/5/234.449s/proxy148/source276 pass; actual/full acceptance pending.
+stopped_at: "Native quotation pages verified locally; business recovery source observation awaits reproduction."
+last_activity_desc: "Native pages focused126/backend761/5/234.820s/proxy148/source276 pass; actual/full acceptance pending."
 ---
 
 # Project state — final purchase-flow revision2
@@ -26,13 +26,13 @@ last_activity_desc: Quotation focused166/backend752/5/234.449s/proxy148/source27
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — quick261028-il4 complete locally (focused166, backend752/5, proxy148/2, source276); ordinary push awaits direct approval; actual/full acceptance pending.
+**Execution status:** in progress — native quotation-page recovery verified locally (focused126, backend761/5, proxy148/2, source276); actual/full acceptance pending.
 
-**Next implementation task:** Start a new GSD quick task and reproduce native quotation history/timeline/document-preview reads across recovery before product edits; preserve bounded pagination and private immutable projections. Company commercial and actual inputs remain pending without another request.
+**Next implementation task:** Start a new GSD quick task and reproduce business-draft save/private reads and quotation business-attachment recovery boundaries at normal form/access aliases before product edits. Company commercial and actual inputs remain pending without another request.
 
 ## Current local continuation
 
-Quotation JSON/native capture and private API list/detail/native capture-page reads now bind their originating epoch before resource work. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-QUOTATION-RECOVERY-PARTIAL.md). Original26-test/34-failure controls, focused166/32.359s, backend752/5/234.449s, supported proxy148/2 and exact276-file source pass. Prior cart/draft/checkout/support evidence retains its scope; actual/company inputs remain pending.
+Native quotation history/cursor/timeline/document-preview reads now lock their originating epoch through bounded projection/rendering. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-QUOTATION-PAGES-RECOVERY-PARTIAL.md). Original9/9 controls, focused126/27.980s, backend761/5/234.820s, supported proxy148/2 and exact276-file source pass. Prior quotation capture/cart/draft/checkout/support evidence retains scope; actual/company inputs remain pending.
 
 ## Preserved implementation/evidence
 
@@ -63,7 +63,7 @@ P-02/03/05/06/08 cover actual ready-kit variants, standard development prices/ri
 
 ## Session continuity
 
-Explicit resume restored clean3611e38 at13-01 task5 and consumed HANDOFF.json. Quick261028-il4 is complete locally atc356d75; its ordinary push was rejected by automatic review pending direct approval. Quotation evidence: original26/34 baseline and control, focused166/32.359s, current backend752/5/234.449s, proxy148/2 and exact276-file source. Both fixed product files restored exactly after control; all owned qualification producers exited. Next concrete source observation is native quotation history/timeline/document-preview entry-only private reads, not yet reproduced/designed/fixed. Prior cart/draft and actual/company gates retain scope; no full Phase13 SUMMARY.
+Resumed clean3611e38; quotation capture quick261028-il4 complete/pushed through224f87e after direct approval of pending and subsequent ordinary project pushes. Native page quick261028-iw9 now verified: original9/9 controls, focused126/27.980s, current backend761/5/234.820s, proxy148/2 and exact276-file source. All three fixed files restored exactly after control; all owned producers exited. Next finite source observation is business_views.py and business_binding_views.py cached-authority commands/private reads, unreproduced/unimplemented. Company/actual/full acceptance stays pending; no full Phase13 SUMMARY.
 
 ### Quick Tasks Completed
 
