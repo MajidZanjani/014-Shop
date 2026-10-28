@@ -4,11 +4,11 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — local recovery effects and authentication overlap verified; backend624/5, focused63, proxy148/2 and source272 pass; actual/full acceptance pending.
+**Execution status:** in progress — authentication recovery commit 0f4a063 verified and pushed; backend624/5, focused63, proxy148/2 and source272 pass; actual/full acceptance pending.
 
 **Next implementation task:** Review and reproduce public customer-interface handling of explicit recovery503 responses; clear private state when required while preserving ordinary offline and uncertain-write behavior. Keep commercial inputs pending.
 
-**Recorded implementation:** d3ea12155b89d77e4823a79be809e70cbf94fcd8
+**Recorded implementation:** 0f4a063ff15883e3b7e58af22fd02a3be6591312
 
 Local customer/staff authentication and code capture now participate in durable recovery admission. The reproduced old-code login after quarantine/release is denied; active authentication blocks synthetic release, origin-epoch changes return fixed private503 and fresh customer/both-staff-factor recovery passes. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-AUTHENTICATION-RECOVERY-PARTIAL.md). Existing worker/provider admission and lookup-only uncertainty remain. Actual recovery/channel/provider/host/full acceptance stays pending. Continue with the public-interface recovery503 contract; commercial inputs remain pending by user instruction.
 

@@ -2,8 +2,8 @@
 gsd_state_version: "1.0"
 current_plan: 01
 status: in_progress
-last_updated: "2026-10-28T08:01:13Z"
-state_head: d3ea12155b89d77e4823a79be809e70cbf94fcd8
+last_updated: "2026-10-28T08:03:44.721Z"
+state_head: 0f4a063ff15883e3b7e58af22fd02a3be6591312
 progress:
   total_phases: 14
   completed_phases: 1
@@ -26,7 +26,7 @@ last_activity_desc: "Authentication recovery: baseline reproduced; focused63, ba
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — local recovery effects and authentication overlap verified; backend624/5, focused63, proxy148/2 and source272 pass; actual/full acceptance pending.
+**Execution status:** in progress — authentication recovery commit 0f4a063 verified and pushed; backend624/5, focused63, proxy148/2 and source272 pass; actual/full acceptance pending.
 
 **Next implementation task:** Review and reproduce public customer-interface handling of explicit recovery503 responses; clear private state when required while preserving ordinary offline and uncertain-write behavior. Keep commercial inputs pending.
 
@@ -144,6 +144,7 @@ User instructed adopting the complete final26October revision2 and replacing sta
 | 64 | Record renewed explicit authorization to push after each commit | 2026-10-27 | 92ef98e | — |
 | 261028-8h5 | Implement and verify local recovery access quarantine, challenge invalidation and exact retry fencing; actual recovery remains pending | 2026-10-28 | b17dc8a | [261028-8h5-implement-local-recovery-access-invalida](./quick/261028-8h5-implement-local-recovery-access-invalida/) |
 | 261028-a3m | Implement local recovery effect admission and drain reporting; actual recovery remains pending | 2026-10-28 | d3ea121 | [261028-a3m-implement-local-recovery-effect-admissio](./quick/261028-a3m-implement-local-recovery-effect-admissio/) |
+| 261028-aq1 | Fence customer and staff authentication across local recovery quarantine; actual recovery remains pending | 2026-10-28 | 0f4a063 | [261028-aq1-fence-authentication-scopes-across-local](./quick/261028-aq1-fence-authentication-scopes-across-local/) |
 
 ## Historical pause — 2026-10-26T10:21:33.041Z
 
