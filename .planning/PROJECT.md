@@ -10,11 +10,11 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — customer support recovery fence verified and pushed; backend671/5, focused147, proxy148/2 and source276 pass; actual/full acceptance pending.
+**Execution status:** in progress — customer checkout/payment/fulfilment recovery fence verified locally; focused174, backend693/5, proxy148/2 and source276 pass; actual/full acceptance pending.
 
 **Next implementation task:** Bind actual post-point customer/resource/MFA and source qualification when authoritative channel/custody/provider/runner inputs are supplied; keep company commercial inputs pending without re-asking. Independent concrete local fixes remain authorized.
 
-Customer support commands and both private reads now lock the originating customer epoch before owner/resource work. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-SUPPORT-RECOVERY-PARTIAL.md). Original7-test/14-failure HTTP baseline, fixed focused147/59.780s, backend671/5/214.355s (outer215.913s), supported demo/proxy148/2 aliases and exact276-file source pass. Earlier package/commit/startup/staff-reset evidence retains its scope. Actual/company inputs remain pending.
+Customer checkout acceptance, dispatch and grant/stage commits now require their originating customer epoch; prepared state cannot adopt a released epoch. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-CHECKOUT-RECOVERY-PARTIAL.md). Original22-test/36-failure control, fixed focused174/53.986s, backend693/5/224.151s (outer225.773s), supported demo/proxy148/2 and exact276-file source pass. Prior support/package/recovery components retain their documented scope; actual/company inputs remain pending.
 
 Before every commit reconcile affected current references, publish state.json and run python3 scripts/check_planning.py. Sync commits to origin/main without force. Historical evidence retains its original scope.
 

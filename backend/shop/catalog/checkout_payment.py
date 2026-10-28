@@ -2,6 +2,7 @@
 from datetime import datetime, timedelta
 import uuid
 from django.db import transaction
+from shop.access.recovery import current_session_epoch, SESSION_EPOCH
 from shop.adapters.evidence_archive import PreparedArchive, PreparedReceipt, manifest
 from shop.payments import attempts, synthetic_bank
 from shop.payments.bank_contract import BankError, BankStart
@@ -13,7 +14,17 @@ PROFILE = 'synthetic-checkout-acceptance-v1'
 DECLARATION = 'I confirm this synthetic rehearsal only. No real contract, payment or licence/support rights are created.'
 
 
-def locked(owner, identity):
+def authorize_customer(owner, request):
+    # Trusted internal callers omit the request. HTTP transactions lock its
+    # epoch before owner/resource work, matching the quarantine lock order.
+    if request is None:return
+    if (not callable(getattr(getattr(request,'session',None),'get',None))
+            or not current_session_epoch(request,lock=True) or request.user.pk!=owner.pk):
+        raise checkout.CheckoutError('verification_required',403)
+
+
+def locked(owner, identity, *, customer_request=None):
+    authorize_customer(owner,customer_request)
     owner_locked(owner)
     row = SyntheticCheckout.objects.select_for_update().filter(pk=identity, owner=owner).first()
     if row is None: raise checkout.CheckoutError('not_found', 404)
@@ -47,10 +58,10 @@ def verify(row):
     if not valid: raise checkout.CheckoutError('acceptance_mismatch')
 
 
-def review(owner, identity):
+def review(owner, identity, *, customer_request=None):
     synthetic_bank.guard()
     with transaction.atomic(durable=True):
-        saved = locked(owner, identity)
+        saved = locked(owner, identity, customer_request=customer_request)
         row = SyntheticCheckoutAcceptance.objects.select_related('checkout', 'attempt').filter(checkout=saved).first()
         if row:
             verify(row)
@@ -74,12 +85,12 @@ def retained(row, archive):
     recover(archive, row.archive_receipt, row.pk, checkout.canonical(row.payload))
 
 
-def accept(owner, identity, expected, confirmed, archive):
+def accept(owner, identity, expected, confirmed, archive, *, customer_request=None):
     synthetic_bank.guard()
     if confirmed is not True: raise checkout.CheckoutError('synthetic_confirmation_required', 422)
     if type(archive) is not PreparedArchive: raise checkout.CheckoutError('local_archive_required', 503)
     with transaction.atomic(durable=True):
-        saved = locked(owner, identity)
+        saved = locked(owner, identity, customer_request=customer_request)
         row = SyntheticCheckoutAcceptance.objects.select_for_update().select_related('checkout').filter(checkout=saved).first()
         if row is None:
             value = envelope(saved)
@@ -96,7 +107,7 @@ def accept(owner, identity, expected, confirmed, archive):
     receipt = archive.publish(row.pk, checkout.canonical(row.payload))
     recover(archive, manifest(receipt), row.pk, checkout.canonical(row.payload))
     with transaction.atomic(durable=True):
-        saved = locked(owner, identity)
+        saved = locked(owner, identity, customer_request=customer_request)
         current = SyntheticCheckoutAcceptance.objects.select_for_update().select_related('checkout').get(checkout=saved)
         verify(current)
         if current.sha256 != row.sha256: raise checkout.CheckoutError('acceptance_mismatch')
@@ -110,9 +121,9 @@ def accept(owner, identity, expected, confirmed, archive):
         return current
 
 
-def accepted(owner, identity):
+def accepted(owner, identity, *, customer_request=None):
     with transaction.atomic(durable=True):
-        saved = locked(owner, identity)
+        saved = locked(owner, identity, customer_request=customer_request)
         row = SyntheticCheckoutAcceptance.objects.select_related('checkout', 'attempt').filter(checkout=saved).first()
         if row is None or row.simulated_accepted_at is None: raise checkout.CheckoutError('synthetic_acceptance_required', 422)
         verify(row)
@@ -124,15 +135,16 @@ def request_for(row):
     return BankStart('synthetic-checkout', row.pk, uuid.uuid5(row.pk, 'bank-key'), value['currency'], value['total_minor'])
 
 
-def pay(owner, identity, archive, *, fault=None, outcome='captured'):
+def pay(owner, identity, archive, *, fault=None, outcome='captured', customer_request=None):
     synthetic_bank.guard()
-    row = accepted(owner, identity)
+    row = accepted(owner, identity, customer_request=customer_request)
+    customer_epoch = uuid.UUID(customer_request.session[SESSION_EPOCH]) if customer_request is not None else None
     retained(row, archive)
     deadline = datetime.fromisoformat(row.payload['review']['order_payment_expires_at'])
     expiry = min(row.simulated_accepted_at + timedelta(minutes=10), deadline)
     attempt = attempts.prepare(request_for(row), expires_at=expiry)
     with transaction.atomic(durable=True):
-        saved = locked(owner, identity)
+        saved = locked(owner, identity, customer_request=customer_request)
         current = SyntheticCheckoutAcceptance.objects.select_for_update().select_related('checkout').get(checkout=saved)
         verify(current)
         if current.sha256 != row.sha256 or current.simulated_accepted_at != row.simulated_accepted_at:
@@ -140,15 +152,19 @@ def pay(owner, identity, archive, *, fault=None, outcome='captured'):
         if current.attempt_id not in (None, attempt.pk): raise checkout.CheckoutError('attempt_mismatch')
         current.attempt = attempt;current.save(update_fields=['attempt'])
     # Existing one-way claim means an uncertain attempt is never sent again.
-    attempts.dispatch(attempt.pk, archive, fault=fault, outcome=outcome)
-    return accepted(owner, identity)
+    try:attempts.dispatch(attempt.pk, archive, fault=fault, outcome=outcome, customer_epoch=customer_epoch)
+    except BankError as error:
+        if customer_request is not None and str(error)=='recovery_effects_pending':
+            raise checkout.CheckoutError('verification_required',403) from None
+        raise
+    return accepted(owner, identity, customer_request=customer_request)
 
 
-def reconcile(owner, identity, archive):
+def reconcile(owner, identity, archive, *, customer_request=None):
     synthetic_bank.guard()
-    row = accepted(owner, identity)
+    row = accepted(owner, identity, customer_request=customer_request)
     retained(row, archive)
     if row.attempt_id is None: raise checkout.CheckoutError('payment_attempt_required', 422)
     if attempts.request_for(row.attempt) != request_for(row): raise checkout.CheckoutError('attempt_mismatch')
     attempts.reconcile(row.attempt_id, archive)
-    return accepted(owner, identity)
+    return accepted(owner, identity, customer_request=customer_request)

@@ -4,15 +4,15 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — customer support recovery fence verified and pushed; backend671/5, focused147, proxy148/2 and source276 pass; actual/full acceptance pending.
+**Execution status:** in progress — customer checkout/payment/fulfilment recovery fence verified locally; focused174, backend693/5, proxy148/2 and source276 pass; actual/full acceptance pending.
 
 **Next implementation task:** Bind actual post-point customer/resource/MFA and source qualification when authoritative channel/custody/provider/runner inputs are supplied; keep company commercial inputs pending without re-asking. Independent concrete local fixes remain authorized.
 
 **Recorded implementation:** d0fe8ea83a1f86d91e99edb9bd7c9f057d1b9097
 
-Customer support commands and both private reads now lock the originating customer epoch before owner/resource work. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-SUPPORT-RECOVERY-PARTIAL.md). Original7-test/14-failure HTTP baseline, fixed focused147/59.780s, backend671/5/214.355s (outer215.913s), supported demo/proxy148/2 aliases and exact276-file source pass. Earlier package/commit/startup/staff-reset evidence retains its scope. Actual/company inputs remain pending.
+Customer checkout acceptance, dispatch and grant/stage commits now require their originating customer epoch; prepared state cannot adopt a released epoch. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-CHECKOUT-RECOVERY-PARTIAL.md). Original22-test/36-failure control, fixed focused174/53.986s, backend693/5/224.151s (outer225.773s), supported demo/proxy148/2 and exact276-file source pass. Prior support/package/recovery components retain their documented scope; actual/company inputs remain pending.
 
-Explicit resume restored clean1a100e3 and consumed HANDOFF.json. Quick261028-f72 resolves the saved support boundary with focused147/backend671/5/proxy148/source276 evidence. User directly approved the ordinary origin/main push; d0fe8ea and99c7e9a are now pushed. The prior automatic-review push block is resolved, and schema-backed quick completion is recorded. Actual/company qualification inputs remain pending.
+User continued after synchronized81c4992. Quick261028-fy8 resolves the reproduced checkout acceptance/dispatch/grant/stage gap with focused174/backend693/5/proxy148/source276 evidence. All owned producers exited; actual/company qualification inputs remain pending. Current local code and completion records are the reviewable scope; ordinary remote synchronization follows its actual approval gate.
 
 [Final purchase-flow revision2](PURCHASE-FLOW-AMENDMENT.md) remains current authority. Retained Phase10 local work covers complete-cart synthetic grants/staged delivery and the implemented local support ledger; earlier phases are not implicitly complete. [Evidence](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md). One captured cart payment yields an archived deterministic grant plan, one licence record per IP line and exactly36000 integer support seconds/package once, non-expiring. Initial delivery leaves promised later reference design outstanding; later completion never adds another entitlement/grant. Ready-kit/support-only cases stay scoped. Archive readback precedes all simulated records/effects; uncertain funding cannot provision. No actual keys/files/rights or spendable support.
 

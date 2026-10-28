@@ -5,6 +5,7 @@ unfinished indefinitely. An exit proves only that a local call scope unwound;
 it does not confirm money, delivery, reconciliation or actual recovery.
 """
 from functools import wraps
+from uuid import UUID
 from django.conf import settings
 from django.db import connection,transaction
 from django.db.models.functions import Now
@@ -28,16 +29,18 @@ def _guard():
         raise RecoveryEffectError('effect_transaction_active')
 
 
-def _begin(kind):
+def _begin(kind, *, expected_epoch=None):
     _guard()
     if kind not in LOCAL_EFFECT_KINDS:raise RecoveryEffectError('invalid_effect_kind')
+    if expected_epoch is not None and type(expected_epoch) is not UUID:raise RecoveryEffectError('recovery_effects_pending')
     with transaction.atomic(durable=True):
         epoch=AccessEpoch.objects.select_for_update().filter(pk=1).first()
         if epoch is None:
-            if restore_startup_pending(None):raise RecoveryEffectError('recovery_effects_pending')
+            if expected_epoch is not None or restore_startup_pending(None):raise RecoveryEffectError('recovery_effects_pending')
             AccessEpoch.objects.get_or_create(pk=1)
             epoch=AccessEpoch.objects.select_for_update().get(pk=1)
-        if epoch.quarantined or restore_startup_pending(epoch):raise RecoveryEffectError('recovery_effects_pending')
+        if (epoch.quarantined or restore_startup_pending(epoch)
+                or expected_epoch is not None and epoch.value!=expected_epoch):raise RecoveryEffectError('recovery_effects_pending')
         return LocalEffectAdmission.objects.create(kind=kind,epoch=epoch.value).pk
 
 
@@ -48,19 +51,21 @@ def _finish(identity,status):
             raise RecoveryEffectError('effect_exit_conflict')
 
 
-def local_effect(kind,*,guard=None,error=RecoveryEffectError,held_result=_RAISE,require_current_epoch=False):
+def local_effect(kind,*,guard=None,error=RecoveryEffectError,held_result=_RAISE,require_current_epoch=False,epoch_kwarg=None):
     """Admit before the existing claim/mutation; record exit after its scope ends.
 
     Nested boundaries admit separately and therefore recheck a new quarantine.
     A denial after a one-way claim leaves that claim uncertain, never retryable.
     Authentication additionally requires its original unheld epoch on return.
+    An optional dispatch keyword binds admission to its originating epoch.
     """
     if kind not in LOCAL_EFFECT_KINDS:raise RecoveryEffectError('invalid_effect_kind')
     def decorate(function):
         @wraps(function)
         def wrapped(*args,**kwargs):
             if guard is not None:guard()
-            try:identity=_begin(kind)
+            expected=kwargs.get(epoch_kwarg) if epoch_kwarg is not None else None
+            try:identity=_begin(kind) if expected is None else _begin(kind,expected_epoch=expected)
             except RecoveryEffectError as failure:
                 if str(failure)=='recovery_effects_pending' and held_result is not _RAISE:return held_result
                 raise error(str(failure)) from None

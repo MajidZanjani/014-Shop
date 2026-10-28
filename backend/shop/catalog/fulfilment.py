@@ -7,8 +7,8 @@ from .models import SyntheticFulfilment, SyntheticLineEntitlement, SyntheticLine
 from shop.adapters.evidence_archive import manifest
 
 
-def funded(owner, identity):
-    row = payment.accepted(owner, identity)
+def funded(owner, identity, *, customer_request=None):
+    row = payment.accepted(owner, identity, customer_request=customer_request)
     if (row.attempt_id is None or row.attempt.state != 'observed' or row.attempt.provider_status not in ('captured','refunded')
             or attempts.request_for(row.attempt) != payment.request_for(row)):
         raise checkout.CheckoutError('synthetic_captured_payment_required', 422)
@@ -47,9 +47,9 @@ def retained(grant, row, archive):
     payment.recover(archive, grant.archive_receipt, grant.pk, checkout.canonical(grant.payload))
 
 
-def provision(owner, identity, archive):
+def provision(owner, identity, archive, *, customer_request=None):
     synthetic_bank.guard()
-    row = funded(owner, identity)
+    row = funded(owner, identity, customer_request=customer_request)
     if row.attempt.provider_status=='refunded':
         prior=SyntheticFulfilment.objects.get(acceptance=row);retained(prior,row,archive);return prior
     payment.retained(row, archive);attempts.retained(row.attempt, archive)
@@ -58,7 +58,7 @@ def provision(owner, identity, archive):
     receipt = archive.publish(grant_id, body)
     payment.recover(archive, manifest(receipt), grant_id, body)
     with transaction.atomic(durable=True):
-        payment.locked(owner, identity)
+        payment.locked(owner, identity, customer_request=customer_request)
         # Re-read committed acceptance/provider state before creating any simulated grant.
         current = SyntheticCheckoutAcceptance.objects.select_for_update(of=('self',)).select_related('checkout','attempt').get(pk=row.pk)
         payment.verify(current)
@@ -77,11 +77,11 @@ def provision(owner, identity, archive):
         return grant
 
 
-def deliver(owner, identity, line_id, stage, archive):
+def deliver(owner, identity, line_id, stage, archive, *, customer_request=None):
     synthetic_bank.guard()
     if type(line_id) is not uuid.UUID or stage not in ('initial','reference'):
         raise checkout.CheckoutError('invalid_delivery', 400)
-    row = funded(owner, identity)
+    row = funded(owner, identity, customer_request=customer_request)
     grant = SyntheticFulfilment.objects.filter(acceptance=row).first()
     if grant is None:raise checkout.CheckoutError('synthetic_fulfilment_required', 422)
     retained(grant, row, archive)
@@ -101,7 +101,7 @@ def deliver(owner, identity, line_id, stage, archive):
     body = checkout.canonical(value);receipt = archive.publish(evidence_id, body)
     payment.recover(archive, manifest(receipt), evidence_id, body)
     with transaction.atomic(durable=True):
-        payment.locked(owner, identity)
+        payment.locked(owner, identity, customer_request=customer_request)
         current = SyntheticFulfilment.objects.select_for_update().get(pk=grant.pk)
         accepted_row = SyntheticCheckoutAcceptance.objects.select_related('checkout','attempt').get(pk=row.pk)
         payment.verify(accepted_row)

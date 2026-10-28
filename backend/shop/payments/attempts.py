@@ -132,8 +132,9 @@ def inspect(attempt_id):
             row.provider_status,row.state in ('uncertain','observed'))
 
 
-@local_effect('payment-dispatch',guard=synthetic_bank.guard,error=BankError)
-def dispatch(attempt_id,archive,*,outcome='captured',fault=None):
+@local_effect('payment-dispatch',guard=synthetic_bank.guard,error=BankError,epoch_kwarg='customer_epoch')
+def dispatch(attempt_id,archive,*,outcome='captured',fault=None,customer_epoch=None):
+    # customer_epoch is checked under the admission decorator's epoch lock.
     synthetic_bank.guard()
     with transaction.atomic(durable=True):
         row=SyntheticPaymentAttempt.objects.select_for_update().get(pk=attempt_id)

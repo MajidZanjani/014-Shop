@@ -9,14 +9,15 @@ from urllib.parse import urlencode
 import json
 import uuid
 from django.contrib.auth import get_user_model
-from django.db import connections, transaction, IntegrityError
+from django.db import connection, connections, transaction, IntegrityError
 from django.test import Client, TransactionTestCase, override_settings
 from django.utils import timezone
 from shop.adapters.evidence_archive import PreparedArchive, ArchiveError
 from shop.payments import synthetic_bank
 from shop.payments.models import SyntheticBankOperation, SyntheticPaymentAttempt
 from . import checkout, checkout_payment as service, checkout_tests as fixture
-from .models import SyntheticCheckout, SyntheticCheckoutAcceptance
+from .models import (SyntheticCheckout, SyntheticCheckoutAcceptance, SyntheticFulfilment,
+                     SyntheticLineEntitlement, SyntheticLineDelivery)
 from .tests import verified_login
 
 
@@ -271,3 +272,225 @@ class CheckoutPaymentTests(TransactionTestCase):
         from .commercial_revisions import CommercialRevisionError
         with patch('shop.catalog.commercial_revisions.consume',side_effect=CommercialRevisionError('untrusted')):
             with self.assertRaises(checkout.CheckoutError):checkout.current(self.owner)
+
+
+class CheckoutRecoveryTests(TransactionTestCase):
+    save_cart=CheckoutPaymentTests.save_cart
+    preview=CheckoutPaymentTests.preview
+    accept=CheckoutPaymentTests.accept
+    setUp=CheckoutPaymentTests.setUp
+
+    def recover(self,action='quarantine',*,basis_reset=None):
+        from shop.access.recovery import local_recovery_operation
+        return local_recovery_operation(action=action,request_id=uuid.uuid4(),
+            expected_database=connection.settings_dict['NAME'],basis_reset=basis_reset)
+
+    def facts(self):
+        return {
+            'acceptance':list(SyntheticCheckoutAcceptance.objects.order_by('id').values_list('id','simulated_accepted_at','attempt_id')),
+            'attempt':list(SyntheticPaymentAttempt.objects.order_by('id').values_list('id','state','provider_status')),
+            'bank':SyntheticBankOperation.objects.count(),
+            'grant':list(SyntheticFulfilment.objects.order_by('id').values_list('id','support_seconds')),
+            'licences':list(SyntheticLineEntitlement.objects.order_by('id').values_list('id',flat=True)),
+            'delivery':list(SyntheticLineDelivery.objects.order_by('id').values_list('entitlement_id','stage')),
+        }
+
+    def customer_command(self,action):
+        from . import fulfilment
+        if action=='accept':
+            _,expected,_=service.review(self.owner,self.saved.pk)
+            return {'action':action,'sha256':expected,'confirmed':True}
+        self.accept()
+        if action in ('provision','deliver_initial','deliver_reference'):
+            service.pay(self.owner,self.saved.pk,self.archive)
+        elif action=='reconcile':
+            with self.assertRaises(TimeoutError):service.pay(self.owner,self.saved.pk,self.archive,fault='after_commit')
+        value={'action':action}
+        if action.startswith('deliver_'):
+            grant=fulfilment.provision(self.owner,self.saved.pk,self.archive)
+            line=SyntheticLineEntitlement.objects.get(fulfilment=grant)
+            value['line_id']=str(line.line_id)
+            if action=='deliver_reference':fulfilment.deliver(self.owner,self.saved.pk,line.line_id,'initial',self.archive)
+        return value
+
+    def command_overlap(self,action,*,released=False,form=False):
+        from . import checkout_payment_views as views
+        browser=Client(enforce_csrf_checks=True);browser.cookies.update(self.client.cookies)
+        path=self.page if form else self.api
+        self.assertEqual(browser.get(self.page).status_code,200)
+        value=self.customer_command(action);before=self.facts();parse=views.command
+        if form and action=='accept':value['confirmed']='on'
+        def interleave(request,api):
+            result=parse(request,api)
+            reset=self.recover()
+            if released:self.recover('release',basis_reset=reset['operation_id'])
+            return result
+        with patch.object(views,'command',side_effect=interleave):
+            response=browser.post(path,data=urlencode(value) if form else json.dumps(value),
+                content_type='application/x-www-form-urlencoded' if form else 'application/json',
+                HTTP_X_CSRFTOKEN=browser.cookies['csrftoken'].value)
+        with self.subTest(check='response'):
+            self.assertEqual(response.status_code,403,response.content)
+            self.assertEqual(response['Cache-Control'],'no-store')
+            if not form:self.assertEqual(response.json(),{'error':'verification_required'})
+            else:
+                self.assertNotContains(response,'<form',status_code=403)
+                self.assertNotContains(response,'verification_required',status_code=403)
+        with self.subTest(check='facts'):
+            self.assertEqual(self.facts(),before)
+        if not released:
+            from shop.access.models import AccessEpoch
+            self.recover('release',basis_reset=AccessEpoch.objects.get(pk=1).active_reset)
+        verified_login(browser,self.owner)
+        self.assertEqual(browser.get(self.page).status_code,200)
+        def retry():
+            return browser.post(path,data=urlencode(value) if form else json.dumps(value),
+                content_type='application/x-www-form-urlencoded' if form else 'application/json',
+                HTTP_X_CSRFTOKEN=browser.cookies['csrftoken'].value)
+        self.assertEqual(retry().status_code,200)
+        committed=self.facts()
+        self.assertEqual(retry().status_code,200)
+        self.assertEqual(self.facts(),committed)
+        self.assertEqual(SyntheticBankOperation.objects.count(),before['bank']+int(action=='pay'))
+
+    def test_accept_after_command_quarantine_denies(self):self.command_overlap('accept')
+    def test_pay_after_command_quarantine_denies(self):self.command_overlap('pay')
+    def test_reconcile_after_command_quarantine_denies(self):self.command_overlap('reconcile')
+    def test_provision_after_command_quarantine_denies(self):self.command_overlap('provision')
+    def test_initial_after_command_quarantine_denies(self):self.command_overlap('deliver_initial')
+    def test_reference_after_command_quarantine_denies(self):self.command_overlap('deliver_reference')
+    def test_accept_after_completed_quarantine_release_denies(self):self.command_overlap('accept',released=True)
+    def test_pay_after_completed_quarantine_release_denies(self):self.command_overlap('pay',released=True)
+    def test_reconcile_after_completed_quarantine_release_denies(self):self.command_overlap('reconcile',released=True)
+    def test_provision_after_completed_quarantine_release_denies(self):self.command_overlap('provision',released=True)
+    def test_initial_after_completed_quarantine_release_denies(self):self.command_overlap('deliver_initial',released=True)
+    def test_reference_after_completed_quarantine_release_denies(self):self.command_overlap('deliver_reference',released=True)
+    def test_form_accept_after_command_quarantine_denies(self):self.command_overlap('accept',form=True)
+    def test_form_pay_after_completed_quarantine_release_denies(self):self.command_overlap('pay',released=True,form=True)
+
+    def test_payment_dispatch_cannot_adopt_released_epoch_after_attempt_binding(self):
+        from shop.payments import attempts
+        self.accept();dispatch=attempts.dispatch
+        def interleave(*args,**kwargs):
+            self.assertFalse(connection.in_atomic_block)
+            self.assertEqual(SyntheticPaymentAttempt.objects.get().state,'prepared')
+            reset=self.recover();self.recover('release',basis_reset=reset['operation_id'])
+            return dispatch(*args,**kwargs)
+        with patch.object(attempts,'dispatch',side_effect=interleave):
+            response=self.client.post(self.api,data=json.dumps({'action':'pay'}),content_type='application/json')
+        self.assertEqual(response.status_code,403,response.content)
+        self.assertEqual(response.json(),{'error':'verification_required'})
+        attempt=SyntheticPaymentAttempt.objects.get()
+        self.assertEqual(attempt.state,'prepared');self.assertEqual(attempt.archive_receipt,{})
+        self.assertEqual(SyntheticBankOperation.objects.count(),0)
+        from shop.access.models import LocalEffectAdmission
+        self.assertEqual(LocalEffectAdmission.objects.count(),0)
+        verified_login(self.client,self.owner)
+        for _ in range(2):
+            self.assertEqual(self.client.post(self.api,data=json.dumps({'action':'pay'}),content_type='application/json').status_code,200)
+        self.assertEqual(SyntheticPaymentAttempt.objects.get().pk,attempt.pk)
+        self.assertEqual(SyntheticBankOperation.objects.count(),1)
+
+    def test_quarantine_after_one_way_claim_leaves_lookup_only_uncertainty(self):
+        from shop.access.recovery import AccessRecoveryError
+        from shop.access.models import LocalEffectAdmission
+        self.accept();start=synthetic_bank.start;resets=[]
+        def interleave(*args,**kwargs):
+            self.assertFalse(connection.in_atomic_block)
+            self.assertEqual(SyntheticPaymentAttempt.objects.get().state,'uncertain')
+            reset=self.recover();resets.append(reset['operation_id'])
+            with self.assertRaisesMessage(AccessRecoveryError,'recovery_effects_unfinished'):
+                self.recover('release',basis_reset=reset['operation_id'])
+            return start(*args,**kwargs)
+        with patch.object(synthetic_bank,'start',side_effect=interleave):
+            response=self.client.post(self.api,data=json.dumps({'action':'pay'}),content_type='application/json')
+        self.assertEqual(response.status_code,403,response.content)
+        self.assertEqual(response.json(),{'error':'verification_required'})
+        self.assertEqual(SyntheticPaymentAttempt.objects.get().state,'uncertain')
+        self.assertEqual(SyntheticBankOperation.objects.count(),0)
+        self.assertFalse(LocalEffectAdmission.objects.filter(finished_at__isnull=True).exists())
+        # Internal read-only lookup remains usable while held; a miss never resends.
+        self.assertEqual(service.reconcile(self.owner,self.saved.pk,self.archive).attempt.state,'uncertain')
+        self.recover('release',basis_reset=resets[0]);verified_login(self.client,self.owner)
+        with patch.object(synthetic_bank,'start',side_effect=AssertionError('blind resend')):
+            for action in ('pay','reconcile','pay'):
+                self.assertEqual(self.client.post(self.api,data=json.dumps({'action':action}),content_type='application/json').status_code,200)
+        self.assertEqual(SyntheticPaymentAttempt.objects.get().state,'uncertain')
+        self.assertEqual(SyntheticBankOperation.objects.count(),0)
+
+    def archive_overlap(self,action):
+        value=self.customer_command(action)
+        row=SyntheticCheckoutAcceptance.objects.filter(checkout=self.saved).first()
+        if action=='accept':target=uuid.uuid5(self.saved.pk,service.PROFILE)
+        elif action=='provision':target=uuid.uuid5(row.pk,'cart-fulfilment-v1')
+        else:
+            line=SyntheticLineEntitlement.objects.get(line_id=value['line_id'])
+            target=uuid.uuid5(line.pk,('initial' if action=='deliver_initial' else 'reference')+'-completion-v1')
+        publish=PreparedArchive.publish;seen=[]
+        def interleave(archive,identity,body):
+            receipt=publish(archive,identity,body)
+            if identity==target and not seen:
+                self.assertFalse(connection.in_atomic_block)
+                reset=self.recover();self.recover('release',basis_reset=reset['operation_id']);seen.append(True)
+            return receipt
+        before=self.facts()
+        with patch.object(PreparedArchive,'publish',interleave):
+            response=self.client.post(self.api,data=json.dumps(value),content_type='application/json')
+        self.assertEqual(seen,[True]);self.assertEqual(response.status_code,403,response.content)
+        if action=='accept':
+            accepted=SyntheticCheckoutAcceptance.objects.get(checkout=self.saved)
+            self.assertIsNone(accepted.simulated_accepted_at);self.assertIsNone(accepted.attempt_id)
+        else:self.assertEqual(self.facts(),before)
+        verified_login(self.client,self.owner)
+        for _ in range(2):
+            self.assertEqual(self.client.post(self.api,data=json.dumps(value),content_type='application/json').status_code,200)
+        self.assertEqual(SyntheticBankOperation.objects.count(),before['bank'])
+        self.assertLessEqual(SyntheticFulfilment.objects.count(),1)
+        self.assertLessEqual(SyntheticLineEntitlement.objects.count(),1)
+
+    def test_acceptance_archive_does_not_complete_after_recovery(self):self.archive_overlap('accept')
+    def test_grant_archive_does_not_complete_after_recovery(self):self.archive_overlap('provision')
+    def test_initial_archive_does_not_complete_after_recovery(self):self.archive_overlap('deliver_initial')
+    def test_reference_archive_does_not_complete_after_recovery(self):self.archive_overlap('deliver_reference')
+
+    def test_checkout_review_denies_after_entry_access_crosses_recovery(self):
+        from . import checkout_payment_views as views
+        access=views.local_customer
+        def interleave(request):
+            result=access(request);self.assertIsNone(result)
+            reset=self.recover();self.recover('release',basis_reset=reset['operation_id'])
+            return result
+        with patch.object(views,'local_customer',side_effect=interleave):response=self.client.get(self.api)
+        self.assertEqual(response.status_code,403,response.content)
+        self.assertEqual(response.json(),{'error':'verification_required'})
+        self.assertEqual(response['Cache-Control'],'no-store')
+
+    def test_customer_transactions_lock_epoch_before_owner_and_bank_runs_outside_locks(self):
+        from django.db import DatabaseError
+        from shop.access.models import AccessEpoch
+        active=[];observed=set();owner_locked=service.owner_locked;start=synthetic_bank.start
+        def observe(owner):
+            def contender():
+                try:
+                    with transaction.atomic():AccessEpoch.objects.select_for_update(nowait=True).get(pk=1)
+                except DatabaseError as error:return getattr(error.__cause__,'sqlstate',None)
+                finally:connections.close_all()
+                return 'unlocked'
+            with ThreadPoolExecutor(max_workers=1) as pool:
+                self.assertEqual(pool.submit(contender).result(timeout=10),'55P03')
+            observed.add(active[0])
+            return owner_locked(owner)
+        def bank(*args,**kwargs):
+            self.assertFalse(connection.in_atomic_block)
+            return start(*args,**kwargs)
+        first=self.customer_command('accept')
+        with patch.object(service,'owner_locked',side_effect=observe),patch.object(synthetic_bank,'start',side_effect=bank):
+            for action in ('accept','pay','provision','deliver_initial','deliver_reference','review'):
+                active[:]=[action]
+                if action=='review':response=self.client.get(self.api)
+                else:
+                    value=first if action=='accept' else {'action':action}
+                    if action.startswith('deliver_'):value['line_id']=str(SyntheticLineEntitlement.objects.get().line_id)
+                    response=self.client.post(self.api,data=json.dumps(value),content_type='application/json')
+                self.assertEqual(response.status_code,200,response.content)
+        self.assertEqual(observed,{'accept','pay','provision','deliver_initial','deliver_reference','review'})

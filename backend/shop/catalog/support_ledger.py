@@ -3,7 +3,6 @@ import uuid
 from django.db import transaction
 from shop.access.models import StaffCredential
 from shop.access.staff_auth import staff_credential
-from shop.access.recovery import current_session_epoch
 from shop.payments import synthetic_bank
 from shop.adapters.evidence_archive import manifest
 from . import checkout, checkout_payment as payment, fulfilment
@@ -18,12 +17,7 @@ def fail(code='support_ledger_mismatch', status=409):
 
 
 def authorize_customer(owner,request):
-    # Internal fixture calls have no customer session. HTTP callers supply it
-    # explicitly; lock its epoch before staff/owner/resource work through commit.
-    if request is None:return
-    if (not callable(getattr(getattr(request,'session',None),'get',None))
-            or not current_session_epoch(request,lock=True) or request.user.pk!=owner.pk):
-        fail('verification_required',403)
+    payment.authorize_customer(owner,request)
 
 
 def authorize(request, grant=None):

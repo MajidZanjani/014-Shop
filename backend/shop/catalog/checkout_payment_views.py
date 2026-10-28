@@ -87,12 +87,12 @@ def handle(request, identity, api):
             root = getattr(settings, 'LOCAL_CHECKOUT_ARCHIVE_ROOT', None)
             if not root: raise checkout.CheckoutError('local_archive_unavailable', 503)
             with PreparedArchive(Path(root)) as archive:
-                if value['action'] == 'accept': service.accept(request.user, identity, value['sha256'], value['confirmed'], archive)
-                elif value['action'] == 'pay': service.pay(request.user, identity, archive)
-                elif value['action'] == 'reconcile': service.reconcile(request.user, identity, archive)
-                elif value['action'] == 'provision': fulfilment.provision(request.user, identity, archive)
-                else: fulfilment.deliver(request.user, identity, value['line_id'], 'initial' if value['action']=='deliver_initial' else 'reference', archive)
-        value, sha256, row = service.review(request.user, identity)
+                if value['action'] == 'accept': service.accept(request.user, identity, value['sha256'], value['confirmed'], archive, customer_request=request)
+                elif value['action'] == 'pay': service.pay(request.user, identity, archive, customer_request=request)
+                elif value['action'] == 'reconcile': service.reconcile(request.user, identity, archive, customer_request=request)
+                elif value['action'] == 'provision': fulfilment.provision(request.user, identity, archive, customer_request=request)
+                else: fulfilment.deliver(request.user, identity, value['line_id'], 'initial' if value['action']=='deliver_initial' else 'reference', archive, customer_request=request)
+        value, sha256, row = service.review(request.user, identity, customer_request=request)
         context = summary(value, sha256, row)
     except checkout.CheckoutError as error:
         context = {'error': str(error)};status = error.status
