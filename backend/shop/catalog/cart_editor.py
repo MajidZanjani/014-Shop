@@ -6,8 +6,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.http import require_http_methods
-from .cart_views import store_cart,snapshot_json,reply
-from .models import DraftCart,CartSnapshot
+from .cart_views import store_cart,read_cart,reply
 from .rules import CATALOG
 from .simple import ConfigurationForm
 from .views import local_customer
@@ -43,10 +42,9 @@ def command(request):
     version=int(raw)
     revision=data['catalog_revision']
     if re.fullmatch('[0-9a-f]{64}',revision) is None:raise ValueError('revision')
-    cart=DraftCart.objects.filter(owner=request.user).first()
-    base=CartSnapshot.objects.filter(cart=cart,cart__owner=request.user,version=version).first() if cart and version else None
-    if version and base is None:return None,404
-    lines=copy.deepcopy(base.lines if base else [])
+    base,status=read_cart(request.user,version=version,customer_request=request)
+    if status!=200:return None,status
+    lines=copy.deepcopy(base['lines'])
     index=next((n for n,line in enumerate(lines) if line['id']==line_id),None)
     if action in ('save_ip','save_support','remove') and index is None:return None,404
     if action in ('add_ip','add_support') and index is not None:raise ValueError('duplicate_line')
@@ -91,17 +89,16 @@ def cart_editor(request):
         if request.GET:return private(reply({'error':'unexpected_query'},400))
         try:
             value,status=command(request)
-            if value is not None:result,status=store_cart(request.user,value)
+            if value is not None:result,status=store_cart(request.user,value,customer_request=request)
+            if status==403:return private(reply({'error':'verification_required'},403))
             if status in (200,201):
                 request.session['cart_saved_notice']={'version':result['version'],'replayed':status==200}
                 response=HttpResponse(status=303);response['Location']=PATH
                 return private(response)
             error={404:'The saved line or cart revision is unavailable.',409:'The cart or catalog changed. Reload and review before submitting a new change.',422:'Check the configuration, support quantity and cart limits.'}.get(status,'The request was rejected.')
         except (ValueError,TypeError,UnicodeError):error='The request was rejected. Reload this page and try again.';status=400
-    cart=DraftCart.objects.filter(owner=request.user).first()
-    snapshot=CartSnapshot.objects.filter(cart=cart,cart__owner=request.user,version=cart.version).first() if cart and cart.version else None
-    if cart and cart.version and snapshot is None:return private(reply({'error':'not_found'},404))
-    value=snapshot_json(cart,snapshot)
+    value,read_status=read_cart(request.user,customer_request=request)
+    if read_status!=200:return private(reply(value,read_status))
     edit=None
     if request.method=='GET' and request.GET:
         try:

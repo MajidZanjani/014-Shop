@@ -10,6 +10,7 @@ from django.test import Client,TransactionTestCase,override_settings
 from shop.access import tests as access_tests
 from shop.access.journey_tests import HiddenForms
 from .models import DraftCart,CartSnapshot,QuotationRequest
+from .cart_tests import CartRecoveryMixin
 from .rules import CATALOG
 
 PATH='/purchase/cart/'
@@ -182,3 +183,117 @@ class CartEditorTests(TransactionTestCase):
                 self.assertEqual(response.status_code,404,path)
                 self.assertNotContains(response,'712341',status_code=404)
             finally:DraftCart.objects.filter(pk=cart.pk).update(owner=owner)
+
+
+class CartEditorRecoveryTests(CartRecoveryMixin,TransactionTestCase):
+    form=CartEditorTests.form
+    post=CartEditorTests.post
+    cart=CartEditorTests.cart
+
+    def setUp(self):
+        from django.contrib.auth import get_user_model
+        CartEditorTests.setUp(self)
+        self.owner=get_user_model().objects.get(pk=self.browser.session['_auth_user_id'])
+
+    def command_overlap(self,mode,released=False):
+        from . import cart_editor
+        form=self.form('add_support');form['quantity']='712341'
+        if mode in ('update','replay'):
+            self.assertEqual(self.post(form).status_code,303)
+            later=self.form('save_support',line=form['line_id']);later['quantity']='2'
+            if mode=='update':form=later
+            else:self.assertEqual(self.post(later).status_code,303)
+        before=self.facts();store=cart_editor.store_cart
+        def interleave(*args,**kwargs):
+            self.reset(released)
+            return store(*args,**kwargs)
+        with patch.object(cart_editor,'store_cart',side_effect=interleave):response=self.post(form)
+        with self.subTest(check='response'):
+            self.assertEqual(response.status_code,403,response.content)
+            self.assertEqual(response['Cache-Control'],'no-store')
+            self.assertNotContains(response,'<form',status_code=403)
+            self.assertNotContains(response,'712341',status_code=403)
+        with self.subTest(check='facts'):self.assertEqual(self.facts(),before)
+        self.fresh(self.browser)
+        self.assertEqual(self.post(form).status_code,303)
+        committed=self.facts()
+        self.assertEqual(self.post(form).status_code,303)
+        self.assertEqual(self.facts(),committed)
+
+    def test_first_save_after_quarantine_denies(self):self.command_overlap('create')
+    def test_first_save_after_quarantine_release_denies(self):self.command_overlap('create',True)
+    def test_update_after_quarantine_denies(self):self.command_overlap('update')
+    def test_update_after_quarantine_release_denies(self):self.command_overlap('update',True)
+    def test_exact_replay_after_quarantine_denies(self):self.command_overlap('replay')
+    def test_exact_replay_after_quarantine_release_denies(self):self.command_overlap('replay',True)
+
+    def read_overlap(self,released,invalid=False):
+        from . import cart_editor
+        form=self.form('add_support');form['quantity']='712341'
+        self.assertEqual(self.post(form).status_code,303)
+        before=self.facts()
+        if invalid:
+            form=self.form('save_support',line=form['line_id']);form['quantity']='0'
+            parse=cart_editor.command
+            def interleave(request):
+                value=parse(request);self.assertEqual(value,(None,422))
+                self.reset(released)
+                return value
+            with patch.object(cart_editor,'command',side_effect=interleave):response=self.post(form)
+        else:
+            access=cart_editor.local_customer
+            def interleave(request):
+                result=access(request);self.assertIsNone(result)
+                self.reset(released)
+                return result
+            with patch.object(cart_editor,'local_customer',side_effect=interleave):response=self.browser.get(PATH)
+        with self.subTest(check='response'):
+            self.assertEqual(response.status_code,403,response.content)
+            self.assertEqual(response['Cache-Control'],'no-store')
+            self.assertNotContains(response,'<form',status_code=403)
+            self.assertNotContains(response,'712341',status_code=403)
+        with self.subTest(check='facts'):self.assertEqual(self.facts(),before)
+
+    def test_private_read_after_quarantine_denies(self):self.read_overlap(False)
+    def test_private_read_after_quarantine_release_denies(self):self.read_overlap(True)
+    def test_invalid_command_after_quarantine_denies_private_error_page(self):self.read_overlap(False,True)
+    def test_invalid_command_after_quarantine_release_denies_private_error_page(self):self.read_overlap(True,True)
+
+    def base_read_overlap(self,released):
+        from . import cart_editor
+        form=self.form('add_support');form['quantity']='712341'
+        self.assertEqual(self.post(form).status_code,303)
+        form=self.form('save_support',line=form['line_id']);form['quantity']='2'
+        before=self.facts();access=cart_editor.local_customer
+        def interleave(request):
+            result=access(request);self.assertIsNone(result)
+            self.reset(released)
+            return result
+        with patch.object(cart_editor,'local_customer',side_effect=interleave):response=self.post(form)
+        with self.subTest(check='response'):
+            self.assertEqual(response.status_code,403,response.content)
+            self.assertNotContains(response,'<form',status_code=403)
+            self.assertNotContains(response,'712341',status_code=403)
+        with self.subTest(check='facts'):self.assertEqual(self.facts(),before)
+
+    def test_command_base_read_after_quarantine_denies(self):self.base_read_overlap(False)
+    def test_command_base_read_after_quarantine_release_denies(self):self.base_read_overlap(True)
+
+    def test_epoch_is_locked_before_native_base_reads_writes_and_error_reads(self):
+        from django.db.models.query import QuerySet
+        first=QuerySet.first;create=QuerySet.get_or_create;seen=set();active=[]
+        def observe():
+            self.assert_epoch_locked();seen.add(active[0])
+        def read(query,*args,**kwargs):
+            if query.model is DraftCart:observe()
+            return first(query,*args,**kwargs)
+        def write(query,*args,**kwargs):
+            if query.model is DraftCart:observe()
+            return create(query,*args,**kwargs)
+        with patch.object(QuerySet,'first',read),patch.object(QuerySet,'get_or_create',write):
+            active[:]=['get'];form=self.form('add_support');form['quantity']='2'
+            active[:]=['create'];self.assertEqual(self.post(form).status_code,303)
+            active[:]=['replay'];self.assertEqual(self.post(form).status_code,303)
+            active[:]=['invalid'];bad=dict(form,request_id=str(uuid.uuid4()),line_id=str(uuid.uuid4()),quantity='0')
+            self.assertEqual(self.post(bad).status_code,422)
+        self.assertEqual(seen,{'get','create','replay','invalid'})

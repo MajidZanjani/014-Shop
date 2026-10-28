@@ -140,3 +140,132 @@ class CartTests(TransactionTestCase):
         self.owner.is_staff=False;self.owner.save()
         session=self.client.session;session.pop('shop_verified_identity');session.save()
         self.assertEqual(self.post().status_code,403)
+
+
+class CartRecoveryMixin:
+    def recover(self,action='quarantine',*,basis_reset=None):
+        from django.db import connection
+        from shop.access.recovery import local_recovery_operation
+        return local_recovery_operation(action=action,request_id=uuid.uuid4(),
+            expected_database=connection.settings_dict['NAME'],basis_reset=basis_reset)
+
+    def facts(self):
+        return {
+            'cart':list(DraftCart.objects.order_by('id').values_list('id','owner_id','version')),
+            'snapshots':list(CartSnapshot.objects.order_by('id').values_list(
+                'id','cart_id','version','request_id','catalog_revision','lines','evaluation')),
+        }
+
+    def reset(self,released):
+        reset=self.recover()
+        if released:self.recover('release',basis_reset=reset['operation_id'])
+
+    def fresh(self,browser=None):
+        from shop.access.models import AccessEpoch
+        epoch=AccessEpoch.objects.get(pk=1)
+        if epoch.quarantined:self.recover('release',basis_reset=epoch.active_reset)
+        verified_login(browser or self.client,self.owner)
+        self.assertEqual((browser or self.client).get('/api/v1/customer/session/').status_code,200)
+
+    def assert_epoch_locked(self):
+        from django.db import DatabaseError,transaction
+        from shop.access.models import AccessEpoch
+        def contender():
+            try:
+                with transaction.atomic():AccessEpoch.objects.select_for_update(nowait=True).get(pk=1)
+            except DatabaseError as error:return getattr(error.__cause__,'sqlstate',None)
+            finally:connections.close_all()
+            return 'unlocked'
+        with ThreadPoolExecutor(max_workers=1) as pool:
+            self.assertEqual(pool.submit(contender).result(timeout=10),'55P03')
+
+
+class CartRecoveryTests(CartRecoveryMixin,TransactionTestCase):
+    def setUp(self):
+        CartTests.setUp(self)
+        strict=Client(enforce_csrf_checks=True);strict.cookies.update(self.client.cookies)
+        self.client=strict
+        self.assertEqual(self.client.get('/api/v1/customer/session/').status_code,200)
+
+    def post(self,value=None):
+        return self.client.post('/api/v1/cart/',data=json.dumps(self.value if value is None else value),
+            content_type='application/json',HTTP_X_CSRFTOKEN=self.client.cookies['csrftoken'].value)
+
+    def command_overlap(self,mode,released=False):
+        from unittest.mock import patch
+        from . import cart_views
+        value=self.value
+        if mode in ('update','replay'):
+            self.assertEqual(self.post().status_code,201)
+            later=dict(self.value,request_id=str(uuid.uuid4()),expected_version=1,lines=[])
+            if mode=='update':value=later
+            else:self.assertEqual(self.post(later).status_code,201)
+        before=self.facts();store=cart_views.store_cart
+        def interleave(*args,**kwargs):
+            self.reset(released)
+            return store(*args,**kwargs)
+        with patch.object(cart_views,'store_cart',side_effect=interleave):response=self.post(value)
+        with self.subTest(check='response'):
+            self.assertEqual(response.status_code,403,response.content)
+            self.assertEqual(response.json(),{'error':'verification_required'})
+            self.assertEqual(response['Cache-Control'],'no-store')
+        with self.subTest(check='facts'):self.assertEqual(self.facts(),before)
+        self.fresh()
+        self.assertEqual(self.post(value).status_code,200 if mode=='replay' else 201)
+        committed=self.facts()
+        self.assertEqual(self.post(value).status_code,200)
+        self.assertEqual(self.facts(),committed)
+
+    def test_first_save_after_quarantine_denies(self):self.command_overlap('create')
+    def test_first_save_after_quarantine_release_denies(self):self.command_overlap('create',True)
+    def test_update_after_quarantine_denies(self):self.command_overlap('update')
+    def test_update_after_quarantine_release_denies(self):self.command_overlap('update',True)
+    def test_exact_replay_after_quarantine_denies(self):self.command_overlap('replay')
+    def test_exact_replay_after_quarantine_release_denies(self):self.command_overlap('replay',True)
+
+    def read_overlap(self,released):
+        from unittest.mock import patch
+        from . import cart_views
+        self.assertEqual(self.post().status_code,201)
+        before=self.facts();access=cart_views.local_customer
+        def interleave(request):
+            result=access(request);self.assertIsNone(result)
+            self.reset(released)
+            return result
+        with patch.object(cart_views,'local_customer',side_effect=interleave):response=self.client.get('/api/v1/cart/')
+        self.assertEqual(response.status_code,403,response.content)
+        self.assertEqual(response.json(),{'error':'verification_required'})
+        self.assertEqual(response['Cache-Control'],'no-store')
+        self.assertEqual(self.facts(),before)
+
+    def test_private_read_after_quarantine_denies(self):self.read_overlap(False)
+    def test_private_read_after_quarantine_release_denies(self):self.read_overlap(True)
+
+    def test_epoch_is_locked_before_cart_reads_and_writes(self):
+        from unittest.mock import patch
+        from django.db.models.query import QuerySet
+        first=QuerySet.first;create=QuerySet.get_or_create;seen=set();active=[]
+        def observe():
+            self.assert_epoch_locked()
+            seen.add(active[0])
+        def read(query,*args,**kwargs):
+            if query.model is DraftCart:observe()
+            return first(query,*args,**kwargs)
+        def write(query,*args,**kwargs):
+            if query.model is DraftCart:observe()
+            return create(query,*args,**kwargs)
+        with patch.object(QuerySet,'first',read),patch.object(QuerySet,'get_or_create',write):
+            active[:]=['get'];self.assertEqual(self.client.get('/api/v1/cart/').status_code,200)
+            active[:]=['create'];self.assertEqual(self.post().status_code,201)
+            active[:]=['replay'];self.assertEqual(self.post().status_code,200)
+        self.assertEqual(seen,{'get','create','replay'})
+
+    def test_trusted_internal_cart_calls_preserve_the_no_request_interface(self):
+        from .cart_views import store_cart
+        self.reset(False)
+        first,status=store_cart(self.owner,self.value)
+        self.assertEqual(status,201)
+        before=self.facts()
+        retry,status=store_cart(self.owner,self.value)
+        self.assertEqual(status,200);self.assertEqual(retry,first)
+        self.assertEqual(self.facts(),before)

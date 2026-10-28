@@ -4,6 +4,7 @@ import uuid
 from django.db import transaction
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
+from shop.access.recovery import current_session_epoch
 from .cart_rules import evaluate_cart
 from .models import DraftCart,CartSnapshot
 from .rules import CATALOG
@@ -18,16 +19,31 @@ def snapshot_json(cart,snapshot=None):
             'lines':snapshot.lines if snapshot else [],'evaluation':snapshot.evaluation if snapshot else evaluate_cart([]),
             'state':'draft','checkout_enabled':False}
 
+
+def current_customer(user,request):
+    # Trusted internal callers omit the request. Customer transactions lock
+    # the originating epoch before cart work, matching recovery's lock order.
+    return request is None or (
+        callable(getattr(getattr(request,'session',None),'get',None))
+        and current_session_epoch(request,lock=True) and request.user.pk==user.pk)
+
+
+def read_cart(user,*,version=None,customer_request=None):
+    with transaction.atomic():
+        if not current_customer(user,customer_request):return {'error':'verification_required'},403
+        cart=DraftCart.objects.filter(owner=user).first()
+        selected=version if version is not None else cart.version if cart else 0
+        snapshot=CartSnapshot.objects.filter(cart=cart,cart__owner=user,version=selected).first() if selected else None
+        if selected and snapshot is None:return {'error':'not_found'},404
+        return snapshot_json(cart,snapshot),200
+
 @require_http_methods(['GET','POST'])
 def current_cart(request):
     denied=local_customer(request)
     if denied is not None:return denied
     if request.GET:return reply({'error':'unexpected_query'},400)
     if request.method=='GET':
-        cart=DraftCart.objects.filter(owner=request.user).first()
-        snapshot=CartSnapshot.objects.filter(cart=cart,cart__owner=request.user,version=cart.version).first() if cart and cart.version else None
-        if cart and cart.version and snapshot is None:return reply({'error':'not_found'},404)
-        return reply(snapshot_json(cart,snapshot))
+        return reply(*read_cart(request.user,customer_request=request))
     if request.content_type!='application/json':return reply({'error':'content_type'},415)
     try:
         if int(request.META.get('CONTENT_LENGTH') or 0)>32768:raise ValueError('size')
@@ -40,12 +56,13 @@ def current_cart(request):
         if type(value['expected_version']) is not int or not 0<=value['expected_version']<=1000000000:raise ValueError('version')
         if not isinstance(value['catalog_revision'],str) or len(value['catalog_revision'])!=64:raise ValueError('revision')
     except (ValueError,TypeError,UnicodeError,RecursionError):return reply({'error':'invalid_request'},400)
-    return reply(*store_cart(request.user,value))
+    return reply(*store_cart(request.user,value,customer_request=request))
 
 
-def store_cart(user,value):
+def store_cart(user,value,*,customer_request=None):
     request_id=uuid.UUID(value['request_id']) if isinstance(value['request_id'],str) else value['request_id']
     with transaction.atomic():
+        if not current_customer(user,customer_request):return {'error':'verification_required'},403
         cart,_=DraftCart.objects.get_or_create(owner=user)
         cart=DraftCart.objects.select_for_update().get(pk=cart.pk)
         old=CartSnapshot.objects.filter(cart=cart,request_id=request_id).first()
@@ -65,4 +82,4 @@ def store_cart(user,value):
         cart.version+=1
         snapshot=CartSnapshot.objects.create(cart=cart,version=cart.version,request_id=request_id,catalog_revision=value['catalog_revision'],lines=value['lines'],evaluation=evaluation)
         cart.save(update_fields=['version'])
-    return snapshot_json(cart,snapshot),201
+        return snapshot_json(cart,snapshot),201
