@@ -58,3 +58,67 @@ test('private responses cannot cross access context or expose mismatched bodies'
   release();await assert.rejects(pending,e=>e.status===403);
  }finally{if(old===undefined)delete globalThis.window;else globalThis.window=old;}
 });
+
+test('explicit recovery responses are closed fixed signals without error-body parsing',async()=>{
+ const old=globalThis.window;let parsed=0;
+ globalThis.window={fetch:async()=>({ok:false,status:503,headers:new Headers({'X-Shop-Access-Recovery':'pending'}),json:async()=>{parsed++;throw Error('error body must stay private');}})};
+ try{
+  await assert.rejects(api.customerRequest('/api/v1/customer/session/'),e=>e.status===503&&e.recoveryPending===true&&e.message==='Customer request failed');
+  assert.equal(parsed,0);
+ }finally{if(old===undefined)delete globalThis.window;else globalThis.window=old;}
+});
+
+test('recovery invalidates a private body already being parsed',async()=>{
+ const old=globalThis.window;let release,started;
+ const waiting=new Promise(resolve=>{started=resolve;});
+ globalThis.window={fetch:async path=>({ok:true,headers:new Headers({'content-type':'application/json','X-Shop-Access-Context':'a'.repeat(64)}),json:async()=>{
+  if(path==='/api/v1/cart/'){started();await new Promise(resolve=>{release=resolve;});}
+  return {};
+ }})};
+ let pending;
+ try{
+  await api.customerRequest('/api/v1/customer/session/');
+  pending=api.customerRequest('/api/v1/cart/');await waiting;
+  globalThis.window.fetch=async()=>({ok:false,status:503,headers:new Headers({'X-Shop-Access-Recovery':'pending'})});
+  await assert.rejects(api.customerRequest('/api/v1/customer/session/'),e=>e.status===503);
+  // A fresh same-context reconnect must not revive the older private response.
+  globalThis.window.fetch=async()=>({ok:true,headers:new Headers({'content-type':'application/json','X-Shop-Access-Context':'a'.repeat(64)}),json:async()=>({})});
+  await api.customerRequest('/api/v1/customer/session/');
+  release();await assert.rejects(pending,e=>e.status===403);
+ }finally{release?.();await pending?.catch(()=>{});if(old===undefined)delete globalThis.window;else globalThis.window=old;}
+});
+
+test('a pre-recovery session response cannot rebase the cleared context',async()=>{
+ const old=globalThis.window;let release,started,delay=false;
+ const waiting=new Promise(resolve=>{started=resolve;});
+ const success=async path=>({ok:true,headers:new Headers({'content-type':'application/json','X-Shop-Access-Context':'a'.repeat(64)}),json:async()=>{
+  if(delay&&path==='/api/v1/customer/session/'){started();await new Promise(resolve=>{release=resolve;});}
+  return {};
+ }});
+ globalThis.window={fetch:success};let pending;
+ try{
+  await api.customerRequest('/api/v1/customer/session/');delay=true;
+  pending=api.customerRequest('/api/v1/customer/session/');await waiting;
+  globalThis.window.fetch=async()=>({ok:false,status:503,headers:new Headers({'X-Shop-Access-Recovery':'pending'})});
+  await assert.rejects(api.customerRequest('/api/v1/customer/session/'),e=>e.status===503&&e.recoveryPending);
+  release();await assert.rejects(pending,e=>e.status===403&&e.recoveryPending);
+  delay=false;globalThis.window.fetch=success;
+  await assert.rejects(api.customerRequest('/api/v1/cart/'),e=>e.status===403);
+  await api.customerRequest('/api/v1/customer/session/');await api.customerRequest('/api/v1/cart/');
+ }finally{release?.();await pending?.catch(()=>{});if(old===undefined)delete globalThis.window;else globalThis.window=old;}
+});
+
+test('ordinary unavailability retains context and ignores arbitrary error bodies',async()=>{
+ const old=globalThis.window;let parsed=0;
+ const success=async()=>({ok:true,headers:new Headers({'content-type':'application/json','X-Shop-Access-Context':'b'.repeat(64)}),json:async()=>({})});
+ globalThis.window={fetch:success};
+ try{
+  await api.customerRequest('/api/v1/customer/session/');
+  for(const value of [null,'unknown','pending-extra']){
+   globalThis.window.fetch=async()=>({ok:false,status:503,headers:new Headers(value?{'X-Shop-Access-Recovery':value}:{}),json:async()=>{parsed++;throw Error('private error body');}});
+   await assert.rejects(api.customerRequest('/api/v1/cart/'),e=>e.status===503&&!e.recoveryPending);
+   globalThis.window.fetch=success;await api.customerRequest('/api/v1/cart/');
+  }
+  assert.equal(parsed,0);
+ }finally{if(old===undefined)delete globalThis.window;else globalThis.window=old;}
+});

@@ -45,12 +45,16 @@ class AuthenticationRecoveryTests(RecoveryFixture,TransactionTestCase):
                 response=self.browser.post('/purchase/access/',data=urlencode({'action':'verify','code':code}),
                     content_type='application/x-www-form-urlencoded',HTTP_X_CSRFTOKEN=self.browser.cookies['csrftoken'].value)
             else:response=csrf_post(self.browser,BASE+'verify/',{'code':code})
-        state=self.browser.get(BASE+'session/').json()
+        status_response=self.browser.get(BASE+'session/')
+        self.assertEqual(status_response['X-Shop-Access-Recovery'],'pending')
+        state=status_response.json()
         self.assertFalse(state.get('authenticated',False),'old code authenticated after recovery release')
         self.assertEqual(release_blocked,[True])
         self.assertEqual(response.status_code,503)
         if form:self.assertContains(response,'Customer access is temporarily paused for recovery review.',status_code=503)
-        else:self.assertEqual(response.json(),{'error':'access_recovery_pending'})
+        else:
+            self.assertEqual(response.json(),{'error':'access_recovery_pending'})
+            self.assertEqual(response['X-Shop-Access-Recovery'],'pending')
         self.assertEqual(response['Cache-Control'],'no-store');self.assertNotIn(code,response.content.decode())
         self.assertEqual(LocalEffectAdmission.objects.filter(finished_at__isnull=True).count(),0)
         self.recover('release',basis_reset=reset)
@@ -82,6 +86,7 @@ class AuthenticationRecoveryTests(RecoveryFixture,TransactionTestCase):
             response=future.result(timeout=10)
         self.assertEqual(response.status_code,503);self.assertEqual(response.json(),{'error':'access_recovery_pending'})
         self.assertEqual(response['Cache-Control'],'no-store')
+        self.assertEqual(response['X-Shop-Access-Recovery'],'pending')
         self.assertEqual(LocalEffectAdmission.objects.filter(finished_at__isnull=True).count(),0)
         return reset
 

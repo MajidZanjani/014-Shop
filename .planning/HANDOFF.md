@@ -4,15 +4,15 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — authentication recovery commit 0f4a063 verified and pushed; backend624/5, focused63, proxy148/2 and source272 pass; actual/full acceptance pending.
+**Execution status:** in progress — local recovery effects/authentication/UI verified; focused backend63, frontend137/32, browser227 and source272 pass; actual/full acceptance pending.
 
-**Next implementation task:** Review and reproduce public customer-interface handling of explicit recovery503 responses; clear private state when required while preserving ordinary offline and uncertain-write behavior. Keep commercial inputs pending.
+**Next implementation task:** Design local restore-startup quarantine before any access/effect when a restored database still contains an unheld epoch; preserve read-only bank reconciliation and keep commercial/actual qualification inputs pending.
 
 **Recorded implementation:** 0f4a063ff15883e3b7e58af22fd02a3be6591312
 
-Local customer/staff authentication and code capture now participate in durable recovery admission. The reproduced old-code login after quarantine/release is denied; active authentication blocks synthetic release, origin-epoch changes return fixed private503 and fresh customer/both-staff-factor recovery passes. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-AUTHENTICATION-RECOVERY-PARTIAL.md). Existing worker/provider admission and lookup-only uncertainty remain. Actual recovery/channel/provider/host/full acceptance stays pending. Continue with the public-interface recovery503 contract; commercial inputs remain pending by user instruction.
+Three local recovery slices are verified: durable worker/provider admission/drain, active-authentication origin-epoch fencing, and explicit recovery-response privacy cleanup with late-response generation checks. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-RECOVERY-PARTIAL.md). Current focused backend63, frontend137/32, fresh browser227 and exact272-file source pass; backend624/5 retains its pre-header scope. Actual startup/traffic/egress isolation, external reconciliation/MFA recovery and off-host/full acceptance remain pending. Next independent design is restore-startup quarantine for an unheld restored epoch. Commercial inputs remain pending by user instruction.
 
-All owned local qualification processes exited. Retain .scratch/auth-recovery-* logs and frozen cache wrappers. Shared /tmp remains full and untouched; use owned TMPDIR and narrow justified execution. Continue across commits/pushes under standing authorization.
+All owned producers exited. Retain .scratch/public-recovery-* logs, exact frontend graph and frozen wheel-cache wrappers. Shared /tmp remains full and untouched; use owned TMPDIR and narrow justified execution. Ordinary non-force push after every commit remains authorized.
 
 [Final purchase-flow revision2](PURCHASE-FLOW-AMENDMENT.md) remains current authority. Retained Phase10 local work covers complete-cart synthetic grants/staged delivery and the implemented local support ledger; earlier phases are not implicitly complete. [Evidence](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md). One captured cart payment yields an archived deterministic grant plan, one licence record per IP line and exactly36000 integer support seconds/package once, non-expiring. Initial delivery leaves promised later reference design outstanding; later completion never adds another entitlement/grant. Ready-kit/support-only cases stay scoped. Archive readback precedes all simulated records/effects; uncertain funding cannot provision. No actual keys/files/rights or spendable support.
 

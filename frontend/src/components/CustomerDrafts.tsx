@@ -4,6 +4,7 @@ import { catalog } from '../lib/catalog';
 import { evaluate, initialConfiguration } from '../lib/configuration';
 import type { Configuration } from '../lib/configuration';
 import { ApiError, customerRequest } from '../lib/customer-api';
+import type { AccessDenial } from '../lib/customer-api';
 
 type Draft = {id: string; revision: string; created_at: string};
 export default function CustomerDrafts({configuration, onResume}: {configuration:Configuration; onResume:(v:Configuration)=>void}) {
@@ -30,8 +31,11 @@ export default function CustomerDrafts({configuration, onResume}: {configuration
         setDrafts(result.drafts);
       }
       setAvailable(true);setMessage('');
-    }catch{
-      if(mounted.current){setAvailable(false);setMessage('The shop connection is unavailable. You can keep configuring here, then retry the connection. Your selections stay in this page.');}
+    }catch(error){
+      if(mounted.current){
+        if(error instanceof ApiError&&error.recoveryPending)accessDenied('recovery');
+        else{setAvailable(false);setMessage('The shop connection is unavailable. You can keep configuring here, then retry the connection. Your selections stay in this page.');}
+      }
     }finally{if(mounted.current)setBusy(false);}
   };
   useEffect(()=>{
@@ -47,8 +51,12 @@ export default function CustomerDrafts({configuration, onResume}: {configuration
     setEmail('');setCode('');setRequested(false);pending.current=null;
     onResume(initialConfiguration());
   };
-  const accessDenied=(status:401|403)=>{
+  const accessDenied=(status:AccessDenial)=>{
     clearPrivateState();
+    if(status==='recovery'){
+      setMessage('Shop access is paused for recovery review. Private information has been cleared from this page. Retry the connection after access is restored.');
+      return;
+    }
     if(status===403){
       setMessage('Access or CSRF verification failed. Private information has been cleared from this page. Retry the connection to check your session before continuing.');
       return;
@@ -67,15 +75,17 @@ export default function CustomerDrafts({configuration, onResume}: {configuration
       const session=await customerRequest('/api/v1/customer/logout/','POST',{},csrf);
       setCsrf(session.csrf_token);setAvailable(true);
       setMessage('Signed out. Saved drafts remain on the running local backend.');
-    }catch{
-      setMessage('Sign-out could not be confirmed. Private information has been cleared from this page. Retry the connection to check your session before continuing.');
+    }catch(error){
+      if(error instanceof ApiError&&error.recoveryPending)accessDenied('recovery');
+      else setMessage('Sign-out could not be confirmed. Private information has been cleared from this page. Retry the connection to check your session before continuing.');
     }finally{setBusy(false);}
   };
   const action=async(run:()=>Promise<void>)=>{
     if(busy)return;setBusy(true);setMessage('');
     try{await run();}
     catch(error){
-      if(error instanceof ApiError && (error.status===401||error.status===403)){accessDenied(error.status);}
+      if(error instanceof ApiError&&error.recoveryPending)accessDenied('recovery');
+      else if(error instanceof ApiError && (error.status===401||error.status===403)){accessDenied(error.status);}
       else if(error instanceof ApiError && error.status===429)setMessage('Verification request limit reached. Wait ten minutes before trying again.');
       else if(error instanceof ApiError && error.status===400)setMessage('Verification failed. Check the code, its expiry and the requesting browser.');
       else if(error instanceof ApiError && error.status===409)setMessage('The catalog or save request changed. Refresh and review the configuration.');

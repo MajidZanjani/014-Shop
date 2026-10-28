@@ -335,6 +335,17 @@ export async function publicSmoke({index,javascript,config,navigate,evaluate,wai
   await wait(`document.querySelector('section[aria-label="Draft cart"]')?.innerText.includes('Version 0') && !document.querySelector('section[aria-label="Draft cart"] fieldset').disabled`);
   require(await evaluate(`document.querySelectorAll('section[aria-label="Draft cart"] fieldset ol>li').length===0 && document.querySelectorAll('section[aria-label="Draft cart"] > ol > li').length===0 && !document.querySelector('section[aria-label="Captured quotation request"]') && ![...document.querySelectorAll('button')].some(e=>e.textContent.startsWith('Resume draft'))`));checks++;
   require(await evaluate(`(async()=>{const options={credentials:'same-origin',cache:'no-store',redirect:'error'};const r=await fetch(${JSON.stringify(refreshPath)},options);const c=await fetch('/api/v1/cart/',options).then(r=>r.json());return r.status===404 && c.current_version===0 && c.lines.length===0 && localStorage.length===0 && sessionStorage.length===0;})()`));checks++;
+  mark('public-recovery-response-'+index);
+  // Fixed response-contract simulation only; no actual recovery or logout occurs.
+  responseFault.recovery=true;
+  await click('Sign out');
+  await wait('document.body.innerText.includes("Shop access is paused for recovery review.")');
+  require(responseFault.recoveryInjected===1 && await evaluate(`!document.body.innerText.includes('Verified customer session') && !document.querySelector('section[aria-label="Draft cart"]') && !document.querySelector('section[aria-label="Captured quotation request"]') && document.querySelector('#vendor').value===''`));checks++;
+  require(await evaluate(`document.querySelector('#customer-email').disabled && !document.querySelector('#customer-code') && [...document.querySelectorAll('button')].some(e=>e.textContent==='Retry connection' && !e.disabled) && localStorage.length===0 && sessionStorage.length===0`));checks++;
+  const recoveryWasOnlyAResponse=await evaluate(`(async()=>{const r=await fetch('/api/v1/customer/session/',{credentials:'same-origin',cache:'no-store',redirect:'error'});return r.status===200 && (await r.json()).authenticated===true;})()`);
+  await click('Retry connection');
+  await wait(`document.querySelector('section[aria-label="Draft cart"]')?.innerText.includes('Version 0')`);
+  require(recoveryWasOnlyAResponse && responseFault.recoveryInjected===1 && await evaluate(`document.querySelector('#vendor').value==='' && !document.querySelector('section[aria-label="Captured quotation request"]') && document.querySelectorAll('section[aria-label="Draft cart"] fieldset ol>li').length===0`));checks++;
   mark('public-logout-'+index);
   await click('Sign out');
   await wait('document.body.innerText.includes("Signed out.") && document.querySelector("#vendor").value===""');

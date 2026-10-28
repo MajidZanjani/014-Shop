@@ -29,6 +29,8 @@ def reply(data,status=200):
     response=JsonResponse(data,status=status)
     response['Cache-Control']='no-store'
     response['Referrer-Policy']='no-referrer'
+    if status==503 and data=={'error':'access_recovery_pending'}:
+        response['X-Shop-Access-Recovery']='pending'
     return response
 
 def digest(purpose,value):

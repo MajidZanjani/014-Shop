@@ -89,7 +89,7 @@ async function smoke() {
       const {sessionId}=await cdp.send('Target.attachToTarget',{targetId,flatten:true});
       const send=(method,params) => cdp.send(method,params,sessionId);
       let escaped=0,blocked=0,cspDenied=0,lastDocumentStatus=0;
-      const responseFault={url:null,armed:false,posts:[],dropped:0};
+      const responseFault={url:null,armed:false,posts:[],dropped:0,recovery:false,recoveryInjected:0};
       cdp.events.push(event => {
         if (event.sessionId!==sessionId) return;
         if (event.method==='Network.responseReceived' && event.params.type==='Document') lastDocumentStatus=event.params.response.status;
@@ -99,6 +99,14 @@ async function smoke() {
         const allowed=allowedRequest(request.url,config.origin) || allowedRequest(request.url,config.staff.origin);
         if (!allowed) {blocked++; if (request.url!=='https://browser-egress-canary.invalid/pixel') escaped++;}
         const responseStage=event.params.responseStatusCode!==undefined || event.params.responseErrorReason!==undefined;
+        if(allowed && !responseStage && responseFault.recovery && request.method==='POST'
+            && request.url===config.origin+'/api/v1/customer/logout/'){
+          responseFault.recovery=false;responseFault.recoveryInjected++;
+          void send('Fetch.fulfillRequest',{requestId,responseCode:503,responseHeaders:[
+            {name:'Content-Type',value:'application/json'},{name:'Cache-Control',value:'no-store'},
+            {name:'X-Shop-Access-Recovery',value:'pending'}],
+            body:Buffer.from('{"error":"access_recovery_pending"}').toString('base64')}).catch(()=>{escaped++;});return;
+        }
         if(allowed && responseFault.url===request.url && request.method==='POST') {
           if(!responseStage) {
             if(typeof request.postData!=='string' || request.postData.length>32768 || responseFault.posts.length>=2) {

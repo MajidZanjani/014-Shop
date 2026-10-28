@@ -2,7 +2,7 @@
 gsd_state_version: "1.0"
 current_plan: 01
 status: in_progress
-last_updated: "2026-10-28T08:03:44.721Z"
+last_updated: "2026-10-28T08:28:58Z"
 state_head: 0f4a063ff15883e3b7e58af22fd02a3be6591312
 progress:
   total_phases: 14
@@ -14,8 +14,8 @@ current_task: 5
 last_activity: 2026-10-28
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Authentication/quarantine overlap verified; continuing to public recovery-response handling.
-last_activity_desc: "Authentication recovery: baseline reproduced; focused63, backend624/5, proxy148/2 and source272 pass."
+stopped_at: Verified public recovery response and late-rebase fence; startup-quarantine design next.
+last_activity_desc: "Recovery UI: original3/intermediate2 failures reproduced; backend63, frontend137/32, browser227, source272 pass."
 ---
 
 # Project state — final purchase-flow revision2
@@ -26,13 +26,13 @@ last_activity_desc: "Authentication recovery: baseline reproduced; focused63, ba
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — authentication recovery commit 0f4a063 verified and pushed; backend624/5, focused63, proxy148/2 and source272 pass; actual/full acceptance pending.
+**Execution status:** in progress — local recovery effects/authentication/UI verified; focused backend63, frontend137/32, browser227 and source272 pass; actual/full acceptance pending.
 
-**Next implementation task:** Review and reproduce public customer-interface handling of explicit recovery503 responses; clear private state when required while preserving ordinary offline and uncertain-write behavior. Keep commercial inputs pending.
+**Next implementation task:** Design local restore-startup quarantine before any access/effect when a restored database still contains an unheld epoch; preserve read-only bank reconciliation and keep commercial/actual qualification inputs pending.
 
 ## Current local continuation
 
-Local customer/staff authentication and code capture now participate in durable recovery admission. The reproduced old-code login after quarantine/release is denied; active authentication blocks synthetic release, origin-epoch changes return fixed private503 and fresh customer/both-staff-factor recovery passes. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-AUTHENTICATION-RECOVERY-PARTIAL.md). Existing worker/provider admission and lookup-only uncertainty remain. Actual recovery/channel/provider/host/full acceptance stays pending. Continue with the public-interface recovery503 contract; commercial inputs remain pending by user instruction.
+Three local recovery slices are verified: durable worker/provider admission/drain, active-authentication origin-epoch fencing, and explicit recovery-response privacy cleanup with late-response generation checks. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-RECOVERY-PARTIAL.md). Current focused backend63, frontend137/32, fresh browser227 and exact272-file source pass; backend624/5 retains its pre-header scope. Actual startup/traffic/egress isolation, external reconciliation/MFA recovery and off-host/full acceptance remain pending. Next independent design is restore-startup quarantine for an unheld restored epoch. Commercial inputs remain pending by user instruction.
 
 ## Preserved implementation/evidence
 

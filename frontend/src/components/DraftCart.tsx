@@ -4,6 +4,7 @@ import { catalog } from '../lib/catalog';
 import { evaluate } from '../lib/configuration';
 import type { Configuration } from '../lib/configuration';
 import { ApiError, customerRequest } from '../lib/customer-api';
+import type { AccessDenial } from '../lib/customer-api';
 type Line = {id:string;kind:'ip'|'support';product_id:string;quantity:number;configuration?:Configuration};
 function ConfigurationSummary({value}:{value:Configuration}) {
   return <span><strong>{value.vendor}</strong> · {value.families.join(', ')} · {value.term}
@@ -24,7 +25,7 @@ function ReviewStatusText({value}:{value?:ReviewStatus}) {
   return <span>{label}{value?.updated_at&&<> · Last status update: {value.updated_at}</>}</span>;
 }
 type Snapshot = {cart_id:string|null;version:number;current_version:number;catalog_revision:string;lines:Line[];evaluation:{status:string;quoted_support_seconds:number|null}};
-export default function DraftCart({configuration,csrf,onResume,onAccessDenied}:{configuration:Configuration;csrf:string;onResume:(v:Configuration)=>void;onAccessDenied:(status:401|403)=>void}) {
+export default function DraftCart({configuration,csrf,onResume,onAccessDenied}:{configuration:Configuration;csrf:string;onResume:(v:Configuration)=>void;onAccessDenied:(status:AccessDenial)=>void}) {
   const [cart,setCart]=useState<Snapshot|null>(null),[busy,setBusy]=useState(false),[message,setMessage]=useState('Loading draft cart…'),[quantity,setQuantity]=useState(1),[uncertain,setUncertain]=useState(false);
   const pending=useRef<object|null>(null);
   const quotePending=useRef<object|null>(null);
@@ -33,7 +34,13 @@ export default function DraftCart({configuration,csrf,onResume,onAccessDenied}:{
   const [receipt,setReceipt]=useState<(Snapshot & {id:string;review_status?:ReviewStatus})|null>(null);
   const request=async(...args:Parameters<typeof customerRequest>)=>{
     try{return await customerRequest(...args);}
-    catch(error){if(error instanceof ApiError&&(error.status===401||error.status===403))onAccessDenied(error.status);throw error;}
+    catch(error){
+      if(error instanceof ApiError){
+        if(error.recoveryPending)onAccessDenied('recovery');
+        else if(error.status===401||error.status===403)onAccessDenied(error.status);
+      }
+      throw error;
+    }
   };
   const loadRequests=async()=>{setRequests([]);const value=await request('/api/v1/quotation-requests/');setRequests(value.requests);};
   const loadReceipt=async(id:string)=>{

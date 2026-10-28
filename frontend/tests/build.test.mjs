@@ -266,3 +266,54 @@ test('cart React flow preserves exact uncertain retry and separate support lines
   globalThis.window=previous.window;globalThis.document=previous.document;globalThis.IS_REACT_ACT_ENVIRONMENT=previous.act;await rm(scratch,{recursive:true,force:true});
  }
 });
+
+test('customer React flow clears recovery access while retaining ordinary offline selections',{timeout:10000},async()=>{
+ const host=domHost(),previous={window:globalThis.window,document:globalThis.document,act:globalThis.IS_REACT_ACT_ENVIRONMENT};
+ const scratch=await mkdtemp(join(project,'.recovery-ui-test-'));let root;
+ try{
+  globalThis.window=host.window;globalThis.document=host.document;globalThis.IS_REACT_ACT_ENVIRONMENT=true;
+  const {default:ts}=await import('typescript');
+  for(const [name,path] of [['catalog','lib/catalog'],['configuration','lib/configuration'],['cart','lib/cart'],['customer-api','lib/customer-api'],['DraftCart','components/DraftCart'],['CustomerDrafts','components/CustomerDrafts']]){
+   const source=await readFile(join(project,'src',path+(path.startsWith('components/')?'.tsx':'.ts')),'utf8');
+   const compiled=ts.transpileModule(source,{compilerOptions:{jsx:ts.JsxEmit.ReactJSX,module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}});
+   await writeFile(join(scratch,name+'.mjs'),compiled.outputText.replace(/(['"])(?:\.\/|\.\.\/lib\/)(catalog|configuration|cart|customer-api|DraftCart)\1/g,"'./$2.mjs'"));
+  }
+  const {default:Customer}=await import(pathToFileURL(join(scratch,'CustomerDrafts.mjs')));
+  const {initialConfiguration}=await import(pathToFileURL(join(scratch,'configuration.mjs')));
+  const fixtures=JSON.parse(await readFile(join(project,'tests/conformance.json'),'utf8'));
+  let recovery=false,restored=false;const resumed=[],posts=[];
+  const response=(value,status=200,headers={})=>new Response(JSON.stringify(value),{status,headers:{'content-type':'application/json','X-Shop-Access-Context':(restored?'b':'a').repeat(64),...headers}});
+  host.window.fetch=async(path,options)=>{
+   if(options.method==='POST')posts.push({path,body:options.body});
+   if(path==='/api/v1/customer/session/')return recovery?response({error:'access_recovery_pending'},503,{'X-Shop-Access-Recovery':'pending'}):response({authenticated:!restored,csrf_token:'synthetic-csrf'});
+   if(path==='/api/v1/configuration-drafts/')return response({error:'unavailable'},503);
+   if(path==='/api/v1/cart/')return response({cart_id:'11111111-1111-4111-8111-111111111111',version:1,current_version:1,lines:[],evaluation:{status:'pending',quoted_support_seconds:0}});
+   if(path==='/api/v1/quotation-requests/')return response({requests:[]});
+   throw Error('unexpected synthetic request');
+  };
+  const {act,createElement}=await import('react');const {createRoot}=await import('react-dom/client');
+  const container=host.document.createElement('div');host.document.body.appendChild(container);root=createRoot(container);
+  await act(async()=>root.render(createElement(Customer,{configuration:fixtures[1].value,onResume:value=>resumed.push(value)})));
+  const click=async label=>{const button=findNode(container,n=>n.tagName==='BUTTON'&&n.textContent===label);assert.ok(button,label);await act(async()=>{
+   const event={type:'click',target:button,button:0,bubbles:true,timeStamp:Date.now(),preventDefault(){},stopPropagation(){}};
+   for(const key of ['click:true','click:false'])for(const listener of container.events.get(key)??[])listener(event);
+  });};
+  assert.match(container.textContent,/Verified customer session/);
+  assert.match(container.textContent,/Your selections stay in this page/);assert.equal(resumed.length,0);
+  recovery=true;await click('Retry connection');
+  assert.ok(!container.textContent.includes('Verified customer session'));
+  assert.equal(findNode(container,n=>n.tagName==='SECTION'&&n.attrs.get('aria-label')==='Draft cart'),undefined);
+  assert.match(container.textContent,/access is paused for recovery review/);
+  assert.deepEqual(resumed.at(-1),initialConfiguration());assert.equal(posts.length,0);
+  await click('Retry connection');assert.equal(posts.length,0);
+  recovery=false;restored=true;await click('Retry connection');
+  assert.ok(!container.textContent.includes('Verified customer session'));
+  const request=findNode(container,n=>n.tagName==='BUTTON'&&n.textContent==='Request verification code');
+  assert.ok(request);assert.equal(request.attrs.has('disabled'),false);assert.equal(posts.length,0);
+  await act(async()=>root.unmount());root=null;
+ }finally{
+  if(root){const {act}=await import('react');await act(async()=>root.unmount());}
+  globalThis.window=previous.window;globalThis.document=previous.document;globalThis.IS_REACT_ACT_ENVIRONMENT=previous.act;
+  await rm(scratch,{recursive:true,force:true});
+ }
+});
