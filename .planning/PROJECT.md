@@ -10,9 +10,9 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — configuration-draft recovery fence verified locally (focused135, backend726/5, proxy148/2, source276); actual/full acceptance pending.
+**Execution status:** paused — proactive context handoff after verified cart/draft recovery fixes; backend726/5, focused135, proxy148/2 and source276 pass; quotation reproduction and actual/full acceptance pending.
 
-**Next implementation task:** Start a new GSD quick task and reproduce quotation JSON/native POST recovery overlap before capture_quotation, then inspect its private list/detail/capture-page reads. Keep company commercial and actual inputs pending without re-asking.
+**Next implementation task:** Clear the session, run $gsd-resume-work, restore13-01 task5 and start a new GSD quick task to reproduce quotation JSON/native POST recovery overlap before capture_quotation. Keep company commercial and actual qualification inputs pending without re-asking.
 
 Configuration-draft list/get/save and private retry payloads now require their originating epoch before queries. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-DRAFT-RECOVERY-PARTIAL.md). Original10-test/13-failure control, fixed focused135/26.803s, current backend726/5/229.455s, supported demo/proxy148/2 and exact276-file source pass. Cart/checkout/support/recovery evidence retains its scope; actual/company inputs remain pending.
 

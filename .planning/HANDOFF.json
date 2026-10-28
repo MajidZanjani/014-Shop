@@ -1,0 +1,115 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-10-28T13:10:51.644Z",
+  "phase": "13",
+  "phase_name": "Purchase-flow, fulfilment and release acceptance",
+  "phase_dir": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance",
+  "plan": 1,
+  "task": 5,
+  "total_tasks": 5,
+  "status": "paused",
+  "pause_reason": "context_pressure",
+  "context_usage_percentage": null,
+  "implementation_commit": "82fa759cdda37bb22406b5ced6ac7ca6ff372a98",
+  "pre_pause_tip": "d378a7411a470b9971e295697020e3edea0c6a7c",
+  "completed_tasks": [
+    {
+      "id": "261028-hb4",
+      "name": "Customer cart recovery fence",
+      "status": "done",
+      "commit": "c92538a",
+      "progress": "focused136/backend716/5/proxy148/source276; completion5a1f5ea pushed"
+    },
+    {
+      "id": "261028-htg",
+      "name": "Configuration-draft recovery fence",
+      "status": "done",
+      "commit": "82fa759cdda37bb22406b5ced6ac7ca6ff372a98",
+      "progress": "focused135/backend726/5/proxy148/source276; completiond378a74 pushed"
+    },
+    {
+      "id": 5,
+      "name": "Phase13 integrated/full source acceptance",
+      "status": "in_progress",
+      "progress": "Two local batches complete; actual qualification pending"
+    }
+  ],
+  "remaining_tasks": [
+    {
+      "id": "quotation-recovery-reproduction",
+      "name": "Reproduce normal API/native quotation POST/quarantine overlap before capture_quotation and inspect private reads",
+      "status": "not_started"
+    },
+    {
+      "id": 5,
+      "name": "Bind actual post-point customer/resource/MFA and complete source qualification when scoped inputs arrive",
+      "status": "not_started"
+    }
+  ],
+  "blockers": [
+    {
+      "description": "Actual channel/custody/revocation/MFA/provider/independent-target/formal inputs pending",
+      "type": "external",
+      "workaround": "Keep affected actual scopes closed; independent quotation reproduction can proceed after context resume"
+    },
+    {
+      "description": "Company commercial revisions/approver evidence pending",
+      "type": "human_action",
+      "workaround": "User will supply later; do not re-ask"
+    },
+    {
+      "description": "Shared /tmp full prevents ordinary sandbox startup",
+      "type": "technical",
+      "workaround": "Owned .scratch/auth-unicode-tmp and narrow justified execution; no shared cleanup"
+    }
+  ],
+  "async_jobs": [],
+  "human_actions_pending": [
+    {
+      "action": "Clear session and run $gsd-resume-work",
+      "context": "Standing user context-preservation rule; no exact usage percentage supplied",
+      "blocking": true
+    },
+    {
+      "action": "Provide company commercial revision/approver information when available",
+      "context": "Promised by user; independent local work remains authorized",
+      "blocking": false
+    },
+    {
+      "action": "Supply authoritative actual recovery/channel/custody/revocation/MFA evidence and assigned independent target",
+      "context": "Required for actual qualification only",
+      "blocking": true
+    }
+  ],
+  "decisions": [
+    {
+      "decision": "Proactive checkpoint after two verified/pushed local batches",
+      "rationale": "Apparent context pressure under user AGENTS.md rule; exact percentage unavailable",
+      "phase": "13"
+    },
+    {
+      "decision": "Reproduce quotation source observation next before product changes",
+      "rationale": "Actual API/native aliases pass only cached user/value; no failing quotation baseline or design yet",
+      "phase": "13"
+    },
+    {
+      "decision": "Preserve bounded epoch-before-query serialization and original catalog retry semantics",
+      "rationale": "Verified real PostgreSQL lock probes and retained owner/CSRF/CAS/retry behavior",
+      "phase": "13"
+    }
+  ],
+  "uncommitted_files": [
+    " M .planning/HANDOFF.md",
+    " M .planning/PROJECT.md",
+    " M .planning/PURCHASE-FLOW-RECONCILIATION.json",
+    " M .planning/ROADMAP.md",
+    " M .planning/STATE.md",
+    " M .planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/.continue-here.md",
+    " M .planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-01-PLAN.md",
+    " M .planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-QUALIFICATION-REGISTER.md",
+    " M .planning/state.json",
+    "?? .planning/HANDOFF.json"
+  ],
+  "next_action": "Clear the session, run $gsd-resume-work, restore13-01 task5 and start a new GSD quick task to reproduce quotation JSON/native POST recovery overlap before capture_quotation. Keep company commercial and actual qualification inputs pending without re-asking.",
+  "context_notes": "Cart c92538a/5a1f5ea and draft82fa759/d378a74 are pushed; current core726/5/focused135/proxy148/source276 pass. Quotation source observation is not reproduced/designed/fixed. All owned producers exited; no async jobs or placeholder phase SUMMARY markers. uncommitted_files is measured before checkpoint commit; compare current Git status/refs on resume. Do not create recursive push-status commits. Exact context percentage unavailable."
+}
