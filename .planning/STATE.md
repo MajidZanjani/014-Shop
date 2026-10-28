@@ -2,8 +2,8 @@
 gsd_state_version: "1.0"
 current_plan: 01
 status: in_progress
-last_updated: "2026-10-28T05:25:50Z"
-state_head: 73167fcf02ed311d8a5cc612b81ab5a575707d2c
+last_updated: "2026-10-28T06:02:27Z"
+state_head: e7171d0ca179c868cd482acfe6595e8912d1dd70
 progress:
   total_phases: 14
   completed_phases: 1
@@ -14,8 +14,8 @@ current_task: 5
 last_activity: 2026-10-28
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Saved Unicode defect verified; remaining binding/acceptance requires actual scoped prerequisites.
-last_activity_desc: Unicode validation fixed; backend588, frontend132, parity117, proxy148 and exact264-file source pass.
+stopped_at: Authentication parser fixed locally; continuing independent recovery access component.
+last_activity_desc: Auth baseline32 server errors fixed; focused45, backend593/5, proxy148/2 and source264 pass.
 ---
 
 # Project state — final purchase-flow revision2
@@ -26,13 +26,13 @@ last_activity_desc: Unicode validation fixed; backend588, frontend132, parity117
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — Unicode platform-name fix verified: backend588 tests/5 checks, frontend132 tests/32 checks, shared parity117 cases and proxy148 checks/2 aliases; actual/formal acceptance pending.
+**Execution status:** in progress — authentication JSON text fix verified: focused45, backend593 tests/5 checks, proxy148 checks/2 aliases and exact264-file source; continuing independent recovery-access work; actual/formal acceptance pending.
 
-**Next implementation task:** Supply exact approved commercial-offer revisions and approver evidence, then bind and qualify the existing protected consumer; remaining channel/provider/runner/formal prerequisites are grouped in13-QUALIFICATION-REGISTER.md.
+**Next implementation task:** Implement a local restored-access invalidation component for customer/staff sessions and pending challenges, with PostgreSQL replay/race tests; actual off-host recovery, production MFA and commercial inputs remain pending.
 
 ## Current local continuation
 
-Malformed platform names now return422 before PostgreSQL storage; valid multilingual/emoji names and120-codepoint limits retain round-trip/retry behavior. [Exact local evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-UNICODE-PLATFORM-PARTIAL.md). Phase13/task5 and all actual/formal release qualifications remain pending. Counts1/14 completed phases and11/36 completed plan records are not engineering effort.
+Malformed JSON customer codes, staff usernames/passwords and staff possession codes now return fixed400 responses before authentication effects; valid Unicode credentials, wrong-code limits and legitimate MFA recovery remain supported. [Exact local evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-AUTHENTICATION-TEXT-PARTIAL.md). User will obtain commercial inputs from the relevant company sections; keep them pending while independent project implementation continues. Full Phase13/task5 acceptance remains pending.
 
 ## Preserved implementation/evidence
 

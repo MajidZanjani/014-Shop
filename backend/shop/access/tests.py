@@ -19,6 +19,10 @@ from .models import CustomerIdentity,VerificationChallenge
 from .views import digest
 
 BASE='/api/v1/customer/'
+MALFORMED_TEXT_CASES=(('high','\ud800'),('last-high','\udbff'),('low','\udc00'),('last-low','\udfff'),
+    ('embedded-high','synthetic\ud800text'),('embedded-low','synthetic\udc00text'),
+    ('reversed','\udc00\ud800'),('emoji-and-high','🔑\ud800'))
+
 def csrf_post(client,path,value):
     token=client.get(BASE+'session/').json()['csrf_token']
     return client.post(path,data=json.dumps(value),content_type='application/json',HTTP_X_CSRFTOKEN=token)
@@ -94,6 +98,38 @@ class VerificationTests(TestCase):
         self.assertEqual(csrf_post(self.browser,BASE+'request-code/',{'email':'different@synthetic.invalid'}).status_code,429)
         stranger=Client(enforce_csrf_checks=True)
         self.assertEqual(csrf_post(stranger,BASE+'request-code/',{'email':'engineer@synthetic.invalid'}).status_code,429)
+
+    def test_malformed_json_code_returns_fixed_error_without_consuming_challenge(self):
+        code=request_capture(self.browser,self.directory.name)
+        self.browser.raise_request_exception=False
+        session_key=self.browser.session.session_key
+        for label,value in MALFORMED_TEXT_CASES:
+            with self.subTest(kind=label):
+                response=csrf_post(self.browser,BASE+'verify/',{'code':value})
+                self.assertEqual(response.status_code,400)
+                self.assertEqual(response.json(),{'error':'verification_failed'})
+                self.assertEqual(response['Cache-Control'],'no-store')
+                self.assertEqual(response['Referrer-Policy'],'no-referrer')
+                challenge=VerificationChallenge.objects.get()
+                self.assertEqual(challenge.attempts,0)
+                self.assertIsNone(challenge.consumed_at)
+                self.assertEqual(CustomerIdentity.objects.count(),0)
+                self.assertEqual(self.browser.session.session_key,session_key)
+                self.assertFalse(self.browser.get(BASE+'session/').json()['authenticated'])
+        self.assertEqual(csrf_post(self.browser,BASE+'verify/',{'code':code}).status_code,200)
+        self.assertEqual(CustomerIdentity.objects.count(),1)
+        self.assertEqual(VerificationChallenge.objects.get().attempts,1)
+
+    def test_well_formed_unicode_wrong_codes_keep_attempt_limits(self):
+        code=request_capture(self.browser,self.directory.name)
+        for value in ('café','文字','🔑'):
+            response=csrf_post(self.browser,BASE+'verify/',{'code':value})
+            self.assertEqual(response.status_code,400)
+            self.assertEqual(response.json(),{'error':'verification_failed'})
+        self.assertEqual(VerificationChallenge.objects.get().attempts,3)
+        self.assertFalse(self.browser.get(BASE+'session/').json()['authenticated'])
+        self.assertEqual(csrf_post(self.browser,BASE+'verify/',{'code':code}).status_code,200)
+        self.assertEqual(VerificationChallenge.objects.get().attempts,4)
 
     def test_invalid_real_email_missing_capture_and_csrf(self):
         for email in ('person@example.com','bad\r\nBcc: x','x'*161,False):

@@ -24,7 +24,8 @@ from shop.catalog.cart_tests import CASES
 from shop.catalog.cart_rules import evaluate_cart
 from shop.catalog.models import DraftCart,CartSnapshot,QuotationRequest
 from shop.catalog.rules import CATALOG
-from .models import StaffCredential,StaffChallenge,StaffQuotationGrant
+from .models import StaffCredential,StaffChallenge,StaffQuotationGrant,StaffLoginThrottle
+from .tests import MALFORMED_TEXT_CASES
 
 STAFF_SETTINGS=dict(ROOT_URLCONF='shop.staff_urls',LOCAL_STAFF_ENABLED=True,
     ALLOWED_HOSTS=['staff.localhost','shop.xspi.pro','shop-admin.xspi.pro','127.0.0.1'],
@@ -52,7 +53,7 @@ class StaffTests(TransactionTestCase):
         return client.post(BASE+path,data=json.dumps(value),content_type='application/json',HTTP_X_CSRFTOKEN=token)
     def challenge(self,client=None):
         before=set(Path(self.directory.name).iterdir())
-        response=self.post('login/',{'username':'reviewer','password':self.password},client)
+        response=self.post('login/',{'username':self.user.username,'password':self.password},client)
         self.assertEqual(response.status_code,200)
         files=set(Path(self.directory.name).iterdir())-before;self.assertEqual(len(files),1)
         path=files.pop();self.assertEqual(stat.S_IMODE(path.stat().st_mode),0o600)
@@ -121,6 +122,56 @@ class StaffTests(TransactionTestCase):
         self.assertEqual(self.browser.get(BASE+'quotation-requests/').status_code,403)
         self.authenticated();self.user.is_active=False;self.user.save()
         self.assertEqual(self.browser.get(BASE+'quotation-requests/').status_code,403)
+
+    def test_malformed_json_credentials_reject_before_throttle_or_challenge(self):
+        self.browser.raise_request_exception=False
+        for field in ('username','password'):
+            for label,value in MALFORMED_TEXT_CASES:
+                with self.subTest(field=field,kind=label):
+                    credentials={'username':self.user.username,'password':self.password,field:value}
+                    response=self.post('login/',credentials)
+                    self.assertEqual(response.status_code,400)
+                    self.assertEqual(response.json(),{'error':'invalid_request'})
+                    self.assertEqual(response['Cache-Control'],'no-store')
+                    self.assertEqual(StaffLoginThrottle.objects.count(),0)
+                    self.assertEqual(StaffChallenge.objects.count(),0)
+                    self.assertEqual(list(Path(self.directory.name).iterdir()),[])
+                    self.assertFalse(self.browser.get(BASE+'session/').json()['authenticated'])
+                    self.assertEqual(self.browser.get(BASE+'quotation-requests/').status_code,403)
+        self.authenticated()
+        self.assertTrue(self.browser.get(BASE+'session/').json()['authenticated'])
+        self.assertEqual(StaffChallenge.objects.filter(consumed_at__isnull=False).count(),1)
+
+    def test_malformed_json_code_preserves_password_only_denial_and_challenge(self):
+        code=self.challenge()
+        self.browser.raise_request_exception=False
+        for label,value in MALFORMED_TEXT_CASES:
+            with self.subTest(kind=label):
+                response=self.post('verify/',{'code':value})
+                self.assertEqual(response.status_code,400)
+                self.assertEqual(response.json(),{'error':'verification_failed'})
+                self.assertEqual(response['Cache-Control'],'no-store')
+                challenge=StaffChallenge.objects.get()
+                self.assertEqual(challenge.attempts,0)
+                self.assertIsNone(challenge.consumed_at)
+                self.assertFalse(self.browser.get(BASE+'session/').json()['authenticated'])
+                self.assertEqual(self.browser.get(BASE+'quotation-requests/').status_code,403)
+        self.assertEqual(self.post('verify/',{'code':code}).status_code,200)
+        self.assertEqual(StaffChallenge.objects.get().attempts,1)
+
+    def test_well_formed_unicode_password_and_wrong_codes_remain_supported(self):
+        self.password='synthetic-café-文字-🔑'
+        self.user.username='synthetic-réviseur-文字'
+        self.user.set_password(self.password);self.user.save(update_fields=['username','password'])
+        code=self.challenge()
+        for value in ('café','文字','🔑'):
+            response=self.post('verify/',{'code':value})
+            self.assertEqual(response.status_code,400)
+            self.assertEqual(response.json(),{'error':'verification_failed'})
+        self.assertEqual(StaffChallenge.objects.get().attempts,3)
+        self.assertFalse(self.browser.get(BASE+'session/').json()['authenticated'])
+        self.assertEqual(self.post('verify/',{'code':code}).status_code,200)
+        self.assertEqual(StaffChallenge.objects.get().attempts,4)
     def test_challenge_binding_expiry_attempts_and_revocation(self):
         code=self.challenge();stranger=Client(HTTP_HOST='staff.localhost')
         self.assertEqual(self.post('verify/',{'code':code},stranger).status_code,400)

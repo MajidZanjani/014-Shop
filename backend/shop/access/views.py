@@ -41,6 +41,9 @@ def read_json(request,fields):
     if len(raw)>1024: raise ValueError('size')
     value=json.loads(raw,object_pairs_hook=unique_object)
     if not isinstance(value,dict) or set(value)!=set(fields): raise ValueError('fields')
+    # Reject malformed text before credential hashing or authentication effects.
+    for item in value.values():
+        if isinstance(item,str):item.encode('utf-8')
     return value
 
 def verified_identity(request):

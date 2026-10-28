@@ -48,3 +48,7 @@ After automatic review rejected the push of92ef98e, the user explicitly replied 
 ## Sustained continuation — user instruction, 2026-10-27
 
 The user explicitly instructed: "continue and don't pause/stop after each commit/sync". Continue substantive authorized work across commits and ordinary pushes. A commit/sync is not a stopping condition. Stop only at an actual missing prerequisite/authority or a real context constraint under the existing checkpoint rule; never invent context percentages, approvals or completion. Group remaining UAT risks and keep next actions concrete rather than generating an endless sequence of speculative browser assertions.
+
+## Continue with commercial inputs pending — user instruction,2026-10-28
+
+The user will obtain the requested approved commercial revision/approver information from the relevant company sections and provide it later. Continue independent project implementation while these inputs remain pending. This is not commercial approval or scoped external-operation authority; all affected live offers and actual recovery/provider/host gates remain closed.
