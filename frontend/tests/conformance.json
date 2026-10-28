@@ -1623,5 +1623,350 @@
     "errors": [
       "platform:short_name"
     ]
+  },
+  {
+    "name": "platform name Unicode and emoji",
+    "value": {
+      "product_id": "sll-xspi-mc",
+      "profile_id": "sll-xspi-mc-v1",
+      "quantity": 1,
+      "vendor": "altera",
+      "families": [
+        "altera-agilex-5"
+      ],
+      "term": "rd-annual",
+      "production_band": null,
+      "production_units": null,
+      "fixed_nodes": 1,
+      "floating_nodes": 0,
+      "support_packages": 0,
+      "platform": {
+        "choice": "other-board",
+        "kit_id": null,
+        "name": "\u5f00\u53d1\u677f \u2013 \u0394 \u2013 caf\u00e9 \u2013 \ud83d\ude80"
+      }
+    },
+    "status": "awaiting_review",
+    "errors": []
+  },
+  {
+    "name": "platform name 120 ASCII codepoints",
+    "value": {
+      "product_id": "sll-xspi-mc",
+      "profile_id": "sll-xspi-mc-v1",
+      "quantity": 1,
+      "vendor": "altera",
+      "families": [
+        "altera-agilex-5"
+      ],
+      "term": "rd-annual",
+      "production_band": null,
+      "production_units": null,
+      "fixed_nodes": 1,
+      "floating_nodes": 0,
+      "support_packages": 0,
+      "platform": {
+        "choice": "other-board",
+        "kit_id": null,
+        "name": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+      }
+    },
+    "status": "awaiting_review",
+    "errors": []
+  },
+  {
+    "name": "platform name 121 ASCII codepoints",
+    "value": {
+      "product_id": "sll-xspi-mc",
+      "profile_id": "sll-xspi-mc-v1",
+      "quantity": 1,
+      "vendor": "altera",
+      "families": [
+        "altera-agilex-5"
+      ],
+      "term": "rd-annual",
+      "production_band": null,
+      "production_units": null,
+      "fixed_nodes": 1,
+      "floating_nodes": 0,
+      "support_packages": 0,
+      "platform": {
+        "choice": "other-board",
+        "kit_id": null,
+        "name": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+      }
+    },
+    "status": "invalid",
+    "errors": [
+      "platform:short_name"
+    ]
+  },
+  {
+    "name": "platform name 120 supplementary codepoints",
+    "value": {
+      "product_id": "sll-xspi-mc",
+      "profile_id": "sll-xspi-mc-v1",
+      "quantity": 1,
+      "vendor": "altera",
+      "families": [
+        "altera-agilex-5"
+      ],
+      "term": "rd-annual",
+      "production_band": null,
+      "production_units": null,
+      "fixed_nodes": 1,
+      "floating_nodes": 0,
+      "support_packages": 0,
+      "platform": {
+        "choice": "other-board",
+        "kit_id": null,
+        "name": "\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80"
+      }
+    },
+    "status": "awaiting_review",
+    "errors": []
+  },
+  {
+    "name": "platform name 121 supplementary codepoints",
+    "value": {
+      "product_id": "sll-xspi-mc",
+      "profile_id": "sll-xspi-mc-v1",
+      "quantity": 1,
+      "vendor": "altera",
+      "families": [
+        "altera-agilex-5"
+      ],
+      "term": "rd-annual",
+      "production_band": null,
+      "production_units": null,
+      "fixed_nodes": 1,
+      "floating_nodes": 0,
+      "support_packages": 0,
+      "platform": {
+        "choice": "other-board",
+        "kit_id": null,
+        "name": "\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80\ud83d\ude80"
+      }
+    },
+    "status": "invalid",
+    "errors": [
+      "platform:short_name"
+    ]
+  },
+  {
+    "name": "platform name lone high surrogate",
+    "value": {
+      "product_id": "sll-xspi-mc",
+      "profile_id": "sll-xspi-mc-v1",
+      "quantity": 1,
+      "vendor": "altera",
+      "families": [
+        "altera-agilex-5"
+      ],
+      "term": "rd-annual",
+      "production_band": null,
+      "production_units": null,
+      "fixed_nodes": 1,
+      "floating_nodes": 0,
+      "support_packages": 0,
+      "platform": {
+        "choice": "other-board",
+        "kit_id": null,
+        "name": "\ud800"
+      }
+    },
+    "status": "invalid",
+    "errors": [
+      "platform:short_name"
+    ]
+  },
+  {
+    "name": "platform name last high surrogate",
+    "value": {
+      "product_id": "sll-xspi-mc",
+      "profile_id": "sll-xspi-mc-v1",
+      "quantity": 1,
+      "vendor": "altera",
+      "families": [
+        "altera-agilex-5"
+      ],
+      "term": "rd-annual",
+      "production_band": null,
+      "production_units": null,
+      "fixed_nodes": 1,
+      "floating_nodes": 0,
+      "support_packages": 0,
+      "platform": {
+        "choice": "other-board",
+        "kit_id": null,
+        "name": "\udbff"
+      }
+    },
+    "status": "invalid",
+    "errors": [
+      "platform:short_name"
+    ]
+  },
+  {
+    "name": "platform name lone low surrogate",
+    "value": {
+      "product_id": "sll-xspi-mc",
+      "profile_id": "sll-xspi-mc-v1",
+      "quantity": 1,
+      "vendor": "altera",
+      "families": [
+        "altera-agilex-5"
+      ],
+      "term": "rd-annual",
+      "production_band": null,
+      "production_units": null,
+      "fixed_nodes": 1,
+      "floating_nodes": 0,
+      "support_packages": 0,
+      "platform": {
+        "choice": "other-board",
+        "kit_id": null,
+        "name": "\udc00"
+      }
+    },
+    "status": "invalid",
+    "errors": [
+      "platform:short_name"
+    ]
+  },
+  {
+    "name": "platform name last low surrogate",
+    "value": {
+      "product_id": "sll-xspi-mc",
+      "profile_id": "sll-xspi-mc-v1",
+      "quantity": 1,
+      "vendor": "altera",
+      "families": [
+        "altera-agilex-5"
+      ],
+      "term": "rd-annual",
+      "production_band": null,
+      "production_units": null,
+      "fixed_nodes": 1,
+      "floating_nodes": 0,
+      "support_packages": 0,
+      "platform": {
+        "choice": "other-board",
+        "kit_id": null,
+        "name": "\udfff"
+      }
+    },
+    "status": "invalid",
+    "errors": [
+      "platform:short_name"
+    ]
+  },
+  {
+    "name": "platform name embedded high surrogate",
+    "value": {
+      "product_id": "sll-xspi-mc",
+      "profile_id": "sll-xspi-mc-v1",
+      "quantity": 1,
+      "vendor": "altera",
+      "families": [
+        "altera-agilex-5"
+      ],
+      "term": "rd-annual",
+      "production_band": null,
+      "production_units": null,
+      "fixed_nodes": 1,
+      "floating_nodes": 0,
+      "support_packages": 0,
+      "platform": {
+        "choice": "other-board",
+        "kit_id": null,
+        "name": "board\ud800name"
+      }
+    },
+    "status": "invalid",
+    "errors": [
+      "platform:short_name"
+    ]
+  },
+  {
+    "name": "platform name embedded low surrogate",
+    "value": {
+      "product_id": "sll-xspi-mc",
+      "profile_id": "sll-xspi-mc-v1",
+      "quantity": 1,
+      "vendor": "altera",
+      "families": [
+        "altera-agilex-5"
+      ],
+      "term": "rd-annual",
+      "production_band": null,
+      "production_units": null,
+      "fixed_nodes": 1,
+      "floating_nodes": 0,
+      "support_packages": 0,
+      "platform": {
+        "choice": "other-board",
+        "kit_id": null,
+        "name": "board\udc00name"
+      }
+    },
+    "status": "invalid",
+    "errors": [
+      "platform:short_name"
+    ]
+  },
+  {
+    "name": "platform name reversed surrogate pair",
+    "value": {
+      "product_id": "sll-xspi-mc",
+      "profile_id": "sll-xspi-mc-v1",
+      "quantity": 1,
+      "vendor": "altera",
+      "families": [
+        "altera-agilex-5"
+      ],
+      "term": "rd-annual",
+      "production_band": null,
+      "production_units": null,
+      "fixed_nodes": 1,
+      "floating_nodes": 0,
+      "support_packages": 0,
+      "platform": {
+        "choice": "other-board",
+        "kit_id": null,
+        "name": "\udc00\ud800"
+      }
+    },
+    "status": "invalid",
+    "errors": [
+      "platform:short_name"
+    ]
+  },
+  {
+    "name": "platform name emoji followed by lone surrogate",
+    "value": {
+      "product_id": "sll-xspi-mc",
+      "profile_id": "sll-xspi-mc-v1",
+      "quantity": 1,
+      "vendor": "altera",
+      "families": [
+        "altera-agilex-5"
+      ],
+      "term": "rd-annual",
+      "production_band": null,
+      "production_units": null,
+      "fixed_nodes": 1,
+      "floating_nodes": 0,
+      "support_packages": 0,
+      "platform": {
+        "choice": "other-board",
+        "kit_id": null,
+        "name": "\ud83d\ude80\ud800"
+      }
+    },
+    "status": "invalid",
+    "errors": [
+      "platform:short_name"
+    ]
   }
 ]

@@ -52,7 +52,7 @@ export function evaluate(input: unknown) {
       if(typeof p.kit_id!=='string' || p.name!==null || !(catalog.purchase_flow.ready_kits as readonly {id:string}[]).some(k=>k.id===p.kit_id)) error('platform','kit');
     } else if(p.kit_id!==null) error('platform','kit_not_applicable');
     else if(p.choice==='not-designed' && p.name!==null) error('platform','name_not_applicable');
-    else if(p.name!==null && (typeof p.name!=='string' || [...p.name].length<1 || [...p.name].length>120 || /[\x00-\x1f\x7f]/.test(p.name))) error('platform','short_name');
+    else if(p.name!==null && (typeof p.name!=='string' || [...p.name].length<1 || [...p.name].length>120 || /[\x00-\x1f\x7f\uD800-\uDFFF]/u.test(p.name))) error('platform','short_name');
   }
   const reasons = Object.keys(catalog.approvals).map(k => 'pending_'+k);
   const higher = errors.length === 0 && value.production_band === 'higher-volume';

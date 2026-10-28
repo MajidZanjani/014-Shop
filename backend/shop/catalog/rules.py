@@ -55,7 +55,7 @@ def evaluate(value,*,kit_catalog=None):
         elif platform['choice']=='not-designed' and platform['name'] is not None:
             error('platform','name_not_applicable')
         elif platform['name'] is not None and (type(platform['name']) is not str or not 1<=len(platform['name'])<=120
-                or any(ord(c)<32 or ord(c)==127 for c in platform['name'])):
+                or any(ord(c)<32 or ord(c)==127 or 0xd800<=ord(c)<=0xdfff for c in platform['name'])):
             error('platform','short_name')
     reasons = ['pending_'+key for key in CATALOG['approvals']]
     higher = not errors and value.get('production_band') == 'higher-volume'

@@ -75,9 +75,9 @@
     }
   ],
   "next": {
-    "command": "$gsd-resume-work",
-    "label": "Resume explicit user-requested pause",
-    "reason": "Run $gsd-resume-work; reproduce lone-surrogate platform-name acceptance with shared conformance and real PostgreSQL draft/cart HTTP tests, then fix Python/TypeScript validation while preserving valid Unicode/emoji and120-codepoint bounds."
+    "command": "$gsd-progress --next",
+    "label": "Advance to the next step",
+    "reason": "Phase 13 of 14 · 7% · executing"
   },
-  "updated_at": "2026-10-27T13:34:17.591Z"
+  "updated_at": "2026-10-28T05:25:50.315Z"
 }

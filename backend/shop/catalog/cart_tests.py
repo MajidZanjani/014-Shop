@@ -52,6 +52,30 @@ class CartTests(TransactionTestCase):
                 with self.subTest(case=case['name']):self.assertEqual(self.post(dict(self.value,lines=case['lines'])).status_code,422)
         self.assertEqual(DraftCart.objects.count(),0)
         self.assertEqual(CartSnapshot.objects.count(),0)
+
+    def test_malformed_platform_names_are_rejected_before_storage(self):
+        from .tests import CASES as configurations
+        for case in configurations:
+            if not case['name'].startswith('platform name ') or case['status']!='invalid':continue
+            with self.subTest(case=case['name']):
+                value=copy.deepcopy(self.value)
+                value['lines'][0]['configuration']=case['value']
+                response=self.post(value)
+                self.assertEqual(response.status_code,422)
+                self.assertIn({'field':'lines.0.configuration.platform','code':'short_name'},response.json()['errors'])
+                self.assertEqual(DraftCart.objects.count(),0)
+                self.assertEqual(CartSnapshot.objects.count(),0)
+
+    def test_unicode_platform_names_round_trip_and_retry(self):
+        value=copy.deepcopy(self.value)
+        value['lines'][0]['configuration']['platform']={'choice':'other-board','kit_id':None,'name':'🚀'*120}
+        first=self.post(value);self.assertEqual(first.status_code,201)
+        self.assertEqual(first.json()['lines'],value['lines'])
+        self.assertEqual(self.post().status_code,409)
+        retry=self.post(value);self.assertEqual(retry.status_code,200)
+        self.assertEqual(retry.json(),first.json())
+        self.assertEqual(CartSnapshot.objects.get().lines,value['lines'])
+        self.assertEqual(DraftCart.objects.get().version,1)
     def test_denied_customer_resources_are_not_cacheable(self):
         paths=('/api/v1/configuration-drafts/','/api/v1/cart/',
                '/api/v1/quotation-requests/'+str(uuid.uuid4())+'/')

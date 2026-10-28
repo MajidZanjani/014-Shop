@@ -128,6 +128,27 @@ class DraftTests(TestCase):
         self.assertEqual(self.save(self.payload|{'configuration':CASES[0]['value']|{'support_packages':1}}).status_code,409)
         self.assertEqual(ConfigurationDraft.objects.get().configuration,self.payload['configuration'])
 
+    def test_malformed_platform_names_are_rejected_before_storage(self):
+        verified_login(self.client,self.owner)
+        for case in CASES:
+            if not case['name'].startswith('platform name ') or case['status']!='invalid':continue
+            with self.subTest(case=case['name']):
+                response=self.save(self.payload|{'configuration':case['value']})
+                self.assertEqual(response.status_code,422)
+                self.assertEqual(response.json()['errors'],[{'field':'platform','code':'short_name'}])
+                self.assertEqual(ConfigurationDraft.objects.count(),0)
+
+    def test_unicode_platform_names_round_trip_and_retry(self):
+        verified_login(self.client,self.owner)
+        for case in CASES:
+            if not case['name'].startswith('platform name ') or case['status']=='invalid':continue
+            with self.subTest(case=case['name']):
+                payload=self.payload|{'request_id':str(uuid.uuid4()),'configuration':case['value']}
+                first=self.save(payload);self.assertEqual(first.status_code,201)
+                self.assertEqual(first.json()['configuration'],case['value'])
+                self.assertEqual(self.save(payload).json(),first.json())
+                self.assertEqual(ConfigurationDraft.objects.get(pk=first.json()['id']).configuration,case['value'])
+
     def test_csrf_and_production_gate(self):
         protected=Client(enforce_csrf_checks=True)
         verified_login(protected,self.owner)

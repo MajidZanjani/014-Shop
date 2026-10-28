@@ -1,9 +1,8 @@
 ---
 gsd_state_version: "1.0"
 current_plan: 01
-status: paused
-last_updated: "2026-10-27T13:34:17.591Z"
-paused_at: "2026-10-27T13:34:17.591Z"
+status: in_progress
+last_updated: "2026-10-28T05:25:50Z"
 state_head: 73167fcf02ed311d8a5cc612b81ab5a575707d2c
 progress:
   total_phases: 14
@@ -12,11 +11,11 @@ progress:
   completed_plans: 11
   percent: 7
 current_task: 5
-last_activity: 2026-10-27
+last_activity: 2026-10-28
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Explicit user-requested pause after verified commercial revision step.
-last_activity_desc: Normalized malformed revision and approval-verifier failures; all current local checks pass.
+stopped_at: Saved Unicode defect verified; remaining binding/acceptance requires actual scoped prerequisites.
+last_activity_desc: Unicode validation fixed; backend588, frontend132, parity117, proxy148 and exact264-file source pass.
 ---
 
 # Project state — final purchase-flow revision2
@@ -27,9 +26,13 @@ last_activity_desc: Normalized malformed revision and approval-verifier failures
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** paused — user requested pause after commercial revision hardening;73167fc verified/pushed: backend584/5 checks, focused46, proxy148/2 aliases and264-file source; actual/formal acceptance pending.
+**Execution status:** in progress — Unicode platform-name fix verified: backend588 tests/5 checks, frontend132 tests/32 checks, shared parity117 cases and proxy148 checks/2 aliases; actual/formal acceptance pending.
 
-**Next implementation task:** Run $gsd-resume-work; reproduce lone-surrogate platform-name acceptance with shared conformance and real PostgreSQL draft/cart HTTP tests, then fix Python/TypeScript validation while preserving valid Unicode/emoji and120-codepoint bounds.
+**Next implementation task:** Supply exact approved commercial-offer revisions and approver evidence, then bind and qualify the existing protected consumer; remaining channel/provider/runner/formal prerequisites are grouped in13-QUALIFICATION-REGISTER.md.
+
+## Current local continuation
+
+Malformed platform names now return422 before PostgreSQL storage; valid multilingual/emoji names and120-codepoint limits retain round-trip/retry behavior. [Exact local evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-UNICODE-PLATFORM-PARTIAL.md). Phase13/task5 and all actual/formal release qualifications remain pending. Counts1/14 completed phases and11/36 completed plan records are not engineering effort.
 
 ## Preserved implementation/evidence
 

@@ -4,17 +4,17 @@
 
 A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering and business purchasers. Customers configure vendor-specific licences, answer one basic board/platform question, buy applicable pre-approved standard offers or request a narrow exception quote, and purchase non-expiring ten-hour SLL support independently or with IP. Approved R&D materials may precede a promised later reference design. Staff use MFA-protected workflows to review acceptance/payment, issue matching private packages and keys, process renewal/rehosting cases, and account for support work.
 
-## Current implementation status — 2026-10-26
+## Current implementation status — 2026-10-28
 
 **Current development focus:** 13 — purchase-flow, fulfilment and release acceptance; verified Phase8/10 local slices retained with actual acceptance pending. [Current purchase-flow authority](PURCHASE-FLOW-AMENDMENT.md).
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** paused — user requested pause after commercial revision hardening;73167fc verified/pushed: backend584/5 checks, focused46, proxy148/2 aliases and264-file source; actual/formal acceptance pending.
+**Execution status:** in progress — Unicode platform-name fix verified: backend588 tests/5 checks, frontend132 tests/32 checks, shared parity117 cases and proxy148 checks/2 aliases; actual/formal acceptance pending.
 
-**Next implementation task:** Run $gsd-resume-work; reproduce lone-surrogate platform-name acceptance with shared conformance and real PostgreSQL draft/cart HTTP tests, then fix Python/TypeScript validation while preserving valid Unicode/emoji and120-codepoint bounds.
+**Next implementation task:** Supply exact approved commercial-offer revisions and approver evidence, then bind and qualify the existing protected consumer; remaining channel/provider/runner/formal prerequisites are grouped in13-QUALIFICATION-REGISTER.md.
 
-Complete-cart synthetic checkout, acceptance/payment, once-only grants and staged completion are implemented, now with archived reservations/releases, scoped staff work, reverse/replace corrections and committed-revision statements. Supported complete-cart demo now covers both local staff login factors, exact assignment and work/correction/release/statement retries. Private versioned synthetic material releases and owner-only session-bound single-use POST downloads are now implemented. Local reviewed licence-change cases and held revised-scope/orders now preserve originals and unknown policies. Latest retained results:420-test full backend regression before the final catalog-family/same-band validation changes, final16 focused case tests and102 proxy header-level checks; complete-cart two-factor staff/customer demo includes all five case kinds and review corrections alongside retained-version release/download. Actual material/rights/retention/host qualifications remain pending. Only Phase1 is fully accepted;11/34 plan records complete. Counts are not engineering-effort estimates. [STATE.md](STATE.md) and [ROADMAP.md](ROADMAP.md) retain exact evidence and actual qualification gates.
+Malformed platform names now return422 before PostgreSQL storage; valid multilingual/emoji names and120-codepoint limits retain round-trip/retry behavior. [Exact local evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-UNICODE-PLATFORM-PARTIAL.md). Phase13/task5 and all actual/formal release qualifications remain pending. Counts1/14 completed phases and11/36 completed plan records are not engineering effort. Existing synthetic purchase/staged-delivery, support ledger and private resource/MFA controls retain their scoped evidence. [STATE.md](STATE.md) and [ROADMAP.md](ROADMAP.md) record current routing and actual gates.
 
 Before every commit reconcile affected current references, publish state.json and run python3 scripts/check_planning.py. Sync commits to origin/main without force. Historical evidence retains its original scope.
 
