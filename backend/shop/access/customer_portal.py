@@ -5,6 +5,7 @@ from django.utils.cache import patch_vary_headers
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.http import require_http_methods
 from .views import local_enabled,verified_identity,start_verification,complete_verification,end_verification
+from .recovery import recovery_held
 
 PATH='/purchase/access/'
 ERRORS={
@@ -41,6 +42,7 @@ def form_action(request):
 @sensitive_post_parameters()
 def customer_access(request):
     if not local_enabled():return private(HttpResponse('Unavailable',status=404))
+    if recovery_held():return private(HttpResponse('Customer access is temporarily paused for recovery review.',status=503))
     if request.user.is_authenticated and (not request.user.is_active or request.user.is_staff or request.user.is_superuser):
         return private(HttpResponse('Unavailable',status=403))
     error=None;status=200

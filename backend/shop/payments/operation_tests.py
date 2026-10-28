@@ -40,6 +40,8 @@ class OperationTests(TransactionTestCase):
         setting.enable();self.addCleanup(setting.disable)
         self.request=RequestFactory().get('/staff/payments/',HTTP_HOST='staff.localhost');self.request.user=self.staff
         self.request.session={'shop_staff_mfa':{'generation':str(self.credential.generation),'verified_at':timezone.now().timestamp()}}
+        from shop.access.recovery import stamp_session_epoch
+        stamp_session_epoch(None,self.request,self.staff)  # Explicit trusted post-MFA fixture.
 
     def prepare(self,kind='capture',key=None):return service.prepare(self.request,self.accepted.pk,kind,key or uuid.uuid4(),self.archive)
     def dispatch(self,row,**kw):return service.dispatch(self.request,row.pk,self.archive,**kw)
@@ -215,6 +217,8 @@ from django.test import override_settings,RequestFactory
 user=get_user_model().objects.get(pk=%s);credential=StaffCredential.objects.get(user=user)
 request=RequestFactory().get('/staff/payments/',HTTP_HOST='staff.localhost');request.user=user
 request.session={'shop_staff_mfa':{'generation':str(credential.generation),'verified_at':timezone.now().timestamp()}}
+from shop.access.recovery import stamp_session_epoch
+stamp_session_epoch(None,request,user)
 with override_settings(LOCAL_STAFF_ENABLED=True,ALLOWED_HOSTS=['staff.localhost']):
  with PreparedArchive(Path(%r)) as archive:
   with patch('shop.payments.synthetic_bank.mutate',side_effect=AssertionError('blind retry')):

@@ -21,6 +21,25 @@ class VerificationThrottle(models.Model):
     window_start=models.DateTimeField()
     requests=models.PositiveSmallIntegerField(default=0)
 
+class AccessEpoch(models.Model):
+    id=models.PositiveSmallIntegerField(primary_key=True,default=1,editable=False)
+    value=models.UUIDField(default=uuid.uuid4)
+    quarantined=models.BooleanField(default=False)
+    active_reset=models.UUIDField(null=True)
+    class Meta:
+        constraints=[models.CheckConstraint(condition=models.Q(id=1),name='access_epoch_singleton'),
+            models.CheckConstraint(condition=models.Q(quarantined=True,active_reset__isnull=False)|models.Q(quarantined=False,active_reset__isnull=True),name='access_epoch_hold_reference')]
+
+class LocalAccessRecoveryOperation(models.Model):
+    id=models.UUIDField(primary_key=True,editable=False)
+    action=models.CharField(max_length=16)
+    basis_reset=models.UUIDField(null=True)
+    epoch=models.UUIDField()
+    counts=models.JSONField()
+    created_at=models.DateTimeField(auto_now_add=True)
+    class Meta:
+        constraints=[models.CheckConstraint(condition=models.Q(action='quarantine',basis_reset__isnull=True)|models.Q(action='release',basis_reset__isnull=False),name='local_access_recovery_action')]
+
 
 class StaffCredential(models.Model):
     user=models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.PROTECT)

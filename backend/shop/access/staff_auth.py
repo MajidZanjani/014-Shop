@@ -18,6 +18,7 @@ from shop.adapters.local_storage import LocalStorage
 from shop.catalog.presentation import CSS
 from .models import StaffCredential, StaffLoginThrottle, StaffChallenge
 from .views import digest, reply, read_json
+from .recovery import current_session_epoch,recovery_held
 
 LIFETIME=900
 RECENT=300
@@ -25,6 +26,7 @@ MAX_ATTEMPTS=5
 # Fixed reviewed CSS only: no pre-MFA asset exception or dynamic user content.
 STYLE_HASH=b64encode(sha256(CSS.encode('utf-8')).digest()).decode('ascii')
 ERRORS={
+    'access_recovery_pending':'Staff access is temporarily paused for recovery review.',
     'unexpected_query':'The request was rejected. Return to staff sign-in and try again.',
     'invalid_request':'The request was rejected. Check the sign-in fields and try again.',
     'login_failed':'Sign-in failed. Check the username and password.',
@@ -60,6 +62,7 @@ def enabled(request):
 def staff_credential(request, recent=False):
     if not enabled(request) or not request.user.is_authenticated or not request.user.is_active or not request.user.is_staff:
         return None
+    if not current_session_epoch(request):return None
     marker=request.session.get('shop_staff_mfa')
     if not isinstance(marker,dict) or set(marker)!={'generation','verified_at'}:return None
     stamp=marker['verified_at']
@@ -88,12 +91,14 @@ def success(request,data):
 @require_GET
 def session_status(request):
     if not enabled(request):return reply({'error':'unavailable'},404)
+    if recovery_held():return reply({'error':'access_recovery_pending'},503)
     return reply({'authenticated':staff_credential(request) is not None,'csrf_token':get_token(request)})
 
 
 @require_POST
 def password_login(request):
     if not enabled(request):return reply({'error':'unavailable'},404)
+    if recovery_held():return failure(request,'access_recovery_pending',503)
     if request.GET:return failure(request,'unexpected_query',400)
     try:
         value=payload(request,{'username','password'})
@@ -129,6 +134,7 @@ def password_login(request):
 @require_POST
 def verify(request):
     if not enabled(request):return reply({'error':'unavailable'},404)
+    if recovery_held():return failure(request,'access_recovery_pending',503)
     if request.GET:return failure(request,'unexpected_query',400)
     try:
         value=payload(request,{'code'});code=value['code']
@@ -171,4 +177,5 @@ def sign_out(request):
 @require_GET
 def home(request):
     if not enabled(request):return reply({'error':'unavailable'},404)
+    if recovery_held():return staff_page(request,error='access_recovery_pending',status=503)
     return staff_page(request,authenticated=staff_credential(request) is not None)

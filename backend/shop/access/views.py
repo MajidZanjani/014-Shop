@@ -49,6 +49,8 @@ def read_json(request,fields):
 def verified_identity(request):
     if not request.user.is_authenticated or not request.user.is_active or request.user.is_staff or request.user.is_superuser:
         return None
+    from .recovery import current_session_epoch
+    if not current_session_epoch(request):return None
     marker=request.session.get('shop_verified_identity')
     if not isinstance(marker,str): return None
     try: identity=uuid.UUID(marker)
@@ -58,10 +60,14 @@ def verified_identity(request):
 @require_GET
 def session_status(request):
     if not local_enabled(): return reply({'error':'unavailable'},404)
+    from .recovery import recovery_held
+    if recovery_held():return reply({'error':'access_recovery_pending'},503)
     return reply({'authenticated':verified_identity(request) is not None,'csrf_token':get_token(request)})
 
 def start_verification(request,email):
     if not local_enabled(): return {'error':'unavailable'},404
+    from .recovery import recovery_held
+    if recovery_held():return {'error':'access_recovery_pending'},503
     try:
         if not isinstance(email,str):raise ValueError('email')
         email=email.strip().lower()
@@ -108,6 +114,8 @@ def start_verification(request,email):
 
 def complete_verification(request,code):
     if not local_enabled():return {'error':'unavailable'},404
+    from .recovery import recovery_held
+    if recovery_held():return {'error':'access_recovery_pending'},503
     try:
         if not isinstance(code,str) or not 1<=len(code)<=128:raise ValueError('code')
         identity=uuid.UUID(request.session.get('shop_challenge',''))

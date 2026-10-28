@@ -2,8 +2,8 @@
 gsd_state_version: "1.0"
 current_plan: 01
 status: in_progress
-last_updated: "2026-10-28T06:02:27Z"
-state_head: e7171d0ca179c868cd482acfe6595e8912d1dd70
+last_updated: "2026-10-28T06:39:49Z"
+state_head: 47760ebb97afdf5d73170fa576fda2d6c19e6e9e
 progress:
   total_phases: 14
   completed_phases: 1
@@ -14,25 +14,25 @@ current_task: 5
 last_activity: 2026-10-28
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Authentication parser fixed locally; continuing independent recovery access component.
-last_activity_desc: Auth baseline32 server errors fixed; focused45, backend593/5, proxy148/2 and source264 pass.
+stopped_at: Local recovery-access component verified; next recovery effect-quiescence design.
+last_activity_desc: Recovery access: focused121, backend602/5 in three bounded batches, proxy148/2 and source267 pass.
 ---
 
 # Project state — final purchase-flow revision2
 
-**Current development focus:** 13 — purchase-flow, fulfilment and release acceptance; verified Phase8/10 local slices retained with actual acceptance pending. [Current purchase-flow authority](PURCHASE-FLOW-AMENDMENT.md).
+**Current development focus:** 13 — purchase-flow, fulfilment and release acceptance; verified Phase8/10/12 local slices retained with actual acceptance pending. [Current purchase-flow authority](PURCHASE-FLOW-AMENDMENT.md).
 
 **Last fully completed phase:** 1 — baseline documentary acceptance only. SRC-05 final-amendment documentary reconciliation is complete and does not revalidate actual commercial or external behavior. All other phases remain partial or pending. Counts are completed-phase/planned-record counts, not engineering effort.
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — authentication JSON text fix verified: focused45, backend593 tests/5 checks, proxy148 checks/2 aliases and exact264-file source; continuing independent recovery-access work; actual/formal acceptance pending.
+**Execution status:** in progress — local recovery-access component verified: backend602 tests/5 checks, focused121, proxy148 checks/2 aliases and exact267-file source; actual/full recovery and Phase13 acceptance pending.
 
-**Next implementation task:** Implement a local restored-access invalidation component for customer/staff sessions and pending challenges, with PostgreSQL replay/race tests; actual off-host recovery, production MFA and commercial inputs remain pending.
+**Next implementation task:** Design recovery effect-quiescence before worker claims and mutating bank/mail dispatch; preserve read-only lookup, one-claim uncertainty and no adapter I/O inside database locks. Commercial and actual recovery/provider inputs remain pending.
 
 ## Current local continuation
 
-Malformed JSON customer codes, staff usernames/passwords and staff possession codes now return fixed400 responses before authentication effects; valid Unicode credentials, wrong-code limits and legitimate MFA recovery remain supported. [Exact local evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-AUTHENTICATION-TEXT-PARTIAL.md). User will obtain commercial inputs from the relevant company sections; keep them pending while independent project implementation continues. Full Phase13/task5 acceptance remains pending.
+Local recovery access holds now invalidate customer/staff sessions and pending challenges, fence cached session markers and require fresh customer verification/both staff factors after a matching synthetic release. Exact retries preserve fresh sessions and cannot clear later holds; business history and grants remain unchanged. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-RECOVERY-ACCESS-PARTIAL.md). This does not quiesce workers/providers, reconcile external revocations or qualify actual recovery. Commercial inputs remain pending by user instruction.
 
 ## Preserved implementation/evidence
 

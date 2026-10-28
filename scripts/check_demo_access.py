@@ -86,6 +86,8 @@ saved=scope.entitlement.fulfilment.acceptance.checkout
 request=RequestFactory().post('/staff/delivery/',HTTP_HOST='staff.localhost')
 request.user=scope.user
 request.session={'shop_staff_mfa':{'generation':str(credential.generation),'verified_at':timezone.now().timestamp()}}
+from shop.access.recovery import stamp_session_epoch
+stamp_session_epoch(None,request,scope.user)
 with override_settings(LOCAL_STAFF_ENABLED=True,ALLOWED_HOSTS=['staff.localhost']):
     with PreparedArchive(Path(ARCHIVE_ROOT)) as retained:
         event=record(request,saved.owner,saved.pk,scope.entitlement_id,uuid.uuid4(),SyntheticDeliveryControl.objects.filter(entitlement=scope.entitlement).count(),CONTROL_ACTION,retained)

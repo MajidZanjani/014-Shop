@@ -33,6 +33,8 @@ class SupportLedgerTests(TransactionTestCase):
         self.request=RequestFactory().get('/staff/support/',HTTP_HOST='staff.localhost')
         self.request.user=self.staff
         self.request.session={'shop_staff_mfa':{'generation':str(self.credential.generation),'verified_at':timezone.now().timestamp()}}
+        from shop.access.recovery import stamp_session_epoch
+        stamp_session_epoch(None,self.request,self.staff)  # Explicit trusted post-MFA fixture.
 
     def record(self,kind,**kw):
         return ledger.record(self.owner,self.saved.pk,kw.pop('request_id',uuid.uuid4()),kind,self.archive,**kw)

@@ -6,15 +6,15 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 ## Current implementation status — 2026-10-28
 
-**Current development focus:** 13 — purchase-flow, fulfilment and release acceptance; verified Phase8/10 local slices retained with actual acceptance pending. [Current purchase-flow authority](PURCHASE-FLOW-AMENDMENT.md).
+**Current development focus:** 13 — purchase-flow, fulfilment and release acceptance; verified Phase8/10/12 local slices retained with actual acceptance pending. [Current purchase-flow authority](PURCHASE-FLOW-AMENDMENT.md).
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — authentication JSON text fix verified: focused45, backend593 tests/5 checks, proxy148 checks/2 aliases and exact264-file source; continuing independent recovery-access work; actual/formal acceptance pending.
+**Execution status:** in progress — local recovery-access component verified: backend602 tests/5 checks, focused121, proxy148 checks/2 aliases and exact267-file source; actual/full recovery and Phase13 acceptance pending.
 
-**Next implementation task:** Implement a local restored-access invalidation component for customer/staff sessions and pending challenges, with PostgreSQL replay/race tests; actual off-host recovery, production MFA and commercial inputs remain pending.
+**Next implementation task:** Design recovery effect-quiescence before worker claims and mutating bank/mail dispatch; preserve read-only lookup, one-claim uncertainty and no adapter I/O inside database locks. Commercial and actual recovery/provider inputs remain pending.
 
-Malformed JSON customer codes, staff usernames/passwords and staff possession codes now return fixed400 responses before authentication effects; valid Unicode credentials, wrong-code limits and legitimate MFA recovery remain supported. [Exact local evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-AUTHENTICATION-TEXT-PARTIAL.md). User will obtain commercial inputs from the relevant company sections; keep them pending while independent project implementation continues. Full Phase13/task5 acceptance remains pending. [STATE.md](STATE.md) and [ROADMAP.md](ROADMAP.md) retain exact current routing; counts1/14 completed phases and11/36 completed plan records are not engineering effort.
+Local recovery access holds now invalidate customer/staff sessions and pending challenges, fence cached session markers and require fresh customer verification/both staff factors after a matching synthetic release. Exact retries preserve fresh sessions and cannot clear later holds; business history and grants remain unchanged. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-RECOVERY-ACCESS-PARTIAL.md). This does not quiesce workers/providers, reconcile external revocations or qualify actual recovery. Commercial inputs remain pending by user instruction. [STATE.md](STATE.md) and [ROADMAP.md](ROADMAP.md) retain current routing; counts1/14 completed phases and11/36 completed phase-plan records are not engineering effort.
 
 Before every commit reconcile affected current references, publish state.json and run python3 scripts/check_planning.py. Sync commits to origin/main without force. Historical evidence retains its original scope.
 
