@@ -2,6 +2,8 @@
 
 Status: concrete local checkout/dispatch/fulfilment recovery gap reproduced, fixed and verified locally. Focused174 tests, supported demo/proxy148/2 aliases and exact276-file source pass; current backend693/5 checks also pass. Actual recovery, money, licence/support rights and full Phase13 acceptance remain pending.
 
+Implementation: `2e373a50faccc62a587cb4577452eda1ae26f651`, locally committed. This report records local implementation/qualification; current remote synchronization is determined from Git refs.
+
 ## Behavior
 
 The checkout view checked customer access before parsing, then passed only its cached owner to acceptance, payment, lookup, grant and staged-delivery services. A quarantine or completed quarantine/release in that gap could still change acceptance, payment-attempt/provider observations, licence/support grants or delivery completion. A completed release could allow a new fake bank start under the fresh global epoch even though the customer request belonged to the old session.

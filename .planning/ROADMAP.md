@@ -18,7 +18,7 @@
 
 **Execution status:** in progress — customer checkout/payment/fulfilment recovery fence verified locally; focused174, backend693/5, proxy148/2 and source276 pass; actual/full acceptance pending.
 
-**Next implementation task:** Bind actual post-point customer/resource/MFA and source qualification when authoritative channel/custody/provider/runner inputs are supplied; keep company commercial inputs pending without re-asking. Independent concrete local fixes remain authorized.
+**Next implementation task:** Push any unpushed quick261028-fy8 commits with direct authorization, then continue actual customer/resource/MFA qualification when its channel/custody/provider/runner inputs arrive. Keep company commercial inputs pending without re-asking.
 
 **Last fully completed phase:** 1. Phases2–7 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase8 work while those earlier checks remain open. Completed phases remain1/14; planned records11/36. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
 

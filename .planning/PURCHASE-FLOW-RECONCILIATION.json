@@ -1560,8 +1560,13 @@
     },
     {
       "path": ".planning/quick/261028-fy8-fence-customer-checkout-and-fulfilment-a/261028-fy8-PLAN.md",
-      "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261028-fy8-fence-customer-checkout-and-fulfilment-a/261028-fy8-SUMMARY.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
     },
     {
       "path": ".planning/research/ARCHITECTURE.md",

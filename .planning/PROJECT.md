@@ -12,7 +12,7 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Execution status:** in progress — customer checkout/payment/fulfilment recovery fence verified locally; focused174, backend693/5, proxy148/2 and source276 pass; actual/full acceptance pending.
 
-**Next implementation task:** Bind actual post-point customer/resource/MFA and source qualification when authoritative channel/custody/provider/runner inputs are supplied; keep company commercial inputs pending without re-asking. Independent concrete local fixes remain authorized.
+**Next implementation task:** Push any unpushed quick261028-fy8 commits with direct authorization, then continue actual customer/resource/MFA qualification when its channel/custody/provider/runner inputs arrive. Keep company commercial inputs pending without re-asking.
 
 Customer checkout acceptance, dispatch and grant/stage commits now require their originating customer epoch; prepared state cannot adopt a released epoch. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-CHECKOUT-RECOVERY-PARTIAL.md). Original22-test/36-failure control, fixed focused174/53.986s, backend693/5/224.151s (outer225.773s), supported demo/proxy148/2 and exact276-file source pass. Prior support/package/recovery components retain their documented scope; actual/company inputs remain pending.
 
