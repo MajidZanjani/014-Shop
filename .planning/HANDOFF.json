@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "timestamp": "2026-10-28T13:10:51.644Z",
+  "timestamp": "2026-10-28T13:19:22.094Z",
   "phase": "13",
   "phase_name": "Purchase-flow, fulfilment and release acceptance",
   "phase_dir": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance",
@@ -8,10 +8,10 @@
   "task": 5,
   "total_tasks": 5,
   "status": "paused",
-  "pause_reason": "context_pressure",
+  "pause_reason": "user_request",
   "context_usage_percentage": null,
   "implementation_commit": "82fa759cdda37bb22406b5ced6ac7ca6ff372a98",
-  "pre_pause_tip": "d378a7411a470b9971e295697020e3edea0c6a7c",
+  "pre_pause_tip": "32f4f626a620d5ac5bec5c7e51b318b7a5e4b061",
   "completed_tasks": [
     {
       "id": "261028-hb4",
@@ -66,8 +66,8 @@
   "async_jobs": [],
   "human_actions_pending": [
     {
-      "action": "Clear session and run $gsd-resume-work",
-      "context": "Standing user context-preservation rule; no exact usage percentage supplied",
+      "action": "Run $gsd-resume-work when ready",
+      "context": "Explicit user pause; start with the saved quotation reproduction",
       "blocking": true
     },
     {
@@ -96,20 +96,24 @@
       "decision": "Preserve bounded epoch-before-query serialization and original catalog retry semantics",
       "rationale": "Verified real PostgreSQL lock probes and retained owner/CSRF/CAS/retry behavior",
       "phase": "13"
+    },
+    {
+      "decision": "Honor explicit $gsd-pause-work after the continue/wait exchange",
+      "rationale": "Latest user instruction; no intervening implementation",
+      "phase": "13"
     }
   ],
   "uncommitted_files": [
+    " M .planning/HANDOFF.json",
     " M .planning/HANDOFF.md",
     " M .planning/PROJECT.md",
-    " M .planning/PURCHASE-FLOW-RECONCILIATION.json",
     " M .planning/ROADMAP.md",
     " M .planning/STATE.md",
     " M .planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/.continue-here.md",
     " M .planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-01-PLAN.md",
     " M .planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-QUALIFICATION-REGISTER.md",
-    " M .planning/state.json",
-    "?? .planning/HANDOFF.json"
+    " M .planning/state.json"
   ],
   "next_action": "Clear the session, run $gsd-resume-work, restore13-01 task5 and start a new GSD quick task to reproduce quotation JSON/native POST recovery overlap before capture_quotation. Keep company commercial and actual qualification inputs pending without re-asking.",
-  "context_notes": "Cart c92538a/5a1f5ea and draft82fa759/d378a74 are pushed; current core726/5/focused135/proxy148/source276 pass. Quotation source observation is not reproduced/designed/fixed. All owned producers exited; no async jobs or placeholder phase SUMMARY markers. uncommitted_files is measured before checkpoint commit; compare current Git status/refs on resume. Do not create recursive push-status commits. Exact context percentage unavailable."
+  "context_notes": "Explicit user pause after continue/wait. No product edits or runtime tests since synchronized checkpoint32f4f62. Existing cart/draft evidence and both pushed completion pairs retain their scope. Quotation is not reproduced/designed/fixed. All owned producers remain exited; no async jobs or placeholder phase SUMMARY markers. uncommitted_files is measured before this pause commit; compare current Git status/refs. Exact context usage unavailable; current pause is explicitly requested."
 }

@@ -10,7 +10,7 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** paused — proactive context handoff after verified cart/draft recovery fixes; backend726/5, focused135, proxy148/2 and source276 pass; quotation reproduction and actual/full acceptance pending.
+**Execution status:** paused — user-requested pause after verified cart/draft recovery fixes; backend726/5, focused135, proxy148/2 and source276 pass; quotation reproduction and actual/full acceptance pending.
 
 **Next implementation task:** Clear the session, run $gsd-resume-work, restore13-01 task5 and start a new GSD quick task to reproduce quotation JSON/native POST recovery overlap before capture_quotation. Keep company commercial and actual qualification inputs pending without re-asking.
 
