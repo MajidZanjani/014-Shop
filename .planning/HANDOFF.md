@@ -4,15 +4,15 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — native quotation-page recovery verified locally (focused126, backend761/5, proxy148/2, source276); actual/full acceptance pending.
+**Execution status:** in progress — quick261028-iw9 complete locally (focused126, backend761/5, proxy148/2, source276); actual/full acceptance pending.
 
 **Next implementation task:** Start a new GSD quick task and reproduce business-draft save/private reads and quotation business-attachment recovery boundaries at normal form/access aliases before product edits. Company commercial and actual inputs remain pending without another request.
 
-**Recorded implementation:** c356d75b13c66f3f58bb98069bfb18e652dfeb67
+**Recorded implementation:** 49f714b29db41962701c1f127196e226f81c3418
 
 Native quotation history/cursor/timeline/document-preview reads now lock their originating epoch through bounded projection/rendering. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-QUOTATION-PAGES-RECOVERY-PARTIAL.md). Original9/9 controls, focused126/27.980s, backend761/5/234.820s, supported proxy148/2 and exact276-file source pass. Prior quotation capture/cart/draft/checkout/support evidence retains scope; actual/company inputs remain pending.
 
-Quotation capture quick261028-il4 is complete/pushed atc356d75/224f87e after direct user approval of the pending ordinary push and subsequent project commits. Native page quick261028-iw9 is verified locally; implementation/completion records are being finalized. All owned qualification producers exited; no async jobs or full Phase13 SUMMARY. All three fixed files restored byte-exactly after original9/9 control. Compare actual Git refs for synchronization; no push-status-only commit chain.
+Quotation capture quick261028-il4 is complete/pushed atc356d75/224f87e after direct user approval of the pending ordinary push and subsequent project commits. Native page quick261028-iw9 is complete locally at49f714b; its implementation is pushed and schema-backed completion is recorded. All owned qualification producers exited; no async jobs or full Phase13 SUMMARY. All three fixed files restored byte-exactly after original9/9 control. Compare actual Git refs for synchronization; no push-status-only commit chain.
 
 Next finite source observation: business_views.py parses normal forms and stores drafts using cached request.user without an originating epoch; its page/current helpers also read private drafts after only entry access. business_binding_views.py reads the owned quotation before parsing, then previews or attaches business revisions under entry-only authority. First reproduce held and completed-release overlap at actual local_customer/read_submission boundaries on isolated PostgreSQL before any business product edits. Compare immutable BusinessDraft/Snapshot and QuotationBusinessScope/Key/request/cart facts separately from responses; native session invalidation may affect the response after a stale commit. Preserve valid retry identity, source/schema/version/CAS order, cleaned-only redisplay, owner/cross-cart filters and staff review history. This is unreproduced/unimplemented source observation, not a baseline, design or fix.
 

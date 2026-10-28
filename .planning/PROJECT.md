@@ -10,7 +10,7 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — native quotation-page recovery verified locally (focused126, backend761/5, proxy148/2, source276); actual/full acceptance pending.
+**Execution status:** in progress — quick261028-iw9 complete locally (focused126, backend761/5, proxy148/2, source276); actual/full acceptance pending.
 
 **Next implementation task:** Start a new GSD quick task and reproduce business-draft save/private reads and quotation business-attachment recovery boundaries at normal form/access aliases before product edits. Company commercial and actual inputs remain pending without another request.
 

@@ -2,7 +2,7 @@
 
 Status: native quotation history/cursor, timeline and document-preview gaps reproduced and fixed locally. Focused126/27.980s, current backend761/5/234.820s, supported proxy148/2 and exact276-file source pass. Actual recovery/full Phase13 acceptance remains pending.
 
-Implementation is verified locally; its commit identity is recorded in quick completion artifacts. Git refs determine actual remote synchronization.
+Implementation `49f714b29db41962701c1f127196e226f81c3418` is committed and recorded in quick completion artifacts. Git refs determine actual remote synchronization.
 
 ## Behavior
 
