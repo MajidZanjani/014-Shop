@@ -2,8 +2,8 @@
 gsd_state_version: "1.0"
 current_plan: 01
 status: in_progress
-last_updated: "2026-10-28T12:48:31.138Z"
-state_head: c92538a50e191949c5265236663a4bb53cd715f5
+last_updated: "2026-10-28T13:03:57.780Z"
+state_head: 82fa759cdda37bb22406b5ced6ac7ca6ff372a98
 progress:
   total_phases: 14
   completed_phases: 1
@@ -14,8 +14,8 @@ current_task: 5
 last_activity: 2026-10-28
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Cart recovery fence verified locally; configuration-draft source observation awaits reproduction.
-last_activity_desc: Cart focused136/backend716/5/228.412s/proxy148/source276 pass; actual/full acceptance pending.
+stopped_at: Configuration-draft recovery verified locally; quotation source observation awaits baseline.
+last_activity_desc: Draft focused135/backend726/5/229.455s/proxy148/source276 pass; actual/full acceptance pending.
 ---
 
 # Project state — final purchase-flow revision2
@@ -26,13 +26,13 @@ last_activity_desc: Cart focused136/backend716/5/228.412s/proxy148/source276 pas
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — customer cart recovery fence verified locally (focused136, backend716/5, proxy148/2, source276); actual/full acceptance pending.
+**Execution status:** in progress — configuration-draft recovery fence verified locally (focused135, backend726/5, proxy148/2, source276); actual/full acceptance pending.
 
-**Next implementation task:** Start a finite configuration-draft recovery reproduction from the saved entry-only list/get/save source observation; reproduce before product edits. Keep company commercial and actual qualification inputs pending without re-asking.
+**Next implementation task:** Start a new GSD quick task and reproduce quotation JSON/native POST recovery overlap before capture_quotation, then inspect its private list/detail/capture-page reads. Keep company commercial and actual inputs pending without re-asking.
 
 ## Current local continuation
 
-Customer cart JSON/native commands and private/base/error-page reads now lock their originating epoch before cart access. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-CART-RECOVERY-PARTIAL.md). Original23-test/36-failure control, fixed focused136/34.029s, current backend716/5/228.412s, supported demo/proxy148/2 and exact276-file source pass. Earlier checkout/support/recovery evidence retains its scope; actual/company inputs remain pending.
+Configuration-draft list/get/save and private retry payloads now require their originating epoch before queries. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-DRAFT-RECOVERY-PARTIAL.md). Original10-test/13-failure control, fixed focused135/26.803s, current backend726/5/229.455s, supported demo/proxy148/2 and exact276-file source pass. Cart/checkout/support/recovery evidence retains its scope; actual/company inputs remain pending.
 
 ## Preserved implementation/evidence
 
@@ -63,7 +63,7 @@ P-02/03/05/06/08 cover actual ready-kit variants, standard development prices/ri
 
 ## Session continuity
 
-Session resumed from d43f1fe at2026-10-28; quick261028-hb4 now verifies the cart command/private-read recovery fence. Original19/31 and final23/36 controls retained; focused136, current backend716/5/228.412s, proxy148/2 and exact276-file source pass. The controlled baseline restored both fixed product files exactly. Next independent source observation: configuration-draft entry-only list/get/save; no draft reproduction/design/fix yet. One-shot HANDOFF.json consumed. Shared /tmp untouched; owned .scratch/auth-unicode-tmp used. All actual/company inputs remain pending without another request.
+Resumed from d43f1fe; cart quick261028-hb4 is complete/pushed atc92538a/5a1f5ea. Configuration-draft quick261028-htg is now verified locally: original10/13 controls, focused135/26.803s, current backend726/5/229.455s, proxy148/2 and exact276-file source. Original-product control restores fixed views.py bytes exactly. Next independent source observation is quotation JSON/native capture before capture_quotation and its private reads; not reproduced/designed/fixed. Shared /tmp untouched; all owned qualification producers exited. Company/actual inputs stay pending without another request.
 
 ### Quick Tasks Completed
 
@@ -153,6 +153,7 @@ Session resumed from d43f1fe at2026-10-28; quick261028-hb4 now verifies the cart
 | 261028-f72 | Fence customer support commands and private reads across recovery; focused147/backend671/5/proxy148/source276 | 2026-10-28 | 99c7e9a | [261028-f72-fence-customer-support-transactions-acro](./quick/261028-f72-fence-customer-support-transactions-acro/) |
 | 261028-fy8 | Fence customer checkout and fulfilment across recovery; focused174/backend693/5/proxy148/source276 | 2026-10-28 | 2e373a5 | [261028-fy8-fence-customer-checkout-and-fulfilment-a](./quick/261028-fy8-fence-customer-checkout-and-fulfilment-a/) |
 | 261028-hb4 | Fence customer cart JSON/native commands and private reads across recovery | 2026-10-28 | c92538a | [261028-hb4-reproduce-and-fence-customer-cart-reques](./quick/261028-hb4-reproduce-and-fence-customer-cart-reques/) |
+| 261028-htg | Fence configuration-draft save/replay and private list/get across recovery | 2026-10-28 | 82fa759 | [261028-htg-reproduce-and-fence-configuration-draft-](./quick/261028-htg-reproduce-and-fence-configuration-draft-/) |
 
 ## Historical pause — 2026-10-26T10:21:33.041Z
 

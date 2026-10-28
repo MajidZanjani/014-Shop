@@ -4,15 +4,15 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — customer cart recovery fence verified locally (focused136, backend716/5, proxy148/2, source276); actual/full acceptance pending.
+**Execution status:** in progress — configuration-draft recovery fence verified locally (focused135, backend726/5, proxy148/2, source276); actual/full acceptance pending.
 
-**Next implementation task:** Start a finite configuration-draft recovery reproduction from the saved entry-only list/get/save source observation; reproduce before product edits. Keep company commercial and actual qualification inputs pending without re-asking.
+**Next implementation task:** Start a new GSD quick task and reproduce quotation JSON/native POST recovery overlap before capture_quotation, then inspect its private list/detail/capture-page reads. Keep company commercial and actual inputs pending without re-asking.
 
-**Recorded implementation:** c92538a50e191949c5265236663a4bb53cd715f5
+**Recorded implementation:** 82fa759cdda37bb22406b5ced6ac7ca6ff372a98
 
-Customer cart JSON/native commands and private/base/error-page reads now lock their originating epoch before cart access. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-CART-RECOVERY-PARTIAL.md). Original23-test/36-failure control, fixed focused136/34.029s, current backend716/5/228.412s, supported demo/proxy148/2 and exact276-file source pass. Earlier checkout/support/recovery evidence retains its scope; actual/company inputs remain pending.
+Configuration-draft list/get/save and private retry payloads now require their originating epoch before queries. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-DRAFT-RECOVERY-PARTIAL.md). Original10-test/13-failure control, fixed focused135/26.803s, current backend726/5/229.455s, supported demo/proxy148/2 and exact276-file source pass. Cart/checkout/support/recovery evidence retains its scope; actual/company inputs remain pending.
 
-Session resumed from checkpoint d43f1fe; one-shot HANDOFF.json consumed. Quick261028-hb4 is complete locally at implementation c92538a50e191949c5265236663a4bb53cd715f5; its schema-backed completion record is retained. Next independent task is the unimplemented configuration-draft recovery baseline. Current Git refs determine remote synchronization; no recursive push-status commit chain. All actual/company gates remain.
+Session resumed from checkpoint d43f1fe; one-shot HANDOFF.json consumed. Cart quick261028-hb4 is complete/pushed; draft quick261028-htg is complete locally at implementation 82fa759cdda37bb22406b5ced6ac7ca6ff372a98; its schema-backed completion is retained. Next independent source observation is quotation capture/private reads; no reproduction or fix yet. Compare current Git refs for synchronization; no recursive push-status commit chain. All actual/company gates remain.
 
 [Final purchase-flow revision2](PURCHASE-FLOW-AMENDMENT.md) remains current authority. Retained Phase10 local work covers complete-cart synthetic grants/staged delivery and the implemented local support ledger; earlier phases are not implicitly complete. [Evidence](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md). One captured cart payment yields an archived deterministic grant plan, one licence record per IP line and exactly36000 integer support seconds/package once, non-expiring. Initial delivery leaves promised later reference design outstanding; later completion never adds another entitlement/grant. Ready-kit/support-only cases stay scoped. Archive readback precedes all simulated records/effects; uncertain funding cannot provision. No actual keys/files/rights or spendable support.
 

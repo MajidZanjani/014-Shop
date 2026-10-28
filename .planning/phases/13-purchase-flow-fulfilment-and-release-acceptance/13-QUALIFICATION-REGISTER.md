@@ -1,6 +1,6 @@
 # Phase13 grouped qualification register —2026-10-27
 
-Current local continuation: quick261028-hb4 verifies the cart command/private-read recovery fence; focused136/backend716/5/proxy148/source276 pass. [Current exact evidence](13-CART-RECOVERY-PARTIAL.md). Next source observation is entry-only configuration-draft list/get/save; it remains unreproduced/unimplemented. Canonical routing: [STATE](../../STATE.md), [ROADMAP](../../ROADMAP.md), [purchase-flow authority](../../PURCHASE-FLOW-AMENDMENT.md). The finite actual/company prerequisites remain pending; no universal audit/full acceptance is inferred.
+Current local continuation: quick261028-htg verifies configuration-draft recovery; focused135/backend726/5/proxy148/source276 pass. [Current exact evidence](13-DRAFT-RECOVERY-PARTIAL.md). Next source observation is quotation JSON/native capture and private reads; unreproduced/unimplemented. Canonical routing: [STATE](../../STATE.md), [ROADMAP](../../ROADMAP.md), [purchase-flow authority](../../PURCHASE-FLOW-AMENDMENT.md). All actual/company prerequisites remain pending; no universal audit/full acceptance.
 
 ## Current local evidence
 
@@ -118,3 +118,7 @@ Local implementation2e373a5 and schema-backed quick261028-fy8 completion are rec
 ## Resumed cart recovery boundary — 2026-10-28
 
 [Cart evidence](13-CART-RECOVERY-PARTIAL.md): original19 tests/31 failures, final23/36 control and fixed focused136/34.029s; current backend716/5/228.412s, supported demo/proxy148/2 and exact276-file source pass. JSON/native create/update/replay and private/current/base/error reads require their originating epoch before cart access. Fresh exact retries and trusted internal callers retain their scope. The one-shot handoff is consumed and active manager views are synchronized. Actual/company/full acceptance gates remain pending. Configuration-draft source observation is not a reproduced defect or completed fix.
+
+## Configuration-draft recovery boundary — 2026-10-28
+
+[Draft evidence](13-DRAFT-RECOVERY-PARTIAL.md): original10 tests/13 failures and exact original-source control; focused135/26.803s, current backend726/5/229.455s, supported demo/proxy148/2 and exact276-file source pass. Private list/get/save/replay require the originating epoch before queries; fresh retries/current-catalog admission remain. The quotation source observation is separate and unreproduced. Actual/company/full acceptance inputs stay pending.
