@@ -10,11 +10,11 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** paused — context checkpoint after verified package recovery fence; focused136, backend657/5 and source276 pass; actual/full acceptance pending.
+**Execution status:** in progress — customer support recovery fence verified locally; focused147, backend671/5, proxy148/2 and source276 pass; actual/full acceptance pending.
 
-**Next implementation task:** Run $gsd-resume-work; restore 13-01 task 5 and reproduce customer support POST/quarantine overlap after command parsing and before ledger/follow-up service entry. Keep company commercial and actual qualification inputs pending.
+**Next implementation task:** Bind actual post-point customer/resource/MFA and source qualification when authoritative channel/custody/provider/runner inputs are supplied; keep company commercial inputs pending without re-asking. Independent concrete local fixes remain authorized.
 
-The private package recovery gap is fixed: cached pre-reset requests cannot issue or consume a download, and the epoch locks before owner/resource work through commit. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PACKAGE-RECOVERY-PARTIAL.md). Focused136/backend657/5/exact276-file source pass. Earlier recovery commit/startup/staff reset components remain covered; prior proxy/frontend/browser evidence retains its documented scope. Customer support entry-to-service overlap is the next unimplemented reproduction. Company commercial and actual qualification inputs remain pending. Counts1/14 completed phases and11/36 completed phase-plan records are not engineering effort.
+Customer support commands and both private reads now lock the originating customer epoch before owner/resource work. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-SUPPORT-RECOVERY-PARTIAL.md). Original7-test/14-failure HTTP baseline, fixed focused147/59.780s, backend671/5/214.355s (outer215.913s), supported demo/proxy148/2 aliases and exact276-file source pass. Earlier package/commit/startup/staff-reset evidence retains its scope. Actual/company inputs remain pending.
 
 Before every commit reconcile affected current references, publish state.json and run python3 scripts/check_planning.py. Sync commits to origin/main without force. Historical evidence retains its original scope.
 

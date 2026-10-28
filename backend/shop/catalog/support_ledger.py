@@ -3,6 +3,7 @@ import uuid
 from django.db import transaction
 from shop.access.models import StaffCredential
 from shop.access.staff_auth import staff_credential
+from shop.access.recovery import current_session_epoch
 from shop.payments import synthetic_bank
 from shop.adapters.evidence_archive import manifest
 from . import checkout, checkout_payment as payment, fulfilment
@@ -14,6 +15,15 @@ KINDS = {'reserve','release','work','correct','statement'}
 
 def fail(code='support_ledger_mismatch', status=409):
     raise checkout.CheckoutError(code, status)
+
+
+def authorize_customer(owner,request):
+    # Internal fixture calls have no customer session. HTTP callers supply it
+    # explicitly; lock its epoch before staff/owner/resource work through commit.
+    if request is None:return
+    if (not callable(getattr(getattr(request,'session',None),'get',None))
+            or not current_session_epoch(request,lock=True) or request.user.pk!=owner.pk):
+        fail('verification_required',403)
 
 
 def authorize(request, grant=None):
@@ -91,12 +101,13 @@ def command(kind,request_id,seconds,task_id,target_id):
     return {'seconds':seconds,'task_id':str(task_id) if task_id else None,'target_id':str(target_id) if target_id else None}
 
 
-def record(owner,identity,request_id,kind,archive,*,seconds=None,task_id=None,target_id=None,staff_request=None):
+def record(owner,identity,request_id,kind,archive,*,seconds=None,task_id=None,target_id=None,staff_request=None,customer_request=None):
     synthetic_bank.guard()
     supplied=command(kind,request_id,seconds,task_id,target_id)
     # Local archive I/O while holding this grant lock serializes preflight/archive/commit.
     # No bank, mail, network archive or actual technical work runs inside this transaction.
     with transaction.atomic(durable=True):
+        authorize_customer(owner,customer_request)
         if staff_request is not None:authorize(staff_request)
         payment.locked(owner,identity)
         grant = SyntheticFulfilment.objects.select_for_update(of=('self',)).select_related('acceptance__checkout','acceptance__attempt').filter(acceptance__checkout_id=identity).first()
@@ -154,9 +165,10 @@ def record(owner,identity,request_id,kind,archive,*,seconds=None,task_id=None,ta
         return event
 
 
-def read(owner,identity,archive,*,staff_request=None):
+def read(owner,identity,archive,*,staff_request=None,customer_request=None):
     synthetic_bank.guard()
     with transaction.atomic(durable=True):
+        authorize_customer(owner,customer_request)
         if staff_request is not None:authorize(staff_request)
         payment.locked(owner,identity)
         grant=SyntheticFulfilment.objects.select_for_update(of=('self',)).select_related('acceptance__checkout','acceptance__attempt').filter(acceptance__checkout_id=identity).first()

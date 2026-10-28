@@ -3,9 +3,10 @@ from concurrent.futures import ThreadPoolExecutor
 from threading import Barrier
 from types import SimpleNamespace
 from unittest.mock import patch
+import json
 import uuid
 from django.contrib.auth import get_user_model
-from django.db import connections, transaction, IntegrityError
+from django.db import connection, connections, transaction, IntegrityError, DatabaseError
 from django.test import TransactionTestCase, RequestFactory, override_settings
 from django.utils import timezone
 from shop.access.models import StaffCredential
@@ -297,3 +298,206 @@ class SupportLedgerTests(TransactionTestCase):
         with patch.object(self.archive,'publish',side_effect=expire):
             with self.assertRaisesRegex(checkout.CheckoutError,'recent_staff_mfa_required'):self.work(reservation)
         self.assertEqual(self.state()['spent_seconds'],0)
+
+
+class SupportRecoveryTests(TransactionTestCase):
+    save_cart=SupportLedgerTests.save_cart
+    preview=SupportLedgerTests.preview
+    accept=SupportLedgerTests.accept
+    setUp=SupportLedgerTests.setUp
+
+    def recover(self,action='quarantine',*,basis_reset=None):
+        from shop.access.recovery import local_recovery_operation
+        return local_recovery_operation(action=action,request_id=uuid.uuid4(),
+            expected_database=connection.settings_dict['NAME'],basis_reset=basis_reset)
+
+    def customer_command(self,action):
+        value={'action':action,'request_id':str(uuid.uuid4())}
+        if action=='reserve':value.update(seconds=3600,task_id=str(uuid.uuid4()))
+        elif action=='release':
+            reservation=ledger.record(self.owner,self.saved.pk,uuid.uuid4(),'reserve',self.archive,
+                seconds=3600,task_id=uuid.uuid4())
+            value['target_id']=str(reservation.pk)
+        else:value.update(fixture='synthetic-context-v1',expected_revision=0)
+        return value
+
+    def command_overlap(self,action,*,released=False,form=False,retry=False):
+        from django.test import Client
+        from urllib.parse import urlencode
+        from . import support_views, support_context
+        browser=Client(enforce_csrf_checks=True);browser.cookies.update(self.client.cookies)
+        path=f'/purchase/checkout-rehearsal/{self.saved.pk}/support/'
+        self.assertEqual(browser.get(path).status_code,200)
+        value=self.customer_command(action)
+        def post():
+            return browser.post(path,data=urlencode(value) if form else json.dumps(value),
+                content_type='application/x-www-form-urlencoded' if form else 'application/json',
+                HTTP_X_CSRFTOKEN=browser.cookies['csrftoken'].value)
+        if retry:self.assertEqual(post().status_code,303 if form else 200)
+        before=ledger.read(self.owner,self.saved.pk,self.archive)
+        before_context=support_context.read(self.owner,self.saved.pk,self.archive)
+        accepted=self.grant.acceptance.sha256
+        parse=support_views.command
+        def interleave(request,staff):
+            result=parse(request,staff)
+            self.assertFalse(staff)
+            reset=self.recover()
+            if released:self.recover('release',basis_reset=reset['operation_id'])
+            return result
+        with patch.object(support_views,'command',side_effect=interleave):
+            response=post()
+        with self.subTest(check='response'):
+            self.assertEqual(response.status_code,403,response.content)
+            self.assertEqual(response['Cache-Control'],'no-store')
+            if not form:self.assertEqual(response.json(),{'error':'verification_required'})
+            else:
+                self.assertNotContains(response,'<form',status_code=403)
+                self.assertNotContains(response,'verification_required',status_code=403)
+        with self.subTest(check='ledger'):
+            self.assertEqual(ledger.read(self.owner,self.saved.pk,self.archive),before)
+        with self.subTest(check='context'):
+            self.assertEqual(support_context.read(self.owner,self.saved.pk,self.archive),before_context)
+        if not released:
+            from shop.access.models import AccessEpoch
+            self.recover('release',basis_reset=AccessEpoch.objects.get(pk=1).active_reset)
+        from .tests import verified_login
+        verified_login(browser,self.owner)
+        self.assertEqual(browser.get(path).status_code,200)
+        self.assertEqual(post().status_code,303 if form else 200)
+        committed=ledger.read(self.owner,self.saved.pk,self.archive)
+        committed_context=support_context.read(self.owner,self.saved.pk,self.archive)
+        self.assertEqual(committed['revision'],before['revision']+(0 if retry or action=='context' else 1))
+        self.assertEqual(committed_context['revision'],before_context['revision']+(int(not retry) if action=='context' else 0))
+        self.assertEqual(post().status_code,303 if form else 200)
+        self.assertEqual(ledger.read(self.owner,self.saved.pk,self.archive),committed)
+        self.assertEqual(support_context.read(self.owner,self.saved.pk,self.archive),committed_context)
+        self.grant.acceptance.refresh_from_db()
+        self.assertEqual(self.grant.acceptance.sha256,accepted)
+
+    def test_customer_reserve_cannot_cross_quarantine_after_command_parsing(self):
+        self.command_overlap('reserve')
+
+    def test_customer_release_cannot_cross_quarantine_after_command_parsing(self):
+        self.command_overlap('release')
+
+    def test_customer_context_cannot_cross_quarantine_after_command_parsing(self):
+        self.command_overlap('context')
+
+    def test_customer_reserve_cannot_cross_completed_quarantine_release(self):
+        self.command_overlap('reserve',released=True)
+
+    def test_customer_release_cannot_cross_completed_quarantine_release(self):
+        self.command_overlap('release',released=True)
+
+    def test_customer_context_cannot_cross_completed_quarantine_release(self):
+        self.command_overlap('context',released=True)
+
+    def test_customer_form_cannot_cross_quarantine_after_command_parsing(self):
+        self.command_overlap('reserve',form=True)
+
+    def test_customer_reservation_retry_cannot_cross_quarantine(self):
+        self.command_overlap('reserve',retry=True)
+
+    def test_customer_release_retry_cannot_cross_quarantine(self):
+        self.command_overlap('release',retry=True)
+
+    def test_customer_context_retry_cannot_cross_completed_quarantine_release(self):
+        self.command_overlap('context',retry=True,released=True)
+
+    def test_customer_ledger_read_rechecks_epoch_after_entry_access(self):
+        from . import support_views
+        path=f'/purchase/checkout-rehearsal/{self.saved.pk}/support/'
+        access=support_views.local_customer
+        def interleave(request):
+            result=access(request);self.assertIsNone(result)
+            self.recover()
+            return result
+        with patch.object(support_views,'local_customer',side_effect=interleave):
+            response=self.client.get(path,HTTP_ACCEPT='application/json')
+        self.assertEqual(response.status_code,403,response.content)
+        self.assertEqual(response.json(),{'error':'verification_required'})
+        self.assertEqual(response['Cache-Control'],'no-store')
+
+    def test_customer_followup_read_rechecks_epoch_after_ledger_read(self):
+        from . import support_context
+        support_context.record(self.owner,self.saved.pk,uuid.uuid4(),'synthetic-context-v1',0,self.archive)
+        read=ledger.read
+        def interleave(*args,**kwargs):
+            result=read(*args,**kwargs)
+            self.recover()
+            return result
+        with patch.object(ledger,'read',side_effect=interleave):
+            response=self.client.get(f'/purchase/checkout-rehearsal/{self.saved.pk}/support/',HTTP_ACCEPT='application/json')
+        self.assertEqual(response.status_code,403,response.content)
+        self.assertEqual(response.json(),{'error':'verification_required'})
+        self.assertEqual(response['Cache-Control'],'no-store')
+
+    def test_selected_startup_blocks_customer_commands_and_both_reads(self):
+        from . import support_context
+        from shop.access.models import AccessEpoch,LocalAccessRecoveryOperation
+        from django.test import RequestFactory
+        customer=RequestFactory().get('/support/')
+        customer.user=self.owner;customer.session=self.client.session
+        value=self.customer_command('reserve')
+        before=ledger.read(self.owner,self.saved.pk,self.archive)
+        with override_settings(LOCAL_RESTORE_ID=uuid.uuid4()):
+            operations=[
+                lambda:ledger.record(self.owner,self.saved.pk,uuid.UUID(value['request_id']),'reserve',self.archive,
+                    seconds=value['seconds'],task_id=uuid.UUID(value['task_id']),customer_request=customer),
+                lambda:support_context.record(self.owner,self.saved.pk,uuid.uuid4(),'synthetic-context-v1',0,
+                    self.archive,customer_request=customer),
+                lambda:ledger.read(self.owner,self.saved.pk,self.archive,customer_request=customer),
+                lambda:support_context.read(self.owner,self.saved.pk,self.archive,customer_request=customer),
+            ]
+            for index,operation in enumerate(operations):
+                with self.subTest(operation=index),self.assertRaisesRegex(checkout.CheckoutError,'verification_required'):
+                    operation()
+        self.assertEqual(LocalAccessRecoveryOperation.objects.count(),0)
+        self.assertFalse(AccessEpoch.objects.get(pk=1).quarantined)
+        self.assertEqual(ledger.read(self.owner,self.saved.pk,self.archive),before)
+        self.assertEqual(support_context.read(self.owner,self.saved.pk,self.archive)['revision'],0)
+
+    def test_customer_http_transactions_hold_epoch_before_owner_and_archive(self):
+        from contextlib import ExitStack
+        from . import support_context
+        from shop.access.models import AccessEpoch
+        from shop.adapters.evidence_archive import PreparedArchive
+        observed=set();active=[]
+        def observe(stage):
+            label=active[-1];key=(label,stage)
+            if key in observed:return
+            def contender():
+                try:
+                    with transaction.atomic():AccessEpoch.objects.select_for_update(nowait=True).get(pk=1)
+                except DatabaseError as error:return getattr(error.__cause__,'sqlstate',None)
+                finally:connections.close_all()
+                return 'unlocked'
+            with ThreadPoolExecutor(max_workers=1) as pool:
+                with self.subTest(operation=label,stage=stage):
+                    self.assertEqual(pool.submit(contender).result(timeout=10),'55P03')
+            observed.add(key)
+        original_locked=ledger.payment.locked;original_recover=PreparedArchive.recover
+        def locked(*args,**kwargs):
+            observe('before-owner')
+            return original_locked(*args,**kwargs)
+        def recover(archive,receipt):
+            observe('archive')
+            return original_recover(archive,receipt)
+        def tracked(original,label):
+            def run(*args,**kwargs):
+                active.append(label)
+                try:return original(*args,**kwargs)
+                finally:active.pop()
+            return run
+        with ExitStack() as stack:
+            for module,name,label in ((ledger,'record','ledger-command'),(ledger,'read','ledger-read'),
+                    (support_context,'record','context-command'),(support_context,'read','context-read')):
+                stack.enter_context(patch.object(module,name,side_effect=tracked(getattr(module,name),label)))
+            stack.enter_context(patch.object(ledger.payment,'locked',side_effect=locked))
+            stack.enter_context(patch.object(PreparedArchive,'recover',recover))
+            for action in ('reserve','context'):
+                response=self.client.post(f'/purchase/checkout-rehearsal/{self.saved.pk}/support/',
+                    data=json.dumps(self.customer_command(action)),content_type='application/json')
+                self.assertEqual(response.status_code,200,response.content)
+        self.assertEqual(observed,{(label,stage) for label in
+            ('ledger-command','ledger-read','context-command','context-read') for stage in ('before-owner','archive')})

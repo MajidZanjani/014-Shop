@@ -81,6 +81,7 @@ def handle(request,identity,staff=False):
         denied=local_customer(request)
         if denied is not None:return private(denied)
         owner=request.user
+    authority={'staff_request':request} if staff else {'customer_request':request}
     context={'checkout_id':str(identity),'staff':staff};status=200
     api=request.content_type=='application/json' or request.headers.get('Accept')=='application/json'
     try:
@@ -91,12 +92,12 @@ def handle(request,identity,staff=False):
             if request.method=='POST':
                 value=command(request,staff)
                 action=value.pop('action');key=value.pop('request_id')
-                if action=='context':followup.record(owner,identity,key,archive=archive,**value)
-                else:ledger.record(owner,identity,key,action,archive,staff_request=request if staff else None,**value)
+                if action=='context':followup.record(owner,identity,key,archive=archive,customer_request=request,**value)
+                else:ledger.record(owner,identity,key,action,archive,**authority,**value)
                 if not api:
                     response=HttpResponseRedirect(request.path);response.status_code=303;return private(response)
-            state=ledger.read(owner,identity,archive,staff_request=request if staff else None)
-            context['followup']=followup.read(owner,identity,archive,staff_request=request if staff else None)
+            state=ledger.read(owner,identity,archive,**authority)
+            context['followup']=followup.read(owner,identity,archive,**authority)
         # Customer summaries expose usage, never internal staff attribution/generation/MFA markers.
         context['ledger']=state
         context['request_id']=str(uuid.uuid4());context['task_id']=str(uuid.uuid4())

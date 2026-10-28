@@ -17,7 +17,8 @@ FLAGS={'evidence_class':'local-synthetic','effects_authorized':False,'actual_tec
 def fail(code='support_context_mismatch',status=409):raise checkout.CheckoutError(code,status)
 
 
-def locked(owner,identity,archive,staff_request):
+def locked(owner,identity,archive,staff_request,customer_request=None):
+    ledger.authorize_customer(owner,customer_request)
     if staff_request is not None:ledger.authorize(staff_request)
     payment.locked(owner,identity)
     grant=SyntheticFulfilment.objects.select_for_update(of=('self',)).select_related(
@@ -56,13 +57,13 @@ def snapshot(grant,key,fixture,revision,previous):
             'fixture':fixture,'context':FIXTURES[fixture].copy(),**FLAGS}
 
 
-def record(owner,identity,key,fixture,expected_revision,archive):
+def record(owner,identity,key,fixture,expected_revision,archive,*,customer_request=None):
     synthetic_bank.guard()
     if (type(key) is not uuid.UUID or type(fixture) is not str or fixture not in FIXTURES
             or type(expected_revision) is not int or not 0<=expected_revision<LIMIT):
         fail('invalid_support_context',400)
     with transaction.atomic(durable=True):
-        grant=locked(owner,identity,archive,None);rows,previous=history(grant,archive)
+        grant=locked(owner,identity,archive,None,customer_request);rows,previous=history(grant,archive)
         prior=next((row for row in rows if row.request_id==key),None)
         if prior:
             if prior.payload['fixture']!=fixture or prior.revision!=expected_revision+1:fail('support_context_conflict')
@@ -76,10 +77,10 @@ def record(owner,identity,key,fixture,expected_revision,archive):
                                       payload=value,sha256=checkout.digest(value),archive_receipt=receipt)
 
 
-def read(owner,identity,archive,*,staff_request=None):
+def read(owner,identity,archive,*,staff_request=None,customer_request=None):
     synthetic_bank.guard()
     with transaction.atomic(durable=True):
-        grant=locked(owner,identity,archive,staff_request);rows,_=history(grant,archive)
+        grant=locked(owner,identity,archive,staff_request,customer_request);rows,_=history(grant,archive)
         if staff_request is not None:ledger.authorize(staff_request,grant)
         return {'revision':len(rows),'versions':[{'revision':row.revision,'fixture':row.payload['fixture'],
                 'context':row.payload['context'].copy()} for row in rows],**FLAGS}
