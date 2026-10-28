@@ -10,9 +10,9 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — local recovery-access component verified: backend602 tests/5 checks, focused121, proxy148 checks/2 aliases and exact267-file source; actual/full recovery and Phase13 acceptance pending.
+**Execution status:** paused — context-pressure checkpoint after verified recovery-access commit b17dc8a; backend602/5, focused121, proxy148/2 and source267 pass; exact context percentage unavailable; actual/full acceptance pending.
 
-**Next implementation task:** Design recovery effect-quiescence before worker claims and mutating bank/mail dispatch; preserve read-only lookup, one-claim uncertainty and no adapter I/O inside database locks. Commercial and actual recovery/provider inputs remain pending.
+**Next implementation task:** Run $gsd-resume-work; review the recovery worker/provider entry points and design effect-quiescence before claims/mutating dispatch, preserving read-only lookup, one-claim uncertainty and no adapter I/O inside DB locks. Keep commercial inputs pending.
 
 Local recovery access holds now invalidate customer/staff sessions and pending challenges, fence cached session markers and require fresh customer verification/both staff factors after a matching synthetic release. Exact retries preserve fresh sessions and cannot clear later holds; business history and grants remain unchanged. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-RECOVERY-ACCESS-PARTIAL.md). This does not quiesce workers/providers, reconcile external revocations or qualify actual recovery. Commercial inputs remain pending by user instruction. [STATE.md](STATE.md) and [ROADMAP.md](ROADMAP.md) retain current routing; counts1/14 completed phases and11/36 completed phase-plan records are not engineering effort.
 

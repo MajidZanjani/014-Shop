@@ -1,6 +1,6 @@
 # Phase13 grouped qualification register —2026-10-27
 
-Current local continuation: recovery access invalidation after47760eb; [current exact evidence](13-RECOVERY-ACCESS-PARTIAL.md). Canonical routing: [STATE](../../STATE.md), [ROADMAP](../../ROADMAP.md), [purchase-flow authority](../../PURCHASE-FLOW-AMENDMENT.md). This is a finite review of the documented local batch and remaining release prerequisites, not a full-plan SUMMARY, completed phase, universal code audit or claim that every future local implementation task is finished. Counts measure checks/records, not engineering effort.
+Current local continuation: recovery access invalidation b17dc8a; [current exact evidence](13-RECOVERY-ACCESS-PARTIAL.md). Canonical routing: [STATE](../../STATE.md), [ROADMAP](../../ROADMAP.md), [purchase-flow authority](../../PURCHASE-FLOW-AMENDMENT.md). This is a finite review of the documented local batch and remaining release prerequisites, not a full-plan SUMMARY, completed phase, universal code audit or claim that every future local implementation task is finished. Counts measure checks/records, not engineering effort.
 
 ## Current local evidence
 
