@@ -11,6 +11,7 @@ from shop.access.journey_tests import HiddenForms
 from . import cart_editor_tests as carts
 from .models import QuotationRequest,QuotationRequestKey,CartSnapshot
 from .rules import CATALOG
+from .quotation_tests import QuotationRecoveryMixin
 
 PATH='/purchase/request-quotation/'
 
@@ -126,3 +127,108 @@ class QuotationCaptureTests(TransactionTestCase):
         with ThreadPoolExecutor(max_workers=2) as pool:statuses=list(pool.map(submit,range(2)))
         self.assertEqual(statuses[0],303);self.assertIn(statuses[1],(200,201))
         self.assertEqual(QuotationRequest.objects.count(),1);self.assertEqual(QuotationRequestKey.objects.count(),2)
+
+
+class QuotationCaptureRecoveryTests(QuotationRecoveryMixin,TransactionTestCase):
+    form=QuotationCaptureTests.form
+    cart_post=QuotationCaptureTests.cart_post
+    quote_form=QuotationCaptureTests.quote_form
+    post=QuotationCaptureTests.post
+    save_support=QuotationCaptureTests.save_support
+
+    def setUp(self):
+        from django.contrib.auth import get_user_model
+        carts.CartEditorTests.setUp(self)
+        self.owner=get_user_model().objects.get(pk=self.browser.session['_auth_user_id'])
+        self.save_support('712341')
+
+    def assert_denied(self,response):
+        self.assertEqual(response.status_code,403,response.content)
+        self.assertEqual(response.json(),{'error':'verification_required'})
+        self.assertEqual(response['Cache-Control'],'no-store')
+        self.assertNotContains(response,'<form',status_code=403)
+        self.assertNotContains(response,'712341',status_code=403)
+
+    def command_overlap(self,mode,released=False):
+        from . import quotation_capture
+        form=self.quote_form()
+        if mode in ('replay','alias'):
+            self.assertEqual(self.post(form).status_code,303)
+            if mode=='alias':form['request_id']=str(uuid.uuid4())
+        before=self.facts();capture=quotation_capture.capture_quotation
+        def interleave(*args,**kwargs):
+            self.reset(released)
+            return capture(*args,**kwargs)
+        with patch.object(quotation_capture,'capture_quotation',side_effect=interleave):response=self.post(form)
+        with self.subTest(check='response'):self.assert_denied(response)
+        with self.subTest(check='facts'):self.assertEqual(self.facts(),before)
+        self.fresh(self.browser)
+        self.assertEqual(self.post(form).status_code,303);committed=self.facts()
+        self.assertEqual(self.post(form).status_code,303);self.assertEqual(self.facts(),committed)
+        self.assertEqual(QuotationRequest.objects.count(),1)
+        self.assertEqual(QuotationRequestKey.objects.count(),2 if mode=='alias' else 1)
+
+    def test_capture_after_quarantine_denies(self):self.command_overlap('create')
+    def test_capture_after_quarantine_release_denies(self):self.command_overlap('create',True)
+    def test_exact_retry_after_quarantine_denies(self):self.command_overlap('replay')
+    def test_exact_retry_after_quarantine_release_denies(self):self.command_overlap('replay',True)
+    def test_second_key_after_quarantine_denies(self):self.command_overlap('alias')
+    def test_second_key_after_quarantine_release_denies(self):self.command_overlap('alias',True)
+
+    def read_overlap(self,released,mode='page'):
+        from . import quotation_capture
+        form=self.quote_form();before=self.facts()
+        if mode=='invalid':
+            parse=quotation_capture.payload
+            def interleave(request):
+                value=parse(request);self.assertEqual(value['version'],1)
+                self.reset(released)
+                raise ValueError('synthetic invalid command')
+            with patch.object(quotation_capture,'payload',side_effect=interleave):response=self.post(form)
+        elif mode=='conflict':
+            form['version']='2';capture=quotation_capture.capture_quotation
+            def interleave(*args,**kwargs):
+                result=capture(*args,**kwargs);self.assertEqual(result,({'error':'cart_changed'},409))
+                self.reset(released)
+                return result
+            with patch.object(quotation_capture,'capture_quotation',side_effect=interleave):response=self.post(form)
+        else:
+            access=quotation_capture.local_customer
+            def interleave(request):
+                result=access(request);self.assertIsNone(result)
+                self.reset(released)
+                return result
+            with patch.object(quotation_capture,'local_customer',side_effect=interleave):response=self.browser.get(PATH)
+        with self.subTest(check='response'):self.assert_denied(response)
+        with self.subTest(check='facts'):self.assertEqual(self.facts(),before)
+        self.fresh(self.browser);page=self.browser.get(PATH)
+        self.assertContains(page,'712341');self.assertEqual(self.facts(),before)
+
+    def test_capture_page_after_quarantine_denies(self):self.read_overlap(False)
+    def test_capture_page_after_quarantine_release_denies(self):self.read_overlap(True)
+    def test_invalid_command_after_quarantine_denies_private_error_page(self):self.read_overlap(False,'invalid')
+    def test_invalid_command_after_quarantine_release_denies_private_error_page(self):self.read_overlap(True,'invalid')
+    def test_conflict_after_quarantine_denies_private_error_page(self):self.read_overlap(False,'conflict')
+    def test_conflict_after_quarantine_release_denies_private_error_page(self):self.read_overlap(True,'conflict')
+
+    def test_epoch_locked_before_native_queries_and_rendering(self):
+        from django.db.models.query import QuerySet
+        from . import quotation_capture
+        from .models import DraftCart
+        form=self.quote_form();fetch=QuerySet._fetch_all;render=quotation_capture.render;seen=set();active=[]
+        def observe(query):
+            if query.model in (DraftCart,CartSnapshot,QuotationRequest,QuotationRequestKey):
+                self.assert_epoch_locked();seen.add(active[0])
+            return fetch(query)
+        def materialize(*args,**kwargs):
+            self.assert_epoch_locked();seen.add(active[0]+'-render')
+            return render(*args,**kwargs)
+        with patch.object(QuerySet,'_fetch_all',observe),patch.object(quotation_capture,'render',side_effect=materialize):
+            active[:]=['page'];self.assertEqual(self.browser.get(PATH).status_code,200)
+            active[:]=['create'];self.assertEqual(self.post(form).status_code,303)
+            active[:]=['replay'];self.assertEqual(self.post(form).status_code,303)
+            form['request_id']=str(uuid.uuid4())
+            active[:]=['alias'];self.assertEqual(self.post(form).status_code,303)
+            active[:]=['invalid'];self.assertEqual(self.post(dict(form,action='invalid')).status_code,400)
+            active[:]=['conflict'];self.assertEqual(self.post(dict(form,version='2')).status_code,409)
+        self.assertEqual(seen,{'page','page-render','create','replay','alias','invalid','invalid-render','conflict','conflict-render'})

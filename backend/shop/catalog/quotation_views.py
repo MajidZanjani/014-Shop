@@ -4,7 +4,7 @@ import uuid
 from django.db import transaction
 from django.db.models import F
 from django.views.decorators.http import require_GET, require_http_methods
-from .cart_views import reply
+from .cart_views import current_customer, reply
 from .models import DraftCart, CartSnapshot, QuotationRequest, QuotationRequestKey
 from .rules import CATALOG
 from .cart_rules import evaluate_cart
@@ -30,9 +30,11 @@ def quotations(request):
         return denied
     if request.GET:return reply({'error':'unexpected_query'},400)
     if request.method=='GET':
-        rows=with_review_status(QuotationRequest.objects.filter(cart__owner=request.user,snapshot__cart_id=F('cart_id'))).select_related('snapshot').order_by('-created_at','-id')[:20]
-        return reply({'requests':[{'id':str(row.id),'version':row.snapshot.version,
-                                  'created_at':row.created_at.isoformat(),'state':'requested','review_status':customer_review_status(row)} for row in rows],'limit':20})
+        with transaction.atomic():
+            if not current_customer(request.user,request):return reply({'error':'verification_required'},403)
+            rows=with_review_status(QuotationRequest.objects.filter(cart__owner=request.user,snapshot__cart_id=F('cart_id'))).select_related('snapshot').order_by('-created_at','-id')[:20]
+            return reply({'requests':[{'id':str(row.id),'version':row.snapshot.version,
+                                      'created_at':row.created_at.isoformat(),'state':'requested','review_status':customer_review_status(row)} for row in rows],'limit':20})
     if request.content_type!='application/json':return reply({'error':'content_type'},415)
     try:
         if int(request.META.get('CONTENT_LENGTH') or 0)>1024:raise ValueError('size')
@@ -44,12 +46,13 @@ def quotations(request):
         request_id=uuid.UUID(value['request_id']);cart_id=uuid.UUID(value['cart_id'])
         if type(value['version']) is not int or not 1<=value['version']<=1000000000:raise ValueError('version')
     except (ValueError,TypeError,UnicodeError,RecursionError):return reply({'error':'invalid_request'},400)
-    return reply(*capture_quotation(request.user,value))
+    return reply(*capture_quotation(request.user,value,customer_request=request))
 
 
-def capture_quotation(user,value):
+def capture_quotation(user,value,*,customer_request=None):
     request_id=uuid.UUID(value['request_id']);cart_id=uuid.UUID(value['cart_id'])
     with transaction.atomic():
+        if not current_customer(user,customer_request):return {'error':'verification_required'},403
         # Same lock as cart saves: submission cannot silently race an edit.
         cart=DraftCart.objects.select_for_update().filter(pk=cart_id,owner=user).first()
         if cart is None:return {'error':'not_found'},404
@@ -73,7 +76,7 @@ def capture_quotation(user,value):
             return {'error':'invalid_cart'},422
         row=QuotationRequest.objects.create(cart=cart,snapshot=snapshot,request_id=request_id)
         QuotationRequestKey.objects.create(cart=cart,request_id=request_id,quotation=row)
-    return quotation_json(row),201
+        return quotation_json(row),201
 
 
 @require_GET
@@ -83,6 +86,8 @@ def quotation_detail(request,identity):
         denied['Cache-Control']='no-store'
         return denied
     if request.GET:return reply({'error':'unexpected_query'},400)
-    row=with_review_status(QuotationRequest.objects.filter(pk=identity,cart__owner=request.user,snapshot__cart_id=F('cart_id'))).select_related('snapshot').first()
-    if row is None:return reply({'error':'not_found'},404)
-    return reply(quotation_json(row))
+    with transaction.atomic():
+        if not current_customer(request.user,request):return reply({'error':'verification_required'},403)
+        row=with_review_status(QuotationRequest.objects.filter(pk=identity,cart__owner=request.user,snapshot__cart_id=F('cart_id'))).select_related('snapshot').first()
+        if row is None:return reply({'error':'not_found'},404)
+        return reply(quotation_json(row))

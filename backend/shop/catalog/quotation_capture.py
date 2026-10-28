@@ -1,12 +1,13 @@
 """Deliberate local quote capture from the displayed saved cart; no commercial effects."""
 import re
 import uuid
+from django.db import transaction
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.http import require_http_methods
 from .cart_editor import canonical_uuid,private
-from .cart_views import reply
+from .cart_views import current_customer,reply
 from .models import DraftCart,CartSnapshot
 from .quotation_views import capture_quotation
 from .rules import CATALOG
@@ -34,16 +35,19 @@ def quotation_capture(request):
         error='The request was rejected. Reload without query parameters.';status=400
     elif request.method=='POST':
         try:
-            result,status=capture_quotation(request.user,payload(request))
+            result,status=capture_quotation(request.user,payload(request),customer_request=request)
+            if status==403:return private(reply(result,status))
             if status in (200,201):
                 response=HttpResponse(status=303)
                 response['Location']='/purchase/quotation-timeline/'+result['id']+'/'
                 return private(response)
             error={404:'The saved cart revision is unavailable.',409:'The cart or catalog changed. Reload and review the saved cart before requesting a quotation.',422:'Save a valid nonempty cart before requesting a quotation.'}.get(status,'The request was rejected.')
         except (ValueError,TypeError,UnicodeError):error='The request was rejected. Reload and try again.';status=400
-    cart=DraftCart.objects.filter(owner=request.user).first()
-    snapshot=CartSnapshot.objects.filter(cart=cart,cart__owner=request.user,version=cart.version).first() if cart and cart.version else None
-    if cart and cart.version and snapshot is None:return private(reply({'error':'not_found'},404))
-    eligible=bool(snapshot and snapshot.lines and snapshot.catalog_revision==CATALOG['revision'] and evaluate_cart(snapshot.lines)['valid'])
-    return private(render(request,'catalog/quotation_capture.html',{
-        'cart':cart,'snapshot':snapshot,'eligible':eligible,'request_id':str(uuid.uuid4()),'error':error},status=status))
+    with transaction.atomic():
+        if not current_customer(request.user,request):return private(reply({'error':'verification_required'},403))
+        cart=DraftCart.objects.filter(owner=request.user).first()
+        snapshot=CartSnapshot.objects.filter(cart=cart,cart__owner=request.user,version=cart.version).first() if cart and cart.version else None
+        if cart and cart.version and snapshot is None:return private(reply({'error':'not_found'},404))
+        eligible=bool(snapshot and snapshot.lines and snapshot.catalog_revision==CATALOG['revision'] and evaluate_cart(snapshot.lines)['valid'])
+        return private(render(request,'catalog/quotation_capture.html',{
+            'cart':cart,'snapshot':snapshot,'eligible':eligible,'request_id':str(uuid.uuid4()),'error':error},status=status))

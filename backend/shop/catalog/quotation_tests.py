@@ -10,7 +10,7 @@ from django.utils import timezone
 from datetime import timedelta
 from types import SimpleNamespace
 from django.test import Client, TransactionTestCase, override_settings
-from .cart_tests import CASES
+from .cart_tests import CASES, CartRecoveryMixin
 from .models import QuotationRequest, QuotationRequestKey, QuotationReview
 from .quotation_status import customer_review_status
 from .rules import CATALOG
@@ -175,3 +175,138 @@ class QuotationTests(TransactionTestCase):
         unknown=SimpleNamespace(review_version=3,customer_review_decision='approved',customer_review_time=timezone.now())
         self.assertEqual(customer_review_status(unknown),response['review_status'])
         self.assertFalse(response['checkout_enabled']);self.assertFalse(response['acceptance_enabled'])
+
+
+class QuotationRecoveryMixin(CartRecoveryMixin):
+    def facts(self):
+        facts=super().facts()
+        facts['quotations']=list(QuotationRequest.objects.order_by('id').values_list(
+            'id','cart_id','snapshot_id','request_id','review_version','preparation_version','business_version','created_at'))
+        facts['keys']=list(QuotationRequestKey.objects.order_by('id').values_list('id','cart_id','request_id','quotation_id'))
+        facts['reviews']=list(QuotationReview.objects.order_by('id').values())
+        return facts
+
+
+class QuotationRecoveryTests(QuotationRecoveryMixin,TransactionTestCase):
+    def setUp(self):
+        self.owner=get_user_model().objects.create_user(username='quotation-recovery-owner')
+        self.client=Client(enforce_csrf_checks=True)
+        verified_login(self.client,self.owner)
+        self.assertEqual(self.client.get('/api/v1/customer/session/').status_code,200)
+        self.saved=self.save_cart(0,CASES[1]['lines'])
+        self.payload={'request_id':str(uuid.uuid4()),'cart_id':self.saved['cart_id'],'version':1}
+
+    def save_cart(self,version,lines):
+        response=self.client.post('/api/v1/cart/',data=json.dumps({'request_id':str(uuid.uuid4()),
+            'expected_version':version,'catalog_revision':CATALOG['revision'],'lines':copy.deepcopy(lines)}),
+            content_type='application/json',HTTP_X_CSRFTOKEN=self.client.cookies['csrftoken'].value)
+        self.assertEqual(response.status_code,201)
+        return response.json()
+
+    def post(self):
+        return self.client.post(URL,data=json.dumps(self.payload),content_type='application/json',
+            HTTP_X_CSRFTOKEN=self.client.cookies['csrftoken'].value)
+
+    def command_overlap(self,mode,released=False):
+        from . import quotation_views
+        if mode in ('replay','alias'):
+            self.assertEqual(self.post().status_code,201)
+            if mode=='alias':self.payload['request_id']=str(uuid.uuid4())
+        before=self.facts();capture=quotation_views.capture_quotation
+        def interleave(*args,**kwargs):
+            self.reset(released)
+            return capture(*args,**kwargs)
+        with patch.object(quotation_views,'capture_quotation',side_effect=interleave):response=self.post()
+        with self.subTest(check='response'):
+            self.assertEqual(response.status_code,403,response.content)
+            self.assertEqual(response.json(),{'error':'verification_required'})
+            self.assertEqual(response['Cache-Control'],'no-store')
+        with self.subTest(check='facts'):self.assertEqual(self.facts(),before)
+        self.fresh()
+        first=self.post();self.assertEqual(first.status_code,201 if mode=='create' else 200)
+        committed=self.facts();retry=self.post()
+        self.assertEqual(retry.status_code,200);self.assertEqual(retry.json(),first.json())
+        self.assertEqual(self.facts(),committed)
+        self.assertEqual(QuotationRequest.objects.count(),1)
+        self.assertEqual(QuotationRequestKey.objects.count(),2 if mode=='alias' else 1)
+
+    def test_capture_after_quarantine_denies(self):self.command_overlap('create')
+    def test_capture_after_quarantine_release_denies(self):self.command_overlap('create',True)
+    def test_exact_retry_after_quarantine_denies(self):self.command_overlap('replay')
+    def test_exact_retry_after_quarantine_release_denies(self):self.command_overlap('replay',True)
+    def test_second_key_after_quarantine_denies(self):self.command_overlap('alias')
+    def test_second_key_after_quarantine_release_denies(self):self.command_overlap('alias',True)
+
+    def read_overlap(self,released,single=False):
+        from . import quotation_views
+        saved=self.post();self.assertEqual(saved.status_code,201)
+        path=URL+saved.json()['id']+'/' if single else URL
+        before=self.facts();access=quotation_views.local_customer
+        def interleave(request):
+            result=access(request);self.assertIsNone(result)
+            self.reset(released)
+            return result
+        with patch.object(quotation_views,'local_customer',side_effect=interleave):response=self.client.get(path)
+        with self.subTest(check='response'):
+            self.assertEqual(response.status_code,403,response.content)
+            self.assertEqual(response.json(),{'error':'verification_required'})
+            self.assertEqual(response['Cache-Control'],'no-store')
+        with self.subTest(check='facts'):self.assertEqual(self.facts(),before)
+        self.fresh();response=self.client.get(path);self.assertEqual(response.status_code,200)
+        if single:self.assertEqual(response.json(),saved.json())
+        else:self.assertEqual(response.json()['requests'][0]['id'],saved.json()['id'])
+        self.assertEqual(self.facts(),before)
+
+    def test_list_after_quarantine_denies(self):self.read_overlap(False)
+    def test_list_after_quarantine_release_denies(self):self.read_overlap(True)
+    def test_detail_after_quarantine_denies(self):self.read_overlap(False,True)
+    def test_detail_after_quarantine_release_denies(self):self.read_overlap(True,True)
+
+    def test_epoch_locked_before_quotation_queries_and_serialization(self):
+        from django.db.models.query import QuerySet
+        from . import quotation_views
+        from .models import DraftCart,CartSnapshot,QuotationBusinessScope
+        fetch=QuerySet._fetch_all;serialize=quotation_views.quotation_json;seen=set();active=[]
+        def observe(query):
+            if query.model in (DraftCart,CartSnapshot,QuotationRequest,QuotationRequestKey,QuotationReview,QuotationBusinessScope):
+                self.assert_epoch_locked();seen.add(active[0])
+            return fetch(query)
+        def materialize(row):
+            self.assert_epoch_locked();seen.add(active[0]+'-json')
+            return serialize(row)
+        with patch.object(QuerySet,'_fetch_all',observe),patch.object(quotation_views,'quotation_json',side_effect=materialize):
+            active[:]=['create'];first=self.post();self.assertEqual(first.status_code,201)
+            active[:]=['replay'];self.assertEqual(self.post().status_code,200)
+            self.payload['request_id']=str(uuid.uuid4())
+            active[:]=['alias'];self.assertEqual(self.post().status_code,200)
+            active[:]=['list'];self.assertEqual(self.client.get(URL).status_code,200)
+            active[:]=['detail'];self.assertEqual(self.client.get(URL+first.json()['id']+'/').status_code,200)
+        self.assertEqual(seen,{'create','create-json','replay','replay-json','alias','alias-json','list','detail','detail-json'})
+
+    def test_trusted_internal_capture_retains_no_request_interface(self):
+        from .quotation_views import capture_quotation
+        self.reset(False)
+        first,status=capture_quotation(self.owner,self.payload);self.assertEqual(status,201)
+        before=self.facts();retry,status=capture_quotation(self.owner,self.payload)
+        self.assertEqual(status,200);self.assertEqual(retry,first);self.assertEqual(self.facts(),before)
+
+    def test_fresh_historical_retry_preserves_snapshot_and_review_history(self):
+        first=self.post();self.assertEqual(first.status_code,201)
+        row=QuotationRequest.objects.get()
+        reviewer=get_user_model().objects.create_user(username='quotation-recovery-reviewer',is_staff=True)
+        QuotationReview.objects.create(quotation=row,version=1,request_id=uuid.uuid4(),snapshot_digest='f'*64,
+            decision='needs_information',reviewer=reviewer,reviewer_generation=uuid.uuid4(),mfa_verified_at=timezone.now())
+        row.review_version=1;row.save(update_fields=['review_version'])
+        self.save_cart(1,CASES[2]['lines'])
+        self.reset(True);self.fresh();before=self.facts()
+        with patch.dict(CATALOG,revision='f'*64):
+            retry=self.post();self.assertEqual(retry.status_code,200)
+            self.assertEqual(retry.json()['id'],first.json()['id'])
+            self.assertEqual(retry.json()['lines'],first.json()['lines'])
+            self.assertEqual(retry.json()['review_status']['code'],'needs_information')
+            self.assertEqual(self.facts(),before)
+            self.payload['request_id']=str(uuid.uuid4())
+            alias=self.post();self.assertEqual(alias.status_code,200);self.assertEqual(alias.json(),retry.json())
+            self.assertEqual(QuotationRequest.objects.count(),1);self.assertEqual(QuotationRequestKey.objects.count(),2)
+            self.assertEqual(self.facts()['snapshots'],before['snapshots'])
+            self.assertEqual(self.facts()['reviews'],before['reviews'])

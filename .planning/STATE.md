@@ -1,9 +1,8 @@
 ---
 gsd_state_version: "1.0"
 current_plan: 01
-status: paused
-paused_at: "2026-10-28T13:19:22.094Z"
-last_updated: "2026-10-28T13:19:22.094Z"
+status: in_progress
+last_updated: "2026-10-28T13:33:53.321Z"
 state_head: 82fa759cdda37bb22406b5ced6ac7ca6ff372a98
 progress:
   total_phases: 14
@@ -15,8 +14,8 @@ current_task: 5
 last_activity: 2026-10-28
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: "Explicit user pause confirmed; quotation reproduction remains not started."
-last_activity_desc: "Explicit pause saved; no product edits or runtime tests since 32f4f62."
+stopped_at: "Quotation recovery verified locally; native history/timeline/document reads await reproduction."
+last_activity_desc: "Quotation focused166/backend752/5/234.449s/proxy148/source276 pass; actual/full acceptance pending."
 ---
 
 # Project state — final purchase-flow revision2
@@ -27,13 +26,13 @@ last_activity_desc: "Explicit pause saved; no product edits or runtime tests sin
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** paused — user-requested pause after verified cart/draft recovery fixes; backend726/5, focused135, proxy148/2 and source276 pass; quotation reproduction and actual/full acceptance pending.
+**Execution status:** in progress — quotation recovery fence verified locally (focused166, backend752/5, proxy148/2, source276); actual/full acceptance pending.
 
-**Next implementation task:** Clear the session, run $gsd-resume-work, restore13-01 task5 and start a new GSD quick task to reproduce quotation JSON/native POST recovery overlap before capture_quotation. Keep company commercial and actual qualification inputs pending without re-asking.
+**Next implementation task:** Start a new GSD quick task and reproduce native quotation history/timeline/document-preview reads across recovery before product edits; preserve bounded pagination and private immutable projections. Company commercial and actual inputs remain pending without another request.
 
 ## Current local continuation
 
-Configuration-draft list/get/save and private retry payloads now require their originating epoch before queries. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-DRAFT-RECOVERY-PARTIAL.md). Original10-test/13-failure control, fixed focused135/26.803s, current backend726/5/229.455s, supported demo/proxy148/2 and exact276-file source pass. Cart/checkout/support/recovery evidence retains its scope; actual/company inputs remain pending.
+Quotation JSON/native capture and private API list/detail/native capture-page reads now bind their originating epoch before resource work. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-QUOTATION-RECOVERY-PARTIAL.md). Original26-test/34-failure controls, focused166/32.359s, backend752/5/234.449s, supported proxy148/2 and exact276-file source pass. Prior cart/draft/checkout/support evidence retains its scope; actual/company inputs remain pending.
 
 ## Preserved implementation/evidence
 
@@ -64,7 +63,7 @@ P-02/03/05/06/08 cover actual ready-kit variants, standard development prices/ri
 
 ## Session continuity
 
-Explicit user $gsd-pause-work recorded at 2026-10-28T13:19:22.094Z, after the continue/wait exchange. No product edits or runtime tests occurred after checkpoint32f4f62. Earlier cart/draft implementation and completion pairs remain pushed and verified for their documented local scope; current retained backend726/5, focused135, proxy148/2 and source276. Quotation source observation remains unreproduced/unimplemented. Resume13-01 task5 with the saved new-GSD-quick PostgreSQL reproduction; company/actual inputs remain pending without another request. Exact context percentage remains unavailable; this pause is now explicitly requested.
+Explicit resume restored clean3611e38 at13-01 task5 and consumed HANDOFF.json. Quick261028-il4 now verifies quotation capture/private-read recovery: original26/34 baseline and control, focused166/32.359s, current backend752/5/234.449s, proxy148/2 and exact276-file source. Both fixed product files restored exactly after control; all owned qualification producers exited. Next concrete source observation is native quotation history/timeline/document-preview entry-only private reads, not yet reproduced/designed/fixed. Prior cart/draft and actual/company gates retain scope; no full Phase13 SUMMARY.
 
 ### Quick Tasks Completed
 

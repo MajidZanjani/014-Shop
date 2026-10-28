@@ -1,6 +1,6 @@
 # Phase13 grouped qualification register —2026-10-27
 
-Current local continuation: explicit user pause after verified/pushed cart and draft recovery fixes; backend726/5/focused135/proxy148/source276 evidence retained. No product changes or runtime tests since checkpoint32f4f62. [Current evidence](13-DRAFT-RECOVERY-PARTIAL.md). Quotation reproduction is saved and remains unimplemented. Canonical routing: [STATE](../../STATE.md), [ROADMAP](../../ROADMAP.md), [purchase-flow authority](../../PURCHASE-FLOW-AMENDMENT.md). All actual/company prerequisites remain pending.
+Current local continuation: quick261028-il4 verifies quotation capture/private-read recovery; focused166/backend752/5/proxy148/source276 pass. [Exact evidence](13-QUOTATION-RECOVERY-PARTIAL.md). Native history/timeline/document-preview source observation remains unreproduced/unimplemented; company/actual/full acceptance stays pending.
 
 ## Current local evidence
 
@@ -122,3 +122,7 @@ Local implementation2e373a5 and schema-backed quick261028-fy8 completion are rec
 ## Configuration-draft recovery boundary — 2026-10-28
 
 [Draft evidence](13-DRAFT-RECOVERY-PARTIAL.md): original10 tests/13 failures and exact original-source control; focused135/26.803s, current backend726/5/229.455s, supported demo/proxy148/2 and exact276-file source pass. Private list/get/save/replay require the originating epoch before queries; fresh retries/current-catalog admission remain. The quotation source observation is separate and unreproduced. Actual/company/full acceptance inputs stay pending.
+
+## Quotation capture/private-read recovery boundary — 2026-10-28
+
+[Evidence](13-QUOTATION-RECOVERY-PARTIAL.md): original26/34 controls, focused166/32.359s, backend752/5/234.449s, supported proxy148/2 and exact276-file source pass. New capture, exact replay, second-key alias and private API/native capture-page reads require the originating epoch before resource work; immutable snapshot/review history and fresh historical retries remain. Native history/timeline/document reads remain a separate source observation. Actual/company/full acceptance inputs stay pending.

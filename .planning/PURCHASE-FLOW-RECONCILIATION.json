@@ -14,11 +14,6 @@
       "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
     },
     {
-      "path": ".planning/HANDOFF.json",
-      "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
-    },
-    {
       "path": ".planning/HANDOFF.md",
       "role": "current",
       "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
@@ -767,6 +762,11 @@
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-QUALIFICATION-REGISTER.md",
       "role": "current",
       "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-QUOTATION-RECOVERY-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
     },
     {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-RECOVERY-ACCESS-PARTIAL.md",
@@ -1602,6 +1602,11 @@
       "path": ".planning/quick/261028-htg-reproduce-and-fence-configuration-draft-/261028-htg-SUMMARY.md",
       "role": "historical-evidence",
       "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261028-il4-reproduce-and-fence-quotation-capture-an/261028-il4-PLAN.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
     },
     {
       "path": ".planning/research/ARCHITECTURE.md",
