@@ -1,9 +1,11 @@
 from django.conf import settings
 from django.db import connection
+from shop.access.effects import local_effect
 from shop.worker.models import FakeReceipt
 from .ports import ProbeResult
 
 
+@local_effect('probe-bank')
 def perform_fake_probe(request):
     if settings.SHOP_ENV not in {'local', 'synthetic'} or settings.PAYMENT_ADAPTER != 'fake':
         raise ValueError('Synthetic bank unavailable in this environment')

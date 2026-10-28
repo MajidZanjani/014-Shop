@@ -1,7 +1,7 @@
 """Access generation fence and disposable-synthetic recovery transitions.
 
-Not a production restore/reopening adapter: external effects quarantine,
-revocations, actual MFA recovery codes and off-host custody remain separate gates.
+Not a production restore/reopening adapter: actual external effects isolation,
+revocations, MFA recovery codes and off-host custody remain separate gates.
 """
 import re
 import uuid
@@ -11,6 +11,7 @@ from django.db import connection,transaction
 from django.db.models import Func,UUIDField
 from django.utils import timezone
 from .models import AccessEpoch,LocalAccessRecoveryOperation,StaffChallenge,StaffCredential,VerificationChallenge
+from .effects import drain_state
 
 SESSION_EPOCH='shop_access_epoch'
 
@@ -68,6 +69,8 @@ def local_recovery_operation(*,action,request_id,expected_database,basis_reset=N
         else:
             if action=='release' and (not epoch.quarantined or epoch.active_reset!=basis_reset):
                 raise AccessRecoveryError('recovery_changed')
+            if action=='release' and drain_state(quarantined=epoch.quarantined)['unfinished_effects']:
+                raise AccessRecoveryError('recovery_effects_unfinished')
             counts={'customer_challenges':VerificationChallenge.objects.filter(consumed_at__isnull=True).update(consumed_at=timezone.now()),
                 'staff_challenges':StaffChallenge.objects.filter(consumed_at__isnull=True).update(consumed_at=timezone.now()),
                 'staff_credentials':StaffCredential.objects.update(generation=Func(function='gen_random_uuid',output_field=UUIDField()))}
@@ -77,4 +80,5 @@ def local_recovery_operation(*,action,request_id,expected_database,basis_reset=N
             epoch.save(update_fields=['value','quarantined','active_reset'])
             operation=LocalAccessRecoveryOperation.objects.create(id=request_id,action=action,basis_reset=basis_reset,epoch=epoch.value,counts=counts)
         return {'operation_id':str(operation.pk),'action':operation.action,'invalidated':dict(operation.counts),
-            'currently_quarantined':epoch.quarantined,'evidence_class':'local-synthetic','actual_recovery_qualified':False}
+            'currently_quarantined':epoch.quarantined,**drain_state(quarantined=epoch.quarantined),
+            'evidence_class':'local-synthetic','actual_recovery_qualified':False}

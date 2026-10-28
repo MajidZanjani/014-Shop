@@ -4,6 +4,7 @@ from dataclasses import dataclass,field
 from datetime import datetime, timezone
 from uuid import UUID
 from django.db import connection,transaction,IntegrityError
+from shop.access.effects import local_effect
 from shop.adapters.evidence_archive import PreparedArchive,PreparedReceipt,manifest
 from . import synthetic_bank
 from .bank_contract import BankStart,BankError,validate,correlates,progresses,precedes
@@ -131,6 +132,7 @@ def inspect(attempt_id):
             row.provider_status,row.state in ('uncertain','observed'))
 
 
+@local_effect('payment-dispatch',guard=synthetic_bank.guard,error=BankError)
 def dispatch(attempt_id,archive,*,outcome='captured',fault=None):
     synthetic_bank.guard()
     with transaction.atomic(durable=True):

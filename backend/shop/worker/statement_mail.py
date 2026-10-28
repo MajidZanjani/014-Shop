@@ -7,6 +7,7 @@ from django.conf import settings
 from django.db import connection, transaction
 from django.db.models import Q
 from django.db.models.functions import Now
+from shop.access.effects import local_effect
 from shop.access.models import StaffCredential
 from shop.adapters.evidence_archive import PreparedArchive, manifest
 from shop.catalog import checkout, checkout_payment as payment, fulfilment, support_ledger as ledger
@@ -67,6 +68,7 @@ class Claim:
     token: uuid.UUID
 
 
+@local_effect('statement-claim',guard=lambda:guard(entry=True),held_result=None)
 def claim(*,lease_seconds=10,max_attempts=3):
     guard(entry=True)
     if type(lease_seconds) is not int or not 1<=lease_seconds<=60 or type(max_attempts) is not int or not 1<=max_attempts<=5:fail()
@@ -82,6 +84,7 @@ def claim(*,lease_seconds=10,max_attempts=3):
         return Claim(row.pk,token)
 
 
+@local_effect('statement-capture',guard=lambda:guard(entry=True),held_result=False)
 def capture(claimed,archive):
     """Atomic durable fake sink, after claim commit. A lost response can safely reuse identity."""
     guard(entry=True)
@@ -129,6 +132,7 @@ def complete(claimed,archive):
         return True
 
 
+@local_effect('statement-run',guard=lambda:guard(entry=True),held_result=False)
 def execute_once(*,lease_seconds=10,max_attempts=3):
     guard(entry=True)
     root=settings.LOCAL_CHECKOUT_ARCHIVE_ROOT

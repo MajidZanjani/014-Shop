@@ -10,11 +10,11 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** paused — context-pressure checkpoint after verified recovery-access commit b17dc8a; backend602/5, focused121, proxy148/2 and source267 pass; exact context percentage unavailable; actual/full acceptance pending.
+**Execution status:** in progress — local recovery access and effect admission/drain verified; backend618/5, focused112, worker24/6, adapters6/3, proxy148/2 and source270 pass; actual/full acceptance pending.
 
-**Next implementation task:** Run $gsd-resume-work; review the recovery worker/provider entry points and design effect-quiescence before claims/mutating dispatch, preserving read-only lookup, one-claim uncertainty and no adapter I/O inside DB locks. Keep commercial inputs pending.
+**Next implementation task:** Reproduce and fence customer/staff sign-in or challenge capture that overlaps quarantine/release; extend durable local admission as needed, preserve fresh verification and keep commercial/actual inputs pending.
 
-Local recovery access holds now invalidate customer/staff sessions and pending challenges, fence cached session markers and require fresh customer verification/both staff factors after a matching synthetic release. Exact retries preserve fresh sessions and cannot clear later holds; business history and grants remain unchanged. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-RECOVERY-ACCESS-PARTIAL.md). This does not quiesce workers/providers, reconcile external revocations or qualify actual recovery. Commercial inputs remain pending by user instruction. [STATE.md](STATE.md) and [ROADMAP.md](ROADMAP.md) retain current routing; counts1/14 completed phases and11/36 completed phase-plan records are not engineering effort.
+Local recovery now blocks new worker/provider admissions and reports unfinished call scopes; synthetic release refuses unfinished records without expiry or automatic clearing. Read-only typed bank lookup and internal attempt reconciliation remain available, while uncertain claims stay lookup-only. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-RECOVERY-EFFECTS-PARTIAL.md). Actual isolation/reconciliation/off-host recovery and safe reopening remain pending. Next concrete local risk is sign-in/challenge work overlapping quarantine and release; commercial inputs stay pending by user instruction. Counts1/14 completed phases and11/36 completed phase-plan records are not engineering effort.
 
 Before every commit reconcile affected current references, publish state.json and run python3 scripts/check_planning.py. Sync commits to origin/main without force. Historical evidence retains its original scope.
 

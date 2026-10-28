@@ -2,6 +2,7 @@
 from dataclasses import asdict
 import uuid
 from django.db import transaction
+from shop.access.effects import local_effect
 from shop.catalog import checkout,checkout_payment as payment,support_ledger as ledger
 from shop.catalog.models import SyntheticCheckoutAcceptance as Acceptance
 from . import synthetic_bank,attempts,observations,notifications
@@ -97,6 +98,7 @@ def locked(request,identity,archive):
     return row,attempt,delivery,command
 
 
+@local_effect('finance-dispatch',guard=synthetic_bank.guard,error=BankError)
 def dispatch(request,identity,archive,*,fault=None):
     synthetic_bank.guard()
     with transaction.atomic(durable=True):

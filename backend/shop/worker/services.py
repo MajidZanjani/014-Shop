@@ -8,6 +8,7 @@ from django.conf import settings
 from django.db import connection, transaction
 from django.db.models import F, Q
 from django.db.models.functions import Now
+from shop.access.effects import local_effect
 from shop.adapters.capture_mail import CaptureMail
 from shop.adapters.local_storage import LocalStorage
 from shop.adapters.ports import MailRequest, ProbeRequest
@@ -22,6 +23,7 @@ class Claim:
     token: uuid.UUID
 
 
+@local_effect('probe-claim',held_result=None)
 def claim_probe(*, lease_seconds=10, max_attempts=3):
     if settings.SHOP_ENV not in {'local', 'synthetic'} or connection.vendor != 'postgresql':
         raise ValueError('Synthetic PostgreSQL worker required')
@@ -56,6 +58,27 @@ def complete_probe(claim, result):
 
 
 def execute_once(*, lease_seconds=10, max_attempts=3):
+    if settings.SHOP_ENV not in {'local','synthetic'} or connection.vendor!='postgresql':
+        raise ValueError('Synthetic PostgreSQL worker required')
+    if connection.in_atomic_block or not connection.get_autocommit():
+        raise ValueError('Worker must own its short transactions')
+    if type(lease_seconds) is not int or not 1<=lease_seconds<=60 or type(max_attempts) is not int or not 1<=max_attempts<=5:
+        raise ValueError('Invalid finite worker bounds')
+    eligible=Q(state='pending')|Q(state='claimed',lease_until__lte=Now())
+    # Read-only idle check avoids durable admission/WAL growth on every poll.
+    # A stale miss only defers work to the next poll; every write still admits.
+    available=Probe.objects.filter(eligible).exists()
+    if not available and settings.LOCAL_CHECKOUT_ARCHIVE_ROOT:
+        from shop.catalog.models import SyntheticStatementDelivery
+        from shop.payments.models import SyntheticNotificationDelivery
+        available=(SyntheticStatementDelivery.objects.filter(eligible).exists()
+            or SyntheticNotificationDelivery.objects.filter(eligible).exists())
+    if not available:return False
+    return _execute_admitted(lease_seconds=lease_seconds,max_attempts=max_attempts)
+
+
+@local_effect('worker-run',held_result=False)
+def _execute_admitted(*,lease_seconds,max_attempts):
     if settings.LOCAL_CHECKOUT_ARCHIVE_ROOT:
         from .statement_mail import execute_once as capture_statement
         if capture_statement(lease_seconds=lease_seconds,max_attempts=max_attempts):return True

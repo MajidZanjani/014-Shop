@@ -4,13 +4,15 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** paused — context-pressure checkpoint after verified recovery-access commit b17dc8a; backend602/5, focused121, proxy148/2 and source267 pass; exact context percentage unavailable; actual/full acceptance pending.
+**Execution status:** in progress — local recovery access and effect admission/drain verified; backend618/5, focused112, worker24/6, adapters6/3, proxy148/2 and source270 pass; actual/full acceptance pending.
 
-**Next implementation task:** Run $gsd-resume-work; review the recovery worker/provider entry points and design effect-quiescence before claims/mutating dispatch, preserving read-only lookup, one-claim uncertainty and no adapter I/O inside DB locks. Keep commercial inputs pending.
+**Next implementation task:** Reproduce and fence customer/staff sign-in or challenge capture that overlaps quarantine/release; extend durable local admission as needed, preserve fresh verification and keep commercial/actual inputs pending.
 
 **Recorded implementation:** b17dc8a8eaca900a8bc825734fe9f9beb7d0cafc
 
-Verified implementation b17dc8a and prior authentication fix47760eb are committed/pushed. Local access recovery: backend602/5, focused121, proxy148/2 and exact267-file source pass. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-RECOVERY-ACCESS-PARTIAL.md). Context pressure is apparent after the long session; no exact usage percentage is available. The standing checkpoint instruction authorizes this handoff. HANDOFF.json and the phase checkpoint hold the exact next action; no owned process/async job remains. Commercial inputs stay pending while independent work resumes after clearing. Shared /tmp is full and untouched; use owned TMPDIR and justified narrow execution.
+Local recovery now blocks new worker/provider admissions and reports unfinished call scopes; synthetic release refuses unfinished records without expiry or automatic clearing. Read-only typed bank lookup and internal attempt reconciliation remain available, while uncertain claims stay lookup-only. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-RECOVERY-EFFECTS-PARTIAL.md). Actual isolation/reconciliation/off-host recovery and safe reopening remain pending. Next concrete local risk is sign-in/challenge work overlapping quarantine and release; commercial inputs stay pending by user instruction.
+
+GSD resume consumed the one-shot HANDOFF.json from9bff859. All owned qualification sessions exited. Shared /tmp remains full and untouched; use owned TMPDIR and narrow justified execution. Continue across commits/pushes under standing authorization.
 
 [Final purchase-flow revision2](PURCHASE-FLOW-AMENDMENT.md) remains current authority. Retained Phase10 local work covers complete-cart synthetic grants/staged delivery and the implemented local support ledger; earlier phases are not implicitly complete. [Evidence](phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md). One captured cart payment yields an archived deterministic grant plan, one licence record per IP line and exactly36000 integer support seconds/package once, non-expiring. Initial delivery leaves promised later reference design outstanding; later completion never adds another entitlement/grant. Ready-kit/support-only cases stay scoped. Archive readback precedes all simulated records/effects; uncertain funding cannot provision. No actual keys/files/rights or spendable support.
 

@@ -1,9 +1,8 @@
 ---
 gsd_state_version: "1.0"
 current_plan: 01
-status: paused
-last_updated: "2026-10-28T06:43:05Z"
-paused_at: "2026-10-28T06:43:05Z"
+status: in_progress
+last_updated: "2026-10-28T07:39:06Z"
 state_head: b17dc8a8eaca900a8bc825734fe9f9beb7d0cafc
 progress:
   total_phases: 14
@@ -15,8 +14,8 @@ current_task: 5
 last_activity: 2026-10-28
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Context-pressure checkpoint after verified local recovery-access component; no exact percentage available.
-last_activity_desc: "Recovery access: focused121, backend602/5 in three bounded batches, proxy148/2 and source267 pass."
+stopped_at: Verified local effect admission/drain; continuing to sign-in/quarantine overlap.
+last_activity_desc: "Recovery effects verified: focused112, backend618/5, worker24/6, adapters6/3, proxy148/2, source270."
 ---
 
 # Project state — final purchase-flow revision2
@@ -27,13 +26,13 @@ last_activity_desc: "Recovery access: focused121, backend602/5 in three bounded 
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** paused — context-pressure checkpoint after verified recovery-access commit b17dc8a; backend602/5, focused121, proxy148/2 and source267 pass; exact context percentage unavailable; actual/full acceptance pending.
+**Execution status:** in progress — local recovery access and effect admission/drain verified; backend618/5, focused112, worker24/6, adapters6/3, proxy148/2 and source270 pass; actual/full acceptance pending.
 
-**Next implementation task:** Run $gsd-resume-work; review the recovery worker/provider entry points and design effect-quiescence before claims/mutating dispatch, preserving read-only lookup, one-claim uncertainty and no adapter I/O inside DB locks. Keep commercial inputs pending.
+**Next implementation task:** Reproduce and fence customer/staff sign-in or challenge capture that overlaps quarantine/release; extend durable local admission as needed, preserve fresh verification and keep commercial/actual inputs pending.
 
 ## Current local continuation
 
-Local recovery access holds now invalidate customer/staff sessions and pending challenges, fence cached session markers and require fresh customer verification/both staff factors after a matching synthetic release. Exact retries preserve fresh sessions and cannot clear later holds; business history and grants remain unchanged. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-RECOVERY-ACCESS-PARTIAL.md). This does not quiesce workers/providers, reconcile external revocations or qualify actual recovery. Commercial inputs remain pending by user instruction.
+Local recovery now blocks new worker/provider admissions and reports unfinished call scopes; synthetic release refuses unfinished records without expiry or automatic clearing. Read-only typed bank lookup and internal attempt reconciliation remain available, while uncertain claims stay lookup-only. [Evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-RECOVERY-EFFECTS-PARTIAL.md). Actual isolation/reconciliation/off-host recovery and safe reopening remain pending. Next concrete local risk is sign-in/challenge work overlapping quarantine and release; commercial inputs stay pending by user instruction.
 
 ## Preserved implementation/evidence
 

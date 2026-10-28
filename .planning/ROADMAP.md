@@ -16,9 +16,9 @@
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** paused — context-pressure checkpoint after verified recovery-access commit b17dc8a; backend602/5, focused121, proxy148/2 and source267 pass; exact context percentage unavailable; actual/full acceptance pending.
+**Execution status:** in progress — local recovery access and effect admission/drain verified; backend618/5, focused112, worker24/6, adapters6/3, proxy148/2 and source270 pass; actual/full acceptance pending.
 
-**Next implementation task:** Run $gsd-resume-work; review the recovery worker/provider entry points and design effect-quiescence before claims/mutating dispatch, preserving read-only lookup, one-claim uncertainty and no adapter I/O inside DB locks. Keep commercial inputs pending.
+**Next implementation task:** Reproduce and fence customer/staff sign-in or challenge capture that overlaps quarantine/release; extend durable local admission as needed, preserve fresh verification and keep commercial/actual inputs pending.
 
 **Last fully completed phase:** 1. Phases2–7 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase8 work while those earlier checks remain open. Completed phases remain1/14; planned records11/36. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
 
@@ -52,7 +52,7 @@ The October21 reset completed documentation replanning. Later user continuation 
 - [ ] **Phase 10: Staged licence/reference-design delivery and support ledger** — local10-01 materials,10-02 ledger,10-03 licence changes,10-04 numbering/mail,10-05 refund review and10-06 delivery holds implemented; full acceptance pending — October 21 handoff T10
 - [ ] **Phase 11: Protected-host qualification, shop-only deployment and conditional public activation** — October 21 handoff T11
 - [ ] **Phase 12: Backups, operating alerts and financial/licensing restore rehearsal** — October 21 handoff T12
-- [ ] **Phase 13: Purchase-flow, fulfilment and release acceptance** — CURRENT DEVELOPMENT FOCUS; paused — context-pressure checkpoint after verified recovery-access commit b17dc8a; backend602/5, focused121, proxy148/2 and source267 pass; exact context percentage unavailable; actual/full acceptance pending. — October 21 handoff T13
+- [ ] **Phase 13: Purchase-flow, fulfilment and release acceptance** — CURRENT DEVELOPMENT FOCUS; in progress — local recovery access and effect admission/drain verified; backend618/5, focused112, worker24/6, adapters6/3, proxy148/2 and source270 pass; actual/full acceptance pending. — October 21 handoff T13
 - [ ] **Phase 14: Release handover and separately scoped live activation** — October 21 handoff T14
 
 ## Phase Details
@@ -355,7 +355,7 @@ Keep public bytes in shop-owned OVH Object Storage through a fixed verified HTTP
 
 ### Phase 12: Backups, operating alerts and financial/licensing restore rehearsal
 
-Local application access-invalidation component verified in [quick261028-8h5](quick/261028-8h5-implement-local-recovery-access-invalida/261028-8h5-SUMMARY.md); effect quiescence, independent off-host drill and full OPS-02 acceptance remain pending.
+Local access invalidation and durable effect-admission/drain components are verified: [access](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-RECOVERY-ACCESS-PARTIAL.md), [effects](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-RECOVERY-EFFECTS-PARTIAL.md). Actual isolation, reconciliation, independent off-host drill and full OPS-02 acceptance remain pending.
 
 **Goal:** Operators restore only the independent shop PostgreSQL cluster from encrypted off-host sbg pgBackRest full/differential/WAL backups with separate namespaces and independently recoverable artifacts/secrets; existing PostgreSQL instances are never targets.
 **Depends on:** T08,T10–T11; T09 for actual-bank proof
@@ -381,7 +381,7 @@ Local application access-invalidation component verified in [quick261028-8h5](qu
 
 ### Phase 13: Purchase-flow, fulfilment and release acceptance
 
-**Final26October revision2:** CURRENT DEVELOPMENT FOCUS; paused — context-pressure checkpoint after verified recovery-access commit b17dc8a; backend602/5, focused121, proxy148/2 and source267 pass; exact context percentage unavailable; actual/full acceptance pending. FLOW-01–08 and actual/full acceptance remain pending. See [qualification register](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-QUALIFICATION-REGISTER.md).
+**Final26October revision2:** CURRENT DEVELOPMENT FOCUS; in progress — local recovery access and effect admission/drain verified; backend618/5, focused112, worker24/6, adapters6/3, proxy148/2 and source270 pass; actual/full acceptance pending. FLOW-01–08 and actual/full acceptance remain pending. See [qualification register](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-QUALIFICATION-REGISTER.md).
 
 **Goal:** Release reviewers can trace every source field/option/rule to exercised customer/staff journeys, exact new IDs/hostnames and source/profile/approval revisions.
 **Depends on:** T04,T06–T12, with conditional external evidence
@@ -446,8 +446,8 @@ Unchecked phase boxes mean full acceptance is outstanding. They do not mean deve
 | 9. Selected-bank sandbox integration and complete reconciliation | 0 / not planned | Not started | — |
 | 10. Staged licence/reference-design delivery and support ledger | 0 / 6 | In Progress — local private fixtures/downloads, staged grants and support ledger implemented; local10-03 reviewed cases/held orders implemented; local10-04 document reservations implemented; durable statement capture and local10-05 support-refund review and10-06 delivery holds implemented; actual qualification pending | — |
 | 11. Protected-host qualification, shop-only deployment and conditional public activation | 0 / not planned | Not started | — |
-| 12. Backups, operating alerts and financial/licensing restore rehearsal | 0 / not planned | In Progress — local access invalidation verified; effects quarantine/off-host/full recovery pending | — |
-| 13. Purchase-flow, fulfilment and release acceptance | 0 / 1 | In Progress — CURRENT DEVELOPMENT FOCUS; paused — context-pressure checkpoint after verified recovery-access commit b17dc8a; backend602/5, focused121, proxy148/2 and source267 pass; exact context percentage unavailable; actual/full acceptance pending. | — |
+| 12. Backups, operating alerts and financial/licensing restore rehearsal | 0 / not planned | In Progress — local access/effect admission verified; actual isolation/reconciliation/off-host/full recovery pending | — |
+| 13. Purchase-flow, fulfilment and release acceptance | 0 / 1 | In Progress — CURRENT DEVELOPMENT FOCUS; in progress — local recovery access and effect admission/drain verified; backend618/5, focused112, worker24/6, adapters6/3, proxy148/2 and source270 pass; actual/full acceptance pending. | — |
 | 14. Release handover and separately scoped live activation | 0 / not planned | Not started | — |
 
 

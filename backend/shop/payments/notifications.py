@@ -8,6 +8,7 @@ from django.conf import settings
 from django.db import connection,transaction
 from django.db.models import Q
 from django.db.models.functions import Now
+from shop.access.effects import local_effect
 from shop.adapters.evidence_archive import PreparedArchive,manifest
 from shop.catalog import checkout,checkout_payment as payment
 from . import synthetic_bank,attempts,observations
@@ -68,6 +69,7 @@ class Claim:
     token:uuid.UUID
 
 
+@local_effect('notification-claim',guard=guard,error=BankError,held_result=None)
 def claim(*,lease_seconds=10,max_attempts=3):
     guard()
     if type(lease_seconds) is not int or not 1<=lease_seconds<=60 or type(max_attempts) is not int or not 1<=max_attempts<=5:fail()
@@ -87,6 +89,7 @@ def observation_value(observed):
         'amount_minor':observed.amount_minor,'status':observed.status}
 
 
+@local_effect('notification-process',guard=guard,error=BankError,held_result=False)
 def process(owned,archive):
     guard()
     note=Notification.objects.select_related('attempt').get(pk=owned.notification_id)
@@ -121,6 +124,7 @@ def process(owned,archive):
         return True
 
 
+@local_effect('notification-run',guard=guard,error=BankError,held_result=False)
 def execute_once(*,lease_seconds=10,max_attempts=3):
     guard()
     if not settings.LOCAL_CHECKOUT_ARCHIVE_ROOT:return False

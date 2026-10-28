@@ -41,6 +41,25 @@ class LocalAccessRecoveryOperation(models.Model):
         constraints=[models.CheckConstraint(condition=models.Q(action='quarantine',basis_reset__isnull=True)|models.Q(action='release',basis_reset__isnull=False),name='local_access_recovery_action')]
 
 
+LOCAL_EFFECT_KINDS=('worker-run','probe-claim','probe-bank','statement-run','statement-claim',
+    'statement-capture','notification-run','notification-claim','notification-process',
+    'payment-dispatch','finance-dispatch','bank-start','bank-mutation')
+
+class LocalEffectAdmission(models.Model):
+    """A local call scope, never a financial result or permission to retry."""
+    id=models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
+    epoch=models.UUIDField()
+    kind=models.CharField(max_length=32)
+    created_at=models.DateTimeField(auto_now_add=True)
+    finished_at=models.DateTimeField(null=True)
+    exit_status=models.CharField(max_length=8,default='')
+    class Meta:
+        constraints=[models.CheckConstraint(condition=models.Q(kind__in=LOCAL_EFFECT_KINDS),name='local_effect_kind'),
+            models.CheckConstraint(condition=models.Q(finished_at__isnull=True,exit_status='')|
+                models.Q(finished_at__isnull=False,exit_status__in=('returned','raised')),name='local_effect_exit')]
+        indexes=[models.Index(fields=['id'],condition=models.Q(finished_at__isnull=True),name='local_effect_unfinished')]
+
+
 class StaffCredential(models.Model):
     user=models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.PROTECT)
     generation=models.UUIDField(default=uuid.uuid4)
