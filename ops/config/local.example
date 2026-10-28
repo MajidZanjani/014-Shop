@@ -7,3 +7,5 @@ PAYMENT_ADAPTER=fake
 MAIL_ADAPTER=fake
 STORAGE_ADAPTER=fake
 # DATABASE_NAME/USER/HOST/PORT come from scripts/dev_postgres.py, not existing services.
+# Selected local restore only: supply fresh SHOP_LOCAL_RESTORE_ID to all processes.
+# Leave absent for ordinary development; see docs/local-recovery.md.

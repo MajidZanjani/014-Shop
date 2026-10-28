@@ -9,6 +9,7 @@ from django.conf import settings
 from django.db import connection,transaction
 from django.db.models.functions import Now
 from .models import AccessEpoch,LocalEffectAdmission,LOCAL_EFFECT_KINDS
+from .startup import restore_startup_pending
 
 
 class RecoveryEffectError(ValueError):
@@ -31,9 +32,12 @@ def _begin(kind):
     _guard()
     if kind not in LOCAL_EFFECT_KINDS:raise RecoveryEffectError('invalid_effect_kind')
     with transaction.atomic(durable=True):
-        AccessEpoch.objects.get_or_create(pk=1)
-        epoch=AccessEpoch.objects.select_for_update().get(pk=1)
-        if epoch.quarantined:raise RecoveryEffectError('recovery_effects_pending')
+        epoch=AccessEpoch.objects.select_for_update().filter(pk=1).first()
+        if epoch is None:
+            if restore_startup_pending(None):raise RecoveryEffectError('recovery_effects_pending')
+            AccessEpoch.objects.get_or_create(pk=1)
+            epoch=AccessEpoch.objects.select_for_update().get(pk=1)
+        if epoch.quarantined or restore_startup_pending(epoch):raise RecoveryEffectError('recovery_effects_pending')
         return LocalEffectAdmission.objects.create(kind=kind,epoch=epoch.value).pk
 
 
@@ -64,8 +68,9 @@ def local_effect(kind,*,guard=None,error=RecoveryEffectError,held_result=_RAISE,
             try:
                 epoch=LocalEffectAdmission.objects.values_list('epoch',flat=True).get(pk=identity) if require_current_epoch else None
                 result=function(*args,**kwargs)
-                if require_current_epoch and not AccessEpoch.objects.filter(pk=1,value=epoch,quarantined=False).exists():
-                    raise RecoveryEffectError('recovery_effects_pending')
+                if require_current_epoch:
+                    current=AccessEpoch.objects.filter(pk=1,value=epoch,quarantined=False).first()
+                    if current is None or restore_startup_pending(current):raise RecoveryEffectError('recovery_effects_pending')
                 status='returned'
                 return result
             finally:
@@ -89,4 +94,5 @@ def inspect_local_effects():
         epoch=AccessEpoch.objects.select_for_update().filter(pk=1).first()
         held=bool(epoch and epoch.quarantined)
         return {'currently_quarantined':held,**drain_state(quarantined=held),
+            'startup_recovery_pending':restore_startup_pending(epoch),
             'evidence_class':'local-synthetic','actual_recovery_qualified':False,'retry_authorized':False}

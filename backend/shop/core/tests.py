@@ -4,6 +4,7 @@ from pathlib import Path
 import subprocess
 import sys
 import tempfile
+import uuid
 from django.core.exceptions import ImproperlyConfigured
 from django.test import SimpleTestCase, override_settings
 from shop.core.checks import runtime_secret_file, safe_runtime_checks, validate_environment
@@ -35,6 +36,39 @@ class ConfigurationTests(SimpleTestCase):
                 result = self.startup(case)
                 self.assertNotEqual(result.returncode, 0)
                 self.assertNotIn('CANARY_INLINE_SECRET', result.stdout + result.stderr)
+
+    def test_local_restore_startup_validates_without_connecting_to_database(self):
+        identity=str(uuid.uuid4())
+        for mode in ('local','synthetic'):
+            with self.subTest(mode=mode):
+                result=self.startup({'SHOP_ENV':mode,'SHOP_LOCAL_RESTORE_ID':identity,
+                    'DATABASE_HOST':'/nonexistent-shop-synthetic-socket','DATABASE_PORT':'1'},'shop.config.'+mode)
+                self.assertEqual(result.returncode,0,result.stderr)
+                self.assertNotIn(identity,result.stdout+result.stderr)
+
+    def test_invalid_or_nonlocal_restore_selection_rejects_without_echoing_value(self):
+        values=('', ' ', 'CANARY_RESTORE_VALUE', '12345678-1234-1abc-8def-123456789abc', '12345678-1234-4ABC-8DEF-123456789ABC',
+            '{'+str(uuid.uuid4())+'}', str(uuid.uuid4()).replace('-',''))
+        for value in values:
+            with self.subTest(kind=len(value)):
+                result=self.startup({'SHOP_LOCAL_RESTORE_ID':value})
+                self.assertNotEqual(result.returncode,0)
+                self.assertIn('Local restore identity is unavailable or invalid',result.stderr)
+                if len(value)>1:self.assertNotIn(value,result.stdout+result.stderr)
+        for mode in ('production','bank-sandbox'):
+            identity=str(uuid.uuid4())
+            result=self.startup({'SHOP_ENV':mode,'SHOP_LOCAL_RESTORE_ID':identity},'shop.config.production')
+            self.assertNotEqual(result.returncode,0)
+            self.assertIn('Local restore identity is unavailable or invalid',result.stderr)
+            self.assertNotIn(identity,result.stdout+result.stderr)
+
+    def test_registered_checks_reject_invalid_restore_settings(self):
+        with override_settings(LOCAL_RESTORE_ID=uuid.uuid4()):self.assertEqual(safe_runtime_checks(None),[])
+        for value in (False, '', str(uuid.uuid4()), uuid.UUID('12345678-1234-1abc-8def-123456789abc')):
+            with self.subTest(kind=type(value).__name__),override_settings(LOCAL_RESTORE_ID=value):
+                self.assertIn('shop.E004',[error.id for error in safe_runtime_checks(None)])
+        with override_settings(LOCAL_RESTORE_ID=uuid.uuid4(),SHOP_ENV='production'):
+            self.assertIn('shop.E004',[error.id for error in safe_runtime_checks(None)])
 
     def test_production_modes_need_runtime_files(self):
         for mode in ('production', 'bank-sandbox'):

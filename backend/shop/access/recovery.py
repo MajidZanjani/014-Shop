@@ -12,6 +12,7 @@ from django.db.models import Func,UUIDField
 from django.utils import timezone
 from .models import AccessEpoch,LocalAccessRecoveryOperation,StaffChallenge,StaffCredential,VerificationChallenge
 from .effects import drain_state
+from .startup import restore_startup_pending
 
 SESSION_EPOCH='shop_access_epoch'
 
@@ -19,19 +20,23 @@ class AccessRecoveryError(ValueError):
     pass
 
 def recovery_held():
-    return AccessEpoch.objects.filter(pk=1,quarantined=True).exists()
+    epoch=AccessEpoch.objects.filter(pk=1).first()
+    return bool(epoch and epoch.quarantined) or restore_startup_pending(epoch)
 
 def current_session_epoch(request):
     marker=request.session.get(SESSION_EPOCH)
     if not isinstance(marker,str):return False
     try:value=uuid.UUID(marker)
     except ValueError:return False
-    return AccessEpoch.objects.filter(pk=1,value=value,quarantined=False).exists()
+    epoch=AccessEpoch.objects.filter(pk=1,value=value,quarantined=False).first()
+    return epoch is not None and not restore_startup_pending(epoch)
 
 def stamp_session_epoch(sender,request,user,**kwargs):
     # Deliberate login (including trusted fixtures), never an anonymous GET.
-    epoch,_=AccessEpoch.objects.get_or_create(pk=1)
     request.session.pop(SESSION_EPOCH,None)
+    epoch=AccessEpoch.objects.filter(pk=1).first()
+    if restore_startup_pending(epoch):return
+    if epoch is None:epoch,_=AccessEpoch.objects.get_or_create(pk=1)
     if not epoch.quarantined:request.session[SESSION_EPOCH]=str(epoch.value)
 
 def _uuid(value):
@@ -81,4 +86,5 @@ def local_recovery_operation(*,action,request_id,expected_database,basis_reset=N
             operation=LocalAccessRecoveryOperation.objects.create(id=request_id,action=action,basis_reset=basis_reset,epoch=epoch.value,counts=counts)
         return {'operation_id':str(operation.pk),'action':operation.action,'invalidated':dict(operation.counts),
             'currently_quarantined':epoch.quarantined,**drain_state(quarantined=epoch.quarantined),
+            'startup_recovery_pending':restore_startup_pending(epoch),
             'evidence_class':'local-synthetic','actual_recovery_qualified':False}

@@ -1,9 +1,8 @@
 ---
 gsd_state_version: "1.0"
 current_plan: 01
-status: paused
-paused_at: "2026-10-28T08:35:57.406Z"
-last_updated: "2026-10-28T08:35:57.406Z"
+status: in_progress
+last_updated: "2026-10-28T09:15:41.639991+00:00"
 state_head: db56df35b1f979f8bc21d9a686712c9d419b5fd9
 progress:
   total_phases: 14
@@ -15,8 +14,8 @@ current_task: 5
 last_activity: 2026-10-28
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Context-pressure checkpoint after three verified recovery slices; exact percentage unavailable.
-last_activity_desc: "Recovery UI: original3/intermediate2 failures reproduced; backend63, frontend137/32, browser227, source272 pass."
+stopped_at: Local startup fence verified; continuing13-01 task5 with post-point revocation review.
+last_activity_desc: "Startup baseline1 reproduced; focused89, backend637/5, source274 pass; post-point revocation review next."
 ---
 
 # Project state — final purchase-flow revision2
@@ -27,13 +26,13 @@ last_activity_desc: "Recovery UI: original3/intermediate2 failures reproduced; b
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** paused — context-pressure checkpoint after db56df3; current backend63, frontend137/32, browser227 and source272 verified; exact context percentage unavailable; actual/full acceptance pending.
+**Execution status:** in progress — local restore-startup identity fence verified: focused89, backend637/5 and source274 pass; post-point resource revocation review next; commercial/actual/full acceptance pending.
 
-**Next implementation task:** Run $gsd-resume-work; design local restore-startup quarantine before access/effects when the restored database epoch is unheld. Review config/base.py, synthetic.py, production.py and access recovery/effects; preserve read-only lookup and keep commercial/actual inputs pending.
+**Next implementation task:** Design local post-point resource-revocation reconciliation from explicitly synthetic external fixture evidence; inspect current grants/operator-reset paths and preserve startup/effect holds, read-only lookup and fresh MFA. Commercial inputs remain pending.
 
 ## Current local continuation
 
-Three local recovery slices are verified: durable worker/provider admission/drain, active-authentication origin-epoch fencing, and explicit recovery-response privacy cleanup with late-response generation checks. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-RECOVERY-PARTIAL.md). Current focused backend63, frontend137/32, fresh browser227 and exact272-file source pass; backend624/5 retains its pre-header scope. Actual startup/traffic/egress isolation, external reconciliation/MFA recovery and off-host/full acceptance remain pending. Next independent design is restore-startup quarantine for an unheld restored epoch. Commercial inputs remain pending by user instruction.
+The local restore-startup fence is verified: a fresh external identity closes access/authentication/new effects despite an unheld or missing restored epoch until its matching synthetic quarantine/release. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-STARTUP-RECOVERY-PARTIAL.md). Focused89, current backend637/5 and exact274-file source pass; unchanged frontend137/32 and browser227 retain db56df3 scope. Actual isolation/restoration, post-point reconciliation/MFA recovery and off-host/full acceptance remain pending. Next independent review is explicitly synthetic post-point resource-revocation reconciliation. Commercial inputs remain pending by user instruction.
 
 ## Preserved implementation/evidence
 

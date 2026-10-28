@@ -17,6 +17,8 @@ If updating a running demo, stop it with Ctrl+C, pull main, restart with the sam
 
 Prepared archive work: [local operator runbook](local-prepared-archive.md). Payment uncertainty/holds/read-only recovery: [synthetic bank](synthetic-bank.md). Prepared bytes and simulated completion never authorize actual commerce. Before every commit reconcile current planning, publish state.json, run planning checks and sync without force. Preserve all source/evidence/qualified dependency bytes and existing protected services.
 
+Selected disposable restore startup: [local recovery fence](local-recovery.md). A fresh external `SHOP_LOCAL_RESTORE_ID` closes access and new effects until its explicit synthetic quarantine/release sequence; ordinary development examples leave it absent.
+
 The customer demo now uses the public shop styling. After **Record synthetic checkout**, follow **Continue synthetic acceptance and payment**, review the synthetic documents, check the rehearsal declaration, choose **Record synthetic acceptance**, then **Simulate payment once**. Only a configured local demo archive enables these actions; the launcher creates and cleans up its own directory. In an uncertain state use **Look up simulated payment**. No real charge, acceptance, licence or support credit is created.
 
 After simulated capture, use **Simulate licence and support grants**, then each IP line's **Simulate initial delivery** and **Simulate later reference design** when owed. Counts remain once-only on retries; support-only top-ups create no IP licence. The live proxy regression now covers grant/retry too. Actual support spending/work accounting and real files/keys remain disabled/pending.

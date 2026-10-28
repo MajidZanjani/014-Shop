@@ -2,6 +2,7 @@
 import os
 from pathlib import Path
 import stat
+import uuid
 from django.core.checks import Error, register
 from django.core.exceptions import ImproperlyConfigured
 
@@ -28,7 +29,28 @@ def validate_environment(env):
         reject('Live endpoints and inline credentials are unavailable')
     if env.get('DEBUG', 'false') != 'false':
         reject('DEBUG must remain false')
+    local_restore_identity(env)
     return mode
+
+
+def local_restore_identity(env):
+    """Explicit fake-only restore selection, supplied outside the restored DB.
+
+    A fresh UUID4 must be shared by every cooperating local app/worker process.
+    This is a recovery fence identifier, never a credential or actual approval.
+    """
+    if 'SHOP_LOCAL_RESTORE_ID' not in env:
+        return None
+    value = env.get('SHOP_LOCAL_RESTORE_ID')
+    if env.get('SHOP_ENV') not in ('local', 'synthetic') or type(value) is not str:
+        reject('Local restore identity is unavailable or invalid')
+    try:
+        identity = uuid.UUID(value)
+    except (ValueError, AttributeError):
+        reject('Local restore identity is unavailable or invalid')
+    if str(identity) != value or identity.version != 4 or identity.variant != uuid.RFC_4122:
+        reject('Local restore identity is unavailable or invalid')
+    return identity
 
 
 def runtime_secret_file(path, *, minimum=16, allowed_root=Path('/run/secrets/shop')):
@@ -66,4 +88,8 @@ def safe_runtime_checks(app_configs, **kwargs):
         errors.append(Error('Only fake adapters are available', id='shop.E002'))
     if settings.SHOP_ENV not in MODES or '*' in settings.ALLOWED_HOSTS:
         errors.append(Error('Unsafe environment or host configuration', id='shop.E003'))
+    restore_id = getattr(settings, 'LOCAL_RESTORE_ID', None)
+    if restore_id is not None and (settings.SHOP_ENV not in ('local', 'synthetic')
+            or type(restore_id) is not uuid.UUID or restore_id.version != 4 or restore_id.variant != uuid.RFC_4122):
+        errors.append(Error('Invalid local restore configuration', id='shop.E004'))
     return errors

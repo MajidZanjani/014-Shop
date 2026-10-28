@@ -1,7 +1,8 @@
 """Shared settings. Secrets and live integrations never come from a .env loader."""
 import os
-from shop.core.checks import validate_environment
+from shop.core.checks import validate_environment,local_restore_identity
 SHOP_ENV = validate_environment(os.environ)
+LOCAL_RESTORE_ID = local_restore_identity(os.environ)
 DEBUG = False
 LIVE_PAYMENTS_ENABLED = False
 PAYMENT_ADAPTER = MAIL_ADAPTER = STORAGE_ADAPTER = 'fake'
