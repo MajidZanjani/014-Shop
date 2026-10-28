@@ -1,5 +1,6 @@
 """Real PostgreSQL application recovery component; no restore or actual reopening."""
 from concurrent.futures import ThreadPoolExecutor
+from hashlib import sha256
 import json
 from pathlib import Path
 import re
@@ -178,6 +179,72 @@ class RecoveryTests(TransactionTestCase):
         self.assertEqual(Session.objects.count(),sessions)
         self.assertEqual(LocalAccessRecoveryOperation.objects.count(),0)
         self.assertEqual(self.customer.get('/api/v1/configuration-drafts/').status_code,200)
+
+    def access_state(self):
+        models=(AccessEpoch,LocalAccessRecoveryOperation,StaffCredential,Session,
+            VerificationChallenge,StaffChallenge,StaffQuotationGrant,CustomerIdentity,
+            ConfigurationDraft,QuotationRequest)
+        return {model._meta.label:sha256(json.dumps(
+            list(model.objects.order_by(model._meta.pk.name).values()),
+            sort_keys=True,default=str).encode()).hexdigest() for model in models}
+
+    def committed_access_state(self):
+        def observe():
+            try:return self.access_state()
+            finally:connections.close_all()
+        with ThreadPoolExecutor(max_workers=1) as pool:
+            return pool.submit(observe).result(timeout=10)
+
+    def reject_caller_transaction(self,action,*,manual=False):
+        reset=uuid.uuid4()
+        with override_settings(LOCAL_RESTORE_ID=reset):
+            if action=='release':self.operation(request_id=reset)
+            before=self.access_state()
+            def attempt():
+                try:self.operation(action,request_id=reset if action=='quarantine' else uuid.uuid4(),
+                    basis_reset=reset if action=='release' else None)
+                except AccessRecoveryError as error:
+                    self.assertEqual(str(error),'recovery_transaction_active')
+                else:
+                    self.assertEqual(self.committed_access_state(),before)
+                    self.fail('recovery returned success while an independent connection retained the pre-transition state')
+                self.assertEqual(self.access_state(),before)
+            if manual:
+                connection.set_autocommit(False)
+                try:attempt()
+                finally:
+                    connection.rollback()
+                    connection.set_autocommit(True)
+            else:
+                with transaction.atomic():attempt()
+            self.assertEqual(self.access_state(),before)
+            self.assertEqual(self.committed_access_state(),before)
+
+    def test_quarantine_rejects_caller_atomic_transaction_without_invalidating(self):
+        self.reject_caller_transaction('quarantine')
+
+    def test_release_rejects_caller_atomic_transaction_and_preserves_hold(self):
+        self.reject_caller_transaction('release')
+
+    def test_quarantine_rejects_manual_transaction_without_invalidating(self):
+        self.reject_caller_transaction('quarantine',manual=True)
+
+    def test_release_rejects_manual_transaction_and_preserves_hold(self):
+        self.reject_caller_transaction('release',manual=True)
+
+    def test_successful_transitions_and_retries_are_committed_before_return(self):
+        reset=uuid.uuid4();release=uuid.uuid4()
+        with override_settings(LOCAL_RESTORE_ID=reset):
+            held=self.operation(request_id=reset)
+            self.assertTrue(held['currently_quarantined'])
+            self.assertEqual(self.committed_access_state(),self.access_state())
+            self.assertEqual(self.operation(request_id=reset),held)
+            self.assertEqual(self.committed_access_state(),self.access_state())
+            released=self.operation('release',request_id=release,basis_reset=reset)
+            self.assertFalse(released['currently_quarantined'])
+            self.assertEqual(self.committed_access_state(),self.access_state())
+            self.assertEqual(self.operation('release',request_id=release,basis_reset=reset),released)
+            self.assertEqual(self.committed_access_state(),self.access_state())
 
     def test_operation_history_is_immutable(self):
         result=self.operation();row=LocalAccessRecoveryOperation.objects.get()

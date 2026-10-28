@@ -6,7 +6,11 @@ For each selected local restore, supply a fresh canonical UUID4 as `SHOP_LOCAL_R
 
 The selected identity closes private access, customer code capture/verification, both staff factors and new worker/provider effect admissions even when the restored database has an unheld or missing `AccessEpoch`. It creates no recovery history during import, ordinary reads or denied admission. Public catalog and database-connectivity health responses retain their existing contracts; they do not establish recovery readiness.
 
-The existing internal fixture function `shop.access.recovery.local_recovery_operation` requires an exact newly owned test database identity and `shop_test` role, checked against the actual PostgreSQL connection. There is no HTTP or production recovery command. Its local sequence is:
+The existing internal fixture function `shop.access.recovery.local_recovery_operation` requires an exact newly owned test database identity and `shop_test` role, checked against the actual PostgreSQL connection. There is no HTTP or production recovery command.
+
+Call it on an autocommit connection outside any enclosing transaction. Quarantine, release and exact retries reject an atomic or manually managed caller transaction with `recovery_transaction_active` before changing access state. A successful transition commits before the call returns; another connection can observe it immediately. A failed transition still rolls back its complete invalidation/reset. This commit boundary does not establish that actual recovery reconciliation is complete.
+
+Its local sequence is:
 
 1. Record `quarantine` with `request_id` equal to the selected startup identity. This rotates the access epoch and staff generations, consumes pending customer/staff challenges and deletes restored sessions. The matching selected-restore quarantine also disables all restored staff credentials and clears their quotation/business, support, delivery, licence-case, support-refund, overpayment and payment-operation assignments. Immutable business, acceptance, payment, licence, support-work and case history remains intact.
 2. Inspect/reconcile synthetic facts while held. Typed bank `lookup` and `lookup_mutation` remain available without new effect admissions. An uncertain result or lookup miss never authorizes resending a financial operation. An unfinished admitted call does not expire; synthetic release refuses until every admitted scope has recorded its exit.

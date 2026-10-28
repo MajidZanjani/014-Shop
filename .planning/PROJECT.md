@@ -10,11 +10,11 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — context restored at 13-01 task 5; saved local recovery batch verified; actual recovery binding and full acceptance await recorded prerequisites.
+**Execution status:** in progress — local recovery commit boundary verified at 13-01 task 5; actual/full acceptance awaits recorded prerequisites.
 
 **Next implementation task:** Bind post-point customer/resource/MFA recovery after authoritative evidence, approved channel/custody procedures and an assigned authorized independent target are supplied; continue concrete independent local fixes if identified. Keep company commercial inputs pending without re-asking promised evidence.
 
-The two reproduced local recovery gaps are resolved: fresh external startup identity fences unheld/missing restored epochs, and matching selected quarantine disables restored staff credentials and clears all seven resource-grant types before explicit reset/two-factor login/reassignment. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-STAFF-RESTORE-PARTIAL.md). Current backend645/5, focused97, proxy148/2 and exact276-file source pass; unchanged frontend137/32 and browser227 retain db56df3 scope. Actual isolation/restoration, authoritative post-point customer/resource/MFA reconciliation, custody/runner and full acceptance remain pending. Commercial company inputs will be supplied later by the user. Counts1/14 completed phases and11/36 completed phase-plan records are not engineering effort.
+The reproduced recovery commit gap is fixed: supported quarantine/release commits before return, and caller atomic/manual transactions reject before changes. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-RECOVERY-COMMIT-PARTIAL.md). Focused102/backend650/5/exact276-file source pass. Earlier startup/staff reset remains covered; prior proxy148/2, frontend137/32 and browser227 retain their documented preceding scopes. Actual customer/resource/MFA reconciliation, custody/runner and full acceptance remain pending; company commercial inputs will be supplied later. Counts1/14 completed phases and11/36 completed phase-plan records are not engineering effort.
 
 Before every commit reconcile affected current references, publish state.json and run python3 scripts/check_planning.py. Sync commits to origin/main without force. Historical evidence retains its original scope.
 

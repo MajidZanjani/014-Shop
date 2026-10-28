@@ -2,7 +2,7 @@
 gsd_state_version: "1.0"
 current_plan: 01
 status: in_progress
-last_updated: "2026-10-28T09:45:11Z"
+last_updated: "2026-10-28T10:06:44.954679Z"
 state_head: 526acfb232a9905ae3b1afcd8aa34a0f787af49c
 progress:
   total_phases: 14
@@ -14,8 +14,8 @@ current_task: 5
 last_activity: 2026-10-28
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Context restored at 13-01 task 5; actual binding awaits recorded prerequisites.
-last_activity_desc: Restored clean commit 0f5eccf and verified handoff; local evidence retained, actual inputs pending.
+stopped_at: Local recovery commit boundary verified; recording implementation commit and scoped evidence.
+last_activity_desc: Original4 failures reproduced; focused102, backend650/5 and source276 pass.
 ---
 
 # Project state — final purchase-flow revision2
@@ -26,13 +26,13 @@ last_activity_desc: Restored clean commit 0f5eccf and verified handoff; local ev
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** in progress — context restored at 13-01 task 5; saved local recovery batch verified; actual recovery binding and full acceptance await recorded prerequisites.
+**Execution status:** in progress — local recovery commit boundary verified at 13-01 task 5; actual/full acceptance awaits recorded prerequisites.
 
 **Next implementation task:** Bind post-point customer/resource/MFA recovery after authoritative evidence, approved channel/custody procedures and an assigned authorized independent target are supplied; continue concrete independent local fixes if identified. Keep company commercial inputs pending without re-asking promised evidence.
 
 ## Current local continuation
 
-The two reproduced local recovery gaps are resolved: fresh external startup identity fences unheld/missing restored epochs, and matching selected quarantine disables restored staff credentials and clears all seven resource-grant types before explicit reset/two-factor login/reassignment. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-STAFF-RESTORE-PARTIAL.md). Current backend645/5, focused97, proxy148/2 and exact276-file source pass; unchanged frontend137/32 and browser227 retain db56df3 scope. Actual isolation/restoration, authoritative post-point customer/resource/MFA reconciliation, custody/runner and full acceptance remain pending. Commercial company inputs will be supplied later by the user.
+The reproduced recovery commit gap is fixed: supported quarantine/release commits before return, and caller atomic/manual transactions reject before changes. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-RECOVERY-COMMIT-PARTIAL.md). Focused102/backend650/5/exact276-file source pass. Earlier startup/staff reset remains covered; prior proxy148/2, frontend137/32 and browser227 retain their documented preceding scopes. Actual customer/resource/MFA reconciliation, custody/runner and full acceptance remain pending; company commercial inputs will be supplied later.
 
 ## Preserved implementation/evidence
 
@@ -63,7 +63,7 @@ P-02/03/05/06/08 cover actual ready-kit variants, standard development prices/ri
 
 ## Session continuity
 
-Session resumed at 2026-10-28T09:45:11Z from clean commit 0f5eccf; the structured task5/5 handoff matches the committed checkpoint. HANDOFF.json is consumed; the active Phase13 .continue-here.md retains the current prerequisites and exact next action. The saved local batch is complete, and no new authoritative inputs or concrete independent defect was supplied by this resume. Context restoration does not claim implementation restarted or actual/full acceptance. Existing passing runtime lanes were not repeated. Current routing comes from STATE/HANDOFF and the purchase-flow authority; historical next-action text does not supersede them.
+User continued after055e240. Quick261028-dq8 reproduces four successful-but-uncommitted local recovery calls, then rejects caller-managed transactions before changes and commits supported calls before return. Focused102/backend650/5/source276 pass. Implementation commit and completion metadata are being recorded. The one-shot pause handoff was consumed; the active checkpoint and finite qualification register retain the actual missing prerequisites. Company commercial inputs stay pending without another request. No full acceptance or context-percentage claim.
 
 ### Quick Tasks Completed
 

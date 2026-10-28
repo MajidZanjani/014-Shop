@@ -48,12 +48,15 @@ def local_recovery_operation(*,action,request_id,expected_database,basis_reset=N
     """Fixture-only transition, requiring the exact disposable test database.
 
     Release represents synthetic fixture reconciliation only. It cannot authorize
-    actual recovery or reopen a production/bank-sandbox app.
+    actual recovery or reopen a production/bank-sandbox app. This call owns its
+    commit boundary; it must not report a transition pending its caller's commit.
     """
     if (settings.SHOP_ENV not in ('local','synthetic') or settings.LIVE_PAYMENTS_ENABLED
             or any(getattr(settings,key,None)!='fake' for key in ('PAYMENT_ADAPTER','MAIL_ADAPTER','STORAGE_ADAPTER'))
             or settings.SESSION_ENGINE!='django.contrib.sessions.backends.db' or connection.vendor!='postgresql'):
         raise AccessRecoveryError('local_recovery_unavailable')
+    if connection.in_atomic_block or not connection.get_autocommit():
+        raise AccessRecoveryError('recovery_transaction_active')
     request_id=_uuid(request_id)
     if action not in ('quarantine','release') or (action=='quarantine' and basis_reset is not None) or (action=='release' and basis_reset is None):
         raise AccessRecoveryError('invalid_request')
@@ -61,7 +64,7 @@ def local_recovery_operation(*,action,request_id,expected_database,basis_reset=N
     if (not isinstance(expected_database,str) or re.fullmatch(r'(?:test_){1,2}[0-9a-f]{24}',expected_database) is None
             or expected_database!=connection.settings_dict['NAME'] or connection.settings_dict['USER']!='shop_test'):
         raise AccessRecoveryError('database_identity_mismatch')
-    with transaction.atomic():
+    with transaction.atomic(durable=True):
         with connection.cursor() as cursor:
             cursor.execute('SELECT current_database(),current_user')
             if cursor.fetchone()!=(expected_database,'shop_test'):

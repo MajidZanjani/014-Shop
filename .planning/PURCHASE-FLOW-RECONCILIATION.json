@@ -749,6 +749,11 @@
       "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
     },
     {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-RECOVERY-COMMIT-PARTIAL.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-RECOVERY-EFFECTS-PARTIAL.md",
       "role": "historical-evidence",
       "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
@@ -1507,6 +1512,11 @@
       "path": ".planning/quick/261028-cy5-require-explicit-staff-reset-and-reassig/261028-cy5-SUMMARY.md",
       "role": "historical-evidence",
       "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
+      "path": ".planning/quick/261028-dq8-require-committed-local-recovery-transit/261028-dq8-PLAN.md",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
     },
     {
       "path": ".planning/research/ARCHITECTURE.md",
