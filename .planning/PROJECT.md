@@ -8,13 +8,13 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current development focus:** 2 — Reproducible application and deployment skeleton; complete related foundation steps across phases. [Current purchase-flow authority](PURCHASE-FLOW-AMENDMENT.md).
 
-**Current plan:** 02-14 — Standard-tool image qualification; plan16/17 and complete foundation gates remain open.
+**Current plan:** 02-17 — Local archive rebuild verified;16/14/full-CI and related foundation gates remain open.
 
-**Execution status:** in progress — Phase2 four local OCI layouts reconstructed and verified4/19; current-source repro4/11/builds2 and locks3/8 retained; 8/18 plans complete, full runtime/CI/legal/related gates pending.
+**Execution status:** in progress — Phase2 four archive NAR rebuilds match17.845s with real mismatch rejection; OCI/filesystem4/19 and source/locks verified; 8/18 plans complete, native/runtime/CI/related acceptance pending.
 
-**Next implementation task:** Run bounded exact-image rebuild comparison, then finish native image inventory and plan14 application/transport/migration/bootstrap/replica integration; retain all actual/human qualification gates.
+**Next implementation task:** Complete actual native/image component and standard SBOM/notice evidence, then finish14 application-role/all-write/host-attestation transport/migration/bootstrap and executable independent replica driver; preserve all actual/human gates.
 
-Four actual local OCI layouts and umoci filesystems now verify4/19, including all276 /app source aliases per application image. [Exact image scope](../docs/build/oci-filesystem-qualification-2026-10-29.md). Current public/backend repro4/11/builds2 and locks3/8 stay verified. [Full goal tracker](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md) retains8/18 plan completion and all native/runtime/CI/legal/independent/related acceptance.
+Four exact archive rebuilds match retained NARs and real synthetic changed bytes reject. [Actual rebuild scope](../docs/build/image-archive-rebuild-2026-10-29.md). Local OCI/filesystem4/19, source4/11/builds2 and locks3/8 remain verified; [full goal tracker](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md) retains8/18 completion and every native/runtime/CI/legal/independent/related gate.
 
 Before every commit reconcile affected current references, publish state.json and run python3 scripts/check_planning.py. Sync commits to origin/main without force. Historical evidence retains its original scope.
 

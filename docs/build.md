@@ -74,3 +74,7 @@ Provenance/scope-language analog: docs/implementation-evidence.md. Named-error/h
 ## Actual standard-tool OCI/filesystem subset — 2026-10-29
 
 [Four-image report](build/oci-filesystem-qualification-2026-10-29.md): local pinned Skopeo/umoci4 checks/19 controls/63.790s, all42 image controls and deployment16/31 pass. Actual OCI descriptors and reconstructed path/file/mode/mtime/link bytes plus276 /app aliases per application image verify. UID/GID/xattrs/native/legal/independent/runtime/two-image/full-CI/related qualification remains pending; no full marker or parent SUMMARY. New inspection-only tools do not enter runtime images; original outputs/pins/evidence remain unchanged.
+
+## Actual four-archive NAR rebuild — 2026-10-29
+
+[Rebuild and real negative control](build/image-archive-rebuild-2026-10-29.md): four freshly packed archive outputs match originals17.845s, actual changed32-byte fixture clean0/rebuild1/0.479s preserves original. Native inputs reused; Nix compares/discards identical rebuild outputs, then originals revalidate. This is local archive reproducibility proof alongside OCI/filesystem4/19, not native/runtime/legal/independent/full-CI/phase acceptance. Every remaining goal/related gate stays open.

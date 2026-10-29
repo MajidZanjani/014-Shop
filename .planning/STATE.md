@@ -1,9 +1,9 @@
 ---
 gsd_state_version: "1.0"
-current_plan: 14
+current_plan: 17
 status: in_progress
-last_updated: "2026-10-29T08:04:14.627Z"
-state_head: 6aaf77f7ec6c34cfe9e9aebdb4ac005594cb3b8f
+last_updated: "2026-10-29T08:18:05.227Z"
+state_head: 800547cc35ddef064a2d78ee4a159265ac4997fc
 progress:
   total_phases: 14
   completed_phases: 1
@@ -14,8 +14,8 @@ current_task: 1
 last_activity: 2026-10-29
 current_phase: 2
 current_phase_name: Reproducible application and deployment skeleton
-stopped_at: "Four standard-tool OCI layouts/filesystems verified; full goal continues with image rebuild and remaining integration."
-last_activity_desc: "Local image4/19/63.790s, combined image42 controls and deployment16/31 pass; full acceptance8/18 remains open."
+stopped_at: "Four actual archive rebuilds matched; full goal continues at native inventory and14 integration."
+last_activity_desc: "Nix four archive rebuild17.845s, actual mismatch control1/0.479s; OCI4/19/source4/11/locks3/8 retained; full8/18 pending."
 ---
 
 # Project state — final purchase-flow revision2
@@ -24,15 +24,15 @@ last_activity_desc: "Local image4/19/63.790s, combined image42 controls and depl
 
 **Last fully completed phase:** 1 — baseline documentary acceptance only. SRC-05 final-amendment documentary reconciliation is complete and does not revalidate actual commercial or external behavior. All other phases remain partial or pending. Counts are completed-phase/planned-record counts, not engineering effort.
 
-**Current plan:** 02-14 — Standard-tool image qualification; plan16/17 and complete foundation gates remain open.
+**Current plan:** 02-17 — Local archive rebuild verified;16/14/full-CI and related foundation gates remain open.
 
-**Execution status:** in progress — Phase2 four local OCI layouts reconstructed and verified4/19; current-source repro4/11/builds2 and locks3/8 retained; 8/18 plans complete, full runtime/CI/legal/related gates pending.
+**Execution status:** in progress — Phase2 four archive NAR rebuilds match17.845s with real mismatch rejection; OCI/filesystem4/19 and source/locks verified; 8/18 plans complete, native/runtime/CI/related acceptance pending.
 
-**Next implementation task:** Run bounded exact-image rebuild comparison, then finish native image inventory and plan14 application/transport/migration/bootstrap/replica integration; retain all actual/human qualification gates.
+**Next implementation task:** Complete actual native/image component and standard SBOM/notice evidence, then finish14 application-role/all-write/host-attestation transport/migration/bootstrap and executable independent replica driver; preserve all actual/human gates.
 
 ## Current local continuation
 
-Four actual local OCI layouts and umoci filesystems now verify4/19, including all276 /app source aliases per application image. [Exact image scope](../docs/build/oci-filesystem-qualification-2026-10-29.md). Current public/backend repro4/11/builds2 and locks3/8 stay verified. [Full goal tracker](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md) retains8/18 plan completion and all native/runtime/CI/legal/independent/related acceptance.
+Four exact archive rebuilds match retained NARs and real synthetic changed bytes reject. [Actual rebuild scope](../docs/build/image-archive-rebuild-2026-10-29.md). Local OCI/filesystem4/19, source4/11/builds2 and locks3/8 remain verified; [full goal tracker](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md) retains8/18 completion and every native/runtime/CI/legal/independent/related gate.
 
 ## Preserved implementation/evidence
 
@@ -63,7 +63,7 @@ P-02/03/05/06/08 cover actual ready-kit variants, standard development prices/ri
 
 ## Session continuity
 
-Active full goal continues. Complete-source repro commit6aaf77f is pushed. New pinned standard-tool image conversion/reconstruction verifies4/19/63.790s, source/manifest/filesystem readback and all276 application aliases per image; deployment16/31 and combined42 image controls pass. Failed UTC/media/root-entry/publication attempts are retained with explicit scope. No payload execution, runtime-daemon import, registry/host/provider action or actual/human/legal qualification. No producer remains. Next is bounded exact-image rebuild comparison and every remaining local integration/independent/human gate. Parent8/18 remains incomplete; keep standing pushes and the full goal.
+Full goal remains active and unachieved. Implementation800547c pushed; four Nix archive rebuilds now match original complete NAR/bytes/metadata in17.845s. One actual new synthetic nondeterministic output clean0/rebuild1 confirms different byte rejection and original preservation in0.479s. Exact logs/results/input identities are in the new linked report; first diagnostic-harness failure is retained without invented child status. OCI/filesystem4/19/63.790s, all42 controls/deployment16/31, source4/11/builds2 and locks3/8 retain scope. No live producers/async jobs or protected/provider operation. Next native/image/standard SBOM and14 application/transport/migration/bootstrap/replica work plus every actual/human/related gate. Parent8/18 remains incomplete; continue across immediate authorized pushes.
 ### Quick Tasks Completed
 
 | # | Description | Date | Commit | Directory |

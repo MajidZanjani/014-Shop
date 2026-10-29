@@ -1,0 +1,5 @@
+warning: Git tree '/home/claude/project/014-Shop' is dirty
+warning: Nix search path entry '/nix/var/nix/profiles/per-user/root/channels' does not exist, ignoring
+checking outputs of '/nix/store/87qh517qj5di834p9k1l3zwpw4xc91wq-shop-synthetic-nondeterministic-archive-control.drv'...
+note: keeping build directory "/var/lib/shop-image-scratch-VjIrVLVQ/phase2-image-rebuild-20261029-5dp80yjj/nix-1226343-2388058317/build"
+error: derivation '/nix/store/87qh517qj5di834p9k1l3zwpw4xc91wq-shop-synthetic-nondeterministic-archive-control.drv' may not be deterministic: output "/nix/store/7zfby5hf0qa0yw9pa3vcyis4fkzi1gmm-shop-synthetic-nondeterministic-archive-control" differs from "/nix/store/7zfby5hf0qa0yw9pa3vcyis4fkzi1gmm-shop-synthetic-nondeterministic-archive-control.check"

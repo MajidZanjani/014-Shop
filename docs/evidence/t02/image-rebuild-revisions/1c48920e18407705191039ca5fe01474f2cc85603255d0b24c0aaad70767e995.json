@@ -1,0 +1,356 @@
+{
+  "schema_version": 1,
+  "evidence_class": "local-four-image-nar-rebuild-and-real-negative-control",
+  "archive_rebuild": {
+    "schema_version": 1,
+    "evidence_class": "local-nix-top-level-archive-rebuild-comparison",
+    "started_at": "2026-10-29T08:10:11.280486+00:00",
+    "source": {
+      "commit": "800547cc35ddef064a2d78ee4a159265ac4997fc",
+      "dirty": true
+    },
+    "nix_version": "nix (Nix) 2.34.7",
+    "inputs": {
+      "ops/nixos/flake.nix": "471fd4e052351e30ae03b1ce5260bfbe2dd957c066df48457bfc6205b85e7b38",
+      "ops/nixos/flake.lock": "865a3c07a35f43f024ce7c01614be82cb795707edac8e27092bdbba42519cd75",
+      "ops/nixos/python-runtime.nix": "a3b763a2f09c306233dca2389f1d5b9b020854e02b5454c302b4cca927e4d24a",
+      "ops/runtime/wheels.json": "f0fb57ba0f62f4c0feb626ae6fbd03e06edb2a66e8f260538f00137a14989559",
+      "backend/requirements/runtime-linux-py313.txt": "f8fcadf293e0da50ca0cd19af277e869a2de4a9476bd65e9d919ff7f506a7606"
+    },
+    "build_index_sha256": "9d42b9f045e228de2d03e99bfe97e222295885ab8810861caca57d2c9e994102",
+    "command": [
+      "nix",
+      "build",
+      "--offline",
+      "--rebuild",
+      "--max-jobs",
+      "1",
+      "--cores",
+      "2",
+      "--option",
+      "build-dir",
+      "/var/lib/shop-image-scratch-VjIrVLVQ/phase2-image-rebuild-20261029-5dp80yjj",
+      "--no-link",
+      "--json",
+      "-L",
+      "./ops/nixos#shop-app",
+      "./ops/nixos#shop-worker",
+      "./ops/nixos#shop-postgres",
+      "./ops/nixos#shop-gateway"
+    ],
+    "build_directory": "/var/lib/shop-image-scratch-VjIrVLVQ/phase2-image-rebuild-20261029-5dp80yjj",
+    "before": {
+      "/nix/store/513qzmp9ry5nf34cd1nckslv811gi9nk-shop-worker.tar.gz": {
+        "ca": null,
+        "deriver": "/nix/store/cpn5j5jv3za6iv6lknwklw410d27i2p4-shop-worker.tar.gz.drv",
+        "narHash": "sha256-qBzwAEByMGtvvnshhuCFhhybiRhYSE2Xg3C6H3nwvs8=",
+        "narSize": 107154984,
+        "references": [],
+        "registrationTime": 1793254832,
+        "signatures": [],
+        "storeDir": "/nix/store",
+        "ultimate": true,
+        "version": 1
+      },
+      "/nix/store/55fbc919a5fwhyc1gcsn1h6m63s4ipai-shop-postgres.tar.gz": {
+        "ca": null,
+        "deriver": "/nix/store/wv31yrg53saxdpfsy600yzywlllwgisv-shop-postgres.tar.gz.drv",
+        "narHash": "sha256-Oky1qqahwSUt9NtifiV0f62QbW1h+MyCfMrEFT5sCig=",
+        "narSize": 125653528,
+        "references": [],
+        "registrationTime": 1793254827,
+        "signatures": [],
+        "storeDir": "/nix/store",
+        "ultimate": true,
+        "version": 1
+      },
+      "/nix/store/6xqd75ka2v46ydd4v10wnlvq9kmbicrd-shop-app.tar.gz": {
+        "ca": null,
+        "deriver": "/nix/store/0sn0vif5yxwhv5xj9hczwzh89s461hj5-shop-app.tar.gz.drv",
+        "narHash": "sha256-sr+IW5ElWf/ChpMhigYayJMxRdIlJfHiaBRdMcVHTEA=",
+        "narSize": 107155000,
+        "references": [],
+        "registrationTime": 1793254821,
+        "signatures": [],
+        "storeDir": "/nix/store",
+        "ultimate": true,
+        "version": 1
+      },
+      "/nix/store/krpqwl8hsyg2a7ngkvsy0pxlgs6kck3p-shop-gateway.tar.gz": {
+        "ca": null,
+        "deriver": "/nix/store/vagnv7jrpnygg7xqhgbs5zansph3ry7q-shop-gateway.tar.gz.drv",
+        "narHash": "sha256-6qgyB/DZjLmNooedKlWhmU/yCT/ibZvlh7w+z1DkY/k=",
+        "narSize": 31802616,
+        "references": [],
+        "registrationTime": 1793254823,
+        "signatures": [],
+        "storeDir": "/nix/store",
+        "ultimate": true,
+        "version": 1
+      }
+    },
+    "cached_dependency_and_layer_inputs_reused": true,
+    "independent_native_compilation": false,
+    "independent_runtime_qualified": false,
+    "legal_approval": false,
+    "production_activation": false,
+    "exit_code": 0,
+    "duration_seconds": 17.844938558060676,
+    "stdout": {
+      "path": "/home/claude/project/014-Shop/.scratch/phase2-image-archive-rebuild.stdout",
+      "sha256": "0f03e98f6010e5f6b4e5a0e9fb4201cfa1d059e1e8f2d247087a341e9f48459c",
+      "bytes": 838
+    },
+    "stderr": {
+      "path": "/home/claude/project/014-Shop/.scratch/phase2-image-archive-rebuild.stderr",
+      "sha256": "3f82f60eb21ec1aecd5b08f0e79b378615efffc5e1304bee2235eff2baf579ad",
+      "bytes": 16868
+    },
+    "after": {
+      "/nix/store/513qzmp9ry5nf34cd1nckslv811gi9nk-shop-worker.tar.gz": {
+        "ca": null,
+        "deriver": "/nix/store/cpn5j5jv3za6iv6lknwklw410d27i2p4-shop-worker.tar.gz.drv",
+        "narHash": "sha256-qBzwAEByMGtvvnshhuCFhhybiRhYSE2Xg3C6H3nwvs8=",
+        "narSize": 107154984,
+        "references": [],
+        "registrationTime": 1793254832,
+        "signatures": [],
+        "storeDir": "/nix/store",
+        "ultimate": true,
+        "version": 1
+      },
+      "/nix/store/55fbc919a5fwhyc1gcsn1h6m63s4ipai-shop-postgres.tar.gz": {
+        "ca": null,
+        "deriver": "/nix/store/wv31yrg53saxdpfsy600yzywlllwgisv-shop-postgres.tar.gz.drv",
+        "narHash": "sha256-Oky1qqahwSUt9NtifiV0f62QbW1h+MyCfMrEFT5sCig=",
+        "narSize": 125653528,
+        "references": [],
+        "registrationTime": 1793254827,
+        "signatures": [],
+        "storeDir": "/nix/store",
+        "ultimate": true,
+        "version": 1
+      },
+      "/nix/store/6xqd75ka2v46ydd4v10wnlvq9kmbicrd-shop-app.tar.gz": {
+        "ca": null,
+        "deriver": "/nix/store/0sn0vif5yxwhv5xj9hczwzh89s461hj5-shop-app.tar.gz.drv",
+        "narHash": "sha256-sr+IW5ElWf/ChpMhigYayJMxRdIlJfHiaBRdMcVHTEA=",
+        "narSize": 107155000,
+        "references": [],
+        "registrationTime": 1793254821,
+        "signatures": [],
+        "storeDir": "/nix/store",
+        "ultimate": true,
+        "version": 1
+      },
+      "/nix/store/krpqwl8hsyg2a7ngkvsy0pxlgs6kck3p-shop-gateway.tar.gz": {
+        "ca": null,
+        "deriver": "/nix/store/vagnv7jrpnygg7xqhgbs5zansph3ry7q-shop-gateway.tar.gz.drv",
+        "narHash": "sha256-6qgyB/DZjLmNooedKlWhmU/yCT/ibZvlh7w+z1DkY/k=",
+        "narSize": 31802616,
+        "references": [],
+        "registrationTime": 1793254823,
+        "signatures": [],
+        "storeDir": "/nix/store",
+        "ultimate": true,
+        "version": 1
+      }
+    },
+    "nix_results": [
+      {
+        "drvPath": "/nix/store/0sn0vif5yxwhv5xj9hczwzh89s461hj5-shop-app.tar.gz.drv",
+        "outputs": {
+          "out": "/nix/store/6xqd75ka2v46ydd4v10wnlvq9kmbicrd-shop-app.tar.gz"
+        },
+        "startTime": 1793261411,
+        "stopTime": 1793261418
+      },
+      {
+        "drvPath": "/nix/store/cpn5j5jv3za6iv6lknwklw410d27i2p4-shop-worker.tar.gz.drv",
+        "outputs": {
+          "out": "/nix/store/513qzmp9ry5nf34cd1nckslv811gi9nk-shop-worker.tar.gz"
+        },
+        "startTime": 1793261424,
+        "stopTime": 1793261429
+      },
+      {
+        "drvPath": "/nix/store/wv31yrg53saxdpfsy600yzywlllwgisv-shop-postgres.tar.gz.drv",
+        "outputs": {
+          "out": "/nix/store/55fbc919a5fwhyc1gcsn1h6m63s4ipai-shop-postgres.tar.gz"
+        },
+        "startTime": 1793261420,
+        "stopTime": 1793261424
+      },
+      {
+        "drvPath": "/nix/store/vagnv7jrpnygg7xqhgbs5zansph3ry7q-shop-gateway.tar.gz.drv",
+        "outputs": {
+          "out": "/nix/store/krpqwl8hsyg2a7ngkvsy0pxlgs6kck3p-shop-gateway.tar.gz"
+        },
+        "startTime": 1793261418,
+        "stopTime": 1793261420
+      }
+    ],
+    "actual_hash_path_readback": {
+      "/nix/store/6xqd75ka2v46ydd4v10wnlvq9kmbicrd-shop-app.tar.gz": "sha256-sr+IW5ElWf/ChpMhigYayJMxRdIlJfHiaBRdMcVHTEA=",
+      "/nix/store/513qzmp9ry5nf34cd1nckslv811gi9nk-shop-worker.tar.gz": "sha256-qBzwAEByMGtvvnshhuCFhhybiRhYSE2Xg3C6H3nwvs8=",
+      "/nix/store/55fbc919a5fwhyc1gcsn1h6m63s4ipai-shop-postgres.tar.gz": "sha256-Oky1qqahwSUt9NtifiV0f62QbW1h+MyCfMrEFT5sCig=",
+      "/nix/store/krpqwl8hsyg2a7ngkvsy0pxlgs6kck3p-shop-gateway.tar.gz": "sha256-6qgyB/DZjLmNooedKlWhmU/yCT/ibZvlh7w+z1DkY/k="
+    },
+    "archive_sha256_after": {
+      "shop-app": "ed1878432d0eb3f75dbd4d122c6510fd0bd1034fd735aaa40ae6508e6fab905d",
+      "shop-worker": "e3bc7b493968a15d55ed7e62036c0e00d94c324779513765c761bb3a8d6a767f",
+      "shop-postgres": "00ad3ec8402040624e9218f25fed63c5aa62a1a002a07dc3a3a1fab425021067",
+      "shop-gateway": "112eb28747e1cc1ad05d5d8a1fd4123f9128321d226f4c2da01951a9dcd4e3df"
+    },
+    "checks": 4,
+    "scope": "Nix rebuilt four top-level archive derivations in fresh builder roots and compared their NAR outputs to retained originals. Original archive bytes and store metadata revalidated; cached native/dependency/layer inputs were reused. No second full native build, runtime/independent/legal/full-CI qualification."
+  },
+  "nix_negative_control": {
+    "schema_version": 1,
+    "evidence_class": "local-real-nix-output-mismatch-negative-control",
+    "observed_at": "2026-10-29T08:14:40.223372+00:00",
+    "fixture_source": "let\n f = builtins.getFlake \"git+file:///home/claude/project/014-Shop?dir=ops/nixos\";\n p = import f.inputs.nixpkgs { system = \"x86_64-linux\"; };\nin p.runCommand \"shop-synthetic-nondeterministic-archive-control-v2\" {} ''\n  ${p.coreutils}/bin/head -c 32 /dev/urandom > \"$out\"\n''\n",
+    "fixture_sha256": "ce5bed51b481b68254c9e20bdb286a60d53fadfa705ed77929849e336ad64358",
+    "calls": [
+      {
+        "command": [
+          "nix",
+          "build",
+          "--offline",
+          "--impure",
+          "--file",
+          "/home/claude/project/014-Shop/.scratch/phase2-nix-rebuild-negative-v2.nix",
+          "--max-jobs",
+          "1",
+          "--cores",
+          "2",
+          "--option",
+          "build-dir",
+          "/var/lib/shop-image-scratch-VjIrVLVQ/phase2-image-rebuild-20261029-5dp80yjj",
+          "--no-link",
+          "--json",
+          "-L"
+        ],
+        "exit_code": 0,
+        "duration_seconds": 0.2643554010428488,
+        "stdout": "/home/claude/project/014-Shop/.scratch/phase2-nix-rebuild-negative-v2-clean.stdout",
+        "stderr": "/home/claude/project/014-Shop/.scratch/phase2-nix-rebuild-negative-v2-clean.stderr"
+      },
+      {
+        "command": [
+          "nix",
+          "build",
+          "--offline",
+          "--impure",
+          "--file",
+          "/home/claude/project/014-Shop/.scratch/phase2-nix-rebuild-negative-v2.nix",
+          "--max-jobs",
+          "1",
+          "--cores",
+          "2",
+          "--option",
+          "build-dir",
+          "/var/lib/shop-image-scratch-VjIrVLVQ/phase2-image-rebuild-20261029-5dp80yjj",
+          "--no-link",
+          "--json",
+          "-L",
+          "--rebuild",
+          "--keep-failed"
+        ],
+        "exit_code": 1,
+        "duration_seconds": 0.21409792709164321,
+        "stdout": "/home/claude/project/014-Shop/.scratch/phase2-nix-rebuild-negative-v2-check.stdout",
+        "stderr": "/home/claude/project/014-Shop/.scratch/phase2-nix-rebuild-negative-v2-check.stderr"
+      }
+    ],
+    "original_path": "/nix/store/km0wd9p8lg6hmpnib97av7gc6sxw6h1r-shop-synthetic-nondeterministic-archive-control-v2",
+    "different_path": "/nix/store/km0wd9p8lg6hmpnib97av7gc6sxw6h1r-shop-synthetic-nondeterministic-archive-control-v2.check",
+    "bytes_each": 32,
+    "original_sha256": "45e0a4cfb45120fcdcef421087a60496dd4567da7cf447f67d362b53094dc218",
+    "different_sha256": "ce82faf9a2c2299a60025b35651026d5adcaf6387d30bf6b99e3886dec8226a6",
+    "original_preserved": true,
+    "tests": 1,
+    "elapsed_seconds": 0.47914394782856107,
+    "diagnostic": "warning: Git tree '/home/claude/project/014-Shop' is dirty\nwarning: Nix search path entry '/nix/var/nix/profiles/per-user/root/channels' does not exist, ignoring\nchecking outputs of '/nix/store/j7x32mss5ygsia2ifnaz6vqk2x6iv23h-shop-synthetic-nondeterministic-archive-control-v2.drv'...\nnote: keeping build directory \"/var/lib/shop-image-scratch-VjIrVLVQ/phase2-image-rebuild-20261029-5dp80yjj/nix-1226443-776878565/build\"\nerror: derivation '/nix/store/j7x32mss5ygsia2ifnaz6vqk2x6iv23h-shop-synthetic-nondeterministic-archive-control-v2.drv' may not be deterministic: output \"/nix/store/km0wd9p8lg6hmpnib97av7gc6sxw6h1r-shop-synthetic-nondeterministic-archive-control-v2\" differs from \"/nix/store/km0wd9p8lg6hmpnib97av7gc6sxw6h1r-shop-synthetic-nondeterministic-archive-control-v2.check\"\n",
+    "scope": "Only new tiny synthetic outputs; actual Nix nonzero is confirmed to be different output bytes, not missing tool/permission/network. No real image/dependency or pre-existing protected output changes."
+  },
+  "logs": [
+    {
+      "source_log": "phase2-image-archive-rebuild.stdout",
+      "path": "docs/evidence/t02/image-rebuild-logs/0f03e98f6010e5f6b4e5a0e9fb4201cfa1d059e1e8f2d247087a341e9f48459c.txt",
+      "sha256": "0f03e98f6010e5f6b4e5a0e9fb4201cfa1d059e1e8f2d247087a341e9f48459c",
+      "bytes": 838
+    },
+    {
+      "source_log": "phase2-image-archive-rebuild.stderr",
+      "path": "docs/evidence/t02/image-rebuild-logs/3f82f60eb21ec1aecd5b08f0e79b378615efffc5e1304bee2235eff2baf579ad.txt",
+      "sha256": "3f82f60eb21ec1aecd5b08f0e79b378615efffc5e1304bee2235eff2baf579ad",
+      "bytes": 16868
+    },
+    {
+      "source_log": "phase2-nix-rebuild-negative-clean.stdout",
+      "path": "docs/evidence/t02/image-rebuild-logs/959639982acc432caed3619887722f9582abe9012ee239d4436d7f025a0d3ad2.txt",
+      "sha256": "959639982acc432caed3619887722f9582abe9012ee239d4436d7f025a0d3ad2",
+      "bytes": 269
+    },
+    {
+      "source_log": "phase2-nix-rebuild-negative-clean.stderr",
+      "path": "docs/evidence/t02/image-rebuild-logs/5e8686f7b775bf3469023135a6de5c6030dcbb4e30e72914cfaaffc7721031d7.txt",
+      "sha256": "5e8686f7b775bf3469023135a6de5c6030dcbb4e30e72914cfaaffc7721031d7",
+      "bytes": 401
+    },
+    {
+      "source_log": "phase2-nix-rebuild-negative-check.stdout",
+      "path": "docs/evidence/t02/image-rebuild-logs/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source_log": "phase2-nix-rebuild-negative-check.stderr",
+      "path": "docs/evidence/t02/image-rebuild-logs/8f7587e382b3897a366ea07cb43a4accbc1c99b6ae84b3daec15594c9c0ee7f2.txt",
+      "sha256": "8f7587e382b3897a366ea07cb43a4accbc1c99b6ae84b3daec15594c9c0ee7f2",
+      "bytes": 776
+    },
+    {
+      "source_log": "phase2-nix-rebuild-negative-v2-clean.stdout",
+      "path": "docs/evidence/t02/image-rebuild-logs/c52b79d8521fb0296a83e28982c7711bf9d4808d7e482fdd90b5ee19948176a2.txt",
+      "sha256": "c52b79d8521fb0296a83e28982c7711bf9d4808d7e482fdd90b5ee19948176a2",
+      "bytes": 275
+    },
+    {
+      "source_log": "phase2-nix-rebuild-negative-v2-clean.stderr",
+      "path": "docs/evidence/t02/image-rebuild-logs/4e766daa9f605575fc6407412986d6796f57c6f4d1759f045e258d65f9a3b25e.txt",
+      "sha256": "4e766daa9f605575fc6407412986d6796f57c6f4d1759f045e258d65f9a3b25e",
+      "bytes": 407
+    },
+    {
+      "source_log": "phase2-nix-rebuild-negative-v2-check.stdout",
+      "path": "docs/evidence/t02/image-rebuild-logs/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source_log": "phase2-nix-rebuild-negative-v2-check.stderr",
+      "path": "docs/evidence/t02/image-rebuild-logs/332c128c6284cd9ee7abe11b4cf7db2634e78fb6a22aeac65f1935868f1631bc.txt",
+      "sha256": "332c128c6284cd9ee7abe11b4cf7db2634e78fb6a22aeac65f1935868f1631bc",
+      "bytes": 787
+    }
+  ],
+  "retained_original_plus_rebuild_archives_match": true,
+  "separately_retained_second_archives": false,
+  "local_standard_tool_oci_report": {
+    "path": "docs/evidence/t02/image-layout-revisions/27708a4e83a9ef6ac9e956b617533933dafa55dfaba909ab276196e08e185694/report.json",
+    "sha256": "27708a4e83a9ef6ac9e956b617533933dafa55dfaba909ab276196e08e185694"
+  },
+  "first_negative_harness_attempt": {
+    "status": "harness-rejected-expected-diagnostic",
+    "child_exit_code": null,
+    "reason": "The actual Nix output mismatch says may not be deterministic. The first harness searched not deterministic without be and raised before retaining the child status. Raw logs remain unchanged; no successful control is claimed for that attempt."
+  },
+  "full_phase_complete": false,
+  "full_reproducibility_dispatcher_qualified": false,
+  "runtime_qualified": false,
+  "independent_offhost_qualified": false,
+  "legal_approval": false,
+  "scope": "Four fresh local archive-derivation builds match retained original NARs under the actual Nix comparison engine. Native inputs are reused; all four logs show layers recreated from store paths. Engine detects changed actual synthetic output bytes. No independent native compilation, runtime/CI/legal/custody or full Phase2 acceptance."
+}

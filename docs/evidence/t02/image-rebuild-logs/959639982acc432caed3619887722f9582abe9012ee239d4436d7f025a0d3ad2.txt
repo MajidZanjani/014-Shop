@@ -1,0 +1,1 @@
+[{"drvPath":"/nix/store/87qh517qj5di834p9k1l3zwpw4xc91wq-shop-synthetic-nondeterministic-archive-control.drv","outputs":{"out":"/nix/store/7zfby5hf0qa0yw9pa3vcyis4fkzi1gmm-shop-synthetic-nondeterministic-archive-control"},"startTime":1793261598,"stopTime":1793261598}]
