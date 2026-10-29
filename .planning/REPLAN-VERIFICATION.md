@@ -9,3 +9,8 @@ Final revision2 read completely; SHA25601cc63210f2202462b76108196c55a0f483d56c7f
 -Implementation continued after planning: [full local/synthetic implementation, commands, checks and eight-case map](phases/03-catalog-platform-and-offer-policies/03-PURCHASE-FLOW-PARTIAL.md).338 backend,12 focused purchase,118 frontend tests and104 conformance cases pass for their recorded tool scope. Actual commercial/full-checkout/entitlement/ledger/private-follow-up/external qualification remains pending; frontend exact Node24.22 execution remains unqualified.
 
 Run `python3 scripts/check_purchase_plan.py --refresh-inventory` after adding planning artifacts, then `python3 scripts/check_planning.py` before commit. This is a bounded amendment reconciliation, not a new planning phase or a claim that old phase tasks are all implemented.
+
+
+## Whole-folder status reconciliation —2026-10-29
+
+The26October counts/results above are historical. Current plan records remain11/36, Phase2 local records8/18 and completed phases1/14; these are acceptance/document counts, not engineering effort. [Whole-folder pause synchronization](audits/2026-10-29-planning-sync.md) records refreshed artifact classification, current-phase records, preserved historical evidence and validation. Current routing remains STATE/HANDOFF; no source/amendment acceptance or qualification checkbox is promoted by this update.

@@ -31,3 +31,7 @@ The historical docs/product-source/verify_t01.py hard-codes the October 20 filen
 ## Evidence and traceability
 
 REQUIREMENTS.md maps the80 baseline requirements and9 amendment requirements exactly once; ROADMAP.md retains all T01–T14 dependencies and verbatim handoff outputs/acceptance/evidence. SOURCE-MATRIX.md preserves exact product inventories and adds hosting deltas. docs/decisions.md is the single P register: P-10 hosting selected, qualification pending; all other affected approvals remain pending. Distinguish local/synthetic, bank sandbox, actual Object Storage, current mx1 observations, independent off-host drills and production. No remote audit, purchase, DNS/TLS issuance, message, bank action or deployment occurred.
+
+## Current implementation routing —2026-10-29
+
+Source authority and hashes are unchanged. Current policy-bound connection evidence and remaining Phase2/related scope are in [STATE.md](STATE.md), [ROADMAP.md](ROADMAP.md) and [02-COMPLETION-TRACKER.md](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md). User requests synchronized planning, commit/sync and pause; no new source/commercial/external approval.

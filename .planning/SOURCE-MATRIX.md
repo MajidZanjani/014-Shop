@@ -2,7 +2,7 @@
 
 # Source-to-Requirement Matrix: xSPI-MC
 
-**Source:** October 21 proposal, exact embedded product and new handoff. Inventory below is a verbatim planning reference from the supplied proposal, not approved customer copy or a catalog. All mapped implementation remains pending. The exact original product is separately hash-verified in docs/product-source/.
+**Source:** October 21 proposal, exact embedded product and new handoff. Inventory below is a verbatim planning reference from the supplied proposal, not approved customer copy or a catalog. Full mapped acceptance remains pending except the explicitly completed documentary requirements; current implementation evidence is in [STATE.md](STATE.md), [ROADMAP.md](ROADMAP.md) and the [Phase2 tracker](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md). The exact original product is separately hash-verified in docs/product-source/.
 
 | Source contract | Primary requirement coverage | Integrated evidence |
 |---|---|---|

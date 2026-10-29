@@ -4,21 +4,23 @@
 
 **Active sequencing:** [2026-10-22 execution amendment](EXECUTION-AMENDMENT-2026-10-22.md); T03 and ready local slices proceed independently of pending release qualification.
 
-**Latest verification:** Restricted-role PostgreSQL/Django SQL3/204/15.180s, inert source7/5/4.426s and deployment16/31/2.207s; [exact scope/security fix](../docs/build/application-observer-2026-10-29.md). Four-image SBOM4/17/five schemas retained; full acceptance8/18 remains open.
+**Latest verification:** Policy-bound SCRAM/PostgreSQL/Django SQL3/236/17.607s, inert source7/5/4.302s and deployment16/31/2.222s; [exact scope](../docs/build/application-connection-2026-10-29.md). Observer security and four-image SBOM evidence retained; full acceptance8/18 remains open.
 
 **Retained evidence:** [reviewed changes/held orders](phases/10-staged-delivery-and-support-ledger/10-LICENCE-CHANGES-PARTIAL.md); retained material/ledger/staged-delivery results and all release gates are in [STATE.md](STATE.md).
 
 **Baseline:** 2026-10-21 protected-services proposal/handoff, read in full. T01 documentation reconciled; T02 is executing with eight completed local slices and ten incomplete qualification/implementation records. Actual runtime/host criteria remain unexecuted.
 
-## Current implementation activity — 2026-10-28
+## Current implementation activity — 2026-10-29
 
 **Current development focus:** 2 — Reproducible application and deployment skeleton; complete related foundation steps across phases. [Current purchase-flow authority](PURCHASE-FLOW-AMENDMENT.md).
 
-**Current plan:** 02-14 — Restricted application-role observer verified; connection/transport/all-write/migration/bootstrap/replica integration remains open.
+**Current plan:** 02-14 — Policy-bound SCRAM application connection verified locally; transport/all-write/migration/bootstrap/replica integration remains open.
 
-**Execution status:** in progress — Restricted application-role observer/Django context verified SQL3/204, source7/5 and deployment16/31; SBOM4/17 retained; complete14/16/17/related acceptance remains open8/18.
+**Execution status:** in progress — Policy-bound SCRAM/Django connection verified SQL3/236, source7/5 and deployment16/31; full14/16/17/related acceptance remains open8/18; user-requested pause follows commit/sync.
 
-**Next implementation task:** Bind the restricted observer to approved connection/owner policy and implement isolation-preserving attestation lease transport plus app/worker all-write/migration/bootstrap/replica integration; retain16/17/native/legal/CI/independent/human gates.
+**Next implementation task:** Implement approved application-policy issuance/custody and isolation-preserving attestation lease transport, then app/worker all-write/migration/bootstrap/replica integration; retain16/17/native/legal/CI/independent/human gates.
+
+Policy-bound SCRAM connection prerequisite is verified locally: [236-test/source/deployment evidence](../docs/build/application-connection-2026-10-29.md). Approved policy issuance/custody and isolated attestation/all-write integration remain open; this library does not issue actual authority.
 
 Four exact images now have raw maintained-tool SBOMs; native57/53/168,102 notice candidates/five objects and five strict CycloneDX validations are recorded4/17/59.676s. [Exact scope and unresolved findings](../docs/build/image-sbom-2026-10-29.md). Prior source/lock/OCI/NAR evidence is unchanged; [full tracker](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md) remains8/18 with all full inventory/runtime/CI/legal/independent/related gates.
 
@@ -43,7 +45,7 @@ The October21 reset completed documentation replanning. Later user continuation 
 ## Phases
 
 - [x] **Phase 1: Product authority, repository review and decision register** — October 21 handoff T01
-- [ ] **Phase 2: Reproducible application and deployment skeleton** — October 21 handoff T02 — CURRENT DEVELOPMENT FOCUS; in progress — Restricted application-role observer/Django context verified SQL3/204, source7/5 and deployment16/31; SBOM4/17 retained; complete14/16/17/related acceptance remains open8/18.
+- [ ] **Phase 2: Reproducible application and deployment skeleton** — October 21 handoff T02 — CURRENT DEVELOPMENT FOCUS; in progress — Policy-bound SCRAM/Django connection verified SQL3/236, source7/5 and deployment16/31; full14/16/17/related acceptance remains open8/18; user-requested pause follows commit/sync.
 - [ ] **Phase 3: Catalog, platform choices and approved offer/support policies** — October 21 handoff T03
 - [ ] **Phase 4: Minimal configurator and shared no-JavaScript purchase flow** — October 21 handoff T04
 - [ ] **Phase 5: Transactional records, durable work and private evidence primitives** — October 21 handoff T05
@@ -86,7 +88,7 @@ The October21 reset completed documentation replanning. Later user continuation 
 
 ### Phase 2: Reproducible application and deployment skeleton
 
-**Current execution:** CURRENT DEVELOPMENT FOCUS; in progress — Restricted application-role observer/Django context verified SQL3/204, source7/5 and deployment16/31; SBOM4/17 retained; complete14/16/17/related acceptance remains open8/18.
+**Current execution:** CURRENT DEVELOPMENT FOCUS; in progress — Policy-bound SCRAM/Django connection verified SQL3/236, source7/5 and deployment16/31; full14/16/17/related acceptance remains open8/18; user-requested pause follows commit/sync.
 
 **Goal:** Developers can reproduce static frontend, Django/worker and real-PostgreSQL development builds from compatible pinned dependencies, hashes and CI commands.
 **Depends on:** T01
@@ -440,7 +442,7 @@ Unchecked phase boxes mean full acceptance is outstanding. They do not mean deve
 | Phase | Plans Complete | Status | Completed |
 |---|---|---|---|
 | 1. Product authority, repository review and decision register | 2 / 2 | Complete — documentation reconciled | 2026-10-21 |
-| 2. Reproducible application and deployment skeleton | 8 / 18 | In Progress; updated 2026-10-22: 25 implementation quick tasks; 7 qualification/review and 3 implementation/qualification records open; CURRENT DEVELOPMENT FOCUS; in progress — Restricted application-role observer/Django context verified SQL3/204, source7/5 and deployment16/31; SBOM4/17 retained; complete14/16/17/related acceptance remains open8/18. | — |
+| 2. Reproducible application and deployment skeleton | 8 / 18 | In Progress; updated 2026-10-22: 25 implementation quick tasks; 7 qualification/review and 3 implementation/qualification records open; CURRENT DEVELOPMENT FOCUS; in progress — Policy-bound SCRAM/Django connection verified SQL3/236, source7/5 and deployment16/31; full14/16/17/related acceptance remains open8/18; user-requested pause follows commit/sync. | — |
 | 3. Catalog, platform choices and approved offer/support policies | 0 / 1 | In Progress — local slice in quick261022-dj5; full acceptance pending | — |
 | 4. Minimal configurator and shared no-JavaScript purchase flow | 0 / 1 | In Progress — local slice in quick261022-dj5; full acceptance pending | — |
 | 5. Transactional records, durable work and private evidence primitives | 0 / not planned | In Progress — local slice in quick261022-dj5; full acceptance pending | — |

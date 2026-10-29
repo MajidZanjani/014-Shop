@@ -31,6 +31,8 @@ Source: new handoff T01; full proposal supplies normative detail.
 
 ### Reproducible foundation
 
+Current2026-10-29 evidence: policy-bound restricted SCRAM/Django SQL236/source7/5/deployment16/31; [scope and all remaining BUILD gates](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md). BUILD-01–08 remain unchecked; local preparation does not establish actual qualification. Current routing remains [STATE.md](STATE.md)/[ROADMAP.md](ROADMAP.md).
+
 Source: new handoff T02; full proposal supplies normative detail.
 
 - [ ] **BUILD-01**: Developers can reproduce static frontend, Django/worker and real-PostgreSQL development builds from compatible pinned dependencies, hashes and CI commands.

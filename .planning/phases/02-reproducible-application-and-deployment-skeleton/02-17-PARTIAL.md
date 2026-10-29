@@ -57,3 +57,8 @@ Streaming observer preserves independent outer hashes and original report. Actua
 ## Actual local archive rebuild comparison — 2026-10-29
 
 [Exact original-plus-rebuild/negative evidence](../../../docs/build/image-archive-rebuild-2026-10-29.md). Nix2.34.7 freshly rebuilds all four archive derivations and compares complete NARs: exit0/4 comparisons/17.845s. Original actual file/NAR/metadata/input readback matches. One real synthetic32-byte nondeterministic fixture clean0/rebuild1 confirms changed output hashes with original preserved,0.479s; the first harness wording failure is retained without invented child status. Native inputs reused and no second full native compilation or separately retained identical outputs claimed. Standard-tool OCI/filesystem evidence remains4/19; full integrated dispatcher/CI/native/legal/runtime/independent/human/related criteria and parent8/18 stay open.
+
+
+## Related current source update —2026-10-29
+
+Current inert database source now adds policy-bound connection preparation, actual-built/imported7/5 with SQL236 and deployment16/31 local regression. Earlier public/backend/image/NAR/lock evidence retains its exact unchanged payload scope. Qualified full dispatcher/CI and independent image comparison remain open; no full marker or parent SUMMARY. [Exact evidence](../../../docs/build/application-connection-2026-10-29.md). User requests synchronized pause after this step.

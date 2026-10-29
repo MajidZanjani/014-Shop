@@ -1,0 +1,7 @@
+warning: Git tree '/home/claude/project/014-Shop' is dirty
+TOOL_PROVENANCE {"python3": {"path": "/nix/store/nr6vqhv33q8n6nbyy529fvcydy3zp1jd-python3-3.13.16-env/bin/python3"}}
+TOOL_PROVENANCE {"node": {"path": "/nix/store/x6a7dbhj1fmhwk0d9124zkszdfhd7k91-nodejs-24.22.0/bin/node"}}
+TOOL_PROVENANCE {"npm": {"path": "/nix/store/x6a7dbhj1fmhwk0d9124zkszdfhd7k91-nodejs-24.22.0/bin/npm"}}
+DATABASE_DESTINATION_PASS checks=3 tests=236 duration_seconds=17.607
+Local synthetic SQL evidence only; PGDATA comparison adapted to owned scratch path; no container/rootless/storage qualification or application integration
+{"lane": "database-destination", "checks": 3, "tests": 236, "failures": 0, "elapsed_seconds": 17.636174140963703, "tool_identity": {}, "evidence_class": "local-synthetic"}

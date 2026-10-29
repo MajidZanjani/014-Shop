@@ -1,0 +1,116 @@
+{
+  "dirty_source": true,
+  "evidence_class": "local-synthetic",
+  "files": {
+    "backend/shop/db/unqualified/base.py": "608694bec201e6c9459259494558c6aff3d7b4a3c1379fa1a4ded55944f5859b",
+    "ops/nixos/database-tools.nix": "ddf0cf5007d85a2ba0d164c3123597117dfbc5dcbc434a230a7edf5aa2a9e5a3",
+    "ops/nixos/flake.lock": "865a3c07a35f43f024ce7c01614be82cb795707edac8e27092bdbba42519cd75",
+    "ops/nixos/flake.nix": "0d9088fcb2ebfe4c2d4f9f4c67d29bf3f2ac4b6a8ea89f54fb28c7820d96b992",
+    "ops/postgresql/application-observer.sql": "dc168d9438ebaec2d429207192173ba8b0abbd4a0a252f61785926c95a307e3b",
+    "ops/runtime/application_connection.py": "1b07ab9ce292ad66275f52b6fef04a180a68d7e26fff2aa96aa3222d4f77b1dd",
+    "ops/runtime/application_observer.py": "87efc19e7d3ce06565385e4deecd862493d9a9184d99b6ae3d315f482ec84cf0",
+    "ops/runtime/django_transaction.py": "bd62b6cf54c8f207b5f343b4308586b2de0297d9efc4ab91f14582a9dfe06217",
+    "scripts/check_database_destination.py": "581f669b91e36b79a785379e7789cfb1068e67b64222c5df0a4c324977aa5cfb",
+    "scripts/check_database_tools.py": "b0b3139b856e19967103e2f4eb828d11af7f096d14da1f5c4332f1d94b842d97",
+    "tests/test_application_connection.py": "67a821f6bc090d5a718b54112ae267754d976fbac7c865cd2be8429913d8d0a1"
+  },
+  "logs": [
+    {
+      "bytes": 782,
+      "origin": ".scratch/application-connection-final-database-destination-20261029.log",
+      "path": "docs/evidence/t02/application-connection-revisions/75fe46827205f1aae103e7eaaff00034060a615836abe9781958b3fa393807a8.log",
+      "sha256": "75fe46827205f1aae103e7eaaff00034060a615836abe9781958b3fa393807a8"
+    },
+    {
+      "bytes": 734,
+      "origin": ".scratch/application-connection-final-database-tools-20261029.log",
+      "path": "docs/evidence/t02/application-connection-revisions/017216ee29db09ebbe61e0e8a74e183ea3f23a7e0298afbdb30594757108e0fa.log",
+      "sha256": "017216ee29db09ebbe61e0e8a74e183ea3f23a7e0298afbdb30594757108e0fa"
+    },
+    {
+      "bytes": 740,
+      "origin": ".scratch/application-connection-final-deployment-eval-20261029.log",
+      "path": "docs/evidence/t02/application-connection-revisions/447134a4354710de7bcdfc33a8cac81d8b6d81c39faaf6f830057283a148a288.log",
+      "sha256": "447134a4354710de7bcdfc33a8cac81d8b6d81c39faaf6f830057283a148a288"
+    },
+    {
+      "bytes": 75200,
+      "origin": ".scratch/application-connection-first-20261029.log",
+      "path": "docs/evidence/t02/application-connection-revisions/828e64d091729e7c268cd4a6f99146e3edfc4708691f5289717bef46396f8dfc.log",
+      "sha256": "828e64d091729e7c268cd4a6f99146e3edfc4708691f5289717bef46396f8dfc"
+    },
+    {
+      "bytes": 76423,
+      "origin": ".scratch/application-connection-red-20261029.log",
+      "path": "docs/evidence/t02/application-connection-revisions/fbc818208d20bbb6ab423f3aac31f6de3d3b2d7859e254aa1028c6a1d4778d70.log",
+      "sha256": "fbc818208d20bbb6ab423f3aac31f6de3d3b2d7859e254aa1028c6a1d4778d70"
+    },
+    {
+      "bytes": 782,
+      "origin": ".scratch/application-connection-second-20261029.log",
+      "path": "docs/evidence/t02/application-connection-revisions/d127deba323d0427b6516e372d553b493b85cc3dba2a5ce670756199229a78b2.log",
+      "sha256": "d127deba323d0427b6516e372d553b493b85cc3dba2a5ce670756199229a78b2"
+    }
+  ],
+  "recorded_at": "2026-10-29T11:09:56.267129+00:00",
+  "runs": [
+    {
+      "duration_seconds": 18.259,
+      "exit": 0,
+      "lane": "database-destination",
+      "log": ".scratch/application-connection-final-database-destination-20261029.log"
+    },
+    {
+      "duration_seconds": 4.867,
+      "exit": 0,
+      "lane": "database-tools",
+      "log": ".scratch/application-connection-final-database-tools-20261029.log"
+    },
+    {
+      "duration_seconds": 2.442,
+      "exit": 0,
+      "lane": "deployment-eval",
+      "log": ".scratch/application-connection-final-deployment-eval-20261029.log"
+    }
+  ],
+  "schema_version": 1,
+  "scope": {
+    "attestation_transport_implemented": false,
+    "destination_lane_total_tests": 236,
+    "full_phase_accepted": false,
+    "host_provider_operations": false,
+    "inherited_restricted_observer_tests_in_new_suite": 20,
+    "live_settings_changed": false,
+    "new_connection_tests": 12,
+    "pgdata_socket_runtime_and_admission": "scratch-adapted or synthetic",
+    "scram": "actual disposable PostgreSQL with freshly generated synthetic credentials"
+  },
+  "source_artifact": {
+    "executable": false,
+    "files": {
+      "libexec/shop/database/application_connection.py": "1b07ab9ce292ad66275f52b6fef04a180a68d7e26fff2aa96aa3222d4f77b1dd",
+      "libexec/shop/database/application_observer.py": "87efc19e7d3ce06565385e4deecd862493d9a9184d99b6ae3d315f482ec84cf0",
+      "libexec/shop/database/control.py": "16b914f60574748d50c4d3a80af0dac096b18881bda83d63e571d28a624da871",
+      "libexec/shop/database/database.py": "8724437af4bd0eead2c7acd631bca2030f3b6f9f32584a2fa7df48f3875c5a08",
+      "libexec/shop/database/django_transaction.py": "bd62b6cf54c8f207b5f343b4308586b2de0297d9efc4ab91f14582a9dfe06217",
+      "libexec/shop/database/guard.py": "a10b467bb7730d5b1888d6787bca4abfa32e5ffb558882ca90a6b011dcdf1e70",
+      "libexec/shop/database/ledger_bootstrap.py": "b9fd5d13cdee56277c7de2776e674612c2fff006f482206c3b60baa5fb349fb0",
+      "libexec/shop/database/operator_inspect.py": "82a8634d1a97bdeaac33c280094a962d3e35cebfc1804c22352d4491031ce676",
+      "libexec/shop/database/operator_schema.py": "a37a55b0f2f1f750ae4d06ddebfb39e03b524921a20f24a539bd549ac1f597c4",
+      "libexec/shop/database/process_probe.py": "db04fbba27be2936dd8185d534d8301ace5edd62f5db89b1a32b57b1b1b172d2",
+      "libexec/shop/database/publication.py": "29fafd055f0d503bb5876e24c31ec19d4710330faa8064828446ac54b2bfb764",
+      "libexec/shop/database/record_bundle.py": "b5c6d1ce7ae8910ac5f27b3ad7e6a2a8639b454c6bb77d58045ae70ce1d6408b",
+      "libexec/shop/database/schema_authorization.py": "f86c5de90e791dc04ef600ee004c8270093cfa297da16e8bfde8f878bb2c21a2",
+      "libexec/shop/database/schema_reconciliation.py": "eba317910efbf0beb7cdef9c85885828fc5be9d9c402b6d316b898778c7aa52d",
+      "share/shop/application-observer.sql": "dc168d9438ebaec2d429207192173ba8b0abbd4a0a252f61785926c95a307e3b",
+      "share/shop/schema-ledger.sql": "7b20aa11e7d220bebb9c0370905dfddef450798cf32933743ec18cd5ca3bff4c"
+    },
+    "manifest_sha256": "796c80ecbbf70ddf8c9b808eb72f4b7da3d2a9a86569b12f58de2a4d5a6d1f3b",
+    "path": "/nix/store/f6mdj3v1agjyw5q3iswf5j0adrz2xlvl-shop-database-tools-source",
+    "production_activation": false,
+    "python_modules": 14,
+    "runtime_qualified": false,
+    "sql_files": 2
+  },
+  "source_head": "d78749b639daef9f36fcc774df4c596019a3f381"
+}

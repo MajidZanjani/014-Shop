@@ -1,0 +1,7 @@
+warning: Git tree '/home/claude/project/014-Shop' is dirty
+TOOL_PROVENANCE {"python3": {"path": "/nix/store/nr6vqhv33q8n6nbyy529fvcydy3zp1jd-python3-3.13.16-env/bin/python3"}}
+TOOL_PROVENANCE {"node": {"path": "/nix/store/x6a7dbhj1fmhwk0d9124zkszdfhd7k91-nodejs-24.22.0/bin/node"}}
+TOOL_PROVENANCE {"npm": {"path": "/nix/store/x6a7dbhj1fmhwk0d9124zkszdfhd7k91-nodejs-24.22.0/bin/npm"}}
+DEPLOYMENT_EVAL_PASS checks=16 tests=31 duration_seconds=2.222
+Candidate evaluation only; image-build, generator/runtime/bootstrap/review/off-host qualification requires separate evidence
+{"lane": "deployment-eval", "checks": 16, "tests": 31, "failures": 0, "elapsed_seconds": 2.263336746022105, "tool_identity": {}, "evidence_class": "local-synthetic"}

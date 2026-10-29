@@ -1,10 +1,18 @@
 ---
 phase: 02-reproducible-application-and-deployment-skeleton
 status: gaps_found
-verified: 2026-10-23
+verified: 2026-10-29
 scope: recorded-evidence-reconciliation
 ---
 # Current recorded-evidence audit — full phase not verified
+
+Current recorded reconciliation2026-10-29:02-14 policy-bound SCRAM/Django SQL3/236, inert source7/5 and deployment16/31 pass locally; [exact source/failures/scope](../../../docs/build/application-connection-2026-10-29.md). Actual current inert source is14 Python modules/two SQL files; all four candidate image archives, standard-tool OCI/filesystem/NAR and SBOM subsets now exist with retained scoped evidence. See [full tracker](02-COMPLETION-TRACKER.md) and [current progress](02-PROGRESS.md).
+
+Phase2 remains8/18; BUILD-01–08 remain unchecked. Approved policy issuance/custody, isolated attestation transport, automatic all-write/migration/bootstrap/replica and complete inventory/legal/independent runtime/CI/human/related acceptance remain pending. This document records existing evidence and does not rerun or approve full qualification. The user requests a synchronized pause after this step.
+
+## Historical reconciliation through2026-10-23
+
+All remaining observations/counts/old next-step text below describe their dates and are superseded for current routing by STATE/HANDOFF. They remain historical evidence, including now-superseded unbuilt-image/source-module and checkpoint statements.
 
 Status reconciled2026-10-23; Phase02 lane results below retain their recorded scope through dd322e1. Current Phase7 application evidence is246 core-local tests; see [STATE](../../STATE.md) and [ROADMAP](../../ROADMAP.md). No new full Phase02 qualification is claimed. This refresh reconciles recorded evidence; it is not an independent rerun of all lanes or full goal verification. See [current progress](02-PROGRESS.md) for evidence pointers and next work.
 

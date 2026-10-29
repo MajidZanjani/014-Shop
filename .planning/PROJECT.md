@@ -4,15 +4,17 @@
 
 A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering and business purchasers. Customers configure vendor-specific licences, answer one basic board/platform question, buy applicable pre-approved standard offers or request a narrow exception quote, and purchase non-expiring ten-hour SLL support independently or with IP. Approved R&D materials may precede a promised later reference design. Staff use MFA-protected workflows to review acceptance/payment, issue matching private packages and keys, process renewal/rehosting cases, and account for support work.
 
-## Current implementation status — 2026-10-28
+## Current implementation status — 2026-10-29
 
 **Current development focus:** 2 — Reproducible application and deployment skeleton; complete related foundation steps across phases. [Current purchase-flow authority](PURCHASE-FLOW-AMENDMENT.md).
 
-**Current plan:** 02-14 — Restricted application-role observer verified; connection/transport/all-write/migration/bootstrap/replica integration remains open.
+**Current plan:** 02-14 — Policy-bound SCRAM application connection verified locally; transport/all-write/migration/bootstrap/replica integration remains open.
 
-**Execution status:** in progress — Restricted application-role observer/Django context verified SQL3/204, source7/5 and deployment16/31; SBOM4/17 retained; complete14/16/17/related acceptance remains open8/18.
+**Execution status:** in progress — Policy-bound SCRAM/Django connection verified SQL3/236, source7/5 and deployment16/31; full14/16/17/related acceptance remains open8/18; user-requested pause follows commit/sync.
 
-**Next implementation task:** Bind the restricted observer to approved connection/owner policy and implement isolation-preserving attestation lease transport plus app/worker all-write/migration/bootstrap/replica integration; retain16/17/native/legal/CI/independent/human gates.
+**Next implementation task:** Implement approved application-policy issuance/custody and isolation-preserving attestation lease transport, then app/worker all-write/migration/bootstrap/replica integration; retain16/17/native/legal/CI/independent/human gates.
+
+Policy-bound SCRAM connection prerequisite is verified locally: [236-test/source/deployment evidence](../docs/build/application-connection-2026-10-29.md). Approved policy issuance/custody and isolated attestation/all-write integration remain open; this library does not issue actual authority.
 
 Four exact images now have raw maintained-tool SBOMs; native57/53/168,102 notice candidates/five objects and five strict CycloneDX validations are recorded4/17/59.676s. [Exact scope and unresolved findings](../docs/build/image-sbom-2026-10-29.md). Prior source/lock/OCI/NAR evidence is unchanged; [full tracker](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md) remains8/18 with all full inventory/runtime/CI/legal/independent/related gates.
 

@@ -2,18 +2,17 @@
 
 **Current development focus:** 2 — Reproducible application and deployment skeleton; complete related foundation steps across phases. [Current purchase-flow authority](PURCHASE-FLOW-AMENDMENT.md).
 
-**Current plan:** 02-14 — Restricted application-role observer verified; connection/transport/all-write/migration/bootstrap/replica integration remains open.
+**Current plan:** 02-14 — Policy-bound SCRAM application connection verified locally; transport/all-write/migration/bootstrap/replica integration remains open.
 
-**Execution status:** in progress — Restricted application-role observer/Django context verified SQL3/204, source7/5 and deployment16/31; SBOM4/17 retained; complete14/16/17/related acceptance remains open8/18.
+**Execution status:** in progress — Policy-bound SCRAM/Django connection verified SQL3/236, source7/5 and deployment16/31; full14/16/17/related acceptance remains open8/18; user-requested pause follows commit/sync.
 
-**Next implementation task:** Bind the restricted observer to approved connection/owner policy and implement isolation-preserving attestation lease transport plus app/worker all-write/migration/bootstrap/replica integration; retain16/17/native/legal/CI/independent/human gates.
+**Next implementation task:** Implement approved application-policy issuance/custody and isolation-preserving attestation lease transport, then app/worker all-write/migration/bootstrap/replica integration; retain16/17/native/legal/CI/independent/human gates.
 
-**Recorded implementation:** b201c9aa07c518c200beec8766fb0cfc4de3b4f9
+**Recorded implementation:** d78749b639daef9f36fcc774df4c596019a3f381
 
-Four exact images now have raw maintained-tool SBOMs; native57/53/168,102 notice candidates/five objects and five strict CycloneDX validations are recorded4/17/59.676s. [Exact scope and unresolved findings](../docs/build/image-sbom-2026-10-29.md). Prior source/lock/OCI/NAR evidence is unchanged; [full tracker](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md) remains8/18 with all full inventory/runtime/CI/legal/independent/related gates.
 
-Full goal remains incomplete8/18. Read the current SBOM report and full completion tracker, then finish14 application-role/all-write/isolated attestation transport/migration/bootstrap/replica and remaining native/source/helper/backup inventory work. Preserve actual/human/independent/full-CI gates. Continue after every commit/push; no new permission or company-input request is needed for independent local implementation.
+[Verified connection-policy step and retained failures](../docs/build/application-connection-2026-10-29.md): SQL3/236, inert source7/5, deployment16/31; fourteen inert Python modules/two SQL files. Production/bank-sandbox and runtime image definitions remain unchanged. Complete goal remains8/18; [full tracker](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md).
 
-Use TMPDIR=$PWD/.scratch/auth-unicode-tmp and XDG_CACHE_HOME=$PWD/.scratch/phase2-repro-nix-cache. Shared /tmp and root Nix cache remain full; unknown resources must not be cleaned. Existing task-owned /var parent and failed SBOM attempts remain recorded. No image payload, runtime daemon, protected service, provider, .env credential or actual approval was used. Exact context usage is unavailable; no threshold claimed. No active job survives the completed scan.
+Next action is the field above after resume. Company inputs promised later remain pending; no new permission request is needed for independent local work. Shared temp/cache are constrained; use owned .scratch/auth-unicode-tmp and .scratch/phase2-repro-nix-cache. Preserve unknown resources, prior actual evidence, protected/provider gates and unassigned independent runner.
 
-Latest local prerequisite: [restricted-role observer and exact security fix](../docs/build/application-observer-2026-10-29.md), SQL204/source7/5/deployment16/31. User explicitly requests pause after this step; finish commit/push then create structured HANDOFF and synchronize paused routing. Original full goal remains incomplete8/18.
+User explicitly requests all active planning synchronization, commit/sync and pause after this verified step. No running job or credential/host/provider operation belongs to this continuation.

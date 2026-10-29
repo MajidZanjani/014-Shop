@@ -2,8 +2,8 @@
 gsd_state_version: "1.0"
 current_plan: 14
 status: in_progress
-last_updated: "2026-10-29T10:24:27.128621+00:00"
-state_head: b201c9aa07c518c200beec8766fb0cfc4de3b4f9
+last_updated: "2026-10-29T11:11:48.705181+00:00"
+state_head: d78749b639daef9f36fcc774df4c596019a3f381
 progress:
   total_phases: 14
   completed_phases: 1
@@ -14,8 +14,8 @@ current_task: 1
 last_activity: 2026-10-29
 current_phase: 2
 current_phase_name: Reproducible application and deployment skeleton
-stopped_at: "Verified application-role observer step; documenting before user-requested gsd-pause-work."
-last_activity_desc: "Restricted-role SQL204/source7/5/deployment16/31 verified; temporary-type escalation fixed; user requests pause after step."
+stopped_at: "Connection-policy step verified; completing planning synchronization before requested pause."
+last_activity_desc: "Policy-bound SCRAM/Django SQL236/source7/5/deployment16/31 verified; commit/sync and complete planning before pause."
 ---
 
 # Project state — final purchase-flow revision2
@@ -24,13 +24,15 @@ last_activity_desc: "Restricted-role SQL204/source7/5/deployment16/31 verified; 
 
 **Last fully completed phase:** 1 — baseline documentary acceptance only. SRC-05 final-amendment documentary reconciliation is complete and does not revalidate actual commercial or external behavior. All other phases remain partial or pending. Counts are completed-phase/planned-record counts, not engineering effort.
 
-**Current plan:** 02-14 — Restricted application-role observer verified; connection/transport/all-write/migration/bootstrap/replica integration remains open.
+**Current plan:** 02-14 — Policy-bound SCRAM application connection verified locally; transport/all-write/migration/bootstrap/replica integration remains open.
 
-**Execution status:** in progress — Restricted application-role observer/Django context verified SQL3/204, source7/5 and deployment16/31; SBOM4/17 retained; complete14/16/17/related acceptance remains open8/18.
+**Execution status:** in progress — Policy-bound SCRAM/Django connection verified SQL3/236, source7/5 and deployment16/31; full14/16/17/related acceptance remains open8/18; user-requested pause follows commit/sync.
 
-**Next implementation task:** Bind the restricted observer to approved connection/owner policy and implement isolation-preserving attestation lease transport plus app/worker all-write/migration/bootstrap/replica integration; retain16/17/native/legal/CI/independent/human gates.
+**Next implementation task:** Implement approved application-policy issuance/custody and isolation-preserving attestation lease transport, then app/worker all-write/migration/bootstrap/replica integration; retain16/17/native/legal/CI/independent/human gates.
 
 ## Current local continuation
+
+Policy-bound SCRAM connection prerequisite is verified locally: [236-test/source/deployment evidence](../docs/build/application-connection-2026-10-29.md). Approved policy issuance/custody and isolated attestation/all-write integration remain open; this library does not issue actual authority.
 
 Four exact images now have raw maintained-tool SBOMs; native57/53/168,102 notice candidates/five objects and five strict CycloneDX validations are recorded4/17/59.676s. [Exact scope and unresolved findings](../docs/build/image-sbom-2026-10-29.md). Prior source/lock/OCI/NAR evidence is unchanged; [full tracker](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md) remains8/18 with all full inventory/runtime/CI/legal/independent/related gates.
 
@@ -63,7 +65,7 @@ P-02/03/05/06/08 cover actual ready-kit variants, standard development prices/ri
 
 ## Session continuity
 
-2026-10-29T10:24:27.128621+00:00: resumed and pushed SBOM b201c9a, then completed actual local restricted-role observer and guarded Django context. SQL3/204/15.180s, inert source7/5/4.426s and deployment16/31/2.207s pass. Actual temporary-domain owner-privilege canary failed before the fully qualified-type/pg_temp-last fix; final evidence supersedes earlier19/203 subset. Full phase/related goal remains unachieved8/18. User explicitly requests gsd-pause-work after this step; finish this commit/push then save the exact checkpoint. No active producer/external job, protected/provider/.env action or new approval.
+2026-10-29T11:11:48.705181+00:00: resumed02-14, verified the policy-bound SCRAM application connection with final SQL3/236/17.607s, source7/5/4.302s and deployment16/31/2.222s. Twelve new connection cases and twenty inherited observer cases are included in236. Initial missing-producer and adapter/fixture failures are retained in [exact evidence](../docs/build/application-connection-2026-10-29.md). The user requested complete planning reconciliation, commit/sync and gsd-pause-work after this step. Full Phase2/related goal remains incomplete8/18. Transport/issuance/all-write/migration/bootstrap/replica and all actual/native/legal/CI/independent/human gates remain open.
 
 ### Quick Tasks Completed
 

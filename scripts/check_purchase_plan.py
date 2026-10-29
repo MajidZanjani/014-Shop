@@ -16,12 +16,12 @@ def planning_artifacts():
 
 
 def refresh_inventory():
-    current={'PROJECT.md','REQUIREMENTS.md','ROADMAP.md','STATE.md','HANDOFF.md','SOURCES.md','SOURCE-MATRIX.md','REPLAN-VERIFICATION.md','EXECUTION-AMENDMENT-2026-10-22.md','PURCHASE-FLOW-AMENDMENT.md','state.json'}
+    current={'PROJECT.md','REQUIREMENTS.md','ROADMAP.md','STATE.md','HANDOFF.md','HANDOFF.json','SOURCES.md','SOURCE-MATRIX.md','REPLAN-VERIFICATION.md','EXECUTION-AMENDMENT-2026-10-22.md','PURCHASE-FLOW-AMENDMENT.md','state.json'}
     files=[]
     for path in sorted(planning_artifacts()):
         name=str(path.relative_to(P))
         if name=='config.json':role='workflow-config'
-        elif name in current or name.startswith('research/') or path.name.endswith(('-UI-SPEC.md','-QUALIFICATION-REGISTER.md','-COMPLETION-TRACKER.md')):role='current'
+        elif name in current or path.name.startswith('.continue-here') or name.startswith('research/') or path.name.endswith(('-UI-SPEC.md','-QUALIFICATION-REGISTER.md','-COMPLETION-TRACKER.md')):role='current'
         elif name.startswith('quick/') and path.name.endswith('-PLAN.md') and not path.with_name(path.name.replace('PLAN','SUMMARY')).exists():role='current'
         elif path.name.endswith('-PLAN.md') and name.startswith('phases/02-') and not path.with_name(path.name.replace('PLAN','SUMMARY')).exists():role='retained-infrastructure-plan'
         elif path.name.endswith('-PLAN.md') and name.startswith('phases/') and not path.with_name(path.name.replace('PLAN','SUMMARY')).exists():role='current'

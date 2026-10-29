@@ -69,6 +69,11 @@
       "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
     },
     {
+      "path": ".planning/audits/2026-10-29-planning-sync.md",
+      "role": "historical-evidence",
+      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+    },
+    {
       "path": ".planning/config.json",
       "role": "workflow-config",
       "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
@@ -105,8 +110,8 @@
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/.continue-here.md",
-      "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-00-PLAN.md",

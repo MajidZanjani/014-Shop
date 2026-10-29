@@ -104,3 +104,8 @@ Streaming observer preserves independent outer hashes and original report. Actua
 Registered-vs-compatible recipe origin stays separate and unproven; Syft publicsuffix inference, empty platform fields and11 sbomnix attribute projections remain explicit. No raw output is repaired, no complete notice/legal/runtime/source/helper/backup acceptance inferred. Full plan16 and phase8/18 remain open, alongside14/17/related/actual/human/independent/CI gates. Next substantive local work includes14 app-role/all-write/isolated transport/migration/bootstrap/replica integration; no old build/lock/backend rerun or protected/provider operation.
 
 Final focused integration41 tests/0.037s and correctly pinned deployment-eval16/31/2.151s pass. Smaller sbom-shell deployment invocation first denies missing acceptance-tool identity; no gate override. Standing user authorization governs ordinary main commits/pushes. Consumed HANDOFF.json deletion and its reconciliation-entry removal are intentional; the complete checkpoint remains in prior committed history. Full task/plan acceptance stays incomplete, so no parent SUMMARY is manufactured.
+
+
+## Related current source update —2026-10-29
+
+Current inert database source now adds application_connection.py (14 Python modules/two SQL files), built/imported7/5. This is a separate inert artifact; earlier runtime image/native/SBOM bytes and reviews are unchanged. Full source/helper/backup/incorporated-notice/licence inventory still remains pending. [Exact evidence](../../../docs/build/application-connection-2026-10-29.md). User requests synchronized pause after this step.

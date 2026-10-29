@@ -4,6 +4,8 @@ Active local sequence and authorization: [2026-10-22 amendment](../../EXECUTION-
 
 # Phase 2 — October 21 locked context
 
+Current continuation2026-10-29: policy-bound connection preparation is verified locally (SQL236/source7/5/eval16/31); [current scope](02-PROGRESS.md) and [complete remaining goal](02-COMPLETION-TRACKER.md) govern the next task. Prior replan-only/task-order prose below is historical. User requests complete planning synchronization and pause after this step; original locked constraints remain in force.
+
 <decisions>
 - The user selected existing mx1 + NixOS-declared rootless Podman Quadlet/user-systemd; Podman is mandatory production architecture, not fallback. Run directly under new proposed shopsvc, outside claude-dev and existing application owners.
 - Separate app, one worker, new PostgreSQL container/cluster and internal Caddy containers; independently owned backup jobs. New PGDATA/roles/passwords/socket/network/backup identity, checked before every database mutation; no existing postgres reuse.

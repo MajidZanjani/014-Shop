@@ -9,7 +9,7 @@ created: "2026-10-21"
 ---
 # Phase 2 validation strategy — current protected-host contract
 
-18 plans / 24 tasks / 14 waves. Plans 02-01/02-02 retain recorded development-only evidence; repository implementation through 13 now has local evidence in individual summaries. Runtime/host/full phase acceptance remains pending. This document retains the prospective full verification contract.
+18 plans / 24 tasks / 14 waves. Current recorded evidence and routing are in [02-PROGRESS.md](02-PROGRESS.md), [02-COMPLETION-TRACKER.md](02-COMPLETION-TRACKER.md) and STATE/HANDOFF; historical command results below retain their dates. Plans 02-01/02-02 retain recorded development-only evidence; repository implementation through 13 now has local evidence in individual summaries. Runtime/host/full phase acceptance remains pending. This document retains the prospective full verification contract.
 
 Use real isolated PostgreSQL, Django TransactionTestCase/independent backend connections, Python unittest and Node tests. No SQLite or missing-test/zero-count success. Existing pinned shell/dispatcher is retained. Focused commands run only after producers; quick/all remain nonzero until all required producers exist. Record actual counts/timings and positive controls before installer negatives. No real .env/host secrets.
 
@@ -39,11 +39,11 @@ Evaluation/build and runtime lanes are distinct. deployment-boot remains a compa
 | 02-12-01 | 6 | [02-06] | [BUILD-03] | `nix develop ./ops/nixos --command python3 scripts/check.py contracts` | Local implementation/test evidence; full qualification/review pending |
 | 02-13-01 | 8 | [02-04, 02-08, 02-12] | [BUILD-01, BUILD-03, BUILD-04] | `nix develop ./ops/nixos --command python3 scripts/check.py contracts` | Local implementation/test evidence; full qualification/review pending |
 | 02-13-02 | 8 | [02-04, 02-08, 02-12] | [BUILD-01, BUILD-03, BUILD-04] | `nix develop ./ops/nixos --command python3 scripts/check.py boundaries` | Local implementation/test evidence; full qualification/review pending |
-| 02-14-01 | 11 | [02-10, 02-11, 02-13] | [BUILD-01, BUILD-03, BUILD-04, BUILD-05, BUILD-06, BUILD-07] | `nix develop ./ops/nixos --command python3 scripts/check.py deployment-eval; nix develop ./ops/nixos --command python3 scripts/check.py deployment-build` | Pending |
+| 02-14-01 | 11 | [02-10, 02-11, 02-13] | [BUILD-01, BUILD-03, BUILD-04, BUILD-05, BUILD-06, BUILD-07] | `nix develop ./ops/nixos --command python3 scripts/check.py database-destination`; `database-tools`; `deployment-eval`; `deployment-build` | Local SQL236/source7/5/eval16/31 verified; full build/runtime/transport/all-write qualification pending |
 | 02-14-02 | 11 | [02-10, 02-11, 02-13] | [BUILD-01, BUILD-03, BUILD-04, BUILD-05, BUILD-06, BUILD-07] | `nix develop ./ops/nixos --command python3 scripts/check.py deployment-boot` | Pending |
-| 02-15-01 | 12 | [02-14] | [BUILD-04, BUILD-05, BUILD-06, BUILD-07, BUILD-08] | `nix develop ./ops/nixos --command python3 scripts/check.py deployment-profiles` | Pending |
-| 02-16-01 | 13 | [02-15] | [BUILD-01, BUILD-02] | `nix develop ./ops/nixos --command python3 scripts/check.py inventory` | Pending |
-| 02-17-01 | 14 | [02-16] | [BUILD-01, BUILD-02, BUILD-03, BUILD-04] | `nix develop ./ops/nixos --command python3 scripts/check.py reproducibility`; `nix develop ./ops/nixos --command python3 scripts/check.py locks` | Pending |
+| 02-15-01 | 12 | [02-14] | [BUILD-04, BUILD-05, BUILD-06, BUILD-07, BUILD-08] | `nix develop ./ops/nixos --command python3 scripts/check.py deployment-profiles` | Retained local SUMMARY; actual host/ingress acceptance pending |
+| 02-16-01 | 13 | [02-15] | [BUILD-01, BUILD-02] | `nix develop ./ops/nixos --command python3 scripts/check.py inventory` | Partial image/native/standard SBOM evidence; complete inventory/legal/human acceptance pending |
+| 02-17-01 | 14 | [02-16] | [BUILD-01, BUILD-02, BUILD-03, BUILD-04] | `nix develop ./ops/nixos --command python3 scripts/check.py reproducibility`; `nix develop ./ops/nixos --command python3 scripts/check.py locks` | Current local payload/lock/NAR subsets verified; full OCI/qualified CI/independent comparison pending |
 | 02-17-02 | 14 | [02-16] | [BUILD-01, BUILD-02, BUILD-03, BUILD-04] | `nix develop ./ops/nixos --command python3 scripts/check.py all`; `python3 docs/product-source/verify_t01.py all`; `python3 docs/product-source/verify_t01.py self-check` | Pending |
 
 ## Required boundaries and review
@@ -71,3 +71,10 @@ Do not set nyquist_compliant true based on documentation review. T11/T12/T13/T14
 ## Current recorded checkpoint — 2026-10-21
 
 Only8 completed local SUMMARY records remain;10 incomplete records are PARTIAL. Deployment-eval9/4 and profiles6/5 passed; locks3/8 and two independent public/backend builds4/5 passed. Native/OCI inventory and boot implementation/evidence remain incomplete. Installed SBOM collector recorded316 components/4 controls then exit2 with raw npm schema/notice/native gaps. Full all exited1 after environment/frontend at required off-host core gate, no FULL_PASS. Source six groups and71 rejections pass. See02-VERIFICATION.md and PARTIAL records; no sign-off checkbox is complete from this checkpoint.
+
+
+## Policy-bound SCRAM application connection —2026-10-29
+
+[Final source, six retained raw logs and exact scope](../../../docs/build/application-connection-2026-10-29.md): SQL3/236/17.607s, source7/5/4.302s and deployment16/31/2.222s. Twelve new connection tests plus twenty inherited restricted-observer tests are included in236. Real newly generated synthetic SCRAM credentials, peer/authentication denial, immutable policy snapshot, credential version, Django adapter-only integration, exact-wrapper/connection binding and transaction controls pass on owned disposable PostgreSQL. PGDATA/socket/runtime/admission are scratch-adapted or synthetic.
+
+Actual inert source has14 Python modules/two SQL files and remains non-executable/unqualified; production/bank-sandbox and runtime image definitions are unchanged. Initial missing-producer and adapter/fixture failures remain retained. Approved policy issuance/custody, isolation-preserving attestation lease transport, automatic app/worker all-write, migration/bootstrap and executable independent replica integration remain open. Full14/16/17/native/source/helper/backup/notices/legal/CI/independent/runtime/recovery/human/related acceptance is still incomplete8/18. User requests complete planning synchronization, commit/sync and pause after this verified step; no parent SUMMARY/FULL_PASS.

@@ -1,0 +1,7 @@
+warning: Git tree '/home/claude/project/014-Shop' is dirty
+TOOL_PROVENANCE {"python3": {"path": "/nix/store/nr6vqhv33q8n6nbyy529fvcydy3zp1jd-python3-3.13.16-env/bin/python3"}}
+TOOL_PROVENANCE {"node": {"path": "/nix/store/x6a7dbhj1fmhwk0d9124zkszdfhd7k91-nodejs-24.22.0/bin/node"}}
+TOOL_PROVENANCE {"npm": {"path": "/nix/store/x6a7dbhj1fmhwk0d9124zkszdfhd7k91-nodejs-24.22.0/bin/npm"}}
+DATABASE_TOOLS_PASS checks=7 tests=5 duration_seconds=4.302
+Actual source build/import and packaged help/denial only; host installation/positive transport/runtime qualification pending
+{"lane": "database-tools", "checks": 7, "tests": 5, "failures": 0, "elapsed_seconds": 4.340933391125873, "tool_identity": {}, "evidence_class": "local-synthetic"}
