@@ -1,9 +1,8 @@
 ---
 gsd_state_version: "1.0"
 current_plan: 17
-status: paused
-paused_at: "2026-10-29T06:48:53.871Z"
-last_updated: "2026-10-29T06:48:53.871Z"
+status: in_progress
+last_updated: "2026-10-29T07:30:26.113Z"
 state_head: 2bf69782189ecd90da384a018a2a29ad7d937cc7
 progress:
   total_phases: 14
@@ -15,8 +14,8 @@ current_task: 1
 last_activity: 2026-10-29
 current_phase: 2
 current_phase_name: Reproducible application and deployment skeleton
-stopped_at: "Proactive context checkpoint after verified four-image build; full Phase2 goal remains active and incomplete."
-last_activity_desc: "Four exact image archives and selectors committed/pushed at2bf6978;23/16-31/8 local controls pass; no full acceptance."
+stopped_at: "Current complete public/backend reproducibility and locks verified; full OCI/runtime/related work pending."
+last_activity_desc: "Original11/5 controls; two real builds4/11/16.008s and locks3/8/7.858s pass; historical evidence unchanged."
 ---
 
 # Project state — final purchase-flow revision2
@@ -27,13 +26,13 @@ last_activity_desc: "Four exact image archives and selectors committed/pushed at
 
 **Current plan:** 02-17 — Two clean builds and complete CI evidence; partial14/16 dependencies retained.
 
-**Execution status:** paused — proactive context checkpoint after four-candidate image build/inspection; plan records8/18 and full Phase2/related acceptance remain pending.
+**Execution status:** in progress — Phase2 current public/backend reproducibility4/11/builds2 and locks3/8 verified; four image archives retained; plan records8/18 and full OCI/runtime/CI/related qualification pending.
 
-**Next implementation task:** Clear the session, run $gsd-resume-work, restore the full Phase2 goal at02-17 task1, revalidate rooted image evidence and refresh current two-clean-build/lock evidence with existing bounded producers before remaining merged/native/OCI and14 integration work.
+**Next implementation task:** Qualify actual merged filesystem/link/PAX and native/OCI image evidence and two independent image comparisons, then complete remaining14 application/transport/migration/bootstrap/replica integration and every related actual/human acceptance gate.
 
 ## Current local continuation
 
-Phase2 now has all four exact local candidate archives with independently observed outer/inner bytes and276 matching app/worker source files. [Actual scope](../docs/build/four-candidate-images-2026-10-29.md); [full goal tracker](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md). PostgreSQL historical bytes reproduce;23 inspector tests, deployment16/31 and inventory/planning8 pass. These results do not complete Phase2, OCI/runtime/native/licence/CI or related recovery/activation acceptance.
+Current exact public/backend payloads now reproduce in two fresh builds including all280 backend inputs; original11/5 controls and final4/11/builds2 plus locks3/8 pass. [Current evidence](../docs/build/current-payload-reproducibility-2026-10-29.md). Four rooted image archives remain hash-verified; [full goal tracker](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md) retains OCI/native/runtime/CI/legal and related qualification. No full phase/plan approval is inferred.
 
 ## Preserved implementation/evidence
 
@@ -64,7 +63,7 @@ P-02/03/05/06/08 cover actual ready-kit variants, standard development prices/ri
 
 ## Session continuity
 
-Proactive context checkpoint at2026-10-29T06:48:53.871Z after verified/pushed2bf6978. Exact context percentage is unavailable; long business-recovery and Phase2 source/test/build context prompted preservation under AGENTS.md, not a measured90% trigger or new user pause request. Active full goal remains completing Phase2 and related steps. Four candidates build/inspect with retained hashes/local roots; original23/15, fixed23, deployment16/31 and inventory/planning8 pass. No producers or async jobs remain. Resume02-17 task1: revalidate artifacts, refresh current reproducibility/locks using existing bounded producers, then finish merged/native/OCI and14 integration/qualification. Phase2 remains8/18; all actual/human/provider/independent gates pending.
+Active goal resumed397fdcd at2026-10-29T07:30:26.113Z; prior handoff consumed and all four rooted archives/reports revalidated. Fixed current release packaging, canonical partial-init cleanup/explicit owned input and validation-first immutable evidence publication after original11/5 control. Actual two fresh public/backend builds4/11/16.008s and locks3/8/7.858s pass. New versioned manifest retains source/command/tool/hash/count/timing scope; old evidence unchanged. No live producers or async jobs. Full Phase2 and related goal remains incomplete8/18; continue actual merged/native/OCI comparison and14 integration/independent/human qualification without lowering gates. Standing pushes remain authorized; promised company inputs stay pending without another request.
 
 ### Quick Tasks Completed
 

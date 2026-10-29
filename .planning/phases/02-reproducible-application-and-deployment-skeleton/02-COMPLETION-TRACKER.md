@@ -6,7 +6,7 @@ Objective: complete Phase 2 and its related steps in other phases. Active user g
 
 | Requirement | Existing evidence | Required remaining proof |
 |---|---|---|
-| BUILD-01 reproducible pinned builds | Locked local tools, frontend/backend payload reproducibility, current804-test local backend | Current complete clean-build/installer/CI execution and deterministic OCI payload/config comparison; four actual candidate archives are now built once with exact source observations; independent runtime lanes remain |
+| BUILD-01 reproducible pinned builds | Locked tools; current two-build public/backend evidence4/11 with all280 release files and installer lock3/8; retained804-test local backend | Complete qualified CI and deterministic independent OCI payload/config comparison; current local public/backend clean-build and installer evidence is now refreshed, and four candidates are built once; independent runtime lanes remain |
 | BUILD-02 actual component/licence/SBOM review | Retained raw SBOMs, explicit npm derivative, supplemental licence/native/source/image observations | Resolve all12 package-wide reviews and raw metadata findings; complete native/Nix/image inventory and attributable human licence/compatibility/probe/prohibition review |
 | BUILD-03 synthetic fixtures and contracts | Implemented fake-only adapters, PostgreSQL worker, schemas and local contracts | Actual independently authorized outage/interruption observations and complete aggregate without skipped/missing lanes |
 | BUILD-04 rootless immutable services | Evaluated Nix/Quadlet candidates; all four actual candidate archives and observed inner bytes, with exact PostgreSQL historical reproduction | Exact reviewed import/runtime compatibility, executable independent rootless lifecycle and one lifecycle per service; one local four-image build is complete |
@@ -25,7 +25,7 @@ Objective: complete Phase 2 and its related steps in other phases. Active user g
 | 12–13 | Local contracts/privacy/evidence boundaries; qualification/review pending | Real independently observed503 outage and attributable human source/probe/prohibition review |
 | 14 | Implementation and qualification incomplete | Finish required application/transport/bootstrap/runtime integration and executable independent replica driver; local four-candidate archive build/inspection is complete |
 | 16 | Implementation and qualification incomplete | Complete actual artifact/native/licence inventory, image semantics and attributable review |
-| 17 | Implementation and qualification incomplete | OCI/two-independent-image comparison, complete current two-clean-build/lock evidence, same mandatory dispatcher in qualified CI and final full manifest |
+| 17 | Implementation and qualification incomplete | OCI/two-independent-image comparison and qualified CI; current local two-clean-public/backend-build/lock evidence is refreshed, same mandatory dispatcher in qualified CI and final full manifest |
 
 Current18-plan acceptance stays8/18. BUILD-01–08 remain unchecked; no Phase2 SUMMARY or FULL_PASS is warranted.
 
@@ -53,3 +53,7 @@ Initial measured feasibility: worktree1.8GiB free, shared128MiB /tmp full, /nix/
 Independent ordinary/full runner requirements remain in docs/qualification-runner.md; no runner is assigned. Runtime/fault/exhaustion/recovery, real providers and protected-host operations retain scoped gates. Full current Phase2 acceptance remains8/18; the active user goal is not complete.
 
 Proactive context checkpoint at2026-10-29T06:48:53.871Z after pushed2bf6978. Exact usage is unavailable; full goal remains active and incomplete. Clear/resume at02-17 task1, revalidate four artifacts and refresh current reproducibility/locks before the remaining implementation/qualification sequence.
+
+Resumed by active-goal continuation at2026-10-29T06:59:55.534Z; current four rooted archive/report hashes verified. Current reproducibility/lock checks and original-code reproduction precede fixes. Full goal/acceptance remains open.
+
+Current-source reproducibility refresh completed: [two-build/lock evidence](../../../docs/build/current-payload-reproducibility-2026-10-29.md), actual4/11/builds2/16.008s and locks3/8/7.858s. Original11/5 source control restores fixed bytes. Backend release now contains all280 required source/requirement inputs, partial canonical initialization cleans only its owned paths, and new validation-first evidence preserves originals. The required full OCI lane still rejects; remaining goal/parent acceptance stays open.

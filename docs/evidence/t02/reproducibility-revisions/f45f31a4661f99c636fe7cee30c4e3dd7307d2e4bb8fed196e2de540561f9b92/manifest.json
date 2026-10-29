@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "evidence_class": "local-synthetic",
+  "source": {
+    "commit": "397fdcd1482f94b0d2c35c4d7382dfa973ea90c2",
+    "dirty": true
+  },
+  "tools": {
+    "python": "3.13.16"
+  },
+  "locks": [
+    {
+      "path": "backend/requirements/tools-linux-py313.txt",
+      "sha256": "e1be2ae84dba689c3c6cbf3a9e2a4ed468bf34ec5d85550846e73a210fef0fe1"
+    },
+    {
+      "path": "backend/requirements/runtime-linux-py313.txt",
+      "sha256": "f8fcadf293e0da50ca0cd19af277e869a2de4a9476bd65e9d919ff7f506a7606"
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "sha256": "45364e53e0d36a848ce1a615ac9685e76990c4fa904481fb2906cafa87e86315"
+    },
+    {
+      "path": "ops/nixos/flake.lock",
+      "sha256": "865a3c07a35f43f024ce7c01614be82cb795707edac8e27092bdbba42519cd75"
+    }
+  ],
+  "command": [
+    "/nix/store/nr6vqhv33q8n6nbyy529fvcydy3zp1jd-python3-3.13.16-env/bin/python3",
+    "scripts/check_reproducibility.py",
+    "--local",
+    "--canonical-build-root",
+    "/home/claude/project/014-Shop/.scratch/shop-reproducible-build",
+    "--record-evidence"
+  ],
+  "exit_code": 0,
+  "checks": 4,
+  "tests": 11,
+  "started_at": "2026-10-29T07:16:01.468512+00:00",
+  "duration_seconds": 15.015413040993735,
+  "artifacts": [
+    {
+      "path": "docs/evidence/t02/reproducibility-revisions/f45f31a4661f99c636fe7cee30c4e3dd7307d2e4bb8fed196e2de540561f9b92/reproducibility.json",
+      "sha256": "f45f31a4661f99c636fe7cee30c4e3dd7307d2e4bb8fed196e2de540561f9b92"
+    },
+    {
+      "path": "scripts/check_reproducibility.py",
+      "sha256": "56016bb1cf0b3372de7e82d8263be8f20c546a95bfde5acef620c58a5f9891b5"
+    }
+  ]
+}

@@ -9,6 +9,7 @@ import io
 import json
 import os
 import shutil
+import stat
 from pathlib import Path
 import subprocess
 import sys
@@ -47,7 +48,10 @@ def backend_package(root,epoch):
     source=root/'backend';source.mkdir()
     for path in sorted((ROOT/'backend').rglob('*')):
         relative=path.relative_to(ROOT/'backend')
-        if not (path.suffix=='.py' or (relative.parts[0]=='requirements' and path.suffix in {'.txt','.in'})):continue
+        name=relative.as_posix()
+        runtime_asset=(name in {'shop/catalog/revision.json','shop/catalog/document_preview.json','shop/catalog/shop.css'}
+            or path.suffix=='.html' and name.startswith(('shop/catalog/templates/','shop/access/templates/')))
+        if not (path.suffix=='.py' or (relative.parts[0]=='requirements' and path.suffix in {'.txt','.in'}) or runtime_asset):continue
         require(path.is_file() and not path.is_symlink() and path.stat().st_size<1048576,'unsafe backend source input')
         target=source/relative;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(path.read_bytes())
     output=root/'payload/backend.tar';output.parent.mkdir(exist_ok=True)
@@ -66,19 +70,40 @@ CANONICAL_BUILD_PATH=Path('/tmp/shop-reproducible-build')
 
 
 @contextmanager
-def canonical_build_root():
+def canonical_build_root(path=None):
     """Own an empty target; bind only inside each new private mount namespace."""
-    root=CANONICAL_BUILD_PATH
+    root=CANONICAL_BUILD_PATH if path is None else Path(path)
+    if path is not None:
+        owned=ROOT/'.scratch'
+        require(root.is_absolute() and root.parent==owned and root.name not in ('.','..')
+                and owned.is_dir() and not owned.is_symlink(),'explicit canonical target must be a new direct child of owned .scratch')
+    token=secrets.token_hex(32).encode()
     root.mkdir(mode=0o700,exist_ok=False) # Existing/unknown target is never reused.
-    marker=root/'.owned';token=secrets.token_hex(32)
-    marker.write_text(token);marker.chmod(0o600)
+    identity=root.lstat();marker=root/'.owned';marker_identity=None;initialized=False
     try:
+        with marker.open('xb') as stream:
+            marker_identity=os.fstat(stream.fileno());os.fchmod(stream.fileno(),0o600)
+            stream.write(token)
+        initialized=True
         yield root
     finally:
-        require(not root.is_symlink() and marker.is_file() and not marker.is_symlink()
-                and marker.read_text()==token and set(root.iterdir())=={marker},'canonical target ownership changed; cleanup refused')
-        require(not any(line.split(' - ',1)[0].split()[4]==str(root) for line in Path('/proc/self/mountinfo').read_text().splitlines()),'parent mount namespace unexpectedly changed')
-        marker.unlink();root.rmdir()
+        current=root.lstat()
+        require(stat.S_ISDIR(current.st_mode) and (current.st_dev,current.st_ino,current.st_uid)==
+                (identity.st_dev,identity.st_ino,identity.st_uid),'canonical target identity changed; cleanup refused')
+        require(set(root.iterdir())==({marker} if marker_identity is not None else set()),'canonical target ownership changed; cleanup refused')
+        if marker_identity is not None:
+            descriptor=os.open(marker,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK|os.O_CLOEXEC)
+            with os.fdopen(descriptor,'rb') as stream:
+                info=os.fstat(stream.fileno())
+                require(stat.S_ISREG(info.st_mode) and info.st_size<=len(token)
+                        and (info.st_dev,info.st_ino,info.st_uid)==(marker_identity.st_dev,marker_identity.st_ino,marker_identity.st_uid),
+                        'canonical marker identity changed; cleanup refused')
+                data=stream.read(len(token)+1)
+            require(data==token if initialized else token.startswith(data),'canonical marker changed; cleanup refused')
+        encoded_root=str(root).replace('\\','\\134').replace(' ','\\040').replace('\t','\\011').replace('\n','\\012')
+        require(not any(line.split(' - ',1)[0].split()[4]==encoded_root for line in Path('/proc/self/mountinfo').read_text().splitlines()),'parent mount namespace unexpectedly changed')
+        if marker_identity is not None:marker.unlink()
+        root.rmdir()
 
 
 def build(root,epoch,canonical):
@@ -103,8 +128,9 @@ def build(root,epoch,canonical):
 
 
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--local',action='store_true');parser.add_argument('--record-evidence',action='store_true');args=parser.parse_args()
-    require(args.local,'PENDING_OCI_REPRODUCIBILITY: unbuilt/unqualified image payload/config comparison; use --local for public/backend scope')
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--local',action='store_true');parser.add_argument('--record-evidence',action='store_true')
+    parser.add_argument('--canonical-build-root',type=Path);args=parser.parse_args()
+    require(args.local,'PENDING_OCI_REPRODUCIBILITY: independent image payload/config comparison unqualified; use --local for public/backend scope')
     from check import tool_identities
     identities=tool_identities()
     started=time.monotonic();utc=datetime.datetime.now(datetime.timezone.utc).isoformat()
@@ -112,7 +138,7 @@ def main():
     owned=ROOT/'.scratch';owned.mkdir(exist_ok=True)
     with tempfile.TemporaryDirectory(prefix='repro-',dir=owned) as directory:
         scratch=Path(directory);results=[]
-        with canonical_build_root() as canonical:
+        with canonical_build_root(args.canonical_build_root) as canonical:
             for number in (1,2):
                 target=scratch/str(number);target.mkdir();results.append(build(target,epoch,canonical))
         try:
@@ -126,20 +152,34 @@ def main():
         suite=unittest.TestLoader().discover(str(ROOT/'tests'),pattern='test_reproducibility.py');stream=io.StringIO();result=unittest.TextTestRunner(stream=stream).run(suite)
         require(result.wasSuccessful() and result.testsRun>=3 and not result.skipped,'reproducibility controls failed: '+stream.getvalue())
         evidence={'schema_version':1,'scope':'public/backend only; OCI pending','evidence_class':'local-synthetic','build_count':2,
-            'tool_identity':identities,'source_date_epoch':epoch,'canonical_build_path':str(CANONICAL_BUILD_PATH),'isolated_mount_namespaces':True,'locale':'C','timezone':'UTC','manifests':results,'oci_comparison':'pending unbuilt images'}
+            'observed_at':utc,'tool_identity':identities,'source_date_epoch':epoch,'canonical_build_path':str(canonical),
+            'isolated_mount_namespaces':True,'locale':'C','timezone':'UTC','manifests':results,'oci_comparison':'pending independent image payload/config comparison'}
         if args.record_evidence:
-            path=ROOT/'docs/evidence/t02/reproducibility.json';path.write_text(json.dumps(evidence,indent=2)+'\n')
+            encoded=(json.dumps(evidence,indent=2)+'\n').encode();digest=hashlib.sha256(encoded).hexdigest()
+            relative=Path('docs/evidence/t02/reproducibility-revisions')/digest
+            candidate=scratch/'evidence';candidate.mkdir()
+            with (candidate/'reproducibility.json').open('xb') as output:output.write(encoded)
             from check_contracts import artifact_record
             record=artifact_record([sys.executable,*sys.argv],{'checks':4,'tests':result.testsRun},utc,time.monotonic()-started)
             record['locks'] += [{'path':name,'sha256':hashlib.sha256((ROOT/name).read_bytes()).hexdigest()} for name in ('frontend/package-lock.json','ops/nixos/flake.lock')]
-            record['artifacts']=[{'path':'docs/evidence/t02/reproducibility.json','sha256':hashlib.sha256(path.read_bytes()).hexdigest()},
+            record['artifacts']=[{'path':(relative/'reproducibility.json').as_posix(),'sha256':digest},
                 {'path':'scripts/check_reproducibility.py','sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}]
-            path=ROOT/'docs/evidence/t02/manifest.json';path.write_text(json.dumps(record,indent=2)+'\n')
+            record_bytes=(json.dumps(record,indent=2)+'\n').encode();path=candidate/'manifest.json'
+            with path.open('xb') as output:output.write(record_bytes)
             with frozen_environment('tools',scratch/'tools') as (python,env,expected):
                 code='import sys;sys.path.insert(0,sys.argv[1]);from check_contracts import ROOT,validator,load;validator(load(ROOT/"schemas/v1/artifact-manifest.schema.json")).validate(load(sys.argv[2]))'
                 subprocess.run(['unshare','--net','--',str(python),'-c',code,str(ROOT/'scripts'),str(path)],env=env,cwd=ROOT,timeout=15,check=True)
-            record['duration_seconds']=time.monotonic()-started
-            path.write_text(json.dumps(record,indent=2)+'\n')
+                record['duration_seconds']=time.monotonic()-started
+                record_bytes=(json.dumps(record,indent=2)+'\n').encode();path.write_bytes(record_bytes)
+                subprocess.run(['unshare','--net','--',str(python),'-c',code,str(ROOT/'scripts'),str(path)],env=env,cwd=ROOT,timeout=15,check=True)
+            # Validate before publishing either new record; old observations are immutable.
+            parent=ROOT/relative.parent
+            require(not parent.is_symlink(),'evidence revision directory symlink denied');parent.mkdir(exist_ok=True)
+            destination=ROOT/relative;destination.mkdir(exist_ok=False)
+            for name,data in (('reproducibility.json',encoded),('manifest.json',record_bytes)):
+                with (destination/name).open('xb') as output:output.write(data)
+                require((destination/name).read_bytes()==data,'published evidence readback mismatch')
+            print('REPRODUCIBILITY_EVIDENCE manifest='+str(relative/'manifest.json')+' sha256='+hashlib.sha256(record_bytes).hexdigest(),flush=True)
     print(f'REPRODUCIBILITY_LOCAL_PASS checks=4 tests={result.testsRun} builds=2 duration_seconds={time.monotonic()-started:.3f}')
     print('PENDING_OCI_REPRODUCIBILITY: two public/backend payloads matched; no image/runtime/full-phase claim')
 

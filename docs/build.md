@@ -66,3 +66,7 @@ Provenance/scope-language analog: docs/implementation-evidence.md. Named-error/h
 ## Four candidate archive evidence — 2026-10-29
 
 [Current actual build/inspection scope](build/four-candidate-images-2026-10-29.md): all four pinned local candidates are built, source/config/layer/payload observations retained, and historical PostgreSQL bytes reproduce. Both inspectors accept closed `--image` selection (app/worker/postgres/gateway); omitted selection preserves PostgreSQL. This is local build-only evidence. Importer/merged links, OCI/two-build comparison, native/licence, application/bootstrap/runtime, independent CI/recovery and human review remain pending. Original empty/candidate-only inventory records remain historical rather than silently rewritten.
+
+## Current complete payload reproduction — 2026-10-29
+
+[Current two-build/installer evidence](build/current-payload-reproducibility-2026-10-29.md): actual public/backend builds match with all current templates/CSS/catalog JSON. `check_reproducibility.py --local` preserves the legacy canonical default; optional `--canonical-build-root` must name a new direct .scratch child and is an explicit recorded build input. `--record-evidence` validates before exclusive new content-addressed publication, preserving dated originals. A caller-owned XDG_CACHE_HOME can bypass a full shared Nix cache without clearing it. Full OCI reproducibility and every independent/native/legal/runtime/CI gate remain required.
