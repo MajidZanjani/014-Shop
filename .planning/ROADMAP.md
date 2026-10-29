@@ -16,9 +16,9 @@
 
 **Current plan:** 02-17 — Two clean builds and complete CI evidence; partial14/16 dependencies retained.
 
-**Execution status:** in progress — Phase2 four candidate images built/inspected; selectors23, deployment16/31 and inventory/planning8 pass; plan records8/18; full and related qualification pending.
+**Execution status:** paused — proactive context checkpoint after four-candidate image build/inspection; plan records8/18 and full Phase2/related acceptance remain pending.
 
-**Next implementation task:** Implement and qualify merged filesystem/link/PAX and actual native/OCI evidence for all four archives, then independent image comparison and remaining14 application/transport/bootstrap/replica integration; preserve every external/human gate.
+**Next implementation task:** Clear the session, run $gsd-resume-work, restore the full Phase2 goal at02-17 task1, revalidate rooted image evidence and refresh current two-clean-build/lock evidence with existing bounded producers before remaining merged/native/OCI and14 integration work.
 
 Phase2 now has all four exact local candidate archives with independently observed outer/inner bytes and276 matching app/worker source files. [Actual scope](../docs/build/four-candidate-images-2026-10-29.md); [full goal tracker](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md). PostgreSQL historical bytes reproduce;23 inspector tests, deployment16/31 and inventory/planning8 pass. These results do not complete Phase2, OCI/runtime/native/licence/CI or related recovery/activation acceptance.
 
@@ -43,7 +43,7 @@ The October21 reset completed documentation replanning. Later user continuation 
 ## Phases
 
 - [x] **Phase 1: Product authority, repository review and decision register** — October 21 handoff T01
-- [ ] **Phase 2: Reproducible application and deployment skeleton** — October 21 handoff T02 — CURRENT DEVELOPMENT FOCUS; in progress — Phase2 four candidate images built/inspected; selectors23, deployment16/31 and inventory/planning8 pass; plan records8/18; full and related qualification pending.
+- [ ] **Phase 2: Reproducible application and deployment skeleton** — October 21 handoff T02 — CURRENT DEVELOPMENT FOCUS; paused — proactive context checkpoint after four-candidate image build/inspection; plan records8/18 and full Phase2/related acceptance remain pending.
 - [ ] **Phase 3: Catalog, platform choices and approved offer/support policies** — October 21 handoff T03
 - [ ] **Phase 4: Minimal configurator and shared no-JavaScript purchase flow** — October 21 handoff T04
 - [ ] **Phase 5: Transactional records, durable work and private evidence primitives** — October 21 handoff T05
@@ -86,7 +86,7 @@ The October21 reset completed documentation replanning. Later user continuation 
 
 ### Phase 2: Reproducible application and deployment skeleton
 
-**Current execution:** CURRENT DEVELOPMENT FOCUS; in progress — Phase2 four candidate images built/inspected; selectors23, deployment16/31 and inventory/planning8 pass; plan records8/18; full and related qualification pending.
+**Current execution:** CURRENT DEVELOPMENT FOCUS; paused — proactive context checkpoint after four-candidate image build/inspection; plan records8/18 and full Phase2/related acceptance remain pending.
 
 **Goal:** Developers can reproduce static frontend, Django/worker and real-PostgreSQL development builds from compatible pinned dependencies, hashes and CI commands.
 **Depends on:** T01
@@ -440,7 +440,7 @@ Unchecked phase boxes mean full acceptance is outstanding. They do not mean deve
 | Phase | Plans Complete | Status | Completed |
 |---|---|---|---|
 | 1. Product authority, repository review and decision register | 2 / 2 | Complete — documentation reconciled | 2026-10-21 |
-| 2. Reproducible application and deployment skeleton | 8 / 18 | In Progress; updated 2026-10-22: 25 implementation quick tasks; 7 qualification/review and 3 implementation/qualification records open; CURRENT DEVELOPMENT FOCUS; in progress — Phase2 four candidate images built/inspected; selectors23, deployment16/31 and inventory/planning8 pass; plan records8/18; full and related qualification pending. | — |
+| 2. Reproducible application and deployment skeleton | 8 / 18 | In Progress; updated 2026-10-22: 25 implementation quick tasks; 7 qualification/review and 3 implementation/qualification records open; CURRENT DEVELOPMENT FOCUS; paused — proactive context checkpoint after four-candidate image build/inspection; plan records8/18 and full Phase2/related acceptance remain pending. | — |
 | 3. Catalog, platform choices and approved offer/support policies | 0 / 1 | In Progress — local slice in quick261022-dj5; full acceptance pending | — |
 | 4. Minimal configurator and shared no-JavaScript purchase flow | 0 / 1 | In Progress — local slice in quick261022-dj5; full acceptance pending | — |
 | 5. Transactional records, durable work and private evidence primitives | 0 / not planned | In Progress — local slice in quick261022-dj5; full acceptance pending | — |
