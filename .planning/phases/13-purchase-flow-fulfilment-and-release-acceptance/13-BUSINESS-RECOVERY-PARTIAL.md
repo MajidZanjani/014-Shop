@@ -2,7 +2,7 @@
 
 Status: saved business recovery observation reproduced and fixed locally. Focused176/39.797s, backend804/5/245.003s, supported proxy148/2 and exact276-file source pass. Actual recovery and full Phase13 acceptance remain pending.
 
-Implementation is verified locally; its commit identity is recorded when quick261029-7t5 completion is finalized. Git refs determine remote synchronization.
+Implementation `a4937c55ac0056cc7185ce116c599edc6f968051` is verified locally, committed and pushed. Quick261029-7t5 records schema-backed completion; actual Git refs determine later synchronization.
 
 ## Behavior
 
