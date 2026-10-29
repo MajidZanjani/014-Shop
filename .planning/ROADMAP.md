@@ -16,7 +16,7 @@
 
 **Current plan:** 02-14 — Policy-bound SCRAM application connection verified locally; transport/all-write/migration/bootstrap/replica integration remains open.
 
-**Execution status:** in progress — Policy-bound SCRAM/Django connection verified SQL3/236, source7/5 and deployment16/31; full14/16/17/related acceptance remains open8/18; user-requested pause follows commit/sync.
+**Execution status:** paused — User-requested checkpoint after policy-bound SCRAM/Django SQL3/236, inert source7/5 and deployment16/31; implementation a4d7e07 pushed; full14/16/17/related acceptance remains open8/18.
 
 **Next implementation task:** Implement approved application-policy issuance/custody and isolation-preserving attestation lease transport, then app/worker all-write/migration/bootstrap/replica integration; retain16/17/native/legal/CI/independent/human gates.
 
@@ -45,7 +45,7 @@ The October21 reset completed documentation replanning. Later user continuation 
 ## Phases
 
 - [x] **Phase 1: Product authority, repository review and decision register** — October 21 handoff T01
-- [ ] **Phase 2: Reproducible application and deployment skeleton** — October 21 handoff T02 — CURRENT DEVELOPMENT FOCUS; in progress — Policy-bound SCRAM/Django connection verified SQL3/236, source7/5 and deployment16/31; full14/16/17/related acceptance remains open8/18; user-requested pause follows commit/sync.
+- [ ] **Phase 2: Reproducible application and deployment skeleton** — October 21 handoff T02 — CURRENT DEVELOPMENT FOCUS; paused — User-requested checkpoint after policy-bound SCRAM/Django SQL3/236, inert source7/5 and deployment16/31; implementation a4d7e07 pushed; full14/16/17/related acceptance remains open8/18.
 - [ ] **Phase 3: Catalog, platform choices and approved offer/support policies** — October 21 handoff T03
 - [ ] **Phase 4: Minimal configurator and shared no-JavaScript purchase flow** — October 21 handoff T04
 - [ ] **Phase 5: Transactional records, durable work and private evidence primitives** — October 21 handoff T05
@@ -88,7 +88,7 @@ The October21 reset completed documentation replanning. Later user continuation 
 
 ### Phase 2: Reproducible application and deployment skeleton
 
-**Current execution:** CURRENT DEVELOPMENT FOCUS; in progress — Policy-bound SCRAM/Django connection verified SQL3/236, source7/5 and deployment16/31; full14/16/17/related acceptance remains open8/18; user-requested pause follows commit/sync.
+**Current execution:** CURRENT DEVELOPMENT FOCUS; paused — User-requested checkpoint after policy-bound SCRAM/Django SQL3/236, inert source7/5 and deployment16/31; implementation a4d7e07 pushed; full14/16/17/related acceptance remains open8/18.
 
 **Goal:** Developers can reproduce static frontend, Django/worker and real-PostgreSQL development builds from compatible pinned dependencies, hashes and CI commands.
 **Depends on:** T01
@@ -442,7 +442,7 @@ Unchecked phase boxes mean full acceptance is outstanding. They do not mean deve
 | Phase | Plans Complete | Status | Completed |
 |---|---|---|---|
 | 1. Product authority, repository review and decision register | 2 / 2 | Complete — documentation reconciled | 2026-10-21 |
-| 2. Reproducible application and deployment skeleton | 8 / 18 | In Progress; updated 2026-10-22: 25 implementation quick tasks; 7 qualification/review and 3 implementation/qualification records open; CURRENT DEVELOPMENT FOCUS; in progress — Policy-bound SCRAM/Django connection verified SQL3/236, source7/5 and deployment16/31; full14/16/17/related acceptance remains open8/18; user-requested pause follows commit/sync. | — |
+| 2. Reproducible application and deployment skeleton | 8 / 18 | In Progress; updated 2026-10-22: 25 implementation quick tasks; 7 qualification/review and 3 implementation/qualification records open; CURRENT DEVELOPMENT FOCUS; paused — User-requested checkpoint after policy-bound SCRAM/Django SQL3/236, inert source7/5 and deployment16/31; implementation a4d7e07 pushed; full14/16/17/related acceptance remains open8/18. | — |
 | 3. Catalog, platform choices and approved offer/support policies | 0 / 1 | In Progress — local slice in quick261022-dj5; full acceptance pending | — |
 | 4. Minimal configurator and shared no-JavaScript purchase flow | 0 / 1 | In Progress — local slice in quick261022-dj5; full acceptance pending | — |
 | 5. Transactional records, durable work and private evidence primitives | 0 / not planned | In Progress — local slice in quick261022-dj5; full acceptance pending | — |

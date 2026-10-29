@@ -10,7 +10,7 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current plan:** 02-14 — Policy-bound SCRAM application connection verified locally; transport/all-write/migration/bootstrap/replica integration remains open.
 
-**Execution status:** in progress — Policy-bound SCRAM/Django connection verified SQL3/236, source7/5 and deployment16/31; full14/16/17/related acceptance remains open8/18; user-requested pause follows commit/sync.
+**Execution status:** paused — User-requested checkpoint after policy-bound SCRAM/Django SQL3/236, inert source7/5 and deployment16/31; implementation a4d7e07 pushed; full14/16/17/related acceptance remains open8/18.
 
 **Next implementation task:** Implement approved application-policy issuance/custody and isolation-preserving attestation lease transport, then app/worker all-write/migration/bootstrap/replica integration; retain16/17/native/legal/CI/independent/human gates.
 

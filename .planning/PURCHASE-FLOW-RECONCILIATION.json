@@ -14,6 +14,11 @@
       "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
     },
     {
+      "path": ".planning/HANDOFF.json",
+      "role": "current",
+      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+    },
+    {
       "path": ".planning/HANDOFF.md",
       "role": "current",
       "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"

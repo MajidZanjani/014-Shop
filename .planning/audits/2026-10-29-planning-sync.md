@@ -23,3 +23,10 @@ Current pre-pause checks passed: canonical state publication; PURCHASE_PLAN_PASS
 Pre-pause artifact roles: current=40, historical-evidence=285, retained-infrastructure-plan=10, workflow-config=1. Completed phase SUMMARY records scanned=11.
 
 No completed phase SUMMARY contains To be filled/TBD/placeholder markers.
+
+
+## Final paused reconciliation
+
+Implementation a4d7e07 was committed and pushed by ordinary origin/main push. Final folder inventory has337 classified artifacts (current=41, historical-evidence=285, retained-infrastructure-plan=10, workflow-config=1); planning checker scans339 total files including its excluded coordination/inventory files. Active structured HANDOFF.json and phase .continue-here classify as current. All four manager views/phase list/detail/progress row agree with paused STATE, canonical state.json routes to $gsd-resume-work and the structured handoff is paused at02-14 task1/2. No async job or producer survives.
+
+Final readback verifies all11 selected implementation/source/lock/closed-backend hashes, all six immutable raw log hashes/lengths and all16 built inert source members/manifest. Only planning files changed after the verified implementation commit. Full goal/BUILD gates remain incomplete8/18. Final check_planning passes14 phases/focus2/last-completed1/11-of-36 records/339 scanned files; check_purchase_plan passes89 requirements/14 phases/337 classified artifacts/four immutable sources. Three planning-activity tests pass. Source25/scope27/inventory279/decisions89/evidence39/current18 documentary checks pass;73 rejection controls passed earlier with unchanged source bytes. Final diff check passes. Measured command output retains these results.

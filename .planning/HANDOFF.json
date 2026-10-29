@@ -1,0 +1,106 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-10-29T11:14:41.573450+00:00",
+  "phase": "02",
+  "phase_name": "Reproducible application and deployment skeleton",
+  "phase_dir": ".planning/phases/02-reproducible-application-and-deployment-skeleton",
+  "plan": 14,
+  "task": 1,
+  "total_tasks": 2,
+  "status": "paused",
+  "implementation_commit": "a4d7e07a621ce9b191ce417f9ccb83ce76dd6c58",
+  "implementation_push": "origin/main ordinary push succeeded",
+  "completed_tasks": [
+    {
+      "id": 1,
+      "name": "02-14-01 locked rootless path/resource boundary",
+      "status": "in_progress",
+      "commit": "a4d7e07",
+      "progress": "Connection-policy prerequisite verified locally:12 new connection cases plus20 inherited observer cases included in236; source7/5/deployment16/31. Full task and parent phase remain incomplete."
+    }
+  ],
+  "remaining_tasks": [
+    {
+      "id": 1,
+      "name": "Implement approved application-policy issuance/custody and isolation-preserving attestation lease transport, then app/worker all-write/migration/bootstrap/replica integration; retain16/17/native/legal/CI/independent/human gates.",
+      "status": "in_progress"
+    },
+    {
+      "id": 2,
+      "name": "Executable independent replica/lifecycle/resource/storage/recovery qualification with all original gates",
+      "status": "not_started"
+    }
+  ],
+  "blockers": [
+    {
+      "description": "Ordinary sandbox startup failed with workspace permission denial; shared temp/root cache constraints also carried forward.",
+      "type": "technical",
+      "workaround": "Narrowly justified local exec; use per-command project-owned TMPDIR=.scratch/auth-unicode-tmp and XDG_CACHE_HOME=.scratch/phase2-repro-nix-cache; never clean unknown resources."
+    },
+    {
+      "description": "Independent runner remains unassigned; actual runtime/recovery/host/native/legal/CI/human/commercial qualification remains pending.",
+      "type": "external",
+      "workaround": "Continue independent local implementation after resume; do not repeatedly ask for promised company inputs or infer external authorization."
+    }
+  ],
+  "async_jobs": [],
+  "human_actions_pending": [
+    {
+      "action": "Provide promised commercial revision/approver inputs later",
+      "context": "User has already promised company inputs; affected live offers remain disabled. Do not repeat the request on resume.",
+      "blocking": false
+    },
+    {
+      "action": "Assign and authorize an independent off-host runner when qualification is ready",
+      "context": "Original full lifecycle/outage/exhaustion/recovery/CI/human gates remain; no automatic provisioning or protected-host faults.",
+      "blocking": false
+    }
+  ],
+  "decisions": [
+    {
+      "decision": "Snapshot exact database/owner/credential-version/namespace-peer policy and use only Django adapter context from the registered wrapper.",
+      "rationale": "Preserves explicit SCRAM/endpoint settings and supports actual Django timezone adapters without accepting wrapper redirects.",
+      "phase": "02"
+    },
+    {
+      "decision": "Keep policy issuance/custody, lease transport/all-write/migration/bootstrap/replica and all actual gates unfinished.",
+      "rationale": "The new library consumes supplied trusted policy but cannot approve itself; production/bank-sandbox remains closed.",
+      "phase": "02"
+    },
+    {
+      "decision": "Pause after complete current-step verification and whole-folder planning synchronization.",
+      "rationale": "Explicit user request; exact context usage unavailable and no threshold claimed.",
+      "phase": "02"
+    }
+  ],
+  "uncommitted_files": [
+    " M .planning/ACTIVITY-LOG.md",
+    " M .planning/HANDOFF.md",
+    " M .planning/PROJECT.md",
+    " M .planning/PURCHASE-FLOW-RECONCILIATION.json",
+    " M .planning/ROADMAP.md",
+    " M .planning/STATE.md",
+    " M .planning/audits/2026-10-29-planning-sync.md",
+    " M .planning/phases/02-reproducible-application-and-deployment-skeleton/.continue-here.md",
+    " M .planning/phases/02-reproducible-application-and-deployment-skeleton/02-14-PARTIAL.md",
+    " M .planning/phases/02-reproducible-application-and-deployment-skeleton/02-14-PLAN.md",
+    " M .planning/phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md",
+    " M .planning/phases/02-reproducible-application-and-deployment-skeleton/02-PROGRESS.md",
+    " M .planning/phases/02-reproducible-application-and-deployment-skeleton/02-VALIDATION.md",
+    " M .planning/phases/02-reproducible-application-and-deployment-skeleton/02-VERIFICATION.md",
+    " M .planning/state.json",
+    "?? .planning/HANDOFF.json",
+    "?? http_cache.sqlite"
+  ],
+  "next_action": "Implement approved application-policy issuance/custody and isolation-preserving attestation lease transport, then app/worker all-write/migration/bootstrap/replica integration; retain16/17/native/legal/CI/independent/human gates.",
+  "evidence": [
+    "docs/build/application-connection-2026-10-29.md",
+    "docs/evidence/t02/application-connection-revisions/86cdcf1facd4664d3a909cfa6172ec39c5bc7ee157cbf2f5b213dc239deae0fb.json",
+    ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md",
+    ".planning/audits/2026-10-29-planning-sync.md"
+  ],
+  "background_processes": [],
+  "context_notes": "Full goal is complete Phase2 and related foundation scope, still8/18. No parent SUMMARY/INVENTORY_PASS/FULL_PASS. Preserve prior observer temporary-type security fix and exact image/native/SBOM/NAR/lock evidence without repeating unchanged builds/reviews. Actual SCRAM tests use new disposable runtime-generated synthetic credentials only. A proposed earlier SCRAM evidence read was rejected by automatic review as potentially credential-bearing and was not performed; no such read is needed. First candidate lacked Django timezone adapter and then left a closed raw connection on its fixture wrapper; corrected factory consumes adapter context only, fixture explicitly closes wrapper between cases. Host /proc/control/management mounts remain forbidden inside apps. No actual .env/credentials/host/provider operation. Pre-existing http_cache.sqlite is unrelated:do not read/delete/stage. The uncommitted_files field is measured before committing these handoff/planning edits; those edits belong to the handoff commit. Standing ordinary origin/main push authorization persists. On resume continue substantive authorized local work across commits; pause only for explicit request/real constraint.",
+  "working_tree_snapshot_at": "2026-10-29T11:15:23.339603+00:00",
+  "working_tree_snapshot_scope": "Measured immediately before handoff commit; all listed .planning edits are included in that commit. Unrelated pre-existing http_cache.sqlite remains untracked."
+}
