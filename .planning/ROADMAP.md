@@ -16,9 +16,9 @@
 
 **Current plan:** 02-17 — Local archive rebuild verified;16/14/full-CI and related foundation gates remain open.
 
-**Execution status:** in progress — Phase2 four archive NAR rebuilds match17.845s with real mismatch rejection; OCI/filesystem4/19 and source/locks verified; 8/18 plans complete, native/runtime/CI/related acceptance pending.
+**Execution status:** paused — proactive context checkpoint; full Phase2/related goal active and incomplete8/18; source/locks/OCI/filesystem/archive rebuild subsets verified, native/14/runtime/CI/human gates remain.
 
-**Next implementation task:** Complete actual native/image component and standard SBOM/notice evidence, then finish14 application-role/all-write/host-attestation transport/migration/bootstrap and executable independent replica driver; preserve all actual/human gates.
+**Next implementation task:** Resume by validating9d7161f and the current evidence hashes, then read02-16 PLAN/PARTIAL and scripts/inventory_artifacts.py, check_native_closure.py and check_native_source_notices.py to implement actual four-image native/component/standard-SBOM/notice integration; retain every14/17 and related actual/human gate.
 
 Four exact archive rebuilds match retained NARs and real synthetic changed bytes reject. [Actual rebuild scope](../docs/build/image-archive-rebuild-2026-10-29.md). Local OCI/filesystem4/19, source4/11/builds2 and locks3/8 remain verified; [full goal tracker](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md) retains8/18 completion and every native/runtime/CI/legal/independent/related gate.
 
@@ -43,7 +43,7 @@ The October21 reset completed documentation replanning. Later user continuation 
 ## Phases
 
 - [x] **Phase 1: Product authority, repository review and decision register** — October 21 handoff T01
-- [ ] **Phase 2: Reproducible application and deployment skeleton** — October 21 handoff T02 — CURRENT DEVELOPMENT FOCUS; in progress — Phase2 four archive NAR rebuilds match17.845s with real mismatch rejection; OCI/filesystem4/19 and source/locks verified; 8/18 plans complete, native/runtime/CI/related acceptance pending.
+- [ ] **Phase 2: Reproducible application and deployment skeleton** — October 21 handoff T02 — CURRENT DEVELOPMENT FOCUS; paused — proactive context checkpoint; full Phase2/related goal active and incomplete8/18; source/locks/OCI/filesystem/archive rebuild subsets verified, native/14/runtime/CI/human gates remain.
 - [ ] **Phase 3: Catalog, platform choices and approved offer/support policies** — October 21 handoff T03
 - [ ] **Phase 4: Minimal configurator and shared no-JavaScript purchase flow** — October 21 handoff T04
 - [ ] **Phase 5: Transactional records, durable work and private evidence primitives** — October 21 handoff T05
@@ -86,7 +86,7 @@ The October21 reset completed documentation replanning. Later user continuation 
 
 ### Phase 2: Reproducible application and deployment skeleton
 
-**Current execution:** CURRENT DEVELOPMENT FOCUS; in progress — Phase2 four archive NAR rebuilds match17.845s with real mismatch rejection; OCI/filesystem4/19 and source/locks verified; 8/18 plans complete, native/runtime/CI/related acceptance pending.
+**Current execution:** CURRENT DEVELOPMENT FOCUS; paused — proactive context checkpoint; full Phase2/related goal active and incomplete8/18; source/locks/OCI/filesystem/archive rebuild subsets verified, native/14/runtime/CI/human gates remain.
 
 **Goal:** Developers can reproduce static frontend, Django/worker and real-PostgreSQL development builds from compatible pinned dependencies, hashes and CI commands.
 **Depends on:** T01
@@ -440,7 +440,7 @@ Unchecked phase boxes mean full acceptance is outstanding. They do not mean deve
 | Phase | Plans Complete | Status | Completed |
 |---|---|---|---|
 | 1. Product authority, repository review and decision register | 2 / 2 | Complete — documentation reconciled | 2026-10-21 |
-| 2. Reproducible application and deployment skeleton | 8 / 18 | In Progress; updated 2026-10-22: 25 implementation quick tasks; 7 qualification/review and 3 implementation/qualification records open; CURRENT DEVELOPMENT FOCUS; in progress — Phase2 four archive NAR rebuilds match17.845s with real mismatch rejection; OCI/filesystem4/19 and source/locks verified; 8/18 plans complete, native/runtime/CI/related acceptance pending. | — |
+| 2. Reproducible application and deployment skeleton | 8 / 18 | In Progress; updated 2026-10-22: 25 implementation quick tasks; 7 qualification/review and 3 implementation/qualification records open; CURRENT DEVELOPMENT FOCUS; paused — proactive context checkpoint; full Phase2/related goal active and incomplete8/18; source/locks/OCI/filesystem/archive rebuild subsets verified, native/14/runtime/CI/human gates remain. | — |
 | 3. Catalog, platform choices and approved offer/support policies | 0 / 1 | In Progress — local slice in quick261022-dj5; full acceptance pending | — |
 | 4. Minimal configurator and shared no-JavaScript purchase flow | 0 / 1 | In Progress — local slice in quick261022-dj5; full acceptance pending | — |
 | 5. Transactional records, durable work and private evidence primitives | 0 / not planned | In Progress — local slice in quick261022-dj5; full acceptance pending | — |

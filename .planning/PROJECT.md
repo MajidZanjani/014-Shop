@@ -10,9 +10,9 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current plan:** 02-17 — Local archive rebuild verified;16/14/full-CI and related foundation gates remain open.
 
-**Execution status:** in progress — Phase2 four archive NAR rebuilds match17.845s with real mismatch rejection; OCI/filesystem4/19 and source/locks verified; 8/18 plans complete, native/runtime/CI/related acceptance pending.
+**Execution status:** paused — proactive context checkpoint; full Phase2/related goal active and incomplete8/18; source/locks/OCI/filesystem/archive rebuild subsets verified, native/14/runtime/CI/human gates remain.
 
-**Next implementation task:** Complete actual native/image component and standard SBOM/notice evidence, then finish14 application-role/all-write/host-attestation transport/migration/bootstrap and executable independent replica driver; preserve all actual/human gates.
+**Next implementation task:** Resume by validating9d7161f and the current evidence hashes, then read02-16 PLAN/PARTIAL and scripts/inventory_artifacts.py, check_native_closure.py and check_native_source_notices.py to implement actual four-image native/component/standard-SBOM/notice integration; retain every14/17 and related actual/human gate.
 
 Four exact archive rebuilds match retained NARs and real synthetic changed bytes reject. [Actual rebuild scope](../docs/build/image-archive-rebuild-2026-10-29.md). Local OCI/filesystem4/19, source4/11/builds2 and locks3/8 remain verified; [full goal tracker](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md) retains8/18 completion and every native/runtime/CI/legal/independent/related gate.
 

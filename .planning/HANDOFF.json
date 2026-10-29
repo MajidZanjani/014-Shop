@@ -1,0 +1,145 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-10-29T08:25:59.236Z",
+  "phase": "2",
+  "phase_name": "Reproducible application and deployment skeleton",
+  "phase_dir": ".planning/phases/02-reproducible-application-and-deployment-skeleton",
+  "plan": 17,
+  "task": 1,
+  "total_tasks": 2,
+  "status": "paused",
+  "goal_status": "active; full objective unachieved",
+  "goal_objective": "complete phase 2 and it's relative steps in other phases",
+  "context_usage_percentage": null,
+  "pause_reason": "Proactive fallback under the user checkpoint instruction; context pressure apparent, exact percentage unavailable. No automatic90% monitoring or measurement claimed.",
+  "source_commit": "9d7161f2bc6d2a3c9f8ec38a0ab762e2a1f9f5ee",
+  "remote_commit_before_checkpoint": "9d7161f2bc6d2a3c9f8ec38a0ab762e2a1f9f5ee",
+  "completed_tasks": [
+    {
+      "id": 1,
+      "name": "Complete current public/backend payload packaging, partial canonical initialization cleanup and immutable validated evidence (local scope)",
+      "status": "done",
+      "commit": "6aaf77f",
+      "evidence": "docs/build/current-payload-reproducibility-2026-10-29.md"
+    },
+    {
+      "id": 2,
+      "name": "Pinned Skopeo/umoci conversion and additive image filesystem/critical-alias verification (local scope)",
+      "status": "done",
+      "commit": "800547c",
+      "evidence": "docs/build/oci-filesystem-qualification-2026-10-29.md"
+    },
+    {
+      "id": 3,
+      "name": "Four archive NAR rebuild comparisons and real changed-output rejection (local scope)",
+      "status": "done",
+      "commit": "9d7161f",
+      "evidence": "docs/build/image-archive-rebuild-2026-10-29.md"
+    }
+  ],
+  "remaining_tasks": [
+    {
+      "id": 4,
+      "name": "02-16 actual native/image component/standard SBOM/notice integration and12 package-wide/human reviews",
+      "status": "incomplete"
+    },
+    {
+      "id": 5,
+      "name": "02-14 application-role/all-write/host-attestation transport/migration/bootstrap plus qualified runtime/generator and executable independent replica driver",
+      "status": "incomplete"
+    },
+    {
+      "id": 6,
+      "name": "02-17 full integrated two-build/OCI producer and mandatory CI/local lanes with complete actual manifest",
+      "status": "incomplete"
+    },
+    {
+      "id": 7,
+      "name": "02-06/07/08 health/settings/logging actual independent outage and06\u201313 worker/adapters/contracts/privacy/probe/prohibition acceptance",
+      "status": "qualification/review pending"
+    },
+    {
+      "id": 8,
+      "name": "Every BUILD01\u201308 and related phases3\u201314 foundation obligation in02-COMPLETION-TRACKER.md",
+      "status": "incomplete"
+    }
+  ],
+  "blockers": [
+    {
+      "description": "Shared128MiB /tmp and shared root Nix metadata cache full; ordinary sandbox startup fails",
+      "type": "technical",
+      "workaround": "Owned per-command TMPDIR/XDG cache and narrowly justified exec; never clean shared resources"
+    },
+    {
+      "description": "Mapped tools/Nix builders cannot traverse other-owner0750 home ancestors",
+      "type": "technical",
+      "workaround": "Explicit recorded owned traversable /var scratch children, no existing permission change"
+    },
+    {
+      "description": "Independent authorized runner and attributable actual/human/licence review inputs remain unassigned/pending",
+      "type": "external",
+      "workaround": "Complete authorized local implementation first; no protected-host faults, new capacity purchase or invented approvals"
+    }
+  ],
+  "async_jobs": [],
+  "background_processes": [],
+  "human_actions_pending": [
+    {
+      "action": "Assign and explicitly scope independent isolated NixOS/systemd/cgroup-v2/rootless/ZFS runtime/CI/recovery replica after local driver/integration are ready",
+      "context": "No runner assigned; mx1 and its existing guest remain prohibited test targets; do not repeatedly request before readiness",
+      "blocking": true
+    },
+    {
+      "action": "Attributable exact native/component/licence/source/probe/prohibition and actual qualification review",
+      "context": "Local tools/hashes/retained text candidates cannot confer human/legal/full acceptance",
+      "blocking": true
+    },
+    {
+      "action": "Company approved commercial details promised by user later",
+      "context": "Affected live offers only; no re-request and no inferred values/authority",
+      "blocking": false
+    }
+  ],
+  "decisions": [
+    {
+      "decision": "Keep full goal and8/18 acceptance distinct from each verified local subset",
+      "rationale": "Full runtime/CI/native/legal/human/related obligations remain unfinished",
+      "phase": "2"
+    },
+    {
+      "decision": "Use exact existing pins, separate image-tool shell and fresh user/network namespaces, no payload execution",
+      "rationale": "Local filesystem proof must not become runtime/host approval",
+      "phase": "2"
+    },
+    {
+      "decision": "Preserve original evidence and all actual failures in new content-addressed records",
+      "rationale": "No historical rewrite or unexplained normalization to green",
+      "phase": "2"
+    }
+  ],
+  "uncommitted_files": [
+    " M .planning/HANDOFF.md",
+    " M .planning/PROJECT.md",
+    " M .planning/PURCHASE-FLOW-RECONCILIATION.json",
+    " M .planning/ROADMAP.md",
+    " M .planning/STATE.md",
+    " M .planning/phases/02-reproducible-application-and-deployment-skeleton/.continue-here.md",
+    " M .planning/phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md",
+    " M .planning/phases/02-reproducible-application-and-deployment-skeleton/02-PROGRESS.md",
+    " M .planning/state.json",
+    "?? .planning/HANDOFF.json"
+  ],
+  "uncommitted_measurement_note": "Measured after checkpoint fields/state/inventory refresh and creating this JSON file, before replacing its provisional contents or making the checkpoint commit. Commit itself makes this list historical.",
+  "next_action": "Resume by validating9d7161f and the current evidence hashes, then read02-16 PLAN/PARTIAL and scripts/inventory_artifacts.py, check_native_closure.py and check_native_source_notices.py to implement actual four-image native/component/standard-SBOM/notice integration; retain every14/17 and related actual/human gate.",
+  "required_reading": [
+    ".planning/STATE.md",
+    ".planning/HANDOFF.md",
+    ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md",
+    "docs/build/current-payload-reproducibility-2026-10-29.md",
+    "docs/build/oci-filesystem-qualification-2026-10-29.md",
+    "docs/build/image-archive-rebuild-2026-10-29.md",
+    ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-16-PLAN.md",
+    ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-16-PARTIAL.md"
+  ],
+  "context_notes": "All producers terminal and no async jobs. Do not repeat unchanged4/11/builds2/locks3/8, OCI4/19,42 image/deployment16/31 or NAR4/negative1 work. Backend804/5 and proxy148/2 remain dated earlier evidence, not rerun for tooling. Four archives locally rooted; umoci bundles intentionally removed; independent custody unqualified. Full dispatcher deliberately rejects absent complete OCI/CI integration and exact runtime review. No credentials/host/provider operation. Standing immediate nonforce pushes remain authorized. Preserve full goal and continue after a clear/resume."
+}
