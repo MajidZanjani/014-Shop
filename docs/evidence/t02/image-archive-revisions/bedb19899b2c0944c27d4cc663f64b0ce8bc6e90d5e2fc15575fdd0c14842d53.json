@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "evidence_class": "local-built-docker-archive-inspection",
+  "archive_path": "/nix/store/krpqwl8hsyg2a7ngkvsy0pxlgs6kck3p-shop-gateway.tar.gz",
+  "archive_bytes": 31802498,
+  "archive_sha256": "112eb28747e1cc1ad05d5d8a1fd4123f9128321d226f4c2da01951a9dcd4e3df",
+  "archive_format": "Docker save archive (gzip-compressed outer tar)",
+  "archive_manifest_sha256": "33ab2e28b06e7ca321bc8e08fa6f181df0544de4e531a7a7481b81ed284114ab",
+  "config_image_id": "sha256:79f0c6237f2168f1460dc925d6ab350822c1c98bd84d2a9d3314ccd508743b7b",
+  "config_archive_member": "79f0c6237f2168f1460dc925d6ab350822c1c98bd84d2a9d3314ccd508743b7b.json",
+  "config": {
+    "created": "1970-01-01T00:00:01+00:00",
+    "architecture": "amd64",
+    "os": "linux",
+    "config": {
+      "Cmd": [
+        "/nix/store/q52hb25vh6yizlnccb35343xv5mxj38f-caddy-2.11.7/bin/caddy",
+        "run",
+        "--config",
+        "/etc/shop/Caddyfile",
+        "--adapter",
+        "caddyfile"
+      ],
+      "Env": [
+        "PYTHONDONTWRITEBYTECODE=1",
+        "PYTHONNOUSERSITE=1"
+      ],
+      "User": "10001:10001",
+      "WorkingDir": "/app"
+    },
+    "rootfs": {
+      "diff_ids": [
+        "sha256:fc2e883f84d86c0253678f837f78c551a81f0d4f49f5eae18462ce7e224f2ac6",
+        "sha256:11c7084627c38eefc7e55b221d439752f2a18f48998d0ca102091c5441b361aa",
+        "sha256:9cc453f185a427c3fe5fd58c560246d900af35bbac71af8f417e0fd656303ccf",
+        "sha256:ad5162bf0d0fc20eac0a76a272ed8fbc1750eae55a853fad5c43de7f7825390d",
+        "sha256:cfadc6008dcec3aa829ee475ab6809132514b101753cc6530c84307659578520",
+        "sha256:4a169bd3900c58e6108784a85c59b5fd285e403cdbda92ab77f7a797f7654de1",
+        "sha256:c96ae4a7af8e0b1d4f9dc35915aaf1624d6a0ffb0ea12f214df8f199296bb211",
+        "sha256:e75a646dd3ca3033722d588f26f79124f958428220314c2afd625812886e699c",
+        "sha256:e8efdf75437e0dfc15ca58ad11c7d50bc4740f92f5026306e3c5b6996a1f1cc8",
+        "sha256:527442cf9eebd7fe696226325f9a0a9fb164d7a98cb85a0e74503555624326d7",
+        "sha256:aa062f473ca6232685f8175fd3d425e7c6453c6fe6ca212b0522ebb005cba6c7"
+      ],
+      "type": "layers"
+    },
+    "history": [
+      {
+        "created": "1970-01-01T00:00:01+00:00",
+        "comment": "store paths: ['/nix/store/2mbs68q5dxik37yp0aaqn35s9mmsmfyn-Caddyfile']"
+      },
+      {
+        "created": "1970-01-01T00:00:01+00:00",
+        "comment": "store paths: ['/nix/store/9yc6n127syqm2r2k85z1z38ypmnimd7p-shop-container-identities']"
+      },
+      {
+        "created": "1970-01-01T00:00:01+00:00",
+        "comment": "store paths: ['/nix/store/xql1i59wn5n0v4hxx1xhji9p6zns8hsi-mailcap-2.1.54']"
+      },
+      {
+        "created": "1970-01-01T00:00:01+00:00",
+        "comment": "store paths: ['/nix/store/l1n6wi2lyzglvgzbwzw9n9w2pzkcj41i-xgcc-15.3.0-libgcc']"
+      },
+      {
+        "created": "1970-01-01T00:00:01+00:00",
+        "comment": "store paths: ['/nix/store/78rlvr7v1kh0rx8ndvv3qfnk1pd9m6k9-iana-etc-20251215']"
+      },
+      {
+        "created": "1970-01-01T00:00:01+00:00",
+        "comment": "store paths: ['/nix/store/g6mvl9ns7k52zfv9pcfw3dbh65z3j7id-libunistring-1.4.2']"
+      },
+      {
+        "created": "1970-01-01T00:00:01+00:00",
+        "comment": "store paths: ['/nix/store/mkbbamycmw838fwxk21jz0nw3mhnmk16-tzdata-2026c']"
+      },
+      {
+        "created": "1970-01-01T00:00:01+00:00",
+        "comment": "store paths: ['/nix/store/l5y42bimjvvn8h3v5y40w13vv7y2p3k5-libidn2-2.3.8']"
+      },
+      {
+        "created": "1970-01-01T00:00:01+00:00",
+        "comment": "store paths: ['/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100']"
+      },
+      {
+        "created": "1970-01-01T00:00:01+00:00",
+        "comment": "store paths: ['/nix/store/q52hb25vh6yizlnccb35343xv5mxj38f-caddy-2.11.7']"
+      },
+      {
+        "created": "1970-01-01T00:00:01+00:00",
+        "comment": "store paths: ['/nix/store/mmzldvljfs97jaky7dfxdahrmcq2vrws-shop-gateway-customisation-layer']"
+      }
+    ]
+  },
+  "layers": [
+    {
+      "archive_member": "fc2e883f84d86c0253678f837f78c551a81f0d4f49f5eae18462ce7e224f2ac6/layer.tar",
+      "uncompressed_tar_bytes": 10240,
+      "diff_id": "sha256:fc2e883f84d86c0253678f837f78c551a81f0d4f49f5eae18462ce7e224f2ac6"
+    },
+    {
+      "archive_member": "11c7084627c38eefc7e55b221d439752f2a18f48998d0ca102091c5441b361aa/layer.tar",
+      "uncompressed_tar_bytes": 10240,
+      "diff_id": "sha256:11c7084627c38eefc7e55b221d439752f2a18f48998d0ca102091c5441b361aa"
+    },
+    {
+      "archive_member": "9cc453f185a427c3fe5fd58c560246d900af35bbac71af8f417e0fd656303ccf/layer.tar",
+      "uncompressed_tar_bytes": 133120,
+      "diff_id": "sha256:9cc453f185a427c3fe5fd58c560246d900af35bbac71af8f417e0fd656303ccf"
+    },
+    {
+      "archive_member": "ad5162bf0d0fc20eac0a76a272ed8fbc1750eae55a853fad5c43de7f7825390d/layer.tar",
+      "uncompressed_tar_bytes": 204800,
+      "diff_id": "sha256:ad5162bf0d0fc20eac0a76a272ed8fbc1750eae55a853fad5c43de7f7825390d"
+    },
+    {
+      "archive_member": "cfadc6008dcec3aa829ee475ab6809132514b101753cc6530c84307659578520/layer.tar",
+      "uncompressed_tar_bytes": 583680,
+      "diff_id": "sha256:cfadc6008dcec3aa829ee475ab6809132514b101753cc6530c84307659578520"
+    },
+    {
+      "archive_member": "4a169bd3900c58e6108784a85c59b5fd285e403cdbda92ab77f7a797f7654de1/layer.tar",
+      "uncompressed_tar_bytes": 2088960,
+      "diff_id": "sha256:4a169bd3900c58e6108784a85c59b5fd285e403cdbda92ab77f7a797f7654de1"
+    },
+    {
+      "archive_member": "c96ae4a7af8e0b1d4f9dc35915aaf1624d6a0ffb0ea12f214df8f199296bb211/layer.tar",
+      "uncompressed_tar_bytes": 2928640,
+      "diff_id": "sha256:c96ae4a7af8e0b1d4f9dc35915aaf1624d6a0ffb0ea12f214df8f199296bb211"
+    },
+    {
+      "archive_member": "e75a646dd3ca3033722d588f26f79124f958428220314c2afd625812886e699c/layer.tar",
+      "uncompressed_tar_bytes": 409600,
+      "diff_id": "sha256:e75a646dd3ca3033722d588f26f79124f958428220314c2afd625812886e699c"
+    },
+    {
+      "archive_member": "e8efdf75437e0dfc15ca58ad11c7d50bc4740f92f5026306e3c5b6996a1f1cc8/layer.tar",
+      "uncompressed_tar_bytes": 35686400,
+      "diff_id": "sha256:e8efdf75437e0dfc15ca58ad11c7d50bc4740f92f5026306e3c5b6996a1f1cc8"
+    },
+    {
+      "archive_member": "527442cf9eebd7fe696226325f9a0a9fb164d7a98cb85a0e74503555624326d7/layer.tar",
+      "uncompressed_tar_bytes": 52183040,
+      "diff_id": "sha256:527442cf9eebd7fe696226325f9a0a9fb164d7a98cb85a0e74503555624326d7"
+    },
+    {
+      "archive_member": "aa062f473ca6232685f8175fd3d425e7c6453c6fe6ca212b0522ebb005cba6c7/layer.tar",
+      "uncompressed_tar_bytes": 30720,
+      "diff_id": "sha256:aa062f473ca6232685f8175fd3d425e7c6453c6fe6ca212b0522ebb005cba6c7"
+    }
+  ],
+  "outer_members": [
+    {
+      "path": "11c7084627c38eefc7e55b221d439752f2a18f48998d0ca102091c5441b361aa/layer.tar",
+      "size": 10240,
+      "kind": "file",
+      "sha256": "11c7084627c38eefc7e55b221d439752f2a18f48998d0ca102091c5441b361aa"
+    },
+    {
+      "path": "4a169bd3900c58e6108784a85c59b5fd285e403cdbda92ab77f7a797f7654de1/layer.tar",
+      "size": 2088960,
+      "kind": "file",
+      "sha256": "4a169bd3900c58e6108784a85c59b5fd285e403cdbda92ab77f7a797f7654de1"
+    },
+    {
+      "path": "527442cf9eebd7fe696226325f9a0a9fb164d7a98cb85a0e74503555624326d7/layer.tar",
+      "size": 52183040,
+      "kind": "file",
+      "sha256": "527442cf9eebd7fe696226325f9a0a9fb164d7a98cb85a0e74503555624326d7"
+    },
+    {
+      "path": "79f0c6237f2168f1460dc925d6ab350822c1c98bd84d2a9d3314ccd508743b7b.json",
+      "size": 3520,
+      "kind": "file",
+      "sha256": "79f0c6237f2168f1460dc925d6ab350822c1c98bd84d2a9d3314ccd508743b7b"
+    },
+    {
+      "path": "9cc453f185a427c3fe5fd58c560246d900af35bbac71af8f417e0fd656303ccf/layer.tar",
+      "size": 133120,
+      "kind": "file",
+      "sha256": "9cc453f185a427c3fe5fd58c560246d900af35bbac71af8f417e0fd656303ccf"
+    },
+    {
+      "path": "aa062f473ca6232685f8175fd3d425e7c6453c6fe6ca212b0522ebb005cba6c7/layer.tar",
+      "size": 30720,
+      "kind": "file",
+      "sha256": "aa062f473ca6232685f8175fd3d425e7c6453c6fe6ca212b0522ebb005cba6c7"
+    },
+    {
+      "path": "ad5162bf0d0fc20eac0a76a272ed8fbc1750eae55a853fad5c43de7f7825390d/layer.tar",
+      "size": 204800,
+      "kind": "file",
+      "sha256": "ad5162bf0d0fc20eac0a76a272ed8fbc1750eae55a853fad5c43de7f7825390d"
+    },
+    {
+      "path": "c96ae4a7af8e0b1d4f9dc35915aaf1624d6a0ffb0ea12f214df8f199296bb211/layer.tar",
+      "size": 2928640,
+      "kind": "file",
+      "sha256": "c96ae4a7af8e0b1d4f9dc35915aaf1624d6a0ffb0ea12f214df8f199296bb211"
+    },
+    {
+      "path": "cfadc6008dcec3aa829ee475ab6809132514b101753cc6530c84307659578520/layer.tar",
+      "size": 583680,
+      "kind": "file",
+      "sha256": "cfadc6008dcec3aa829ee475ab6809132514b101753cc6530c84307659578520"
+    },
+    {
+      "path": "e75a646dd3ca3033722d588f26f79124f958428220314c2afd625812886e699c/layer.tar",
+      "size": 409600,
+      "kind": "file",
+      "sha256": "e75a646dd3ca3033722d588f26f79124f958428220314c2afd625812886e699c"
+    },
+    {
+      "path": "e8efdf75437e0dfc15ca58ad11c7d50bc4740f92f5026306e3c5b6996a1f1cc8/layer.tar",
+      "size": 35686400,
+      "kind": "file",
+      "sha256": "e8efdf75437e0dfc15ca58ad11c7d50bc4740f92f5026306e3c5b6996a1f1cc8"
+    },
+    {
+      "path": "fc2e883f84d86c0253678f837f78c551a81f0d4f49f5eae18462ce7e224f2ac6/layer.tar",
+      "size": 10240,
+      "kind": "file",
+      "sha256": "fc2e883f84d86c0253678f837f78c551a81f0d4f49f5eae18462ce7e224f2ac6"
+    },
+    {
+      "path": "manifest.json",
+      "size": 1195,
+      "kind": "file",
+      "sha256": "33ab2e28b06e7ca321bc8e08fa6f181df0544de4e531a7a7481b81ed284114ab"
+    }
+  ],
+  "oci_distribution_manifest_digest": null,
+  "registry_push_performed": false,
+  "container_execution_qualified": false,
+  "inner_layer_semantics_reviewed": false,
+  "native_notice_inventory_complete": false,
+  "reproducibility_qualified": false,
+  "production_activation": false,
+  "scope": "Exact archive/config/ordered uncompressed layer byte hashes only; no inner extraction, import, runtime or OCI manifest construction"
+}

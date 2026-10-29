@@ -1,8 +1,8 @@
 ---
 gsd_state_version: "1.0"
-current_plan: 01
+current_plan: 17
 status: in_progress
-last_updated: "2026-10-29T06:00:14.724Z"
+last_updated: "2026-10-29T06:38:28.570Z"
 state_head: a4937c55ac0056cc7185ce116c599edc6f968051
 progress:
   total_phases: 14
@@ -10,29 +10,29 @@ progress:
   total_plans: 36
   completed_plans: 11
   percent: 7
-current_task: 5
+current_task: 1
 last_activity: 2026-10-29
-current_phase: 13
-current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: Business draft/attachment recovery verified locally; actual/full qualification pending.
-last_activity_desc: Business focused176/backend804/5/245.003s/proxy148/source276 pass; actual/full acceptance pending.
+current_phase: 2
+current_phase_name: Reproducible application and deployment skeleton
+stopped_at: "Four exact candidate archives built/inspected; remaining Phase2 and related steps pending."
+last_activity_desc: "Actual four-image build24.209s; original23/15 control, final23/deployment16/31/inventory-planning8 pass."
 ---
 
 # Project state — final purchase-flow revision2
 
-**Current development focus:** 13 — purchase-flow, fulfilment and release acceptance; verified Phase8/10/12 local slices retained with actual acceptance pending. [Current purchase-flow authority](PURCHASE-FLOW-AMENDMENT.md).
+**Current development focus:** 2 — Reproducible application and deployment skeleton; complete related foundation steps across phases. [Current purchase-flow authority](PURCHASE-FLOW-AMENDMENT.md).
 
 **Last fully completed phase:** 1 — baseline documentary acceptance only. SRC-05 final-amendment documentary reconciliation is complete and does not revalidate actual commercial or external behavior. All other phases remain partial or pending. Counts are completed-phase/planned-record counts, not engineering effort.
 
-**Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
+**Current plan:** 02-17 — Two clean builds and complete CI evidence; partial14/16 dependencies retained.
 
-**Execution status:** in progress — business draft/attachment recovery verified locally (focused176, backend804/5, proxy148/2, source276); actual/full acceptance pending.
+**Execution status:** in progress — Phase2 four candidate images built/inspected; selectors23, deployment16/31 and inventory/planning8 pass; plan records8/18; full and related qualification pending.
 
-**Next implementation task:** Bind remaining actual customer/resource/revocation/MFA/source recovery interfaces when authoritative channel/custody evidence and an assigned independent target arrive. Company commercial inputs remain pending without another request.
+**Next implementation task:** Implement and qualify merged filesystem/link/PAX and actual native/OCI evidence for all four archives, then independent image comparison and remaining14 application/transport/bootstrap/replica integration; preserve every external/human gate.
 
 ## Current local continuation
 
-Business draft saves/private reads and quotation business attachments now lock the originating epoch before resource work and retain it through bounded rendering or commit. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-BUSINESS-RECOVERY-PARTIAL.md). Original43/54 controls, focused176/39.797s, backend804/5/245.003s, supported proxy148/2 and exact276-file source pass. Prior quotation/cart/draft/checkout/support evidence retains scope; actual/company inputs remain pending.
+Phase2 now has all four exact local candidate archives with independently observed outer/inner bytes and276 matching app/worker source files. [Actual scope](../docs/build/four-candidate-images-2026-10-29.md); [full goal tracker](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md). PostgreSQL historical bytes reproduce;23 inspector tests, deployment16/31 and inventory/planning8 pass. These results do not complete Phase2, OCI/runtime/native/licence/CI or related recovery/activation acceptance.
 
 ## Preserved implementation/evidence
 
@@ -63,7 +63,7 @@ P-02/03/05/06/08 cover actual ready-kit variants, standard development prices/ri
 
 ## Session continuity
 
-Resumed clean7c11251 and consumed the structured handoff. User-approved quick261029-7t5 verifies original43/54 controls, focused176/39.797s, backend804/5/245.003s, supported proxy148/2 and exact276-file source. Both fixed product files restored exactly after the original-source control. Implementationa4937c5 is committed; actual Git refs determine synchronization. Schema-backed quick261029-7t5 completion is recorded; implementationa4937c5 is pushed. All owned producers exited; no async jobs or full Phase13 SUMMARY. Actual/company/channel/custody/provider/revocation/MFA/independent-target/formal qualification remains pending without another request.
+Active full goal: complete Phase2 and related steps. Existing partial14/16/17 resumed after10fc980. Closed four-image selectors implemented; actual four candidates built24.209s using a new owned /var child, inspected independently and locally rooted. Original23/15 controls restore two fixed files exactly; final23, deployment16/31 and inventory/planning8 pass. PostgreSQL original archive/reports reproduce unchanged; both app/worker archives contain276 exact source files. Build/observation producers exited. Remaining full acceptance and related/runtime/native/OCI/application/independent/human gates stay open; phase8/18, no SUMMARY/FULL_PASS. Current evidence and exact next action are in the Phase2 completion tracker and checkpoint.
 
 ### Quick Tasks Completed
 

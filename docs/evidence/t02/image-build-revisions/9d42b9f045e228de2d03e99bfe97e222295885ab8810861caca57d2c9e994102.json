@@ -1,0 +1,167 @@
+{
+  "schema_version": 1,
+  "evidence_class": "local-four-candidate-image-build-and-inspection",
+  "observed_at": "2026-10-29T06:25:19.023871+00:00",
+  "build": {
+    "purpose": "Phase2 exact four-candidate local image builds",
+    "checkout": "/home/claude/project/014-Shop",
+    "created_at": "2026-10-29T06:20:08.011940+00:00",
+    "evidence_class": "local-build-only",
+    "command": [
+      "nix",
+      "build",
+      "--max-jobs",
+      "1",
+      "--cores",
+      "2",
+      "--option",
+      "build-dir",
+      "/var/lib/shop-image-scratch-VjIrVLVQ/phase2-20261029-51lq7l_m",
+      "--no-link",
+      "--print-out-paths",
+      "./ops/nixos#shop-app",
+      "./ops/nixos#shop-worker",
+      "./ops/nixos#shop-postgres",
+      "./ops/nixos#shop-gateway"
+    ],
+    "build_directory": "/var/lib/shop-image-scratch-VjIrVLVQ/phase2-20261029-51lq7l_m",
+    "source_commit": "10fc980337c533c19eb85bc8c8f70e9d7d36c491",
+    "source_dirty": true,
+    "inputs": {
+      "ops/nixos/flake.nix": "4d40f1ad16898df7ba1044b6d3bf8f953f3f6ef41b4b4018774a6ee58b17e4d9",
+      "ops/nixos/flake.lock": "865a3c07a35f43f024ce7c01614be82cb795707edac8e27092bdbba42519cd75",
+      "ops/nixos/python-runtime.nix": "a3b763a2f09c306233dca2389f1d5b9b020854e02b5454c302b4cca927e4d24a",
+      "ops/runtime/wheels.json": "f0fb57ba0f62f4c0feb626ae6fbd03e06edb2a66e8f260538f00137a14989559",
+      "backend/requirements/runtime-linux-py313.txt": "f8fcadf293e0da50ca0cd19af277e869a2de4a9476bd65e9d919ff7f506a7606"
+    },
+    "status": "complete",
+    "exit_code": 0,
+    "elapsed_seconds": 24.208536475198343
+  },
+  "build_log": {
+    "path": "docs/evidence/t02/image-build-logs/17228ee7e43369e96cdc003cd7ff4678e8ef8f0e2c072d56f53f53f2b8f509d7.txt",
+    "sha256": "17228ee7e43369e96cdc003cd7ff4678e8ef8f0e2c072d56f53f53f2b8f509d7",
+    "bytes": 8533
+  },
+  "observer_sources": {
+    "scripts/inspect_image_archive.py": "d77074aab6440f423b4cd6c15811b4e131309b64f94d21bcd869e26b9d342e4c",
+    "scripts/inventory_image_payload.py": "a3ca6c1b1a00d0923c50200395697c35fe90c2c657cd104ea684d0b3d37c2c71"
+  },
+  "images": [
+    {
+      "image": "shop-app",
+      "archive_path": "/nix/store/6xqd75ka2v46ydd4v10wnlvq9kmbicrd-shop-app.tar.gz",
+      "archive_sha256": "ed1878432d0eb3f75dbd4d122c6510fd0bd1034fd735aaa40ae6508e6fab905d",
+      "archive_bytes": 107154882,
+      "local_root": "/home/claude/project/014-Shop/.scratch/phase2-image-roots-phase2-20261029-51lq7l_m/shop-app",
+      "config_image_id": "sha256:4d7cbd09c82b551feba73d3859f53d534c615b947f603f7a9e197fcbc891f9c5",
+      "outer_report": {
+        "path": "docs/evidence/t02/image-archive-revisions/29eb6d000cf1a728f47692bf3c9805e26e6d6caf84179b3180b5a9ece1462e4b.json",
+        "sha256": "29eb6d000cf1a728f47692bf3c9805e26e6d6caf84179b3180b5a9ece1462e4b"
+      },
+      "payload_report": {
+        "path": "docs/evidence/t02/image-payload-revisions/c0dd8a6f8315d0c49f28f0ed4046399e4edb66a0acfddc770818f5bc2820f322.json",
+        "sha256": "c0dd8a6f8315d0c49f28f0ed4046399e4edb66a0acfddc770818f5bc2820f322"
+      },
+      "layer_count": 40,
+      "counts": {
+        "entries": 25733,
+        "regular_files": 13638,
+        "file_bytes": 265888110
+      },
+      "oci_distribution_manifest_digest": null,
+      "container_execution_qualified": false,
+      "merged_rootfs_qualified": false,
+      "native_notice_inventory_complete": false
+    },
+    {
+      "image": "shop-worker",
+      "archive_path": "/nix/store/513qzmp9ry5nf34cd1nckslv811gi9nk-shop-worker.tar.gz",
+      "archive_sha256": "e3bc7b493968a15d55ed7e62036c0e00d94c324779513765c761bb3a8d6a767f",
+      "archive_bytes": 107154870,
+      "local_root": "/home/claude/project/014-Shop/.scratch/phase2-image-roots-phase2-20261029-51lq7l_m/shop-worker",
+      "config_image_id": "sha256:856775ecda2485c045fc92254bf59ad4ef2887b8552b01da806a40d5247144b2",
+      "outer_report": {
+        "path": "docs/evidence/t02/image-archive-revisions/db3173addc3fd0c9819ff22c128da71f0a742c89a3256d1b89d4099a432bde0c.json",
+        "sha256": "db3173addc3fd0c9819ff22c128da71f0a742c89a3256d1b89d4099a432bde0c"
+      },
+      "payload_report": {
+        "path": "docs/evidence/t02/image-payload-revisions/a99f1c94171f134edc22e28f02989c13133ede6470f32cd00e3f0822fc713a64.json",
+        "sha256": "a99f1c94171f134edc22e28f02989c13133ede6470f32cd00e3f0822fc713a64"
+      },
+      "layer_count": 40,
+      "counts": {
+        "entries": 25733,
+        "regular_files": 13638,
+        "file_bytes": 265888110
+      },
+      "oci_distribution_manifest_digest": null,
+      "container_execution_qualified": false,
+      "merged_rootfs_qualified": false,
+      "native_notice_inventory_complete": false
+    },
+    {
+      "image": "shop-postgres",
+      "archive_path": "/nix/store/55fbc919a5fwhyc1gcsn1h6m63s4ipai-shop-postgres.tar.gz",
+      "archive_sha256": "00ad3ec8402040624e9218f25fed63c5aa62a1a002a07dc3a3a1fab425021067",
+      "archive_bytes": 125653410,
+      "local_root": "/home/claude/project/014-Shop/.scratch/phase2-image-roots-phase2-20261029-51lq7l_m/shop-postgres",
+      "config_image_id": "sha256:2de6ade6a883cb6a376fe6239cbabc78a671007e6490c961f828eb93954f0e44",
+      "outer_report": {
+        "path": "docs/evidence/t02/image-archive-revisions/f40a60ce47686368cd6dbd4dcbf2da6ad5bde1893eb865b757281dbfabb23e31.json",
+        "sha256": "f40a60ce47686368cd6dbd4dcbf2da6ad5bde1893eb865b757281dbfabb23e31"
+      },
+      "payload_report": {
+        "path": "docs/evidence/t02/image-payload-revisions/874d877d6651a07c89871beaae9e66c30beefb469cfdfebc4018da318b639ba7.json",
+        "sha256": "874d877d6651a07c89871beaae9e66c30beefb469cfdfebc4018da318b639ba7"
+      },
+      "layer_count": 51,
+      "counts": {
+        "entries": 14480,
+        "regular_files": 8298,
+        "file_bytes": 298557309
+      },
+      "oci_distribution_manifest_digest": null,
+      "container_execution_qualified": false,
+      "merged_rootfs_qualified": false,
+      "native_notice_inventory_complete": false
+    },
+    {
+      "image": "shop-gateway",
+      "archive_path": "/nix/store/krpqwl8hsyg2a7ngkvsy0pxlgs6kck3p-shop-gateway.tar.gz",
+      "archive_sha256": "112eb28747e1cc1ad05d5d8a1fd4123f9128321d226f4c2da01951a9dcd4e3df",
+      "archive_bytes": 31802498,
+      "local_root": "/home/claude/project/014-Shop/.scratch/phase2-image-roots-phase2-20261029-51lq7l_m/shop-gateway",
+      "config_image_id": "sha256:79f0c6237f2168f1460dc925d6ab350822c1c98bd84d2a9d3314ccd508743b7b",
+      "outer_report": {
+        "path": "docs/evidence/t02/image-archive-revisions/bedb19899b2c0944c27d4cc663f64b0ce8bc6e90d5e2fc15575fdd0c14842d53.json",
+        "sha256": "bedb19899b2c0944c27d4cc663f64b0ce8bc6e90d5e2fc15575fdd0c14842d53"
+      },
+      "payload_report": {
+        "path": "docs/evidence/t02/image-payload-revisions/b0df673e91804bbd53729bbad310c0baf5d7ce3ac5a967363b59bd3126939ecc.json",
+        "sha256": "b0df673e91804bbd53729bbad310c0baf5d7ce3ac5a967363b59bd3126939ecc"
+      },
+      "layer_count": 11,
+      "counts": {
+        "entries": 2612,
+        "regular_files": 2224,
+        "file_bytes": 92210885
+      },
+      "oci_distribution_manifest_digest": null,
+      "container_execution_qualified": false,
+      "merged_rootfs_qualified": false,
+      "native_notice_inventory_complete": false
+    }
+  ],
+  "inspection_elapsed_seconds": 21.485699666896835,
+  "postgres_historical_archive_and_reports_reproduced_exactly": true,
+  "local_roots_registered": true,
+  "independent_offhost_retention_qualified": false,
+  "registry_push_performed": false,
+  "runtime_qualified": false,
+  "oci_distribution_manifest_qualified": false,
+  "two_independent_image_builds_compared": false,
+  "legal_approval": false,
+  "production_activation": false,
+  "scope": "Four actual local Docker save archives and their observed inner bytes only; local roots are not independent artifact custody, runtime, merged filesystem, OCI registry, legal or full phase qualification"
+}

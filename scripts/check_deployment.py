@@ -133,7 +133,7 @@ def evaluate():
     runtime_result=unittest.TextTestRunner(stream=stream).run(runtime_suite)
     if runtime_result.testsRun<7 or not runtime_result.wasSuccessful() or runtime_result.skipped:raise ValueError('runtime config controls failed: '+stream.getvalue())
     print(f'DEPLOYMENT_EVAL_PASS checks=16 tests={result.testsRun+probe_result.testsRun+runtime_result.testsRun} duration_seconds={time.monotonic()-start:.3f}')
-    print('Candidate evaluation only; unbuilt images, generator/runtime/bootstrap/review/off-host evidence pending')
+    print('Candidate evaluation only; image-build, generator/runtime/bootstrap/review/off-host qualification requires separate evidence')
 
 
 def validate_profile(profile):

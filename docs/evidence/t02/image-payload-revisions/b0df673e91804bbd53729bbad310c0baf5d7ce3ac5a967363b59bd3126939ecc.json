@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "evidence_class": "local-image-inner-layer-entry-inventory",
+  "archive_sha256": "112eb28747e1cc1ad05d5d8a1fd4123f9128321d226f4c2da01951a9dcd4e3df",
+  "config_image_id": "sha256:79f0c6237f2168f1460dc925d6ab350822c1c98bd84d2a9d3314ccd508743b7b",
+  "outer_report_sha256": "bedb19899b2c0944c27d4cc663f64b0ce8bc6e90d5e2fc15575fdd0c14842d53",
+  "layer_count": 11,
+  "counts": {
+    "entries": 2612,
+    "regular_files": 2224,
+    "file_bytes": 92210885
+  },
+  "payload_manifest": {
+    "path": "image-payload-manifests/f46ebed3815aa1276215b36b6c360de95c94afe73c91445b6c4d83b3c83f74d2.json.gz",
+    "sha256": "f46ebed3815aa1276215b36b6c360de95c94afe73c91445b6c4d83b3c83f74d2",
+    "compressed_bytes": 114593,
+    "uncompressed_sha256": "8fdbab32333ef386dc495ac0cd1957d6b555070fd647260ce4cfb266ec302d26",
+    "uncompressed_bytes": 995916
+  },
+  "notice_filename_candidates": [],
+  "symlink_count": 121,
+  "hardlink_count": 0,
+  "absolute_archive_member_names": 2558,
+  "whiteout_markers_unapplied": 0,
+  "merged_rootfs_qualified": false,
+  "links_resolved": false,
+  "native_notice_inventory_complete": false,
+  "legal_approval": false,
+  "container_execution_qualified": false,
+  "reproducibility_qualified": false,
+  "production_activation": false,
+  "scope": "Layer entry metadata and regular bytes hashed only; links recorded/unfollowed, overlays/whiteouts unapplied, notice filenames not licence classification"
+}

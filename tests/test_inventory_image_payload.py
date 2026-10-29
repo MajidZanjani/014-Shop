@@ -27,11 +27,11 @@ def inner_bytes(entries):
     return stream.getvalue()
 
 
-def image(entries):
+def image(entries,*,candidate='shop-postgres'):
     layer=inner_bytes(entries);digest=outer.sha256(layer)
     config=json.loads(fixture()[1][1]);config['rootfs']['diff_ids']=['sha256:'+digest]
     raw=json.dumps(config).encode();name=outer.sha256(raw)+'.json'
-    manifest=[{'Config':name,'RepoTags':['shop-postgres:candidate'],'Layers':[digest+'/layer.tar']}]
+    manifest=[{'Config':name,'RepoTags':[candidate+':candidate'],'Layers':[digest+'/layer.tar']}]
     return tar_bytes([(digest+'/layer.tar',layer,tarfile.REGTYPE),(name,raw,tarfile.REGTYPE),
         ('manifest.json',json.dumps(manifest).encode(),tarfile.REGTYPE)],gzip=True)
 
@@ -43,6 +43,30 @@ class PayloadTests(unittest.TestCase):
         path.write_bytes(image(entries or [('/nix/store/synthetic/LICENSE',tarfile.REGTYPE,b'SYNTHETIC EXACT NOTICE\r\n','')]))
         report=outer.inspect(path)
         return path,json.dumps(report).encode()
+
+    def test_all_required_candidate_payloads_and_wrong_selection(self):
+        entries=[('synthetic.txt',tarfile.REGTYPE,b'bounded synthetic payload','')]
+        with tempfile.TemporaryDirectory() as name:
+            path=Path(name)/'candidate.tar.gz'
+            for candidate in ('shop-app','shop-worker','shop-postgres','shop-gateway'):
+                with self.subTest(image=candidate):
+                    path.write_bytes(image(entries,candidate=candidate))
+                    try:
+                        prior=json.dumps(outer.inspect(path,expected_image=candidate)).encode()
+                        report,data=payload.collect(path,prior,expected_image=candidate)
+                    except TypeError as error:self.fail('Explicit payload selection unavailable: '+str(error))
+                    self.assertEqual(report['counts']['regular_files'],1)
+                    self.assertEqual(json.loads(gzip.decompress(data))['archive_sha256'],report['archive_sha256'])
+                    self.assertFalse(report['merged_rootfs_qualified']);self.assertFalse(report['container_execution_qualified'])
+                    with self.assertRaises(ValueError):payload.collect(path,prior,expected_image='unapproved')
+                    other='shop-worker' if candidate=='shop-app' else 'shop-app'
+                    with self.assertRaises(ValueError):payload.collect(path,prior,expected_image=other)
+
+    def test_explicit_postgres_keeps_retained_default_payload_bytes(self):
+        path,prior=self.fixture();report,data=payload.collect(path,prior)
+        try:explicit,explicit_data=payload.collect(path,prior,expected_image='shop-postgres')
+        except TypeError as error:self.fail('Explicit payload selection unavailable: '+str(error))
+        self.assertEqual(explicit,report);self.assertEqual(explicit_data,data)
 
     def test_exact_hashes_raw_absolute_names_and_compressed_manifest(self):
         path,prior=self.fixture();report,data=payload.collect(path,prior)

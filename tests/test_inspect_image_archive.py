@@ -21,7 +21,7 @@ def tar_bytes(entries,gzip=False):
     return out.getvalue()
 
 
-def fixture(edit_config=None):
+def fixture(edit_config=None,*,image='shop-postgres'):
     layer=tar_bytes([('synthetic.txt',b'synthetic image payload',tarfile.REGTYPE)])
     digest=scanner.sha256(layer);layer_name=digest+'/layer.tar'
     config={'created':'1970-01-01T00:00:01+00:00','architecture':'amd64','os':'linux',
@@ -29,16 +29,60 @@ def fixture(edit_config=None):
                   'Cmd':['/synthetic/candidate']},'rootfs':{'type':'layers','diff_ids':['sha256:'+digest]}}
     if edit_config:edit_config(config)
     config_raw=json.dumps(config).encode();config_name=scanner.sha256(config_raw)+'.json'
-    manifest=[{'Config':config_name,'RepoTags':['shop-postgres:candidate'],'Layers':[layer_name]}]
+    manifest=[{'Config':config_name,'RepoTags':[image+':candidate'],'Layers':[layer_name]}]
     return [(layer_name,layer,tarfile.REGTYPE),(config_name,config_raw,tarfile.REGTYPE),
             ('manifest.json',json.dumps(manifest).encode(),tarfile.REGTYPE)]
 
 
 class ImageArchiveTests(unittest.TestCase):
-    def inspect(self,entries):
+    def inspect(self,entries,**kwargs):
         with tempfile.TemporaryDirectory() as name:
             path=Path(name)/'candidate.tar.gz';path.write_bytes(tar_bytes(entries,gzip=True))
-            return scanner.inspect(path)
+            return scanner.inspect(path,**kwargs)
+
+    def selected(self,entries,name):
+        try:return self.inspect(entries,expected_image=name)
+        except TypeError as error:self.fail('Explicit candidate selection unavailable: '+str(error))
+
+    def test_all_four_required_images_are_observed_without_runtime_grants(self):
+        for name in ('shop-app','shop-worker','shop-postgres','shop-gateway'):
+            with self.subTest(image=name):
+                report=self.selected(fixture(image=name),name)
+                self.assertEqual(len(report['layers']),1)
+                self.assertFalse(report['container_execution_qualified'])
+                self.assertFalse(report['production_activation'])
+                self.assertIsNone(report['oci_distribution_manifest_digest'])
+
+    def test_expected_candidate_never_adopts_another_image_or_unknown_name(self):
+        for actual,expected in [('shop-app','shop-worker'),('shop-postgres','shop-gateway'),
+                                ('shop-worker','unapproved-image'),('shop-gateway','shop-gateway:candidate')]:
+            with self.subTest(actual=actual,expected=expected),self.assertRaises(ValueError):
+                self.selected(fixture(image=actual),expected)
+        # Existing callers keep their exact PostgreSQL default, rather than auto-adopting a tag.
+        with self.assertRaises(ValueError):self.inspect(fixture(image='shop-app'))
+
+    def test_explicit_postgres_preserves_default_report_bytes(self):
+        with tempfile.TemporaryDirectory() as name:
+            path=Path(name)/'candidate.tar.gz';path.write_bytes(tar_bytes(fixture(),gzip=True))
+            prior=json.dumps(scanner.inspect(path),indent=2).encode()
+            try:selected=scanner.inspect(path,expected_image='shop-postgres')
+            except TypeError as error:self.fail('Explicit candidate selection unavailable: '+str(error))
+            self.assertEqual(json.dumps(selected,indent=2).encode(),prior)
+
+    def test_cli_explicit_image_is_closed_and_retains_only_its_observation(self):
+        from contextlib import redirect_stdout,redirect_stderr
+        with tempfile.TemporaryDirectory() as name:
+            root=Path(name);directory=root/'docs/evidence/t02';directory.mkdir(parents=True)
+            path=root/'app.tar.gz';path.write_bytes(tar_bytes(fixture(image='shop-app'),gzip=True))
+            output=io.StringIO()
+            with patch.object(scanner,'ROOT',root),patch.object(sys,'argv',['inspect','--archive',str(path),'--image','shop-app','--write']),redirect_stdout(output),redirect_stderr(io.StringIO()):
+                try:scanner.main()
+                except SystemExit as error:self.fail('Explicit candidate CLI unavailable: '+str(error))
+            reports=list((directory/'image-archive-revisions').glob('*.json'))
+            self.assertEqual(len(reports),1);self.assertIn('image=shop-app',output.getvalue())
+            self.assertFalse(json.loads(reports[0].read_bytes())['container_execution_qualified'])
+            with patch.object(sys,'argv',['inspect','--archive',str(path),'--image','unapproved']),redirect_stderr(io.StringIO()),self.assertRaises(SystemExit) as denied:scanner.main()
+            self.assertEqual(denied.exception.code,2)
 
     def test_exact_config_layer_and_archive_hashes_without_runtime_grants(self):
         entries=fixture();report=self.inspect(entries)

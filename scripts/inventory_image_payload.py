@@ -11,7 +11,7 @@ from pathlib import Path,PurePosixPath
 import tarfile
 from audit_licence_gaps import ROOT,require,sha256
 from audit_licence_names import extended_candidate
-from inspect_image_archive import inspect,unique
+from inspect_image_archive import inspect,unique,CANDIDATE_IMAGES
 
 MAX_ENTRIES=200000
 MAX_PATH=4096
@@ -61,13 +61,13 @@ def layer_entries(reader,totals):
     return result
 
 
-def collect(path,prior_bytes):
+def collect(path,prior_bytes,*,expected_image='shop-postgres'):
     prior=json.loads(prior_bytes,object_pairs_hook=unique)
     require(prior['evidence_class']=='local-built-docker-archive-inspection'
             and type(prior['schema_version']) is int and prior['schema_version']==1,'unsupported outer report')
     entries={};totals={'entries':0,'regular_files':0,'file_bytes':0}
     def observe(name,reader):entries[name]=layer_entries(reader,totals)
-    observed=inspect(path,layer_observer=observe)
+    observed=inspect(path,layer_observer=observe,expected_image=expected_image)
     require(observed==prior,'outer report/archive substitution denied')
     layers=[{'archive_member':layer['archive_member'],'diff_id':layer['diff_id'],
              'entries':entries[layer['archive_member']]} for layer in observed['layers']]
@@ -117,7 +117,8 @@ def retain(directory,report,payload,*,write=False):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--archive',required=True,type=Path);parser.add_argument('--outer-report',required=True,type=Path)
-    parser.add_argument('--write',action='store_true');args=parser.parse_args()
+    parser.add_argument('--write',action='store_true')
+    parser.add_argument('--image',choices=CANDIDATE_IMAGES,default='shop-postgres');args=parser.parse_args()
     descriptor=os.open(args.outer_report,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK|os.O_CLOEXEC)
     with os.fdopen(descriptor,'rb') as source:
         before=os.fstat(source.fileno())
@@ -126,9 +127,9 @@ def main():
         require(len(raw)==before.st_size and all(getattr(before,key)==getattr(after,key)==getattr(named,key)
                 for key in ('st_dev','st_ino','st_size','st_mtime_ns','st_ctime_ns')),'outer report changed during read')
     require(args.outer_report.name==sha256(raw)+'.json','outer report content address mismatch')
-    report,payload=collect(args.archive,raw);retain(ROOT/'docs/evidence/t02',report,payload,write=args.write)
+    report,payload=collect(args.archive,raw,expected_image=args.image);retain(ROOT/'docs/evidence/t02',report,payload,write=args.write)
     print('IMAGE_PAYLOAD_INVENTORY_PASS '+json.dumps(report['counts'],sort_keys=True)+
-          f' layers={report["layer_count"]} notice_filename_candidates={len(report["notice_filename_candidates"])}; runtime_legal_merged_rootfs_pending=true')
+          f' layers={report["layer_count"]} notice_filename_candidates={len(report["notice_filename_candidates"])} image={args.image}; runtime_legal_merged_rootfs_pending=true')
 
 
 if __name__=='__main__':main()

@@ -1,17 +1,17 @@
 # Current execution continuity
 
-**Current development focus:** 13 — purchase-flow, fulfilment and release acceptance; verified Phase8/10/12 local slices retained with actual acceptance pending. [Current purchase-flow authority](PURCHASE-FLOW-AMENDMENT.md).
+**Current development focus:** 2 — Reproducible application and deployment skeleton; complete related foundation steps across phases. [Current purchase-flow authority](PURCHASE-FLOW-AMENDMENT.md).
 
-**Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
+**Current plan:** 02-17 — Two clean builds and complete CI evidence; partial14/16 dependencies retained.
 
-**Execution status:** in progress — business draft/attachment recovery verified locally (focused176, backend804/5, proxy148/2, source276); actual/full acceptance pending.
+**Execution status:** in progress — Phase2 four candidate images built/inspected; selectors23, deployment16/31 and inventory/planning8 pass; plan records8/18; full and related qualification pending.
 
-**Next implementation task:** Bind remaining actual customer/resource/revocation/MFA/source recovery interfaces when authoritative channel/custody evidence and an assigned independent target arrive. Company commercial inputs remain pending without another request.
+**Next implementation task:** Implement and qualify merged filesystem/link/PAX and actual native/OCI evidence for all four archives, then independent image comparison and remaining14 application/transport/bootstrap/replica integration; preserve every external/human gate.
 
 **Recorded implementation:** a4937c55ac0056cc7185ce116c599edc6f968051
 
-Business draft saves/private reads and quotation business attachments now lock the originating epoch before resource work and retain it through bounded rendering or commit. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-BUSINESS-RECOVERY-PARTIAL.md). Original43/54 controls, focused176/39.797s, backend804/5/245.003s, supported proxy148/2 and exact276-file source pass. Prior quotation/cart/draft/checkout/support evidence retains scope; actual/company inputs remain pending.
+Phase2 now has all four exact local candidate archives with independently observed outer/inner bytes and276 matching app/worker source files. [Actual scope](../docs/build/four-candidate-images-2026-10-29.md); [full goal tracker](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md). PostgreSQL historical bytes reproduce;23 inspector tests, deployment16/31 and inventory/planning8 pass. These results do not complete Phase2, OCI/runtime/native/licence/CI or related recovery/activation acceptance.
 
-Quick261029-7t5 reproduces and fixes the saved finite business observation. Both fixed product files restore exactly after the original43-test/54-failure control; all owned qualification producers exited. The one-shot pause handoff was consumed at execution start. Schema-backed quick261029-7t5 completion is recorded; implementationa4937c5 is committed and pushed. Actual Git refs determine later synchronization. Continue ordinary non-force pushes after each commit under standing user authority. No full Phase13 SUMMARY or actual recovery qualification.
+The complete user goal remains active and unachieved. Read02-COMPLETION-TRACKER.md and actual build evidence. All four archives now exist; PostgreSQL archive/outer/payload hashes match historical records. Three new outer reports, three inner reports/manifests, measured build log and content-addressed build index retain actual evidence. Task-owned local roots exist; no independent custody is claimed. No live producers or async jobs remain. Implementation/status commit is being finalized; actual Git refs determine synchronization. Continue ordinary non-force pushes after each commit under standing authority.
 
-Shared /tmp remains full and untouched; retain owned TMPDIR and hash-checked cached wheels. Actual post-point customer/resource/revocation/MFA/source binding, approved channel/custody/retention, selected-bank/provider scope, independent assigned runtime/recovery target and formal/full acceptance remain pending under the [finite register](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-QUALIFICATION-REGISTER.md). Company commercial inputs will be supplied later; do not re-ask.
+Next work is actual merged links/PAX/filesystem and native/OCI artifact evidence, then two independent builds and plan14 integration/driver. Runtime/importer/legal/CI/independent recovery and protected-host/full acceptance stay pending. Company inputs will arrive later; do not re-ask. No actual image execution, deployment, protected host/resource change, provider operation or approval occurred. Use owned temporary storage and preserve historical evidence/pins; shared /tmp is full. Earlier business a4937c5/10fc980 and backend804/5 evidence retain their narrower dated scope.

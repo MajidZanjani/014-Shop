@@ -6,15 +6,15 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 ## Current implementation status — 2026-10-28
 
-**Current development focus:** 13 — purchase-flow, fulfilment and release acceptance; verified Phase8/10/12 local slices retained with actual acceptance pending. [Current purchase-flow authority](PURCHASE-FLOW-AMENDMENT.md).
+**Current development focus:** 2 — Reproducible application and deployment skeleton; complete related foundation steps across phases. [Current purchase-flow authority](PURCHASE-FLOW-AMENDMENT.md).
 
-**Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
+**Current plan:** 02-17 — Two clean builds and complete CI evidence; partial14/16 dependencies retained.
 
-**Execution status:** in progress — business draft/attachment recovery verified locally (focused176, backend804/5, proxy148/2, source276); actual/full acceptance pending.
+**Execution status:** in progress — Phase2 four candidate images built/inspected; selectors23, deployment16/31 and inventory/planning8 pass; plan records8/18; full and related qualification pending.
 
-**Next implementation task:** Bind remaining actual customer/resource/revocation/MFA/source recovery interfaces when authoritative channel/custody evidence and an assigned independent target arrive. Company commercial inputs remain pending without another request.
+**Next implementation task:** Implement and qualify merged filesystem/link/PAX and actual native/OCI evidence for all four archives, then independent image comparison and remaining14 application/transport/bootstrap/replica integration; preserve every external/human gate.
 
-Business draft saves/private reads and quotation business attachments now lock the originating epoch before resource work and retain it through bounded rendering or commit. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-BUSINESS-RECOVERY-PARTIAL.md). Original43/54 controls, focused176/39.797s, backend804/5/245.003s, supported proxy148/2 and exact276-file source pass. Prior quotation/cart/draft/checkout/support evidence retains scope; actual/company inputs remain pending.
+Phase2 now has all four exact local candidate archives with independently observed outer/inner bytes and276 matching app/worker source files. [Actual scope](../docs/build/four-candidate-images-2026-10-29.md); [full goal tracker](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md). PostgreSQL historical bytes reproduce;23 inspector tests, deployment16/31 and inventory/planning8 pass. These results do not complete Phase2, OCI/runtime/native/licence/CI or related recovery/activation acceptance.
 
 Before every commit reconcile affected current references, publish state.json and run python3 scripts/check_planning.py. Sync commits to origin/main without force. Historical evidence retains its original scope.
 

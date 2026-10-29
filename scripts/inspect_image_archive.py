@@ -20,6 +20,7 @@ MAX_MEMBERS=2048
 MAX_JSON=1024**2
 MAX_METADATA=8*1024**2
 META=('st_dev','st_ino','st_mode','st_size','st_mtime_ns','st_ctime_ns')
+CANDIDATE_IMAGES=('shop-app','shop-worker','shop-postgres','shop-gateway')
 
 
 def unique(pairs):
@@ -41,7 +42,8 @@ class DigestReader:
         return data
 
 
-def inspect(path, *, layer_observer=None):
+def inspect(path, *, layer_observer=None, expected_image='shop-postgres'):
+    require(type(expected_image) is str and expected_image in CANDIDATE_IMAGES,'unsupported candidate image')
     path=Path(path)
     fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK|os.O_CLOEXEC)
     with os.fdopen(fd,'rb') as stream:
@@ -93,7 +95,7 @@ def inspect(path, *, layer_observer=None):
     require(type(config_name) is str and config_name in json_bytes
             and type(layers) is list and 1<=len(layers)<=MAX_MEMBERS
             and all(type(p) is str for p in layers) and len(set(layers))==len(layers)
-            and type(tags) is list and len(tags)==1 and tags[0]=='shop-postgres:candidate',
+            and type(tags) is list and len(tags)==1 and tags[0]==expected_image+':candidate',
             'candidate manifest references invalid')
     config_raw=json_bytes[config_name];config=json.loads(config_raw,object_pairs_hook=unique)
     image_id=sha256(config_raw)
@@ -130,7 +132,8 @@ def inspect(path, *, layer_observer=None):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--archive',required=True,type=Path);parser.add_argument('--write',action='store_true')
-    args=parser.parse_args();report=inspect(args.archive)
+    parser.add_argument('--image',choices=CANDIDATE_IMAGES,default='shop-postgres')
+    args=parser.parse_args();report=inspect(args.archive,expected_image=args.image)
     encoded=(json.dumps(report,indent=2)+'\n').encode()
     directory=ROOT/'docs/evidence/t02/image-archive-revisions'
     output=directory/(sha256(encoded)+'.json')
@@ -140,7 +143,7 @@ def main():
         with output.open('xb') as stream:stream.write(encoded)
     else:
         require(not directory.is_symlink() and not output.is_symlink() and output.read_bytes()==encoded,'archive inspection report mismatch')
-    print(f'IMAGE_ARCHIVE_INSPECTION_PASS layers={len(report["layers"])} archive_bytes={report["archive_bytes"]}; runtime_reproducibility_oci_manifest_pending=true')
+    print(f'IMAGE_ARCHIVE_INSPECTION_PASS layers={len(report["layers"])} archive_bytes={report["archive_bytes"]} image={args.image}; runtime_reproducibility_oci_manifest_pending=true')
 
 
 if __name__=='__main__':main()
