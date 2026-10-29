@@ -1,0 +1,2 @@
+warning: Git tree '/home/claude/project/014-Shop' is dirty
+IMAGE_LAYOUT_FAIL: Not a gzipped file (b'/n')

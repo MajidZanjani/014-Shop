@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "status": "failed-evidence-publication",
+  "exit_code": 1,
+  "report_sha256": "381797ced2867c9cc92392c7a9c4cf6998fe519db3629231ba7084e3e753f7f4",
+  "reason": "App and worker filesystem payloads have identical bytes; the original publisher tried exclusive creation twice. This report was written prematurely and is an incomplete failed attempt, not successful retained evidence. Original bytes remain unchanged.",
+  "log": {
+    "source_log": "phase2-image-layout-root-actual.log",
+    "path": "docs/evidence/t02/image-layout-logs/0f0bef5eb939757af0193e983fd810b6331227ac5daecab6a399de4a1b3fb996.txt",
+    "sha256": "0f0bef5eb939757af0193e983fd810b6331227ac5daecab6a399de4a1b3fb996",
+    "bytes": 528
+  },
+  "successful_replacement": "../27708a4e83a9ef6ac9e956b617533933dafa55dfaba909ab276196e08e185694/report.json"
+}

@@ -1,9 +1,9 @@
 ---
 gsd_state_version: "1.0"
-current_plan: 17
+current_plan: 14
 status: in_progress
-last_updated: "2026-10-29T07:30:26.113Z"
-state_head: 2bf69782189ecd90da384a018a2a29ad7d937cc7
+last_updated: "2026-10-29T08:04:14.627Z"
+state_head: 6aaf77f7ec6c34cfe9e9aebdb4ac005594cb3b8f
 progress:
   total_phases: 14
   completed_phases: 1
@@ -14,8 +14,8 @@ current_task: 1
 last_activity: 2026-10-29
 current_phase: 2
 current_phase_name: Reproducible application and deployment skeleton
-stopped_at: "Current complete public/backend reproducibility and locks verified; full OCI/runtime/related work pending."
-last_activity_desc: "Original11/5 controls; two real builds4/11/16.008s and locks3/8/7.858s pass; historical evidence unchanged."
+stopped_at: "Four standard-tool OCI layouts/filesystems verified; full goal continues with image rebuild and remaining integration."
+last_activity_desc: "Local image4/19/63.790s, combined image42 controls and deployment16/31 pass; full acceptance8/18 remains open."
 ---
 
 # Project state — final purchase-flow revision2
@@ -24,15 +24,15 @@ last_activity_desc: "Original11/5 controls; two real builds4/11/16.008s and lock
 
 **Last fully completed phase:** 1 — baseline documentary acceptance only. SRC-05 final-amendment documentary reconciliation is complete and does not revalidate actual commercial or external behavior. All other phases remain partial or pending. Counts are completed-phase/planned-record counts, not engineering effort.
 
-**Current plan:** 02-17 — Two clean builds and complete CI evidence; partial14/16 dependencies retained.
+**Current plan:** 02-14 — Standard-tool image qualification; plan16/17 and complete foundation gates remain open.
 
-**Execution status:** in progress — Phase2 current public/backend reproducibility4/11/builds2 and locks3/8 verified; four image archives retained; plan records8/18 and full OCI/runtime/CI/related qualification pending.
+**Execution status:** in progress — Phase2 four local OCI layouts reconstructed and verified4/19; current-source repro4/11/builds2 and locks3/8 retained; 8/18 plans complete, full runtime/CI/legal/related gates pending.
 
-**Next implementation task:** Qualify actual merged filesystem/link/PAX and native/OCI image evidence and two independent image comparisons, then complete remaining14 application/transport/migration/bootstrap/replica integration and every related actual/human acceptance gate.
+**Next implementation task:** Run bounded exact-image rebuild comparison, then finish native image inventory and plan14 application/transport/migration/bootstrap/replica integration; retain all actual/human qualification gates.
 
 ## Current local continuation
 
-Current exact public/backend payloads now reproduce in two fresh builds including all280 backend inputs; original11/5 controls and final4/11/builds2 plus locks3/8 pass. [Current evidence](../docs/build/current-payload-reproducibility-2026-10-29.md). Four rooted image archives remain hash-verified; [full goal tracker](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md) retains OCI/native/runtime/CI/legal and related qualification. No full phase/plan approval is inferred.
+Four actual local OCI layouts and umoci filesystems now verify4/19, including all276 /app source aliases per application image. [Exact image scope](../docs/build/oci-filesystem-qualification-2026-10-29.md). Current public/backend repro4/11/builds2 and locks3/8 stay verified. [Full goal tracker](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md) retains8/18 plan completion and all native/runtime/CI/legal/independent/related acceptance.
 
 ## Preserved implementation/evidence
 
@@ -63,8 +63,7 @@ P-02/03/05/06/08 cover actual ready-kit variants, standard development prices/ri
 
 ## Session continuity
 
-Active goal resumed397fdcd at2026-10-29T07:30:26.113Z; prior handoff consumed and all four rooted archives/reports revalidated. Fixed current release packaging, canonical partial-init cleanup/explicit owned input and validation-first immutable evidence publication after original11/5 control. Actual two fresh public/backend builds4/11/16.008s and locks3/8/7.858s pass. New versioned manifest retains source/command/tool/hash/count/timing scope; old evidence unchanged. No live producers or async jobs. Full Phase2 and related goal remains incomplete8/18; continue actual merged/native/OCI comparison and14 integration/independent/human qualification without lowering gates. Standing pushes remain authorized; promised company inputs stay pending without another request.
-
+Active full goal continues. Complete-source repro commit6aaf77f is pushed. New pinned standard-tool image conversion/reconstruction verifies4/19/63.790s, source/manifest/filesystem readback and all276 application aliases per image; deployment16/31 and combined42 image controls pass. Failed UTC/media/root-entry/publication attempts are retained with explicit scope. No payload execution, runtime-daemon import, registry/host/provider action or actual/human/legal qualification. No producer remains. Next is bounded exact-image rebuild comparison and every remaining local integration/independent/human gate. Parent8/18 remains incomplete; keep standing pushes and the full goal.
 ### Quick Tasks Completed
 
 | # | Description | Date | Commit | Directory |

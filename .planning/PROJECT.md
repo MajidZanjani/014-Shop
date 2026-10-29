@@ -8,13 +8,13 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current development focus:** 2 — Reproducible application and deployment skeleton; complete related foundation steps across phases. [Current purchase-flow authority](PURCHASE-FLOW-AMENDMENT.md).
 
-**Current plan:** 02-17 — Two clean builds and complete CI evidence; partial14/16 dependencies retained.
+**Current plan:** 02-14 — Standard-tool image qualification; plan16/17 and complete foundation gates remain open.
 
-**Execution status:** in progress — Phase2 current public/backend reproducibility4/11/builds2 and locks3/8 verified; four image archives retained; plan records8/18 and full OCI/runtime/CI/related qualification pending.
+**Execution status:** in progress — Phase2 four local OCI layouts reconstructed and verified4/19; current-source repro4/11/builds2 and locks3/8 retained; 8/18 plans complete, full runtime/CI/legal/related gates pending.
 
-**Next implementation task:** Qualify actual merged filesystem/link/PAX and native/OCI image evidence and two independent image comparisons, then complete remaining14 application/transport/migration/bootstrap/replica integration and every related actual/human acceptance gate.
+**Next implementation task:** Run bounded exact-image rebuild comparison, then finish native image inventory and plan14 application/transport/migration/bootstrap/replica integration; retain all actual/human qualification gates.
 
-Current exact public/backend payloads now reproduce in two fresh builds including all280 backend inputs; original11/5 controls and final4/11/builds2 plus locks3/8 pass. [Current evidence](../docs/build/current-payload-reproducibility-2026-10-29.md). Four rooted image archives remain hash-verified; [full goal tracker](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md) retains OCI/native/runtime/CI/legal and related qualification. No full phase/plan approval is inferred.
+Four actual local OCI layouts and umoci filesystems now verify4/19, including all276 /app source aliases per application image. [Exact image scope](../docs/build/oci-filesystem-qualification-2026-10-29.md). Current public/backend repro4/11/builds2 and locks3/8 stay verified. [Full goal tracker](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md) retains8/18 plan completion and all native/runtime/CI/legal/independent/related acceptance.
 
 Before every commit reconcile affected current references, publish state.json and run python3 scripts/check_planning.py. Sync commits to origin/main without force. Historical evidence retains its original scope.
 

@@ -1,0 +1,7 @@
+warning: Git tree '/home/claude/project/014-Shop' is dirty
+IMAGE_LAYOUT_IMAGE_PASS image=shop-app paths=25657
+IMAGE_LAYOUT_IMAGE_PASS image=shop-worker paths=25657
+IMAGE_LAYOUT_IMAGE_PASS image=shop-postgres paths=14382
+IMAGE_LAYOUT_IMAGE_PASS image=shop-gateway paths=2594
+IMAGE_LAYOUT_EVIDENCE report=docs/evidence/t02/image-layout-revisions/27708a4e83a9ef6ac9e956b617533933dafa55dfaba909ab276196e08e185694/report.json sha256=27708a4e83a9ef6ac9e956b617533933dafa55dfaba909ab276196e08e185694
+IMAGE_LAYOUT_LOCAL_PASS checks=4 tests=19 images=4 duration_seconds=63.790

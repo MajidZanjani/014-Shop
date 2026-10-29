@@ -118,10 +118,22 @@
     # PGDATA must already exist and be attested; no implicit initdb entrypoint.
     postgresImage = image "shop-postgres" [ postgres python postgresDiagnostics ] postgresCommand;
     gatewayImage = image "shop-gateway" [ pkgs.caddy gatewayConfig ] [ "${pkgs.caddy}/bin/caddy" "run" "--config" "/etc/shop/Caddyfile" "--adapter" "caddyfile" ];
+    # Local archive/layout inspection only; these tools never enter runtime images.
+    imageToolManifest = pkgs.writeText "shop-image-tool-manifest.json" (builtins.toJSON {
+      schema_version = 1;
+      skopeo = { executable = "${pkgs.skopeo}/bin/skopeo"; version = pkgs.skopeo.version; };
+      umoci = { executable = "${pkgs.umoci}/bin/umoci"; version = pkgs.umoci.version; };
+      unshare = "${pkgs.util-linux}/bin/unshare";
+    });
+    imageTools = pkgs.symlinkJoin {
+      name = "shop-image-inspection-tools";
+      paths = [ pkgs.skopeo pkgs.umoci pkgs.util-linux ];
+    };
   in {
     nixosModules.shop = import ./modules/shop.nix;
     packages.${system} = { shop-app = appImage; shop-worker = workerImage;
-      shop-app-source = appTree; shop-browser = pkgs.chromium; shop-postgres = postgresImage; shop-gateway = gatewayImage; shop-python-runtime = runtime; shop-database-tools-source = databaseTools; shop-operator-inspect = operatorInspection.launcher; shop-operator-schema = operatorSchema.launcher; };
+      shop-app-source = appTree; shop-browser = pkgs.chromium; shop-postgres = postgresImage; shop-gateway = gatewayImage; shop-python-runtime = runtime; shop-database-tools-source = databaseTools; shop-operator-inspect = operatorInspection.launcher; shop-operator-schema = operatorSchema.launcher;
+      shop-image-tools = imageTools; shop-image-tool-manifest = imageToolManifest; };
     checks.${system} = {
       operator-startup-denial = operatorFailure.launcher;
       schema-startup-denial = schemaFailure.launcher;
@@ -140,6 +152,12 @@
     };
     # Same pinned backend tools; backend demos/checks need no frontend compiler.
     devShells.${system} = {
+    images = pkgs.mkShell {
+      packages = [ pythonEnv imageTools ];
+      PYTHONDONTWRITEBYTECODE = "1";
+      PYTHONNOUSERSITE = "1";
+      SHOP_IMAGE_TOOL_MANIFEST = imageToolManifest;
+    };
     # Acceptance tooling only; never included in application/worker images.
     browser = pkgs.mkShell {
       packages = [ pythonEnv postgres pkgs.nodejs_24 pkgs.chromium ];

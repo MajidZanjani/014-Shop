@@ -1,0 +1,2 @@
+warning: Git tree '/home/claude/project/014-Shop' is dirty
+IMAGE_LAYOUT_FAIL: reconstructed path set mismatch: {"missing_count": 1, "extra_count": 0, "missing_sample": ["."], "extra_sample": []}

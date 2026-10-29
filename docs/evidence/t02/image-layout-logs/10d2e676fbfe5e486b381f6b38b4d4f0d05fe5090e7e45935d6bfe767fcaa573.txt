@@ -1,0 +1,2 @@
+warning: Git tree '/home/claude/project/014-Shop' is dirty
+IMAGE_LAYOUT_FAIL: converted configuration substitution field=created expected='1970-01-01T00:00:01+00:00' observed='1970-01-01T00:00:01Z'

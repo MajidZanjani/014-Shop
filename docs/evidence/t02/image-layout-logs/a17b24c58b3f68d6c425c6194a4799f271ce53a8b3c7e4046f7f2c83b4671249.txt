@@ -1,0 +1,8 @@
+warning: Git tree '/home/claude/project/014-Shop' is dirty
+these 2 derivations will be built:
+  /nix/store/bg7g83mqgbavini50db7rvpn6szp2d1b-shop-image-tool-manifest.json.drv
+  /nix/store/nvana4i609idfqq88n012mj772k886dy-shop-image-inspection-tools.drv
+building '/nix/store/nvana4i609idfqq88n012mj772k886dy-shop-image-inspection-tools.drv'...
+building '/nix/store/bg7g83mqgbavini50db7rvpn6szp2d1b-shop-image-tool-manifest.json.drv'...
+/nix/store/03hb1njx4662f4v54fxcj8sjbihr958m-shop-image-inspection-tools
+/nix/store/0z1v466y00xjxh3nq2qa3b5djqsvfs85-shop-image-tool-manifest.json

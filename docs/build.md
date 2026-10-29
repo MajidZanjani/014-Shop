@@ -70,3 +70,7 @@ Provenance/scope-language analog: docs/implementation-evidence.md. Named-error/h
 ## Current complete payload reproduction — 2026-10-29
 
 [Current two-build/installer evidence](build/current-payload-reproducibility-2026-10-29.md): actual public/backend builds match with all current templates/CSS/catalog JSON. `check_reproducibility.py --local` preserves the legacy canonical default; optional `--canonical-build-root` must name a new direct .scratch child and is an explicit recorded build input. `--record-evidence` validates before exclusive new content-addressed publication, preserving dated originals. A caller-owned XDG_CACHE_HOME can bypass a full shared Nix cache without clearing it. Full OCI reproducibility and every independent/native/legal/runtime/CI gate remain required.
+
+## Actual standard-tool OCI/filesystem subset — 2026-10-29
+
+[Four-image report](build/oci-filesystem-qualification-2026-10-29.md): local pinned Skopeo/umoci4 checks/19 controls/63.790s, all42 image controls and deployment16/31 pass. Actual OCI descriptors and reconstructed path/file/mode/mtime/link bytes plus276 /app aliases per application image verify. UID/GID/xattrs/native/legal/independent/runtime/two-image/full-CI/related qualification remains pending; no full marker or parent SUMMARY. New inspection-only tools do not enter runtime images; original outputs/pins/evidence remain unchanged.

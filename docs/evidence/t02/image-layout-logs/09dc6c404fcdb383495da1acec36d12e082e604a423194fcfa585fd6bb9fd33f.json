@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "evidence_class": "local-image-layout-execution-log-index",
+  "exit_code": 0,
+  "checks": 4,
+  "tests": 19,
+  "whole_pinned_command_seconds": 63.986,
+  "producer_report_seconds": 63.7880272869952,
+  "final_report": {
+    "path": "docs/evidence/t02/image-layout-revisions/27708a4e83a9ef6ac9e956b617533933dafa55dfaba909ab276196e08e185694/report.json",
+    "sha256": "27708a4e83a9ef6ac9e956b617533933dafa55dfaba909ab276196e08e185694"
+  },
+  "logs": [
+    {
+      "source_log": "phase2-image-tools-build.log",
+      "path": "docs/evidence/t02/image-layout-logs/f5155008e93e3dd41dc959a7f34dd228e0981c28492a250d021d842822aacb93.txt",
+      "sha256": "f5155008e93e3dd41dc959a7f34dd228e0981c28492a250d021d842822aacb93",
+      "bytes": 2730
+    },
+    {
+      "source_log": "phase2-image-tools-build-owned.log",
+      "path": "docs/evidence/t02/image-layout-logs/a17b24c58b3f68d6c425c6194a4799f271ce53a8b3c7e4046f7f2c83b4671249.txt",
+      "sha256": "a17b24c58b3f68d6c425c6194a4799f271ce53a8b3c7e4046f7f2c83b4671249",
+      "bytes": 580
+    },
+    {
+      "source_log": "phase2-image-layout-actual.log",
+      "path": "docs/evidence/t02/image-layout-logs/5c38f1c2da2eb1c687b5f7a4139264d2a9a4d3e35f277be9b6635327b288ea15.txt",
+      "sha256": "5c38f1c2da2eb1c687b5f7a4139264d2a9a4d3e35f277be9b6635327b288ea15",
+      "bytes": 1003
+    },
+    {
+      "source_log": "phase2-image-layout-config-control.log",
+      "path": "docs/evidence/t02/image-layout-logs/10d2e676fbfe5e486b381f6b38b4d4f0d05fe5090e7e45935d6bfe767fcaa573.txt",
+      "sha256": "10d2e676fbfe5e486b381f6b38b4d4f0d05fe5090e7e45935d6bfe767fcaa573",
+      "bytes": 198
+    },
+    {
+      "source_log": "phase2-image-layout-format-actual.log",
+      "path": "docs/evidence/t02/image-layout-logs/a8cbeee354b92273c9b113b8c91e3d4d2181a7fa52ec744b6022b774e761bd9f.txt",
+      "sha256": "a8cbeee354b92273c9b113b8c91e3d4d2181a7fa52ec744b6022b774e761bd9f",
+      "bytes": 105
+    },
+    {
+      "source_log": "phase2-image-layout-gzip-actual.log",
+      "path": "docs/evidence/t02/image-layout-logs/b7dbd0e6e8a85a993d01ff14a5cc81e7117475e68381d68b6a3d1b3d3e1097ff.txt",
+      "sha256": "b7dbd0e6e8a85a993d01ff14a5cc81e7117475e68381d68b6a3d1b3d3e1097ff",
+      "bytes": 110
+    },
+    {
+      "source_log": "phase2-image-layout-path-control.log",
+      "path": "docs/evidence/t02/image-layout-logs/edeacb30cb1d84fce8a71a50eadf0e3bb1d1e824c197bcc2738aa6bb4f7a245c.txt",
+      "sha256": "edeacb30cb1d84fce8a71a50eadf0e3bb1d1e824c197bcc2738aa6bb4f7a245c",
+      "bytes": 195
+    },
+    {
+      "source_log": "phase2-image-layout-root-actual.log",
+      "path": "docs/evidence/t02/image-layout-logs/0f0bef5eb939757af0193e983fd810b6331227ac5daecab6a399de4a1b3fb996.txt",
+      "sha256": "0f0bef5eb939757af0193e983fd810b6331227ac5daecab6a399de4a1b3fb996",
+      "bytes": 528
+    },
+    {
+      "source_log": "phase2-image-layout-final-actual.log",
+      "path": "docs/evidence/t02/image-layout-logs/7f687c3f1a0428271d4e9f989556fe53e2a7036d526cba9eb64468761dd704b4.txt",
+      "sha256": "7f687c3f1a0428271d4e9f989556fe53e2a7036d526cba9eb64468761dd704b4",
+      "bytes": 568
+    }
+  ],
+  "scope": "Actual local tools/file reconstruction only; failed preparation/conversion/publication logs retained separately; no full Phase2/runtime/legal/independent result."
+}
