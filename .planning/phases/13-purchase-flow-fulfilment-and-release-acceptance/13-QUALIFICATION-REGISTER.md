@@ -1,6 +1,6 @@
 # Phase13 grouped qualification register —2026-10-27
 
-Current local continuation: paused at a proactive context checkpoint after pushed quotation batches through494d6f5; current native focused126/backend761/5/proxy148/source276 retain scope. Exact usage unavailable. Resume the unreproduced business draft/attachment observation under a new GSD quick task. Company/actual/full acceptance stays pending.
+Current local continuation: quick261029-7t5 verifies business draft/attachment recovery; focused176/backend804/5/proxy148/source276 pass. [Exact evidence](13-BUSINESS-RECOVERY-PARTIAL.md). Company/actual/full acceptance stays pending.
 
 ## Current local evidence
 
@@ -130,3 +130,7 @@ Local implementation2e373a5 and schema-backed quick261028-fy8 completion are rec
 ## Native quotation page recovery — 2026-10-28
 
 [Evidence](13-QUOTATION-PAGES-RECOVERY-PARTIAL.md): original9/9 controls, focused126/27.980s, backend761/5/234.820s, proxy148/2 and exact276-file source pass. Native history/cursor/timeline/document reads lock the originating epoch through bounded projection/rendering, preserving private owner/source/history behavior. Business draft/attachment boundaries remain a separate source observation. Company/actual/full acceptance stays pending.
+
+## Business draft and quotation attachment recovery — 2026-10-29
+
+[Evidence](13-BUSINESS-RECOVERY-PARTIAL.md): original43/54 controls, focused176/39.797s, backend804/5/245.003s, proxy148/2 and exact276-file source pass. Business writes/private pages/previews/errors lock the originating epoch before resources, preserve normal parsing and exact retry/source/CAS/history contracts, and deny stale authority. Company/actual/full acceptance stays pending.

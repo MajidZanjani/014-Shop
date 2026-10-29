@@ -13,6 +13,7 @@ from shop.access.models import CustomerIdentity
 from . import business_rules as rules
 from .models import BusinessDraft, BusinessDraftSnapshot
 from .tests import verified_login
+from .cart_tests import CartRecoveryMixin
 
 URL='/purchase/business/'
 
@@ -179,3 +180,138 @@ class BusinessDraftTests(TransactionTestCase):
         self.assertEqual(self.post(corrected).status_code,409)
         self.assertEqual(BusinessDraftSnapshot.objects.count(),2)
         self.assertEqual(BusinessDraftSnapshot.objects.get(version=2).details['legal_business_name'],'NEWEST_PRIVATE_SYNTHETIC')
+
+
+class BusinessRecoveryMixin(CartRecoveryMixin):
+    """Compare private immutable business facts separately from HTTP/session effects."""
+    def facts(self):
+        from .models import QuotationBusinessScope,QuotationBusinessKey
+        from .models import QuotationRequest,QuotationRequestKey,QuotationReview
+        facts=super().facts()
+        for name,model in [('quotations',QuotationRequest),('quotation_keys',QuotationRequestKey),
+                           ('reviews',QuotationReview),('business',BusinessDraft),('business_snapshots',BusinessDraftSnapshot),
+                           ('business_scopes',QuotationBusinessScope),('business_keys',QuotationBusinessKey)]:
+            facts[name]=list(model.objects.order_by('id').values())
+        return facts
+
+    def assert_denied(self,response):
+        self.assertEqual(response.status_code,403,response.content)
+        self.assertEqual(response.json(),{'error':'verification_required'})
+        self.assertEqual(response['Cache-Control'],'no-store')
+        self.assertNotContains(response,'<form',status_code=403)
+        self.assertNotContains(response,'BUSINESS_PRIVATE',status_code=403)
+        if hasattr(self,'quotation'):self.assertNotContains(response,str(self.quotation.pk),status_code=403)
+
+
+class BusinessDraftRecoveryTests(BusinessRecoveryMixin,TransactionTestCase):
+    def setUp(self):
+        BusinessDraftTests.setUp(self)
+        self.client=Client(enforce_csrf_checks=True,raise_request_exception=False)
+        verified_login(self.client,self.owner)
+        self.assertEqual(self.client.get(URL).status_code,200)
+
+    def post(self,value=None):
+        value=dict(self.value if value is None else value,csrfmiddlewaretoken=self.client.cookies['csrftoken'].value)
+        return self.client.post(URL,data=urlencode(value),content_type='application/x-www-form-urlencoded')
+
+    def command_overlap(self,mode,released=False):
+        from . import business_views
+        if mode in ('edit','replay'):
+            self.assertEqual(self.post().status_code,303)
+            if mode=='edit':self.value.update(request_id=str(uuid.uuid4()),expected_version='1',notes='BUSINESS_PRIVATE_EDIT_SYNTHETIC')
+        before=self.facts();parse=business_views.read_submission
+        def interleave(request):
+            result=parse(request);self.reset(released);return result
+        with patch.object(business_views,'read_submission',side_effect=interleave):response=self.post()
+        with self.subTest(check='response'):self.assert_denied(response)
+        with self.subTest(check='facts'):self.assertEqual(self.facts(),before)
+        self.fresh();self.assertEqual(self.post().status_code,303)
+        committed=self.facts();self.assertEqual(self.post().status_code,303)
+        self.assertEqual(self.facts(),committed)
+        self.assertEqual(BusinessDraft.objects.get().version,2 if mode=='edit' else 1)
+        self.assertEqual(BusinessDraftSnapshot.objects.count(),2 if mode=='edit' else 1)
+
+    def test_create_after_quarantine_denies(self):self.command_overlap('create')
+    def test_create_after_quarantine_release_denies(self):self.command_overlap('create',True)
+    def test_edit_after_quarantine_denies(self):self.command_overlap('edit')
+    def test_edit_after_quarantine_release_denies(self):self.command_overlap('edit',True)
+    def test_retry_after_quarantine_denies(self):self.command_overlap('replay')
+    def test_retry_after_quarantine_release_denies(self):self.command_overlap('replay',True)
+
+    def read_overlap(self,mode,released=False):
+        from . import business_views
+        self.assertEqual(self.post().status_code,303);before=self.facts()
+        if mode in ('page','query'):
+            access=business_views.local_customer
+            def interleave(request):
+                result=access(request);self.assertIsNone(result);self.reset(released);return result
+            with patch.object(business_views,'local_customer',side_effect=interleave):
+                response=self.client.get(URL+('?ignored=1' if mode=='query' else ''))
+        elif mode=='conflict':
+            page=business_views.page
+            def interleave(*args,**kwargs):
+                self.assertEqual(kwargs['status'],409);self.reset(released);return page(*args,**kwargs)
+            with patch.object(business_views,'page',side_effect=interleave):
+                response=self.post(dict(self.value,request_id=str(uuid.uuid4())))
+        else:
+            parse=business_views.read_submission
+            def interleave(request):
+                result=parse(request);self.reset(released)
+                if mode=='malformed':raise ValueError('synthetic invalid submission')
+                return result
+            value=dict(self.value,business_email='REJECTED_PRIVATE@example.com') if mode=='validation' else self.value
+            with patch.object(business_views,'read_submission',side_effect=interleave):response=self.post(value)
+        with self.subTest(check='response'):self.assert_denied(response)
+        with self.subTest(check='facts'):self.assertEqual(self.facts(),before)
+        self.fresh();self.assertContains(self.client.get(URL),self.value['legal_business_name'])
+        self.assertEqual(self.facts(),before)
+
+    def test_page_after_quarantine_denies(self):self.read_overlap('page')
+    def test_page_after_quarantine_release_denies(self):self.read_overlap('page',True)
+    def test_query_error_after_quarantine_denies(self):self.read_overlap('query')
+    def test_query_error_after_quarantine_release_denies(self):self.read_overlap('query',True)
+    def test_parse_error_after_quarantine_denies(self):self.read_overlap('malformed')
+    def test_parse_error_after_quarantine_release_denies(self):self.read_overlap('malformed',True)
+    def test_validation_error_after_quarantine_denies(self):self.read_overlap('validation')
+    def test_validation_error_after_quarantine_release_denies(self):self.read_overlap('validation',True)
+    def test_conflict_page_after_quarantine_denies(self):self.read_overlap('conflict')
+    def test_conflict_page_after_quarantine_release_denies(self):self.read_overlap('conflict',True)
+
+    def test_epoch_locked_before_business_queries_and_rendering(self):
+        from django.db.models.query import QuerySet
+        from . import business_views
+        fetch=QuerySet._fetch_all;render=business_views.render;seen=set();active=[]
+        def observe(query):
+            if query.model in (BusinessDraft,BusinessDraftSnapshot):self.assert_epoch_locked();seen.add(active[0])
+            return fetch(query)
+        def materialize(*args,**kwargs):
+            self.assert_epoch_locked();seen.add(active[0]+'-render');return render(*args,**kwargs)
+        with patch.object(QuerySet,'_fetch_all',observe),patch.object(business_views,'render',side_effect=materialize):
+            active[:]=['create'];self.assertEqual(self.post().status_code,303)
+            active[:]=['retry'];self.assertEqual(self.post().status_code,303)
+            active[:]=['page'];self.assertEqual(self.client.get(URL).status_code,200)
+            active[:]=['query'];self.assertEqual(self.client.get(URL+'?ignored=1').status_code,400)
+            active[:]=['parse'];self.assertEqual(self.post(dict(self.value,unknown='synthetic')).status_code,400)
+            active[:]=['validation'];self.assertEqual(self.post(dict(self.value,business_email='INVALID_PRIVATE@example.com')).status_code,422)
+            active[:]=['conflict'];self.assertEqual(self.post(dict(self.value,request_id=str(uuid.uuid4()))).status_code,409)
+        self.assertEqual(seen,{'create','retry'}|{kind+suffix for kind in ('page','query','parse','validation','conflict') for suffix in ('','-render')})
+
+    def test_selected_startup_after_entry_denies(self):
+        from . import business_views
+        access=business_views.local_customer;before=self.facts()
+        def entry(request):
+            with override_settings(LOCAL_RESTORE_ID=None):result=access(request)
+            self.assertIsNone(result);return result
+        with override_settings(LOCAL_RESTORE_ID=uuid.uuid4()),patch.object(business_views,'local_customer',side_effect=entry):
+            with self.subTest(kind='get'):self.assert_denied(self.client.get(URL))
+            with self.subTest(kind='post'):self.assert_denied(self.post())
+        self.assertEqual(self.facts(),before)
+
+    def test_fresh_historical_retry_keeps_source_identity_and_newer_revision(self):
+        from . import business_views
+        self.assertEqual(self.post().status_code,303)
+        self.assertEqual(self.post(dict(self.value,request_id=str(uuid.uuid4()),expected_version='1',notes='newer synthetic')).status_code,303)
+        self.reset(True);self.fresh();before=self.facts()
+        with patch.object(business_views.rules,'SOURCE_SHA256','f'*64):self.assertEqual(self.post().status_code,303)
+        self.assertEqual(self.client.session['business_last_confirmed_version'],1)
+        self.assertEqual(self.facts(),before)

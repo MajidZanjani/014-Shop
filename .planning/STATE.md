@@ -1,9 +1,8 @@
 ---
 gsd_state_version: "1.0"
 current_plan: 01
-status: paused
-paused_at: "2026-10-28T13:49:55.813Z"
-last_updated: "2026-10-28T13:49:55.813Z"
+status: in_progress
+last_updated: "2026-10-29T05:59:46.565Z"
 state_head: 49f714b29db41962701c1f127196e226f81c3418
 progress:
   total_phases: 14
@@ -12,11 +11,11 @@ progress:
   completed_plans: 11
   percent: 7
 current_task: 5
-last_activity: 2026-10-28
+last_activity: 2026-10-29
 current_phase: 13
 current_phase_name: Purchase-flow, fulfilment and release acceptance
-stopped_at: "Proactive context handoff; business draft/attachment reproduction not started."
-last_activity_desc: "Two quotation recovery batches complete/pushed through494d6f5; backend761/5/proxy148/source276 pass."
+stopped_at: "Business draft/attachment recovery verified locally; actual/full qualification pending."
+last_activity_desc: "Business focused176/backend804/5/245.003s/proxy148/source276 pass; actual/full acceptance pending."
 ---
 
 # Project state — final purchase-flow revision2
@@ -27,13 +26,13 @@ last_activity_desc: "Two quotation recovery batches complete/pushed through494d6
 
 **Current plan:** 13-01 — Eight final purchase-flow acceptance cases.
 
-**Execution status:** paused — proactive context checkpoint after two verified quotation recovery batches; backend761/5, focused126, proxy148/2 and source276 pass; actual/full acceptance pending.
+**Execution status:** in progress — business draft/attachment recovery verified locally (focused176, backend804/5, proxy148/2, source276); actual/full acceptance pending.
 
-**Next implementation task:** Clear the session, run $gsd-resume-work, restore13-01 task5 and start a new GSD quick task to reproduce business-draft save/private reads and quotation business-attachment recovery overlap before product edits. Company commercial and actual inputs remain pending without another request.
+**Next implementation task:** Record schema-backed quick261029-7t5 completion and synchronize its verified business recovery evidence; remaining actual/company qualification inputs stay pending without another request.
 
 ## Current local continuation
 
-Native quotation history/cursor/timeline/document-preview reads now lock their originating epoch through bounded projection/rendering. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-QUOTATION-PAGES-RECOVERY-PARTIAL.md). Original9/9 controls, focused126/27.980s, backend761/5/234.820s, supported proxy148/2 and exact276-file source pass. Prior quotation capture/cart/draft/checkout/support evidence retains scope; actual/company inputs remain pending.
+Business draft saves/private reads and quotation business attachments now lock the originating epoch before resource work and retain it through bounded rendering or commit. [Current evidence](phases/13-purchase-flow-fulfilment-and-release-acceptance/13-BUSINESS-RECOVERY-PARTIAL.md). Original43/54 controls, focused176/39.797s, backend804/5/245.003s, supported proxy148/2 and exact276-file source pass. Prior quotation/cart/draft/checkout/support evidence retains scope; actual/company inputs remain pending.
 
 ## Preserved implementation/evidence
 
@@ -64,7 +63,7 @@ P-02/03/05/06/08 cover actual ready-kit variants, standard development prices/ri
 
 ## Session continuity
 
-Proactive context checkpoint saved at2026-10-28T13:49:55.813Z after synchronized494d6f5. Exact context usage is unavailable; substantial source/test context prompted preservation under the user AGENTS.md rule, not a measured90% trigger or a new user pause request. Quotation capturec356d75/224f87e and native pages49f714b/494d6f5 are complete/pushed. Current backend761/5/234.820s, focused126/27.980s, proxy148/2 and source276 retain exact scope. All owned producers exited; no async jobs or false phase SUMMARY markers. Resume13-01 task5 with the saved business draft/attachment original-code PostgreSQL reproduction; no business baseline/design/fix exists. Company and actual qualification inputs remain pending without another request. Direct user approval reaffirmed subsequent ordinary project pushes and the earlier review rejection is resolved.
+Resumed clean7c11251 and consumed the structured handoff. User-approved quick261029-7t5 verifies original43/54 controls, focused176/39.797s, backend804/5/245.003s, supported proxy148/2 and exact276-file source. Both fixed product files restored exactly after the original-source control. Implementation/completion commits are being finalized. All owned producers exited; no async jobs or full Phase13 SUMMARY. Actual/company/channel/custody/provider/revocation/MFA/independent-target/formal qualification remains pending without another request.
 
 ### Quick Tasks Completed
 

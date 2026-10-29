@@ -10,6 +10,7 @@ from django.views.decorators.http import require_http_methods
 from . import business_rules as rules
 from .models import BusinessDraft, BusinessDraftSnapshot
 from .views import local_customer
+from .cart_views import current_customer,reply
 
 class BusinessForm(forms.Form):
     pass
@@ -35,7 +36,9 @@ def current(owner):
     return draft,snapshot
 
 
+@transaction.atomic
 def page(request,*,status=200,message='',initial=None,errors=None,expected_version=None,submitted_source=None):
+    if not current_customer(request.user,request):return reply({'error':'verification_required'},403)
     draft,snapshot=current(request.user)
     details=initial if initial is not None else snapshot.details if snapshot else rules.empty_details()
     form=BusinessForm(initial=details)
@@ -96,6 +99,7 @@ def business_editor(request):
     if errors:return page(request,status=422,message='Check the listed fields. Nothing was saved.',initial=clean,errors=errors,expected_version=expected,submitted_source=source)
     digest=rules.submission_digest(clean)
     with transaction.atomic():
+        if not current_customer(request.user,request):return reply({'error':'verification_required'},403)
         draft,_=BusinessDraft.objects.get_or_create(owner=request.user)
         draft=BusinessDraft.objects.select_for_update().get(pk=draft.pk)
         old=BusinessDraftSnapshot.objects.filter(draft=draft,request_id=request_id).first()

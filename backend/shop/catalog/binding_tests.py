@@ -17,6 +17,7 @@ from shop.access.quotation_review import snapshot_digest
 from . import business_rules as rules
 from .models import BusinessDraft, BusinessDraftSnapshot, QuotationBusinessScope, QuotationBusinessKey, QuotationReview, QuotationRequest
 from .tests import verified_login
+from .business_tests import BusinessRecoveryMixin
 
 @override_settings(**staff_tests.STAFF_SETTINGS)
 class BusinessBindingTests(TransactionTestCase):
@@ -228,3 +229,150 @@ class BusinessBindingTests(TransactionTestCase):
         response=self.browser.get(self.detail)
         self.assertNotIn('FOREIGN_BUSINESS_PRIVATE_SYNTHETIC',response.content.decode())
         self.assertFalse(response.json()['review_enabled'])
+
+
+class BusinessBindingRecoveryTests(BusinessRecoveryMixin,TransactionTestCase):
+    business=BusinessBindingTests.business
+
+    def setUp(self):
+        from .quotation_tests import QuotationRecoveryTests,CASES
+        from .quotation_views import capture_quotation
+        self.owner=get_user_model().objects.create_user(username='business-binding-recovery-owner')
+        self.client=Client(enforce_csrf_checks=True,raise_request_exception=False)
+        verified_login(self.client,self.owner)
+        self.assertEqual(self.client.get('/api/v1/customer/session/').status_code,200)
+        saved=QuotationRecoveryTests.save_cart(self,0,CASES[1]['lines'])
+        result,status=capture_quotation(self.owner,{'request_id':str(uuid.uuid4()),'cart_id':saved['cart_id'],'version':1})
+        self.assertEqual(status,201)
+        self.quotation=QuotationRequest.objects.get(pk=result['id'])
+        self.path='/purchase/quotation-business/'+str(self.quotation.pk)+'/'
+        self.saved=self.business(1,'BUSINESS_PRIVATE_BINDING_SYNTHETIC')
+        self.value={'action':'attach','request_id':str(uuid.uuid4()),'expected_scope_version':'0','business_version':'1'}
+
+    def post(self,value=None):
+        value=dict(self.value if value is None else value,csrfmiddlewaretoken=self.client.cookies['csrftoken'].value)
+        return self.client.post(self.path,data=urlencode(value),content_type='application/x-www-form-urlencoded')
+
+    def parsed_overlap(self,value,released=False,invalid=False):
+        from types import SimpleNamespace
+        from . import business_binding_views
+        # Replace this module's parser alias only, never the process-wide UUID class.
+        def parsed(raw):
+            key=uuid.UUID(raw);self.reset(released)
+            if invalid:raise ValueError('synthetic invalid submission')
+            return key
+        alias=SimpleNamespace(UUID=parsed,uuid4=uuid.uuid4)
+        with patch.object(business_binding_views,'uuid',alias):return self.post(value)
+
+    def command_overlap(self,mode,released=False):
+        if mode in ('replay','alias','change'):
+            self.assertEqual(self.post().status_code,303)
+            if mode in ('alias','change'):self.value.update(request_id=str(uuid.uuid4()),expected_scope_version='1')
+            if mode=='change':
+                self.business(2,'BUSINESS_PRIVATE_SECOND_SYNTHETIC');self.value['business_version']='2'
+        before=self.facts();response=self.parsed_overlap(self.value,released)
+        with self.subTest(check='response'):self.assert_denied(response)
+        with self.subTest(check='facts'):self.assertEqual(self.facts(),before)
+        self.fresh();self.assertEqual(self.post().status_code,303)
+        committed=self.facts();self.assertEqual(self.post().status_code,303);self.assertEqual(self.facts(),committed)
+        self.assertEqual(QuotationBusinessScope.objects.count(),2 if mode=='change' else 1)
+        self.assertEqual(QuotationBusinessKey.objects.count(),2 if mode in ('change','alias') else 1)
+
+    def test_attach_after_quarantine_denies(self):self.command_overlap('create')
+    def test_attach_after_quarantine_release_denies(self):self.command_overlap('create',True)
+    def test_retry_after_quarantine_denies(self):self.command_overlap('replay')
+    def test_retry_after_quarantine_release_denies(self):self.command_overlap('replay',True)
+    def test_alias_after_quarantine_denies(self):self.command_overlap('alias')
+    def test_alias_after_quarantine_release_denies(self):self.command_overlap('alias',True)
+    def test_change_after_quarantine_denies(self):self.command_overlap('change')
+    def test_change_after_quarantine_release_denies(self):self.command_overlap('change',True)
+
+    def read_overlap(self,mode,released=False):
+        from . import business_binding_views
+        self.assertEqual(self.post().status_code,303);before=self.facts()
+        if mode in ('page','query'):
+            access=business_binding_views.local_customer
+            def interleave(request):
+                result=access(request);self.assertIsNone(result);self.reset(released);return result
+            with patch.object(business_binding_views,'local_customer',side_effect=interleave):
+                response=self.client.get(self.path+('?ignored=1' if mode=='query' else ''))
+        elif mode=='conflict':
+            page=business_binding_views.page
+            def interleave(*args,**kwargs):
+                self.assertEqual(kwargs['status'],409);self.reset(released);return page(*args,**kwargs)
+            with patch.object(business_binding_views,'page',side_effect=interleave):
+                response=self.post(dict(self.value,request_id=str(uuid.uuid4())))
+        else:
+            value=dict(self.value,action='preview',business_version='999' if mode=='missing' else '1')
+            response=self.parsed_overlap(value,released,invalid=mode=='malformed')
+        with self.subTest(check='response'):self.assert_denied(response)
+        with self.subTest(check='facts'):self.assertEqual(self.facts(),before)
+        self.fresh();self.assertContains(self.client.get(self.path),'BUSINESS_PRIVATE_BINDING_SYNTHETIC')
+        self.assertEqual(self.facts(),before)
+
+    def test_page_after_quarantine_denies(self):self.read_overlap('page')
+    def test_page_after_quarantine_release_denies(self):self.read_overlap('page',True)
+    def test_query_error_after_quarantine_denies(self):self.read_overlap('query')
+    def test_query_error_after_quarantine_release_denies(self):self.read_overlap('query',True)
+    def test_preview_after_quarantine_denies(self):self.read_overlap('preview')
+    def test_preview_after_quarantine_release_denies(self):self.read_overlap('preview',True)
+    def test_missing_preview_after_quarantine_denies(self):self.read_overlap('missing')
+    def test_missing_preview_after_quarantine_release_denies(self):self.read_overlap('missing',True)
+    def test_parse_error_after_quarantine_denies(self):self.read_overlap('malformed')
+    def test_parse_error_after_quarantine_release_denies(self):self.read_overlap('malformed',True)
+    def test_conflict_page_after_quarantine_denies(self):self.read_overlap('conflict')
+    def test_conflict_page_after_quarantine_release_denies(self):self.read_overlap('conflict',True)
+
+    def test_epoch_locked_before_binding_queries_and_rendering(self):
+        from django.db.models.query import QuerySet
+        from . import business_binding_views
+        from .models import DraftCart,CartSnapshot
+        fetch=QuerySet._fetch_all;render=business_binding_views.render;seen=set();active=[]
+        def observe(query):
+            if query.model in (QuotationRequest,DraftCart,CartSnapshot,BusinessDraftSnapshot,QuotationBusinessScope,QuotationBusinessKey):
+                self.assert_epoch_locked();seen.add(active[0])
+            return fetch(query)
+        def materialize(*args,**kwargs):
+            self.assert_epoch_locked();seen.add(active[0]+'-render');return render(*args,**kwargs)
+        with patch.object(QuerySet,'_fetch_all',observe),patch.object(business_binding_views,'render',side_effect=materialize):
+            active[:]=['create'];self.assertEqual(self.post().status_code,303)
+            active[:]=['retry'];self.assertEqual(self.post().status_code,303)
+            active[:]=['alias'];self.assertEqual(self.post(dict(self.value,request_id=str(uuid.uuid4()),expected_scope_version='1')).status_code,303)
+            active[:]=['page'];self.assertEqual(self.client.get(self.path).status_code,200)
+            active[:]=['query'];self.assertEqual(self.client.get(self.path+'?ignored=1').status_code,400)
+            active[:]=['preview'];self.assertEqual(self.post(dict(self.value,action='preview')).status_code,200)
+            active[:]=['missing'];self.assertEqual(self.post(dict(self.value,action='preview',business_version='999')).status_code,404)
+            active[:]=['parse'];self.assertEqual(self.post(dict(self.value,action='invalid')).status_code,400)
+            active[:]=['conflict'];self.assertEqual(self.post(dict(self.value,request_id=str(uuid.uuid4()))).status_code,409)
+        self.assertEqual(seen,{'create','retry','alias'}|{kind+suffix for kind in ('page','query','preview','missing','parse','conflict') for suffix in ('','-render')})
+
+    def test_selected_startup_after_entry_denies(self):
+        from . import business_binding_views
+        access=business_binding_views.local_customer;before=self.facts()
+        def entry(request):
+            with override_settings(LOCAL_RESTORE_ID=None):result=access(request)
+            self.assertIsNone(result);return result
+        with override_settings(LOCAL_RESTORE_ID=uuid.uuid4()),patch.object(business_binding_views,'local_customer',side_effect=entry):
+            with self.subTest(kind='get'):self.assert_denied(self.client.get(self.path))
+            with self.subTest(kind='post'):self.assert_denied(self.post())
+        self.assertEqual(self.facts(),before)
+
+    def test_fresh_historical_retry_keeps_scope_and_review_history(self):
+        from django.utils import timezone
+        from .rules import CATALOG
+        self.assertEqual(self.post().status_code,303)
+        self.business(2,'BUSINESS_PRIVATE_SECOND_SYNTHETIC')
+        self.assertEqual(self.post(dict(self.value,request_id=str(uuid.uuid4()),expected_scope_version='1',business_version='2')).status_code,303)
+        reviewer=get_user_model().objects.create_user(username='business-recovery-reviewer',is_staff=True)
+        QuotationReview.objects.create(quotation=self.quotation,version=1,business_version=1,request_id=uuid.uuid4(),snapshot_digest='f'*64,
+            decision='needs_information',reviewer=reviewer,reviewer_generation=uuid.uuid4(),mfa_verified_at=timezone.now())
+        self.quotation.refresh_from_db();self.quotation.review_version=1;self.quotation.save(update_fields=['review_version'])
+        self.reset(True);self.fresh();before=self.facts()
+        with patch.object(rules,'SOURCE_SHA256','f'*64),patch.dict(CATALOG,revision='f'*64):self.assertEqual(self.post().status_code,303)
+        self.assertEqual(self.facts(),before)
+
+    def test_missing_quotation_precedes_malformed_form(self):
+        self.path='/purchase/quotation-business/'+str(uuid.uuid4())+'/'
+        before=self.facts();response=self.post(dict(self.value,action='invalid'))
+        self.assertEqual(response.status_code,404);self.assertEqual(response.json(),{'error':'not_found'})
+        self.assertEqual(self.facts(),before)

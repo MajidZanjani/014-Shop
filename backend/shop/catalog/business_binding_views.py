@@ -12,10 +12,19 @@ from .business_scope import current_scope, valid_business
 from .models import QuotationRequest, BusinessDraftSnapshot, QuotationBusinessScope, QuotationBusinessKey
 from .rules import CATALOG
 from .views import local_customer
-from .cart_views import reply
+from .cart_views import current_customer,reply
 
 
+def owned_quotation(request,identity,*,lock=False):
+    rows=QuotationRequest.objects.select_for_update() if lock else QuotationRequest.objects
+    return rows.select_related('cart').filter(pk=identity,cart__owner=request.user,snapshot__cart_id=F('cart_id')).first()
+
+
+@transaction.atomic
 def page(request,quotation,*,selected=None,expected=None,key=None,status=200,message=''):
+    if not current_customer(request.user,request):return reply({'error':'verification_required'},403)
+    quotation=owned_quotation(request,quotation.pk)
+    if quotation is None:return reply({'error':'not_found'},404)
     scopes=list(QuotationBusinessScope.objects.filter(quotation=quotation,business_snapshot__draft__owner=request.user).select_related('business_snapshot').order_by('-version')[:20])
     options=list(BusinessDraftSnapshot.objects.filter(draft__owner=request.user).order_by('-version')[:20])
     attached=current_scope(quotation)
@@ -47,11 +56,13 @@ def redirect(quotation):
 def bind_business(request,identity):
     denied=local_customer(request)
     if denied is not None:denied['Cache-Control']='no-store';return denied
-    quotation=QuotationRequest.objects.select_related('cart').filter(pk=identity,cart__owner=request.user,snapshot__cart_id=F('cart_id')).first()
-    if quotation is None:
-        return reply({'error':'not_found'},404)
-    if request.GET:return page(request,quotation,status=400,message='Query parameters are not accepted.')
-    if request.method=='GET':return page(request,quotation)
+    # Preserve missing-owner precedence without holding a lock while parsing forms.
+    with transaction.atomic():
+        if not current_customer(request.user,request):return reply({'error':'verification_required'},403)
+        quotation=owned_quotation(request,identity)
+        if quotation is None:return reply({'error':'not_found'},404)
+        if request.GET:return page(request,quotation,status=400,message='Query parameters are not accepted.')
+        if request.method=='GET':return page(request,quotation)
     try:
         if request.content_type!='application/x-www-form-urlencoded' or int(request.META.get('CONTENT_LENGTH') or 0)>1024 or len(request.body)>1024:raise ValueError('body')
         value=request.POST
@@ -64,12 +75,17 @@ def bind_business(request,identity):
         if not 0<=expected<1000000000 or not 1<=version<=1000000000:raise ValueError('version')
     except (ValueError,TypeError,UnicodeError):return page(request,quotation,status=400,message='Submission rejected. Reload and review saved revisions.')
     if value['action']=='preview':
-        selected=BusinessDraftSnapshot.objects.select_related('draft').filter(draft__owner=request.user,version=version).first()
-        if selected is None:return page(request,quotation,status=404,message='Saved business revision unavailable.')
-        # Never rebase a previewed form onto a concurrent attachment.
-        return page(request,quotation,selected=selected,expected=expected,key=key)
+        with transaction.atomic():
+            if not current_customer(request.user,request):return reply({'error':'verification_required'},403)
+            quotation=owned_quotation(request,identity)
+            if quotation is None:return reply({'error':'not_found'},404)
+            selected=BusinessDraftSnapshot.objects.select_related('draft').filter(draft__owner=request.user,version=version).first()
+            if selected is None:return page(request,quotation,status=404,message='Saved business revision unavailable.')
+            # Never rebase a previewed form onto a concurrent attachment.
+            return page(request,quotation,selected=selected,expected=expected,key=key)
     with transaction.atomic():
-        quotation=QuotationRequest.objects.select_for_update().select_related('cart').filter(pk=quotation.pk,cart__owner=request.user,snapshot__cart_id=F('cart_id')).first()
+        if not current_customer(request.user,request):return reply({'error':'verification_required'},403)
+        quotation=owned_quotation(request,identity,lock=True)
         if quotation is None:return reply({'error':'not_found'},404)
         old=QuotationBusinessKey.objects.select_related('scope__business_snapshot').filter(quotation=quotation,request_id=key).first()
         error=None
