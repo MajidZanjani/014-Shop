@@ -78,3 +78,8 @@ Provenance/scope-language analog: docs/implementation-evidence.md. Named-error/h
 ## Actual four-archive NAR rebuild — 2026-10-29
 
 [Rebuild and real negative control](build/image-archive-rebuild-2026-10-29.md): four freshly packed archive outputs match originals17.845s, actual changed32-byte fixture clean0/rebuild1/0.479s preserves original. Native inputs reused; Nix compares/discards identical rebuild outputs, then originals revalidate. This is local archive reproducibility proof alongside OCI/filesystem4/19, not native/runtime/legal/independent/full-CI/phase acceptance. Every remaining goal/related gate stays open.
+
+
+## Actual image/native standard SBOMs —2026-10-29
+
+[Current immutable report and reproduction command](build/image-sbom-2026-10-29.md): four exact images have raw Syft/CycloneDX and their57-object native reference closure has raw sbomnix CycloneDX/SPDX/CSV. Actual4/17/59.676s, five strict CycloneDX schema validations and50 retained payloads verify.102 notice candidates, registered-vs-compatible recipe origin and explicit tool metadata findings are retained; full native/source/helper/backup/legal/runtime/CI/independent qualification remains pending. Use the separate inspection-only #sbom shell and existing owned scratch/cache; full dispatcher checks still require the default shell. Historical inventory bytes/pins/runtime outputs remain unchanged; no full marker or parent SUMMARY.

@@ -8,13 +8,13 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current development focus:** 2 — Reproducible application and deployment skeleton; complete related foundation steps across phases. [Current purchase-flow authority](PURCHASE-FLOW-AMENDMENT.md).
 
-**Current plan:** 02-17 — Local archive rebuild verified;16/14/full-CI and related foundation gates remain open.
+**Current plan:** 02-16 — Actual native/image component, standard SBOM and notice integration;14/17 and related gates remain open.
 
-**Execution status:** paused — proactive context checkpoint; full Phase2/related goal active and incomplete8/18; source/locks/OCI/filesystem/archive rebuild subsets verified, native/14/runtime/CI/human gates remain.
+**Execution status:** in progress — Four-image standard SBOM/native/notice evidence recorded4/17; native57 outputs/53 recipes/168 edges, five CycloneDX validations; full inventory and14/17/related qualification remain open8/18.
 
-**Next implementation task:** Resume by validating9d7161f and the current evidence hashes, then read02-16 PLAN/PARTIAL and scripts/inventory_artifacts.py, check_native_closure.py and check_native_source_notices.py to implement actual four-image native/component/standard-SBOM/notice integration; retain every14/17 and related actual/human gate.
+**Next implementation task:** Finish remaining native/source/notice/build/helper/backup evidence and14 application-role/all-write/isolated transport/migration/bootstrap/replica integration, followed by qualified full-CI/independent/human acceptance.
 
-Four exact archive rebuilds match retained NARs and real synthetic changed bytes reject. [Actual rebuild scope](../docs/build/image-archive-rebuild-2026-10-29.md). Local OCI/filesystem4/19, source4/11/builds2 and locks3/8 remain verified; [full goal tracker](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md) retains8/18 completion and every native/runtime/CI/legal/independent/related gate.
+Four exact images now have raw maintained-tool SBOMs; native57/53/168,102 notice candidates/five objects and five strict CycloneDX validations are recorded4/17/59.676s. [Exact scope and unresolved findings](../docs/build/image-sbom-2026-10-29.md). Prior source/lock/OCI/NAR evidence is unchanged; [full tracker](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md) remains8/18 with all full inventory/runtime/CI/legal/independent/related gates.
 
 Before every commit reconcile affected current references, publish state.json and run python3 scripts/check_planning.py. Sync commits to origin/main without force. Historical evidence retains its original scope.
 

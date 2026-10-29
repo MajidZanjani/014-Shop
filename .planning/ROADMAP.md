@@ -4,7 +4,7 @@
 
 **Active sequencing:** [2026-10-22 execution amendment](EXECUTION-AMENDMENT-2026-10-22.md); T03 and ready local slices proceed independently of pending release qualification.
 
-**Latest verification:** Four actual archive NAR rebuilds match17.845s and one real changed-output control rejects0.479s; [exact scope](../docs/build/image-archive-rebuild-2026-10-29.md). OCI/filesystem4/19,42 image controls/deployment16/31 and source/locks retained. Full acceptance8/18 remains open.
+**Latest verification:** Four-image standard SBOM/native/notice4/17/59.676s and five strict CycloneDX validations; [exact scope/findings](../docs/build/image-sbom-2026-10-29.md). Native57 outputs/53 recipe components/168 edges; full acceptance8/18 remains open.
 
 **Retained evidence:** [reviewed changes/held orders](phases/10-staged-delivery-and-support-ledger/10-LICENCE-CHANGES-PARTIAL.md); retained material/ledger/staged-delivery results and all release gates are in [STATE.md](STATE.md).
 
@@ -14,13 +14,13 @@
 
 **Current development focus:** 2 — Reproducible application and deployment skeleton; complete related foundation steps across phases. [Current purchase-flow authority](PURCHASE-FLOW-AMENDMENT.md).
 
-**Current plan:** 02-17 — Local archive rebuild verified;16/14/full-CI and related foundation gates remain open.
+**Current plan:** 02-16 — Actual native/image component, standard SBOM and notice integration;14/17 and related gates remain open.
 
-**Execution status:** paused — proactive context checkpoint; full Phase2/related goal active and incomplete8/18; source/locks/OCI/filesystem/archive rebuild subsets verified, native/14/runtime/CI/human gates remain.
+**Execution status:** in progress — Four-image standard SBOM/native/notice evidence recorded4/17; native57 outputs/53 recipes/168 edges, five CycloneDX validations; full inventory and14/17/related qualification remain open8/18.
 
-**Next implementation task:** Resume by validating9d7161f and the current evidence hashes, then read02-16 PLAN/PARTIAL and scripts/inventory_artifacts.py, check_native_closure.py and check_native_source_notices.py to implement actual four-image native/component/standard-SBOM/notice integration; retain every14/17 and related actual/human gate.
+**Next implementation task:** Finish remaining native/source/notice/build/helper/backup evidence and14 application-role/all-write/isolated transport/migration/bootstrap/replica integration, followed by qualified full-CI/independent/human acceptance.
 
-Four exact archive rebuilds match retained NARs and real synthetic changed bytes reject. [Actual rebuild scope](../docs/build/image-archive-rebuild-2026-10-29.md). Local OCI/filesystem4/19, source4/11/builds2 and locks3/8 remain verified; [full goal tracker](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md) retains8/18 completion and every native/runtime/CI/legal/independent/related gate.
+Four exact images now have raw maintained-tool SBOMs; native57/53/168,102 notice candidates/five objects and five strict CycloneDX validations are recorded4/17/59.676s. [Exact scope and unresolved findings](../docs/build/image-sbom-2026-10-29.md). Prior source/lock/OCI/NAR evidence is unchanged; [full tracker](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md) remains8/18 with all full inventory/runtime/CI/legal/independent/related gates.
 
 **Last fully completed phase:** 1. Phases2–7 remain partly implemented or awaiting qualification. The October22 amendment permits independent local Phase8 work while those earlier checks remain open. Completed phases remain1/14; planned records11/36. Phase02 remains8/18, with all ten open qualification/implementation records retained. These counts measure completed records/phases, not engineering effort.
 
@@ -43,7 +43,7 @@ The October21 reset completed documentation replanning. Later user continuation 
 ## Phases
 
 - [x] **Phase 1: Product authority, repository review and decision register** — October 21 handoff T01
-- [ ] **Phase 2: Reproducible application and deployment skeleton** — October 21 handoff T02 — CURRENT DEVELOPMENT FOCUS; paused — proactive context checkpoint; full Phase2/related goal active and incomplete8/18; source/locks/OCI/filesystem/archive rebuild subsets verified, native/14/runtime/CI/human gates remain.
+- [ ] **Phase 2: Reproducible application and deployment skeleton** — October 21 handoff T02 — CURRENT DEVELOPMENT FOCUS; in progress — Four-image standard SBOM/native/notice evidence recorded4/17; native57 outputs/53 recipes/168 edges, five CycloneDX validations; full inventory and14/17/related qualification remain open8/18.
 - [ ] **Phase 3: Catalog, platform choices and approved offer/support policies** — October 21 handoff T03
 - [ ] **Phase 4: Minimal configurator and shared no-JavaScript purchase flow** — October 21 handoff T04
 - [ ] **Phase 5: Transactional records, durable work and private evidence primitives** — October 21 handoff T05
@@ -86,7 +86,7 @@ The October21 reset completed documentation replanning. Later user continuation 
 
 ### Phase 2: Reproducible application and deployment skeleton
 
-**Current execution:** CURRENT DEVELOPMENT FOCUS; paused — proactive context checkpoint; full Phase2/related goal active and incomplete8/18; source/locks/OCI/filesystem/archive rebuild subsets verified, native/14/runtime/CI/human gates remain.
+**Current execution:** CURRENT DEVELOPMENT FOCUS; in progress — Four-image standard SBOM/native/notice evidence recorded4/17; native57 outputs/53 recipes/168 edges, five CycloneDX validations; full inventory and14/17/related qualification remain open8/18.
 
 **Goal:** Developers can reproduce static frontend, Django/worker and real-PostgreSQL development builds from compatible pinned dependencies, hashes and CI commands.
 **Depends on:** T01
@@ -440,7 +440,7 @@ Unchecked phase boxes mean full acceptance is outstanding. They do not mean deve
 | Phase | Plans Complete | Status | Completed |
 |---|---|---|---|
 | 1. Product authority, repository review and decision register | 2 / 2 | Complete — documentation reconciled | 2026-10-21 |
-| 2. Reproducible application and deployment skeleton | 8 / 18 | In Progress; updated 2026-10-22: 25 implementation quick tasks; 7 qualification/review and 3 implementation/qualification records open; CURRENT DEVELOPMENT FOCUS; paused — proactive context checkpoint; full Phase2/related goal active and incomplete8/18; source/locks/OCI/filesystem/archive rebuild subsets verified, native/14/runtime/CI/human gates remain. | — |
+| 2. Reproducible application and deployment skeleton | 8 / 18 | In Progress; updated 2026-10-22: 25 implementation quick tasks; 7 qualification/review and 3 implementation/qualification records open; CURRENT DEVELOPMENT FOCUS; in progress — Four-image standard SBOM/native/notice evidence recorded4/17; native57 outputs/53 recipes/168 edges, five CycloneDX validations; full inventory and14/17/related qualification remain open8/18. | — |
 | 3. Catalog, platform choices and approved offer/support policies | 0 / 1 | In Progress — local slice in quick261022-dj5; full acceptance pending | — |
 | 4. Minimal configurator and shared no-JavaScript purchase flow | 0 / 1 | In Progress — local slice in quick261022-dj5; full acceptance pending | — |
 | 5. Transactional records, durable work and private evidence primitives | 0 / not planned | In Progress — local slice in quick261022-dj5; full acceptance pending | — |

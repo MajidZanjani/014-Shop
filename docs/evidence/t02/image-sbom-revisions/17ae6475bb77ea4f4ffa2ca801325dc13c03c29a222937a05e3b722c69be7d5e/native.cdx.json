@@ -1,0 +1,2014 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.4",
+  "version": 1,
+  "serialNumber": "urn:uuid:33ff09df-ff0f-5535-a8b2-5da5a2cc6529",
+  "metadata": {
+    "timestamp": "2026-10-29T10:01:22.313439+00:00",
+    "properties": [
+      {
+        "name": "sbom_type",
+        "value": "runtime_only"
+      }
+    ],
+    "tools": [
+      {
+        "vendor": "TII",
+        "name": "sbomnix",
+        "version": "1.7.6"
+      }
+    ],
+    "component": {
+      "type": "library",
+      "bom-ref": "/nix/store/0zgzigxmj4l40q18nn0hyss87s3yys64-shop-observed-image-native-inventory-root.drv",
+      "name": "shop-observed-image-native-inventory-root",
+      "version": "",
+      "purl": "pkg:nix/shop-observed-image-native-inventory-root",
+      "cpe": "cpe:2.3:a:shop-observed-image-native-inventory-root:shop-observed-image-native-inventory-root::*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/l2pqj3572psvdcr3bqnk9ly7aqsw770y-shop-observed-image-native-inventory-root"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/0zgzigxmj4l40q18nn0hyss87s3yys64-shop-observed-image-native-inventory-root.drv"
+        }
+      ]
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/p4nwxqnh5mqfk4j73g728rb1w69wmazx-Caddyfile.drv",
+      "name": "Caddyfile",
+      "version": "",
+      "purl": "pkg:nix/Caddyfile",
+      "cpe": "cpe:2.3:a:Caddyfile:Caddyfile::*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/2mbs68q5dxik37yp0aaqn35s9mmsmfyn-Caddyfile"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/p4nwxqnh5mqfk4j73g728rb1w69wmazx-Caddyfile.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/a5jsd244d4fxdjfd9nvjh7gmakalkz58-audit-4.2.1.drv",
+      "name": "audit-4.2.1",
+      "version": "",
+      "purl": "pkg:nix/audit-4.2.1",
+      "cpe": "cpe:2.3:a:audit-4.2.1:audit-4.2.1::*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/pdhhq7bk4i1qyspahiy1v618qrmhplxj-audit-4.2.1-lib"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/a5jsd244d4fxdjfd9nvjh7gmakalkz58-audit-4.2.1.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/f13dw1l416dhsf1gck4wizy79hjvqp9d-bash-5.3p9.drv",
+      "name": "bash",
+      "version": "5.3p9",
+      "purl": "pkg:nix/bash@5.3p9",
+      "cpe": "cpe:2.3:a:bash:bash:5.3p9:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/6issr5q77vx0nircgyp46qlydm53myaf-bash-5.3p9-debug"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/jnyfsf2mp08d1xyz2m72ic2vz2kcx0sd-bash-5.3p9"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/jzk6dy86g57z9989yspny7mk7jqwzrzx-bash-5.3p9-doc"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/nryj4175dwkdp9kana7x791mhc7k6kh0-bash-5.3p9-dev"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/p36hljfl2pplzi8bcqarjy5i70l1ix71-bash-5.3p9-info"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/svkyhrjjs4nv2mq75jaspy8w1f2x7a0l-bash-5.3p9-man"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/f13dw1l416dhsf1gck4wizy79hjvqp9d-bash-5.3p9.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/1r89rryy56vgd91c83r7rw961h7xw8ih-brotli-1.2.0.drv",
+      "name": "brotli",
+      "version": "1.2.0",
+      "purl": "pkg:nix/brotli@1.2.0",
+      "cpe": "cpe:2.3:a:brotli:brotli:1.2.0:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/41r5x5klzq7kdkh9l43glqnkpz2r4hmx-brotli-1.2.0-dev"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/g64gr9m6lhzp9aq393yv0sxlr5176jrc-brotli-1.2.0-lib"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/lqdzp8jnmvdvjs31z9cnf80palsp8sw1-brotli-1.2.0"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/1r89rryy56vgd91c83r7rw961h7xw8ih-brotli-1.2.0.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/iifbrha64kwkyqcjk93fc2l6hvpyd0nz-bzip2-1.0.8.drv",
+      "name": "bzip2",
+      "version": "1.0.8",
+      "purl": "pkg:nix/bzip2@1.0.8",
+      "cpe": "cpe:2.3:a:bzip2:bzip2:1.0.8:*:*:*:*:*:*:*",
+      "pedigree": {
+        "patches": [
+          {
+            "type": "unofficial",
+            "resolves": [
+              {
+                "type": "security",
+                "id": "CVE-2026-42250",
+                "references": [
+                  "file:///nix/store/xv9nsfdcadbj9965lkwf4b2cqyv2j4hp-CVE-2026-42250.patch"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/a7501p1w90nhbln9259viwql8m4mnbx5-bzip2-1.0.8-bin"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/jy83l8cp4jafqq36mmg6wq3ym5kppym7-bzip2-1.0.8-man"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/kfn2jilm57w74fi9vn7nl34isdpsifmy-bzip2-1.0.8-dev"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/pddqhhpjip4p5l93nxdkvbmm23fp7fd9-bzip2-1.0.8"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/iifbrha64kwkyqcjk93fc2l6hvpyd0nz-bzip2-1.0.8.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/nlr1p1ijghl97qbc7blsfbx2r17zqaav-caddy-2.11.7.drv",
+      "name": "caddy-2.11.7",
+      "version": "",
+      "purl": "pkg:nix/caddy-2.11.7",
+      "cpe": "cpe:2.3:a:caddy-2.11.7:caddy-2.11.7::*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/q52hb25vh6yizlnccb35343xv5mxj38f-caddy-2.11.7"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/nlr1p1ijghl97qbc7blsfbx2r17zqaav-caddy-2.11.7.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/bnydhpm1n00qy7vfl2fh76v8pmfhr5b7-curl-8.22.0.drv",
+      "name": "curl-8.22.0",
+      "version": "",
+      "purl": "pkg:nix/curl-8.22.0",
+      "cpe": "cpe:2.3:a:curl-8.22.0:curl-8.22.0::*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/q3lhcbjc0bxxiqnhcp2vslmn9mh3f256-curl-8.22.0"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/bnydhpm1n00qy7vfl2fh76v8pmfhr5b7-curl-8.22.0.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/ylxkpdn4vb5cqrr921x0fz7xr2brkwsj-db-4.8.30.drv",
+      "name": "db",
+      "version": "4.8.30",
+      "purl": "pkg:nix/db@4.8.30",
+      "cpe": "cpe:2.3:a:db:db:4.8.30:*:*:*:*:*:*:*",
+      "pedigree": {
+        "patches": [
+          {
+            "type": "unofficial",
+            "resolves": [
+              {
+                "type": "security",
+                "id": "CVE-2017-10140",
+                "references": [
+                  "file:///nix/store/wbgiyhlnih7pl2d67700940cwf6qp5i8-CVE-2017-10140-4.8-cwd-db_config.patch"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/b6frfj90gsfxk82i91kaigy5zi3axbpw-db-4.8.30-dev"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/p0v6hnlzlrzhfg0xqd3lfxraga41lqqi-db-4.8.30-bin"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/shnzdlh3h2brh0c755yp0n9bglb0np1j-db-4.8.30"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/ylxkpdn4vb5cqrr921x0fz7xr2brkwsj-db-4.8.30.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/r3p21ynin1zs8r2y7plwlzl4j87py24d-expat-2.8.5.drv",
+      "name": "expat",
+      "version": "2.8.5",
+      "purl": "pkg:nix/expat@2.8.5",
+      "cpe": "cpe:2.3:a:expat:expat:2.8.5:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/4z7x3563mcg0whqads5wa149hsvy6c44-expat-2.8.5-dev"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/b56ind0m3byv7pzby5mwsn5qsy1g6lqf-expat-2.8.5"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/r3p21ynin1zs8r2y7plwlzl4j87py24d-expat-2.8.5.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/ss9rn8rmcy4h5i7s4v7bswf1br6yfxdz-gcc-15.3.0.drv",
+      "name": "gcc-15.3.0",
+      "version": "",
+      "purl": "pkg:nix/gcc-15.3.0",
+      "cpe": "cpe:2.3:a:gcc-15.3.0:gcc-15.3.0::*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/0vw7gvcazcjqc762x7vg3l31cpx65l7i-gcc-15.3.0-libgcc"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/dqj57l1prad38vjrad4bs9d977i4q5zm-gcc-15.3.0-lib"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/ss9rn8rmcy4h5i7s4v7bswf1br6yfxdz-gcc-15.3.0.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/f5rf6zv347sh3m73gy41s2d754rdr8d4-gdbm-1.26.drv",
+      "name": "gdbm",
+      "version": "1.26",
+      "purl": "pkg:nix/gdbm@1.26",
+      "cpe": "cpe:2.3:a:gdbm:gdbm:1.26:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/3gnbcz1h1xxfby9khvv04ighy6nn4p4i-gdbm-1.26-lib"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/52kx5l567d3z8ibm9k7w9rpi6fx12rj4-gdbm-1.26-info"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/7fp2qk628ii15zb74c8fbyhkqxawx419-gdbm-1.26-man"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/mdmj30b0h7qwj68ay65pw2zwc6fzwayq-gdbm-1.26-dev"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/p7pnfc4wwqk0f2094hkjqh37bcx1g9if-gdbm-1.26"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/f5rf6zv347sh3m73gy41s2d754rdr8d4-gdbm-1.26.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv",
+      "name": "glibc",
+      "version": "2.42-100",
+      "purl": "pkg:nix/glibc@2.42-100",
+      "cpe": "cpe:2.3:a:glibc:glibc:2.42-100:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/730n9ixp9w48l4jwxh42qhkaj2q0zvrk-glibc-2.42-100-static"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/9a6dqr6vgdi4qidprg92l3k9kkv13xyn-glibc-2.42-100-getent"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/fsd4vbp9zjd9iaicq2fb9lpc1h5j973y-glibc-2.42-100"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/kgd806ssw99qaxwiislhfx5dwnc8k893-glibc-2.42-100-bin"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/sr08dm9x0fsa1mrzjrlb3csdcmilsraz-glibc-2.42-100-dev"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/v98mh5jg68nn9cbzsnism0zjyrqib666-glibc-2.42-100-debug"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/a4r7057ryfvna38d1bklg4izidyy6jja-iana-etc-20251215.drv",
+      "name": "iana-etc",
+      "version": "20251215",
+      "purl": "pkg:nix/iana-etc@20251215",
+      "cpe": "cpe:2.3:a:iana-etc:iana-etc:20251215:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/78rlvr7v1kh0rx8ndvv3qfnk1pd9m6k9-iana-etc-20251215"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/a4r7057ryfvna38d1bklg4izidyy6jja-iana-etc-20251215.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/p7i0l4jfdkcrnlvk8bm2sxbp385bjvb0-icu4c-76.1.drv",
+      "name": "icu4c",
+      "version": "76.1",
+      "purl": "pkg:nix/icu4c@76.1",
+      "cpe": "cpe:2.3:a:icu4c:icu4c:76.1:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/hj69j0vs9zjrc84s1c622ia03pmlb2ip-icu4c-76.1-dev"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/v1z7l40cvbgmcxg2rgpff37zvbxscxfa-icu4c-76.1"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/p7i0l4jfdkcrnlvk8bm2sxbp385bjvb0-icu4c-76.1.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/bz9hcjdhg9czsypwg7ml6rcyab151n56-keyutils-1.6.3.drv",
+      "name": "keyutils",
+      "version": "1.6.3",
+      "purl": "pkg:nix/keyutils@1.6.3",
+      "cpe": "cpe:2.3:a:keyutils:keyutils:1.6.3:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/55fpnmnhifj64cnjykxv79pp14cbkwhf-keyutils-1.6.3"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/lmnj7lp2dqpc7rw5mq5scrpig0irar6a-keyutils-1.6.3-lib"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/n7nalwiy5c52g608aw0nydmilvw6adlw-keyutils-1.6.3-man"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/y45ipwaxqqgcdc0kgcl8wv86y7060cjs-keyutils-1.6.3-dev"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/bz9hcjdhg9czsypwg7ml6rcyab151n56-keyutils-1.6.3.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/4cvni1g6rc3bs8l5zb8dfsi1kz54glhs-krb5-1.22.2.drv",
+      "name": "krb5-1.22.2",
+      "version": "",
+      "purl": "pkg:nix/krb5-1.22.2",
+      "cpe": "cpe:2.3:a:krb5-1.22.2:krb5-1.22.2::*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/yfvrxfh24kxshxsvgic60893sy8h4shc-krb5-1.22.2-lib"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/4cvni1g6rc3bs8l5zb8dfsi1kz54glhs-krb5-1.22.2.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/iw6h4d1gf2q565zd8sgvxsvf8aj9ia5f-libcap-ng-0.9.3.drv",
+      "name": "libcap-ng",
+      "version": "0.9.3",
+      "purl": "pkg:nix/libcap-ng@0.9.3",
+      "cpe": "cpe:2.3:a:libcap-ng:libcap-ng:0.9.3:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/279l230kgiwiyx9kwn3h1gcvxjrwbkja-libcap-ng-0.9.3-man"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/3vl8ikmbqx1v1b0nbbjwwzzx6kp2gmav-libcap-ng-0.9.3-dev"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/8y2f7dpxzwf43jswz9j6198z9s4md6f2-libcap-ng-0.9.3"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/iw6h4d1gf2q565zd8sgvxsvf8aj9ia5f-libcap-ng-0.9.3.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/pnyi1073jabrami0l0gsw5r7yxbw4ykk-libffi-3.8.0.drv",
+      "name": "libffi",
+      "version": "3.8.0",
+      "purl": "pkg:nix/libffi@3.8.0",
+      "cpe": "cpe:2.3:a:libffi:libffi:3.8.0:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/hf8a95j1jr8bjmxb93np94xlqwqr492x-libffi-3.8.0"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/mikfm4klvyfa7i04ilh97kd0v6l6j90g-libffi-3.8.0-man"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/rpfcc79ska23sjmw2g34bwr5gcdlij7a-libffi-3.8.0-info"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/vaf7c4aslgbislz4dmfjk950iwrlqdfl-libffi-3.8.0-dev"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/pnyi1073jabrami0l0gsw5r7yxbw4ykk-libffi-3.8.0.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/7y9dhcsvg41d8ijzw6s8smcg1mld7fpf-libidn2-2.3.8.drv",
+      "name": "libidn2",
+      "version": "2.3.8",
+      "purl": "pkg:nix/libidn2@2.3.8",
+      "cpe": "cpe:2.3:a:libidn2:libidn2:2.3.8:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/84ihrbm4nqx8jqhp408mi13v30w89v4p-libidn2-2.3.8-info"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/l5y42bimjvvn8h3v5y40w13vv7y2p3k5-libidn2-2.3.8"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/ni02i7x1p4z2z4sq9rwl3lid7q7c53qy-libidn2-2.3.8-dev"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/rk9jm0g3b3kacwk3bv23lkgrjw0k3mjk-libidn2-2.3.8-bin"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/zkh3xnw3n0awg7z86c13sspyzfsvyr8r-libidn2-2.3.8-devdoc"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/7y9dhcsvg41d8ijzw6s8smcg1mld7fpf-libidn2-2.3.8.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/x3r9aiakxw72b9qzr5zw4x3f09rs9ymh-libpsl-0.21.5.drv",
+      "name": "libpsl",
+      "version": "0.21.5",
+      "purl": "pkg:nix/libpsl@0.21.5",
+      "cpe": "cpe:2.3:a:libpsl:libpsl:0.21.5:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/hlky6hh1qf9m8rf5ax7k5wjd0plq4mas-libpsl-0.21.5-dev"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/rcvnjiaywqlx4d6ra1z4z537jpw3jvwy-libpsl-0.21.5"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/x3r9aiakxw72b9qzr5zw4x3f09rs9ymh-libpsl-0.21.5.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/cd7iw2vmzd7n3k5a39wq9c7r61z2m97p-libssh2-1.11.1.drv",
+      "name": "libssh2",
+      "version": "1.11.1",
+      "purl": "pkg:nix/libssh2@1.11.1",
+      "cpe": "cpe:2.3:a:libssh2:libssh2:1.11.1:*:*:*:*:*:*:*",
+      "pedigree": {
+        "patches": [
+          {
+            "type": "unofficial",
+            "resolves": [
+              {
+                "type": "security",
+                "id": "CVE-2026-7598",
+                "references": [
+                  "file:///nix/store/m9171q7kn5bbp08hqmhfra41mmn6p5nk-CVE-2026-7598.patch"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "unofficial",
+            "resolves": [
+              {
+                "type": "security",
+                "id": "CVE-2025-15661",
+                "references": [
+                  "file:///nix/store/1aqykxv6k3r55r25gbgfvmmcc5qzwasi-CVE-2025-15661.patch"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "unofficial",
+            "resolves": [
+              {
+                "type": "security",
+                "id": "CVE-2026-55199",
+                "references": [
+                  "file:///nix/store/1pd10jmsqkyhsn0r4lcax7njjsbxzziv-CVE-2026-55199.patch"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "unofficial",
+            "resolves": [
+              {
+                "type": "security",
+                "id": "CVE-2026-55200",
+                "references": [
+                  "file:///nix/store/6rv2i7dl0bbxl3069p61896xi0948643-CVE-2026-55200.patch"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "unofficial",
+            "resolves": [
+              {
+                "type": "security",
+                "id": "CVE-2026-58050",
+                "references": [
+                  "file:///nix/store/7fi3q2kal2rljr2l5z701i6dgwr8q6wf-CVE-2026-58050.patch"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "unofficial",
+            "resolves": [
+              {
+                "type": "security",
+                "id": "CVE-2026-58051",
+                "references": [
+                  "file:///nix/store/6rm8ynmihq2crs4dfj2wy30l312675h2-CVE-2026-58051.patch"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "unofficial",
+            "resolves": [
+              {
+                "type": "security",
+                "id": "CVE-2026-66032",
+                "references": [
+                  "file:///nix/store/idhhjlhpjagam2r7x1y9kznwgz6wb87a-CVE-2026-66032.patch"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "unofficial",
+            "resolves": [
+              {
+                "type": "security",
+                "id": "CVE-2026-66033",
+                "references": [
+                  "file:///nix/store/41yjsa29ydagklnqfd17abjzy909facg-CVE-2026-66033.patch"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "unofficial",
+            "resolves": [
+              {
+                "type": "security",
+                "id": "CVE-2026-66034",
+                "references": [
+                  "file:///nix/store/kg03300p29j5si16b1wfg0lmrmdx5ckz-CVE-2026-66034.patch"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "unofficial",
+            "resolves": [
+              {
+                "type": "security",
+                "id": "CVE-2026-66035",
+                "references": [
+                  "file:///nix/store/xdffljjmrzdwam0gdn57dl1n7lyv55ik-CVE-2026-66035.patch"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/6aklq7gbsd5m3fsb2sbi4sgcqbg8vqsd-libssh2-1.11.1-devdoc"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/7mwhrh8kgxrjn8mzyq2v5n9rcmpzwc91-libssh2-1.11.1-dev"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/9csszq0cch2npq0flybqmvkabb1dj3r4-libssh2-1.11.1"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/cd7iw2vmzd7n3k5a39wq9c7r61z2m97p-libssh2-1.11.1.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/5619yyfjmswzmq0vn5y69xcdlzv4nj7g-libunistring-1.4.2.drv",
+      "name": "libunistring",
+      "version": "1.4.2",
+      "purl": "pkg:nix/libunistring@1.4.2",
+      "cpe": "cpe:2.3:a:libunistring:libunistring:1.4.2:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/2qd533hi07p85w7vf1jkxn106ggs4xm6-libunistring-1.4.2-dev"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/g6mvl9ns7k52zfv9pcfw3dbh65z3j7id-libunistring-1.4.2"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/nrz5l97j2ax1bcqjandbwayvdw79c32n-libunistring-1.4.2-doc"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/xpab61wbqj8xxgw3jx3mqviywjivj98z-libunistring-1.4.2-info"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/5619yyfjmswzmq0vn5y69xcdlzv4nj7g-libunistring-1.4.2.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/4h9bk2rxw6cvpr3cybl9zi61y5c537ry-liburing-2.14.drv",
+      "name": "liburing",
+      "version": "2.14",
+      "purl": "pkg:nix/liburing@2.14",
+      "cpe": "cpe:2.3:a:liburing:liburing:2.14:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/8h4lzbslzj9r1vhzkpyj6adw3xbjxzrg-liburing-2.14-debug"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/lw9xyp1w3qkg6svfrpw57bdsycf2f5h3-liburing-2.14-bin"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/mmx7im3s6i12jdrjbfsxylh6m2i612mr-liburing-2.14-man"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/nxljj5jfv40yq06mx2x9xfwi4y7f93ix-liburing-2.14"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/skxrzg35hjk4fi4g9rj8jzv5y11vvd1v-liburing-2.14-dev"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/4h9bk2rxw6cvpr3cybl9zi61y5c537ry-liburing-2.14.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/hxx6r7jv7cq1311lgjnc01yvsbw6a8lg-libxcrypt-4.5.2.drv",
+      "name": "libxcrypt",
+      "version": "4.5.2",
+      "purl": "pkg:nix/libxcrypt@4.5.2",
+      "cpe": "cpe:2.3:a:libxcrypt:libxcrypt:4.5.2:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/b2bk9askzwfca9ihq8nzmf9ap847nk9s-libxcrypt-4.5.2-man"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/cb53sk2xsxfwsjbfkrdyz2kbi4p0f49n-libxcrypt-4.5.2"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/hxx6r7jv7cq1311lgjnc01yvsbw6a8lg-libxcrypt-4.5.2.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/p7kdv57jabpvv18jyxlxd8d9pps43dkq-libxml2-2.15.4.drv",
+      "name": "libxml2",
+      "version": "2.15.4",
+      "purl": "pkg:nix/libxml2@2.15.4",
+      "cpe": "cpe:2.3:a:libxml2:libxml2:2.15.4:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/6yhiak62rfhilpyc1ilxd35zjh8i36xl-libxml2-2.15.4-bin"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/s72dm0pfsqhdlwp9b7bpwcr5kq9h9v33-libxml2-2.15.4-dev"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/w8b6idhzlpd5573p6md4dpap27c993ar-libxml2-2.15.4"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/p7kdv57jabpvv18jyxlxd8d9pps43dkq-libxml2-2.15.4.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/9qri6n1r028z6c8hrf7h0jjjnpkgj2aa-linux-pam-1.7.2.drv",
+      "name": "linux-pam-1.7.2",
+      "version": "",
+      "purl": "pkg:nix/linux-pam-1.7.2",
+      "cpe": "cpe:2.3:a:linux-pam-1.7.2:linux-pam-1.7.2::*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/9qqk0zxph7qihzs9hjy1hfgacb6ndmj1-linux-pam-1.7.2"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/9qri6n1r028z6c8hrf7h0jjjnpkgj2aa-linux-pam-1.7.2.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/5wym2fagcj5c6v15l7d2p13d6mvmz5xx-lz4-1.10.0.drv",
+      "name": "lz4",
+      "version": "1.10.0",
+      "purl": "pkg:nix/lz4@1.10.0",
+      "cpe": "cpe:2.3:a:lz4:lz4:1.10.0:*:*:*:*:*:*:*",
+      "pedigree": {
+        "patches": [
+          {
+            "type": "unofficial",
+            "resolves": [
+              {
+                "type": "security",
+                "id": "CVE-2025-62813",
+                "references": [
+                  "file:///nix/store/0ywypnhhnlr3pmchp50pqvqq6qi7wf78-CVE-2025-62813.patch"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/197ng8pyrgv127xl54xj72br0cqai35g-lz4-1.10.0-lib"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/b72db7nnar4kviwqsp2zj0ndwbg2kjbj-lz4-1.10.0"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/npqm6c0f6536463isgaqqcy16ngmsjyg-lz4-1.10.0-dev"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/vbmcnh0h4hfx0i4m61c3f73gygv7xrhd-lz4-1.10.0-man"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/5wym2fagcj5c6v15l7d2p13d6mvmz5xx-lz4-1.10.0.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/kxsmbk26l1pwpa51ql99ycfmj2c3cdjp-mailcap-2.1.54.drv",
+      "name": "mailcap",
+      "version": "2.1.54",
+      "purl": "pkg:nix/mailcap@2.1.54",
+      "cpe": "cpe:2.3:a:mailcap:mailcap:2.1.54:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/xql1i59wn5n0v4hxx1xhji9p6zns8hsi-mailcap-2.1.54"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/kxsmbk26l1pwpa51ql99ycfmj2c3cdjp-mailcap-2.1.54.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/450l5ymrjf0gblg3m3ms9i5bq46q752d-mpdecimal-4.0.1.drv",
+      "name": "mpdecimal",
+      "version": "4.0.1",
+      "purl": "pkg:nix/mpdecimal@4.0.1",
+      "cpe": "cpe:2.3:a:mpdecimal:mpdecimal:4.0.1:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/6f3lgv6nj815xhcl4zym2qzn6q00kwxw-mpdecimal-4.0.1-dev"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/adygr6jyf3xbv37lnvm4lj4cy85g0ajg-mpdecimal-4.0.1"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/nb539x844n8c64r74pcmwxd4mfg7iwxs-mpdecimal-4.0.1-doc"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/q7sprm1qkfa94dkfd8bj0jsrh3bdphpy-mpdecimal-4.0.1-cxx"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/450l5ymrjf0gblg3m3ms9i5bq46q752d-mpdecimal-4.0.1.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/8xzqhmi0bhpmbzdhkkxinrx5zli4amwz-ncurses-6.6.drv",
+      "name": "ncurses",
+      "version": "6.6",
+      "purl": "pkg:nix/ncurses@6.6",
+      "cpe": "cpe:2.3:a:ncurses:ncurses:6.6:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/50b7yix86m67q11m1py3qdj8r9jan5sn-ncurses-6.6-dev"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/n4izsmvfifqdkn7a0zliwlxda3qdqwy1-ncurses-6.6-man"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/wpyc0r4d4idaq96y0dc1375ziabl4b38-ncurses-6.6"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/8xzqhmi0bhpmbzdhkkxinrx5zli4amwz-ncurses-6.6.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/f1m10914mg6shrwalfwzdwfbxv3hkmja-nghttp2-1.69.0.drv",
+      "name": "nghttp2",
+      "version": "1.69.0",
+      "purl": "pkg:nix/nghttp2@1.69.0",
+      "cpe": "cpe:2.3:a:nghttp2:nghttp2:1.69.0:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/22z60ia2s4c1p5c8hq5l940sw1cqba5i-nghttp2-1.69.0-man"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/6s6ajz3vw48qxnqggp9pih22af5gdc6r-nghttp2-1.69.0-dev"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/drxakd25lbv35flbk8f01bqq417j9czw-nghttp2-1.69.0-lib"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/i7xi4kbzgni8cjm8zr4c8g5g2f8r5hpn-nghttp2-1.69.0-doc"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/yslvvfdr3dfdn4wykgf8qh6bdyfyxqcc-nghttp2-1.69.0"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/f1m10914mg6shrwalfwzdwfbxv3hkmja-nghttp2-1.69.0.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/m39kzhpkf35dms6gf19k40cd76zr6r2c-nghttp3-1.15.0.drv",
+      "name": "nghttp3",
+      "version": "1.15.0",
+      "purl": "pkg:nix/nghttp3@1.15.0",
+      "cpe": "cpe:2.3:a:nghttp3:nghttp3:1.15.0:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/5s4ahr76fzx3p4z0fyhphskham55nkhb-nghttp3-1.15.0"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/8q68sywm67zci144mv8625cb8xzs7p0s-nghttp3-1.15.0-doc"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/wssc1dzk2dc7d4vdym6lrjcifgfk5i6n-nghttp3-1.15.0-dev"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/m39kzhpkf35dms6gf19k40cd76zr6r2c-nghttp3-1.15.0.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/wa8illsz4krwwwhglkc0wv07ckdw7lxl-ngtcp2-1.22.1.drv",
+      "name": "ngtcp2",
+      "version": "1.22.1",
+      "purl": "pkg:nix/ngtcp2@1.22.1",
+      "cpe": "cpe:2.3:a:ngtcp2:ngtcp2:1.22.1:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/k0fby92994cjcmj3npd562dy22qxnwdy-ngtcp2-1.22.1"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/xzz3cxfj20sajfjrn7dfgkrc70r93cfk-ngtcp2-1.22.1-dev"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/y9xfvca5h0x9lr9j6gigzry0rp9w0i4d-ngtcp2-1.22.1-doc"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/wa8illsz4krwwwhglkc0wv07ckdw7lxl-ngtcp2-1.22.1.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/80bpavjn50sw5s2m74m6vh7pydks67ah-numactl-2.0.18.drv",
+      "name": "numactl",
+      "version": "2.0.18",
+      "purl": "pkg:nix/numactl@2.0.18",
+      "cpe": "cpe:2.3:a:numactl:numactl:2.0.18:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/jc1bgacmms5780aygcbx1wm4aa2izyyq-numactl-2.0.18-dev"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/lwzf2wq8nd4q697mg9wn0zm05lz67yk9-numactl-2.0.18"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/q9vv17082s2clc9jpvxcj1n0gj3g9l7z-numactl-2.0.18-man"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/80bpavjn50sw5s2m74m6vh7pydks67ah-numactl-2.0.18.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/hd73dkpv6dx8qyq3yl4jv8iyi9955vr8-openssl-3.6.5.drv",
+      "name": "openssl",
+      "version": "3.6.5",
+      "purl": "pkg:nix/openssl@3.6.5",
+      "cpe": "cpe:2.3:a:openssl:openssl:3.6.5:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/7ag2iq9v8ab0gf0lw3jx1say4kgnh48h-openssl-3.6.5-debug"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/7l09089ahshxjx4js3zswqk6azhx6ccq-openssl-3.6.5-dev"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/7vhk6c2vg819fl44sj99bp8k3503xy8v-openssl-3.6.5-doc"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/fnr9mx06brcp7c3dixdn1zr73lf7jgcw-openssl-3.6.5-man"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/kysvfcf8d8v26rr32xfqji8ri2lczlqk-openssl-3.6.5"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/ndv550fkbmsfvdxax71d4d5d59x4lq80-openssl-3.6.5-bin"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/hd73dkpv6dx8qyq3yl4jv8iyi9955vr8-openssl-3.6.5.drv"
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "bom-ref": "/nix/store/c8bgfxnc2kxlham892qf3vmm762yf0b6-postgres_entrypoint.py.drv",
+      "name": "postgres_entrypoint.py",
+      "version": "",
+      "purl": "pkg:nix/postgres_entrypoint.py",
+      "cpe": "cpe:2.3:a:postgres_entrypoint.py:postgres_entrypoint.py::*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/wijf1p2lpbnc2sav3l0mx2vwzj3hiy2v-postgres_entrypoint.py"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/c8bgfxnc2kxlham892qf3vmm762yf0b6-postgres_entrypoint.py.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/bx88a3mykh9q0fhrjfzdvszph7mkpdfw-postgresql-18.6.drv",
+      "name": "postgresql-18.6",
+      "version": "",
+      "purl": "pkg:nix/postgresql-18.6",
+      "cpe": "cpe:2.3:a:postgresql-18.6:postgresql-18.6::*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/55kg73zr3x4x8lfnpjf9k11p7wy8ad5j-postgresql-18.6-lib"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/r9m7pml7sjm3a91pi63wl06gjiw8ll9v-postgresql-18.6"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/bx88a3mykh9q0fhrjfzdvszph7mkpdfw-postgresql-18.6.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/3q8a3z0k478w6lzqbqbqn8f0sqnbw4wy-publicsuffix-list-0-unstable-2026-05-13.drv",
+      "name": "publicsuffix-list",
+      "version": "0-unstable-2026-05-13",
+      "purl": "pkg:nix/publicsuffix-list@0-unstable-2026-05-13",
+      "cpe": "cpe:2.3:a:publicsuffix-list:publicsuffix-list:0-unstable-2026-05-13:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/g49nqr7si7n6z4jlh8cwyxxlggkj2i8p-publicsuffix-list-0-unstable-2026-05-13"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/3q8a3z0k478w6lzqbqbqn8f0sqnbw4wy-publicsuffix-list-0-unstable-2026-05-13.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/cvrl56w81ddfr22qz7p0a4ga701vfp0v-python3-3.13.16.drv",
+      "name": "python3-3.13.16",
+      "version": "",
+      "purl": "pkg:nix/python3-3.13.16",
+      "cpe": "cpe:2.3:a:python3-3.13.16:python3-3.13.16::*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/jpw02npp3bx1jm1dw0rr7p1w8890fgd6-python3-3.13.16"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/cvrl56w81ddfr22qz7p0a4ga701vfp0v-python3-3.13.16.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/lg4pw3lnhgygvylyqyb31jxwb3yi1spv-python3-3.13.16-env.drv",
+      "name": "python3-3.13.16-env",
+      "version": "",
+      "purl": "pkg:nix/python3-3.13.16-env",
+      "cpe": "cpe:2.3:a:python3-3.13.16-env:python3-3.13.16-env::*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/nr6vqhv33q8n6nbyy529fvcydy3zp1jd-python3-3.13.16-env"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/lg4pw3lnhgygvylyqyb31jxwb3yi1spv-python3-3.13.16-env.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/ia634q4g9ibzi1bmfafcxmxynhs0am9m-python3.13-pip-26.2.1.drv",
+      "name": "python3.13-pip",
+      "version": "26.2.1",
+      "purl": "pkg:nix/python3.13-pip@26.2.1",
+      "cpe": "cpe:2.3:a:python3.13-pip:python3.13-pip:26.2.1:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/k2aka43l0fwsj4lmpl7i2r0y0080fsqs-python3.13-pip-26.2.1-dist"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/w4hnvapjwj5g4x7cih5zdkv8ak54vm5p-python3.13-pip-26.2.1"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/ia634q4g9ibzi1bmfafcxmxynhs0am9m-python3.13-pip-26.2.1.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/vxq2pfg149lb6xp15xv1qg6qvczijf19-readline-8.3p3.drv",
+      "name": "readline",
+      "version": "8.3p3",
+      "purl": "pkg:nix/readline@8.3p3",
+      "cpe": "cpe:2.3:a:readline:readline:8.3p3:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/2laizfqqmkh4zr65s6lxayk4528cgivy-readline-8.3p3-dev"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/6qcah5zb9v0gihv2g5yl5i8zqx3rj4fw-readline-8.3p3-doc"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/8f0rcwinvqzr4py6vcn4sl47v0ppvnkq-readline-8.3p3-man"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/hzwckv1kq2pqa7010zph0a6j0xfbyvwa-readline-8.3p3"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/xazqdlslaxvza0zl0aayfja5g4j6sb0i-readline-8.3p3-info"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/vxq2pfg149lb6xp15xv1qg6qvczijf19-readline-8.3p3.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/yairyn492xb2h6zavksyv0a7as5yl903-shop-container-identities.drv",
+      "name": "shop-container-identities",
+      "version": "",
+      "purl": "pkg:nix/shop-container-identities",
+      "cpe": "cpe:2.3:a:shop-container-identities:shop-container-identities::*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/9yc6n127syqm2r2k85z1z38ypmnimd7p-shop-container-identities"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/yairyn492xb2h6zavksyv0a7as5yl903-shop-container-identities.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/6zifzal3zyqn7fbng2419xcad5whbhwj-shop-python-runtime.drv",
+      "name": "shop-python-runtime",
+      "version": "",
+      "purl": "pkg:nix/shop-python-runtime",
+      "cpe": "cpe:2.3:a:shop-python-runtime:shop-python-runtime::*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/xnwil746ffmc21qrlznq7inkpn1g4zbs-shop-python-runtime"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/6zifzal3zyqn7fbng2419xcad5whbhwj-shop-python-runtime.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/10412hkcpyyj862ga8milxci74z7qq29-shop-python-source.drv",
+      "name": "shop-python-source",
+      "version": "",
+      "purl": "pkg:nix/shop-python-source",
+      "cpe": "cpe:2.3:a:shop-python-source:shop-python-source::*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/g1yy3csf0imkh4hsf3didszrk66ps8sa-shop-python-source"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/10412hkcpyyj862ga8milxci74z7qq29-shop-python-source.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/l3v2f0dy9w2b15b8rwmvvyx7gy7jw2ba-sqlite-3.51.2.drv",
+      "name": "sqlite",
+      "version": "3.51.2",
+      "purl": "pkg:nix/sqlite@3.51.2",
+      "cpe": "cpe:2.3:a:sqlite:sqlite:3.51.2:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/9a2nyghkjzgj11bcg45w5im95dgcwhhm-sqlite-3.51.2-debug"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/da1h50i0gm2vky1ik59nxfgmznm2534g-sqlite-3.51.2-doc"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/mhy634114a25wmcc6l64kzwi2cgyqsc3-sqlite-3.51.2-dev"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/mm22hz4w37ndx2hvczd9qrrfg8i17cvy-sqlite-3.51.2"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/wn5fyjp59gkvg61lb1yqc3s6kby175f0-sqlite-3.51.2-bin"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/zp7d1a2akbbphnhlyxnqjb57fmyyk88w-sqlite-3.51.2-man"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/l3v2f0dy9w2b15b8rwmvvyx7gy7jw2ba-sqlite-3.51.2.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/9lq2q0srznpg1cfp8q9ackdaa66q2vyz-systemd-minimal-libs-260.5.drv",
+      "name": "systemd-minimal-libs-260.5",
+      "version": "",
+      "purl": "pkg:nix/systemd-minimal-libs-260.5",
+      "cpe": "cpe:2.3:a:systemd-minimal-libs-260.5:systemd-minimal-libs-260.5::*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/srcx149smw6dsqj2ymsh2dxdx82nv9bj-systemd-minimal-libs-260.5"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/9lq2q0srznpg1cfp8q9ackdaa66q2vyz-systemd-minimal-libs-260.5.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/qm9pykyriy0vnm90v71iww7w0vc7mgrc-tzdata-2026c.drv",
+      "name": "tzdata",
+      "version": "2026c",
+      "purl": "pkg:nix/tzdata@2026c",
+      "cpe": "cpe:2.3:a:tzdata:tzdata:2026c:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/hjcf7hznvapdak9c1rjngxrjpzcwjyvc-tzdata-2026c-man"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/ilpddj5rddlcg52w987i1f363hjyg7nc-tzdata-2026c-dev"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/l5i0nsck06fjpdkf2hsidd0hka17iy1k-tzdata-2026c-bin"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/mkbbamycmw838fwxk21jz0nw3mhnmk16-tzdata-2026c"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/qm9pykyriy0vnm90v71iww7w0vc7mgrc-tzdata-2026c.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/a7sw3xa7f8ahlfrcf3q7xzy4rhdhvsvh-util-linux-minimal-2.42.3.drv",
+      "name": "util-linux-minimal",
+      "version": "2.42.3",
+      "purl": "pkg:nix/util-linux-minimal@2.42.3",
+      "cpe": "cpe:2.3:a:util-linux-minimal:util-linux-minimal:2.42.3:*:*:*:*:*:*:*",
+      "pedigree": {
+        "patches": [
+          {
+            "type": "unofficial",
+            "resolves": [
+              {
+                "type": "security",
+                "id": "CVE-2026-78408",
+                "references": [
+                  "file:///nix/store/k8rn697ylwcdnswx2lli5bzbrb4kb3l6-CVE-2026-78408.patch"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/1mf5zg36hyq1rp89ml8sr276ch34z4qa-util-linux-minimal-2.42.3-login"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/4skwq8mhgzmbl92a491xhdrqy1i1461i-util-linux-minimal-2.42.3-mount"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/8c333hyivm68jb264f92dm1s3jjgq29l-util-linux-minimal-2.42.3-swap"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/hw26gin576lvhnmfkv5fqm4nayj9qwdi-util-linux-minimal-2.42.3-lib"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/ijyv5mn8kp91q247wynjhkk7ba530yh4-util-linux-minimal-2.42.3-dev"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/jw934df7gmr0230ja1pbmd8glaj0cyjn-util-linux-minimal-2.42.3-debug"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/kb5dcsr0y4hicd0h316rr2yyi487jig7-util-linux-minimal-2.42.3"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/rfdvhfbdhrr2ijcm9vnbydbbw329wswq-util-linux-minimal-2.42.3-bin"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/vi183xdxqvpaan82hfwb6yqh36z3hld0-util-linux-minimal-2.42.3-man"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/a7sw3xa7f8ahlfrcf3q7xzy4rhdhvsvh-util-linux-minimal-2.42.3.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/wsisnqqva71ba5k4x8dipsggdvcjb07x-xgcc-15.3.0.drv",
+      "name": "xgcc-15.3.0",
+      "version": "",
+      "purl": "pkg:nix/xgcc-15.3.0",
+      "cpe": "cpe:2.3:a:xgcc-15.3.0:xgcc-15.3.0::*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/l1n6wi2lyzglvgzbwzw9n9w2pzkcj41i-xgcc-15.3.0-libgcc"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/wsisnqqva71ba5k4x8dipsggdvcjb07x-xgcc-15.3.0.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/spy1vhzw07pnzbk2c5lvcljb66ckzwr8-xz-5.8.4.drv",
+      "name": "xz",
+      "version": "5.8.4",
+      "purl": "pkg:nix/xz@5.8.4",
+      "cpe": "cpe:2.3:a:xz:xz:5.8.4:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/15mlpz0nv6dwi8v1z7mx0dpvcmnhd7ql-xz-5.8.4-man"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/fr31df17rksfki6nv00xq4s5apvqpyhw-xz-5.8.4-bin"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/n133n8ir697g70mvzcdw669qfa69pibl-xz-5.8.4-dev"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/rawrmzi7xv4yy3rzdj3gykibfaaaqvm9-xz-5.8.4-doc"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/v3imdn9s2021ssh45ps62kksg2d1k7xm-xz-5.8.4"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/spy1vhzw07pnzbk2c5lvcljb66ckzwr8-xz-5.8.4.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/4h14gh40cmy92iwbsv9z0rxcchi0c980-zlib-1.3.2.drv",
+      "name": "zlib",
+      "version": "1.3.2",
+      "purl": "pkg:nix/zlib@1.3.2",
+      "cpe": "cpe:2.3:a:zlib:zlib:1.3.2:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/2k9dj65vyanlvq863ks3ii7cjx82kfng-zlib-1.3.2-dev"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/6s4wm3zl2y0v5g998n2g88k1zh3vf2pr-zlib-1.3.2"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/xvpdcmxbccnavnw2dciidp0zrknzr1db-zlib-1.3.2-static"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/4h14gh40cmy92iwbsv9z0rxcchi0c980-zlib-1.3.2.drv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "/nix/store/vr3p7vp9fnzpgvgbphlvr9bwzrq411jb-zstd-1.5.7.drv",
+      "name": "zstd",
+      "version": "1.5.7",
+      "purl": "pkg:nix/zstd@1.5.7",
+      "cpe": "cpe:2.3:a:zstd:zstd:1.5.7:*:*:*:*:*:*:*",
+      "properties": [
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/1hjg44rywjpc52nnhs1z9iba9vgr2s3n-zstd-1.5.7-dev"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/4d2k230fhyxb8qab8amyk011m7pmpcrz-zstd-1.5.7-man"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/7zbzvm0bwa2mh5dp3p5gasix417lysxc-zstd-1.5.7"
+        },
+        {
+          "name": "nix:output_path",
+          "value": "/nix/store/z8fp2l0b1k64swd0dxpych445wpfcgb0-zstd-1.5.7-bin"
+        },
+        {
+          "name": "nix:drv_path",
+          "value": "/nix/store/vr3p7vp9fnzpgvgbphlvr9bwzrq411jb-zstd-1.5.7.drv"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "/nix/store/p4nwxqnh5mqfk4j73g728rb1w69wmazx-Caddyfile.drv"
+    },
+    {
+      "ref": "/nix/store/a5jsd244d4fxdjfd9nvjh7gmakalkz58-audit-4.2.1.drv",
+      "dependsOn": [
+        "/nix/store/iw6h4d1gf2q565zd8sgvxsvf8aj9ia5f-libcap-ng-0.9.3.drv",
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/f13dw1l416dhsf1gck4wizy79hjvqp9d-bash-5.3p9.drv",
+      "dependsOn": [
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/1r89rryy56vgd91c83r7rw961h7xw8ih-brotli-1.2.0.drv",
+      "dependsOn": [
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/iifbrha64kwkyqcjk93fc2l6hvpyd0nz-bzip2-1.0.8.drv",
+      "dependsOn": [
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/nlr1p1ijghl97qbc7blsfbx2r17zqaav-caddy-2.11.7.drv",
+      "dependsOn": [
+        "/nix/store/a4r7057ryfvna38d1bklg4izidyy6jja-iana-etc-20251215.drv",
+        "/nix/store/kxsmbk26l1pwpa51ql99ycfmj2c3cdjp-mailcap-2.1.54.drv",
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv",
+        "/nix/store/qm9pykyriy0vnm90v71iww7w0vc7mgrc-tzdata-2026c.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/bnydhpm1n00qy7vfl2fh76v8pmfhr5b7-curl-8.22.0.drv",
+      "dependsOn": [
+        "/nix/store/1r89rryy56vgd91c83r7rw961h7xw8ih-brotli-1.2.0.drv",
+        "/nix/store/4cvni1g6rc3bs8l5zb8dfsi1kz54glhs-krb5-1.22.2.drv",
+        "/nix/store/7y9dhcsvg41d8ijzw6s8smcg1mld7fpf-libidn2-2.3.8.drv",
+        "/nix/store/cd7iw2vmzd7n3k5a39wq9c7r61z2m97p-libssh2-1.11.1.drv",
+        "/nix/store/f1m10914mg6shrwalfwzdwfbxv3hkmja-nghttp2-1.69.0.drv",
+        "/nix/store/hd73dkpv6dx8qyq3yl4jv8iyi9955vr8-openssl-3.6.5.drv",
+        "/nix/store/m39kzhpkf35dms6gf19k40cd76zr6r2c-nghttp3-1.15.0.drv",
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv",
+        "/nix/store/vr3p7vp9fnzpgvgbphlvr9bwzrq411jb-zstd-1.5.7.drv",
+        "/nix/store/wa8illsz4krwwwhglkc0wv07ckdw7lxl-ngtcp2-1.22.1.drv",
+        "/nix/store/x3r9aiakxw72b9qzr5zw4x3f09rs9ymh-libpsl-0.21.5.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/ylxkpdn4vb5cqrr921x0fz7xr2brkwsj-db-4.8.30.drv",
+      "dependsOn": [
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv",
+        "/nix/store/ss9rn8rmcy4h5i7s4v7bswf1br6yfxdz-gcc-15.3.0.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/r3p21ynin1zs8r2y7plwlzl4j87py24d-expat-2.8.5.drv",
+      "dependsOn": [
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/ss9rn8rmcy4h5i7s4v7bswf1br6yfxdz-gcc-15.3.0.drv",
+      "dependsOn": [
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/f5rf6zv347sh3m73gy41s2d754rdr8d4-gdbm-1.26.drv",
+      "dependsOn": [
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv",
+      "dependsOn": [
+        "/nix/store/7y9dhcsvg41d8ijzw6s8smcg1mld7fpf-libidn2-2.3.8.drv",
+        "/nix/store/wsisnqqva71ba5k4x8dipsggdvcjb07x-xgcc-15.3.0.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/a4r7057ryfvna38d1bklg4izidyy6jja-iana-etc-20251215.drv"
+    },
+    {
+      "ref": "/nix/store/p7i0l4jfdkcrnlvk8bm2sxbp385bjvb0-icu4c-76.1.drv",
+      "dependsOn": [
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv",
+        "/nix/store/ss9rn8rmcy4h5i7s4v7bswf1br6yfxdz-gcc-15.3.0.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/bz9hcjdhg9czsypwg7ml6rcyab151n56-keyutils-1.6.3.drv",
+      "dependsOn": [
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/4cvni1g6rc3bs8l5zb8dfsi1kz54glhs-krb5-1.22.2.drv",
+      "dependsOn": [
+        "/nix/store/bz9hcjdhg9czsypwg7ml6rcyab151n56-keyutils-1.6.3.drv",
+        "/nix/store/hd73dkpv6dx8qyq3yl4jv8iyi9955vr8-openssl-3.6.5.drv",
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/iw6h4d1gf2q565zd8sgvxsvf8aj9ia5f-libcap-ng-0.9.3.drv",
+      "dependsOn": [
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/pnyi1073jabrami0l0gsw5r7yxbw4ykk-libffi-3.8.0.drv",
+      "dependsOn": [
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/7y9dhcsvg41d8ijzw6s8smcg1mld7fpf-libidn2-2.3.8.drv",
+      "dependsOn": [
+        "/nix/store/5619yyfjmswzmq0vn5y69xcdlzv4nj7g-libunistring-1.4.2.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/x3r9aiakxw72b9qzr5zw4x3f09rs9ymh-libpsl-0.21.5.drv",
+      "dependsOn": [
+        "/nix/store/3q8a3z0k478w6lzqbqbqn8f0sqnbw4wy-publicsuffix-list-0-unstable-2026-05-13.drv",
+        "/nix/store/5619yyfjmswzmq0vn5y69xcdlzv4nj7g-libunistring-1.4.2.drv",
+        "/nix/store/7y9dhcsvg41d8ijzw6s8smcg1mld7fpf-libidn2-2.3.8.drv",
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/cd7iw2vmzd7n3k5a39wq9c7r61z2m97p-libssh2-1.11.1.drv",
+      "dependsOn": [
+        "/nix/store/4h14gh40cmy92iwbsv9z0rxcchi0c980-zlib-1.3.2.drv",
+        "/nix/store/hd73dkpv6dx8qyq3yl4jv8iyi9955vr8-openssl-3.6.5.drv",
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/5619yyfjmswzmq0vn5y69xcdlzv4nj7g-libunistring-1.4.2.drv"
+    },
+    {
+      "ref": "/nix/store/4h9bk2rxw6cvpr3cybl9zi61y5c537ry-liburing-2.14.drv"
+    },
+    {
+      "ref": "/nix/store/hxx6r7jv7cq1311lgjnc01yvsbw6a8lg-libxcrypt-4.5.2.drv",
+      "dependsOn": [
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/p7kdv57jabpvv18jyxlxd8d9pps43dkq-libxml2-2.15.4.drv",
+      "dependsOn": [
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/9qri6n1r028z6c8hrf7h0jjjnpkgj2aa-linux-pam-1.7.2.drv",
+      "dependsOn": [
+        "/nix/store/9lq2q0srznpg1cfp8q9ackdaa66q2vyz-systemd-minimal-libs-260.5.drv",
+        "/nix/store/a5jsd244d4fxdjfd9nvjh7gmakalkz58-audit-4.2.1.drv",
+        "/nix/store/hxx6r7jv7cq1311lgjnc01yvsbw6a8lg-libxcrypt-4.5.2.drv",
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv",
+        "/nix/store/ylxkpdn4vb5cqrr921x0fz7xr2brkwsj-db-4.8.30.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/5wym2fagcj5c6v15l7d2p13d6mvmz5xx-lz4-1.10.0.drv",
+      "dependsOn": [
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/kxsmbk26l1pwpa51ql99ycfmj2c3cdjp-mailcap-2.1.54.drv"
+    },
+    {
+      "ref": "/nix/store/450l5ymrjf0gblg3m3ms9i5bq46q752d-mpdecimal-4.0.1.drv",
+      "dependsOn": [
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/8xzqhmi0bhpmbzdhkkxinrx5zli4amwz-ncurses-6.6.drv",
+      "dependsOn": [
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/f1m10914mg6shrwalfwzdwfbxv3hkmja-nghttp2-1.69.0.drv",
+      "dependsOn": [
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/m39kzhpkf35dms6gf19k40cd76zr6r2c-nghttp3-1.15.0.drv",
+      "dependsOn": [
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/wa8illsz4krwwwhglkc0wv07ckdw7lxl-ngtcp2-1.22.1.drv",
+      "dependsOn": [
+        "/nix/store/hd73dkpv6dx8qyq3yl4jv8iyi9955vr8-openssl-3.6.5.drv",
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/80bpavjn50sw5s2m74m6vh7pydks67ah-numactl-2.0.18.drv",
+      "dependsOn": [
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv",
+        "/nix/store/ss9rn8rmcy4h5i7s4v7bswf1br6yfxdz-gcc-15.3.0.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/hd73dkpv6dx8qyq3yl4jv8iyi9955vr8-openssl-3.6.5.drv",
+      "dependsOn": [
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/c8bgfxnc2kxlham892qf3vmm762yf0b6-postgres_entrypoint.py.drv"
+    },
+    {
+      "ref": "/nix/store/bx88a3mykh9q0fhrjfzdvszph7mkpdfw-postgresql-18.6.drv",
+      "dependsOn": [
+        "/nix/store/4cvni1g6rc3bs8l5zb8dfsi1kz54glhs-krb5-1.22.2.drv",
+        "/nix/store/4h14gh40cmy92iwbsv9z0rxcchi0c980-zlib-1.3.2.drv",
+        "/nix/store/4h9bk2rxw6cvpr3cybl9zi61y5c537ry-liburing-2.14.drv",
+        "/nix/store/5wym2fagcj5c6v15l7d2p13d6mvmz5xx-lz4-1.10.0.drv",
+        "/nix/store/80bpavjn50sw5s2m74m6vh7pydks67ah-numactl-2.0.18.drv",
+        "/nix/store/9lq2q0srznpg1cfp8q9ackdaa66q2vyz-systemd-minimal-libs-260.5.drv",
+        "/nix/store/9qri6n1r028z6c8hrf7h0jjjnpkgj2aa-linux-pam-1.7.2.drv",
+        "/nix/store/a7sw3xa7f8ahlfrcf3q7xzy4rhdhvsvh-util-linux-minimal-2.42.3.drv",
+        "/nix/store/bnydhpm1n00qy7vfl2fh76v8pmfhr5b7-curl-8.22.0.drv",
+        "/nix/store/hd73dkpv6dx8qyq3yl4jv8iyi9955vr8-openssl-3.6.5.drv",
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv",
+        "/nix/store/p7i0l4jfdkcrnlvk8bm2sxbp385bjvb0-icu4c-76.1.drv",
+        "/nix/store/p7kdv57jabpvv18jyxlxd8d9pps43dkq-libxml2-2.15.4.drv",
+        "/nix/store/qm9pykyriy0vnm90v71iww7w0vc7mgrc-tzdata-2026c.drv",
+        "/nix/store/ss9rn8rmcy4h5i7s4v7bswf1br6yfxdz-gcc-15.3.0.drv",
+        "/nix/store/vr3p7vp9fnzpgvgbphlvr9bwzrq411jb-zstd-1.5.7.drv",
+        "/nix/store/vxq2pfg149lb6xp15xv1qg6qvczijf19-readline-8.3p3.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/3q8a3z0k478w6lzqbqbqn8f0sqnbw4wy-publicsuffix-list-0-unstable-2026-05-13.drv"
+    },
+    {
+      "ref": "/nix/store/cvrl56w81ddfr22qz7p0a4ga701vfp0v-python3-3.13.16.drv",
+      "dependsOn": [
+        "/nix/store/450l5ymrjf0gblg3m3ms9i5bq46q752d-mpdecimal-4.0.1.drv",
+        "/nix/store/4h14gh40cmy92iwbsv9z0rxcchi0c980-zlib-1.3.2.drv",
+        "/nix/store/8xzqhmi0bhpmbzdhkkxinrx5zli4amwz-ncurses-6.6.drv",
+        "/nix/store/a7sw3xa7f8ahlfrcf3q7xzy4rhdhvsvh-util-linux-minimal-2.42.3.drv",
+        "/nix/store/f13dw1l416dhsf1gck4wizy79hjvqp9d-bash-5.3p9.drv",
+        "/nix/store/f5rf6zv347sh3m73gy41s2d754rdr8d4-gdbm-1.26.drv",
+        "/nix/store/hd73dkpv6dx8qyq3yl4jv8iyi9955vr8-openssl-3.6.5.drv",
+        "/nix/store/iifbrha64kwkyqcjk93fc2l6hvpyd0nz-bzip2-1.0.8.drv",
+        "/nix/store/kxsmbk26l1pwpa51ql99ycfmj2c3cdjp-mailcap-2.1.54.drv",
+        "/nix/store/l3v2f0dy9w2b15b8rwmvvyx7gy7jw2ba-sqlite-3.51.2.drv",
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv",
+        "/nix/store/pnyi1073jabrami0l0gsw5r7yxbw4ykk-libffi-3.8.0.drv",
+        "/nix/store/qm9pykyriy0vnm90v71iww7w0vc7mgrc-tzdata-2026c.drv",
+        "/nix/store/r3p21ynin1zs8r2y7plwlzl4j87py24d-expat-2.8.5.drv",
+        "/nix/store/spy1vhzw07pnzbk2c5lvcljb66ckzwr8-xz-5.8.4.drv",
+        "/nix/store/ss9rn8rmcy4h5i7s4v7bswf1br6yfxdz-gcc-15.3.0.drv",
+        "/nix/store/vxq2pfg149lb6xp15xv1qg6qvczijf19-readline-8.3p3.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/lg4pw3lnhgygvylyqyb31jxwb3yi1spv-python3-3.13.16-env.drv",
+      "dependsOn": [
+        "/nix/store/cvrl56w81ddfr22qz7p0a4ga701vfp0v-python3-3.13.16.drv",
+        "/nix/store/ia634q4g9ibzi1bmfafcxmxynhs0am9m-python3.13-pip-26.2.1.drv",
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv",
+        "/nix/store/ss9rn8rmcy4h5i7s4v7bswf1br6yfxdz-gcc-15.3.0.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/ia634q4g9ibzi1bmfafcxmxynhs0am9m-python3.13-pip-26.2.1.drv",
+      "dependsOn": [
+        "/nix/store/cvrl56w81ddfr22qz7p0a4ga701vfp0v-python3-3.13.16.drv",
+        "/nix/store/f13dw1l416dhsf1gck4wizy79hjvqp9d-bash-5.3p9.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/vxq2pfg149lb6xp15xv1qg6qvczijf19-readline-8.3p3.drv",
+      "dependsOn": [
+        "/nix/store/8xzqhmi0bhpmbzdhkkxinrx5zli4amwz-ncurses-6.6.drv",
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/yairyn492xb2h6zavksyv0a7as5yl903-shop-container-identities.drv"
+    },
+    {
+      "ref": "/nix/store/0zgzigxmj4l40q18nn0hyss87s3yys64-shop-observed-image-native-inventory-root.drv",
+      "dependsOn": [
+        "/nix/store/10412hkcpyyj862ga8milxci74z7qq29-shop-python-source.drv",
+        "/nix/store/1r89rryy56vgd91c83r7rw961h7xw8ih-brotli-1.2.0.drv",
+        "/nix/store/3q8a3z0k478w6lzqbqbqn8f0sqnbw4wy-publicsuffix-list-0-unstable-2026-05-13.drv",
+        "/nix/store/450l5ymrjf0gblg3m3ms9i5bq46q752d-mpdecimal-4.0.1.drv",
+        "/nix/store/4cvni1g6rc3bs8l5zb8dfsi1kz54glhs-krb5-1.22.2.drv",
+        "/nix/store/4h14gh40cmy92iwbsv9z0rxcchi0c980-zlib-1.3.2.drv",
+        "/nix/store/4h9bk2rxw6cvpr3cybl9zi61y5c537ry-liburing-2.14.drv",
+        "/nix/store/5619yyfjmswzmq0vn5y69xcdlzv4nj7g-libunistring-1.4.2.drv",
+        "/nix/store/5wym2fagcj5c6v15l7d2p13d6mvmz5xx-lz4-1.10.0.drv",
+        "/nix/store/6zifzal3zyqn7fbng2419xcad5whbhwj-shop-python-runtime.drv",
+        "/nix/store/7y9dhcsvg41d8ijzw6s8smcg1mld7fpf-libidn2-2.3.8.drv",
+        "/nix/store/80bpavjn50sw5s2m74m6vh7pydks67ah-numactl-2.0.18.drv",
+        "/nix/store/8xzqhmi0bhpmbzdhkkxinrx5zli4amwz-ncurses-6.6.drv",
+        "/nix/store/9lq2q0srznpg1cfp8q9ackdaa66q2vyz-systemd-minimal-libs-260.5.drv",
+        "/nix/store/9qri6n1r028z6c8hrf7h0jjjnpkgj2aa-linux-pam-1.7.2.drv",
+        "/nix/store/a4r7057ryfvna38d1bklg4izidyy6jja-iana-etc-20251215.drv",
+        "/nix/store/a5jsd244d4fxdjfd9nvjh7gmakalkz58-audit-4.2.1.drv",
+        "/nix/store/a7sw3xa7f8ahlfrcf3q7xzy4rhdhvsvh-util-linux-minimal-2.42.3.drv",
+        "/nix/store/bnydhpm1n00qy7vfl2fh76v8pmfhr5b7-curl-8.22.0.drv",
+        "/nix/store/bx88a3mykh9q0fhrjfzdvszph7mkpdfw-postgresql-18.6.drv",
+        "/nix/store/bz9hcjdhg9czsypwg7ml6rcyab151n56-keyutils-1.6.3.drv",
+        "/nix/store/c8bgfxnc2kxlham892qf3vmm762yf0b6-postgres_entrypoint.py.drv",
+        "/nix/store/cd7iw2vmzd7n3k5a39wq9c7r61z2m97p-libssh2-1.11.1.drv",
+        "/nix/store/cvrl56w81ddfr22qz7p0a4ga701vfp0v-python3-3.13.16.drv",
+        "/nix/store/f13dw1l416dhsf1gck4wizy79hjvqp9d-bash-5.3p9.drv",
+        "/nix/store/f1m10914mg6shrwalfwzdwfbxv3hkmja-nghttp2-1.69.0.drv",
+        "/nix/store/f5rf6zv347sh3m73gy41s2d754rdr8d4-gdbm-1.26.drv",
+        "/nix/store/hd73dkpv6dx8qyq3yl4jv8iyi9955vr8-openssl-3.6.5.drv",
+        "/nix/store/hxx6r7jv7cq1311lgjnc01yvsbw6a8lg-libxcrypt-4.5.2.drv",
+        "/nix/store/ia634q4g9ibzi1bmfafcxmxynhs0am9m-python3.13-pip-26.2.1.drv",
+        "/nix/store/iifbrha64kwkyqcjk93fc2l6hvpyd0nz-bzip2-1.0.8.drv",
+        "/nix/store/iw6h4d1gf2q565zd8sgvxsvf8aj9ia5f-libcap-ng-0.9.3.drv",
+        "/nix/store/kxsmbk26l1pwpa51ql99ycfmj2c3cdjp-mailcap-2.1.54.drv",
+        "/nix/store/l3v2f0dy9w2b15b8rwmvvyx7gy7jw2ba-sqlite-3.51.2.drv",
+        "/nix/store/lg4pw3lnhgygvylyqyb31jxwb3yi1spv-python3-3.13.16-env.drv",
+        "/nix/store/m39kzhpkf35dms6gf19k40cd76zr6r2c-nghttp3-1.15.0.drv",
+        "/nix/store/nlr1p1ijghl97qbc7blsfbx2r17zqaav-caddy-2.11.7.drv",
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv",
+        "/nix/store/p4nwxqnh5mqfk4j73g728rb1w69wmazx-Caddyfile.drv",
+        "/nix/store/p7i0l4jfdkcrnlvk8bm2sxbp385bjvb0-icu4c-76.1.drv",
+        "/nix/store/p7kdv57jabpvv18jyxlxd8d9pps43dkq-libxml2-2.15.4.drv",
+        "/nix/store/pnyi1073jabrami0l0gsw5r7yxbw4ykk-libffi-3.8.0.drv",
+        "/nix/store/qm9pykyriy0vnm90v71iww7w0vc7mgrc-tzdata-2026c.drv",
+        "/nix/store/r3p21ynin1zs8r2y7plwlzl4j87py24d-expat-2.8.5.drv",
+        "/nix/store/spy1vhzw07pnzbk2c5lvcljb66ckzwr8-xz-5.8.4.drv",
+        "/nix/store/ss9rn8rmcy4h5i7s4v7bswf1br6yfxdz-gcc-15.3.0.drv",
+        "/nix/store/vr3p7vp9fnzpgvgbphlvr9bwzrq411jb-zstd-1.5.7.drv",
+        "/nix/store/vxq2pfg149lb6xp15xv1qg6qvczijf19-readline-8.3p3.drv",
+        "/nix/store/wa8illsz4krwwwhglkc0wv07ckdw7lxl-ngtcp2-1.22.1.drv",
+        "/nix/store/wsisnqqva71ba5k4x8dipsggdvcjb07x-xgcc-15.3.0.drv",
+        "/nix/store/x3r9aiakxw72b9qzr5zw4x3f09rs9ymh-libpsl-0.21.5.drv",
+        "/nix/store/yairyn492xb2h6zavksyv0a7as5yl903-shop-container-identities.drv",
+        "/nix/store/ylxkpdn4vb5cqrr921x0fz7xr2brkwsj-db-4.8.30.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/6zifzal3zyqn7fbng2419xcad5whbhwj-shop-python-runtime.drv",
+      "dependsOn": [
+        "/nix/store/bx88a3mykh9q0fhrjfzdvszph7mkpdfw-postgresql-18.6.drv",
+        "/nix/store/f13dw1l416dhsf1gck4wizy79hjvqp9d-bash-5.3p9.drv",
+        "/nix/store/lg4pw3lnhgygvylyqyb31jxwb3yi1spv-python3-3.13.16-env.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/10412hkcpyyj862ga8milxci74z7qq29-shop-python-source.drv"
+    },
+    {
+      "ref": "/nix/store/l3v2f0dy9w2b15b8rwmvvyx7gy7jw2ba-sqlite-3.51.2.drv",
+      "dependsOn": [
+        "/nix/store/4h14gh40cmy92iwbsv9z0rxcchi0c980-zlib-1.3.2.drv",
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/9lq2q0srznpg1cfp8q9ackdaa66q2vyz-systemd-minimal-libs-260.5.drv",
+      "dependsOn": [
+        "/nix/store/a7sw3xa7f8ahlfrcf3q7xzy4rhdhvsvh-util-linux-minimal-2.42.3.drv",
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/qm9pykyriy0vnm90v71iww7w0vc7mgrc-tzdata-2026c.drv"
+    },
+    {
+      "ref": "/nix/store/a7sw3xa7f8ahlfrcf3q7xzy4rhdhvsvh-util-linux-minimal-2.42.3.drv",
+      "dependsOn": [
+        "/nix/store/hxx6r7jv7cq1311lgjnc01yvsbw6a8lg-libxcrypt-4.5.2.drv",
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/wsisnqqva71ba5k4x8dipsggdvcjb07x-xgcc-15.3.0.drv"
+    },
+    {
+      "ref": "/nix/store/spy1vhzw07pnzbk2c5lvcljb66ckzwr8-xz-5.8.4.drv",
+      "dependsOn": [
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/4h14gh40cmy92iwbsv9z0rxcchi0c980-zlib-1.3.2.drv",
+      "dependsOn": [
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv"
+      ]
+    },
+    {
+      "ref": "/nix/store/vr3p7vp9fnzpgvgbphlvr9bwzrq411jb-zstd-1.5.7.drv",
+      "dependsOn": [
+        "/nix/store/p1csz0bl2pjkix69c89w1pcj58lxq3zi-glibc-2.42-100.drv",
+        "/nix/store/ss9rn8rmcy4h5i7s4v7bswf1br6yfxdz-gcc-15.3.0.drv"
+      ]
+    }
+  ]
+}

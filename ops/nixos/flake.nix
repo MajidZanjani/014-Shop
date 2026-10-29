@@ -129,11 +129,23 @@
       name = "shop-image-inspection-tools";
       paths = [ pkgs.skopeo pkgs.umoci pkgs.util-linux ];
     };
+    sbomToolManifest = pkgs.writeText "shop-sbom-tool-manifest.json" (builtins.toJSON {
+      schema_version = 1;
+      syft = { executable = "${pkgs.syft}/bin/syft"; version = pkgs.syft.version; };
+      sbomnix = { executable = "${pkgs.sbomnix}/bin/sbomnix"; version = pkgs.sbomnix.version; };
+      nix = { executable = "${pkgs.nix}/bin/nix"; version = pkgs.nix.version; };
+      unshare = "${pkgs.util-linux}/bin/unshare";
+    });
+    sbomTools = pkgs.symlinkJoin {
+      name = "shop-standard-sbom-tools";
+      paths = [ pkgs.syft pkgs.sbomnix pkgs.nix pkgs.util-linux ];
+    };
   in {
     nixosModules.shop = import ./modules/shop.nix;
     packages.${system} = { shop-app = appImage; shop-worker = workerImage;
       shop-app-source = appTree; shop-browser = pkgs.chromium; shop-postgres = postgresImage; shop-gateway = gatewayImage; shop-python-runtime = runtime; shop-database-tools-source = databaseTools; shop-operator-inspect = operatorInspection.launcher; shop-operator-schema = operatorSchema.launcher;
-      shop-image-tools = imageTools; shop-image-tool-manifest = imageToolManifest; };
+      shop-image-tools = imageTools; shop-image-tool-manifest = imageToolManifest;
+      shop-sbom-tools = sbomTools; shop-sbom-tool-manifest = sbomToolManifest; };
     checks.${system} = {
       operator-startup-denial = operatorFailure.launcher;
       schema-startup-denial = schemaFailure.launcher;
@@ -152,6 +164,12 @@
     };
     # Same pinned backend tools; backend demos/checks need no frontend compiler.
     devShells.${system} = {
+    sbom = pkgs.mkShell {
+      packages = [ pythonEnv postgres sbomTools ];
+      PYTHONDONTWRITEBYTECODE = "1";
+      PYTHONNOUSERSITE = "1";
+      SHOP_SBOM_TOOL_MANIFEST = sbomToolManifest;
+    };
     images = pkgs.mkShell {
       packages = [ pythonEnv imageTools ];
       PYTHONDONTWRITEBYTECODE = "1";

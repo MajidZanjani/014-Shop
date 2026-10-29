@@ -1,0 +1,48 @@
+# Actual four-image and native standard SBOM evidence — 2026-10-29
+
+All four exact candidate images now have raw Syft JSON and CycloneDX1.6 output. A separate inspection reference root supplies raw sbomnix CycloneDX1.4, SPDX and CSV for their actual native reference closure. Local producer4 checks/17 controls/59.676s; enclosing pinned command60.753s. This records actual local image/component/notice evidence, with full inventory, legal, runtime, independent and phase acceptance still pending.
+
+[Immutable report and50 raw payloads](../evidence/t02/image-sbom-revisions/17ae6475bb77ea4f4ffa2ca801325dc13c03c29a222937a05e3b722c69be7d5e/report.json) bind source778040f with dirty attribution, producer/test/flake/lock/native/layout hashes, immutable tool manifest and executable hashes, all archive/configuration identities, exact commands/exits/times, native NAR/output/recipe/reference identities and incorporated notice bytes. [Independent byte readback and retained command/failure logs](../evidence/t02/image-sbom-logs/17b8de940ff0947866e77f11fedc9fad284f41ae03fc9ee3fd53c87e001d1bd8.json) verify all50 files/8,328,659 bytes, five schema receipts and unchanged original SBOM/inventory/licence files. Current evaluated archive paths and actual SHA256 values match all four originals; flake.lock is unchanged. No passing old build/lock/backend suite was repeated.
+
+| Image | Raw tool packages | Standard file components | Verified package dependency edges |
+|---|---:|---:|---:|
+| shop-app | 57 | 33 | 2 |
+| shop-worker | 57 | 33 | 2 |
+| shop-postgres | 51 | 4 | 0 |
+| shop-gateway | 156 | 1 | 0 |
+
+Counts are per-image tool observations, including repeated/bundled components. They are not a deduplicated complete distribution inventory or a claim that file evidence/containment relations are package dependency edges. Each standard package maps to its raw tool artifact by package-id or actual plain artifact ID, exact name/version/PURL and observed image location. File hashes and dependency-of projections are checked. The scanners also report bundled Python launchers and Go modules; those observations do not replace package-wide notice/source review.
+
+The union has57 actual Nix store objects,53 output-bound recipe components and168 native dependency edges. Actual store NAR bytes are verified without signature/trust acceptance. The collector compares19,359 unique native path/type/mode/size/hash/link entries with the retained reconstructed image filesystems. It retains102 exact filename-based notice candidates from five store objects, deduplicated to38 byte-identical text payloads. The other52 objects lack candidates under this filename policy; absence of a candidate is not a legal conclusion. No source-offer or complete incorporated-notice obligation is marked satisfied.
+
+Five raw CycloneDX documents pass the maintained cyclonedx-python-lib11.12.0 strict validator in the existing frozen tools environment. Five deliberately removed-bomFormat controls fail that same validator. Native SPDX/CSV are retained unchanged; independent SPDX schema/semantic validation is not claimed. Acquisition of exact hash-locked validator wheels precedes the network-denied validation process.
+
+## Actual defects and explicit metadata findings
+
+The first two interrupted-session attempts stopped on an unsupported Nix build flag and then missing local registered recipe bytes. This session reproduced the missing file with a traceback. The path was valid:23 observed outputs lacked their registered recipe files. Offline evaluation of the unchanged locked four-image graph produced1,652 recipe definitions, but did not recreate those same registered identities. The collector now queries actual Nix valid output recipes and binds every selected recipe to both exact output paths and the locked graph; it preserves registered derivers, alternative compatible recipes and false build_origin_proven separately. It never rewrites Nix registration or asserts an alternative recipe is the historical builder.
+
+Actual Syft1.44.0 leaves top-level source architecture/os empty for these Docker archives while retaining the exact original base64 configuration bytes and matching SHA256 image ID/tag. The verifier records the omissions and takes the platform only from that exact configuration; conflicting nonempty platform claims still fail. Binary components without a PURL use plain artifact IDs and are checked against their actual raw artifact and location, not dropped.
+
+Syft infers publicsuffix-list-0/unstable-2026-05-13 for three images, while the bound recipe declares publicsuffix-list/0-unstable-2026-05-13. Strict claim checking rejects this discrepancy; observation mode retains it as an explicit nonauthoritative unresolved tool finding. One unversioned Python environment recipe is also recorded. sbomnix1.7.6's env-field name/version projection differs from canonical recipe attributes for11 native components, including structured-attribute version omissions and a Python name prefix. Both exact projections remain visible; fabricated versions, missing components/edges/outputs/locations/hashes/notices still reject. No raw SBOM was repaired or normalized to obtain a valid result.
+
+Seventeen synthetic controls cover omitted/invented native objects/references, actual recipe-output substitution and ambiguous provenance, source/config/tag/platform/tool substitution, exact package/plain-ID/file/dependency projection, explicit inference findings, native projection omissions, changed notice bytes, schema rejection before publication and exclusive historical preservation. Each newly identified verifier defect had an observed failing control before its correction. The final raw record stays immutable and reports inventory_complete=false, legal_approval=false and runtime/independent/activation=false.
+
+## Tools, isolation and reproduction
+
+The existing locked flake supplies separate inspection-only Syft1.44.0/sbomnix1.7.6/Nix2.34.9/unshare tools. Existing runtime image derivations/outputs do not change. Initial bounded acquisition had2 new tool derivations and174 announced binary fetches,207.9MiB download/899.3MiB unpacked, measured5.675s with max-jobs1/cores2 and an1800s bound. These tools are not added to runtime images or treated as newly approved runtime components.
+
+Use the project-owned TMPDIR/XDG cache described in [current payload evidence](current-payload-reproducibility-2026-10-29.md), then `nix develop --offline ./ops/nixos#sbom --command python3 scripts/check_image_sbom.py --build-index docs/evidence/t02/image-build-revisions/9d42b9f045e228de2d03e99bfe97e222295885ab8810861caca57d2c9e994102.json --filesystem-report docs/evidence/t02/image-layout-revisions/27708a4e83a9ef6ac9e956b617533933dafa55dfaba909ab276196e08e185694/report.json --scratch-parent /path/to/dedicated/owned/parent --record-evidence`.
+
+The parent must be caller-owned, nonsymlink, not group/world-writable, have more than2GiB free and be traversable by the mapped scanner. This run used only new children of the already recorded owned /var/lib/shop-image-scratch-VjIrVLVQ/phase2-sbom-tools-20261029-8y7b_gcp parent. Each scan has a120s bound, two-way parallelism, empty config/auth/cache roots and its own user/network namespace. No registry, runtime daemon/socket, image payload, host control or credential is used. Only the new successful temporary child is removed; failed children retain diagnostics/raw files. Shared full /tmp/root caches and every existing mode/resource stay unchanged. The pre-existing untracked http_cache.sqlite remains outside committed evidence.
+
+Full existing dispatcher regressions require the default development shell; the intentionally smaller sbom shell has no SHOP_PYTHON/Node/npm acceptance identity contract. Its first deployment-eval attempt correctly failed that tool-provenance gate. No shell fallback or acceptance override was added.
+
+## Focused regression
+
+Final SBOM/native/source-notice/inventory/planning integration regression passes41 tests in0.037s. The existing deployment-eval dispatcher, run in its required default pinned development shell, passes16 checks/31 tests in2.151s (2.191s enclosing lane). This is local candidate evaluation only. The earlier attempt from the smaller sbom shell fails before tests on missing acceptance-tool provenance; that failure is retained as an invocation correction, not an image or schema result. Full backend, old source builds, locks and actual off-host/runtime lanes were not repeated.
+
+## Remaining full scope
+
+All12 package-wide licence reviews, raw npm metadata findings, exact build/source/helper/backup/runtime closure coverage, complete notice/source obligations, SPDX qualification and attributable human review remain open. Plan14 application-role/all-write/isolated attestation transport/migration/bootstrap and executable independent replica integration, full same-dispatcher OCI/CI qualification and actual authorized off-host lifecycle/resource/storage/recovery proof also remain. Phase2 is still8/18 accepted local plan records; no parent SUMMARY, INVENTORY_PASS or FULL_PASS is warranted. Related3–14 and protected-host/provider/commercial gates remain in the [completion tracker](../../.planning/phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md).
+
+Tool contracts: [Syft output formats](https://oss.anchore.com/docs/guides/sbom/formats/) and [sbomnix runtime/store-path and metadata behavior](https://github.com/tiiuae/sbomnix/blob/main/README.md). Exact installed pinned code and actual outputs, rather than the changing main-branch documentation, determined the recorded field/identity behavior.

@@ -1,9 +1,8 @@
 ---
 gsd_state_version: "1.0"
-current_plan: 17
-status: paused
-paused_at: "2026-10-29T08:25:59.236Z"
-last_updated: "2026-10-29T08:25:59.236Z"
+current_plan: 16
+status: in_progress
+last_updated: "2026-10-29T10:05:57.447870+00:00"
 state_head: 9d7161f2bc6d2a3c9f8ec38a0ab762e2a1f9f5ee
 progress:
   total_phases: 14
@@ -15,8 +14,8 @@ current_task: 1
 last_activity: 2026-10-29
 current_phase: 2
 current_phase_name: Reproducible application and deployment skeleton
-stopped_at: "Proactive context checkpoint after pushed9d7161f; exact usage unavailable; resume native/image integration, retain full goal."
-last_activity_desc: "Nix four archive rebuild17.845s, actual mismatch control1/0.479s; OCI4/19/source4/11/locks3/8 retained; full8/18 pending."
+stopped_at: "Four-image/native standard SBOM evidence verified; remaining14/full inventory/qualification work continues."
+last_activity_desc: "Image/native SBOM4/17/59.676s;57 outputs/53 recipes/168 edges; five schemas; full8/18 remains open."
 ---
 
 # Project state — final purchase-flow revision2
@@ -25,15 +24,15 @@ last_activity_desc: "Nix four archive rebuild17.845s, actual mismatch control1/0
 
 **Last fully completed phase:** 1 — baseline documentary acceptance only. SRC-05 final-amendment documentary reconciliation is complete and does not revalidate actual commercial or external behavior. All other phases remain partial or pending. Counts are completed-phase/planned-record counts, not engineering effort.
 
-**Current plan:** 02-17 — Local archive rebuild verified;16/14/full-CI and related foundation gates remain open.
+**Current plan:** 02-16 — Actual native/image component, standard SBOM and notice integration;14/17 and related gates remain open.
 
-**Execution status:** paused — proactive context checkpoint; full Phase2/related goal active and incomplete8/18; source/locks/OCI/filesystem/archive rebuild subsets verified, native/14/runtime/CI/human gates remain.
+**Execution status:** in progress — Four-image standard SBOM/native/notice evidence recorded4/17; native57 outputs/53 recipes/168 edges, five CycloneDX validations; full inventory and14/17/related qualification remain open8/18.
 
-**Next implementation task:** Resume by validating9d7161f and the current evidence hashes, then read02-16 PLAN/PARTIAL and scripts/inventory_artifacts.py, check_native_closure.py and check_native_source_notices.py to implement actual four-image native/component/standard-SBOM/notice integration; retain every14/17 and related actual/human gate.
+**Next implementation task:** Finish remaining native/source/notice/build/helper/backup evidence and14 application-role/all-write/isolated transport/migration/bootstrap/replica integration, followed by qualified full-CI/independent/human acceptance.
 
 ## Current local continuation
 
-Four exact archive rebuilds match retained NARs and real synthetic changed bytes reject. [Actual rebuild scope](../docs/build/image-archive-rebuild-2026-10-29.md). Local OCI/filesystem4/19, source4/11/builds2 and locks3/8 remain verified; [full goal tracker](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md) retains8/18 completion and every native/runtime/CI/legal/independent/related gate.
+Four exact images now have raw maintained-tool SBOMs; native57/53/168,102 notice candidates/five objects and five strict CycloneDX validations are recorded4/17/59.676s. [Exact scope and unresolved findings](../docs/build/image-sbom-2026-10-29.md). Prior source/lock/OCI/NAR evidence is unchanged; [full tracker](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md) remains8/18 with all full inventory/runtime/CI/legal/independent/related gates.
 
 ## Preserved implementation/evidence
 
@@ -64,7 +63,8 @@ P-02/03/05/06/08 cover actual ready-kit variants, standard development prices/ri
 
 ## Session continuity
 
-Proactive checkpoint 2026-10-29T08:25:59.236Z after pushed9d7161f under the user context fallback; exact context percentage is unavailable and no90% measurement is claimed. Full goal remains active/unachieved8/18; no goal completion/blocked status. Source6aaf77f, image implementation800547c and actual NAR/mismatch evidence9d7161f are pushed. No live producers or async jobs. Structured HANDOFF.json plus phase checkpoint preserve all exact results, original failures, current inputs and remaining requirements. Resume actual native/image component/standard SBOM/notice integration using existing provenance collectors, then all14 application/transport/migration/bootstrap/replica and actual/human/related gates. Do not repeat unchanged passing builds/locks/backend checks or infer external authority. Clear/resume per user checkpoint instruction.
+Resumed 2026-10-29T10:05:57.447870+00:00 through gsd-resume-work and inline GSD plan16 execution. Existing dirty SBOM/tool changes preserved and completed with actual4/17 image/native/notice evidence, five strict CycloneDX validations and independent50-payload/hash readback. Structured handoff was already consumed in the interrupted working tree; no active agent or external job. Missing registered recipe files, platform omissions, plain-ID components and native attribute projections are resolved as verifier defects or explicit unresolved findings; raw evidence stays unchanged. Remaining full inventory/14/17/related and actual/human gates stay open. Continue substantive authorized work across immediate ordinary pushes; promised company inputs stay pending without re-asking. Shared full temp/caches remain untouched; use recorded owned paths.
+
 ### Quick Tasks Completed
 
 | # | Description | Date | Commit | Directory |

@@ -63,3 +63,10 @@ Current standard-tool image proof: [four-image OCI/filesystem4/19](../../../docs
 Actual local archive reproducibility: [four NAR rebuild comparisons17.845s and one real mismatch control0.479s](../../../docs/build/image-archive-rebuild-2026-10-29.md). Nix fresh archive builders regenerate layers from cached native/store inputs; originals and registered/actual NAR hashes remain exact. This does not prove fresh native compilation, qualified full dispatcher/CI or any actual runtime/independent/human/legal/related acceptance. All original remaining conditions stay open.
 
 Current pause routing: proactive context checkpoint 2026-10-29T08:25:59.236Z after pushed9d7161f; exact usage unavailable, no threshold measurement claimed. Resume current native/image integration and all14/17/related requirements from structured HANDOFF.json. Current source/OCI/NAR subsets are verified; the full goal remains unachieved8/18.
+
+
+## Four-image/native standard SBOM evidence —2026-10-29
+
+[Exact raw observation, defects, findings and remaining scope](../../../docs/build/image-sbom-2026-10-29.md): local4/17/59.676s, enclosing60.753s; four raw image Syft/CycloneDX outputs and native CycloneDX/SPDX/CSV. Actual57 store outputs/53 output-bound recipes/168 edges,19,359 native entries and102 exact notice candidates from five objects. Five strict CycloneDX schemas and five invalid-document controls pass/reject. Independent50-payload/8,328,659-byte readback and unchanged historical SBOM/inventory/licence/flake-lock/current archive identities pass. Raw SPDX is retained without a separate schema-validation claim.
+
+Registered-vs-compatible recipe origin stays separate and unproven; Syft publicsuffix inference, empty platform fields and11 sbomnix attribute projections remain explicit. No raw output is repaired, no complete notice/legal/runtime/source/helper/backup acceptance inferred. Full plan16 and phase8/18 remain open, alongside14/17/related/actual/human/independent/CI gates. Next substantive local work includes14 app-role/all-write/isolated transport/migration/bootstrap/replica integration; no old build/lock/backend rerun or protected/provider operation.
