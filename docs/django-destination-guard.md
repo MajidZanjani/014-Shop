@@ -51,3 +51,12 @@ reconnect, outer/manual transaction denial, deferred callbacks/rollback-only den
 and independent publisher exclusion during actual commit and rollback. They do
 not qualify actual rootless transport, ORM interception, production credentials,
 role privileges, all-write coverage or off-host recovery.
+
+
+## Candidate restricted application observer
+
+`guarded_application_atomic(wrapper, expected, runtime_probe, observer_owner=...)` now selects the fixed SQL observer in application_observer.py. The explicit owner is a separately approved immutable-policy input; this API does not create that authority or qualify the connection. Production and bank-sandbox remain on the denying backend, and no application/worker call site is changed.
+
+The inert application-observer.sql returns only cluster ID and PGDATA via one zero-argument SECURITY DEFINER function. Exact catalog body/signature/owner/language/configuration/ACL and restricted caller policy are verified before invocation. No PUBLIC execution, implicit role grant, broad metadata-role membership, object adoption or fallback is accepted. Current/session role and durability are observed outside the definer as the actual caller. pg_catalog types are fully qualified and pg_temp is explicitly last; a demonstrated temporary-domain owner-privilege escalation is rejected by the final real PostgreSQL control.
+
+The existing transaction/admission/connection/uncertain-commit rules above still apply. Privileged owners must cooperate with admission; client checks cannot prevent arbitrary noncooperating administrator changes. This remains local preparation for connection/transport/all-write/migration integration. [Exact204-test evidence and remaining scope](build/application-observer-2026-10-29.md).

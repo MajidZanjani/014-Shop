@@ -16,9 +16,10 @@ ROOT=Path(__file__).resolve().parents[1]
 from check_python import frozen_environment, require
 
 MODULES=('guard','control','database','process_probe','schema_authorization',
-         'ledger_bootstrap','schema_reconciliation','operator_inspect','record_bundle','operator_schema','publication','django_transaction')
+         'ledger_bootstrap','schema_reconciliation','operator_inspect','record_bundle','operator_schema','publication','django_transaction','application_observer')
 FILES={**{f'libexec/shop/database/{name}.py':f'ops/runtime/{name}.py' for name in MODULES},
-       'share/shop/schema-ledger.sql':'ops/postgresql/schema-ledger.sql'}
+       'share/shop/schema-ledger.sql':'ops/postgresql/schema-ledger.sql',
+       'share/shop/application-observer.sql':'ops/postgresql/application-observer.sql'}
 MANIFEST='share/shop/database-tools.json'
 
 

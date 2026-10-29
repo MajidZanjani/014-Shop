@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "evidence_class": "local-real-restricted-role-django-sql-and-synthetic-admission",
+  "observed_at": "2026-10-29T10:18:48.913613+00:00",
+  "source_commit": "b201c9aa07c518c200beec8766fb0cfc4de3b4f9",
+  "source_dirty": true,
+  "source_sha256": {
+    "ops/runtime/application_observer.py": "d1962c1bcc7b4bd8642c97a8ddeda7c06fda1a948ebd779d80e691f5e3f61a10",
+    "ops/postgresql/application-observer.sql": "694669429026003eb4f1ca1d95734089ea16fc926a7c079d1079f37a0396bd62",
+    "ops/runtime/database.py": "8724437af4bd0eead2c7acd631bca2030f3b6f9f32584a2fa7df48f3875c5a08",
+    "ops/runtime/django_transaction.py": "bd62b6cf54c8f207b5f343b4308586b2de0297d9efc4ab91f14582a9dfe06217",
+    "ops/nixos/database-tools.nix": "3ff169221df55bdcd26352d377939103ea161b2cca6d7369ed3082ab0a969f70",
+    "scripts/check_database_destination.py": "9568a06985768d2a34a91aee3f42a062e944ab0a06dc27cc9ac85e05164aa6fc",
+    "scripts/check_database_tools.py": "09cf108038a1aa6ab38663f99da1930e86346e014c9041a176f733a8c13f6019",
+    "tests/test_application_observer.py": "492b5649b187fc40c3408e172f0583f7841cd56d8b78a49fe56b07dab19fd439",
+    "tests/test_django_transaction.py": "92ed515525529a125b1084c3967b8767299e523bfc3a03ce4a4b12f49f9cfb4d",
+    "backend/requirements/runtime-linux-py313.txt": "f8fcadf293e0da50ca0cd19af277e869a2de4a9476bd65e9d919ff7f506a7606",
+    "ops/nixos/flake.lock": "865a3c07a35f43f024ce7c01614be82cb795707edac8e27092bdbba42519cd75"
+  },
+  "source_bundle": {
+    "path": "/nix/store/yyvq6zsmlm30a3mwr7b3vqnv7xnw3fmh-shop-database-tools-source",
+    "manifest_sha256": "9f7975f93753d484e0a6d46b7b952ffe26839de2dfcf26bb846493a787ad75cc",
+    "files": {
+      "libexec/shop/database/application_observer.py": {
+        "sha256": "d1962c1bcc7b4bd8642c97a8ddeda7c06fda1a948ebd779d80e691f5e3f61a10",
+        "bytes": 4000,
+        "mode": "0o444"
+      },
+      "libexec/shop/database/control.py": {
+        "sha256": "16b914f60574748d50c4d3a80af0dac096b18881bda83d63e571d28a624da871",
+        "bytes": 12205,
+        "mode": "0o444"
+      },
+      "libexec/shop/database/database.py": {
+        "sha256": "8724437af4bd0eead2c7acd631bca2030f3b6f9f32584a2fa7df48f3875c5a08",
+        "bytes": 14546,
+        "mode": "0o444"
+      },
+      "libexec/shop/database/django_transaction.py": {
+        "sha256": "bd62b6cf54c8f207b5f343b4308586b2de0297d9efc4ab91f14582a9dfe06217",
+        "bytes": 3721,
+        "mode": "0o444"
+      },
+      "libexec/shop/database/guard.py": {
+        "sha256": "a10b467bb7730d5b1888d6787bca4abfa32e5ffb558882ca90a6b011dcdf1e70",
+        "bytes": 6586,
+        "mode": "0o444"
+      },
+      "libexec/shop/database/ledger_bootstrap.py": {
+        "sha256": "b9fd5d13cdee56277c7de2776e674612c2fff006f482206c3b60baa5fb349fb0",
+        "bytes": 4097,
+        "mode": "0o444"
+      },
+      "libexec/shop/database/operator_inspect.py": {
+        "sha256": "82a8634d1a97bdeaac33c280094a962d3e35cebfc1804c22352d4491031ce676",
+        "bytes": 7568,
+        "mode": "0o444"
+      },
+      "libexec/shop/database/operator_schema.py": {
+        "sha256": "a37a55b0f2f1f750ae4d06ddebfb39e03b524921a20f24a539bd549ac1f597c4",
+        "bytes": 5880,
+        "mode": "0o444"
+      },
+      "libexec/shop/database/process_probe.py": {
+        "sha256": "db04fbba27be2936dd8185d534d8301ace5edd62f5db89b1a32b57b1b1b172d2",
+        "bytes": 7834,
+        "mode": "0o444"
+      },
+      "libexec/shop/database/publication.py": {
+        "sha256": "29fafd055f0d503bb5876e24c31ec19d4710330faa8064828446ac54b2bfb764",
+        "bytes": 27286,
+        "mode": "0o444"
+      },
+      "libexec/shop/database/record_bundle.py": {
+        "sha256": "b5c6d1ce7ae8910ac5f27b3ad7e6a2a8639b454c6bb77d58045ae70ce1d6408b",
+        "bytes": 17771,
+        "mode": "0o444"
+      },
+      "libexec/shop/database/schema_authorization.py": {
+        "sha256": "f86c5de90e791dc04ef600ee004c8270093cfa297da16e8bfde8f878bb2c21a2",
+        "bytes": 3451,
+        "mode": "0o444"
+      },
+      "libexec/shop/database/schema_reconciliation.py": {
+        "sha256": "eba317910efbf0beb7cdef9c85885828fc5be9d9c402b6d316b898778c7aa52d",
+        "bytes": 2506,
+        "mode": "0o444"
+      },
+      "share/shop/application-observer.sql": {
+        "sha256": "694669429026003eb4f1ca1d95734089ea16fc926a7c079d1079f37a0396bd62",
+        "bytes": 648,
+        "mode": "0o444"
+      },
+      "share/shop/schema-ledger.sql": {
+        "sha256": "7b20aa11e7d220bebb9c0370905dfddef450798cf32933743ec18cd5ca3bff4c",
+        "bytes": 501,
+        "mode": "0o444"
+      }
+    },
+    "executable": false,
+    "runtime_qualified": false,
+    "production_activation": false
+  },
+  "runtime_image_paths_unchanged": {
+    "shop-app": "/nix/store/6xqd75ka2v46ydd4v10wnlvq9kmbicrd-shop-app.tar.gz",
+    "shop-worker": "/nix/store/513qzmp9ry5nf34cd1nckslv811gi9nk-shop-worker.tar.gz",
+    "shop-postgres": "/nix/store/55fbc919a5fwhyc1gcsn1h6m63s4ipai-shop-postgres.tar.gz",
+    "shop-gateway": "/nix/store/krpqwl8hsyg2a7ngkvsy0pxlgs6kck3p-shop-gateway.tar.gz"
+  },
+  "logs": {
+    "phase2-application-observer-controls-1.json": {
+      "sha256": "d2bbc1fec9817187e24a0b6215bbc49f925c157a5fcc7cb38d3e1f5078484003",
+      "record": {
+        "schema_version": 1,
+        "original_guard_sha256": "ccbf8a0758d0b81f91168844af045bead4ccfea581b59c34343d5a7cddf292eb",
+        "source_sha256": {
+          "ops/runtime/application_observer.py": "d1962c1bcc7b4bd8642c97a8ddeda7c06fda1a948ebd779d80e691f5e3f61a10",
+          "ops/runtime/django_transaction.py": "bd62b6cf54c8f207b5f343b4308586b2de0297d9efc4ab91f14582a9dfe06217",
+          "ops/runtime/database.py": "8724437af4bd0eead2c7acd631bca2030f3b6f9f32584a2fa7df48f3875c5a08",
+          "ops/postgresql/application-observer.sql": "7a78ddb17fe2938cd3f9bef8b15503cbc2972eeb80af258122e36dd2515b442e",
+          "tests/test_application_observer.py": "ed04fab21d83e89e38238662d61f638d1d275868cb71888a518d381f125413d6"
+        },
+        "results": {
+          "original_django_guard": {
+            "exit_code": 1,
+            "duration_seconds": 1.869387682992965,
+            "stdout": "",
+            "stderr": "test_actual_queryset_create_update_delete_share_guarded_transaction (test_application_observer.ApplicationObserverTests.test_actual_queryset_create_update_delete_share_guarded_transaction) ... ERROR\ntest_admission_excludes_publication_through_commit_and_rollback (test_application_observer.ApplicationObserverTests.test_admission_excludes_publication_through_commit_and_rollback) ... \n  test_admission_excludes_publication_through_commit_and_rollback (test_application_observer.ApplicationObserverTests.test_admission_excludes_publication_through_commit_and_rollback) (kind='commit') ... ERROR\n  test_admission_excludes_publication_through_commit_and_rollback (test_application_observer.ApplicationObserverTests.test_admission_excludes_publication_through_commit_and_rollback) (kind='rollback') ... ERROR\ntest_application_exception_rolls_back_all_statements (test_application_observer.ApplicationObserverTests.test_application_exception_rolls_back_all_statements) ... ERROR\ntest_changed_admission_aborts_before_commit (test_application_observer.ApplicationObserverTests.test_changed_admission_aborts_before_commit) ... ERROR\ntest_changed_body_or_search_path_or_execution_mode_denies (test_application_observer.ApplicationObserverTests.test_changed_body_or_search_path_or_execution_mode_denies) ... ok\ntest_changed_live_identity_and_runtime_roll_back (test_application_observer.ApplicationObserverTests.test_changed_live_identity_and_runtime_roll_back) ... \n  test_changed_live_identity_and_runtime_roll_back (test_application_observer.ApplicationObserverTests.test_changed_live_identity_and_runtime_roll_back) (kind='database') ... ERROR\n  test_changed_live_identity_and_runtime_roll_back (test_application_observer.ApplicationObserverTests.test_changed_live_identity_and_runtime_roll_back) (kind='runtime') ... ERROR\n  test_changed_live_identity_and_runtime_roll_back (test_application_observer.ApplicationObserverTests.test_changed_live_identity_and_runtime_roll_back) (kind='durability') ... ERROR\ntest_deferred_callbacks_and_rollback_only_are_denied (test_application_observer.ApplicationObserverTests.test_deferred_callbacks_and_rollback_only_are_denied) ... \n  test_deferred_callbacks_and_rollback_only_are_denied (test_application_observer.ApplicationObserverTests.test_deferred_callbacks_and_rollback_only_are_denied) (kind='callback') ... ERROR\n  test_deferred_callbacks_and_rollback_only_are_denied (test_application_observer.ApplicationObserverTests.test_deferred_callbacks_and_rollback_only_are_denied) (kind='rollback') ... ERROR\ntest_existing_outer_and_manual_transactions_are_denied (test_application_observer.ApplicationObserverTests.test_existing_outer_and_manual_transactions_are_denied) ... ERROR\ntest_late_execute_revocation_rolls_back_both_writes (test_application_observer.ApplicationObserverTests.test_late_execute_revocation_rolls_back_both_writes) ... ERROR\ntest_missing_function_denies_without_adoption_or_fallback (test_application_observer.ApplicationObserverTests.test_missing_function_denies_without_adoption_or_fallback) ... ERROR\ntest_multiple_django_statements_commit_in_one_owned_transaction (test_application_observer.ApplicationObserverTests.test_multiple_django_statements_commit_in_one_owned_transaction) ... ERROR\ntest_no_reconnection_when_missing_connection (test_application_observer.ApplicationObserverTests.test_no_reconnection_when_missing_connection) ... ERROR\ntest_public_other_role_and_grant_option_function_access_deny (test_application_observer.ApplicationObserverTests.test_public_other_role_and_grant_option_function_access_deny) ... ok\ntest_real_restricted_login_observes_identity_without_broad_metadata_privileges (test_application_observer.ApplicationObserverTests.test_real_restricted_login_observes_identity_without_broad_metadata_privileges) ... FAIL\ntest_role_membership_or_broad_role_attributes_deny (test_application_observer.ApplicationObserverTests.test_role_membership_or_broad_role_attributes_deny) ... ok\ntest_schema_create_or_public_usage_denies (test_application_observer.ApplicationObserverTests.test_schema_create_or_public_usage_denies) ... ok\ntest_source_has_no_implicit_login_grant_or_idempotent_adoption (test_application_observer.ApplicationObserverTests.test_source_has_no_implicit_login_grant_or_idempotent_adoption) ... ok\ntest_unrelated_session_role_cannot_use_definer (test_application_observer.ApplicationObserverTests.test_unrelated_session_role_cannot_use_definer) ... ok\ntest_wrong_or_invalid_approved_owner_denies_without_application_write (test_application_observer.ApplicationObserverTests.test_wrong_or_invalid_approved_owner_denies_without_application_write) ... ok\n\n======================================================================\nERROR: test_actual_queryset_create_update_delete_share_guarded_transaction (test_application_observer.ApplicationObserverTests.test_actual_queryset_create_update_delete_share_guarded_transaction)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/claude/project/014-Shop/tests/test_django_transaction.py\", line 162, in test_actual_queryset_create_update_delete_share_guarded_transaction\n    with self.guarded():\n         ~~~~~~~~~~~~^^\n  File \"/home/claude/project/014-Shop/tests/test_application_observer.py\", line 43, in guarded\n    return django_transaction.guarded_application_atomic(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'django_transaction' has no attribute 'guarded_application_atomic'\n\n======================================================================\nERROR: test_admission_excludes_publication_through_commit_and_rollback (test_application_observer.ApplicationObserverTests.test_admission_excludes_publication_through_commit_and_rollback) (kind='commit')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/claude/project/014-Shop/tests/test_django_transaction.py\", line 147, in test_admission_excludes_publication_through_commit_and_rollback\n    with self.guarded():self.insert(2)\n         ~~~~~~~~~~~~^^\n  File \"/home/claude/project/014-Shop/tests/test_application_observer.py\", line 43, in guarded\n    return django_transaction.guarded_application_atomic(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'django_transaction' has no attribute 'guarded_application_atomic'\n\n======================================================================\nERROR: test_admission_excludes_publication_through_commit_and_rollback (test_application_observer.ApplicationObserverTests.test_admission_excludes_publication_through_commit_and_rollback) (kind='rollback')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/claude/project/014-Shop/tests/test_django_transaction.py\", line 145, in test_admission_excludes_publication_through_commit_and_rollback\n    with self.guarded():self.insert(1);raise ValueError('synthetic')\n         ~~~~~~~~~~~~^^\n  File \"/home/claude/project/014-Shop/tests/test_application_observer.py\", line 43, in guarded\n    return django_transaction.guarded_application_atomic(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'django_transaction' has no attribute 'guarded_application_atomic'\n\n======================================================================\nERROR: test_application_exception_rolls_back_all_statements (test_application_observer.ApplicationObserverTests.test_application_exception_rolls_back_all_statements)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/claude/project/014-Shop/tests/test_django_transaction.py\", line 80, in test_application_exception_rolls_back_all_statements\n    with self.guarded():\n         ~~~~~~~~~~~~^^\n  File \"/home/claude/project/014-Shop/tests/test_application_observer.py\", line 43, in guarded\n    return django_transaction.guarded_application_atomic(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'django_transaction' has no attribute 'guarded_application_atomic'\n\n======================================================================\nERROR: test_changed_admission_aborts_before_commit (test_application_observer.ApplicationObserverTests.test_changed_admission_aborts_before_commit)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/claude/project/014-Shop/tests/test_django_transaction.py\", line 101, in test_changed_admission_aborts_before_commit\n    with self.guarded():\n         ~~~~~~~~~~~~^^\n  File \"/home/claude/project/014-Shop/tests/test_application_observer.py\", line 43, in guarded\n    return django_transaction.guarded_application_atomic(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'django_transaction' has no attribute 'guarded_application_atomic'\n\n======================================================================\nERROR: test_changed_live_identity_and_runtime_roll_back (test_application_observer.ApplicationObserverTests.test_changed_live_identity_and_runtime_roll_back) (kind='database')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/claude/project/014-Shop/tests/test_django_transaction.py\", line 93, in test_changed_live_identity_and_runtime_roll_back\n    with self.guarded(probe,expected):\n         ~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/home/claude/project/014-Shop/tests/test_application_observer.py\", line 43, in guarded\n    return django_transaction.guarded_application_atomic(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'django_transaction' has no attribute 'guarded_application_atomic'\n\n======================================================================\nERROR: test_changed_live_identity_and_runtime_roll_back (test_application_observer.ApplicationObserverTests.test_changed_live_identity_and_runtime_roll_back) (kind='runtime')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/claude/project/014-Shop/tests/test_django_transaction.py\", line 93, in test_changed_live_identity_and_runtime_roll_back\n    with self.guarded(probe,expected):\n         ~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/home/claude/project/014-Shop/tests/test_application_observer.py\", line 43, in guarded\n    return django_transaction.guarded_application_atomic(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'django_transaction' has no attribute 'guarded_application_atomic'\n\n======================================================================\nERROR: test_changed_live_identity_and_runtime_roll_back (test_application_observer.ApplicationObserverTests.test_changed_live_identity_and_runtime_roll_back) (kind='durability')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/claude/project/014-Shop/tests/test_django_transaction.py\", line 93, in test_changed_live_identity_and_runtime_roll_back\n    with self.guarded(probe,expected):\n         ~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/home/claude/project/014-Shop/tests/test_application_observer.py\", line 43, in guarded\n    return django_transaction.guarded_application_atomic(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'django_transaction' has no attribute 'guarded_application_atomic'\n\n======================================================================\nERROR: test_deferred_callbacks_and_rollback_only_are_denied (test_application_observer.ApplicationObserverTests.test_deferred_callbacks_and_rollback_only_are_denied) (kind='callback')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/claude/project/014-Shop/tests/test_django_transaction.py\", line 128, in test_deferred_callbacks_and_rollback_only_are_denied\n    with self.guarded():\n         ~~~~~~~~~~~~^^\n  File \"/home/claude/project/014-Shop/tests/test_application_observer.py\", line 43, in guarded\n    return django_transaction.guarded_application_atomic(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'django_transaction' has no attribute 'guarded_application_atomic'\n\n======================================================================\nERROR: test_deferred_callbacks_and_rollback_only_are_denied (test_application_observer.ApplicationObserverTests.test_deferred_callbacks_and_rollback_only_are_denied) (kind='rollback')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/claude/project/014-Shop/tests/test_django_transaction.py\", line 128, in test_deferred_callbacks_and_rollback_only_are_denied\n    with self.guarded():\n         ~~~~~~~~~~~~^^\n  File \"/home/claude/project/014-Shop/tests/test_application_observer.py\", line 43, in guarded\n    return django_transaction.guarded_application_atomic(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'django_transaction' has no attribute 'guarded_application_atomic'\n\n======================================================================\nERROR: test_existing_outer_and_manual_transactions_are_denied (test_application_observer.ApplicationObserverTests.test_existing_outer_and_manual_transactions_are_denied)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/claude/project/014-Shop/tests/test_django_transaction.py\", line 109, in test_existing_outer_and_manual_transactions_are_denied\n    with self.guarded():self.fail('nested outer accepted')\n         ~~~~~~~~~~~~^^\n  File \"/home/claude/project/014-Shop/tests/test_application_observer.py\", line 43, in guarded\n    return django_transaction.guarded_application_atomic(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'django_transaction' has no attribute 'guarded_application_atomic'\n\n======================================================================\nERROR: test_late_execute_revocation_rolls_back_both_writes (test_application_observer.ApplicationObserverTests.test_late_execute_revocation_rolls_back_both_writes)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/claude/project/014-Shop/tests/test_application_observer.py\", line 114, in test_late_execute_revocation_rolls_back_both_writes\n    with self.guarded():\n         ~~~~~~~~~~~~^^\n  File \"/home/claude/project/014-Shop/tests/test_application_observer.py\", line 43, in guarded\n    return django_transaction.guarded_application_atomic(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'django_transaction' has no attribute 'guarded_application_atomic'\n\n======================================================================\nERROR: test_missing_function_denies_without_adoption_or_fallback (test_application_observer.ApplicationObserverTests.test_missing_function_denies_without_adoption_or_fallback)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/claude/project/014-Shop/tests/test_application_observer.py\", line 73, in test_missing_function_denies_without_adoption_or_fallback\n    with self.guarded(): self.insert(1)\n         ~~~~~~~~~~~~^^\n  File \"/home/claude/project/014-Shop/tests/test_application_observer.py\", line 43, in guarded\n    return django_transaction.guarded_application_atomic(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'django_transaction' has no attribute 'guarded_application_atomic'\n\n======================================================================\nERROR: test_multiple_django_statements_commit_in_one_owned_transaction (test_application_observer.ApplicationObserverTests.test_multiple_django_statements_commit_in_one_owned_transaction)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/claude/project/014-Shop/tests/test_django_transaction.py\", line 71, in test_multiple_django_statements_commit_in_one_owned_transaction\n    with self.guarded() as wrapper:\n         ~~~~~~~~~~~~^^\n  File \"/home/claude/project/014-Shop/tests/test_application_observer.py\", line 43, in guarded\n    return django_transaction.guarded_application_atomic(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'django_transaction' has no attribute 'guarded_application_atomic'\n\n======================================================================\nERROR: test_no_reconnection_when_missing_connection (test_application_observer.ApplicationObserverTests.test_no_reconnection_when_missing_connection)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/claude/project/014-Shop/tests/test_django_transaction.py\", line 120, in test_no_reconnection_when_missing_connection\n    with self.guarded():self.fail('missing connection accepted')\n         ~~~~~~~~~~~~^^\n  File \"/home/claude/project/014-Shop/tests/test_application_observer.py\", line 43, in guarded\n    return django_transaction.guarded_application_atomic(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'django_transaction' has no attribute 'guarded_application_atomic'\n\n======================================================================\nFAIL: test_real_restricted_login_observes_identity_without_broad_metadata_privileges (test_application_observer.ApplicationObserverTests.test_real_restricted_login_observes_identity_without_broad_metadata_privileges)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/claude/project/014-Shop/tests/test_application_observer.py\", line 55, in test_real_restricted_login_observes_identity_without_broad_metadata_privileges\n    with self.assertRaises(psycopg.errors.InsufficientPrivilege):\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: InsufficientPrivilege not raised\n\n----------------------------------------------------------------------\nRan 19 tests in 1.688s\n\nFAILED (failures=1, errors=15)\n",
+            "program_sha256": "755310746c08b4a8ffbc76116d1c45c5107e38148e4ed2f8917f2845e6f5d29e"
+          },
+          "current": {
+            "exit_code": 1,
+            "duration_seconds": 1.9891594359651208,
+            "stdout": "",
+            "stderr": "test_actual_queryset_create_update_delete_share_guarded_transaction (test_application_observer.ApplicationObserverTests.test_actual_queryset_create_update_delete_share_guarded_transaction) ... ok\ntest_admission_excludes_publication_through_commit_and_rollback (test_application_observer.ApplicationObserverTests.test_admission_excludes_publication_through_commit_and_rollback) ... ok\ntest_application_exception_rolls_back_all_statements (test_application_observer.ApplicationObserverTests.test_application_exception_rolls_back_all_statements) ... ok\ntest_changed_admission_aborts_before_commit (test_application_observer.ApplicationObserverTests.test_changed_admission_aborts_before_commit) ... ok\ntest_changed_body_or_search_path_or_execution_mode_denies (test_application_observer.ApplicationObserverTests.test_changed_body_or_search_path_or_execution_mode_denies) ... ok\ntest_changed_live_identity_and_runtime_roll_back (test_application_observer.ApplicationObserverTests.test_changed_live_identity_and_runtime_roll_back) ... ok\ntest_deferred_callbacks_and_rollback_only_are_denied (test_application_observer.ApplicationObserverTests.test_deferred_callbacks_and_rollback_only_are_denied) ... ok\ntest_existing_outer_and_manual_transactions_are_denied (test_application_observer.ApplicationObserverTests.test_existing_outer_and_manual_transactions_are_denied) ... ok\ntest_late_execute_revocation_rolls_back_both_writes (test_application_observer.ApplicationObserverTests.test_late_execute_revocation_rolls_back_both_writes) ... ok\ntest_missing_function_denies_without_adoption_or_fallback (test_application_observer.ApplicationObserverTests.test_missing_function_denies_without_adoption_or_fallback) ... ok\ntest_multiple_django_statements_commit_in_one_owned_transaction (test_application_observer.ApplicationObserverTests.test_multiple_django_statements_commit_in_one_owned_transaction) ... ok\ntest_no_reconnection_when_missing_connection (test_application_observer.ApplicationObserverTests.test_no_reconnection_when_missing_connection) ... ok\ntest_public_other_role_and_grant_option_function_access_deny (test_application_observer.ApplicationObserverTests.test_public_other_role_and_grant_option_function_access_deny) ... ok\ntest_real_restricted_login_observes_identity_without_broad_metadata_privileges (test_application_observer.ApplicationObserverTests.test_real_restricted_login_observes_identity_without_broad_metadata_privileges) ... FAIL\ntest_role_membership_or_broad_role_attributes_deny (test_application_observer.ApplicationObserverTests.test_role_membership_or_broad_role_attributes_deny) ... ok\ntest_schema_create_or_public_usage_denies (test_application_observer.ApplicationObserverTests.test_schema_create_or_public_usage_denies) ... ok\ntest_source_has_no_implicit_login_grant_or_idempotent_adoption (test_application_observer.ApplicationObserverTests.test_source_has_no_implicit_login_grant_or_idempotent_adoption) ... ok\ntest_unrelated_session_role_cannot_use_definer (test_application_observer.ApplicationObserverTests.test_unrelated_session_role_cannot_use_definer) ... ok\ntest_wrong_or_invalid_approved_owner_denies_without_application_write (test_application_observer.ApplicationObserverTests.test_wrong_or_invalid_approved_owner_denies_without_application_write) ... ok\n\n======================================================================\nFAIL: test_real_restricted_login_observes_identity_without_broad_metadata_privileges (test_application_observer.ApplicationObserverTests.test_real_restricted_login_observes_identity_without_broad_metadata_privileges)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/claude/project/014-Shop/tests/test_application_observer.py\", line 55, in test_real_restricted_login_observes_identity_without_broad_metadata_privileges\n    with self.assertRaises(psycopg.errors.InsufficientPrivilege):\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: InsufficientPrivilege not raised\n\n----------------------------------------------------------------------\nRan 19 tests in 1.806s\n\nFAILED (failures=1)\n",
+            "program_sha256": "5ac449228c41ba35707dc1c7f61286fd680e2ce3bb61af755ab5a81e32e0dc14"
+          }
+        }
+      }
+    },
+    "phase2-application-observer-controls-2.json": {
+      "sha256": "9f465878011fbf81054efffd0ee5b6a0cc2a3e2914530122031ed73d825d8b70",
+      "record": {
+        "exit_code": 0,
+        "duration_seconds": 2.0597377149388194,
+        "stdout": "",
+        "stderr": "test_actual_queryset_create_update_delete_share_guarded_transaction (test_application_observer.ApplicationObserverTests.test_actual_queryset_create_update_delete_share_guarded_transaction) ... ok\ntest_admission_excludes_publication_through_commit_and_rollback (test_application_observer.ApplicationObserverTests.test_admission_excludes_publication_through_commit_and_rollback) ... ok\ntest_application_exception_rolls_back_all_statements (test_application_observer.ApplicationObserverTests.test_application_exception_rolls_back_all_statements) ... ok\ntest_changed_admission_aborts_before_commit (test_application_observer.ApplicationObserverTests.test_changed_admission_aborts_before_commit) ... ok\ntest_changed_body_or_search_path_or_execution_mode_denies (test_application_observer.ApplicationObserverTests.test_changed_body_or_search_path_or_execution_mode_denies) ... ok\ntest_changed_live_identity_and_runtime_roll_back (test_application_observer.ApplicationObserverTests.test_changed_live_identity_and_runtime_roll_back) ... ok\ntest_deferred_callbacks_and_rollback_only_are_denied (test_application_observer.ApplicationObserverTests.test_deferred_callbacks_and_rollback_only_are_denied) ... ok\ntest_existing_outer_and_manual_transactions_are_denied (test_application_observer.ApplicationObserverTests.test_existing_outer_and_manual_transactions_are_denied) ... ok\ntest_late_execute_revocation_rolls_back_both_writes (test_application_observer.ApplicationObserverTests.test_late_execute_revocation_rolls_back_both_writes) ... ok\ntest_missing_function_denies_without_adoption_or_fallback (test_application_observer.ApplicationObserverTests.test_missing_function_denies_without_adoption_or_fallback) ... ok\ntest_multiple_django_statements_commit_in_one_owned_transaction (test_application_observer.ApplicationObserverTests.test_multiple_django_statements_commit_in_one_owned_transaction) ... ok\ntest_no_reconnection_when_missing_connection (test_application_observer.ApplicationObserverTests.test_no_reconnection_when_missing_connection) ... ok\ntest_public_other_role_and_grant_option_function_access_deny (test_application_observer.ApplicationObserverTests.test_public_other_role_and_grant_option_function_access_deny) ... ok\ntest_real_restricted_login_observes_identity_without_broad_metadata_privileges (test_application_observer.ApplicationObserverTests.test_real_restricted_login_observes_identity_without_broad_metadata_privileges) ... ok\ntest_role_membership_or_broad_role_attributes_deny (test_application_observer.ApplicationObserverTests.test_role_membership_or_broad_role_attributes_deny) ... ok\ntest_schema_create_or_public_usage_denies (test_application_observer.ApplicationObserverTests.test_schema_create_or_public_usage_denies) ... ok\ntest_source_has_no_implicit_login_grant_or_idempotent_adoption (test_application_observer.ApplicationObserverTests.test_source_has_no_implicit_login_grant_or_idempotent_adoption) ... ok\ntest_unrelated_session_role_cannot_use_definer (test_application_observer.ApplicationObserverTests.test_unrelated_session_role_cannot_use_definer) ... ok\ntest_wrong_or_invalid_approved_owner_denies_without_application_write (test_application_observer.ApplicationObserverTests.test_wrong_or_invalid_approved_owner_denies_without_application_write) ... ok\n\n----------------------------------------------------------------------\nRan 19 tests in 1.881s\n\nOK\n"
+      }
+    },
+    "phase2-application-observer-integration-1.json": {
+      "sha256": "2229f0784b91c8cb68185bbb90c4103a1608a8949021c4416c71a1dab4bab963",
+      "record": {
+        "database-destination": {
+          "command": [
+            "nix",
+            "develop",
+            "--offline",
+            "./ops/nixos",
+            "--command",
+            "python3",
+            "scripts/check.py",
+            "database-destination"
+          ],
+          "exit_code": 0,
+          "duration_seconds": 15.744958941824734,
+          "stdout": "TOOL_PROVENANCE {\"python3\": {\"path\": \"/nix/store/nr6vqhv33q8n6nbyy529fvcydy3zp1jd-python3-3.13.16-env/bin/python3\"}}\nTOOL_PROVENANCE {\"node\": {\"path\": \"/nix/store/x6a7dbhj1fmhwk0d9124zkszdfhd7k91-nodejs-24.22.0/bin/node\"}}\nTOOL_PROVENANCE {\"npm\": {\"path\": \"/nix/store/x6a7dbhj1fmhwk0d9124zkszdfhd7k91-nodejs-24.22.0/bin/npm\"}}\nDATABASE_DESTINATION_PASS checks=3 tests=203 duration_seconds=15.120\nLocal synthetic SQL evidence only; PGDATA comparison adapted to owned scratch path; no container/rootless/storage qualification or application integration\n{\"lane\": \"database-destination\", \"checks\": 3, \"tests\": 203, \"failures\": 0, \"elapsed_seconds\": 15.149607805069536, \"tool_identity\": {}, \"evidence_class\": \"local-synthetic\"}\n",
+          "stderr": "warning: Git tree '/home/claude/project/014-Shop' is dirty\n"
+        },
+        "database-tools": {
+          "command": [
+            "nix",
+            "develop",
+            "--offline",
+            "./ops/nixos",
+            "--command",
+            "python3",
+            "scripts/check.py",
+            "database-tools"
+          ],
+          "exit_code": 0,
+          "duration_seconds": 5.20635485695675,
+          "stdout": "TOOL_PROVENANCE {\"python3\": {\"path\": \"/nix/store/nr6vqhv33q8n6nbyy529fvcydy3zp1jd-python3-3.13.16-env/bin/python3\"}}\nTOOL_PROVENANCE {\"node\": {\"path\": \"/nix/store/x6a7dbhj1fmhwk0d9124zkszdfhd7k91-nodejs-24.22.0/bin/node\"}}\nTOOL_PROVENANCE {\"npm\": {\"path\": \"/nix/store/x6a7dbhj1fmhwk0d9124zkszdfhd7k91-nodejs-24.22.0/bin/npm\"}}\nDATABASE_TOOLS_PASS checks=7 tests=5 duration_seconds=4.654\nActual source build/import and packaged help/denial only; host installation/positive transport/runtime qualification pending\n{\"lane\": \"database-tools\", \"checks\": 7, \"tests\": 5, \"failures\": 0, \"elapsed_seconds\": 4.69337930995971, \"tool_identity\": {}, \"evidence_class\": \"local-synthetic\"}\n",
+          "stderr": "warning: Git tree '/home/claude/project/014-Shop' is dirty\n"
+        },
+        "deployment-eval": {
+          "command": [
+            "nix",
+            "develop",
+            "--offline",
+            "./ops/nixos",
+            "--command",
+            "python3",
+            "scripts/check.py",
+            "deployment-eval"
+          ],
+          "exit_code": 0,
+          "duration_seconds": 2.3871293859556317,
+          "stdout": "TOOL_PROVENANCE {\"python3\": {\"path\": \"/nix/store/nr6vqhv33q8n6nbyy529fvcydy3zp1jd-python3-3.13.16-env/bin/python3\"}}\nTOOL_PROVENANCE {\"node\": {\"path\": \"/nix/store/x6a7dbhj1fmhwk0d9124zkszdfhd7k91-nodejs-24.22.0/bin/node\"}}\nTOOL_PROVENANCE {\"npm\": {\"path\": \"/nix/store/x6a7dbhj1fmhwk0d9124zkszdfhd7k91-nodejs-24.22.0/bin/npm\"}}\nDEPLOYMENT_EVAL_PASS checks=16 tests=31 duration_seconds=2.176\nCandidate evaluation only; image-build, generator/runtime/bootstrap/review/off-host qualification requires separate evidence\n{\"lane\": \"deployment-eval\", \"checks\": 16, \"tests\": 31, \"failures\": 0, \"elapsed_seconds\": 2.2161458269692957, \"tool_identity\": {}, \"evidence_class\": \"local-synthetic\"}\n",
+          "stderr": "warning: Git tree '/home/claude/project/014-Shop' is dirty\n"
+        }
+      }
+    }
+  },
+  "local_readback_duration_seconds": 1.5727201809640974,
+  "scope": "Actual PostgreSQL18.6 restricted login, Django SQL/transaction/rollback and owned scratch flock; runtime/account/container/physical control identity synthetic or adapted. No production/bank-sandbox backend selection, live role grants, attestation transport/all-write/host bootstrap or independent/runtime qualification."
+}

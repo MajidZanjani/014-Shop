@@ -329,3 +329,12 @@ Prepared guarded_atomic for an already-connected wrapper, owning durable Django 
 ## Actual standard-tool OCI/filesystem qualification — 2026-10-29
 
 [Exact evidence and retained failures](../../../docs/build/oci-filesystem-qualification-2026-10-29.md). Pinned Skopeo1.22.2/umoci0.6.0 four local conversions/reconstructions pass4 checks/19 controls/63.790s; all42 image controls and deployment16/31/2.722s pass. All276 /app aliases per application image, every candidate file/path/mode/mtime/link and OCI descriptor/DiffID verify. Exact UTC spelling changes are retained; gzip mismatch/root metadata/shared-payload publication failures now have regression controls. Source/OCI/filesystem hashes independently revalidate; runtime images/pins unchanged. Rootless ownership/xattrs, native licences, independent custody, two image builds, actual runtime and complete integration/CI/related acceptance remain pending. No parent SUMMARY or full marker.
+
+
+## Restricted application-role observer and Django context —2026-10-29
+
+[Final exact source/evidence and remaining scope](../../../docs/build/application-observer-2026-10-29.md): real restricted-login PostgreSQL/Django/admission204 tests/3 checks/15.180s, inert source7/5/4.426s and deployment16/31/2.207s pass. The20 new role cases are included in204. Source bundle13 modules/two SQL files is actual-built/imported, non-executable and not runtime-qualified; all four runtime-image paths remain unchanged.
+
+Actual temporary text-domain canary demonstrated owner-privilege execution in the first candidate; fully qualified types and explicit pg_temp-last ordering fix it before commit/deployment. Raw failed control and earlier19/203-test subset remain historical, superseded by final evidence. pg_control_system is actually readable by this login; data_directory is the restricted field. Only disposable local fixture roles/SQL and synthetic/adapted runtime/admission evidence are used.
+
+Full14 connection/owner/credential binding, isolated attestation lease transport, automatic app/worker all-write interception, migration/bootstrap/replica and actual/independent qualification remain unfinished. Production/bank-sandbox connections stay closed. Phase2 remains8/18; all16/17/native/legal/CI/human/related gates remain pending. User requests gsd-pause-work after this verified step.

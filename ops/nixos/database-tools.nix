@@ -2,7 +2,7 @@
 { pkgs }:
 let
   names = [ "guard.py" "control.py" "database.py" "process_probe.py"
-    "schema_authorization.py" "ledger_bootstrap.py" "schema_reconciliation.py" "operator_inspect.py" "record_bundle.py" "operator_schema.py" "publication.py" "django_transaction.py" ];
+    "schema_authorization.py" "ledger_bootstrap.py" "schema_reconciliation.py" "operator_inspect.py" "record_bundle.py" "operator_schema.py" "publication.py" "django_transaction.py" "application_observer.py" ];
   entries = (map (name: {
     name = "libexec/shop/database/${name}";
     # Copy individual bytes, not a reference into the entire repository closure.
@@ -10,6 +10,9 @@ let
   }) names) ++ [{
     name = "share/shop/schema-ledger.sql";
     path = pkgs.writeText "shop-schema-ledger.sql" (builtins.readFile ../postgresql/schema-ledger.sql);
+  } {
+    name = "share/shop/application-observer.sql";
+    path = pkgs.writeText "shop-application-observer.sql" (builtins.readFile ../postgresql/application-observer.sql);
   }];
   hashes = (map (name: {
     name = "libexec/shop/database/${name}";
@@ -17,6 +20,9 @@ let
   }) names) ++ [{
     name = "share/shop/schema-ledger.sql";
     value = builtins.hashFile "sha256" ../postgresql/schema-ledger.sql;
+  } {
+    name = "share/shop/application-observer.sql";
+    value = builtins.hashFile "sha256" ../postgresql/application-observer.sql;
   }];
   manifest = pkgs.writeText "shop-database-tools.json" (builtins.toJSON {
     schema_version = 1;

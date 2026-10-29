@@ -18,7 +18,11 @@ IDENTITY_SQL = """SELECT system_identifier::text, current_setting('data_director
 
 def observe_database(cursor, runtime):
     cursor.execute(IDENTITY_SQL, prepare=True)
-    row = cursor.fetchone()
+    return identity_from_row(cursor.fetchone(), runtime)
+
+
+def identity_from_row(row, runtime):
+    """Decode the fixed observed row; callers still verify exact expected identity."""
     require(row is not None and len(row) == 12)
     system, data, database, role, session_role, address, port, configured_port, fsync, sync, checksums, recovery = row
     require(role == session_role and fsync == 'on' and sync == 'on'

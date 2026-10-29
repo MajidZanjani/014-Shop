@@ -1,9 +1,9 @@
 ---
 gsd_state_version: "1.0"
-current_plan: 16
+current_plan: 14
 status: in_progress
-last_updated: "2026-10-29T10:05:57.447870+00:00"
-state_head: 9d7161f2bc6d2a3c9f8ec38a0ab762e2a1f9f5ee
+last_updated: "2026-10-29T10:24:27.128621+00:00"
+state_head: b201c9aa07c518c200beec8766fb0cfc4de3b4f9
 progress:
   total_phases: 14
   completed_phases: 1
@@ -14,8 +14,8 @@ current_task: 1
 last_activity: 2026-10-29
 current_phase: 2
 current_phase_name: Reproducible application and deployment skeleton
-stopped_at: "Four-image/native standard SBOM evidence verified; remaining14/full inventory/qualification work continues."
-last_activity_desc: "Image/native SBOM4/17/59.676s;57 outputs/53 recipes/168 edges; five schemas; full8/18 remains open."
+stopped_at: "Verified application-role observer step; documenting before user-requested gsd-pause-work."
+last_activity_desc: "Restricted-role SQL204/source7/5/deployment16/31 verified; temporary-type escalation fixed; user requests pause after step."
 ---
 
 # Project state — final purchase-flow revision2
@@ -24,11 +24,11 @@ last_activity_desc: "Image/native SBOM4/17/59.676s;57 outputs/53 recipes/168 edg
 
 **Last fully completed phase:** 1 — baseline documentary acceptance only. SRC-05 final-amendment documentary reconciliation is complete and does not revalidate actual commercial or external behavior. All other phases remain partial or pending. Counts are completed-phase/planned-record counts, not engineering effort.
 
-**Current plan:** 02-16 — Actual native/image component, standard SBOM and notice integration;14/17 and related gates remain open.
+**Current plan:** 02-14 — Restricted application-role observer verified; connection/transport/all-write/migration/bootstrap/replica integration remains open.
 
-**Execution status:** in progress — Four-image standard SBOM/native/notice evidence recorded4/17; native57 outputs/53 recipes/168 edges, five CycloneDX validations; full inventory and14/17/related qualification remain open8/18.
+**Execution status:** in progress — Restricted application-role observer/Django context verified SQL3/204, source7/5 and deployment16/31; SBOM4/17 retained; complete14/16/17/related acceptance remains open8/18.
 
-**Next implementation task:** Finish remaining native/source/notice/build/helper/backup evidence and14 application-role/all-write/isolated transport/migration/bootstrap/replica integration, followed by qualified full-CI/independent/human acceptance.
+**Next implementation task:** Bind the restricted observer to approved connection/owner policy and implement isolation-preserving attestation lease transport plus app/worker all-write/migration/bootstrap/replica integration; retain16/17/native/legal/CI/independent/human gates.
 
 ## Current local continuation
 
@@ -63,7 +63,7 @@ P-02/03/05/06/08 cover actual ready-kit variants, standard development prices/ri
 
 ## Session continuity
 
-Resumed 2026-10-29T10:05:57.447870+00:00 through gsd-resume-work and inline GSD plan16 execution. Existing dirty SBOM/tool changes preserved and completed with actual4/17 image/native/notice evidence, five strict CycloneDX validations and independent50-payload/hash readback. Structured handoff was already consumed in the interrupted working tree; no active agent or external job. Missing registered recipe files, platform omissions, plain-ID components and native attribute projections are resolved as verifier defects or explicit unresolved findings; raw evidence stays unchanged. Remaining full inventory/14/17/related and actual/human gates stay open. Continue substantive authorized work across immediate ordinary pushes; promised company inputs stay pending without re-asking. Shared full temp/caches remain untouched; use recorded owned paths.
+2026-10-29T10:24:27.128621+00:00: resumed and pushed SBOM b201c9a, then completed actual local restricted-role observer and guarded Django context. SQL3/204/15.180s, inert source7/5/4.426s and deployment16/31/2.207s pass. Actual temporary-domain owner-privilege canary failed before the fully qualified-type/pg_temp-last fix; final evidence supersedes earlier19/203 subset. Full phase/related goal remains unachieved8/18. User explicitly requests gsd-pause-work after this step; finish this commit/push then save the exact checkpoint. No active producer/external job, protected/provider/.env action or new approval.
 
 ### Quick Tasks Completed
 

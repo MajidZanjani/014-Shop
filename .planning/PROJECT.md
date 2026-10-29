@@ -8,11 +8,11 @@ A configurable xSPI-MC semiconductor-IP shop at `shop.xspi.pro` for engineering 
 
 **Current development focus:** 2 — Reproducible application and deployment skeleton; complete related foundation steps across phases. [Current purchase-flow authority](PURCHASE-FLOW-AMENDMENT.md).
 
-**Current plan:** 02-16 — Actual native/image component, standard SBOM and notice integration;14/17 and related gates remain open.
+**Current plan:** 02-14 — Restricted application-role observer verified; connection/transport/all-write/migration/bootstrap/replica integration remains open.
 
-**Execution status:** in progress — Four-image standard SBOM/native/notice evidence recorded4/17; native57 outputs/53 recipes/168 edges, five CycloneDX validations; full inventory and14/17/related qualification remain open8/18.
+**Execution status:** in progress — Restricted application-role observer/Django context verified SQL3/204, source7/5 and deployment16/31; SBOM4/17 retained; complete14/16/17/related acceptance remains open8/18.
 
-**Next implementation task:** Finish remaining native/source/notice/build/helper/backup evidence and14 application-role/all-write/isolated transport/migration/bootstrap/replica integration, followed by qualified full-CI/independent/human acceptance.
+**Next implementation task:** Bind the restricted observer to approved connection/owner policy and implement isolation-preserving attestation lease transport plus app/worker all-write/migration/bootstrap/replica integration; retain16/17/native/legal/CI/independent/human gates.
 
 Four exact images now have raw maintained-tool SBOMs; native57/53/168,102 notice candidates/five objects and five strict CycloneDX validations are recorded4/17/59.676s. [Exact scope and unresolved findings](../docs/build/image-sbom-2026-10-29.md). Prior source/lock/OCI/NAR evidence is unchanged; [full tracker](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md) remains8/18 with all full inventory/runtime/CI/legal/independent/related gates.
 
