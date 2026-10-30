@@ -1,13 +1,12 @@
 ---
 gsd_state_version: "1.0"
 release: shb-1.1
-current_phase: 4
-current_phase_name: Shared SHB form, invitations and private storefront
-current_plan: 1
+current_phase: 7
+current_phase_name: FPGA checkout, ASIC reviewed offers and scoped discounts
+current_plan: 2
 current_task: 1
-status: paused
-paused_at: "2026-10-30T11:03:51.390Z"
-last_updated: "2026-10-30T11:06:48.982567+00:00"
+status: in_progress
+last_updated: "2026-10-30T12:10:04.877013+00:00"
 last_activity: 2026-10-30
 state_head: 6891c6eea5aae064e1c77f8977da31c0145dc1d6
 progress:
@@ -20,40 +19,36 @@ progress:
 
 # Project state — Supporting Hours Bundle revision 1.1
 
-Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. Current plan remains ROADMAP.md; prior product/IP/time-ledger scope is superseded. All342 prior planning/instruction originals remain hash-bound outside active planning.
+Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. STATE.md / ROADMAP.md retain the operative plan; all342 prior planning/instruction originals remain hash-bound outside active planning.
 
-**Current development focus:** 4 — Shared SHB form, invitations and private storefront.
+**Current development focus:** 7 — FPGA checkout, ASIC reviewed offers and scoped discounts.
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation records are not SHB acceptance.
 
-**Current plan:** 04-01 — Shared SHB form, invitation enforcement and private storefront; partial local implementation.
+**Current plan:** 07-02 — Scoped SHB discounts and reservations; partial local implementation.
 
-**Execution status:** paused — explicit user request; SHB local batch saved; browser startup and shared adapter-harness verification remain incomplete.
+**Execution status:** in progress — 04-01 local verification repaired; implementing scoped SHB discounts in 07-02 with synthetic fixtures.
 
-**Next implementation task:** Inspect owned browser startup diagnostics and fix the combined runner to use the actual isolated adapter harness; verify affected cases and refresh exact source evidence, then continue revised SHB checkout/ASIC offers/coupons/transaction notifications.
+**Next implementation task:** Implement authoritative scoped percentage-code preview and atomic ASIC request reservation on PostgreSQL; retain discounts through review and keep live adoption/payment gated.
 
-## Implemented and verified scope
+## Verified local scope
 
-The SHB catalog/minimum form, digest-only calendar-expiring invitations, private manifest delivery, old-IP route denial and once-only synthetic ASIC quotation capture are implemented locally. New orders never connect to automated support-time accounting. Full batch/report and complete commands: [SHB evidence](../docs/build/shb-bootstrap-2026-10-30.md).
+The SHB catalog/minimum form, calendar-expiring digest-only invitation, private manifest delivery, old-IP route denial and repeat-safe synthetic ASIC quotation capture are locally implemented. No SHB time ledger, usage calculation, staff time entry or automated task email is connected.
 
-Focused29 tests/4 checks pass (20 real PostgreSQL plus9 source/private-release controls). Full existing frontend138 tests/37 checks pass. Loopback header/form demo16 checks passes; private Astro9-file release is prepared. Source295 files/eight imports/3.496s was verified before the last two fixture edits and needs refresh. Source-package regression11 tests passes. Corrected shared security/recovery group95 tests passes.
+Resume repairs: shared234 tests pass, including95 access/recovery,104 payment and six adapters actually inside unshare --net. Actual Chromium155.0.8059.84/Node24.21.0 passes27 checks in JavaScript and no-JavaScript at320px with native Enter submissions, ASIC50-hour request capture and FPGA30-hour review. Frontend Node24.22.0/npm11.19.1 check/build/full default tests pass; private9-file snapshot refreshed. Source295 exact files/eight isolated imports passes. Exact report/commands: [resume evidence](../docs/build/shb-resume-2026-10-30.md).
 
-The next110 shared bank/adapter cases execute with six adapter failures: the new combined runner did not use the required actual network-isolated adapter harness. Aggregate --shared has not passed. Both actual Chromium attempts fail at browser-ready; no browser/hydration/native UI/screenshot/accessibility pass. Root cause remains to investigate from the owned redacted startup log. Do not set a guard flag to pretend isolation, change pins/limits or reopen IP routes to make fixtures pass.
-
-FPGA remains a synthetic price review with Checkout disabled; ASIC request persists without purchase/payment. Coupons, assigned review/offers, immutable SHB paid-order finalization, staff order view and transaction/request notification delivery remain unfinished. Actual commercial/provider/runtime/host qualification is pending. No complete plan/phase SUMMARY or FULL_PASS is warranted; counts remain historical11/42 records,1/14 documentary phases, not engineering effort.
+FPGA Checkout remains disabled. Assigned ASIC offers, scoped coupons, paid-order finalization, staff order view and ordinary transaction/request notifications are unfinished. Local form/browser proof is not complete paid-workflow acceptance, formal accessibility/human review, provider or deployment qualification. No parent SUMMARY or FULL_PASS; counts remain11/42 retained records and1/14 documentary phases.
 
 ## Current artifacts and external inputs
 
-Scope replan0773373 is pushed. Private snapshot `.scratch/shb-private-release-t89j52jy/release`, manifest bb507afd975241eb1a9a136556209c0d41788e4efa3ce93a68739e6a7c6b52a1. Failed owned blank-browser diagnostics: `.scratch/shb-browser-evidence-3l1_szjf/browser-startup.log`. No raw invitation/capture goes into Git or handoff.
+Private release `.scratch/shb-private-resume-t2p3r5cc/release`, manifest `ef2d68408ac264a2da888af45ec167242c1a21680990d66a772bd761b86941f3`. Empty-form screenshots `.scratch/shb-browser-resume-pPw1Po02`. Exact source record `docs/evidence/shb/source-revisions/c8c09f5e9f46deb03efea8eb55abc358da0523a4f7e68769206f8784a9e968c0.json`. Old failure evidence is retained.
 
-One concise support-offer/external register: docs/decisions.md. User will supply company inputs later; do not repeat requests. Rates/currency, final policies/manual charging/ASIC no-expiry, seller/tax, eligibility/reviewer ownership, bank/mail, independent runner, actual native/licence/OCI/CI/runtime/recovery/human/protected-host/ingress qualification remain pending. No new host/provider/activation authority. No actual bank/mail/DNS/TLS/storage/host action or paid provision occurred.
+One actual-input register: docs/decisions.md. User will supply company inputs later; do not repeat requests. Rates/currency/policies/manual charging/ASIC adoption/seller/tax/eligibility/reviewer/bank/mail and independent/runtime/native/licence/OCI/CI/recovery/human/host/ingress qualifications stay pending. No live credentials, external action, protected change or paid provision. Local execution needs no .env.
 
 ## Session Continuity
 
-Last session: 2026-10-30T11:06:48.982567+00:00
-Stopped at: explicit user $gsd-pause-work; implementation WIP and verification failures preserved.
-Resume file: HANDOFF.json and phases/04-minimal-configurator-and-shared-purchase-flow/.continue-here.md
+Last session: 2026-10-30T12:10:04.877013+00:00
+Stopped at: Session resumed; repaired and verified04-01 local harness issues; continuing existing07-02 coupon/reservation slice inline.
+Resume file: phases/04-minimal-configurator-and-shared-purchase-flow/.continue-here.md; previous one-shot HANDOFF.json consumed.
 
-All owned test/demo commands returned; no workflow server or external async job remains. Ordinary sandbox startup failed; narrowly justified local exec is the recorded workaround. Current local /tmp23GiB, workspace47GiB and shared memory5.9GiB free; earlier full-temp observation is historical. Keep per-command owned TMPDIR/cache; never clean unknown resources. Unrelated http_cache.sqlite remains untracked and untouched. Exact context percentage is unavailable; this pause is explicitly requested, not a measured threshold.
-
-**Saved WIP implementation:** 6891c6eea5aae064e1c77f8977da31c0145dc1d6 — ordinary origin/main push succeeded; verification failures remain open.
+All completed owned test/browser/demo processes exited; no external async job exists. Ordinary sandbox cannot access the workspace; narrowly justified local exec remains the workaround. Browser gets its own short private/tmp directory; no pin/limit/unknown-resource cleanup. Unrelated http_cache.sqlite remains untracked/untouched. Exact context percentage is not supplied.

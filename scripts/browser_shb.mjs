@@ -40,7 +40,7 @@ async function main(){
     '--host-resolver-rules=MAP * ~NOTFOUND, EXCLUDE localhost, EXCLUDE 127.0.0.1',
     '--remote-debugging-address=127.0.0.1','--remote-debugging-port=0','--user-data-dir='+profile,'about:blank'],
     {env:{...process.env,XDG_CONFIG_HOME:join(profile,'config'),XDG_CACHE_HOME:join(profile,'cache')},stdio:['ignore','ignore','pipe']});
-  let cdp;let checks=0;let startup='';
+  let cdp;let checks=0;let startup='';let diagnose;
   child.stderr.on('data',chunk=>{if(!cdp&&startup.length<8192)startup+=chunk.toString('utf8');});
   try{
     stage='browser-ready';let lines;
@@ -79,8 +79,10 @@ async function main(){
         require(!value.exceptionDetails);return value.result.value;
       };
       const until=async expression=>{for(let i=0;i<100;i++){if(await evaluate(expression))return;await delay(40);}throw new Error('page condition timeout');};
+      // Diagnostics contain status/field names only, never values, URLs or tokens.
+      diagnose=async()=>({stage,status:lastStatus,nativePosts,fields:await evaluate("Array.from(document.querySelectorAll('.errorlist')).map(element=>element.parentElement.querySelector('input,textarea,select')?.name).filter(name=>/^[a-z_]+$/.test(name||''))"),csrfDenied:await evaluate("document.body.innerText.includes('CSRF')")});
       const go=async url=>{lastStatus=0;await send('Page.navigate',{url});await until("document.readyState==='complete'");await until('!!document.body');};
-      const key=async(name,code,virtual,extra={})=>{await send('Input.dispatchKeyEvent',{type:'keyDown',key:name,code,windowsVirtualKeyCode:virtual,...extra});await send('Input.dispatchKeyEvent',{type:'keyUp',key:name,code,windowsVirtualKeyCode:virtual});};
+      const key=async(name,code,virtual,extra={})=>{await send('Input.dispatchKeyEvent',{type:'keyDown',key:name,code,windowsVirtualKeyCode:virtual,...(name==='Enter'?{text:'\r',unmodifiedText:'\r'}:{}),...extra});await send('Input.dispatchKeyEvent',{type:'keyUp',key:name,code,windowsVirtualKeyCode:virtual});};
       const focus=async selector=>require(await evaluate(`(()=>{const element=document.querySelector(${JSON.stringify(selector)});if(!element)return false;element.focus();return document.activeElement===element})()`));
       const type=async(selector,text)=>{await focus(selector);await key('a','KeyA',65,{modifiers:2});await send('Input.insertText',{text});};
       const toggle=async selector=>{await focus(selector);await key(' ','Space',32,{text:' '});};
@@ -126,6 +128,9 @@ async function main(){
       await cdp.send('Target.disposeBrowserContext',{browserContextId});
     }
     console.log(JSON.stringify({status:'SHB_BROWSER_PASS',checks,modes:2,browser:version,node:process.versions.node,evidence_class:'local-synthetic-browser',fpga:'review',asic:'submitted',payment:'disabled'}));
+  }catch(error){
+    if(config.evidence&&diagnose){try{await writeFile(join(config.evidence,'browser-failure.json'),JSON.stringify(await diagnose()),{flag:'wx',mode:0o600});}catch{}}
+    throw error;
   }finally{
     if(!cdp&&config.evidence&&startup)await writeFile(join(config.evidence,'browser-startup.log'),startup.replace(/ws:\/\/\S+/g,'[private loopback debugger]'),{flag:'wx',mode:0o600});
     if(cdp){try{await cdp.send('Browser.close');}catch{}cdp.socket.close();}

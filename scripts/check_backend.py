@@ -201,6 +201,7 @@ def qualify_adapters():
         require(count is not None and int(count[1]) >= 6 and 'OK' in output and 'skipped' not in output,
                 'required isolated adapter tests absent, failed or skipped')
     print(f'ADAPTERS_PASS checks=3 tests={int(count[1])} duration_seconds={time.monotonic()-started:.3f}')
+    return int(count[1])
 
 
 def main():

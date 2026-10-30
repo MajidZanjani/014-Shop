@@ -1,23 +1,19 @@
-# SHB implementation pause
+# SHB implementation handoff — resumed
 
-Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md). STATE.md / ROADMAP.md retain the revised plan and all actual gates.
+Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md). STATE.md / ROADMAP.md govern routing.
 
-**Current development focus:** 4 — Shared SHB form, invitations and private storefront.
+**Current development focus:** 7 — FPGA checkout, ASIC reviewed offers and scoped discounts.
+
+**Current plan:** 07-02 — Scoped SHB discounts and reservations; partial local implementation.
+
+**Execution status:** in progress — 04-01 local verification repaired; implementing scoped SHB discounts in 07-02 with synthetic fixtures.
+
+**Next implementation task:** Implement authoritative scoped percentage-code preview and atomic ASIC request reservation on PostgreSQL; retain discounts through review and keep live adoption/payment gated.
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only.
 
-**Current plan:** 04-01 — Shared SHB form, invitation enforcement and private storefront; partial local implementation.
-
-**Execution status:** paused — explicit user request; SHB local batch saved; browser startup and shared adapter-harness verification remain incomplete.
-
-**Next implementation task:** Inspect owned browser startup diagnostics and fix the combined runner to use the actual isolated adapter harness; verify affected cases and refresh exact source evidence, then continue revised SHB checkout/ASIC offers/coupons/transaction notifications.
-
 **Recorded implementation:** 6891c6eea5aae064e1c77f8977da31c0145dc1d6
 
-Scope rewrite0773373 is pushed; this handoff captures the first SHB code batch as WIP, not a completed plan. Exact behavior, commands, prior source artifact, failure history and remaining work: [report](../docs/build/shb-bootstrap-2026-10-30.md). No phase completion inferred from29 focused,138 frontend,16 header/demo or95 shared-group results. Next110 cases have six real adapter-harness guard failures; actual Chromium fails at browser-ready. Refresh source artifact after the last two fixture edits.
+The previous one-shot HANDOFF.json was consumed after user resume. Actual234 shared tests,27 Chromium checks in two modes, fresh private release and295-file/eight-import source check now pass. See docs/build/shb-resume-2026-10-30.md for precise commands and limits; historical failed observations remain in the bootstrap report. No full SHB acceptance or parent-plan SUMMARY is inferred. Continue07-02 with scoped coupons, then the existing07/08/10 checkout/offer/payment/transaction-mail work.
 
-Resume from HANDOFF.json / phases/04-minimal-configurator-and-shared-purchase-flow/.continue-here.md. First inspect only the owned redacted blank-browser diagnostic `.scratch/shb-browser-evidence-3l1_szjf/browser-startup.log`, then correct adapter test invocation using the actual existing network-isolated lane. Keep all default tests/shared assertions; do not bypass automatic review's rejected frontend-test reduction.
-
-The team manually tracks support usage and manually emails every task. SHB retains per-order purchased hours only; IP/time-ledger work stays deferred and historical records/code survive. No payment, time credit, live commercial approval or external operation. Company inputs remain pending without repeated requests. No server/async job remains. Unrelated http_cache.sqlite is untouched.
-
-WIP implementation 6891c6eea5aae064e1c77f8977da31c0145dc1d6 is committed and its ordinary origin/main push succeeded. The final handoff commit contains only pause/status documentation; the unrelated cache stays untracked.
+The support team manually tracks usage and sends every task email. Preserve all shared assertions, pinned tools, historical obligations and actual external gates. No .env/real credentials needed. No remaining owned server or external job; unrelated http_cache.sqlite stays untracked and untouched. Ordinary non-force push-after-each-project-commit remains authorized.

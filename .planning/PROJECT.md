@@ -2,15 +2,15 @@
 
 Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](STATE.md) / [ROADMAP.md](ROADMAP.md).
 
-**Current development focus:** 4 — Shared SHB form, invitations and private storefront.
+**Current development focus:** 7 — FPGA checkout, ASIC reviewed offers and scoped discounts.
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
 
-**Current plan:** 04-01 — Shared SHB form, invitation enforcement and private storefront; partial local implementation.
+**Current plan:** 07-02 — Scoped SHB discounts and reservations; partial local implementation.
 
-**Execution status:** paused — explicit user request; SHB local batch saved; browser startup and shared adapter-harness verification remain incomplete.
+**Execution status:** in progress — 04-01 local verification repaired; implementing scoped SHB discounts in 07-02 with synthetic fixtures.
 
-**Next implementation task:** Inspect owned browser startup diagnostics and fix the combined runner to use the actual isolated adapter harness; verify affected cases and refresh exact source evidence, then continue revised SHB checkout/ASIC offers/coupons/transaction notifications.
+**Next implementation task:** Implement authoritative scoped percentage-code preview and atomic ASIC request reservation on PostgreSQL; retain discounts through review and keep live adoption/payment gated.
 
 ## What this is
 
@@ -38,8 +38,6 @@ Existing October21 protection/security/financial/recovery requirements remain bi
 
 Current plan is the existing ROADMAP.md/STATE.md and per-phase plans; no replacement master plan. Continue substantive authorized local work across commits; ordinary non-force origin/main push after each project commit is already authorized. Do not stop after planning or each commit. Pause only for explicit user request, actual missing authority/prerequisite or real context pressure under the recorded context rule.
 
-## Explicit pause — 2026-10-30
+## Resumed work — 2026-10-30
 
-SHB scope rewrite0773373 is pushed. Partial code and exact pass/failure evidence are saved in docs/build/shb-bootstrap-2026-10-30.md. No SHB phase or live release is newly complete. Resume from04-01, not the former Phase2 continuation.
-
-**Saved WIP implementation:** 6891c6eea5aae064e1c77f8977da31c0145dc1d6 — pushed to origin/main; explicitly paused with both verification issues open.
+The saved 04-01 browser and adapter-harness failures are resolved with actual local evidence: shared234 tests (including six truly network-isolated adapter tests), Chromium27 checks across JavaScript/no-JavaScript modes, and refreshed295-file/eight-import source verification. See docs/build/shb-resume-2026-10-30.md. Continue the existing07-02 coupon slice; no full SHB phase/release completion is claimed.

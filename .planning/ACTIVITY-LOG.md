@@ -7,3 +7,7 @@ Current STATE.md / ROADMAP.md govern routing. On 2026-10-30 the user explicitly 
 ## Explicit implementation pause — 2026-10-30T11:03:51.390Z
 
 SHB partial code,29 focused/138 frontend/16 header-demo/95 shared passing scopes and both outstanding verification failures are preserved. See docs/build/shb-bootstrap-2026-10-30.md. No full plan/phase completion. Resume04-01 from structured handoff; future revised commerce workflows remain open.
+
+## Resumed implementation — 2026-10-30
+
+User resumed saved04-01. Repaired long Chromium SingletonSocket temp path, native Enter character dispatch and actual adapter namespace invocation. Shared234 tests, browser27 checks/two modes, fresh private build/default frontend tests and exact source295 files/eight imports pass. See docs/build/shb-resume-2026-10-30.md. Current focus moves to07-02 scoped discount slice; final acceptance/actual gates remain pending.

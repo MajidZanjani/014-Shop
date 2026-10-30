@@ -36,13 +36,17 @@ def main():
         shared=0
         if args.shared:
             batches=[['shop.core.tests','shop.access.tests','shop.access.staff_tests','shop.access.recovery_tests','shop.access.effect_tests','shop.access.startup_tests','shop.access.staff_restore_tests','shop.access.authentication_recovery_tests'],
-                ['shop.payments.tests','shop.payments.attempt_tests','shop.payments.control_tests','shop.payments.notification_tests','shop.payments.observation_tests','shop.payments.operation_tests','shop.payments.overpayment_tests','shop.adapters.tests']]
+                ['shop.payments.tests','shop.payments.attempt_tests','shop.payments.control_tests','shop.payments.notification_tests','shop.payments.observation_tests','shop.payments.operation_tests','shop.payments.overpayment_tests']]
             for labels in batches:
                 outcome=manage(python,env,'test',*labels,'--noinput','--keepdb',timeout=120)
                 log=outcome.stdout+outcome.stderr;match=re.search(r'Ran (\d+) tests?',log)
                 if not match or 'OK' not in log or 'skipped' in log:raise ValueError('required shared regressions failed/empty/skipped')
                 shared+=int(match[1]);print(f'SHB_SHARED_BATCH_PASS tests={match[1]}')
-        print(f'SHB_LOCAL_PASS checks={4+(2 if args.shared else 0)} tests={result.testsRun+int(count[1])+shared} shared_tests={shared} duration_seconds={time.monotonic()-started:.3f} postgres=18.6 evidence=local-synthetic live_approved=false')
+            # This lane actually enters an empty network namespace. Never claim
+            # adapter isolation by setting its guard in the shared DB process.
+            from check_backend import qualify_adapters
+            shared+=qualify_adapters()
+        print(f'SHB_LOCAL_PASS checks={4+(3 if args.shared else 0)} tests={result.testsRun+int(count[1])+shared} shared_tests={shared} duration_seconds={time.monotonic()-started:.3f} postgres=18.6 evidence=local-synthetic live_approved=false')
 
 
 if __name__=='__main__':

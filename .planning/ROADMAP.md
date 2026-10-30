@@ -2,15 +2,15 @@
 
 Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](STATE.md) / [ROADMAP.md](ROADMAP.md).
 
-**Current development focus:** 4 — Shared SHB form, invitations and private storefront.
+**Current development focus:** 7 — FPGA checkout, ASIC reviewed offers and scoped discounts.
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
 
-**Current plan:** 04-01 — Shared SHB form, invitation enforcement and private storefront; partial local implementation.
+**Current plan:** 07-02 — Scoped SHB discounts and reservations; partial local implementation.
 
-**Execution status:** paused — explicit user request; SHB local batch saved; browser startup and shared adapter-harness verification remain incomplete.
+**Execution status:** in progress — 04-01 local verification repaired; implementing scoped SHB discounts in 07-02 with synthetic fixtures.
 
-**Next implementation task:** Inspect owned browser startup diagnostics and fix the combined runner to use the actual isolated adapter harness; verify affected cases and refresh exact source evidence, then continue revised SHB checkout/ASIC offers/coupons/transaction notifications.
+**Next implementation task:** Implement authoritative scoped percentage-code preview and atomic ASIC request reservation on PostgreSQL; retain discounts through review and keep live adoption/payment gated.
 
 Stable T01–T14/folder IDs preserve history. Titles and active task scopes now follow SHB 1.1. Completed summary counts below are historical records, not engineering effort or new commercial acceptance.
 
@@ -19,10 +19,10 @@ Stable T01–T14/folder IDs preserve history. Titles and active task scopes now 
 - [x] **Phase 1: Source authority and SHB scope reconciliation**
 - [ ] **Phase 2: Reproducible application and isolated deployment foundation**
 - [ ] **Phase 3: Supporting Hours Bundle catalog and approved pricing**
-- [ ] **Phase 4: Shared SHB form, invitations and private storefront** — CURRENT DEVELOPMENT FOCUS; paused — explicit user request; SHB local batch saved; browser startup and shared adapter-harness verification remain incomplete.
+- [ ] **Phase 4: Shared SHB form, invitations and private storefront**
 - [ ] **Phase 5: SHB durable records, archives and outbox**
 - [ ] **Phase 6: Invitation scope, verified resources and staff MFA**
-- [ ] **Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts**
+- [ ] **Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts** — CURRENT DEVELOPMENT FOCUS; in progress — 04-01 local verification repaired; implementing scoped SHB discounts in 07-02 with synthetic fixtures.
 - [ ] **Phase 8: Payment lifecycle and fault-injectable synthetic bank**
 - [ ] **Phase 9: Selected-bank sandbox and complete reconciliation**
 - [ ] **Phase 10: Paid SHB orders, transaction notices and manual handoff**
@@ -69,7 +69,7 @@ Requirements: SHB-01, SHB-03, SHB-04, SHB-05.
 
 Plans: [03-01-PLAN](phases/03-catalog-platform-and-offer-policies/03-01-PLAN.md)
 
-### Phase 4: Shared SHB form, invitations and private storefront — CURRENT DEVELOPMENT FOCUS; paused — explicit user request; SHB local batch saved; browser startup and shared adapter-harness verification remain incomplete.
+### Phase 4: Shared SHB form, invitations and private storefront
 
 Goal: Minimal common billing/contact form, same-phone helper and conditional tax; ASIC short assistance/context. Six calendar months in Asia/Tbilisi, UTC expiry, digest-only reusable invitations, current-state session checks and private static delivery.
 
@@ -105,7 +105,7 @@ Requirements: SHB-11, SHB-13, SHB-14.
 
 Plans: [06-01-PLAN](phases/06-invitation-scope-and-staff-mfa/06-01-PLAN.md)
 
-### Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts
+### Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts — CURRENT DEVELOPMENT FOCUS; in progress — 04-01 local verification repaired; implementing scoped SHB discounts in 07-02 with synthetic fixtures.
 
 Goal: Automatic eligible FPGA checkout; ASIC request/clarify/decline/withdraw/approve/dated offer/acceptance. One scoped percentage code; PostgreSQL reservations survive ASIC review beyond claim expiry. Immutable accepted price/scope revisions.
 
@@ -208,10 +208,10 @@ Plans: [14-01-PLAN](phases/14-shb-release-handover/14-01-PLAN.md)
 | 1. Source authority and SHB scope reconciliation | 2/2 | Complete (documentary scope) | Source reconciliation only |
 | 2. Reproducible application and isolated deployment foundation | 8/18 | In Progress | Pending actual revised evidence |
 | 3. Supporting Hours Bundle catalog and approved pricing | 0/1 | In Progress | Pending actual revised evidence |
-| 4. Shared SHB form, invitations and private storefront | 0/1 | In Progress; CURRENT DEVELOPMENT FOCUS; paused — explicit user request; SHB local batch saved; browser startup and shared adapter-harness verification remain incomplete. | Pending actual revised evidence |
+| 4. Shared SHB form, invitations and private storefront | 0/1 | In Progress | Pending actual revised evidence |
 | 5. SHB durable records, archives and outbox | 0/1 | In Progress | Pending actual revised evidence |
 | 6. Invitation scope, verified resources and staff MFA | 0/1 | In Progress | Pending actual revised evidence |
-| 7. FPGA checkout, ASIC reviewed offers and scoped discounts | 1/4 | In Progress | Pending actual revised evidence |
+| 7. FPGA checkout, ASIC reviewed offers and scoped discounts | 1/4 | In Progress; CURRENT DEVELOPMENT FOCUS; in progress — 04-01 local verification repaired; implementing scoped SHB discounts in 07-02 with synthetic fixtures. | Pending actual revised evidence |
 | 8. Payment lifecycle and fault-injectable synthetic bank | 0/3 | In Progress | Pending actual revised evidence |
 | 9. Selected-bank sandbox and complete reconciliation | 0/1 | Pending | Pending actual revised evidence |
 | 10. Paid SHB orders, transaction notices and manual handoff | 0/6 | In Progress | Pending actual revised evidence |
@@ -220,4 +220,4 @@ Plans: [14-01-PLAN](phases/14-shb-release-handover/14-01-PLAN.md)
 | 13. Thirty SHB acceptance cases and release verification | 0/1 | In Progress | Pending actual revised evidence |
 | 14. SHB handover and separately authorized activation | 0/1 | Pending | Pending actual revised evidence |
 
-**Saved WIP implementation:** 6891c6eea5aae064e1c77f8977da31c0145dc1d6 — pushed to origin/main; explicitly paused with both verification issues open.
+**Latest local verification:** shared234 tests, actual Chromium27 checks/two modes and refreshed295-file/eight-import source pass. See docs/build/shb-resume-2026-10-30.md; full SHB acceptance remains pending.

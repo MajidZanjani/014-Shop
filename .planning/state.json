@@ -76,9 +76,9 @@
     }
   ],
   "next": {
-    "command": "$gsd-resume-work",
-    "label": "Resume paused SHB implementation",
-    "reason": "Explicit user pause at04-01 with verification failures retained"
+    "command": "$gsd-execute-phase 07",
+    "label": "Continue scoped SHB discounts and reservations",
+    "reason": "Implement authoritative scoped percentage-code preview and atomic ASIC request reservation on PostgreSQL; retain discounts through review and keep live adoption/payment gated."
   },
-  "updated_at": "2026-10-30T11:06:48.982567+00:00"
+  "updated_at": "2026-10-30T12:10:04.877013+00:00"
 }

@@ -119,6 +119,11 @@ def main():
                 evidence=args.screenshot_root.resolve() if args.screenshot_root else None
                 if evidence:require(evidence.is_relative_to((ROOT/'.scratch').resolve()) and evidence.is_dir() and not evidence.is_symlink() and not any(evidence.iterdir()))
                 browser_env={key:os.environ[key] for key in ('PATH','LANG','HOME','TMPDIR','SHOP_NODE','SHOP_BROWSER','SHOP_BROWSER_NODE_VERSION','SHOP_BROWSER_VERSION') if key in os.environ}
+                # Chromium creates a Unix SingletonSocket below TMPDIR. The Nix
+                # shell's workspace path can exceed its 108-byte system limit.
+                # This private directory belongs only to this browser run.
+                browser_tmp=stack.enter_context(tempfile.TemporaryDirectory(prefix='shb-browser-',dir='/tmp'))
+                browser_env['TMPDIR']=browser_tmp
                 config={'origin':base,'invitationUrl':base+'/invite/'+credential['token'],'scratch':str(scratch),'evidence':str(evidence) if evidence else None}
                 result=subprocess.run([browser_env['SHOP_NODE'],str(ROOT/'scripts/browser_shb.mjs')],input=json.dumps(config),text=True,capture_output=True,env=browser_env,timeout=120,check=True)
                 report=json.loads(result.stdout)
