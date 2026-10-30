@@ -49,8 +49,8 @@ def backend_package(root,epoch):
     for path in sorted((ROOT/'backend').rglob('*')):
         relative=path.relative_to(ROOT/'backend')
         name=relative.as_posix()
-        runtime_asset=(name in {'shop/catalog/revision.json','shop/catalog/document_preview.json','shop/catalog/shop.css'}
-            or path.suffix=='.html' and name.startswith(('shop/catalog/templates/','shop/access/templates/')))
+        runtime_asset=(name in {'shop/catalog/revision.json','shop/catalog/document_preview.json','shop/catalog/shop.css','shop/shb/revision.json','shop/shb/shop.css'}
+            or path.suffix=='.html' and name.startswith(('shop/catalog/templates/','shop/access/templates/','shop/shb/templates/')))
         if not (path.suffix=='.py' or (relative.parts[0]=='requirements' and path.suffix in {'.txt','.in'}) or runtime_asset):continue
         require(path.is_file() and not path.is_symlink() and path.stat().st_size<1048576,'unsafe backend source input')
         target=source/relative;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(path.read_bytes())

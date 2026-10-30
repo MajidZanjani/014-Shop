@@ -2,15 +2,15 @@
 
 Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](STATE.md) / [ROADMAP.md](ROADMAP.md).
 
-**Current development focus:** 3 — Supporting Hours Bundle catalog and approved pricing.
+**Current development focus:** 4 — Shared SHB form, invitations and private storefront.
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
 
-**Current plan:** 03-01 — Supporting Hours Bundle catalog, 10/25-hour variants and common/ASIC form rules.
+**Current plan:** 04-01 — Shared SHB form, invitation enforcement and private storefront; partial local implementation.
 
-**Execution status:** in progress — SHB revision 1.1 replanned; implementing the single-product catalog and minimum forms; no live acceptance.
+**Execution status:** paused — explicit user request; SHB local batch saved; browser startup and shared adapter-harness verification remain incomplete.
 
-**Next implementation task:** Implement and verify SHB catalog/forms, then invitation-gated private storefront and old-IP route denial; continue FPGA/ASIC/coupon/payment integration under the revised plans.
+**Next implementation task:** Inspect owned browser startup diagnostics and fix the combined runner to use the actual isolated adapter harness; verify affected cases and refresh exact source evidence, then continue revised SHB checkout/ASIC offers/coupons/transaction notifications.
 
 Stable T01–T14/folder IDs preserve history. Titles and active task scopes now follow SHB 1.1. Completed summary counts below are historical records, not engineering effort or new commercial acceptance.
 
@@ -18,8 +18,8 @@ Stable T01–T14/folder IDs preserve history. Titles and active task scopes now 
 
 - [x] **Phase 1: Source authority and SHB scope reconciliation**
 - [ ] **Phase 2: Reproducible application and isolated deployment foundation**
-- [ ] **Phase 3: Supporting Hours Bundle catalog and approved pricing** — CURRENT DEVELOPMENT FOCUS; in progress — SHB revision 1.1 replanned; implementing the single-product catalog and minimum forms; no live acceptance.
-- [ ] **Phase 4: Shared SHB form, invitations and private storefront**
+- [ ] **Phase 3: Supporting Hours Bundle catalog and approved pricing**
+- [ ] **Phase 4: Shared SHB form, invitations and private storefront** — CURRENT DEVELOPMENT FOCUS; paused — explicit user request; SHB local batch saved; browser startup and shared adapter-harness verification remain incomplete.
 - [ ] **Phase 5: SHB durable records, archives and outbox**
 - [ ] **Phase 6: Invitation scope, verified resources and staff MFA**
 - [ ] **Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts**
@@ -57,7 +57,7 @@ Requirements: retained shared controls in REQUIREMENTS.md.
 
 Plans: [02-00-PLAN](phases/02-reproducible-application-and-deployment-skeleton/02-00-PLAN.md), [02-01-PLAN](phases/02-reproducible-application-and-deployment-skeleton/02-01-PLAN.md), [02-02-PLAN](phases/02-reproducible-application-and-deployment-skeleton/02-02-PLAN.md), [02-03-PLAN](phases/02-reproducible-application-and-deployment-skeleton/02-03-PLAN.md), [02-04-PLAN](phases/02-reproducible-application-and-deployment-skeleton/02-04-PLAN.md), [02-05-PLAN](phases/02-reproducible-application-and-deployment-skeleton/02-05-PLAN.md), [02-06-PLAN](phases/02-reproducible-application-and-deployment-skeleton/02-06-PLAN.md), [02-07-PLAN](phases/02-reproducible-application-and-deployment-skeleton/02-07-PLAN.md), [02-08-PLAN](phases/02-reproducible-application-and-deployment-skeleton/02-08-PLAN.md), [02-09-PLAN](phases/02-reproducible-application-and-deployment-skeleton/02-09-PLAN.md), [02-10-PLAN](phases/02-reproducible-application-and-deployment-skeleton/02-10-PLAN.md), [02-11-PLAN](phases/02-reproducible-application-and-deployment-skeleton/02-11-PLAN.md), [02-12-PLAN](phases/02-reproducible-application-and-deployment-skeleton/02-12-PLAN.md), [02-13-PLAN](phases/02-reproducible-application-and-deployment-skeleton/02-13-PLAN.md), [02-14-PLAN](phases/02-reproducible-application-and-deployment-skeleton/02-14-PLAN.md), [02-15-PLAN](phases/02-reproducible-application-and-deployment-skeleton/02-15-PLAN.md), [02-16-PLAN](phases/02-reproducible-application-and-deployment-skeleton/02-16-PLAN.md), [02-17-PLAN](phases/02-reproducible-application-and-deployment-skeleton/02-17-PLAN.md)
 
-### Phase 3: Supporting Hours Bundle catalog and approved pricing — CURRENT DEVELOPMENT FOCUS; in progress — SHB revision 1.1 replanned; implementing the single-product catalog and minimum forms; no live acceptance.
+### Phase 3: Supporting Hours Bundle catalog and approved pricing
 
 Goal: One Supporting Hours Bundle product; FPGA Supporting Hours Bundle/10 hours and ASIC Supporting Hours Bundle/25 hours. Strict positive quantity and authoritative integer money; approved ASIC base hourly rate exceeds FPGA. Per-order purchased hours only.
 
@@ -69,7 +69,7 @@ Requirements: SHB-01, SHB-03, SHB-04, SHB-05.
 
 Plans: [03-01-PLAN](phases/03-catalog-platform-and-offer-policies/03-01-PLAN.md)
 
-### Phase 4: Shared SHB form, invitations and private storefront
+### Phase 4: Shared SHB form, invitations and private storefront — CURRENT DEVELOPMENT FOCUS; paused — explicit user request; SHB local batch saved; browser startup and shared adapter-harness verification remain incomplete.
 
 Goal: Minimal common billing/contact form, same-phone helper and conditional tax; ASIC short assistance/context. Six calendar months in Asia/Tbilisi, UTC expiry, digest-only reusable invitations, current-state session checks and private static delivery.
 
@@ -207,8 +207,8 @@ Plans: [14-01-PLAN](phases/14-shb-release-handover/14-01-PLAN.md)
 |---|---|---|---|
 | 1. Source authority and SHB scope reconciliation | 2/2 | Complete (documentary scope) | Source reconciliation only |
 | 2. Reproducible application and isolated deployment foundation | 8/18 | In Progress | Pending actual revised evidence |
-| 3. Supporting Hours Bundle catalog and approved pricing | 0/1 | In Progress; CURRENT DEVELOPMENT FOCUS; in progress — SHB revision 1.1 replanned; implementing the single-product catalog and minimum forms; no live acceptance. | Pending actual revised evidence |
-| 4. Shared SHB form, invitations and private storefront | 0/1 | Pending | Pending actual revised evidence |
+| 3. Supporting Hours Bundle catalog and approved pricing | 0/1 | In Progress | Pending actual revised evidence |
+| 4. Shared SHB form, invitations and private storefront | 0/1 | In Progress; CURRENT DEVELOPMENT FOCUS; paused — explicit user request; SHB local batch saved; browser startup and shared adapter-harness verification remain incomplete. | Pending actual revised evidence |
 | 5. SHB durable records, archives and outbox | 0/1 | In Progress | Pending actual revised evidence |
 | 6. Invitation scope, verified resources and staff MFA | 0/1 | In Progress | Pending actual revised evidence |
 | 7. FPGA checkout, ASIC reviewed offers and scoped discounts | 1/4 | In Progress | Pending actual revised evidence |

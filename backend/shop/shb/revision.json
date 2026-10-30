@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "product_id": "supporting-hours-bundle",
+  "title": "Supporting Hours Bundle",
+  "site": "https://shop.xspi.pro",
+  "visibility": "invitation-only",
+  "source_sha256": "ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e",
+  "manual_time_tracking": true,
+  "variants": [
+    {
+      "id": "shb-fpga-10h",
+      "label": "FPGA Supporting Hours Bundle",
+      "hours_per_bundle": 10,
+      "workflow": "checkout",
+      "hours_expire": false
+    },
+    {
+      "id": "shb-asic-25h",
+      "label": "ASIC Supporting Hours Bundle",
+      "hours_per_bundle": 25,
+      "workflow": "request",
+      "hours_expire": null
+    }
+  ],
+  "commercial": {
+    "currency": null,
+    "fpga_hourly_minor": null,
+    "asic_hourly_minor": null,
+    "approved_offer_revision": null,
+    "tax_policy_revision": null,
+    "terms_revision": null,
+    "privacy_revision": null,
+    "refund_revision": null,
+    "asic_supplement_revision": null,
+    "manual_charging_policy_revision": null
+  },
+  "revision": "9584fc023a225429966ae5e8771fb95bb3ae23b3d571a24b73dffde8e1c77667"
+}

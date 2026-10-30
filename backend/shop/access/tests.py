@@ -159,15 +159,22 @@ class VerificationTests(TransactionTestCase):
         self.assertEqual(CustomerIdentity.objects.count(),1)
         self.assertEqual(CustomerIdentity.objects.get().user_id,user_id)
 
-    def test_end_to_end_owner_drafts_list_logout_and_domain_isolation(self):
+    def test_historical_owner_drafts_logout_domain_isolation_and_closed_new_capture(self):
         from shop.catalog.tests import CASES
         code=request_capture(self.browser,self.directory.name)
         self.assertEqual(csrf_post(self.browser,BASE+'verify/',{'code':code}).status_code,200)
         value={'request_id':str(uuid.uuid4()),'revision':CATALOG['revision'],'configuration':CASES[0]['value']}
         response=csrf_post(self.browser,'/api/v1/configuration-drafts/',value)
-        self.assertEqual(response.status_code,201)
-        identity=response.json()['id']
-        self.assertEqual(csrf_post(self.browser,'/api/v1/configuration-drafts/',value).status_code,200)
+        self.assertEqual(response.status_code,404)
+        self.assertEqual(csrf_post(self.browser,'/api/v1/configuration-drafts/',value).status_code,404)
+        # Prior private records survive the storefront revision. Build historical
+        # fixture data internally, then keep the actual owner/logout/isolation
+        # assertions rather than requiring a new paused-IP submission.
+        from shop.catalog.rules import evaluate
+        owner=CustomerIdentity.objects.get(email='engineer@synthetic.invalid').user
+        saved=ConfigurationDraft.objects.create(owner=owner,request_id=uuid.UUID(value['request_id']),
+            revision=value['revision'],configuration=value['configuration'],evaluation=evaluate(value['configuration']))
+        identity=str(saved.pk)
         listed=self.browser.get('/api/v1/configuration-drafts/').json()['drafts']
         self.assertEqual([d['id'] for d in listed],[identity])
         self.assertNotIn('configuration',listed[0])

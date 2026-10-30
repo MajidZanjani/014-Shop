@@ -25,6 +25,10 @@
     "src/components/DraftCart.tsx",
     "tests/cart-conformance.json",
     "src/lib/cart.ts",
-    "tests/cart.test.mjs"
+    "tests/cart.test.mjs",
+    "src/content/products/supporting-hours-bundle.md",
+    "src/lib/shb.ts",
+    "src/components/ShbSelector.tsx",
+    "src/pages/private-storefront.astro"
   ]
 }

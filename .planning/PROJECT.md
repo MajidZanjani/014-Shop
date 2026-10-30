@@ -2,15 +2,15 @@
 
 Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](STATE.md) / [ROADMAP.md](ROADMAP.md).
 
-**Current development focus:** 3 — Supporting Hours Bundle catalog and approved pricing.
+**Current development focus:** 4 — Shared SHB form, invitations and private storefront.
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
 
-**Current plan:** 03-01 — Supporting Hours Bundle catalog, 10/25-hour variants and common/ASIC form rules.
+**Current plan:** 04-01 — Shared SHB form, invitation enforcement and private storefront; partial local implementation.
 
-**Execution status:** in progress — SHB revision 1.1 replanned; implementing the single-product catalog and minimum forms; no live acceptance.
+**Execution status:** paused — explicit user request; SHB local batch saved; browser startup and shared adapter-harness verification remain incomplete.
 
-**Next implementation task:** Implement and verify SHB catalog/forms, then invitation-gated private storefront and old-IP route denial; continue FPGA/ASIC/coupon/payment integration under the revised plans.
+**Next implementation task:** Inspect owned browser startup diagnostics and fix the combined runner to use the actual isolated adapter harness; verify affected cases and refresh exact source evidence, then continue revised SHB checkout/ASIC offers/coupons/transaction notifications.
 
 ## What this is
 
@@ -37,3 +37,7 @@ Existing October21 protection/security/financial/recovery requirements remain bi
 ## Workflow
 
 Current plan is the existing ROADMAP.md/STATE.md and per-phase plans; no replacement master plan. Continue substantive authorized local work across commits; ordinary non-force origin/main push after each project commit is already authorized. Do not stop after planning or each commit. Pause only for explicit user request, actual missing authority/prerequisite or real context pressure under the recorded context rule.
+
+## Explicit pause — 2026-10-30
+
+SHB scope rewrite0773373 is pushed. Partial code and exact pass/failure evidence are saved in docs/build/shb-bootstrap-2026-10-30.md. No SHB phase or live release is newly complete. Resume from04-01, not the former Phase2 continuation.

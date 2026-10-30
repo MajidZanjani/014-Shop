@@ -1,14 +1,15 @@
 ---
 gsd_state_version: "1.0"
 release: shb-1.1
-current_phase: 3
-current_phase_name: Supporting Hours Bundle catalog and approved pricing
+current_phase: 4
+current_phase_name: Shared SHB form, invitations and private storefront
 current_plan: 1
 current_task: 1
-status: in_progress
-last_updated: "2026-10-30T10:06:03.188759+00:00"
+status: paused
+paused_at: "2026-10-30T11:03:51.390Z"
+last_updated: "2026-10-30T11:03:51.390Z"
 last_activity: 2026-10-30
-state_head: cbf5941086172dd7cf53bca637e5a8529d22f23b
+state_head: 0773373f1509fc63f806bb613589bd0a44caa7c2
 progress:
   total_phases: 14
   completed_phases: 1
@@ -19,34 +20,38 @@ progress:
 
 # Project state — Supporting Hours Bundle revision 1.1
 
-Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](STATE.md) / [ROADMAP.md](ROADMAP.md).
+Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. Current plan remains ROADMAP.md; prior product/IP/time-ledger scope is superseded. All342 prior planning/instruction originals remain hash-bound outside active planning.
 
-**Current development focus:** 3 — Supporting Hours Bundle catalog and approved pricing.
+**Current development focus:** 4 — Shared SHB form, invitations and private storefront.
 
-**Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
+**Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation records are not SHB acceptance.
 
-**Current plan:** 03-01 — Supporting Hours Bundle catalog, 10/25-hour variants and common/ASIC form rules.
+**Current plan:** 04-01 — Shared SHB form, invitation enforcement and private storefront; partial local implementation.
 
-**Execution status:** in progress — SHB revision 1.1 replanned; implementing the single-product catalog and minimum forms; no live acceptance.
+**Execution status:** paused — explicit user request; SHB local batch saved; browser startup and shared adapter-harness verification remain incomplete.
 
-**Next implementation task:** Implement and verify SHB catalog/forms, then invitation-gated private storefront and old-IP route denial; continue FPGA/ASIC/coupon/payment integration under the revised plans.
+**Next implementation task:** Inspect owned browser startup diagnostics and fix the combined runner to use the actual isolated adapter harness; verify affected cases and refresh exact source evidence, then continue revised SHB checkout/ASIC offers/coupons/transaction notifications.
 
-SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+## Implemented and verified scope
 
-Historical completed-plan counts describe retained records, not SHB acceptance or engineering effort. Earlier Phase2 policy-issuance continuation is retained as a release prerequisite and is not the next product task.
+The SHB catalog/minimum form, digest-only calendar-expiring invitations, private manifest delivery, old-IP route denial and once-only synthetic ASIC quotation capture are implemented locally. New orders never connect to automated support-time accounting. Full batch/report and complete commands: [SHB evidence](../docs/build/shb-bootstrap-2026-10-30.md).
 
-## Evidence and constraints
+Focused29 tests/4 checks pass (20 real PostgreSQL plus9 source/private-release controls). Full existing frontend138 tests/37 checks pass. Loopback header/form demo16 checks passes; private Astro9-file release is prepared. Source295 files/eight imports/3.496s was verified before the last two fixture edits and needs refresh. Source-package regression11 tests passes. Corrected shared security/recovery group95 tests passes.
 
-Previous synthetic backend/payment, archived transaction, staff MFA/recovery, exact source/image/SBOM/lock evidence remains attributable at docs/archive/2026-10-30-before-shb and docs/build. No old test result verifies the revised SHB product. SHB tests are pending until executed.
+The next110 shared bank/adapter cases execute with six adapter failures: the new combined runner did not use the required actual network-isolated adapter harness. Aggregate --shared has not passed. Both actual Chromium attempts fail at browser-ready; no browser/hydration/native UI/screenshot/accessibility pass. Root cause remains to investigate from the owned redacted startup log. Do not set a guard flag to pretend isolation, change pins/limits or reopen IP routes to make fixtures pass.
 
-## External inputs
+FPGA remains a synthetic price review with Checkout disabled; ASIC request persists without purchase/payment. Coupons, assigned review/offers, immutable SHB paid-order finalization, staff order view and transaction/request notification delivery remain unfinished. Actual commercial/provider/runtime/host qualification is pending. No complete plan/phase SUMMARY or FULL_PASS is warranted; counts remain historical11/42 records,1/14 documentary phases, not engineering effort.
 
-One support-offer record and exact operation boundaries are in docs/decisions.md. No commercial rate/legal/tax/ASIC adoption, bank/mail/provider, independent runner, host or public activation approval is invented. User will provide company inputs later; continue independent local work without repeated requests.
+## Current artifacts and external inputs
+
+Scope replan0773373 is pushed. Private snapshot `.scratch/shb-private-release-t89j52jy/release`, manifest bb507afd975241eb1a9a136556209c0d41788e4efa3ce93a68739e6a7c6b52a1. Failed owned blank-browser diagnostics: `.scratch/shb-browser-evidence-3l1_szjf/browser-startup.log`. No raw invitation/capture goes into Git or handoff.
+
+One concise support-offer/external register: docs/decisions.md. User will supply company inputs later; do not repeat requests. Rates/currency, final policies/manual charging/ASIC no-expiry, seller/tax, eligibility/reviewer ownership, bank/mail, independent runner, actual native/licence/OCI/CI/runtime/recovery/human/protected-host/ingress qualification remain pending. No new host/provider/activation authority. No actual bank/mail/DNS/TLS/storage/host action or paid provision occurred.
 
 ## Session Continuity
 
-Last session: 2026-10-30T10:06:03.188759+00:00
-Stopped at: active SHB replan complete; proceeding with 03-01. Old pause artifacts archived/consumed.
-Resume file: HANDOFF.md
+Last session: 2026-10-30T11:03:51.390Z
+Stopped at: explicit user $gsd-pause-work; implementation WIP and verification failures preserved.
+Resume file: HANDOFF.json and phases/04-minimal-configurator-and-shared-purchase-flow/.continue-here.md
 
-Sandbox startup fails on this workspace; narrowly scoped escalated local commands are the recorded workaround. Use existing owned .scratch/auth-unicode-tmp and .scratch/phase2-repro-nix-cache per command. Do not read/delete/stage unrelated http_cache.sqlite. No .env or real credentials are needed. Exact context percentage is unavailable; honor the user checkpoint rule without claiming automatic threshold monitoring.
+All owned test/demo commands returned; no workflow server or external async job remains. Ordinary sandbox startup failed; narrowly justified local exec is the recorded workaround. Current local /tmp23GiB, workspace47GiB and shared memory5.9GiB free; earlier full-temp observation is historical. Keep per-command owned TMPDIR/cache; never clean unknown resources. Unrelated http_cache.sqlite remains untracked and untouched. Exact context percentage is unavailable; this pause is explicitly requested, not a measured threshold.

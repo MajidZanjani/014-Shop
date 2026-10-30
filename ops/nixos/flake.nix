@@ -83,9 +83,9 @@
     appSource = pkgs.lib.cleanSourceWith {
       src = ../../backend;
       filter = path: type: type == "directory" || pkgs.lib.hasSuffix ".py" path
-        || builtins.elem path (map toString [ ../../backend/shop/catalog/revision.json ../../backend/shop/catalog/document_preview.json ../../backend/shop/catalog/shop.css ])
+        || builtins.elem path (map toString [ ../../backend/shop/catalog/revision.json ../../backend/shop/catalog/document_preview.json ../../backend/shop/catalog/shop.css ../../backend/shop/shb/revision.json ../../backend/shop/shb/shop.css ])
         || (pkgs.lib.hasSuffix ".html" path && builtins.any (prefix: pkgs.lib.hasPrefix prefix path)
-          (map (directory: toString directory + "/") [ ../../backend/shop/catalog/templates ../../backend/shop/access/templates ]));
+          (map (directory: toString directory + "/") [ ../../backend/shop/catalog/templates ../../backend/shop/access/templates ../../backend/shop/shb/templates ]));
     };
     appTree = pkgs.runCommand "shop-python-source" {} ''
       mkdir -p $out/app

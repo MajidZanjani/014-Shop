@@ -18,7 +18,8 @@ class FormReferrerPolicyMiddleware:
     def __call__(self, request):
         response = self.get_response(request)
         directives = response.get('Content-Security-Policy', '').split(';')
-        if (response.get('Content-Type', '').split(';')[0] == 'text/html'
+        if (not getattr(request,'shb_protected',False)
+                and response.get('Content-Type', '').split(';')[0] == 'text/html'
                 and any(part.strip() == "form-action 'self'" for part in directives)):
             response['Referrer-Policy'] = 'same-origin'
             if not any(part.strip().startswith('style-src ') for part in directives):

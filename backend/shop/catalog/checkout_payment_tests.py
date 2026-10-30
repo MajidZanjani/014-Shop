@@ -23,7 +23,11 @@ from .tests import verified_login
 
 class CheckoutPaymentTests(TransactionTestCase):
     save_cart = fixture.CheckoutTests.save_cart
-    preview = fixture.CheckoutTests.preview
+    def preview(self):
+        # Construct retained historical scope through its domain service. Shared
+        # payment/recovery fixtures must not reopen paused storefront IP routes.
+        snapshot,sha256=checkout.current(self.owner)
+        return {'snapshot':snapshot,'sha256':sha256}
 
     def setUp(self):
         fixture.CheckoutTests.setUp(self)

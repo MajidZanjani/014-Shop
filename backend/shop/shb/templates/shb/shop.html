@@ -1,0 +1,23 @@
+{% load shb_money %}<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Supporting Hours Bundle — SLL</title><link rel="stylesheet" href="/shop/assets/shop.css"></head>
+<body><header><a href="/shop/">SLL</a><span>ENGINEERING SUPPORT</span></header><main>
+<p class="eyebrow">SUPPORT FOR SLL IP</p><h1>Supporting Hours Bundle</h1>
+<p>Engineering time for the use and integration of supported SLL IP. Select whole bundles below.</p>
+{% if fixture %}<p class="notice">Explicit local synthetic demonstration. Example EUR rates, zero example tax and draft terms are test fixtures. No real contract, payment or hours entitlement is created.</p>{% else %}<p class="notice">Live rates and policies await approval. No payment is currently available.</p>{% endif %}
+{% if error %}<p role="alert" class="error">{{ error }}</p>{% endif %}
+{% if form.errors %}<div role="alert" class="error"><h2>Check the form</h2>{{ form.non_field_errors }}<ul>{% for field in form %}{% for error in field.errors %}<li><a href="#{{ field.id_for_label }}">{{ field.label }}: {{ error }}</a></li>{% endfor %}{% endfor %}</ul></div>{% endif %}
+{% if submitted %}<section class="summary"><h2>ASIC request recorded</h2><p>Reference: {{ submitted.pk }}</p><p>{{ purchase.hours_purchased }} requested hours. Submitting a request does not charge you or reserve engineering availability. SLL reviews the scope before an approved offer can be accepted and purchased.</p><p>Transaction acknowledgement delivery is pending the notification integration. No purchase or payment has been created.</p></section>{% endif %}
+<form method="get" action="/purchase/simple/" aria-label="Select support bundle"><div class="field">{{ form.variant.label_tag }}{{ form.variant }}</div><input type="hidden" name="quantity" value="{{ form.quantity.value }}"><button type="submit">Update bundle selection</button></form>
+<div class="layout"><form method="post" action="/purchase/simple/" novalidate>{% csrf_token %}<input type="hidden" name="request_id" value="{{ request_id }}"><input type="hidden" name="variant" value="{{ form.variant.value }}">
+{% for field in form %}{% if field.name != 'variant' %}{% if is_asic or field.name not in asic_fields %}{% if not is_asic or field.name != 'accept_terms' %}<div class="field">{{ field.label_tag }}{{ field }}{% if field.help_text %}<p>{{ field.help_text }}</p>{% endif %}{{ field.errors }}</div>{% endif %}{% endif %}{% endif %}{% endfor %}
+<p>ASIC needs only a short assistance description. Known project references are reused internally. FPGA top-ups need no engineering description, board, host ID or licence selection. Leave optional context unknown when appropriate.</p>
+<button type="submit" name="action" value="review">Review selected bundle</button>
+{% if is_asic %}<button type="submit" name="action" value="submit">Submit Request</button>{% endif %}
+</form>
+<aside class="summary" aria-live="polite"><h2>Your current purchase</h2>
+{% if purchase %}<h3>{{ purchase.variant_label }}</h3><p>{{ purchase.quantity }} × {{ purchase.hours_per_bundle }} hours per bundle</p><p><strong>{{ purchase.hours_purchased }} hours in this order</strong></p>
+{% if purchase.total_minor != None %}<dl><dt>Hourly equivalent</dt><dd>{{ purchase.hourly_minor|euro_minor }}</dd><dt>Bundle price</dt><dd>{{ purchase.bundle_minor|euro_minor }}</dd><dt>Subtotal</dt><dd>{{ purchase.subtotal_minor|euro_minor }}</dd><dt>Discount</dt><dd>{{ purchase.discount_minor|euro_minor }}</dd><dt>Tax</dt><dd>{{ purchase.tax_minor|euro_minor }}</dd><dt>{% if purchase.workflow == 'request' %}Estimated total — subject to technical review and an approved offer{% else %}Total{% endif %}</dt><dd>{{ purchase.total_minor|euro_minor }}</dd></dl>{% else %}<p>Price to be confirmed.</p>{% endif %}
+{% if purchase.workflow == 'checkout' %}<button disabled>Checkout — order/payment integration pending</button>{% endif %}
+{% else %}<p>FPGA bundles contain 10 hours. ASIC bundles contain 25 hours and require review before purchase.</p>{% endif %}
+<p>Purchased FPGA support hours do not expire. ASIC no-expiry terms are proposed until adopted. Invitation expiry does not cancel purchased support.</p><p>A bundle buys time, not an IP licence or a guaranteed result. No response/resolution SLA applies unless separately agreed.</p><p>SLL manually keeps support-time records and emails the authorized contact after each task. This shop shows no used or remaining balance.</p></aside></div>
+</main><footer>SLL · shop.xspi.pro · Terms, privacy and refund policies await their approved versions.</footer></body></html>

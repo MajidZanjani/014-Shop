@@ -1,21 +1,21 @@
-# Active SHB continuation
+# SHB implementation pause
 
-Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](STATE.md) / [ROADMAP.md](ROADMAP.md).
+Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md). STATE.md / ROADMAP.md retain the revised plan and all actual gates.
 
-**Current development focus:** 3 — Supporting Hours Bundle catalog and approved pricing.
+**Current development focus:** 4 — Shared SHB form, invitations and private storefront.
 
-**Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
+**Last fully completed phase:** 1 — documentary authority/reconciliation only.
 
-**Current plan:** 03-01 — Supporting Hours Bundle catalog, 10/25-hour variants and common/ASIC form rules.
+**Current plan:** 04-01 — Shared SHB form, invitation enforcement and private storefront; partial local implementation.
 
-**Execution status:** in progress — SHB revision 1.1 replanned; implementing the single-product catalog and minimum forms; no live acceptance.
+**Execution status:** paused — explicit user request; SHB local batch saved; browser startup and shared adapter-harness verification remain incomplete.
 
-**Next implementation task:** Implement and verify SHB catalog/forms, then invitation-gated private storefront and old-IP route denial; continue FPGA/ASIC/coupon/payment integration under the revised plans.
+**Next implementation task:** Inspect owned browser startup diagnostics and fix the combined runner to use the actual isolated adapter harness; verify affected cases and refresh exact source evidence, then continue revised SHB checkout/ASIC offers/coupons/transaction notifications.
 
-**Recorded implementation:** cbf5941086172dd7cf53bca637e5a8529d22f23b
+**Recorded implementation:** 0773373f1509fc63f806bb613589bd0a44caa7c2
 
-Replan is not product completion. Continue 03-01 immediately; then 04-01 access/private delivery and 07/08/10 workflows. No old Phase2 pause or historic time-ledger task routes execution.
+Scope rewrite0773373 is pushed; this handoff captures the first SHB code batch as WIP, not a completed plan. Exact behavior, commands, prior source artifact, failure history and remaining work: [report](../docs/build/shb-bootstrap-2026-10-30.md). No phase completion inferred from29 focused,138 frontend,16 header/demo or95 shared-group results. Next110 cases have six real adapter-harness guard failures; actual Chromium fails at browser-ready. Refresh source artifact after the last two fixture edits.
 
-SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+Resume from HANDOFF.json / phases/04-minimal-configurator-and-shared-purchase-flow/.continue-here.md. First inspect only the owned redacted blank-browser diagnostic `.scratch/shb-browser-evidence-3l1_szjf/browser-startup.log`, then correct adapter test invocation using the actual existing network-isolated lane. Keep all default tests/shared assertions; do not bypass automatic review's rejected frontend-test reduction.
 
-External dependencies and actual operation scope: docs/decisions.md. No independent runner or new external authority. Full commands/results will be recorded only after execution. Original snapshot and inventory: docs/archive/2026-10-30-before-shb/manifest.json.
+The team manually tracks support usage and manually emails every task. SHB retains per-order purchased hours only; IP/time-ledger work stays deferred and historical records/code survive. No payment, time credit, live commercial approval or external operation. Company inputs remain pending without repeated requests. No server/async job remains. Unrelated http_cache.sqlite is untouched.

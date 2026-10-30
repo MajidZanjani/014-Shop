@@ -56,7 +56,10 @@ class PayloadTests(unittest.TestCase):
                 'shop/catalog/shop.css':b'p {color: black}',
                 'shop/catalog/revision.json':b'{"synthetic":true}',
                 'shop/catalog/document_preview.json':b'{"documents":[]}',
-                'requirements/runtime.in':b'synthetic==1'}
+                'requirements/runtime.in':b'synthetic==1',
+                'shop/shb/revision.json':b'{"live_approved":false}',
+                'shop/shb/shop.css':b'p {color:green}',
+                'shop/shb/templates/shb/shop.html':b'<h1>Supporting Hours Bundle</h1>'}
         for name,data in assets.items():
             path=source/name;path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(data)
         for name in ('.env','shop/catalog/customer-hosts.json','shop/catalog/private.html'):

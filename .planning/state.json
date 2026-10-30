@@ -22,7 +22,7 @@
     {
       "number": "4",
       "name": "Shared SHB form, invitations and private storefront",
-      "status": "pending"
+      "status": "in_progress"
     },
     {
       "number": "5",
@@ -76,9 +76,9 @@
     }
   ],
   "next": {
-    "command": "$gsd-execute-phase 3",
-    "label": "Implement SHB catalog and forms",
-    "reason": "30 October user-authorized SHB revision 1.1"
+    "command": "$gsd-resume-work",
+    "label": "Resume paused SHB implementation",
+    "reason": "Explicit user pause at04-01 with verification failures retained"
   },
-  "updated_at": "2026-10-30T10:06:03.188759+00:00"
+  "updated_at": "2026-10-30T11:03:51.390Z"
 }

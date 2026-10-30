@@ -113,8 +113,8 @@ def mutation_checks(python, env, scratch):
     def included(path):
         relative = str(path.relative_to(source_root))
         return (path.suffix == '.py'
-            or relative in {'shop/catalog/revision.json', 'shop/catalog/document_preview.json', 'shop/catalog/shop.css'}
-            or path.suffix == '.html' and relative.startswith(('shop/catalog/templates/', 'shop/access/templates/')))
+            or relative in {'shop/catalog/revision.json', 'shop/catalog/document_preview.json', 'shop/catalog/shop.css','shop/shb/revision.json','shop/shb/shop.css'}
+            or path.suffix == '.html' and relative.startswith(('shop/catalog/templates/', 'shop/access/templates/','shop/shb/templates/')))
     files = [path for path in entries if path.is_file() and included(path)]
     require(len(files) <= 512 and sum(path.stat().st_size for path in files) <= 8388608,
             'bounded synthetic backend source copy required')

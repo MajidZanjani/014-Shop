@@ -23,9 +23,12 @@ test('built synthetic HTML is served as an ordinary static HTTP page', { timeout
     assert.equal(response.status, 200);
     assert.match(response.headers.get('content-type'), /^text\/html/);
     const text = await response.text();
-    assert.match(text, /Configure your licence/);
-    assert.match(text, /Local product preview/);
-    assert.match(text, /Purchase unavailable/);
+    assert.match(text, /Access requires an invitation/);
+    assert.doesNotMatch(text, /Configure your licence|FPGA Supporting Hours Bundle|ASIC Supporting Hours Bundle/);
+    const privateHtml=await readFile(new URL('../dist/private-storefront/index.html',import.meta.url),'utf8');
+    assert.match(privateHtml,/Supporting Hours Bundle/);
+    assert.match(privateHtml,/FPGA Supporting Hours Bundle/);
+    assert.match(privateHtml,/ASIC Supporting Hours Bundle/);
   } finally {
     server.closeAllConnections();
     await new Promise((resolve, reject) => server.close(error => error ? reject(error) : resolve()));
@@ -33,6 +36,25 @@ test('built synthetic HTML is served as an ordinary static HTTP page', { timeout
 });
 
 // The real React client renderer owns event dispatch, scheduling and hook state.
+test('SHB policy copy builds privately and content cannot approve a live rate', {timeout:90000}, async()=>{
+  const scratch=await mkdtemp(join(project,'.probe-test-'));
+  try {
+    for(const file of ['package.json','astro.config.mjs','tsconfig.json','src']) await cp(join(project,file),join(scratch,file),{recursive:true});
+    const markdown=join(scratch,'src/content/products/supporting-hours-bundle.md');
+    const original=await readFile(markdown,'utf8');
+    await writeFile(markdown,original+'\nSynthetic editable policy revision.\n');
+    const changed=astroBuild(scratch);assert.equal(changed.status,0,changed.stdout+changed.stderr);
+    const protectedHtml=await readFile(join(scratch,'dist/private-storefront/index.html'),'utf8');
+    assert.match(protectedHtml,/Synthetic editable policy revision/);
+    assert.match(protectedHtml,/astro-island/);
+    const publicHtml=await readFile(join(scratch,'dist/index.html'),'utf8');
+    assert.doesNotMatch(publicHtml,/FPGA Supporting Hours Bundle|ASIC Supporting Hours Bundle/);
+    await writeFile(markdown,original.replace('"fpga_hourly_minor": null','"fpga_hourly_minor": 1'));
+    const rejected=astroBuild(scratch);assert.notEqual(rejected.status,0,'a content edit must not issue a rate approval');
+    assert.match(rejected.stdout+rejected.stderr,/schema|invalid|expected/i);
+  } finally {await rm(scratch,{recursive:true,force:true});}
+});
+
 // This bounded DOM host supplies only the elements/text/events used by this probe;
 // it does not mock hooks or count transitions and is not browser hydration proof.
 function domHost() {
