@@ -1,11 +1,9 @@
----
-status: complete
-evidence_class: offline-retained-licence-observation-reconciliation
----
-# Reconcile retained observations without acceptance
+# Reconcile retained observations without acceptance — retained historical record
 
-Offline fixed-source reconciliation binds five source reports, exact package/artifact/member/source/baseline identities, complete original gap coverage, safe no-follow stable bounded singly linked file reads and content-addressed exact text hashes/sizes/ranges. Sources reread at completion. Separate named texts, embedded headers and marker lines per package; no raw inventory mutation, upstream authenticity, archive recollection, licence classification or acceptance inference.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Actual retained summary12 original gaps:1 with named text,2 headers,10 markers (overlap);12 package-wide reviews pending. inventory_accepted/legal_approval/package_wide_notice_review_complete allfalse. Existing full inventory command still expected exit1/PENDING_FULL_INVENTORY; raw required-text guard rejects original empty entry after reconciliation.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261022-bqg-reconcile-supplemental-licence-observati/261022-bqg-SUMMARY.md); original SHA256 `b05af8ad76efe872bc9d5210ad26f4315357634fc012115b8797820abf36ce58`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Eight new mutation tests plus20 licence collectors=28 pass0.060s;8 marker tests0.005s;4 inventory tests0.001s (40 total). Initial8 tests0.048s passed. Actual exclusive report creation and independent offline rechecks pass12/1/2/10/12.10 previous raw/derived/inventory/audit reports equal HEAD; originals unchanged. No failures/network/new dependencies/runtime rebuilds/credentials/host/provider action. All legal/package-wide/native/OCI/application-boundary/14/16/17 gates remain pending.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

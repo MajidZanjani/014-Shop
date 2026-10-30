@@ -1,5 +1,11 @@
-> Current execution precedence: [final26October purchase-flow revision2](../../PURCHASE-FLOW-AMENDMENT.md) and STATE.md/ROADMAP.md. This file retains applicable baseline context; any old next-step routing or conflicting purchase/delivery requirement is superseded. No protected/external authority changes.
+# Inline plan check — retained historical record
 
-# Inline plan check
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Same-agent verification under Codex no-agent constraint; no independent checker claimed. Source mapping covers COM01–06 across plans02–04 with DATA04 prerequisite in01. All known local slices linked in STATE rather than counted again. Plan01 is independently executable, bounded and has an end-to-end publish/reopen tracer; later plans carry explicit input/domain gates. No production effect is enabled by a local receipt. Country/tax choices remain deferred. No dependency cycle; waves1→2→3→4. Phase acceptance remains unearned. Remaining risks: actual remote retention/custody/restore, archive/domain transactional integration and source-approved commercial/host/legal/MFA inputs. PASS for this bounded plan structure, not independent or implementation verification.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-CHECK.md); original SHA256 `29117667ff0f27940235f485b6af3b1e114253aaef1001fb08a42f8a847ad48e`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
+
+Current Phase 7: **FPGA checkout, ASIC reviewed offers and scoped discounts**. Automatic eligible FPGA checkout; ASIC request/clarify/decline/withdraw/approve/dated offer/acceptance. One scoped percentage code; PostgreSQL reservations survive ASIC review beyond claim expiry. Immutable accepted price/scope revisions.
+
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

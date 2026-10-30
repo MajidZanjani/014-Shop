@@ -1,29 +1,11 @@
-# Public recovery response — local partial evidence
+# Public recovery response — local partial evidence — retained historical record
 
-2026-10-28; quick261028-b7f under13-01 task5, OPS-02/AUTH-01/UAT-03. Continues verified0f4a063 authentication recovery; commercial inputs remain pending under the user's continuation.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-## Reproduced failures and behavior
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-RECOVERY-PARTIAL.md); original SHA256 `4cfd2f484f34c6b9ead47280951599b25459a8292482c0bc2dd5a75d2a18b465`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Original transport/real-React baseline has3 failures: the explicit recovery response is unclassified, a late private body is accepted, and a verified customer view remains displayed. Initial frontend correction passes136 tests/32 checks and browser227, but a controlled follow-up exposes2 further failures: an older session response can rebase a cleared marker, and a fresh same-context reconnect can revive an older private body. These intermediate results are retained separately from final-source qualification.
+Current Phase 13: **Thirty SHB acceptance cases and release verification**. Exercise both variant paths, JS/no-JS keyboard/mobile, invite/static/customer isolation, PostgreSQL coupon/payment concurrency, transaction-mail failure and restore/replay. Trace each SHB-01–30 result to exact artifacts.
 
-The existing exact JSON recovery503 now emits fixed X-Shop-Access-Recovery:pending. Only that status/header pair starts client recovery; arbitrary error bodies stay unread. An ApiError carries the closed local classification, the existing parent cleanup removes private drafts/cart/quotation/configuration/input/pending state, and fixed human guidance offers manual reconnect. Ordinary503/network uncertainty retains existing exact pending-write retries. No automatic POST replay, browser persistence, new route/channel or authority.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
 
-An opaque module-only recovery generation changes on the explicit signal. Every response checks its originating generation before/after JSON, so earlier private/session/verification responses cannot restore context or return stale bodies, including after a fresh same-context reconnect. Existing comparison-only context/MFA/resource authority and CSRF/no-store controls remain. The marker/generation grants no access.
-
-## Final-source verification
-
-- FRONTEND_PASS checks=32 tests=137 duration_seconds=10.769; exact Node24.22.0/npm11.19.1, allowlisted fresh source, type/Astro check/build, network-isolated build, real React/transport and privacy/hash controls.
-- Focused real PostgreSQL access/recovery tests63 in17.811s, including actual JSON response-header/503/no-store and existing authentication/form/CSRF/epoch/effect behavior. Backend business logic is unchanged; prior full624 tests/5 checks194.530s and proxy148/2 belong to0f4a063 before this fixed header, not a new full run.
-- CATALOG_PASS checks117 tests121;91 configuration/26 cart parity cases remain unchanged.
-- Final fresh BROWSER_LOCAL_PASS: private134, public JavaScript79/no-JavaScript14 (227 total), roles2/modes2, Chromium155.0.8059.84/controller Node24.21.0; frontend Node24.22.0/npm11.19.1. Evidence local-synthetic-browser-engine; formal_accessibility:false and production_qualified:false. Closed report/controller/public tests13 pass and older76-count reports are rejected.
-- Source /nix/store/kxjilvd16zhhg9ap7r5j87hd6qf4mj7k-shop-python-source matches272 allowed files/33 templates/1 CSS byte for byte, no symlinks. PostgreSQL18.6 and migration0007/no drift remain.
-
-The three new browser assertions use the existing bounded CDP interception to fulfill one local logout request with the fixed recovery503, verify private cleanup/manual controls, and reconnect explicitly. A read-only session check proves the backend remained authenticated: no actual logout, quarantine, restore or safe reopening was performed by that scenario. Existing native-keyboard/no-JavaScript, normal authentication, scope/privacy and exact response-loss retry cases remain in the fresh producer. Browser success is not formal accessibility or real channel/provider qualification.
-
-## Reproduction, diagnostics and limits
-
-Use owned .scratch/auth-unicode-tmp with frozen ops/nixos#default/browser shells. Final commands: scripts/check_frontend.py; .scratch/auth-recovery-focused.py; scripts/check_catalog.py; .scratch/run-public-exact.py; unittest discover -s tests -p test_browser*.py. Cache wrappers substitute only retained locked-wheel download sourcing, preserving hashes/install checks. Shared full128MiB /tmp and Nix store are untouched.
-
-Logs .scratch/public-recovery-{baseline,frontend,rebase-baseline,frontend-final,backend,catalog,browser,browser-final,source,source-qualified}.log retain controlled failures, intermediate and final successes. The first browser-contract unittest invocation named a nonexistent plural controller module and omitted the tests import path; corrected discovery runs the actual13 cases across three modules. It is a harness diagnostic, not a product pass. Backend/frontend/browser/controller finite limits and pins are unchanged. No actual mail/bank/host/DNS/TLS/deployment/recovery or commercial/legal approval.
-
-Next source-required local design is restore-startup quarantine before any data/effect exposure when restored database state contains an unheld AccessEpoch. This design has not been produced. Preserve read-only complete-window lookup, tracked unfinished admission, no blind financial retry and no adapter I/O under DB locks. Actual startup/traffic/egress isolation, post-point reconciliation, external MFA reset, independent complete-loss/custody/retention and full acceptance remain pending.
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

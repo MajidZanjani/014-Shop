@@ -1,17 +1,9 @@
----
-status: complete
-implementation_commit: 526acfb232a9905ae3b1afcd8aa34a0f787af49c
-requirements: [OPS-02, AUTH-04, UAT-03]
-evidence_class: local-synthetic
-actual_recovery_qualified: false
----
+# Selected-restore staff reset and explicit reassignment — retained historical record
 
-# Selected-restore staff reset and explicit reassignment
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Completed both tasks inline. Pre-fix selected quarantine/release left the restored credential enabled; the retained real-PostgreSQL baseline fails. Matching selected-startup quarantine now disables restored staff credentials and clears all seven mutable grant types atomically with the immutable reset record. The existing local operator reset/revoke shares that removal set. Ordinary holds and exact old-operation replay preserve newly assigned authority; fresh two-factor login still requires explicit per-resource assignment.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261028-cy5-require-explicit-staff-reset-and-reassig/261028-cy5-SUMMARY.md); original SHA256 `3fd8c0b1dc7e455b0ea491dd0b9f3c6d19039dae8b08586bea94f482a816f45d`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Focused97 tests30.201s, full backend645/5 checks204.753s (outer206.242s), supported demo/proxy148/2 aliases and exact276-file source pass. No migration drift or relaxed bounds. Source `/nix/store/gdy1y86qzdagbsz5ypan9a48z7zrzs19-shop-python-source`:33 templates/1 CSS/no symlinks. [Exact evidence and pending gates](../../phases/13-purchase-flow-fulfilment-and-release-acceptance/13-STAFF-RESTORE-PARTIAL.md).
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
 
-## Self-Check: PASSED
-
-Local scope only. Actual customer/resource post-point revocation/MFA reconstruction, isolation/restoration/custody and full acceptance still need their authoritative evidence and scoped runner/channel authority. Commercial inputs remain pending. No external API/dependency, protected mutation or production recovery control was added. The two concrete independent local gaps are resolved; remaining named actual bindings stay in the finite qualification register.
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

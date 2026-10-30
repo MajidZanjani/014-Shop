@@ -1,15 +1,9 @@
----
-quick_id: 261023-ina
-type: quick
-phase: "08"
-status: complete
----
+# Typed durable synthetic-bank boundary — retained historical record
 
-# Typed durable synthetic-bank boundary
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Independent T08 slice authorized by the execution amendment and source permission for synthetic flows while live tax/legal inputs remain pending. Implement a separate payments app and fake-provider records, not Probe/FakeReceipt repurposing. No approved offer/order, real merchant/account capability, confirmed money, entitlement, public route or external bank is implied.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261023-ina-implement-typed-durable-synthetic-bank-o/261023-ina-PLAN.md); original SHA256 `d2455a09e340d74e860113174eb1c3945908dbf5a0c4b2044f8ea2ee053e7f1a`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-1. Add immutable typed start request/observation and explicit synthetic capabilities. Validate canonical UUID/reference, bounded synthetic merchant namespace/currency tokens and positive integer minor amounts; observations remain local-synthetic with financial-confirmation/effects false. Exact correlation is not authentication or commerce confirmation.
-2. Persist immutable fake operation plus retained idempotency-key aliases under semantic merchant/reference uniqueness. Own short durable transactions; reject outer/manual transactions and live modes before calls. Support explicit authorized/captured/declined/pending synthetic statuses, timeout before commit and lost response after commit. Lookup performs no retry/write. Unsupported capture/refund/callback operations stay unsupported.
-3. Use real PostgreSQL tests for replay/changed-key aliases, conflicting bodies/key reuse rollback, concurrent starts/key collisions, post-commit timeout lookup across connections, status/correlation/type boundaries, database constraints and no-write lookup. Generate migration on an owned synthetic cluster; integrate focused/full core-local and exact source proof. No real credentials/network/bank approval.
-4. Mark only the independent Phase08 slice In Progress, preserve all acceptance gates/counts, reconcile planning, commit and immediately sync origin/main0/0. Continue without routine context-clear checkpoints.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

@@ -1,10 +1,9 @@
----
-status: complete
----
-# Reconcile visible and machine-readable planning progress
+# Reconcile visible and machine-readable planning progress — retained historical record
 
-User reports stale planning despite today's implementation. Inline GSD audit confirmed state.json and02-VERIFICATION dated yesterday, top STATE evidence obsolete, no current roadmap activity,10 completed quick tasks missing from index. Root cause: append-only historical updates bypassed current summaries and canonical machine-state publisher.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-1. Refresh current STATE evidence/next action and create linked02-PROGRESS with current within-plan deliverables,24 completed implementation quick tasks today, source/evidence/acceptance distinctions. Move chronological historical state notes intact to ACTIVITY-LOG to prevent stale statements posing as current. Backfill10 missing real-commit quick task rows. Preserve8/18 phase2,10/20 total plan and1/14 phase counts.
-2. Update roadmap current phase2 evidence, BUILD traceability to In Progress (checkboxes remain unchecked), and recorded-evidence verification dated today retaining gaps_found. Regenerate state.json through canonical GSD publisher; no acceptance, new runtime test or production change inferred.
-3. Validate actual plan/summary/partial counts, every today's completed quick-task index row and link, JSON shape/date/phase statuses, unchanged raw evidence and requirements checkboxes. Commit/push repaired planning and exact task commit stamp. No application tests necessary for documentation-only change.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261022-cci-reconcile-stale-planning-summaries-and-m/261022-cci-PLAN.md); original SHA256 `86aaed1e6bf5d064b57efdee8d2c254bc9934bc2ea304b64559753bba034b124`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
+
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

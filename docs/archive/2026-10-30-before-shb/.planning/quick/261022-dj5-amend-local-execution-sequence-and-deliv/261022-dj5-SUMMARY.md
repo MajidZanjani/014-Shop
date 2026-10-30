@@ -1,0 +1,27 @@
+---
+status: complete
+scope: local-development
+---
+# Catalog/configurator and execution amendment — 2026-10-22
+
+Reviewed HEAD 84343d56378f0cf69eabd350734eb32052e9a37c: identical to the user's reviewed commit; clean tree at start. No intervening work discarded. One amendment unlocks actual local prerequisites and consolidates finite release restrictions; original source bytes and completed evidence retained.
+
+Delivered one strict Markdown/YAML public draft catalog with the source vendor/family/term/band IDs, immutable content-addressed public revision e22d838dc8b0753767c066cd49d4fc72055bd2b4dbeded9825dacb512b9d967a and identical backend/browser artifacts. Compiler rejects taxonomy drift, source changes, unknown fields, injected approvals/rates and stale output. Private/approved manifests and approved calculations remain pending; no invented zero rates or node allowances.
+
+Static Astro/React storefront supports exact three vendors/thirteen families, RDP-only bands, higher-volume quote, Altera fixed/floating counts, dependent resets and optional support quantities. Pending rights/access/coverage/terms/prices disable purchase. No private inputs or browser persistence. Added standalone support page, static no-JS family inventory and Django /purchase/simple/ preview using the same evaluator and CSRF. No order is submitted or saved by either preview.
+
+Public JSON evaluator is closed/bounded and never echoes private inputs. Continued into ready local persistence: Django sessions/CSRF, mandatory Host validation, owner-scoped draft reads, current-revision admission, immutable-by-API snapshots and exact-request replay. Real PostgreSQL tests cover same-request races (one snapshot), changed retries, stale revisions, unauthorized/cross-owner/staff/production denial. These endpoints are local/synthetic only; tests establish synthetic sessions. Verified customer login/membership and staff MFA remain future prerequisites before production/privileged access. No registration/login or UI save/resume claimed.
+
+Development command: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/check.py dev`. All six lanes passed: frontend 75 tests; latest core-local 5 checks/34 tests; worker-smoke 6/24; adapters 3/6; contracts-local 12/8; catalog 70 conformance observations, 72 JS cases/reset tests and 2 compiler test methods (with 8 rejection mutations). Counts overlap, not a unique total. Last aggregate passed before the final fallback addition; changed core and frontend lanes reran successfully afterward. Dispatcher isolation tests:15 pass. Full static input/privacy boundary producer:25 checks/81 tests pass. Source authority:20+27+279+88+39+18 checks pass. No full qualification command rerun.
+
+Demo: `nix develop --max-jobs 1 --cores 4 ./ops/nixos --command python3 scripts/demo.py --backend`; open http://127.0.0.1:4321 and /purchase/simple/. Actual loopback static/support/fallback/catalog GETs and CSRF-protected higher-volume POST passed (5 observations). Owned demo, Gunicorn and synthetic PostgreSQL stopped cleanly. No host/provider/bank/mail/DNS/TLS actions, credentials or resource changes.
+
+Prepared `.github/workflows/development.yml`: automatic push/PR, read-only token, pinned checkout/setup-node, locked npm graph, credential-free source/frontend/schema/conformance subset on ubuntu-24.04. Existing manual independent-runner qualification unchanged. Public Actions inspection initially showed zero runs; actual hosted permission/availability/billing remains unproven until a run. No runner purchase, host attachment or authorization fabrication.
+
+Browser hydration/keyboard/mobile/human review remain pending (existing React probe event test is synthetic DOM, not browser proof). Production/bank-sandbox backend remains closed. No new collector; source-only packaging admits the exact public catalog JSON because application import now requires it; no image build/activation claimed. Unresolved release criteria live once in EXECUTION-AMENDMENT-2026-10-22.md with original T02 PARTIAL traceability. CAT/SHOP/DATA/AUTH acceptance remains incomplete.
+
+Actual hosted CI follow-up: run [39760993308](https://github.com/MajidZanjani/014-Shop/actions/runs/39760993308) at 7d543e3 ran on a GitHub-hosted runner. Node/npm setup passed; source-evidence verification failed because default shallow checkout omitted historical artifact commits. Fixed by fetch-depth:0; no source evidence weakened. Dispatcher now also includes the new catalog lane in FULL_PASS prerequisites, preserving all old lanes;15 dispatcher tests pass. Corrected run [39761244219](https://github.com/MajidZanjani/014-Shop/actions/runs/39761244219) at d9d088a completed successfully: hosted source verification, frontend typecheck/static build/tests and catalog schema/conformance all executed. This is ordinary development CI, not FULL_PASS.
+
+## User review — 2026-10-22
+
+After the laptop setup and local demo walkthrough, the user reported: “all checked and approved.” Record this as approval of the presented local catalog/configurator, support page and Django fallback slice delivered through fc20859. No separate browser/device checklist or technical qualification measurements were supplied; do not invent them. This approval does not supply missing prices, rights, legal terms, private access requirements or scoped external-operation authority. Original phase/release gates remain pending. Next implementation remains verified customer access and protected save/resume.

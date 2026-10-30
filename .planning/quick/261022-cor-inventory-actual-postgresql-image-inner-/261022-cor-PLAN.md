@@ -1,10 +1,9 @@
----
-status: complete
----
-# Actual PostgreSQL inner-layer inventory
+# Actual PostgreSQL inner-layer inventory — retained historical record
 
-Inline GSD. Build archive already exists; no rebuild/import/run/extraction or host mutation.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-1. Extend outer inspector with an optional trusted streaming layer observer while preserving existing report/output. Hash all layer bytes independently of observer consumption and validate against config DiffIDs. New collector binds retained outer report, inventories bounded safe inner entry paths/metadata, regular file content hashes and recorded link targets without following links or applying overlays. Detect filename notice candidates only; no licence/safety/runtime/merged-rootfs completion inferred.
-2. Tests cover exact file hashes, nested streaming, symlinks/hardlinks (record only), whiteout records (not applied), traversal/duplicates/special types/bounds, bad layer bytes and report substitution. Collect compressed content-addressed payload evidence and independently rescan actual51-layer archive, retaining original evidence unchanged.
-3. Refresh STATE/02-PROGRESS/ROADMAP/recorded verification/16/17 PARTIAL and canonical state.json with actual counts and remaining gaps; validate links/phase statuses/quick index. Commit/push real task stamp. Keep phase8/18 and production gates unchanged.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261022-cor-inventory-actual-postgresql-image-inner-/261022-cor-PLAN.md); original SHA256 `06557c0ed3f41b0b82adb677206b4aae101140420159a0d5572560fdaf5e89d1`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
+
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

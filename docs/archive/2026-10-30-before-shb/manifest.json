@@ -1,0 +1,1717 @@
+{
+  "schema": 1,
+  "source": "014-Shop-SHB-Proposal-Revision-2026-10-30.md",
+  "revision": "1.1",
+  "files": [
+    {
+      "path": ".planning/ACTIVITY-LOG.md",
+      "sha256": "872f4140a485f4bede2ce4c7aeaa8871d0680c13d0e06a40ecb6890cc0e1e1c2",
+      "bytes": 108190
+    },
+    {
+      "path": ".planning/EXECUTION-AMENDMENT-2026-10-22.md",
+      "sha256": "1fc5eff8a6deb268d4fa97843cd12e3c9e9298612aabe1fafb98c52b49927d5d",
+      "bytes": 9375
+    },
+    {
+      "path": ".planning/HANDOFF.json",
+      "sha256": "a15faaaf6f8bc78071123b5b393d90daf3c5a0df967f7981ae6e4398fb760da6",
+      "bytes": 6796
+    },
+    {
+      "path": ".planning/HANDOFF.md",
+      "sha256": "cc2d27b561d244979b49620eb9c236a6e26d5378b3493158475e33635b3fb3e7",
+      "bytes": 2237
+    },
+    {
+      "path": ".planning/PROJECT.md",
+      "sha256": "ca9fcfda2ad26ac647c35844496b1e3ed62b9ca032dfe40d52cf3e84c09f0c23",
+      "bytes": 36146
+    },
+    {
+      "path": ".planning/PURCHASE-FLOW-AMENDMENT.md",
+      "sha256": "1839ac881f432ae3c91c184ce66a0ce63845f317f0dc498d95b23bfcb6997899",
+      "bytes": 7441
+    },
+    {
+      "path": ".planning/PURCHASE-FLOW-RECONCILIATION.json",
+      "sha256": "8fe3ff51da05f878a2e08083201f11f99fc85e154544d790178909ba0836866a",
+      "bytes": 90136
+    },
+    {
+      "path": ".planning/REPLAN-VERIFICATION.md",
+      "sha256": "0271c0aca729d35dfe0e4ab42d2377414f1dcf664a3403e01190f80023103a94",
+      "bytes": 2831
+    },
+    {
+      "path": ".planning/REQUIREMENTS.md",
+      "sha256": "d0d180043f450af3eafdc3139365931f1233d7a4df0a335a7c0f6259a4a7d16c",
+      "bytes": 32399
+    },
+    {
+      "path": ".planning/ROADMAP.md",
+      "sha256": "b0c741d846e2760ee40a2421555a81919257cef2a7651835c07a56aa8db23db6",
+      "bytes": 80756
+    },
+    {
+      "path": ".planning/SOURCE-MATRIX.md",
+      "sha256": "b58031d6606ffc1cdc863b6c85653ed8df5c8736fdc627af4823b83064f2522f",
+      "bytes": 55566
+    },
+    {
+      "path": ".planning/SOURCES.md",
+      "sha256": "f0b3ffa61326c74cb3bd634197e91c4a1590d50e4ebb47ae42f6596802d2dd12",
+      "bytes": 4753
+    },
+    {
+      "path": ".planning/STATE.md",
+      "sha256": "06f407dd45830eeb3960aa7b7abcc3e5862b1b8acfd73cf3067d5175512a249d",
+      "bytes": 52879
+    },
+    {
+      "path": ".planning/audits/2026-10-23-customer-forms.md",
+      "sha256": "abcf3cca52862d2179abe7ec03457f2b078568a5584d449d8ad68a877f602749",
+      "bytes": 1991
+    },
+    {
+      "path": ".planning/audits/2026-10-23-local-workflow.md",
+      "sha256": "1b5593098f281e4134da065e26d859f35d3b88995c3c144f6576af4bc768523b",
+      "bytes": 5375
+    },
+    {
+      "path": ".planning/audits/2026-10-29-planning-sync.md",
+      "sha256": "26abe9d04e5a27bb8fee6852175cf1b405ecce86c3dd1f96435d746aa3891975",
+      "bytes": 4839
+    },
+    {
+      "path": ".planning/config.json",
+      "sha256": "4b8d7c99c33af2e3662b884c23e895cb12fcb20edb410c77029f22ee2682cf5a",
+      "bytes": 1823
+    },
+    {
+      "path": ".planning/debug/resolved/demo-csrf.md",
+      "sha256": "a4ce7e0d04cc0d9904acfa93f40da1642547d47bc2745cd198bf76464b697095",
+      "bytes": 3561
+    },
+    {
+      "path": ".planning/phases/01-product-authority-repository-review-and-decision-register/01-01-PLAN.md",
+      "sha256": "ad2cd2be6bd5384836054a815ee6a627578cfbe1cc87b447c1d76c9f65611a50",
+      "bytes": 1036
+    },
+    {
+      "path": ".planning/phases/01-product-authority-repository-review-and-decision-register/01-01-SUMMARY.md",
+      "sha256": "87d62b1a62b0ea4554b1d338776d3c4b20048ed82f69af52e23660b40ad80c08",
+      "bytes": 832
+    },
+    {
+      "path": ".planning/phases/01-product-authority-repository-review-and-decision-register/01-02-PLAN.md",
+      "sha256": "09df3d05a80dffe2be6d50440ae4306b35b1e5285bda24ccf2ca2dee475516e5",
+      "bytes": 1091
+    },
+    {
+      "path": ".planning/phases/01-product-authority-repository-review-and-decision-register/01-02-SUMMARY.md",
+      "sha256": "68598568323c42e9b3b617318df67ac70680d50300579f7c7eb2f7ab2c50f4fb",
+      "bytes": 874
+    },
+    {
+      "path": ".planning/phases/01-product-authority-repository-review-and-decision-register/01-VERIFICATION.md",
+      "sha256": "3c8a373b5029096ae803d0044fe30073861971676a19c2efe313b10809678d6f",
+      "bytes": 622
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/.continue-here.md",
+      "sha256": "d14c92a13abc28492b24c1669968a5de638483077fa3f541b2e23064b07d02e7",
+      "bytes": 5720
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-00-PLAN.md",
+      "sha256": "fe1cc2ccace8cea969555c9b43befe5ebe30f927518b80dc05a59f2fd2b5dcf4",
+      "bytes": 6115
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-00-SUMMARY.md",
+      "sha256": "77e749e18feaa937ac822ee9c7b58ed2b353a538e6aa7f17d94921c4a17bcf60",
+      "bytes": 2947
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-01-PLAN.md",
+      "sha256": "8474063a2533e7f9863a30f8c9fa983e0cc4a97456dcd640971e2699a8b7ee0b",
+      "bytes": 11652
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-01-SUMMARY.md",
+      "sha256": "0ff7759a3b0308bcdc966658c9f99ea764b35a7efc7901f9203e09f458f32c48",
+      "bytes": 10532
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-02-PLAN.md",
+      "sha256": "a2b2df124dc164e26494b506c7143e6b651cb2398618d1d4360e03a741425388",
+      "bytes": 9687
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-02-SUMMARY.md",
+      "sha256": "7e5cbc1262b27536f88f6dfb13d6789fc37799aacdf8373951f18ceae6332e70",
+      "bytes": 14231
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-03-PLAN.md",
+      "sha256": "7943298c1c1cd82963c189093a98312ca47808d3bf16896ad5d676d287380e47",
+      "bytes": 12471
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-03-SUMMARY.md",
+      "sha256": "f0857f2fccc0402c6dfc2b13d1582bc63138528bae9163f8389407119231fed1",
+      "bytes": 4396
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-04-PLAN.md",
+      "sha256": "cb0d44d5ad1cdab6d17132be56fc610cdd9d3a47e91885fda18046e096a8dcec",
+      "bytes": 8393
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-04-SUMMARY.md",
+      "sha256": "cc7fac06d0978a9712d31e43e49e927addf68e0d0de0b5542e6c0a4c9b19676c",
+      "bytes": 1543
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-05-PLAN.md",
+      "sha256": "37f1f29a1b09de5e68ea6ad27635c2b7ab03d382995c1b5b7b70b12115eba5c6",
+      "bytes": 9489
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-05-SUMMARY.md",
+      "sha256": "cc5948da54646e7864768fe4de9a5fcecc01c9d1d73f67076077150f8b36cd59",
+      "bytes": 4842
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-06-PARTIAL.md",
+      "sha256": "400a30b2fb7de7e49ecf805ad7704c495384103c7293d53093efc4299ee08f7d",
+      "bytes": 2968
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-06-PLAN.md",
+      "sha256": "87447062ebb7e0f408dc03655984d881f4360000619d6c858e5564c9c05d4aec",
+      "bytes": 10550
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-07-PARTIAL.md",
+      "sha256": "369e3b2456f0e3433bd47f96faa108ad7af40d52261441568aba47162db09b0c",
+      "bytes": 2272
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-07-PLAN.md",
+      "sha256": "c067b301ff26beed921a6e04b22d2c77001e40bcad76b8b75a27968e1f07fe98",
+      "bytes": 10374
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-08-PARTIAL.md",
+      "sha256": "4da95f9e749b7ab55dee0bc7eed4fdc977b2c8343fbd73b62d4f561b77d1436b",
+      "bytes": 2171
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-08-PLAN.md",
+      "sha256": "4c82119b794bba9eaa1ec1b27bcb0d357db88300406524b1b73dcdfef71d594e",
+      "bytes": 9810
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-09-PLAN.md",
+      "sha256": "e6cb7a2f93828de80788356bb472b67873308b85c3170d2fb232f58221417803",
+      "bytes": 10546
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-09-SUMMARY.md",
+      "sha256": "a9f287ed5906dd440eb73a35fdb6a9ce533c1f8b4e6d9c19ecfd7d52f2d0d926",
+      "bytes": 1520
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-10-PARTIAL.md",
+      "sha256": "abaa31cfe27faf4dbfcb3dfabce535331c48884a43d3bc9ad75360bf7dd2fee2",
+      "bytes": 2847
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-10-PLAN.md",
+      "sha256": "11d98c93df3c629750fd1ca041822b4678035f7b5b91960ddaaf4b1885f89222",
+      "bytes": 13357
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-11-PARTIAL.md",
+      "sha256": "b342a39ca42cf9f37028b0528a1b593555026bc75f4c980b0d15dd3843a13d1b",
+      "bytes": 2481
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-11-PLAN.md",
+      "sha256": "0d29a9062a62fc5c49819098e33017a3f77ac4b34d346085eabffce109378845",
+      "bytes": 10344
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-12-PARTIAL.md",
+      "sha256": "dae699f4963f6fad6b34273fe276ca6b2210b0d77d21d803e2e3d212fff092ee",
+      "bytes": 1948
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-12-PLAN.md",
+      "sha256": "36c4aa2d2893be08d80758b39c811b71969d735f046766d8540f4a76a9e952db",
+      "bytes": 9733
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-13-PARTIAL.md",
+      "sha256": "7f295a21e4636811d8b8ab6c4120dc87e3e02372ac20812c14d64c93222d92ef",
+      "bytes": 2489
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-13-PLAN.md",
+      "sha256": "4e0289240d16ec715d6b7e67e599682f472f9f2a66f33df4922a0f6a75fd6bd3",
+      "bytes": 14011
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-14-PARTIAL.md",
+      "sha256": "01a7b275a739fc5f5e571bcd44673e5648a80d278b0aa6cb1bfe714e62650f71",
+      "bytes": 84477
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-14-PLAN.md",
+      "sha256": "9d37ae48479b6020d4519b1a9736db80f63fb727f02d8e260611a21135eda785",
+      "bytes": 18057
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-15-PLAN.md",
+      "sha256": "ca103e2b51be4ef9966f1161d4fb5c9d5725dfe7f65560396331c1e2f16db9c8",
+      "bytes": 10423
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-15-SUMMARY.md",
+      "sha256": "3bc3a43f237e1b728da46bebe8a6b34ad93a6ac13ecf3195ddff2a42afbc9a8c",
+      "bytes": 1855
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-16-PARTIAL.md",
+      "sha256": "ff2568dd09bcbe02790ce9d39fb6122135f4300fc570f276b60cb4bdd9e0c23b",
+      "bytes": 20345
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-16-PLAN.md",
+      "sha256": "2a5c4b0daeca42b0bccc9d5d8fcd1521eb36c5bd7b5265979736d11b85579438",
+      "bytes": 13198
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-17-PARTIAL.md",
+      "sha256": "659e5836dcc628c8e8a8c53e9764c47149dcb09bd510455e1995877160aaf2dd",
+      "bytes": 10665
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-17-PLAN.md",
+      "sha256": "929c299ee89da4857568108b243191d7a68b011862a729fbc870e23e4ea900de",
+      "bytes": 19265
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-CHECK.md",
+      "sha256": "bfa0ffe072b755bd0479f0df875011cff35bf27c9b9e6cb1df7882d7ced2ad6d",
+      "bytes": 1710
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md",
+      "sha256": "31789a444c2e703e365a7e545a95a3b39abc3b4a38bfdb6c1f8dca7e3fe8c49b",
+      "bytes": 14720
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-CONTEXT.md",
+      "sha256": "eebf84f3d763d76a5531fcc3e2fcd3ef9baeffe02738d0a708ff7d0a3f64eb67",
+      "bytes": 5759
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-PATTERNS.md",
+      "sha256": "a6c6a1c0a4b497f07007ca0911613cff3c05fe5b3266de04738f307051789488",
+      "bytes": 2338
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-PROGRESS.md",
+      "sha256": "8ea88298f30213bb769ff2b0ed679611e21e38976bde4b6535548abb6fb31a45",
+      "bytes": 1836
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-RESEARCH.md",
+      "sha256": "ebe5ccae6ea51a060d3e03c28adc7b1d34c62d17f656d0155fb7bb5443d332fa",
+      "bytes": 6734
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-VALIDATION.md",
+      "sha256": "b41d7df6cd203cb2e28e3030f2331935566bfb45e1321f7110176f77f1f905c4",
+      "bytes": 12424
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-VERIFICATION.md",
+      "sha256": "48a75103268840d47b28046a864f099233687c143428d6bfadfc2f02e01f2218",
+      "bytes": 7022
+    },
+    {
+      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/COVERAGE.md",
+      "sha256": "4094e35794e2aec3c1d18c2624f322756403d4b9ace08bcec92785789688cbdb",
+      "bytes": 508
+    },
+    {
+      "path": ".planning/phases/03-catalog-platform-and-offer-policies/03-01-PLAN.md",
+      "sha256": "e979298bea45a28ed2600b516c48defe5e49a717057e38e5fd267047ef214b21",
+      "bytes": 1490
+    },
+    {
+      "path": ".planning/phases/03-catalog-platform-and-offer-policies/03-PURCHASE-FLOW-PARTIAL.md",
+      "sha256": "2c7195a52a2899a94f9455b1140cfaa9b41eafe638755a9597b7f9f08821cfdc",
+      "bytes": 8371
+    },
+    {
+      "path": ".planning/phases/04-minimal-configurator-and-shared-purchase-flow/04-01-PLAN.md",
+      "sha256": "4be73a2fb69e557f577568e7acc2b0f6291d10c6bef2f264a608ce0bc7cc34ca",
+      "bytes": 1397
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-01-PLAN.md",
+      "sha256": "9097ee87b9b122254b26787f7e08f1bf96d5062fe22535ce8837d3b2ccebc7a4",
+      "bytes": 2237
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-01-SUMMARY.md",
+      "sha256": "8a238e5f355bf9c03e23d6faa3e204e72229b7ca62f14eae64885e3c70282b2c",
+      "bytes": 2455
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-AUTHORITY-PARTIAL.md",
+      "sha256": "b2486a6e08fe5bf3598414ed514336ba9c2b1baaf2264424f25e03349e925407",
+      "bytes": 3189
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-DESIGN.md",
+      "sha256": "4ff5338189cfc5914390d9d1ccd2e91d3a9df31d17545e18a4ad3624e0c2d69c",
+      "bytes": 6168
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-OBSERVATION-DESIGN.md",
+      "sha256": "fcc66c4f2f98cdf4d7ced9cb763f5adb8b599287043e3c1f001db545504825be",
+      "bytes": 7357
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-OBSERVATION-PARTIAL.md",
+      "sha256": "0722202c8ef12c018e559c34361770d882569863d4b4ff458a9190de9b67db99",
+      "bytes": 5657
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-PARTIAL.md",
+      "sha256": "42cedaeac989e19d64a855921a53d9db25ca4e057e5aec4dff456cea7b16b8d3",
+      "bytes": 3311
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CLAIM-PARTIAL.md",
+      "sha256": "748e3cae85de217227d2803c9d1b7c0516fe17fa16cc0620bc34cdcb3ed54f73",
+      "bytes": 3816
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-DESTINATION-PARTIAL.md",
+      "sha256": "96ff1f3d23b972caeeb39eed4e5389a6c7ffffe7a3ae974bb94bd7f0565ffde0",
+      "bytes": 2465
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-ENVELOPE-PARTIAL.md",
+      "sha256": "f67a620192756f94d3c6a4d4eaac02a02a49db345fdebc69b57454b161ade728",
+      "bytes": 3545
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-INSPECTION-PARTIAL.md",
+      "sha256": "5f70d8201c40fda3fe60b17ffc623d191abcd090715b20075f31154f676f4475",
+      "bytes": 3118
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-OFFER-CONTRACT-CRITIQUE.md",
+      "sha256": "337c68e1c7bf17ff656be45968bccc3709dba7a6eb0e4bf6c64e2e498103fc81",
+      "bytes": 6799
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-OFFER-CONTRACT-DESIGN.md",
+      "sha256": "2a94fa4e9a8906ab1fd0b31e53772bb14c39d146925e7b44b106793650c290f8",
+      "bytes": 14920
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-PLAN.md",
+      "sha256": "a263f08bd119c168c4b5e9b84996c71184f1f46eb34b1cf0c5f85c177d8f5d63",
+      "bytes": 1796
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-PUBLICATION-DESIGN.md",
+      "sha256": "5457feefc35ac1bd33c984c2c315daaa994b078cea131aab75a7c446347438c9",
+      "bytes": 5699
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-PUBLICATION-PARTIAL.md",
+      "sha256": "82d8850045547e1a7fff106f5e93ffd610e5949312ba16603751f6cdc4cfebae",
+      "bytes": 3945
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-PUBLICATION-RACES.md",
+      "sha256": "bc4ff3ab8af730201f162f217ca33b6ae2cdfc4ee2e51071c6395997275d7222",
+      "bytes": 2856
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-RECONCILIATION-PARTIAL.md",
+      "sha256": "5a7cfe9f82c87b9777a45750f021dd1beaa1ca64a7d8cdb99cd27222aafc1d64",
+      "bytes": 5080
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-STAFF-CAPTURE-DESIGN.md",
+      "sha256": "7560cdae4db5718751f1ed82f6361266f46120bc8f73e693827862bf8d4a6194",
+      "bytes": 6160
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-STAFF-CAPTURE-PARTIAL.md",
+      "sha256": "7b54366615da56c495d079925c4ed125128eeec59b0ce196e3c713f56108f52c",
+      "bytes": 5928
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-STAFF-OBSERVATION-DESIGN.md",
+      "sha256": "66ad12844f0c0a4259a3dd9fc5e58de613a1bfd225bc24d6db4712662ea56907",
+      "bytes": 3203
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-STAFF-OBSERVATION-PARTIAL.md",
+      "sha256": "a69cfece7873197fe49040fe2ba5970e16d50cc8775df83415a29ad29929cd26",
+      "bytes": 2872
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-WORKER-COMMAND-PARTIAL.md",
+      "sha256": "c04dc3a8a2fd1f8412830747b7f45cec9a678b6cc21f1f12f70ead3a44414083",
+      "bytes": 2939
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-WORKER-DESIGN.md",
+      "sha256": "7f353f28d42665817d7b186968b7e4fb841f489fa271654c7db551efa80bac26",
+      "bytes": 11986
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-WORKER-PARTIAL.md",
+      "sha256": "73f432c3110495e7b5ae21abdade453e2ba2f5b860b94e6441acafe7387c906a",
+      "bytes": 3198
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-WORKER-PROCESS-PARTIAL.md",
+      "sha256": "0f0a941dac5d013a854a7da7a78f8d0c18424fa009af733a120904115dd750f3",
+      "bytes": 4966
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-03-PLAN.md",
+      "sha256": "1133ec4cb958e9a4731afbad179d147894ab72debdfb25f999626c6e747e4baf",
+      "bytes": 1858
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-04-PLAN.md",
+      "sha256": "e801932796c806f2a4d62a8000ec67b91ef4b3ce4a8c99ab689375b142c802a0",
+      "bytes": 1792
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-ACCEPTANCE-PAYMENT-PARTIAL.md",
+      "sha256": "216537420a4c2a4e1d1b35bd2f0499353afecaf905149f4725bb4a416758704c",
+      "bytes": 5611
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-CHECK.md",
+      "sha256": "29117667ff0f27940235f485b6af3b1e114253aaef1001fb08a42f8a847ad48e",
+      "bytes": 1107
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-CHECKOUT-PARTIAL.md",
+      "sha256": "1dd30e0471d764a72a6156bdcff9ee4e62ed56d397c43be4390d3e55b6ae4c2b",
+      "bytes": 4327
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-CONTEXT.md",
+      "sha256": "4b796acceed8cd666399c2f90c80419c2f3bcbac3b777cbce305521adfcfe361",
+      "bytes": 1614
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-EVIDENCE-CONTRACT.md",
+      "sha256": "1c7cab0e3593ca17b0972f834e66eb9e0268e18f19d3756f5693bb89728a29cc",
+      "bytes": 11725
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-PROGRESS.md",
+      "sha256": "e4959b6a062ab67924edccc201a287fcc5f9d4ce44ed7501656b7d730723ca16",
+      "bytes": 1482
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-RESEARCH.md",
+      "sha256": "cb34be7a9bf0a5d4a79aa5b47e0fbb0909f95db92153c274a5bb7c207be7a3ca",
+      "bytes": 1874
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-REVIEW.md",
+      "sha256": "e3c8843899df81590c60fc5f2fc4e24547d2e34bca16522bb97547bb44469114",
+      "bytes": 4522
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-ROUTE-REVIEW.md",
+      "sha256": "300ad49d5fca5191605f221a6e3974d6a6929d092c70297a1d8f9c32ae829a05",
+      "bytes": 6050
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-UI-SPEC.md",
+      "sha256": "7980eff45282849260af5eb361a0d33adb3c1efc1f10fd93f86172749ae2f73b",
+      "bytes": 5891
+    },
+    {
+      "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-VERIFICATION.md",
+      "sha256": "fba595c1f7c56065c6a30df365fa71f9cc58af349bb2b46079c4841915378af2",
+      "bytes": 2049
+    },
+    {
+      "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-01-PLAN.md",
+      "sha256": "f6abede5995dfa0890f8620df00f578270cda564a9b9226a77bb8800725de2f7",
+      "bytes": 4181
+    },
+    {
+      "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-02-PLAN.md",
+      "sha256": "647cf83737f806b3c920b236f7de63b627ee4ffcac07a1ad31e7fbe6ad45654f",
+      "bytes": 3759
+    },
+    {
+      "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-03-PLAN.md",
+      "sha256": "a1baabdaf403b1ecda09091b00aa5417b9ef74a73f609ad17ca60b8cb4d948c9",
+      "bytes": 4609
+    },
+    {
+      "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-03-VERIFICATION-PARTIAL.md",
+      "sha256": "0e95794f7667ff0cccdac0bdfe50143cb3023d026d43e8f16bea7e8111c009a0",
+      "bytes": 4119
+    },
+    {
+      "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-03-WIP.md",
+      "sha256": "de0cc8e01336f2ec3dad48f65ad455df386b6194d5d103275226a2d0a8d04c90",
+      "bytes": 7570
+    },
+    {
+      "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-ACCEPTANCE-GAPS.md",
+      "sha256": "f5d9360f50026f87c48a2a98a802fd4550ff4bcdfb33fc114eff7d8054df0eb8",
+      "bytes": 5453
+    },
+    {
+      "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-ATTEMPTS-PARTIAL.md",
+      "sha256": "77984dc00068505276022b33303c5b6ca896612601e76f6d7f489fcc6952b558",
+      "bytes": 2460
+    },
+    {
+      "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-BANK-BOUNDARY-PARTIAL.md",
+      "sha256": "81a7879d7f5b3f7dd47c759bfad142f4f52f437dee7df1d5b207ccd7cb7ac7c6",
+      "bytes": 2384
+    },
+    {
+      "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-CONTROLS-PARTIAL.md",
+      "sha256": "f56cb630f22e69df7fac70607968523ee328439f0fd52e6cf151acfd2c78b538",
+      "bytes": 2584
+    },
+    {
+      "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-LIFECYCLE-PARTIAL.md",
+      "sha256": "e8a3c7ac75c3b819524b33c3af587a1718d68fa1a04b58848767d0170003e55b",
+      "bytes": 2593
+    },
+    {
+      "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-NOTIFICATION-INBOX-PARTIAL.md",
+      "sha256": "a93344b07ece9191828f56a0aa947c923e066ee1a4ff4fb2f061710a9892adba",
+      "bytes": 7276
+    },
+    {
+      "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-OBSERVATION-JOURNAL-PARTIAL.md",
+      "sha256": "79884b11f9ed92b83439075b1c6403a5c72ee1c16a45fb82a7c626ba70cc4c94",
+      "bytes": 8336
+    },
+    {
+      "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-OVERPAYMENT-REVIEW-PARTIAL.md",
+      "sha256": "ad72b0809a49f774bd53ffd6996e31ef7f9a177063f4c04bdba055f6fc2f3a47",
+      "bytes": 7368
+    },
+    {
+      "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-PROGRESS.md",
+      "sha256": "7f20bcff6b0a7b40958a646eb2428c638aed9c45a7e3ca9b52a7256b25ccb272",
+      "bytes": 417
+    },
+    {
+      "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-01-PLAN.md",
+      "sha256": "b514e59b5e353993f93d53d5f3a9dcaf5db4860290d0e03851ed03199fff13d6",
+      "bytes": 3702
+    },
+    {
+      "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-02-PLAN.md",
+      "sha256": "ed4ce8ea703aafe79156fe10874500775ecab966906224a55e0b613f95ee6c82",
+      "bytes": 3059
+    },
+    {
+      "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-03-PLAN.md",
+      "sha256": "51d6cfc5e463e93667befa5b0e5e8b099ac7ae2d856750d7efea955766854dbe",
+      "bytes": 3398
+    },
+    {
+      "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-04-PLAN.md",
+      "sha256": "cac61cdad5e3f1f932bbae7f148d60b4a01dd7ca952ca36baa0a2c5294f1c1bf",
+      "bytes": 1937
+    },
+    {
+      "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-05-PLAN.md",
+      "sha256": "f99f491078738714153b35c65808ee42ae9e0e3836a4ace8c486347007855404",
+      "bytes": 2212
+    },
+    {
+      "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-06-PLAN.md",
+      "sha256": "6e46dc0bb8027e86ed3f09245bc784e617aeebbb579c7e64ef819849f3579080",
+      "bytes": 1797
+    },
+    {
+      "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-ACCEPTANCE-GAPS.md",
+      "sha256": "6b8d46ef4a4df70e49fed5d757406bda9303fe0158985ac9825b638941409838",
+      "bytes": 4493
+    },
+    {
+      "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md",
+      "sha256": "4a78fde830ef2fb9e77ed504d502abc17bdc4c39a6ee9f1134a210b823099a96",
+      "bytes": 4894
+    },
+    {
+      "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-DELIVERY-HOLDS-PARTIAL.md",
+      "sha256": "455d9011a9a929de484ec03a369e391525552320d520f14b7681154cdb7be346",
+      "bytes": 5266
+    },
+    {
+      "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-DOCUMENT-NUMBERS-PARTIAL.md",
+      "sha256": "1bde7bb79b190eab0ca89d7e057ec3fac9afd7232f427b4745339a5059dbfe34",
+      "bytes": 3010
+    },
+    {
+      "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-LICENCE-CHANGES-PARTIAL.md",
+      "sha256": "6263be30434cd7436d6cd701ef2758044b418f27b7abb117d2d4083f17cca462",
+      "bytes": 6470
+    },
+    {
+      "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-LOCAL-IMPLEMENTATION-HANDOFF.md",
+      "sha256": "a91f9b5588e3cf01300c814679c9a181eff540f70964b2417ec7385f734aa1e0",
+      "bytes": 1005
+    },
+    {
+      "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-PRIVATE-PACKAGES-PARTIAL.md",
+      "sha256": "45d673b1357daf3a3ad27a6e884275256fb05c71a15b320f483b777806c8bb49",
+      "bytes": 5439
+    },
+    {
+      "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-STATEMENT-MAIL-PARTIAL.md",
+      "sha256": "93f608e29b5c45039c37522b4ebbeec8e8dc8cccf90818dc034a20d7b2551c9e",
+      "bytes": 7059
+    },
+    {
+      "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-SUPPORT-LEDGER-PARTIAL.md",
+      "sha256": "4edec09dace8f4a40267222f49eaa34376ac2cb1c0c1eefc669aae35df151d0b",
+      "bytes": 5316
+    },
+    {
+      "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-SUPPORT-REFUNDS-PARTIAL.md",
+      "sha256": "c961bf0b2a759eea75804fec6ea20b7d6c1c78eda7e1d4b5e9c3ac9b936189d9",
+      "bytes": 6569
+    },
+    {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-01-PLAN.md",
+      "sha256": "09d372473b8262dd1fb31a2c68723b877495802e10e42e364130f3ecaa26af10",
+      "bytes": 47616
+    },
+    {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-AUTHENTICATION-RECOVERY-PARTIAL.md",
+      "sha256": "92129060b06c2ca5a311d58c7c4ab23443f1e530e1a75fdaf04cf52bb1185d7e",
+      "bytes": 4497
+    },
+    {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-AUTHENTICATION-TEXT-PARTIAL.md",
+      "sha256": "247862b2d1f72d00faa74d620165a3d9745fc5a835ffa0c1590ba76f25b9d71e",
+      "bytes": 4571
+    },
+    {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-BROWSER-PARTIAL.md",
+      "sha256": "e1d69b5a24732abbd5416353f70a0cb288992cc65c68b105a1da06bd0481be5c",
+      "bytes": 4850
+    },
+    {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-BUSINESS-RECOVERY-PARTIAL.md",
+      "sha256": "be6067dc0d7eb295c7b4553c53bb64a2121e310967360f902f26da89078d0a28",
+      "bytes": 6050
+    },
+    {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-CART-RECOVERY-PARTIAL.md",
+      "sha256": "6e1b17596d1406fe4e44fc902b570d16d642499d98f057420ce60326820cf3d2",
+      "bytes": 6321
+    },
+    {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-CHECKOUT-RECOVERY-PARTIAL.md",
+      "sha256": "eac2e77b374aa13dae5a1d447718a758f988ad5160bbe56ca23f891b2f185daf",
+      "bytes": 7765
+    },
+    {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-COMMERCIAL-BOUNDARY-PARTIAL.md",
+      "sha256": "2b322ec397e4511805b1319bc4c3a1c80d50dcfa80974c64a958cbc145013176",
+      "bytes": 2010
+    },
+    {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-DRAFT-RECOVERY-PARTIAL.md",
+      "sha256": "d8b60869dc93aff6cdfa87acbef68d763ab09702040491033cd37f3a24da7c28",
+      "bytes": 6145
+    },
+    {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-EIGHT-CASES-PARTIAL.md",
+      "sha256": "83372814b1b7067cc757191f76013ef0a01ec7c8b3363b1c056b5a7c5ffa42cc",
+      "bytes": 2907
+    },
+    {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-LOCAL-PURCHASE-FLOW-PARTIAL.md",
+      "sha256": "150fce3de2542dadad931d8cc7b6287d4f328f248745cef9f9389eb7190798fa",
+      "bytes": 5231
+    },
+    {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PACKAGE-RECOVERY-PARTIAL.md",
+      "sha256": "84f44c73fb61ebfeb91437e103b01b917aa4ab6b2467f805de21ea73d18a187e",
+      "bytes": 5054
+    },
+    {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PRIVATE-FOLLOWUP-PARTIAL.md",
+      "sha256": "867a7730e8221494bd7534a49867e182060d92af9767ca5fc99561200ebce59c",
+      "bytes": 3112
+    },
+    {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md",
+      "sha256": "ada76a7129e728f70fa476a29bf33cec5aa0b570dd0569db78e1e58339a820ff",
+      "bytes": 69680
+    },
+    {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-RECOVERY-PARTIAL.md",
+      "sha256": "4cfd2f484f34c6b9ead47280951599b25459a8292482c0bc2dd5a75d2a18b465",
+      "bytes": 5129
+    },
+    {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-QUALIFICATION-REGISTER.md",
+      "sha256": "87cd75acfdb8139328985e4cb80cf3a268d135cebccbca164d43946b3c9babdb",
+      "bytes": 23523
+    },
+    {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-QUOTATION-PAGES-RECOVERY-PARTIAL.md",
+      "sha256": "f0e799ef5a7ec922d34ef979a345056c2a650c86930e5140027eaff047b71e7e",
+      "bytes": 4926
+    },
+    {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-QUOTATION-RECOVERY-PARTIAL.md",
+      "sha256": "cc76f629504fe1c68ab15a87db191dd1d967429c1ccea408d1d9ff4caea79f5d",
+      "bytes": 5694
+    },
+    {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-RECOVERY-ACCESS-PARTIAL.md",
+      "sha256": "9e78c1a3bf3ece6f9504aa894514a8f4296d7ab061668d031bf1c345db83f33f",
+      "bytes": 6265
+    },
+    {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-RECOVERY-COMMIT-PARTIAL.md",
+      "sha256": "0d22a13bb3d3a4bb118536bd5cf4c23200805e78b215dc3f0e3fb91d3adeab65",
+      "bytes": 4504
+    },
+    {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-RECOVERY-EFFECTS-PARTIAL.md",
+      "sha256": "3b4c4ffcfee70195f5ff04a2fdb64e0fa1a46790f3445f3cb1c3f92779435726",
+      "bytes": 6487
+    },
+    {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-REVOCATION-BROWSER-PARTIAL.md",
+      "sha256": "f83765086744376e5543eb55df00265bcbebc15c62d2ec6daa7f5ab8f4049802",
+      "bytes": 3015
+    },
+    {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-STAFF-BROWSER-PARTIAL.md",
+      "sha256": "6ba134a32cca449f48176cc5c339601721cdf7a5f5a658841e0461290af054b5",
+      "bytes": 3341
+    },
+    {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-STAFF-FINANCE-PARTIAL.md",
+      "sha256": "b1a74050a09183969df73e5ccf2214d50fd37a97d8b4a2c82720d1a324441fb9",
+      "bytes": 2891
+    },
+    {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-STAFF-RESTORE-PARTIAL.md",
+      "sha256": "51afaf8aaef7457ee7fae71c6aa9f9b9cd31f1558fcedd44ad170b227fbac3a7",
+      "bytes": 5596
+    },
+    {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-STARTUP-RECOVERY-PARTIAL.md",
+      "sha256": "cc3a1a4ac380e90f3f8aeac304e7b4bfbae36f3a46d21d5456119be46f650ac6",
+      "bytes": 6119
+    },
+    {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-SUPPORT-RECOVERY-PARTIAL.md",
+      "sha256": "877f764aa83bbff5f9ab75561aae36fac6d6e0e0f6e3aa7336a51855ba9c5253",
+      "bytes": 6732
+    },
+    {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-UNICODE-PLATFORM-PARTIAL.md",
+      "sha256": "c1adb130265185831c7422d678509069ab6b15b18568ba7c711b342ddc3e0567",
+      "bytes": 4265
+    },
+    {
+      "path": ".planning/quick/261021-8cb-replan-from-october-21-proposal-and-hand/261021-8cb-PLAN.md",
+      "sha256": "632a67e74cf3b33ab7a16f224edb5de73d0583b8d1ab74776a5fbec5e3bd0ae5",
+      "bytes": 1386
+    },
+    {
+      "path": ".planning/quick/261021-8cb-replan-from-october-21-proposal-and-hand/261021-8cb-SUMMARY.md",
+      "sha256": "c42dd9e6e551c685998a4ba700ca0a4cb8f514395b60dd53e3a6aa410bba9711",
+      "bytes": 1197
+    },
+    {
+      "path": ".planning/quick/261021-8cb-replan-from-october-21-proposal-and-hand/261021-8cb-VERIFICATION.json",
+      "sha256": "8b8148d6322fa2bf660ae46bd12b2009995c303dd91c4c752289148bac444bd4",
+      "bytes": 22753
+    },
+    {
+      "path": ".planning/quick/261021-h2i-reject-control-records-changed-during-de/261021-h2i-PLAN.md",
+      "sha256": "1d419bc2e1b1eb4df1b5cbfa6fea830684ae0462022ef7902893d26070968502",
+      "bytes": 504
+    },
+    {
+      "path": ".planning/quick/261021-h2i-reject-control-records-changed-during-de/261021-h2i-SUMMARY.md",
+      "sha256": "e13f4d225239eed23d51a271a5c75c2a4d96ce5ebb63f1e77787a8e9fc3d21c9",
+      "bytes": 1125
+    },
+    {
+      "path": ".planning/quick/261021-hk6-exercise-real-operator-scram-inspection-/261021-hk6-PLAN.md",
+      "sha256": "100da44aa76fc09aa6be8abfe27d5dddc3a0a5753d02fb312cbbe5871287c722",
+      "bytes": 610
+    },
+    {
+      "path": ".planning/quick/261021-hk6-exercise-real-operator-scram-inspection-/261021-hk6-SUMMARY.md",
+      "sha256": "855988e84f0feca947c7729f8a79cd5b2f73aacf787c9fa267dab4e401b7e207",
+      "bytes": 1950
+    },
+    {
+      "path": ".planning/quick/261021-i2j-stage-private-unverified-control-candida/261021-i2j-PLAN.md",
+      "sha256": "3fb16e22dfc8544c9092aaf859376e5a8d44e618902ca7bdc1194568222759aa",
+      "bytes": 735
+    },
+    {
+      "path": ".planning/quick/261021-i2j-stage-private-unverified-control-candida/261021-i2j-SUMMARY.md",
+      "sha256": "af29f95b7cdf9fcf30534a739bfdff5b830e03c43f989e6ca76b13b58f344470",
+      "bytes": 2368
+    },
+    {
+      "path": ".planning/quick/261021-j0i-inspect-retained-private-candidate-gener/261021-j0i-PLAN.md",
+      "sha256": "6b3b1c37abdf4cfa8c3bb1a4c3c0a1f9586bcb4c63626d247eb87dc46f0cb662",
+      "bytes": 621
+    },
+    {
+      "path": ".planning/quick/261021-j0i-inspect-retained-private-candidate-gener/261021-j0i-SUMMARY.md",
+      "sha256": "7447ff36d19ee8179282b6fa61ad6975b59bcbc19bda17d116bf937ac5310b8a",
+      "bytes": 2291
+    },
+    {
+      "path": ".planning/quick/261021-j6p-derive-traceable-schema-valid-npm-invent/261021-j6p-PLAN.md",
+      "sha256": "b01dd521162743640e26ddc9692caedcc1a3984c4ebebd779730de2a3afcdbec",
+      "bytes": 865
+    },
+    {
+      "path": ".planning/quick/261021-j6p-derive-traceable-schema-valid-npm-invent/261021-j6p-SUMMARY.md",
+      "sha256": "69a74c5967ddbd9ec143b64c57bfe24ea02d90b3bcc7078b6c0b6a59b37cfc26",
+      "bytes": 2903
+    },
+    {
+      "path": ".planning/quick/261022-6n6-trace-missing-incorporated-licence-texts/261022-6n6-PLAN.md",
+      "sha256": "1d68510002d747ebe9c737ad98efa60af3e532c5996edba9170282f4eaae536a",
+      "bytes": 1286
+    },
+    {
+      "path": ".planning/quick/261022-6n6-trace-missing-incorporated-licence-texts/261022-6n6-SUMMARY.md",
+      "sha256": "b8292431a759a0cd7bf80f8b7e143244372d3588fb1647969dfbe9e69ca81f05",
+      "bytes": 1406
+    },
+    {
+      "path": ".planning/quick/261022-6s2-retain-exact-embedded-licence-headers-fr/261022-6s2-PLAN.md",
+      "sha256": "455889a2925f8baaa364b3a4d6d7447ebdfe5ba08271f3e01e8373a7372547e7",
+      "bytes": 1274
+    },
+    {
+      "path": ".planning/quick/261022-6s2-retain-exact-embedded-licence-headers-fr/261022-6s2-SUMMARY.md",
+      "sha256": "d1791b979414d11ccdd4d9c1214e28ea40040c15fc56002af5d3ba9fa330cadb",
+      "bytes": 1155
+    },
+    {
+      "path": ".planning/quick/261022-6vp-inventory-actual-cached-operator-native-/261022-6vp-PLAN.md",
+      "sha256": "6279e2bdcdca1ce613f42a6aec8b8105de19e55deb1ea38d0b05d662d85fdab7",
+      "bytes": 1513
+    },
+    {
+      "path": ".planning/quick/261022-6vp-inventory-actual-cached-operator-native-/261022-6vp-SUMMARY.md",
+      "sha256": "9777df93e6edaf410c2552ae910de623aba0e909c6af681b8b9c46b8b862ec8b",
+      "bytes": 1264
+    },
+    {
+      "path": ".planning/quick/261022-700-prepare-root-owned-generator-discovery-f/261022-700-PLAN.md",
+      "sha256": "59298a987c245a2ba9f7d92f165c6e1cea25b807897780fd870b0a2088f2d17c",
+      "bytes": 1392
+    },
+    {
+      "path": ".planning/quick/261022-700-prepare-root-owned-generator-discovery-f/261022-700-SUMMARY.md",
+      "sha256": "fc85bf4708e583ed3baa601e0b55dfb0e7dadb90aa4ad12e1fbe70209379303b",
+      "bytes": 975
+    },
+    {
+      "path": ".planning/quick/261022-73q-integrate-private-fd-guarded-schema-comm/261022-73q-PLAN.md",
+      "sha256": "76d90c58f51b17c16d2b4955753af2f4af03b09157c17e9da126c451fe8af4e8",
+      "bytes": 1910
+    },
+    {
+      "path": ".planning/quick/261022-73q-integrate-private-fd-guarded-schema-comm/261022-73q-SUMMARY.md",
+      "sha256": "5519e1dbecc6306236d13cb8b2d4826aa0fff4ff8aa4345db53fba4f86fdfd36",
+      "bytes": 1640
+    },
+    {
+      "path": ".planning/quick/261022-799-retain-notices-from-cached-exact-python-/261022-799-PLAN.md",
+      "sha256": "1c9ad4d1019ba2a31625d5bac67e6b74e81d292ecb4286b0727fb7187d166d36",
+      "bytes": 1290
+    },
+    {
+      "path": ".planning/quick/261022-799-retain-notices-from-cached-exact-python-/261022-799-SUMMARY.md",
+      "sha256": "d7675524a58f6c4100da6cbd04b7fc55e149c3fc65ea553dba7e3f06f830d289",
+      "bytes": 1190
+    },
+    {
+      "path": ".planning/quick/261022-7l3-package-separate-pinned-candidate-schema/261022-7l3-PLAN.md",
+      "sha256": "28b598c107d35579b7b69556c48ce865c6f789f2666ab009dae179a58ac17ab9",
+      "bytes": 1316
+    },
+    {
+      "path": ".planning/quick/261022-7l3-package-separate-pinned-candidate-schema/261022-7l3-SUMMARY.md",
+      "sha256": "300c3af9578c15bd2e6fba9abf198b19b5e3b445b8494d1aeb145c7556c4d222",
+      "bytes": 2070
+    },
+    {
+      "path": ".planning/quick/261022-89m-qualify-guarded-schema-operations-with-a/261022-89m-PLAN.md",
+      "sha256": "823be27ed33387d8fc5e72ce6a224199da7d918b6feccd13760fb871886404ee",
+      "bytes": 1155
+    },
+    {
+      "path": ".planning/quick/261022-89m-qualify-guarded-schema-operations-with-a/261022-89m-SUMMARY.md",
+      "sha256": "db4b4d0836572cf64d1d4860cf16e494afd2b95ee76a0d9e5795f276963304db",
+      "bytes": 899
+    },
+    {
+      "path": ".planning/quick/261022-8ci-enforce-restricted-schema-login-attribut/261022-8ci-PLAN.md",
+      "sha256": "aad9410577e24c6823e40f7438b1aab1201cd57524ca9d6956f920427b5cdb0a",
+      "bytes": 1130
+    },
+    {
+      "path": ".planning/quick/261022-8ci-enforce-restricted-schema-login-attribut/261022-8ci-SUMMARY.md",
+      "sha256": "ba919221758106abcf45b4067c7a266a0162be04406fd59ea9015d1761ce6eb3",
+      "bytes": 1194
+    },
+    {
+      "path": ".planning/quick/261022-8fv-bind-operator-unix-socket-peers-to-appro/261022-8fv-PLAN.md",
+      "sha256": "14254e6860b2ce8b4f8e8495927bcd12f1e752b4184b3703b444fd04dec758f2",
+      "bytes": 1188
+    },
+    {
+      "path": ".planning/quick/261022-8fv-bind-operator-unix-socket-peers-to-appro/261022-8fv-SUMMARY.md",
+      "sha256": "0b1e92114632cbf24d27040f61958f2f5d34988cc2491607f35599011cf4769b",
+      "bytes": 1211
+    },
+    {
+      "path": ".planning/quick/261022-8m7-hold-durable-control-admission-during-op/261022-8m7-PLAN.md",
+      "sha256": "266f3afa78fe27560380680c19f9477c9f05a71b17e6cbb1962a443e25bdd5ba",
+      "bytes": 1052
+    },
+    {
+      "path": ".planning/quick/261022-8m7-hold-durable-control-admission-during-op/261022-8m7-SUMMARY.md",
+      "sha256": "ee3bee8d1224aa7c07674f0f7cc6697491cfdc564e026ffd8341bfe87bc4e351",
+      "bytes": 1164
+    },
+    {
+      "path": ".planning/quick/261022-8so-prepare-separately-authorized-persistent/261022-8so-PLAN.md",
+      "sha256": "b020f9520f78b5f3149cabd84d820092f0cff60c3437b6ab9e610997068210c1",
+      "bytes": 945
+    },
+    {
+      "path": ".planning/quick/261022-8so-prepare-separately-authorized-persistent/261022-8so-SUMMARY.md",
+      "sha256": "1b2f216bbb17259e57bbbb08358c060e421f12bc83836fcff4c839082a8471ce",
+      "bytes": 1218
+    },
+    {
+      "path": ".planning/quick/261022-9ba-reconcile-uncertain-admission-blocks-wit/261022-9ba-PLAN.md",
+      "sha256": "407cdd9a6314812c346d5bd6eb8f4427a8b3d8b9948cf44dec987e7ad3e40e06",
+      "bytes": 892
+    },
+    {
+      "path": ".planning/quick/261022-9ba-reconcile-uncertain-admission-blocks-wit/261022-9ba-SUMMARY.md",
+      "sha256": "ec3df8117697114cedcd4e8de642731b1f7a10adbe156010eab99271f27f0ea8",
+      "bytes": 1243
+    },
+    {
+      "path": ".planning/quick/261022-9fo-retain-exact-admitted-control-generation/261022-9fo-PLAN.md",
+      "sha256": "d2eb21aba6033c5c3dea1b5a92dd7840ce9b31f4c3005f60d8f363e0b28caa27",
+      "bytes": 1096
+    },
+    {
+      "path": ".planning/quick/261022-9fo-retain-exact-admitted-control-generation/261022-9fo-SUMMARY.md",
+      "sha256": "fed7107dce1eebda0d0218edc8288afb28cb401400f295c819001c9dfa07f0f7",
+      "bytes": 1687
+    },
+    {
+      "path": ".planning/quick/261022-9m7-inspect-retained-generation-custody-with/261022-9m7-PLAN.md",
+      "sha256": "79dd442cea7febefd45b2cd2c9118c511f840f4605b7038fa6a54b70fbdbcb1f",
+      "bytes": 845
+    },
+    {
+      "path": ".planning/quick/261022-9m7-inspect-retained-generation-custody-with/261022-9m7-SUMMARY.md",
+      "sha256": "1d8e23654b37d8c88802b71d72d049acda647e53f97c0b4cfb23585b1897c38b",
+      "bytes": 1053
+    },
+    {
+      "path": ".planning/quick/261022-9uf-publish-reviewed-control-generations-whi/261022-9uf-PLAN.md",
+      "sha256": "e18f78b5b2cec8e7f4dea2aae5f9af0094eb3d11747b4eaf638b86b3a4b5d463",
+      "bytes": 1210
+    },
+    {
+      "path": ".planning/quick/261022-9uf-publish-reviewed-control-generations-whi/261022-9uf-SUMMARY.md",
+      "sha256": "a1f6bd399c299ad1beb956f6e366ec61b47c00c44e5d137e1cc9b4bbaa4dbf14",
+      "bytes": 1562
+    },
+    {
+      "path": ".planning/quick/261022-a80-reconcile-blocked-physical-publication-o/261022-a80-PLAN.md",
+      "sha256": "9dcb954a4f3f488c3c52bbc1d69cb2f2cdc57bcb6bb598a60cbceb7f9fada25a",
+      "bytes": 1009
+    },
+    {
+      "path": ".planning/quick/261022-a80-reconcile-blocked-physical-publication-o/261022-a80-SUMMARY.md",
+      "sha256": "0465fbdb33eac62f7c393d964d5807d30a4dc494b1eacc5b7e1439bcf7004ece",
+      "bytes": 1348
+    },
+    {
+      "path": ".planning/quick/261022-afa-prepare-exact-reviewed-admission-reopeni/261022-afa-PLAN.md",
+      "sha256": "196cb51f4252321e2d10832bca79cfe9a2fd87ecf1303e73f2a5a0067d9d1f06",
+      "bytes": 1004
+    },
+    {
+      "path": ".planning/quick/261022-afa-prepare-exact-reviewed-admission-reopeni/261022-afa-SUMMARY.md",
+      "sha256": "514120d71f168d4e246911b21366898875275cfb57c13e44edf39dcfa31eb9c9",
+      "bytes": 1465
+    },
+    {
+      "path": ".planning/quick/261022-ajs-implement-separately-authorized-admissio/261022-ajs-PLAN.md",
+      "sha256": "5cdbc95f1d25e7c229533772e7b83bf3cd1072c920f320df3e5da9ef3d5a7ba0",
+      "bytes": 1337
+    },
+    {
+      "path": ".planning/quick/261022-ajs-implement-separately-authorized-admissio/261022-ajs-SUMMARY.md",
+      "sha256": "ff1a4b3a61809af1af7ccbfb3ffdc18addc37020d7166ba730ce70e8249fbe78",
+      "bytes": 2097
+    },
+    {
+      "path": ".planning/quick/261022-aql-integrate-admission-lifetime-into-a-clos/261022-aql-PLAN.md",
+      "sha256": "a9982a986bf03925494bddd63d6c73c1099838448b0bf312c0426e9dca532cfa",
+      "bytes": 1325
+    },
+    {
+      "path": ".planning/quick/261022-aql-integrate-admission-lifetime-into-a-clos/261022-aql-SUMMARY.md",
+      "sha256": "d781faab2af819ad426403c590e167ee2241d1193e914e79738a8208947231d8",
+      "bytes": 1963
+    },
+    {
+      "path": ".planning/quick/261022-b5y-audit-prefixed-licence-filenames-in-exac/261022-b5y-PLAN.md",
+      "sha256": "1d3c076f41319968d9c7d80b0afdaba28a53f0903c6f3f59316e3e1320da1ed3",
+      "bytes": 1301
+    },
+    {
+      "path": ".planning/quick/261022-b5y-audit-prefixed-licence-filenames-in-exac/261022-b5y-SUMMARY.md",
+      "sha256": "22261e770d2255584c8573e4b0b5c9951a3b23e193b835f1dd117fe339274bae",
+      "bytes": 1840
+    },
+    {
+      "path": ".planning/quick/261022-bb9-inspect-bounded-embedded-notice-candidat/261022-bb9-PLAN.md",
+      "sha256": "0a0fdcae1b0c88277e84792df2871f9b187e408a830b8baa131a3169ed7ce5a7",
+      "bytes": 1023
+    },
+    {
+      "path": ".planning/quick/261022-bb9-inspect-bounded-embedded-notice-candidat/261022-bb9-SUMMARY.md",
+      "sha256": "ad2fa2eb14e59e32983c1be6fd4d2916564d8945842ce8949e912a49705ebf62",
+      "bytes": 1668
+    },
+    {
+      "path": ".planning/quick/261022-bqg-reconcile-supplemental-licence-observati/261022-bqg-PLAN.md",
+      "sha256": "833f16faa8667470ef61eb398fe189d6d08ceea288c5cdd41533d78ff67c2b29",
+      "bytes": 1086
+    },
+    {
+      "path": ".planning/quick/261022-bqg-reconcile-supplemental-licence-observati/261022-bqg-SUMMARY.md",
+      "sha256": "b05af8ad76efe872bc9d5210ad26f4315357634fc012115b8797820abf36ce58",
+      "bytes": 1473
+    },
+    {
+      "path": ".planning/quick/261022-bw3-build-and-inspect-the-prepared-postgresq/261022-bw3-PLAN.md",
+      "sha256": "a59532339adaaf2fd2bfa7fdf576c925b7558b8e7df5b728387270b6098ec0b0",
+      "bytes": 1175
+    },
+    {
+      "path": ".planning/quick/261022-bw3-build-and-inspect-the-prepared-postgresq/261022-bw3-SUMMARY.md",
+      "sha256": "dcb09f27050897142108fafe1d027a8953a8f8669e1dfbf31b7afbf1f4aa13c3",
+      "bytes": 2182
+    },
+    {
+      "path": ".planning/quick/261022-cci-reconcile-stale-planning-summaries-and-m/261022-cci-PLAN.md",
+      "sha256": "86aaed1e6bf5d064b57efdee8d2c254bc9934bc2ea304b64559753bba034b124",
+      "bytes": 1454
+    },
+    {
+      "path": ".planning/quick/261022-cci-reconcile-stale-planning-summaries-and-m/261022-cci-SUMMARY.md",
+      "sha256": "bcbe5ecdbca8c89c72d47f3e15a6d6ef9c6ce853a4083edd597c6fa1ddeee025",
+      "bytes": 2300
+    },
+    {
+      "path": ".planning/quick/261022-cor-inventory-actual-postgresql-image-inner-/261022-cor-PLAN.md",
+      "sha256": "06557c0ed3f41b0b82adb677206b4aae101140420159a0d5572560fdaf5e89d1",
+      "bytes": 1272
+    },
+    {
+      "path": ".planning/quick/261022-cor-inventory-actual-postgresql-image-inner-/261022-cor-SUMMARY.md",
+      "sha256": "95e00a986abbd3b65c1c323ecae6fa83bfc266686146f97a85ba0b5fb001b985",
+      "bytes": 2174
+    },
+    {
+      "path": ".planning/quick/261022-dj5-amend-local-execution-sequence-and-deliv/261022-dj5-PLAN.md",
+      "sha256": "4eb6b064367926f62cbd53947ab8be963646a0c048fad800396a3b8b5c7beda6",
+      "bytes": 792
+    },
+    {
+      "path": ".planning/quick/261022-dj5-amend-local-execution-sequence-and-deliv/261022-dj5-SUMMARY.md",
+      "sha256": "4a965c3bd3c08d59d63a25b8ebc913510a8a6571b268438e37468fc5852efde7",
+      "bytes": 5502
+    },
+    {
+      "path": ".planning/quick/261022-hrl-verify-local-customer-access-through-cap/261022-hrl-PLAN.md",
+      "sha256": "b5a7c2ac728f1b0fe698d9675ee2334a2b482e2324f8c8da6f6e2ed3a43b2fd8",
+      "bytes": 744
+    },
+    {
+      "path": ".planning/quick/261022-hrl-verify-local-customer-access-through-cap/261022-hrl-SUMMARY.md",
+      "sha256": "185ad71e557b7f46cea22b25790f0211f42f5743dd41fa1c8b576050a905aa34",
+      "bytes": 5852
+    },
+    {
+      "path": ".planning/quick/261022-iqc-implement-verified-owner-multi-line-draf/261022-iqc-PLAN.md",
+      "sha256": "15dda3661146db5915f7efcb5e8b43a952f732580cdee11e9090d83c343163c8",
+      "bytes": 724
+    },
+    {
+      "path": ".planning/quick/261022-iqc-implement-verified-owner-multi-line-draf/261022-iqc-SUMMARY.md",
+      "sha256": "a048d3430718ce83bef0b97fde0a23c9b08ed01dfbc9143354ef644cfda9a6bc",
+      "bytes": 4120
+    },
+    {
+      "path": ".planning/quick/261023-6w3-implement-protected-quotation-requests-f/261023-6w3-PLAN.md",
+      "sha256": "7a65b7f82648dc0a1f92faf167b4c96b9b797796ad369f3d807d0805761b4d20",
+      "bytes": 1478
+    },
+    {
+      "path": ".planning/quick/261023-6w3-implement-protected-quotation-requests-f/261023-6w3-SUMMARY.md",
+      "sha256": "55ee3f2b1056ddec89039ffac2b683e1d357baa7a920de8e615e0f591a3168df",
+      "bytes": 4147
+    },
+    {
+      "path": ".planning/quick/261023-72i-implement-local-staff-mfa-and-quotation-/261023-72i-PLAN.md",
+      "sha256": "d233122fd662a4141e067e09b92d8d475f28e0e5e62a18a2a8080a88279eaa48",
+      "bytes": 2317
+    },
+    {
+      "path": ".planning/quick/261023-72i-implement-local-staff-mfa-and-quotation-/261023-72i-SUMMARY.md",
+      "sha256": "f935e55c98708d5d38a96cb84e480118cc361342520c1fff1488247091138f00",
+      "bytes": 6925
+    },
+    {
+      "path": ".planning/quick/261023-7l0-record-assigned-staff-quotation-review-d/261023-7l0-PLAN.md",
+      "sha256": "804283abb812162fdcd23e668a4fe0c82d8633bdf58f5ccff729f331a235b99d",
+      "bytes": 1805
+    },
+    {
+      "path": ".planning/quick/261023-7l0-record-assigned-staff-quotation-review-d/261023-7l0-SUMMARY.md",
+      "sha256": "0a7d351fd2e67f4ff0eef2c5b1c111bfe62dc2e1ad60aff2026d0ec266603a65",
+      "bytes": 4280
+    },
+    {
+      "path": ".planning/quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-PLAN.md",
+      "sha256": "ced6f427e01584d0d06d15ae9059f76db5b381e209fafb436c5e6e0e31ea9675",
+      "bytes": 1451
+    },
+    {
+      "path": ".planning/quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-SUMMARY.md",
+      "sha256": "53470ec7d0560a996208289957c676ba9f8af9a99194b606b20f424c84e2b5ba",
+      "bytes": 4866
+    },
+    {
+      "path": ".planning/quick/261023-832-capture-protected-owner-business-detail-/261023-832-PLAN.md",
+      "sha256": "4089ca3c463beee634f926431ffc0da1289dc3ee2c366e9669c1b535c860d0bc",
+      "bytes": 1640
+    },
+    {
+      "path": ".planning/quick/261023-832-capture-protected-owner-business-detail-/261023-832-SUMMARY.md",
+      "sha256": "8ee9b2c2f9d3f420682dcd2efc3bac65cc8d8a5d4c8fae098c0a0e9d552d0c27",
+      "bytes": 5735
+    },
+    {
+      "path": ".planning/quick/261023-8in-bind-immutable-business-draft-revisions-/261023-8in-PLAN.md",
+      "sha256": "67dabc88b71deed558e93016290d207627347f2c53fa9e90b493bff43e957c2f",
+      "bytes": 1585
+    },
+    {
+      "path": ".planning/quick/261023-8in-bind-immutable-business-draft-revisions-/261023-8in-SUMMARY.md",
+      "sha256": "86554838d33934a783b3bab5d28f0eb2f0b3b7133ea50c689615e691df1d2571",
+      "bytes": 3012
+    },
+    {
+      "path": ".planning/quick/261023-91u-preview-source-faithful-declarations-and/261023-91u-PLAN.md",
+      "sha256": "5be44a3b386ca318a9ef057a4e3f619ba1cb11a0f754468e3a73ed0cc1e98124",
+      "bytes": 1239
+    },
+    {
+      "path": ".planning/quick/261023-91u-preview-source-faithful-declarations-and/261023-91u-SUMMARY.md",
+      "sha256": "daa8bb1462e445dde554e6f98ece9c3c5c6fe845d8068516db74ba72c07943e1",
+      "bytes": 3347
+    },
+    {
+      "path": ".planning/quick/261023-99a-show-an-owner-safe-bounded-quotation-tim/261023-99a-PLAN.md",
+      "sha256": "b19790db3db7ad8d25280adb27c62abde5720bae4671d154bdc06cb50fb0de4b",
+      "bytes": 1447
+    },
+    {
+      "path": ".planning/quick/261023-99a-show-an-owner-safe-bounded-quotation-tim/261023-99a-SUMMARY.md",
+      "sha256": "f1aa3aa996174ac3a4873d24f997cb9906172636ab0722fffc684e21ecd7797b",
+      "bytes": 3379
+    },
+    {
+      "path": ".planning/quick/261023-9eo-show-assigned-staff-exact-scope-offer-pr/261023-9eo-PLAN.md",
+      "sha256": "8dc2da0c4b8406ec36bc3e4a43a026598652afb179b84cdbe967e2a96028b725",
+      "bytes": 1609
+    },
+    {
+      "path": ".planning/quick/261023-9eo-show-assigned-staff-exact-scope-offer-pr/261023-9eo-SUMMARY.md",
+      "sha256": "38fbd52e14cfdd36bd43e809636d1e5a05e1c35b805aa745564e5ef6887f567c",
+      "bytes": 3689
+    },
+    {
+      "path": ".planning/quick/261023-9r5-retain-versioned-internal-staff-preparat/261023-9r5-PLAN.md",
+      "sha256": "65f16ca89335d2a9cef9a28a7fe828962096a6e873f5856acf7bde19e9cc5477",
+      "bytes": 1682
+    },
+    {
+      "path": ".planning/quick/261023-9r5-retain-versioned-internal-staff-preparat/261023-9r5-SUMMARY.md",
+      "sha256": "0d8b9ea7d841ce084a2c94c933c2d03b754e256efb9945115d194dac978021e0",
+      "bytes": 4441
+    },
+    {
+      "path": ".planning/quick/261023-a30-compare-retained-preparation-snapshots-w/261023-a30-PLAN.md",
+      "sha256": "c9ef8340b05665a1fd584476a8d6f863085eb5868ea459a5b081d81d1fec9c5c",
+      "bytes": 1749
+    },
+    {
+      "path": ".planning/quick/261023-a30-compare-retained-preparation-snapshots-w/261023-a30-SUMMARY.md",
+      "sha256": "d8f6e675a22bd4adc196a8ebb9ad2629ca555cf982db2d58548b3a02aaa93c61",
+      "bytes": 3792
+    },
+    {
+      "path": ".planning/quick/261023-atf-exercise-synthetic-customer-to-staff-quo/261023-atf-PLAN.md",
+      "sha256": "734a34b93cadb1bfd078879b7452e7b0dda5455ff814433553a09a00dbc79252",
+      "bytes": 1543
+    },
+    {
+      "path": ".planning/quick/261023-atf-exercise-synthetic-customer-to-staff-quo/261023-atf-SUMMARY.md",
+      "sha256": "6fe57a7e980308874dfed11dc5a11c75cef9bc2fc6af9e02a6258d4b8989f5a2",
+      "bytes": 3553
+    },
+    {
+      "path": ".planning/quick/261023-b25-provide-no-javascript-django-customer-ac/261023-b25-PLAN.md",
+      "sha256": "b607b8d01c8e0229e5846fc7c6e57c3a857af41a263311042bae554d91e69886",
+      "bytes": 870
+    },
+    {
+      "path": ".planning/quick/261023-b25-provide-no-javascript-django-customer-ac/261023-b25-SUMMARY.md",
+      "sha256": "613d0dd2859d8b4b9abba08bb22b6ae514004fc8e61345fa2c0c4d72c14b310d",
+      "bytes": 1591
+    },
+    {
+      "path": ".planning/quick/261023-bam-add-owner-only-no-javascript-quotation-h/261023-bam-PLAN.md",
+      "sha256": "37f16f452fb61852c667b107d2ebdb136c7dd11aa850c44f50f37b141234bd6d",
+      "bytes": 680
+    },
+    {
+      "path": ".planning/quick/261023-bam-add-owner-only-no-javascript-quotation-h/261023-bam-SUMMARY.md",
+      "sha256": "41fc3af0c742fa96c2b55c3f2d14b6d79840b92dbf2dc71fa18686febd98b897",
+      "bytes": 1555
+    },
+    {
+      "path": ".planning/quick/261023-cll-implement-no-javascript-multi-line-cart-/261023-cll-PLAN.md",
+      "sha256": "e14b31f099001a27749deb3f5cc79700e082b91a89061d6c37332456f02062a1",
+      "bytes": 836
+    },
+    {
+      "path": ".planning/quick/261023-cll-implement-no-javascript-multi-line-cart-/261023-cll-SUMMARY.md",
+      "sha256": "6871bc5ee8489d928e27a249ab1827a602fd3e8dfa33e8123190ad3e865790b3",
+      "bytes": 1933
+    },
+    {
+      "path": ".planning/quick/261023-crh-add-deliberate-django-quotation-request-/261023-crh-PLAN.md",
+      "sha256": "74ce5272cfb84d613469e1e7929d6f26a8951471ceb2339aa6e21d071b13df55",
+      "bytes": 827
+    },
+    {
+      "path": ".planning/quick/261023-crh-add-deliberate-django-quotation-request-/261023-crh-SUMMARY.md",
+      "sha256": "034eb39bbb8dd07861996a94249c169244fc6b22db1961d2dde95ea66806e279",
+      "bytes": 2002
+    },
+    {
+      "path": ".planning/quick/261023-cyg-fix-customer-form-audit-f-01-by-rechecki/261023-cyg-PLAN.md",
+      "sha256": "db509200f7eedb73db3c3bf8c519c66ac32f788d0583010c6b34d8c85a7b0614",
+      "bytes": 1014
+    },
+    {
+      "path": ".planning/quick/261023-cyg-fix-customer-form-audit-f-01-by-rechecki/261023-cyg-SUMMARY.md",
+      "sha256": "198035099b3905de5fcdc8ee05173b00f3966791be8a6e9f14049cc93ff7be48",
+      "bytes": 1768
+    },
+    {
+      "path": ".planning/quick/261023-d1r-show-exact-committed-revision-and-curren/261023-d1r-PLAN.md",
+      "sha256": "fe77c1a1e5036247722f3e9290f7d534176db04b05eb441292f4696a5a0a4287",
+      "bytes": 638
+    },
+    {
+      "path": ".planning/quick/261023-d1r-show-exact-committed-revision-and-curren/261023-d1r-SUMMARY.md",
+      "sha256": "c90e9d41a74d3f29c41385d6639cf5c19b587cc7d50135b5f7c6cbee14c6150c",
+      "bytes": 1533
+    },
+    {
+      "path": ".planning/quick/261023-hn4-verify-capture-status-against-concurrent/261023-hn4-PLAN.md",
+      "sha256": "fc3bcd635445c1096bfad4681849829071f06bab3642d7bc353b26cc60ac997a",
+      "bytes": 1511
+    },
+    {
+      "path": ".planning/quick/261023-hn4-verify-capture-status-against-concurrent/261023-hn4-SUMMARY.md",
+      "sha256": "12da6513f65259d7703cd180acc01f7dc1a2d911bc1a103d8e2aac680cd88e1b",
+      "bytes": 2998
+    },
+    {
+      "path": ".planning/quick/261023-hr2-resolve-protected-offer-domain-contract-/261023-hr2-PLAN.md",
+      "sha256": "f7cdd4e4a5ba39b5e3b5bfbfdcccd8590e4c9dc5c6802fa92c000dc22d06e000",
+      "bytes": 1137
+    },
+    {
+      "path": ".planning/quick/261023-hr2-resolve-protected-offer-domain-contract-/261023-hr2-SUMMARY.md",
+      "sha256": "d2a165656217cb2b9ca835adb50ba14c82bc0c36ba128ca1cc16870127ebb257",
+      "bytes": 3558
+    },
+    {
+      "path": ".planning/quick/261023-hvy-critique-protected-offer-contract-before/261023-hvy-PLAN.md",
+      "sha256": "fa475c05e8ff83bd2ec28cc5bdad4c20638d0aef5a18641287cfdfc0ab643228",
+      "bytes": 852
+    },
+    {
+      "path": ".planning/quick/261023-hvy-critique-protected-offer-contract-before/261023-hvy-SUMMARY.md",
+      "sha256": "73da96fd2888311b1587d5c440c9fe215d0c5523a2ef42f43c629b3e166984e6",
+      "bytes": 2993
+    },
+    {
+      "path": ".planning/quick/261023-hzz-audit-existing-preparation-review-and-do/261023-hzz-PLAN.md",
+      "sha256": "1608f3f3458e1cb9830d4fefee5856b3b5230ed104010ce78765ed653dc186ed",
+      "bytes": 1212
+    },
+    {
+      "path": ".planning/quick/261023-hzz-audit-existing-preparation-review-and-do/261023-hzz-SUMMARY.md",
+      "sha256": "d50f1717d58cfc62e5ca546f626528606e6b8faca4691b98a42836cb9ea7efdc",
+      "bytes": 1325
+    },
+    {
+      "path": ".planning/quick/261023-i7s-add-authorized-staff-queue-and-retained-/261023-i7s-PLAN.md",
+      "sha256": "f736cabf96c5d9e00da53c985dc6fb1989d2e67d53759955f8f2d09b7250f0b7",
+      "bytes": 1625
+    },
+    {
+      "path": ".planning/quick/261023-i7s-add-authorized-staff-queue-and-retained-/261023-i7s-SUMMARY.md",
+      "sha256": "e2e8fb13ff5de55f76b0c109f40fc662d36e6a8eb9ebfdbd8f4da90441dc3efc",
+      "bytes": 3325
+    },
+    {
+      "path": ".planning/quick/261023-iet-expose-authorized-paginated-internal-rev/261023-iet-PLAN.md",
+      "sha256": "3c850f3cdb6101ab7f2993ffbc8f18eb6408febc93906423cebff1600af62a82",
+      "bytes": 1335
+    },
+    {
+      "path": ".planning/quick/261023-iet-expose-authorized-paginated-internal-rev/261023-iet-SUMMARY.md",
+      "sha256": "c4409e4df617ef4e7856e7f5b079199a02a30ab16a8e5f9a4595a10092a906ef",
+      "bytes": 3081
+    },
+    {
+      "path": ".planning/quick/261023-ina-implement-typed-durable-synthetic-bank-o/261023-ina-PLAN.md",
+      "sha256": "d2455a09e340d74e860113174eb1c3945908dbf5a0c4b2044f8ea2ee053e7f1a",
+      "bytes": 1900
+    },
+    {
+      "path": ".planning/quick/261023-ina-implement-typed-durable-synthetic-bank-o/261023-ina-SUMMARY.md",
+      "sha256": "a1692018ede96db8fc55abcb9c833b1e371f6a5ac132dcae5352e84cb3c3d99f",
+      "bytes": 3962
+    },
+    {
+      "path": ".planning/quick/261023-j1r-implement-synthetic-payment-attempt-disp/261023-j1r-PLAN.md",
+      "sha256": "602168fc77e426af370afcb4c29789f25e7d1b5ae4bd531c5856d969bfce1f87",
+      "bytes": 921
+    },
+    {
+      "path": ".planning/quick/261023-j1r-implement-synthetic-payment-attempt-disp/261023-j1r-SUMMARY.md",
+      "sha256": "7884a707e9ccf7133ac0de7023ac9c7e9f4745eb5dbb42f3b5ed4f865fb4b519",
+      "bytes": 2447
+    },
+    {
+      "path": ".planning/quick/261026-72e-implement-synthetic-cancellation-expiry-/261026-72e-PLAN.md",
+      "sha256": "6c5384b18466640b63fe98a47617539b2ae41314fb853b679e14c32ef5ee2c0c",
+      "bytes": 1188
+    },
+    {
+      "path": ".planning/quick/261026-72e-implement-synthetic-cancellation-expiry-/261026-72e-SUMMARY.md",
+      "sha256": "f380d878c8fa6cb918e35bf6ec38272ea0d419a8424f465838d05a4c3a14bb57",
+      "bytes": 640
+    },
+    {
+      "path": ".planning/quick/261026-7av-expose-read-only-local-synthetic-payment/261026-7av-PLAN.md",
+      "sha256": "55a47a5e1bf044cf9664091d4f8570c62d570cec684e3a8d3496ed2db1a44277",
+      "bytes": 1421
+    },
+    {
+      "path": ".planning/quick/261026-7av-expose-read-only-local-synthetic-payment/261026-7av-SUMMARY.md",
+      "sha256": "7001697a6ed465f4f77975686531b14f33d62d2d3a6cc9687d6524f99a62cf52",
+      "bytes": 670
+    },
+    {
+      "path": ".planning/quick/261026-7e6-retain-synthetic-dispatch-holds-with-exa/261026-7e6-PLAN.md",
+      "sha256": "256e465e6ed898e539a82007c7fb4f78f297419cef0ea138235c5710c405747f",
+      "bytes": 1122
+    },
+    {
+      "path": ".planning/quick/261026-7e6-retain-synthetic-dispatch-holds-with-exa/261026-7e6-SUMMARY.md",
+      "sha256": "0111874c3326f204f94d81cc7a48c96d81e2c99312e9c31f4899ebef46d375fd",
+      "bytes": 909
+    },
+    {
+      "path": ".planning/quick/261026-8x7-apply-final-purchase-flow-amendment-reco/261026-8x7-PLAN.md",
+      "sha256": "57b86b9bbb72698a55a67d0a485150915bd38f68f62fb427882c84839823b3d4",
+      "bytes": 1856
+    },
+    {
+      "path": ".planning/quick/261026-8x7-apply-final-purchase-flow-amendment-reco/261026-8x7-SUMMARY.md",
+      "sha256": "db5a61d390a623501320b511042b693ad283b45f76a9fee5a2107d9b5f327fbd",
+      "bytes": 1790
+    },
+    {
+      "path": ".planning/quick/261026-ehs-reconcile-manager-facing-planning-status/261026-ehs-PLAN.md",
+      "sha256": "8d074b23530846d46c3fe062f253a8e7ef30666f7b1f6446016264a330e259cd",
+      "bytes": 708
+    },
+    {
+      "path": ".planning/quick/261026-ehs-reconcile-manager-facing-planning-status/261026-ehs-SUMMARY.md",
+      "sha256": "187b93165ba9a1912d2f703e9775249f4016b2767acc1a2a9417539b3804baad",
+      "bytes": 1556
+    },
+    {
+      "path": ".planning/quick/261028-8h5-implement-local-recovery-access-invalida/261028-8h5-PLAN.md",
+      "sha256": "0c14d0462edc877e21ca1c173f62245f423f70cc6f275d7c82614890b3d5dded",
+      "bytes": 3358
+    },
+    {
+      "path": ".planning/quick/261028-8h5-implement-local-recovery-access-invalida/261028-8h5-SUMMARY.md",
+      "sha256": "254adcd9966112f5242e84ab2620e9db83829b20c8ea7b66dbefa3a28591e84d",
+      "bytes": 2802
+    },
+    {
+      "path": ".planning/quick/261028-a3m-implement-local-recovery-effect-admissio/261028-a3m-PLAN.md",
+      "sha256": "0988bd3e028cc3d9576d8630b63794a083d2ad199a871ab822beefbc812090d4",
+      "bytes": 5295
+    },
+    {
+      "path": ".planning/quick/261028-a3m-implement-local-recovery-effect-admissio/261028-a3m-SUMMARY.md",
+      "sha256": "791767df91911be2652e6786b2a6f88f137c2dfb36f41a4455a542437b096c53",
+      "bytes": 2574
+    },
+    {
+      "path": ".planning/quick/261028-aq1-fence-authentication-scopes-across-local/261028-aq1-PLAN.md",
+      "sha256": "6dcfb0571afff617bb8ca50daaa7db7a2a633c74df7e2fcfd5c586d02a55ddc5",
+      "bytes": 4427
+    },
+    {
+      "path": ".planning/quick/261028-aq1-fence-authentication-scopes-across-local/261028-aq1-SUMMARY.md",
+      "sha256": "58c46698ec263052611fbced6bebf0fbb3fae2413d5254c36637cfd05ff9a6f7",
+      "bytes": 1799
+    },
+    {
+      "path": ".planning/quick/261028-b7f-handle-explicit-recovery-holds-in-the-pu/261028-b7f-PLAN.md",
+      "sha256": "94ae5b9335902ae84a344f0b286087dc497df3392e1732d796c157b77802082d",
+      "bytes": 4158
+    },
+    {
+      "path": ".planning/quick/261028-b7f-handle-explicit-recovery-holds-in-the-pu/261028-b7f-SUMMARY.md",
+      "sha256": "762264f0cedcccb17220e60737ad7533f27e51ab26fe8f04c4702517a06a655c",
+      "bytes": 1603
+    },
+    {
+      "path": ".planning/quick/261028-cgz-fence-local-restore-startup-with-an-exte/261028-cgz-PLAN.md",
+      "sha256": "fed37c090ef9f399792bacab5a98b0f8c19cf9db3e5296cf28c91df36930abd6",
+      "bytes": 6411
+    },
+    {
+      "path": ".planning/quick/261028-cgz-fence-local-restore-startup-with-an-exte/261028-cgz-SUMMARY.md",
+      "sha256": "692d6823a9004c858a975f62e0dc8d3759f7c3ec2dad7059b59d56b8b3568a84",
+      "bytes": 1656
+    },
+    {
+      "path": ".planning/quick/261028-cy5-require-explicit-staff-reset-and-reassig/261028-cy5-PLAN.md",
+      "sha256": "f4f6cc237680646bc8d0547d456369dd18679c8c5902d53db5e503f37ba73042",
+      "bytes": 5146
+    },
+    {
+      "path": ".planning/quick/261028-cy5-require-explicit-staff-reset-and-reassig/261028-cy5-SUMMARY.md",
+      "sha256": "3fd8c0b1dc7e455b0ea491dd0b9f3c6d19039dae8b08586bea94f482a816f45d",
+      "bytes": 1681
+    },
+    {
+      "path": ".planning/quick/261028-dq8-require-committed-local-recovery-transit/261028-dq8-PLAN.md",
+      "sha256": "052a144aa3b54c315888969a3dc7ac8405d3794930253310a20cc462051f68a6",
+      "bytes": 4647
+    },
+    {
+      "path": ".planning/quick/261028-dq8-require-committed-local-recovery-transit/261028-dq8-SUMMARY.md",
+      "sha256": "479ac240702fe04f283ab9abbe807835e326bb040062d0230f6a06e82bc8fcd2",
+      "bytes": 1849
+    },
+    {
+      "path": ".planning/quick/261028-elk-fence-private-package-access-across-loca/261028-elk-PLAN.md",
+      "sha256": "025607293e660e5ecded86b0d54e88f4e81f14f000f505f2cf85a30f03eb015f",
+      "bytes": 4900
+    },
+    {
+      "path": ".planning/quick/261028-elk-fence-private-package-access-across-loca/261028-elk-SUMMARY.md",
+      "sha256": "89b4a6275f8eded3deac65f8056c54ab8bdba0a24f36b345682e6c867398a17a",
+      "bytes": 1661
+    },
+    {
+      "path": ".planning/quick/261028-f72-fence-customer-support-transactions-acro/261028-f72-PLAN.md",
+      "sha256": "cfa6e0edb1cd89ef3d391e1b4dd7c7602df3a0e36a31757cfa2b7320d9ea2f6f",
+      "bytes": 4155
+    },
+    {
+      "path": ".planning/quick/261028-f72-fence-customer-support-transactions-acro/261028-f72-SUMMARY.md",
+      "sha256": "2865098b78b83d0bddefb939d97d5ff57b83bf4aa099af518ee12e46231fa895",
+      "bytes": 2233
+    },
+    {
+      "path": ".planning/quick/261028-fy8-fence-customer-checkout-and-fulfilment-a/261028-fy8-PLAN.md",
+      "sha256": "8bc42bf5c5cc0f7d57e4f06418ced7b027411285696dbf2108c66c71edf19ccf",
+      "bytes": 4636
+    },
+    {
+      "path": ".planning/quick/261028-fy8-fence-customer-checkout-and-fulfilment-a/261028-fy8-SUMMARY.md",
+      "sha256": "19b412f4bb24c2503c0d2ce7416f7e23d0ab69b483f3f6400749325df2a17a34",
+      "bytes": 2358
+    },
+    {
+      "path": ".planning/quick/261028-hb4-reproduce-and-fence-customer-cart-reques/261028-hb4-PLAN.md",
+      "sha256": "068f3ec37bcf3674ff9e1e7dcd5d5b745797f9821b60c34c6aba1e498112e28f",
+      "bytes": 4638
+    },
+    {
+      "path": ".planning/quick/261028-hb4-reproduce-and-fence-customer-cart-reques/261028-hb4-SUMMARY.md",
+      "sha256": "89f4776adae84c156faef5c53d4b388f09f84f0cc14dc29021d6f586c6179cb7",
+      "bytes": 2170
+    },
+    {
+      "path": ".planning/quick/261028-htg-reproduce-and-fence-configuration-draft-/261028-htg-PLAN.md",
+      "sha256": "7a7f40ec994dfac5b8820e26f74abdd4ceb72c3b1510327eb3bfde32ad25a59a",
+      "bytes": 3455
+    },
+    {
+      "path": ".planning/quick/261028-htg-reproduce-and-fence-configuration-draft-/261028-htg-SUMMARY.md",
+      "sha256": "1d0e52da2268e8a07ed3079a860924c353efb49a8762fe994b1143f4161616f0",
+      "bytes": 2278
+    },
+    {
+      "path": ".planning/quick/261028-il4-reproduce-and-fence-quotation-capture-an/261028-il4-PLAN.md",
+      "sha256": "eb07b17356515bf4896f14d3b9bb0aef7f988d5b04fea48831e31087f6d95cb9",
+      "bytes": 4865
+    },
+    {
+      "path": ".planning/quick/261028-il4-reproduce-and-fence-quotation-capture-an/261028-il4-SUMMARY.md",
+      "sha256": "6df1b4276d088838e2d753b2d6716dbc240f641301bdcfd612b45f42ebd537fe",
+      "bytes": 2208
+    },
+    {
+      "path": ".planning/quick/261028-iw9-reproduce-and-fence-native-quotation-his/261028-iw9-PLAN.md",
+      "sha256": "076d8f0082e7723d90f36233aee6a4c7837f677666f002123704eb1b1baa5e99",
+      "bytes": 4300
+    },
+    {
+      "path": ".planning/quick/261028-iw9-reproduce-and-fence-native-quotation-his/261028-iw9-SUMMARY.md",
+      "sha256": "9b86e22962f726863b3a09d1c3416614314bd0e1003e6f899f5697b6e3a46106",
+      "bytes": 2184
+    },
+    {
+      "path": ".planning/quick/261029-7t5-reproduce-and-fence-business-draft-and-q/261029-7t5-PLAN.md",
+      "sha256": "7227b1b06446ed82beb95b667166a9d6ee91a1f5a48f9162b4a4beeecb935095",
+      "bytes": 4483
+    },
+    {
+      "path": ".planning/quick/261029-7t5-reproduce-and-fence-business-draft-and-q/261029-7t5-SUMMARY.md",
+      "sha256": "ea78e4ed886d07ac3868a86b60fa1896568599cdf0538562d06ee9dfa0f3e2fe",
+      "bytes": 2412
+    },
+    {
+      "path": ".planning/research/ARCHITECTURE.md",
+      "sha256": "0b09eeeea6e94961cf8f4f3be43d88dc4d6c550c0ba482499355ad64bd54c260",
+      "bytes": 3734
+    },
+    {
+      "path": ".planning/research/FEATURES.md",
+      "sha256": "d77b53677f7d0d55fcaeae34cbba89fdbe3f2a8c97f1a051aa8a8af73265ee62",
+      "bytes": 1796
+    },
+    {
+      "path": ".planning/research/PITFALLS.md",
+      "sha256": "324ee79b88eb642899e8bbf8c61062d71554e8baf5dd85cc61d83ebc136ab782",
+      "bytes": 3132
+    },
+    {
+      "path": ".planning/research/STACK.md",
+      "sha256": "838811a607d9bfe87b2111a43e18b41596bdba6c92b7d49d7af774592fe69e75",
+      "bytes": 2579
+    },
+    {
+      "path": ".planning/research/SUMMARY.md",
+      "sha256": "9bcad6eb9906f85243f4117f6e93c1c21d72a77660d40530c9dc52a029b0d404",
+      "bytes": 2232
+    },
+    {
+      "path": ".planning/state.json",
+      "sha256": "740d594aaca01ec126e521b54620dbe2e3e427439e5b2dac1b5e19087e223911",
+      "bytes": 2235
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "5c8bd115045f2b3c51f4c1c9c884d8577fe49ec3e645139d9ed66d0720d12ead",
+      "bytes": 11565
+    },
+    {
+      "path": "README.md",
+      "sha256": "e8d05dac81324408af57118ddf8ba6b331cdef01f374699623b9081878ef4e54",
+      "bytes": 783
+    },
+    {
+      "path": "docs/decisions.md",
+      "sha256": "d1a37c172a1cb2e134cbead2312038fdcca9663cb50141fcf37bc01261b8a17e",
+      "bytes": 11880
+    },
+    {
+      "path": "docs/purchase-flow.md",
+      "sha256": "2ace280c7cbf4e7222452f26e904f5bd1499671ae4d9a34b7da6262977466a36",
+      "bytes": 11860
+    }
+  ]
+}

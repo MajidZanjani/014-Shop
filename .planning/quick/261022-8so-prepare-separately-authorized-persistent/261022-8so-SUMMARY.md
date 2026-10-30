@@ -1,10 +1,9 @@
----
-status: complete
----
-# Library-only persistent admission block
+# Library-only persistent admission block — retained historical record
 
-Prepared an exact-authority root-only blocking precursor. It locks the existing permanent admission inode exclusively, binds the original admitted raw hash, writes blocked bytes only, fsyncs/reads back and rechecks authority. It creates/provisions/publishes/reopens nothing and never repairs or retries uncertain state. Flags retain false durability qualification and publication/retry/reopening authority.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Actual owned-scratch SQL/barrier suite3 checks/128 tests10.148s; source7/5 in4.747s; operator7/17 in6.720s; native54/9 write1.307s pass. Five added tests cover closed/expired/exact authority, root denial, reader exclusion, unchanged inode/persistent block, revocation, short/zero writes/sync failures and repeat denial. No failing run. Root authority mocked, fixed path adapted; no actual host/custody/storage durability claim.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261022-8so-prepare-separately-authorized-persistent/261022-8so-SUMMARY.md); original SHA256 `1b2f216bbb17259e57bbbb08358c060e421f12bc83836fcff4c839082a8471ce`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Full publisher/generation/custody/reopening, app coverage, roles/runtime and independent qualification remain pending.14/16/17/full phase incomplete. No real credential/host/provider/service/resource action. Historical immutable reports retained. Commit/push within the existing scoped origin/main authorization.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

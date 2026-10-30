@@ -1,16 +1,9 @@
----
-status: complete
-implementation_commit: db56df35b1f979f8bc21d9a686712c9d419b5fd9
-requirements: [OPS-02, AUTH-01, UAT-03]
-evidence_class: local-synthetic
-actual_recovery_qualified: false
----
-# Public recovery response and late-response fence
+# Public recovery response and late-response fence — retained historical record
 
-Completed the three tasks inline. Original transport/real-React baseline3 failures and intermediate late-rebase2 failures are retained. A fixed recovery503 header clears client private/context state with manual recovery guidance; arbitrary error bodies remain unread. An opaque module-only generation fences older responses before/after JSON, including old session rebases and same-context reconnect. Ordinary503/network exact retries, current CSRF/context/resource authority and no persistence/automatic POST retry remain.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Final focused backend63 tests17.811s, exact frontend137 tests/32 checks10.769s, catalog117/121, fresh browser227 and13 report/controller/public tests pass. Backend624/5 and proxy148/2 retain0f4a063 pre-header scope. Exact source /nix/store/kxjilvd16zhhg9ap7r5j87hd6qf4mj7k-shop-python-source:272 files/33 templates/1 CSS/no symlinks. [Evidence/diagnostics](../../phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-RECOVERY-PARTIAL.md).
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261028-b7f-handle-explicit-recovery-holds-in-the-pu/261028-b7f-SUMMARY.md); original SHA256 `762264f0cedcccb17220e60737ad7533f27e51ab26fe8f04c4702517a06a655c`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-## Self-Check: PASSED
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
 
-Local scope passes. The browser503 is a controlled response simulation, with read-only confirmation that it did not mutate server access; actual recovery/full acceptance remains pending. Next independent design is restore-startup quarantine for a restored unheld epoch. Commercial inputs remain pending. No external/protected operation or new dependency.
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

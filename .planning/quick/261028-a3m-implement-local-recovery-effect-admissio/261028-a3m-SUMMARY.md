@@ -1,20 +1,9 @@
----
-status: complete
-implementation_commit: d3ea12155b89d77e4823a79be809e70cbf94fcd8
-requirements: [OPS-02, PAY-03, BANK-03, UAT-03]
-evidence_class: local-synthetic
-actual_recovery_qualified: false
----
-# Local recovery effect admission and drain
+# Local recovery effect admission and drain — retained historical record
 
-Completed the three scoped tasks inline: durable serialized admission/one-way exit history; worker/claim/payment/finance/direct fake-bank and statement/inbox boundaries; real PostgreSQL race/fault/migration/integration verification. Quarantine closes new admission but honestly reports already admitted work until its exit commits. Synthetic release refuses every unfinished record, including process/exit failure and older epochs. No expiry, automatic clear or financial retry authority is introduced. Pure idle worker polling does not accumulate admissions.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Read-only typed lookup, internal attempt reconciliation and existing captured-mail acknowledgement remain available; worker inbox processing pauses. Nested bank admission checks a quarantine after an archived one-way claim, leaving uncertainty lookup-only. Staff access remains denied while held. No DB lock/transaction spans external adapter execution; this is not actual process/egress isolation, provider reconciliation or safe reopening.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261028-a3m-implement-local-recovery-effect-admissio/261028-a3m-SUMMARY.md); original SHA256 `791767df91911be2652e6786b2a6f88f137c2dfb36f41a4455a542437b096c53`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Verification:112 focused PostgreSQL tests32.022s; CORE_LOCAL_PASS618 tests/5 checks188.360s (outer189.778s); WORKER_LOCAL_PASS24 tests/6 checks13.258s including rejected broken-control mutations; network-isolated ADAPTERS_PASS6 tests/3 checks8.067s; supported complete-cart/MFA/proxy148 checks/2 loopback aliases. Migration0006/no drift; exact source /nix/store/bl72abmks8z0kv0ga31agp73jhbmkbsp-shop-python-source:270 files/33 templates/1 CSS/no symlinks. [Detailed evidence](../../phases/13-purchase-flow-fulfilment-and-release-acceptance/13-RECOVERY-EFFECTS-PARTIAL.md).
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
 
-The initial optional isolated adapter producer passed all six assertions but failed Django DROP DATABASE at the unchanged one-second statement timeout. Diagnostic output is retained. The producer now uses --keepdb like the other local lanes; its owned outer cluster still cleans up. Corrected complete producer passes with unchanged45-second test/120-second enclosing adapter bounds. No shared cleanup, new dependency or actual/protected operation.
-
-## Self-Check: PASSED
-
-Scoped local acceptance passes. Actual recovery/full Phase13 acceptance remains pending, as do commercial inputs by user instruction. Continue across commit/push to the concrete sign-in/challenge/quarantine overlap risk; no additional human approval is needed for local work.
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

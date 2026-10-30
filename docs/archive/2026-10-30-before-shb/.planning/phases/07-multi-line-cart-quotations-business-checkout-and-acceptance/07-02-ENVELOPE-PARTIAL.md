@@ -1,0 +1,17 @@
+# Plan07-02 partial — private prepared request envelope
+
+Implementation commit:2048a57 (synced origin/main).
+
+Internal request_envelope module now produces closed canonical UTF8 bytes for one exact request/business-scope version. Stable UUIDv5 identity is schema/request/scope-specific. Retained content includes source/catalog/profile identity, original request IDs, exact immutable cart lines/evaluation/timestamps, private resolved business snapshot/source/evaluation/submission digest and source IDs. All commercial fields stay null and gates false. No raw request/session/MFA credential data or actual offer/acceptance record is added.
+
+Verified active customer owner or recent local staff MFA plus assigned quotation/exact private scope is required. Parent request/cart locks freeze scope reads; current owner/cart/snapshot and business-source checks fail closed. Historical and current private grants are separate; newly granting history is not invented. Original scope0 contains no private business values. Support-only envelopes introduce no IP/host inputs. Known-source validator checks closed fields, canonical encoding, exact identity, numeric/bool types and source/domain evaluation. Unknown historical source/schema is held; original archive bytes remain recoverable, never rewritten to new assumptions.
+
+Authorized archive recovery binds exact identity/hash/size/classification receipt before I/O, rejects an outer database transaction, and repeats scope authorization after I/O before returning bytes. Revocation during an actual synthetic archive read rejects the return and preserves committed evidence. This is not a durable domain capture/outbox or a recovery importer. Original immutable request IDs are retained; mutable alias-key/review/counter history needs separate future domain facts/intents and cannot be reconstructed from this selected-scope envelope alone. Submission digest is retained from the original form record, not reinterpreted as a digest of resolved helper values.
+
+CORE_LOCAL_PASS checks5 tests197 duration42.658s:183 Django plus14 actual Gunicorn observations, owned PostgreSQL18.6/UTF8. Nine new tests cover private byte/archive round-trip and no domain writes, historical immutability, exact staff scope/MFA/revocation, owner/mode/source/corrupt-parent denial, canonical/extra-field/numeric/approval tampering, support-only shape, receipt binding, no outer transaction and post-I/O grant revocation. Initial fixture errors and attempted new historical grant in the expiry test corrected before the final full passing lane.
+
+Actual Nix source /nix/store/8pl59ck5k3frx05ihfq378snxkfbr3h5-shop-python-source:133 files19 templates; exact bytes/allowlist/no symlinks pass. Frontend/proxy unchanged, earlier scoped evidence retained. No new HTTP route, database migration/capture/outbox, domain effect, commercial approval, Country/tax choice, provider/host or off-host qualification.07-02 remains partial;07-01 remains1/4 local remaining plans; overall11/24 records, completed phases1/14, Phase02 8/18.
+
+Next: atomically persist exact request-envelope bytes/reference and one semantic archive intent; then leased worker/fencing/reconciliation outside transactions. No archive or intent can enable live publication/acceptance without actual domain and provider qualification.
+
+Subsequent local progress: atomic durable capture/intent now exists; see07-02-CAPTURE-PARTIAL. This earlier197-test envelope-only result retains its original scope. No worker/offer/acceptance or provider qualification follows.

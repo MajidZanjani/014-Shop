@@ -1,0 +1,32 @@
+# Reviewed synthetic licence changes — 2026-10-26
+
+Partial10-03 execution for FUL-03; immutable October21 handoff §12/T10. Current routing is STATE.md/HANDOFF.md/ROADMAP.md. Full plan/phase acceptance and actual rights/orders/keys/policies remain pending.
+
+## Implemented
+
+An owner of one archived accepted/funded synthetic entitlement can capture renewal/rehosting/family-addition/node-addition/production-upgrade intent. No host ID, key, document upload, technical dossier, new platform questionnaire or arbitrary note is accepted. Capture binds exact original offer/configuration/grant and public source option revision; proposed configuration is derived on the server. Families stay within the original vendor and are added in catalog order; node additions use the current Altera profile with parser bounds, not a commercial allowance. RDP remains Altera-only; higher volume remains quotation-required. Perpetual does not imply unlimited production. Original/licensed support remains untouched; new proposed scope has no automatic support purchase/grant.
+
+Exact-case staff assignment, separate from quotation/material/support authority, and recent local MFA gate review/proposal. Revision compare-and-swap serializes conflicting reviews; exact retries return the retained event. Capture/review/proposal bytes recover from archive before publication. Append-only database triggers protect case/event history. Correcting a review supersedes the prior active proposal without deleting it; re-review can produce a new explicitly held proposal.
+
+Commercial-review-ready is not approval. Proposed scope revision and held order have deterministic new identities, current-review binding and null fee/currency/start/expiry/recurrence/host/allowance/overlap/revocation/maintenance/rights/coverage/terms/seller-policy inputs. Payment, activation and actual rights changes remain false. No bank attempt/operation, charge, original entitlement mutation, support spend/grant or physical recall is performed/promised. Actual payable revised orders/keys remain unimplemented until policies/qualifications exist; these records are held synthetic drafts.
+
+Source catalog change blocks preparing a new proposal and makes a retained proposal inactive. Final guard prevents new capture from silently dropping an already licensed family removed from a newer catalog; historical exact retries remain recoverable from their captured options. This is source-scoped refusal, not historical rights rewriting.
+
+Owner/staff forms and bounded20-row paging reuse the existing shell and CSRF/privacy controls. Customer state omits staff IDs/generation/MFA/archive receipts and business details. local_staff grant-case/revoke-case uses --case; reset/revoke removes case authority. Support-only purchases show no licence-change questionnaire. Cases are manual future actions only; standard initial purchase is not put behind per-sale engineering review.
+
+## Verification
+
+- Pinned Python3.13.16/Django5.2.18 and owned PostgreSQL18.6/UTF8; catalog0019 applies, no migration drift. No protected/external runtime or actual provider qualification.
+- Initial14 tests pass in6.099s; final16 focused tests pass in6.357s including the last catalog-family guard. Covers five request types, canonical family retry/conflict, unchanged originals/grants/money, null policies/higher-volume quote, review correction/supersession, source change, archive/readback failures, MFA expiry/generation/scope, concurrent capture/review/proposal, DB immutability, closed private form/API/CSRF/production denial, operator reset and history paging.
+- Extended PURCHASE_FLOW_DEMO_PASS uses supported customer and two-factor staff routes to capture/retry/review/propose all five kinds, correct and replace a renewal proposal, retain original entitlement/bank count and keep higher volume on quotation. Prior private material/ledger/staged delivery checks remain.
+- DEMO_ACCESS_PASS checks=102 aliases=2 evidence=local-synthetic-header-level on actual owned loopback proxy/Gunicorn/PostgreSQL. Adds licence rehost capture/retry/redirect/owner-status/list and null-origin/missing-CSRF denial to the earlier checkout/material/support cases. Not actual browser-engine/accessibility approval.
+- Final inert source /nix/store/zfx8931wwpnh29zzm88b2mb6kxm52lx0-shop-python-source:226 exact path/byte files,30 templates,1 CSS,no symlinks. No OCI/native/distribution/host qualification inferred. Existing task-owned verified locked-wheel cache and new owned .scratch test roots reused; no dependency pins, production timeouts or pre-existing resources changed/pruned.
+- Full CORE_LOCAL_PASS checks=5 tests=420 duration_seconds=118.041. Its run precedes the final catalog-family/same-band validation changes; final focused16 covers that guard and its new regression. No actual off-host recovery/fault test or production proof inferred.
+
+## Remaining
+
+Actual term-boundary/host binding/fees/overlap/revocation/maintenance/access/rights policies and seller approval remain pending. No actual renewal/rehost/revised key or payable new order is claimed. Next independent Phase10 scope is durable reserved document/invoice/credit-number handling and scoped synthetic statement/mail retry integration; actual legal numbering/mail/publication still needs its authority. Full acceptance retains original commercial/source/runtime/retention/host/recovery/browser gates. Plan addition changes the live denominator to30, with11 completed; dated29-plan evidence is historical. Only Phase1 of14 fully accepted.
+
+Final normalization review also permits a greater requested unit count within the same existing production band to reach manual review, including when previous exact units are unknown. It does not assume an entitlement, fee, counter or activation policy; those remain null/held. The final16-test focused suite passes in6.357s after both validation changes. Full420/102-proxy/integrated-demo evidence precedes them; successful ordinary source-catalog fixture paths are unchanged. No additional broad run or final-source full422 result is claimed.
+
+Recorded implementation: 72548179ad7bb3b24725af5f844eb8c919801df0. Inline review checked immutable original/captured source scope, narrow request validation, staff/owner/case lock order, exact retries/revision races, archive-before-publication, proposal supersession and null-policy/no-money/no-new-rights boundaries. No independent review or actual policy/host/provider guarantee inferred.

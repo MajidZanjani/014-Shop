@@ -1,22 +1,9 @@
----
-quick_id: 261023-hn4
-status: complete
-implementation_commit: b96b665
----
-# Capture-status reads across supported operator revocation
+# Capture-status reads across supported operator revocation — retained historical record
 
-Supported operator revocation races verified: credential reset/revoke and exact business-grant withdrawal each block status on the exact operator PostgreSQL backend; rollback preserves recorded status, commit safely refuses. Retained envelope/intent attribution and work gates remain unchanged. CORE_LOCAL_PASS5 checks/275 tests (261 Django plus14 Gunicorn),71.878s; owned PostgreSQL18.6/UTF8 and0012 application/no-drift pass. Exact source /nix/store/vvwm917wanx5ad6zi60n2a8fw1m5m4k8-shop-python-source:163 files21 templates/no symlinks. Runtime unchanged; tests only. Full07-02 and external/commercial gates remain pending; country/tax deferred.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-## Verification
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261023-hn4-verify-capture-status-against-concurrent/261023-hn4-SUMMARY.md); original SHA256 `12da6513f65259d7703cd180acc01f7dc1a2d911bc1a103d8e2aac680cd88e1b`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Three new tests cover six deterministic interleavings using actual synthetic staff password/private-code login, CSRF preview/capture, local_staff reset/revoke/revoke-business commands and separate PostgreSQL connections. Operator changes are deliberately held inside a test transaction. pg_blocking_pids confirms the exact operator backend blocks the status backend before commit/rollback release. Rollback returns capture_recorded; commit returns private404/not_found from the in-flight producer recheck. All retained envelope/intent values (including original actor/MFA) remain identical. Archive publish/recover/attestation are trapped, work tables stay empty, and the observation does not change disposable operator credential files. Reset credential-file writes are deliberately separate from archive/business evidence and may survive a synthetic database rollback; no production bootstrap/recovery behavior is claimed.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
 
-Focused temporary wrapper:18 Django tests plus14 Gunicorn observations pass,32 total/14.105s; final retained full producer275/71.878s passes. Exact built source compared by relative path and bytes against the Nix allowlist, no symlinks. Frontend/proxy unchanged and not rerun. No migration/application behavior changes; no direct domain tampering added by these regressions.
-
-These are in-process controlled interleavings, not independent process/transport/outage, real staff MFA, provider/off-host/restore or production qualification. Initial bounded audit remains clean; no runtime defect reproduced or speculative fix applied.
-
-## Next existing plan action
-
-Review the existing07-EVIDENCE-CONTRACT against current offer-preparation/catalog/document interfaces and original COM-02–06 requirements. Resolve the closed protected-offer/domain revision and approval contract on paper, keeping all missing prices/rights/terms/hosts/country/tax/deadlines null or pending; identify the exact implementation blockers. Do not implement or approve offers from request-only prepared evidence.
-
-All original prerequisite, approval, host protection and release gates remain pending. No agents, real credentials or protected/external services used. All test processes finished.
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

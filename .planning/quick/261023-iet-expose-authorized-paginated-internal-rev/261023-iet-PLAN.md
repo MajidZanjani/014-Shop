@@ -1,14 +1,9 @@
----
-quick_id: 261023-iet
-type: quick
-phase: "07"
-status: complete
----
+# Browse all assigned internal review decisions — retained historical record
 
-# Browse all assigned internal review decisions
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Continue implementation after4063465 sync; no routine pause. The request screen currently exposes only the latest20 internal decisions. Add a read-only paginated history route and link so earlier corrections/attribution remain reachable.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261023-iet-expose-authorized-paginated-internal-rev/261023-iet-PLAN.md); original SHA256 `3c850f3cdb6101ab7f2993ffbc8f18eb6408febc93906423cebff1600af62a82`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Reuse the existing reviewer assignment and parent/snapshot consistency, bounded committed review counter and review-history queryset. Review metadata follows the existing request summary permission: parent assignment permits outcome/scope/reviewer/time, never private business values/digests/MFA evidence. New route emits a closed projection and fixed labels; current business permission is not invented or widened. Shared canonical positive-version cursor with preparation history; strict GET/query handling and private headers.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
 
-Test actual review creation/corrections, older pages/new decisions, original reviewer attribution, private-scope revocation, cursor/parent/MFA/mode boundaries, no writes/forbidden outputs and committed-prefix concurrent supported review. Run focused/full local PostgreSQL/Gunicorn and exact source proof; no migration/approval/commercial effect. Reconcile planning, commit and immediately sync0/0, then continue without a context-clear request.
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

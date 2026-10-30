@@ -1,17 +1,7 @@
-> Current requirements delta: [final26October purchase flow](../PURCHASE-FLOW-AMENDMENT.md). Baseline research below is dated; no compulsory technical checkout dossier/portal, blanket custom-board review or automated pooling prerequisite. Preserve unchanged architecture/protection and exact pending qualifications.
+# SHB features
 
-# Features: source-derived scope
+Current authority: [SHB revision 1.1](../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../STATE.md) / [ROADMAP.md](../ROADMAP.md).
 
-Source: October 21 proposal and exact embedded product; no additional market research.
+One Supporting Hours Bundle product; FPGA Supporting Hours Bundle/10 hours and ASIC Supporting Hours Bundle/25 hours. Strict positive quantity and authoritative integer money; approved ASIC base hourly rate exceeds FPGA. Per-order purchased hours only. Minimal common billing/contact form, same-phone helper and conditional tax; ASIC short assistance/context. Six calendar months in Asia/Tbilisi, UTC expiry, digest-only reusable invitations, current-state session checks and private static delivery. Automatic eligible FPGA checkout; ASIC request/clarify/decline/withdraw/approve/dated offer/acceptance. One scoped percentage code; PostgreSQL reservations survive ASIC review beyond claim expiry. Immutable accepted price/scope revisions. Finalize accepted verified paid orders once with variant, quantity, per-order hours, scope and reference; staff order view plus retryable transaction/request notifications. Financial refunds link the original order; staff consult/inform manual support records.
 
-| Capability | Role | Complexity/dependencies |
-|---|---|---|
-| Static product/support discovery | Required entry journey | Catalog/compiler first; approved production copy |
-| Exact vendor/family/term/band configuration | Product-defining capability | Shared schemas, coverage review and price/rights gates |
-| Protected host editor | Required restricted licensing data | Verified resource grants, actual manager profile, encryption |
-| Multi-line direct/quote checkout | Required commercial journey | Transactions, identity, immutable review/acceptance and component money |
-| Non-expiring support-only top-ups | Required separate product journey | Line-type acceptance, verified account owner, payment and ledger |
-| Manual keys, renewal/rehosting and support statements | Required staff journey | MFA, role control, archives, unique grants/debits and approved policies |
-| Complete external-effect recovery | Required release capability | Bank windows, archives, keys/documents/support reconciliation |
-
-Do not add legacy trial questions, unlisted vendors/families, automatic debits, broad organization portals, auto key generation, synthesis/build service or campaign sending. Marketing storage/withdrawal is included. Technical bounds must be documented separately from commercial rights; country/tax enum data is not supplied by this product source.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.

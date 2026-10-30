@@ -1,21 +1,11 @@
----
-phase: 02-reproducible-application-and-deployment-skeleton
-plan: "07"
-status: qualification_pending
-requires: [02-06]
-provides: [explicit-environments, runtime-secret-files, registered-django-checks]
-requirements-completed: []
----
-# Phase 2 Plan 07: Fail-closed environments
+# Phase 2 Plan 07: Fail-closed environments — retained historical record
 
-Shared base and explicit local/synthetic/production-shaped settings enforce SHOP_ENV, false live payments, three fake-only adapters, absent live endpoints/inline credentials and DEBUG false. Production and bank-sandbox use the production module with private regular bounded runtime secret files under /run/secrets/shop; no production secret file was read. Supported Django check registration guards settings overrides. Nonsecret production/bank-sandbox templates describe the same contract. No privileged routes or provider integration were added.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-## Actual evidence
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/phases/02-reproducible-application-and-deployment-skeleton/02-07-PARTIAL.md); original SHA256 `369e3b2456f0e3433bd47f96faa108ad7af40d52261441568aba47162db09b0c`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-The inherited ordinary `core-local` command passed 3 checks and 16 tests in 6.485 seconds: six Django configuration test methods plus ten actual Gunicorn HTTP cases on new isolated PostgreSQL 18.6. Subcases execute real Django startup for valid local/synthetic and missing/unknown/mismatched environment, live toggles/adapters/endpoints, inline secret and DEBUG rejection. Both production-shaped modes reject missing/relative/outside-runtime file paths. Synthetic temporary files test private permissions, symlinks, size limits and a known-good control. Configuration and secret canary contents are absent from startup errors. Templates parse and validate without credentials.
+Current Phase 2: **Reproducible application and isolated deployment foundation**. Reuse exact pinned Astro/Django/PostgreSQL/worker stack; retain database destination, all-write/attestation, native/licence/SBOM, immutable-image, CI and independent runtime gates.
 
-## Pending and scope adjustment
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
 
-No deliberate outage test ran; full core remains nonzero without independent runner authorization. Plan 06's pending qualification also applies here. User explicitly permits implementation continuation. Requirements and phase acceptance remain incomplete.
-
-Producer wiring was necessarily included in scripts/check_backend.py although omitted from this plan's original files_modified: it now explicitly supplies synthetic environment values, requires/discovers shop.core.tests, rejects zero/skipped tests and counts captured passing results once. This fulfills the task's explicit producer requirement; no shared dispatcher change. The worktree allowlist included this bounded integration change before editing.
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

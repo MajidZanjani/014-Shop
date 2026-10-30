@@ -1,13 +1,9 @@
----
-status: complete
-evidence_class: local-synthetic
----
-# Candidate reopening and uncertain-outcome inspection
+# Candidate reopening and uncertain-outcome inspection — retained historical record
 
-Root-only source library reopen_admission requires fresh independent exact reopening/preparation/publication-inspection authorities, approved proposed admission and opaque recovery/qualification evidence. Full fresh preflight twice under one permanent exclusive lease; exact raw preparation hash, unchanged blocked bytes, stable published generation. Fixed inode truncation/short writes/fsync/readback; no creation/replacement/rollback/repair/retry/CLI/install. Internal inspection/preparation helpers share caller-held lease without flock conversion.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Separate fresh root reopening-inspection binds exact historical raw authority and proposed/blocked hashes. Shared nonblocking stable reads include empty/partial bytes, no old live authority or historical renewal. blocked_matches/admitted_matches/different_bytes confer no completion/durability/publication/retry/reopening grants.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261022-ajs-implement-separately-authorized-admissio/261022-ajs-SUMMARY.md); original SHA256 `ff1a4b3a61809af1af7ccbfb3ffdc18addc37020d7166ba730ce70e8249fbe78`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Nine new scratch test methods: successful exact opening/admitted manifest reads/permanent inode; scope; reader/writer locks; short/empty/partial writes; file and parent sync failures; late revocation; repeat denial; read-only scoped inspection; late inspection revocation/bytes; historical-expiry separation. A full admitted record can remain after a raised late failure and permit reads: tested and documented, not falsely reported blocked. Independent observation cannot prove completion or authorize retry. Source-only candidate must not be installed/exposed without actual qualification/scoped activation authority and recoverable independent snapshots.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
 
-SQL3/17513.032s; source7/5 4.537s; operator7/17 6.140s; deployment16/31 2.478s; native55/9 0.976s; notices9/7 3.744s all pass. Initial173-test run12.545s also passed. Nix reported one ignored concurrent evaluation-cache SQLite busy warning; all lanes completed successfully. No failed test/build or host/provider/credential action. Actual independent custody/storage/crash/runtime qualifications, app integration and14/16/17 remain pending.
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

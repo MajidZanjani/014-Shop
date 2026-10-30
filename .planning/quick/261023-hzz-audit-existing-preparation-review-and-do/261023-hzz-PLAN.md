@@ -1,14 +1,9 @@
----
-quick_id: 261023-hzz
-type: quick
-phase: "07"
-status: complete
----
+# Audit existing preparation/review/document boundaries — retained historical record
 
-# Audit existing preparation/review/document boundaries
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Inline source audit continuing64b4432. Review current/retained staff preparation, comparison, review and document services, owner document route, business scope helpers and exact output templates against their actual permission/revision contracts. Prioritize demonstrated cross-scope, stale-revision, private-output or authority defects; do not invent a new candidate/approval subsystem.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261023-hzz-audit-existing-preparation-review-and-do/261023-hzz-PLAN.md); original SHA256 `1608f3f3458e1cb9830d4fefee5856b3b5230ed104010ce78765ed653dc186ed`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Run the existing preparation, retained preparation, comparison, review and document suites on a fresh owned synthetic PostgreSQL through the existing local producer. Record exact selected test scope; no full-suite or independent process/browser/provider qualification inferred. Fix source only if a concrete defect is reproduced; otherwise retain a clean bounded audit with explicit limitations. No new tests mirroring unchanged implementation.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
 
-Reconcile current planning/canonical state, preserve original inputs and all gates, verify whitespace, commit and immediately sync origin/main0/0. No agents, live approvals, host/external operations or repeated deferred country/tax/runner requests.
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

@@ -1,12 +1,9 @@
----
-quick_id: 261023-hvy
-type: quick
-phase: "07"
-status: complete
----
+# Critique protected-offer contract before runtime implementation — retained historical record
 
-# Critique protected-offer contract before runtime implementation
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Inline continuation of f2bcd66. Compare the proposed field/approval/transition inventory with COM-02–06, DATA-01–04 and actual preparation/request/archive/staff interfaces. Correct demonstrated design ambiguities, record unresolved implementation gates and identify whether a new internal blocked-candidate boundary adds a capability beyond current PreparationAssessment. No invented approvals, host/tax/terms/role policy or runtime offer schema. No agents.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261023-hvy-critique-protected-offer-contract-before/261023-hvy-PLAN.md); original SHA256 `fa475c05e8ff83bd2ec28cc5bdad4c20638d0aef5a18641287cfdfc0ab643228`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Verify source/links and exact no-runtime-change scope; preserve275-test/source evidence without rerunning unchanged code. Reconcile planning and canonical state, check planning/whitespace, commit and immediately sync origin/main with0/0 verification.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

@@ -1,1692 +1,2497 @@
 {
-  "schema": 1,
-  "amendment": "014-Shop-Board-Support-Amendment-2026-10-26.md",
-  "revision": 2,
+  "schema": 2,
+  "amendment": "014-Shop-SHB-Proposal-Revision-2026-10-30.md",
+  "revision": "1.1",
+  "source_sha256": "ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e",
+  "archive_manifest": "docs/archive/2026-10-30-before-shb/manifest.json",
+  "runtime_exclusions": [
+    ".planning/milestone.lock"
+  ],
   "files": [
     {
       "path": ".planning/ACTIVITY-LOG.md",
-      "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "role": "current",
+      "release": "shb-1.1",
+      "sha256": "9da72c5619c81de10492e40f72d34342193e7583118e9e6268c14f8388dc6c63",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/EXECUTION-AMENDMENT-2026-10-22.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
-    },
-    {
-      "path": ".planning/HANDOFF.json",
-      "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "ad99c2baf093d2e257dbfda64f8c1e33099e56de51cd158bcbf921b52075de7b",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/HANDOFF.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "baa84bf242e242c6e77671c3c47daa663436e3401ebf611f6e8f1429c994e29c",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/PROJECT.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "4512f8fd80645c1f009cb968492e5f00233e0e845ca177ff5cb3f7b0ce0cb3f4",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/PURCHASE-FLOW-AMENDMENT.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "7591c586ac7cc329760c64e2fc274c31151916a674489da140d4f67cc0d15a60",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/REPLAN-VERIFICATION.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "523fcb8a3ea853ac8e839cdf22bbf220cc0fe4d55ab8d18b668c81d6b31fea97",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/REQUIREMENTS.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "cc7056ac0269bd3f3ded2e7951306e869495ef33de257ee436f451f338daf9f8",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/ROADMAP.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "62db71ffe7d94098fa21770e55aa02cbfa6c06f2e3b89e35dfc63014f94f7120",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/SOURCE-MATRIX.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "d44595b75693197b5399b1757af0a0a41839ffe24fdce23e7642ed688bf02f80",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/SOURCES.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "c767a4a75ebf513c60cbe1c7350b6aca6faa3329142b7de6235371e68c183172",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/STATE.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "aea5783f5f86951b9f683fa330ea26b4f5a2b0d60b0ef9364ac0b44659303f48",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/audits/2026-10-23-customer-forms.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "fdbbb48f02f6a6c25ef3dd18ac9a756d0edd00896bd45c543733b2b4a97bf01c",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/audits/2026-10-23-local-workflow.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "3ae6ca593148e514c66906f51f18a3ab0ff0917423270903962f81bcbc671963",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/audits/2026-10-29-planning-sync.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "77e851b31b263282bb72369165ffe92f0b952edca6213b8f359744fb1289df8d",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/config.json",
       "role": "workflow-config",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "4d961e36d9154ea5d14c76c498b384e6205c969fb56e19847c1c5b431a631986",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/debug/resolved/demo-csrf.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "edd2dd017137efdc2df664d72eda8ce161e904021e07142508d09a4bb6592aa4",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/01-product-authority-repository-review-and-decision-register/01-01-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "4446c6cdd44e1645429a787f9748cbd037070ed412ff90531ca7091423324b52",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/01-product-authority-repository-review-and-decision-register/01-01-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "638d4ae85354b78dc63b0d6c591437cfc046949e99ef6cbb9922d10e57a25a2b",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/01-product-authority-repository-review-and-decision-register/01-02-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "91caeadb3de3df4b5c36ffdf97410f99e032ec26699a6fd9adb4ace163e5f691",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/01-product-authority-repository-review-and-decision-register/01-02-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "1377dce702d9c287bfc54709633f1e9315dd6de5d13577a7a18493e7c7ace5fe",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
+    },
+    {
+      "path": ".planning/phases/01-product-authority-repository-review-and-decision-register/01-CONTEXT.md",
+      "role": "current",
+      "release": "shb-1.1",
+      "sha256": "ccfed0433cb8fba87cacd48d1a3bcc463ca2e33f75c0e78ab8cefc4f68b22f36",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/01-product-authority-repository-review-and-decision-register/01-VERIFICATION.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
-    },
-    {
-      "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/.continue-here.md",
-      "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "a184731f3fc53ae8c3874ee9046814ed3e75a8fb68e081d7d6dbfd516f94989f",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-00-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "3c73c491d03c97653ef313aa202df463b3010de341dbcfb5e5af70d8310da69d",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-00-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "4bc41cba3055023c5839b3702dabe3d5449681ebb1ae1e9fdeab90687df4ff6b",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-01-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "e1d2aa06b677c5dcbdbb9c98f40a8146891eb9a2309d4490484b99961092da28",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-01-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "4b334da3222c603bff8f5d0171888c8e569f23f5e95c73a8888b73702fd8afd8",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-02-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "44e05255f90ae5fd0fa5326310d4aafaba27777ff544768893cb9829adf3ee95",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-02-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "ff8f5813e9eab1d8cd13feff665b063c37e99e9803123e190505359075741745",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-03-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "304d753e2e0b7224a986bccc9af74f611743bad8463a62eed2c219d3ceccb977",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-03-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "27aff004af54aeac66fd25aae19af45d267d7916f262dfc81eaaf231d57a590f",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-04-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "30156d4d257a4b6e79b4d92e16f4ab2394d1bb34825b3c8994a610dbd173ef1a",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-04-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "8fb2d63f768e1b8754661e6bef4b4c0ada84dac5ab552c6917224851447288aa",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-05-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "207d46237316a4c1740c64d3e74d93fbf3bcfb00dec388b54d26eef555a1e077",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-05-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "eab54b4d564fd55cfc3bdb3145e749af94918a437473a10efe995d38984f3ec9",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-06-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "f49bc9eade6df01c9fd39987784db7ca4d33252f5bbda72403617d614d7a2593",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-06-PLAN.md",
       "role": "retained-infrastructure-plan",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "bb0bf40d36b763efe89f2943ca7d3e0ce4c39ac7dadaa4aca892da89f5b32b4e",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-07-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "25e57b080c5006c49fe6a2c667857ca5ff046965d9358f434d491a8868dc4015",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-07-PLAN.md",
       "role": "retained-infrastructure-plan",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "2d297ef319201007b59075e847178640be7b5a11dbfe54f83dad2277b471ab71",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-08-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "ec303005bf99eb5378eeba9006aace7adcb78df68285457823901bf839869ab4",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-08-PLAN.md",
       "role": "retained-infrastructure-plan",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "2953e3578e4a28b5787a6785a5a61efedb11ae658f6fdc6097fc276085f493c2",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-09-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "e810a209f61977e56f2746c46e6cae53a523643ef1012447e80f883dde0b3789",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-09-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "d75f3369a292506cbd21c0b8b7eaddfd639a3e6b9ed3def5fbbd2d535b940b6e",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-10-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "820f9a8d7f05118a504d3c217fbf8b6e10611b5ed0b7cd90be7740a4671a2230",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-10-PLAN.md",
       "role": "retained-infrastructure-plan",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "0cf4a76a87cd8dc6da04a6f41cd2aa30930ea6aca65d163a502319c7212f10b9",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-11-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "67266bdb7c953e5f4b23ebc811ecebf8a3135d67292d3a4dc2d3d1ce5d7fb331",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-11-PLAN.md",
       "role": "retained-infrastructure-plan",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "dd64e7ee83414271351bbdf48036aad9ed31e3e3a5b8899fd6a45db30113a183",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-12-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "3a3e90271c9958794237ee4be1c17e7efeb010969b93c948e8732ae218df5fc8",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-12-PLAN.md",
       "role": "retained-infrastructure-plan",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "ddf8fd8ee08d6effcfecfb6f363710bfab01512781eecf460f8e48319e3c4c21",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-13-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "a2bb07943643250a4b4e796328f2991484cdfaaf97e553c3a9cc4b6683259125",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-13-PLAN.md",
       "role": "retained-infrastructure-plan",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "29282215633f89a560d8682911598f8445fc89852c895e08efabe5507353792f",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-14-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "4bdbee163fb8304cdf8daae5f4743a9dd1c4d7563cb1dad7374320369d5033cf",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-14-PLAN.md",
       "role": "retained-infrastructure-plan",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "b0371c0d1d359c89611da30108d04faba621fb8ca48528abf1cc9e9bca779a8e",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-15-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "2a614793d0ec50aa934d0318d9e5b6a26e25cb5591bc5262e926e1847e444839",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-15-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "9fbd6dd6b5b40d0a546ea729bfc5c2913ff869c848bf6bc04655515bf47edb34",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-16-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "409c38d7e5cd48c7945f166afeddff96a2838be937660c1a1a3945cf9bde2dbe",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-16-PLAN.md",
       "role": "retained-infrastructure-plan",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "0893ec4b8760904867ba6aa6361e78b5998622dee21c91e51296ef740fbc2322",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-17-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "d3b5cf599fe951db5486bc5064f2050460d4c5134647a4c81e30b2a5467ad482",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-17-PLAN.md",
       "role": "retained-infrastructure-plan",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "cddd401ff67ef0379dcf4ac4793340d1c14a77b615126d65680081c86965fd93",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-CHECK.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "40537676df1f729a772c511d0b846241760ccde4c2bfbab8470d6f0123121f30",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "63a7f79adaa165a7ea4c5272005001cb4e5381913eda4658b1b927b9216ce34c",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-CONTEXT.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "291aa7d828651f3ea5dd1eea10b1158e4c55a3a95f9da5cda165affdc08a38e6",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-PATTERNS.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "ba592e66e5de5fce5a52f833ef9468672b321368ee12e4cf17baed4a0364e722",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-PROGRESS.md",
-      "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "role": "historical-evidence",
+      "release": "shb-1.1",
+      "sha256": "aadf7975b0a6d47f4a5f735b5369f81d3c488eea08cfc0f1b4008eb9a4c1dadf",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-RESEARCH.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "705ba4232db4f7ae771747492f0e54224d744c4e43d7b97657306b04eed35a89",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-VALIDATION.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "01def93f8d285f39ea75788442c14183d712e31febe076711cf4292f46d76a65",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/02-VERIFICATION.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "f9346ce712f3150c781b0f02ca4a965be05de4a5767f1cf530a4ecd8a95ad31c",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/02-reproducible-application-and-deployment-skeleton/COVERAGE.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "dab670a58d6a41c28d229c76b390ec0942d96742a8463a093f5f06d0fde8d89b",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/03-catalog-platform-and-offer-policies/03-01-PLAN.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "3ddf9a21d5989babf30ff77e7d96cfe30b3c98b7763085e920fcf9eed4f563b9",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
+    },
+    {
+      "path": ".planning/phases/03-catalog-platform-and-offer-policies/03-CONTEXT.md",
+      "role": "current",
+      "release": "shb-1.1",
+      "sha256": "c9767a083bc658bd48619f8bf4ba3461f4ef14d6133c31a56fbe1de071cb8b79",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/03-catalog-platform-and-offer-policies/03-PURCHASE-FLOW-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "d3df5d6a0aa7da4a78a810e38d9b744997c74846cad8260178879abc666e4deb",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/04-minimal-configurator-and-shared-purchase-flow/04-01-PLAN.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "b2c8cbc57870a208961d692eab0d57de861fc007806e8ab984c7b085b1f255ac",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
+    },
+    {
+      "path": ".planning/phases/04-minimal-configurator-and-shared-purchase-flow/04-CONTEXT.md",
+      "role": "current",
+      "release": "shb-1.1",
+      "sha256": "58382a11e9c009dac232b86e733f28107896f99a5bf4460874b1e204ad2b0609",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
+    },
+    {
+      "path": ".planning/phases/05-durable-records-and-outbox/05-01-PLAN.md",
+      "role": "current",
+      "release": "shb-1.1",
+      "sha256": "1cd125a7bf7bd95cae3dd0222c1876053b52954f633f54fd2f3be04119059cce",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
+    },
+    {
+      "path": ".planning/phases/05-durable-records-and-outbox/05-CONTEXT.md",
+      "role": "current",
+      "release": "shb-1.1",
+      "sha256": "d54d9c8db860a4e306e026ad1cc198257b15d708d7120bbf1fbf3bfdf154260d",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
+    },
+    {
+      "path": ".planning/phases/06-invitation-scope-and-staff-mfa/06-01-PLAN.md",
+      "role": "current",
+      "release": "shb-1.1",
+      "sha256": "5cfa5568891597333a38cee79acc7d0757e58bd18b45e42257729fc3255e9d61",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
+    },
+    {
+      "path": ".planning/phases/06-invitation-scope-and-staff-mfa/06-CONTEXT.md",
+      "role": "current",
+      "release": "shb-1.1",
+      "sha256": "049fa599b9931b7deb33d01814aff61affa72d4b576fdcf0c68628d379d8a987",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-01-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "7c95bc60116b91f1192d1b7915462b8f64b5ab8d3fdb5e7b47036e9da8e2ed69",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-01-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "de0e8f0628c9633cd6d67a6f584aaa71fda586e45c56d804b58a214e1ead812b",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-AUTHORITY-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "415958bc9c646408ac4fcd7db592f5cb354e960c660ba46d30bf01b2721e1c2f",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-DESIGN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "f1024051dc646c50473724dffbc1ff0a836ca352bd6f226d62f43b79afd0b834",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-OBSERVATION-DESIGN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "4bd70634ff88ceeb267b94ecae861e669462615ebb3b3a8024b043be5bcbb1b0",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-OBSERVATION-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "bb9cbff184c39901555702a37bd7bfff7a28e1ef5b784dc5f5b618c59eeb8036",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CAPTURE-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "3aab9567431e7fb33b41bc399636b56cb23337e7e09ff591d3338ca683eeeecd",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-CLAIM-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "e309775befbec891f846d35b60b90b0b6aef36c00857706ecc200cc55c9aaeee",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-DESTINATION-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "5b95347bea3d2b1e681e9964874e73678fc30bad4a55eaae3faf59cc4cf6114f",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-ENVELOPE-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "504ffc8d09c96c407b62afd886b2a3ab9c66927de74db4f8cadd30d37cc47fd5",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-INSPECTION-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "dd4c7cd0df7ecd37e6ca70fdc711353550335bba451ef2ab0813dafb11569a07",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-OFFER-CONTRACT-CRITIQUE.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "a06c21c940952b77d489aacfe5894ea598ee4ab29fe90184d9248a5190a32a7c",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-OFFER-CONTRACT-DESIGN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "b3d473455c39a546b7a70b8a3fa099037ca03c584583c85cb24ca689dd452358",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-PLAN.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "f148db9cc95bb957ac635a37e7eb8a7d0b225ff88b58fd463ffa796c895cf274",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-PUBLICATION-DESIGN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "6c87209b5158cbaac9fa18c8da53879389616da9843d5a5468652b833a13b18a",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-PUBLICATION-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "b1e6421f7cf7b12ab151ca92a14d6271646729594bb3e995be7fd5cdccfd8f36",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-PUBLICATION-RACES.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "0aa609071151b9acc32d566824e2db94f5729c2417df23ea9c0d2078fdb75354",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-RECONCILIATION-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "15f118c924e0567d7b33c8d85912d5d21054bfc553eb894e186fcc8b7013465a",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-STAFF-CAPTURE-DESIGN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "9a389f394c9ae17fd017a04be557094741cab879b083c76aab90d5115456e8b9",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-STAFF-CAPTURE-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "06b99d75aa4c7c42a1bcc903a8dc88d6523e277abda01c19ac8aa4ae8b7ca5ef",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-STAFF-OBSERVATION-DESIGN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "10bd2d54e9a8d09ad73569e02751e815e4b3fa3cbec8f10dded120315ae52a1b",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-STAFF-OBSERVATION-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "d7d45571e35385330beeebe3166812ba732d7e43d507e5e31e6562ab2fd5f0b7",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-WORKER-COMMAND-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "2c7e4da28afe8de1e8d775726ec681e75e52b76d5db8c66729d4f9f81cddb6da",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-WORKER-DESIGN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "7f2eef32e364050dc6928a7abe83c9380ed4339464287acd36efe42d66b6c615",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-WORKER-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "778c0d39ef72f562e1d52ec11c97f2bbf4f72b9f93057848c988c7ee3d9d7f68",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-WORKER-PROCESS-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "e87ed280f925595b69c87c08b4f423f76214bcc3dfd8cbeaa76c165dd53791aa",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-03-PLAN.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "11694a179ab79d0e6b3ae7851f85494b9da0e2576e94b463f5ebecfbaae2902f",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-04-PLAN.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "cfea54a7277d4f7427c4c14679b42ebc4f4401a726412d776816fdf31abdb10e",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-ACCEPTANCE-PAYMENT-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "5f7305fb2f65f21da09379010d513bea42cc398474adc9ffb0f702fe7ee8269e",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-CHECK.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "43e2b2625b04c6185f080ad8b863a571f261bb19ff8f3b02627838d5ba6cca50",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-CHECKOUT-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "3737b39cb1fd787a378e69ef94202e47f7f1a03493160e84c1ba93b9507e1ed6",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-CONTEXT.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "2b5be81c5b983df928ad4459a5a7204f6534b074c58218fc2929348f3607d117",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-EVIDENCE-CONTRACT.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "807ec84de611d02300b10c71568d04cf3d8aff0bd6f34496d8551dd3fbf952b9",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-PROGRESS.md",
-      "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "role": "historical-evidence",
+      "release": "shb-1.1",
+      "sha256": "d23452aa92968727e95318af2ef09d4074b8c0da5bd95da1f7c747e70a0b6325",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-RESEARCH.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "cb2038827247d9f2ab5e02af3cd9f75cc013ee539ba1ef74d56618431b0e8d95",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-REVIEW.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "799aed4acdf791a66b4714d07d935e35551a22d996f1aa6beefd969b2204e728",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-ROUTE-REVIEW.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "a94931e0bf851c6c0fc8a7ebb027a1147531707b6fa9db01fb5191c520d4879b",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-UI-SPEC.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "edd5f141be81d370dcd5cca0b2015a1ea3bf7995da19696b0c35587444d9bdf7",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-VERIFICATION.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "4aef9136920298b5cc2b8e6f96b71bee6d19db2f676461ead2e4d94ab4057e55",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-01-PLAN.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "5d507f14aa0567847ad763c79c4e0e220bfb495ccd5f7b2287298857917e1235",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-02-PLAN.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "9360f7c7a12e05ecc145ea7f6f8ee39c309cb7fad189a91a68f9eb6a00a3a7b1",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-03-PLAN.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "536f232bed5c23cbf7a6c41f2ed6ed82a17994a28dbc04531dfc91cbc8b92e9c",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-03-VERIFICATION-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "01f66a51058cb7329f22209618508ffe67f46f3bae4af332a7c282224f7494e4",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-03-WIP.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "b70484b7d0941fed80bb26d66adc8ea7631d0509a6cdeb9fb3684e438d719674",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-ACCEPTANCE-GAPS.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "17f5d1e421cc067677c144f15b1ffe8adec73345cc37af8a849738e5d52afa98",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-ATTEMPTS-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "81556d134a25e77fa920dd3619d600beacf6eb2c006c6abbf8512ea2fa378892",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-BANK-BOUNDARY-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "7edeb8d982c0aec356205e5ac563c78d4f40934ecda20ad79122e2cfa25abb22",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
+    },
+    {
+      "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-CONTEXT.md",
+      "role": "current",
+      "release": "shb-1.1",
+      "sha256": "a9e348bc2548f2a4ce11d96fd7a83a496bd9f062d54700764d18b6e785c0588e",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-CONTROLS-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "7556f8bbfbf9e7830f13f987889466dd56dabdb646e3cbef431c380e3779ec57",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-LIFECYCLE-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "842c3dda856d4144422bea9e08af27240e2d8db91013dfb83e1602e67e6538f9",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-NOTIFICATION-INBOX-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "6dd7f9b6f27f64d330b400197acded589d9a141c4bf133bb754d7c297db96e85",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-OBSERVATION-JOURNAL-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "1384c787d51c593bc30d43cfb8c00e3b1c173379f415e128598ba8153b4617a9",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-OVERPAYMENT-REVIEW-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "4b4a7c88e2c73e84fd5b78eea78466e167d4fd14904a0073dafb5c2075a7c34d",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-PROGRESS.md",
+      "role": "historical-evidence",
+      "release": "shb-1.1",
+      "sha256": "cbf3788149cb15822c32e3a0a5c388f7d0f328c130bd2d3a7673ee96835af2f7",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
+    },
+    {
+      "path": ".planning/phases/09-selected-bank-reconciliation/09-01-PLAN.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "8d91ae2cd43fac4bbd84a944e98d75c1d3ffcc6a198d7ab065e6b4be2b6ebd97",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
+    },
+    {
+      "path": ".planning/phases/09-selected-bank-reconciliation/09-CONTEXT.md",
+      "role": "current",
+      "release": "shb-1.1",
+      "sha256": "f510e4bb4866718bd8d96bbe714dd2c5e07d9bea516aee5e28f0a9c26c6bb021",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-01-PLAN.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "a9a53ba759203ef167cebb0f429cdcd6acdcc48d7bbad2c4f85d9c8a43495796",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-02-PLAN.md",
-      "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "role": "deferred",
+      "release": "shb-1.1",
+      "sha256": "7c369f8e15175f1382aa4b8533bf597487f27124b51bebcb233f98b91f14f66c",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-03-PLAN.md",
-      "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "role": "deferred",
+      "release": "shb-1.1",
+      "sha256": "21ffc410354c00411dbca234598df4610d740da3c4d2ca3912dd116f7b9ff932",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-04-PLAN.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "10373e51b6be30e53f42d65d2bdbb2b11db49b9f5dc34c18e1cb4612dabd65e8",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-05-PLAN.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "14c4982fbb0cf9a662e43c87391477df16da62bf0302cb8a9ba0f0872348d0e1",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-06-PLAN.md",
-      "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "role": "deferred",
+      "release": "shb-1.1",
+      "sha256": "5ebf84d960a03a1cd4c4358654edd3ff631ee50029db6cda6149d3b95427c3c7",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-ACCEPTANCE-GAPS.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "12cbbbfe33d1d1fa4b1ba534ee6d97e5714baf2c8db89b98e9b4383492107635",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "ed6346eed7eee93a4add016b7a95d75013ef4b5a798d21c6259c5cd5d797bb84",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
+    },
+    {
+      "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-CONTEXT.md",
+      "role": "current",
+      "release": "shb-1.1",
+      "sha256": "5ada71c32cae6c7eff739c14f40592e34aea88cd8e5b64fd38cb0eaf3deb7f11",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-DELIVERY-HOLDS-PARTIAL.md",
-      "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "role": "deferred",
+      "release": "shb-1.1",
+      "sha256": "2e15ff83e3754b678c93f9960d1c564a99afc52c0a897202d48d6f895fe13bc5",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-DOCUMENT-NUMBERS-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "cb4510e65d40ce763181a340fc38163540c7ecf5082807b29edf0c1b1cd6ea98",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-LICENCE-CHANGES-PARTIAL.md",
-      "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "role": "deferred",
+      "release": "shb-1.1",
+      "sha256": "f8f5a98eb5eed3318861a99823deb647bc0efd280232531329a281a63c64e090",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-LOCAL-IMPLEMENTATION-HANDOFF.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "042c2633949e91458ec9ca33e3fe3a96446d982fe62c4b13ad200d17baf35836",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-PRIVATE-PACKAGES-PARTIAL.md",
-      "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "role": "deferred",
+      "release": "shb-1.1",
+      "sha256": "e55234fb041d063bfe2fa367f7f9dfff204515cb88ffdc5f83ce9c3980fa6374",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-STATEMENT-MAIL-PARTIAL.md",
-      "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "role": "deferred",
+      "release": "shb-1.1",
+      "sha256": "dcb49ba288a952f7dfdd69ff49beea83e4712ee7ece2f27c7f3f92852d58c2ed",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-SUPPORT-LEDGER-PARTIAL.md",
-      "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "role": "deferred",
+      "release": "shb-1.1",
+      "sha256": "48447a6be90aa6a38aacdf14b1addd8a5c3f97c8a8aaaf5431eb2bb71d6bb4bd",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/10-staged-delivery-and-support-ledger/10-SUPPORT-REFUNDS-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "ba7ba1c7b72e15d39e309c23151880bd6fa93bdc3ffff5829feba8fccb32b820",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
+    },
+    {
+      "path": ".planning/phases/11-private-delivery-and-protected-host/11-01-PLAN.md",
+      "role": "current",
+      "release": "shb-1.1",
+      "sha256": "a6f1086ae29a775ccddc25c2e4f85fdb13b34c64bc5cb258fd91a5c644f5686e",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
+    },
+    {
+      "path": ".planning/phases/11-private-delivery-and-protected-host/11-CONTEXT.md",
+      "role": "current",
+      "release": "shb-1.1",
+      "sha256": "670873767261c289eea2ad8108daf227615698ea204d553106a0297112a3d75e",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
+    },
+    {
+      "path": ".planning/phases/12-independent-recovery/12-01-PLAN.md",
+      "role": "current",
+      "release": "shb-1.1",
+      "sha256": "edf7ec06e32b2c415e6f443935d684a2f2d1254cc0dea9eee5b4742b0a16a9b9",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
+    },
+    {
+      "path": ".planning/phases/12-independent-recovery/12-CONTEXT.md",
+      "role": "current",
+      "release": "shb-1.1",
+      "sha256": "74fa0dd73ffe77952e20fff418900346628c7c4b31b23026684dca4a053b2d63",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-01-PLAN.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "3fb63e734f68d9981e899f9bb6029f153273e256be90e979926d188fdd44ac91",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-AUTHENTICATION-RECOVERY-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "d29a386e6973c639ab32913699a80d19322698af6ab5b1e9046b272abb00f00f",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-AUTHENTICATION-TEXT-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "775b1ce8001e8260a552af72a528c22d044e42a54928041e45b3ce560dd7644d",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-BROWSER-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "7d6b92144cf91a54edd37197f17efaa0afecc925847e92829eada4c3c8de8bc9",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-BUSINESS-RECOVERY-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "f1dbeadd0e6924ae2719b469fc001e434da015c0facf73ed41d7655af0171903",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-CART-RECOVERY-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "da073935fd693c4228018b869188ed1f4e4af6047effa68ddf832a0274f36c5e",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-CHECKOUT-RECOVERY-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "0bedfebc7ad796d83fa49ab082d5da279e240ce90760ccd06337d3977b1fd3ec",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-COMMERCIAL-BOUNDARY-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "2a3a68c43f9bc7fd9c3395738767b57e8eafc37ff89c43839cf4b3ff0b533bfb",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
+    },
+    {
+      "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-CONTEXT.md",
+      "role": "current",
+      "release": "shb-1.1",
+      "sha256": "130de77172163f73c085c001ec759dbdc307a6e0f7fafa33b05fe0080442e69c",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-DRAFT-RECOVERY-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "2fb99ac9effad4e6c04193be714708443b719039a6044b3a992622c75f1ac8f4",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-EIGHT-CASES-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "1ce5d2d35f19b85c4455f5981c8454181c91d8332759ac49d8b340ef750db88d",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-LOCAL-PURCHASE-FLOW-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "6b1cac0216e184678a4d56b1286eca10621c44e6fce8d107b7d9ad2cc239a20e",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PACKAGE-RECOVERY-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "d21353d96b5f7f615c64a0782817e6e16e55c9c1f1030f6cd9bb4f5adc348b85",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PRIVATE-FOLLOWUP-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "c6573b3758378413ae4815de85dea2c59746f38781487436d3823546522dca49",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-BROWSER-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "eadefd4f1cbdfacce232f452775b55adbde8fd753cc72ed6f8650fdfa874b37e",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PUBLIC-RECOVERY-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "0b18568e0c5a78f72f41c542841cd911c0605371ac2c53be8a40bb8d78ef23bb",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-QUALIFICATION-REGISTER.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "81d3631d21994f2eb9ee9fcc9707c056ae8bfae5d3a59c6a7ec714b5d10abac4",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-QUOTATION-PAGES-RECOVERY-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "eb4d2bc159453f597fed5f9b3180f49b2106b8abc6c4ce3a7002660f867b1aa3",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-QUOTATION-RECOVERY-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "d7a8833f9544978f1f5f341d4e6644555c8a6f79f9550c2abcb55445c55237f6",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-RECOVERY-ACCESS-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "c07c22e01d3aacd1def0c1cc5b5aeb0b6d43937f55721ce87a8f188a0316bc34",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-RECOVERY-COMMIT-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "a3f7e189f17463fc0a18b2e1a5f825f4b3762d384c4050332101ff9e217e6c95",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-RECOVERY-EFFECTS-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "4c384e308d81f9efe4a88659e85de5fea3a4cfd2d007268f76c8f4e6caa70da4",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-REVOCATION-BROWSER-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "64785365083a5c82cd331f3dd04549cef1c42f34c3950e0d57892e91730e7510",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-STAFF-BROWSER-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "6cee1bea3a40d66f6f10603c0a6aa48d5cfec1bd82ca5bf3a794699d4c9ecaa3",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-STAFF-FINANCE-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "f9b77f36c645241c26cb45d91cb48fd761a7ef939c8a4f02a67523b7e2566731",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-STAFF-RESTORE-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "589c07ba9419e52564d7e594f97873ffebe42d5169d561ab91b2e372dd949ea4",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-STARTUP-RECOVERY-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "6d4088e7d0e5edf06a53a14dd02586120df266ebbd9b5cd6d383e4830132e5e2",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-SUPPORT-RECOVERY-PARTIAL.md",
-      "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "role": "deferred",
+      "release": "shb-1.1",
+      "sha256": "e11abd3744186b158f90f6cf2169841ad35e1a00efb6cb6fa491cccb4e5661a5",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-UNICODE-PLATFORM-PARTIAL.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "a1188b2425c44f9f5f69ba23140bdc7b02ff56c87af3960175aef48fb4fe7644",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
+    },
+    {
+      "path": ".planning/phases/14-shb-release-handover/14-01-PLAN.md",
+      "role": "current",
+      "release": "shb-1.1",
+      "sha256": "90089c5d6ffe660ab213cff3b0eef3a6b40548a49680d352bf8b420f9e81e83a",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
+    },
+    {
+      "path": ".planning/phases/14-shb-release-handover/14-CONTEXT.md",
+      "role": "current",
+      "release": "shb-1.1",
+      "sha256": "b8a86449b4efe9f4e51d3f0047448ce9dc0d941336cb5560ad3678e8e3125af0",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/quick/261021-8cb-replan-from-october-21-proposal-and-hand/261021-8cb-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "f2bece10a4cdcc4d1c69f0dacdbf276b2b6f34a1e1445cc0e4cf1e6e2768754a",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261021-8cb-replan-from-october-21-proposal-and-hand/261021-8cb-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "8646cc36f0e494f36e69280c9e683459e2babe6a856b5b62b708c6f05f982a22",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261021-8cb-replan-from-october-21-proposal-and-hand/261021-8cb-VERIFICATION.json",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "0e7b4209e43d37d832fa6c422041bbcfc28bf9818efb2f8d35f50e8b1b925442",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261021-h2i-reject-control-records-changed-during-de/261021-h2i-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "55fa811b548b820b04633f88b9f877b43974300c9fa6ab3fe63da221c4f45a7b",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261021-h2i-reject-control-records-changed-during-de/261021-h2i-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "f837b97aef65b28cf090993fd910badadeff13edc37e3d2335d41b36b89b4787",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261021-hk6-exercise-real-operator-scram-inspection-/261021-hk6-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "b829e26d298973dded061f2d7230065f66508389d0f9675c938062b70615eef4",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261021-hk6-exercise-real-operator-scram-inspection-/261021-hk6-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "ca7d237cc8c08fa03dd25a01309e0be3a6e661f7e0927d641853bb90bb2ac5f8",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261021-i2j-stage-private-unverified-control-candida/261021-i2j-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "ff3c7b82a7e05f2aa8bc56fdb95b8346c6cb48d2610b4b6a8f6dbb0955f3bf82",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261021-i2j-stage-private-unverified-control-candida/261021-i2j-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "2b6a1049b1126517000859d95ef4426dccc037885fd9a3d062bd0fea11baee04",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261021-j0i-inspect-retained-private-candidate-gener/261021-j0i-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "96d44a6368ad8cce61e3c9b7700ca4da45020efc3dc620059556839c04ed4a3d",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261021-j0i-inspect-retained-private-candidate-gener/261021-j0i-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "6ca0c335726c777b8f411894e444ddfb71f52900f6ed1d574cccc1551e970e00",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261021-j6p-derive-traceable-schema-valid-npm-invent/261021-j6p-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "f70e880b388dfde1e213685f8575573de68b0569ab4de59ffa0f26505064aa65",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261021-j6p-derive-traceable-schema-valid-npm-invent/261021-j6p-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "9cc4d29b75f1393845eb7c3d66f6b9ce19890de360e4ff8442e41cdb91152aeb",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-6n6-trace-missing-incorporated-licence-texts/261022-6n6-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "0e0fa2d222f03512fc080789f7c90b4b5c2f59c19075b7c5223490d084bd9fbb",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-6n6-trace-missing-incorporated-licence-texts/261022-6n6-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "a4b405bf6ebaa7dcf3bbccaa966338e7ccd11cc6467e6b9ac8745b42f84a2f56",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-6s2-retain-exact-embedded-licence-headers-fr/261022-6s2-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "c423ac9b3a374b8552bd3aab2ddb2c8df9dfaa6e48ac68c1b0fefef33efaf71d",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-6s2-retain-exact-embedded-licence-headers-fr/261022-6s2-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "299e96390e5987268da072875c3c732aeff2516385dd0e4ddfff7956f7e492a0",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-6vp-inventory-actual-cached-operator-native-/261022-6vp-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "a7974aecb9587180323d8c8e53c84e5156b322ecc16b9e549574657e0c0b5f6f",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-6vp-inventory-actual-cached-operator-native-/261022-6vp-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "b80e336db9223c8ba2d8458a5ef1b84c6ef4101ebf6682b775457ed829877d7f",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-700-prepare-root-owned-generator-discovery-f/261022-700-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "5667c041054ef29a8b9cf444dba26531dc34f04e6067184f35349617d7d852aa",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-700-prepare-root-owned-generator-discovery-f/261022-700-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "66a070954a1d27add18ace3b6751c90e0c49271e2aa7e37cea04e4b48ba3f57d",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-73q-integrate-private-fd-guarded-schema-comm/261022-73q-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "af4cb05c795b51bfe32f2380ffc659c1f9ca49aca77b2a6d66a65cdf783d8d76",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-73q-integrate-private-fd-guarded-schema-comm/261022-73q-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "5c38efa05a69905f630c9b455b867e15e93dcebe1d7c822d31060a4696258f42",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-799-retain-notices-from-cached-exact-python-/261022-799-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "21b5053d2b5c2f5445cf714539516c7697a49e0f263f42f6f12289cafeb0a37c",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-799-retain-notices-from-cached-exact-python-/261022-799-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "e4dd8425949c30d561913a792a8b6b5ee34003b8f916a5304f20ede5bc5699ff",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-7l3-package-separate-pinned-candidate-schema/261022-7l3-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "90f44cfffc8883ac11b99adf920d6a926ad8a0d643ee523307d761e12a4bf61b",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-7l3-package-separate-pinned-candidate-schema/261022-7l3-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "8a6bae855b9a9eef9c43d751fd44c2ea8bc7eece924cdf1abcb313058b4935bb",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-89m-qualify-guarded-schema-operations-with-a/261022-89m-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "46a2e2447b0a0f8542e2859fd0a1c20cbfb8f998acc8424e4312c5dd5f58c2dd",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-89m-qualify-guarded-schema-operations-with-a/261022-89m-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "1fa441b123e4b9e6b069a84f790dda537cca4c2ffff6f06c1188cf3dfac140cc",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-8ci-enforce-restricted-schema-login-attribut/261022-8ci-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "27e12bef94ef4273a2155c8b686c797b3daf198a816f303adcaa1eedb766d15f",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-8ci-enforce-restricted-schema-login-attribut/261022-8ci-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "de0e36c825f0287de823b97d4fcfc71bd85c27cdd23c2f79166873221a7be949",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-8fv-bind-operator-unix-socket-peers-to-appro/261022-8fv-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "527aa1b53220e63fc3d57b73a29c9adbf3a2ff563ae6258c4308e2b2b103657e",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-8fv-bind-operator-unix-socket-peers-to-appro/261022-8fv-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "2288b37f35de284fb1996e10422a68e5dab8a9d5e6a703543427f046755e8a7d",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-8m7-hold-durable-control-admission-during-op/261022-8m7-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "9c53628bebb0485d6d9f568eb0b85fd872febb90ec174ccfefe0693467821f4c",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-8m7-hold-durable-control-admission-during-op/261022-8m7-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "40ab7ae25229859cf2d3ccac94285f2f3cb53ffc60f8c8ba2838628171960d7d",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-8so-prepare-separately-authorized-persistent/261022-8so-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "0f6df7e1d85c815fa94e6131bad2b6944c33fd2699f2166cc05627ca4063bcee",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-8so-prepare-separately-authorized-persistent/261022-8so-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "50080846cca161be2ca7255d55af3da058a64de7c695f95910f1ce152458acbd",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-9ba-reconcile-uncertain-admission-blocks-wit/261022-9ba-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "d49f6a53a38bd83c9b5679f07c66ad1fe5e024d42c42de42cb7c7bd27b852d3a",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-9ba-reconcile-uncertain-admission-blocks-wit/261022-9ba-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "a7691a9fbd532721abfd4152684f9fd832c5a4c2c3010ae870a8284f242e6798",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-9fo-retain-exact-admitted-control-generation/261022-9fo-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "dc2df98b732294f456a0a15764f4d31ae52baf25a1f326de8b94b37cb7ea423b",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-9fo-retain-exact-admitted-control-generation/261022-9fo-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "8095a06b61e9d813eafc8786d633a22f13c3db46243a63d3797fa63a41ca0b6a",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-9m7-inspect-retained-generation-custody-with/261022-9m7-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "2a632dae2f9c1bb5e73339edf8f98217f695b059142c8c67c779ccf4f9f63957",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-9m7-inspect-retained-generation-custody-with/261022-9m7-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "1fe1b83a4750e00413f4c055ab505c23925827b855d4b0da5653f4b8f7d6ded6",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-9uf-publish-reviewed-control-generations-whi/261022-9uf-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "75084cca139b7e34f92204bf12bd30ad8bcda5260ab3cb4d5e12a27092fb9fee",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-9uf-publish-reviewed-control-generations-whi/261022-9uf-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "3204a4ca90e6fca9d6c9e707691f92da6a7f80eacc2cdeae27eaa272eb9da949",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-a80-reconcile-blocked-physical-publication-o/261022-a80-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "3acc52674de74a0eedb53db3ce9d0a382651d379a03b1f232b849e8ecd1fe25a",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-a80-reconcile-blocked-physical-publication-o/261022-a80-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "f827e36a9229f63d61842d2c4deb3f4316075774a91c859a2e4ad7d9094d8373",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-afa-prepare-exact-reviewed-admission-reopeni/261022-afa-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "fb46f86dc8daf1e0a5659ce0c204f5ed6d1caa3c345c2b319ee212df07413b28",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-afa-prepare-exact-reviewed-admission-reopeni/261022-afa-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "01932cc663265f9d1d05fe8420058d0e16daf6d5e091c52418a77f6003581747",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-ajs-implement-separately-authorized-admissio/261022-ajs-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "394fe05dd85bfb4f31817e601110e07dd12edd51be32e0cae797e0960dae9347",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-ajs-implement-separately-authorized-admissio/261022-ajs-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "b9f09c53210347836d090d24c3661146c4463013ef4e78685e8d683aa2ee17c4",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-aql-integrate-admission-lifetime-into-a-clos/261022-aql-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "9a7550cf200ff69078c5ab59f1ab95d1323f098cf5b0fb63d0ad812360961c28",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-aql-integrate-admission-lifetime-into-a-clos/261022-aql-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "260d13b4882c266803b59d64a9633efb94b87106be4fe830440a854085d52fc3",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-b5y-audit-prefixed-licence-filenames-in-exac/261022-b5y-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "be462c7eff9eccf477df88a87e7493db694014329c7623f0bdaa09ff09b1811b",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-b5y-audit-prefixed-licence-filenames-in-exac/261022-b5y-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "7d966bdc7a6b400917008ddd5aee8e8cc15c1ef18bd5e32f80ec74b84246acba",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-bb9-inspect-bounded-embedded-notice-candidat/261022-bb9-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "942b7423caafdcf360f41fa3c14c4e2df09d95d916684ee7e169d199e54176f9",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-bb9-inspect-bounded-embedded-notice-candidat/261022-bb9-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "e90cc18e136a5a683cf27bde71eedf4693b7ce71725e00ea5fd5d3dbf4df0408",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-bqg-reconcile-supplemental-licence-observati/261022-bqg-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "3d66250a8192fb449cd2a8e4ccad81e0c49662a4e59a55e866446b33dbac4418",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-bqg-reconcile-supplemental-licence-observati/261022-bqg-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "bf5b2eacacb7233b77d259820d1aa55a379552cf3e05e599df4dc71362211a27",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-bw3-build-and-inspect-the-prepared-postgresq/261022-bw3-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "27c8888c719b73c5fa617d92d68779c8daa5367bedae0eeb37affa957c3bd756",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-bw3-build-and-inspect-the-prepared-postgresq/261022-bw3-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "c24242d5336e0eedca2ae2d4a8d5bda8e467ae2d310966ca71465f1795743dc4",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-cci-reconcile-stale-planning-summaries-and-m/261022-cci-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "f693a0cc5a01e47b625bedc3241da864527dfe1d3fdaf22de7657459e1f36bb8",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-cci-reconcile-stale-planning-summaries-and-m/261022-cci-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "3b218b0be079c089f8a347ce882c51341b3cc1095e019585f798170edc9fc655",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-cor-inventory-actual-postgresql-image-inner-/261022-cor-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "38319804b81c959df917bfb61fd186c1bb49ba111c03551293828c1fdabbbfde",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-cor-inventory-actual-postgresql-image-inner-/261022-cor-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "f217b220986773798a98c6effc81ce785c0eb1262b0cd1ffe01f009c2dbe8531",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-dj5-amend-local-execution-sequence-and-deliv/261022-dj5-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "9329e55e01b3578eb14c97a5cb04682e625308cd39e95f3db8980200c3800a1a",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-dj5-amend-local-execution-sequence-and-deliv/261022-dj5-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "e35a9955764cc4ff908f4c48742c5e00d0c5f9435ed9e71b9d89b7f0bf409869",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-hrl-verify-local-customer-access-through-cap/261022-hrl-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "11b8c0a33d7d0eec2758fa122ab1d2bddc80e58a004980fb927c3b2a0183c70c",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-hrl-verify-local-customer-access-through-cap/261022-hrl-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "ffd630bca03cc070ba564601dcc4caf85761be8207381fb37e785aa1d72824a2",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-iqc-implement-verified-owner-multi-line-draf/261022-iqc-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "f4f168dd3c7a39862e81eaf651c059cc8f4bef09ffad23f3a4f5809c8f7ac271",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261022-iqc-implement-verified-owner-multi-line-draf/261022-iqc-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "5f7657eb99ca6d7bbb6539cb6b73dca4a0d75313d9515ca8813397ab686a2331",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-6w3-implement-protected-quotation-requests-f/261023-6w3-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "fa9509da68eb2920af3be22563813777a8042efe830e3a8f55d70dd06389062a",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-6w3-implement-protected-quotation-requests-f/261023-6w3-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "36eefd0ec8c6439ba4fda96f23f0aaa2c19351becb3fb12194f97fc2c2ad5d88",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-72i-implement-local-staff-mfa-and-quotation-/261023-72i-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "27d5beb74fd29b16d596ca889f0ee9f4de725cbfaae24262f1aede21ae7a6b01",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-72i-implement-local-staff-mfa-and-quotation-/261023-72i-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "4fd9b7cab3fc5ed5bd4a3a2063055e39bbe736e356b6408706eaf1f1055e666b",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-7l0-record-assigned-staff-quotation-review-d/261023-7l0-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "293603d312fecf688f1de56cc66f7bfdc545fdc25711d8ce54780f503451ef7f",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-7l0-record-assigned-staff-quotation-review-d/261023-7l0-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "2018fb9a37e5842aff7b5011eb5b8b763d89baed83452f715d950a6c80f437e4",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "8aaf6a53616a3500220711fd21772a90f8665f1450b02f99e84a69e6780368f9",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-7s8-show-customer-safe-quotation-review-stat/261023-7s8-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "b878d1a618e46a3df7eb7259f3f962671a385fcb5201d261f053505a10195879",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-832-capture-protected-owner-business-detail-/261023-832-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "477c9def42b7073af78199a6558bff8b1f793fc07b30246e41edc24dd73ab82c",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-832-capture-protected-owner-business-detail-/261023-832-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "cb3de6900a9d7e1d036da447ef05231efab7752e3b36941fe9784c41362d58b3",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-8in-bind-immutable-business-draft-revisions-/261023-8in-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "5f329f62885d646d4e05922e3c374d9124d23bb9956bd3d2e71d6273d2610b85",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-8in-bind-immutable-business-draft-revisions-/261023-8in-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "aaffc6de9457a146ea8b8173d09fc7a15cac76db7043509f7dcab5c00de52b4c",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-91u-preview-source-faithful-declarations-and/261023-91u-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "e7fe4ed3cae9424c712bb8ef17add99c7baf29ca91f93110d02f230a75b18ac6",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-91u-preview-source-faithful-declarations-and/261023-91u-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "ca7e0fae864421ffb4d98afc077032f1204a919b8c35802c774b0d8426c3e28a",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-99a-show-an-owner-safe-bounded-quotation-tim/261023-99a-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "b22d94944639648d105789be2410f514297b97119eb1407b57578ce80acf5e44",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-99a-show-an-owner-safe-bounded-quotation-tim/261023-99a-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "61e37a7872b67d4429c4079ebc49b6d5d0c4300557bf210e25aee1cf0eac2886",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-9eo-show-assigned-staff-exact-scope-offer-pr/261023-9eo-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "65df39718b56d3ef05178c356dfb1d708ff129e03e31bd6bfcd079520d81213e",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-9eo-show-assigned-staff-exact-scope-offer-pr/261023-9eo-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "316e06100855994bd99323dd766f9021401475ffefe8bb10df83be6e8efe8f60",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-9r5-retain-versioned-internal-staff-preparat/261023-9r5-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "0e26cbe7312ad395885f92e657d70c11f1e8ce14db35db171b8f0fbb62a15579",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-9r5-retain-versioned-internal-staff-preparat/261023-9r5-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "7a1460dbaf0f00a7c412f3f9c672a375d9df03db4d41bf1bbee2777f128ce251",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-a30-compare-retained-preparation-snapshots-w/261023-a30-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "f32fdc67578a5e2825a4b091c660b25452749f5c8cc67e9bc6ae1ed6487e479e",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-a30-compare-retained-preparation-snapshots-w/261023-a30-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "888388c16282161bd3884c46b3c92607889acfc51c6424c8350599bba772dbe4",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-atf-exercise-synthetic-customer-to-staff-quo/261023-atf-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "561a55199ed5ad72780c4876bb6a7744b1fbe8364ff49dc8b9319fb12c24b6c7",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-atf-exercise-synthetic-customer-to-staff-quo/261023-atf-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "ec7cfd15a1bcfad9edafeee223df85d1fc253bc62fdec96c85815920cb7c8bfa",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-b25-provide-no-javascript-django-customer-ac/261023-b25-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "74e98f04351e89241d0011406f0e31ffe41be50cb89ffb016562c3ecd8ec32cc",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-b25-provide-no-javascript-django-customer-ac/261023-b25-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "35b7f392589167adf993e44eef6357de2ef499a6581aee07f1b0a4554a67986d",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-bam-add-owner-only-no-javascript-quotation-h/261023-bam-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "67860561d21467b783c988398b8e6279ef9ae51653178650806aba2048014c85",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-bam-add-owner-only-no-javascript-quotation-h/261023-bam-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "4cd7b85f77c0381c78a5993f799ee8eb83aeffe8f3af95b042c5f464a35b2003",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-cll-implement-no-javascript-multi-line-cart-/261023-cll-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "4edee6e222a1caf796163a02f9ccc0dc2c05f84d5d32cdff6f35cc947f3308eb",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-cll-implement-no-javascript-multi-line-cart-/261023-cll-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "3956459972b327a47a4c3c1916dd88557fe8840e56693babb610f5bad4e1178f",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-crh-add-deliberate-django-quotation-request-/261023-crh-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "89c0311331fd65f5fa69ed156f6842bfa6d71c540a67c4dd4498ac2ca899d0b2",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-crh-add-deliberate-django-quotation-request-/261023-crh-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "7c947e66807e9774ee23af7aaba6255522665e70ca5efbea94c39ab9eee7868f",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-cyg-fix-customer-form-audit-f-01-by-rechecki/261023-cyg-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "91a624c71f6787511fafdfc4156a89f1d7b0cfe4bf202e315ee491dc1ff0ec9f",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-cyg-fix-customer-form-audit-f-01-by-rechecki/261023-cyg-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "c2b3913373908d539f8a2303dff9165fa110986e4ae47ddf7946b3648d6f7f56",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-d1r-show-exact-committed-revision-and-curren/261023-d1r-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "20c4d3276515f20ebbb84b6952f0899c7f5700853ba56cf0565ddeaceb0afb06",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-d1r-show-exact-committed-revision-and-curren/261023-d1r-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "0343694a5f00dab7c77d7299fc0de9b79ee8d2c0f7360df375d41656d4acf6b0",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-hn4-verify-capture-status-against-concurrent/261023-hn4-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "caab62e2c266899061c1b0bfe423c5e839168a4233ed22a33988348c5a546401",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-hn4-verify-capture-status-against-concurrent/261023-hn4-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "cb737afb6d44fc9b1d40572e3663a5e1633b2a14103ad316f5d24365e2c59eed",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-hr2-resolve-protected-offer-domain-contract-/261023-hr2-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "a7845cda768f30df11f02f3b253ae748ace3435091a2d3db3b50e9f164e94652",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-hr2-resolve-protected-offer-domain-contract-/261023-hr2-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "62e14a29760cfb5b1102cbdc8e481bcbb59105b412f1c80e70b43decb9725af2",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-hvy-critique-protected-offer-contract-before/261023-hvy-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "db9abff6d390b819187cf269a6e2f0cdec542eb407cf5bb29879bf9a7a95bc61",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-hvy-critique-protected-offer-contract-before/261023-hvy-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "36e4d94cc7202d3044a87a86bf433db5397824a324cf4bdba1b69d76cda96058",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-hzz-audit-existing-preparation-review-and-do/261023-hzz-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "cb90267e306eb8e8b3caaff9e0724e57c9cc17c376241ecb3a123b8a5dbcc387",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-hzz-audit-existing-preparation-review-and-do/261023-hzz-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "cd3bf4d3b23768d5845aecbbf95a2aaccbf3da642a99460c99fe7eba5dc6f80c",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-i7s-add-authorized-staff-queue-and-retained-/261023-i7s-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "3b870ab2277108f776f4416e5dff4d8cda9ef7a8e8590f993b960e5ca0f0598c",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-i7s-add-authorized-staff-queue-and-retained-/261023-i7s-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "190e204c39a5a5e941c93024bac09a6209abb1b90e34d9f792c4f72fec3ed393",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-iet-expose-authorized-paginated-internal-rev/261023-iet-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "4cb332e110776b0e8387a0544848811ba7b16f495b9c0ed6fc75b4aaba667620",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-iet-expose-authorized-paginated-internal-rev/261023-iet-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "c8c8b8524da86e15231e18ee32aed4df64f116c4dcf96742dde960ab715f1105",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-ina-implement-typed-durable-synthetic-bank-o/261023-ina-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "8ce7f25a0775986e16d2eccf243336a2abc12caf21043afec815671db7d0c51c",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-ina-implement-typed-durable-synthetic-bank-o/261023-ina-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "baa4e26ec5c3190973e810aefad663a57e25466548fed4d72f399eb16ea79dff",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-j1r-implement-synthetic-payment-attempt-disp/261023-j1r-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "b8ccf1b03ecef1f9d5b816901841cce9935a7258a32c8ba241746791fd108fe8",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261023-j1r-implement-synthetic-payment-attempt-disp/261023-j1r-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "590aba4bb824ee86e29c169f7cb3dfaa9e7f1d2e862f051e5d0a95d853897ebd",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261026-72e-implement-synthetic-cancellation-expiry-/261026-72e-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "016a1b4e8e6400a483ab04a33d28fb9d73877c0c35bed7b24dba887e72f94cf1",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261026-72e-implement-synthetic-cancellation-expiry-/261026-72e-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "23658eb365d1a79a0f10050efe78e7ca9c7b15590db225b4e3f1d5cfa5705013",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261026-7av-expose-read-only-local-synthetic-payment/261026-7av-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "6c3ae25539ad33b80c1860bee7e64f0d47048c994a9f687a9ce1309a3a9d9543",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261026-7av-expose-read-only-local-synthetic-payment/261026-7av-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "d4baa260993a4bbae4458c160bf1bbbd664da5a2dfd97925345adbfe2462ed2f",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261026-7e6-retain-synthetic-dispatch-holds-with-exa/261026-7e6-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "e08251ff9ecb254cfdd47029384bd8139e0eaec2783be41aa437615212d91081",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261026-7e6-retain-synthetic-dispatch-holds-with-exa/261026-7e6-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "dd67524947bfd5e86b2091827f1f45d338bbfa95864f1a4b425d8d66128d97f2",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261026-8x7-apply-final-purchase-flow-amendment-reco/261026-8x7-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "2f4d1dcb79c8d3c70ab5af9d556075e1d4b8a9bc8acd56f167e7183adf018264",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261026-8x7-apply-final-purchase-flow-amendment-reco/261026-8x7-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "7010bc61369488e346587e6a57b00650abab7af6d799168a13ffae698dd2b11c",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261026-ehs-reconcile-manager-facing-planning-status/261026-ehs-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "1baf26b8c9481f3718c8ba8e7e90d8bab19e7f7e8d1727a6fc505bc80366561c",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261026-ehs-reconcile-manager-facing-planning-status/261026-ehs-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "eb0b0f2cf54fc072cebf38f07a0638223104e57cfa445a958520c2e6220275b4",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261028-8h5-implement-local-recovery-access-invalida/261028-8h5-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "bff3b335d791803e86d82c6afc954ab3341b3499d937bbd555ad97b1c13abdfc",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261028-8h5-implement-local-recovery-access-invalida/261028-8h5-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "80e58957aa9080162b1a261d34bad66bc5d880f30581abd88a5144c221fcd062",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261028-a3m-implement-local-recovery-effect-admissio/261028-a3m-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "353fd538e630f805b7571cce248c5f428a7f5b38a90110c32dafeda969cf0c1b",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261028-a3m-implement-local-recovery-effect-admissio/261028-a3m-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "15c17023e0e1be877c23d36cde0582b7258359f9a018887acf6945e365d2d601",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261028-aq1-fence-authentication-scopes-across-local/261028-aq1-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "cb777bdf4a616dabf256547fb6fa14a641267258f5966eb5acc9de6e564b18f7",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261028-aq1-fence-authentication-scopes-across-local/261028-aq1-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "d4aa9fd338fe91c373a6626b6cb872a71936fdff7fed54086689488849d23729",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261028-b7f-handle-explicit-recovery-holds-in-the-pu/261028-b7f-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "8e6299b1b693adcccfa723c55c583e76168c39a476a9bd02b614f11a437bfc7b",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261028-b7f-handle-explicit-recovery-holds-in-the-pu/261028-b7f-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "196fafb8eff92bba95b01822c5de7e818704d223fd8d7ff49a475e1d90188397",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261028-cgz-fence-local-restore-startup-with-an-exte/261028-cgz-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "cbd2367cb9759eb45bc95c7dd0bef0daee627a1b74bc0dbf0fb5ac85b352c2e2",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261028-cgz-fence-local-restore-startup-with-an-exte/261028-cgz-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "1510f31d166a006fb07b97471fc655d6f05d440651e875bfdc46224b3a0c58a9",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261028-cy5-require-explicit-staff-reset-and-reassig/261028-cy5-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "bdae716dc1f832707c33cba59c68cfcc61bd8313dc009c9b1aace3f094168c2e",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261028-cy5-require-explicit-staff-reset-and-reassig/261028-cy5-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "36d3be53bd2918264d9a7e59a29a876b9cc0ae4b80eae0fc0607269836ac167e",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261028-dq8-require-committed-local-recovery-transit/261028-dq8-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "a806b73c48e24f53246a95c608ce82880c630a8c87926271f382bfefaa5f2a77",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261028-dq8-require-committed-local-recovery-transit/261028-dq8-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "641c74374170faa22f88b323c4141eb5cddc0eb2dd93455151bd15bfcb6e8847",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261028-elk-fence-private-package-access-across-loca/261028-elk-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "1d5e0e62225d560f139e0bbb76255bc424ce659e986cc1a3e6e77ef5b5eaceec",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261028-elk-fence-private-package-access-across-loca/261028-elk-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "2ac697b2942f75d52e53b586d9ea2f438a8e70cb8e7940c07ca0cef3e3582c69",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261028-f72-fence-customer-support-transactions-acro/261028-f72-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "ee65f05f7fa1f2cc4024163b0dcc5bae9270f8d985a3f9caa12fa7d847f9e2bd",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261028-f72-fence-customer-support-transactions-acro/261028-f72-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "09ed50aa11a571c073d488b36263a2a4ff48e7690f9daeee4cbaeaf76dc056b7",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261028-fy8-fence-customer-checkout-and-fulfilment-a/261028-fy8-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "9ae8cb0646286ad18b043ebf6650db1464aa48ed01817f68be254a428fea5fbc",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261028-fy8-fence-customer-checkout-and-fulfilment-a/261028-fy8-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "28c993f8a27158aeabd2995b265315eecee29c3e8b247c920a6f1fd7923a82e4",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261028-hb4-reproduce-and-fence-customer-cart-reques/261028-hb4-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "f7d297595af827fbc70605ebf24e0c96870a4d8d530aa8d7720a63aec73214e4",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261028-hb4-reproduce-and-fence-customer-cart-reques/261028-hb4-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "4a142031604b2ccd0aa9deefe231da3f6fcf4c19c5f60686f7d2b51e7ae7b012",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261028-htg-reproduce-and-fence-configuration-draft-/261028-htg-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "f740649cec49be7d62ad4ee553f692e7f5a2d92e1bc7a2043047c5ad690b247c",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261028-htg-reproduce-and-fence-configuration-draft-/261028-htg-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "0ccce17045bf3a01f1172d56b43cb2e8ff6299c3831b8be700863e23a2667374",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261028-il4-reproduce-and-fence-quotation-capture-an/261028-il4-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "1d8a63ffb26aea78c313455417524f21fc9b446e82735b3b58d96888455da56d",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261028-il4-reproduce-and-fence-quotation-capture-an/261028-il4-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "14581a06e614a8f81cf2f5dd5f710bbb60a209f1635fea6df8470758a35edc9b",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261028-iw9-reproduce-and-fence-native-quotation-his/261028-iw9-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "4e5413d16d13782fcae1df9eb3bffbfd126c20067237c48081d49a4294c7db9c",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261028-iw9-reproduce-and-fence-native-quotation-his/261028-iw9-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "74b135589d2c882442e8c8f00ff83df38610ea7739d759aa2f66a6078f555e9d",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261029-7t5-reproduce-and-fence-business-draft-and-q/261029-7t5-PLAN.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "b2c83fb41bcf5d65729fdf866691f8490492fb455ffe87e7a39837791649804f",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
     },
     {
       "path": ".planning/quick/261029-7t5-reproduce-and-fence-business-draft-and-q/261029-7t5-SUMMARY.md",
       "role": "historical-evidence",
-      "disposition": "Retain dated evidence/configuration; historical next-step text is not an execution instruction"
+      "release": "shb-1.1",
+      "sha256": "c484f7766fd352d8e5070e27975562ddfa685ce20243612ef07b1b22a8ed15f3",
+      "disposition": "Preserve exact original evidence/configuration; no historical next action or deferred launch gate"
+    },
+    {
+      "path": ".planning/quick/261030-dsk-apply-shb-revision-1-1-rewrite-all-activ/261030-dsk-PLAN.md",
+      "role": "current",
+      "release": "shb-1.1",
+      "sha256": "9d80ac5455a63104cb1259e921feef0952c1bb2e21e670a33f18e8332ab19498",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
+    },
+    {
+      "path": ".planning/quick/261030-dsk-apply-shb-revision-1-1-rewrite-all-activ/261030-dsk-SUMMARY.md",
+      "role": "current",
+      "release": "shb-1.1",
+      "sha256": "328c4413a27a973e911923b19e05816d3541acf1835de11b1bf7f942a7fba684",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/research/ARCHITECTURE.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "a8003bca4d3bd0b266faf84cc24a9aa34581ce190ad1bf3f0a2dc9843dc314b4",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/research/FEATURES.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "07bcedd9c94d6ca06af43d54cc4debd866e97998a5052ceb6e84f36d7a38cf2f",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/research/PITFALLS.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "e946e70232d4288b64e50757592aabd5e116755f5213ae177e6faffe2154cee2",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/research/STACK.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "42594ae4fd5494805d6ba8f78f66ed49337bfe893e5f6660f2f67c3aa92a8bf1",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/research/SUMMARY.md",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "72710e84203d20b9eca656c5089bba98e8d7fd32def0dbdd39d28be47f38d98e",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/state.json",
       "role": "current",
-      "disposition": "Use final revision2/current routing; retain applicable nonconflicting scope"
+      "release": "shb-1.1",
+      "sha256": "c56b4bf1bf945038e28fb57f82a918b8e5826e11b8d90da39bc1fe44016161a6",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
     }
   ]
 }

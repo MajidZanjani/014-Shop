@@ -1,12 +1,9 @@
----
-status: complete
----
-# Private exact-generation custody
+# Private exact-generation custody — retained historical record
 
-Prepared a separately authorized root-only library snapshot/retention operation. It captures exact admission/all manifest control bytes under the existing shared lease, preserves exact custody authority outside the hash graph, and stages a new private content-addressed generation under the approved root0700 parent device/inode. Hash receipt, bounded exclusive writes/fsync/readback and final name/parent/authority checks apply; caller FD retained. No CLI/provisioning/publication/reopen/repair/retry.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Actual local SQL3/13910.364s, source7/5 4.326s, operator7/17 5.592s and deployment16/31 2.289s pass. Seven added methods cover raw capture/hash/modes, actual capture lease, changed/missing sources, authority/root/parent binding, unknown target preservation, short writes/sync uncertainty and revocation before/after archive. Existing control-reader tests pass after shared raw-loader refactor. No failing custody runs.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261022-9fo-retain-exact-admitted-control-generation/261022-9fo-SUMMARY.md); original SHA256 `fed7107dce1eebda0d0218edc8288afb28cb401400f295c819001c9dfa07f0f7`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Local private fsync/readback is not trusted physical ancestry, current-generation attestation after lease release, independent immutable archive or crash durability. Markers may survive later failure. Actual custody qualification/full publisher/reopen/app/runtime/14/16/17 remain pending; no credentials/host/provider action. Scoped commit/push retained.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
 
-Final late-parent-sync control confirms retained.json may exist although retention raised; repeat is still denied and admission unchanged. Initial138-test run10.466s passed before this final139-test run10.364s. Native54/9 write0.961s and source notices9/7 write3.750s pass with new content-addressed evidence. Historical reports/texts unchanged.
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

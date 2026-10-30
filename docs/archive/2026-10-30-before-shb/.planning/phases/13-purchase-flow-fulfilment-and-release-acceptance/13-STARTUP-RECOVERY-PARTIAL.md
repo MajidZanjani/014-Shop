@@ -1,0 +1,30 @@
+# Local restore startup fence —2026-10-28
+
+Status: local component verified; OPS-02/UAT-03 and actual/full acceptance remain partial. No database backup was restored, no protected host was accessed and no actual provider/traffic/reopening operation occurred.
+
+## Behavior and limits
+
+`SHOP_LOCAL_RESTORE_ID` selects a fresh external canonical UUID4 for disposable local/synthetic recovery. All cooperating customer/staff/worker processes must receive the same identity before they start. Blank, malformed or production/bank-sandbox selection rejects with fixed text; Django setup performs no database connection or mutation. The normal development setting remains absent. [Local configuration contract](../../../docs/local-recovery.md).
+
+A selected identity closes customer/staff authority, code capture/verification, both staff factors and new worker/provider effect admission independently of an unheld or missing restored epoch. Deliberate login does not initialize a missing epoch while selected startup is pending. Admission checks remain serialized with the epoch and hold; no adapter runs under that lock. Matching immutable quarantine and release records are both required, while the current database hold continues to deny access. Older/unrelated history and an old release replay cannot satisfy a fresh identity. Completion is recognized across separate cooperating processes and later ordinary quarantine cycles without an in-memory readiness cache.
+
+The existing exact-disposable-database fixture quarantine/release function remains the only transition. It invalidates sessions/challenges/staff generations, requires the current hold and refuses unfinished call scopes. Old authentication requires fresh verification after release. Read-only bank lookup/mutation lookup remain available without new admissions or a permission to retry. Inspection reports `startup_recovery_pending` separately from persisted `currently_quarantined`; an unheld startup fence does not claim effects have drained.
+
+Selecting the fresh shared external identity, stopping old processes and isolating actual traffic/egress are operator/deployment obligations, not detected backup operations. Omitting the setting retains ordinary local behavior; reusing an old identity may match restored history and is unsuitable for another restore. Database-connectivity health retains its existing contract and does not claim recovery readiness. No production recovery switch/command, new dependency, external API or actual reconciliation approval is introduced. Existing production-shaped database access remains unqualified/closed.
+
+## Evidence
+
+- Pre-fix real-PostgreSQL regression: a fresh configured restore identity with an unheld epoch still returned authenticated200; one test failed in0.118s. `.scratch/startup-recovery-baseline.log` retains the controlled failure.
+- Final focused startup/configuration/access/authentication/hold suite:89 tests pass in25.554s, migrations pass and no migration drift. Ten new startup tests cover old/cached authority, both real staff factors, code capture, missing epoch despite matching history, unrelated/replayed releases, fresh verification, later holds, bank/worker/read-only lookup, unfinished exit and invalid settings. Separate customer, staff and worker Python processes use the external environment setting before and after the persisted sequence. Three new configuration tests prove no-database setup and fixed rejection/check behavior.
+- One intermediate focused assertion expected401 for a still-authenticated-but-unverified draft list; the existing route correctly returned403/verification_required. The test was corrected to the established contract; authorization/status behavior was preserved. The intermediate89-test run had one assertion failure in25.509s; final run passes.
+- Current-source `CORE_LOCAL_PASS checks=5 tests=637 duration_seconds=199.598`; enclosing lane201.077s. Real PostgreSQL18.6/UTF8, Python3.13.16/Django5.2.18, frozen hashes/install checks and original limits retained. Three batches contain at most20 labels with120s per batch and900s outer. `PENDING_OFF_HOST` remains explicit. `.scratch/startup-recovery-core.log` retains the result.
+- Inert app source `/nix/store/kqw59vdg9sfxk7hw7a8pv2wabjbfjwsk-shop-python-source`:274 allowed files,33 templates,1 CSS, all bytes exact and no symlinks. Only owned new backend inputs were staged before the Git-backed Nix source build. `.scratch/startup-recovery-source{,-qualified}.log` retain evidence.
+- Prior frontend137/32, catalog117/121 and browser227 retain db56df3 scope; their source was unchanged. Prior worker/adapters/proxy results retain the commits documented in their respective evidence. They are not new startup-browser, runtime or actual recovery proof.
+
+Commands use the pinned `ops/nixos#browser` development shell and existing frozen-wheel/prepared_database harness. Focused wrapper `.scratch/startup-recovery-focused.py` runs the eight named configuration/access modules with the unchanged120s test bound; `/tmp/shop-dispatch-core.py` dispatches the existing complete core-local lane. Temporary PostgreSQL clusters are newly owned and destroyed by the outer harness; `--keepdb` never retains an external database. Shared full `/tmp`, Nix store and protected services were not pruned.
+
+## Still pending
+
+Actual restoration/process/traffic/egress isolation, independent complete-pool-loss/custody/retention evidence, post-point financial/business/licence/support/access revocation reconstruction, consumed MFA-code recovery/reset, approved channels/providers and full source acceptance remain pending. The user will supply company commercial revisions/approver evidence later; independent local implementation continues.
+
+Next independent review: local post-point resource revocation reconciliation using explicitly synthetic external fixture evidence. Inspect current staff/resource grant and operator-reset paths before designing changes; restored older grants must not become reauthorized merely through fresh login. No actual revocation/MFA reconciliation is inferred from this startup slice.

@@ -1,12 +1,11 @@
----
-phase: 01-product-authority-repository-review-and-decision-register
-plan: "02"
-status: complete
-scope: documentation-reconciled
-reconciled: 2026-10-21
----
-# Source traceability and decision register
+# Source traceability and decision register — retained historical record
 
-The unchanged product inventory is retained; active requirements and architecture use the October 21 package. P-10 hosting selection is resolved; host qualification and P-11/P-12 integration remain pending. Protected resources are outside routine shop changes.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-The original October 20 execution record is preserved under docs/archive/2026-10-20-planning/planning/phases/01-product-authority-repository-review-and-decision-register/. This summary records applicability review and current documentation only. New hosting/runtime/production requirements remain unexecuted. Existing verifier code is not reported as passing against new sources; migration belongs to 02-00.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/phases/01-product-authority-repository-review-and-decision-register/01-02-SUMMARY.md); original SHA256 `68598568323c42e9b3b617318df67ac70680d50300579f7c7eb2f7ab2c50f4fb`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
+
+Current Phase 1: **Source authority and SHB scope reconciliation**. Retain immutable sources; apply SHB revision 1.1, document deferrals and reconcile every planning file.
+
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

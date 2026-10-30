@@ -1,10 +1,9 @@
----
-status: complete
----
-# Exact admission reopening preparation
+# Exact admission reopening preparation — retained historical record
 
-Inline sequential GSD quick task; no agents or actual activation.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-1. Add root-only read-only preparation bound to fresh independent authority, exact historical publication/candidate/original/proposed admission and qualification-evidence bytes. Require fully installed matching generation, complete original-manifest binding and fresh candidate semantic/artifact validation under permanent shared barrier lease. Return exact proposed admission bytes with no activation/durability grants.
-2. Test actual synthetic scratch filesystem: exact output, no writes, all nonpublished states, changed bindings/metadata/authority, stale candidate, lock exclusion. Opaque evidence hashes identify externally reviewed bytes only; no qualification invention.
-3. Run SQL/source/operator/deployment/native checks; update docs/state, commit and push. Actual mutation/recovery behavior, custody/host/runtime qualification and phase14/16/17 remain pending.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261022-afa-prepare-exact-reviewed-admission-reopeni/261022-afa-PLAN.md); original SHA256 `196cb51f4252321e2d10832bca79cfe9a2fd87ecf1303e73f2a5a0067d9d1f06`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
+
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

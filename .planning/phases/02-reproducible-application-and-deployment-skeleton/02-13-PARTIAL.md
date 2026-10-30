@@ -1,23 +1,11 @@
----
-phase: 02-reproducible-application-and-deployment-skeleton
-plan: "13"
-status: qualification_pending
-requires: [02-04, 02-08, 02-12]
-provides: [closed-environment-and-artifact-schemas, combined-privacy-checks, schema-ownership-index]
-requirements-completed: []
----
-# Phase 2 Plan 13: Closed evidence and privacy boundaries
+# Phase 2 Plan 13: Closed evidence and privacy boundaries — retained historical record
 
-All four actual environment examples validate in closed versioned envelopes. Actual executed validation records carry source commit/dirty status, interpreter version, frozen lock digests, full command, exit/count/time fields and artifact hashes. Offline Draft 2020-12 schemas reject unknown fields/modes/versions and malformed dates/digests. Later catalog/commercial/payment/bank schema families have explicit unimplemented ownership; the index supplies no permissive product validators.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-## Actual evidence
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/phases/02-reproducible-application-and-deployment-skeleton/02-13-PARTIAL.md); original SHA256 `7f295a21e4636811d8b8ab6c4120dc87e3e02372ac20812c14d64c93222d92ef`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Expanded contracts-local passed 12 checks/8 tests in 12.304 seconds, including actual parsed examples and a collected successful validator execution record. Full contracts remains pending actual off-host 503 outage; the local 503 is synthetic handler exception only.
+Current Phase 2: **Reproducible application and isolated deployment foundation**. Reuse exact pinned Astro/Django/PostgreSQL/worker stack; retain database destination, all-write/attestation, native/licence/SBOM, immutable-image, CI and independent runtime gates.
 
-The boundaries dispatcher passed 17 checks/32 tests in 17.287 seconds. It reruns actual isolated frontend installation/diagnostics/build/static/React/canary controls and backend frozen-runtime/real-PG/HTTP/startup/log controls, captures child counts once and adds three composition controls. Maps/disguised archives reject synthetic private canaries; missing/zero/failed producer controls are errors. No real .env or private file was scanned. No live endpoint, public privileged route or provider operation.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
 
-## Pending acceptance
-
-Human source-fidelity review of the schema ownership index/service diagram remains pending, including the plan's flagged-unverified prohibition descriptor. The documentation explicitly creates no provisional rate/right/approval or competing catalog. Full inherited off-host core/worker/contracts/runtime qualification remains pending; local privacy pass is not full phase/production acceptance.
-
-The diagram labels build-only Node, static browser output, Django, new PostgreSQL, one worker, synthetic adapters and disabled production-shaped templates. Future archive-before-effect/uncertain-bank rules are explicitly future T05/T08 requirements, not implemented guarantees. Resource credential policy from user is retained: .env for needed operator access, named blank entries/user fill for missing credentials, no application auto-loading or exposure.
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

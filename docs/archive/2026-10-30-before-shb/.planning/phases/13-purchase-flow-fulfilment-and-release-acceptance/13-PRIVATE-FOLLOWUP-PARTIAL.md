@@ -1,0 +1,15 @@
+# Optional private synthetic support follow-up —2026-10-27
+
+Source §8 check8/FLOW-08 local boundary implemented on the existing support page. Actual confidential technical-data intake, transport/custody and full UAT remain pending. No mandatory engineering portal, new checkout questionnaire, upload or actual technical data is introduced.
+
+Customers select only fixed named synthetic examples. Each record binds the original acceptance/grant digest, owner, expected revision and request identity. Archive publish/readback precedes one immutable PostgreSQL context row. Current grant locks serialize competing writes; exact old retries preserve their old revision after later submissions, while changed commands/stale bases deny. History verifies every retained version/hash link/archive; SQL triggers prohibit update/delete. The accepted purchase, bank, licence/support grants and ledger remain independent and unchanged.
+
+Customer reads retain exact ownership. Staff reads require the existing support assignment and recent MFA, rechecked after archive work. Public/ordinary receipts expose only fixed fixture content/version metadata, with no internal owner IDs, accepted/grant/archive hashes, actual host/key data or URLs containing bearers. Closed command fields reject arbitrary technical text/files; the existing sensitive-POST/no-store/CSRF/origin controls remain.
+
+Focused42 context/ledger/finance tests passed16.068s, including9 new context tests. PostgreSQL18.6; catalog0024/payment0009; no model drift. The first cross-owner test used an unverified fixture and hit the customer prerequisite; changing it to a verified foreign owner exercises the intended resource-isolation denial. The first temporary migration wrapper targeted payments only; catalog generation then completed with the correct app. No schema drift is ignored.
+
+Supported complete-cart demo passes with actual local staff password/second factor, two optional context revisions, exact historical retry and assigned staff read. Accepted scope and support ledger revision5/spent1800/available70200 stay unchanged. Existing independent finance checkout still preserves36000 granted/60 reserved seconds after synthetic refund. Source check8 remains partial for actual intake qualification.
+
+Final proxy `DEMO_ACCESS_PASS checks=148 aliases=2 evidence=local-synthetic-header-level`:8 added checks per alias cover boundary text, null-Origin/no-CSRF denial, form/retry, stale base, actual-text rejection/no echo and unchanged ledger. This is owned loopback proxy/Gunicorn/PostgreSQL evidence, not independently observed browser-engine/accessibility or production qualification.
+
+Exact inert source `/nix/store/pr7ifvr7rbcwy30zj33a148lj87kjqb3-shop-python-source`:264 byte-exact files/33 templates/1 CSS/no symlinks. Final full backend CORE_LOCAL_PASS569 tests/5 checks171.634s; enclosing172.938s; zero failures. Both existing120-second batches pass unchanged. Existing production/provider/request/database timeouts unchanged. Four report-contract tests pass; actual qualification remains closed. No real bank/mail/DNS/TLS/host operation.

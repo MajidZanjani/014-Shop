@@ -1,10 +1,11 @@
----
-phase: 01-product-authority-repository-review-and-decision-register
-verified: 2026-10-21
-status: passed
-scope: documentation-applicability-only
-score: 4/4 source-documentation requirements reconciled
----
-# T01 documentation applicability review — 2026-10-21
+# T01 documentation applicability review — 2026-10-21 — retained historical record
 
-See .planning/REPLAN-VERIFICATION.md for current source identities, product equality and requirement coverage. Source and decision documentation is reconciled; historical human UAT remains archived and is not new deployment approval. Automated T01 executable checks need the explicitly planned 02-00 migration. No host or application acceptance is implied.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
+
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/phases/01-product-authority-repository-review-and-decision-register/01-VERIFICATION.md); original SHA256 `3c8a373b5029096ae803d0044fe30073861971676a19c2efe313b10809678d6f`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
+
+Current Phase 1: **Source authority and SHB scope reconciliation**. Retain immutable sources; apply SHB revision 1.1, document deferrals and reconcile every planning file.
+
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

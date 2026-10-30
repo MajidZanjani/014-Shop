@@ -1,10 +1,9 @@
----
-status: complete
----
-# Separately authorized reopening and uncertain-outcome inspection
+# Separately authorized reopening and uncertain-outcome inspection — retained historical record
 
-Sequential inline GSD quick execution. Source library and synthetic scratch only; no actual installation/authority/activation.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-1. Reuse inspection/preparation checks under a caller-held lease without nested lock conversion. Add root-only reopening with fresh independent outside-generation authority binding exact preparation record, proposed admission, blocked bytes and bounded recovery/qualification evidence. Exclusive permanent-inode lease; full fresh preflight twice and exact metadata/authority checks before the sole bounded write/fsync/readback. No automatic repair/rollback/retry. Document admitted bytes may survive a raised late failure.
-2. Add independent fresh read-only reopening inspection binding exact historical reopening authority, blocked/proposed bytes. Shared lease, including empty/partial states; no historical authority renewal/live lookup, completion/durability/retry/activation grants or writes. Test actual scratch success, lock exclusion, scope, short/partial writes, sync failure, late revocation and inspection.
-3. Run SQL/source/operator/deployment/native checks, document evidence/limits, update state, commit/push. Actual authority/custody/host/runtime qualification and application/14/16/17 remain pending.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261022-ajs-implement-separately-authorized-admissio/261022-ajs-PLAN.md); original SHA256 `5cdbc95f1d25e7c229533772e7b83bf3cd1072c920f320df3e5da9ef3d5a7ba0`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
+
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

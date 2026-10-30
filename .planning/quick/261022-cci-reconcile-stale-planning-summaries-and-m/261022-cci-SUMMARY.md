@@ -1,15 +1,9 @@
----
-status: complete
-evidence_class: recorded-evidence-planning-reconciliation
----
-# Repair stale visible and machine-readable progress
+# Repair stale visible and machine-readable progress — retained historical record
 
-User correctly identified stale current planning despite implementation updates. state.json/02-VERIFICATION remained dated yesterday;STATE's first evidence block had old81/98/etc counts;roadmap lacked current within-plan activity;10 completed quick tasks were absent from the index. Append-only notes did not maintain the top-level views.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Refreshed current STATE and linked02-PROGRESS through implementation798eaa3, indexed all24 today's implementation quick tasks with actual commits plus this planning repair, moved chronological notes verbatim to ACTIVITY-LOG, updated roadmap activity and BUILD traceability to In Progress while keeping checkboxes unchecked, refreshed gaps_found recorded-evidence audit dated2026-10-22. Completion remains8/18 Phase02,10/20 planned records,1/14 phases;7% phase ratio is explicitly not engineering effort.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261022-cci-reconcile-stale-planning-summaries-and-m/261022-cci-SUMMARY.md); original SHA256 `bcbe5ecdbca8c89c72d47f3e15a6d6ef9c6ce853a4083edd597c6fa1ddeee025`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Canonical publisher initially exposed another source-format issue: old three-column table was not recognized (required Completed column missing),and Executing was not a recognized roadmap token;fallback checkbox parsing did not match padded current_phase02. Initial planning assertions correctly failed. Replaced with canonical four-column table and Complete/In Progress/Not started tokens. Canonical regeneration now reports14 phases,1 complete,Phase2 in_progress,later phases pending. No external GSD code modified or fabricated manual phase state.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
 
-Validation checks actual plan/summary/partial counts;25 completed quick tasks including this documentation repair and all index links/commit IDs;canonical machine date/status/schema;unchanged eight BUILD checkboxes and implementation/evidence bytes;historical note preservation and current document links. This is document reconciliation,not new execution of application/full CI/runtime tests or independent phase verification. No acceptance promoted,production activation or host/provider action. Correct the task index commit stamp after committing the repair and publish refreshed machine state before final push.
-
-Planning repair committed as 8a5c91e. The quick-task index now references that exact commit; canonical machine state is republished after stamping.
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

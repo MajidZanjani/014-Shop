@@ -1,10 +1,9 @@
----
-status: complete
----
-# Reconcile supplemental licence observations
+# Reconcile supplemental licence observations — retained historical record
 
-Inline GSD execution. Supplementary observations must be linked without rewriting immutable inventory or weakening its acceptance gate.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-1. Add offline read-only reconciliation for fixed retained inventory/baseline/named/header/npm-marker reports and content-addressed text paths. Verify report/source/artifact/member/identity bindings, exact full gap coverage, safe stable file reads and exact text digests/lengths/ranges. Separate named text, embedded header and marker-line observations per package; all legal/package-wide/inventory grants remain false.
-2. Test actual retained evidence and mutations: changed source/digest/identity/range/text, omitted/duplicated packages, path/symlink substitution and approval flags. Demonstrate raw inventory still fails required-text acceptance. Exclusively create summary, independently recheck offline, preserve all originals.
-3. Document scope/counts and remaining gates, update GSD, commit/push. No network/install/code execution/runtime rebuild/production activation.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261022-bqg-reconcile-supplemental-licence-observati/261022-bqg-PLAN.md); original SHA256 `833f16faa8667470ef61eb398fe189d6d08ceea288c5cdd41533d78ff67c2b29`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
+
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

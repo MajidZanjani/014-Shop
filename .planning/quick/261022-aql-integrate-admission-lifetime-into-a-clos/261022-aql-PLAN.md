@@ -1,10 +1,9 @@
----
-status: complete
----
-# Multi-statement Django transaction precursor
+# Multi-statement Django transaction precursor — retained historical record
 
-Inline GSD execution. Inspection found the existing single-DML primitive cannot wrap worker ORM atomic blocks. Implement its missing multi-statement foundation before backend activation; production engine remains closed.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-1. Add runtime library guarded_atomic for an already-connected Django wrapper. No connection/credential discovery. Own outer durable atomic transaction; hold control admission through commit/rollback, validate same raw connection/autocommit/transaction state, check fresh runtime and SQL destination before/after, deny rollback-only state and deferred commit callbacks. Trusted application SQL, not sandbox or automatic ORM enforcement.
-2. Real local PostgreSQL+Django tests: multi-statement commit/rollback, late identity/runtime/admission denial, nesting/manual transaction/missing connection and callbacks rejection, lease held through actual commit/rollback. Runtime/physical admission proof stays separately labelled synthetic where adapted.
-3. Explicitly package source module, run SQL/source/operator/deployment/backend/worker/native checks, document precursor limits, update GSD, commit/push. Positive connection transport, all-write backend integration, role/auth rights, actual qualification and14/16/17 remain pending.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261022-aql-integrate-admission-lifetime-into-a-clos/261022-aql-PLAN.md); original SHA256 `a9982a986bf03925494bddd63d6c73c1099838448b0bf312c0426e9dca532cfa`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
+
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

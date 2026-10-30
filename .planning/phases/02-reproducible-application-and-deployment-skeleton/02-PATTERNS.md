@@ -1,17 +1,11 @@
-> Current execution precedence: [final26October purchase-flow revision2](../../PURCHASE-FLOW-AMENDMENT.md) and STATE.md/ROADMAP.md. This file retains applicable baseline infrastructure work and qualification gates; any old next-step routing or conflicting purchase/delivery requirement is superseded. No protected/external authority changes.
+# Phase 2 pattern map — October 21 — retained historical record
 
-# Phase 2 pattern map — October 21
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Existing executable utilities use bounded argument-list subprocesses, named errors, root-relative paths and finally cleanup. docs/product-source/verify_t01.py is an analog for those mechanics only; 02-00 must migrate its obsolete authority/status constants. scripts/check.py is the actual dispatcher; scripts/dev_postgres.py owns scratch-only local PostgreSQL. Historical data in docs/implementation-evidence.md is an evidence-language analog, not current application or deployment proof.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/phases/02-reproducible-application-and-deployment-skeleton/02-PATTERNS.md); original SHA256 `a6c6a1c0a4b497f07007ca0911613cff3c05fe5b3266de04738f307051789488`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-| Future family | Closest analog | Boundary |
-|---|---|---|
-| scripts/check_frontend.py, check_python.py, check_backend.py, check_worker.py, check_contracts.py | Existing check.py/dev_postgres.py and verifier named failures | Explicit bounded commands/counts and owned scratch cleanup; maintained installers/framework/validators own semantics |
-| Static frontend/content/island | No existing application analog | Conventional Astro/React layout; source/build public allowlist |
-| Django config/core/worker/adapters | No existing application analog | Conventional packages/migrations/management commands, real PostgreSQL |
-| Schemas and API | Existing source hash/evidence records only | Closed maintained offline schema validation; no custom permissive validator |
-| Rootless images/Quadlets/NixOS module | Existing pinned flake only | New production architecture; no native app/DB production units or invented host convention |
-| Inventory/allowlist/activation/deferred ingress | October 21 mandatory protection sections | Explicit unobserved templates; no protected mutations |
-| SBOM/reproducibility/evidence | Recorded 02-01/02-02 provenance | Standard tools and actual outputs; preserve historical records |
+Current Phase 2: **Reproducible application and isolated deployment foundation**. Reuse exact pinned Astro/Django/PostgreSQL/worker stack; retain database destination, all-write/attestation, native/licence/SBOM, immutable-image, CI and independent runtime gates.
 
-Count all framework initializers/locks/migrations in owning plan scope. New rootless code has no established project analog; qualify exact locked official APIs, component identities and host support instead of presenting templates as existing practice.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

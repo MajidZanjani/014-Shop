@@ -1,10 +1,9 @@
----
-status: complete
----
-# Schema role admission enforcement
+# Schema role admission enforcement — retained historical record
 
-The separate schema command now rejects privileged attributes, database ownership, indirect/extra role memberships and membership administration after connecting and at each existing admission point. Only pg_read_all_settings membership is permitted. No provisioning or mutation of roles is supplied.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Real PostgreSQL and SCRAM evidence covers attribute/membership/ownership denials, complete role apply/replay, and a CREATEDB promotion after DDL that triggers rollback at the next check. Synthetic denial confirms close-before-mutation. Final database-destination3 checks/110 tests10.010s; source7/5 in4.251s; operator7/17 in5.503s; deployment16/31 in2.210s pass. Native54/9 and source-notices9/7 write passes retain new content-addressed evidence. No failing enforcement run; initial109-test passes precede the final110-test run.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261022-8ci-enforce-restricted-schema-login-attribut/261022-8ci-SUMMARY.md); original SHA256 `ba919221758106abcf45b4067c7a266a0162be04406fd59ea9015d1761ce6eb3`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-The predicate does not attest every direct privilege, routine or historical owner. Actual runtime/roles/socket/custody/publisher/Django/independent recovery and14/16/17/full phase remain pending. No credentials/host/provider action. Commit local only; remote publication remains separately blocked.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

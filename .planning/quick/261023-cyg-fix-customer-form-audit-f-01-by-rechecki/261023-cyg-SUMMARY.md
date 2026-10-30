@@ -1,16 +1,9 @@
----
-quick_id: 261023-cyg
-status: complete
-implementation_commit: 83e8464
----
-# Customer form audit F-01 repaired
+# Customer form audit F-01 repaired — retained historical record
 
-Supplemental inline source review of the assembled local forms found a medium auto-fixable owner-read gap after parent cart lookup. GSD audit-uat itself returned zero structured UAT items; this is separately scoped source/regression evidence, not full UAT acceptance. [Audit](../../audits/2026-10-23-customer-forms.md).
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Controlled committed owner change between queries reproduced HTTP200 from the pre-fix cart editor. Snapshot reads in cart API/editor/current and historical-base commands and quotation preview now include current owner predicates. Missing/no-longer-owned current snapshots fail404 without protected selected values. The same regression checks three current read paths after repair. No new ownership transfer route or authority added.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261023-cyg-fix-customer-form-audit-f-01-by-rechecki/261023-cyg-SUMMARY.md); original SHA256 `198035099b3905de5fcdc8ee05173b00f3966791be8a6e9f14049cc93ff7be48`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-CORE_LOCAL_PASS checks5 tests178 duration40.556s:164 Django plus14 actual Gunicorn transport observations on owned PostgreSQL18.6/UTF8. All existing exact retry/stale/catalog/CSRF/scope/API-form race and supported staff journey tests pass. Actual source /nix/store/qx34k0a9m91wvmcq2xpf70paw2bab92l-shop-python-source has129 files19 templates, exact bytes/allowlist/no symlinks pass. Frontend/proxy unchanged and earlier scoped evidence retained.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
 
-No other concrete finding identified in this scoped review. Browser/accessibility/privacy-history, real delivery/staff MFA/contact roles, commercial/source/legal, off-host/runtime/recovery and production qualification remain pending. Country/tax deferred. Focus7/completed1; Phase02 8/18 unchanged.
-
-Next: explicit no-JavaScript cart confirmation of committed/current revisions using safe numeric metadata. Continue after immediate sync as authorized.
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

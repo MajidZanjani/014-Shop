@@ -1,17 +1,9 @@
----
-status: complete
-implementation_commit: 7e410f97160abf2b92cb9ce25fa1b392928141a2
-requirements: [OPS-02, AUTH-04, FUL-05, UAT-03]
-evidence_class: local-synthetic
-actual_recovery_qualified: false
----
+# Private package recovery fence — retained historical record
 
-# Private package recovery fence
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Completed both tasks inline. Final original-code seven tests/nine failures reproduce cached grant/download after quarantine/release or a selected startup identity and missing epoch-before-owner serialization. Both existing package transactions now require and lock a current customer epoch before owner/resource work, retaining it through bounded local archive verification and commit. Default authorization remains read-only. Owner/resource/session/artifact/expiry/one-use and retained archive controls remain.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261028-elk-fence-private-package-access-across-loca/261028-elk-SUMMARY.md); original SHA256 `89b4a6275f8eded3deac65f8056c54ab8bdba0a24f36b345682e6c867398a17a`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Focused136/48.674s, current backend657/5 checks/209.468s (outer211.004s), exact276-file source/33 templates/1 CSS/no symlinks, planning/source-authority checks and four planning/inventory tests pass. No migration, dependency or actual provider/host operation. Prior browser/frontend/proxy evidence retains its exact earlier scope. [Exact evidence](../../phases/13-purchase-flow-fulfilment-and-release-acceptance/13-PACKAGE-RECOVERY-PARTIAL.md).
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
 
-## Self-Check: PASSED
-
-Implementation7e410f9 is pushed. No actual transport quiescence, revocation/MFA/custody/retention/independent restore or full Phase13 acceptance is inferred. The next independent review is the normal support command-to-service overlap; it is not yet reproduced or implemented. Company commercial inputs remain pending without another request. A separate conditional context checkpoint preserves that review with no invented usage percentage.
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

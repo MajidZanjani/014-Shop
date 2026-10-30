@@ -1,21 +1,11 @@
----
-phase: 02-reproducible-application-and-deployment-skeleton
-plan: "08"
-status: qualification_pending
-requires: [02-07]
-provides: [closed-safe-events, documented-frozen-development, four-environment-templates]
-requirements-completed: []
----
-# Phase 2 Plan 08: Safe events and developer setup
+# Phase 2 Plan 08: Safe events and developer setup — retained historical record
 
-Closed structured logging emits enumerated events, bounded numeric status and generated correlation IDs. It never formats arbitrary messages, exceptions, request data or extras. Real health handlers emit live/ready events and startup rejection uses a fixed safe message. Actual Django security logs pass through the safe formatter. Local/synthetic nonsecret examples complete all four environment templates. docs/build.md maps package ownership and exact pinned install/check/migration/test/Gunicorn paths, synthetic scope, missing capabilities and runner authorization. Adapter lane still rejects absent/unwired producers.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-## Actual evidence
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/phases/02-reproducible-application-and-deployment-skeleton/02-08-PARTIAL.md); original SHA256 `4da95f9e749b7ab55dee0bc7eed4fdc977b2c8343fbd73b62d4f561b77d1436b`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Final ordinary core-local run: 4 checks, 20 tests, 6.672 seconds, zero skipped tests. Ten Django test methods plus ten real loopback HTTP cases run with new real PostgreSQL. Log tests cover arbitrary message/exception/extras, malformed event types, real Django invalid-Host errors, actual readiness handler with a synthetic exception, startup errors and positive event/status/correlation fields. Synthetic host/key/tax-business/bearer/DSN canaries are absent. Real Gunicorn logs must contain both health event types before the local marker can pass.
+Current Phase 2: **Reproducible application and isolated deployment foundation**. Reuse exact pinned Astro/Django/PostgreSQL/worker stack; retain database destination, all-write/attestation, native/licence/SBOM, immutable-image, CI and independent runtime gates.
 
-No real DB-outage, restart/exhaustion/recovery or external adapter test was executed. Full core remains pending/nonzero; no production acceptance. Dependent implementation may continue under explicit user instruction.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
 
-## Bounded integration adjustment
-
-health.py/checks.py were added to the worktree scope before editing: task explicitly requires logging on actual request/startup paths. No domain behavior or shared dispatcher changed. A first test fixture patched the connection proxy cursor and interfered with SimpleTestCase teardown; replacing only the handler's module connection reference fixed the test isolation. The final run passed. Historical evidence was unchanged.
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

@@ -1,21 +1,9 @@
----
-status: complete
-implementation_commit: c356d75
-implementation_status: verified_local
-completion_record: schema_backed
-requirements: [AUTH-01, AUTH-02, OPS-02, UAT-03]
-evidence_class: local-synthetic
-actual_recovery_qualified: false
----
+# Quotation capture and private-read recovery boundary — retained historical record
 
-# Quotation capture and private-read recovery boundary
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Both local plan tasks are complete. Original26-test/34-failure PostgreSQL baseline and guarded original-source control reproduce stale capture, exact-retry disclosure, second-key writes and private API/native capture-page reads after quarantine or quarantine/release. Each bounded operation now locks its originating epoch before resource work and materializes its response while locked. Fresh exact/alias/historical retries preserve request identity, immutable snapshots and staff-review history. Owner/cross-cart/CSRF/catalog/parser bounds and trusted no-request fixture calls retain their contracts.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261028-il4-reproduce-and-fence-quotation-capture-an/261028-il4-SUMMARY.md); original SHA256 `6df1b4276d088838e2d753b2d6716dbc240f641301bdcfd612b45f42ebd537fe`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Focused166/32.359s, current backend752/5 checks/234.449s (outer236.261s), supported proxy/demo148/2 aliases and exact276-file source/33 templates/1 CSS/no symlinks pass. Four planning/inventory tests and planning/source-authority/diff checks pass. [Exact evidence](../../phases/13-purchase-flow-fulfilment-and-release-acceptance/13-QUOTATION-RECOVERY-PARTIAL.md). Both fixed product files were restored byte-for-byte after the original control. All owned qualification producers exited. No model, migration, dependency, pin, timeout or public route changed.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
 
-Implementationc356d75 is committed locally. Automatic review rejected its ordinary origin/main push because it requires direct user authorization for the shared-branch action; no remote synchronization is claimed. Completion artifacts record the local result. Native quotation history/timeline/document-preview handlers remain a separate concrete source observation; reproduce their actual access aliases under a new GSD task before edits.
-
-Actual/company/channel/custody/provider/customer/resource/revocation/MFA/independent-target/formal gates and full Phase13 acceptance remain pending. This is bounded local database evidence, not actual transmission or recovery qualification. No full Phase13 SUMMARY is justified.
-
-## Self-Check: LOCAL PASS
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

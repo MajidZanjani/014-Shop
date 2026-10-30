@@ -1,13 +1,9 @@
----
-status: complete
-evidence_class: local-synthetic
----
-# Django multi-statement transaction precursor
+# Django multi-statement transaction precursor — retained historical record
 
-Implemented guarded_atomic for an already-connected registered Django/Psycopg wrapper. Owns a durable outer atomic transaction and holds actual admission through commit/rollback. Before/after same-connection SQL identity/durability/runtime checks, no reconnect, callback/rollback-only/manual/outer transaction acceptance or retry. Explicit twelve-module inert source package. Production backend/settings and worker call sites unchanged/closed. Initial engine-integration task narrowed after inspection: this transaction foundation is necessary before binding an application connection/role and all-write interception; it is not a qualified Django backend.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Nine new tests exercise actual Django QuerySet create/update/delete and cursor multi-statement commit/rollback, runtime/live SQL/admission changes, no reconnect, outer/manual transaction denial, callbacks/rollback-only denial and independent publisher exclusion during actual commit/rollback. Account/container and physical root path are adapted synthetic fixtures; actual owned PostgreSQL/Django/flock behavior exercised.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261022-aql-integrate-admission-lifetime-into-a-clos/261022-aql-SUMMARY.md); original SHA256 `d781faab2af819ad426403c590e167ee2241d1193e914e79738a8208947231d8`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-SQL3/18413.762s; source7/5 9.497s; operator7/17 5.951s; deployment16/31 2.292s; core-local4/22 7.710s; worker-smoke6/24 9.022s; native56/9 1.035s; notices9/7 3.820s pass. Earlier183-test run13.320s passed. Initial source/operator/deployment checks failed because new untracked module was absent from Nix Git source; git add of exact new module corrected all three. No invalid native report retained; native collected after successful runtime build. No test failure, credential/host/provider operation or production activation.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
 
-Root-bound application role/transport, all-write backend/worker integration, actual runtime/archive/recovery and14/16/17 remain pending. Expected/probe parameters remain trusted caller inputs in this precursor; docs explicitly retain that boundary.
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

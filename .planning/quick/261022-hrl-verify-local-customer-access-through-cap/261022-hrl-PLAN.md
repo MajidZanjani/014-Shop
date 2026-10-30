@@ -1,7 +1,9 @@
-# Verified local access and protected draft save/resume
+# Verified local access and protected draft save/resume — retained historical record
 
-1. Add local-only captured email-code verification, session rotation, expiry/attempt/request bounds and no scanner consumption; no real mail or staff access.
-2. Require verified identity for every draft resource; add bounded owner list and connect the static React configurator to same-origin authenticated save/resume with no browser persistence.
-3. Verify expiry/replay/CSRF/ownership/concurrency and real loopback flow; run ordinary checks, document demo capture files and update concise canonical state.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Preserve source/catalog revisions, commercial/release gates, existing services and all completed work. No new dependency or infrastructure collector. Inline GSD quick execution.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261022-hrl-verify-local-customer-access-through-cap/261022-hrl-PLAN.md); original SHA256 `b5a7c2ac728f1b0fe698d9675ee2334a2b482e2324f8c8da6f6e2ed3a43b2fd8`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
+
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

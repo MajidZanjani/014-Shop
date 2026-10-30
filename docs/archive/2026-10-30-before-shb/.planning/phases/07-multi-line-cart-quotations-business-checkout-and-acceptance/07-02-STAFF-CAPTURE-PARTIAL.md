@@ -1,0 +1,29 @@
+# Plan07-02 explicit staff prepared-request capture — partial
+
+Pre-execution critique is retained in07-02-STAFF-CAPTURE-DESIGN. Existing durable capture/producer locks cover digest comparison before both existing-fact replay and insertion. Optional expected_source_sha256 preserves internal callers. Exact integer quotation/business route never retargets to a newer attachment. Existing producer applies recent MFA, credential/account, exact retained grant, parent/cart/source checks on every preview/capture/retry. No new model/migration or broader permission.
+
+Separate synthetic staff GET/POST form provides safe scope/cart metadata and a protected hidden source digest. POST requires bounded form encoding, deliberate action, exact digest, enforced CSRF and closed single-valued fields. Extra/duplicate fields, query parameters, unsupported methods/types, invalid digest and oversized bodies are rejected. Fixed errors omit database/source diagnostics. Handler responses use no-store/no-referrer/Vary Cookie/self-form CSP. Earlier middleware refusals retain their existing behavior. Confirmation returns201 for a new fact,200 for original retained capture; exact route scope and original-attribution wording only, no payload/digest/intent/actor/MFA values. Existing pending or held intent is not relabelled as always unbound. No archive, root binding, grants, worker claims/publication or commercial effects are added.
+
+Seven new actual local password/private-code staff/CSRF tests on owned PostgreSQL cover no-write preview, exact retry/original attributed records, digest mismatch before insert and replay, changed private source/no writes, historical/unbound scope after new attachment, current scope grants/revocation, owner changes, stale MFA, runtime refusal, strict inputs/CSRF, fixed database/source failure and owned-transaction digest validation. Existing concurrent owner/staff capture tests remain passing. No browser/manual/external transport approval is claimed.
+
+Targeted14 Django tests (seven new plus seven existing capture tests) and14 Gunicorn checks pass11.547s. First full run exceeded the pre-existing60-second Django test bound and is unverified. Raised only that bounded suite limit to90seconds; enclosing lane120-second bound remains unchanged. Final CORE_LOCAL_PASS checks5 tests264 duration67.402s:250 Django plus14 Gunicorn observations. Owned PostgreSQL18.6/UTF8, migration0012 application and no-drift pass; no new migration.
+
+Staged new source before Git-backed Nix build. First attempted attribute python-source did not exist; no artifact claimed from that command. Actual shop-app-source target builds /nix/store/1d5lmcyxhx59c2ww79j0w5nhsijp6spa-shop-python-source. Exact allowlisted byte comparison passes163 files21 templates/no symlinks. Frontend/proxy unchanged/not rerun. No .env/private credentials, external service or host operations.
+
+Full07-02 domain/commercial contract remains incomplete. Country/tax deferred; real staff access/transport, independent runtime/outage/off-host/provider/recovery and release qualification remain pending. Preserve all evidence records and archive bytes on rollback. Next: audit local capture/observation journey and remaining preparation boundaries before expanding controls.
+
+## Deviations from saved slice
+
+One bounded test-harness repair: Django suite timeout60→90seconds after measured exhaustion. No scope/authority change. Confirmation wording explicitly handles an existing held intent rather than incorrectly promising unbound state.
+
+## Continued route audit after8aa2ad5
+
+Added actual simultaneous staff CSRF form submissions on separate PostgreSQL connections: one201 plus one200, one semantic fact/intent. Added owner-original capture followed by staff form retry of a held intent: original owner/no MFA attribution and all intent values remain unchanged; no work records. These address route-level gaps beyond the earlier internal concurrency tests; runtime behavior unchanged. Focused16 Django plus14 Gunicorn checks pass12.126s. Full CORE_LOCAL_PASS266 checks (252 Django plus14 Gunicorn),67.977s, owned PostgreSQL18.6/UTF8;0012 application/no-drift pass. Updated source /nix/store/8n6c9k4klxd7kb7w4kj9wa2chzsd4ym1-shop-python-source byte-compares163 files21 templates/no symlinks. Next: extend existing supported-route mixed/support-only journeys through this capture form without direct domain fixture writes or forced login. All external/commercial/full-plan gates unchanged.
+
+## Supported-route integration aftercc16c47
+
+Extended existing mixed/support-only journeys using only supported customer APIs/forms and actual local staff provision/grant/password/private-code workflows. No direct domain fixture writes or forced login. Each proves preview/no capture rows, deliberate capture/replay, original fact/intent after review/cart/unattached business edits, no private values in preview/confirmation, revoked-scope GET/POST refusal and retained records after logout. Intents remain pending/unbound, false retention/effect flags, with zero work authorizations/claims/verifications. Existing journey test count remains two; assertions are stronger, not extra tests.
+
+Focused11 Django (two journeys plus nine staff capture regressions) and14 Gunicorn checks pass11.928s. Final full CORE_LOCAL_PASS266 checks (252 Django plus14 Gunicorn),68.425s; owned PostgreSQL18.6/UTF8,0012 application/no-drift pass. Final source /nix/store/d1hwx24hz000h3afy65pld2a1ma18ni9-shop-python-source exact163 files21 templates/no symlinks. Frontend/proxy unchanged/not rerun. No browser/human/transport or phase/plan acceptance claim.
+
+Next proposed slice is07-02-CAPTURE-OBSERVATION-DESIGN: read-only database observation of exact retained capture state, to inspect uncertain capture without resubmitting. Critique mandatory before runtime implementation; no root/work/commercial expansion. Original domain contracts/external gates stay pending.

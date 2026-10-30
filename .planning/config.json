@@ -66,5 +66,7 @@
   },
   "resolve_model_ids": "omit",
   "mode": "yolo",
-  "granularity": "fine"
+  "granularity": "fine",
+  "release": "shb-1.1",
+  "source_revision_sha256": "ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e"
 }

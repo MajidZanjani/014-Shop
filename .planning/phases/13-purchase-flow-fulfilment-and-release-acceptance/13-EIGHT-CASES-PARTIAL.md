@@ -1,18 +1,11 @@
-# Eight source acceptance checks —2026-10-27
+# Eight source acceptance checks —2026-10-27 — retained historical record
 
-Numbers below refer to final amendment §8, not the broader FLOW requirement IDs. The reproducible supported `scripts/demo_purchase_flow.py` output now lists all eight in order, with local-synthetic scope and no actual financial/effect authority. Its validator rejects missing/duplicate/reordered/boolean IDs, promoted actual authority and erased private-intake limitations. Four evidence-contract tests pass.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-| Source §8 check | Actually exercised local behavior | Result / actual boundary |
-|---|---|---|
-|1|Ready-kit fixture quote permits zero additional support|synthetic_pass; actual kit/rights/price approval pending|
-|2|Not-designed configuration purchased/funded with no pinout, initial/later simulated delivery|synthetic_pass; actual standard offer approval pending|
-|3|Other/custom-board standard development flow purchases without per-sale review|synthetic_pass; actual applicable rights/scope approval pending|
-|4|Remove required support through cart API; both API and no-JavaScript review/capture return422; restore support and record checkout|synthetic_pass; actual seller policy binding pending|
-|5|Missing licence price, rights or delivery holds applicable fixture; custom-board ready-design promise returns unavailable|synthetic_pass; actual protected commercial approval adapter pending|
-|6|Initial delivery leaves later reference outstanding; later completion and repeated grant preserve one entitlement|synthetic_pass; actual approved materials/delivery pending|
-|7|Support-only top-up without licence/platform fields; exact reservation retry once; distinct allocation beyond exhausted credit rejected|synthetic_pass; actual eligible-credit/owner/work policy pending|
-|8|Existing private/versioned seller material/history, exact assignment, held/revoked access and immutable accepted scope exercised|partial; qualified confidential customer technical-data intake and actual custody remain pending|
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-EIGHT-CASES-PARTIAL.md); original SHA256 `83372814b1b7067cc757191f76013ef0a01ec7c8b3363b1c056b5a7c5ffa42cc`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Expanded direct demo and owned proxy132 header-level checks/2 aliases pass. Ordinary CI now runs the supported demo after backend/worker checks and includes the evidence-contract tests; workflow JSON/embedded Python parse locally, actual hosted execution remains unverified. GitHub CLI is unavailable in this environment; no hosted status was inferred. Existing hosted/full qualification workflow and release gates remain unchanged.
+Current Phase 13: **Thirty SHB acceptance cases and release verification**. Exercise both variant paths, JS/no-JS keyboard/mobile, invite/static/customer isolation, PostgreSQL coupon/payment concurrency, transaction-mail failure and restore/replay. Trace each SHB-01–30 result to exact artifacts.
 
-Final source `/nix/store/1myr6apmk8ayvr32iimnq2c7a8vx3hx2-shop-python-source` is261 byte-exact files/33 templates/1 CSS/no symlinks. Backend runtime service code is unchanged since the retained560-test full pass; this slice changes only the supported scenario/report validation and prepared CI. No repeat full backend is inferred for these final scenario bytes. Actual browser-engine/accessibility, commercial/provider/private-intake/retention/runtime/restore/host/activation acceptance remains pending.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

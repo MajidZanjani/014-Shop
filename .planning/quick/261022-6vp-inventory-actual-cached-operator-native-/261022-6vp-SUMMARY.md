@@ -1,10 +1,9 @@
----
-status: complete
----
-# Actual operator native reference closure
+# Actual operator native reference closure — retained historical record
 
-Code6008f2c adds required native-closure dispatcher lane and actual cached report.53 reachable store objects/222931552 NAR bytes verified by Nix read-only hashing, with hashes/sizes/refs, actual available derivation/output binding, source/name/version fields only when observed and two named-notice candidates. Fifteen local derivation recipes absent and pending. Supplementary evidence, not standard SBOM, complete source/native notice inventory, OCI or runtime approval.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Pinned actual native53 checks/8 tests0.899s; operator4/10 in2.159s; environment2/14 in0.900s all pass. First unsupported derivation-format flag and subsequent assumed-format2 collector failed; measured format4 used. Second collection exposed absent cached recipe; explicit missing-local observation preserves gap. Actual report creation/recheck passed after corrections. git diff --check passes. No raw evidence changed, image builds, new package downloads, repair, credentials, host/provider/service/resource change or purchase.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261022-6vp-inventory-actual-cached-operator-native-/261022-6vp-SUMMARY.md); original SHA256 `9777df93e6edaf410c2552ae910de623aba0e909c6af681b8b9c46b8b862ec8b`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Parent14/16/17/full phase incomplete. User requests continuing across steps; proceed to next authorized task after commit/push. Independent runner remains unassigned; no repetitive request.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

@@ -1,11 +1,9 @@
----
-status: complete
-scope: documentation-only
----
-# October 21 protected-host replan complete
+# October 21 protected-host replan complete — retained historical record
 
-Read both new sources completely, verified source/product identities, archived superseded planning and reconciled retained development evidence. Replaced project/requirements/roadmap/source/decision/research/guidance and pause routing. Rewrote rootless deployment/profile plans and added 02-00 source-verifier migration; no obsolete cloud-flavor/volume/fallback requirement remains active. Current plan has 80 mapped requirements, 14 phases and 18 Phase 2 plans (2 development plans retained, 16 pending).
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-432 static assertions passed; GSD disk/roadmap and whitespace checks are recorded in .planning/REPLAN-VERIFICATION.md. No application/executable, host, cloud, DNS/TLS, mail or bank operation was performed. Existing source-file replacement is preserved in the commit. No deployment or new commercial/protected-service approval is claimed.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261021-8cb-replan-from-october-21-proposal-and-hand/261021-8cb-SUMMARY.md); original SHA256 `c42dd9e6e551c685998a4ba700ca0a4cb8f514395b60dd53e3a6aa410bba9711`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Next future execution starts at 02-00 under current context; reconcile retained clean historical worktrees through GSD before dispatch. Public activation is conditional on a complete unchanged ingress/TLS path or later exact service/action authorization.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

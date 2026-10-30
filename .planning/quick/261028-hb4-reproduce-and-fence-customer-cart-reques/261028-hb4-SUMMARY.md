@@ -1,23 +1,9 @@
----
-status: complete
-implementation_commit: c92538a50e191949c5265236663a4bb53cd715f5
-implementation_status: verified_local
-completion_record: schema_backed
-requirements: [AUTH-01, AUTH-02, OPS-02, UAT-03]
-evidence_class: local-synthetic
-actual_recovery_qualified: false
----
+# Customer cart recovery boundary — retained historical record
 
-# Customer cart recovery boundary
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-All three local plan tasks are complete. Original19-test/31-failure and final23-test/36-failure PostgreSQL controls reproduce stale cart commits, private exact replays and API/native/base/error-page reads across quarantine or quarantine/release. Customer storage and shared private reads now lock their originating epoch before cart rows. Native denial returns before private forms; fresh verified retries preserve once-only snapshot identities. Trusted internal callers, CAS, catalog checks, immutable history, owner checks and ordinary CSRF/no-store behavior remain.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261028-hb4-reproduce-and-fence-customer-cart-reques/261028-hb4-SUMMARY.md); original SHA256 `89f4776adae84c156faef5c53d4b388f09f84f0cc14dc29021d6f586c6179cb7`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Focused136/34.029s, current backend716/5 checks/228.412s (outer230.075s), supported customer/staff demo/proxy148/2 aliases, exact276-file source/33 templates/1 CSS/no symlinks and four planning/inventory tests pass. [Exact evidence](../../phases/13-purchase-flow-fulfilment-and-release-acceptance/13-CART-RECOVERY-PARTIAL.md). The controlled baseline restores both product files to fixed bytes exactly. No model, migration, dependency, runtime pin, timeout, public route or actual provider operation changed.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
 
-Implementation c92538a is committed. Current local/remote refs determine synchronization; no additional push-status-only commit is needed. All owned qualification producers exited. Manager-facing status, active checkpoint and planning inventory are synchronized; the one-shot structured handoff is consumed.
-
-Actual/company/channel/custody/provider/revocation/MFA/independent-target/formal gates and full Phase13 acceptance remain pending. Configuration-draft entry-only list/get/save is a separate unimplemented source observation; reproduce it before any draft product edits. Company inputs will be supplied later; do not re-ask or infer approval.
-
-## Self-Check: LOCAL PASS
-
-This completes the finite cart task, without a full Phase13 SUMMARY or actual recovery qualification.
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

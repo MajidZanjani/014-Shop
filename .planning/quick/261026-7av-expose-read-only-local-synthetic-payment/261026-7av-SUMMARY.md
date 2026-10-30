@@ -1,8 +1,9 @@
----
-status: complete
----
-# Read-only recovery tooling
+# Read-only recovery tooling — retained historical record
 
-Added inspect_synthetic_payment with closed metadata output and fixed command errors. Four actual-process tests cover safe state reports, no writes, malformed/unknown IDs, early startup refusals and database lock timeout. Existing startup gate retains its original separate error boundary.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Full integrated core-local319 tests/5 checks,86.218s; PostgreSQL18.6/UTF8 and migrations/no drift pass. Source184 exact files/23 templates/no symlinks. Evidence: [.planning lifecycle partial](../../phases/08-payment-domain-and-fault-injectable-fake-bank/08-LIFECYCLE-PARTIAL.md). No full phase or live financial acceptance.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261026-7av-expose-read-only-local-synthetic-payment/261026-7av-SUMMARY.md); original SHA256 `7001697a6ed465f4f77975686531b14f33d62d2d3a6cc9687d6524f99a62cf52`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
+
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

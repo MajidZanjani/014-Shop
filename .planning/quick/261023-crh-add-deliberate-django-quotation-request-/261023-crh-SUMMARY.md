@@ -1,14 +1,9 @@
----
-quick_id: 261023-crh
-status: complete
-implementation_commit: 74b6083
----
-# Deliberate quotation request without JavaScript
+# Deliberate quotation request without JavaScript — retained historical record
 
-Django /purchase/request-quotation/ displays exact saved cart lines and revision for deliberate CSRF-protected capture. It shares the existing PostgreSQL owner lock, exact snapshot/key arbitration and source/catalog checks with JSON. Success redirects to the owned timeline. Exact retries/alias keys for an already captured revision reconcile after later edits; new uncaptured stale/foreign/empty revisions fail. Strict bounded form/query parsing, no raw-input echo and private headers. Cart/history links and local guide updated. No offer, acceptance, money, licence or support-credit effects; Country/tax pending.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-CORE_LOCAL_PASS checks5 tests177 duration39.895s:163 Django plus14 actual Gunicorn transport observations on owned PostgreSQL18.6/UTF8. Six new targeted tests cover a complete form-only synthetic access→support cart→quote flow, mixed review/exact capture/alias retry/immutable snapshots after edits, empty/stale catalog/uncaptured stale rejection, fields/duplicates/body/CSRF/query/privacy/no-GET-writes, owner/environment gates and concurrent form/API alias capture (one quotation, two keys). Existing API/form cart/access tests and previous supported staff journeys pass. New actual route observation confirms unauthenticated capture401.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261023-crh-add-deliberate-django-quotation-request-/261023-crh-SUMMARY.md); original SHA256 `034eb39bbb8dd07861996a94249c169244fc6b22db1961d2dde95ea66806e279`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Actual Nix source /nix/store/rb2q23lb622pfwbnyzmhmlliqas52bpk-shop-python-source:129 files19 templates; exact bytes/allowlist/no symlinks verified. Frontend/proxy unchanged, prior scoped evidence retained. This is request/response and loopback evidence, not real-browser/accessibility, real delivery, off-host or full phase acceptance. Focus7/completed1; Phase02 remains8/18; all open qualifications preserved.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
 
-Next: audit assembled local form owner/privacy/retry failure states; correct concrete findings while Country/tax and live operations remain pending. User authorizes continuation across commits/syncs.
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

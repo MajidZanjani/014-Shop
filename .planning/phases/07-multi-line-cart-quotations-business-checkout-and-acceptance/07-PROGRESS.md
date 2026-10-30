@@ -1,9 +1,11 @@
-# Phase7 current progress
+# Phase7 current progress — retained historical record
 
-Current scope/routing: [STATE.md](../../STATE.md), [ROADMAP.md](../../ROADMAP.md) and [final purchase-flow amendment](../../PURCHASE-FLOW-AMENDMENT.md). Existing local evidence retains its dated scope. Full-phase acceptance remains pending; prior progress is archived under docs/archive/2026-10-26-before-purchase-flow and historical next-step text is not active routing.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-## Latest continuation — 2026-10-26
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-PROGRESS.md); original SHA256 `e4959b6a062ab67924edccc201a287fcc5f9d4ce44ed7501656b7d730723ca16`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Complete-cart review/capture now continues to explicit synthetic document confirmation and one archived payment/order reference, with distinct fixture deadlines and lookup-only uncertainty. User-requested production-like customer layout, grouped business guidance and readable totals are implemented. Full367 backend/focused13 tests, extended demo and46 live header-level proxy checks pass. [Acceptance/payment evidence](07-ACCEPTANCE-PAYMENT-PARTIAL.md), [UI contract](07-UI-SPEC.md). Latest visual/browser review remains pending. Earlier [checkout evidence](07-CHECKOUT-PARTIAL.md) is retained with its exact scope.
+Current Phase 7: **FPGA checkout, ASIC reviewed offers and scoped discounts**. Automatic eligible FPGA checkout; ASIC request/clarify/decline/withdraw/approve/dated offer/acceptance. One scoped percentage code; PostgreSQL reservations survive ASIC review beyond claim expiry. Immutable accepted price/scope revisions.
 
-Complete-cart per-line staged fulfilment and fixed support grants are now implemented in the [Phase10 slice](../10-staged-delivery-and-support-ledger/10-CART-FULFILMENT-PARTIAL.md). Current development focus is10; next reservations/work/corrections/statements under10-02. Actual commercial/legal/tax/host/financial/rights and external gates remain pending; no full plan/phase completion is inferred from synthetic fixtures.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

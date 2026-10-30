@@ -1,21 +1,9 @@
----
-status: complete
-implementation_commit: 2e373a50faccc62a587cb4577452eda1ae26f651
-implementation_status: verified_local
-completion_record: schema_backed
-requirements: [OPS-02, AUTH-01, AUTH-02, PAY-01, FUL-01, FUL-04, UAT-03]
-evidence_class: local-synthetic
-actual_recovery_qualified: false
----
+# Customer checkout and fulfilment recovery fence — retained historical record
 
-# Customer checkout and fulfilment recovery fence
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Both local plan tasks are complete. Original22 tests/36 failed assertions reproduce stale customer acceptance/payment/grant/stage transitions, archive-to-completion gaps and adoption of a released epoch before payment dispatch. Existing customer transactions now require their originating epoch before owner/resource work; dispatch admission compares its optional original epoch under the existing lock. Prepared evidence stays preparation after reset. Internal held lookup, one-way uncertainty, exact retries, deadlines, immutable scope and existing staff authority remain.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261028-fy8-fence-customer-checkout-and-fulfilment-a/261028-fy8-SUMMARY.md); original SHA256 `19b412f4bb24c2503c0d2ce7416f7e23d0ab69b483f3f6400749325df2a17a34`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Focused174/53.986s, current backend693/5 checks/224.151s (outer225.773s), supported demo/proxy148/2, exact276-file source/33 templates/1 CSS/no symlinks and four planning/inventory tests pass. [Exact evidence](../../phases/13-purchase-flow-fulfilment-and-release-acceptance/13-CHECKOUT-RECOVERY-PARTIAL.md). The controlled original-product fixture restored fixed source bytes exactly. No model, migration, dependency, runtime pin, timeout, public route or actual provider operation changed.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
 
-Implementation2e373a5 is committed locally; its schema-backed completion row points to that implementation. An initial ordinary push was rejected because automatic review did not treat generic continuation as specific new remote-push authority. No force, alternate transport or indirect bypass occurred. Current local/remote refs determine synchronization; any unpushed task commits need their actual direct approval. Local completion does not itself claim a remote update. Once synchronized, no additional push-status documentation commit is required.
-
-## Self-Check: LOCAL PASS
-
-All owned producers exited and manager-facing planning views are synchronized. Actual post-point customer/resource/MFA/channel/custody/provider/independent-target/formal and company commercial inputs remain pending. Company inputs will be supplied later; do not re-ask or infer approval. No full Phase13 SUMMARY or actual recovery qualification is justified.
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

@@ -1,10 +1,9 @@
----
-status: complete
----
-# Read-only uncertain-block reconciliation
+# Read-only uncertain-block reconciliation — retained historical record
 
-Prepared an independently root-authorized library observer with exact original bytes/prior block ID, shared nonblocking lock and stable final authority/inode/metadata/bytes checks. It reports original_matches/blocked_matches/different_bytes with completion/durability/publication/retry/reopening false, without writes/sync or consulting old write authority. No CLI/host provisioning or repaired state.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Actual local SQL3/13210.348s, source7/5 4.312s, operator7/17 10.537s, native54/9 write0.950s pass. Four added methods cover partial/empty/exact/original/different observations, no writes/old authority, raw binding/expiry/root, writer contention/revocation/concurrent changes and failed-sync matching block with no authority. Root paths/authority fixture-adapted. Initial native collect failed path-info while launcher builds remained active; build completion then collection passed, no report written by failure. Build before dependent native collection.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261022-9ba-reconcile-uncertain-admission-blocks-wit/261022-9ba-SUMMARY.md); original SHA256 `ec3df8117697114cedcd4e8de642731b1f7a10adbe156010eab99271f27f0ea8`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Prior checkpoint consumed. Full publisher/custody/reopening/app/runtime/independent qualification and14/16/17 remain unfinished. No actual credential/host/provider/service action. Scoped local commit/push retained.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

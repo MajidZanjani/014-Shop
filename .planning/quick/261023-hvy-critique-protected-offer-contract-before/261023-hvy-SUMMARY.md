@@ -1,19 +1,9 @@
----
-quick_id: 261023-hvy
-status: complete
----
-# Protected-offer contract critique
+# Protected-offer contract critique — retained historical record
 
-Protected-offer pre-execution critique complete: corrected the non-executable field-inventory claim and separated intended publication from actual visibility/delivery. Existing PreparationAssessment already supplies the safe attributed blocked-assessment capability; no new candidate runtime selected. See [critique](phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-OFFER-CONTRACT-CRITIQUE.md). Source/link/immutable-product checks pass; no runtime changes since b96b665,275-test/source evidence retained without rerun. Full07-02 remains partial; commercial/domain prerequisites stay pending.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-D-01 corrects a prose field inventory described as a closed schema despite missing literal keys/types/bounds/interfaces. D-02 distinguishes archived intended publication, committed visibility/issue and externally observed delivery; timestamps or uncertain responses cannot prove completed delivery. Candidate/decision/later-fact hash direction is now explicit, preventing a circular immutable-content dependency.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261023-hvy-critique-protected-offer-contract-before/261023-hvy-SUMMARY.md); original SHA256 `73da96fd2888311b1587d5c440c9fe215d0c5523a2ef42f43c629b3e166984e6`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-No independently useful new blocked-candidate runtime was found: existing PreparationAssessment already implements versioned exact-scope capture, expected revision/displayed digest checks, original actor/MFA, retry arbitration, retained reads/comparison and disabled commercial flags. Full offer-domain implementation still needs actual schema/approved source/host/entity/tax/document/role/retention interfaces and lock/clock contracts. No policy defaults, source approvals, synthetic payable offers or runtime model/migration changes.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
 
-## Verification
-
-Static source assertions confirm existing preparation fields/entrypoints, four disabled commercial actions, constrained false archive effects and no catalog OfferRevision/Acceptance/Order classes. New design/critique links resolve. Embedded product remains23969 bytes/SHA256562dc4015c62f165df5df3e9ae1aab26b8102385d9dc76a556d5965ddc1a0263. git diff b96b665 -- backend ops/nixos is empty. Previous CORE_LOCAL_PASS275 tests/observations (261 Django plus14 Gunicorn),5 checks,71.878s/source163 files21 templates/no symlinks retains its exact scope; unchanged runtime not retested. No new legal/provider/MFA/transport/off-host/recovery/production qualification.
-
-## Next action
-
-Audit existing preparation/review/document route services for demonstrated cross-scope, stale-revision and private-output defects, using actual current and retained permissions/source interfaces. Start with preparation_snapshots, preparation_views, comparison_views, quotation_review and document_preview plus their existing tests. Reuse PreparationAssessment; no new candidate/approval store. Reproduce any concrete local defect on owned PostgreSQL before fixing; otherwise record a bounded clean audit and preserve precise unresolved commercial/domain blockers. Do not invent approval/tax/host/terms/retention inputs or broaden infrastructure.
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

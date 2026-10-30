@@ -1,11 +1,9 @@
----
-status: complete
-evidence_class: local-synthetic
----
-# Exact proposed admission bytes
+# Exact proposed admission bytes — retained historical record
 
-Root-only read-only prepare_reopening binds independent fresh outside-generation preparation authority, exact publication/original/candidate/proposed-admission/evidence digests and complete original prior inventory. Full candidate semantic/artifact/expiry validation before and during the shared permanent barrier lease, published-only independent inspection and stable current snapshots. Returns canonical four-record manifest bytes only. No write/sync/CLI/activation or completion/durability/retry/reopening grants. Evidence remains opaque externally reviewed bytes, not actual qualification.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Six new scratch tests cover exact output/no writes, original/staged/moved/partial/changed states, exact approval scope/expiry/root, final validation/revocation, writer exclusion and actual inner expiry (historical observation still matches while preparation rejects). SQL3/16611.557s; source7/5 9.070s; operator7/17 5.497s; deployment16/31 2.154s; native55/9 0.938s; notices9/7 3.701s all pass. Earlier165-test run also passed; no failures.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261022-afa-prepare-exact-reviewed-admission-reopeni/261022-afa-SUMMARY.md); original SHA256 `514120d71f168d4e246911b21366898875275cfb57c13e44edf39dcfa31eb9c9`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Actual reopening mutation/uncertain-sync recovery, independent custody/host/runtime qualification, app integration and14/16/17 remain incomplete. No host/provider/credential operation. Output may become stale after lease release and grants no later action. Existing write/bootstrap authorities are excluded from the exact new manifest.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

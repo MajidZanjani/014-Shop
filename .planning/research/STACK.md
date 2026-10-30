@@ -1,19 +1,7 @@
-> Current requirements delta: [final26October purchase flow](../PURCHASE-FLOW-AMENDMENT.md). Baseline research below is dated; no compulsory technical checkout dossier/portal, blanket custom-board review or automated pooling prerequisite. Preserve unchanged architecture/protection and exact pending qualifications.
+# SHB stack
 
-# Stack — selected October 21 architecture
+Current authority: [SHB revision 1.1](../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../STATE.md) / [ROADMAP.md](../ROADMAP.md).
 
-Source-derived planning; no new upstream/current-host compatibility audit in this replan. Software/tariff research is dated October 20; actual recorded 02-01/02-02 artifacts are retained only for development.
+Retain exact pinned Astro/React/Node build graph, Python/Django LTS/Gunicorn/Psycopg, PostgreSQL, NixOS/rootless Podman/Quadlet and internal Caddy. No new platform/dependency pin. Current package/native/licence/OCI/CI and independent runtime qualification remains incomplete for its exact scope.
 
-| Component | Planning choice | Verification |
-|---|---|---|
-| Public build | Static Astro Content Collections + selected React islands | Exact compatible frozen graph; no runtime Node/adapter |
-| App | Django LTS/Gunicorn/Psycopg/Python | Retained approved artifacts; actual runtime/import/lock/SBOM proof in T02 |
-| Database/queue | New independent PostgreSQL container/cluster and one worker | Real PostgreSQL concurrency; distinct PGDATA/roles/credentials/socket/backup; destination checks |
-| Development tools | Pinned Nix shell, Node/npm, Python/pip and PostgreSQL/libpq | Existing 02-02 development evidence; cached outputs retained |
-| Production services | Rootless Podman, NixOS-declared Quadlet/user-systemd, proposed shopsvc directly on mx1 | Pin exact OCI/runtime/Quadlet/systemd/network/storage compatibility; one lifecycle; off-host runtime evidence then bounded T11 attestation |
-| Resource boundary | Proposed host-controlled aggregate 200% CPU, MemoryHigh 6G / MemoryMax 8G, bounded tasks/concurrency | Covers payload scopes/conmon/network helpers/backup; protected parent/CPU/guest allocations unchanged |
-| Persistence | New local ZFS shop datasets: 80 GiB aggregate, 50 GiB DB subtree | Snapshots/descendants and all rootless writable paths/logs/spool accounted; existing reserves/disks unchanged |
-| Edge | New internal Caddy 2 behind unchanged existing public ingress | Fixed HTTPS object origin and metadata boundary; conditional A/B profile, complete path before DNS; new-shop Let’s Encrypt only |
-| Recovery | Independent sbg pgBackRest, retained evidence, artifacts and custody | Full-pool-loss off-host rehearsal; existing PostgreSQL/services never restore targets |
-
-No mandatory Redis/Celery/CMS/IdP/commercial edition. All distributed OCI/runtime/build transitive notices and SBOM identities require verification. Actual host OS/runtime support is observed read-only; no upgrade, shared reload, blanket NixOS activation or paid fallback follows from a missing capability.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.

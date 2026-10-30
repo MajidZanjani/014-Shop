@@ -1,15 +1,11 @@
-# Plan07-02 local destination binding — partial
+# Plan07-02 local destination binding — partial — retained historical record
 
-Implementation:3b9f6a1, synced0/0. No plan/phase completion claimed.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Explicit private local destination identity and attributed intent binding are implemented; root replacement, copied/tampered markers and rebinding fail closed. Only pending/held intents exist; no claim, worker, publication service or durable worker authority exists. Retention/effect flags remain false.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-02-DESTINATION-PARTIAL.md); original SHA256 `96ff1f3d23b972caeeb39eed4e5389a6c7ffffe7a3ae974bb94bd7f0565ffde0`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Internal initialize_destination explicitly initializes only an empty owned0700 local root with caller UUID and immutable600 canonical marker. BoundPreparedArchive verifies descriptor/path device/inode and exact marker before/after each operation; reopen/exact retry preserves identity. Marker metadata explicitly denies retention/effect qualification. Existing unbound objects are never adopted or deleted.
+Current Phase 7: **FPGA checkout, ASIC reviewed offers and scoped discounts**. Automatic eligible FPGA checkout; ASIC request/clarify/decline/withdraw/approve/dated offer/acceptance. One scoped percentage code; PostgreSQL reservations survive ASIC review beyond claim expiry. Immutable accepted price/scope revisions.
 
-bind_request_destination requires current exact owner or recent-MFA/private-granted staff authorization and exact retained envelope bytes. Root attestations run outside database transactions; binding commits atomically with protected destination/actor/time/MFA references. Exact retries retain original attribution and held state; competing roots cannot rebind or leave orphan database rows. Post-commit attestation/permission failures preserve binding and deny acknowledgement. This is historical attribution, not durable worker authority.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
 
-Evidence: 214 core-local tests (200 Django plus14 Gunicorn observations),46.154s; owned PostgreSQL18.6/UTF8. Actual Nix source141 files19 templates, byte-identical/allowlisted/no symlinks. Ten new tests cover identity/reopen/replacement, tamper/modes/symlinks, fsync uncertainty/retry, competing PostgreSQL bindings, holds, staff revocation during I/O and database constraints. Migration0009 application/no-drift passes. Artifact /nix/store/cdazns37s96l07sap20scgjzdqaym0il-shop-python-source. Same-agent verification; frontend/proxy unchanged and not rerun. No provider/off-host/production qualification.
-
-Migration0009 is additive with nullable intent binding fields, protected destination/actor references and paired-field/profile/root uniqueness constraints. No backfill. Reverse only on an empty disposable database; preserve populated evidence and protected records during rollback. Production gate remains closed.
-
-Next: Define durable archive authority and fenced local claims before publication; preserve holds and retained bytes. Country/tax and commercial effects remain gated.
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

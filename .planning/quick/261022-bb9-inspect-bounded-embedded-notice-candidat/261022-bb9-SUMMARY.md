@@ -1,11 +1,9 @@
----
-status: complete
-evidence_class: exact-distribution-bounded-text-marker-discovery
----
-# Bounded npm embedded notice markers
+# Bounded npm embedded notice markers — retained historical record
 
-New nonextracting collector scans explicit bounded textual file suffixes, binds original inventory/audit/exact artifact hash/complete member lists, records scanned member hashes and every file skip reason, and separately retains exact marker-line ranges/hashes without normalization. Binary/unselected/oversize/invalid-UTF8/NUL states explicit. File1MiB, total16MiB/archive, marker512/member and retained line16KiB limits. No complete licence classification, code execution, install, substitution, legal/full inventory/native claim. Exclusive evidence creation/recheck; no overwrite/adoption/repair.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Actual collection plus independent official-origin refetch verified10 distributions,13 members with markers,6 distinct retained lines totaling239 bytes. All10 package.json declared-licence fields; additional sharp-libvips README copyright reference, am-i-vibing README licence section/copyright and process-ancestry README licence section. No complete grant/redistribution approval inferred. Original ten npm gaps remain pending package-wide/native notice review.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261022-bb9-inspect-bounded-embedded-notice-candidat/261022-bb9-SUMMARY.md); original SHA256 `ad2fa2eb14e59e32983c1be6fd4d2916564d8945842ce8949e912a49705ebf62`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Eight new scanner tests0.005s; twenty licence-collector tests0.009s; four inventory tests0.000s all pass. Initial8-test run also passed. Both actual collect/refetch runs10/13/6 pass. Nine original raw/derived/inventory/audit/header evidence files equal HEAD. No failures, new dependencies or runtime changes; no unnecessary runtime/native rebuilds. No credentials/host/provider activation. Safe application/host evidence boundary/closed backend and14/16/17 remain pending.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

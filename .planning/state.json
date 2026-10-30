@@ -1,83 +1,84 @@
 {
   "contract": "1.0.0",
   "flavor": "core",
-  "milestone": null,
+  "milestone": "shb-1.1",
+  "source_revision_sha256": "ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e",
   "phases": [
     {
       "number": "1",
-      "name": "Product authority, repository review and decision register",
+      "name": "Source authority and SHB scope reconciliation",
       "status": "complete"
     },
     {
       "number": "2",
-      "name": "Reproducible application and deployment skeleton",
+      "name": "Reproducible application and isolated deployment foundation",
       "status": "in_progress"
     },
     {
       "number": "3",
-      "name": "Catalog, platform choices and approved offer/support policies",
+      "name": "Supporting Hours Bundle catalog and approved pricing",
       "status": "in_progress"
     },
     {
       "number": "4",
-      "name": "Minimal configurator and shared no-JavaScript purchase flow",
-      "status": "in_progress"
+      "name": "Shared SHB form, invitations and private storefront",
+      "status": "pending"
     },
     {
       "number": "5",
-      "name": "Transactional records, durable work and private evidence primitives",
+      "name": "SHB durable records, archives and outbox",
       "status": "in_progress"
     },
     {
       "number": "6",
-      "name": "Verified customer access, staff MFA and private host editing",
+      "name": "Invitation scope, verified resources and staff MFA",
       "status": "in_progress"
     },
     {
       "number": "7",
-      "name": "Short business checkout, standard offers and acceptance",
+      "name": "FPGA checkout, ASIC reviewed offers and scoped discounts",
       "status": "in_progress"
     },
     {
       "number": "8",
-      "name": "Payment domain and fault-injectable fake bank",
+      "name": "Payment lifecycle and fault-injectable synthetic bank",
       "status": "in_progress"
     },
     {
       "number": "9",
-      "name": "Selected-bank sandbox integration and complete reconciliation",
+      "name": "Selected-bank sandbox and complete reconciliation",
       "status": "pending"
     },
     {
       "number": "10",
-      "name": "Staged licence/reference-design delivery and support ledger",
+      "name": "Paid SHB orders, transaction notices and manual handoff",
       "status": "in_progress"
     },
     {
       "number": "11",
-      "name": "Protected-host qualification, shop-only deployment and conditional public activation",
+      "name": "Private release delivery and protected-host qualification",
       "status": "pending"
     },
     {
       "number": "12",
-      "name": "Backups, operating alerts and financial/licensing restore rehearsal",
+      "name": "Independent backup, restore and SHB reopening",
       "status": "in_progress"
     },
     {
       "number": "13",
-      "name": "Purchase-flow, fulfilment and release acceptance",
+      "name": "Thirty SHB acceptance cases and release verification",
       "status": "in_progress"
     },
     {
       "number": "14",
-      "name": "Release handover and separately scoped live activation",
+      "name": "SHB handover and separately authorized activation",
       "status": "pending"
     }
   ],
   "next": {
-    "command": "$gsd-resume-work",
-    "label": "Resume work",
-    "reason": "Work is paused — pick up where you left off"
+    "command": "$gsd-execute-phase 3",
+    "label": "Implement SHB catalog and forms",
+    "reason": "30 October user-authorized SHB revision 1.1"
   },
-  "updated_at": "2026-10-29T11:14:41.637Z"
+  "updated_at": "2026-10-30T10:06:03.188759+00:00"
 }

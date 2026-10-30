@@ -1,7 +1,9 @@
----
-quick_id: 261023-crh
-status: planned
----
-# Deliberate quotation request without JavaScript
+# Deliberate quotation request without JavaScript — retained historical record
 
-Extract existing request capture into a shared owner/transaction operation while retaining JSON behavior. Add a Django review/POST form over the exact current saved cart revision with strict CSRF/fields/body limits and fixed success redirect to its owner timeline. Reuse snapshot/key retries and reject uncaptured stale/empty/foreign revisions. Link from saved cart/history and update local documentation. Exercise actual captured access, mixed/support-only forms, exact/alias retries, later edits, concurrent form/JSON arbitration, owner/parser/environment/private-response boundaries and actual Gunicorn routing. Reconcile affected planning before commit, immediately sync. All commercial effects and Country/tax remain pending.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
+
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261023-crh-add-deliberate-django-quotation-request-/261023-crh-PLAN.md); original SHA256 `74ce5272cfb84d613469e1e7929d6f26a8951471ceb2339aa6e21d071b13df55`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
+
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

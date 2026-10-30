@@ -1,10 +1,9 @@
----
-status: complete
----
-# Physical control publication while blocked
+# Physical control publication while blocked — retained historical record
 
-Prepared a root-only library publisher with exact separately scoped root authority outside replaceable controls. It binds reviewed candidate/original/block/custody evidence bytes, complete prior directory/file inventory and parent/group identities. Exclusive permanent admission lock spans new root/group0440 staging, whole prior-directory no-replace preservation and no-replace new installation. Admission remains blocked and unchanged; no CLI, install, reopen, cleanup, rollback or automatic retry.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Actual local SQL3/15310.992s; source7/5 4.185s; operator7/17 5.828s; deployment16/31 2.272s; native55/9 write1.004s pass. Eight added methods cover actual filesystem renames/prior preservation/new permissions/barrier, exact scope/evidence/root/expiry, unknown/change/link denial, existing target preservation, stage/between-rename failures, race-inserted unknown control preservation and late authority revocation. No failing publication tests. Inert source bundle/import controls now contain11 explicitly selected modules; unchanged operator CLI dispatch.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261022-9uf-publish-reviewed-control-generations-whi/261022-9uf-SUMMARY.md); original SHA256 `a1f6bd399c299ad1beb956f6e366ec61b47c00c44e5d137e1cc9b4bbaa4dbf14`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-All authority, custody and root paths in tests are synthetic fixtures. No actual approval/host mutation or custody/provider/storage guarantee. Actual protected inventory/allowlist/impact review/exact action permission and independent runtime/recovery qualification remain mandatory. Publication-outcome reconciliation, separately authorized opening, app/Django and14/16/17/full phase unfinished. Scoped local commit/push retained.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

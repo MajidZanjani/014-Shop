@@ -1,9 +1,9 @@
----
-quick_id: 261023-cyg
-status: planned
----
-# Customer form audit F-01
+# Customer form audit F-01 — retained historical record
 
-GSD audit-uat query returned zero structured UAT items; existing Phase01/02 verification records preserve their acceptance scopes and open qualifications. Supplemental inline source review covers the newly assembled customer forms, shared operations, templates, host middleware and current planning indexes. No agents used.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-F-01 medium, auto-fixable: cart parent ownership was checked before a separate snapshot lookup without current-owner predicates. Reproduce with a controlled committed ownership change between queries, then recheck ownership in current cart API, cart editor GET/base-command reads and quotation preview. Return safe404 when the referenced snapshot is no longer owned. Preserve exact historical retry behavior and JSON contracts otherwise. Run complete local PostgreSQL lane, inspect actual filtered source, reconcile live planning and sync each commit. Country/tax and all live/browser/off-host gates remain pending.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261023-cyg-fix-customer-form-audit-f-01-by-rechecki/261023-cyg-PLAN.md); original SHA256 `db509200f7eedb73db3c3bf8c519c66ac32f788d0583010c6b34d8c85a7b0614`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
+
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

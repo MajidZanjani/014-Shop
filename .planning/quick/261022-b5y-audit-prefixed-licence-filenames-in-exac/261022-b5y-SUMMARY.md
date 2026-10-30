@@ -1,13 +1,9 @@
----
-status: complete
-evidence_class: exact-distribution-archive-audit
----
-# Supplemental prefixed licence filenames
+# Supplemental prefixed licence filenames — retained historical record
 
-Shared bounded archive audit accepts an optional predicate; original default/report output unchanged. New supplemental collector includes prefixed names, requires exact baseline inventory/URL/digest/archive/member matches and separately retains report/exact candidate text, never granting legal/package-wide/native completion. Exclusive output creation, no extraction/install/execution, no overwrite/repair/adoption.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-All twelve official exact hashed artifacts refetched and verified. Found one named candidate: pip-requirements-parser32.0.1, pip_requirements_parser-32.0.1.dist-info/mit.LICENSE,1080 bytes,SHA25618081c2c82771ca09d99d08cdac405924309e09fd19b16f1eea59cbc6ab809ed. Original complete member inventory already listed this file; original anchored policy omitted it. Ten npm and packageurl-python remain without named candidates; two embedded Python headers remain separate. No generic licence substituted or legal conclusion made.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261022-b5y-audit-prefixed-licence-filenames-in-exac/261022-b5y-SUMMARY.md); original SHA256 `22261e770d2255584c8573e4b0b5c9951a3b23e193b835f1dd117fe339274bae`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Seven new tests plus existing collectors:20 pass0.008s; inventory4 pass0.000s; initial15-test pass0.007s. Actual --write and independent refetch/reconciliation both pass12 distributions/1 candidate/1 text. Original default audit refetch reproduces12/0 candidates exactly. Eight raw/derived/baseline evidence files compared to HEAD unchanged. No test/collector failure. Runtime source/package unchanged, no unnecessary build/native rerun. No credential/host/provider action.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
 
-Resumed bdbd432 checkpoint, consumed handoff. Application/host evidence boundary remains unresolved; production backend closed. No application control mounts/host proc exposure.14/16/17 and actual/legal/native/OCI qualifications remain incomplete. Unused earlier init261022-b19 created no artifacts/code.
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

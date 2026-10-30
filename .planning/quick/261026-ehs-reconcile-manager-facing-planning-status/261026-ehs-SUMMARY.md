@@ -1,10 +1,9 @@
----
-status: complete
----
-# Manager-facing planning status reconciled
+# Manager-facing planning status reconciled — retained historical record
 
-ROADMAP already identified Phase10, but its phase checkbox/row did not expose exact plan or pause state. PROJECT incorrectly reported Phase3 and stale338-test evidence; generated state routed to generic progress because status:paused lacked the supported paused_at field. Previous planning checks only checked roadmap focus and index links, missing contradictions in PROJECT, plan and execution status.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Updated ROADMAP, STATE, PROJECT and HANDOFF with shared current-plan/execution-status/next-task fields. Roadmap phase list/details/progress now identify Phase10, partial10-01/10-02, paused before reservation task1, and four remaining ledger items. PROJECT uses retained378-test evidence with its historical/synthetic limits. Regenerated state via the installed GSD publisher, using the original pause timestamp. Added the user's manager-reporting requirement to the execution amendment.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261026-ehs-reconcile-manager-facing-planning-status/261026-ehs-SUMMARY.md); original SHA256 `187b93165ba9a1912d2f703e9775249f4016b2767acc1a2a9417539b3804baad`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Extended scripts/check_planning.py to validate all four live indexes, frontmatter/plan existence, paused routing and execution status. Six temporary negative fixtures reject stale project focus, plan, status, next task, missing pause timestamp and generic machine routing. Real planning and immutable-source checks pass after inventory refresh; git diff --check passes. No application tests rerun, no evidence promoted, no phase/plan accepted. Phase10 implementation remains paused before10-02 task1;1/14 phases and11/29 plan records fully complete. Inline GSD quick execution; no agents used.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

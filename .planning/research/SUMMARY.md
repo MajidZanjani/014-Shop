@@ -1,13 +1,7 @@
-> Current requirements delta: [final26October purchase flow](../PURCHASE-FLOW-AMENDMENT.md). Baseline research below is dated; no compulsory technical checkout dossier/portal, blanket custom-board review or automated pooling prerequisite. Preserve unchanged architecture/protection and exact pending qualifications.
+# SHB summary
 
-# Research synthesis — October 21 replan
+Current authority: [SHB revision 1.1](../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../STATE.md) / [ROADMAP.md](../ROADMAP.md).
 
-Both new sources were read completely. No new live upstream/account/provider audit was performed. Package hashes/product equality are in SOURCES.md. Product meaning and commerce/access/payment/support invariants are unchanged; hosting/protection are replaced by the new source.
+Proceed with product/forms → invitation/private delivery → FPGA/ASIC/coupon/order/payment/transaction notices → revised focused verification and separately qualified activation. Reuse existing components and preserve old evidence; no second master plan.
 
-Selected initial backend: new shopsvc rootless Podman services directly on existing mx1, NixOS/Quadlet declarations, new independent PostgreSQL, host-controlled aggregate resource boundaries and local snapshot-aware storage caps. Static gra and independent sbg remain. Existing services/guests/owners/stores, proxy/TLS/firewall, backup/monitoring/SMTP configuration, disks/reserves/allocations and partner project 001-xspi-pro remain protected.
-
-P-10 hosting choice is resolved, not live host qualification. T02 prepares identities/artifacts/limits/storage and full activation-impact contracts; T11 inventories all resources read-only before any deployment write. Unchanged ingress/TLS must be proved or public activation is deferred with exact service/action proposal. Generic approval cannot permit a protected reload. DNS-01 does not provide routing. No new compute/block/IP rental or automatic paid fallback.
-
-Fault/exhaustion/restart/capacity/full-pool-loss restore evidence requires an independent off-host target. Supplied mx1 capacity is operator evidence, not a benchmark. The single-device pool and shared kernel/ingress create common outage risk. £0.79/month models incremental objects only; recovery growth and actual tariffs remain unqualified.
-
-Retain unchanged artifact approval and development toolchain evidence narrowly. Migrate obsolete executable source checks in 02-00 before 02-03/05. T09 gaps do not block independent T10/T11 preparation; T12/T13/T14 retain precise external evidence/authority gates. This replan makes no application/host/production acceptance claim.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.

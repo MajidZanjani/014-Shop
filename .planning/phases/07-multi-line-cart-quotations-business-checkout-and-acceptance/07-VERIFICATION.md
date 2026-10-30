@@ -1,13 +1,11 @@
----
-phase: 07
-status: gaps_found
----
-# Partial Phase7 verification
+# Partial Phase7 verification — retained historical record
 
-COM01–02 local carts/requests/review/retry only; no approved purchase acceptance. COM03 exact local envelope/capture/destination, bounded authority/claims and fenced prepared-byte publication/readback are implemented; qualified retention/domain completion and protected offers/order remain missing. COM04 private nineteen-group drafts/bindings partial; Country/tax deferred. COM05 source document previews only; no acceptance. COM06 guarded acceptance/deadlines missing. DATA04 partial local prepared evidence only. All corresponding requirement checkboxes remain unchecked.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Migration0012/no-drift and actual PostgreSQL concurrency/constraints pass. [Selected command partial](07-02-WORKER-COMMAND-PARTIAL.md) records scope/rollback; preserve populated business evidence. Browser/legal/provider/off-host/runtime/production qualifications remain pending. Same-agent source checks are not independent certification.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-VERIFICATION.md); original SHA256 `fba595c1f7c56065c6a30df365fa71f9cc58af349bb2b46079c4841915378af2`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Current selected command evidence (implementationccab85a synced0/0):246 core-local tests (232 Django plus14 Gunicorn observations),57.080s; owned PostgreSQL18.6/UTF8. Source157 files19 templates exact/allowlisted/no symlinks. run_prepared_archive executes one explicit authorization/destination/existing bound root with fixed safe stdout/errors, no initialization/adoption/queue scan/retry. One-shot prepared executor and all manual-autocommit guards remain passing. Existing probe daemon/default images unchanged. Next: separate-process owned-synthetic command smoke/failure tests; actual transport/process/outage/off-host/provider/production qualification remains pending. Country/tax pending; focus7/completed1;11/24 records,1/14 complete phases (7%); Phase02 remains8/18;07-02 partial.
+Current Phase 7: **FPGA checkout, ASIC reviewed offers and scoped discounts**. Automatic eligible FPGA checkout; ASIC request/clarify/decline/withdraw/approve/dated offer/acceptance. One scoped percentage code; PostgreSQL reservations survive ASIC review beyond claim expiry. Immutable accepted price/scope revisions.
 
-Context checkpoint: implementationccab85a synced0/0,246 local checks pass; waiting for cleared session and $gsd-resume-work. No exact context percentage is available; proactive handoff follows the user AGENTS.md rule. Focus7/completed1;07-02 partial; Country/tax pending.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

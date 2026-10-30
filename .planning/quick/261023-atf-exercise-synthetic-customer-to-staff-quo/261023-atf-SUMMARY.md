@@ -1,26 +1,9 @@
----
-quick_id: 261023-atf
-status: complete
-implementation_commit: 8e76c27cb4258bbe604b01437945ffaef78cdff0
----
-# Supported-route customer-to-staff journey
+# Supported-route customer-to-staff journey — retained historical record
 
-Added mixed and support-only request/response integration scenarios with real PostgreSQL/UTF8 and enforced CSRF. Start with empty domain tables. Customer identity is created by request-code/verify routes; staff is provisioned by supported local_staff command then authenticated by password/private-code routes. All cart/request/business/attachment/review/preparation domain writes use actual API/forms. No forced login, direct domain fixture insertion or model mutation. Operator commands explicitly grant quotation and exact business scope, then revoke permission.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Flows exercise uncertain retries, Unicode partial business/helper resolution, exact attachment/review, owner safe status/document/timeline, captured assessment/retry/correction/compare, stale assessment rejection, later cart/business edits preserving retained scope, another verified owner denial, private-summary canaries, revocation and separate staff/customer logout. Country/tax remain null/deferred; all commercial actions disabled. Programmatic captures are new owned synthetic files, read only inside tests; no manual/real credential or external service access.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261023-atf-exercise-synthetic-customer-to-staff-quo/261023-atf-SUMMARY.md); original SHA256 `6fe57a7e980308874dfed11dc5a11c75cef9bc2fc6af9e02a6258d4b8989f5a2`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-## Evidence
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
 
-- CORE_LOCAL_PASS checks=5 tests=149 duration_seconds=37.373, PostgreSQL18.6/UTF8:139 Django tests plus10 loopback observations. Two new complete mixed/support-only journeys passed first full run. Existing147 tests remain green.
-- These are Django request/response integration tests, not new live HTTP sign-in/browser/render/accessibility or production MFA/email/recovery qualification. Core lane retains ten independent loopback observations; no new actual HTTP customer/staff journey claim.
-- Actual candidate source `/nix/store/l3vn73jkfwzm5clml2q9hd34rjifzhh9-shop-python-source`:117 files/fifteen templates; exact repository bytes/allowlist/no symlinks. No image/deployment acceptance.
-- Planning labels now explicitly distinguish development focus7 from last fully completed1. Phases2–6 remain partial/qualification-pending under the October22 amendment. Extended guard checks both labels; four in-memory drift cases (focus, completion, machine-state and counts) reject with no files mutated. Positive planning check passes; prior frontend110/proxy1 and harness15 remain scoped to original evidence, not rerun.
-- All affected live planning files reviewed/refreshed before commit. Immutable source and historical evidence preserved. Regenerate canonical state.json, run planning guard and sync after every commit. No demos, agents or async jobs remain.
-
-## Pending scope and next action
-
-Progress unchanged:1/14 fully completed phases (rounded7%),10/20 planned records, Phase02 remains8/18. Country/tax answers, current human/browser reviews, actual delivery/staff MFA/recovery, approved commercial inputs/acceptance/order conversion and full release gates remain pending. No FULL_PASS, hosted CI or off-host outage/recovery claim.
-
-Next local slice: Django no-JavaScript customer access entry using existing captured verification flow, with strict CSRF/body/privacy/session handling and no real delivery or new membership scope. This addresses a remaining fallback/access prerequisite without waiting for Country/tax answers. Keep all commercial gates closed.
-
-Implementation 8e76c27 was immediately synced to origin/main with0/0 ahead/behind. Registry completion also reconciles live planning before commit and must be immediately synced.
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

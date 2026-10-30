@@ -1,17 +1,9 @@
----
-status: complete
-implementation_commit: e71e2f22d3a5846a46a00bae75179143d2ce0870
-requirements: [OPS-02, AUTH-04, UAT-03]
-evidence_class: local-synthetic
-actual_recovery_qualified: false
----
+# Committed local recovery transitions — retained historical record
 
-# Committed local recovery transitions
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Completed both tasks inline. Four original-code PostgreSQL failures show quarantine/release returning success inside atomic/manual caller transactions while an independent connection retains the previous state. The existing local operation now rejects those callers before changes and owns a durable top-level commit boundary. Success and exact retries are independently visible before return; mode/database identity, selected staff reset, rollback, current-hold and unfinished-effect rules remain.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261028-dq8-require-committed-local-recovery-transit/261028-dq8-SUMMARY.md); original SHA256 `479ac240702fe04f283ab9abbe807835e326bb040062d0230f6a06e82bc8fcd2`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Focused102 tests/32.272s, full current backend650/5 checks/206.973s (outer208.488s), exact276-file source/33 templates/1 CSS/no symlinks, planning/source-authority checks and four planning/inventory tests pass. Migrations/no drift and all existing test bounds remain. Prior proxy/browser/frontend evidence keeps its exact earlier scope; it was not rerun for this internal transaction-only change. [Exact commands/results and remaining gates](../../phases/13-purchase-flow-fulfilment-and-release-acceptance/13-RECOVERY-COMMIT-PARTIAL.md).
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
 
-## Self-Check: PASSED
-
-Implementation e71e2f2 is pushed. The owned test processes have exited. No migration, new dependency, HTTP recovery route, actual restoration/provider/host operation or full Phase13 acceptance is claimed. Authoritative post-point/customer/resource/MFA evidence, approved channel/custody and assigned independent runtime/recovery target remain required for their actual bindings. Company commercial inputs remain pending without another request. This completes the concrete local commit-boundary defect; it does not waive any finite qualification gate.
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

@@ -1,10 +1,9 @@
----
-status: complete
----
-# Connected Unix peer admission
+# Connected Unix peer admission — retained historical record
 
-Both operator paths inspect a duplicate of the actual libpq FD for Linux Unix-stream credentials, matching peer PID/UID/GID to approved postmaster/startup identities. Inspection checks before/after observation; schema checks at every connected admission. Original descriptors/protocol bytes are preserved.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Final local SQL3/114 in10.140s, source7/5 in4.362s and operator7/17 in5.995s pass. Real disposable SCRAM inspection/schema peers and wrong-PID denial pass. Real socketpair/type/descriptor controls and mocked close-before-SQL controls pass. Initial112-test pass precedes final114; no failing peer runs. New native54/9 and source-notice9/7 revisions preserve prior evidence.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261022-8fv-bind-operator-unix-socket-peers-to-appro/261022-8fv-SUMMARY.md); original SHA256 `0b1e92114632cbf24d27040f61958f2f5d34988cc2491607f35599011cf4769b`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-SO_PEERCRED reflects listen-time identity, not current backend state; retain fresh process/start/resource/SQL guards. Fixed root/namespace/runtime/storage/socket-path and role provisioning remain unqualified. Publisher/custody/barrier, Django/app/replica, full CI/OCI and independent recovery unfinished. No real credentials/host/provider action or full phase acceptance.14/16/17 incomplete. Local commit only; remote publication remains blocked pending scoped authority.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

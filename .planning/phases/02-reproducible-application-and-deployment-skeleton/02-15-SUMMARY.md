@@ -1,16 +1,11 @@
----
-phase: 02-reproducible-application-and-deployment-skeleton
-plan: "15"
-status: complete
-requires: [02-14]
-provides: [closed-unobserved-mx1-profile, host-inventory-procedure, exact-allowlist-template, activation-impact-template, deferred-ingress-contracts]
-requirements-completed: []
-completed: 2026-10-21
----
-# Phase 2 Plan 15: Protected-host review artifacts
+# Phase 2 Plan 15: Protected-host review artifacts — retained historical record
 
-The selected mx1-rootless profile is closed/proposed-unobserved, with null actual identities/digests/datasets/credentials namespaces and activation false. A/B ingress contracts are mutually exclusive and deferred; neither proves an unchanged route/certificate path or permits protected changes. The disabled Nix profile creates no service. Inventory, allowlist/DB map, full activation impact/deferred-action form and qualification documents explicitly say NOT OBSERVED and name the actual evidence still needed.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Actual pinned dispatcher deployment-profiles passed 6 checks/5 tests in 0.055 seconds. Positive base/A/B templates validate. Negative cases reject old cloud/unknown nested fields, false observed ownership, existing-cluster reuse, resource/storage escape, unallocated listeners treated as owned, early DNS/activation, proxy/PROXY-protocol changes, generic approvals, host rollback and changed existing integration policy. No SSH, provider query, secret read, NixOS activation, service reload or other host action ran.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/phases/02-reproducible-application-and-deployment-skeleton/02-15-SUMMARY.md); original SHA256 `3bc3a43f237e1b728da46bebe8a6b34ad93a6ac13ecf3195ddff2a42afbc9a8c`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-This offline review-artifact slice is complete. Its dependency's candidate foundation is available, but 14 image/bootstrap/runtime implementation/qualification remains incomplete; no operational capability is inferred. BUILD requirements and full phase remain incomplete. Actual current-host proof belongs to T11 and recovery to T12. New exact runtime/transitive review, image builds/digests, reproducible off-host driver and runner assignment remain pending.
+Current Phase 2: **Reproducible application and isolated deployment foundation**. Reuse exact pinned Astro/Django/PostgreSQL/worker stack; retain database destination, all-write/attestation, native/licence/SBOM, immutable-image, CI and independent runtime gates.
+
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

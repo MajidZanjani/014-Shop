@@ -1,10 +1,9 @@
----
-status: complete
----
-# Stable control-record descriptor reads
+# Stable control-record descriptor reads — retained historical record
 
-Code5330962 adds before/after metadata equality and exact nonempty read-length enforcement before parsing root-owned control files. Tests cover changed device/inode/UID/GID/mode/size/mtime/ctime, truncated and empty reads, exact32768-byte input and existing positive/denial cases.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Local checks passed: process18 tests; deployment-eval15/29; database-tools6/5; operator-runtime4/10. No failure; ignored Nix concurrent eval-cache busy warning. git diff --check passed. Exact package bytes rebuilt by packaged lanes. No actual host connection, record publication, service/resource change or credentials needed.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261021-h2i-reject-control-records-changed-during-de/261021-h2i-SUMMARY.md); original SHA256 `e13f4d225239eed23d51a271a5c75c2a4d96ce5ebb63f1e77787a8e9fc3d21c9`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-This bounded fix is complete; plan14 and Phase02 are not. Metadata checks do not establish atomic generation publication or protection against a privileged writer. Remaining implementation and off-host qualification persist in STATE and phase PARTIAL records. One-shot pause files consumed on successful resume; original checkpoint remains in Git. Dependency approval audit reconciled against actual JSON and explicitly historical summary section.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

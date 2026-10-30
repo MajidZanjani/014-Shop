@@ -1,11 +1,9 @@
----
-quick_id: 261023-atf
-status: complete
----
-# Supported-route customer/staff round trip
+# Supported-route customer/staff round trip — retained historical record
 
-Inline GSD quick. Local/synthetic tests only; Country/tax remain deferred. Before every commit update all affected live planning files, regenerate canonical state.json, run planning guard; sync each commit. No agents or real providers.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-1. Add mixed/support-only request/response integration flows with real PostgreSQL and enforced CSRF. Start with no domain records; request/consume customer verification through captured-code routes; provision/authenticate staff through supported local command/password/code routes. Create cart/quotation/business/attachment via real application requests/forms, no forced logins or direct domain fixture insertion.
-2. Drive explicit assignment/exact private grant, assigned review, owner safe status/document/timeline, retained preparation capture/retry/correction/compare, stale rejection, unrelated owner denial, later cart/business edits not retargeting retained scope, private grant revocation and logout. Real local operator commands only for staff provisioning/assignment. Programmatically consume only self-created private synthetic captures; never real credentials or external mail/bank.
-3. Clarify current development focus versus last fully completed phase in all live planning views and guard. Run bounded core-local/source package/planning checks; preserve full phase/commercial/external/human gates. Record evidence and update every affected planning index before commit, then sync and verify clean0/0.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261023-atf-exercise-synthetic-customer-to-staff-quo/261023-atf-PLAN.md); original SHA256 `734a34b93cadb1bfd078879b7452e7b0dda5455ff814433553a09a00dbc79252`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
+
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

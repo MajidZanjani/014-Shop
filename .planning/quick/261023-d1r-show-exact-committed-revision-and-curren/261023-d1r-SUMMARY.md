@@ -1,14 +1,9 @@
----
-quick_id: 261023-d1r
-status: complete
-implementation_commit: 6171d3c
----
-# Exact cart retry confirmations
+# Exact cart retry confirmations — retained historical record
 
-No-JavaScript cart confirmations now identify the committed revision separately from the freshly loaded current revision and label reconciled earlier submissions. When revisions differ, the message explicitly confirms that later changes remain saved. The server session contains only a closed integer/boolean notice, consumed once; malformed/legacy notices are ignored without echo. Cart persistence/API behavior unchanged. Local guide updated.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-CORE_LOCAL_PASS checks5 tests178 duration40.189s:164 Django plus14 actual Gunicorn transport observations on owned PostgreSQL18.6/UTF8. Existing exact-retry scenario now checks older confirmation after later edit/catalog drift, unchanged current data, one-time notice, same-current removal retry and invalid notice suppression. All owner-change/access/form/API concurrency/staff journey tests pass.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261023-d1r-show-exact-committed-revision-and-curren/261023-d1r-SUMMARY.md); original SHA256 `c90e9d41a74d3f29c41385d6639cf5c19b587cc7d50135b5f7c6cbee14c6150c`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Actual Nix source /nix/store/4mgaw74ahgx1kclk6v3j7r8cp7bm5ad8-shop-python-source:129 files19 templates; exact bytes/allowlist/no symlinks verified. Frontend/proxy unchanged; previous scoped results retained. No full browser/accessibility, real delivery, commercial/production/off-host acceptance. Country/tax remains pending; Phase1 last complete; focus7; Phase02 8/18 unchanged.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
 
-Next: plan remaining Phase7 local acceptance and durable-evidence boundaries against delivered customer/staff slices, preserving every unknown approval and the user-deferred Country/tax choices.
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

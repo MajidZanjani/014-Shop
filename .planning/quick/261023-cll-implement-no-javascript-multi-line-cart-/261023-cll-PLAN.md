@@ -1,7 +1,9 @@
----
-quick_id: 261023-cll
-status: planned
----
-# Saved multi-line cart without JavaScript
+# Saved multi-line cart without JavaScript — retained historical record
 
-Extract shared transactional cart persistence preserving JSON contracts. Add local verified-owner Django cart forms for separate IP/support additions, edits and removals. Reconstruct each command from its exact retained base revision and stable line/request IDs so uncertain retries remain exact after later changes. Enforce strict fields/CSRF/size, owner/environment gates, fixed redirects, safe errors and private headers. Reuse catalog/configuration/cart validation; no order/offer/payment/acceptance effects. Test form/API interoperability, stale changes, retries, invalid vendor/RDP/support quantities and isolation on real PostgreSQL. Reconcile all live planning, publish/check state, commit and immediately sync. Country/tax stays pending.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
+
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261023-cll-implement-no-javascript-multi-line-cart-/261023-cll-PLAN.md); original SHA256 `e14b31f099001a27749deb3f5cc79700e082b91a89061d6c37332456f02062a1`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
+
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

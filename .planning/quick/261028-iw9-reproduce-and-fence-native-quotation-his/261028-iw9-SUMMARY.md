@@ -1,21 +1,9 @@
----
-status: complete
-implementation_commit: 49f714b
-implementation_status: verified_local
-completion_record: schema_backed
-requirements: [AUTH-01, AUTH-02, OPS-02, UAT-03]
-evidence_class: local-synthetic
-actual_recovery_qualified: false
----
+# Native quotation page recovery boundary — retained historical record
 
-# Native quotation page recovery boundary
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Both local plan tasks are complete. Original9-test/9-failure PostgreSQL baseline and guarded original-source control reproduce private history/cursor, timeline and document-preview reads after quarantine or completed quarantine/release. Each handler now locks the originating epoch before private resource queries and retains it through bounded projection/rendering. Fresh verified reads preserve immutable facts, owner/cross-cart filters, keyset pagination, committed-prefix/current-status timeline behavior, source declarations and preview privacy.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261028-iw9-reproduce-and-fence-native-quotation-his/261028-iw9-SUMMARY.md); original SHA256 `9b86e22962f726863b3a09d1c3416614314bd0e1003e6f899f5697b6e3a46106`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Focused126/27.980s, current backend761/5 checks/234.820s (outer236.575s), supported proxy/demo148/2 aliases and exact276-file source/33 templates/1 CSS/no symlinks pass. Four planning/inventory tests, planning/source-authority and diff checks pass. [Exact evidence](../../phases/13-purchase-flow-fulfilment-and-release-acceptance/13-QUOTATION-PAGES-RECOVERY-PARTIAL.md). All three fixed files restore byte-exactly after the original9/9 control. Independent PostgreSQL probes observe55P03 at resource queries and rendering. All owned qualification producers exited. No model, migration, dependency, pin, timeout or public route changed.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
 
-Implementation49f714b is committed and pushed after the user's direct approval of subsequent ordinary project pushes. Completion artifacts record the verified local scope; actual Git refs determine synchronization. The remaining concrete business draft/save/private-read and quotation business-attachment source observation is unreproduced/unimplemented and requires a new original-code PostgreSQL baseline before edits.
-
-Actual/company/channel/custody/provider/customer/resource/revocation/MFA/independent-target/formal gates and full Phase13 acceptance remain pending. Local serialization is not actual transmission or recovery qualification; no full Phase13 SUMMARY is justified.
-
-## Self-Check: LOCAL PASS
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

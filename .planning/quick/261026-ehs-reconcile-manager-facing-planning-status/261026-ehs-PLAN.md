@@ -1,10 +1,9 @@
----
-status: planned
----
-# Reconcile manager-facing planning status
+# Reconcile manager-facing planning status — retained historical record
 
-1. Compare STATE, ROADMAP, PROJECT, handoffs and generated state against retained Phase10 evidence; preserve acceptance counts and all actual gates.
-2. Show exact development focus, next plan/task and execution status consistently; repair generated paused routing through supported STATE fields.
-3. Extend the planning checker to reject contradictory live indexes and routing; verify real files and negative temporary fixtures, then commit/sync.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Scope: reporting correction only. Phase10 implementation remains paused before10-02 task1; this task does not execute or accept that plan. Inline execution under the skill's no-spawn fallback.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261026-ehs-reconcile-manager-facing-planning-status/261026-ehs-PLAN.md); original SHA256 `8d074b23530846d46c3fe062f253a8e7ef30666f7b1f6446016264a330e259cd`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
+
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

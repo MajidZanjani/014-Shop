@@ -1,17 +1,11 @@
----
-phase: 07-multi-line-cart-quotations-business-checkout-and-acceptance
-plan: "01"
-status: complete
-implementation_commit: 3e1b811
----
-# Local prepared archive prerequisite
+# Local prepared archive prerequisite — retained historical record
 
-Implemented internal PreparedArchive/PreparedReceipt over a canonical owned0700 local/synthetic fake-storage root. Closed UUID/hash/size references, bounded bytes,0600 regular single-link files, descriptor-relative/no-symlink operations; blob first and immutable receipt last, exclusive temporary files, file/directory fsync and no-overwrite publication. Exact retry verifies existing committed bytes; changed payload conflicts. Reopened recovery verifies the independently retained reference against receipt and blob. Fail-fast per-instance/directory locks arbitrate publishers. Failed writes/publication/sync never acknowledge a receipt or delete prior evidence; orphan prepared blobs and lost receipt acknowledgements reconcile on exact retry. Fixed errors exclude private values/paths.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Receipts are local-synthetic/prepared only, retention_qualified=false and effects_authorized=false. No domain routes, outbox, offers, acceptance/order, bank/provider, support/delivery or host changes. Actual completion envelopes, independent retention/custody/restore and production integration are pending. No DATA04/full COM acceptance claimed.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/07-01-SUMMARY.md); original SHA256 `8a238e5f355bf9c03e23d6faa3e204e72229b7ca62f14eae64885e3c70282b2c`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-CORE_LOCAL_PASS checks5 tests188 duration39.798s:174 Django plus14 actual loopback observations, owned PostgreSQL18.6/UTF8. Ten new archive tests cover publish/reopen/exact retry/conflict, tampering/missing objects/receipt changes, unsafe root/modes/links/symlinks, invalid/classification/environment/privacy, blob-before-receipt failure, early/late fsync failure and uncertain acknowledgement, same/distinct identity contention/reconciliation and non-destructive failed publication. Existing domain/access/form/API concurrency suites pass.
+Current Phase 7: **FPGA checkout, ASIC reviewed offers and scoped discounts**. Automatic eligible FPGA checkout; ASIC request/clarify/decline/withdraw/approve/dated offer/acceptance. One scoped percentage code; PostgreSQL reservations survive ASIC review beyond claim expiry. Immutable accepted price/scope revisions.
 
-Actual Nix source /nix/store/ll7jjhh24zfs6nn77mlwfk5l5dfwj0wg-shop-python-source:131 files19 templates, exact bytes/allowlist/no symlinks verified. Frontend/proxy unchanged, prior scoped evidence retained. Inline source/plan review; no independent review or off-host/browser/provider guarantee. Country/tax pending.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
 
-Phase7 local remaining plans1/4, full phase still In Progress/gaps_found. Overall11/24 planned records,1/14 completed phases, Phase02 8/18. Next: design exact private quotation evidence envelope and domain outbox/reference contract for07-02 before any protected offer publication.
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

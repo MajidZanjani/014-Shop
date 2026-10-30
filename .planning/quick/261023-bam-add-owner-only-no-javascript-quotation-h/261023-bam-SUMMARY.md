@@ -1,14 +1,9 @@
----
-quick_id: 261023-bam
-status: complete
-implementation_commit: 120f0a5
----
-# Owner quotation history without JavaScript
+# Owner quotation history without JavaScript — retained historical record
 
-Added GET /purchase/quotations/ with closed safe projection, current review labels, exact owner/cart/snapshot admission and20-item keyset pages. Canonical cursor IDs must identify an admissible owned request. Newer insertions do not shift older pages; tied timestamps order by UUID. Fixed internal timeline/attachment/document links; access and detail pages link back. Private no-store/referrer/CSP headers; no forms, domain writes or commercial effects.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-CORE_LOCAL_PASS checks5 tests161 duration38.550s:151 Django plus10 transport observations on owned PostgreSQL18.6/UTF8. Five new targeted tests exercise strict/canonical/foreign cursors, tied timestamps/new inserts, empty tail, safe context/HTML/headers/no writes, environment/auth and cross-cart/ownership drift. Both existing full supported-route journeys now traverse the new list. Initial fixture/ordering errors corrected before passing the complete lane.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261023-bam-add-owner-only-no-javascript-quotation-h/261023-bam-SUMMARY.md); original SHA256 `41fc3af0c742fa96c2b55c3f2d14b6d79840b92dbf2dc71fa18686febd98b897`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Actual Nix source /nix/store/ip2an400bq9ibfiaaijs4s0q6f7kfwlq-shop-python-source:123 files17 templates; allowlist/no symlinks/exact bytes pass. Frontend/proxy unchanged, previous scoped evidence retained. Full browser/production/off-host acceptance remains pending. Country/tax remains pending. Phase1 last complete; development focus7; Phase02 remains8/18.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
 
-Next: no-JavaScript multi-line saved cart using shared cart rules and transactional retry protection. Continue across immediate commit/sync as authorized.
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

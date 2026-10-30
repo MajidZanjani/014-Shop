@@ -1,18 +1,21 @@
-# Current execution continuity
+# Active SHB continuation
 
-**Current development focus:** 2 — Reproducible application and deployment skeleton; complete related foundation steps across phases. [Current purchase-flow authority](PURCHASE-FLOW-AMENDMENT.md).
+Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](STATE.md) / [ROADMAP.md](ROADMAP.md).
 
-**Current plan:** 02-14 — Policy-bound SCRAM application connection verified locally; transport/all-write/migration/bootstrap/replica integration remains open.
+**Current development focus:** 3 — Supporting Hours Bundle catalog and approved pricing.
 
-**Execution status:** paused — User-requested checkpoint after policy-bound SCRAM/Django SQL3/236, inert source7/5 and deployment16/31; implementation a4d7e07 pushed; full14/16/17/related acceptance remains open8/18.
+**Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
 
-**Next implementation task:** Implement approved application-policy issuance/custody and isolation-preserving attestation lease transport, then app/worker all-write/migration/bootstrap/replica integration; retain16/17/native/legal/CI/independent/human gates.
+**Current plan:** 03-01 — Supporting Hours Bundle catalog, 10/25-hour variants and common/ASIC form rules.
 
-**Recorded implementation:** a4d7e07a621ce9b191ce417f9ccb83ce76dd6c58
+**Execution status:** in progress — SHB revision 1.1 replanned; implementing the single-product catalog and minimum forms; no live acceptance.
 
+**Next implementation task:** Implement and verify SHB catalog/forms, then invitation-gated private storefront and old-IP route denial; continue FPGA/ASIC/coupon/payment integration under the revised plans.
 
-[Verified connection-policy step and retained failures](../docs/build/application-connection-2026-10-29.md): SQL3/236, inert source7/5, deployment16/31; fourteen inert Python modules/two SQL files. Production/bank-sandbox and runtime image definitions remain unchanged. Complete goal remains8/18; [full tracker](phases/02-reproducible-application-and-deployment-skeleton/02-COMPLETION-TRACKER.md).
+**Recorded implementation:** cbf5941086172dd7cf53bca637e5a8529d22f23b
 
-Next action is the field above after resume. Company inputs promised later remain pending; no new permission request is needed for independent local work. Shared temp/cache are constrained; use owned .scratch/auth-unicode-tmp and .scratch/phase2-repro-nix-cache. Preserve unknown resources, prior actual evidence, protected/provider gates and unassigned independent runner.
+Replan is not product completion. Continue 03-01 immediately; then 04-01 access/private delivery and 07/08/10 workflows. No old Phase2 pause or historic time-ledger task routes execution.
 
-Paused by explicit user request after complete active planning synchronization and pushed implementation. Structured [HANDOFF.json](HANDOFF.json) and the phase checkpoint preserve full restoration context. No running job or real credential/host/provider operation belongs to this continuation. Resume with `$gsd-resume-work`. The measured working-tree snapshot is taken before the handoff commit; its listed planning edits belong to that commit, while pre-existing http_cache.sqlite remains unrelated and untracked.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+External dependencies and actual operation scope: docs/decisions.md. No independent runner or new external authority. Full commands/results will be recorded only after execution. Original snapshot and inventory: docs/archive/2026-10-30-before-shb/manifest.json.

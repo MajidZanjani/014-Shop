@@ -1,21 +1,9 @@
----
-quick_id: 261023-ina
-status: complete
----
-# Typed durable synthetic bank boundary
+# Typed durable synthetic bank boundary — retained historical record
 
-Implemented a typed durable local-synthetic bank adapter, separate from worker probes. Immutable-by-service fake operations and retained key aliases arbitrate merchant/reference/key retries and conflicts; explicit post-commit timeout can be reconciled by no-write reference lookup across connections. Exact typed correlation never confirms actual money; database/observation flags remain false. CORE_LOCAL_PASS5 checks/297 tests (283 Django plus14 Gunicorn),80.242s; PostgreSQL18.6/UTF8, payments0001/catalog0012 application and no-drift pass. Exact source /nix/store/87iyj21lmi0pmbqf52iyyvx68pvy1ygf-shop-python-source176 files23 templates/no symlinks.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Added shop.payments with BankStart/BankObservation/SyntheticCapabilities, strict synthetic merchant/UUID/currency-token/positive-bigint amount validation, immutable provider-operation creation and retained key aliases. Semantic uniqueness covers merchant/reference; keys cannot be reused for another operation, including concurrent losing-reference rollback. Captured/authorized/declined/pending statuses remain distinct; no state promotion on retry. Before-commit timeout writes nothing; after-commit response loss retains the fake result for lookup. Adapter rejects real modes, live/nonfake settings and outer/manual transactions. Capabilities for separate capture/refund/callbacks remain false. No public route, order/acceptance, actual merchant capability, financial confirmation, entitlement or actual bank I/O. Old Probe/FakeReceipt/default worker unchanged.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261023-ina-implement-typed-durable-synthetic-bank-o/261023-ina-SUMMARY.md); original SHA256 `a1692018ede96db8fc55abcb9c833b1e371f6a5ac132dcae5352e84cb3c3d99f`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-## Verification
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
 
-Nine new real-PostgreSQL tests cover strict immutable capabilities/nonfinancial flags, same/different-key aliases/body conflicts, lookup after committed response loss on a new connection with no writes, precommit loss/distinct statuses, four-way semantic contention, colliding key/two references with no orphan row, identity/amount/currency/type correlation, environment/transaction guards and database constraints. Focused9 Django plus14 Gunicorn=23 tests/7.555s passes. Final retained full297/80.242s passes with5 checks/no skips; catalog0012 and new payments0001 apply with no model drift. Exact176-file23-template/no-symlink source compared by paths/bytes. Nix emitted an ignored local eval-cache busy diagnostic during parallel build/develop; both source build and full test command completed successfully. No new third-party dependency or frontend/proxy changes/rerun.
-
-The new app migration is generated from the pinned Django runtime on a fresh owned synthetic PostgreSQL cluster. Exceptions model response loss, not actual process/network/outage/recovery qualification. Correlation is not authentication, actual payment evidence or approval. Documentation: [synthetic-bank](../../../docs/synthetic-bank.md).
-
-## Remaining domain gates
-
-Phase08 is now In Progress for this independent adapter slice, not complete. Payment preparation/order/acceptance/reference/qualified archive integration, guarded dispatch, actual authenticated financial observations, callback inbox, reconciliation/finance exceptions and capture/refund workflows remain pending. All live/source/legal/tax/merchant/host/recovery gates remain intact; no fabricated approved order or policy.
-
-Next: Plan the local-synthetic payment-attempt/reconciliation slice against the new typed fake-bank boundary and existing prepared archive primitives. Define immutable expected merchant/currency/amount/reference, uncertain/observed/reconciled states and no-blind-retry claim arbitration before implementation. Retain separate order/acceptance/archive/approval prerequisites and synthetic-only classification; no fake result can mark a real order paid or grant rights. Source permits independent synthetic work while live tax/legal inputs remain pending. Continue substantive work without per-task context-clear requests; no actual external/host operations authorized.
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

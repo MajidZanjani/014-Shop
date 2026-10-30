@@ -1,17 +1,11 @@
----
-phase: 02-reproducible-application-and-deployment-skeleton
-plan: "12"
-status: qualification_pending
-requires: [02-06]
-provides: [versioned-health-openapi, closed-probe-schema, offline-observed-contract-checks]
-requirements-completed: []
----
-# Phase 2 Plan 12: Observed contracts; outage qualification pending
+# Phase 2 Plan 12: Observed contracts; outage qualification pending — retained historical record
 
-OpenAPI 3.1.1 describes only existing GET live/ready paths with exact closed 200/503 bodies. The closed Draft 2020-12 probe envelope validates actual CLI request and persisted worker result, including UUID format. Pinned jsonschema tools validate official metaschema, own schemas, observations and positive/negative fixtures inside a network-denied process namespace. Remote references are rejected and registry retrieval denied; no automatic fetch.
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Official inert metaschema acquired from https://spec.openapis.org/oas/3.1/schema/2022-10-07 (33992 bytes, SHA-256 da01ba28852cac0de53893797cb8d1942bc3b05084f526dcc216717dec314ed0), vendored unchanged and checked before use. It is a schema artifact, not executable package installation.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/phases/02-reproducible-application-and-deployment-skeleton/02-12-PARTIAL.md); original SHA256 `dae699f4963f6fad6b34273fe276ca6b2210b0d77d21d803e2e3d212fff092ee`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Final local command `check_contracts.py --local` passed 7 checks/5 tests in 11.964 seconds. Actual new PostgreSQL, migrations, CLI enqueue/worker and loopback Gunicorn provide real healthy responses and persisted result. Rejections cover closed fields/version/status bodies, malformed UUID/schema, missing artifact and remote refs. Missing required observations cannot pass.
+Current Phase 2: **Reproducible application and isolated deployment foundation**. Reuse exact pinned Astro/Django/PostgreSQL/worker stack; retain database destination, all-write/attestation, native/licence/SBOM, immutable-image, CI and independent runtime gates.
 
-**Pending:** local 503 comes from the actual Django handler with a synthetic connection exception. It is not HTTP database-outage evidence. Full contracts default requires the independently assigned runner authorization for owned-synthetic-postgresql-outage, runs the prepared real HTTP outage case there and otherwise returns nonzero. No such fault or full CONTRACTS_PASS executed here. Required BUILD/phase/production acceptance remains pending. No product/price/payment contract or public API publication is claimed.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
+
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.

@@ -1,17 +1,9 @@
----
-status: complete
-implementation_commit: 35f02017558114d2c5d2a48f7eb88920775894ad
-requirements: [OPS-02, UAT-03]
-evidence_class: local-synthetic
-actual_recovery_qualified: false
----
+# Local restore startup identity fence — retained historical record
 
-# Local restore startup identity fence
+Current authority: [SHB revision 1.1](../../../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](../../STATE.md) / [ROADMAP.md](../../ROADMAP.md).
 
-Completed the three tasks inline under GSD quick. A real pre-fix unheld-session exposure failed; a fresh external fake-only restore identity now closes access/authentication/new effects until matching immutable quarantine/release history exists and the current epoch is unheld. Missing epoch remains closed. Separate cooperating processes recognize the persisted sequence, while later holds, release/drain checks, fresh authentication and read-only bank lookup retain their behavior.
+Disposition: **historical-evidence**. [Exact original bytes and dated evidence](../../../docs/archive/2026-10-30-before-shb/.planning/quick/261028-cgz-fence-local-restore-startup-with-an-exte/261028-cgz-SUMMARY.md); original SHA256 `692d6823a9004c858a975f62e0dc8d3759f7c3ec2dad7059b59d56b8b3568a84`. This pointer does not change any evidence or contract and does not award SHB acceptance. Historical next actions are superseded.
 
-Final focused89 tests25.554s and current backend637 tests/5 checks199.598s (outer201.077s) pass with original bounds. No migration drift. Exact274-file inert source `/nix/store/kqw59vdg9sfxk7hw7a8pv2wabjbfjwsk-shop-python-source`:33 templates/1 CSS/no symlinks. [Evidence, diagnostic assertion and remaining gates](../../phases/13-purchase-flow-fulfilment-and-release-acceptance/13-STARTUP-RECOVERY-PARTIAL.md). Local configuration and selection limits are documented in `docs/local-recovery.md`; examples contain no reused startup identity.
+SHB records only bundle size, quantity and hours bought in each order. SLL manually tracks used/remaining FPGA/ASIC hours and manually emails each task outside the shop. Preserve historical code/data/accepted obligations. Automated time credits/debits/reservations, cumulative balances, customer support/bundle panels/APIs, staff time entry and task-usage-email generation are deferred and are not SHB launch dependencies.
 
-## Self-Check: PASSED
-
-Local scope only. Actual isolation, complete-loss restoration, post-point revocations/MFA reconciliation and full acceptance remain pending. No external API, production recovery control, protected mutation or approval inferred. Commercial inputs remain pending by user instruction. Continue to the concrete local post-point resource-revocation review after ordinary commit/push.
+Shared payment/security/recovery/host gates remain in REQUIREMENTS.md and the applicable current phase plans.
