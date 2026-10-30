@@ -41,3 +41,5 @@ Current plan is the existing ROADMAP.md/STATE.md and per-phase plans; no replace
 ## Explicit pause — 2026-10-30
 
 SHB scope rewrite0773373 is pushed. Partial code and exact pass/failure evidence are saved in docs/build/shb-bootstrap-2026-10-30.md. No SHB phase or live release is newly complete. Resume from04-01, not the former Phase2 continuation.
+
+**Saved WIP implementation:** 6891c6eea5aae064e1c77f8977da31c0145dc1d6 — pushed to origin/main; explicitly paused with both verification issues open.

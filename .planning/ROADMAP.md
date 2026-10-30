@@ -219,3 +219,5 @@ Plans: [14-01-PLAN](phases/14-shb-release-handover/14-01-PLAN.md)
 | 12. Independent backup, restore and SHB reopening | 0/1 | In Progress | Pending actual revised evidence |
 | 13. Thirty SHB acceptance cases and release verification | 0/1 | In Progress | Pending actual revised evidence |
 | 14. SHB handover and separately authorized activation | 0/1 | Pending | Pending actual revised evidence |
+
+**Saved WIP implementation:** 6891c6eea5aae064e1c77f8977da31c0145dc1d6 — pushed to origin/main; explicitly paused with both verification issues open.
