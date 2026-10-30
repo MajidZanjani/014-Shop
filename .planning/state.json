@@ -77,8 +77,8 @@
   ],
   "next": {
     "command": "$gsd-execute-phase 7",
-    "label": "Continue SHB matched checkout/coupon lifecycle",
-    "reason": "Coupon previews and atomic ASIC holds are verified; matched consumption/release and accepted paid workflows are pending"
+    "label": "Implement SHB checkout and accepted matching offers",
+    "reason": "Coupon/triage/safe pre-offer closure slices verified;07-03 checkout implementation remains next"
   },
-  "updated_at": "2026-10-30T13:21:35+00:00"
+  "updated_at": "2026-10-30T13:44:23+00:00"
 }

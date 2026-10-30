@@ -88,7 +88,7 @@ def claim(invitation, variant, code):
             or variant == 'shb-asic-25h' and row.asic_allowed))
     if not allowed:
         raise ShbError('Discount unavailable. Check the code or contact SLL.', 422)
-    occupied = set(DiscountReservation.objects.filter(discount=row).values_list('slot', flat=True))
+    occupied = set(DiscountReservation.objects.filter(discount=row, state='reserved').values_list('slot', flat=True))
     slot = next((number for number in range(1, row.use_limit + 1) if number not in occupied), None)
     if slot is None:
         raise ShbError('Discount unavailable. Check the code or contact SLL.', 422)

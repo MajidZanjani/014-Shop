@@ -6,11 +6,11 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
 
-**Current plan:** 07-02 — Scoped SHB discounts and reservations; previews and ASIC holds verified, matched outcomes pending.
+**Current plan:** 07-03 — SHB immutable checkout and acceptance; next local implementation slice.
 
-**Execution status:** in progress — scoped coupon preview and atomic ASIC reservations verified; integrating matched lifecycle outcomes.
+**Execution status:** in progress — coupon previews, ASIC holds, assigned triage and safe decline/release verified; next is SHB checkout.
 
-**Next implementation task:** Reuse the immutable checkout/acceptance/archive/payment interfaces for SHB and couple coupon consumption/release only to matched verified or safely closed outcomes; keep uncertain claims held.
+**Next implementation task:** Implement07-03 automatic eligible FPGA immutable checkout/acceptance using existing archive/payment records, then matching dated ASIC offers with reserved discounts; preserve uncertainty and keep support usage manual.
 
 ## What this is
 
@@ -49,3 +49,5 @@ Verified repairs are committed/pushed as `f6bf69a096bc521cbe1929a3566059b49b27b8
 Resume 2026-10-30T13:13:43+00:00: the explicit user resume lifts the earlier pause. Continue07-02 inline under the existing synthetic/external gates.
 
 Verified07-02 coupon slice: protected Apply/Remove, customer-scoped percentage pricing, digest-only codes, durable guessing limits and PostgreSQL request reservations; original request retries preserve rates/policy.250 tests,33 actual browser checks,17 loopback checks,300 exact files/ten imports. Evidence: docs/build/shb-coupons-2026-10-30.md. Consumption/release and paid workflows remain pending.
+
+Verified continuation: assigned ASIC private-request triage with recent MFA/exact scope, immutable review evidence and matching pre-offer decline/release.295 tests,33 current Chromium checks/two modes and306-file/twelve-import exact source pass; docs/build/shb-review-2026-10-30.md. Payment/dated offers/withdrawal/transaction notices remain open. Next local slice is07-03.

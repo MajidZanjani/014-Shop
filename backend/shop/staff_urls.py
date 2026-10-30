@@ -15,6 +15,7 @@ from shop.access.preparation_views import preparation
 from shop.access.preparation_history import preparation_history
 from shop.access.quotation_review import record_review
 from shop.access.review_history import review_history
+from shop.shb.staff_views import record_review as record_shb_review
 urlpatterns=[
     path("staff/payments/",payment_queue),
     path("staff/payments/<int:identity>/",payment_detail),
@@ -35,6 +36,7 @@ urlpatterns=[
     path('staff/quotation-requests/',staff_views.quotations),
     path('staff/quotation-requests/<uuid:identity>/',staff_views.quotation_detail),
     path('staff/quotation-requests/<uuid:identity>/reviews/',record_review),
+    path('staff/quotation-requests/<uuid:identity>/shb-reviews/',record_shb_review),
     path('staff/quotation-requests/<uuid:identity>/reviews/history/',review_history),
     path('staff/quotation-requests/<uuid:identity>/request-evidence/<int:version>/',evidence),
     path('staff/quotation-requests/<uuid:identity>/request-evidence/<int:version>/status/',capture_status),

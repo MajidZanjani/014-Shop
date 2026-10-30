@@ -1,0 +1,15 @@
+{% load shb_money %}<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Review ASIC support request — SLL</title></head>
+<body><main><p><a href="/staff/quotation-requests/">Assigned requests</a></p><h1>Review ASIC support request</h1>
+<p>Reference: {{ record.pk }}</p><p>State: {{ record.state }}</p>
+<p>Explicit local synthetic workflow. Technical readiness does not issue a payable offer or authorize payment. Customer notices await the notification integration.</p>
+<h2>Requested assistance</h2><p>{{ details.assistance }}</p><p>SLL IP/project reference: {{ known_project_reference|default:details.project_reference }}</p><p>{{ details.design_context }}</p><p>{{ details.timing }}</p>
+<h2>Purchasing company and contact</h2><dl><dt>Company Name</dt><dd>{{ details.company_name }}</dd><dt>Address</dt><dd>{{ details.billing_address }}, {{ details.city }} {{ details.region }} {{ details.postal_code }} {{ details.country }}</dd><dt>Company Phone</dt><dd>{{ details.company_phone }}</dd><dt>Contact Person</dt><dd>{{ details.contact_name }}</dd><dt>Contact Phone Number</dt><dd>{{ details.contact_phone }}</dd><dt>Contact Email</dt><dd>{{ details.contact_email }}</dd></dl>
+<p>Entered contact details apply to this request and do not replace the company's authorized support contact.</p>
+<h2>{{ purchase.variant_label }}</h2><p>{{ purchase.quantity }} × {{ purchase.hours_per_bundle }} hours = {{ purchase.hours_purchased }} requested hours.</p><p>Estimated total: {{ purchase.total_minor|euro_minor }}. Subject to technical review and an approved offer.</p>
+{% if purchase.discount_policy %}<p>Discount on this request: {{ purchase.discount_bps|percentage }}. Original new-claim deadline: {{ purchase.discount_policy.claim_expires_at }}.</p>{% endif %}
+{% if review_open %}<h2>Record internal review decision</h2><form method="post" action="shb-reviews/">{% csrf_token %}<input type="hidden" name="request_id" value="{{ request_id }}"><input type="hidden" name="expected_review_version" value="{{ record.quotation.review_version }}"><input type="hidden" name="scope_sha256" value="{{ record.sha256 }}">
+<label for="decision">Outcome</label><select name="decision" id="decision"><option value="needs_information">Request more information</option><option value="ready_for_commercial_review">Ready for commercial review (offer not approved)</option><option value="declined">Decline request</option></select>
+<label for="message">Question or reason</label><textarea name="message" id="message" required maxlength="512" rows="4" cols="28"></textarea><button type="submit">Record decision</button></form>{% endif %}
+<h2>Review history</h2>{% for event in history %}<article><h3>{{ event.review.get_decision_display }}</h3><p>{{ event.message }}</p><p>{{ event.review.created_at }}</p></article>{% empty %}<p>No review recorded.</p>{% endfor %}
+<p>SLL tracks support usage manually. This request has no payment, purchased support balance or engineering availability reservation.</p></main></body></html>

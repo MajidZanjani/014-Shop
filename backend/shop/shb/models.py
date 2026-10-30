@@ -70,9 +70,9 @@ class DiscountCode(models.Model):
 
 
 class DiscountReservation(models.Model):
-    """One held slot per request. Outcome transitions await matched payments.
+    """One held slot per request, releasable only by an audited pre-offer decline.
 
-    No expiry job or generic update may silently free a held concession.
+    Payment/offer transitions remain unavailable. Clocks never free a concession.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     discount = models.ForeignKey(DiscountCode, on_delete=models.PROTECT)
@@ -82,12 +82,15 @@ class DiscountReservation(models.Model):
     sha256 = models.CharField(max_length=64, editable=False)
     claimed_at = models.DateTimeField(default=timezone.now, editable=False)
     state = models.CharField(max_length=16, default='reserved', editable=False)
+    release_review = models.OneToOneField('SupportRequestReview', null=True, on_delete=models.PROTECT, editable=False)
 
     class Meta:
         constraints = [
-            models.UniqueConstraint(fields=['discount', 'slot'], name='shb_discount_unique_held_slot'),
+            models.UniqueConstraint(fields=['discount', 'slot'], condition=models.Q(state='reserved'), name='shb_discount_unique_held_slot'),
             models.CheckConstraint(condition=models.Q(slot__gte=1, slot__lte=100), name='shb_discount_slot_bounds'),
-            models.CheckConstraint(condition=models.Q(sha256__regex=r'^[a-f0-9]{64}$', state='reserved'), name='shb_discount_held_until_matched'),
+            models.CheckConstraint(condition=models.Q(sha256__regex=r'^[a-f0-9]{64}$') & (
+                models.Q(state='reserved', release_review__isnull=True) |
+                models.Q(state='released', release_review__isnull=False)), name='shb_discount_held_until_matched'),
         ]
 
 
@@ -99,3 +102,15 @@ class DiscountThrottle(models.Model):
 
     class Meta:
         constraints = [models.CheckConstraint(condition=models.Q(attempts__lte=10), name='shb_discount_attempt_bounds')]
+
+
+class SupportRequestReview(models.Model):
+    """SHB message extends an attributed existing quotation review, append-only."""
+    review = models.OneToOneField('catalog.QuotationReview', primary_key=True, on_delete=models.PROTECT)
+    request = models.ForeignKey(SupportRequest, on_delete=models.PROTECT)
+    message = models.CharField(max_length=512)
+    prior_state = models.CharField(max_length=24, editable=False)
+
+    class Meta:
+        constraints = [models.CheckConstraint(condition=models.Q(message__regex=r'\S',
+            prior_state__in=['submitted', 'needs_information', 'under_review']), name='shb_review_reason_required')]

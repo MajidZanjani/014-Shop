@@ -125,9 +125,17 @@ class Command(BaseCommand):
                     grant=StaffQuotationGrant.objects.filter(user=user,quotation=quotation).first()
                     if grant is None:raise CommandError('Explicit quotation assignment required')
                     if action=='grant-business':
-                        if not credential.enabled or not user.is_active or not quotation.business_version or options.get('business_scope')!=quotation.business_version:
+                        scope_version=quotation.business_version
+                        from shop.shb.models import SupportRequest
+                        support=SupportRequest.objects.filter(quotation=quotation).first()
+                        if support is not None:
+                            from shop.shb.invitations import fixture_guard
+                            try:fixture_guard()
+                            except ValueError:raise CommandError('Synthetic SHB assignment unavailable') from None
+                            scope_version=support.revision
+                        if not credential.enabled or not user.is_active or not scope_version or options.get('business_scope')!=scope_version:
                             raise CommandError('Exact current business scope required')
-                        grant.business_scope_version=quotation.business_version
+                        grant.business_scope_version=scope_version
                     else:grant.business_scope_version=0
                     grant.save(update_fields=['business_scope_version'])
                 else:StaffQuotationGrant.objects.filter(user=user,quotation=quotation).delete()

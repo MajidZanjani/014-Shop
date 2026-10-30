@@ -65,6 +65,10 @@ def quotations(request):
 def quotation_detail(request,identity):
     if staff_credential(request,recent=True) is None:return reply({'error':'recent_staff_mfa_required'},403)
     if request.GET:return reply({'error':'unexpected_query'},400)
+    from shop.shb.models import SupportRequest
+    if SupportRequest.objects.filter(quotation_id=identity).exists():
+        from shop.shb.staff_views import detail
+        return detail(request,identity)
     grant=StaffQuotationGrant.objects.select_related('quotation__snapshot').filter(user=request.user,quotation_id=identity,quotation__snapshot__cart_id=F('quotation__cart_id')).first()
     if grant is None:return reply({'error':'not_found'},404)
     quotation=grant.quotation

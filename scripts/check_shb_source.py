@@ -38,22 +38,22 @@ from pathlib import Path
 sys.path.insert(0,sys.argv[1])
 import django
 django.setup()
-names=('catalog','forms','models','invitations','middleware','private_release','errors','discounts','services','views')
+names=('catalog','forms','models','invitations','middleware','private_release','errors','discounts','services','views','staff_review','staff_views')
 for name in names:
  module=importlib.import_module('shop.shb.'+name)
  assert Path(module.__file__).is_relative_to(Path(sys.argv[1]))
 print('PACKAGED_SHB_IMPORT_PASS modules='+str(len(names)))
 '''
             imported=subprocess.run([str(python),'-I','-c',program,str(app)],env=env,text=True,capture_output=True,timeout=30,check=True)
-            assert 'PACKAGED_SHB_IMPORT_PASS modules=10' in imported.stdout
+            assert 'PACKAGED_SHB_IMPORT_PASS modules=12' in imported.stdout
     record={'schema':1,'evidence_class':'local-inert-source','source':str(built),'files':actual,
-        'imported_modules':10,'runtime_qualified':False,'production_activation':False,
+        'imported_modules':12,'runtime_qualified':False,'production_activation':False,
         'duration_seconds':round(time.monotonic()-started,3)}
     encoded=(json.dumps(record,sort_keys=True,indent=2)+'\n').encode();digest=hashlib.sha256(encoded).hexdigest()
     destination=ROOT/'docs/evidence/shb/source-revisions'/f'{digest}.json';destination.parent.mkdir(parents=True,exist_ok=True)
     if destination.exists():assert destination.read_bytes()==encoded
     else:destination.write_bytes(encoded)
-    print(f'SHB_SOURCE_PASS checks=2 files={len(actual)} imported_modules=10 source={built} evidence={destination.relative_to(ROOT)} duration_seconds={record["duration_seconds"]}')
+    print(f'SHB_SOURCE_PASS checks=2 files={len(actual)} imported_modules=12 source={built} evidence={destination.relative_to(ROOT)} duration_seconds={record["duration_seconds"]}')
 
 
 if __name__=='__main__':main()

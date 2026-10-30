@@ -1,0 +1,34 @@
+# SHB assigned ASIC review and unused-coupon closure
+
+Authority: [SHB revision1.1](../../014-Shop-SHB-Proposal-Revision-2026-10-30.md). Continues the [coupon slice](shb-coupons-2026-10-30.md), committed/pushed as `8d0efc5`. This is a partial local07-04 implementation with07-02 safe pre-offer release; full plan/phase qualification remains pending.
+
+The existing assigned quotation detail screen now renders the exact SHB assistance, known SLL project, minimum company/contact form, original requested quantity/hours and discount estimate. A quotation assignment alone does not reveal private SHB form details: the existing business-scope grant must explicitly name this immutable request revision. The existing fake-only `local_staff grant-business` command supports that revision and retains its ordinary explicit-assignment, active credential and revocation checks. Every privileged read/write requires recent MFA, the current access epoch, an enabled matching credential generation and the exact resource grant.
+
+Staff can request clarification, mark technical readiness for later commercial review, or decline. Technical readiness does not approve an offer or enable payment. Decisions extend the existing attributed `QuotationReview` with an immutable question/reason and prior request state; optimistic version checks and PostgreSQL locks allow only one competing decision. Clarification continues after coupon/invitation expiry without freeing its reservation. A pre-offer decline releases only its own unused reservation, in the same transaction as the decision and state change. It never extends the code claim deadline. Exact retries preserve the original decision; altered retries and reopening a closed request fail. A customer resubmission of that original request reports its closed state and actual released reservation.
+
+The SQL guards retain the original reservation identity, prevent review/parent-review rewriting, require matching assigned MFA provenance, and permit release only against a decline of the same pre-offer request. Approved, issued-offer and paid states cannot use this closure path. Payment consumption, uncertain/payment-linked release, withdrawal, matching dated offers/reissue/acceptance, automatic FPGA payable checkout, transaction notices and paid-order finalization are still pending. No shared historical licence/time-ledger finalizer is called.
+
+Executed evidence:
+
+- Test-first review baseline:36 prior SHB/coupon tests passed; the initial10 new review tests failed (3 assertions,7 errors) against the absent model/route and old generic request screen. All review behavior was then implemented rather than weakening the checks.
+- Final complete PostgreSQL18.6/shared run: `SHB_LOCAL_PASS checks=8 tests=295 shared_tests=235 duration_seconds=106.295`. Nine pure source/private-release controls,20 existing SHB,16 coupon,15 SHB review,95 access/recovery,104 payment,30 legacy review/navigation/preparation and6 truly network-isolated adapter tests. No failed/skipped cases. Additive migrations and makemigrations consistency passed.
+- Current real Chromium155.0.8059.84 / browser Node24.21.0: `SHB_BROWSER_PASS checks=33 modes=2 pendingDocumentLoads=1`. Native JavaScript/no-JavaScript customer forms, Apply/Remove, discounted50-hour ASIC requests and30-hour FPGA review; zero payments/fulfilments.
+- Browser failure diagnosis: an earlier run failed the320px layout assertion with status200, four native POSTs, zero escaped requests and no validation/CSRF errors. The harness allowed layout checks before native document completion; the original failing diagnostic did not capture readiness, so that timing explanation is an inference. It now waits for each explicit navigation's loader and waits for the submitted FPGA document to finish loading, retaining the strict width assertion. Three consecutive corrected runs passed33 checks each; the third observed one pending document load. The final current-template run also observed one pending load and passed. Private value-free failure evidence: `.scratch/shb-review-browser-r6rjvkqc/browser-failure.json`; corrected empty-form screenshots: `.scratch/shb-review-browser-eym42qij`.
+- Final exact packaged backend: `SHB_SOURCE_PASS checks=2 files=306 imported_modules=12 duration_seconds=3.839`, [exact hashes](../evidence/shb/source-revisions/8176d32d05eacc28eefe5073ca4df9f0e4dfbbbcd3c25edcea6432f3ef8b9244.json). The intermediate306-file record is retained separately; final source includes the closed-request UI correction. Source-only, no deployed-runtime claim.
+
+The staff HTML/API form and CSRF paths run through actual Django/PostgreSQL tests, including actual local two-factor login/capture, rather than fabricated staff session flags. This report does not claim real-browser staff MFA/decision interaction, formal accessibility/human review, actual provider/host/runtime/independent recovery qualification or approved commercial terms. The customer browser used the unchanged private9-file Astro snapshot `.scratch/shb-private-resume-t2p3r5cc/release`, manifest `ef2d68408ac264a2da888af45ec167242c1a21680990d66a772bd761b86941f3`. No new frontend source/pins or public release was introduced.
+
+Reproduce from the repository root; no .env or real credentials are required:
+
+```sh
+env TMPDIR="$PWD/.scratch/auth-unicode-tmp" XDG_CACHE_HOME="$PWD/.scratch/phase2-repro-nix-cache" nix develop --offline ./ops/nixos#backend --command python3 scripts/check_shb.py --shared
+env TMPDIR="$PWD/.scratch/auth-unicode-tmp" XDG_CACHE_HOME="$PWD/.scratch/phase2-repro-nix-cache" nix develop --offline ./ops/nixos#browser --command python3 scripts/demo_shb.py --check --browser --release .scratch/shb-private-resume-t2p3r5cc/release
+env TMPDIR="$PWD/.scratch/auth-unicode-tmp" XDG_CACHE_HOME="$PWD/.scratch/phase2-repro-nix-cache" nix develop --offline ./ops/nixos#backend --command python3 scripts/check_shb_source.py
+python3 -m unittest discover -s tests -p 'test_planning_activity.py'
+python3 scripts/check_planning.py
+python3 scripts/check_purchase_plan.py
+```
+
+For the usable customer demonstration, replace `--check --browser` in the browser command with `--serve`; use the printed private invitation/code files, Synthetic Company Limited and a synthetic.invalid contact. The review tests exercise exact staff grant/revocation and the existing operator command within their owned disposable cluster. Do not point test/assignment commands at a real database; its identity/all-write/transport/migration/runtime gate remains closed.
+
+Support usage and task emails remain manual. Company inputs will arrive later through the one actual-input register `docs/decisions.md`; no repeated request or approval inference. No actual bank/mail/storage/protected host/DNS/TLS action or paid provision was performed. Unrelated `http_cache.sqlite` remains untouched.

@@ -79,8 +79,16 @@ def shop(request):
         if action=='submit':
             if not fixture:raise services.ShbError('Live request intake awaits its approved privacy and operational configuration.',503)
             row=services.submit_asic(request,data,request.POST.get('request_id'))
+            from .models import DiscountReservation
+            hold=DiscountReservation.objects.filter(request=row).first()
+            message=('The unused discount reservation was released.' if hold and hold.state=='released'
+                else 'Discount reserved for this request; review may continue after its claim deadline.' if hold else None)
+            state_label={'submitted':'Submitted for review','under_review':'Under review',
+                'needs_information':'More information required','declined':'Declined',
+                'withdrawn':'Withdrawn','approved':'Approved for offer preparation',
+                'offer_issued':'Offer issued','paid':'Paid'}.get(row.state,'Contact SLL')
             return page(request,**context,submitted=row,purchase=row.payload['purchase'],
-                discount_message='Discount reserved for this request; review may continue after its claim deadline.' if row.payload['purchase']['discount_bps'] else None)
+                request_status=state_label,discount_message=message)
         if action not in ('review','apply_discount','remove_discount'):
             raise services.ShbError('Checkout awaits the integrated SHB order/payment batch.',503)
         if action=='apply_discount' and not data['discount_code']:

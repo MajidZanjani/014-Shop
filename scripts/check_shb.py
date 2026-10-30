@@ -27,16 +27,18 @@ def main():
         manage(python,env,'check')
         manage(python,env,'migrate','--noinput')
         manage(python,env,'makemigrations','--check','--dry-run')
-        output=manage(python,env,'test','shop.shb.tests','shop.shb.discount_tests','--noinput','--keepdb',timeout=120)
+        output=manage(python,env,'test','shop.shb.tests','shop.shb.discount_tests','shop.shb.review_tests','--noinput','--keepdb',timeout=120)
         raw=output.stdout+output.stderr
         count=re.search(r'Ran (\d+) tests?',raw)
-        if not count or int(count[1])<36 or 'OK' not in raw or 'skipped' in raw:
+        if not count or int(count[1])<51 or 'OK' not in raw or 'skipped' in raw:
             raise ValueError('SHB PostgreSQL controls missing/failed/skipped')
         print(raw)
         shared=0
+        shared_checks=0
         if args.shared:
             batches=[['shop.core.tests','shop.access.tests','shop.access.staff_tests','shop.access.recovery_tests','shop.access.effect_tests','shop.access.startup_tests','shop.access.staff_restore_tests','shop.access.authentication_recovery_tests'],
-                ['shop.payments.tests','shop.payments.attempt_tests','shop.payments.control_tests','shop.payments.notification_tests','shop.payments.observation_tests','shop.payments.operation_tests','shop.payments.overpayment_tests']]
+                ['shop.payments.tests','shop.payments.attempt_tests','shop.payments.control_tests','shop.payments.notification_tests','shop.payments.observation_tests','shop.payments.operation_tests','shop.payments.overpayment_tests'],
+                ['shop.access.review_tests','shop.access.staff_navigation_tests','shop.access.preparation_tests']]
             for labels in batches:
                 outcome=manage(python,env,'test',*labels,'--noinput','--keepdb',timeout=120)
                 log=outcome.stdout+outcome.stderr;match=re.search(r'Ran (\d+) tests?',log)
@@ -46,7 +48,8 @@ def main():
             # adapter isolation by setting its guard in the shared DB process.
             from check_backend import qualify_adapters
             shared+=qualify_adapters()
-        print(f'SHB_LOCAL_PASS checks={4+(3 if args.shared else 0)} tests={result.testsRun+int(count[1])+shared} shared_tests={shared} duration_seconds={time.monotonic()-started:.3f} postgres=18.6 evidence=local-synthetic live_approved=false')
+            shared_checks=len(batches)+1
+        print(f'SHB_LOCAL_PASS checks={4+shared_checks} tests={result.testsRun+int(count[1])+shared} shared_tests={shared} duration_seconds={time.monotonic()-started:.3f} postgres=18.6 evidence=local-synthetic live_approved=false')
 
 
 if __name__=='__main__':

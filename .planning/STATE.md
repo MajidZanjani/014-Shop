@@ -3,12 +3,12 @@ gsd_state_version: "1.0"
 release: shb-1.1
 current_phase: 7
 current_phase_name: FPGA checkout, ASIC reviewed offers and scoped discounts
-current_plan: 2
+current_plan: 3
 current_task: 1
 status: in_progress
-last_updated: "2026-10-30T13:21:35+00:00"
+last_updated: "2026-10-30T13:44:23+00:00"
 last_activity: 2026-10-30
-state_head: f6bf69a096bc521cbe1929a3566059b49b27b8d1
+state_head: 8d0efc5bd7147d25fd26ce3122473163ea28b8a4
 progress:
   total_phases: 14
   completed_phases: 1
@@ -25,11 +25,11 @@ Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-3
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation records are not SHB acceptance.
 
-**Current plan:** 07-02 — Scoped SHB discounts and reservations; previews and ASIC holds verified, matched outcomes pending.
+**Current plan:** 07-03 — SHB immutable checkout and acceptance; next local implementation slice.
 
-**Execution status:** in progress — scoped coupon preview and atomic ASIC reservations verified; integrating matched lifecycle outcomes.
+**Execution status:** in progress — coupon previews, ASIC holds, assigned triage and safe decline/release verified; next is SHB checkout.
 
-**Next implementation task:** Reuse the immutable checkout/acceptance/archive/payment interfaces for SHB and couple coupon consumption/release only to matched verified or safely closed outcomes; keep uncertain claims held.
+**Next implementation task:** Implement07-03 automatic eligible FPGA immutable checkout/acceptance using existing archive/payment records, then matching dated ASIC offers with reserved discounts; preserve uncertainty and keep support usage manual.
 
 ## Verified local scope
 
@@ -47,10 +47,10 @@ One actual-input register: docs/decisions.md. User will supply company inputs la
 
 ## Session Continuity
 
-Last session: 2026-10-30T13:21:35+00:00
-Stopped at: Active07-02 inline execution; coupon preview/ASIC holds verified and ready to commit. Next is matched order/payment lifecycle integration.
+Last session: 2026-10-30T13:44:23+00:00
+Stopped at: Review/closure local slice verified; preparing its implementation commit, then a context-pressure checkpoint under standing instructions.
 Resume file: phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/.continue-here.md.
 
-User explicitly resumed. One-shot HANDOFF.json consumed. Ordinary sandbox cannot access workspace; narrow local execution remains the workaround. No .env, unrelated SQLite or external resources used. Exact context percentage is unavailable.
+Exact context percentage unavailable. No .env, unrelated SQLite or external resource used. Ordinary sandbox startup still denies workspace; narrow local exec works. All owned test/browser/demo processes have returned; no external async job exists.
 
-Latest07-02 verification:250 tests including16 coupon/SQL race tests; real Chromium33 checks/two modes;17 loopback checks;300-file/ten-import exact source. See docs/build/shb-coupons-2026-10-30.md. No full plan/phase completion or live qualification.
+Latest verification:295 focused/shared tests incl15 review tests and30 legacy review/navigation/preparation tests; current Chromium33 checks/two modes, plus three corrected stability runs;306 exact files/twelve imports. See docs/build/shb-review-2026-10-30.md. Review/clarify/pre-offer decline and matched unused reservation release are implemented. Payable FPGA checkout, ASIC dated offers/withdrawal/acceptance, coupon consumption/payment/offer release and transaction notices remain pending. No full plan/phase completion or live qualification.

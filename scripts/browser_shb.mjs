@@ -41,7 +41,7 @@ async function main(){
     '--host-resolver-rules=MAP * ~NOTFOUND, EXCLUDE localhost, EXCLUDE 127.0.0.1',
     '--remote-debugging-address=127.0.0.1','--remote-debugging-port=0','--user-data-dir='+profile,'about:blank'],
     {env:{...process.env,XDG_CONFIG_HOME:join(profile,'config'),XDG_CACHE_HOME:join(profile,'cache')},stdio:['ignore','ignore','pipe']});
-  let cdp;let checks=0;let startup='';let diagnose;
+  let cdp;let checks=0;let pendingDocumentLoads=0;let startup='';let diagnose;
   child.stderr.on('data',chunk=>{if(!cdp&&startup.length<8192)startup+=chunk.toString('utf8');});
   try{
     stage='browser-ready';let lines;
@@ -81,8 +81,20 @@ async function main(){
       };
       const until=async expression=>{for(let i=0;i<100;i++){if(await evaluate(expression))return;await delay(40);}throw new Error('page condition timeout');};
       // Diagnostics contain status/field names only, never values, URLs or tokens.
-      diagnose=async()=>({stage,status:lastStatus,nativePosts,fields:await evaluate("Array.from(document.querySelectorAll('.errorlist')).map(element=>element.parentElement.querySelector('input,textarea,select')?.name).filter(name=>/^[a-z_]+$/.test(name||''))"),csrfDenied:await evaluate("document.body.innerText.includes('CSRF')")});
-      const go=async url=>{lastStatus=0;await send('Page.navigate',{url});await until("document.readyState==='complete'");await until('!!document.body');};
+      diagnose=async()=>({stage,status:lastStatus,nativePosts,escaped,readyState:await evaluate('document.readyState'),stylesheets:await evaluate('document.styleSheets.length'),fields:await evaluate("Array.from(document.querySelectorAll('.errorlist')).map(element=>element.parentElement.querySelector('input,textarea,select')?.name).filter(name=>/^[a-z_]+$/.test(name||''))"),csrfDenied:await evaluate("document.body.innerText.includes('CSRF')")});
+      const go=async url=>{
+        lastStatus=0;const navigation=await send('Page.navigate',{url});
+        require(!navigation.errorText&&navigation.loaderId);
+        // The previous document can still report readyState=complete while the
+        // next navigation is pending. Wait for this navigation's actual loader.
+        let committed=false;
+        for(let index=0;index<100;index++){
+          const tree=await send('Page.getFrameTree');
+          if(tree.frameTree.frame.loaderId===navigation.loaderId){committed=true;break;}
+          await delay(40);
+        }
+        require(committed);await until("document.readyState==='complete'");await until('!!document.body');
+      };
       const key=async(name,code,virtual,extra={})=>{await send('Input.dispatchKeyEvent',{type:'keyDown',key:name,code,windowsVirtualKeyCode:virtual,...(name==='Enter'?{text:'\r',unmodifiedText:'\r'}:{}),...extra});await send('Input.dispatchKeyEvent',{type:'keyUp',key:name,code,windowsVirtualKeyCode:virtual});};
       const focus=async selector=>require(await evaluate(`(()=>{const element=document.querySelector(${JSON.stringify(selector)});if(!element)return false;element.focus();return document.activeElement===element})()`));
       const type=async(selector,text)=>{await focus(selector);await key('a','KeyA',65,{modifiers:2});await send('Input.insertText',{text});};
@@ -132,14 +144,21 @@ async function main(){
       await fill();await focus('button[name=action][value=review]');await key('Enter','Enter',13);
       stage=javascript?'javascript-fpga-post':'no-javascript-fpga-post';
       await until('document.body.innerText.includes("30 hours in this order")');
+      if(await evaluate('document.readyState!=="complete"'))pendingDocumentLoads++;
+      await until('document.readyState==="complete"');
+      stage=javascript?'javascript-fpga-price':'no-javascript-fpga-price';
       require(lastStatus===200&&await evaluate('document.body.innerText.includes("EUR 3,000.00")'));checks++;
+      stage=javascript?'javascript-fpga-disabled':'no-javascript-fpga-disabled';
       require(await evaluate('Array.from(document.querySelectorAll("button")).some(element=>element.disabled&&element.textContent.includes("Checkout"))'));checks++;
+      stage=javascript?'javascript-fpga-layout':'no-javascript-fpga-layout';
       require(await evaluate('document.documentElement.scrollWidth<=document.documentElement.clientWidth'));checks++;
+      stage=javascript?'javascript-fpga-storage':'no-javascript-fpga-storage';
       require(await evaluate('!document.querySelector("input[type=file]")&&localStorage.length===0&&sessionStorage.length===0'));checks++;
+      stage=javascript?'javascript-fpga-requests':'no-javascript-fpga-requests';
       require(escaped===0&&nativePosts===4);checks++;
       await cdp.send('Target.disposeBrowserContext',{browserContextId});
     }
-    console.log(JSON.stringify({status:'SHB_BROWSER_PASS',checks,modes:2,browser:version,node:process.versions.node,evidence_class:'local-synthetic-browser',fpga:'review',asic:'submitted',payment:'disabled'}));
+    console.log(JSON.stringify({status:'SHB_BROWSER_PASS',checks,modes:2,pendingDocumentLoads,browser:version,node:process.versions.node,evidence_class:'local-synthetic-browser',fpga:'review',asic:'submitted',payment:'disabled'}));
   }catch(error){
     if(config.evidence&&diagnose){try{await writeFile(join(config.evidence,'browser-failure.json'),JSON.stringify(await diagnose()),{flag:'wx',mode:0o600});}catch{}}
     throw error;
