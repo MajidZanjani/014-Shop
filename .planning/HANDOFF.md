@@ -1,21 +1,21 @@
-# SHB implementation pause
+# SHB active implementation handoff
 
-Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md). STATE.md / ROADMAP.md retain the operative plan.
+Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md). STATE.md / ROADMAP.md remain operative.
 
 **Current development focus:** 7 — FPGA checkout, ASIC reviewed offers and scoped discounts.
 
-**Last fully completed phase:** 1 — documentary authority/reconciliation only.
+**Last fully completed phase:** 1 — documentary authority only.
 
-**Current plan:** 07-02 — Scoped SHB discounts and reservations; next local slice, not started.
+**Current plan:** 07-02 — Scoped SHB discounts and reservations; previews and ASIC holds verified, matched outcomes pending.
 
-**Execution status:** paused — explicit user request after verified04-01 repairs; 07-02 coupon implementation has not started.
+**Execution status:** in progress — scoped coupon preview and atomic ASIC reservations verified; integrating matched lifecycle outcomes.
 
-**Next implementation task:** Resume07-02 with PostgreSQL tests for scoped percentage-code preview and atomic ASIC request reservations; then implement without consuming a use on Apply or dropping reservations during review.
+**Next implementation task:** Reuse the immutable checkout/acceptance/archive/payment interfaces for SHB and couple coupon consumption/release only to matched verified or safely closed outcomes; keep uncertain claims held.
 
 **Recorded implementation:** f6bf69a096bc521cbe1929a3566059b49b27b8d1
 
-The04-01 verification repairs are committed and pushed. Shared234 tests pass (95 access/recovery,104 payment,6 truly network-isolated adapters plus29 focused tests). Actual Chromium passes27 checks across JavaScript/no-JavaScript,320px and native Enter form submissions. Fresh private frontend build/check/full default tests and exact295-file/eight-import inert source pass. Full evidence and reproducible commands: [resume report](../docs/build/shb-resume-2026-10-30.md). Earlier bootstrap failures remain historical; do not reopen their investigation or claim a current failure.
+The user resumed the explicit pause. Earlier04-01 verification repairs are committed/pushed. The new07-02 coupon slice is verified locally:250 tests including16 coupon and direct PostgreSQL race tests,33 Chromium checks in JavaScript/no-JavaScript,17 usable loopback checks and300-file/ten-import exact source. See [coupon evidence](../docs/build/shb-coupons-2026-10-30.md). Original code/rate/claim expiry changes cannot reprice a retried request. No reservation consumption/release or real payment is enabled.
 
-User explicitly paused before any coupon model/service/migration/test was written.07-02 is the next local slice, not a completed or partially coded coupon feature. Later07/08/10 checkout, assigned ASIC reviewed offers, coupon consume/release/payment coupling, once-only paid-order finalization, staff order view and ordinary transaction/request notifications remain open. No parent SUMMARY/full SHB acceptance was added.
+Continue inline across commits;07-02 matched outcomes and07-03/04 accepted FPGA/assigned ASIC workflows remain open. No parent SUMMARY/full acceptance or completion count has been added. One-shot HANDOFF.json was consumed. The07 checkpoint contains the next action. All completed test/demo/browser processes returned; no external job exists.
 
-Resume from HANDOFF.json and the07 .continue-here.md. The old04 checkpoint is explicitly consumed/resumed context. No workflow process or external async job remains. No real credentials/.env access, bank/mail/storage/host/DNS/TLS action or paid provision. Support usage/task emails stay manual. Company inputs and actual external qualification remain pending without repeated requests. Unrelated http_cache.sqlite is untracked/untouched. Ordinary non-force push-after-each-project-commit remains authorized. This pause is explicit, not a measured context threshold.
+Commercial/company inputs will arrive later in docs/decisions.md; no repeated request. No actual bank/mail/storage/host/DNS/TLS/provisioning action, .env read or support-time automation. Ordinary sandbox startup still denies the workspace; narrow local exec works. Unrelated http_cache.sqlite remains untouched. Ordinary non-force origin/main push after each project commit is authorized. No exact context percentage is supplied.

@@ -6,11 +6,11 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
 
-**Current plan:** 07-02 — Scoped SHB discounts and reservations; next local slice, not started.
+**Current plan:** 07-02 — Scoped SHB discounts and reservations; previews and ASIC holds verified, matched outcomes pending.
 
-**Execution status:** paused — explicit user request after verified04-01 repairs; 07-02 coupon implementation has not started.
+**Execution status:** in progress — scoped coupon preview and atomic ASIC reservations verified; integrating matched lifecycle outcomes.
 
-**Next implementation task:** Resume07-02 with PostgreSQL tests for scoped percentage-code preview and atomic ASIC request reservations; then implement without consuming a use on Apply or dropping reservations during review.
+**Next implementation task:** Reuse the immutable checkout/acceptance/archive/payment interfaces for SHB and couple coupon consumption/release only to matched verified or safely closed outcomes; keep uncertain claims held.
 
 ## What this is
 
@@ -45,3 +45,7 @@ The saved 04-01 browser and adapter-harness failures are resolved with actual lo
 ## Explicit pause — 2026-10-30T12:13:44.501Z
 
 Verified repairs are committed/pushed as `f6bf69a096bc521cbe1929a3566059b49b27b8d1`. User paused before any07-02 coupon implementation edits. Resume from the new07 handoff; no current local test failure remains from04-01 and no full plan/phase acceptance was added.
+
+Resume 2026-10-30T13:13:43+00:00: the explicit user resume lifts the earlier pause. Continue07-02 inline under the existing synthetic/external gates.
+
+Verified07-02 coupon slice: protected Apply/Remove, customer-scoped percentage pricing, digest-only codes, durable guessing limits and PostgreSQL request reservations; original request retries preserve rates/policy.250 tests,33 actual browser checks,17 loopback checks,300 exact files/ten imports. Evidence: docs/build/shb-coupons-2026-10-30.md. Consumption/release and paid workflows remain pending.

@@ -37,7 +37,7 @@ class ShopForm(forms.Form):
     contact_email=forms.EmailField(label='Contact Email',max_length=254)
     tax_identifier=forms.CharField(label='VAT / tax identifier (where applicable)',max_length=64,required=False)
     tax_not_applicable=forms.BooleanField(label='Tax identifier not applicable',required=False)
-    discount_code=forms.RegexField(label='Discount code (optional)',regex=r'^[A-Za-z0-9-]{1,48}$',max_length=48,required=False)
+    discount_code=forms.RegexField(label='Discount code (optional)',regex=r'^[A-Za-z0-9-]{1,48}$',max_length=48,required=False,widget=forms.TextInput(attrs={'autocomplete':'off','autocapitalize':'characters','spellcheck':'false'}))
     assistance=forms.CharField(label='What assistance do you need? (ASIC)',max_length=2000,required=False,widget=forms.Textarea(attrs={'rows':4}))
     project_reference=forms.CharField(label='SLL IP/product or support/project reference (ASIC, if not already known)',max_length=160,required=False)
     design_context=forms.CharField(label='Design stage, technology/process and tools (optional; Not yet known is allowed)',max_length=500,required=False)

@@ -35,11 +35,13 @@ def fixture(python,env,capture):
 import json,os
 from django.contrib.auth import get_user_model
 from shop.shb.invitations import issue_fixture
+from shop.shb.discounts import issue_fixture as issue_discount
 customer=get_user_model().objects.create_user(username='shb-demo-customer')
 issuer=get_user_model().objects.create_user(username='shb-demo-issuer',is_staff=True)
 row,token=issue_fixture(customer=customer,issuer=issuer,company_name='Synthetic Company Limited',project_reference='SLL synthetic project')
+discount,code=issue_discount(customer=customer,issuer=issuer,percentage_bps=1000,fpga_allowed=True,asic_allowed=True,use_limit=2)
 fd=os.open(os.environ['SHOP_SHB_FIXTURE_CAPTURE'],os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600)
-with os.fdopen(fd,'w') as stream:json.dump({'invitation_id':str(row.pk),'token':token},stream)
+with os.fdopen(fd,'w') as stream:json.dump({'invitation_id':str(row.pk),'token':token,'discount_code':code},stream)
 ''')
 
 
@@ -77,13 +79,16 @@ def checks(base,credential,python,env):
     csrf=re.search(rb'name="csrfmiddlewaretoken" value="([^"]+)"',body).group(1).decode()
     code,body,_,_=request(opener,base+'/purchase/simple/',data=common_data(csrfmiddlewaretoken=csrf),origin=base)
     require(code==200 and b'30 hours in this order' in body and b'EUR 3,000.00' in body);count+=1
-    data=common_data(variant='shb-asic-25h',quantity='2',assistance='Review SLL IP integration',action='submit',csrfmiddlewaretoken=csrf)
+    data=common_data(variant='shb-asic-25h',quantity='2',assistance='Review SLL IP integration',action='apply_discount',discount_code=credential['discount_code'],csrfmiddlewaretoken=csrf)
+    code,body,_,_=request(opener,base+'/purchase/simple/',data=data,origin=base)
+    require(code==200 and b'Discount applied' in body and b'EUR 9,000.00' in body);count+=1
+    data['action']='submit'
     code,body,_,_=request(opener,base+'/purchase/simple/',data=data,origin=base)
     require(code==200 and b'50 requested hours' in body);count+=1
     code,body,_,_=request(opener,base+'/purchase/simple/',data=data,origin=base)
     require(code==200 and b'50 requested hours' in body);count+=1
-    result=manage(python,env,'shell','-c',"from shop.shb.models import SupportRequest; from shop.payments.models import SyntheticPaymentAttempt; from shop.catalog.models import SyntheticFulfilment; print('SHB_COUNTS',SupportRequest.objects.count(),SyntheticPaymentAttempt.objects.count(),SyntheticFulfilment.objects.count())")
-    require('SHB_COUNTS 1 0 0' in result.stdout);count+=1
+    result=manage(python,env,'shell','-c',"from shop.shb.models import SupportRequest,DiscountReservation; from shop.payments.models import SyntheticPaymentAttempt; from shop.catalog.models import SyntheticFulfilment; print('SHB_COUNTS',SupportRequest.objects.count(),SyntheticPaymentAttempt.objects.count(),SyntheticFulfilment.objects.count(),DiscountReservation.objects.count())")
+    require('SHB_COUNTS 1 0 0 1' in result.stdout);count+=1
     for path in ('/api/v1/cart/','/api/v1/configurations/validate/','/purchase/checkout-rehearsal/'):
         code,_,_,_=request(opener,base+path,data={'product_id':'sll-xspi-mc'},origin=base);require(code==404);count+=1
     manage(python,env,'shell','-c',"from django.utils import timezone; from shop.shb.models import Invitation; Invitation.objects.filter(pk='"+credential['invitation_id']+"').update(revoked_at=timezone.now())")
@@ -124,13 +129,13 @@ def main():
                 # This private directory belongs only to this browser run.
                 browser_tmp=stack.enter_context(tempfile.TemporaryDirectory(prefix='shb-browser-',dir='/tmp'))
                 browser_env['TMPDIR']=browser_tmp
-                config={'origin':base,'invitationUrl':base+'/invite/'+credential['token'],'scratch':str(scratch),'evidence':str(evidence) if evidence else None}
+                config={'origin':base,'invitationUrl':base+'/invite/'+credential['token'],'discountCode':credential['discount_code'],'scratch':str(scratch),'evidence':str(evidence) if evidence else None}
                 result=subprocess.run([browser_env['SHOP_NODE'],str(ROOT/'scripts/browser_shb.mjs')],input=json.dumps(config),text=True,capture_output=True,env=browser_env,timeout=120,check=True)
                 report=json.loads(result.stdout)
                 require(report['status']=='SHB_BROWSER_PASS' and report['checks']>=20 and report['modes']==2)
                 print(json.dumps(report))
-                retained=manage(python,env,'shell','-c',"from shop.shb.models import SupportRequest; from shop.payments.models import SyntheticPaymentAttempt; from shop.catalog.models import SyntheticFulfilment; print('SHB_COUNTS',SupportRequest.objects.count(),SyntheticPaymentAttempt.objects.count(),SyntheticFulfilment.objects.count())")
-                require('SHB_COUNTS 2 0 0' in retained.stdout)
+                retained=manage(python,env,'shell','-c',"from shop.shb.models import SupportRequest,DiscountReservation; from shop.payments.models import SyntheticPaymentAttempt; from shop.catalog.models import SyntheticFulfilment; print('SHB_COUNTS',SupportRequest.objects.count(),SyntheticPaymentAttempt.objects.count(),SyntheticFulfilment.objects.count(),DiscountReservation.objects.count())")
+                require('SHB_COUNTS 2 0 0 2' in retained.stdout)
             else:
                 count=checks(base,credential,python,env)
                 print(f'SHB_DEMO_PASS checks={count} evidence=local-synthetic-header-level fpga=review asic=submitted payment=disabled manual_time_tracking=true')
@@ -138,9 +143,13 @@ def main():
             invitation=scratch/'invitation.txt'
             fd=os.open(invitation,os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600)
             with os.fdopen(fd,'w') as stream:stream.write(base+'/invite/'+credential['token']+'\n')
+            discount_path=scratch/'discount.txt'
+            fd=os.open(discount_path,os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600)
+            with os.fdopen(fd,'w') as stream:stream.write(credential['discount_code']+'\n')
             print('SHB loopback demo: '+base,flush=True)
             print('Open the invitation from this private file: '+str(invitation),flush=True)
-            print('Use Synthetic Company Limited, any synthetic.invalid contact and the common form. FPGA review and ASIC request capture work; payments, discounts, reviewed paid offers and notification delivery remain pending. Ctrl-C removes only this demo and its disposable database.',flush=True)
+            print('Optional synthetic 10% code (two-use fixture) is in this private file: '+str(discount_path),flush=True)
+            print('Use Synthetic Company Limited, any synthetic.invalid contact and the common form. FPGA review and ASIC request capture with discount reservations work; payments, reviewed paid offers, coupon consumption/release and notification delivery remain pending. Ctrl-C removes only this demo and its disposable database.',flush=True)
             try:
                 while True:time.sleep(1)
             except KeyboardInterrupt:pass

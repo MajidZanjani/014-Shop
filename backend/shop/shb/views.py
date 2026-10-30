@@ -5,7 +5,7 @@ from django.conf import settings
 from django.http import HttpResponse,JsonResponse,HttpResponseRedirect
 from django.template.response import TemplateResponse
 from django.views.decorators.http import require_GET,require_http_methods
-from . import catalog,invitations,services
+from . import catalog,invitations,services,discounts
 from .forms import ShopForm
 from .middleware import denied
 from .private_release import read_asset,ENTRY
@@ -64,7 +64,9 @@ def shop(request):
         return page(request,form=ShopForm(),error='Use the protected form.',status=415)
     if request.FILES:return page(request,form=ShopForm(),error='Files are not accepted by this form.',status=422)
     action=request.POST.get('action','review')
-    form=ShopForm(request.POST,stage='submit' if action=='submit' else 'review',known_project=bool(invitation.project_reference))
+    posted=request.POST.copy()
+    if action=='remove_discount' and len(posted.getlist('discount_code'))<=1:posted['discount_code']=''
+    form=ShopForm(posted,stage='submit' if action=='submit' else 'review',known_project=bool(invitation.project_reference))
     context={'form':form,'request_id':request.POST.get('request_id',''),'fixture':fixture,
         'is_asic':request.POST.get('variant')=='shb-asic-25h','asic_fields':('assistance','project_reference','design_context','timing')}
     if not form.is_valid():return page(request,**context,status=422)
@@ -74,13 +76,18 @@ def shop(request):
     if data['variant']=='shb-fpga-10h' and not invitation.fpga_eligible or data['variant']=='shb-asic-25h' and not invitation.asic_allowed:
         return page(request,**context,error='Contact SLL to clarify eligibility for this support.',status=422)
     try:
-        if data['discount_code']:raise services.ShbError('Discount reservation is not available in this batch; no discounted total was accepted.',422)
-        value=catalog.quote(data['variant'],data['quantity'],offer=catalog.synthetic_offer() if fixture else None)
         if action=='submit':
             if not fixture:raise services.ShbError('Live request intake awaits its approved privacy and operational configuration.',503)
             row=services.submit_asic(request,data,request.POST.get('request_id'))
-            return page(request,**context,submitted=row,purchase=value)
-        if action!='review':raise services.ShbError('Checkout awaits the integrated SHB order/payment batch.',503)
-        return page(request,**context,purchase=value)
+            return page(request,**context,submitted=row,purchase=row.payload['purchase'],
+                discount_message='Discount reserved for this request; review may continue after its claim deadline.' if row.payload['purchase']['discount_bps'] else None)
+        if action not in ('review','apply_discount','remove_discount'):
+            raise services.ShbError('Checkout awaits the integrated SHB order/payment batch.',503)
+        if action=='apply_discount' and not data['discount_code']:
+            raise services.ShbError('Enter a discount code to apply.',422)
+        value=discounts.preview(request,data) if data['discount_code'] else catalog.quote(
+            data['variant'],data['quantity'],offer=catalog.synthetic_offer() if fixture else None)
+        message='Discount applied to this preview. A use is reserved only on submission or checkout.' if data['discount_code'] else 'Discount removed.' if action=='remove_discount' else None
+        return page(request,**context,purchase=value,discount_message=message)
     except services.ShbError as error:return page(request,**context,error=error.code,status=error.status)
     except ValueError:return page(request,**context,error='The requested quantity or amount is outside the applicable limits.',status=422)

@@ -15,3 +15,11 @@ User resumed saved04-01. Repaired long Chromium SingletonSocket temp path, nativ
 ## Explicit user pause — 2026-10-30T12:13:44.501Z
 
 Implementationf6bf69a is committed and pushed; shared234, real browser27/two modes, fresh private frontend build and source295/eight imports pass. User paused before07-02 coupon code/schema/migrations/tests. New07 structured and human handoffs preserve the exact boundary; no new full plan/phase acceptance.
+
+## 2026-10-30T13:13:43+00:00 — Resume07-02
+
+Explicit user resume. STATE.md/ROADMAP.md route to scoped discount preview and atomic ASIC request reservations; inline synthetic work, PostgreSQL tests first. No external jobs or live effects.
+
+## 2026-10-30T13:21:35+00:00 — Scoped coupons verified
+
+STATE.md/ROADMAP.md remain operative. Implemented protected preview/removal and atomic ASIC holds;250 tests,33 browser and17 loopback checks,300-file exact source. No full parent completion; matched payment/request outcomes are next. See docs/build/shb-coupons-2026-10-30.md.

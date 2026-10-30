@@ -27,10 +27,10 @@ def main():
         manage(python,env,'check')
         manage(python,env,'migrate','--noinput')
         manage(python,env,'makemigrations','--check','--dry-run')
-        output=manage(python,env,'test','shop.shb.tests','--noinput','--keepdb',timeout=120)
+        output=manage(python,env,'test','shop.shb.tests','shop.shb.discount_tests','--noinput','--keepdb',timeout=120)
         raw=output.stdout+output.stderr
         count=re.search(r'Ran (\d+) tests?',raw)
-        if not count or int(count[1])<15 or 'OK' not in raw or 'skipped' in raw:
+        if not count or int(count[1])<36 or 'OK' not in raw or 'skipped' in raw:
             raise ValueError('SHB PostgreSQL controls missing/failed/skipped')
         print(raw)
         shared=0

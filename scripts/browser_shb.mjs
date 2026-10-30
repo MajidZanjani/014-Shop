@@ -28,6 +28,7 @@ class Protocol {
 async function main(){
   let input='';for await(const chunk of process.stdin){input+=chunk;require(input.length<=8192);}
   const config=JSON.parse(input);input='';
+  require(/^SLL-[A-Z2-9]{24}$/.test(config.discountCode));
   require(allowedRequest(config.invitationUrl,config.origin));
   require(new URL(config.invitationUrl).pathname.match(/^\/invite\/[A-Za-z0-9_-]{43}$/));
   require(process.versions.node===process.env.SHOP_BROWSER_NODE_VERSION);
@@ -110,10 +111,21 @@ async function main(){
       await go(config.origin+'/purchase/simple/?variant=shb-asic-25h&quantity=2');
       await until('!!document.querySelector("[name=assistance]")');await fill();await type('[name=assistance]','Review SLL IP integration');
       require(await evaluate('!document.querySelector("[name=accept_terms]")'));checks++;
+      stage=javascript?'javascript-discount-apply':'no-javascript-discount-apply';
+      await type('[name=discount_code]',config.discountCode);
+      await focus('button[name=action][value=apply_discount]');await key('Enter','Enter',13);
+      await until('document.body.innerText.includes("Discount applied")');
+      require(lastStatus===200&&await evaluate('document.body.innerText.includes("EUR 9,000.00")&&document.body.innerText.includes("50 hours in this order")'));checks++;
+      stage=javascript?'javascript-discount-remove':'no-javascript-discount-remove';
+      await focus('button[name=action][value=remove_discount]');await key('Enter','Enter',13);
+      await until('document.body.innerText.includes("Discount removed")');
+      require(lastStatus===200&&await evaluate('document.querySelector("[name=discount_code]").value===""&&document.body.innerText.includes("EUR 10,000.00")'));checks++;
+      await type('[name=discount_code]',config.discountCode);
       stage=javascript?'javascript-asic-post':'no-javascript-asic-post';
       await focus('button[name=action][value=submit]');await key('Enter','Enter',13);
       await until('document.body.innerText.includes("ASIC request recorded")');
       require(lastStatus===200&&await evaluate('document.body.innerText.includes("50 requested hours")'));checks++;
+      require(await evaluate('document.body.innerText.includes("Discount reserved for this request")&&document.body.innerText.includes("EUR 9,000.00")'));checks++;
       stage=javascript?'javascript-fpga-form':'no-javascript-fpga-form';
       await go(config.origin+'/purchase/simple/?variant=shb-fpga-10h&quantity=3');
       await until('!!document.querySelector("[name=company_name]")');require(await evaluate('!document.querySelector("[name=assistance]")'));checks++;
@@ -124,7 +136,7 @@ async function main(){
       require(await evaluate('Array.from(document.querySelectorAll("button")).some(element=>element.disabled&&element.textContent.includes("Checkout"))'));checks++;
       require(await evaluate('document.documentElement.scrollWidth<=document.documentElement.clientWidth'));checks++;
       require(await evaluate('!document.querySelector("input[type=file]")&&localStorage.length===0&&sessionStorage.length===0'));checks++;
-      require(escaped===0&&nativePosts===2);checks++;
+      require(escaped===0&&nativePosts===4);checks++;
       await cdp.send('Target.disposeBrowserContext',{browserContextId});
     }
     console.log(JSON.stringify({status:'SHB_BROWSER_PASS',checks,modes:2,browser:version,node:process.versions.node,evidence_class:'local-synthetic-browser',fpga:'review',asic:'submitted',payment:'disabled'}));

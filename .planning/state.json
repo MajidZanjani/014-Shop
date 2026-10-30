@@ -76,9 +76,9 @@
     }
   ],
   "next": {
-    "command": "$gsd-resume-work",
-    "label": "Resume paused SHB coupon implementation",
-    "reason": "Explicit user pause after verified repairs;07-02 coupon implementation not started"
+    "command": "$gsd-execute-phase 7",
+    "label": "Continue SHB matched checkout/coupon lifecycle",
+    "reason": "Coupon previews and atomic ASIC holds are verified; matched consumption/release and accepted paid workflows are pending"
   },
-  "updated_at": "2026-10-30T12:13:44.501Z"
+  "updated_at": "2026-10-30T13:21:35+00:00"
 }
