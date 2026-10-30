@@ -6,11 +6,11 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
 
-**Current plan:** 07-03 — SHB immutable checkout and acceptance; next local slice, not started.
+**Current plan:** 07-03 — SHB immutable checkout and acceptance; partial FPGA code/tests, unverified.
 
-**Execution status:** paused — standing context-pressure checkpoint after verified coupons/ASIC triage;07-03 checkout not started; exact context percentage unavailable.
+**Execution status:** paused — explicit user request;14 checkout tests reached RED baseline, partial model/service edits lack migrations/routes and runtime verification.
 
-**Next implementation task:** Start07-03 with PostgreSQL tests for invitation-scoped FPGA review/acceptance, immutable repeat-safe checkout and archive-before-payment; preserve coupon holds and manual support tracking.
+**Next implementation task:** Resume07-03 partial FPGA checkout: add guarded additive catalog/SHB migrations and wire protected routes/templates, then run the14 checkout tests and required shared regressions; current worktree is unverified.
 
 ## What this is
 
@@ -53,3 +53,7 @@ Verified07-02 coupon slice: protected Apply/Remove, customer-scoped percentage p
 Verified continuation: assigned ASIC private-request triage with recent MFA/exact scope, immutable review evidence and matching pre-offer decline/release.295 tests,33 current Chromium checks/two modes and306-file/twelve-import exact source pass; docs/build/shb-review-2026-10-30.md. Payment/dated offers/withdrawal/transaction notices remain open. Next local slice is07-03.
 
 Checkpoint 2026-10-30T13:47:11.673Z: both coupon and assigned ASIC triage/decline slices are committed/pushed (8d0efc5,551fd13).295 tests,33 current browser checks and306-file/twelve-import source pass; docs/build/shb-review-2026-10-30.md. The working context is large; exact percentage is unavailable. Saved under the standing context-pressure instruction, with07-03 next and no full completion count change.
+
+Resume 2026-10-30T13:52:15.032330+00:00: explicit resume lifts the context-pressure pause.07-03 proceeds inline using synthetic PostgreSQL fixtures; all live and protected-resource gates remain closed. HANDOFF.json consumed.
+
+Explicit pause 2026-10-30T13:57:58.828345+00:00: user requested $gsd-pause-work during07-03. Partial model/service/test files remain uncommitted and unverified; migrations, routes/templates, SQL invariants, regression/browser/source checks remain. Only pause metadata is committed. See HANDOFF.json and the07 checkpoint.

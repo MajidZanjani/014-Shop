@@ -6,11 +6,11 @@ Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-3
 
 **Last fully completed phase:** 1 — documentary authority only.
 
-**Current plan:** 07-03 — SHB immutable checkout and acceptance; next local slice, not started.
+**Current plan:** 07-03 — SHB immutable checkout and acceptance; partial FPGA code/tests, unverified.
 
-**Execution status:** paused — standing context-pressure checkpoint after verified coupons/ASIC triage;07-03 checkout not started; exact context percentage unavailable.
+**Execution status:** paused — explicit user request;14 checkout tests reached RED baseline, partial model/service edits lack migrations/routes and runtime verification.
 
-**Next implementation task:** Start07-03 with PostgreSQL tests for invitation-scoped FPGA review/acceptance, immutable repeat-safe checkout and archive-before-payment; preserve coupon holds and manual support tracking.
+**Next implementation task:** Resume07-03 partial FPGA checkout: add guarded additive catalog/SHB migrations and wire protected routes/templates, then run the14 checkout tests and required shared regressions; current worktree is unverified.
 
 **Recorded implementation:** 551fd1326f84871925680eab45f7202068c54cae
 
@@ -21,3 +21,7 @@ Final verification:295 tests including15 new review tests and30 existing staff r
 Next07-03 has not started. Pending: automatic FPGA immutable checkout/acceptance, matching dated ASIC offers/withdrawal/reissue/customer acceptance, payment/coupon consumption and safe offer/payment closure, once-only paid order/staff order view/ordinary transaction notices. No parent SUMMARY, SHB requirement or release completion count was added. SLL usage/task emails stay manual.
 
 This is a proactive checkpoint under the user's standing context-pressure instruction; exact percentage is unavailable and no90% measurement is claimed. Resume from HANDOFF.json and the07 checkpoint. Every owned test/demo/browser context returned; no external async job exists. No .env, actual bank/mail/storage/protected host/DNS/TLS action or paid provision. User inputs arrive later through docs/decisions.md; no repeat request. Ordinary sandbox startup denies workspace; narrow local exec works. Unrelated http_cache.sqlite is untracked/untouched. Ordinary non-force push-after-project-commit remains authorized.
+
+Resume 2026-10-30T13:52:15.032330+00:00: explicit resume lifts the context-pressure pause.07-03 proceeds inline using synthetic PostgreSQL fixtures; all live and protected-resource gates remain closed. HANDOFF.json consumed.
+
+Explicit pause 2026-10-30T13:57:58.828345+00:00: user requested $gsd-pause-work during07-03. Partial model/service/test files remain uncommitted and unverified; migrations, routes/templates, SQL invariants, regression/browser/source checks remain. Only pause metadata is committed. See HANDOFF.json and the07 checkpoint.

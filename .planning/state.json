@@ -77,8 +77,8 @@
   ],
   "next": {
     "command": "$gsd-resume-work",
-    "label": "Resume SHB immutable checkout implementation",
-    "reason": "Standing context-pressure checkpoint after verified coupons and assigned ASIC triage;07-03 not started; exact context percentage unavailable"
+    "label": "Resume partial SHB FPGA checkout",
+    "reason": "Resume07-03 partial FPGA checkout: add guarded additive catalog/SHB migrations and wire protected routes/templates, then run the14 checkout tests and required shared regressions; current worktree is unverified."
   },
-  "updated_at": "2026-10-30T13:47:11.673Z"
+  "updated_at": "2026-10-30T13:57:58.828345+00:00"
 }

@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "timestamp": "2026-10-30T13:47:11.673Z",
+  "timestamp": "2026-10-30T13:57:58.828345+00:00",
   "release": "shb-1.1",
   "phase": "07",
   "phase_name": "FPGA checkout, ASIC reviewed offers and scoped discounts",
@@ -9,90 +9,93 @@
   "task": 1,
   "total_tasks": 1,
   "status": "paused",
-  "pause_reason": "Proactive checkpoint under standing context-pressure instruction; exact context percentage unavailable",
+  "pause_reason": "Explicit user $gsd-pause-work",
   "implementation_commit": "551fd1326f84871925680eab45f7202068c54cae",
-  "implementation_push": "ordinary origin/main push succeeded",
+  "implementation_push": "last verified implementation already pushed; new code remains uncommitted",
   "completed_tasks": [
     {
       "id": 1,
-      "name": "07-02 scoped coupon preview and atomic ASIC holds",
-      "status": "done",
-      "commit": "8d0efc5",
-      "progress": "Synthetic-only; no full parent acceptance"
+      "name": "Restore SHB context and initialize07-03 inline",
+      "status": "done"
     },
     {
       "id": 2,
-      "name": "07-04 assigned exact-scope MFA triage and pre-offer decline/release",
-      "status": "done",
-      "commit": "551fd1326f84871925680eab45f7202068c54cae",
-      "progress": "15 review tests; dated offers/withdrawal/paid path remain pending"
+      "name": "14 PostgreSQL checkout tests and partial model/service edits",
+      "status": "in_progress",
+      "progress": "Initial RED12 failures/2 errors; six edited/new Python files AST-parse only. No migrations/routes or post-edit runtime tests."
     }
   ],
   "remaining_tasks": [
     {
       "id": 1,
-      "name": "07-03 immutable FPGA checkout/acceptance and matching ASIC checkout",
-      "status": "not_started",
-      "progress": "Read existing checkout/acceptance/payment/archive interfaces only; no code/schema/test implementation"
+      "name": "Add guarded additive catalog/SHB migrations and SQL invariants",
+      "status": "not_started"
     },
     {
       "id": 2,
-      "name": "07-04 immutable dated ASIC offers, acceptance, withdrawal/expiry/reissue",
+      "name": "Wire review/capture/accept and protected native payment page, forms/templates/CSRF",
       "status": "not_started"
     },
     {
       "id": 3,
-      "name": "07-02/08/10 matched coupon consumption/payment closure and once-only paid orders/notices",
+      "name": "GREEN checkout/shared/browser/source verification and evidence; no acceptance before actual pass",
+      "status": "not_started"
+    },
+    {
+      "id": 4,
+      "name": "Dated ASIC offers, coupon consumption/closure, once-only paid orders and ordinary notices",
       "status": "not_started"
     }
   ],
   "blockers": [
     {
-      "description": "Ordinary sandbox denies workspace at startup",
+      "description": "Explicit user pause",
+      "type": "human_action",
+      "workaround": "Wait for resume; do no implementation while paused"
+    },
+    {
+      "description": "Ordinary sandbox denies workspace at bwrap startup",
       "type": "technical",
-      "workaround": "Narrowly justified local exec; owned per-command TMPDIR/cache; short private browser TMPDIR"
+      "workaround": "Narrow justified require_escalated local exec; owned TMPDIR/cache"
     }
   ],
   "async_jobs": [],
   "background_processes": [],
   "human_actions_pending": [
     {
-      "action": "Supply promised actual support-offer/company inputs later",
-      "context": "Single register docs/decisions.md; do not repeat requests or infer approval; blocks affected live actions only",
-      "blocking": false
+      "action": "Resume when ready",
+      "context": "Explicit user pause is active",
+      "blocking": true
     },
     {
-      "action": "Assign/authorize independent off-host qualification when ready",
-      "context": "No independent runner or actual protected-host fault/provisioning authority exists; unaffected local work continues",
+      "action": "Promised actual commercial/company inputs later",
+      "context": "docs/decisions.md remains sole register; do not repeat requests; unrelated local work can continue after resume",
       "blocking": false
     }
   ],
   "decisions": [
     {
-      "decision": "Retain SHB1.1 manual support-tracking scope",
-      "rationale": "Per-order purchased hours only; no time engine, customer panel or task-email automation",
+      "decision": "Reuse shared checkout/acceptance/attempt/archive with explicit SHB invitation/session scope",
+      "rationale": "No identity/history grant or second commerce engine; preserve minimal form and immutable historical obligations",
       "phase": "07"
     },
     {
-      "decision": "Reuse existing quotation assignment and exact private revision grant",
-      "rationale": "Bare assignment does not reveal SHB company/contact capture; every privileged route retains recent MFA/current epoch/generation",
-      "phase": "07"
-    },
-    {
-      "decision": "Only matched pre-offer decline can release a reservation now",
-      "rationale": "No time/revocation release; offer/payment/consumption outcomes await actual matched lifecycle implementation",
+      "decision": "Leave partial code uncommitted; commit synchronized pause metadata only",
+      "rationale": "No migrations/routes/runtime verification yet; never push this WIP as a working implementation",
       "phase": "07"
     }
   ],
-  "next_action": "Start07-03 with PostgreSQL tests for invitation-scoped FPGA review/acceptance, immutable repeat-safe checkout and archive-before-payment; preserve coupon holds and manual support tracking.",
-  "evidence": [
-    "docs/build/shb-review-2026-10-30.md",
-    "docs/build/shb-coupons-2026-10-30.md",
-    "docs/evidence/shb/source-revisions/8176d32d05eacc28eefe5073ca4df9f0e4dfbbbcd3c25edcea6432f3ef8b9244.json"
+  "uncommitted_code_files": [
+    "backend/shop/catalog/checkout_payment.py",
+    "backend/shop/catalog/fulfilment.py",
+    "backend/shop/catalog/models.py",
+    "backend/shop/shb/models.py",
+    "backend/shop/shb/checkout.py",
+    "backend/shop/shb/checkout_tests.py"
   ],
-  "context_notes": "295 tests pass; Chromium33/two modes and306-file/twelve-import source pass. Three corrected browser stability passes; actual pendingDocumentLoads=1 observed. No full parent SUMMARY/count increase.07-03 not started. Both code commits pushed. No .env/external action/time engine. All owned processes exited. Inline only. Do not re-audit completed04 harnesses; start checkout tests. Exact context percentage unavailable; this is a proactive standing-authorized checkpoint.",
   "uncommitted_files": [
     " M .planning/ACTIVITY-LOG.md",
+    " M .planning/HANDOFF.json",
     " M .planning/HANDOFF.md",
     " M .planning/PROJECT.md",
     " M .planning/PURCHASE-FLOW-RECONCILIATION.json",
@@ -100,10 +103,17 @@
     " M .planning/STATE.md",
     " M .planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/.continue-here.md",
     " M .planning/state.json",
-    "?? .planning/HANDOFF.json",
+    " M backend/shop/catalog/checkout_payment.py",
+    " M backend/shop/catalog/fulfilment.py",
+    " M backend/shop/catalog/models.py",
+    " M backend/shop/shb/models.py",
+    "?? backend/shop/shb/checkout.py",
+    "?? backend/shop/shb/checkout_tests.py",
     "?? http_cache.sqlite"
   ],
+  "next_action": "Resume07-03 partial FPGA checkout: add guarded additive catalog/SHB migrations and wire protected routes/templates, then run the14 checkout tests and required shared regressions; current worktree is unverified.",
+  "context_notes": "Read full checkpoint before editing. Four modified existing modules and two new files remain WIP. Existing shb0004 reservation trigger requires ASIC request and has not been generalized; new nullable/model fields lack migrations. Existing views still return checkout503 and no review_digest. Prior295/browser33/source306 evidence is historical before this WIP. No code commit or SUMMARY;11/42 records and1/14 documentary phases unchanged. No .env/external actions/time engine. Inline only. No active tests/services/async jobs.",
   "uncommitted_files_elided": 0,
-  "working_tree_snapshot_at": "2026-10-30T13:47:11.775680+00:00",
-  "working_tree_snapshot_scope": "Measured after all pause files/inventory existed, immediately before the pause commit. Listed metadata changes are included in that commit; implementation is already committed/pushed. Unrelated http_cache.sqlite remains untracked."
+  "working_tree_snapshot_at": "2026-10-30T13:57:58.834367+00:00",
+  "working_tree_snapshot_scope": "Measured after pause artifacts existed, before inventory refresh and metadata-only pause commit. Listed planning changes are included in that commit; six code/test files and unrelated http_cache.sqlite remain uncommitted afterward."
 }

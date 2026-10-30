@@ -6,8 +6,8 @@ current_phase_name: FPGA checkout, ASIC reviewed offers and scoped discounts
 current_plan: 3
 current_task: 1
 status: paused
-paused_at: "2026-10-30T13:47:11.673Z"
-last_updated: "2026-10-30T13:47:11.673Z"
+paused_at: "2026-10-30T13:57:58.828345+00:00"
+last_updated: "2026-10-30T13:57:58.828345+00:00"
 last_activity: 2026-10-30
 state_head: 551fd1326f84871925680eab45f7202068c54cae
 progress:
@@ -26,11 +26,11 @@ Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-3
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation records are not SHB acceptance.
 
-**Current plan:** 07-03 — SHB immutable checkout and acceptance; next local slice, not started.
+**Current plan:** 07-03 — SHB immutable checkout and acceptance; partial FPGA code/tests, unverified.
 
-**Execution status:** paused — standing context-pressure checkpoint after verified coupons/ASIC triage;07-03 checkout not started; exact context percentage unavailable.
+**Execution status:** paused — explicit user request;14 checkout tests reached RED baseline, partial model/service edits lack migrations/routes and runtime verification.
 
-**Next implementation task:** Start07-03 with PostgreSQL tests for invitation-scoped FPGA review/acceptance, immutable repeat-safe checkout and archive-before-payment; preserve coupon holds and manual support tracking.
+**Next implementation task:** Resume07-03 partial FPGA checkout: add guarded additive catalog/SHB migrations and wire protected routes/templates, then run the14 checkout tests and required shared regressions; current worktree is unverified.
 
 ## Verified local scope
 
@@ -48,12 +48,8 @@ One actual-input register: docs/decisions.md. User will supply company inputs la
 
 ## Session Continuity
 
-Last session: 2026-10-30T13:47:11.673Z
-Stopped at: Verified/pushed scoped coupons and assigned ASIC triage/safe pre-offer decline. Saving proactively under the standing context-pressure instruction; an exact context percentage is unavailable, so no measured threshold is asserted.
+Last session: 2026-10-30T13:57:58.828345+00:00
+Stopped at: Explicit user $gsd-pause-work.07-03 has14 new PostgreSQL checkout tests (initial RED:12 failures,2 errors) and partial model/service edits. No implementation/schema/runtime test pass exists for this slice. Six edited/new Python files parse successfully; that is syntax only.
 Resume file: HANDOFF.json and phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/.continue-here.md.
 
-Implementation: 551fd1326f84871925680eab45f7202068c54cae (ordinary origin/main push succeeded). Coupon slice8d0efc5 also pushed. Next07-03 checkout has no implementation. Full plan/phase counts remain11/42 retained summaries and1/14 documentary phases.
-
-Final295 tests (9 source/private-release +20 existing SHB +16 coupon +15 review +95 access/recovery +104 payment +30 legacy staff review/navigation/preparation +6 truly isolated adapters), current Chromium33 checks/two modes and306-file/twelve-import source pass. Three corrected browser stability runs also passed. Native layout checks now await the actual document, with strict320px assertions unchanged. Report: docs/build/shb-review-2026-10-30.md.
-
-No owned service/test/browser/async job remains. No real credentials/.env, bank/mail/storage/host/DNS/TLS action or paid provision. Unrelated http_cache.sqlite remains untouched. Ordinary sandbox startup denies workspace; narrowly justified local exec and owned TMPDIR/cache remain the workaround. Inputs arrive later in docs/decisions.md; no repeated request.
+Last verified implementation remains551fd1326f84871925680eab45f7202068c54cae (already pushed); prior295-test/browser33/source306 evidence is retained. No new parent SUMMARY or count increment. New code/tests remain deliberately uncommitted in the worktree; only synchronized pause metadata is committed/pushed. No active owned test/server/async job remains. No .env or external service action; http_cache.sqlite untouched.
