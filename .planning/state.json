@@ -76,9 +76,9 @@
     }
   ],
   "next": {
-    "command": "$gsd-execute-phase 7",
-    "label": "Implement SHB checkout and accepted matching offers",
-    "reason": "Coupon/triage/safe pre-offer closure slices verified;07-03 checkout implementation remains next"
+    "command": "$gsd-resume-work",
+    "label": "Resume SHB immutable checkout implementation",
+    "reason": "Standing context-pressure checkpoint after verified coupons and assigned ASIC triage;07-03 not started; exact context percentage unavailable"
   },
-  "updated_at": "2026-10-30T13:44:23+00:00"
+  "updated_at": "2026-10-30T13:47:11.673Z"
 }

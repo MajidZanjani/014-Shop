@@ -1,4 +1,4 @@
-# SHB active implementation handoff
+# SHB continuation checkpoint
 
 Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md). STATE.md / ROADMAP.md remain operative.
 
@@ -6,18 +6,18 @@ Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-3
 
 **Last fully completed phase:** 1 — documentary authority only.
 
-**Current plan:** 07-03 — SHB immutable checkout and acceptance; next local implementation slice.
+**Current plan:** 07-03 — SHB immutable checkout and acceptance; next local slice, not started.
 
-**Execution status:** in progress — coupon previews, ASIC holds, assigned triage and safe decline/release verified; next is SHB checkout.
+**Execution status:** paused — standing context-pressure checkpoint after verified coupons/ASIC triage;07-03 checkout not started; exact context percentage unavailable.
 
-**Next implementation task:** Implement07-03 automatic eligible FPGA immutable checkout/acceptance using existing archive/payment records, then matching dated ASIC offers with reserved discounts; preserve uncertainty and keep support usage manual.
+**Next implementation task:** Start07-03 with PostgreSQL tests for invitation-scoped FPGA review/acceptance, immutable repeat-safe checkout and archive-before-payment; preserve coupon holds and manual support tracking.
 
-**Recorded implementation:** 8d0efc5bd7147d25fd26ce3122473163ea28b8a4
+**Recorded implementation:** 551fd1326f84871925680eab45f7202068c54cae
 
-The user resumed the explicit pause. Earlier04-01 verification repairs are committed/pushed. The new07-02 coupon slice is verified locally:250 tests including16 coupon and direct PostgreSQL race tests,33 Chromium checks in JavaScript/no-JavaScript,17 usable loopback checks and300-file/ten-import exact source. See [coupon evidence](../docs/build/shb-coupons-2026-10-30.md). Original code/rate/claim expiry changes cannot reprice a retried request. No reservation consumption/release or real payment is enabled.
+Committed/pushed this session:8d0efc5 scoped percentage previews/Apply/Remove, digest-only codes, durable guessing limits and PostgreSQL ASIC request holds;551fd13 exact-scope recent-MFA assigned review, clarification, technical readiness and matching pre-offer decline/release with immutable provenance. Original request retries preserve price/code snapshots and report closed/released state accurately. No clock frees an active hold. No bank or support-time effect is created.
 
-Continue inline across commits;07-02 matched outcomes and07-03/04 accepted FPGA/assigned ASIC workflows remain open. No parent SUMMARY/full acceptance or completion count has been added. One-shot HANDOFF.json was consumed. The07 checkpoint contains the next action. All completed test/demo/browser processes returned; no external job exists.
+Final verification:295 tests including15 new review tests and30 existing staff review/navigation/preparation tests;33 current real Chromium checks across JavaScript/no-JavaScript at320px;306 exact backend files/twelve isolated imports. Three corrected browser stability runs also passed. A native layout race was isolated to a valid200 response with4 POSTs/no errors; the harness now waits for the new loader and document completion before the same strict layout assertion. Exact evidence/full commands: [review report](../docs/build/shb-review-2026-10-30.md), [coupon report](../docs/build/shb-coupons-2026-10-30.md).
 
-Commercial/company inputs will arrive later in docs/decisions.md; no repeated request. No actual bank/mail/storage/host/DNS/TLS/provisioning action, .env read or support-time automation. Ordinary sandbox startup still denies the workspace; narrow local exec works. Unrelated http_cache.sqlite remains untouched. Ordinary non-force origin/main push after each project commit is authorized. No exact context percentage is supplied.
+Next07-03 has not started. Pending: automatic FPGA immutable checkout/acceptance, matching dated ASIC offers/withdrawal/reissue/customer acceptance, payment/coupon consumption and safe offer/payment closure, once-only paid order/staff order view/ordinary transaction notices. No parent SUMMARY, SHB requirement or release completion count was added. SLL usage/task emails stay manual.
 
-Latest continuation:07-04 assigned exact-scope MFA review, clarification and pre-offer decline/release are verified locally with295 tests,33 current browser checks and306-file/twelve-import exact source. New implementation commit is being prepared; recorded implementation above is the already pushed coupon slice. Report: docs/build/shb-review-2026-10-30.md. Next07-03 is not started. No full plan/phase completion.
+This is a proactive checkpoint under the user's standing context-pressure instruction; exact percentage is unavailable and no90% measurement is claimed. Resume from HANDOFF.json and the07 checkpoint. Every owned test/demo/browser context returned; no external async job exists. No .env, actual bank/mail/storage/protected host/DNS/TLS action or paid provision. User inputs arrive later through docs/decisions.md; no repeat request. Ordinary sandbox startup denies workspace; narrow local exec works. Unrelated http_cache.sqlite is untracked/untouched. Ordinary non-force push-after-project-commit remains authorized.

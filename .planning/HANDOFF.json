@@ -1,0 +1,109 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-10-30T13:47:11.673Z",
+  "release": "shb-1.1",
+  "phase": "07",
+  "phase_name": "FPGA checkout, ASIC reviewed offers and scoped discounts",
+  "phase_dir": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance",
+  "plan": 3,
+  "task": 1,
+  "total_tasks": 1,
+  "status": "paused",
+  "pause_reason": "Proactive checkpoint under standing context-pressure instruction; exact context percentage unavailable",
+  "implementation_commit": "551fd1326f84871925680eab45f7202068c54cae",
+  "implementation_push": "ordinary origin/main push succeeded",
+  "completed_tasks": [
+    {
+      "id": 1,
+      "name": "07-02 scoped coupon preview and atomic ASIC holds",
+      "status": "done",
+      "commit": "8d0efc5",
+      "progress": "Synthetic-only; no full parent acceptance"
+    },
+    {
+      "id": 2,
+      "name": "07-04 assigned exact-scope MFA triage and pre-offer decline/release",
+      "status": "done",
+      "commit": "551fd1326f84871925680eab45f7202068c54cae",
+      "progress": "15 review tests; dated offers/withdrawal/paid path remain pending"
+    }
+  ],
+  "remaining_tasks": [
+    {
+      "id": 1,
+      "name": "07-03 immutable FPGA checkout/acceptance and matching ASIC checkout",
+      "status": "not_started",
+      "progress": "Read existing checkout/acceptance/payment/archive interfaces only; no code/schema/test implementation"
+    },
+    {
+      "id": 2,
+      "name": "07-04 immutable dated ASIC offers, acceptance, withdrawal/expiry/reissue",
+      "status": "not_started"
+    },
+    {
+      "id": 3,
+      "name": "07-02/08/10 matched coupon consumption/payment closure and once-only paid orders/notices",
+      "status": "not_started"
+    }
+  ],
+  "blockers": [
+    {
+      "description": "Ordinary sandbox denies workspace at startup",
+      "type": "technical",
+      "workaround": "Narrowly justified local exec; owned per-command TMPDIR/cache; short private browser TMPDIR"
+    }
+  ],
+  "async_jobs": [],
+  "background_processes": [],
+  "human_actions_pending": [
+    {
+      "action": "Supply promised actual support-offer/company inputs later",
+      "context": "Single register docs/decisions.md; do not repeat requests or infer approval; blocks affected live actions only",
+      "blocking": false
+    },
+    {
+      "action": "Assign/authorize independent off-host qualification when ready",
+      "context": "No independent runner or actual protected-host fault/provisioning authority exists; unaffected local work continues",
+      "blocking": false
+    }
+  ],
+  "decisions": [
+    {
+      "decision": "Retain SHB1.1 manual support-tracking scope",
+      "rationale": "Per-order purchased hours only; no time engine, customer panel or task-email automation",
+      "phase": "07"
+    },
+    {
+      "decision": "Reuse existing quotation assignment and exact private revision grant",
+      "rationale": "Bare assignment does not reveal SHB company/contact capture; every privileged route retains recent MFA/current epoch/generation",
+      "phase": "07"
+    },
+    {
+      "decision": "Only matched pre-offer decline can release a reservation now",
+      "rationale": "No time/revocation release; offer/payment/consumption outcomes await actual matched lifecycle implementation",
+      "phase": "07"
+    }
+  ],
+  "next_action": "Start07-03 with PostgreSQL tests for invitation-scoped FPGA review/acceptance, immutable repeat-safe checkout and archive-before-payment; preserve coupon holds and manual support tracking.",
+  "evidence": [
+    "docs/build/shb-review-2026-10-30.md",
+    "docs/build/shb-coupons-2026-10-30.md",
+    "docs/evidence/shb/source-revisions/8176d32d05eacc28eefe5073ca4df9f0e4dfbbbcd3c25edcea6432f3ef8b9244.json"
+  ],
+  "context_notes": "295 tests pass; Chromium33/two modes and306-file/twelve-import source pass. Three corrected browser stability passes; actual pendingDocumentLoads=1 observed. No full parent SUMMARY/count increase.07-03 not started. Both code commits pushed. No .env/external action/time engine. All owned processes exited. Inline only. Do not re-audit completed04 harnesses; start checkout tests. Exact context percentage unavailable; this is a proactive standing-authorized checkpoint.",
+  "uncommitted_files": [
+    " M .planning/ACTIVITY-LOG.md",
+    " M .planning/HANDOFF.md",
+    " M .planning/PROJECT.md",
+    " M .planning/PURCHASE-FLOW-RECONCILIATION.json",
+    " M .planning/ROADMAP.md",
+    " M .planning/STATE.md",
+    " M .planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/.continue-here.md",
+    " M .planning/state.json",
+    "?? .planning/HANDOFF.json",
+    "?? http_cache.sqlite"
+  ],
+  "uncommitted_files_elided": 0,
+  "working_tree_snapshot_at": "2026-10-30T13:47:11.775680+00:00",
+  "working_tree_snapshot_scope": "Measured after all pause files/inventory existed, immediately before the pause commit. Listed metadata changes are included in that commit; implementation is already committed/pushed. Unrelated http_cache.sqlite remains untracked."
+}

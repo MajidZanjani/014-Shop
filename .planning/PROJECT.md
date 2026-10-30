@@ -6,11 +6,11 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
 
-**Current plan:** 07-03 — SHB immutable checkout and acceptance; next local implementation slice.
+**Current plan:** 07-03 — SHB immutable checkout and acceptance; next local slice, not started.
 
-**Execution status:** in progress — coupon previews, ASIC holds, assigned triage and safe decline/release verified; next is SHB checkout.
+**Execution status:** paused — standing context-pressure checkpoint after verified coupons/ASIC triage;07-03 checkout not started; exact context percentage unavailable.
 
-**Next implementation task:** Implement07-03 automatic eligible FPGA immutable checkout/acceptance using existing archive/payment records, then matching dated ASIC offers with reserved discounts; preserve uncertainty and keep support usage manual.
+**Next implementation task:** Start07-03 with PostgreSQL tests for invitation-scoped FPGA review/acceptance, immutable repeat-safe checkout and archive-before-payment; preserve coupon holds and manual support tracking.
 
 ## What this is
 
@@ -51,3 +51,5 @@ Resume 2026-10-30T13:13:43+00:00: the explicit user resume lifts the earlier pau
 Verified07-02 coupon slice: protected Apply/Remove, customer-scoped percentage pricing, digest-only codes, durable guessing limits and PostgreSQL request reservations; original request retries preserve rates/policy.250 tests,33 actual browser checks,17 loopback checks,300 exact files/ten imports. Evidence: docs/build/shb-coupons-2026-10-30.md. Consumption/release and paid workflows remain pending.
 
 Verified continuation: assigned ASIC private-request triage with recent MFA/exact scope, immutable review evidence and matching pre-offer decline/release.295 tests,33 current Chromium checks/two modes and306-file/twelve-import exact source pass; docs/build/shb-review-2026-10-30.md. Payment/dated offers/withdrawal/transaction notices remain open. Next local slice is07-03.
+
+Checkpoint 2026-10-30T13:47:11.673Z: both coupon and assigned ASIC triage/decline slices are committed/pushed (8d0efc5,551fd13).295 tests,33 current browser checks and306-file/twelve-import source pass; docs/build/shb-review-2026-10-30.md. The working context is large; exact percentage is unavailable. Saved under the standing context-pressure instruction, with07-03 next and no full completion count change.
