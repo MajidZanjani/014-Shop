@@ -76,9 +76,9 @@
     }
   ],
   "next": {
-    "command": "$gsd-execute-phase 07",
-    "label": "Continue scoped SHB discounts and reservations",
-    "reason": "Implement authoritative scoped percentage-code preview and atomic ASIC request reservation on PostgreSQL; retain discounts through review and keep live adoption/payment gated."
+    "command": "$gsd-resume-work",
+    "label": "Resume paused SHB coupon implementation",
+    "reason": "Explicit user pause after verified repairs;07-02 coupon implementation not started"
   },
-  "updated_at": "2026-10-30T12:10:04.877013+00:00"
+  "updated_at": "2026-10-30T12:13:44.501Z"
 }

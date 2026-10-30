@@ -6,11 +6,11 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
 
-**Current plan:** 07-02 — Scoped SHB discounts and reservations; partial local implementation.
+**Current plan:** 07-02 — Scoped SHB discounts and reservations; next local slice, not started.
 
-**Execution status:** in progress — 04-01 local verification repaired; implementing scoped SHB discounts in 07-02 with synthetic fixtures.
+**Execution status:** paused — explicit user request after verified04-01 repairs; 07-02 coupon implementation has not started.
 
-**Next implementation task:** Implement authoritative scoped percentage-code preview and atomic ASIC request reservation on PostgreSQL; retain discounts through review and keep live adoption/payment gated.
+**Next implementation task:** Resume07-02 with PostgreSQL tests for scoped percentage-code preview and atomic ASIC request reservations; then implement without consuming a use on Apply or dropping reservations during review.
 
 ## What this is
 
@@ -41,3 +41,7 @@ Current plan is the existing ROADMAP.md/STATE.md and per-phase plans; no replace
 ## Resumed work — 2026-10-30
 
 The saved 04-01 browser and adapter-harness failures are resolved with actual local evidence: shared234 tests (including six truly network-isolated adapter tests), Chromium27 checks across JavaScript/no-JavaScript modes, and refreshed295-file/eight-import source verification. See docs/build/shb-resume-2026-10-30.md. Continue the existing07-02 coupon slice; no full SHB phase/release completion is claimed.
+
+## Explicit pause — 2026-10-30T12:13:44.501Z
+
+Verified repairs are committed/pushed as `f6bf69a096bc521cbe1929a3566059b49b27b8d1`. User paused before any07-02 coupon implementation edits. Resume from the new07 handoff; no current local test failure remains from04-01 and no full plan/phase acceptance was added.

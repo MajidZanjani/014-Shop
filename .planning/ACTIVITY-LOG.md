@@ -11,3 +11,7 @@ SHB partial code,29 focused/138 frontend/16 header-demo/95 shared passing scopes
 ## Resumed implementation — 2026-10-30
 
 User resumed saved04-01. Repaired long Chromium SingletonSocket temp path, native Enter character dispatch and actual adapter namespace invocation. Shared234 tests, browser27 checks/two modes, fresh private build/default frontend tests and exact source295 files/eight imports pass. See docs/build/shb-resume-2026-10-30.md. Current focus moves to07-02 scoped discount slice; final acceptance/actual gates remain pending.
+
+## Explicit user pause — 2026-10-30T12:13:44.501Z
+
+Implementationf6bf69a is committed and pushed; shared234, real browser27/two modes, fresh private frontend build and source295/eight imports pass. User paused before07-02 coupon code/schema/migrations/tests. New07 structured and human handoffs preserve the exact boundary; no new full plan/phase acceptance.

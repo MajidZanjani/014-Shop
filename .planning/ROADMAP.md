@@ -6,11 +6,11 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
 
-**Current plan:** 07-02 — Scoped SHB discounts and reservations; partial local implementation.
+**Current plan:** 07-02 — Scoped SHB discounts and reservations; next local slice, not started.
 
-**Execution status:** in progress — 04-01 local verification repaired; implementing scoped SHB discounts in 07-02 with synthetic fixtures.
+**Execution status:** paused — explicit user request after verified04-01 repairs; 07-02 coupon implementation has not started.
 
-**Next implementation task:** Implement authoritative scoped percentage-code preview and atomic ASIC request reservation on PostgreSQL; retain discounts through review and keep live adoption/payment gated.
+**Next implementation task:** Resume07-02 with PostgreSQL tests for scoped percentage-code preview and atomic ASIC request reservations; then implement without consuming a use on Apply or dropping reservations during review.
 
 Stable T01–T14/folder IDs preserve history. Titles and active task scopes now follow SHB 1.1. Completed summary counts below are historical records, not engineering effort or new commercial acceptance.
 
@@ -22,7 +22,7 @@ Stable T01–T14/folder IDs preserve history. Titles and active task scopes now 
 - [ ] **Phase 4: Shared SHB form, invitations and private storefront**
 - [ ] **Phase 5: SHB durable records, archives and outbox**
 - [ ] **Phase 6: Invitation scope, verified resources and staff MFA**
-- [ ] **Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts** — CURRENT DEVELOPMENT FOCUS; in progress — 04-01 local verification repaired; implementing scoped SHB discounts in 07-02 with synthetic fixtures.
+- [ ] **Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts** — CURRENT DEVELOPMENT FOCUS; paused — explicit user request after verified04-01 repairs; 07-02 coupon implementation has not started.
 - [ ] **Phase 8: Payment lifecycle and fault-injectable synthetic bank**
 - [ ] **Phase 9: Selected-bank sandbox and complete reconciliation**
 - [ ] **Phase 10: Paid SHB orders, transaction notices and manual handoff**
@@ -105,7 +105,7 @@ Requirements: SHB-11, SHB-13, SHB-14.
 
 Plans: [06-01-PLAN](phases/06-invitation-scope-and-staff-mfa/06-01-PLAN.md)
 
-### Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts — CURRENT DEVELOPMENT FOCUS; in progress — 04-01 local verification repaired; implementing scoped SHB discounts in 07-02 with synthetic fixtures.
+### Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts — CURRENT DEVELOPMENT FOCUS; paused — explicit user request after verified04-01 repairs; 07-02 coupon implementation has not started.
 
 Goal: Automatic eligible FPGA checkout; ASIC request/clarify/decline/withdraw/approve/dated offer/acceptance. One scoped percentage code; PostgreSQL reservations survive ASIC review beyond claim expiry. Immutable accepted price/scope revisions.
 
@@ -211,7 +211,7 @@ Plans: [14-01-PLAN](phases/14-shb-release-handover/14-01-PLAN.md)
 | 4. Shared SHB form, invitations and private storefront | 0/1 | In Progress | Pending actual revised evidence |
 | 5. SHB durable records, archives and outbox | 0/1 | In Progress | Pending actual revised evidence |
 | 6. Invitation scope, verified resources and staff MFA | 0/1 | In Progress | Pending actual revised evidence |
-| 7. FPGA checkout, ASIC reviewed offers and scoped discounts | 1/4 | In Progress; CURRENT DEVELOPMENT FOCUS; in progress — 04-01 local verification repaired; implementing scoped SHB discounts in 07-02 with synthetic fixtures. | Pending actual revised evidence |
+| 7. FPGA checkout, ASIC reviewed offers and scoped discounts | 1/4 | In Progress; CURRENT DEVELOPMENT FOCUS; paused — explicit user request after verified04-01 repairs; 07-02 coupon implementation has not started. | Pending actual revised evidence |
 | 8. Payment lifecycle and fault-injectable synthetic bank | 0/3 | In Progress | Pending actual revised evidence |
 | 9. Selected-bank sandbox and complete reconciliation | 0/1 | Pending | Pending actual revised evidence |
 | 10. Paid SHB orders, transaction notices and manual handoff | 0/6 | In Progress | Pending actual revised evidence |

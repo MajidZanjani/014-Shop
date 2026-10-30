@@ -5,10 +5,11 @@ current_phase: 7
 current_phase_name: FPGA checkout, ASIC reviewed offers and scoped discounts
 current_plan: 2
 current_task: 1
-status: in_progress
-last_updated: "2026-10-30T12:10:04.877013+00:00"
+status: paused
+paused_at: "2026-10-30T12:13:44.501Z"
+last_updated: "2026-10-30T12:13:44.501Z"
 last_activity: 2026-10-30
-state_head: 6891c6eea5aae064e1c77f8977da31c0145dc1d6
+state_head: f6bf69a096bc521cbe1929a3566059b49b27b8d1
 progress:
   total_phases: 14
   completed_phases: 1
@@ -25,11 +26,11 @@ Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-3
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation records are not SHB acceptance.
 
-**Current plan:** 07-02 — Scoped SHB discounts and reservations; partial local implementation.
+**Current plan:** 07-02 — Scoped SHB discounts and reservations; next local slice, not started.
 
-**Execution status:** in progress — 04-01 local verification repaired; implementing scoped SHB discounts in 07-02 with synthetic fixtures.
+**Execution status:** paused — explicit user request after verified04-01 repairs; 07-02 coupon implementation has not started.
 
-**Next implementation task:** Implement authoritative scoped percentage-code preview and atomic ASIC request reservation on PostgreSQL; retain discounts through review and keep live adoption/payment gated.
+**Next implementation task:** Resume07-02 with PostgreSQL tests for scoped percentage-code preview and atomic ASIC request reservations; then implement without consuming a use on Apply or dropping reservations during review.
 
 ## Verified local scope
 
@@ -47,8 +48,10 @@ One actual-input register: docs/decisions.md. User will supply company inputs la
 
 ## Session Continuity
 
-Last session: 2026-10-30T12:10:04.877013+00:00
-Stopped at: Session resumed; repaired and verified04-01 local harness issues; continuing existing07-02 coupon/reservation slice inline.
-Resume file: phases/04-minimal-configurator-and-shared-purchase-flow/.continue-here.md; previous one-shot HANDOFF.json consumed.
+Last session: 2026-10-30T12:13:44.501Z
+Stopped at: Explicit user $gsd-pause-work after verification repairs were committed/pushed; no coupon schema, code, migration or tests written.
+Resume file: HANDOFF.json and phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/.continue-here.md.
 
 All completed owned test/browser/demo processes exited; no external async job exists. Ordinary sandbox cannot access the workspace; narrowly justified local exec remains the workaround. Browser gets its own short private/tmp directory; no pin/limit/unknown-resource cleanup. Unrelated http_cache.sqlite remains untracked/untouched. Exact context percentage is not supplied.
+
+**Saved implementation:** f6bf69a096bc521cbe1929a3566059b49b27b8d1 — ordinary origin/main push succeeded. Pause is explicitly requested; exact context percentage is unavailable. Resume only when the user resumes.
