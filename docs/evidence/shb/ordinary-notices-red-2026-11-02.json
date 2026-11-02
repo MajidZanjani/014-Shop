@@ -1,0 +1,10 @@
+{
+  "command": "python3 .scratch/shb_notification_target.py (retained-tool namespace; disposable PostgreSQL; /nix/store/nr6vqhv33q8n6nbyy529fvcydy3zp1jd-python3-3.13.16-env/bin/python3 manage.py test shop.shb.notification_tests.NotificationTests.test_stored_asic_request_has_one_retryable_customer_acknowledgement --noinput --keepdb --verbosity 1)",
+  "exitCode": 1,
+  "output": "Using existing test database for alias 'default'...\nF\n======================================================================\nFAIL: test_stored_asic_request_has_one_retryable_customer_acknowledgement (shop.shb.notification_tests.NotificationTests.test_stored_asic_request_has_one_retryable_customer_acknowledgement)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/claude/project/014-Shop/backend/shop/shb/notification_tests.py\", line 23, in test_stored_asic_request_has_one_retryable_customer_acknowledgement\n    self.assertTrue(execute_once(), 'A stored request must leave durable acknowledgement work.')\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true : A stored request must leave durable acknowledgement work.\n\n----------------------------------------------------------------------\nRan 1 test in 0.435s\n\nFAILED (failures=1)\nPreserving test database for alias 'default'...\nFound 1 test(s).\nSystem check identified no issues (0 silenced).\n",
+  "targetTest": "shop.shb.notification_tests.NotificationTests.test_stored_asic_request_has_one_retryable_customer_acknowledgement",
+  "targetFile": "backend/shop/shb/notification_tests.py",
+  "expected": "A stored ASIC request leaves one durable customer acknowledgement for the existing leased worker.",
+  "actual": "The existing worker reports no pending acknowledgement after request capture.",
+  "semanticAssessment": "Actual target ran once after successful stored ASIC request and assigned recent-MFA fixture setup. The existing leased worker returned false; the expected true assertion for queued acknowledgement work failed. No import/fixture/discovery error."
+}

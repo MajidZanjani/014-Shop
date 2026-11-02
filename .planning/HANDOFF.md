@@ -8,11 +8,11 @@ Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-3
 
 **Current plan:** 07-04 — archived pre-acceptance ASIC closing and unchanged-scope reissue verified; linked changed-work revisions and notices remain open.
 
-**Execution status:** in progress — archived ASIC withdrawal/final expiry and unchanged-scope reviewed reissue verified;475 tests/65 browser checks pass; material request revisions, ordinary notices and actual qualifications remain open.
+**Execution status:** in progress — ordinary request/customer notices are under test-first implementation; prior archived ASIC closing/reissue verified at475 tests/65 browser checks; new notice work and actual qualifications remain pending.
 
 **Next implementation task:** Continue ordinary request/question/decline/offer/closing/customer purchase notifications through the existing worker, then linked material request revisions.
 
-**Recorded implementation:** 0a53002ddb66de572dbe6cbf82ba6c5881198ca1
+**Recorded implementation:** 4e1b9692a23be686d5f4c1b06739324cd7842924
 
 Current verified scope:475 tests/65 actual Chromium checks, identical336 backend/eight-script hashes. [Current behavior, evidence and full commands](../docs/build/shb-asic-closing-2026-11-02.md). Existing FPGA/ASIC acceptance/payment and staff purchase details remain intact. New archived request/offer closing, native customer withdrawal, final expiry/release and fresh-reviewed unchanged-scope reissue work.
 

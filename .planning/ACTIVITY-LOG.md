@@ -63,3 +63,5 @@ STATE.md / ROADMAP.md / HANDOFF and machine routing paused consistently. Impleme
 2026-11-02 —07-04 withdrawal RED executed on owned disposable PostgreSQL: one intended404 versus201 assertion; GSD RED_EVIDENCE_OK, semantic inspection agrees. docs/evidence/shb/asic-lifecycle-red-2026-11-02.json. STATE.md/ROADMAP.md remain active; no new completion.
 
 2026-11-02T08:03:47.200665+00:00 — STATE.md/ROADMAP.md07-04:475 tests/65 browser checks, identical336 backend/eight-script source. Archived pre-acceptance closing/final expiry and unchanged-scope reviewed reissue verified; customer native withdrawal included. Report docs/build/shb-asic-closing-2026-11-02.md. Notices/material revisions/actual gates remain open.
+
+2026-11-02T08:07:54.870706+00:00 — Continued after pushed closing implementation4e1b9692a23be686d5f4c1b06739324cd7842924. Ordinary acknowledgement RED: stored request leaves no worker work; one intended false-versus-true assertion, GSD RED_EVIDENCE_OK. STATE.md/ROADMAP.md stay active; new notice implementation unverified.

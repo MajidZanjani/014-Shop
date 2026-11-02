@@ -6,9 +6,9 @@ current_phase_name: FPGA checkout, ASIC reviewed offers and scoped discounts
 current_plan: 4
 current_task: 1
 status: in_progress
-last_updated: "2026-11-02T08:03:47.200665+00:00"
+last_updated: "2026-11-02T08:07:54.870706+00:00"
 last_activity: 2026-11-02
-state_head: 0a53002ddb66de572dbe6cbf82ba6c5881198ca1
+state_head: 4e1b9692a23be686d5f4c1b06739324cd7842924
 progress:
   total_phases: 14
   completed_phases: 1
@@ -27,7 +27,7 @@ Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-3
 
 **Current plan:** 07-04 — archived pre-acceptance ASIC closing and unchanged-scope reissue verified; linked changed-work revisions and notices remain open.
 
-**Execution status:** in progress — archived ASIC withdrawal/final expiry and unchanged-scope reviewed reissue verified;475 tests/65 browser checks pass; material request revisions, ordinary notices and actual qualifications remain open.
+**Execution status:** in progress — ordinary request/customer notices are under test-first implementation; prior archived ASIC closing/reissue verified at475 tests/65 browser checks; new notice work and actual qualifications remain pending.
 
 **Next implementation task:** Continue ordinary request/question/decline/offer/closing/customer purchase notifications through the existing worker, then linked material request revisions.
 
