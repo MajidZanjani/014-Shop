@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "evidence_class": "local-synthetic-retained-tools",
+  "timestamp": "2026-11-02T11:58:30.002447+00:00",
+  "command": "python3 scripts/check_shb_retained.py --test-label shop.shb.invitation_admin_tests.InvitationAdminTests.test_staff_home_exposes_scoped_discount_administration",
+  "result": {
+    "tests": 1,
+    "failures": 1,
+    "errors": 0,
+    "assertion": "Assigned discounts absent from authenticated staff home"
+  },
+  "diagnostic_sha256": "5e08d10c190b596ada79abc64f0a5957f9c563f209b73a1f88395bb37441147e",
+  "test_source_sha256": "8ba0016e9681f9b87385e627972ad8905f5b884094e2b9d25fd7d17f083cc358",
+  "actual_authority": false
+}

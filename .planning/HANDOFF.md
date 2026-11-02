@@ -8,13 +8,13 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Current plan:** 06-01 — protected invitation issuance/reissue and revocation verified locally; scoped discount administration/actual qualification open.
 
-**Execution status:** in progress — protected issuance/reissue verified with565 tests/137 browser checks and identical source hashes; continue scoped discount administration; actual qualification remains open.
+**Execution status:** in progress — issuance/reissue4db2586 is verified/pushed with565 tests/137 browser checks; scoped discount revocation RED begins; actual qualification remains open.
 
-**Next implementation task:** Continue scoped discount administration inline: add exact-scope recent-MFA issue/revoke controls with attributed archive, preserving existing accepted/reserved concessions and independent clocks. Inspect existing discount helpers and grant/reset patterns; keep real commercial authority closed.
+**Next implementation task:** Implement exact-scope recent-MFA discount revocation with attributed archive, atomic SQL guards, reset/recovery and native forms; preserve every held/accepted concession and original claim clock. Then add separately scoped protected discount issuance. Real commercial authority remains closed.
 
-**Recorded implementation:** 175c3ce5f958c2a04229568e1863486c3d88a247
+**Recorded implementation:** 4db25867423d5acf5291d0aacc20c55b2258bcdf
 
-New issuance/reissue code is verified and preparing its implementation commit; prior revocation175c3ce5 remains the recorded pushed baseline until the new commit identity exists. Final565 tests/137 actual Chromium checks, JS/no-JS/320px, share365 backend/eight-script hashes; focused48 shares those bytes. [Behavior, intermediate failures, exact records and full commands](../docs/build/shb-invitation-issuance-2026-11-02.md).
+Issuance/reissue implementation4db2586 is verified and ordinarily pushed to origin/main. Continuing protected discount revocation inline; current RED assertion precedes implementation. Final565 tests/137 actual Chromium checks, JS/no-JS/320px, share365 backend/eight-script hashes; focused48 shares those bytes. [Behavior, intermediate failures, exact records and full commands](../docs/build/shb-invitation-issuance-2026-11-02.md).
 
 Separate immutable synthetic eligibility scopes/exact issue grants authorize deliberate POST. Digest-only durable intents precede archive/publication; exact retries never regenerate/recover the bearer or clocks. Native replacements require an inactive matching source and retain its old revocation/expiry. SQL binds publication and invitation at commit; selected restore clears issue grants and retains audits. Original orders/coupons/notices remain intact. No actual authority/mail/price/time effect.
 

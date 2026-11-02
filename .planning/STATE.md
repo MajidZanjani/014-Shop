@@ -6,9 +6,9 @@ current_phase_name: Invitation scope, verified resources and staff MFA
 current_plan: 1
 current_task: 1
 status: in_progress
-last_updated: "2026-11-02T11:55:26.231440+00:00"
+last_updated: "2026-11-02T11:57:14.451826+00:00"
 last_activity: 2026-11-02
-state_head: 175c3ce5f958c2a04229568e1863486c3d88a247
+state_head: 4db25867423d5acf5291d0aacc20c55b2258bcdf
 progress:
   total_phases: 14
   completed_phases: 1
@@ -27,9 +27,9 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Current plan:** 06-01 — protected invitation issuance/reissue and revocation verified locally; scoped discount administration/actual qualification open.
 
-**Execution status:** in progress — protected issuance/reissue verified with565 tests/137 browser checks and identical source hashes; continue scoped discount administration; actual qualification remains open.
+**Execution status:** in progress — issuance/reissue4db2586 is verified/pushed with565 tests/137 browser checks; scoped discount revocation RED begins; actual qualification remains open.
 
-**Next implementation task:** Continue scoped discount administration inline: add exact-scope recent-MFA issue/revoke controls with attributed archive, preserving existing accepted/reserved concessions and independent clocks. Inspect existing discount helpers and grant/reset patterns; keep real commercial authority closed.
+**Next implementation task:** Implement exact-scope recent-MFA discount revocation with attributed archive, atomic SQL guards, reset/recovery and native forms; preserve every held/accepted concession and original claim clock. Then add separately scoped protected discount issuance. Real commercial authority remains closed.
 
 ## Verified local scope
 
@@ -52,9 +52,9 @@ No .env, real credentials, actual bank/mail/storage/protected-host/DNS/TLS opera
 ## Session Continuity
 
 Last session: 2026-11-02T11:55:26.231440+00:00
-Stopped at: Verified565 tests/137 browser checks; preparing issuance implementation commit, then continue scoped discount administration inline. No owned process/job.
+Stopped at: Verified565 tests/137 browser checks; issuance implementation4db2586 is committed/pushed; beginning protected discount revocation inline. No owned process/job.
 Resume file: HANDOFF.md
 
-Next: Continue scoped discount administration inline: add exact-scope recent-MFA issue/revoke controls with attributed archive, preserving existing accepted/reserved concessions and independent clocks. Inspect existing discount helpers and grant/reset patterns; keep real commercial authority closed.
+Next: Implement exact-scope recent-MFA discount revocation with attributed archive, atomic SQL guards, reset/recovery and native forms; preserve every held/accepted concession and original claim clock. Then add separately scoped protected discount issuance. Real commercial authority remains closed.
 
 User authorizes local work and ordinary non-force origin/main pushes. Actual gates remain closed. Exact context percentage is unavailable.

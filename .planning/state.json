@@ -78,7 +78,7 @@
   "next": {
     "command": "$gsd-execute-phase 6",
     "label": "Continue protected scoped discount administration",
-    "reason": "Continue scoped discount administration inline: add exact-scope recent-MFA issue/revoke controls with attributed archive, preserving existing accepted/reserved concessions and independent clocks. Inspect existing discount helpers and grant/reset patterns; keep real commercial authority closed."
+    "reason": "Implement exact-scope recent-MFA discount revocation with attributed archive, atomic SQL guards, reset/recovery and native forms; preserve every held/accepted concession and original claim clock. Then add separately scoped protected discount issuance. Real commercial authority remains closed."
   },
-  "updated_at": "2026-11-02T11:55:26.231440+00:00"
+  "updated_at": "2026-11-02T11:57:14.451826+00:00"
 }

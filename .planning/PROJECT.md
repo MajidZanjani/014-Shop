@@ -8,9 +8,9 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Current plan:** 06-01 — protected invitation issuance/reissue and revocation verified locally; scoped discount administration/actual qualification open.
 
-**Execution status:** in progress — protected issuance/reissue verified with565 tests/137 browser checks and identical source hashes; continue scoped discount administration; actual qualification remains open.
+**Execution status:** in progress — issuance/reissue4db2586 is verified/pushed with565 tests/137 browser checks; scoped discount revocation RED begins; actual qualification remains open.
 
-**Next implementation task:** Continue scoped discount administration inline: add exact-scope recent-MFA issue/revoke controls with attributed archive, preserving existing accepted/reserved concessions and independent clocks. Inspect existing discount helpers and grant/reset patterns; keep real commercial authority closed.
+**Next implementation task:** Implement exact-scope recent-MFA discount revocation with attributed archive, atomic SQL guards, reset/recovery and native forms; preserve every held/accepted concession and original claim clock. Then add separately scoped protected discount issuance. Real commercial authority remains closed.
 
 ## What this is
 

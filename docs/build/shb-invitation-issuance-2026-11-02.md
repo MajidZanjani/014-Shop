@@ -37,3 +37,5 @@ python3 scripts/check_purchase_plan.py
 ```
 
 These use retained local tools; they do not qualify the normal pinned Nix/source/runtime/native/licence/OCI/CI path. Actual company/provider/tax/refund/mail/host/ingress/database/human/independent custody/restore/complete-loss gates remain open. The independent off-host runner is unassigned. No .env, real credential, production/bank-sandbox connection, host/DNS/TLS/bank/mail/storage operation or paid provision. The private Astro release is unchanged; unrelated http_cache.sqlite remains untouched. Scoped discount issue/revoke administration follows. No parent SUMMARY/FULL_PASS/count change:11/42 retained records and1/14 documentary phases.
+
+Implementation `4db25867423d5acf5291d0aacc20c55b2258bcdf` is committed and ordinarily pushed to origin/main. Continued scoped discount administration follows under the same gates.

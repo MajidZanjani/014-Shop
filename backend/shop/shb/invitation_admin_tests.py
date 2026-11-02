@@ -49,6 +49,11 @@ class InvitationAdminTests(TransactionTestCase):
         self.assertEqual(response.json()['scopes'],[])
         self.untouched()
 
+    def test_staff_home_exposes_scoped_discount_administration(self):
+        response=self.browser.get('/staff/',HTTP_ACCEPT='text/html')
+        self.assertEqual(response.status_code,200)
+        self.assertIn(b'Assigned discounts',response.content)
+
     def test_scoped_get_hides_bearer_digest_and_has_no_commercial_effects(self):
         response=self.browser.get('/staff/'+self.invite_route)
         self.assertEqual(response.status_code,200)

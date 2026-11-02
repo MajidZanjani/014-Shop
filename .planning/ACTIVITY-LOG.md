@@ -117,3 +117,5 @@ STATE.md / ROADMAP.md pause after verified/pushed06-01 implementation 175c3ce5f9
 - 2026-11-02T11:30:38.977387+00:00: Explicit gsd-resume-work restored543 tests/123 browser checks and consumed06 handoff. Continuing06-01 through gsd-execute-phase inline; RED first verifies separate issuance scope. STATE.md / ROADMAP.md remain operative; no completion count or actual authority change.
 
 - 2026-11-02T11:55:26.231440+00:00:06-01 protected invitation issuance/reissue verified inline:565 tests/137 actual browser checks,365 backend/eight-script matching hashes, migrations0025/0026 and planning activity3 tests. Source records2028fdfd/11620cba and focused44338ca1. First focused expectations and legacy reset-count failures are retained in the report; final checks pass. STATE.md / ROADMAP.md remain operative, no parent acceptance/count change; continue scoped discounts.
+
+- 2026-11-02T11:57:14.451826+00:00: Issuance4db2586 committed/pushed. STATE.md / ROADMAP.md continue06/07 inline with protected scoped discount revocation RED first. Original565/137 source-bound evidence remains retained; no external authority/count change.
