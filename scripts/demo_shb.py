@@ -107,7 +107,8 @@ def main():
         scratch=Path(stack.enter_context(tempfile.TemporaryDirectory(prefix='shb-demo-',dir=ROOT/'.scratch')))
         os.chmod(scratch,0o700)
         python,env,pg,database,backend_scratch=stack.enter_context(prepared_database())
-        env=dict(env,DJANGO_SETTINGS_MODULE='shop.config.shb_synthetic')
+        archive=scratch/'archive';archive.mkdir(mode=0o700)
+        env=dict(env,DJANGO_SETTINGS_MODULE='shop.config.shb_synthetic',SHOP_LOCAL_CHECKOUT_ARCHIVE_ROOT=str(archive))
         if args.release:
             sys.path.insert(0,str(ROOT/'backend'))
             from shop.shb.private_release import MANIFEST,read_asset,ENTRY
@@ -135,10 +136,13 @@ def main():
                 require(report['status']=='SHB_BROWSER_PASS' and report['checks']>=20 and report['modes']==2)
                 print(json.dumps(report))
                 retained=manage(python,env,'shell','-c',"from shop.shb.models import SupportRequest,DiscountReservation; from shop.payments.models import SyntheticPaymentAttempt; from shop.catalog.models import SyntheticFulfilment; print('SHB_COUNTS',SupportRequest.objects.count(),SyntheticPaymentAttempt.objects.count(),SyntheticFulfilment.objects.count(),DiscountReservation.objects.count())")
-                require('SHB_COUNTS 2 0 0 2' in retained.stdout)
+                require('SHB_COUNTS 2 2 0 2' in retained.stdout)
+                final=manage(python,env,'shell','-c',"from shop.shb.models import SupportCheckout; from shop.catalog.models import SyntheticCheckoutAcceptance; from shop.payments.models import SyntheticBankOperation; print('SHB_CHECKOUTS',SupportCheckout.objects.count(),SyntheticCheckoutAcceptance.objects.count(),SyntheticBankOperation.objects.count())")
+                require('SHB_CHECKOUTS 2 2 2' in final.stdout)
+                return report
             else:
                 count=checks(base,credential,python,env)
-                print(f'SHB_DEMO_PASS checks={count} evidence=local-synthetic-header-level fpga=review asic=submitted payment=disabled manual_time_tracking=true')
+                print(f'SHB_DEMO_PASS checks={count} evidence=local-synthetic-header-level fpga=review asic=submitted payment=not_exercised manual_time_tracking=true')
         else:
             invitation=scratch/'invitation.txt'
             fd=os.open(invitation,os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600)
@@ -149,7 +153,7 @@ def main():
             print('SHB loopback demo: '+base,flush=True)
             print('Open the invitation from this private file: '+str(invitation),flush=True)
             print('Optional synthetic 10% code (two-use fixture) is in this private file: '+str(discount_path),flush=True)
-            print('Use Synthetic Company Limited, any synthetic.invalid contact and the common form. FPGA review and ASIC request capture with discount reservations work; payments, reviewed paid offers, coupon consumption/release and notification delivery remain pending. Ctrl-C removes only this demo and its disposable database.',flush=True)
+            print('Use Synthetic Company Limited, any synthetic.invalid contact and the common form. FPGA review, exact acceptance and fake-only payment plus ASIC request capture work. Dated ASIC offers, coupon consumption/payment closure, paid-order finalization and notification delivery remain pending. Ctrl-C removes only this demo and its disposable database.',flush=True)
             try:
                 while True:time.sleep(1)
             except KeyboardInterrupt:pass

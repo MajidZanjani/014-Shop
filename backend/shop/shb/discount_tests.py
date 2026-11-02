@@ -270,8 +270,8 @@ class DiscountTests(TransactionTestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context['purchase']['total_minor'], 262500)
         self.assertEqual(response.context['purchase']['hours_purchased'], 30)
-        self.assertEqual(self.post(variant='shb-fpga-10h', action='checkout').status_code, 503)
-        self.assertEqual(self.post(action='checkout').status_code, 503)
+        self.assertEqual(self.post(variant='shb-fpga-10h', action='checkout').status_code, 422)  # exact review is required
+        self.assertEqual(self.post(action='checkout').status_code, 422)  # unapproved ASIC cannot check out
         self.assertEqual(self.post(variant='shb-fpga-10h', action='submit').status_code, 422)
         self.assertFalse(SupportRequest.objects.exists())
         self.assertFalse(DiscountReservation.objects.exists())

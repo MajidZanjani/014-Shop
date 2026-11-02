@@ -59,7 +59,7 @@ async function main(){
       const {targetId}=await cdp.send('Target.createTarget',{url:'about:blank',browserContextId});
       const {sessionId}=await cdp.send('Target.attachToTarget',{targetId,flatten:true});
       const send=(method,params)=>cdp.send(method,params,sessionId);
-      let escaped=0,nativePosts=0,lastStatus=0;
+      let escaped=0,nativePosts=0,paymentPosts=0,lastStatus=0;
       cdp.events.push(event=>{
         if(event.sessionId!==sessionId)return;
         if(event.method==='Network.responseReceived'&&event.params.type==='Document')lastStatus=event.params.response.status;
@@ -68,6 +68,7 @@ async function main(){
         const allowed=allowedRequest(request.url,config.origin);
         if(!allowed)escaped++;
         if(allowed&&request.method==='POST'&&new URL(request.url).pathname==='/purchase/simple/')nativePosts++;
+        if(allowed&&request.method==='POST'&&new URL(request.url).pathname.startsWith('/purchase/shb/'))paymentPosts++;
         void send(allowed?'Fetch.continueRequest':'Fetch.failRequest',allowed?{requestId}:{requestId,errorReason:'BlockedByClient'}).catch(()=>{escaped++;});
       });
       await send('Page.enable');await send('Runtime.enable');await send('Network.enable');
@@ -99,6 +100,16 @@ async function main(){
       const focus=async selector=>require(await evaluate(`(()=>{const element=document.querySelector(${JSON.stringify(selector)});if(!element)return false;element.focus();return document.activeElement===element})()`));
       const type=async(selector,text)=>{await focus(selector);await key('a','KeyA',65,{modifiers:2});await send('Input.insertText',{text});};
       const toggle=async selector=>{await focus(selector);await key(' ','Space',32,{text:' '});};
+      const submit=async selector=>{
+        const before=(await send('Page.getFrameTree')).frameTree.frame.loaderId;
+        await focus(selector);await key('Enter','Enter',13);
+        let committed=false;
+        for(let i=0;i<100;i++){
+          if((await send('Page.getFrameTree')).frameTree.frame.loaderId!==before){committed=true;break;}
+          await delay(40);
+        }
+        require(committed);await until('document.readyState==="complete"');
+      };
       const fill=async()=>{
         for(const [name,text] of Object.entries({company_name:'Synthetic Company Limited',billing_address:'1 Synthetic Test Street',country:'GE',company_phone:'+995 555 010101',contact_name:'Synthetic Customer',contact_email:'buyer@synthetic.invalid'}))await type('[name='+name+']',text);
         await toggle('[name=same_phone]');await toggle('[name=privacy_acknowledged]');
@@ -125,40 +136,50 @@ async function main(){
       require(await evaluate('!document.querySelector("[name=accept_terms]")'));checks++;
       stage=javascript?'javascript-discount-apply':'no-javascript-discount-apply';
       await type('[name=discount_code]',config.discountCode);
-      await focus('button[name=action][value=apply_discount]');await key('Enter','Enter',13);
+      await submit('button[name=action][value=apply_discount]');
       await until('document.body.innerText.includes("Discount applied")');
       require(lastStatus===200&&await evaluate('document.body.innerText.includes("EUR 9,000.00")&&document.body.innerText.includes("50 hours in this order")'));checks++;
       stage=javascript?'javascript-discount-remove':'no-javascript-discount-remove';
-      await focus('button[name=action][value=remove_discount]');await key('Enter','Enter',13);
+      await submit('button[name=action][value=remove_discount]');
       await until('document.body.innerText.includes("Discount removed")');
       require(lastStatus===200&&await evaluate('document.querySelector("[name=discount_code]").value===""&&document.body.innerText.includes("EUR 10,000.00")'));checks++;
       await type('[name=discount_code]',config.discountCode);
       stage=javascript?'javascript-asic-post':'no-javascript-asic-post';
-      await focus('button[name=action][value=submit]');await key('Enter','Enter',13);
+      await submit('button[name=action][value=submit]');
       await until('document.body.innerText.includes("ASIC request recorded")');
       require(lastStatus===200&&await evaluate('document.body.innerText.includes("50 requested hours")'));checks++;
       require(await evaluate('document.body.innerText.includes("Discount reserved for this request")&&document.body.innerText.includes("EUR 9,000.00")'));checks++;
       stage=javascript?'javascript-fpga-form':'no-javascript-fpga-form';
       await go(config.origin+'/purchase/simple/?variant=shb-fpga-10h&quantity=3');
       await until('!!document.querySelector("[name=company_name]")');require(await evaluate('!document.querySelector("[name=assistance]")'));checks++;
-      await fill();await focus('button[name=action][value=review]');await key('Enter','Enter',13);
+      await fill();await submit('button[name=action][value=review]');
       stage=javascript?'javascript-fpga-post':'no-javascript-fpga-post';
       await until('document.body.innerText.includes("30 hours in this order")');
       if(await evaluate('document.readyState!=="complete"'))pendingDocumentLoads++;
       await until('document.readyState==="complete"');
       stage=javascript?'javascript-fpga-price':'no-javascript-fpga-price';
       require(lastStatus===200&&await evaluate('document.body.innerText.includes("EUR 3,000.00")'));checks++;
-      stage=javascript?'javascript-fpga-disabled':'no-javascript-fpga-disabled';
-      require(await evaluate('Array.from(document.querySelectorAll("button")).some(element=>element.disabled&&element.textContent.includes("Checkout"))'));checks++;
+      stage=javascript?'javascript-fpga-review':'no-javascript-fpga-review';
+      require(await evaluate('!!document.querySelector("[name=review_digest]")&&!document.querySelector("[name=accept_terms]").checked&&!document.querySelector("[name=privacy_acknowledged]").checked'));checks++;
       stage=javascript?'javascript-fpga-layout':'no-javascript-fpga-layout';
       require(await evaluate('document.documentElement.scrollWidth<=document.documentElement.clientWidth'));checks++;
       stage=javascript?'javascript-fpga-storage':'no-javascript-fpga-storage';
       require(await evaluate('!document.querySelector("input[type=file]")&&localStorage.length===0&&sessionStorage.length===0'));checks++;
       stage=javascript?'javascript-fpga-requests':'no-javascript-fpga-requests';
       require(escaped===0&&nativePosts===4);checks++;
+      stage=javascript?'javascript-fpga-checkout':'no-javascript-fpga-checkout';
+      await toggle('[name=accept_terms]');await toggle('[name=privacy_acknowledged]');
+      await submit('button[name=action][value=checkout]');
+      require(lastStatus===200&&await evaluate('location.pathname.startsWith("/purchase/shb/")&&document.body.innerText.includes("30 hours in this order")&&document.body.innerText.includes("Payment has not started")'));checks++;
+      stage=javascript?'javascript-fpga-payment':'no-javascript-fpga-payment';
+      await submit('button[name=action][value=pay]');
+      require(lastStatus===200&&await evaluate('document.body.innerText.includes("Payment state: observed")&&document.body.innerText.includes("Bank result: captured")'));checks++;
+      await submit('button[name=action][value=pay]');
+      require(lastStatus===200&&escaped===0&&nativePosts===5&&paymentPosts===2);checks++;
+      require(await evaluate('document.documentElement.scrollWidth<=document.documentElement.clientWidth&&localStorage.length===0&&sessionStorage.length===0'));checks++;
       await cdp.send('Target.disposeBrowserContext',{browserContextId});
     }
-    console.log(JSON.stringify({status:'SHB_BROWSER_PASS',checks,modes:2,pendingDocumentLoads,browser:version,node:process.versions.node,evidence_class:'local-synthetic-browser',fpga:'review',asic:'submitted',payment:'disabled'}));
+    console.log(JSON.stringify({status:'SHB_BROWSER_PASS',checks,modes:2,pendingDocumentLoads,browser:version,node:process.versions.node,evidence_class:'local-synthetic-browser',fpga:'accepted-30-hours',asic:'submitted-50-hours',payment:'synthetic-captured-once'}));
   }catch(error){
     if(config.evidence&&diagnose){try{await writeFile(join(config.evidence,'browser-failure.json'),JSON.stringify(await diagnose()),{flag:'wx',mode:0o600});}catch{}}
     throw error;

@@ -35,3 +35,7 @@ STATE.md/ROADMAP.md route through resume to07-03, not started. Both implementati
 - 2026-10-30T13:52:15.032330+00:00 — Resumed07-03 inline through gsd-resume-work/gsd-execute-phase; restored exact saved scope; consumed HANDOFF.json; no external jobs or new credentials. STATE.md / ROADMAP.md remain operative.
 
 - 2026-10-30T13:57:58.828345+00:00 — Explicit user pause during07-03 after14 checkout tests reached RED (12 failures,2 errors), followed by partial unverified model/service code. Code remains uncommitted; no migrations/routes/runtime pass. Six Python files AST-parse. STATE.md / ROADMAP.md / HANDOFF and machine routing synchronized; no completion count added.
+
+## 2026-11-02T05:34:44.886054+00:00 — FPGA checkout verified locally
+
+STATE.md / ROADMAP.md retain07-03 as partial. Guarded schema/scope, signed review, separate acceptance/privacy, protected payment route and post-archive invitation checks implemented.390 tests,41 actual browser checks and312 backend/eight-script source hashes pass through the explicitly synthetic retained-tool lane; normal Nix source/runtime qualification remains blocked. No full parent completion, external effect or time automation. See docs/build/shb-checkout-2026-11-02.md.

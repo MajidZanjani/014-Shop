@@ -5,7 +5,8 @@ from django.conf import settings
 from django.http import HttpResponse,JsonResponse,HttpResponseRedirect
 from django.template.response import TemplateResponse
 from django.views.decorators.http import require_GET,require_http_methods
-from . import catalog,invitations,services,discounts
+from django.views.decorators.debug import sensitive_post_parameters
+from . import catalog,invitations,services,discounts,checkout
 from .forms import ShopForm
 from .middleware import denied
 from .private_release import read_asset,ENTRY
@@ -51,6 +52,7 @@ def static_asset(request,name=ENTRY):
 
 
 @require_http_methods(['GET','POST'])
+@sensitive_post_parameters()
 def shop(request):
     invitation=request.shb_invitation
     fixture=getattr(settings,'SHB_SYNTHETIC_FIXTURE',False) and settings.SHOP_ENV in ('local','synthetic')
@@ -66,7 +68,7 @@ def shop(request):
     action=request.POST.get('action','review')
     posted=request.POST.copy()
     if action=='remove_discount' and len(posted.getlist('discount_code'))<=1:posted['discount_code']=''
-    form=ShopForm(posted,stage='submit' if action=='submit' else 'review',known_project=bool(invitation.project_reference))
+    form=ShopForm(posted,stage=action if action in ('submit','checkout') else 'review',known_project=bool(invitation.project_reference))
     context={'form':form,'request_id':request.POST.get('request_id',''),'fixture':fixture,
         'is_asic':request.POST.get('variant')=='shb-asic-25h','asic_fields':('assistance','project_reference','design_context','timing')}
     if not form.is_valid():return page(request,**context,status=422)
@@ -89,13 +91,71 @@ def shop(request):
                 'offer_issued':'Offer issued','paid':'Paid'}.get(row.state,'Contact SLL')
             return page(request,**context,submitted=row,purchase=row.payload['purchase'],
                 request_status=state_label,discount_message=message)
+        if action=='checkout':
+            from shop.adapters.evidence_archive import PreparedArchive, ArchiveError
+            from shop.catalog.checkout import CheckoutError
+            root=getattr(settings,'LOCAL_CHECKOUT_ARCHIVE_ROOT',None)
+            if not root:raise services.ShbError('Required recovery evidence is unavailable.',503)
+            try:
+                row=checkout.capture(request,data,request.POST.get('request_id'),request.POST.get('review_digest'))
+                context.update(review_digest=request.POST.get('review_digest'),review=row.snapshot,purchase=row.snapshot['purchase'])
+                with PreparedArchive(Path(root)) as archive:checkout.accept(request,row,archive)
+            except CheckoutError as error:raise services.ShbError(str(error),error.status) from None
+            except (ArchiveError,OSError):raise services.ShbError('Required recovery evidence is unavailable.',503) from None
+            return HttpResponseRedirect('/purchase/shb/'+str(row.pk)+'/')
         if action not in ('review','apply_discount','remove_discount'):
-            raise services.ShbError('Checkout awaits the integrated SHB order/payment batch.',503)
+            raise services.ShbError('Unsupported action.',422)
         if action=='apply_discount' and not data['discount_code']:
             raise services.ShbError('Enter a discount code to apply.',422)
         value=discounts.preview(request,data) if data['discount_code'] else catalog.quote(
             data['variant'],data['quantity'],offer=catalog.synthetic_offer() if fixture else None)
         message='Discount applied to this preview. A use is reserved only on submission or checkout.' if data['discount_code'] else 'Discount removed.' if action=='remove_discount' else None
-        return page(request,**context,purchase=value,discount_message=message)
+        review_digest=None;review=None
+        if fixture and data['variant']=='shb-fpga-10h':
+            review_digest,review=checkout.review_token(request,data,request.POST.get('request_id'),value)
+        # Every new review asks for fresh, separate acknowledgement of the exact documents.
+        if review_digest:
+            unchecked=posted.copy();unchecked['accept_terms']='';unchecked['privacy_acknowledged']=''
+            context['form']=ShopForm(unchecked,known_project=bool(invitation.project_reference))
+        return page(request,**context,purchase=value,discount_message=message,review_digest=review_digest,review=review)
     except services.ShbError as error:return page(request,**context,error=error.code,status=error.status)
     except ValueError:return page(request,**context,error='The requested quantity or amount is outside the applicable limits.',status=422)
+
+
+@require_http_methods(['GET','POST'])
+@sensitive_post_parameters()
+def payment_page(request,identity):
+    """Only the originating invitation session can inspect or act on this order."""
+    from shop.adapters.evidence_archive import PreparedArchive,ArchiveError
+    from shop.catalog import checkout_payment as payment
+    from shop.catalog.checkout import CheckoutError
+    from shop.payments.bank_contract import BankError
+    owner=request.shb_invitation.customer
+    context={};status=200
+    try:
+        if request.GET:raise CheckoutError('unexpected_query',400)
+        if request.method=='POST':
+            if (request.content_type not in ('application/x-www-form-urlencoded','multipart/form-data') or not request.META.get('CONTENT_LENGTH','0').isascii() or not request.META.get('CONTENT_LENGTH','0').isdigit()
+                    or int(request.META.get('CONTENT_LENGTH','0'))>1024 or request.FILES
+                    or any(len(request.POST.getlist(k))!=1 for k in request.POST)
+                    or set(request.POST)-{'csrfmiddlewaretoken','action'}
+                    or request.POST.get('action') not in ('pay','reconcile')):
+                raise CheckoutError('invalid_request',400)
+            root=getattr(settings,'LOCAL_CHECKOUT_ARCHIVE_ROOT',None)
+            if not root:raise CheckoutError('archive_unavailable',503)
+            with PreparedArchive(Path(root)) as archive:
+                operation=payment.pay if request.POST['action']=='pay' else payment.reconcile
+                operation(owner,identity,archive,customer_request=request)
+        value,sha256,row=payment.review(owner,identity,customer_request=request)
+        context={'review':value,'purchase':value['checkout']['purchase'],'accepted':bool(row and row.simulated_accepted_at),
+            'order_reference':str(row.pk) if row else None,'attempt':row.attempt if row and row.attempt_id else None}
+    except (CheckoutError,services.ShbError) as error:
+        context={'error':str(error)};status=error.status
+    except (BankError,TimeoutError):
+        context={'error':'The payment result is uncertain. Look up this order before any further action.'};status=409
+    except (ArchiveError,OSError):
+        context={'error':'Required recovery evidence is unavailable. This order is on hold.'};status=503
+    response=TemplateResponse(request,'shb/payment.html',context,status=status)
+    response['Content-Security-Policy']="default-src 'none'; style-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'"
+    response['Cache-Control']='no-store';response['Referrer-Policy']='no-referrer'
+    return response

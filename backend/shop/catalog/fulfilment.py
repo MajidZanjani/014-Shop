@@ -9,6 +9,8 @@ from shop.adapters.evidence_archive import manifest
 
 def funded(owner, identity, *, customer_request=None):
     row = payment.accepted(owner, identity, customer_request=customer_request)
+    if row.checkout.snapshot.get('release') == 'shb-1.1':
+        raise checkout.CheckoutError('shb_manual_support_only', 422)
     if (row.attempt_id is None or row.attempt.state != 'observed' or row.attempt.provider_status not in ('captured','refunded')
             or attempts.request_for(row.attempt) != payment.request_for(row)):
         raise checkout.CheckoutError('synthetic_captured_payment_required', 422)

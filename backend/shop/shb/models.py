@@ -76,7 +76,8 @@ class DiscountReservation(models.Model):
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     discount = models.ForeignKey(DiscountCode, on_delete=models.PROTECT)
-    request = models.OneToOneField(SupportRequest, on_delete=models.PROTECT)
+    request = models.OneToOneField(SupportRequest, null=True, on_delete=models.PROTECT)
+    checkout = models.OneToOneField('catalog.SyntheticCheckout', null=True, on_delete=models.PROTECT)
     slot = models.PositiveSmallIntegerField()
     snapshot = models.JSONField(editable=False)
     sha256 = models.CharField(max_length=64, editable=False)
@@ -88,6 +89,7 @@ class DiscountReservation(models.Model):
         constraints = [
             models.UniqueConstraint(fields=['discount', 'slot'], condition=models.Q(state='reserved'), name='shb_discount_unique_held_slot'),
             models.CheckConstraint(condition=models.Q(slot__gte=1, slot__lte=100), name='shb_discount_slot_bounds'),
+            models.CheckConstraint(condition=(models.Q(request__isnull=False, checkout__isnull=True) | models.Q(request__isnull=True, checkout__isnull=False)), name='shb_discount_one_claim_target'),
             models.CheckConstraint(condition=models.Q(sha256__regex=r'^[a-f0-9]{64}$') & (
                 models.Q(state='reserved', release_review__isnull=True) |
                 models.Q(state='released', release_review__isnull=False)), name='shb_discount_held_until_matched'),
@@ -114,3 +116,20 @@ class SupportRequestReview(models.Model):
     class Meta:
         constraints = [models.CheckConstraint(condition=models.Q(message__regex=r'\S',
             prior_state__in=['submitted', 'needs_information', 'under_review']), name='shb_review_reason_required')]
+
+
+class SupportCheckout(models.Model):
+    """SHB scope on the shared immutable checkout, never a history grant."""
+    checkout = models.OneToOneField('catalog.SyntheticCheckout', primary_key=True, on_delete=models.PROTECT)
+    invitation = models.ForeignKey(Invitation, on_delete=models.PROTECT)
+    request_id = models.UUIDField(editable=False)
+    submission_sha256 = models.CharField(max_length=64, editable=False)
+    review_sha256 = models.CharField(max_length=64, editable=False)
+    session_digest = models.CharField(max_length=64, editable=False)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['invitation', 'request_id'], name='shb_checkout_retry'),
+            models.CheckConstraint(condition=models.Q(submission_sha256__regex=r'^[a-f0-9]{64}$',
+                review_sha256__regex=r'^[a-f0-9]{64}$', session_digest__regex=r'^[a-f0-9]{64}$'), name='shb_checkout_digests'),
+        ]

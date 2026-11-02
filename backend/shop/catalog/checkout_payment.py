@@ -24,10 +24,22 @@ def authorize_customer(owner, request):
 
 
 def locked(owner, identity, *, customer_request=None):
-    authorize_customer(owner,customer_request)
-    owner_locked(owner)
-    row = SyntheticCheckout.objects.select_for_update().filter(pk=identity, owner=owner).first()
-    if row is None: raise checkout.CheckoutError('not_found', 404)
+    shb_request = customer_request is not None and getattr(customer_request, 'shb_protected', False)
+    if shb_request:
+        from shop.shb.checkout import authorize
+        authorize(customer_request, owner, identity)
+    else:
+        authorize_customer(owner,customer_request)
+    candidate=SyntheticCheckout.objects.filter(pk=identity,owner=owner).first()
+    if candidate is None:raise checkout.CheckoutError('not_found',404)
+    if candidate.snapshot.get('release')=='shb-1.1':
+        if customer_request is not None and not shb_request:
+            raise checkout.CheckoutError('verification_required',403)
+        from shop.shb.checkout import lock_customer
+        lock_customer(owner)
+    else:
+        owner_locked(owner)
+    row = SyntheticCheckout.objects.select_for_update().get(pk=identity,owner=owner)
     if (checkout.digest(row.snapshot) != row.sha256 or row.snapshot.get('effects_authorized') is not False
             or row.snapshot.get('financial_confirmation') is not False):
         raise checkout.CheckoutError('snapshot_mismatch')
@@ -39,10 +51,13 @@ def envelope(row):
     documents = [{'id': identity, 'title': 'Synthetic ' + titles[identity], 'version': PROFILE,
                   'body': 'Synthetic ' + identity + ' fixture for local testing only. This is not an approved legal document.'}
                  for identity in row.snapshot['required_document_ids']]
+    shb = row.snapshot.get('release') == 'shb-1.1'
+    if shb:
+        documents = [dict(doc) for doc in row.snapshot['documents']['documents']]
     return {'profile': PROFILE, 'checkout_id': str(row.pk), 'checkout_sha256': row.sha256,
             'checkout': row.snapshot, 'fixture_documents': documents, 'declaration': DECLARATION,
-            'offer_expires_at': (row.created_at + timedelta(minutes=30)).isoformat(),
-            'order_payment_expires_at': (row.created_at + timedelta(minutes=45)).isoformat(),
+            'offer_expires_at': row.snapshot['review_expires_at'] if shb else (row.created_at + timedelta(minutes=30)).isoformat(),
+            'order_payment_expires_at': row.snapshot['order_payment_expires_at'] if shb else (row.created_at + timedelta(minutes=45)).isoformat(),
             'evidence_class': 'local-synthetic', 'financial_confirmation': False, 'effects_authorized': False}
 
 
@@ -98,12 +113,15 @@ def accept(owner, identity, expected, confirmed, archive, *, customer_request=No
             now = attempts.database_now()
             if now >= datetime.fromisoformat(value['offer_expires_at']): raise checkout.CheckoutError('synthetic_offer_expired')
             payload = {'review': value, 'confirmation': {'owner_id': owner.pk, 'confirmed': True, 'confirmed_at': now.isoformat()}}
+            if saved.snapshot.get('release') == 'shb-1.1':
+                payload['confirmation'].update(invitation_id=saved.snapshot['invitation_id'], privacy_acknowledged=True,
+                    privacy_revision=saved.snapshot['privacy_revision'], attribution='invitation-bearer-submission', named_identity_verified=False)
             row = SyntheticCheckoutAcceptance.objects.create(id=uuid.uuid5(saved.pk, PROFILE), checkout=saved,
                 review_sha256=expected, payload=payload, sha256=checkout.digest(payload))
         elif row.review_sha256 != expected: raise checkout.CheckoutError('review_changed')
         verify(row)
     # Both recoverable checkout and explicit fixture confirmation precede acceptance/dispatch.
-    checkout.archive_capture(identity, owner, archive)
+    checkout.archive_capture(identity, owner, archive, customer_request=customer_request)
     receipt = archive.publish(row.pk, checkout.canonical(row.payload))
     recover(archive, manifest(receipt), row.pk, checkout.canonical(row.payload))
     with transaction.atomic(durable=True):
@@ -138,6 +156,8 @@ def request_for(row):
 def pay(owner, identity, archive, *, fault=None, outcome='captured', customer_request=None):
     synthetic_bank.guard()
     row = accepted(owner, identity, customer_request=customer_request)
+    shb=row.checkout.snapshot.get('release')=='shb-1.1'
+    if shb and customer_request is None:raise checkout.CheckoutError('invitation_required',403)
     customer_epoch = uuid.UUID(customer_request.session[SESSION_EPOCH]) if customer_request is not None else None
     retained(row, archive)
     deadline = datetime.fromisoformat(row.payload['review']['order_payment_expires_at'])
@@ -152,7 +172,8 @@ def pay(owner, identity, archive, *, fault=None, outcome='captured', customer_re
         if current.attempt_id not in (None, attempt.pk): raise checkout.CheckoutError('attempt_mismatch')
         current.attempt = attempt;current.save(update_fields=['attempt'])
     # Existing one-way claim means an uncertain attempt is never sent again.
-    try:attempts.dispatch(attempt.pk, archive, fault=fault, outcome=outcome, customer_epoch=customer_epoch)
+    claim_options={'authorize_claim':lambda:locked(owner,identity,customer_request=customer_request)} if shb else {}
+    try:attempts.dispatch(attempt.pk, archive, fault=fault, outcome=outcome, customer_epoch=customer_epoch,**claim_options)
     except BankError as error:
         if customer_request is not None and str(error)=='recovery_effects_pending':
             raise checkout.CheckoutError('verification_required',403) from None

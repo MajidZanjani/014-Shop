@@ -14,6 +14,22 @@ ROOT=Path(__file__).resolve().parents[1]
 from check_worker import prepared_database,manage
 
 
+
+LEGACY_TRANSACTION_TESTS=['shop.catalog.checkout_tests','shop.catalog.checkout_payment_tests','shop.catalog.fulfilment_tests','shop.adapters.evidence_archive_tests']
+
+
+def legacy_transaction_environment(env,scratch):
+    """Test preserved services apart from intentional new-IP route denial.
+
+    Only the old-sale gate is excluded in this disposable fake-only test module.
+    SHB tests still use the actual middleware and assert old routes stay closed.
+    """
+    if env.get('SHOP_ENV')!='synthetic':raise ValueError('synthetic regression environment required')
+    setting=Path(scratch)/'legacy_checkout_regression.py'
+    setting.write_text("from shop.config.synthetic import *\nMIDDLEWARE=[name for name in MIDDLEWARE if name!='shop.shb.middleware.ShopGateMiddleware']\n")
+    return dict(env,DJANGO_SETTINGS_MODULE='legacy_checkout_regression',PYTHONPATH=env.get('PYTHONPATH','')+':'+str(scratch))
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--shared',action='store_true',help='Also run affected shared security, recovery and bank-domain regressions; existing test commands remain unchanged')
@@ -27,10 +43,10 @@ def main():
         manage(python,env,'check')
         manage(python,env,'migrate','--noinput')
         manage(python,env,'makemigrations','--check','--dry-run')
-        output=manage(python,env,'test','shop.shb.tests','shop.shb.discount_tests','shop.shb.review_tests','--noinput','--keepdb',timeout=120)
+        output=manage(python,env,'test','shop.shb.tests','shop.shb.discount_tests','shop.shb.review_tests','shop.shb.checkout_tests','--noinput','--keepdb',timeout=120)
         raw=output.stdout+output.stderr
         count=re.search(r'Ran (\d+) tests?',raw)
-        if not count or int(count[1])<51 or 'OK' not in raw or 'skipped' in raw:
+        if not count or int(count[1])<71 or 'OK' not in raw or 'skipped' in raw:
             raise ValueError('SHB PostgreSQL controls missing/failed/skipped')
         print(raw)
         shared=0
@@ -38,9 +54,10 @@ def main():
         if args.shared:
             batches=[['shop.core.tests','shop.access.tests','shop.access.staff_tests','shop.access.recovery_tests','shop.access.effect_tests','shop.access.startup_tests','shop.access.staff_restore_tests','shop.access.authentication_recovery_tests'],
                 ['shop.payments.tests','shop.payments.attempt_tests','shop.payments.control_tests','shop.payments.notification_tests','shop.payments.observation_tests','shop.payments.operation_tests','shop.payments.overpayment_tests'],
-                ['shop.access.review_tests','shop.access.staff_navigation_tests','shop.access.preparation_tests']]
+                ['shop.access.review_tests','shop.access.staff_navigation_tests','shop.access.preparation_tests'],LEGACY_TRANSACTION_TESTS]
             for labels in batches:
-                outcome=manage(python,env,'test',*labels,'--noinput','--keepdb',timeout=120)
+                batch_env=legacy_transaction_environment(env,scratch) if labels==LEGACY_TRANSACTION_TESTS else env
+                outcome=manage(python,batch_env,'test',*labels,'--noinput','--keepdb',timeout=120)
                 log=outcome.stdout+outcome.stderr;match=re.search(r'Ran (\d+) tests?',log)
                 if not match or 'OK' not in log or 'skipped' in log:raise ValueError('required shared regressions failed/empty/skipped')
                 shared+=int(match[1]);print(f'SHB_SHARED_BATCH_PASS tests={match[1]}')

@@ -24,7 +24,7 @@ class ShopGateMiddleware:
         old_post=request.method not in ('GET','HEAD') and path.startswith(('/api/v1/configuration-drafts/','/api/v1/quotation-requests/','/purchase/checkout-rehearsal/','/api/v1/checkout-rehearsal/'))
         time_panel=('/checkout-rehearsal/' in path and '/support/' in path) or path.startswith('/staff/support/')
         if path in OLD_SALES or old_post or time_panel:return denied(404)
-        protected=path in PROTECTED or path.startswith(('/invite/','/shop/private/','/_astro/'))
+        protected=path in PROTECTED or path.startswith(('/invite/','/shop/private/','/_astro/','/purchase/shb/'))
         if protected:
             request.shb_protected=True
             if request.get_host().split(':')[0] not in ('shop.xspi.pro','localhost','127.0.0.1'):
@@ -49,7 +49,7 @@ class ShopCsrfViewMiddleware(CsrfViewMiddleware):
         # only with browser-enforced same-origin Fetch Metadata on the exact SHB
         # form route. Django still requires its normal matching cookie/form CSRF
         # token. Null/missing/foreign metadata never grants this exception.
-        if (getattr(request,'shb_protected',False) and request.path=='/purchase/simple/'
+        if (getattr(request,'shb_protected',False) and (request.path=='/purchase/simple/' or request.path.startswith('/purchase/shb/'))
                 and request.META.get('HTTP_ORIGIN')=='null'
                 and request.META.get('HTTP_SEC_FETCH_SITE')=='same-origin'):
             return True

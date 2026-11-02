@@ -154,22 +154,20 @@ def capture(owner, request_id, expected_digest):
         return row, created
 
 
-def archive_capture(identity, owner, archive):
+def archive_capture(identity, owner, archive, *, customer_request=None):
     """Retain exact private checkout bytes before any future simulated dispatch integration."""
     synthetic_bank.guard()
     if type(archive) is not PreparedArchive:
         raise CheckoutError('local_archive_required')
+    from .checkout_payment import locked
     with transaction.atomic(durable=True):
-        owner_locked(owner)
-        row = SyntheticCheckout.objects.filter(pk=identity, owner=owner).first()
-        if row is None: raise CheckoutError('not_found', 404)
+        row=locked(owner,identity,customer_request=customer_request)
         value = canonical(row.snapshot)
         if hashlib.sha256(value).hexdigest() != row.sha256: raise CheckoutError('snapshot_mismatch')
     receipt = archive.publish(row.pk, value)
     if archive.recover(receipt) != value: raise CheckoutError('archive_mismatch')
     with transaction.atomic(durable=True):
-        owner_locked(owner)
-        row = SyntheticCheckout.objects.select_for_update().get(pk=row.pk, owner=owner)
+        row=locked(owner,identity,customer_request=customer_request)
         if canonical(row.snapshot) != value: raise CheckoutError('snapshot_mismatch')
         row.archive_receipt = manifest(receipt)
         row.save(update_fields=['archive_receipt'])

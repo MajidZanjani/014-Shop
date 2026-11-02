@@ -25,6 +25,7 @@ urlpatterns = [
     path('',shb.shop),path('shop/',shb.shop),path('support/',shb.shop),
     path('invite/<str:token>',shb.invite),
     path('purchase/simple/',shb.shop),
+    path('purchase/shb/<uuid:identity>/',shb.payment_page),
     path('api/v1/catalog/',shb.catalog_json),path('api/v1/shb/catalog/',shb.catalog_json),
     path('shop/assets/shop.css',shb.stylesheet),
     path('shop/private/index.html',shb.static_asset),

@@ -76,9 +76,9 @@
     }
   ],
   "next": {
-    "command": "$gsd-resume-work",
-    "label": "Resume partial SHB FPGA checkout",
-    "reason": "Resume07-03 partial FPGA checkout: add guarded additive catalog/SHB migrations and wire protected routes/templates, then run the14 checkout tests and required shared regressions; current worktree is unverified."
+    "command": "$gsd-execute-phase 07",
+    "label": "Complete FPGA paid-order finalization",
+    "reason": "Complete per-order FPGA paid finalization and coupon consumption with archived acceptance/captured payment, staff visibility and durable transaction notice; then continue matching dated ASIC offers."
   },
-  "updated_at": "2026-10-30T13:57:58.828345+00:00"
+  "updated_at": "2026-11-02T05:34:44.886054+00:00"
 }

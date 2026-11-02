@@ -6,11 +6,11 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
 
-**Current plan:** 07-03 — SHB immutable checkout and acceptance; partial FPGA code/tests, unverified.
+**Current plan:** 07-03 — SHB immutable FPGA checkout/acceptance and fake payment verified locally; paid-order finalization remains open.
 
-**Execution status:** paused — explicit user request;14 checkout tests reached RED baseline, partial model/service edits lack migrations/routes and runtime verification.
+**Execution status:** in progress — FPGA checkout slice verified with390 local tests and41 browser checks; full paid workflow and Nix qualification remain pending.
 
-**Next implementation task:** Resume07-03 partial FPGA checkout: add guarded additive catalog/SHB migrations and wire protected routes/templates, then run the14 checkout tests and required shared regressions; current worktree is unverified.
+**Next implementation task:** Complete per-order FPGA paid finalization and coupon consumption with archived acceptance/captured payment, staff visibility and durable transaction notice; then continue matching dated ASIC offers.
 
 ## What this is
 
@@ -57,3 +57,9 @@ Checkpoint 2026-10-30T13:47:11.673Z: both coupon and assigned ASIC triage/declin
 Resume 2026-10-30T13:52:15.032330+00:00: explicit resume lifts the context-pressure pause.07-03 proceeds inline using synthetic PostgreSQL fixtures; all live and protected-resource gates remain closed. HANDOFF.json consumed.
 
 Explicit pause 2026-10-30T13:57:58.828345+00:00: user requested $gsd-pause-work during07-03. Partial model/service/test files remain uncommitted and unverified; migrations, routes/templates, SQL invariants, regression/browser/source checks remain. Only pause metadata is committed. See HANDOFF.json and the07 checkpoint.
+
+Resume 2026-11-02T05:03:27.708886+00:00: explicit user $gsd-resume-work lifts the earlier pause. HANDOFF.json consumed after matching all six code files; planning changes in its snapshot were already committed. Continue07-03 inline with no external operation or commercial approval.
+
+## FPGA checkout continuation — 2026-11-02
+
+Resolved the saved unverified work: guarded migrations, signed exact review, separate terms/privacy acceptance, current-session payment route and reauthorization after archive I/O.390 tests and41 current actual browser checks pass; exact source reports and tool limitations are in docs/build/shb-checkout-2026-11-02.md. New paid-order/coupon/notice finalization and dated ASIC offers remain pending. Nix/tool recovery evidence is synthetic and does not qualify deployment. No parent completion count or real company approval.

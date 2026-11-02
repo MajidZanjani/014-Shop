@@ -281,7 +281,7 @@ class SyntheticCheckout(models.Model):
     owner=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT)
     request_id=models.UUIDField()
     cart_snapshot=models.ForeignKey(CartSnapshot,on_delete=models.PROTECT)
-    business_snapshot=models.ForeignKey(BusinessDraftSnapshot,on_delete=models.PROTECT)
+    business_snapshot=models.ForeignKey(BusinessDraftSnapshot,null=True,on_delete=models.PROTECT)
     snapshot=models.JSONField()
     sha256=models.CharField(max_length=64)
     archive_receipt=models.JSONField(default=dict)
@@ -291,6 +291,7 @@ class SyntheticCheckout(models.Model):
     created_at=models.DateTimeField(auto_now_add=True)
     class Meta:
         constraints=[
+            models.CheckConstraint(condition=models.Q(business_snapshot__isnull=False) | models.Q(snapshot__release='shb-1.1', snapshot__release__isnull=False), name='checkout_business_or_shb'),
             models.UniqueConstraint(fields=['owner','request_id'],name='synthetic_checkout_request_unique'),
             models.UniqueConstraint(fields=['owner','sha256'],name='synthetic_checkout_snapshot_unique'),
             models.CheckConstraint(condition=models.Q(sha256__regex=r'^[0-9a-f]{64}$',evidence_class='local-synthetic',financial_confirmation=False,effects_authorized=False),name='synthetic_checkout_no_effects'),

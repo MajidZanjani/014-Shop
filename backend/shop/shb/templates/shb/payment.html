@@ -1,0 +1,10 @@
+{% load shb_money %}<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Your support purchase — SLL</title><link rel="stylesheet" href="/shop/assets/shop.css"></head>
+<body><header><a href="/shop/">SLL</a><span>ENGINEERING SUPPORT</span></header><main>
+<h1>Your support purchase</h1><p class="notice">Local synthetic demonstration only. No real contract, payment or hours entitlement is created.</p>
+{% if error %}<p class="error" role="alert">{{ error }}</p>{% endif %}
+{% if purchase %}<section class="summary"><h2>{{ purchase.variant_label }}</h2><p>{{ purchase.quantity }} × {{ purchase.hours_per_bundle }} hours per bundle</p><p><strong>{{ purchase.hours_purchased }} hours in this order</strong></p><p>Total: {{ purchase.total_minor|euro_minor }}</p><p>Order reference: {{ order_reference }}</p>
+{% if accepted %}<p>Reviewed terms and separate privacy acknowledgement retained.</p>{% endif %}
+{% if attempt %}<p>Payment state: {{ attempt.state }}. Bank result: {{ attempt.provider_status|default:'pending' }}.</p>{% else %}<p>Payment has not started.</p>{% endif %}</section>
+<form method="post">{% csrf_token %}<button name="action" value="pay" type="submit">Simulate payment</button><button name="action" value="reconcile" type="submit">Look up payment</button></form>{% endif %}
+<p>SLL tracks support use and sends task emails manually. This page shows only this purchase.</p><p><a href="/purchase/simple/">Start another purchase</a></p></main></body></html>
