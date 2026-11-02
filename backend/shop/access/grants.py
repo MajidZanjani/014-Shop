@@ -17,10 +17,10 @@ def revoke_staff_resource_grants(*,user_id):
     from shop.catalog.models import (SyntheticSupportStaffGrant,SyntheticDeliveryStaffGrant,
         SyntheticLicenceCaseStaffGrant,SyntheticSupportRefundStaffGrant)
     from shop.payments.models import SyntheticOverpaymentStaffGrant,SyntheticPaymentStaffGrant
-    from shop.shb.models import PaidOrderGrant
+    from shop.shb.models import PaidOrderGrant,InvitationStaffGrant
     scopes=(('quotation',StaffQuotationGrant),('support',SyntheticSupportStaffGrant),
         ('delivery',SyntheticDeliveryStaffGrant),('licence_case',SyntheticLicenceCaseStaffGrant),
         ('support_refund',SyntheticSupportRefundStaffGrant),('overpayment',SyntheticOverpaymentStaffGrant),
-        ('payment',SyntheticPaymentStaffGrant),('shb_order',PaidOrderGrant))
+        ('payment',SyntheticPaymentStaffGrant),('shb_order',PaidOrderGrant),('shb_invitation',InvitationStaffGrant))
     query={} if user_id is None else {'user_id':user_id}
     return {name:model.objects.filter(**query).delete()[0] for name,model in scopes}

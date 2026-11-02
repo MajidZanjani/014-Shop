@@ -46,7 +46,7 @@ def main():
         manage(python,env,'check')
         manage(python,env,'migrate','--noinput')
         manage(python,env,'makemigrations','--check','--dry-run')
-        labels=args.test_label or ['shop.shb.tests','shop.shb.discount_tests','shop.shb.review_tests','shop.shb.checkout_tests','shop.shb.paid_order_tests','shop.shb.closure_tests','shop.shb.offer_tests','shop.shb.lifecycle_tests','shop.shb.notification_tests','shop.shb.revision_tests','shop.shb.recovery_tests','shop.shb.financial_tests']
+        labels=args.test_label or ['shop.shb.tests','shop.shb.discount_tests','shop.shb.review_tests','shop.shb.checkout_tests','shop.shb.paid_order_tests','shop.shb.closure_tests','shop.shb.offer_tests','shop.shb.lifecycle_tests','shop.shb.notification_tests','shop.shb.revision_tests','shop.shb.recovery_tests','shop.shb.financial_tests','shop.shb.invitation_admin_tests']
         output=manage(python,env,'test',*labels,'--noinput','--keepdb',timeout=120)
         raw=output.stdout+output.stderr
         count=re.search(r'Ran (\d+) tests?',raw)

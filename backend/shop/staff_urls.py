@@ -20,7 +20,10 @@ from shop.shb.staff_views import issue_offer as issue_shb_offer
 from shop.shb.staff_views import close_request as close_shb_request
 from shop.shb.staff_orders import orders as shb_orders,detail as shb_order
 from shop.shb.staff_orders import refund_review,refund_handoff
+from shop.shb.invitation_admin_views import queue as invitation_queue,detail as invitation_detail
 urlpatterns=[
+    path('staff/shb-invitations/',invitation_queue),
+    path('staff/shb-invitations/<uuid:identity>/',invitation_detail),
     path('staff/shb-orders/',shb_orders),
     path('staff/shb-orders/<uuid:identity>/',shb_order),
     path('staff/shb-orders/<uuid:identity>/refund-review/',refund_review),

@@ -77,8 +77,8 @@
   ],
   "next": {
     "command": "$gsd-execute-phase 6",
-    "label": "Continue protected invitation revocation",
-    "reason": "Implement protected staff invitation revocation through existing exact grants, native/JSON CSRF forms and archive/recovery controls; preserve original purchase/reconciliation facts and all actual qualification gates."
+    "label": "Continue protected invitation and discount administration",
+    "reason": "Continue existing 06-01/07-02 protected invitation issuance/reissue and scoped discount administration using explicit eligible associations and safe secret handling; preserve all actual input, runtime and external-operation gates."
   },
-  "updated_at": "2026-11-02T10:49:10.181609+00:00"
+  "updated_at": "2026-11-02T11:16:44.495073+00:00"
 }

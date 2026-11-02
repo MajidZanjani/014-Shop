@@ -6,11 +6,11 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
 
-**Current plan:** 06-01 — assigned recent-MFA invitation revocation, archived audit and recovery retention; local slice in progress.
+**Current plan:** 06-01 — protected staff invitation revocation and recoverable audit verified locally; remaining administration/actual qualification open.
 
-**Execution status:** in progress — existing06-01 protected invitation revocation in local synthetic implementation;526 tests/113 browser checks remain the verified baseline and actual gates stay open.
+**Execution status:** in progress — local invitation revocation verified with 543 tests/123 browser checks; remaining staff issuance/discount administration and actual qualifications stay open.
 
-**Next implementation task:** Implement protected staff invitation revocation through existing exact grants, native/JSON CSRF forms and archive/recovery controls; preserve original purchase/reconciliation facts and all actual qualification gates.
+**Next implementation task:** Continue existing 06-01/07-02 protected invitation issuance/reissue and scoped discount administration using explicit eligible associations and safe secret handling; preserve all actual input, runtime and external-operation gates.
 
 ## What this is
 
@@ -107,3 +107,5 @@ Verified13-01 continuation 2026-11-02T10:20:51.502698+00:00:113 actual local Chr
 Recorded sync 2026-11-02T10:22:45.995398+00:00: existing13-01 staff-browser verification f06869f12e4e458e282509f388b37884461e21f6 is pushed to origin/main;526 tests/113 local browser checks remain the exact verified scope. Current STATE.md / ROADMAP.md and actual gates remain operative.
 
 Continuation 2026-11-02T10:49:10.181609+00:00: existing06-01 staff invitation revocation is unimplemented; continue inline with synthetic data. STATE.md / ROADMAP.md remain operative. No actual authority or parent completion change.
+
+Verified06-01 continuation 2026-11-02T11:16:44.495073+00:00: protected invitation revocation and archived audit, 17 new cases within543 tests/123 browser checks; identical 357 backend/eight-script hashes. Exact commands/results/limits: docs/build/shb-invitation-revocation-2026-11-02.md. Existing purchase/coupon/review and original invitation clocks retained; remaining local issuance/discount administration and actual gates remain open. No parent SUMMARY/count change or actual external operation.

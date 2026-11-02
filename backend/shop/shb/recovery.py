@@ -24,7 +24,7 @@ from .errors import ShbError
 from .models import (CheckoutClosure, DiscountReservation, Invitation, PaidOrder,
     PurchaseNoticeCapture, PurchaseNoticeDelivery, RequestClosure, RequestReplacement,
     SupportCheckout, SupportOffer, SupportRequest, SupportRequestReview,
-    TransactionNotice, TransactionNoticeCapture, TransactionNoticeDelivery,RefundReview,RefundSupportHandoff)
+    TransactionNotice, TransactionNoticeCapture, TransactionNoticeDelivery,RefundReview,RefundSupportHandoff,InvitationRevocation)
 
 
 def require(condition):
@@ -57,6 +57,10 @@ def _records(archive):
 
     for invite in Invitation.objects.all().iterator():
         require(invite.expires_at == invitations.six_month_expiry(invite.created_at))
+
+    from . import invitation_admin
+    for event in InvitationRevocation.objects.select_related('invitation').iterator():
+        invitation_admin.retained(event,archive)
 
     for row in SupportRequest.objects.select_related('invitation', 'quotation__cart', 'quotation__snapshot').iterator():
         require(row.sha256 == catalog.digest(row.payload)
@@ -201,7 +205,7 @@ def _records(archive):
         'transaction_notices':len(expected_notices), 'transaction_captures':TransactionNoticeCapture.objects.count(),
         'held_transaction_notices':TransactionNoticeDelivery.objects.filter(state='held').count(),
         'uncertain_payments':SupportCheckout.objects.filter(checkout__syntheticcheckoutacceptance__attempt__state='uncertain').count(),
-        'refund_reviews':RefundReview.objects.count(), 'refund_handoffs':RefundSupportHandoff.objects.count(),
+        'invitation_revocations':InvitationRevocation.objects.count(), 'refund_reviews':RefundReview.objects.count(), 'refund_handoffs':RefundSupportHandoff.objects.count(),
         'uncertain_refunds':SyntheticOperationDispatch.objects.filter(operation__in=financial,operation__kind='refund',state='uncertain').count(),
     }
 

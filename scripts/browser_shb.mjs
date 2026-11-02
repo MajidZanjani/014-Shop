@@ -30,7 +30,8 @@ async function main(){
   const config=JSON.parse(input);input='';
   require(allowedRequest(config.origin+'/',config.origin));
   if(config.staff){
-    require(new URL(config.origin).hostname==='staff.localhost'&&config.staff.orders?.length===2);
+    require(new URL(config.origin).hostname==='staff.localhost'&&config.staff.orders?.length===2&&config.staff.invitations?.length===2);
+    require(config.staff.invitations.every(row=>/^\/staff\/shb-invitations\/[a-f0-9-]{36}\/$/.test(row.path)&&typeof row.expiresAt==='string'));
     require([...config.staff.orders.map(row=>row.path),config.staff.noFinancePath,config.staff.unassignedPath].every(path=>/^\/staff\/shb-orders\/[a-f0-9-]{36}\/$/.test(path)));
     require(config.staff.orders.every(row=>/^\/staff\/payments\/[1-9][0-9]*\/$/.test(row.financePath)&&/^[a-f0-9-]{36}$/.test(row.reference)));
   }else{
@@ -181,6 +182,22 @@ async function main(){
         await submit(handoffForm+' button');
         require(lastStatus===200&&await evaluate('document.body.innerText.includes("Support-team communication recorded: Synthetic support-team communication")&&!document.querySelector('+JSON.stringify(handoffForm)+')'));checks++;
         await go(config.origin+order.path);require(lastStatus===200&&await clean()&&escaped===0);checks++;
+        const invitation=config.staff.invitations[javascript?0:1];
+        stage=mode+'-staff-invitation-scope';
+        await go(config.origin+'/staff/shb-invitations/');
+        require(lastStatus===200&&await evaluate('document.body.innerText.includes("Assigned invitations")'));checks++;
+        stage=mode+'-staff-invitation-csrf';
+        await go(config.origin+invitation.path);
+        require(lastStatus===200&&await evaluate('!!document.querySelector("textarea[name=reason]")&&document.body.innerText.includes('+JSON.stringify(invitation.expiresAt)+')&&!document.body.innerText.includes("/invite/")'));checks++;
+        await type('[name=reason]','Synthetic invitation deliberately revoked.');
+        await evaluate('document.querySelector("form [name=csrfmiddlewaretoken]").remove()');
+        await submit('form button');require(lastStatus===403);checks++;
+        stage=mode+'-staff-invitation-revoke';
+        await go(config.origin+invitation.path);await type('[name=reason]','Synthetic invitation deliberately revoked.');
+        await submit('form button');
+        require(lastStatus===200&&await evaluate('document.body.innerText.includes("Revoked:")&&!document.querySelector("form")&&document.body.innerText.includes('+JSON.stringify(invitation.expiresAt)+')'));checks++;
+        await go(config.origin+invitation.path);
+        require(lastStatus===200&&await clean()&&escaped===0);checks++;
         stage=mode+'-staff-logout';
         await go(config.origin+'/staff/');await submit('form[action="/staff/logout/"] button');
         await go(config.origin+order.path);require(lastStatus===403);checks++;
@@ -290,7 +307,7 @@ async function main(){
       await cdp.send('Target.disposeBrowserContext',{browserContextId});
     }
     const report={status:'SHB_BROWSER_PASS',checks,modes:2,pendingDocumentLoads,browser:version,node:process.versions.node,evidence_class:'local-synthetic-browser'};
-    Object.assign(report,config.staff?{staffRefund:'archived-full-synthetic-once',staffHandoff:'attributed-manual-communication'}:
+    Object.assign(report,config.staff?{staffRefund:'archived-full-synthetic-once',staffHandoff:'attributed-manual-communication',staffRevocation:'archived-two-synthetic-invitations'}:
       {fpga:'accepted-30-hours',asic:'requested-and-accepted-50-hours',payment:'synthetic-captured-once',paidOrder:'recorded-once-per-purchase',closure:'safe-before-dispatch',withdrawal:'deliberate-unaccepted-asic-offer',revision:'linked-unpaid-75-hours'});
     console.log(JSON.stringify(report));
   }catch(error){

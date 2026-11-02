@@ -113,6 +113,15 @@ for order in asic:
 PaidOrderGrant.objects.create(user=user,order=fpga[0])
 value['no_finance_path']='/staff/shb-orders/'+str(fpga[0].pk)+'/'
 value['unassigned_path']='/staff/shb-orders/'+str(fpga[1].pk)+'/'
+from shop.shb.invitations import issue_fixture
+from shop.shb.models import Invitation,InvitationStaffGrant
+customer=Invitation.objects.get(pk=value['invitation_id']).customer
+value['staff_invitations']=[]
+for _ in range(2):
+    invite,token=issue_fixture(customer=customer,issuer=user,company_name='Synthetic Company Limited',project_reference='SLL synthetic revocation fixture')
+    InvitationStaffGrant.objects.create(user=user,invitation=invite)
+    value['staff_invitations'].append({'id':str(invite.pk),'token':token,
+        'path':'/staff/shb-invitations/'+str(invite.pk)+'/','expiresAt':invite.expires_at.isoformat()})
 value['original_orders']={str(row.pk):{'payload':row.payload,'sha256':row.sha256} for row in orders}
 value['original_reservations']={str(row.pk):{'state':row.state,'order':str(row.consumed_order_id)} for row in DiscountReservation.objects.all()}
 value['original_captures']={str(row.pk):{'payload':row.payload,'sha256':row.sha256} for row in PurchaseNoticeCapture.objects.all()}
@@ -148,6 +157,15 @@ with PreparedArchive(Path(settings.LOCAL_CHECKOUT_ARCHIVE_ROOT)) as archive:
         assert handoff.result.operation.acceptance_id==review.order.acceptance_id
         assert review.order.acceptance.attempt.provider_status=='refunded'
         assert review.payload['actor']['staff_id']==handoff.payload['actor']['staff_id']
+    from shop.shb.models import Invitation,InvitationRevocation
+    from shop.shb import invitation_admin
+    assert InvitationRevocation.objects.count()==2
+    assert Invitation.objects.get(pk=value['invitation_id']).revoked_at is None
+    for item in value['staff_invitations']:
+        event=InvitationRevocation.objects.select_related('invitation').get(invitation_id=item['id'])
+        invitation_admin.retained(event,archive)
+        assert event.invitation.expires_at.isoformat()==item['expiresAt']
+        assert not event.payload['actual_invitation_authority'] and not event.payload['actual_email_sent']
 assert not SyntheticFulfilment.objects.exists() and not SyntheticSupportEvent.objects.exists()
 print('SHB_STAFF_REFUNDS 2 archived=true original_orders_coupons_notices=unchanged actual_money_email=false')
 ''')
@@ -269,18 +287,29 @@ def main():
                     SHOP_LOCAL_STAFF_CAPTURE_ROOT=str(staff_codes))
                 staff_port=stack.enter_context(gunicorn(python,staff_env,staff_runtime,probe_path='/staff/session/',probe_host='staff.localhost'))
                 staff_base='http://staff.localhost:'+str(staff_port)
+                invitation_sessions=[]
+                for item in credential['staff_invitations']:
+                    jar=http.cookiejar.CookieJar()
+                    opener=urllib.request.build_opener(urllib.request.ProxyHandler({}),urllib.request.HTTPCookieProcessor(jar))
+                    status,_,_,_=request(opener,base+'/invite/'+item['token']);require(status==200)
+                    invitation_sessions.append(opener)
                 staff_config={'origin':staff_base,'scratch':str(scratch),'evidence':str(evidence) if evidence else None,
                     'staff':{'username':'shb-demo-issuer','password':'synthetic-demo-staff-only',
                         'captureRoot':str(staff_codes),'orders':credential['staff_orders'],
-                        'noFinancePath':credential['no_finance_path'],'unassignedPath':credential['unassigned_path']}}
+                        'noFinancePath':credential['no_finance_path'],'unassignedPath':credential['unassigned_path'],
+                        'invitations':[{key:item[key] for key in ('path','expiresAt')} for item in credential['staff_invitations']]}}
                 result=subprocess.run([browser_env['SHOP_NODE'],str(ROOT/'scripts/browser_shb.mjs')],input=json.dumps(staff_config),
                     text=True,capture_output=True,env=browser_env,timeout=120,check=True)
                 staff_report=json.loads(result.stdout)
                 require(staff_report['status']=='SHB_BROWSER_PASS' and staff_report['modes']==2 and staff_report['staffRefund']=='archived-full-synthetic-once')
+                for opener in invitation_sessions:
+                    status,_,_,_=request(opener,base+'/shop/');require(status==403)
+                require(staff_report['staffRevocation']=='archived-two-synthetic-invitations')
                 verify_staff_refunds(python,env,capture)
                 report.update(customer_checks=report['checks'],staff_checks=staff_report['checks'],
                     checks=report['checks']+staff_report['checks'],staffRefund=staff_report['staffRefund'],
-                    staffHandoff=staff_report['staffHandoff'],staff_modes=2,staff_facts='original-orders-coupons-notices-unchanged')
+                    staffHandoff=staff_report['staffHandoff'],staffRevocation=staff_report['staffRevocation'],
+                    revoked_invitation_sessions='2-denied-on-next-request',staff_modes=2,staff_facts='original-orders-coupons-notices-unchanged')
                 print(json.dumps(report))
                 return report
             else:

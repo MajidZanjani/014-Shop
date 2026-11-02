@@ -16,12 +16,13 @@ from shop.access.grants import revoke_staff_resource_grants
 class Command(BaseCommand):
     help='Local/synthetic staff provision/reset/revoke and explicit quotation reviewer grants. Credentials go to private files only.'
     def add_arguments(self,parser):
-        parser.add_argument('action',choices=['provision','reset','revoke','grant','revoke-grant','grant-business','revoke-business','grant-support','revoke-support','grant-delivery','revoke-delivery','grant-case','revoke-case','grant-refund','revoke-refund','grant-overpayment','revoke-overpayment','grant-payment','revoke-payment','grant-shb-order','revoke-shb-order'])
+        parser.add_argument('action',choices=['provision','reset','revoke','grant','revoke-grant','grant-business','revoke-business','grant-support','revoke-support','grant-delivery','revoke-delivery','grant-case','revoke-case','grant-refund','revoke-refund','grant-overpayment','revoke-overpayment','grant-payment','revoke-payment','grant-shb-order','revoke-shb-order','grant-invitation','revoke-invitation-grant'])
         parser.add_argument('--username',required=True)
         parser.add_argument('--capture-root')
         parser.add_argument('--quotation')
         parser.add_argument('--checkout')
         parser.add_argument('--order')
+        parser.add_argument('--invitation')
         parser.add_argument('--entitlement')
         parser.add_argument('--case')
         parser.add_argument('--attempt')
@@ -56,6 +57,18 @@ class Command(BaseCommand):
             elif action=='revoke':
                 credential.enabled=False;credential.generation=uuid.uuid4();credential.save()
                 revoke_staff_resource_grants(user_id=user.pk)
+            elif action in ('grant-invitation','revoke-invitation-grant'):
+                from shop.shb.models import Invitation,InvitationStaffGrant
+                from shop.shb.invitations import fixture_guard
+                try:
+                    fixture_guard();identity=uuid.UUID(options.get('invitation') or '')
+                except (ValueError,TypeError):raise CommandError('Exact synthetic invitation required') from None
+                invite=Invitation.objects.filter(pk=identity).first()
+                if invite is None:raise CommandError('Synthetic invitation unavailable')
+                if action=='grant-invitation':
+                    if not credential.enabled or not user.is_active:raise CommandError('Staff identity disabled')
+                    InvitationStaffGrant.objects.get_or_create(user=user,invitation=invite)
+                else:InvitationStaffGrant.objects.filter(user=user,invitation=invite).delete()
             elif action in ('grant-shb-order','revoke-shb-order'):
                 from shop.shb.models import PaidOrder,PaidOrderGrant
                 try:identity=uuid.UUID(options.get('order') or '')

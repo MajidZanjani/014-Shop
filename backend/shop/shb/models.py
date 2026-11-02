@@ -330,3 +330,25 @@ class RefundSupportHandoff(models.Model):
     class Meta:
         constraints = [models.CheckConstraint(condition=models.Q(sha256__regex=r'^[a-f0-9]{64}$') &
             ~models.Q(archive_receipt={}), name='shb_refund_handoff_archived')]
+
+
+class InvitationStaffGrant(models.Model):
+    """Exact invitation assignment; no general customer or historical access."""
+    user=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT)
+    invitation=models.ForeignKey(Invitation,on_delete=models.PROTECT)
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['user','invitation'],name='shb_invitation_staff_once')]
+
+
+class InvitationRevocation(models.Model):
+    """Append-only archived staff revocation; the bearer is never retained."""
+    id=models.UUIDField(primary_key=True,editable=False)
+    invitation=models.OneToOneField(Invitation,on_delete=models.PROTECT)
+    request_id=models.UUIDField(editable=False)
+    revoked_at=models.DateTimeField(editable=False)
+    payload=models.JSONField(editable=False)
+    sha256=models.CharField(max_length=64,editable=False)
+    archive_receipt=models.JSONField(editable=False)
+    class Meta:
+        constraints=[models.CheckConstraint(condition=models.Q(sha256__regex=r'^[a-f0-9]{64}$') &
+            ~models.Q(archive_receipt={}),name='shb_invitation_revocation_archive')]

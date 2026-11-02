@@ -105,3 +105,7 @@ Recorded sync 2026-11-02T10:22:45.995398+00:00: existing13-01 staff-browser veri
 STATE.md / ROADMAP.md route to protected staff revocation. Existing customer revocation enforcement has no staff action yet. Native/JSON forms require exact grants, recent MFA, archive/recovery retention and no order/coupon/time effects. Prior526 tests/113 browser checks remain baseline; actual gates and completion counts unchanged.
 
 Actual06-01 RED: authenticated staff fixture/migrations succeed; one executed assertion fails because staff home lacks Assigned invitations. Exact safe record: docs/evidence/shb/invitation-admin-red-2026-11-02.json. No discovery/import error or real operation. Full parent remains in progress.
+
+## 2026-11-02T11:16:44.495073+00:00 — Existing06-01 protected invitation revocation verified
+
+STATE.md / ROADMAP.md remain operative. Actual RED commit ca66362 is pushed. Final543 tests/123 browser checks pass with identical 357 backend/eight-script hashes. Seventeen new cases cover exact MFA/grants/CSRF/archive/SQL/concurrency/recovery. Native revocation denies two pre-existing customer sessions while original order/coupon/notice facts remain unchanged. NUL validation is included in final records; intermediate source identities are retained in the report. Remaining local issuance/discount administration and actual qualifications remain open. No parent SUMMARY/count change.
