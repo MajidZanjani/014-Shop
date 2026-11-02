@@ -8,14 +8,14 @@ Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-3
 
 **Current plan:** 07-03 — FPGA per-order paid finalization, coupon consumption/safe closure, assigned staff visibility and durable synthetic purchase notice verified; matching ASIC offers remain open.
 
-**Execution status:** in progress — verified439 tests and47 browser checks after safe cancellation/expiry; matching dated ASIC offers and actual qualifications remain pending.
+**Execution status:** paused — context checkpoint after verified paid-order and safe-closure slices;439 tests/47 browser checks pass; matching ASIC offers and actual qualifications remain pending.
 
 **Next implementation task:** Continue matching dated ASIC offers with exact request revision/customer/scope/quantity/price/terms, withdrawal/expiry/reissue and remaining ordinary request/customer notices.
 
-**Recorded implementation:** 07cb88d
+**Recorded implementation:** a227344f8c4c3c3cc2e599eab730525561f2140a
 
-Verified current scope: per-order paid FPGA completion/coupon consumption, assigned recent-MFA staff view, durable fake purchase notices, and archive-before-release safe pre-dispatch cancellation/expiry.439 tests/47 actual browser checks; identical326 backend/eight-script hashes. Reports: [paid orders](../docs/build/shb-paid-orders-2026-11-02.md), [safe closure](../docs/build/shb-safe-closure-2026-11-02.md).
+Paid-order implementation07cb88d and safe-closure implementationa227344f8c4c3c3cc2e599eab730525561f2140a are verified and pushed.439 tests/47 actual browser checks pass with identical326 backend/eight-script hashes. Reports and full commands: [paid orders](../docs/build/shb-paid-orders-2026-11-02.md), [safe closure](../docs/build/shb-safe-closure-2026-11-02.md).
 
-Next: matching dated ASIC offers with exact revision/customer/project/scope/quantity/price/policy acceptance, withdrawal/expiry/reissue and remaining ordinary request/customer notices. Uncertain payments retain holds and require lookup. Existing technical readiness is not a payable offer.
+The next work is matching dated ASIC offers and remaining request/customer notices. Preserve technical readiness as unpaid preparation; do not bypass request revision/scope/price/terms matching or current invitation access. Live inputs and normal Nix/actual/independent qualifications stay pending. No full parent SUMMARY/count change (11/42 records,1/14 documentary phases). Support time/task emails remain manual.
 
-No parent SUMMARY or count change:11/42 retained records,1/14 documentary phases. No time accounting, customer support/bundle panel or task email. Normal Nix, actual company/provider/mail/host/independent qualification remains pending. No active owned jobs, .env or external operation; unrelated http_cache.sqlite untouched. HANDOFF.json was consumed on resume; context checkpoint will capture this verified boundary after commit.
+Saved under the standing context-pressure instruction after two implementation slices; exact percentage is unavailable. HANDOFF.json is the primary resumption source. No active jobs or uncommitted code; .env and unrelated http_cache.sqlite untouched.
