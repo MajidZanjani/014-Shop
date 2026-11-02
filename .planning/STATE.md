@@ -5,8 +5,9 @@ current_phase: 6
 current_phase_name: Invitation scope, verified resources and staff MFA
 current_plan: 1
 current_task: 1
-status: active
-last_updated: "2026-11-02T13:05:00+00:00"
+status: paused
+paused_at: "2026-11-02T13:42:27.791Z"
+last_updated: "2026-11-02T13:42:27.791Z"
 last_activity: 2026-11-02
 state_head: a7072ffbfe3664af2764c42954b95c8eae250c26
 progress:
@@ -27,9 +28,9 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Current plan:** 06-01 — protected invitation issuance/reissue, scoped discount revocation and separate protected discount issuance verified locally; actual qualification remains open.
 
-**Execution status:** active — verified continuation after resume;605 tests/161 browser checks retained with the new discount issuance surface added; actual commercial/provider/mail/host/independent prerequisites remain closed.
+**Execution status:** paused — explicit user gsd-pause-work during focused lifecycle-test addition after pushed605 tests/161 browser checks through b04b955; two follow-up tests pass focused but remain uncommitted and the shared regression rerun was interrupted mid-run.
 
-**Next implementation task:** Normal pinned Nix/source/runtime/native/licence/OCI/CI and actual commercial/provider/refund/tax/mail/host/ingress/database/human/independent custody/post-backup/transport/restore/complete-loss qualification remain open; the authorized independent off-host runner is unassigned. Continue existing documented local follow-ups once prerequisites arrive; do not rerun unchanged failed Nix build or weaken retained tool pins.
+**Next implementation task:** After explicit resume, commit the two uncommitted follow-up tests (end-to-end issue→revoke lifecycle in discount_issuance_tests.py; mirror discount-admin nav assertion in discount_admin_tests.py), rerun the shared regression lane (expect607 total: 264 SHB), stage the new focused evidence record and bump test counts/state_head across STATE/PROJECT/ROADMAP/HANDOFF/06-01-PLAN and docs/build/shb-discount-issuance-2026-11-02.md, then push. Normal pinned and actual external gates remain closed.
 
 ## Verified local scope
 
@@ -54,6 +55,8 @@ No .env, real credentials, actual bank/mail/storage/protected-host/DNS/TLS opera
 Last session: 2026-11-02T12:16:14.551Z (paused) → 2026-11-02T12:35:00+00:00 (resumed) → 2026-11-02T13:05:00+00:00 (verified continuation)
 Stopped at: Explicit user $gsd-pause-work after verified/pushed invitation issuance4db2586 and discount revocation34c0019. All implementation is committed and verified; no current local test failure or owned process/job.
 Resumed at: 2026-11-02T12:35:00+00:00 — explicit user $gsd-resume-work. HANDOFF.json and phases/06-invitation-scope-and-staff-mfa/.continue-here.md consumed after confirming referenced commits (4db2586,34c0019,bb3d603) are pushed and the working tree carries no owned implementation changes.
-Verified continuation 2026-11-02T13:05:00+00:00: protected scoped discount issuance implemented and pushed with RED705c2de and GREEN awaiting commit after regression.605 tests/161 browser checks and matching new source hashes record. No parent SUMMARY/count change; actual gates unchanged.
+Verified continuation 2026-11-02T13:05:00+00:00: protected scoped discount issuance implemented and pushed with RED705c2de and GREEN e5ec3dd.605 tests/147 browser checks initially; docs follow-up2efae9c and browser follow-up a7072ff/b04b955 raised browser coverage to161 checks (71 customer/90 staff) with no backend change.
 
-Next: Normal pinned Nix/source/runtime/native/licence/OCI/CI and actual commercial/provider/refund/tax/mail/host/ingress/database/human/independent custody/post-backup/transport/restore/complete-loss qualification remain open; the authorized independent off-host runner is unassigned. Continue existing documented local follow-ups once prerequisites arrive; do not rerun unchanged failed Nix build or weaken retained tool pins.
+Explicit pause 2026-11-02T13:42:27.791Z: user $gsd-pause-work during focused lifecycle-test addition. Two uncommitted follow-up tests pass focused (40 tests across discount_issuance+discount_admin, evidence fe29b38a…) but the shared regression rerun was interrupted mid-run. See HANDOFF.json and phases/06-invitation-scope-and-staff-mfa/.continue-here.md for the exact resume plan. No owned process/job, async manifest or new completion count; exact context percentage unavailable.
+
+Next: After explicit resume, commit the two uncommitted tests, rerun the shared regression lane (expect607 total: 264 SHB), stage the new focused evidence record and bump test counts/state_head across STATE/PROJECT/ROADMAP/HANDOFF/06-01-PLAN and docs/build/shb-discount-issuance-2026-11-02.md, then push. Normal pinned Nix/source/runtime/native/licence/OCI/CI and actual commercial/provider/refund/tax/mail/host/ingress/database/human/independent custody/post-backup/transport/restore/complete-loss qualification remain open; the authorized independent off-host runner is unassigned.

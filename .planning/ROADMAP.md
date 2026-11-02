@@ -8,9 +8,9 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Current plan:** 06-01 — protected invitation issuance/reissue, scoped discount revocation and separate protected discount issuance verified locally; actual qualification remains open.
 
-**Execution status:** active — verified continuation after resume;605 tests/161 browser checks retained with the new discount issuance surface added; actual commercial/provider/mail/host/independent prerequisites remain closed.
+**Execution status:** paused — explicit user gsd-pause-work during focused lifecycle-test addition after pushed605 tests/161 browser checks through b04b955; two follow-up tests pass focused but remain uncommitted and the shared regression rerun was interrupted mid-run.
 
-**Next implementation task:** Normal pinned Nix/source/runtime/native/licence/OCI/CI and actual commercial/provider/refund/tax/mail/host/ingress/database/human/independent custody/post-backup/transport/restore/complete-loss qualification remain open; the authorized independent off-host runner is unassigned. Continue existing documented local follow-ups once prerequisites arrive; do not rerun unchanged failed Nix build or weaken retained tool pins.
+**Next implementation task:** After explicit resume, commit the two uncommitted follow-up tests (end-to-end issue→revoke lifecycle in discount_issuance_tests.py; mirror discount-admin nav assertion in discount_admin_tests.py), rerun the shared regression lane (expect607 total: 264 SHB), stage the new focused evidence record and bump test counts/state_head across STATE/PROJECT/ROADMAP/HANDOFF/06-01-PLAN and docs/build/shb-discount-issuance-2026-11-02.md, then push. Normal pinned and actual external gates remain closed.
 
 Stable T01–T14/folder IDs preserve history. Titles and active task scopes now follow SHB 1.1. Completed summary counts below are historical records, not engineering effort or new commercial acceptance.
 
@@ -21,7 +21,7 @@ Stable T01–T14/folder IDs preserve history. Titles and active task scopes now 
 - [ ] **Phase 3: Supporting Hours Bundle catalog and approved pricing**
 - [ ] **Phase 4: Shared SHB form, invitations and private storefront**
 - [ ] **Phase 5: SHB durable records, archives and outbox**
-- [ ] **Phase 6: Invitation scope, verified resources and staff MFA** — CURRENT DEVELOPMENT FOCUS; active — verified continuation after resume;605 tests/161 browser checks retained with the new discount issuance surface added; actual commercial/provider/mail/host/independent prerequisites remain closed.
+- [ ] **Phase 6: Invitation scope, verified resources and staff MFA** — CURRENT DEVELOPMENT FOCUS; paused — explicit user gsd-pause-work during focused lifecycle-test addition after pushed605 tests/161 browser checks through b04b955; two follow-up tests pass focused but remain uncommitted and the shared regression rerun was interrupted mid-run.
 - [ ] **Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts**
 - [ ] **Phase 8: Payment lifecycle and fault-injectable synthetic bank**
 - [ ] **Phase 9: Selected-bank sandbox and complete reconciliation**
@@ -95,7 +95,7 @@ Plans: [05-01-PLAN](phases/05-durable-records-and-outbox/05-01-PLAN.md)
 
 ### Phase 6: Invitation scope, verified resources and staff MFA
 
-Status: CURRENT DEVELOPMENT FOCUS; active — verified continuation after resume;605 tests/161 browser checks retained with the new discount issuance surface added; actual commercial/provider/mail/host/independent prerequisites remain closed.
+Status: CURRENT DEVELOPMENT FOCUS; paused — explicit user gsd-pause-work during focused lifecycle-test addition after pushed605 tests/161 browser checks through b04b955; two follow-up tests pass focused but remain uncommitted and the shared regression rerun was interrupted mid-run.
 
 Goal: Invitation authorizes current offers/new purchases only; no customer history or prefilled private data. Retain verified-contact access for old private resources and MFA/recent verification/resource permissions for every staff route.
 
@@ -213,7 +213,7 @@ Plans: [14-01-PLAN](phases/14-shb-release-handover/14-01-PLAN.md)
 | 3. Supporting Hours Bundle catalog and approved pricing | 0/1 | In Progress | Pending actual revised evidence |
 | 4. Shared SHB form, invitations and private storefront | 0/1 | In Progress | Pending actual revised evidence |
 | 5. SHB durable records, archives and outbox | 0/1 | In Progress | Pending actual revised evidence |
-| 6. Invitation scope, verified resources and staff MFA | 0/1 | In Progress; CURRENT DEVELOPMENT FOCUS; active — verified continuation after resume;605 tests/161 browser checks retained with the new discount issuance surface added; actual commercial/provider/mail/host/independent prerequisites remain closed. | Pending actual revised evidence |
+| 6. Invitation scope, verified resources and staff MFA | 0/1 | In Progress; CURRENT DEVELOPMENT FOCUS; paused — explicit user gsd-pause-work during focused lifecycle-test addition after pushed605 tests/161 browser checks through b04b955; two follow-up tests pass focused but remain uncommitted and the shared regression rerun was interrupted mid-run. | Pending actual revised evidence |
 | 7. FPGA checkout, ASIC reviewed offers and scoped discounts | 1/4 | In Progress | Pending actual revised evidence |
 | 8. Payment lifecycle and fault-injectable synthetic bank | 0/3 | In Progress | Pending actual revised evidence |
 | 9. Selected-bank sandbox and complete reconciliation | 0/1 | Pending | Pending actual revised evidence |

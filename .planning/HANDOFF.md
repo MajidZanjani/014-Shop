@@ -8,9 +8,9 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Current plan:** 06-01 — protected invitation issuance/reissue, scoped discount revocation and separate protected discount issuance verified locally; actual qualification remains open.
 
-**Execution status:** active — verified continuation after resume;605 tests/161 browser checks retained with the new discount issuance surface added; actual commercial/provider/mail/host/independent prerequisites remain closed.
+**Execution status:** paused — explicit user gsd-pause-work during focused lifecycle-test addition after pushed605 tests/161 browser checks through b04b955; two follow-up tests pass focused but remain uncommitted and the shared regression rerun was interrupted mid-run.
 
-**Next implementation task:** Normal pinned Nix/source/runtime/native/licence/OCI/CI and actual commercial/provider/refund/tax/mail/host/ingress/database/human/independent custody/post-backup/transport/restore/complete-loss qualification remain open; the authorized independent off-host runner is unassigned. Continue existing documented local follow-ups once prerequisites arrive; do not rerun unchanged failed Nix build or weaken retained tool pins.
+**Next implementation task:** After explicit resume, commit the two uncommitted follow-up tests (end-to-end issue→revoke lifecycle in discount_issuance_tests.py; mirror discount-admin nav assertion in discount_admin_tests.py), rerun the shared regression lane (expect607 total: 264 SHB), stage the new focused evidence record and bump test counts/state_head across STATE/PROJECT/ROADMAP/HANDOFF/06-01-PLAN and docs/build/shb-discount-issuance-2026-11-02.md, then push. Normal pinned and actual external gates remain closed.
 
 **Recorded implementation:** a7072ffbfe3664af2764c42954b95c8eae250c26
 
