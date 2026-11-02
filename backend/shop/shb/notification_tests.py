@@ -145,3 +145,31 @@ class NotificationTests(TransactionTestCase):
         notice=TransactionNotice.objects.get()
         with self.assertRaises(DatabaseError),transaction.atomic():
             TransactionNotice.objects.filter(pk=notice.pk).update(payload=dict(notice.payload,recipient='other@synthetic.invalid'))
+
+    def test_customer_notice_archive_failure_does_not_erase_paid_order_or_redeem_again(self):
+        from shop.adapters.evidence_archive import PreparedArchive, ArchiveError
+        from . import transaction_mail as mail
+        from .models import TransactionNotice, TransactionNoticeDelivery as Delivery, PaidOrder, DiscountReservation
+        self.assertEqual(self.issue().status_code,201)
+        response=self.accept_offer();self.assertEqual(self.pay(response['Location']).status_code,200)
+        with PreparedArchive(Path(self.directory.name)) as archive:
+            for _ in range(3):
+                claimed=mail.claim(lease_seconds=1)
+                if TransactionNotice.objects.get(pk=claimed.notice_id).event=='purchase-confirmed':break
+                self.assertTrue(mail.capture(claimed,archive));self.assertTrue(mail.complete(claimed,archive))
+            else:self.fail('Purchase notice was not queued')
+            with patch.object(PreparedArchive,'publish',side_effect=ArchiveError('mail evidence unavailable')):
+                with self.assertRaises(ArchiveError):mail.capture(claimed,archive)
+        order=PaidOrder.objects.get()
+        self.assertEqual(DiscountReservation.objects.get().consumed_order_id,order.pk)
+        Delivery.objects.filter(pk=claimed.notice_id).update(lease_until=timezone.now()-timedelta(seconds=1))
+        self.assertTrue(mail.execute_once())
+        self.assertEqual(PaidOrder.objects.count(),1)
+        self.assertEqual(DiscountReservation.objects.get().consumed_order_id,order.pk)
+
+    def test_sql_source_commit_cannot_omit_required_request_notice(self):
+        from .models import SupportRequest
+        with patch('shop.shb.transaction_mail.queue',return_value=None):
+            with override_settings(**self.customer_settings),self.assertRaisesMessage(DatabaseError,'queue its ordinary notice atomically'):
+                self.customer_submit(discount_code='')
+        self.assertEqual(SupportRequest.objects.count(),1)

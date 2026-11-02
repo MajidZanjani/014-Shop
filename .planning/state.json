@@ -77,8 +77,8 @@
   ],
   "next": {
     "command": "$gsd-execute-phase 07",
-    "label": "Continue ordinary transaction notices and material revisions",
-    "reason": "Continue ordinary request/question/decline/offer/closing/customer purchase notifications through the existing worker, then linked material request revisions."
+    "label": "Continue linked material request revisions",
+    "reason": "Implement a linked new ASIC request revision after deliberate unpaid withdrawal, with fresh form/eligibility/price/coupon validation, assigned technical review and explicit new offer acceptance."
   },
-  "updated_at": "2026-11-02T08:07:54.870706+00:00"
+  "updated_at": "2026-11-02T08:24:28.608322+00:00"
 }

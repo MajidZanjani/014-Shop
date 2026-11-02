@@ -194,6 +194,8 @@ def main():
                 for _ in range(4):manage(python,env,'run_worker','--once')
                 notices=manage(python,env,'shell','-c',"from shop.shb.models import PurchaseNoticeCapture,PurchaseNoticeDelivery; print('SHB_NOTICES',PurchaseNoticeCapture.objects.count(),PurchaseNoticeDelivery.objects.filter(state='captured').count())")
                 require('SHB_NOTICES 4 4' in notices.stdout)
+                ordinary=manage(python,env,'shell','-c',"from shop.worker.services import execute_once; from shop.shb.models import TransactionNotice,TransactionNoticeDelivery,TransactionNoticeCapture; from collections import Counter; [execute_once() for _ in range(24)]; counts=Counter(TransactionNotice.objects.values_list('event',flat=True)); assert dict(counts)=={'request-received':6,'offer-issued':4,'request-closed':2,'checkout-closed':2,'purchase-confirmed':4}; assert TransactionNoticeDelivery.objects.exclude(state='captured').count()==0; assert TransactionNoticeCapture.objects.count()==18; assert not any(row.payload['actual_email_sent'] for row in TransactionNotice.objects.all()); print('SHB_ORDINARY_NOTICES 18 captured=true actual_email_sent=false')")
+                require('SHB_ORDINARY_NOTICES 18 captured=true actual_email_sent=false' in ordinary.stdout)
                 return report
             else:
                 count=checks(base,credential,python,env)

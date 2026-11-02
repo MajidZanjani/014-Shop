@@ -152,6 +152,8 @@ def issue(request, identity, value, archive):
             current.archive_receipt = receipt; current.published_at = attempts.database_now(); current.state = 'issued'
             current.save(update_fields=['archive_receipt','published_at','state'])
             row.state = 'offer_issued'; row.save(update_fields=['state'])
+            from .transaction_mail import queue
+            queue('offer-issued',current)
             return current, True
         recover(current, archive); return current, False
 

@@ -243,3 +243,49 @@ class RequestClosure(models.Model):
             models.CheckConstraint(condition=models.Q(sha256__regex=r'^[a-f0-9]{64}$') &
                 (models.Q(applied_at__isnull=True) | ~models.Q(archive_receipt={})), name='shb_request_closing_archive'),
         ]
+
+
+class TransactionNotice(models.Model):
+    """Immutable ordinary mail intent bound to one retained transaction event."""
+    id = models.UUIDField(primary_key=True, editable=False)
+    source_id = models.CharField(max_length=64, editable=False)
+    event = models.CharField(max_length=24, editable=False)
+    payload = models.JSONField(editable=False)
+    sha256 = models.CharField(max_length=64, editable=False)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['source_id','event'], name='shb_transaction_notice_once'),
+            models.CheckConstraint(condition=models.Q(sha256__regex=r'^[a-f0-9]{64}$', event__in=[
+                'request-received','request-question','request-declined','offer-issued',
+                'request-closed','checkout-closed','purchase-confirmed']), name='shb_transaction_notice_event'),
+        ]
+
+
+class TransactionNoticeDelivery(models.Model):
+    notice = models.OneToOneField(TransactionNotice, primary_key=True, on_delete=models.PROTECT)
+    state = models.CharField(max_length=16, default='pending')
+    token = models.UUIDField(null=True, editable=False)
+    lease_until = models.DateTimeField(null=True)
+    attempts = models.PositiveSmallIntegerField(default=0)
+
+    class Meta:
+        constraints = [
+            models.CheckConstraint(condition=models.Q(state__in=['pending','claimed','captured','held'],attempts__lte=5), name='shb_transaction_delivery_bounds'),
+            models.CheckConstraint(condition=models.Q(state='claimed',token__isnull=False,lease_until__isnull=False) |
+                models.Q(state__in=['pending','captured','held'],token__isnull=True,lease_until__isnull=True), name='shb_transaction_delivery_claim'),
+        ]
+
+
+class TransactionNoticeCapture(models.Model):
+    """Durable fake capture proof, including the recoverable original envelope."""
+    id = models.UUIDField(primary_key=True, editable=False)
+    notice = models.OneToOneField(TransactionNotice, on_delete=models.PROTECT)
+    payload = models.JSONField(editable=False)
+    sha256 = models.CharField(max_length=64, editable=False)
+    notice_archive_receipt = models.JSONField(editable=False)
+    archive_receipt = models.JSONField(editable=False)
+
+    class Meta:
+        constraints = [models.CheckConstraint(condition=models.Q(sha256__regex=r'^[a-f0-9]{64}$') &
+            ~models.Q(archive_receipt={}) & ~models.Q(notice_archive_receipt={}), name='shb_transaction_capture_archived')]

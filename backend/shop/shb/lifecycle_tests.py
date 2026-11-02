@@ -207,6 +207,8 @@ class LifecycleTests(TransactionTestCase):
                 SupportOffer.objects.filter(pk=offer.pk).update(payload=payload,sha256=catalog.digest(payload),
                     issued_at=at,expires_at=at+timedelta(days=14),published_at=at,archive_receipt=receipt,state='issued')
                 SupportRequest.objects.filter(pk=self.row.pk).update(state='offer_issued')
+                from .transaction_mail import queue
+                offer.refresh_from_db();queue('offer-issued',offer)
                 cursor.execute('SET CONSTRAINTS ALL IMMEDIATE')
             finally:cursor.execute('ALTER TABLE public.shb_supportoffer ENABLE TRIGGER shb_offer_guard')
         offer.refresh_from_db()
@@ -221,7 +223,8 @@ class LifecycleTests(TransactionTestCase):
         self.assertEqual(offer.state,'closed');self.assertEqual(self.row.state,'offer_expired')
         self.assertEqual(DiscountReservation.objects.get().state,'released')
         self.assertTrue(RequestClosure.objects.get().archive_receipt)
-        self.assertFalse(execute_once())
+        from .lifecycle import recover_once
+        self.assertFalse(recover_once())
         self.assertEqual(DiscountCode.objects.get().expires_at,self.discount.expires_at)
         self.assertEqual(Invitation.objects.get().expires_at,self.invitation.expires_at)
 
@@ -254,10 +257,21 @@ class LifecycleTests(TransactionTestCase):
                     client=ShopClient();client.cookies=cookies.copy();barrier.wait(timeout=5)
                     data={'action':'withdraw','request_id':str(uuid.uuid4())} if withdraw else dict(value,
                         action='checkout',review_digest=token,accept_terms='on',privacy_acknowledged='on')
-                    return client.post(self.path,data,secure=True).status_code
+                    response=client.post(self.path,data,secure=True)
+                    return response.status_code,response.context.get('error') if response.context else None
                 finally:connections.close_all()
             with ThreadPoolExecutor(max_workers=2) as pool: statuses=list(pool.map(act,(True,False)))
-        self.assertTrue(all(status in (200,302,409) for status in statuses),statuses)
+        self.assertTrue(all(status in (200,302,409,503) for status,_ in statuses),statuses)
+        for status,error in statuses:
+            if status==503:self.assertEqual(error,'Required recovery evidence is unavailable.')
+        # The shared archive deliberately uses a nonblocking directory lock.
+        # An unavailable writer is not success: recover the saved closing
+        # intent, or retry the exact acceptance only if no closing was admitted.
+        from . import lifecycle
+        if lifecycle.pending().exists():self.assertTrue(lifecycle.recover_once())
+        if (not SyntheticCheckoutAcceptance.objects.filter(simulated_accepted_at__isnull=False).exists()
+                and not RequestClosure.objects.filter(applied_at__isnull=False).exists()):
+            self.assertEqual(self.accept_offer(value,token).status_code,302)
         accepted=SyntheticCheckoutAcceptance.objects.filter(simulated_accepted_at__isnull=False).exists()
         closed=RequestClosure.objects.filter(applied_at__isnull=False).exists()
         self.assertNotEqual(accepted,closed)

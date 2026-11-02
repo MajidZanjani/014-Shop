@@ -61,4 +61,6 @@ def submit_asic(request,cleaned,request_id):
         quotation=QuotationRequest.objects.create(cart=cart,snapshot=snapshot,request_id=request_id)
         saved=SupportRequest.objects.create(invitation=row,quotation=quotation,request_id=request_id,payload=payload,sha256=encoded)
         if claim:discounts.reserve(saved,claim)
+        from .transaction_mail import queue
+        queue('request-received',saved)
         return saved

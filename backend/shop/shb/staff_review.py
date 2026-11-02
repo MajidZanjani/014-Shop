@@ -115,4 +115,7 @@ def record(request, identity, value):
                 hold.save(update_fields=['state', 'release_review'])
         row.quotation.review_version = review.version
         row.quotation.save(update_fields=['review_version'])
+        from .transaction_mail import queue
+        if value['decision'] in ('needs_information','declined'):
+            queue('request-question' if value['decision']=='needs_information' else 'request-declined',event)
         return row, event, True

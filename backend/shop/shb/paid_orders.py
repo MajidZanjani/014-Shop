@@ -114,6 +114,8 @@ def finalize(owner,identity,archive):
         if scope.offer_id:
             scope.offer.state='paid';scope.offer.save(update_fields=['state'])
             scope.offer.request.state='paid';scope.offer.request.save(update_fields=['state'])
+        from .transaction_mail import queue
+        queue('purchase-confirmed',order)
         return order
 
 

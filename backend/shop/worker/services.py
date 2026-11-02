@@ -71,10 +71,10 @@ def execute_once(*, lease_seconds=10, max_attempts=3):
     if not available and settings.LOCAL_CHECKOUT_ARCHIVE_ROOT:
         from shop.catalog.models import SyntheticStatementDelivery
         from shop.payments.models import SyntheticNotificationDelivery
-        from shop.shb.models import PurchaseNoticeDelivery
+        from shop.shb.models import PurchaseNoticeDelivery,TransactionNoticeDelivery
         from shop.shb.paid_orders import pending
         from shop.shb import closures,lifecycle
-        available=(PurchaseNoticeDelivery.objects.filter(eligible).exists() or pending().exists()
+        available=(PurchaseNoticeDelivery.objects.filter(eligible).exists() or TransactionNoticeDelivery.objects.filter(eligible).exists() or pending().exists()
             or closures.pending().exists() or closures.expired_pending().exists()
             or lifecycle.pending().exists() or lifecycle.expired_pending().exists()
             or SyntheticStatementDelivery.objects.filter(eligible).exists()
@@ -86,12 +86,13 @@ def execute_once(*, lease_seconds=10, max_attempts=3):
 @local_effect('worker-run',held_result=False)
 def _execute_admitted(*,lease_seconds,max_attempts):
     if settings.LOCAL_CHECKOUT_ARCHIVE_ROOT:
-        from shop.shb import paid_orders,purchase_mail,closures,lifecycle
+        from shop.shb import paid_orders,purchase_mail,closures,lifecycle,transaction_mail
         if getattr(settings,'SHB_SYNTHETIC_FIXTURE',False):
             if closures.recover_once():return True
             if lifecycle.recover_once():return True
             if paid_orders.recover_once():return True
             if purchase_mail.execute_once(lease_seconds=lease_seconds,max_attempts=max_attempts):return True
+            if transaction_mail.execute_once(lease_seconds=lease_seconds,max_attempts=max_attempts):return True
         from .statement_mail import execute_once as capture_statement
         if capture_statement(lease_seconds=lease_seconds,max_attempts=max_attempts):return True
         from shop.payments.notifications import execute_once as check_notification

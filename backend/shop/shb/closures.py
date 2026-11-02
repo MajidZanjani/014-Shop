@@ -88,6 +88,8 @@ def apply(owner,identity,archive,closure):
         if scope.offer_id:
             scope.offer.state='closed';scope.offer.save(update_fields=['state'])
             scope.offer.request.state='withdrawn';scope.offer.request.save(update_fields=['state'])
+        from .transaction_mail import queue
+        queue('checkout-closed',current)
         return current
 
 

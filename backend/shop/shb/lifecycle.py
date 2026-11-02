@@ -138,6 +138,8 @@ def apply(saved, archive):
         if hold and current.payload['release_discount']:
             hold.state='released'; hold.release_lifecycle=current
             hold.save(update_fields=['state','release_lifecycle'])
+        from .transaction_mail import queue
+        queue('request-closed',current)
         return current
 
 

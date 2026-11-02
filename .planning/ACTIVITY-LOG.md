@@ -65,3 +65,5 @@ STATE.md / ROADMAP.md / HANDOFF and machine routing paused consistently. Impleme
 2026-11-02T08:03:47.200665+00:00 — STATE.md/ROADMAP.md07-04:475 tests/65 browser checks, identical336 backend/eight-script source. Archived pre-acceptance closing/final expiry and unchanged-scope reviewed reissue verified; customer native withdrawal included. Report docs/build/shb-asic-closing-2026-11-02.md. Notices/material revisions/actual gates remain open.
 
 2026-11-02T08:07:54.870706+00:00 — Continued after pushed closing implementation4e1b9692a23be686d5f4c1b06739324cd7842924. Ordinary acknowledgement RED: stored request leaves no worker work; one intended false-versus-true assertion, GSD RED_EVIDENCE_OK. STATE.md/ROADMAP.md stay active; new notice implementation unverified.
+
+2026-11-02T08:24:28.608322+00:00 — STATE.md/ROADMAP.md07-04 ordinary notices verified:487 tests/65 browser checks,18 ordinary and4 support-team captures, identical340 backend/eight-script source. Source/notice/outbox atomicity and bounded lost-process recovery implemented; no real mail or parent count change.

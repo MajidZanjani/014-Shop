@@ -171,15 +171,16 @@ class PaidOrderTests(TransactionTestCase):
 
     def test_worker_processes_notice_once_without_real_mail_or_time_work(self):
         from shop.worker.services import execute_once
-        from .models import PurchaseNoticeCapture,PurchaseNoticeDelivery
+        from .models import PurchaseNoticeCapture,PurchaseNoticeDelivery,TransactionNoticeCapture
         order=self.pay()
         with patch('shop.worker.statement_mail.execute_once',return_value=False):
-            self.assertTrue(execute_once());self.assertFalse(execute_once())
+            self.assertTrue(execute_once());self.assertTrue(execute_once());self.assertFalse(execute_once())
         captured=PurchaseNoticeCapture.objects.get()
         self.assertEqual(captured.order_id,order.pk)
         self.assertEqual(captured.payload['order_reference'],order.payload['order_reference'])
         self.assertIs(captured.payload['actual_email_sent'],False)
         self.assertEqual(PurchaseNoticeDelivery.objects.get().attempts,1)
+        self.assertEqual(TransactionNoticeCapture.objects.get().notice.payload['body']['reference'],order.payload['order_reference'])
 
     def test_notification_retries_are_bounded_and_do_not_undo_purchase(self):
         from . import purchase_mail
