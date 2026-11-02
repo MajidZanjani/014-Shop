@@ -37,3 +37,5 @@ python3 scripts/check_purchase_plan.py
 ```
 
 These are separate retained-tool local synthetic results. Normal pinned Nix/source/runtime/native/licence/OCI/CI and actual provider/mail/host/ingress/database/human/independent recovery qualification remain open. The private Astro release is unchanged. All new action flags remain explicitly synthetic with no actual invitation authority, real mail or commercial effect. No production/bank-sandbox database connection, host/DNS/TLS/storage/bank action, `.env`/unrelated cache access or paid provision occurred. The independent off-host runner is unassigned. Company inputs arrive later through the single [decision register](../decisions.md); no repeated request. Parent plans and counts remain open: 11/42 summary records and 1/14 documentary phases, with no new SUMMARY or FULL_PASS.
+
+Implementation `175c3ce5f958c2a04229568e1863486c3d88a247` is committed and ordinarily pushed to origin/main. The subsequent context checkpoint records remaining work and actual gates without changing these verified source bytes or acceptance counts.

@@ -1,0 +1,123 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-11-02T11:24:23.042Z",
+  "release": "shb-1.1",
+  "phase": "06",
+  "phase_name": "Invitation scope, verified resources and staff MFA",
+  "phase_dir": ".planning/phases/06-invitation-scope-and-staff-mfa",
+  "plan": 1,
+  "task": 1,
+  "total_tasks": 1,
+  "status": "paused",
+  "pause_reason": "Standing conditional pause for apparent context pressure; exact usage percentage unavailable",
+  "context_usage_percent": null,
+  "implementation_commit": "175c3ce5f958c2a04229568e1863486c3d88a247",
+  "implementation_push": "Verified ordinary origin/main push completed",
+  "completed_tasks": [
+    {
+      "id": 1,
+      "name": "06-01-01 invitation scope and staff administration parent",
+      "status": "in_progress",
+      "progress": "Protected revocation/audit/recovery component verified and pushed; remaining issuance/discount administration and actual qualification remain open."
+    }
+  ],
+  "verified_slices": [
+    {
+      "commit": "175c3ce5f958c2a04229568e1863486c3d88a247",
+      "name": "06-01 exact-scope staff invitation revocation, immutable archive/atomicity, reset/recovery, seventeen cases and actual native browser coverage"
+    }
+  ],
+  "remaining_tasks": [
+    {
+      "id": 1,
+      "name": "Protected invitation issuance/reissue, then scoped discount administration",
+      "status": "not_started"
+    }
+  ],
+  "blockers": [
+    {
+      "description": "Normal pinned source/runtime/native/licence/OCI/CI qualification pending; saved missing dependency build failure",
+      "type": "technical",
+      "workaround": "Verified separate retained tools for authorized local synthetic work only"
+    },
+    {
+      "description": "Ordinary bwrap denies workspace traversal",
+      "type": "technical",
+      "workaround": "Narrow justified local require_escalated commands; no host permission/resource change"
+    },
+    {
+      "description": "Actual company/provider/mail/host/database/human/independent prerequisites pending; off-host runner unassigned",
+      "type": "external",
+      "workaround": "Continue unblocked local administration after resume; company inputs arrive later without repeated requests"
+    }
+  ],
+  "async_jobs": [],
+  "background_processes": [],
+  "human_actions_pending": [
+    {
+      "action": "Clear the session and run $gsd-resume-work",
+      "context": "Standing apparent-context-pressure checkpoint; exact percentage unavailable",
+      "blocking": true
+    },
+    {
+      "action": "Company inputs arrive later through docs/decisions.md",
+      "context": "Do not request again; next local work needs no real credentials",
+      "blocking": false
+    },
+    {
+      "action": "Assign scoped authorized independent off-host runner before actual drills",
+      "context": "Blocks actual independent qualification, not local administration",
+      "blocking": false
+    }
+  ],
+  "decisions": [
+    {
+      "decision": "Keep revocation permission distinct from new issuance/eligibility/commercial authority",
+      "rationale": "An exact revoke grant and form-entered contact cannot authorize new offers or customer reassociation",
+      "phase": "06"
+    },
+    {
+      "decision": "Archive one attributed immutable event before atomic matching revocation, then validate it during local recovery",
+      "rationale": "Retain original clocks and evidence without false completeness/retry/reopening claims",
+      "phase": "06"
+    },
+    {
+      "decision": "Next local work is protected issuance/reissue and scoped discount administration",
+      "rationale": "Existing fixture issuance helpers have no protected staff issue action yet",
+      "phase": "06"
+    }
+  ],
+  "blocking_constraints": [
+    {
+      "severity": "advisory",
+      "description": "Keep full yielded exec result/session handles; one initial focused handle was omitted but the owned-log RED replay captured the actual assertion before implementation."
+    }
+  ],
+  "uncommitted_files": [
+    " M .planning/ACTIVITY-LOG.md",
+    " M .planning/HANDOFF.md",
+    " M .planning/PROJECT.md",
+    " M .planning/PURCHASE-FLOW-RECONCILIATION.json",
+    " M .planning/ROADMAP.md",
+    " M .planning/STATE.md",
+    " M .planning/state.json",
+    " M docs/build/shb-invitation-revocation-2026-11-02.md",
+    "?? .planning/HANDOFF.json",
+    "?? .planning/phases/06-invitation-scope-and-staff-mfa/.continue-here.md",
+    "?? http_cache.sqlite"
+  ],
+  "uncommitted_files_elided": 0,
+  "initial_working_tree": [
+    "?? http_cache.sqlite"
+  ],
+  "next_action": "After explicit resume, inspect existing invitation/discount fixture issuance and staff/operator ownership patterns, then implement protected invitation issuance/reissue with explicit eligibility/issuance scope and safe one-time bearer handling; continue scoped discount administration afterward. Do not treat the revocation assignment or form-entered contact as issuing/commercial authority.",
+  "context_notes": "Verified/pushed revocation boundary.543 tests/123 browser checks;357 backend/eight-script hashes match. No parent SUMMARY/count change. New local issue/reissue/coupon administration remains. Preserve raw bearer privacy, explicit grants, immutable original clocks, fake-only authority and actual gates; no .env/cache access or new subagent. All owned contexts completed.",
+  "evidence_records": [
+    "docs/evidence/shb/retained-tests/36d8f0f157241d73cffee09cfee8e1611c56ae4d75a0b7d63e977b786f9bb9e6.json",
+    "docs/evidence/shb/retained-tests/88fba02799ceb5de1f3650598871aae724adf8a99a904da68da54203b6260c32.json"
+  ],
+  "report": "docs/build/shb-invitation-revocation-2026-11-02.md",
+  "false_completion_placeholders": [],
+  "working_tree_snapshot_at": "2026-11-02T11:24:23.042Z",
+  "working_tree_snapshot_scope": "Measured after checkpoint files and first inventory refresh, before checkpoint commit. Listed metadata edits are checkpoint-owned; implementation is already committed/pushed. After checkpoint commit only unrelated http_cache.sqlite should remain untracked."
+}

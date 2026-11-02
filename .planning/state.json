@@ -76,9 +76,9 @@
     }
   ],
   "next": {
-    "command": "$gsd-execute-phase 6",
-    "label": "Continue protected invitation and discount administration",
-    "reason": "Continue existing 06-01/07-02 protected invitation issuance/reissue and scoped discount administration using explicit eligible associations and safe secret handling; preserve all actual input, runtime and external-operation gates."
+    "command": "$gsd-resume-work",
+    "label": "Resume protected SHB issuance and discount administration",
+    "reason": "After explicit resume, inspect existing invitation/discount fixture issuance and staff/operator ownership patterns, then implement protected invitation issuance/reissue with explicit eligibility/issuance scope and safe one-time bearer handling; continue scoped discount administration afterward. Do not treat the revocation assignment or form-entered contact as issuing/commercial authority."
   },
-  "updated_at": "2026-11-02T11:16:44.495073+00:00"
+  "updated_at": "2026-11-02T11:24:23.042Z"
 }

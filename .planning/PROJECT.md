@@ -8,9 +8,9 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Current plan:** 06-01 — protected staff invitation revocation and recoverable audit verified locally; remaining administration/actual qualification open.
 
-**Execution status:** in progress — local invitation revocation verified with 543 tests/123 browser checks; remaining staff issuance/discount administration and actual qualifications stay open.
+**Execution status:** paused — standing context-pressure checkpoint after verified/pushed invitation revocation; 543 tests/123 browser checks retained; remaining local issuance/discount administration and actual gates remain open.
 
-**Next implementation task:** Continue existing 06-01/07-02 protected invitation issuance/reissue and scoped discount administration using explicit eligible associations and safe secret handling; preserve all actual input, runtime and external-operation gates.
+**Next implementation task:** After explicit resume, inspect existing invitation/discount fixture issuance and staff/operator ownership patterns, then implement protected invitation issuance/reissue with explicit eligibility/issuance scope and safe one-time bearer handling; continue scoped discount administration afterward. Do not treat the revocation assignment or form-entered contact as issuing/commercial authority.
 
 ## What this is
 
@@ -109,3 +109,5 @@ Recorded sync 2026-11-02T10:22:45.995398+00:00: existing13-01 staff-browser veri
 Continuation 2026-11-02T10:49:10.181609+00:00: existing06-01 staff invitation revocation is unimplemented; continue inline with synthetic data. STATE.md / ROADMAP.md remain operative. No actual authority or parent completion change.
 
 Verified06-01 continuation 2026-11-02T11:16:44.495073+00:00: protected invitation revocation and archived audit, 17 new cases within543 tests/123 browser checks; identical 357 backend/eight-script hashes. Exact commands/results/limits: docs/build/shb-invitation-revocation-2026-11-02.md. Existing purchase/coupon/review and original invitation clocks retained; remaining local issuance/discount administration and actual gates remain open. No parent SUMMARY/count change or actual external operation.
+
+Context checkpoint 2026-11-02T11:24:23.042Z: verified revocation implementation 175c3ce5f958c2a04229568e1863486c3d88a247 is pushed; 543 tests/123 browser checks with matching357 backend/eight-script hashes. Apparent working-context pressure; exact percentage is unavailable. HANDOFF.json and the06 checkpoint save remaining local issuance/discount work and actual gates. This uses the standing conditional pause authorization, not a measured threshold.
