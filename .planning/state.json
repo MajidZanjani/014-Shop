@@ -77,8 +77,8 @@
   ],
   "next": {
     "command": "$gsd-execute-phase 7",
-    "label": "Continue matching ASIC offers",
-    "reason": "Exact request/customer/scope/quantity/rate/policy binding and explicit acceptance on shared payment records; withdrawal/expiry/reissue and remaining ordinary notices follow."
+    "label": "Continue ASIC closing/reissue and ordinary notices",
+    "reason": "Implement explicit pre-acceptance ASIC request/offer withdrawal, final expiry/release and replacement/reissue, then remaining ordinary request/customer notices."
   },
-  "updated_at": "2026-11-02T06:49:42.113651+00:00"
+  "updated_at": "2026-11-02T07:28:41.148953+00:00"
 }

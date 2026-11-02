@@ -56,21 +56,24 @@ def eligible(request, cleaned, *, lock=False):
     return row
 
 
-def value(invitation, cleaned, request_id, purchase):
+def value(invitation, cleaned, request_id, purchase, *, policy=None):
     details, fingerprint = submission(cleaned)
-    policy = catalog.synthetic_offer()
+    policy = policy if policy is not None else catalog.synthetic_offer()
     documents = [{'id':key, 'title':title, 'version':policy[key + '_revision'],
         'body':'Synthetic test fixture only. No approved legal terms or real purchase.'}
         for key,title in (('terms','Purchase terms'), ('support','Support terms'), ('refund','Refund policy'), ('privacy','Privacy Policy'))
         if key != 'support']
     documents.append({'id':'support', 'title':'Support terms', 'version':policy['manual_charging_policy_revision'],
         'body':'Synthetic manual support terms. SLL tracks time and sends task emails manually; no online balance or SLA.'})
+    if purchase['variant_id'] == 'shb-asic-25h':
+        documents.append({'id':'asic', 'title':'ASIC support supplement', 'version':policy['asic_supplement_revision'],
+            'body':'Synthetic ASIC terms only: 25-hour bundles for the approved SLL-IP scope. No expiry in this fixture; no tape-out, sign-off, EDA/PDK access or outcome guarantee. SLL tracks time and sends task emails manually.'})
     return {'schema':1, 'release':'shb-1.1', 'kind':'supporting-hours-bundle-checkout',
         'evidence_class':'local-synthetic', 'effects_authorized':False, 'financial_confirmation':False,
         'customer_id':invitation.customer_id, 'invitation_id':str(invitation.pk), 'request_id':str(request_id),
         'eligibility_reference':invitation.eligibility_reference, 'source_sha256':catalog.CATALOG['source_sha256'],
         'submission_sha256':fingerprint, 'details':details, 'purchase':purchase,
-        'documents':{'documents':documents}, 'required_document_ids':['terms','support','refund'],
+        'documents':{'documents':documents}, 'required_document_ids':['terms','support','refund'] + (['asic'] if purchase['variant_id']=='shb-asic-25h' else []),
         'privacy_revision':policy['privacy_revision'], 'support_terms_revision':policy['terms_revision'],
         'currency':purchase['currency'], 'total_minor':purchase['total_minor'],
         'policy':policy, 'support_tracking':'manual-outside-shop', 'named_identity_verified':False}

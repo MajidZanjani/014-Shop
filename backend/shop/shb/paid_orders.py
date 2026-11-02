@@ -10,7 +10,7 @@ from shop.catalog.models import SyntheticCheckoutAcceptance
 from shop.payments import attempts,observations
 from shop.payments.models import SyntheticPaymentAttempt
 from . import checkout
-from .models import PaidOrder,DiscountCode,DiscountReservation,PurchaseNoticeDelivery
+from .models import PaidOrder,DiscountCode,DiscountReservation,PurchaseNoticeDelivery,SupportCheckout,SupportOffer
 
 FLAGS={'evidence_class':'local-synthetic','financial_confirmation':False,'effects_authorized':False}
 
@@ -29,6 +29,10 @@ def accepted_locked(owner,identity,archive):
     row.attempt=SyntheticPaymentAttempt.objects.select_for_update().get(pk=row.attempt_id)
     if attempts.request_for(row.attempt)!=payment.request_for(row):fail()
     payment.retained(row,archive)
+    scope=SupportCheckout.objects.select_related('offer__request__invitation').get(checkout=saved)
+    if scope.offer_id:
+        from .offers import recover
+        recover(scope.offer,archive)
     events,_=observations.history_locked(row.attempt,archive)
     captures=[event for event in events if event.payload['observation'] and event.payload['observation']['status']=='captured']
     if row.attempt.state!='observed' or not captures:fail()
@@ -37,13 +41,17 @@ def accepted_locked(owner,identity,archive):
 
 def value(row,capture):
     saved=row.checkout.snapshot;purchase=saved['purchase']
-    if (purchase['variant_id']!='shb-fpga-10h' or purchase['hours_per_bundle']!=10
+    size={'shb-fpga-10h':10,'shb-asic-25h':25}.get(purchase['variant_id'])
+    if (size is None or purchase['hours_per_bundle']!=size
             or type(purchase['quantity']) is not int or purchase['quantity']<1
-            or purchase['hours_purchased']!=10*purchase['quantity']):fail()
+            or purchase['hours_purchased']!=size*purchase['quantity']):fail()
     reference=str(row.pk)
     body={'order_reference':reference,'customer_id':row.checkout.owner_id,'details':saved['details'],
         'purchase':purchase,'accepted_documents':row.payload['review']['fixture_documents'],
         'support_scope':saved['eligibility_reference'],'support_tracking':'manual-outside-shop'}
+    if size==25:
+        if not saved.get('asic_offer'):fail()
+        body['asic_offer']=saved['asic_offer']
     return {'schema':1,'kind':'shb-paid-order','order_reference':reference,
         'checkout_id':str(row.checkout_id),'checkout_sha256':row.checkout.sha256,
         'acceptance_id':reference,'acceptance_sha256':row.sha256,
@@ -53,8 +61,17 @@ def value(row,capture):
             'recipient':'support-order@synthetic.invalid','body':body,'actual_email_sent':False},**FLAGS}
 
 
+def reservation_for(row):
+    scope=SupportCheckout.objects.select_related('offer').get(checkout_id=row.checkout_id)
+    if scope.offer_id:
+        rows=DiscountReservation.objects.filter(request_id=scope.offer.request_id)
+        if not row.checkout.snapshot['purchase'].get('discount_policy'):rows=rows.exclude(state='released')
+        return rows.first()
+    return DiscountReservation.objects.filter(checkout_id=row.checkout_id).first()
+
+
 def concession_locked(row,order=None):
-    hold=DiscountReservation.objects.filter(checkout_id=row.checkout_id).first()
+    hold=reservation_for(row)
     expected=row.checkout.snapshot['purchase'].get('discount_policy')
     if bool(hold)!=bool(expected):fail()
     if hold:
@@ -93,6 +110,10 @@ def finalize(owner,identity,archive):
         if hold:
             hold.state='consumed';hold.consumed_order=order;hold.save(update_fields=['state','consumed_order'])
         PurchaseNoticeDelivery.objects.create(order=order)
+        scope=SupportCheckout.objects.select_related('offer__request').get(checkout_id=row.checkout_id)
+        if scope.offer_id:
+            scope.offer.state='paid';scope.offer.save(update_fields=['state'])
+            scope.offer.request.state='paid';scope.offer.request.save(update_fields=['state'])
         return order
 
 

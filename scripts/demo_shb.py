@@ -27,21 +27,67 @@ def require(value):
     if not value:raise ValueError('SHB demonstration check failed')
 
 
-def fixture(python,env,capture):
+def fixture(python,env,capture,*,prepare_offers=False):
     # The bearer exists only in this owned private capture and memory. Never
     # print it, put it in argv or promote this fixture into real eligibility.
-    child=dict(env,SHOP_SHB_FIXTURE_CAPTURE=str(capture))
+    child=dict(env,SHOP_SHB_FIXTURE_CAPTURE=str(capture),SHOP_SHB_PREPARE_OFFERS='1' if prepare_offers else '0')
     manage(python,child,'shell','-c','''
-import json,os
+import json,os,re,uuid
+from pathlib import Path
+from django.conf import settings
+from django.test import Client,override_settings
 from django.contrib.auth import get_user_model
 from shop.shb.invitations import issue_fixture
 from shop.shb.discounts import issue_fixture as issue_discount
 customer=get_user_model().objects.create_user(username='shb-demo-customer')
-issuer=get_user_model().objects.create_user(username='shb-demo-issuer',is_staff=True)
+issuer=get_user_model().objects.create_user(username='shb-demo-issuer',password='synthetic-demo-staff-only',is_staff=True)
 row,token=issue_fixture(customer=customer,issuer=issuer,company_name='Synthetic Company Limited',project_reference='SLL synthetic project')
-discount,code=issue_discount(customer=customer,issuer=issuer,percentage_bps=1000,fpga_allowed=True,asic_allowed=True,use_limit=2)
+prepare=os.environ['SHOP_SHB_PREPARE_OFFERS']=='1'
+discount,code=issue_discount(customer=customer,issuer=issuer,percentage_bps=1000,fpga_allowed=True,asic_allowed=True,use_limit=4 if prepare else 2)
+offer_ids=[]
+if prepare:
+    # Seed reviewed offers through the actual protected native request and
+    # password/possession-code/MFA staff routes. No credential/session fabrication.
+    from shop.shb.models import SupportRequest
+    from shop.access.models import StaffCredential,StaffQuotationGrant
+    from shop.config import staff_synthetic
+    browser=Client(enforce_csrf_checks=True,HTTP_HOST='localhost')
+    assert browser.get('/invite/'+token,secure=True).status_code==302
+    requests=[]
+    for _ in range(2):
+        assert browser.get('/purchase/simple/',secure=True).status_code==200
+        data={'variant':'shb-asic-25h','quantity':'2','company_name':'Synthetic Company Limited',
+            'billing_address':'1 Synthetic Test Street','country':'GE','company_phone':'+995 555 010101',
+            'contact_name':'Synthetic Customer','same_phone':'on','contact_email':'buyer@synthetic.invalid',
+            'assistance':'Review SLL IP integration','privacy_acknowledged':'on','discount_code':code,
+            'action':'submit','request_id':str(uuid.uuid4()),'csrfmiddlewaretoken':browser.cookies[settings.CSRF_COOKIE_NAME].value}
+        assert browser.post('/purchase/simple/',data,secure=True,HTTP_ORIGIN='https://localhost').status_code==200
+        requests.append(SupportRequest.objects.get(request_id=data['request_id']))
+    capture_root=Path(settings.LOCAL_CHECKOUT_ARCHIVE_ROOT).parent/'staff-codes';capture_root.mkdir(mode=0o700)
+    names=('ROOT_URLCONF','LOCAL_STAFF_ENABLED','ALLOWED_HOSTS','SESSION_COOKIE_NAME','CSRF_COOKIE_NAME','SESSION_COOKIE_AGE','MIDDLEWARE','TEMPLATES')
+    options={name:getattr(staff_synthetic,name) for name in names}
+    StaffCredential.objects.create(user=issuer)
+    with override_settings(**options,LOCAL_STAFF_CAPTURE_ROOT=str(capture_root)):
+        staff=Client(enforce_csrf_checks=True,HTTP_HOST='staff.localhost')
+        def post(path,data):
+            csrf=staff.get('/staff/session/').json()['csrf_token']
+            return staff.post('/staff/'+path,data=json.dumps(data),content_type='application/json',HTTP_X_CSRFTOKEN=csrf)
+        assert post('login/',{'username':issuer.username,'password':'synthetic-demo-staff-only'}).status_code==200
+        captures=list(capture_root.iterdir());assert len(captures)==1
+        possession=re.search(r'^Code: (.+)$',captures[0].read_text(),re.M)[1]
+        assert post('verify/',{'code':possession}).status_code==200
+        for request in requests:
+            StaffQuotationGrant.objects.create(user=issuer,quotation=request.quotation,business_scope_version=request.revision)
+            route='quotation-requests/'+str(request.quotation_id)+'/'
+            assert post(route+'shb-reviews/',{'request_id':str(uuid.uuid4()),'expected_review_version':0,
+                'scope_sha256':request.sha256,'decision':'ready_for_commercial_review','message':'Synthetic SLL IP feasibility reviewed.'}).status_code==201
+            offer=post(route+'shb-offers/',{'request_id':str(uuid.uuid4()),'expected_review_version':1,
+                'scope_sha256':request.sha256,'prerequisites':'Authorized customer tool access arranged separately.',
+                'exclusions':'No tape-out, sign-off or outcome guarantee.'})
+            assert offer.status_code==201
+            offer_ids.append(offer.json()['id'])
 fd=os.open(os.environ['SHOP_SHB_FIXTURE_CAPTURE'],os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600)
-with os.fdopen(fd,'w') as stream:json.dump({'invitation_id':str(row.pk),'token':token,'discount_code':code},stream)
+with os.fdopen(fd,'w') as stream:json.dump({'invitation_id':str(row.pk),'token':token,'discount_code':code,'offer_ids':offer_ids},stream)
 ''')
 
 
@@ -116,7 +162,7 @@ def main():
             read_asset(release,digest,ENTRY)
             env.update(SHOP_SHB_PRIVATE_RELEASE_ROOT=str(release),SHOP_SHB_PRIVATE_RELEASE_SHA256=digest)
         manage(python,env,'migrate','--noinput')
-        capture=scratch/'invitation.json';fixture(python,env,capture)
+        capture=scratch/'invitation.json';fixture(python,env,capture,prepare_offers=args.browser)
         credential=json.loads(capture.read_text())
         port=stack.enter_context(gunicorn(python,env,backend_scratch));base='http://127.0.0.1:'+str(port)
         if args.check:
@@ -130,22 +176,22 @@ def main():
                 # This private directory belongs only to this browser run.
                 browser_tmp=stack.enter_context(tempfile.TemporaryDirectory(prefix='shb-browser-',dir='/tmp'))
                 browser_env['TMPDIR']=browser_tmp
-                config={'origin':base,'invitationUrl':base+'/invite/'+credential['token'],'discountCode':credential['discount_code'],'scratch':str(scratch),'evidence':str(evidence) if evidence else None}
+                config={'origin':base,'invitationUrl':base+'/invite/'+credential['token'],'discountCode':credential['discount_code'],'offerIds':credential['offer_ids'],'scratch':str(scratch),'evidence':str(evidence) if evidence else None}
                 result=subprocess.run([browser_env['SHOP_NODE'],str(ROOT/'scripts/browser_shb.mjs')],input=json.dumps(config),text=True,capture_output=True,env=browser_env,timeout=120,check=True)
                 report=json.loads(result.stdout)
                 require(report['status']=='SHB_BROWSER_PASS' and report['checks']>=20 and report['modes']==2)
                 print(json.dumps(report))
                 retained=manage(python,env,'shell','-c',"from shop.shb.models import SupportRequest,DiscountReservation; from shop.payments.models import SyntheticPaymentAttempt; from shop.catalog.models import SyntheticFulfilment; print('SHB_COUNTS',SupportRequest.objects.count(),SyntheticPaymentAttempt.objects.count(),SyntheticFulfilment.objects.count(),DiscountReservation.objects.count())")
-                require('SHB_COUNTS 2 2 0 2' in retained.stdout)
+                require('SHB_COUNTS 4 4 0 4' in retained.stdout)
                 final=manage(python,env,'shell','-c',"from shop.shb.models import SupportCheckout; from shop.catalog.models import SyntheticCheckoutAcceptance; from shop.payments.models import SyntheticBankOperation; print('SHB_CHECKOUTS',SupportCheckout.objects.count(),SyntheticCheckoutAcceptance.objects.count(),SyntheticBankOperation.objects.count())")
-                require('SHB_CHECKOUTS 4 4 2' in final.stdout)
+                require('SHB_CHECKOUTS 6 6 4' in final.stdout)
                 closed=manage(python,env,'shell','-c',"from shop.shb.models import CheckoutClosure; print('SHB_CLOSED',CheckoutClosure.objects.filter(applied_at__isnull=False).count())")
                 require('SHB_CLOSED 2' in closed.stdout)
                 paid=manage(python,env,'shell','-c',"from shop.shb.models import PaidOrder,PurchaseNoticeDelivery; print('SHB_PAID',PaidOrder.objects.count(),PurchaseNoticeDelivery.objects.filter(state='pending').count())")
-                require('SHB_PAID 2 2' in paid.stdout)
-                for _ in range(2):manage(python,env,'run_worker','--once')
+                require('SHB_PAID 4 4' in paid.stdout)
+                for _ in range(4):manage(python,env,'run_worker','--once')
                 notices=manage(python,env,'shell','-c',"from shop.shb.models import PurchaseNoticeCapture,PurchaseNoticeDelivery; print('SHB_NOTICES',PurchaseNoticeCapture.objects.count(),PurchaseNoticeDelivery.objects.filter(state='captured').count())")
-                require('SHB_NOTICES 2 2' in notices.stdout)
+                require('SHB_NOTICES 4 4' in notices.stdout)
                 return report
             else:
                 count=checks(base,credential,python,env)

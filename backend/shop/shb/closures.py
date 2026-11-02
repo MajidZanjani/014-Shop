@@ -69,7 +69,7 @@ def apply(owner,identity,archive,closure):
         if current.sha256!=closure.sha256:fail()
         if current.applied_at is not None:
             payment.recover(archive,current.archive_receipt,current.pk,shared.canonical(current.payload))
-            hold=DiscountReservation.objects.filter(checkout_id=identity).first()
+            hold=paid_orders.reservation_for(row)
             if hold and (hold.state!='released' or hold.release_closure_id!=current.pk):fail()
             return current
         hold=paid_orders.concession_locked(row)
@@ -83,6 +83,11 @@ def apply(owner,identity,archive,closure):
         current.save(update_fields=['archive_receipt','applied_at'])
         if hold:
             hold.state='released';hold.release_closure=current;hold.save(update_fields=['state','release_closure'])
+        from .models import SupportCheckout
+        scope=SupportCheckout.objects.select_related('offer__request').get(checkout_id=row.checkout_id)
+        if scope.offer_id:
+            scope.offer.state='closed';scope.offer.save(update_fields=['state'])
+            scope.offer.request.state='withdrawn';scope.offer.request.save(update_fields=['state'])
         return current
 
 

@@ -6,7 +6,7 @@ current_phase_name: FPGA checkout, ASIC reviewed offers and scoped discounts
 current_plan: 3
 current_task: 1
 status: in_progress
-last_updated: "2026-11-02T06:49:42.113651+00:00"
+last_updated: "2026-11-02T07:28:41.148953+00:00"
 last_activity: 2026-11-02
 state_head: a227344f8c4c3c3cc2e599eab730525561f2140a
 progress:
@@ -25,32 +25,34 @@ Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-3
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only.
 
-**Current plan:** 07-03 — FPGA per-order paid finalization, coupon consumption/safe closure, assigned staff visibility and durable synthetic purchase notice verified; matching ASIC offers remain open.
+**Current plan:** 07-03 — matching dated ASIC offers, exact acceptance/payment and request-held coupon consumption verified; withdrawal/expiry/reissue and customer notices remain open.
 
-**Execution status:** in progress — resumed matching dated ASIC offers and exact acceptance/payment;439 tests/47 browser checks are the verified baseline; actual qualifications remain pending.
+**Execution status:** in progress — dated ASIC offers and exact acceptance/payment verified;458 tests/59 browser checks pass; remaining closure/notices and actual qualifications are pending.
 
-**Next implementation task:** Continue matching dated ASIC offers with exact request revision/customer/scope/quantity/price/terms, withdrawal/expiry/reissue and remaining ordinary request/customer notices.
+**Next implementation task:** Implement explicit pre-acceptance ASIC request/offer withdrawal, final expiry/release and replacement/reissue, then remaining ordinary request/customer notices.
 
 ## Verified local scope
 
-Existing shared checkout/acceptance/payment/archive records now converge on one immutable FPGA paid order, one coupon consumption and one queued ordinary purchase notice. The existing leased worker recovers interrupted finalization after invitation expiry and captures the same durable fake notice. Assigned paid-order staff views require the existing recent MFA/current epoch and exact grant, cleared by reset/recovery. No historical verified identity is fabricated.
+The shared immutable request/quotation/checkout/payment records now support dated ASIC offers and exact customer acceptance. Current assigned recent-MFA staff freeze the request/customer/revision/scope/quantity, prerequisites/exclusions, price/discount/tax/currency, exact document bodies/versions, issuer/review attribution and synthetic14-day deadline. Archive recovery precedes publication; current staff authority is rechecked after I/O. One active offer per request and one checkout per offer.
 
-Safe pre-dispatch cancellation/expiry saves one immutable intent that immediately fences payment. Only archived application plus a proved stopped/never-dispatched attempt releases its matched concession. Archive failure retains the hold; the saved action can finish after invitation expiry. Both PostgreSQL cancellation/bank-claim races pass. Uncertain/observed payments cannot use safe closure and remain lookup/reconciliation cases. Captured/refunded orders preserve their reference and consumed slot.
+The original request concession survives actual claim expiry and is consumed once by the matching paid ASIC order. Customer offer pages use blank billing/contact inputs and current same-customer/company/project invitation access, with no private prefill/history authority. Exact signed review and separate terms/privacy acceptance feed the shared bank lifecycle. New expired-offer payment is denied; authenticated late lookup/finalization continues after invitation revocation. Existing staff paid-order pages show the accepted ASIC scope. The existing worker captures the stable fake support-team notice.
 
-Current exact evidence:439 passing tests (96 SHB,95 access/recovery,104 payment,30 staff review/navigation,24 local worker/statement-mail,75 preserved transactions/archive,9 source/catalog,6 actual unshare--net adapters),47 actual Chromium151/Node24.15 browser checks/two modes/320px, identical unchanged hashes for326 backend files/eight scripts. Reports: docs/build/shb-paid-orders-2026-11-02.md and docs/build/shb-safe-closure-2026-11-02.md. The normal pinned Nix shell/source environment remains unavailable; retained tools are separate local synthetic evidence, not Nix/OCI/runtime/provider/independent/human qualification.
+The earlier FPGA paid-order and safe-closure paths remain verified. Safe never-dispatched accepted ASIC cancellation now also releases its original request hold only after archived closure; uncertainty cannot release it. Pre-acceptance withdrawal/final offer expiry/reissue and remaining ordinary request/customer notices are unfinished. An expired unaccepted offer conservatively retains its concession until that safe lifecycle exists.
 
-No parent SUMMARY, FULL_PASS or count change:11/42 retained summary records and1/14 documentary phases. Matching dated ASIC offers, revision/scope/price acceptance, withdrawal/reissue and remaining ordinary request/customer notices are unfinished. Each order retains only its bundle size, quantity and purchased hours. No IP/time fulfilment, cumulative balance, staff time entry, support/bundle panel or task email is connected.
+Current exact evidence:458 passing tests (115 SHB,95 access/recovery,104 payment,30 staff review/navigation,24 local worker/statement-mail,75 preserved transaction/archive,9 source/catalog,6 actual unshare--net adapters),59 actual Chromium151/Node24.15 browser checks/two modes/320px, identical332-backend/eight-script hashes. Report/full commands: docs/build/shb-asic-offers-2026-11-02.md. Normal pinned Nix/source/runtime/provider/independent/human qualification remains unavailable/pending; retained tools are separate synthetic evidence.
+
+No parent SUMMARY, FULL_PASS or count change:11/42 retained summary records and1/14 documentary phases. Orders retain only their own bundle size, quantity and purchased hours. No IP/time fulfilment, cumulative balance, staff time entry, support/bundle panel or task email is connected.
 
 ## Current artifacts and external inputs
 
-Private9-file release `.scratch/shb-private-resume-t2p3r5cc/release`, manifest `ef2d68408ac264a2da888af45ec167242c1a21680990d66a772bd761b86941f3`; latest empty browser screenshots `.scratch/shb-checkout-browser-i4cll_t4`. All owned test/browser/Gunicorn/disposable database contexts have completed. No async external job exists.
+Private9-file release .scratch/shb-private-resume-t2p3r5cc/release remains unchanged, manifest ef2d68408ac264a2da888af45ec167242c1a21680990d66a772bd761b86941f3. Latest private empty browser screenshots: .scratch/shb-checkout-browser-ncexecxa. All owned test/browser/Gunicorn/disposable database contexts have completed; no async external job.
 
-One actual-input register: docs/decisions.md. Company inputs arrive later; no repeat request. Actual commercial/provider/mail/host/ingress/database/runtime/native/licence/OCI/CI/recovery/human qualifications remain pending. Independent off-host runner is unassigned. No .env, actual bank/mail/storage/protected-host/DNS/TLS action or paid provision. http_cache.sqlite untouched. Ordinary origin/main push remains authorized.
+One actual-input register: docs/decisions.md. Company inputs arrive later; no repeat request. Actual commercial/provider/mail/host/ingress/database/runtime/native/licence/OCI/CI/recovery/human qualifications remain pending; independent off-host runner unassigned. No .env, actual bank/mail/storage/protected-host/DNS/TLS action or paid provision. http_cache.sqlite untouched. Ordinary origin/main push remains authorized.
 
 ## Session Continuity
 
-Last session: 2026-11-02T06:49:42.113651+00:00
-Stopped at: Explicit user resume; proceeding inline through gsd-execute-phase07-03/07-04 to matching ASIC offers and exact acceptance/payment.
+Last session: 2026-11-02T07:28:41.148953+00:00
+Stopped at: Matching ASIC offer/acceptance/payment slice verified inline; recording and pushing the implementation before a standing context-pressure checkpoint. Exact context percentage is unavailable.
 Resume file: phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/.continue-here.md.
 
-HANDOFF.json consumed after reconciling its committed planning snapshot and clean implementation tree. No current background process or async external job; unrelated http_cache.sqlite remains untouched. Completion counts are unchanged.
+Handoff consumed on resume; no parent completion count change. Continue the remaining pre-acceptance closing/reissue and ordinary notice lifecycle.

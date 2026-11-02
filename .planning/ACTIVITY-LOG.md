@@ -53,3 +53,5 @@ STATE.md / ROADMAP.md / HANDOFF and machine routing paused consistently. Impleme
 - 2026-11-02T06:30:46.556174+00:00: Safe pre-dispatch cancellation/expiry, saved-intent recovery, atomic coupon release and both claim races verified;439 tests/47 browser checks. Source326 backend/eight scripts. Dated ASIC offers/actual gates remain open.
 
 - 2026-11-02T06:36:54.289Z: Saved apparent-context-pressure checkpoint after two verified/pushed FPGA workflow slices. Exact percentage unavailable.439 tests/47 browser checks; matching ASIC offers next; no parent completion count or actual qualification.
+
+2026-11-02T07:28:41.148953+00:00 — Current STATE.md/ROADMAP.md focus07. Matching ASIC dated offers/acceptance/payment verified:458 tests/59 real browser checks; report docs/build/shb-asic-offers-2026-11-02.md. Parent lifecycle/notices remain open; no count change.

@@ -77,3 +77,11 @@ class ShopForm(forms.Form):
             for field in ('assistance','project_reference','design_context','timing'):data[field]=''
         if data.get('discount_code'):data['discount_code']=data['discount_code'].upper()
         return data
+
+
+class OfferForm(ShopForm):
+    """Fresh billing/contact input; quantity and engineering scope come from the offer."""
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for name in ('variant', 'quantity', 'discount_code', 'assistance', 'project_reference', 'design_context', 'timing'):
+            self.fields.pop(name)

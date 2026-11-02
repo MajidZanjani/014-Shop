@@ -6,11 +6,11 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
 
-**Current plan:** 07-03 — FPGA per-order paid finalization, coupon consumption/safe closure, assigned staff visibility and durable synthetic purchase notice verified; matching ASIC offers remain open.
+**Current plan:** 07-03 — matching dated ASIC offers, exact acceptance/payment and request-held coupon consumption verified; withdrawal/expiry/reissue and customer notices remain open.
 
-**Execution status:** in progress — resumed matching dated ASIC offers and exact acceptance/payment;439 tests/47 browser checks are the verified baseline; actual qualifications remain pending.
+**Execution status:** in progress — dated ASIC offers and exact acceptance/payment verified;458 tests/59 browser checks pass; remaining closure/notices and actual qualifications are pending.
 
-**Next implementation task:** Continue matching dated ASIC offers with exact request revision/customer/scope/quantity/price/terms, withdrawal/expiry/reissue and remaining ordinary request/customer notices.
+**Next implementation task:** Implement explicit pre-acceptance ASIC request/offer withdrawal, final expiry/release and replacement/reissue, then remaining ordinary request/customer notices.
 
 ## What this is
 
@@ -75,3 +75,5 @@ Verified safe-closure continuation 2026-11-02T06:30:46.556174+00:00:439 tests/47
 Context checkpoint 2026-11-02T06:36:54.289Z: paid-order implementation07cb88d and safe-closure implementationa227344f8c4c3c3cc2e599eab730525561f2140a are committed/pushed.439 tests/47 browser checks remain verified; no uncommitted code or owned background job. Exact context percentage is unavailable; checkpoint uses the standing apparent-pressure authorization. Resume matching ASIC offers through HANDOFF.json. No parent completion count change.
 
 Resume 2026-11-02T06:49:42.113651+00:00: explicit user $gsd-resume-work lifts the context checkpoint. Continue matching ASIC offers inline through the existing plan; real inputs/qualifications remain pending. HANDOFF.json consumed.
+
+Verified ASIC offer continuation 2026-11-02T07:28:41.148953+00:00:458 tests/59 actual browser checks; identical332-backend/eight-script hashes. Dated matching ASIC offers, exact immutable documents/acceptance/payment, original request-hold consumption and assigned staff scope display are implemented. Report: docs/build/shb-asic-offers-2026-11-02.md. Pre-acceptance withdrawal/final expiry/reissue and remaining ordinary request/customer notices stay open. No parent SUMMARY/count change or live/independent qualification.

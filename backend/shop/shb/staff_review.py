@@ -91,6 +91,9 @@ def record(request, identity, value):
             raise ShbError('request_scope_changed')
         if row.state not in ('submitted', 'needs_information', 'under_review'):
             raise ShbError('request_closed_or_offer_review_required')
+        from .models import SupportOffer
+        if SupportOffer.objects.filter(request=row,state__in=['prepared','issued','paid']).exists():
+            raise ShbError('request_closed_or_offer_review_required')
         marker = request.session['shop_staff_mfa']
         review = QuotationReview.objects.create(quotation=row.quotation, version=version + 1,
             business_version=row.revision, request_id=key, snapshot_digest=row.sha256,

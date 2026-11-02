@@ -29,6 +29,7 @@ async function main(){
   let input='';for await(const chunk of process.stdin){input+=chunk;require(input.length<=8192);}
   const config=JSON.parse(input);input='';
   require(/^SLL-[A-Z2-9]{24}$/.test(config.discountCode));
+  require(config.offerIds?.length===2&&config.offerIds.every(id=>/^[a-f0-9-]{36}$/.test(id)));
   require(allowedRequest(config.invitationUrl,config.origin));
   require(new URL(config.invitationUrl).pathname.match(/^\/invite\/[A-Za-z0-9_-]{43}$/));
   require(process.versions.node===process.env.SHOP_BROWSER_NODE_VERSION);
@@ -110,9 +111,9 @@ async function main(){
         }
         require(committed);await until('document.readyState==="complete"');
       };
-      const fill=async()=>{
+      const fill=async({privacy=true}={})=>{
         for(const [name,text] of Object.entries({company_name:'Synthetic Company Limited',billing_address:'1 Synthetic Test Street',country:'GE',company_phone:'+995 555 010101',contact_name:'Synthetic Customer',contact_email:'buyer@synthetic.invalid'}))await type('[name='+name+']',text);
-        await toggle('[name=same_phone]');await toggle('[name=privacy_acknowledged]');
+        await toggle('[name=same_phone]');if(privacy)await toggle('[name=privacy_acknowledged]');
       };
       await go(config.origin+'/shop/');await until('document.body.innerText.includes("Access requires")');require(lastStatus===403);checks++;
       await go(config.invitationUrl);await until('location.pathname==="/shop/"');
@@ -187,9 +188,23 @@ async function main(){
       await submit('button[name=action][value=cancel]');
       require(lastStatus===200&&await evaluate('document.body.innerText.includes("This unpaid checkout is closed")&&!document.querySelector("button[value=pay]")'));checks++;
       require(await evaluate('document.documentElement.scrollWidth<=document.documentElement.clientWidth&&localStorage.length===0&&sessionStorage.length===0'));checks++;
+      stage=javascript?'javascript-asic-offer':'no-javascript-asic-offer';
+      await go(config.origin+'/purchase/shb/offer/'+config.offerIds[javascript?0:1]+'/');
+      require(lastStatus===200&&await evaluate('document.body.innerText.includes("50 hours in this order")&&document.querySelector("[name=company_name]").value===""&&!document.querySelector("[name=assistance]")&&!document.querySelector("[name=quantity]")'));checks++;
+      await fill({privacy:false});await submit('button[name=action][value=review]');
+      require(lastStatus===200&&await evaluate('document.body.innerText.includes("ASIC support supplement")&&document.body.innerText.includes("EUR 9,000.00")&&!document.querySelector("[name=accept_terms]").checked&&!document.querySelector("[name=privacy_acknowledged]").checked'));checks++;
+      require(await evaluate('document.documentElement.scrollWidth<=document.documentElement.clientWidth'));checks++;
+      await toggle('[name=accept_terms]');await toggle('[name=privacy_acknowledged]');
+      stage=javascript?'javascript-asic-accept':'no-javascript-asic-accept';
+      await submit('button[name=action][value=checkout]');
+      require(lastStatus===200&&await evaluate('document.body.innerText.includes("50 hours in this order")&&document.body.innerText.includes("Payment has not started")'));checks++;
+      stage=javascript?'javascript-asic-payment':'no-javascript-asic-payment';
+      await submit('button[name=action][value=pay]');await submit('button[name=action][value=pay]');
+      require(lastStatus===200&&escaped===0&&await evaluate('document.body.innerText.includes("Paid purchase recorded")&&document.body.innerText.includes("Bank result: captured")'));checks++;
+      require(await evaluate('document.documentElement.scrollWidth<=document.documentElement.clientWidth&&localStorage.length===0&&sessionStorage.length===0'));checks++;
       await cdp.send('Target.disposeBrowserContext',{browserContextId});
     }
-    console.log(JSON.stringify({status:'SHB_BROWSER_PASS',checks,modes:2,pendingDocumentLoads,browser:version,node:process.versions.node,evidence_class:'local-synthetic-browser',fpga:'accepted-30-hours',asic:'submitted-50-hours',payment:'synthetic-captured-once',paidOrder:'recorded-once-per-purchase',closure:'safe-before-dispatch'}));
+    console.log(JSON.stringify({status:'SHB_BROWSER_PASS',checks,modes:2,pendingDocumentLoads,browser:version,node:process.versions.node,evidence_class:'local-synthetic-browser',fpga:'accepted-30-hours',asic:'requested-and-accepted-50-hours',payment:'synthetic-captured-once',paidOrder:'recorded-once-per-purchase',closure:'safe-before-dispatch'}));
   }catch(error){
     if(config.evidence&&diagnose){try{await writeFile(join(config.evidence,'browser-failure.json'),JSON.stringify(await diagnose()),{flag:'wx',mode:0o600});}catch{}}
     throw error;

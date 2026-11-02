@@ -37,6 +37,8 @@ def locked(owner, identity, *, customer_request=None):
             raise checkout.CheckoutError('verification_required',403)
         from shop.shb.checkout import lock_customer
         lock_customer(owner)
+        from shop.shb.offers import lock_checkout
+        lock_checkout(candidate)
     else:
         owner_locked(owner)
     row = SyntheticCheckout.objects.select_for_update().get(pk=identity,owner=owner)
@@ -130,6 +132,9 @@ def accept(owner, identity, expected, confirmed, archive, *, customer_request=No
         verify(current)
         if current.sha256 != row.sha256: raise checkout.CheckoutError('acceptance_mismatch')
         if current.simulated_accepted_at is None:
+            if saved.snapshot.get('asic_offer'):
+                from shop.shb.offers import ensure_payment_open
+                ensure_payment_open(saved)
             # Recheck expiry after archive I/O; a prepared row is not an accepted fixture.
             if attempts.database_now() >= datetime.fromisoformat(current.payload['review']['offer_expires_at']):
                 raise checkout.CheckoutError('synthetic_offer_expired')
@@ -210,3 +215,5 @@ def ensure_shb_open(row):
     if row.checkout.snapshot.get('release')=='shb-1.1':
         from shop.shb.models import CheckoutClosure
         if CheckoutClosure.objects.filter(acceptance=row).exists():raise checkout.CheckoutError('shb_checkout_closed_or_closing',409)
+        from shop.shb.offers import ensure_payment_open
+        ensure_payment_open(row.checkout)

@@ -127,6 +127,7 @@ class SupportCheckout(models.Model):
     submission_sha256 = models.CharField(max_length=64, editable=False)
     review_sha256 = models.CharField(max_length=64, editable=False)
     session_digest = models.CharField(max_length=64, editable=False)
+    offer = models.OneToOneField('SupportOffer', null=True, on_delete=models.PROTECT, editable=False)
 
     class Meta:
         constraints = [
@@ -190,3 +191,31 @@ class CheckoutClosure(models.Model):
     applied_at=models.DateTimeField(null=True,editable=False)
     class Meta:
         constraints=[models.CheckConstraint(condition=models.Q(sha256__regex=r'^[a-f0-9]{64}$') & (models.Q(applied_at__isnull=True)|~models.Q(archive_receipt={})),name='shb_closure_archive_gate')]
+
+
+class SupportOffer(models.Model):
+    """Dated immutable offer on an existing reviewed quotation; no new engine."""
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    request = models.ForeignKey(SupportRequest, on_delete=models.PROTECT)
+    review = models.ForeignKey(SupportRequestReview, on_delete=models.PROTECT)
+    issue_key = models.UUIDField(editable=False)
+    revision = models.PositiveIntegerField(editable=False)
+    issuer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, related_name='+')
+    issuer_generation = models.UUIDField(editable=False)
+    mfa_verified_at = models.DateTimeField(editable=False)
+    issued_at = models.DateTimeField(editable=False)
+    expires_at = models.DateTimeField(editable=False)
+    payload = models.JSONField(editable=False)
+    sha256 = models.CharField(max_length=64, editable=False)
+    archive_receipt = models.JSONField(default=dict, editable=False)
+    published_at = models.DateTimeField(null=True, editable=False)
+    state = models.CharField(max_length=16, default='prepared', editable=False)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['request', 'issue_key'], name='shb_offer_retry'),
+            models.UniqueConstraint(fields=['request', 'revision'], name='shb_offer_revision'),
+            models.UniqueConstraint(fields=['request'], condition=models.Q(state__in=['prepared', 'issued', 'paid']), name='shb_offer_one_active'),
+            models.CheckConstraint(condition=models.Q(revision__gte=1, expires_at__gt=models.F('issued_at'), sha256__regex=r'^[a-f0-9]{64}$'), name='shb_offer_digest_dates'),
+            models.CheckConstraint(condition=models.Q(state='prepared', published_at__isnull=True, archive_receipt={}) | (models.Q(state__in=['issued', 'closed', 'paid'], published_at__isnull=False) & ~models.Q(archive_receipt={})), name='shb_offer_publication'),
+        ]

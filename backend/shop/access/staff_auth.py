@@ -75,10 +75,10 @@ def staff_credential(request, recent=False):
     return StaffCredential.objects.filter(user=request.user,enabled=True,generation=generation).first()
 
 
-def payload(request,fields):
-    if request.content_type=='application/json':return read_json(request,fields)
+def payload(request,fields,*,maximum_bytes=1024):
+    if request.content_type=='application/json':return read_json(request,fields,maximum_bytes=maximum_bytes)
     if request.content_type!='application/x-www-form-urlencoded':raise ValueError('content_type')
-    if int(request.META.get('CONTENT_LENGTH') or 0)>1024:raise ValueError('size')
+    if int(request.META.get('CONTENT_LENGTH') or 0)>maximum_bytes:raise ValueError('size')
     value=request.POST
     if set(value)-{'csrfmiddlewaretoken'}!=set(fields) or any(len(value.getlist(k))!=1 for k in value):raise ValueError('fields')
     return {key:value[key] for key in fields}

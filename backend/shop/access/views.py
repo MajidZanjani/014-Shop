@@ -36,12 +36,12 @@ def reply(data,status=200):
 def digest(purpose,value):
     return salted_hmac('shop.local-verification.'+purpose,value,algorithm='sha256').hexdigest()
 
-def read_json(request,fields):
+def read_json(request,fields,*,maximum_bytes=1024):
     from shop.catalog.views import unique_object
     if request.content_type!='application/json': raise ValueError('content_type')
-    if int(request.META.get('CONTENT_LENGTH') or 0)>1024: raise ValueError('size')
-    raw=request.read(1025)
-    if len(raw)>1024: raise ValueError('size')
+    if int(request.META.get('CONTENT_LENGTH') or 0)>maximum_bytes: raise ValueError('size')
+    raw=request.read(maximum_bytes+1)
+    if len(raw)>maximum_bytes: raise ValueError('size')
     value=json.loads(raw,object_pairs_hook=unique_object)
     if not isinstance(value,dict) or set(value)!=set(fields): raise ValueError('fields')
     # Reject malformed text before credential hashing or authentication effects.

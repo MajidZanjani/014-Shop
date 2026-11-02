@@ -45,7 +45,7 @@ LOCAL_EFFECT_KINDS=('worker-run','probe-claim','probe-bank','statement-run','sta
     'statement-capture','notification-run','notification-claim','notification-process',
     'payment-dispatch','finance-dispatch','bank-start','bank-mutation',
     'customer-code','customer-verify','staff-password','staff-verify',
-    'shb-close','shb-finalize','shb-notice-run','shb-notice-claim','shb-notice-capture')
+    'shb-close','shb-finalize','shb-notice-run','shb-notice-claim','shb-notice-capture','shb-offer')
 
 class LocalEffectAdmission(models.Model):
     """A local call scope, never a financial result or permission to retry."""

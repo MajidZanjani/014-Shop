@@ -6,18 +6,16 @@ Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-3
 
 **Last fully completed phase:** 1 — documentary authority only.
 
-**Current plan:** 07-03 — FPGA per-order paid finalization, coupon consumption/safe closure, assigned staff visibility and durable synthetic purchase notice verified; matching ASIC offers remain open.
+**Current plan:** 07-03 — matching dated ASIC offers, exact acceptance/payment and request-held coupon consumption verified; withdrawal/expiry/reissue and customer notices remain open.
 
-**Execution status:** in progress — resumed matching dated ASIC offers and exact acceptance/payment;439 tests/47 browser checks are the verified baseline; actual qualifications remain pending.
+**Execution status:** in progress — dated ASIC offers and exact acceptance/payment verified;458 tests/59 browser checks pass; remaining closure/notices and actual qualifications are pending.
 
-**Next implementation task:** Continue matching dated ASIC offers with exact request revision/customer/scope/quantity/price/terms, withdrawal/expiry/reissue and remaining ordinary request/customer notices.
+**Next implementation task:** Implement explicit pre-acceptance ASIC request/offer withdrawal, final expiry/release and replacement/reissue, then remaining ordinary request/customer notices.
 
 **Recorded implementation:** a227344f8c4c3c3cc2e599eab730525561f2140a
 
-Paid-order implementation07cb88d and safe-closure implementationa227344f8c4c3c3cc2e599eab730525561f2140a are verified and pushed.439 tests/47 actual browser checks pass with identical326 backend/eight-script hashes. Reports and full commands: [paid orders](../docs/build/shb-paid-orders-2026-11-02.md), [safe closure](../docs/build/shb-safe-closure-2026-11-02.md).
+The current ASIC offer slice is verified at458 tests/59 actual browser checks, with identical332-backend/eight-script hashes; its implementation commit is being recorded. [Report and full commands](../docs/build/shb-asic-offers-2026-11-02.md). No parent SUMMARY/count change.
 
-The next work is matching dated ASIC offers and remaining request/customer notices. Preserve technical readiness as unpaid preparation; do not bypass request revision/scope/price/terms matching or current invitation access. Live inputs and normal Nix/actual/independent qualifications stay pending. No full parent SUMMARY/count change (11/42 records,1/14 documentary phases). Support time/task emails remain manual.
+Next: explicit pre-acceptance request/offer withdrawal, final expiry/release, replacement/reissue and remaining ordinary request/customer notices. Expired unaccepted offers retain their concession until archived safe closing is implemented. Current accepted-checkout cancellation is complete; uncertain bank state stays lookup-only.
 
-Saved under the standing context-pressure instruction after two implementation slices; exact percentage is unavailable. HANDOFF.json is the primary resumption source. No active jobs or uncommitted code; .env and unrelated http_cache.sqlite untouched.
-
-Resume 2026-11-02T06:49:42.113651+00:00: explicit user $gsd-resume-work lifts the context checkpoint. Continue matching ASIC offers inline through the existing plan; real inputs/qualifications remain pending. HANDOFF.json consumed.
+Retained tools remain separate synthetic evidence; normal Nix/source/runtime and all actual qualification gates are pending. Company inputs arrive later through docs/decisions.md. No real external action, .env or cache access. No owned job/process remains.

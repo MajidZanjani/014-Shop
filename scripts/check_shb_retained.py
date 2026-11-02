@@ -158,7 +158,7 @@ def inside(args):
     result=unittest.TextTestRunner(verbosity=1).run(suite)
     assert result.wasSuccessful() and not result.skipped and result.testsRun>=9
     total+=result.testsRun
-    labels=[['shop.shb.tests','shop.shb.discount_tests','shop.shb.review_tests','shop.shb.checkout_tests','shop.shb.paid_order_tests','shop.shb.closure_tests']]
+    labels=[['shop.shb.tests','shop.shb.discount_tests','shop.shb.review_tests','shop.shb.checkout_tests','shop.shb.paid_order_tests','shop.shb.closure_tests','shop.shb.offer_tests']]
     if args.shared:
         labels.extend([
             ['shop.core.tests','shop.access.tests','shop.access.staff_tests','shop.access.recovery_tests','shop.access.effect_tests','shop.access.startup_tests','shop.access.staff_restore_tests','shop.access.authentication_recovery_tests'],

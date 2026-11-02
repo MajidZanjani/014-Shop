@@ -167,3 +167,49 @@ def payment_page(request,identity):
     response['Content-Security-Policy']="default-src 'none'; style-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'"
     response['Cache-Control']='no-store';response['Referrer-Policy']='no-referrer'
     return response
+
+
+@require_http_methods(['GET','POST'])
+@sensitive_post_parameters()
+def offer_page(request,identity):
+    """Current offers only, with fresh contact fields and no history/prefill grant."""
+    from django.db import transaction
+    from . import offers
+    from .forms import OfferForm
+    from shop.adapters.evidence_archive import PreparedArchive,ArchiveError
+    from shop.catalog.checkout import CheckoutError
+    context={'form':OfferForm(),'request_id':str(uuid.uuid4())};status=200
+    try:
+        checkout.guard()
+        if request.GET: raise services.ShbError('unexpected_query',400)
+        with transaction.atomic(durable=True):
+            _,offer=offers.customer_offer(request,identity,lock=True)
+        context['offer']=offer
+        if request.method=='POST':
+            if request.content_type not in ('application/x-www-form-urlencoded','multipart/form-data') or request.FILES:
+                raise services.ShbError('Use the protected form without files.',422)
+            action=request.POST.get('action','review')
+            if action not in ('review','checkout'): raise services.ShbError('invalid_request',400)
+            form=OfferForm(request.POST,stage='checkout' if action=='checkout' else 'review')
+            context.update(form=form,request_id=request.POST.get('request_id',''))
+            if form.is_valid():
+                root=getattr(settings,'LOCAL_CHECKOUT_ARCHIVE_ROOT',None)
+                if not root: raise services.ShbError('recovery_evidence_unavailable',503)
+                with PreparedArchive(Path(root)) as archive:
+                    if action=='checkout':
+                        row=offers.capture(request,identity,form.cleaned_data,request.POST.get('request_id'),request.POST.get('review_digest'),archive)
+                        checkout.accept(request,row,archive)
+                        return HttpResponseRedirect('/purchase/shb/'+str(row.pk)+'/')
+                    token,value=offers.review(request,identity,form.cleaned_data,request.POST.get('request_id'),archive)
+                    unchecked=request.POST.copy();unchecked['accept_terms']='';unchecked['privacy_acknowledged']=''
+                    context.update(form=OfferForm(unchecked),review_digest=token,review=value)
+            else: status=422
+        context['expired']=offer.expires_at<=offers.attempts.database_now() or offer.state!='issued'
+    except (services.ShbError,CheckoutError) as error:
+        context['error']=getattr(error,'code',str(error));status=error.status
+    except (ArchiveError,OSError):
+        context['error']='Required recovery evidence is unavailable.';status=503
+    response=TemplateResponse(request,'shb/offer.html',context,status=status)
+    response['Content-Security-Policy']="default-src 'none'; style-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'"
+    response['Cache-Control']='no-store';response['Referrer-Policy']='no-referrer'
+    return response
