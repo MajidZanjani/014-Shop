@@ -1,0 +1,10 @@
+{
+  "command": "python3 .scratch/shb_revision_target.py (retained-tool namespace; disposable PostgreSQL; /nix/store/nr6vqhv33q8n6nbyy529fvcydy3zp1jd-python3-3.13.16-env/bin/python3 manage.py test shop.shb.revision_tests.RevisionTests.test_withdrawn_offer_can_start_blank_linked_revised_request_without_old_private_prefill --noinput --keepdb --verbosity 1)",
+  "exitCode": 1,
+  "output": "Using existing test database for alias 'default'...\n{\"event\":\"runtime.event\",\"status\":404,\"correlation_id\":null}\nF\n======================================================================\nFAIL: test_withdrawn_offer_can_start_blank_linked_revised_request_without_old_private_prefill (shop.shb.revision_tests.RevisionTests.test_withdrawn_offer_can_start_blank_linked_revised_request_without_old_private_prefill)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/claude/project/014-Shop/backend/shop/shb/revision_tests.py\", line 46, in test_withdrawn_offer_can_start_blank_linked_revised_request_without_old_private_prefill\n    self.assertEqual(page.status_code,200)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 404 != 200\n\n----------------------------------------------------------------------\nRan 1 test in 0.549s\n\nFAILED (failures=1)\nPreserving test database for alias 'default'...\nFound 1 test(s).\nSystem check identified no issues (0 silenced).\n",
+  "targetTest": "shop.shb.revision_tests.RevisionTests.test_withdrawn_offer_can_start_blank_linked_revised_request_without_old_private_prefill",
+  "targetFile": "backend/shop/shb/revision_tests.py",
+  "expected": "After deliberate withdrawal a current matching invitation can start a linked fresh ASIC request without private prefill.",
+  "actual": "The protected revised-request form route is absent.",
+  "semanticAssessment": "One actual target executed after valid assigned offer issuance and deliberate protected customer withdrawal; the new linked revised-form GET failed404 versus200. No missing symbol, fixture, discovery or syntax failure."
+}

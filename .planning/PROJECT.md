@@ -8,7 +8,7 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Current plan:** 07-04 — ASIC closing/reissue and ordinary notices verified; linked material changed-work request revisions remain open.
 
-**Execution status:** in progress — archived ASIC closing/reissue and ordinary customer/request notices verified;487 tests/65 browser checks and18 ordinary captures pass; linked material request revisions and actual qualifications remain open.
+**Execution status:** in progress — linked material ASIC request revisions are under test-first implementation; prior closing/reissue/notices verified at487 tests/65 browser checks; new revision work and actual qualification remain pending.
 
 **Next implementation task:** Implement a linked new ASIC request revision after deliberate unpaid withdrawal, with fresh form/eligibility/price/coupon validation, assigned technical review and explicit new offer acceptance.
 

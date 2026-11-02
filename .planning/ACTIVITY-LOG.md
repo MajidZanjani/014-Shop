@@ -67,3 +67,5 @@ STATE.md / ROADMAP.md / HANDOFF and machine routing paused consistently. Impleme
 2026-11-02T08:07:54.870706+00:00 — Continued after pushed closing implementation4e1b9692a23be686d5f4c1b06739324cd7842924. Ordinary acknowledgement RED: stored request leaves no worker work; one intended false-versus-true assertion, GSD RED_EVIDENCE_OK. STATE.md/ROADMAP.md stay active; new notice implementation unverified.
 
 2026-11-02T08:24:28.608322+00:00 — STATE.md/ROADMAP.md07-04 ordinary notices verified:487 tests/65 browser checks,18 ordinary and4 support-team captures, identical340 backend/eight-script source. Source/notice/outbox atomicity and bounded lost-process recovery implemented; no real mail or parent count change.
+
+2026-11-02T08:28:40.860376+00:00 — Continued after pushed notification implementationbfa003a56d651e663689f97dcdbecfdb977e1b11. Linked material-revision RED: current protected withdrawal works, revised fresh form missing404 versus200; GSD RED_EVIDENCE_OK. STATE.md/ROADMAP.md remain active, no parent count change.
