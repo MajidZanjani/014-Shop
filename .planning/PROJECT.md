@@ -2,15 +2,15 @@
 
 Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](STATE.md) / [ROADMAP.md](ROADMAP.md).
 
-**Current development focus:** 10 — Paid SHB orders, transaction notices and manual handoff.
+**Current development focus:** 13 — Thirty SHB acceptance cases and release verification.
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
 
-**Current plan:** 10-05 — archived manual refund review, original financial linkage and staff support-team handoff verified locally; actual financial/release qualification remains open.
+**Current plan:** 13-01 — local customer/staff financial browser acceptance verified; actual release qualification remains open.
 
-**Execution status:** paused — explicit user request after526 tests/71 customer browser checks; local financial/recovery implementation is pushed; staff browser and actual qualifications remain open.
+**Execution status:** in progress — local staff-browser slice verified with526 tests/113 browser checks; actual source/runtime/provider/host/database/independent/human qualifications remain open.
 
-**Next implementation task:** After explicit resume, continue existing13-01 by extending the existing owned synthetic demo/browser harness to exercise the new staff refund review and support-team handoff forms with recent MFA, exact order/refund scopes and CSRF; retain all actual qualification gates.
+**Next implementation task:** Continue existing13-01 actual release qualification when its approved source/runtime, commercial/provider/mail/host/database/human prerequisites and authorized independent runner are available; retain scoped gates and the single docs/decisions.md input register.
 
 ## What this is
 
@@ -99,3 +99,7 @@ Continue 2026-11-02T09:25:58.429725+00:00: user authorized continued local work.
 Verified10-05 continuation 2026-11-02T09:56:40.275115+00:00: archived manual SHB refund review, shared finance linkage and attributed support-team communication pass15 new cases within526 tests/71 customer browser checks, identical350 backend/eight-script hashes. Existing13 register maps all thirty acceptance criteria and explicit actual limits. docs/build/shb-financial-handoff-2026-11-02.md records commands/results. No parent SUMMARY/count change or actual money/policy/recovery qualification.
 
 Explicit pause 2026-11-02T10:03:35.210Z: user invoked $gsd-pause-work. Implementationd9bb925f93dd5ee6f3c58d2aa469ec4ba12ee4d1 and status6081bc2 are pushed.526 tests/71 customer checks and all thirty local evidence mappings are retained. HANDOFF.json saves13-01 staff browser verification as the first unblocked local action; actual qualification gates and parent completion remain open.
+
+Resume 2026-11-02T10:08:54.578045+00:00: explicit user $gsd-resume-work lifts the saved pause. Continue existing13-01 staff-browser verification inline; HANDOFF.json consumed. No external authority or completion-count change.
+
+Verified13-01 continuation 2026-11-02T10:20:51.502698+00:00:113 actual local Chromium checks (71 customer/42 staff) and526 shared tests pass with identical350 backend/eight-script hashes. Existing native staff authentication, scope/CSRF denials, full synthetic refund and manual team handoff preserve original order/coupon/notice facts. Evidence: docs/build/shb-staff-browser-2026-11-02.md. The saved local browser action is complete; remaining actual prerequisites/runner are still pending. No parent SUMMARY/count change or external action.

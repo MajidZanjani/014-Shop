@@ -1,23 +1,23 @@
-# SHB continuation checkpoint
+# SHB continuation state
 
 Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md). STATE.md / ROADMAP.md remain operative.
 
-**Current development focus:** 10 — Paid SHB orders, transaction notices and manual handoff.
+**Current development focus:** 13 — Thirty SHB acceptance cases and release verification.
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only.
 
-**Current plan:** 10-05 — archived manual refund review, original financial linkage and staff support-team handoff verified locally; actual financial/release qualification remains open.
+**Current plan:** 13-01 — local customer/staff financial browser acceptance verified; actual release qualification remains open.
 
-**Execution status:** paused — explicit user request after526 tests/71 customer browser checks; local financial/recovery implementation is pushed; staff browser and actual qualifications remain open.
+**Execution status:** in progress — local staff-browser slice verified with526 tests/113 browser checks; actual source/runtime/provider/host/database/independent/human qualifications remain open.
 
-**Next implementation task:** After explicit resume, continue existing13-01 by extending the existing owned synthetic demo/browser harness to exercise the new staff refund review and support-team handoff forms with recent MFA, exact order/refund scopes and CSRF; retain all actual qualification gates.
+**Next implementation task:** Continue existing13-01 actual release qualification when its approved source/runtime, commercial/provider/mail/host/database/human prerequisites and authorized independent runner are available; retain scoped gates and the single docs/decisions.md input register.
 
 **Recorded implementation:** d9bb925f93dd5ee6f3c58d2aa469ec4ba12ee4d1
 
-Current exact evidence:526 tests and71 actual Chromium customer checks/two modes/320px, identical350 backend/eight-script hashes. [Behavior, evidence and commands](../docs/build/shb-financial-handoff-2026-11-02.md).15 financial cases cover manual review/archival, original order/coupon preservation, scope/MFA/CSRF/concurrency, SQL bypass denial, uncertain lookup, support communication and recovery. Native staff forms have Django coverage; no actual staff browser/human qualification is claimed.
+Explicit user resume consumed HANDOFF.json and the saved10 checkpoint. The recorded13-01 staff-browser action is complete locally:526 tests/113 actual Chromium checks (71 customer/42 staff), both JS/no-JS/320px. Identical350 backend/eight-script hashes bind both current records. [Commands, evidence and limits](../docs/build/shb-staff-browser-2026-11-02.md).
 
-Current10-05 local component records manual checks before shared full synthetic refund, pins the original review/hash in the money intent, and records staff communication only after the confirmed result. Original paid-order/purchased-hours/coupon records remain intact; no time adjustment, task email or actual money/approval. New review/result/handoff archives are part of local recovery assessment. Refreshed13-QUALIFICATION-REGISTER.md traces all thirty current criteria to local evidence and pending actual limits.
+Native staff password/possession-code MFA, exact grants, CSRF denials, archived full synthetic refund and manual team communication use existing services. Original paid-order, purchased-hours, coupon and notice facts remain unchanged. No online time accounting, task email, actual financial authority or real mail action. All owned contexts completed; no async job.
 
-Next13-01 retains normal pinned Nix/source/runtime/native/licence/OCI/CI and actual company/provider/mail/host/database/independent/recovery/human gates. The independent runner is unassigned, post-backup completeness remains unproven and actual refund/tax/provider policy is null. Company inputs arrive later in docs/decisions.md; no repeat request. No parent SUMMARY/count change (11/42 records,1/14 documentary phases), external action, .env/cache access, paid provision or owned process/job. Current status is paused at the user’s explicit request.
+Remaining actual human/source/runtime/native/licence/OCI/CI, commercial/provider/mail/host/ingress/database and independent custody/post-backup/transport/restore/complete-loss qualifications remain open. The authorized independent runner is unassigned. Company inputs arrive later in docs/decisions.md; no repeat request. No parent SUMMARY/count change (11/42 records,1/14 documentary phases), .env/unrelated cache access, external resource action or paid provision. This state is active, not a user pause.
 
-Explicit user pause 2026-11-02T10:03:35.210Z. Structured HANDOFF.json and the phase checkpoint preserve exact evidence, decisions, resolved fixture errors, blockers and next staff-browser action. Resume with $gsd-resume-work. No current test failure or owned background process.
+Last session: 2026-11-02T10:20:51.502698+00:00. Ordinary non-force origin/main sync after project commits is authorized.

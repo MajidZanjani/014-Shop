@@ -91,6 +91,68 @@ with os.fdopen(fd,'w') as stream:json.dump({'invitation_id':str(row.pk),'token':
 ''')
 
 
+
+def staff_fixture(python,env,capture):
+    """Assign exact existing synthetic purchases; retain pre-refund facts privately."""
+    manage(python,dict(env,SHOP_SHB_FIXTURE_CAPTURE=str(capture)),'shell','-c','''import json,os
+from pathlib import Path
+from django.contrib.auth import get_user_model
+from shop.shb.models import PaidOrder,PaidOrderGrant,DiscountReservation,PurchaseNoticeCapture,TransactionNotice
+from shop.payments.models import SyntheticPaymentStaffGrant
+path=Path(os.environ['SHOP_SHB_FIXTURE_CAPTURE']);value=json.loads(path.read_text())
+user=get_user_model().objects.get(username='shb-demo-issuer')
+orders=list(PaidOrder.objects.select_related('acceptance').order_by('pk'));assert len(orders)==4
+asic=[row for row in orders if row.payload['purchase']['variant_id']=='shb-asic-25h']
+fpga=[row for row in orders if row.payload['purchase']['variant_id']=='shb-fpga-10h'];assert len(asic)==len(fpga)==2
+value['staff_orders']=[]
+for order in asic:
+    PaidOrderGrant.objects.create(user=user,order=order)
+    finance=SyntheticPaymentStaffGrant.objects.create(user=user,acceptance=order.acceptance,kind='refund')
+    value['staff_orders'].append({'path':'/staff/shb-orders/'+str(order.pk)+'/',
+        'reference':order.payload['order_reference'],'financePath':'/staff/payments/'+str(finance.pk)+'/'})
+PaidOrderGrant.objects.create(user=user,order=fpga[0])
+value['no_finance_path']='/staff/shb-orders/'+str(fpga[0].pk)+'/'
+value['unassigned_path']='/staff/shb-orders/'+str(fpga[1].pk)+'/'
+value['original_orders']={str(row.pk):{'payload':row.payload,'sha256':row.sha256} for row in orders}
+value['original_reservations']={str(row.pk):{'state':row.state,'order':str(row.consumed_order_id)} for row in DiscountReservation.objects.all()}
+value['original_captures']={str(row.pk):{'payload':row.payload,'sha256':row.sha256} for row in PurchaseNoticeCapture.objects.all()}
+value['original_notices']={str(row.pk):{'payload':row.payload,'sha256':row.sha256} for row in TransactionNotice.objects.all()}
+path.write_text(json.dumps(value))
+''')
+    return json.loads(capture.read_text())
+
+
+def verify_staff_refunds(python,env,capture):
+    manage(python,dict(env,SHOP_SHB_FIXTURE_CAPTURE=str(capture)),'shell','-c','''import json,os
+from pathlib import Path
+from django.conf import settings
+from shop.adapters.evidence_archive import PreparedArchive
+from shop.shb.models import PaidOrder,DiscountReservation,PurchaseNoticeCapture,TransactionNotice,RefundReview,RefundSupportHandoff
+from shop.shb import refunds
+from shop.payments.models import SyntheticPaymentOperation,SyntheticOperationResult,SyntheticBankTransition,SyntheticBankOperation
+from shop.catalog.models import SyntheticFulfilment,SyntheticSupportEvent
+value=json.loads(Path(os.environ['SHOP_SHB_FIXTURE_CAPTURE']).read_text())
+assert {str(row.pk):{'payload':row.payload,'sha256':row.sha256} for row in PaidOrder.objects.all()}==value['original_orders']
+assert {str(row.pk):{'state':row.state,'order':str(row.consumed_order_id)} for row in DiscountReservation.objects.all()}==value['original_reservations']
+assert {str(row.pk):{'payload':row.payload,'sha256':row.sha256} for row in PurchaseNoticeCapture.objects.all()}==value['original_captures']
+assert {str(row.pk):{'payload':row.payload,'sha256':row.sha256} for row in TransactionNotice.objects.all()}==value['original_notices']
+assert SyntheticBankOperation.objects.count()==4
+assert SyntheticPaymentOperation.objects.count()==SyntheticOperationResult.objects.count()==SyntheticBankTransition.objects.count()==2
+assert RefundReview.objects.count()==RefundSupportHandoff.objects.count()==2
+with PreparedArchive(Path(settings.LOCAL_CHECKOUT_ARCHIVE_ROOT)) as archive:
+    for handoff in RefundSupportHandoff.objects.select_related('review__order__acceptance','result'):
+        review=handoff.review;refunds.retained_review(review,review.order.acceptance,archive)
+        refunds.retained_handoff(handoff,review,handoff.result,archive)
+        assert not review.payload['actual_financial_authority'] and not handoff.payload['actual_email_sent']
+        assert all(item is None for item in review.payload['financial_policy'].values())
+        assert handoff.result.operation.acceptance_id==review.order.acceptance_id
+        assert review.order.acceptance.attempt.provider_status=='refunded'
+        assert review.payload['actor']['staff_id']==handoff.payload['actor']['staff_id']
+assert not SyntheticFulfilment.objects.exists() and not SyntheticSupportEvent.objects.exists()
+print('SHB_STAFF_REFUNDS 2 archived=true original_orders_coupons_notices=unchanged actual_money_email=false')
+''')
+
+
 def request(opener,url,*,data=None,origin=None):
     headers={'Origin':origin} if origin else {}
     raw=urllib.parse.urlencode(data).encode() if data is not None else None
@@ -180,7 +242,6 @@ def main():
                 result=subprocess.run([browser_env['SHOP_NODE'],str(ROOT/'scripts/browser_shb.mjs')],input=json.dumps(config),text=True,capture_output=True,env=browser_env,timeout=120,check=True)
                 report=json.loads(result.stdout)
                 require(report['status']=='SHB_BROWSER_PASS' and report['checks']>=20 and report['modes']==2)
-                print(json.dumps(report))
                 retained=manage(python,env,'shell','-c',"from shop.shb.models import SupportRequest,DiscountReservation; from shop.payments.models import SyntheticPaymentAttempt; from shop.catalog.models import SyntheticFulfilment; print('SHB_COUNTS',SupportRequest.objects.count(),SyntheticPaymentAttempt.objects.count(),SyntheticFulfilment.objects.count(),DiscountReservation.objects.count())")
                 require('SHB_COUNTS 8 4 0 6' in retained.stdout)
                 final=manage(python,env,'shell','-c',"from shop.shb.models import SupportCheckout; from shop.catalog.models import SyntheticCheckoutAcceptance; from shop.payments.models import SyntheticBankOperation; print('SHB_CHECKOUTS',SupportCheckout.objects.count(),SyntheticCheckoutAcceptance.objects.count(),SyntheticBankOperation.objects.count())")
@@ -198,6 +259,29 @@ def main():
                 require('SHB_NOTICES 4 4' in notices.stdout)
                 ordinary=manage(python,env,'shell','-c',"from shop.worker.services import execute_once; from shop.shb.models import TransactionNotice,TransactionNoticeDelivery,TransactionNoticeCapture; from collections import Counter; [execute_once() for _ in range(24)]; counts=Counter(TransactionNotice.objects.values_list('event',flat=True)); assert dict(counts)=={'request-received':8,'offer-issued':4,'request-closed':2,'checkout-closed':2,'purchase-confirmed':4}; assert TransactionNoticeDelivery.objects.exclude(state='captured').count()==0; assert TransactionNoticeCapture.objects.count()==20; assert not any(row.payload['actual_email_sent'] for row in TransactionNotice.objects.all()); print('SHB_ORDINARY_NOTICES 20 captured=true actual_email_sent=false')")
                 require('SHB_ORDINARY_NOTICES 20 captured=true actual_email_sent=false' in ordinary.stdout)
+                credential=staff_fixture(python,env,capture)
+                staff_codes=scratch/'browser-staff-codes';staff_codes.mkdir(mode=0o700)
+                staff_runtime=scratch/'staff-runtime';staff_runtime.mkdir(mode=0o700)
+                # Keep staff-only routes and cookies in their existing separate app.
+                (staff_runtime/'shb_browser_staff.py').write_text('from shop.config.staff_synthetic import *\nSHB_SYNTHETIC_FIXTURE=True\n')
+                staff_env=dict(env,DJANGO_SETTINGS_MODULE='shb_browser_staff',
+                    PYTHONPATH=str(staff_runtime)+os.pathsep+env.get('PYTHONPATH',str(ROOT/'backend')),
+                    SHOP_LOCAL_STAFF_CAPTURE_ROOT=str(staff_codes))
+                staff_port=stack.enter_context(gunicorn(python,staff_env,staff_runtime,probe_path='/staff/session/',probe_host='staff.localhost'))
+                staff_base='http://staff.localhost:'+str(staff_port)
+                staff_config={'origin':staff_base,'scratch':str(scratch),'evidence':str(evidence) if evidence else None,
+                    'staff':{'username':'shb-demo-issuer','password':'synthetic-demo-staff-only',
+                        'captureRoot':str(staff_codes),'orders':credential['staff_orders'],
+                        'noFinancePath':credential['no_finance_path'],'unassignedPath':credential['unassigned_path']}}
+                result=subprocess.run([browser_env['SHOP_NODE'],str(ROOT/'scripts/browser_shb.mjs')],input=json.dumps(staff_config),
+                    text=True,capture_output=True,env=browser_env,timeout=120,check=True)
+                staff_report=json.loads(result.stdout)
+                require(staff_report['status']=='SHB_BROWSER_PASS' and staff_report['modes']==2 and staff_report['staffRefund']=='archived-full-synthetic-once')
+                verify_staff_refunds(python,env,capture)
+                report.update(customer_checks=report['checks'],staff_checks=staff_report['checks'],
+                    checks=report['checks']+staff_report['checks'],staffRefund=staff_report['staffRefund'],
+                    staffHandoff=staff_report['staffHandoff'],staff_modes=2,staff_facts='original-orders-coupons-notices-unchanged')
+                print(json.dumps(report))
                 return report
             else:
                 count=checks(base,credential,python,env)

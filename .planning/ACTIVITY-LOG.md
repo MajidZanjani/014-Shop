@@ -91,3 +91,9 @@ STATE.md / ROADMAP.md / HANDOFF and machine routing paused consistently. Impleme
 - 2026-11-02T09:58:26.996733+00:00: Financial implementationd9bb925f93dd5ee6f3c58d2aa469ec4ba12ee4d1 committed and ordinarily pushed. STATE.md / ROADMAP.md / HANDOFF and machine routing retain526 tests/71 checks, source350/eight scripts, thirty acceptance rows and actual gates. Only unrelated http_cache.sqlite remains untracked.
 
 - 2026-11-02T10:03:35.210Z: Explicit user $gsd-pause-work. STATE.md / ROADMAP.md / PROJECT / HANDOFF and machine routing paused consistently. Implementationd9bb925f93dd5ee6f3c58d2aa469ec4ba12ee4d1 and status6081bc2 are pushed;526 tests/71 customer checks and350 backend/eight-script hashes retained. Next13-01 staff-browser lane is unverified; actual gates and counts11/42,1/14 stay open. No owned process/job or uncommitted implementation.
+
+- 2026-11-02T10:08:54.578045+00:00 — Resumed committed SHB checkpoint; route existing13-01 staff-browser coverage inline. Prior526 tests/71 customer checks retained; actual qualifications and11/42 records/1/14 documentary phases unchanged. Current STATE.md / ROADMAP.md are operative.
+
+## 2026-11-02T10:20:51.502698+00:00 — Existing13-01 staff financial browser verification
+
+STATE.md / ROADMAP.md remain operative.113 browser checks (71 customer/42 staff),526 shared tests and3 planning activity tests pass; identical350 backend/eight-script hashes. Existing native MFA, exact scope/CSRF, refund/lookup/manual communication preserve original order/coupon/notice facts. See docs/build/shb-staff-browser-2026-11-02.md. Saved checkpoint consumed; actual qualifications/runner remain pending. No parent SUMMARY/count change or external effect.

@@ -1,6 +1,6 @@
 // Real loopback Chromium SHB form/selector checks. No browser dependencies or app Node service.
 import { spawn, execFileSync } from 'node:child_process';
-import { readFile, writeFile, mkdtemp, rm, realpath } from 'node:fs/promises';
+import { readFile, writeFile, mkdtemp, rm, realpath, readdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { setTimeout as delay } from 'node:timers/promises';
 import { allowedRequest } from './browser_policy.mjs';
@@ -28,10 +28,17 @@ class Protocol {
 async function main(){
   let input='';for await(const chunk of process.stdin){input+=chunk;require(input.length<=8192);}
   const config=JSON.parse(input);input='';
-  require(/^SLL-[A-Z2-9]{24}$/.test(config.discountCode));
-  require(config.offerIds?.length===4&&config.offerIds.every(id=>/^[a-f0-9-]{36}$/.test(id)));
-  require(allowedRequest(config.invitationUrl,config.origin));
-  require(new URL(config.invitationUrl).pathname.match(/^\/invite\/[A-Za-z0-9_-]{43}$/));
+  require(allowedRequest(config.origin+'/',config.origin));
+  if(config.staff){
+    require(new URL(config.origin).hostname==='staff.localhost'&&config.staff.orders?.length===2);
+    require([...config.staff.orders.map(row=>row.path),config.staff.noFinancePath,config.staff.unassignedPath].every(path=>/^\/staff\/shb-orders\/[a-f0-9-]{36}\/$/.test(path)));
+    require(config.staff.orders.every(row=>/^\/staff\/payments\/[1-9][0-9]*\/$/.test(row.financePath)&&/^[a-f0-9-]{36}$/.test(row.reference)));
+  }else{
+    require(/^SLL-[A-Z2-9]{24}$/.test(config.discountCode));
+    require(config.offerIds?.length===4&&config.offerIds.every(id=>/^[a-f0-9-]{36}$/.test(id)));
+    require(allowedRequest(config.invitationUrl,config.origin));
+    require(new URL(config.invitationUrl).pathname.match(/^\/invite\/[A-Za-z0-9_-]{43}$/));
+  }
   require(process.versions.node===process.env.SHOP_BROWSER_NODE_VERSION);
   require(await realpath(process.execPath)===await realpath(process.env.SHOP_NODE));
   const browser=process.env.SHOP_BROWSER,version=process.env.SHOP_BROWSER_VERSION;
@@ -39,7 +46,7 @@ async function main(){
   const profile=await mkdtemp(join(config.scratch,'chromium-'));
   const child=spawn(browser,['--headless','--disable-gpu','--no-sandbox','--no-first-run','--no-default-browser-check',
     '--disable-background-networking','--disable-component-update','--disable-sync','--disable-extensions','--disable-breakpad',
-    '--host-resolver-rules=MAP * ~NOTFOUND, EXCLUDE localhost, EXCLUDE 127.0.0.1',
+    '--host-resolver-rules=MAP staff.localhost 127.0.0.1, MAP * ~NOTFOUND, EXCLUDE localhost, EXCLUDE 127.0.0.1',
     '--remote-debugging-address=127.0.0.1','--remote-debugging-port=0','--user-data-dir='+profile,'about:blank'],
     {env:{...process.env,XDG_CONFIG_HOME:join(profile,'config'),XDG_CACHE_HOME:join(profile,'cache')},stdio:['ignore','ignore','pipe']});
   let cdp;let checks=0;let pendingDocumentLoads=0;let startup='';let diagnose;
@@ -83,7 +90,7 @@ async function main(){
       };
       const until=async expression=>{for(let i=0;i<100;i++){if(await evaluate(expression))return;await delay(40);}throw new Error('page condition timeout');};
       // Diagnostics contain status/field names only, never values, URLs or tokens.
-      diagnose=async()=>({stage,status:lastStatus,nativePosts,escaped,readyState:await evaluate('document.readyState'),stylesheets:await evaluate('document.styleSheets.length'),fields:await evaluate("Array.from(document.querySelectorAll('.errorlist')).map(element=>element.parentElement.querySelector('input,textarea,select')?.name).filter(name=>/^[a-z_]+$/.test(name||''))"),csrfDenied:await evaluate("document.body.innerText.includes('CSRF')")});
+      diagnose=async()=>({stage,status:lastStatus,nativePosts,escaped,readyState:await evaluate('document.readyState'),stylesheets:await evaluate('document.styleSheets.length'),layout:await evaluate('({viewport:document.documentElement.clientWidth,content:document.documentElement.scrollWidth})'),fields:await evaluate("Array.from(document.querySelectorAll('.errorlist')).map(element=>element.parentElement.querySelector('input,textarea,select')?.name).filter(name=>/^[a-z_]+$/.test(name||''))"),csrfDenied:await evaluate("document.body.innerText.includes('CSRF')")});
       const go=async url=>{
         lastStatus=0;const navigation=await send('Page.navigate',{url});
         require(!navigation.errorText&&navigation.loaderId);
@@ -115,6 +122,70 @@ async function main(){
         for(const [name,text] of Object.entries({company_name:'Synthetic Company Limited',billing_address:'1 Synthetic Test Street',country:'GE',company_phone:'+995 555 010101',contact_name:'Synthetic Customer',contact_email:'buyer@synthetic.invalid'}))await type('[name='+name+']',text);
         await toggle('[name=same_phone]');if(privacy)await toggle('[name=privacy_acknowledged]');
       };
+      if(config.staff){
+        const order=config.staff.orders[javascript?0:1],mode=javascript?'javascript':'no-javascript';
+        const reviewForm='form[action$="/refund-review/"]',handoffForm='form[action$="/refund-handoff/"]';
+        const clean=()=>evaluate('document.documentElement.scrollWidth<=document.documentElement.clientWidth&&localStorage.length===0&&sessionStorage.length===0&&!document.querySelector("input[type=file]")');
+        const review=async()=>{await type('[name=manual_record_reference]','Synthetic manual support decision');await type('[name=reason]','Synthetic full refund after consulting the manual record.');await toggle('[name=manual_records_checked]');};
+        stage=mode+'-staff-mfa-denial';
+        await go(config.origin+order.path);require(lastStatus===403);checks++;
+        await go(config.origin+'/staff/');
+        require(lastStatus===200&&await clean());checks++;
+        stage=mode+'-staff-password';
+        await type('[name=username]',config.staff.username);await type('[name=password]',config.staff.password);
+        await submit('form[action="/staff/login/"] button');
+        require(lastStatus===200&&await evaluate('!!document.querySelector("[name=code]")'));checks++;
+        await go(config.origin+order.path);require(lastStatus===403);checks++;
+        await go(config.origin+'/staff/');
+        // Only the owned private capture is read. Codes never enter logs/argv.
+        const captures=await readdir(config.staff.captureRoot);require(captures.length===(javascript?1:2));
+        let possession;
+        for(const name of captures){const match=(await readFile(join(config.staff.captureRoot,name),'utf8')).match(/^Code: (.+)$/m);require(match);if(!config.staff.usedCodes?.includes(match[1]))possession=match[1];}
+        require(possession);config.staff.usedCodes??=[];config.staff.usedCodes.push(possession);
+        stage=mode+'-staff-possession';
+        await type('[name=code]',possession);await submit('form[action="/staff/verify/"] button');
+        require(lastStatus===200&&await evaluate('document.body.innerText.includes("Both local factors verified")'));checks++;
+        stage=mode+'-staff-scope';
+        await go(config.origin+config.staff.unassignedPath);require(lastStatus===404);checks++;
+        await go(config.origin+config.staff.noFinancePath);
+        require(lastStatus===200&&await evaluate('!document.querySelector("[name=manual_record_reference]")&&!document.querySelector("[name=communication_reference]")'));checks++;
+        await go(config.origin+order.financePath);
+        require(lastStatus===200&&await evaluate('document.body.innerText.includes("Record the manual support check")&&!document.querySelector("button")'));checks++;
+        stage=mode+'-staff-review-csrf';
+        await go(config.origin+order.path);
+        require(lastStatus===200&&await evaluate('document.body.innerText.includes('+JSON.stringify(order.reference)+')&&document.body.innerText.includes("50 hours in this order")&&!!document.querySelector('+JSON.stringify(reviewForm)+')&&!document.querySelector('+JSON.stringify(handoffForm)+')'));checks++;
+        require(await clean());checks++;
+        if(config.evidence){const shot=await send('Page.captureScreenshot',{format:'png'});await writeFile(join(config.evidence,'shb-staff-'+(javascript?'js':'no-js')+'.png'),Buffer.from(shot.data,'base64'),{flag:'wx',mode:0o600});}
+        await review();await evaluate('document.querySelector('+JSON.stringify(reviewForm+' [name=csrfmiddlewaretoken]')+').remove()');
+        await submit(reviewForm+' button');require(lastStatus===403);checks++;
+        stage=mode+'-staff-review-scope';
+        await go(config.origin+order.path);await review();
+        await evaluate('document.querySelector('+JSON.stringify(reviewForm)+').action='+JSON.stringify(config.staff.noFinancePath+'refund-review/'));
+        await submit('form button');require(lastStatus===404);checks++;
+        stage=mode+'-staff-review';
+        await go(config.origin+order.path);await review();await submit(reviewForm+' button');
+        require(lastStatus===200&&await evaluate('document.body.innerText.includes("Synthetic manual support decision")&&!document.querySelector('+JSON.stringify(reviewForm)+')&&!document.querySelector('+JSON.stringify(handoffForm)+')'));checks++;
+        stage=mode+'-staff-refund';
+        await go(config.origin+order.financePath);
+        require(lastStatus===200&&await evaluate('document.querySelector("[name=action]").value==="prepare"'));checks++;
+        await submit('form button');
+        require(lastStatus===200&&await evaluate('document.querySelector("[name=action]").value==="dispatch"'));checks++;
+        await submit('form button');
+        require(lastStatus===200&&await evaluate('document.body.innerText.includes("Payment observation: refunded")&&document.querySelector("[name=action]").value==="reconcile"'));checks++;
+        await submit('form button');await submit('form button');
+        require(lastStatus===200&&await evaluate('document.body.innerText.includes("Payment observation: refunded")&&!document.querySelector("input[value=dispatch]")'));checks++;
+        stage=mode+'-staff-handoff';
+        await go(config.origin+order.path);
+        require(lastStatus===200&&await evaluate('document.body.innerText.includes('+JSON.stringify(order.reference)+')&&document.body.innerText.includes("50 hours in this order")&&!!document.querySelector('+JSON.stringify(handoffForm)+')'));checks++;
+        await type('[name=communication_reference]','Synthetic support-team communication');
+        await submit(handoffForm+' button');
+        require(lastStatus===200&&await evaluate('document.body.innerText.includes("Support-team communication recorded: Synthetic support-team communication")&&!document.querySelector('+JSON.stringify(handoffForm)+')'));checks++;
+        await go(config.origin+order.path);require(lastStatus===200&&await clean()&&escaped===0);checks++;
+        stage=mode+'-staff-logout';
+        await go(config.origin+'/staff/');await submit('form[action="/staff/logout/"] button');
+        await go(config.origin+order.path);require(lastStatus===403);checks++;
+        await cdp.send('Target.disposeBrowserContext',{browserContextId});continue;
+      }
       await go(config.origin+'/shop/');await until('document.body.innerText.includes("Access requires")');require(lastStatus===403);checks++;
       await go(config.invitationUrl);await until('location.pathname==="/shop/"');
       require(lastStatus===200&&await evaluate('document.body.innerText.includes("Supporting Hours Bundle")'));checks++;
@@ -218,7 +289,10 @@ async function main(){
       require(await evaluate('document.documentElement.scrollWidth<=document.documentElement.clientWidth&&localStorage.length===0&&sessionStorage.length===0'));checks++;
       await cdp.send('Target.disposeBrowserContext',{browserContextId});
     }
-    console.log(JSON.stringify({status:'SHB_BROWSER_PASS',checks,modes:2,pendingDocumentLoads,browser:version,node:process.versions.node,evidence_class:'local-synthetic-browser',fpga:'accepted-30-hours',asic:'requested-and-accepted-50-hours',payment:'synthetic-captured-once',paidOrder:'recorded-once-per-purchase',closure:'safe-before-dispatch',withdrawal:'deliberate-unaccepted-asic-offer',revision:'linked-unpaid-75-hours'}));
+    const report={status:'SHB_BROWSER_PASS',checks,modes:2,pendingDocumentLoads,browser:version,node:process.versions.node,evidence_class:'local-synthetic-browser'};
+    Object.assign(report,config.staff?{staffRefund:'archived-full-synthetic-once',staffHandoff:'attributed-manual-communication'}:
+      {fpga:'accepted-30-hours',asic:'requested-and-accepted-50-hours',payment:'synthetic-captured-once',paidOrder:'recorded-once-per-purchase',closure:'safe-before-dispatch',withdrawal:'deliberate-unaccepted-asic-offer',revision:'linked-unpaid-75-hours'});
+    console.log(JSON.stringify(report));
   }catch(error){
     if(config.evidence&&diagnose){try{await writeFile(join(config.evidence,'browser-failure.json'),JSON.stringify(await diagnose()),{flag:'wx',mode:0o600});}catch{}}
     throw error;

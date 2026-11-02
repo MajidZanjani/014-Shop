@@ -8,9 +8,9 @@ One concise external-input register: docs/decisions.md. No new rehearsal feature
 
 ## Current local acceptance trace — 2026-11-02
 
-This table maps each current requirement to executed local component tests and the browser scenario. Exact totals, source hashes, commands and limits are in docs/build/shb-financial-handoff-2026-11-02.md and docs/build/shb-recovery-2026-11-02.md. The final financial report owns the current source-bound records. A local pass does not mark a requirement or phase complete; actual bank/mail/host/runtime/recovery and attributable human qualification remain pending.
+This table maps each current requirement to executed local component tests and the browser scenario. Exact totals, source hashes, commands and limits are in docs/build/shb-financial-handoff-2026-11-02.md and docs/build/shb-recovery-2026-11-02.md. The financial report owns the prior526-test/71-customer-check baseline. The resumed staff-browser report docs/build/shb-staff-browser-2026-11-02.md owns the new113 browser checks and current source-bound verification. A local pass does not mark a requirement or phase complete; actual bank/mail/host/runtime/recovery and attributable human qualification remain pending.
 
-Test paths below are relative to backend/shop unless prefixed tests/ or scripts/. The shared lane executes the cited SHB/payment/access modules against owned PostgreSQL; the source/catalog lane executes tests/test_shb_*.py. Browser evidence covers the existing customer flow in both JS/no-JS modes at320px; new staff refund forms additionally have Django native-form/CSRF tests, not a claimed staff browser/human verification.
+Test paths below are relative to backend/shop unless prefixed tests/ or scripts/. The shared lane executes the cited SHB/payment/access modules against owned PostgreSQL; the source/catalog lane executes tests/test_shb_*.py. Browser evidence now covers71 customer and42 staff native-form checks in both JS/no-JS modes at320px. Staff password/possession-code authentication, exact scope/CSRF denials, refund and attributed handoff are exercised in actual local Chromium. Attributable human verification remains pending.
 
 | ID | Executed local evidence | Remaining limit |
 |---|---|---|
@@ -38,9 +38,9 @@ Test paths below are relative to backend/shop unless prefixed tests/ or scripts/
 | SHB-22 | shb/offer_tests.py, paid_order_tests.py, financial_tests.py: staff/lookup after invite revocation | Actual independently authenticated bank route pending |
 | SHB-23 | shb/notification_tests.py, paid_order_tests.py and worker regression: finite leases/held failures | Actual mail route/delivery remains unqualified |
 | SHB-24 | shb/financial_tests.py rejects usage fields; paid/refund flows preserve no ledger/fulfilment effects | Manual time tracking remains outside shop |
-| SHB-25 | shb/financial_tests.py: manual review, full synthetic refund, original order/coupon, attributed team communication | Partial local scope: actual refund/chargeback/tax/provider policy pending |
+| SHB-25 | shb/financial_tests.py: manual review, full synthetic refund, original order/coupon, attributed team communication; actual local staff Chromium in both script modes | Partial local scope: actual refund/chargeback/tax/provider policy pending |
 | SHB-26 | shb/paid_order_tests.py and financial_tests.py retain purchased order despite invite revocation | ASIC no-expiry/service terms need actual adoption |
-| SHB-27 | scripts/browser_shb.mjs two modes/320px; shb/financial_tests.py native staff forms and CSRF | Attributable human UAT and staff browser qualification pending |
+| SHB-27 | scripts/browser_shb.mjs:71 customer/42 staff native keyboard checks, two modes/320px; shb/financial_tests.py scope/MFA/CSRF | Attributable human UAT and actual deployment remain pending |
 | SHB-28 | shb/recovery_tests.py and financial_tests.py: retained archives, corruption holds and same-reference replay | Partial local scope: full post-backup completeness, off-host restore/loss/custody pending |
 | SHB-29 | shb/catalog/checkout/discount/financial tests: synthetic-only/null live policy and fixed denials | Actual commercial/provider inputs remain pending in docs/decisions.md |
 | SHB-30 | Existing protection inventory/allowlist/release review retained; local suite makes no host changes | Actual protected-host/runtime/exhaustion/complete-loss qualification pending |

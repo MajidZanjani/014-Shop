@@ -76,9 +76,9 @@
     }
   ],
   "next": {
-    "command": "$gsd-resume-work",
-    "label": "Resume SHB staff-browser qualification",
-    "reason": "After explicit resume, continue existing13-01 by extending the existing owned synthetic demo/browser harness to exercise the new staff refund review and support-team handoff forms with recent MFA, exact order/refund scopes and CSRF; retain all actual qualification gates."
+    "command": "$gsd-execute-phase 13",
+    "label": "Continue actual SHB release qualification when prerequisites are available",
+    "reason": "Continue existing13-01 actual release qualification when its approved source/runtime, commercial/provider/mail/host/database/human prerequisites and authorized independent runner are available; retain scoped gates and the single docs/decisions.md input register."
   },
-  "updated_at": "2026-11-02T10:03:35.210Z"
+  "updated_at": "2026-11-02T10:20:51.502698+00:00"
 }
