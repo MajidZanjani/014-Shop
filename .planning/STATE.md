@@ -5,10 +5,11 @@ current_phase: 6
 current_phase_name: Invitation scope, verified resources and staff MFA
 current_plan: 1
 current_task: 1
-status: in_progress
-last_updated: "2026-11-02T12:14:30.619677+00:00"
+status: paused
+paused_at: "2026-11-02T12:16:14.551Z"
+last_updated: "2026-11-02T12:16:14.551Z"
 last_activity: 2026-11-02
-state_head: 4db25867423d5acf5291d0aacc20c55b2258bcdf
+state_head: 34c00196f5a9c0b3e43155927c2ee7ad561f800d
 progress:
   total_phases: 14
   completed_phases: 1
@@ -27,9 +28,9 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Current plan:** 06-01 — protected invitation issuance/reissue and scoped discount revocation verified locally; protected discount issuance/actual qualification open.
 
-**Execution status:** in progress — protected staff issuance/reissue and discount revocation verified with583 tests/147 browser checks; protected discount issuance and actual qualification remain open.
+**Execution status:** paused — explicit user gsd-pause-work after pushed protected invitation issuance/reissue and discount revocation;583 tests/147 browser checks retained; discount issuance and actual qualification remain open.
 
-**Next implementation task:** Implement protected discount issuance with a separate explicit synthetic customer/variant/percentage/use-limit/claim-period authority, durable digest-only prepared intent and safe one-time code response. Preserve held concessions and original clocks; invitation/revocation grants and entered contact never establish commercial authority.
+**Next implementation task:** After explicit resume, inspect existing discount fixture issuance and invitation intent/scope patterns, then implement protected discount issuance with separate explicit synthetic customer/variant/percentage/use-limit/claim-period authority and a durable digest-only intent/one-time code response. Preserve original clocks and held concessions; invitation/revocation grants and entered contact never establish commercial authority.
 
 ## Verified local scope
 
@@ -51,10 +52,10 @@ No .env, real credentials, actual bank/mail/storage/protected-host/DNS/TLS opera
 
 ## Session Continuity
 
-Last session: 2026-11-02T12:14:30.619677+00:00
-Stopped at: Verified583 tests/147 browser checks; preparing discount-revocation commit, followed by the standing context-pressure checkpoint. All owned jobs completed.
-Resume file: HANDOFF.md
+Last session: 2026-11-02T12:16:14.551Z
+Stopped at: Explicit user $gsd-pause-work after verified/pushed invitation issuance4db2586 and discount revocation34c0019. All implementation is committed and verified; no current local test failure or owned process/job.
+Resume file: HANDOFF.json and phases/06-invitation-scope-and-staff-mfa/.continue-here.md.
 
-Next: Implement protected discount issuance with a separate explicit synthetic customer/variant/percentage/use-limit/claim-period authority, durable digest-only prepared intent and safe one-time code response. Preserve held concessions and original clocks; invitation/revocation grants and entered contact never establish commercial authority.
+Next: After explicit resume, inspect existing discount fixture issuance and invitation intent/scope patterns, then implement protected discount issuance with separate explicit synthetic customer/variant/percentage/use-limit/claim-period authority and a durable digest-only intent/one-time code response. Preserve original clocks and held concessions; invitation/revocation grants and entered contact never establish commercial authority.
 
-Actual gates and parent counts remain open. Exact context percentage is unavailable.
+An apparent-context-pressure checkpoint was being prepared when the user explicitly requested pause. Exact usage percentage is unavailable; no measured90% or automatic-monitoring claim. Resume lifts this explicit pause. Continue inline with no new subagent request, no repeated company-input request and actual gates unchanged.

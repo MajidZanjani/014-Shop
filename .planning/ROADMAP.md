@@ -8,9 +8,9 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Current plan:** 06-01 — protected invitation issuance/reissue and scoped discount revocation verified locally; protected discount issuance/actual qualification open.
 
-**Execution status:** in progress — protected staff issuance/reissue and discount revocation verified with583 tests/147 browser checks; protected discount issuance and actual qualification remain open.
+**Execution status:** paused — explicit user gsd-pause-work after pushed protected invitation issuance/reissue and discount revocation;583 tests/147 browser checks retained; discount issuance and actual qualification remain open.
 
-**Next implementation task:** Implement protected discount issuance with a separate explicit synthetic customer/variant/percentage/use-limit/claim-period authority, durable digest-only prepared intent and safe one-time code response. Preserve held concessions and original clocks; invitation/revocation grants and entered contact never establish commercial authority.
+**Next implementation task:** After explicit resume, inspect existing discount fixture issuance and invitation intent/scope patterns, then implement protected discount issuance with separate explicit synthetic customer/variant/percentage/use-limit/claim-period authority and a durable digest-only intent/one-time code response. Preserve original clocks and held concessions; invitation/revocation grants and entered contact never establish commercial authority.
 
 Stable T01–T14/folder IDs preserve history. Titles and active task scopes now follow SHB 1.1. Completed summary counts below are historical records, not engineering effort or new commercial acceptance.
 
@@ -21,7 +21,7 @@ Stable T01–T14/folder IDs preserve history. Titles and active task scopes now 
 - [ ] **Phase 3: Supporting Hours Bundle catalog and approved pricing**
 - [ ] **Phase 4: Shared SHB form, invitations and private storefront**
 - [ ] **Phase 5: SHB durable records, archives and outbox**
-- [ ] **Phase 6: Invitation scope, verified resources and staff MFA** — CURRENT DEVELOPMENT FOCUS; in progress — protected staff issuance/reissue and discount revocation verified with583 tests/147 browser checks; protected discount issuance and actual qualification remain open.
+- [ ] **Phase 6: Invitation scope, verified resources and staff MFA** — CURRENT DEVELOPMENT FOCUS; paused — explicit user gsd-pause-work after pushed protected invitation issuance/reissue and discount revocation;583 tests/147 browser checks retained; discount issuance and actual qualification remain open.
 - [ ] **Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts**
 - [ ] **Phase 8: Payment lifecycle and fault-injectable synthetic bank**
 - [ ] **Phase 9: Selected-bank sandbox and complete reconciliation**
@@ -95,7 +95,7 @@ Plans: [05-01-PLAN](phases/05-durable-records-and-outbox/05-01-PLAN.md)
 
 ### Phase 6: Invitation scope, verified resources and staff MFA
 
-Status: CURRENT DEVELOPMENT FOCUS; in progress — protected staff issuance/reissue and discount revocation verified with583 tests/147 browser checks; protected discount issuance and actual qualification remain open.
+Status: CURRENT DEVELOPMENT FOCUS; paused — explicit user gsd-pause-work after pushed protected invitation issuance/reissue and discount revocation;583 tests/147 browser checks retained; discount issuance and actual qualification remain open.
 
 Goal: Invitation authorizes current offers/new purchases only; no customer history or prefilled private data. Retain verified-contact access for old private resources and MFA/recent verification/resource permissions for every staff route.
 
@@ -213,7 +213,7 @@ Plans: [14-01-PLAN](phases/14-shb-release-handover/14-01-PLAN.md)
 | 3. Supporting Hours Bundle catalog and approved pricing | 0/1 | In Progress | Pending actual revised evidence |
 | 4. Shared SHB form, invitations and private storefront | 0/1 | In Progress | Pending actual revised evidence |
 | 5. SHB durable records, archives and outbox | 0/1 | In Progress | Pending actual revised evidence |
-| 6. Invitation scope, verified resources and staff MFA | 0/1 | In Progress; CURRENT DEVELOPMENT FOCUS; in progress — protected staff issuance/reissue and discount revocation verified with583 tests/147 browser checks; protected discount issuance and actual qualification remain open. | Pending actual revised evidence |
+| 6. Invitation scope, verified resources and staff MFA | 0/1 | In Progress; CURRENT DEVELOPMENT FOCUS; paused — explicit user gsd-pause-work after pushed protected invitation issuance/reissue and discount revocation;583 tests/147 browser checks retained; discount issuance and actual qualification remain open. | Pending actual revised evidence |
 | 7. FPGA checkout, ASIC reviewed offers and scoped discounts | 1/4 | In Progress | Pending actual revised evidence |
 | 8. Payment lifecycle and fault-injectable synthetic bank | 0/3 | In Progress | Pending actual revised evidence |
 | 9. Selected-bank sandbox and complete reconciliation | 0/1 | Pending | Pending actual revised evidence |
@@ -280,3 +280,5 @@ Resume 2026-11-02T11:30:38.977387+00:00: explicit user resume lifts the context-
 2026-11-02T11:55:26.231440+00:00: Protected issuance/reissue passes565 tests/137 browser checks and exact373-source records. Digest-only prepared intents, one-time response, independent clocks, SQL atomic publication and selected restore are verified locally; docs/build/shb-invitation-issuance-2026-11-02.md. Continue scoped discounts with actual gates/counts unchanged.
 
 2026-11-02T12:14:30.619677+00:00: Protected scoped discount revocation passes583 tests/147 browser checks and exact380-source records. Held ASIC offer acceptance/payment retains the original concession; uncertainty remains held, and restore retains audit. docs/build/shb-discount-revocation-2026-11-02.md. Protected discount issuance remains next; actual gates/counts unchanged.
+
+Explicit pause 2026-11-02T12:16:14.551Z: user requested $gsd-pause-work after pushed implementation34c00196f5a9c0b3e43155927c2ee7ad561f800d.583 tests/147 browser checks and current380-source records retained; protected discount issuance remains next. STATE.md / ROADMAP.md / HANDOFF and machine routing paused consistently. No owned process/job or new completion count; exact context percentage unavailable.

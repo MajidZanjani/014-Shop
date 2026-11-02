@@ -76,9 +76,9 @@
     }
   ],
   "next": {
-    "command": "$gsd-execute-phase 6",
-    "label": "Continue protected discount issuance",
-    "reason": "Implement protected discount issuance with a separate explicit synthetic customer/variant/percentage/use-limit/claim-period authority, durable digest-only prepared intent and safe one-time code response. Preserve held concessions and original clocks; invitation/revocation grants and entered contact never establish commercial authority."
+    "command": "$gsd-resume-work",
+    "label": "Resume protected discount issuance",
+    "reason": "After explicit resume, inspect existing discount fixture issuance and invitation intent/scope patterns, then implement protected discount issuance with separate explicit synthetic customer/variant/percentage/use-limit/claim-period authority and a durable digest-only intent/one-time code response. Preserve original clocks and held concessions; invitation/revocation grants and entered contact never establish commercial authority."
   },
-  "updated_at": "2026-11-02T12:14:30.619677+00:00"
+  "updated_at": "2026-11-02T12:16:14.551Z"
 }

@@ -1,0 +1,149 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-11-02T12:16:14.551Z",
+  "release": "shb-1.1",
+  "phase": "06",
+  "phase_name": "Invitation scope, verified resources and staff MFA",
+  "phase_dir": ".planning/phases/06-invitation-scope-and-staff-mfa",
+  "plan": 1,
+  "task": 1,
+  "total_tasks": 1,
+  "status": "paused",
+  "pause_reason": "Explicit user $gsd-pause-work after both verified/pushed local staff components",
+  "context_usage_percent": null,
+  "implementation_commit": "34c00196f5a9c0b3e43155927c2ee7ad561f800d",
+  "implementation_push": "Verified ordinary origin/main push completed",
+  "completed_tasks": [
+    {
+      "id": 1,
+      "name": "06-01-01 invitation scope and staff administration parent",
+      "status": "in_progress",
+      "progress": "Protected invitation issuance/reissue, revocation and scoped discount revocation verified/pushed; separate protected discount issuance and actual qualification remain open."
+    }
+  ],
+  "verified_slices": [
+    {
+      "commit": "4db25867423d5acf5291d0aacc20c55b2258bcdf",
+      "name": "Protected exact-scope invitation issuance/reissue with digest-only durable intent and one-time bearer"
+    },
+    {
+      "commit": "34c00196f5a9c0b3e43155927c2ee7ad561f800d",
+      "name": "Exact-scope staff discount revocation, immutable archive/atomicity, preserved held-price ASIC purchase, reset/recovery and native browser coverage"
+    }
+  ],
+  "remaining_tasks": [
+    {
+      "id": 1,
+      "name": "Protected discount issuance with independent approved synthetic commercial scope",
+      "status": "not_started"
+    },
+    {
+      "id": 2,
+      "name": "Normal pinned and actual external qualification",
+      "status": "pending_actual_prerequisites"
+    }
+  ],
+  "blockers": [
+    {
+      "description": "Normal pinned source/runtime/native/licence/OCI/CI qualification pending; retained missing-dependency Nix build failure",
+      "type": "technical",
+      "workaround": "Use separately verified retained tools for authorized local synthetic work only; do not rerun unchanged failed build or weaken pins"
+    },
+    {
+      "description": "Ordinary bwrap denies workspace traversal",
+      "type": "technical",
+      "workaround": "Narrow justified require_escalated local commands; no host permission/resource change"
+    },
+    {
+      "description": "Actual company/provider/mail/host/database/human/independent prerequisites pending; authorized off-host runner unassigned",
+      "type": "external",
+      "workaround": "Continue unaffected protected discount issuance with explicit synthetic fixtures after resume; company inputs arrive later"
+    }
+  ],
+  "async_jobs": [],
+  "background_processes": [],
+  "human_actions_pending": [
+    {
+      "action": "Run $gsd-resume-work when ready",
+      "context": "Explicit user pause; context may be cleared before resumption",
+      "blocking": true
+    },
+    {
+      "action": "Company inputs arrive later through docs/decisions.md",
+      "context": "Do not request again; next local work needs no real credentials",
+      "blocking": false
+    },
+    {
+      "action": "Assign scoped authorized independent off-host runner before actual drills",
+      "context": "Blocks actual qualification, not local issuance implementation",
+      "blocking": false
+    }
+  ],
+  "decisions": [
+    {
+      "decision": "Keep invitation eligibility, discount revocation and discount issuance authority separate",
+      "rationale": "Exact revoke grants or form-entered company/contact never approve a new concession",
+      "phase": "06"
+    },
+    {
+      "decision": "Use committed digest-only preparation and one-time raw response for new secrets",
+      "rationale": "Archive interruption/exact retries retain original identity and clocks without regenerating or recovering a bearer/code",
+      "phase": "06"
+    },
+    {
+      "decision": "Discount revocation preserves every held/accepted concession",
+      "rationale": "Only new claims stop; original ASIC offer still accepts/pays once at its original price",
+      "phase": "07"
+    },
+    {
+      "decision": "Unknown archive/transaction outcomes remain held",
+      "rationale": "Published immutable bytes cannot be replaced by a fresh timestamp on retry",
+      "phase": "06"
+    }
+  ],
+  "blocking_constraints": [
+    {
+      "severity": "advisory",
+      "description": "First discount fault tests reused an immutable orphan archive after rollback, correctly obtaining503. Isolate fault fixtures and preserve the conflict hold; never delete/overwrite retained bytes to make retry pass."
+    },
+    {
+      "severity": "advisory",
+      "description": "A new grant set initially broke two exact legacy reset-count assertions. Add every future mutable grant to the finite reset inventory, expected counts and an actual selected-restore fixture."
+    },
+    {
+      "severity": "advisory",
+      "description": "Recovery assessment requires a quarantined epoch; the initial active-epoch test failed correctly. Assess only after quarantine and never label a local assessment actual completeness/reopening authority."
+    }
+  ],
+  "initial_working_tree": [
+    "?? http_cache.sqlite"
+  ],
+  "uncommitted_files": [
+    " M .planning/ACTIVITY-LOG.md",
+    " M .planning/HANDOFF.md",
+    " M .planning/PROJECT.md",
+    " M .planning/PURCHASE-FLOW-RECONCILIATION.json",
+    " M .planning/ROADMAP.md",
+    " M .planning/STATE.md",
+    " M .planning/state.json",
+    " M docs/build/shb-discount-revocation-2026-11-02.md",
+    "?? .planning/HANDOFF.json",
+    "?? .planning/phases/06-invitation-scope-and-staff-mfa/.continue-here.md",
+    "?? http_cache.sqlite"
+  ],
+  "uncommitted_files_elided": 0,
+  "next_action": "After explicit resume, inspect existing discount fixture issuance and invitation intent/scope patterns, then implement protected discount issuance with separate explicit synthetic customer/variant/percentage/use-limit/claim-period authority and a durable digest-only intent/one-time code response. Preserve original clocks and held concessions; invitation/revocation grants and entered contact never establish commercial authority.",
+  "context_notes": "Both local components verified/pushed; no unfinished code/current test failure.583 tests/147 browser checks and focused27 bind380 exact files. No parent SUMMARY/count change. Current raw-code issuance is fixture-only. Reuse existing invitation_issuance.py structure while establishing separate explicit discount commercial scope. All jobs completed; no .env/cache access or new subagent. Actual gates closed. User explicitly paused while the context checkpoint was being prepared.",
+  "evidence_records": [
+    "docs/evidence/shb/retained-tests/12bf40be73b635be6c478375030776b711118323f4f3c9ec5db43a2695e35264.json",
+    "docs/evidence/shb/retained-tests/afbf88024a843a4444b21f055e5f73567bebb5d52941c3c5275628a838601ae6.json",
+    "docs/evidence/shb/retained-tests/e82a8d31e4cee66b558548a10df7ca26446f94e5447b8e599f3ed06cb1595324.json"
+  ],
+  "reports": [
+    "docs/build/shb-invitation-issuance-2026-11-02.md",
+    "docs/build/shb-discount-revocation-2026-11-02.md"
+  ],
+  "false_completion_placeholders": [],
+  "working_tree_snapshot_scope": "Measured after checkpoint files and first inventory refresh, before checkpoint commit. Listed metadata edits are checkpoint-owned; all implementation is already committed/pushed. After checkpoint commit only unrelated http_cache.sqlite should remain untracked.",
+  "working_tree_snapshot_at": "2026-11-02T12:16:14.551Z"
+}
