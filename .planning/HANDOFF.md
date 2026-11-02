@@ -8,7 +8,7 @@ Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-3
 
 **Current plan:** 07-03 — FPGA per-order paid finalization, coupon consumption/safe closure, assigned staff visibility and durable synthetic purchase notice verified; matching ASIC offers remain open.
 
-**Execution status:** paused — context checkpoint after verified paid-order and safe-closure slices;439 tests/47 browser checks pass; matching ASIC offers and actual qualifications remain pending.
+**Execution status:** in progress — resumed matching dated ASIC offers and exact acceptance/payment;439 tests/47 browser checks are the verified baseline; actual qualifications remain pending.
 
 **Next implementation task:** Continue matching dated ASIC offers with exact request revision/customer/scope/quantity/price/terms, withdrawal/expiry/reissue and remaining ordinary request/customer notices.
 
@@ -19,3 +19,5 @@ Paid-order implementation07cb88d and safe-closure implementationa227344f8c4c3c3c
 The next work is matching dated ASIC offers and remaining request/customer notices. Preserve technical readiness as unpaid preparation; do not bypass request revision/scope/price/terms matching or current invitation access. Live inputs and normal Nix/actual/independent qualifications stay pending. No full parent SUMMARY/count change (11/42 records,1/14 documentary phases). Support time/task emails remain manual.
 
 Saved under the standing context-pressure instruction after two implementation slices; exact percentage is unavailable. HANDOFF.json is the primary resumption source. No active jobs or uncommitted code; .env and unrelated http_cache.sqlite untouched.
+
+Resume 2026-11-02T06:49:42.113651+00:00: explicit user $gsd-resume-work lifts the context checkpoint. Continue matching ASIC offers inline through the existing plan; real inputs/qualifications remain pending. HANDOFF.json consumed.

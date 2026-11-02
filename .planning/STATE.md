@@ -5,9 +5,8 @@ current_phase: 7
 current_phase_name: FPGA checkout, ASIC reviewed offers and scoped discounts
 current_plan: 3
 current_task: 1
-status: paused
-paused_at: "2026-11-02T06:36:54.289Z"
-last_updated: "2026-11-02T06:36:54.289Z"
+status: in_progress
+last_updated: "2026-11-02T06:49:42.113651+00:00"
 last_activity: 2026-11-02
 state_head: a227344f8c4c3c3cc2e599eab730525561f2140a
 progress:
@@ -28,7 +27,7 @@ Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-3
 
 **Current plan:** 07-03 — FPGA per-order paid finalization, coupon consumption/safe closure, assigned staff visibility and durable synthetic purchase notice verified; matching ASIC offers remain open.
 
-**Execution status:** paused — context checkpoint after verified paid-order and safe-closure slices;439 tests/47 browser checks pass; matching ASIC offers and actual qualifications remain pending.
+**Execution status:** in progress — resumed matching dated ASIC offers and exact acceptance/payment;439 tests/47 browser checks are the verified baseline; actual qualifications remain pending.
 
 **Next implementation task:** Continue matching dated ASIC offers with exact request revision/customer/scope/quantity/price/terms, withdrawal/expiry/reissue and remaining ordinary request/customer notices.
 
@@ -50,8 +49,8 @@ One actual-input register: docs/decisions.md. Company inputs arrive later; no re
 
 ## Session Continuity
 
-Last session: 2026-11-02T06:36:54.289Z
-Stopped at: Standing apparent-context-pressure checkpoint after paid-order and safe-closure implementations were committed/pushed. Exact usage percentage is unavailable; no measured90% claim.
-Resume file: HANDOFF.json and phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/.continue-here.md.
+Last session: 2026-11-02T06:49:42.113651+00:00
+Stopped at: Explicit user resume; proceeding inline through gsd-execute-phase07-03/07-04 to matching ASIC offers and exact acceptance/payment.
+Resume file: phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/.continue-here.md.
 
-The original handoff was consumed on resume. The new checkpoint records this verified boundary and matching ASIC offers next. No uncommitted implementation remains and no completion count was added.
+HANDOFF.json consumed after reconciling its committed planning snapshot and clean implementation tree. No current background process or async external job; unrelated http_cache.sqlite remains untouched. Completion counts are unchanged.

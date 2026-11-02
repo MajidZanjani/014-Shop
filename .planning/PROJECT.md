@@ -8,7 +8,7 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Current plan:** 07-03 — FPGA per-order paid finalization, coupon consumption/safe closure, assigned staff visibility and durable synthetic purchase notice verified; matching ASIC offers remain open.
 
-**Execution status:** paused — context checkpoint after verified paid-order and safe-closure slices;439 tests/47 browser checks pass; matching ASIC offers and actual qualifications remain pending.
+**Execution status:** in progress — resumed matching dated ASIC offers and exact acceptance/payment;439 tests/47 browser checks are the verified baseline; actual qualifications remain pending.
 
 **Next implementation task:** Continue matching dated ASIC offers with exact request revision/customer/scope/quantity/price/terms, withdrawal/expiry/reissue and remaining ordinary request/customer notices.
 
@@ -73,3 +73,5 @@ Verified paid-order continuation 2026-11-02T06:12:20.448928+00:00:429 tests and4
 Verified safe-closure continuation 2026-11-02T06:30:46.556174+00:00:439 tests/47 actual browser checks and identical326 backend/eight-script hashes. Safe pre-dispatch cancellation/expiry now completes through archived intent, stopped attempt and atomic coupon release; uncertainty never frees a concession. Report: docs/build/shb-safe-closure-2026-11-02.md. No parent SUMMARY or count change.
 
 Context checkpoint 2026-11-02T06:36:54.289Z: paid-order implementation07cb88d and safe-closure implementationa227344f8c4c3c3cc2e599eab730525561f2140a are committed/pushed.439 tests/47 browser checks remain verified; no uncommitted code or owned background job. Exact context percentage is unavailable; checkpoint uses the standing apparent-pressure authorization. Resume matching ASIC offers through HANDOFF.json. No parent completion count change.
+
+Resume 2026-11-02T06:49:42.113651+00:00: explicit user $gsd-resume-work lifts the context checkpoint. Continue matching ASIC offers inline through the existing plan; real inputs/qualifications remain pending. HANDOFF.json consumed.

@@ -1,0 +1,10 @@
+{
+  "command": "python3 .scratch/shb_offer_target.py (retained-tool namespace; disposable PostgreSQL; /nix/store/nr6vqhv33q8n6nbyy529fvcydy3zp1jd-python3-3.13.16-env/bin/python3 manage.py test shop.shb.offer_tests.OfferTests.test_issue_binds_request_and_reserved_discount_without_payment --noinput --keepdb --verbosity 1)",
+  "exitCode": 1,
+  "output": "Using existing test database for alias 'default'...\n{\"event\":\"runtime.event\",\"status\":404,\"correlation_id\":null}\nF\n======================================================================\nFAIL: test_issue_binds_request_and_reserved_discount_without_payment (shop.shb.offer_tests.OfferTests.test_issue_binds_request_and_reserved_discount_without_payment)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/claude/project/014-Shop/backend/shop/shb/offer_tests.py\", line 29, in test_issue_binds_request_and_reserved_discount_without_payment\n    self.assertEqual(response.status_code, 201)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 404 != 201\n\n----------------------------------------------------------------------\nRan 1 test in 0.436s\n\nFAILED (failures=1)\nPreserving test database for alias 'default'...\nFound 1 test(s).\nSystem check identified no issues (0 silenced).\n",
+  "targetTest": "shop.shb.offer_tests.OfferTests.test_issue_binds_request_and_reserved_discount_without_payment",
+  "targetFile": "backend/shop/shb/offer_tests.py",
+  "expected": "Assigned recent-MFA readiness can issue one matching synthetic dated ASIC offer without payment.",
+  "actual": "The native offer issuance route is unavailable.",
+  "semanticAssessment": "Target must fail on expected HTTP201 versus current404, after technical readiness succeeded."
+}
