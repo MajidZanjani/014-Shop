@@ -57,3 +57,7 @@ STATE.md / ROADMAP.md / HANDOFF and machine routing paused consistently. Impleme
 2026-11-02T07:28:41.148953+00:00 — Current STATE.md/ROADMAP.md focus07. Matching ASIC dated offers/acceptance/payment verified:458 tests/59 real browser checks; report docs/build/shb-asic-offers-2026-11-02.md. Parent lifecycle/notices remain open; no count change.
 
 2026-11-02T07:31:00.938Z — STATE.md/ROADMAP.md paused under standing apparent-context-pressure instruction after pushed implementation 0a53002ddb66de572dbe6cbf82ba6c5881198ca1. Exact percentage unavailable.458 tests/59 browser checks; remaining closing/reissue/notices saved in HANDOFF.json. No parent completion count change.
+
+2026-11-02T07:42:05.168551+00:00 — STATE.md/ROADMAP.md resumed07-04 inline through gsd-resume-work/gsd-execute-phase. Structured handoff reconciled/consumed; no existing uncommitted code/job, cache untouched. First archived withdrawal test pending RED. No new completion or external evidence.
+
+2026-11-02 —07-04 withdrawal RED executed on owned disposable PostgreSQL: one intended404 versus201 assertion; GSD RED_EVIDENCE_OK, semantic inspection agrees. docs/evidence/shb/asic-lifecycle-red-2026-11-02.json. STATE.md/ROADMAP.md remain active; no new completion.

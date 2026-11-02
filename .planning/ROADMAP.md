@@ -6,11 +6,11 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
 
-**Current plan:** 07-03 — matching dated ASIC offers, exact acceptance/payment and request-held coupon consumption verified; withdrawal/expiry/reissue and customer notices remain open.
+**Current plan:** 07-04 — explicit pre-acceptance ASIC withdrawal, expiry and reissue; existing07-03 offers/acceptance/payment retained.
 
-**Execution status:** paused — context checkpoint after verified matching ASIC offers/acceptance/payment;458 tests/59 browser checks pass; closing/reissue/notices and actual qualifications remain pending.
+**Execution status:** in progress — resumed explicit ASIC pre-acceptance withdrawal/final expiry/reissue; prior458 tests/59 browser checks retained; new work unverified and actual qualifications pending.
 
-**Next implementation task:** Implement explicit pre-acceptance ASIC request/offer withdrawal, final expiry/release and replacement/reissue, then remaining ordinary request/customer notices.
+**Next implementation task:** Implement archived pre-acceptance ASIC request/offer withdrawal, final expiry/release and fresh-reviewed reissue, then remaining ordinary request/customer notices.
 
 Stable T01–T14/folder IDs preserve history. Titles and active task scopes now follow SHB 1.1. Completed summary counts below are historical records, not engineering effort or new commercial acceptance.
 
@@ -22,7 +22,7 @@ Stable T01–T14/folder IDs preserve history. Titles and active task scopes now 
 - [ ] **Phase 4: Shared SHB form, invitations and private storefront**
 - [ ] **Phase 5: SHB durable records, archives and outbox**
 - [ ] **Phase 6: Invitation scope, verified resources and staff MFA**
-- [ ] **Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts** — CURRENT DEVELOPMENT FOCUS; paused — context checkpoint after verified matching ASIC offers/acceptance/payment;458 tests/59 browser checks pass; closing/reissue/notices and actual qualifications remain pending.
+- [ ] **Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts** — CURRENT DEVELOPMENT FOCUS; in progress — resumed explicit ASIC pre-acceptance withdrawal/final expiry/reissue; prior458 tests/59 browser checks retained; new work unverified and actual qualifications pending.
 - [ ] **Phase 8: Payment lifecycle and fault-injectable synthetic bank**
 - [ ] **Phase 9: Selected-bank sandbox and complete reconciliation**
 - [ ] **Phase 10: Paid SHB orders, transaction notices and manual handoff**
@@ -105,7 +105,7 @@ Requirements: SHB-11, SHB-13, SHB-14.
 
 Plans: [06-01-PLAN](phases/06-invitation-scope-and-staff-mfa/06-01-PLAN.md)
 
-### Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts — CURRENT DEVELOPMENT FOCUS; paused — context checkpoint after verified matching ASIC offers/acceptance/payment;458 tests/59 browser checks pass; closing/reissue/notices and actual qualifications remain pending.
+### Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts — CURRENT DEVELOPMENT FOCUS; in progress — resumed explicit ASIC pre-acceptance withdrawal/final expiry/reissue; prior458 tests/59 browser checks retained; new work unverified and actual qualifications pending.
 
 Goal: Automatic eligible FPGA checkout; ASIC request/clarify/decline/withdraw/approve/dated offer/acceptance. One scoped percentage code; PostgreSQL reservations survive ASIC review beyond claim expiry. Immutable accepted price/scope revisions.
 
@@ -211,7 +211,7 @@ Plans: [14-01-PLAN](phases/14-shb-release-handover/14-01-PLAN.md)
 | 4. Shared SHB form, invitations and private storefront | 0/1 | In Progress | Pending actual revised evidence |
 | 5. SHB durable records, archives and outbox | 0/1 | In Progress | Pending actual revised evidence |
 | 6. Invitation scope, verified resources and staff MFA | 0/1 | In Progress | Pending actual revised evidence |
-| 7. FPGA checkout, ASIC reviewed offers and scoped discounts | 1/4 | In Progress; CURRENT DEVELOPMENT FOCUS; paused — context checkpoint after verified matching ASIC offers/acceptance/payment;458 tests/59 browser checks pass; closing/reissue/notices and actual qualifications remain pending. | Pending actual revised evidence |
+| 7. FPGA checkout, ASIC reviewed offers and scoped discounts | 1/4 | In Progress; CURRENT DEVELOPMENT FOCUS; in progress — resumed explicit ASIC pre-acceptance withdrawal/final expiry/reissue; prior458 tests/59 browser checks retained; new work unverified and actual qualifications pending. | Pending actual revised evidence |
 | 8. Payment lifecycle and fault-injectable synthetic bank | 0/3 | In Progress | Pending actual revised evidence |
 | 9. Selected-bank sandbox and complete reconciliation | 0/1 | Pending | Pending actual revised evidence |
 | 10. Paid SHB orders, transaction notices and manual handoff | 0/6 | In Progress | Pending actual revised evidence |
@@ -239,3 +239,5 @@ Verified safe-closure continuation 2026-11-02T06:30:46.556174+00:00:439 tests/47
 Context checkpoint 2026-11-02T06:36:54.289Z: paid-order implementation07cb88d and safe-closure implementationa227344f8c4c3c3cc2e599eab730525561f2140a are committed/pushed.439 tests/47 browser checks remain verified; no uncommitted code or owned background job. Exact context percentage is unavailable; checkpoint uses the standing apparent-pressure authorization. Resume matching ASIC offers through HANDOFF.json. No parent completion count change.
 
 Resume 2026-11-02T06:49:42.113651+00:00: explicit user $gsd-resume-work lifts the context checkpoint. Continue matching ASIC offers inline through the existing plan; real inputs/qualifications remain pending. HANDOFF.json consumed.
+
+Resume 2026-11-02T07:42:05.168551+00:00: explicit user $gsd-resume-work lifts the context checkpoint. Continue07-04 pre-acceptance closing/reissue inline; no external action or count change. HANDOFF.json consumed.

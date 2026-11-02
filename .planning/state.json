@@ -76,9 +76,9 @@
     }
   ],
   "next": {
-    "command": "$gsd-resume-work",
-    "label": "Resume ASIC closing/reissue and ordinary notices",
-    "reason": "Implement explicit pre-acceptance ASIC request/offer withdrawal, final expiry/release and replacement/reissue, then remaining ordinary request/customer notices."
+    "command": "$gsd-execute-phase 07",
+    "label": "Continue ASIC withdrawal/final expiry/reissue",
+    "reason": "Implement archived pre-acceptance ASIC request/offer withdrawal, final expiry/release and fresh-reviewed reissue, then remaining ordinary request/customer notices."
   },
-  "updated_at": "2026-11-02T07:31:00.938Z"
+  "updated_at": "2026-11-02T07:42:05.168551+00:00"
 }

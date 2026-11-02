@@ -1,0 +1,10 @@
+{
+  "command": "python3 .scratch/shb_lifecycle_target.py (retained-tool namespace; disposable PostgreSQL; /nix/store/nr6vqhv33q8n6nbyy529fvcydy3zp1jd-python3-3.13.16-env/bin/python3 manage.py test shop.shb.lifecycle_tests.LifecycleTests.test_assigned_withdrawal_releases_request_without_manufacturing_acceptance --noinput --keepdb --verbosity 1)",
+  "exitCode": 1,
+  "output": "Using existing test database for alias 'default'...\n{\"event\":\"runtime.event\",\"status\":404,\"correlation_id\":null}\nF\n======================================================================\nFAIL: test_assigned_withdrawal_releases_request_without_manufacturing_acceptance (shop.shb.lifecycle_tests.LifecycleTests.test_assigned_withdrawal_releases_request_without_manufacturing_acceptance)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/claude/project/014-Shop/backend/shop/shb/lifecycle_tests.py\", line 40, in test_assigned_withdrawal_releases_request_without_manufacturing_acceptance\n    self.assertEqual(response.status_code, 201)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 404 != 201\n\n----------------------------------------------------------------------\nRan 1 test in 0.445s\n\nFAILED (failures=1)\nPreserving test database for alias 'default'...\nFound 1 test(s).\nSystem check identified no issues (0 silenced).\n",
+  "targetTest": "shop.shb.lifecycle_tests.LifecycleTests.test_assigned_withdrawal_releases_request_without_manufacturing_acceptance",
+  "targetFile": "backend/shop/shb/lifecycle_tests.py",
+  "expected": "Assigned recent-MFA withdrawal closes an unaccepted ASIC request and releases its hold without creating an acceptance or payment.",
+  "actual": "The explicit pre-acceptance closing route is unavailable.",
+  "semanticAssessment": "Actual target executed once after valid stored ASIC request and exact assigned recent-MFA setup; its HTTP status assertion failed 404 versus201 because the deliberate closing route is absent. No fixture/import/syntax failure."
+}

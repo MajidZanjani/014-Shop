@@ -6,11 +6,11 @@ Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-3
 
 **Last fully completed phase:** 1 — documentary authority only.
 
-**Current plan:** 07-03 — matching dated ASIC offers, exact acceptance/payment and request-held coupon consumption verified; withdrawal/expiry/reissue and customer notices remain open.
+**Current plan:** 07-04 — explicit pre-acceptance ASIC withdrawal, expiry and reissue; existing07-03 offers/acceptance/payment retained.
 
-**Execution status:** paused — context checkpoint after verified matching ASIC offers/acceptance/payment;458 tests/59 browser checks pass; closing/reissue/notices and actual qualifications remain pending.
+**Execution status:** in progress — resumed explicit ASIC pre-acceptance withdrawal/final expiry/reissue; prior458 tests/59 browser checks retained; new work unverified and actual qualifications pending.
 
-**Next implementation task:** Implement explicit pre-acceptance ASIC request/offer withdrawal, final expiry/release and replacement/reissue, then remaining ordinary request/customer notices.
+**Next implementation task:** Implement archived pre-acceptance ASIC request/offer withdrawal, final expiry/release and fresh-reviewed reissue, then remaining ordinary request/customer notices.
 
 **Recorded implementation:** 0a53002ddb66de572dbe6cbf82ba6c5881198ca1
 
@@ -20,4 +20,4 @@ Next: explicit pre-acceptance request/offer withdrawal, final expiry/release, re
 
 Retained tools remain separate synthetic evidence; normal Nix/source/runtime and all actual qualification gates are pending. Company inputs arrive later through docs/decisions.md. No real external action, .env or cache access. No owned job/process remains.
 
-Context checkpoint 2026-11-02T07:31:00.938Z:458/59 evidence retained, no uncommitted implementation or owned job. Resume through HANDOFF.json. Exact usage percentage unavailable; this uses the standing apparent-pressure instruction.
+Resumed 2026-11-02T07:42:05.168551+00:00: HANDOFF.json consumed, no implementation divergence. Continue07-04 inline; actual inputs arrive later. New lifecycle test is pending RED verification.

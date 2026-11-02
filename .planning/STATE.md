@@ -3,11 +3,10 @@ gsd_state_version: "1.0"
 release: shb-1.1
 current_phase: 7
 current_phase_name: FPGA checkout, ASIC reviewed offers and scoped discounts
-current_plan: 3
+current_plan: 4
 current_task: 1
-status: paused
-paused_at: "2026-11-02T07:31:00.938Z"
-last_updated: "2026-11-02T07:31:00.938Z"
+status: in_progress
+last_updated: "2026-11-02T07:42:05.168551+00:00"
 last_activity: 2026-11-02
 state_head: 0a53002ddb66de572dbe6cbf82ba6c5881198ca1
 progress:
@@ -26,11 +25,11 @@ Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-3
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only.
 
-**Current plan:** 07-03 — matching dated ASIC offers, exact acceptance/payment and request-held coupon consumption verified; withdrawal/expiry/reissue and customer notices remain open.
+**Current plan:** 07-04 — explicit pre-acceptance ASIC withdrawal, expiry and reissue; existing07-03 offers/acceptance/payment retained.
 
-**Execution status:** paused — context checkpoint after verified matching ASIC offers/acceptance/payment;458 tests/59 browser checks pass; closing/reissue/notices and actual qualifications remain pending.
+**Execution status:** in progress — resumed explicit ASIC pre-acceptance withdrawal/final expiry/reissue; prior458 tests/59 browser checks retained; new work unverified and actual qualifications pending.
 
-**Next implementation task:** Implement explicit pre-acceptance ASIC request/offer withdrawal, final expiry/release and replacement/reissue, then remaining ordinary request/customer notices.
+**Next implementation task:** Implement archived pre-acceptance ASIC request/offer withdrawal, final expiry/release and fresh-reviewed reissue, then remaining ordinary request/customer notices.
 
 ## Verified local scope
 
@@ -52,8 +51,8 @@ One actual-input register: docs/decisions.md. Company inputs arrive later; no re
 
 ## Session Continuity
 
-Last session: 2026-11-02T07:31:00.938Z
-Stopped at: Standing apparent-context-pressure checkpoint after verified matching ASIC offers/acceptance/payment implementation was committed/pushed as 0a53002ddb66de572dbe6cbf82ba6c5881198ca1. No exact usage percentage is supplied; no measured90% claim.
-Resume file: HANDOFF.json and phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/.continue-here.md.
+Last session: 2026-11-02T07:42:05.168551+00:00
+Stopped at: Explicit user resume; proceeding inline through gsd-execute-phase to07-04 archived ASIC withdrawal/final expiry/reissue.
+Resume file: phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/.continue-here.md.
 
-No uncommitted implementation or owned background job remains. Continue explicit pre-acceptance request/offer withdrawal, final expiry/release and replacement/reissue, then remaining ordinary request/customer notices. No parent SUMMARY or completion-count change.
+HANDOFF.json consumed after reconciling its snapshot: all listed planning changes are committed, no code changes or owned jobs existed, only unrelated http_cache.sqlite remains. Prior458/59 evidence is retained; new work has no verified result yet. No parent SUMMARY/count change or external operation.
