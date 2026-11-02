@@ -48,6 +48,9 @@ def lock_checkout(saved):
     lock_request(candidate.request_id)
     offer = SupportOffer.objects.select_for_update().select_related('request__invitation').get(pk=scope.offer_id)
     verify(offer)
+    from .models import RequestClosure
+    if RequestClosure.objects.filter(offer=offer).exists():
+        raise shared.CheckoutError('request_or_offer_closing',409)
     if saved.snapshot.get('asic_offer') != reference(offer) or saved.snapshot['purchase'] != offer.payload['purchase']:
         raise shared.CheckoutError('offer_scope_changed')
 
@@ -78,8 +81,11 @@ def issue(request, identity, value, archive):
     except (KeyError, TypeError, ValueError, AttributeError): raise ShbError('invalid_request',400) from None
     with transaction.atomic(durable=True):
         row, credential = staff_review.authorized(request, identity, lock=True)
+        from .lifecycle import unfenced
+        unfenced(row)
         previous = SupportOffer.objects.filter(request=row, issue_key=key).select_related('request__invitation').first()
         if previous:
+            if previous.state in ('closed','abandoned'): raise ShbError('offer_closed')
             if (previous.issuer_id != request.user.pk or previous.payload['review_version'] != version
                     or previous.payload['request_sha256'] != value['scope_sha256']
                     or previous.payload['scope']['prerequisites'] != value['prerequisites'].strip()
@@ -95,6 +101,8 @@ def issue(request, identity, value, archive):
                 review__version=version, review__decision='ready_for_commercial_review').first()
             if event is None or SupportOffer.objects.filter(request=row, state__in=['prepared','issued','paid']).exists():
                 raise ShbError('matching_technical_review_required')
+            if SupportOffer.objects.filter(request=row,payload__review_version__gte=version).exists():
+                raise ShbError('fresh_technical_review_required')
             hold = held_request(row)
             policy = catalog.synthetic_offer()
             purchase = catalog.quote('shb-asic-25h', row.payload['purchase']['quantity'], offer=policy,
@@ -133,6 +141,7 @@ def issue(request, identity, value, archive):
     payment.recover(archive, receipt, offer.pk, catalog.canonical(offer.payload))
     with transaction.atomic(durable=True):
         row, _ = staff_review.authorized(request, identity, lock=True)
+        unfenced(row)
         current = SupportOffer.objects.select_for_update().select_related('request__invitation').get(pk=offer.pk)
         verify(current)
         if current.sha256 != offer.sha256: raise ShbError('offer_scope_changed')
@@ -164,6 +173,8 @@ def customer_offer(request, identity, *, lock=False):
 
 
 def open_offer(offer):
+    from .lifecycle import unfenced
+    unfenced(offer.request)
     if offer.state != 'issued' or attempts.database_now() >= offer.expires_at: raise ShbError('offer_expired_or_closed')
 
 

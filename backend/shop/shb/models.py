@@ -38,7 +38,7 @@ class SupportRequest(models.Model):
     class Meta:
         constraints=[models.UniqueConstraint(fields=['invitation','request_id'],name='shb_request_retry_unique'),
             models.CheckConstraint(condition=models.Q(sha256__regex=r'^[a-f0-9]{64}$',revision__gte=1),name='shb_request_digest_revision'),
-            models.CheckConstraint(condition=models.Q(state__in=['submitted','under_review','needs_information','declined','withdrawn','approved','offer_issued','paid']),name='shb_request_known_state')]
+            models.CheckConstraint(condition=models.Q(state__in=['submitted','under_review','needs_information','declined','withdrawn','approved','offer_issued','offer_expired','paid']),name='shb_request_known_state')]
 
 
 class DiscountCode(models.Model):
@@ -83,17 +83,20 @@ class DiscountReservation(models.Model):
     release_review = models.OneToOneField('SupportRequestReview', null=True, on_delete=models.PROTECT, editable=False)
     consumed_order = models.OneToOneField('PaidOrder', null=True, on_delete=models.PROTECT, editable=False)
     release_closure = models.OneToOneField('CheckoutClosure', null=True, on_delete=models.PROTECT, editable=False)
+    release_lifecycle = models.OneToOneField('RequestClosure', null=True, on_delete=models.PROTECT, editable=False)
 
     class Meta:
         constraints = [
             models.UniqueConstraint(fields=['discount', 'slot'], condition=models.Q(state__in=['reserved','consumed']), name='shb_discount_unique_held_slot'),
             models.CheckConstraint(condition=models.Q(slot__gte=1, slot__lte=100), name='shb_discount_slot_bounds'),
             models.CheckConstraint(condition=(models.Q(request__isnull=False, checkout__isnull=True) | models.Q(request__isnull=True, checkout__isnull=False)), name='shb_discount_one_claim_target'),
-            models.CheckConstraint(condition=models.Q(sha256__regex=r'^[a-f0-9]{64}$') & (
+            models.CheckConstraint(condition=models.Q(sha256__regex=r'^[a-f0-9]{64}$') & ((models.Q(release_lifecycle__isnull=True) & (
                 models.Q(state='reserved', release_review__isnull=True, release_closure__isnull=True, consumed_order__isnull=True) |
                 models.Q(state='released', release_review__isnull=False, release_closure__isnull=True, consumed_order__isnull=True) |
                 models.Q(state='released', release_review__isnull=True, release_closure__isnull=False, consumed_order__isnull=True) |
-                models.Q(state='consumed', release_review__isnull=True, release_closure__isnull=True, consumed_order__isnull=False)), name='shb_discount_held_until_matched'),
+                models.Q(state='consumed', release_review__isnull=True, release_closure__isnull=True, consumed_order__isnull=False))) |
+                models.Q(state='released', release_review__isnull=True, release_closure__isnull=True,
+                    consumed_order__isnull=True, release_lifecycle__isnull=False)), name='shb_discount_held_until_matched'),
         ]
 
 
@@ -116,7 +119,7 @@ class SupportRequestReview(models.Model):
 
     class Meta:
         constraints = [models.CheckConstraint(condition=models.Q(message__regex=r'\S',
-            prior_state__in=['submitted', 'needs_information', 'under_review']), name='shb_review_reason_required')]
+            prior_state__in=['submitted', 'needs_information', 'under_review', 'offer_expired']), name='shb_review_reason_required')]
 
 
 class SupportCheckout(models.Model):
@@ -217,5 +220,26 @@ class SupportOffer(models.Model):
             models.UniqueConstraint(fields=['request', 'revision'], name='shb_offer_revision'),
             models.UniqueConstraint(fields=['request'], condition=models.Q(state__in=['prepared', 'issued', 'paid']), name='shb_offer_one_active'),
             models.CheckConstraint(condition=models.Q(revision__gte=1, expires_at__gt=models.F('issued_at'), sha256__regex=r'^[a-f0-9]{64}$'), name='shb_offer_digest_dates'),
-            models.CheckConstraint(condition=models.Q(state='prepared', published_at__isnull=True, archive_receipt={}) | (models.Q(state__in=['issued', 'closed', 'paid'], published_at__isnull=False) & ~models.Q(archive_receipt={})), name='shb_offer_publication'),
+            models.CheckConstraint(condition=models.Q(state__in=['prepared','abandoned'], published_at__isnull=True, archive_receipt={}) | (models.Q(state__in=['issued', 'closed', 'paid'], published_at__isnull=False) & ~models.Q(archive_receipt={})), name='shb_offer_publication'),
+        ]
+
+
+class RequestClosure(models.Model):
+    """Committed pre-acceptance closing intent; no fabricated checkout acceptance."""
+    id = models.UUIDField(primary_key=True, editable=False)
+    request = models.ForeignKey(SupportRequest, on_delete=models.PROTECT)
+    offer = models.OneToOneField(SupportOffer, null=True, on_delete=models.PROTECT)
+    request_key = models.UUIDField(editable=False)
+    payload = models.JSONField(editable=False)
+    sha256 = models.CharField(max_length=64, editable=False)
+    archive_receipt = models.JSONField(default=dict, editable=False)
+    applied_at = models.DateTimeField(null=True, editable=False)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['request','request_key'], name='shb_request_closing_retry'),
+            models.UniqueConstraint(fields=['request'], condition=models.Q(offer__isnull=True), name='shb_request_preoffer_closing'),
+            models.UniqueConstraint(fields=['request'], condition=models.Q(applied_at__isnull=True), name='shb_request_one_closing'),
+            models.CheckConstraint(condition=models.Q(sha256__regex=r'^[a-f0-9]{64}$') &
+                (models.Q(applied_at__isnull=True) | ~models.Q(archive_receipt={})), name='shb_request_closing_archive'),
         ]

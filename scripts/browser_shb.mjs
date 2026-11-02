@@ -29,7 +29,7 @@ async function main(){
   let input='';for await(const chunk of process.stdin){input+=chunk;require(input.length<=8192);}
   const config=JSON.parse(input);input='';
   require(/^SLL-[A-Z2-9]{24}$/.test(config.discountCode));
-  require(config.offerIds?.length===2&&config.offerIds.every(id=>/^[a-f0-9-]{36}$/.test(id)));
+  require(config.offerIds?.length===4&&config.offerIds.every(id=>/^[a-f0-9-]{36}$/.test(id)));
   require(allowedRequest(config.invitationUrl,config.origin));
   require(new URL(config.invitationUrl).pathname.match(/^\/invite\/[A-Za-z0-9_-]{43}$/));
   require(process.versions.node===process.env.SHOP_BROWSER_NODE_VERSION);
@@ -178,6 +178,12 @@ async function main(){
       await submit('button[name=action][value=pay]');
       require(lastStatus===200&&escaped===0&&nativePosts===5&&paymentPosts===2);checks++;
       require(await evaluate('document.documentElement.scrollWidth<=document.documentElement.clientWidth&&localStorage.length===0&&sessionStorage.length===0'));checks++;
+      stage=javascript?'javascript-asic-withdrawal':'no-javascript-asic-withdrawal';
+      await go(config.origin+'/purchase/shb/offer/'+config.offerIds[javascript?2:3]+'/');
+      require(lastStatus===200&&await evaluate('!!document.querySelector("button[value=withdraw]")&&document.querySelector("[name=company_name]").value===""'));checks++;
+      await submit('button[name=action][value=withdraw]');
+      require(lastStatus===200&&escaped===0&&await evaluate('document.body.innerText.includes("have been withdrawn")&&!document.querySelector("[name=company_name]")&&!document.querySelector("button[value=checkout]")'));checks++;
+      require(await evaluate('document.documentElement.scrollWidth<=document.documentElement.clientWidth&&localStorage.length===0&&sessionStorage.length===0'));checks++;
       stage=javascript?'javascript-fpga-cancel':'no-javascript-fpga-cancel';
       await go(config.origin+'/purchase/simple/?variant=shb-fpga-10h&quantity=1');
       await until('!!document.querySelector("[name=company_name]")');await fill();
@@ -204,7 +210,7 @@ async function main(){
       require(await evaluate('document.documentElement.scrollWidth<=document.documentElement.clientWidth&&localStorage.length===0&&sessionStorage.length===0'));checks++;
       await cdp.send('Target.disposeBrowserContext',{browserContextId});
     }
-    console.log(JSON.stringify({status:'SHB_BROWSER_PASS',checks,modes:2,pendingDocumentLoads,browser:version,node:process.versions.node,evidence_class:'local-synthetic-browser',fpga:'accepted-30-hours',asic:'requested-and-accepted-50-hours',payment:'synthetic-captured-once',paidOrder:'recorded-once-per-purchase',closure:'safe-before-dispatch'}));
+    console.log(JSON.stringify({status:'SHB_BROWSER_PASS',checks,modes:2,pendingDocumentLoads,browser:version,node:process.versions.node,evidence_class:'local-synthetic-browser',fpga:'accepted-30-hours',asic:'requested-and-accepted-50-hours',payment:'synthetic-captured-once',paidOrder:'recorded-once-per-purchase',closure:'safe-before-dispatch',withdrawal:'deliberate-unaccepted-asic-offer'}));
   }catch(error){
     if(config.evidence&&diagnose){try{await writeFile(join(config.evidence,'browser-failure.json'),JSON.stringify(await diagnose()),{flag:'wx',mode:0o600});}catch{}}
     throw error;

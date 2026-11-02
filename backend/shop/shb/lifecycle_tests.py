@@ -1,10 +1,13 @@
 """Pre-acceptance ASIC closing and explicit replacement keep old evidence intact."""
 import uuid
+from concurrent.futures import ThreadPoolExecutor
+import json
+from threading import Barrier
 from datetime import timedelta
 from pathlib import Path
 from unittest.mock import patch
 
-from django.db import DatabaseError, transaction
+from django.db import DatabaseError, connection, connections, transaction
 from django.test import TransactionTestCase, override_settings
 from django.utils import timezone
 
@@ -165,3 +168,134 @@ class LifecycleTests(TransactionTestCase):
                 (DiscountReservation, hold.pk, {'state':'reserved','release_lifecycle_id':None})]:
             with self.subTest(model=model.__name__), self.assertRaises(DatabaseError), transaction.atomic():
                 model.objects.filter(pk=pk).update(**changes)
+
+    def test_native_customer_withdrawal_is_deliberate_scoped_and_repeat_safe(self):
+        from .models import DiscountReservation, RequestClosure
+        self.assertEqual(self.issue().status_code, 201)
+        path='/purchase/shb/offer/'+str(self.offer().pk)+'/'
+        value={'action':'withdraw','request_id':str(uuid.uuid4())}
+        with override_settings(**self.customer_settings):
+            self.assertContains(self.client.get(path,secure=True),'Withdraw unpaid offer and request')
+            self.assertFalse(RequestClosure.objects.exists())
+            first=self.client.post(path,value,secure=True)
+            self.assertContains(first,'have been withdrawn')
+            self.assertContains(self.client.post(path,value,secure=True),'have been withdrawn')
+        saved=RequestClosure.objects.get()
+        self.assertEqual(saved.payload['actor']['kind'],'invitation-bearer')
+        self.assertIs(saved.payload['actor']['named_identity_verified'],False)
+        self.assertEqual(DiscountReservation.objects.get().state,'released')
+
+    def expired_fixture(self):
+        """Seed an explicitly synthetic pre-existing expired snapshot in the disposable DB.
+
+        This bypass is only fixture setup: normal issuance cannot backdate an
+        offer. Every tested closing/reissue write runs with all guards enabled.
+        No real 14-day waiting or historic authorization is claimed by this test.
+        """
+        from shop.adapters.evidence_archive import PreparedArchive, ArchiveError, manifest
+        from . import catalog
+        from .models import SupportOffer, SupportRequest
+        with patch.object(PreparedArchive,'publish',side_effect=ArchiveError('fixture preparation')):
+            self.assertEqual(self.issue().status_code,503)
+        offer=self.offer();at=timezone.now()-timedelta(days=15)
+        payload=dict(offer.payload,issued_at=at.isoformat(),expires_at=(at+timedelta(days=14)).isoformat())
+        with PreparedArchive(Path(self.directory.name)) as archive:
+            receipt=manifest(archive.publish(offer.pk,catalog.canonical(payload)))
+        with transaction.atomic(),connection.cursor() as cursor:
+            cursor.execute('ALTER TABLE public.shb_supportoffer DISABLE TRIGGER shb_offer_guard')
+            try:
+                SupportOffer.objects.filter(pk=offer.pk).update(payload=payload,sha256=catalog.digest(payload),
+                    issued_at=at,expires_at=at+timedelta(days=14),published_at=at,archive_receipt=receipt,state='issued')
+                SupportRequest.objects.filter(pk=self.row.pk).update(state='offer_issued')
+                cursor.execute('SET CONSTRAINTS ALL IMMEDIATE')
+            finally:cursor.execute('ALTER TABLE public.shb_supportoffer ENABLE TRIGGER shb_offer_guard')
+        offer.refresh_from_db()
+        return offer
+
+    def test_worker_final_expiry_releases_once_and_does_not_extend_coupon_or_invitation(self):
+        from shop.worker.services import execute_once
+        from .models import DiscountReservation, RequestClosure, DiscountCode, Invitation
+        offer=self.expired_fixture()
+        self.assertTrue(execute_once())
+        offer.refresh_from_db();self.row.refresh_from_db()
+        self.assertEqual(offer.state,'closed');self.assertEqual(self.row.state,'offer_expired')
+        self.assertEqual(DiscountReservation.objects.get().state,'released')
+        self.assertTrue(RequestClosure.objects.get().archive_receipt)
+        self.assertFalse(execute_once())
+        self.assertEqual(DiscountCode.objects.get().expires_at,self.discount.expires_at)
+        self.assertEqual(Invitation.objects.get().expires_at,self.invitation.expires_at)
+
+    def test_expired_offer_reissue_gets_fresh_price_and_acceptance_without_reclaiming_old_hold(self):
+        from shop.worker.services import execute_once
+        from .models import SupportOffer, DiscountReservation
+        original=self.expired_fixture();self.assertTrue(execute_once())
+        self.assertEqual(self.submit(request_id=str(uuid.uuid4()), expected_review_version=1,
+            decision='ready_for_commercial_review',message='Scope and current eligibility revalidated.').status_code,201)
+        self.assertEqual(self.issue(request_id=str(uuid.uuid4()),expected_review_version=2).status_code,201)
+        replacement=SupportOffer.objects.get(state='issued')
+        self.assertNotEqual(replacement.pk,original.pk)
+        self.assertNotIn('discount_policy',replacement.payload['purchase'])
+        self.assertEqual(DiscountReservation.objects.get().state,'released')
+        self.path='/purchase/shb/offer/'+str(replacement.pk)+'/'
+        with override_settings(**self.customer_settings):
+            page=self.client.get(self.path,secure=True)
+            self.assertContains(page,'EUR 10,000.00')
+            self.assertEqual(page.context['form']['company_name'].value(),None)
+
+    def test_acceptance_and_withdrawal_race_has_one_safe_winner(self):
+        from .tests import ShopClient
+        from .models import DiscountReservation, RequestClosure
+        from shop.catalog.models import SyntheticCheckoutAcceptance
+        self.assertEqual(self.issue().status_code,201)
+        value,token=self.customer_review();barrier=Barrier(2);cookies=self.client.cookies.copy()
+        with override_settings(**self.customer_settings):
+            def act(withdraw):
+                try:
+                    client=ShopClient();client.cookies=cookies.copy();barrier.wait(timeout=5)
+                    data={'action':'withdraw','request_id':str(uuid.uuid4())} if withdraw else dict(value,
+                        action='checkout',review_digest=token,accept_terms='on',privacy_acknowledged='on')
+                    return client.post(self.path,data,secure=True).status_code
+                finally:connections.close_all()
+            with ThreadPoolExecutor(max_workers=2) as pool: statuses=list(pool.map(act,(True,False)))
+        self.assertTrue(all(status in (200,302,409) for status in statuses),statuses)
+        accepted=SyntheticCheckoutAcceptance.objects.filter(simulated_accepted_at__isnull=False).exists()
+        closed=RequestClosure.objects.filter(applied_at__isnull=False).exists()
+        self.assertNotEqual(accepted,closed)
+        self.assertEqual(DiscountReservation.objects.get().state,'reserved' if accepted else 'released')
+
+    def test_pending_intent_cannot_release_concession_without_archived_application(self):
+        from shop.adapters.evidence_archive import PreparedArchive, ArchiveError
+        from .models import RequestClosure, DiscountReservation, SupportOffer
+        self.assertEqual(self.issue().status_code,201)
+        with patch.object(PreparedArchive,'publish',side_effect=ArchiveError('unavailable')):
+            self.assertEqual(self.close(offer_id=str(self.offer().pk)).status_code,503)
+        saved=RequestClosure.objects.get();hold=DiscountReservation.objects.get()
+        with self.assertRaisesMessage(DatabaseError,'exact archived request closing'),transaction.atomic():
+            DiscountReservation.objects.filter(pk=hold.pk).update(state='released',release_lifecycle=saved)
+        with self.assertRaises(DatabaseError),transaction.atomic():
+            SupportOffer.objects.filter(pk=self.offer().pk).update(state='closed')
+        self.assertEqual(DiscountReservation.objects.get().state,'reserved')
+
+    def test_missing_live_authority_and_revoked_customer_session_cannot_close(self):
+        from .models import RequestClosure, Invitation
+        self.assertEqual(self.issue().status_code,201)
+        with override_settings(SHB_SYNTHETIC_FIXTURE=False):
+            self.assertEqual(self.close(offer_id=str(self.offer().pk)).status_code,503)
+        path='/purchase/shb/offer/'+str(self.offer().pk)+'/'
+        Invitation.objects.filter(pk=self.invitation.pk).update(revoked_at=timezone.now())
+        with override_settings(**self.customer_settings):
+            self.assertEqual(self.client.post(path,{'action':'withdraw','request_id':str(uuid.uuid4())},secure=True).status_code,403)
+        self.assertFalse(RequestClosure.objects.exists())
+
+    def test_scoped_staff_html_closing_form_uses_csrf_and_records_reason(self):
+        from urllib.parse import urlencode
+        from .models import RequestClosure
+        self.assertContains(self.browser.get(self.detail,HTTP_ACCEPT='text/html'),'Confirm closing action')
+        token=self.browser.cookies['shop_staff_csrftoken'].value
+        value={'request_id':str(uuid.uuid4()),'expected_review_version':'0','scope_sha256':self.row.sha256,
+            'offer_id':'','action':'withdraw','reason':'Customer requested closure through the support channel.',
+            'csrfmiddlewaretoken':token}
+        route='/staff/quotation-requests/'+str(self.row.quotation_id)+'/shb-closing/'
+        response=self.browser.post(route,data=urlencode(value),content_type='application/x-www-form-urlencoded')
+        self.assertEqual(response.status_code,303)
+        self.assertEqual(RequestClosure.objects.get().payload['reason'],value['reason'])

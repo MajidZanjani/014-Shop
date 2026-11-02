@@ -88,7 +88,7 @@ def shop(request):
             state_label={'submitted':'Submitted for review','under_review':'Under review',
                 'needs_information':'More information required','declined':'Declined',
                 'withdrawn':'Withdrawn','approved':'Approved for offer preparation',
-                'offer_issued':'Offer issued','paid':'Paid'}.get(row.state,'Contact SLL')
+                'offer_issued':'Offer issued','offer_expired':'Offer expired','paid':'Paid'}.get(row.state,'Contact SLL')
             return page(request,**context,submitted=row,purchase=row.payload['purchase'],
                 request_status=state_label,discount_message=message)
         if action=='checkout':
@@ -182,6 +182,21 @@ def offer_page(request,identity):
     try:
         checkout.guard()
         if request.GET: raise services.ShbError('unexpected_query',400)
+        if request.method=='POST' and request.POST.get('action')=='withdraw':
+            from . import lifecycle
+            if (request.content_type not in ('application/x-www-form-urlencoded','multipart/form-data') or request.FILES
+                    or set(request.POST)-{'action','request_id','csrfmiddlewaretoken'}
+                    or any(len(request.POST.getlist(key))!=1 for key in request.POST)):
+                raise services.ShbError('invalid_request',400)
+            root=getattr(settings,'LOCAL_CHECKOUT_ARCHIVE_ROOT',None)
+            if not root: raise services.ShbError('recovery_evidence_unavailable',503)
+            with PreparedArchive(Path(root)) as archive:
+                lifecycle.customer_withdraw(request,identity,request.POST.get('request_id'),archive)
+            context['withdrawn']=True
+            response=TemplateResponse(request,'shb/offer.html',context,status=200)
+            response['Cache-Control']='no-store';response['Referrer-Policy']='no-referrer'
+            response['Content-Security-Policy']="default-src 'none'; style-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'"
+            return response
         with transaction.atomic(durable=True):
             _,offer=offers.customer_offer(request,identity,lock=True)
         context['offer']=offer

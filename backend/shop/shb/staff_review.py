@@ -76,6 +76,8 @@ def record(request, identity, value):
         raise ShbError('invalid_request', 400) from None
     with transaction.atomic(durable=True):
         row, credential = authorized(request, identity, lock=True)
+        from .lifecycle import unfenced
+        unfenced(row)
         previous = SupportRequestReview.objects.select_related('review').filter(
             request=row, review__request_id=key).first()
         if previous:
@@ -89,7 +91,7 @@ def record(request, identity, value):
             raise ShbError('review_changed')
         if row.sha256 != value['scope_sha256']:
             raise ShbError('request_scope_changed')
-        if row.state not in ('submitted', 'needs_information', 'under_review'):
+        if row.state not in ('submitted', 'needs_information', 'under_review', 'offer_expired'):
             raise ShbError('request_closed_or_offer_review_required')
         from .models import SupportOffer
         if SupportOffer.objects.filter(request=row,state__in=['prepared','issued','paid']).exists():

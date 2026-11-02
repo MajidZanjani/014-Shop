@@ -43,7 +43,7 @@ customer=get_user_model().objects.create_user(username='shb-demo-customer')
 issuer=get_user_model().objects.create_user(username='shb-demo-issuer',password='synthetic-demo-staff-only',is_staff=True)
 row,token=issue_fixture(customer=customer,issuer=issuer,company_name='Synthetic Company Limited',project_reference='SLL synthetic project')
 prepare=os.environ['SHOP_SHB_PREPARE_OFFERS']=='1'
-discount,code=issue_discount(customer=customer,issuer=issuer,percentage_bps=1000,fpga_allowed=True,asic_allowed=True,use_limit=4 if prepare else 2)
+discount,code=issue_discount(customer=customer,issuer=issuer,percentage_bps=1000,fpga_allowed=True,asic_allowed=True,use_limit=6 if prepare else 2)
 offer_ids=[]
 if prepare:
     # Seed reviewed offers through the actual protected native request and
@@ -54,7 +54,7 @@ if prepare:
     browser=Client(enforce_csrf_checks=True,HTTP_HOST='localhost')
     assert browser.get('/invite/'+token,secure=True).status_code==302
     requests=[]
-    for _ in range(2):
+    for _ in range(4):
         assert browser.get('/purchase/simple/',secure=True).status_code==200
         data={'variant':'shb-asic-25h','quantity':'2','company_name':'Synthetic Company Limited',
             'billing_address':'1 Synthetic Test Street','country':'GE','company_phone':'+995 555 010101',
@@ -182,11 +182,13 @@ def main():
                 require(report['status']=='SHB_BROWSER_PASS' and report['checks']>=20 and report['modes']==2)
                 print(json.dumps(report))
                 retained=manage(python,env,'shell','-c',"from shop.shb.models import SupportRequest,DiscountReservation; from shop.payments.models import SyntheticPaymentAttempt; from shop.catalog.models import SyntheticFulfilment; print('SHB_COUNTS',SupportRequest.objects.count(),SyntheticPaymentAttempt.objects.count(),SyntheticFulfilment.objects.count(),DiscountReservation.objects.count())")
-                require('SHB_COUNTS 4 4 0 4' in retained.stdout)
+                require('SHB_COUNTS 6 4 0 6' in retained.stdout)
                 final=manage(python,env,'shell','-c',"from shop.shb.models import SupportCheckout; from shop.catalog.models import SyntheticCheckoutAcceptance; from shop.payments.models import SyntheticBankOperation; print('SHB_CHECKOUTS',SupportCheckout.objects.count(),SyntheticCheckoutAcceptance.objects.count(),SyntheticBankOperation.objects.count())")
                 require('SHB_CHECKOUTS 6 6 4' in final.stdout)
                 closed=manage(python,env,'shell','-c',"from shop.shb.models import CheckoutClosure; print('SHB_CLOSED',CheckoutClosure.objects.filter(applied_at__isnull=False).count())")
                 require('SHB_CLOSED 2' in closed.stdout)
+                withdrawn=manage(python,env,'shell','-c',"from shop.shb.models import RequestClosure,DiscountReservation; print('SHB_WITHDRAWN',RequestClosure.objects.filter(applied_at__isnull=False,payload__action='withdraw').count(),DiscountReservation.objects.filter(release_lifecycle__isnull=False,state='released').count())")
+                require('SHB_WITHDRAWN 2 2' in withdrawn.stdout)
                 paid=manage(python,env,'shell','-c',"from shop.shb.models import PaidOrder,PurchaseNoticeDelivery; print('SHB_PAID',PaidOrder.objects.count(),PurchaseNoticeDelivery.objects.filter(state='pending').count())")
                 require('SHB_PAID 4 4' in paid.stdout)
                 for _ in range(4):manage(python,env,'run_worker','--once')
@@ -206,7 +208,7 @@ def main():
             print('SHB loopback demo: '+base,flush=True)
             print('Open the invitation from this private file: '+str(invitation),flush=True)
             print('Optional synthetic 10% code (two-use fixture) is in this private file: '+str(discount_path),flush=True)
-            print('Use Synthetic Company Limited, any synthetic.invalid contact and the common form. FPGA review, exact acceptance and fake-only payment plus ASIC request capture work. FPGA paid orders and durable synthetic transaction notices are available; use the configured leased worker for notices. Safe pre-dispatch cancellation/expiry is implemented; uncertain dispatched payments retain their holds. Dated ASIC offers remain pending. Ctrl-C removes only this demo and its disposable database.',flush=True)
+            print('Use Synthetic Company Limited, any synthetic.invalid contact and the common form. FPGA review, exact acceptance and fake-only payment plus ASIC request capture work. Assigned staff can review and issue dated ASIC offers, record withdrawal or retire an offer for fresh reviewed reissue. Customers can deliberately withdraw unaccepted offers. Paid orders and durable synthetic support-team notices are available; use the configured leased worker for notices and final unaccepted offer expiry. Uncertain dispatched payments retain their holds for reconciliation. Ctrl-C removes only this demo and its disposable database.',flush=True)
             try:
                 while True:time.sleep(1)
             except KeyboardInterrupt:pass

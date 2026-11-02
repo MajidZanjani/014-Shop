@@ -61,3 +61,5 @@ STATE.md / ROADMAP.md / HANDOFF and machine routing paused consistently. Impleme
 2026-11-02T07:42:05.168551+00:00 — STATE.md/ROADMAP.md resumed07-04 inline through gsd-resume-work/gsd-execute-phase. Structured handoff reconciled/consumed; no existing uncommitted code/job, cache untouched. First archived withdrawal test pending RED. No new completion or external evidence.
 
 2026-11-02 —07-04 withdrawal RED executed on owned disposable PostgreSQL: one intended404 versus201 assertion; GSD RED_EVIDENCE_OK, semantic inspection agrees. docs/evidence/shb/asic-lifecycle-red-2026-11-02.json. STATE.md/ROADMAP.md remain active; no new completion.
+
+2026-11-02T08:03:47.200665+00:00 — STATE.md/ROADMAP.md07-04:475 tests/65 browser checks, identical336 backend/eight-script source. Archived pre-acceptance closing/final expiry and unchanged-scope reviewed reissue verified; customer native withdrawal included. Report docs/build/shb-asic-closing-2026-11-02.md. Notices/material revisions/actual gates remain open.

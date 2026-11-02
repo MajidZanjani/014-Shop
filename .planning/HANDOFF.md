@@ -1,23 +1,19 @@
-# SHB continuation checkpoint
+# SHB continuation handoff
 
 Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md). STATE.md / ROADMAP.md remain operative.
 
 **Current development focus:** 7 — FPGA checkout, ASIC reviewed offers and scoped discounts.
 
-**Last fully completed phase:** 1 — documentary authority only.
+**Last fully completed phase:** 1 — documentary authority/reconciliation only.
 
-**Current plan:** 07-04 — explicit pre-acceptance ASIC withdrawal, expiry and reissue; existing07-03 offers/acceptance/payment retained.
+**Current plan:** 07-04 — archived pre-acceptance ASIC closing and unchanged-scope reissue verified; linked changed-work revisions and notices remain open.
 
-**Execution status:** in progress — resumed explicit ASIC pre-acceptance withdrawal/final expiry/reissue; prior458 tests/59 browser checks retained; new work unverified and actual qualifications pending.
+**Execution status:** in progress — archived ASIC withdrawal/final expiry and unchanged-scope reviewed reissue verified;475 tests/65 browser checks pass; material request revisions, ordinary notices and actual qualifications remain open.
 
-**Next implementation task:** Implement archived pre-acceptance ASIC request/offer withdrawal, final expiry/release and fresh-reviewed reissue, then remaining ordinary request/customer notices.
+**Next implementation task:** Continue ordinary request/question/decline/offer/closing/customer purchase notifications through the existing worker, then linked material request revisions.
 
 **Recorded implementation:** 0a53002ddb66de572dbe6cbf82ba6c5881198ca1
 
-The current ASIC offer slice is verified at458 tests/59 actual browser checks, with identical332-backend/eight-script hashes; implementation 0a53002ddb66de572dbe6cbf82ba6c5881198ca1 is committed/pushed. [Report and full commands](../docs/build/shb-asic-offers-2026-11-02.md). No parent SUMMARY/count change.
+Current verified scope:475 tests/65 actual Chromium checks, identical336 backend/eight-script hashes. [Current behavior, evidence and full commands](../docs/build/shb-asic-closing-2026-11-02.md). Existing FPGA/ASIC acceptance/payment and staff purchase details remain intact. New archived request/offer closing, native customer withdrawal, final expiry/release and fresh-reviewed unchanged-scope reissue work.
 
-Next: explicit pre-acceptance request/offer withdrawal, final expiry/release, replacement/reissue and remaining ordinary request/customer notices. Expired unaccepted offers retain their concession until archived safe closing is implemented. Current accepted-checkout cancellation is complete; uncertain bank state stays lookup-only.
-
-Retained tools remain separate synthetic evidence; normal Nix/source/runtime and all actual qualification gates are pending. Company inputs arrive later through docs/decisions.md. No real external action, .env or cache access. No owned job/process remains.
-
-Resumed 2026-11-02T07:42:05.168551+00:00: HANDOFF.json consumed, no implementation divergence. Continue07-04 inline; actual inputs arrive later. New lifecycle test is pending RED verification.
+No parent SUMMARY/count change. Remaining: ordinary request/question/decline/offer/closing/customer purchase notices, complete linked material changed-work revisions, normal Nix/source/runtime and all actual qualifications. Company inputs arrive later through docs/decisions.md; no repeat request. Off-host runner unassigned. No external action or .env/cache access. No owned process/database/async job remains at this verified boundary.

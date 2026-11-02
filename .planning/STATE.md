@@ -6,7 +6,7 @@ current_phase_name: FPGA checkout, ASIC reviewed offers and scoped discounts
 current_plan: 4
 current_task: 1
 status: in_progress
-last_updated: "2026-11-02T07:42:05.168551+00:00"
+last_updated: "2026-11-02T08:03:47.200665+00:00"
 last_activity: 2026-11-02
 state_head: 0a53002ddb66de572dbe6cbf82ba6c5881198ca1
 progress:
@@ -25,34 +25,32 @@ Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-3
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only.
 
-**Current plan:** 07-04 — explicit pre-acceptance ASIC withdrawal, expiry and reissue; existing07-03 offers/acceptance/payment retained.
+**Current plan:** 07-04 — archived pre-acceptance ASIC closing and unchanged-scope reissue verified; linked changed-work revisions and notices remain open.
 
-**Execution status:** in progress — resumed explicit ASIC pre-acceptance withdrawal/final expiry/reissue; prior458 tests/59 browser checks retained; new work unverified and actual qualifications pending.
+**Execution status:** in progress — archived ASIC withdrawal/final expiry and unchanged-scope reviewed reissue verified;475 tests/65 browser checks pass; material request revisions, ordinary notices and actual qualifications remain open.
 
-**Next implementation task:** Implement archived pre-acceptance ASIC request/offer withdrawal, final expiry/release and fresh-reviewed reissue, then remaining ordinary request/customer notices.
+**Next implementation task:** Continue ordinary request/question/decline/offer/closing/customer purchase notifications through the existing worker, then linked material request revisions.
 
 ## Verified local scope
 
-The shared immutable request/quotation/checkout/payment records now support dated ASIC offers and exact customer acceptance. Current assigned recent-MFA staff freeze the request/customer/revision/scope/quantity, prerequisites/exclusions, price/discount/tax/currency, exact document bodies/versions, issuer/review attribution and synthetic14-day deadline. Archive recovery precedes publication; current staff authority is rechecked after I/O. One active offer per request and one checkout per offer.
+Existing FPGA/ASIC exact offers, acceptance, payment, per-order completion, original coupon consumption and safe accepted-checkout cancellation remain verified. The new RequestClosure archives the complete request/offer scope, actor, reason and exact held concession before applying a pre-acceptance withdrawal/final expiry or replacement. Its committed intent blocks issuance/review/capture/acceptance; SQL independently fences these paths. Only archived atomic application releases the original request hold. No fabricated acceptance or blind retry.
 
-The original request concession survives actual claim expiry and is consumed once by the matching paid ASIC order. Customer offer pages use blank billing/contact inputs and current same-customer/company/project invitation access, with no private prefill/history authority. Exact signed review and separate terms/privacy acceptance feed the shared bank lifecycle. New expired-offer payment is denied; authenticated late lookup/finalization continues after invitation revocation. Existing staff paid-order pages show the accepted ASIC scope. The existing worker captures the stable fake support-team notice.
+Assigned recent-MFA staff have exact native closing controls. Current scoped invitation holders can deliberately withdraw an unaccepted ASIC offer without saved private billing/contact fields. Replacement preserves the one request hold and requires fresh technical review before a new dated offer. Final expiry releases once without extending invitation/code clocks; subsequent reviewed offers do not reclaim released concessions. Failed unpublished preparation can be abandoned without pretending it was issued. Accepted/uncertain money stays in its existing cancellation/reconciliation lifecycle.
 
-The earlier FPGA paid-order and safe-closure paths remain verified. Safe never-dispatched accepted ASIC cancellation now also releases its original request hold only after archived closure; uncertainty cannot release it. Pre-acceptance withdrawal/final offer expiry/reissue and remaining ordinary request/customer notices are unfinished. An expired unaccepted offer conservatively retains its concession until that safe lifecycle exists.
+Current source evidence:475 passing tests (132 SHB,95 access/recovery,104 payment,30 staff review/navigation,24 local worker/statement-mail,75 preserved transaction/archive,9 source/catalog,6 actual unshare--net adapters),65 actual Chromium151/Node24.15 browser checks/two modes/320px, identical336-backend/eight-script hashes. Report/full commands: docs/build/shb-asic-closing-2026-11-02.md. Expiry positives use explicit backdated disposable snapshots, with all guards restored before tested closing/reissue; no actual14-day wait is claimed.
 
-Current exact evidence:458 passing tests (115 SHB,95 access/recovery,104 payment,30 staff review/navigation,24 local worker/statement-mail,75 preserved transaction/archive,9 source/catalog,6 actual unshare--net adapters),59 actual Chromium151/Node24.15 browser checks/two modes/320px, identical332-backend/eight-script hashes. Report/full commands: docs/build/shb-asic-offers-2026-11-02.md. Normal pinned Nix/source/runtime/provider/independent/human qualification remains unavailable/pending; retained tools are separate synthetic evidence.
-
-No parent SUMMARY, FULL_PASS or count change:11/42 retained summary records and1/14 documentary phases. Orders retain only their own bundle size, quantity and purchased hours. No IP/time fulfilment, cumulative balance, staff time entry, support/bundle panel or task email is connected.
+Ordinary request/customer notices and a complete linked material changed-work revision flow remain open. No parent SUMMARY, FULL_PASS or count change:11/42 retained summary records and1/14 documentary phases. Orders retain only their own bundle size, quantity and purchased hours. No time ledger, cumulative balance, staff time entry, support/bundle panel or task-email generation.
 
 ## Current artifacts and external inputs
 
-Private9-file release .scratch/shb-private-resume-t2p3r5cc/release remains unchanged, manifest ef2d68408ac264a2da888af45ec167242c1a21680990d66a772bd761b86941f3. Latest private empty browser screenshots: .scratch/shb-checkout-browser-ncexecxa. All owned test/browser/Gunicorn/disposable database contexts have completed; no async external job.
+Private9-file release .scratch/shb-private-resume-t2p3r5cc/release remains unchanged, manifest ef2d68408ac264a2da888af45ec167242c1a21680990d66a772bd761b86941f3. Latest private empty browser screenshots: .scratch/shb-checkout-browser-r0xnug6l. All owned test/browser/Gunicorn/disposable database contexts have completed; no async external job.
 
 One actual-input register: docs/decisions.md. Company inputs arrive later; no repeat request. Actual commercial/provider/mail/host/ingress/database/runtime/native/licence/OCI/CI/recovery/human qualifications remain pending; independent off-host runner unassigned. No .env, actual bank/mail/storage/protected-host/DNS/TLS action or paid provision. http_cache.sqlite untouched. Ordinary origin/main push remains authorized.
 
 ## Session Continuity
 
-Last session: 2026-11-02T07:42:05.168551+00:00
-Stopped at: Explicit user resume; proceeding inline through gsd-execute-phase to07-04 archived ASIC withdrawal/final expiry/reissue.
+Last session: 2026-11-02T08:03:47.200665+00:00
+Stopped at: Verified07-04 archived pre-acceptance closing/reissue; proceed immediately with ordinary notices through the existing worker.
 Resume file: phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/.continue-here.md.
 
-HANDOFF.json consumed after reconciling its snapshot: all listed planning changes are committed, no code changes or owned jobs existed, only unrelated http_cache.sqlite remains. Prior458/59 evidence is retained; new work has no verified result yet. No parent SUMMARY/count change or external operation.
+Actual company inputs arrive later; no new request. No owned test/server/database/async job remains at this verification boundary. Normal Nix/source/runtime and actual qualification gates remain pending.

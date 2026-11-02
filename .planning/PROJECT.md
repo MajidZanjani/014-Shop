@@ -6,11 +6,11 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
 
-**Current plan:** 07-04 — explicit pre-acceptance ASIC withdrawal, expiry and reissue; existing07-03 offers/acceptance/payment retained.
+**Current plan:** 07-04 — archived pre-acceptance ASIC closing and unchanged-scope reissue verified; linked changed-work revisions and notices remain open.
 
-**Execution status:** in progress — resumed explicit ASIC pre-acceptance withdrawal/final expiry/reissue; prior458 tests/59 browser checks retained; new work unverified and actual qualifications pending.
+**Execution status:** in progress — archived ASIC withdrawal/final expiry and unchanged-scope reviewed reissue verified;475 tests/65 browser checks pass; material request revisions, ordinary notices and actual qualifications remain open.
 
-**Next implementation task:** Implement archived pre-acceptance ASIC request/offer withdrawal, final expiry/release and fresh-reviewed reissue, then remaining ordinary request/customer notices.
+**Next implementation task:** Continue ordinary request/question/decline/offer/closing/customer purchase notifications through the existing worker, then linked material request revisions.
 
 ## What this is
 
@@ -81,3 +81,5 @@ Verified ASIC offer continuation 2026-11-02T07:28:41.148953+00:00:458 tests/59 a
 Context checkpoint 2026-11-02T07:31:00.938Z: matching ASIC offer implementation 0a53002ddb66de572dbe6cbf82ba6c5881198ca1 is committed/pushed.458 tests/59 actual browser checks remain verified; no uncommitted code or owned background job. Exact context percentage is unavailable; standing apparent-pressure checkpoint. HANDOFF.json resumes pre-acceptance withdrawal/final expiry/reissue and remaining ordinary notices. No parent completion count change.
 
 Resume 2026-11-02T07:42:05.168551+00:00: explicit user $gsd-resume-work lifts the context checkpoint. Continue07-04 pre-acceptance closing/reissue inline; no external action or count change. HANDOFF.json consumed.
+
+Verified continuation 2026-11-02T08:03:47.200665+00:00:475 tests/65 actual browser checks and identical336-backend/eight-script source. Archived pre-acceptance ASIC withdrawal/final expiry and fresh-reviewed unchanged-scope reissue complete locally; report docs/build/shb-asic-closing-2026-11-02.md. Ordinary notices/linked material revisions/actual gates remain open; no parent count change.
