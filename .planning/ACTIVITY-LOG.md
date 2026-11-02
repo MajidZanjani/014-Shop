@@ -47,3 +47,5 @@ STATE.md / ROADMAP.md / HANDOFF and machine routing paused consistently. Impleme
 - 2026-11-02: Resumed 07-03 inline. Added paid-order/coupon/notice recovery tests. Actual isolated PostgreSQL RED target fails only on reserved versus consumed after captured fake payment; machine verdict RED_EVIDENCE_OK. Evidence: docs/evidence/shb/paid-order-red-2026-11-02.json. No parent completion or real effect.
 
 - 2026-11-02T06:12:20.448928+00:00: Verified per-order FPGA completion, coupon consumption, worker recovery/notice and assigned staff purchase view.429 tests/41 current browser checks and identical321-file/eight-script source records. Off-host guard preserved; full parent plan remains open.
+
+- 2026-11-02: Continued immediately after paid-order commit07cb88d. Safe pre-dispatch cancellation has actual isolated PostgreSQL RED evidence (400 versus expected200), machine verdict RED_EVIDENCE_OK; docs/evidence/shb/safe-closure-red-2026-11-02.json. No completion count change.

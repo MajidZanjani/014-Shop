@@ -365,3 +365,13 @@ class CheckoutTests(TransactionTestCase):
         for _ in range(2):self.assertEqual(self.client.post(response['Location'],{'action':'pay'},secure=True).status_code,200)
         self.assertEqual(DiscountReservation.objects.get().state,'consumed')
         self.assertContains(self.client.get(response['Location'],secure=True),'Paid purchase recorded')
+
+    def test_pre_dispatch_cancellation_releases_reserved_coupon_once(self):
+        from .discounts import issue_fixture
+        from .models import DiscountReservation
+        _,raw=issue_fixture(customer=self.customer,issuer=self.issuer,percentage_bps=1000,fpga_allowed=True)
+        data,token=self.review(discount_code=raw);response=self.checkout(data,token)
+        self.assertEqual(response.status_code,302)
+        response=self.client.post(response['Location'],{'action':'cancel'},secure=True)
+        self.assertEqual(response.status_code,200)
+        self.assertEqual(DiscountReservation.objects.get().state,'released')
