@@ -12,7 +12,7 @@
       "path": ".planning/ACTIVITY-LOG.md",
       "role": "current",
       "release": "shb-1.1",
-      "sha256": "e1d262cebcee38162489fbf42c65d25b8a31febf04ad560f257ed2d8e4988cbb",
+      "sha256": "9661ed7f18d7bafb6b0f83c3c6f07c1ff3357c12204d2794d7a3a58461766e2d",
       "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
@@ -23,17 +23,24 @@
       "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
+      "path": ".planning/HANDOFF.json",
+      "role": "current",
+      "release": "shb-1.1",
+      "sha256": "a909e6cdbc8f2ae718e356c23da80cba4a850a08ec7645328fba72c8a132eccb",
+      "disposition": "Execute only current SHB routing; retain applicable shared controls"
+    },
+    {
       "path": ".planning/HANDOFF.md",
       "role": "current",
       "release": "shb-1.1",
-      "sha256": "d19e5944f9f0927714cddfe83abff62fde9a6f25c35be7b7497fe1dbdbd7dea3",
+      "sha256": "4f14f23dcad3e80c875ac8e2c355c0b63224d7251b4ed7f1c7230b7145cdaa24",
       "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/PROJECT.md",
       "role": "current",
       "release": "shb-1.1",
-      "sha256": "992d03cb5f356b83e9a5a5af8ead7b22c88ff0eb756a5e61c140d1d0c649add9",
+      "sha256": "3737f3dc3a84ff4f1c4b0c0a1eedccd78636f980060d8ebe65670d122d33e711",
       "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
@@ -61,7 +68,7 @@
       "path": ".planning/ROADMAP.md",
       "role": "current",
       "release": "shb-1.1",
-      "sha256": "3bc6490cee51621b9751f4eedfaa3f6d26075d51c644a6cbb0269ee8d167f684",
+      "sha256": "db67eabc36d6b3af2366e266908124b50cedd3e8defe989039ba4252eca8c15b",
       "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
@@ -82,7 +89,7 @@
       "path": ".planning/STATE.md",
       "role": "current",
       "release": "shb-1.1",
-      "sha256": "9dc38ebcf9be20a74bbc6bbd1d9755e5aef1b172e989ccfa807590dcdb8af65d",
+      "sha256": "4b34fcfe3d23e2d60601194985c7d631e20e4f36bcc3bf6a6c45d6c859082b83",
       "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
@@ -565,7 +572,7 @@
       "path": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/.continue-here.md",
       "role": "current",
       "release": "shb-1.1",
-      "sha256": "539474386108e6901e024c5979bba1f8cc3f83058bda7680fb42641c17c36e8a",
+      "sha256": "5297e8d2ca419fa7bc5e69c6b4dbe7063ee85d72ebc209d033afd4644909f4f3",
       "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
@@ -2539,7 +2546,7 @@
       "path": ".planning/state.json",
       "role": "current",
       "release": "shb-1.1",
-      "sha256": "9f3e669bc7402f0802be6c0073deb88f8da427bcf2032aa8acec9871f12ddda7",
+      "sha256": "58d1848842abb55fdfd8cadb84ee0620ced5d32d8f0d6dcf2d765944cae6c087",
       "disposition": "Execute only current SHB routing; retain applicable shared controls"
     }
   ]

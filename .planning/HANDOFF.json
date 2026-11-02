@@ -1,0 +1,119 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-11-02T08:40:33.289Z",
+  "release": "shb-1.1",
+  "phase": "07",
+  "phase_name": "FPGA checkout, ASIC reviewed offers and scoped discounts",
+  "phase_dir": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance",
+  "plan": 4,
+  "task": 1,
+  "total_tasks": 1,
+  "status": "paused",
+  "pause_reason": "Standing apparent-context-pressure authorization after three substantial local slices; exact usage percentage unavailable",
+  "implementation_commit": "2fb096adabfffd81565790ce17b0328d444f3ae0",
+  "implementation_push": "verified ordinary origin/main push completed",
+  "completed_tasks": [
+    {
+      "id": 1,
+      "name": "07-03/07-04 local workflow slices",
+      "status": "in_progress",
+      "progress": "Closing/expiry/reissue, ordinary notices and linked material revisions are verified and pushed; parent/shared qualification remains incomplete."
+    }
+  ],
+  "verified_slices": [
+    {
+      "commit": "4e1b969",
+      "name": "Archived pre-acceptance ASIC closing/expiry and reviewed reissue"
+    },
+    {
+      "commit": "bfa003a",
+      "name": "Ordinary request/customer notices on existing worker"
+    },
+    {
+      "commit": "2fb096adabfffd81565790ce17b0328d444f3ae0",
+      "name": "Linked fresh material request revisions with new exact review/acceptance/payment"
+    }
+  ],
+  "remaining_tasks": [
+    {
+      "id": 1,
+      "name": "12-01 local SHB recovery/replay coverage for closing, notices and replacement lineage",
+      "status": "not_started"
+    },
+    {
+      "id": 2,
+      "name": "Normal Nix/source/runtime and actual company/provider/mail/host/database/independent qualification",
+      "status": "pending"
+    }
+  ],
+  "blockers": [
+    {
+      "description": "Normal pinned Nix shell/source packaging cannot resolve missing dependencies",
+      "type": "technical",
+      "workaround": "Use separate verified retained-tool synthetic lane; no normal Nix/runtime qualification claim"
+    },
+    {
+      "description": "Ordinary sandbox bwrap denies workspace traversal",
+      "type": "technical",
+      "workaround": "Narrow justified require_escalated local commands; no host/permission changes"
+    },
+    {
+      "description": "Actual inputs/qualifications pending; independent off-host runner unassigned",
+      "type": "external",
+      "workaround": "Continue unaffected local recovery coverage after resume; no repeat company-input requests"
+    }
+  ],
+  "async_jobs": [],
+  "background_processes": [],
+  "human_actions_pending": [
+    {
+      "action": "Clear this large context and run $gsd-resume-work",
+      "context": "Standing apparent-pressure checkpoint; exact percentage unavailable",
+      "blocking": true
+    },
+    {
+      "action": "Actual company inputs arrive later through docs/decisions.md",
+      "context": "Do not request again; unaffected local work remains authorized",
+      "blocking": false
+    }
+  ],
+  "decisions": [
+    {
+      "decision": "Pre-acceptance closing uses an archived deliberate intent, never fabricated acceptance",
+      "rationale": "Fence new effects before recoverable atomic release; uncertainty stays lookup-only",
+      "phase": "07"
+    },
+    {
+      "decision": "Ordinary contacts are this-transaction-only; captures explicitly report no actual email",
+      "rationale": "No company/named identity authorization or real mail qualification is inferred",
+      "phase": "07"
+    },
+    {
+      "decision": "Changed work creates a linked fresh request after deliberate unpaid withdrawal",
+      "rationale": "Preserve old scope/approval; require current eligibility/price/coupon and fresh review/acceptance",
+      "phase": "07"
+    }
+  ],
+  "next_action": "After resume, extend existing12-01 SHB recovery/replay assessment and local PostgreSQL tests for closing intents, ordinary notice delivery/capture and replacement lineage; preserve invitation clocks, coupon outcomes and original paid-order references before reopening.",
+  "context_notes": "Do not redo completed07 FPGA/ASIC checkout/payment/closing/notices/revision slices.497 tests/71 browser checks and20 ordinary plus4 support-team captures bind identical344 backend/eight-script hashes. Next12-01 is local recovery/replay preparation, not off-host/real restore qualification. No parent SUMMARY/count change. No time accounting/task email/customer panel, .env or cache access. All owned contexts completed.",
+  "evidence_records": [
+    "docs/evidence/shb/retained-tests/737917c955d55e03566ea44c1c1c095e7c4639de740550bd58213e9071791da5.json",
+    "docs/evidence/shb/retained-tests/d800e00ceb0203e0b6121e505b56b4db1c7a89d2c0473e5970b649de4d3b2291.json"
+  ],
+  "report": "docs/build/shb-material-revisions-2026-11-02.md",
+  "uncommitted_files": [
+    " M .planning/ACTIVITY-LOG.md",
+    " M .planning/HANDOFF.md",
+    " M .planning/PROJECT.md",
+    " M .planning/PURCHASE-FLOW-RECONCILIATION.json",
+    " M .planning/ROADMAP.md",
+    " M .planning/STATE.md",
+    " M .planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/.continue-here.md",
+    " M .planning/state.json",
+    "?? .planning/HANDOFF.json",
+    "?? http_cache.sqlite"
+  ],
+  "uncommitted_files_elided": 0,
+  "working_tree_snapshot_at": "2026-11-02T08:43:29.637906+00:00",
+  "working_tree_snapshot_scope": "Measured after checkpoint artifacts existed and before checkpoint commit. Listed planning edits are committed by the checkpoint; all implementation is already committed/pushed. Only unrelated http_cache.sqlite should remain afterward."
+}

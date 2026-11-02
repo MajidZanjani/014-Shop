@@ -1,4 +1,4 @@
-# SHB continuation handoff
+# SHB continuation checkpoint
 
 Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md). STATE.md / ROADMAP.md remain operative.
 
@@ -8,16 +8,16 @@ Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-3
 
 **Current plan:** 07-04 — archived ASIC closing/reissue, ordinary notices and linked changed-work revisions verified locally; shared recovery/release qualification remains open.
 
-**Execution status:** in progress — ASIC closing/reissue, ordinary notices and linked material request revisions verified;497 tests/71 browser checks and20 ordinary captures pass; SHB recovery/replay coverage and actual qualifications remain open.
+**Execution status:** paused — standing apparent-context-pressure checkpoint after497 tests/71 browser checks and20 ordinary captures; closing/reissue/notices/material revisions verified locally; recovery/replay and actual qualification remain open.
 
-**Next implementation task:** Extend existing12-01 SHB recovery/replay assessment and local PostgreSQL tests for closing intents, ordinary notice delivery/capture and replacement lineage; preserve invitation clocks, coupon outcomes and original paid-order references before reopening.
+**Next implementation task:** After resume, extend existing12-01 SHB recovery/replay assessment and local PostgreSQL tests for closing intents, ordinary notice delivery/capture and replacement lineage; preserve invitation clocks, coupon outcomes and original paid-order references before reopening.
 
-**Recorded implementation:** bfa003a56d651e663689f97dcdbecfdb977e1b11
+**Recorded implementation:** 2fb096adabfffd81565790ce17b0328d444f3ae0
 
-Current verified scope:475 tests/65 actual Chromium checks, identical336 backend/eight-script hashes. [Current behavior, evidence and full commands](../docs/build/shb-asic-closing-2026-11-02.md). Existing FPGA/ASIC acceptance/payment and staff purchase details remain intact. New archived request/offer closing, native customer withdrawal, final expiry/release and fresh-reviewed unchanged-scope reissue work.
+Current exact evidence:497 tests,71 actual Chromium checks/two modes/320px, identical344 backend/eight-script hashes,20 ordinary and4 support-team fake notice captures. [Latest behavior, evidence and full commands](../docs/build/shb-material-revisions-2026-11-02.md); preceding [closing](../docs/build/shb-asic-closing-2026-11-02.md) and [notice](../docs/build/shb-ordinary-notices-2026-11-02.md) reports record the earlier verified slices. All implementation commits are pushed.
 
-No parent SUMMARY/count change. Remaining: ordinary request/question/decline/offer/closing/customer purchase notices, complete linked material changed-work revisions, normal Nix/source/runtime and all actual qualifications. Company inputs arrive later through docs/decisions.md; no repeat request. Off-host runner unassigned. No external action or .env/cache access. No owned process/database/async job remains at this verified boundary.
+Completed locally: archived pre-acceptance withdrawal/final expiry, fresh-reviewed unchanged-scope reissue, failed-preparation abandonment, ordinary request/question/decline/offer/closing/customer notices, and linked fresh material request revisions with current eligibility/price/coupon/approval/acceptance. Old scope/evidence remains immutable. No parent SUMMARY or count change:11/42 retained records and1/14 documentary phases.
 
-Verified 2026-11-02T08:24:28.608322+00:00:487 tests/65 browser checks, identical340 backend/eight-script hashes;18 ordinary notice captures through the existing worker, no real email. Report docs/build/shb-ordinary-notices-2026-11-02.md. Linked material revisions/actual gates remain open.
+Next is real shared12-01 recovery/replay coverage for the new closing/notice/lineage records, then remaining actual qualification. Do not redo completed07 workflows. Company inputs arrive later through docs/decisions.md; no repeat request. Normal Nix/source/runtime and actual provider/mail/host/database/native/licence/OCI/CI/independent/recovery/human gates remain pending; off-host runner unassigned. Retained tools remain separate synthetic evidence. No owned process/job, .env/cache access, external action or paid provision.
 
-Verified 2026-11-02T08:39:55.241769+00:00: linked material revisions complete locally;497 tests/71 browser checks,20 ordinary and4 support-team fake captures, identical344 backend/eight-script hashes. Report docs/build/shb-material-revisions-2026-11-02.md. Next shared recovery/replay coverage and actual qualifications remain open; no parent count change.
+This is a proactive checkpoint under the standing apparent-context-pressure instruction after a large resumed context. Exact usage percentage is unavailable; no measured90% or automatic-monitoring claim. Clear the session and run $gsd-resume-work.

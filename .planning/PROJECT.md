@@ -8,9 +8,9 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Current plan:** 07-04 — archived ASIC closing/reissue, ordinary notices and linked changed-work revisions verified locally; shared recovery/release qualification remains open.
 
-**Execution status:** in progress — ASIC closing/reissue, ordinary notices and linked material request revisions verified;497 tests/71 browser checks and20 ordinary captures pass; SHB recovery/replay coverage and actual qualifications remain open.
+**Execution status:** paused — standing apparent-context-pressure checkpoint after497 tests/71 browser checks and20 ordinary captures; closing/reissue/notices/material revisions verified locally; recovery/replay and actual qualification remain open.
 
-**Next implementation task:** Extend existing12-01 SHB recovery/replay assessment and local PostgreSQL tests for closing intents, ordinary notice delivery/capture and replacement lineage; preserve invitation clocks, coupon outcomes and original paid-order references before reopening.
+**Next implementation task:** After resume, extend existing12-01 SHB recovery/replay assessment and local PostgreSQL tests for closing intents, ordinary notice delivery/capture and replacement lineage; preserve invitation clocks, coupon outcomes and original paid-order references before reopening.
 
 ## What this is
 
@@ -87,3 +87,5 @@ Verified continuation 2026-11-02T08:03:47.200665+00:00:475 tests/65 actual brows
 Verified 2026-11-02T08:24:28.608322+00:00:487 tests/65 browser checks, identical340 backend/eight-script hashes;18 ordinary notice captures through the existing worker, no real email. Report docs/build/shb-ordinary-notices-2026-11-02.md. Linked material revisions/actual gates remain open.
 
 Verified 2026-11-02T08:39:55.241769+00:00: linked material revisions complete locally;497 tests/71 browser checks,20 ordinary and4 support-team fake captures, identical344 backend/eight-script hashes. Report docs/build/shb-material-revisions-2026-11-02.md. Next shared recovery/replay coverage and actual qualifications remain open; no parent count change.
+
+Context checkpoint 2026-11-02T08:40:33.289Z: verified material-revision implementation2fb096adabfffd81565790ce17b0328d444f3ae0 and prior closing/notices slices are pushed.497 tests/71 browser checks,20 ordinary captures. Exact percentage unavailable; standing apparent-pressure checkpoint. HANDOFF.json records recovery/replay as next; actual gates and parent completion remain open.

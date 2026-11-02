@@ -8,9 +8,9 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Current plan:** 07-04 — archived ASIC closing/reissue, ordinary notices and linked changed-work revisions verified locally; shared recovery/release qualification remains open.
 
-**Execution status:** in progress — ASIC closing/reissue, ordinary notices and linked material request revisions verified;497 tests/71 browser checks and20 ordinary captures pass; SHB recovery/replay coverage and actual qualifications remain open.
+**Execution status:** paused — standing apparent-context-pressure checkpoint after497 tests/71 browser checks and20 ordinary captures; closing/reissue/notices/material revisions verified locally; recovery/replay and actual qualification remain open.
 
-**Next implementation task:** Extend existing12-01 SHB recovery/replay assessment and local PostgreSQL tests for closing intents, ordinary notice delivery/capture and replacement lineage; preserve invitation clocks, coupon outcomes and original paid-order references before reopening.
+**Next implementation task:** After resume, extend existing12-01 SHB recovery/replay assessment and local PostgreSQL tests for closing intents, ordinary notice delivery/capture and replacement lineage; preserve invitation clocks, coupon outcomes and original paid-order references before reopening.
 
 Stable T01–T14/folder IDs preserve history. Titles and active task scopes now follow SHB 1.1. Completed summary counts below are historical records, not engineering effort or new commercial acceptance.
 
@@ -22,7 +22,7 @@ Stable T01–T14/folder IDs preserve history. Titles and active task scopes now 
 - [ ] **Phase 4: Shared SHB form, invitations and private storefront**
 - [ ] **Phase 5: SHB durable records, archives and outbox**
 - [ ] **Phase 6: Invitation scope, verified resources and staff MFA**
-- [ ] **Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts** — CURRENT DEVELOPMENT FOCUS; in progress — ASIC closing/reissue, ordinary notices and linked material request revisions verified;497 tests/71 browser checks and20 ordinary captures pass; SHB recovery/replay coverage and actual qualifications remain open.
+- [ ] **Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts** — CURRENT DEVELOPMENT FOCUS; paused — standing apparent-context-pressure checkpoint after497 tests/71 browser checks and20 ordinary captures; closing/reissue/notices/material revisions verified locally; recovery/replay and actual qualification remain open.
 - [ ] **Phase 8: Payment lifecycle and fault-injectable synthetic bank**
 - [ ] **Phase 9: Selected-bank sandbox and complete reconciliation**
 - [ ] **Phase 10: Paid SHB orders, transaction notices and manual handoff**
@@ -105,7 +105,7 @@ Requirements: SHB-11, SHB-13, SHB-14.
 
 Plans: [06-01-PLAN](phases/06-invitation-scope-and-staff-mfa/06-01-PLAN.md)
 
-### Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts — CURRENT DEVELOPMENT FOCUS; in progress — ASIC closing/reissue, ordinary notices and linked material request revisions verified;497 tests/71 browser checks and20 ordinary captures pass; SHB recovery/replay coverage and actual qualifications remain open.
+### Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts — CURRENT DEVELOPMENT FOCUS; paused — standing apparent-context-pressure checkpoint after497 tests/71 browser checks and20 ordinary captures; closing/reissue/notices/material revisions verified locally; recovery/replay and actual qualification remain open.
 
 Goal: Automatic eligible FPGA checkout; ASIC request/clarify/decline/withdraw/approve/dated offer/acceptance. One scoped percentage code; PostgreSQL reservations survive ASIC review beyond claim expiry. Immutable accepted price/scope revisions.
 
@@ -211,7 +211,7 @@ Plans: [14-01-PLAN](phases/14-shb-release-handover/14-01-PLAN.md)
 | 4. Shared SHB form, invitations and private storefront | 0/1 | In Progress | Pending actual revised evidence |
 | 5. SHB durable records, archives and outbox | 0/1 | In Progress | Pending actual revised evidence |
 | 6. Invitation scope, verified resources and staff MFA | 0/1 | In Progress | Pending actual revised evidence |
-| 7. FPGA checkout, ASIC reviewed offers and scoped discounts | 1/4 | In Progress; CURRENT DEVELOPMENT FOCUS; in progress — ASIC closing/reissue, ordinary notices and linked material request revisions verified;497 tests/71 browser checks and20 ordinary captures pass; SHB recovery/replay coverage and actual qualifications remain open. | Pending actual revised evidence |
+| 7. FPGA checkout, ASIC reviewed offers and scoped discounts | 1/4 | In Progress; CURRENT DEVELOPMENT FOCUS; paused — standing apparent-context-pressure checkpoint after497 tests/71 browser checks and20 ordinary captures; closing/reissue/notices/material revisions verified locally; recovery/replay and actual qualification remain open. | Pending actual revised evidence |
 | 8. Payment lifecycle and fault-injectable synthetic bank | 0/3 | In Progress | Pending actual revised evidence |
 | 9. Selected-bank sandbox and complete reconciliation | 0/1 | Pending | Pending actual revised evidence |
 | 10. Paid SHB orders, transaction notices and manual handoff | 0/6 | In Progress | Pending actual revised evidence |
@@ -247,3 +247,5 @@ Verified continuation 2026-11-02T08:03:47.200665+00:00:475 tests/65 actual brows
 Verified 2026-11-02T08:24:28.608322+00:00:487 tests/65 browser checks, identical340 backend/eight-script hashes;18 ordinary notice captures through the existing worker, no real email. Report docs/build/shb-ordinary-notices-2026-11-02.md. Linked material revisions/actual gates remain open.
 
 Verified 2026-11-02T08:39:55.241769+00:00: linked material revisions complete locally;497 tests/71 browser checks,20 ordinary and4 support-team fake captures, identical344 backend/eight-script hashes. Report docs/build/shb-material-revisions-2026-11-02.md. Next shared recovery/replay coverage and actual qualifications remain open; no parent count change.
+
+Context checkpoint 2026-11-02T08:40:33.289Z: verified material-revision implementation2fb096adabfffd81565790ce17b0328d444f3ae0 and prior closing/notices slices are pushed.497 tests/71 browser checks,20 ordinary captures. Exact percentage unavailable; standing apparent-pressure checkpoint. HANDOFF.json records recovery/replay as next; actual gates and parent completion remain open.
