@@ -12,7 +12,7 @@ Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-3
 
 **Next implementation task:** Continue13-01 release qualification from the refreshed thirty-case evidence trace when actual prerequisites are available; keep selected-bank, mail, host/runtime, human and independent recovery gates closed until qualified.
 
-**Recorded implementation:** 5e0f72af31dc4eb83fbe16e7c1ff16bf72b14237
+**Recorded implementation:** d9bb925f93dd5ee6f3c58d2aa469ec4ba12ee4d1
 
 Current exact evidence:526 tests and71 actual Chromium customer checks/two modes/320px, identical350 backend/eight-script hashes. [Behavior, evidence and commands](../docs/build/shb-financial-handoff-2026-11-02.md).15 financial cases cover manual review/archival, original order/coupon preservation, scope/MFA/CSRF/concurrency, SQL bypass denial, uncertain lookup, support communication and recovery. Native staff forms have Django coverage; no actual staff browser/human qualification is claimed.
 

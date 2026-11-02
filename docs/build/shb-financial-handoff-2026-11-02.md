@@ -16,7 +16,7 @@ The existing local recovery assessment now verifies refund review, financial int
 
 ## Executed evidence
 
-The actual [RED report](../evidence/shb/financial-review-red-2026-11-02.json) executes after successful ASIC offer/acceptance/payment and exact current staff grants. It fails only on200 versus409: the shared finance route prepared an SHB refund without a recorded manual check. GSD returns `RED_EVIDENCE_OK`; test/state commitd2a0a8f is pushed.
+The actual [RED report](../evidence/shb/financial-review-red-2026-11-02.json) executes after successful ASIC offer/acceptance/payment and exact current staff grants. It fails only on200 versus409: the shared finance route prepared an SHB refund without a recorded manual check. GSD returns `RED_EVIDENCE_OK`; test/state commitd2a0a8f and implementationd9bb925f93dd5ee6f3c58d2aa469ec4ba12ee4d1 are committed and ordinarily pushed to origin/main.
 
 The initial focused12-case run had one fixture error: its helper requested a fresh CSRF token after quarantine. It now submits the existing token/session to verify denial. An intermediate525-test run passes ([record](../evidence/shb/retained-tests/b8fb8050b82988714a2f121379937c84cc35854087aa9efe7afb13692ddc185a.json)). Review then added a controlled missing-order-scope denial and its regression so the application rejects unauthorized new intents before the SQL guard; retained finance lookup keeps its separate scope.
 
