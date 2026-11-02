@@ -31,4 +31,4 @@ python3 scripts/check_planning.py
 python3 scripts/check_purchase_plan.py
 ```
 
-These are the separate verified retained-tool commands for local synthetic evidence. The normal pinned lane remains `python3 scripts/check_shb.py --shared`; its existing qualification gates are not replaced by this result.
+These are the separate verified retained-tool commands for local synthetic evidence. Verification commit `f06869f12e4e458e282509f388b37884461e21f6` is committed and ordinarily pushed to origin/main. The normal pinned lane remains `python3 scripts/check_shb.py --shared`; its existing qualification gates are not replaced by this result.

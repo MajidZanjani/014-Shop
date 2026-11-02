@@ -80,5 +80,5 @@
     "label": "Continue actual SHB release qualification when prerequisites are available",
     "reason": "Continue existing13-01 actual release qualification when its approved source/runtime, commercial/provider/mail/host/database/human prerequisites and authorized independent runner are available; retain scoped gates and the single docs/decisions.md input register."
   },
-  "updated_at": "2026-11-02T10:20:51.502698+00:00"
+  "updated_at": "2026-11-02T10:22:45.995398+00:00"
 }

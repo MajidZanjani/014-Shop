@@ -103,3 +103,5 @@ Explicit pause 2026-11-02T10:03:35.210Z: user invoked $gsd-pause-work. Implement
 Resume 2026-11-02T10:08:54.578045+00:00: explicit user $gsd-resume-work lifts the saved pause. Continue existing13-01 staff-browser verification inline; HANDOFF.json consumed. No external authority or completion-count change.
 
 Verified13-01 continuation 2026-11-02T10:20:51.502698+00:00:113 actual local Chromium checks (71 customer/42 staff) and526 shared tests pass with identical350 backend/eight-script hashes. Existing native staff authentication, scope/CSRF denials, full synthetic refund and manual team handoff preserve original order/coupon/notice facts. Evidence: docs/build/shb-staff-browser-2026-11-02.md. The saved local browser action is complete; remaining actual prerequisites/runner are still pending. No parent SUMMARY/count change or external action.
+
+Recorded sync 2026-11-02T10:22:45.995398+00:00: existing13-01 staff-browser verification f06869f12e4e458e282509f388b37884461e21f6 is pushed to origin/main;526 tests/113 local browser checks remain the exact verified scope. Current STATE.md / ROADMAP.md and actual gates remain operative.
