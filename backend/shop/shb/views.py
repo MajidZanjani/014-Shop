@@ -149,6 +149,8 @@ def payment_page(request,identity):
         value,sha256,row=payment.review(owner,identity,customer_request=request)
         context={'review':value,'purchase':value['checkout']['purchase'],'accepted':bool(row and row.simulated_accepted_at),
             'order_reference':str(row.pk) if row else None,'attempt':row.attempt if row and row.attempt_id else None}
+        from .models import PaidOrder
+        context['paid_order']=PaidOrder.objects.filter(acceptance=row).first() if row else None
     except (CheckoutError,services.ShbError) as error:
         context={'error':str(error)};status=error.status
     except (BankError,TimeoutError):

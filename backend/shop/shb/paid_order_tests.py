@@ -110,13 +110,17 @@ class PaidOrderTests(TransactionTestCase):
     def test_concurrent_finalization_is_one_order_and_one_concession(self):
         from . import paid_orders
         from .models import PaidOrder,PurchaseNoticeDelivery
-        order=self.pay(discount=True);barrier=Barrier(2)
+        response=self.checkout();self.assertEqual(response.status_code,302)
+        with patch('shop.catalog.checkout_payment.finalize_shb'):
+            self.assertEqual(self.client.post(response['Location'],{'action':'pay'},secure=True).status_code,200)
+        self.assertFalse(PaidOrder.objects.exists())
+        expected=uuid.uuid5(self.acceptance().pk,'shb-paid-order-v1');barrier=Barrier(2)
         def finish(_):
             try:
                 owner=get_user_model().objects.get(pk=self.customer.pk);barrier.wait(timeout=5)
                 with PreparedArchive(Path(self.directory.name)) as archive:return paid_orders.finalize(owner,self.saved().pk,archive).pk
             finally:connections.close_all()
-        with ThreadPoolExecutor(max_workers=2) as pool:self.assertEqual(list(pool.map(finish,range(2))),[order.pk,order.pk])
+        with ThreadPoolExecutor(max_workers=2) as pool:self.assertEqual(list(pool.map(finish,range(2))),[expected,expected])
         self.assertEqual(PaidOrder.objects.count(),1);self.assertEqual(PurchaseNoticeDelivery.objects.count(),1)
 
     def test_missing_archived_capture_holds_new_paid_state(self):
@@ -193,7 +197,9 @@ class PaidOrderTests(TransactionTestCase):
         from .models import PaidOrder,DiscountReservation
         from shop.payments import synthetic_bank,attempts
         order=self.pay(discount=True);accepted=self.acceptance()
-        synthetic_bank.mutate(accepted.attempt.merchant,accepted.attempt.reference,'refunded')
+        from shop.payments.bank_contract import BankMutation
+        a=accepted.attempt
+        synthetic_bank.mutate(BankMutation(a.merchant,a.reference,a.provider_operation_id,uuid.uuid4(),a.currency,a.amount_minor,'refund'))
         with PreparedArchive(Path(self.directory.name)) as archive:
             payment.reconcile(self.customer,self.saved().pk,archive)
             self.assertEqual(paid_orders.finalize(self.customer,self.saved().pk,archive).payload,order.payload)
@@ -205,7 +211,7 @@ class PaidOrderTests(TransactionTestCase):
         from shop.access.models import AccessEpoch
         from shop.access.effects import RecoveryEffectError
         self.pay()
-        AccessEpoch.objects.filter(pk=1).update(quarantined=True)
+        AccessEpoch.objects.filter(pk=1).update(quarantined=True,active_reset=uuid.uuid4())
         with PreparedArchive(Path(self.directory.name)) as archive:
             with self.assertRaises(CheckoutError):paid_orders.finalize(self.customer,self.saved().pk,archive)
         self.assertFalse(purchase_mail.execute_once())

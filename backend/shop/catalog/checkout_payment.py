@@ -178,6 +178,7 @@ def pay(owner, identity, archive, *, fault=None, outcome='captured', customer_re
         if customer_request is not None and str(error)=='recovery_effects_pending':
             raise checkout.CheckoutError('verification_required',403) from None
         raise
+    finalize_shb(row,archive)
     return accepted(owner, identity, customer_request=customer_request)
 
 
@@ -188,4 +189,13 @@ def reconcile(owner, identity, archive, *, customer_request=None):
     if row.attempt_id is None: raise checkout.CheckoutError('payment_attempt_required', 422)
     if attempts.request_for(row.attempt) != request_for(row): raise checkout.CheckoutError('attempt_mismatch')
     attempts.reconcile(row.attempt_id, archive)
+    finalize_shb(row,archive)
     return accepted(owner, identity, customer_request=customer_request)
+
+
+def finalize_shb(row,archive):
+    if row.checkout.snapshot.get('release')!='shb-1.1':return
+    current=SyntheticCheckoutAcceptance.objects.select_related('attempt','checkout__owner').get(pk=row.pk)
+    if current.attempt and current.attempt.state=='observed' and current.attempt.provider_status in ('captured','refunded'):
+        from shop.shb.paid_orders import finalize
+        finalize(current.checkout.owner,current.checkout_id,archive)

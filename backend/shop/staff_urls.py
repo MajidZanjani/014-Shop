@@ -16,7 +16,10 @@ from shop.access.preparation_history import preparation_history
 from shop.access.quotation_review import record_review
 from shop.access.review_history import review_history
 from shop.shb.staff_views import record_review as record_shb_review
+from shop.shb.staff_orders import orders as shb_orders,detail as shb_order
 urlpatterns=[
+    path('staff/shb-orders/',shb_orders),
+    path('staff/shb-orders/<uuid:identity>/',shb_order),
     path("staff/payments/",payment_queue),
     path("staff/payments/<int:identity>/",payment_detail),
     path("staff/overpayments/",overpayment_queue),

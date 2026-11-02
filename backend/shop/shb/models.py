@@ -70,10 +70,7 @@ class DiscountCode(models.Model):
 
 
 class DiscountReservation(models.Model):
-    """One held slot per request, releasable only by an audited pre-offer decline.
-
-    Payment/offer transitions remain unavailable. Clocks never free a concession.
-    """
+    """One held or consumed slot; only a matched audited outcome releases it."""
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     discount = models.ForeignKey(DiscountCode, on_delete=models.PROTECT)
     request = models.OneToOneField(SupportRequest, null=True, on_delete=models.PROTECT)
@@ -84,15 +81,17 @@ class DiscountReservation(models.Model):
     claimed_at = models.DateTimeField(default=timezone.now, editable=False)
     state = models.CharField(max_length=16, default='reserved', editable=False)
     release_review = models.OneToOneField('SupportRequestReview', null=True, on_delete=models.PROTECT, editable=False)
+    consumed_order = models.OneToOneField('PaidOrder', null=True, on_delete=models.PROTECT, editable=False)
 
     class Meta:
         constraints = [
-            models.UniqueConstraint(fields=['discount', 'slot'], condition=models.Q(state='reserved'), name='shb_discount_unique_held_slot'),
+            models.UniqueConstraint(fields=['discount', 'slot'], condition=models.Q(state__in=['reserved','consumed']), name='shb_discount_unique_held_slot'),
             models.CheckConstraint(condition=models.Q(slot__gte=1, slot__lte=100), name='shb_discount_slot_bounds'),
             models.CheckConstraint(condition=(models.Q(request__isnull=False, checkout__isnull=True) | models.Q(request__isnull=True, checkout__isnull=False)), name='shb_discount_one_claim_target'),
             models.CheckConstraint(condition=models.Q(sha256__regex=r'^[a-f0-9]{64}$') & (
-                models.Q(state='reserved', release_review__isnull=True) |
-                models.Q(state='released', release_review__isnull=False)), name='shb_discount_held_until_matched'),
+                models.Q(state='reserved', release_review__isnull=True, consumed_order__isnull=True) |
+                models.Q(state='released', release_review__isnull=False, consumed_order__isnull=True) |
+                models.Q(state='consumed', release_review__isnull=True, consumed_order__isnull=False)), name='shb_discount_held_until_matched'),
         ]
 
 
@@ -133,3 +132,47 @@ class SupportCheckout(models.Model):
             models.CheckConstraint(condition=models.Q(submission_sha256__regex=r'^[a-f0-9]{64}$',
                 review_sha256__regex=r'^[a-f0-9]{64}$', session_digest__regex=r'^[a-f0-9]{64}$'), name='shb_checkout_digests'),
         ]
+
+
+class PaidOrder(models.Model):
+    """One archived purchase on the shared acceptance; no time entitlement."""
+    id=models.UUIDField(primary_key=True,editable=False)
+    acceptance=models.OneToOneField('catalog.SyntheticCheckoutAcceptance',on_delete=models.PROTECT)
+    capture=models.ForeignKey('payments.SyntheticPaymentObservation',on_delete=models.PROTECT)
+    payload=models.JSONField(editable=False)
+    sha256=models.CharField(max_length=64,editable=False)
+    archive_receipt=models.JSONField(editable=False)
+    created_at=models.DateTimeField(default=timezone.now,editable=False)
+    class Meta:
+        constraints=[models.CheckConstraint(condition=models.Q(sha256__regex=r'^[a-f0-9]{64}$') & ~models.Q(archive_receipt={}),name='shb_order_archived_digest')]
+
+
+class PurchaseNoticeDelivery(models.Model):
+    """The existing worker leases this ordinary transaction notice."""
+    order=models.OneToOneField(PaidOrder,primary_key=True,on_delete=models.PROTECT)
+    state=models.CharField(max_length=16,default='pending')
+    token=models.UUIDField(null=True,editable=False)
+    lease_until=models.DateTimeField(null=True)
+    attempts=models.PositiveSmallIntegerField(default=0)
+    class Meta:
+        constraints=[
+            models.CheckConstraint(condition=models.Q(state__in=['pending','claimed','captured','held'],attempts__lte=5),name='shb_notice_delivery_bounds'),
+            models.CheckConstraint(condition=models.Q(state='claimed',token__isnull=False,lease_until__isnull=False) | models.Q(state__in=['pending','captured','held'],token__isnull=True,lease_until__isnull=True),name='shb_notice_delivery_claim')]
+
+
+class PurchaseNoticeCapture(models.Model):
+    """Durable fake receipt for one stable notice; never an SMTP assertion."""
+    id=models.UUIDField(primary_key=True,editable=False)
+    order=models.OneToOneField(PaidOrder,on_delete=models.PROTECT)
+    payload=models.JSONField(editable=False)
+    sha256=models.CharField(max_length=64,editable=False)
+    archive_receipt=models.JSONField(editable=False)
+    class Meta:
+        constraints=[models.CheckConstraint(condition=models.Q(sha256__regex=r'^[a-f0-9]{64}$') & ~models.Q(archive_receipt={}),name='shb_notice_capture_digest')]
+
+
+class PaidOrderGrant(models.Model):
+    user=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT)
+    order=models.ForeignKey(PaidOrder,on_delete=models.PROTECT)
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['user','order'],name='shb_staff_order_unique')]

@@ -158,12 +158,13 @@ def inside(args):
     result=unittest.TextTestRunner(verbosity=1).run(suite)
     assert result.wasSuccessful() and not result.skipped and result.testsRun>=9
     total+=result.testsRun
-    labels=[['shop.shb.tests','shop.shb.discount_tests','shop.shb.review_tests','shop.shb.checkout_tests']]
+    labels=[['shop.shb.tests','shop.shb.discount_tests','shop.shb.review_tests','shop.shb.checkout_tests','shop.shb.paid_order_tests']]
     if args.shared:
         labels.extend([
             ['shop.core.tests','shop.access.tests','shop.access.staff_tests','shop.access.recovery_tests','shop.access.effect_tests','shop.access.startup_tests','shop.access.staff_restore_tests','shop.access.authentication_recovery_tests'],
             ['shop.payments.tests','shop.payments.attempt_tests','shop.payments.control_tests','shop.payments.notification_tests','shop.payments.observation_tests','shop.payments.operation_tests','shop.payments.overpayment_tests'],
             ['shop.access.review_tests','shop.access.staff_navigation_tests','shop.access.preparation_tests'],
+                ['shop.worker.tests.OwnershipTests','shop.worker.statement_mail_tests'],
             ['shop.catalog.checkout_tests','shop.catalog.checkout_payment_tests','shop.catalog.fulfilment_tests','shop.adapters.evidence_archive_tests'],
         ])
     with retained_database() as (python,env,pg,database,scratch):

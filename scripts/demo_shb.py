@@ -139,6 +139,11 @@ def main():
                 require('SHB_COUNTS 2 2 0 2' in retained.stdout)
                 final=manage(python,env,'shell','-c',"from shop.shb.models import SupportCheckout; from shop.catalog.models import SyntheticCheckoutAcceptance; from shop.payments.models import SyntheticBankOperation; print('SHB_CHECKOUTS',SupportCheckout.objects.count(),SyntheticCheckoutAcceptance.objects.count(),SyntheticBankOperation.objects.count())")
                 require('SHB_CHECKOUTS 2 2 2' in final.stdout)
+                paid=manage(python,env,'shell','-c',"from shop.shb.models import PaidOrder,PurchaseNoticeDelivery; print('SHB_PAID',PaidOrder.objects.count(),PurchaseNoticeDelivery.objects.filter(state='pending').count())")
+                require('SHB_PAID 2 2' in paid.stdout)
+                for _ in range(2):manage(python,env,'run_worker','--once')
+                notices=manage(python,env,'shell','-c',"from shop.shb.models import PurchaseNoticeCapture,PurchaseNoticeDelivery; print('SHB_NOTICES',PurchaseNoticeCapture.objects.count(),PurchaseNoticeDelivery.objects.filter(state='captured').count())")
+                require('SHB_NOTICES 2 2' in notices.stdout)
                 return report
             else:
                 count=checks(base,credential,python,env)
@@ -153,7 +158,7 @@ def main():
             print('SHB loopback demo: '+base,flush=True)
             print('Open the invitation from this private file: '+str(invitation),flush=True)
             print('Optional synthetic 10% code (two-use fixture) is in this private file: '+str(discount_path),flush=True)
-            print('Use Synthetic Company Limited, any synthetic.invalid contact and the common form. FPGA review, exact acceptance and fake-only payment plus ASIC request capture work. Dated ASIC offers, coupon consumption/payment closure, paid-order finalization and notification delivery remain pending. Ctrl-C removes only this demo and its disposable database.',flush=True)
+            print('Use Synthetic Company Limited, any synthetic.invalid contact and the common form. FPGA review, exact acceptance and fake-only payment plus ASIC request capture work. FPGA paid orders and durable synthetic transaction notices are available; use the configured leased worker for notices. Dated ASIC offers and safe payment-linked closure remain pending. Ctrl-C removes only this demo and its disposable database.',flush=True)
             try:
                 while True:time.sleep(1)
             except KeyboardInterrupt:pass

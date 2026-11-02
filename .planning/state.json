@@ -77,8 +77,8 @@
   ],
   "next": {
     "command": "$gsd-execute-phase 7",
-    "label": "Continue SHB paid-order finalization",
-    "reason": "Complete per-order FPGA finalization/coupon consumption and durable transaction notice; then matching ASIC offers."
+    "label": "Continue SHB safe closure and ASIC offers",
+    "reason": "Implement archived safe pre-dispatch FPGA cancellation/expiry and coupon release without reopening payment; then continue matching dated ASIC offers and request/customer notices."
   },
-  "updated_at": "2026-11-02T05:45:57.311365+00:00"
+  "updated_at": "2026-11-02T06:12:20.448928+00:00"
 }

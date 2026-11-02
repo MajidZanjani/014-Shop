@@ -43,7 +43,7 @@ def main():
         manage(python,env,'check')
         manage(python,env,'migrate','--noinput')
         manage(python,env,'makemigrations','--check','--dry-run')
-        output=manage(python,env,'test','shop.shb.tests','shop.shb.discount_tests','shop.shb.review_tests','shop.shb.checkout_tests','--noinput','--keepdb',timeout=120)
+        output=manage(python,env,'test','shop.shb.tests','shop.shb.discount_tests','shop.shb.review_tests','shop.shb.checkout_tests','shop.shb.paid_order_tests','--noinput','--keepdb',timeout=120)
         raw=output.stdout+output.stderr
         count=re.search(r'Ran (\d+) tests?',raw)
         if not count or int(count[1])<71 or 'OK' not in raw or 'skipped' in raw:
@@ -54,7 +54,8 @@ def main():
         if args.shared:
             batches=[['shop.core.tests','shop.access.tests','shop.access.staff_tests','shop.access.recovery_tests','shop.access.effect_tests','shop.access.startup_tests','shop.access.staff_restore_tests','shop.access.authentication_recovery_tests'],
                 ['shop.payments.tests','shop.payments.attempt_tests','shop.payments.control_tests','shop.payments.notification_tests','shop.payments.observation_tests','shop.payments.operation_tests','shop.payments.overpayment_tests'],
-                ['shop.access.review_tests','shop.access.staff_navigation_tests','shop.access.preparation_tests'],LEGACY_TRANSACTION_TESTS]
+                ['shop.access.review_tests','shop.access.staff_navigation_tests','shop.access.preparation_tests'],
+                ['shop.worker.tests.OwnershipTests','shop.worker.statement_mail_tests'],LEGACY_TRANSACTION_TESTS]
             for labels in batches:
                 batch_env=legacy_transaction_environment(env,scratch) if labels==LEGACY_TRANSACTION_TESTS else env
                 outcome=manage(python,batch_env,'test',*labels,'--noinput','--keepdb',timeout=120)

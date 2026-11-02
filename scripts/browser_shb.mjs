@@ -173,13 +173,13 @@ async function main(){
       require(lastStatus===200&&await evaluate('location.pathname.startsWith("/purchase/shb/")&&document.body.innerText.includes("30 hours in this order")&&document.body.innerText.includes("Payment has not started")'));checks++;
       stage=javascript?'javascript-fpga-payment':'no-javascript-fpga-payment';
       await submit('button[name=action][value=pay]');
-      require(lastStatus===200&&await evaluate('document.body.innerText.includes("Payment state: observed")&&document.body.innerText.includes("Bank result: captured")'));checks++;
+      require(lastStatus===200&&await evaluate('document.body.innerText.includes("Payment state: observed")&&document.body.innerText.includes("Bank result: captured")&&document.body.innerText.includes("Paid purchase recorded")'));checks++;
       await submit('button[name=action][value=pay]');
       require(lastStatus===200&&escaped===0&&nativePosts===5&&paymentPosts===2);checks++;
       require(await evaluate('document.documentElement.scrollWidth<=document.documentElement.clientWidth&&localStorage.length===0&&sessionStorage.length===0'));checks++;
       await cdp.send('Target.disposeBrowserContext',{browserContextId});
     }
-    console.log(JSON.stringify({status:'SHB_BROWSER_PASS',checks,modes:2,pendingDocumentLoads,browser:version,node:process.versions.node,evidence_class:'local-synthetic-browser',fpga:'accepted-30-hours',asic:'submitted-50-hours',payment:'synthetic-captured-once'}));
+    console.log(JSON.stringify({status:'SHB_BROWSER_PASS',checks,modes:2,pendingDocumentLoads,browser:version,node:process.versions.node,evidence_class:'local-synthetic-browser',fpga:'accepted-30-hours',asic:'submitted-50-hours',payment:'synthetic-captured-once',paidOrder:'recorded-once-per-purchase'}));
   }catch(error){
     if(config.evidence&&diagnose){try{await writeFile(join(config.evidence,'browser-failure.json'),JSON.stringify(await diagnose()),{flag:'wx',mode:0o600});}catch{}}
     throw error;

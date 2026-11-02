@@ -88,7 +88,7 @@ class StaffRestoreTests(TransactionTestCase):
         with override_settings(LOCAL_RESTORE_ID=selected):
             result=self.operation(request_id=selected)
             self.assertEqual(result['invalidated']['staff_credentials_disabled'],2)
-            self.assertEqual(result['invalidated']['staff_resource_grants'],dict.fromkeys(self.scopes,2))
+            self.assertEqual(result['invalidated']['staff_resource_grants'],dict(dict.fromkeys(self.scopes,2),shb_order=0))
             self.assertEqual(self.counts(),dict.fromkeys(self.scopes,0))
             self.operation('release',basis_reset=selected)
         self.assertFalse(StaffCredential.objects.filter(enabled=True).exists())
@@ -187,6 +187,6 @@ class StaffRestoreTests(TransactionTestCase):
             with override_settings(**values),transaction.atomic():
                 with self.assertRaisesMessage(ValueError,'local_staff_reset_unavailable'):revoke_staff_resource_grants(user_id=None)
         with transaction.atomic():
-            self.assertEqual(revoke_staff_resource_grants(user_id=self.staff.pk),dict.fromkeys(self.scopes,1))
+            self.assertEqual(revoke_staff_resource_grants(user_id=self.staff.pk),dict(dict.fromkeys(self.scopes,1),shb_order=0))
             transaction.set_rollback(True)
         self.assertEqual(self.counts(),dict.fromkeys(self.scopes,2))

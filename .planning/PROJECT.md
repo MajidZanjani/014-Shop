@@ -6,11 +6,11 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
 
-**Current plan:** 07-03 — SHB immutable FPGA checkout/acceptance and fake payment verified locally; paid-order finalization remains open.
+**Current plan:** 07-03 — per-order FPGA finalization, consumed coupons, assigned staff visibility and durable purchase notices verified locally; safe closure and matching ASIC offers remain open.
 
-**Execution status:** in progress — resumed 07-03 paid-order finalization and durable transaction notices; previous checkout evidence retained, new changes await verification.
+**Execution status:** in progress — verified 429 tests and41 browser checks; continuing safe payment-linked cancellation/expiry and matching ASIC offers; normal Nix/external qualification pending.
 
-**Next implementation task:** Complete per-order FPGA paid finalization and coupon consumption with archived acceptance/captured payment, staff visibility and durable transaction notice; then continue matching dated ASIC offers.
+**Next implementation task:** Implement archived safe pre-dispatch FPGA cancellation/expiry and coupon release without reopening payment; then continue matching dated ASIC offers and request/customer notices.
 
 ## What this is
 
@@ -67,3 +67,5 @@ Resolved the saved unverified work: guarded migrations, signed exact review, sep
 Context checkpoint 2026-11-02T05:37:52.615Z: implementation a3936d512c822d608a086740fc64e346c0ec31e4 is committed/pushed.390 tests/41 browser checks remain the verified scope; next is per-order paid finalization/coupon consumption, staff purchase details/transaction notice, then dated ASIC offers. Context is long; exact usage percentage is unavailable. Resume through HANDOFF.json; no full parent completion.
 
 Resume 2026-11-02T05:45:57.311365+00:00: explicit resume lifts the context checkpoint. Continue 07-03 inline, with actual company inputs and external/runtime qualifications still pending. HANDOFF.json consumed.
+
+Verified paid-order continuation 2026-11-02T06:12:20.448928+00:00:429 tests and41 actual browser checks; identical321-backend/eight-script hashes. Paid-order/coupon/notice transaction, interrupted-finalization worker recovery and recent-MFA assigned staff purchase view are implemented. Evidence: docs/build/shb-paid-orders-2026-11-02.md. Safe cancellation/expiry and dated ASIC offers remain open. No parent SUMMARY/count change or live/independent qualification.
