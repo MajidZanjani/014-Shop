@@ -43,3 +43,5 @@ STATE.md / ROADMAP.md retain07-03 as partial. Guarded schema/scope, signed revie
 ## 2026-11-02T05:37:52.615Z — Context checkpoint after verified FPGA checkout
 
 STATE.md / ROADMAP.md / HANDOFF and machine routing paused consistently. Implementation a3936d512c822d608a086740fc64e346c0ec31e4 is pushed;390 tests/41 actual browser checks and exact source records retained. Full paid-order/ASIC/qualification work remains open; counts11/42 and1/14 unchanged. Exact context percentage unavailable; no measured90% claim. No active test/server/async jobs or external service actions.
+
+- 2026-11-02: Resumed 07-03 inline. Added paid-order/coupon/notice recovery tests. Actual isolated PostgreSQL RED target fails only on reserved versus consumed after captured fake payment; machine verdict RED_EVIDENCE_OK. Evidence: docs/evidence/shb/paid-order-red-2026-11-02.json. No parent completion or real effect.

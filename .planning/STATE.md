@@ -5,9 +5,8 @@ current_phase: 7
 current_phase_name: FPGA checkout, ASIC reviewed offers and scoped discounts
 current_plan: 3
 current_task: 1
-status: paused
-paused_at: "2026-11-02T05:37:52.615Z"
-last_updated: "2026-11-02T05:37:52.615Z"
+status: in_progress
+last_updated: "2026-11-02T05:45:57.311365+00:00"
 last_activity: 2026-11-02
 state_head: a3936d512c822d608a086740fc64e346c0ec31e4
 progress:
@@ -28,7 +27,7 @@ Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-3
 
 **Current plan:** 07-03 — SHB immutable FPGA checkout/acceptance and fake payment verified locally; paid-order finalization remains open.
 
-**Execution status:** paused — context checkpoint after verified FPGA checkout;390 tests and41 browser checks pass; full paid workflow and Nix qualification remain pending.
+**Execution status:** in progress — resumed 07-03 paid-order finalization and durable transaction notices; previous checkout evidence retained, new changes await verification.
 
 **Next implementation task:** Complete per-order FPGA paid finalization and coupon consumption with archived acceptance/captured payment, staff visibility and durable transaction notice; then continue matching dated ASIC offers.
 
@@ -48,8 +47,8 @@ One actual-input register: docs/decisions.md. User inputs arrive later; no repea
 
 ## Session Continuity
 
-Last session: 2026-11-02T05:37:52.615Z
-Stopped at: Standing context-pressure checkpoint after verified FPGA checkout slice. Implementation a3936d512c822d608a086740fc64e346c0ec31e4 is committed/pushed; no parent SUMMARY or full paid workflow completion.
-Resume file: HANDOFF.json and phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/.continue-here.md.
+Last session: 2026-11-02T05:45:57.311365+00:00
+Stopped at: Session resumed. Continue per-order FPGA finalization/coupon consumption and ordinary durable notice inline under 07-03.
+Resume file: phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/.continue-here.md.
 
-The previous handoff was consumed on resume; the new HANDOFF.json captures this verified boundary. Exact context percentage is unavailable; no measured90% threshold is claimed. No full completion count is added. No .env or live service action; http_cache.sqlite untouched.
+HANDOFF.json consumed after checking the clean implementation worktree. Earlier planning changes in its snapshot were committed; only unrelated http_cache.sqlite remains. No active jobs, credentials or external operations.

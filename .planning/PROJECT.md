@@ -8,7 +8,7 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Current plan:** 07-03 — SHB immutable FPGA checkout/acceptance and fake payment verified locally; paid-order finalization remains open.
 
-**Execution status:** paused — context checkpoint after verified FPGA checkout;390 tests and41 browser checks pass; full paid workflow and Nix qualification remain pending.
+**Execution status:** in progress — resumed 07-03 paid-order finalization and durable transaction notices; previous checkout evidence retained, new changes await verification.
 
 **Next implementation task:** Complete per-order FPGA paid finalization and coupon consumption with archived acceptance/captured payment, staff visibility and durable transaction notice; then continue matching dated ASIC offers.
 
@@ -65,3 +65,5 @@ Resume 2026-11-02T05:03:27.708886+00:00: explicit user $gsd-resume-work lifts th
 Resolved the saved unverified work: guarded migrations, signed exact review, separate terms/privacy acceptance, current-session payment route and reauthorization after archive I/O.390 tests and41 current actual browser checks pass; exact source reports and tool limitations are in docs/build/shb-checkout-2026-11-02.md. New paid-order/coupon/notice finalization and dated ASIC offers remain pending. Nix/tool recovery evidence is synthetic and does not qualify deployment. No parent completion count or real company approval.
 
 Context checkpoint 2026-11-02T05:37:52.615Z: implementation a3936d512c822d608a086740fc64e346c0ec31e4 is committed/pushed.390 tests/41 browser checks remain the verified scope; next is per-order paid finalization/coupon consumption, staff purchase details/transaction notice, then dated ASIC offers. Context is long; exact usage percentage is unavailable. Resume through HANDOFF.json; no full parent completion.
+
+Resume 2026-11-02T05:45:57.311365+00:00: explicit resume lifts the context checkpoint. Continue 07-03 inline, with actual company inputs and external/runtime qualifications still pending. HANDOFF.json consumed.

@@ -1,0 +1,10 @@
+{
+  "command": "python3 .scratch/shb_paid_target.py (retained-tool namespace; disposable PostgreSQL; /nix/store/nr6vqhv33q8n6nbyy529fvcydy3zp1jd-python3-3.13.16-env/bin/python3 manage.py test shop.shb.checkout_tests.CheckoutTests.test_verified_capture_consumes_coupon_once_and_records_paid_purchase --noinput --keepdb --verbosity 1)",
+  "exitCode": 1,
+  "output": "Using existing test database for alias 'default'...\nF\n======================================================================\nFAIL: test_verified_capture_consumes_coupon_once_and_records_paid_purchase (shop.shb.checkout_tests.CheckoutTests.test_verified_capture_consumes_coupon_once_and_records_paid_purchase)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/claude/project/014-Shop/backend/shop/shb/checkout_tests.py\", line 366, in test_verified_capture_consumes_coupon_once_and_records_paid_purchase\n    self.assertEqual(DiscountReservation.objects.get().state,'consumed')\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'reserved' != 'consumed'\n- reserved\n+ consumed\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.352s\n\nFAILED (failures=1)\nPreserving test database for alias 'default'...\nFound 1 test(s).\nSystem check identified no issues (0 silenced).\n",
+  "targetTest": "shop.shb.checkout_tests.CheckoutTests.test_verified_capture_consumes_coupon_once_and_records_paid_purchase",
+  "targetFile": "backend/shop/shb/checkout_tests.py",
+  "expected": "Verified captured payment consumes the coupon once.",
+  "actual": "Coupon remains reserved after verified captured payment.",
+  "semanticAssessment": "Confirmed target assertion failure after archived synthetic capture; no setup/load failure. Previous aggregate report is preserved in .scratch/shb-paid-red.json."
+}

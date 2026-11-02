@@ -76,9 +76,9 @@
     }
   ],
   "next": {
-    "command": "$gsd-resume-work",
-    "label": "Resume SHB paid-order finalization",
-    "reason": "Complete per-order FPGA paid finalization and coupon consumption with archived acceptance/captured payment, staff visibility and durable transaction notice; then continue matching dated ASIC offers."
+    "command": "$gsd-execute-phase 7",
+    "label": "Continue SHB paid-order finalization",
+    "reason": "Complete per-order FPGA finalization/coupon consumption and durable transaction notice; then matching ASIC offers."
   },
-  "updated_at": "2026-11-02T05:37:52.615Z"
+  "updated_at": "2026-11-02T05:45:57.311365+00:00"
 }

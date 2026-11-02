@@ -355,3 +355,13 @@ class CheckoutTests(TransactionTestCase):
             with self.assertRaisesMessage(CheckoutError,'invitation_required'):
                 checkout_payment.pay(self.customer,self.saved().pk,archive)
         self.assertEqual(SyntheticBankOperation.objects.count(),0)
+
+    def test_verified_capture_consumes_coupon_once_and_records_paid_purchase(self):
+        from .discounts import issue_fixture
+        from .models import DiscountReservation
+        _,raw=issue_fixture(customer=self.customer,issuer=self.issuer,percentage_bps=1000,fpga_allowed=True)
+        data,token=self.review(discount_code=raw)
+        response=self.checkout(data,token);self.assertEqual(response.status_code,302)
+        for _ in range(2):self.assertEqual(self.client.post(response['Location'],{'action':'pay'},secure=True).status_code,200)
+        self.assertEqual(DiscountReservation.objects.get().state,'consumed')
+        self.assertContains(self.client.get(response['Location'],secure=True),'Paid purchase recorded')
