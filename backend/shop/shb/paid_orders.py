@@ -24,6 +24,8 @@ def accepted_locked(owner,identity,archive):
     if saved.snapshot.get('release')!='shb-1.1':fail()
     row=SyntheticCheckoutAcceptance.objects.select_for_update(of=('self',)).select_related('checkout','attempt').filter(checkout=saved).first()
     if row is None or row.simulated_accepted_at is None or row.attempt_id is None:fail()
+    from .models import CheckoutClosure
+    if CheckoutClosure.objects.filter(acceptance=row).exists():fail()
     row.attempt=SyntheticPaymentAttempt.objects.select_for_update().get(pk=row.attempt_id)
     if attempts.request_for(row.attempt)!=payment.request_for(row):fail()
     payment.retained(row,archive)

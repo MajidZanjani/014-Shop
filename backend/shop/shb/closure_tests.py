@@ -1,10 +1,11 @@
 """Only proved pre-dispatch closure may free a coupon; uncertainty stays held."""
 from datetime import timedelta
+from threading import Event,Thread
 from pathlib import Path
 from unittest.mock import patch
 import json,time,uuid
 from django.core import signing
-from django.db import DatabaseError,transaction
+from django.db import DatabaseError,transaction,connections
 from django.test import TransactionTestCase,override_settings
 from django.utils import timezone
 from shop.adapters.evidence_archive import PreparedArchive,ArchiveError
@@ -131,3 +132,55 @@ class ClosureTests(TransactionTestCase):
         csrf=self.client_class(enforce_csrf_checks=True);csrf.cookies=self.client.cookies.copy()
         self.assertEqual(csrf.post(self.path,{'action':'cancel'},secure=True,HTTP_ORIGIN='https://localhost').status_code,403)
         self.assertFalse(CheckoutClosure.objects.exists())
+
+    def race_payment(self,entered,release):
+        values=[];cookies=self.client.cookies.copy()
+        def run():
+            try:
+                client=self.client_class();client.cookies=cookies.copy()
+                values.append(client.post(self.path,{'action':'pay'},secure=True).status_code)
+            except BaseException as error:values.append(error)
+            finally:connections.close_all()
+        thread=Thread(target=run);thread.start()
+        self.addCleanup(lambda:release.set())
+        return thread,values
+
+    def test_cancel_wins_before_bank_claim_and_racing_dispatch_cannot_spend_released_coupon(self):
+        from .models import DiscountReservation,CheckoutClosure
+        self.prepare();entered=Event();release=Event();original=PreparedArchive.publish
+        def paused(archive,identity,body):
+            receipt=original(archive,identity,body)
+            if json.loads(body).get('kind')=='synthetic-payment-attempt':
+                entered.set()
+                if not release.wait(8):raise RuntimeError('bounded fixture wait expired')
+            return receipt
+        with patch.object(PreparedArchive,'publish',paused):
+            thread,values=self.race_payment(entered,release)
+            try:
+                self.assertTrue(entered.wait(8))
+                self.assertEqual(self.client.post(self.path,{'action':'cancel'},secure=True).status_code,200)
+            finally:release.set();thread.join(10)
+        self.assertFalse(thread.is_alive());self.assertEqual(values,[409])
+        self.assertEqual(DiscountReservation.objects.get().state,'released')
+        self.assertIsNotNone(CheckoutClosure.objects.get().applied_at)
+        self.assertFalse(SyntheticBankOperation.objects.exists())
+
+    def test_bank_claim_wins_and_racing_cancel_cannot_free_uncertain_concession(self):
+        from .models import DiscountReservation,CheckoutClosure,PaidOrder
+        from shop.payments import synthetic_bank
+        self.prepare();entered=Event();release=Event();original=synthetic_bank.start
+        def paused(*args,**kwargs):
+            entered.set()
+            if not release.wait(8):raise RuntimeError('bounded fixture wait expired')
+            return original(*args,**kwargs)
+        with patch('shop.payments.synthetic_bank.start',side_effect=paused):
+            thread,values=self.race_payment(entered,release)
+            try:
+                self.assertTrue(entered.wait(8))
+                self.assertEqual(self.client.post(self.path,{'action':'cancel'},secure=True).status_code,409)
+                self.assertEqual(DiscountReservation.objects.get().state,'reserved')
+            finally:release.set();thread.join(10)
+        self.assertFalse(thread.is_alive());self.assertEqual(values,[200])
+        self.assertFalse(CheckoutClosure.objects.exists());self.assertEqual(PaidOrder.objects.count(),1)
+        self.assertEqual(DiscountReservation.objects.get().state,'consumed')
+        self.assertEqual(SyntheticBankOperation.objects.count(),1)

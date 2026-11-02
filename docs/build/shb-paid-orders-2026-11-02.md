@@ -47,3 +47,5 @@ The retained-tool lane rechecks the two immutable OCI archive/config/91 layer ha
 Complete safe payment-linked cancellation/expiry before releasing a held FPGA concession; uncertainty must continue holding it. Then continue matching dated ASIC offers, exact request revision/scope/customer/quantity/price/policy acceptance, withdrawal/expiry/reissue, and ordinary request/customer transaction notices. Existing technical readiness is not an issued payable ASIC offer. Proposed commercial defaults remain synthetic or pending actual adoption.
 
 Actual company inputs will arrive later through `docs/decisions.md`; they were not requested again. All production, bank/mail/storage, protected-host, DNS/TLS, database qualification, off-host recovery/runtime and activation gates stay closed. No .env or unrelated http_cache.sqlite access was needed.
+
+Subsequent continuation: [safe closure](shb-safe-closure-2026-11-02.md) completes archived pre-dispatch cancellation/expiry and payment-race fencing, with439 tests/47 browser checks. Its report is the current source boundary.

@@ -49,3 +49,5 @@ STATE.md / ROADMAP.md / HANDOFF and machine routing paused consistently. Impleme
 - 2026-11-02T06:12:20.448928+00:00: Verified per-order FPGA completion, coupon consumption, worker recovery/notice and assigned staff purchase view.429 tests/41 current browser checks and identical321-file/eight-script source records. Off-host guard preserved; full parent plan remains open.
 
 - 2026-11-02: Continued immediately after paid-order commit07cb88d. Safe pre-dispatch cancellation has actual isolated PostgreSQL RED evidence (400 versus expected200), machine verdict RED_EVIDENCE_OK; docs/evidence/shb/safe-closure-red-2026-11-02.json. No completion count change.
+
+- 2026-11-02T06:30:46.556174+00:00: Safe pre-dispatch cancellation/expiry, saved-intent recovery, atomic coupon release and both claim races verified;439 tests/47 browser checks. Source326 backend/eight scripts. Dated ASIC offers/actual gates remain open.

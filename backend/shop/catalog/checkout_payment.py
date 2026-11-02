@@ -157,6 +157,7 @@ def pay(owner, identity, archive, *, fault=None, outcome='captured', customer_re
     synthetic_bank.guard()
     row = accepted(owner, identity, customer_request=customer_request)
     shb=row.checkout.snapshot.get('release')=='shb-1.1'
+    ensure_shb_open(row)
     if shb and customer_request is None:raise checkout.CheckoutError('invitation_required',403)
     customer_epoch = uuid.UUID(customer_request.session[SESSION_EPOCH]) if customer_request is not None else None
     retained(row, archive)
@@ -169,10 +170,14 @@ def pay(owner, identity, archive, *, fault=None, outcome='captured', customer_re
         verify(current)
         if current.sha256 != row.sha256 or current.simulated_accepted_at != row.simulated_accepted_at:
             raise checkout.CheckoutError('acceptance_mismatch')
+        ensure_shb_open(current)
         if current.attempt_id not in (None, attempt.pk): raise checkout.CheckoutError('attempt_mismatch')
         current.attempt = attempt;current.save(update_fields=['attempt'])
     # Existing one-way claim means an uncertain attempt is never sent again.
-    claim_options={'authorize_claim':lambda:locked(owner,identity,customer_request=customer_request)} if shb else {}
+    def authorize_claim():
+        locked(owner,identity,customer_request=customer_request)
+        ensure_shb_open(SyntheticCheckoutAcceptance.objects.get(pk=row.pk))
+    claim_options={'authorize_claim':authorize_claim} if shb else {}
     try:attempts.dispatch(attempt.pk, archive, fault=fault, outcome=outcome, customer_epoch=customer_epoch,**claim_options)
     except BankError as error:
         if customer_request is not None and str(error)=='recovery_effects_pending':
@@ -199,3 +204,9 @@ def finalize_shb(row,archive):
     if current.attempt and current.attempt.state=='observed' and current.attempt.provider_status in ('captured','refunded'):
         from shop.shb.paid_orders import finalize
         finalize(current.checkout.owner,current.checkout_id,archive)
+
+
+def ensure_shb_open(row):
+    if row.checkout.snapshot.get('release')=='shb-1.1':
+        from shop.shb.models import CheckoutClosure
+        if CheckoutClosure.objects.filter(acceptance=row).exists():raise checkout.CheckoutError('shb_checkout_closed_or_closing',409)

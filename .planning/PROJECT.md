@@ -6,11 +6,11 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
 
-**Current plan:** 07-03 — per-order FPGA finalization, consumed coupons, assigned staff visibility and durable purchase notices verified locally; safe closure and matching ASIC offers remain open.
+**Current plan:** 07-03 — FPGA per-order paid finalization, coupon consumption/safe closure, assigned staff visibility and durable synthetic purchase notice verified; matching ASIC offers remain open.
 
-**Execution status:** in progress — paid-order slice verified at429 tests/41 browser checks; safe-closure test has valid RED evidence; new implementation pending.
+**Execution status:** in progress — verified439 tests and47 browser checks after safe cancellation/expiry; matching dated ASIC offers and actual qualifications remain pending.
 
-**Next implementation task:** Implement archived safe pre-dispatch FPGA cancellation/expiry and coupon release without reopening payment; then continue matching dated ASIC offers and request/customer notices.
+**Next implementation task:** Continue matching dated ASIC offers with exact request revision/customer/scope/quantity/price/terms, withdrawal/expiry/reissue and remaining ordinary request/customer notices.
 
 ## What this is
 
@@ -69,3 +69,5 @@ Context checkpoint 2026-11-02T05:37:52.615Z: implementation a3936d512c822d608a08
 Resume 2026-11-02T05:45:57.311365+00:00: explicit resume lifts the context checkpoint. Continue 07-03 inline, with actual company inputs and external/runtime qualifications still pending. HANDOFF.json consumed.
 
 Verified paid-order continuation 2026-11-02T06:12:20.448928+00:00:429 tests and41 actual browser checks; identical321-backend/eight-script hashes. Paid-order/coupon/notice transaction, interrupted-finalization worker recovery and recent-MFA assigned staff purchase view are implemented. Evidence: docs/build/shb-paid-orders-2026-11-02.md. Safe cancellation/expiry and dated ASIC offers remain open. No parent SUMMARY/count change or live/independent qualification.
+
+Verified safe-closure continuation 2026-11-02T06:30:46.556174+00:00:439 tests/47 actual browser checks and identical326 backend/eight-script hashes. Safe pre-dispatch cancellation/expiry now completes through archived intent, stopped attempt and atomic coupon release; uncertainty never frees a concession. Report: docs/build/shb-safe-closure-2026-11-02.md. No parent SUMMARY or count change.

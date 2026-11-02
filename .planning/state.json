@@ -77,8 +77,8 @@
   ],
   "next": {
     "command": "$gsd-execute-phase 7",
-    "label": "Continue SHB safe closure and ASIC offers",
-    "reason": "Implement archived safe pre-dispatch FPGA cancellation/expiry and coupon release without reopening payment; then continue matching dated ASIC offers and request/customer notices."
+    "label": "Continue matching ASIC offers",
+    "reason": "Continue matching dated ASIC offers with exact request revision/customer/scope/quantity/price/terms, withdrawal/expiry/reissue and remaining ordinary request/customer notices."
   },
-  "updated_at": "2026-11-02T06:12:20.448928+00:00"
+  "updated_at": "2026-11-02T06:30:46.556174+00:00"
 }

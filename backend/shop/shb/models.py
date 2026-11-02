@@ -82,6 +82,7 @@ class DiscountReservation(models.Model):
     state = models.CharField(max_length=16, default='reserved', editable=False)
     release_review = models.OneToOneField('SupportRequestReview', null=True, on_delete=models.PROTECT, editable=False)
     consumed_order = models.OneToOneField('PaidOrder', null=True, on_delete=models.PROTECT, editable=False)
+    release_closure = models.OneToOneField('CheckoutClosure', null=True, on_delete=models.PROTECT, editable=False)
 
     class Meta:
         constraints = [
@@ -89,9 +90,10 @@ class DiscountReservation(models.Model):
             models.CheckConstraint(condition=models.Q(slot__gte=1, slot__lte=100), name='shb_discount_slot_bounds'),
             models.CheckConstraint(condition=(models.Q(request__isnull=False, checkout__isnull=True) | models.Q(request__isnull=True, checkout__isnull=False)), name='shb_discount_one_claim_target'),
             models.CheckConstraint(condition=models.Q(sha256__regex=r'^[a-f0-9]{64}$') & (
-                models.Q(state='reserved', release_review__isnull=True, consumed_order__isnull=True) |
-                models.Q(state='released', release_review__isnull=False, consumed_order__isnull=True) |
-                models.Q(state='consumed', release_review__isnull=True, consumed_order__isnull=False)), name='shb_discount_held_until_matched'),
+                models.Q(state='reserved', release_review__isnull=True, release_closure__isnull=True, consumed_order__isnull=True) |
+                models.Q(state='released', release_review__isnull=False, release_closure__isnull=True, consumed_order__isnull=True) |
+                models.Q(state='released', release_review__isnull=True, release_closure__isnull=False, consumed_order__isnull=True) |
+                models.Q(state='consumed', release_review__isnull=True, release_closure__isnull=True, consumed_order__isnull=False)), name='shb_discount_held_until_matched'),
         ]
 
 
@@ -176,3 +178,15 @@ class PaidOrderGrant(models.Model):
     order=models.ForeignKey(PaidOrder,on_delete=models.PROTECT)
     class Meta:
         constraints=[models.UniqueConstraint(fields=['user','order'],name='shb_staff_order_unique')]
+
+
+class CheckoutClosure(models.Model):
+    """Durable closing intent blocks dispatch; only archived application frees a hold."""
+    id=models.UUIDField(primary_key=True,editable=False)
+    acceptance=models.OneToOneField('catalog.SyntheticCheckoutAcceptance',on_delete=models.PROTECT)
+    payload=models.JSONField(editable=False)
+    sha256=models.CharField(max_length=64,editable=False)
+    archive_receipt=models.JSONField(default=dict,editable=False)
+    applied_at=models.DateTimeField(null=True,editable=False)
+    class Meta:
+        constraints=[models.CheckConstraint(condition=models.Q(sha256__regex=r'^[a-f0-9]{64}$') & (models.Q(applied_at__isnull=True)|~models.Q(archive_receipt={})),name='shb_closure_archive_gate')]

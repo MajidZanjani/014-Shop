@@ -73,7 +73,9 @@ def execute_once(*, lease_seconds=10, max_attempts=3):
         from shop.payments.models import SyntheticNotificationDelivery
         from shop.shb.models import PurchaseNoticeDelivery
         from shop.shb.paid_orders import pending
+        from shop.shb import closures
         available=(PurchaseNoticeDelivery.objects.filter(eligible).exists() or pending().exists()
+            or closures.pending().exists() or closures.expired_pending().exists()
             or SyntheticStatementDelivery.objects.filter(eligible).exists()
             or SyntheticNotificationDelivery.objects.filter(eligible).exists())
     if not available:return False
@@ -83,8 +85,9 @@ def execute_once(*, lease_seconds=10, max_attempts=3):
 @local_effect('worker-run',held_result=False)
 def _execute_admitted(*,lease_seconds,max_attempts):
     if settings.LOCAL_CHECKOUT_ARCHIVE_ROOT:
-        from shop.shb import paid_orders,purchase_mail
+        from shop.shb import paid_orders,purchase_mail,closures
         if getattr(settings,'SHB_SYNTHETIC_FIXTURE',False):
+            if closures.recover_once():return True
             if paid_orders.recover_once():return True
             if purchase_mail.execute_once(lease_seconds=lease_seconds,max_attempts=max_attempts):return True
         from .statement_mail import execute_once as capture_statement

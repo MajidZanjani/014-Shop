@@ -139,17 +139,23 @@ def payment_page(request,identity):
                     or int(request.META.get('CONTENT_LENGTH','0'))>1024 or request.FILES
                     or any(len(request.POST.getlist(k))!=1 for k in request.POST)
                     or set(request.POST)-{'csrfmiddlewaretoken','action'}
-                    or request.POST.get('action') not in ('pay','reconcile')):
+                    or request.POST.get('action') not in ('pay','reconcile','cancel')):
                 raise CheckoutError('invalid_request',400)
             root=getattr(settings,'LOCAL_CHECKOUT_ARCHIVE_ROOT',None)
             if not root:raise CheckoutError('archive_unavailable',503)
             with PreparedArchive(Path(root)) as archive:
-                operation=payment.pay if request.POST['action']=='pay' else payment.reconcile
-                operation(owner,identity,archive,customer_request=request)
+                if request.POST['action']=='cancel':
+                    from .closures import cancel
+                    cancel(request,owner,identity,archive)
+                else:
+                    operation=payment.pay if request.POST['action']=='pay' else payment.reconcile
+                    operation(owner,identity,archive,customer_request=request)
         value,sha256,row=payment.review(owner,identity,customer_request=request)
         context={'review':value,'purchase':value['checkout']['purchase'],'accepted':bool(row and row.simulated_accepted_at),
             'order_reference':str(row.pk) if row else None,'attempt':row.attempt if row and row.attempt_id else None}
-        from .models import PaidOrder
+        from .models import PaidOrder,CheckoutClosure
+        context['closure']=CheckoutClosure.objects.filter(acceptance=row).first() if row else None
+        context['can_cancel']=not row or not row.attempt_id or row.attempt.state in ('prepared','cancelled','expired')
         context['paid_order']=PaidOrder.objects.filter(acceptance=row).first() if row else None
     except (CheckoutError,services.ShbError) as error:
         context={'error':str(error)};status=error.status
