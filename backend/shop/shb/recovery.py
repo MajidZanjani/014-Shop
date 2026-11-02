@@ -17,13 +17,14 @@ from shop.access.models import AccessEpoch
 from shop.adapters.evidence_archive import PreparedArchive
 from shop.catalog import checkout as shared, checkout_payment as payment
 from shop.catalog.models import SyntheticCheckoutAcceptance
-from shop.payments import attempts, observations
-from . import catalog, closures, invitations, lifecycle, offers, paid_orders, purchase_mail, revisions, transaction_mail
+from shop.payments import attempts, observations, operations
+from shop.payments.models import SyntheticPaymentOperation,SyntheticOperationDispatch,SyntheticOperationResult
+from . import catalog, closures, invitations, lifecycle, offers, paid_orders, purchase_mail, revisions, transaction_mail,refunds
 from .errors import ShbError
 from .models import (CheckoutClosure, DiscountReservation, Invitation, PaidOrder,
     PurchaseNoticeCapture, PurchaseNoticeDelivery, RequestClosure, RequestReplacement,
     SupportCheckout, SupportOffer, SupportRequest, SupportRequestReview,
-    TransactionNotice, TransactionNoticeCapture, TransactionNoticeDelivery)
+    TransactionNotice, TransactionNoticeCapture, TransactionNoticeDelivery,RefundReview,RefundSupportHandoff)
 
 
 def require(condition):
@@ -181,6 +182,18 @@ def _records(archive):
             require(order is not None and paid_orders.reservation_for(order.acceptance).pk == hold.pk)
 
     require(set(TransactionNotice.objects.values_list('pk', flat=True)) == expected_notices)
+    for review in RefundReview.objects.select_related('order__acceptance__checkout').iterator():
+        refunds.retained_review(review,review.order.acceptance,archive)
+    financial = SyntheticPaymentOperation.objects.filter(acceptance__checkout__supportcheckout__isnull=False)
+    for row in financial.select_related('acceptance__checkout','acceptance__attempt').iterator():
+        accepted = row.acceptance
+        command = operations.retained(row,accepted,accepted.attempt,archive)
+        delivery = SyntheticOperationDispatch.objects.filter(operation=row).first()
+        result = SyntheticOperationResult.objects.filter(operation=row).first()
+        require(delivery is not None and (delivery.state!='observed' or result is not None))
+        if result:operations.retained_result(row,command,result,archive)
+    for handoff in RefundSupportHandoff.objects.select_related('review__order','result__operation').iterator():
+        refunds.retained_handoff(handoff,handoff.review,handoff.result,archive)
     return {
         'requests':SupportRequest.objects.count(), 'request_replacements':RequestReplacement.objects.count(),
         'paid_orders':PaidOrder.objects.count(), 'pending_request_closures':lifecycle.pending().count(),
@@ -188,6 +201,8 @@ def _records(archive):
         'transaction_notices':len(expected_notices), 'transaction_captures':TransactionNoticeCapture.objects.count(),
         'held_transaction_notices':TransactionNoticeDelivery.objects.filter(state='held').count(),
         'uncertain_payments':SupportCheckout.objects.filter(checkout__syntheticcheckoutacceptance__attempt__state='uncertain').count(),
+        'refund_reviews':RefundReview.objects.count(), 'refund_handoffs':RefundSupportHandoff.objects.count(),
+        'uncertain_refunds':SyntheticOperationDispatch.objects.filter(operation__in=financial,operation__kind='refund',state='uncertain').count(),
     }
 
 

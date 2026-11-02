@@ -76,9 +76,9 @@
     }
   ],
   "next": {
-    "command": "$gsd-execute-phase 10",
-    "label": "Continue SHB financial/manual support handoff",
-    "reason": "Require retained manual support review before new synthetic SHB refunds; preserve original order/payment/coupon records and record staff support-team communication after the confirmed financial result."
+    "command": "$gsd-execute-phase 13",
+    "label": "Continue release qualification from current evidence trace (gated)",
+    "reason": "Continue13-01 release qualification from the refreshed thirty-case evidence trace when actual prerequisites are available; keep selected-bank, mail, host/runtime, human and independent recovery gates closed until qualified."
   },
-  "updated_at": "2026-11-02T09:25:58.429725+00:00"
+  "updated_at": "2026-11-02T09:56:40.275115+00:00"
 }

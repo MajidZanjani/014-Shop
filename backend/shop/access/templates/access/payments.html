@@ -3,6 +3,7 @@
 {% if assigned %}<p>Assigned operation: {{ kind }}.</p>{% if operation %}<p>Intent: {{ operation.state }}. Payment observation: {{ operation.status }}.</p>
 {% if operation.state == 'prepared' %}<form method="post">{% csrf_token %}<input type="hidden" name="action" value="dispatch"><button>Dispatch synthetic {{ kind }} once</button></form>{% endif %}
 {% if operation.state != 'prepared' %}<form method="post">{% csrf_token %}<input type="hidden" name="action" value="reconcile"><button>Look up retained operation</button></form><p>An uncertain operation cannot be dispatched again.</p>{% endif %}
-{% else %}<form method="post">{% csrf_token %}<input type="hidden" name="action" value="prepare"><input type="hidden" name="request_id" value="{{ request_id }}"><button>Archive synthetic {{ kind }} intent</button></form>{% endif %}
+{% else %}{% if shb_review_required %}<p>Record the manual support check before preparing this SHB refund.</p>{% else %}<form method="post">{% csrf_token %}<input type="hidden" name="action" value="prepare"><input type="hidden" name="request_id" value="{{ request_id }}"><button>Archive synthetic {{ kind }} intent</button></form>{% endif %}{% endif %}
+{% if shb_order_path %}<p><a href="{{ shb_order_path }}">Original support purchase and manual refund record</a></p>{% endif %}
 {% else %}<ul>{% for scope in assignments %}<li><a href="/staff/payments/{{ scope.pk }}/">Assigned {{ scope.kind }} operation {{ scope.pk }}</a></li>{% empty %}<li>No assigned payment operations.</li>{% endfor %}</ul>{% if next_before %}<a href="?before={{ next_before }}">Older assignments</a>{% endif %}{% endif %}
 </main></body></html>

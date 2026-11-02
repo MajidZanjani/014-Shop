@@ -303,3 +303,30 @@ class RequestReplacement(models.Model):
     class Meta:
         constraints = [models.CheckConstraint(condition=~models.Q(previous=models.F('request')) &
             models.Q(session_digest__regex=r'^[a-f0-9]{64}$'), name='shb_replacement_distinct_request')]
+
+
+class RefundReview(models.Model):
+    """Archived staff attestation about manual records; no usage amounts or live approval."""
+    id = models.UUIDField(primary_key=True, editable=False)
+    order = models.OneToOneField(PaidOrder, on_delete=models.PROTECT)
+    request_id = models.UUIDField(editable=False)
+    payload = models.JSONField(editable=False)
+    sha256 = models.CharField(max_length=64, editable=False)
+    archive_receipt = models.JSONField(editable=False)
+    class Meta:
+        constraints = [models.CheckConstraint(condition=models.Q(sha256__regex=r'^[a-f0-9]{64}$') &
+            ~models.Q(archive_receipt={}), name='shb_refund_review_archived')]
+
+
+class RefundSupportHandoff(models.Model):
+    """Staff records informing the support team about a confirmed financial result."""
+    id = models.UUIDField(primary_key=True, editable=False)
+    review = models.OneToOneField(RefundReview, on_delete=models.PROTECT)
+    result = models.OneToOneField('payments.SyntheticOperationResult', on_delete=models.PROTECT)
+    request_id = models.UUIDField(editable=False)
+    payload = models.JSONField(editable=False)
+    sha256 = models.CharField(max_length=64, editable=False)
+    archive_receipt = models.JSONField(editable=False)
+    class Meta:
+        constraints = [models.CheckConstraint(condition=models.Q(sha256__regex=r'^[a-f0-9]{64}$') &
+            ~models.Q(archive_receipt={}), name='shb_refund_handoff_archived')]

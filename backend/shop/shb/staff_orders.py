@@ -5,9 +5,11 @@ from django.conf import settings
 from django.db import transaction
 from django.db.models import Q
 from django.shortcuts import render
-from django.views.decorators.http import require_GET
+from django.http import HttpResponseRedirect
+from django.views.decorators.http import require_GET,require_POST
+from django.views.decorators.debug import sensitive_post_parameters
 from shop.access.recovery import current_session_epoch
-from shop.access.staff_auth import staff_credential
+from shop.access.staff_auth import staff_credential,payload
 from shop.access.models import StaffCredential
 from shop.access.views import reply
 from shop.adapters.evidence_archive import PreparedArchive,ArchiveError
@@ -72,10 +74,57 @@ def detail(request,identity):
                 accepted,capture=paid_orders.accepted_locked(order.acceptance.checkout.owner,order.acceptance.checkout_id,archive)
                 if not PaidOrderGrant.objects.select_for_update().filter(pk=grant.pk).exists():raise ShbError('not_found',404)
                 paid_orders.retained(order,accepted,capture,archive)
+                from shop.payments.models import SyntheticPaymentStaffGrant
+                from .models import RefundReview,RefundSupportHandoff
+                from . import refunds
+                finance=SyntheticPaymentStaffGrant.objects.filter(user=request.user,acceptance=accepted,kind='refund').first()
+                financial=None
+                if finance:
+                    review=RefundReview.objects.select_related('order').filter(order=order).first()
+                    handoff=RefundSupportHandoff.objects.select_related('result').filter(review=review).first() if review else None
+                    if review:refunds.retained_review(review,accepted,archive)
+                    if handoff:refunds.retained_handoff(handoff,review,handoff.result,archive)
+                    financial={'review':review.payload if review else None,'handoff':handoff.payload if handoff else None,
+                        'review_request_id':str(uuid.uuid4()),'handoff_request_id':str(uuid.uuid4()),
+                        'finance_path':'/staff/payments/'+str(finance.pk)+'/'}
             notice=PurchaseNoticeDelivery.objects.get(order=order)
-            value={**order.payload,'payment_state':accepted.attempt.provider_status,'notice_state':notice.state,'id':str(order.pk)}
+            value={**order.payload,'payment_state':accepted.attempt.provider_status,'notice_state':notice.state,
+                'id':str(order.pk),'financial':financial}
         if 'text/html' in request.headers.get('Accept',''):
             return private(render(request,'shb/staff_order.html',value))
         return private(reply(value))
     except (ShbError,CheckoutError) as failure:return error(failure)
     except (ArchiveError,OSError,ValueError):return error(ShbError('recovery_evidence_unavailable',503))
+
+
+def financial_action(request,identity,action):
+    if staff_credential(request,recent=True) is None:return error(ShbError('recent_staff_mfa_required',403))
+    if request.GET:return error(ShbError('unexpected_query',400))
+    try:
+        from . import refunds
+        fields={'request_id','manual_records_checked','manual_record_reference','reason'} if action=='review' else {'request_id','communication_reference'}
+        value=payload(request,fields,maximum_bytes=8192)
+        if action=='review' and request.content_type=='application/x-www-form-urlencoded':
+            value['manual_records_checked']=value['manual_records_checked']=='on'
+        root=settings.LOCAL_CHECKOUT_ARCHIVE_ROOT
+        if not root:raise ShbError('recovery_evidence_unavailable',503)
+        with PreparedArchive(Path(root)) as archive:
+            saved,created=(refunds.record_review if action=='review' else refunds.record_handoff)(request,identity,value,archive)
+        if request.content_type=='application/x-www-form-urlencoded':
+            response=HttpResponseRedirect('/staff/shb-orders/'+str(identity)+'/');response.status_code=303
+            return private(response)
+        return private(reply({'id':str(saved.pk),'order_id':str(identity),'evidence_class':'local-synthetic',
+            'actual_financial_authority':False,'support_tracking':'manual-outside-shop'},201 if created else 200))
+    except (ShbError,CheckoutError) as failure:return error(failure)
+    except (ArchiveError,OSError):return error(ShbError('recovery_evidence_unavailable',503))
+    except (ValueError,TypeError,UnicodeError,RecursionError,KeyError):return error(ShbError('invalid_request',400))
+
+
+@require_POST
+@sensitive_post_parameters()
+def refund_review(request,identity):return financial_action(request,identity,'review')
+
+
+@require_POST
+@sensitive_post_parameters()
+def refund_handoff(request,identity):return financial_action(request,identity,'handoff')

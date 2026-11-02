@@ -19,6 +19,8 @@ def fail():raise checkout.CheckoutError('payment_operation_hold',409)
 
 
 def staff_locked(request,accepted_id,kind):
+    from shop.access.recovery import current_session_epoch
+    if not current_session_epoch(request,lock=True):raise checkout.CheckoutError('recent_staff_mfa_required',403)
     ledger.authorize(request)
     if kind not in ('capture','refund') or not StaffGrant.objects.select_for_update().filter(user=request.user,acceptance_id=accepted_id,kind=kind).exists():
         raise checkout.CheckoutError('not_found',404)
@@ -63,6 +65,8 @@ def retained(row,accepted,attempt,archive):
             or (command.merchant,command.reference,command.provider_operation_id,command.currency,command.amount_minor,command.kind)!=
                (attempt.merchant,attempt.reference,attempt.provider_operation_id,attempt.currency,attempt.amount_minor,row.kind)
             or command.idempotency_key!=uuid.uuid5(row.pk,'provider-key')):fail()
+    from shop.shb.refunds import verify_operation
+    verify_operation(row,accepted,archive)
     return command
 
 
@@ -83,6 +87,12 @@ def prepare(request,accepted_id,kind,request_id,archive):
                              attempt.currency,attempt.amount_minor,kind)
         value={'identity':str(key),'request_id':str(request_id),'acceptance_sha256':accepted.sha256,
                'mutation':mutation_value(command),'actor':actor,'financial_policy':POLICY,**FLAGS}
+        if kind=='refund' and accepted.checkout.snapshot.get('release')=='shb-1.1':
+            from shop.shb.refunds import required_reference
+            from shop.shb.models import PaidOrderGrant
+            if not PaidOrderGrant.objects.select_for_update().filter(user=request.user,order__acceptance=accepted).exists():
+                raise checkout.CheckoutError('not_found',404)
+            value['shb_refund_review']=required_reference(accepted,archive)
         row=Operation.objects.create(id=key,attempt=attempt,acceptance=accepted,kind=kind,request_id=request_id,
                                     **notifications.evidence(key,value,archive))
         Dispatch.objects.create(operation=row);staff_locked(request,accepted_id,kind)
@@ -104,6 +114,8 @@ def dispatch(request,identity,archive,*,fault=None):
     with transaction.atomic(durable=True):
         row,attempt,delivery,command=locked(request,identity,archive)
         if delivery.state!='prepared':return row
+        from shop.shb.refunds import verify_operation
+        verify_operation(row,Acceptance.objects.select_related('checkout').get(pk=row.acceptance_id),archive,dispatch=True)
         if attempt.provider_status!=('authorized' if row.kind=='capture' else 'captured'):fail()
         delivery.state='uncertain';delivery.save(update_fields=['state'])
         staff_locked(request,row.acceptance_id,row.kind)
@@ -148,11 +160,14 @@ def inspect(request,identity,archive):
         row,attempt,delivery,command=locked(request,identity,archive)
         result=Result.objects.filter(operation=row).first()
         if delivery.state=='observed' and result is None:fail()
-        if result:
-            expected={'intent_sha256':row.sha256,'observation':{'provider_operation_id':str(command.provider_operation_id),
-                'merchant':command.merchant,'reference':str(command.reference),'currency':command.currency,
-                'amount_minor':command.amount_minor,'status':'captured' if row.kind=='capture' else 'refunded'},'financial_policy':POLICY,**FLAGS}
-            if result.payload!=expected or result.sha256!=checkout.digest(expected):fail()
-            payment.recover(archive,result.archive_receipt,uuid.uuid5(row.pk,'operation-result-v1'),checkout.canonical(expected))
+        if result:retained_result(row,command,result,archive)
         return {'state':delivery.state,'kind':row.kind,'lookup_required':delivery.state=='uncertain',
                 'status':attempt.provider_status,'financial_policy':POLICY.copy(),'retry_authorized':False,**FLAGS}
+
+
+def retained_result(row,command,result,archive):
+    expected={'intent_sha256':row.sha256,'observation':{'provider_operation_id':str(command.provider_operation_id),
+        'merchant':command.merchant,'reference':str(command.reference),'currency':command.currency,
+        'amount_minor':command.amount_minor,'status':'captured' if row.kind=='capture' else 'refunded'},'financial_policy':POLICY,**FLAGS}
+    if result.operation_id!=row.pk or result.payload!=expected or result.sha256!=checkout.digest(expected):fail()
+    payment.recover(archive,result.archive_receipt,uuid.uuid5(row.pk,'operation-result-v1'),checkout.canonical(expected))

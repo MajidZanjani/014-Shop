@@ -19,9 +19,12 @@ from shop.shb.staff_views import record_review as record_shb_review
 from shop.shb.staff_views import issue_offer as issue_shb_offer
 from shop.shb.staff_views import close_request as close_shb_request
 from shop.shb.staff_orders import orders as shb_orders,detail as shb_order
+from shop.shb.staff_orders import refund_review,refund_handoff
 urlpatterns=[
     path('staff/shb-orders/',shb_orders),
     path('staff/shb-orders/<uuid:identity>/',shb_order),
+    path('staff/shb-orders/<uuid:identity>/refund-review/',refund_review),
+    path('staff/shb-orders/<uuid:identity>/refund-handoff/',refund_handoff),
     path("staff/payments/",payment_queue),
     path("staff/payments/<int:identity>/",payment_detail),
     path("staff/overpayments/",overpayment_queue),

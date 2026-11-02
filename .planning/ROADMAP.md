@@ -6,11 +6,11 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
 
-**Current plan:** 10-05 — link synthetic SHB refunds to manual support review and the original paid order.
+**Current plan:** 10-05 — archived manual refund review, original financial linkage and staff support-team handoff verified locally; actual financial/release qualification remains open.
 
-**Execution status:** in progress — continuing the existing10-05 financial/manual-handoff slice inline; prior511 tests/71 browser checks remain verified.
+**Execution status:** in progress — local financial/manual-handoff slice verified with526 tests/71 browser checks; actual provider/policy/mail/runtime/independent qualification remains pending.
 
-**Next implementation task:** Require retained manual support review before new synthetic SHB refunds; preserve original order/payment/coupon records and record staff support-team communication after the confirmed financial result.
+**Next implementation task:** Continue13-01 release qualification from the refreshed thirty-case evidence trace when actual prerequisites are available; keep selected-bank, mail, host/runtime, human and independent recovery gates closed until qualified.
 
 Stable T01–T14/folder IDs preserve history. Titles and active task scopes now follow SHB 1.1. Completed summary counts below are historical records, not engineering effort or new commercial acceptance.
 
@@ -25,7 +25,7 @@ Stable T01–T14/folder IDs preserve history. Titles and active task scopes now 
 - [ ] **Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts**
 - [ ] **Phase 8: Payment lifecycle and fault-injectable synthetic bank**
 - [ ] **Phase 9: Selected-bank sandbox and complete reconciliation**
-- [ ] **Phase 10: Paid SHB orders, transaction notices and manual handoff** — CURRENT DEVELOPMENT FOCUS; in progress — continuing the existing10-05 financial/manual-handoff slice inline; prior511 tests/71 browser checks remain verified.
+- [ ] **Phase 10: Paid SHB orders, transaction notices and manual handoff** — CURRENT DEVELOPMENT FOCUS; in progress — local financial/manual-handoff slice verified with526 tests/71 browser checks; actual provider/policy/mail/runtime/independent qualification remains pending.
 - [ ] **Phase 11: Private release delivery and protected-host qualification**
 - [ ] **Phase 12: Independent backup, restore and SHB reopening**
 - [ ] **Phase 13: Thirty SHB acceptance cases and release verification**
@@ -141,7 +141,7 @@ Requirements: retained shared controls in REQUIREMENTS.md.
 
 Plans: [09-01-PLAN](phases/09-selected-bank-reconciliation/09-01-PLAN.md)
 
-### Phase 10: Paid SHB orders, transaction notices and manual handoff — CURRENT DEVELOPMENT FOCUS; in progress — continuing the existing10-05 financial/manual-handoff slice inline; prior511 tests/71 browser checks remain verified.
+### Phase 10: Paid SHB orders, transaction notices and manual handoff — CURRENT DEVELOPMENT FOCUS; in progress — local financial/manual-handoff slice verified with526 tests/71 browser checks; actual provider/policy/mail/runtime/independent qualification remains pending.
 
 Goal: Finalize accepted verified paid orders once with variant, quantity, per-order hours, scope and reference; staff order view plus retryable transaction/request notifications. Financial refunds link the original order; staff consult/inform manual support records.
 
@@ -214,13 +214,13 @@ Plans: [14-01-PLAN](phases/14-shb-release-handover/14-01-PLAN.md)
 | 7. FPGA checkout, ASIC reviewed offers and scoped discounts | 1/4 | In Progress | Pending actual revised evidence |
 | 8. Payment lifecycle and fault-injectable synthetic bank | 0/3 | In Progress | Pending actual revised evidence |
 | 9. Selected-bank sandbox and complete reconciliation | 0/1 | Pending | Pending actual revised evidence |
-| 10. Paid SHB orders, transaction notices and manual handoff | 0/6 | In Progress; CURRENT DEVELOPMENT FOCUS; in progress — continuing the existing10-05 financial/manual-handoff slice inline; prior511 tests/71 browser checks remain verified. | Pending actual revised evidence |
+| 10. Paid SHB orders, transaction notices and manual handoff | 0/6 | In Progress; CURRENT DEVELOPMENT FOCUS; in progress — local financial/manual-handoff slice verified with526 tests/71 browser checks; actual provider/policy/mail/runtime/independent qualification remains pending. | Pending actual revised evidence |
 | 11. Private release delivery and protected-host qualification | 0/1 | Pending | Pending actual revised evidence |
 | 12. Independent backup, restore and SHB reopening | 0/1 | In Progress | Pending actual revised evidence |
 | 13. Thirty SHB acceptance cases and release verification | 0/1 | In Progress | Pending actual revised evidence |
 | 14. SHB handover and separately authorized activation | 0/1 | Pending | Pending actual revised evidence |
 
-**Latest local verification:**511 tests and71 actual browser checks/two modes, identical346 backend/eight-script hashes; docs/build/shb-recovery-2026-11-02.md. Actual independent recovery and release qualification remain pending.
+**Latest local verification:**526 tests and71 actual browser checks/two modes, identical350 backend/eight-script hashes; docs/build/shb-financial-handoff-2026-11-02.md. Actual qualification remains pending.
 
 Resume 2026-10-30T13:52:15.032330+00:00: explicit resume lifts the context-pressure pause.07-03 proceeds inline using synthetic PostgreSQL fixtures; all live and protected-resource gates remain closed. HANDOFF.json consumed.
 
@@ -255,3 +255,5 @@ Resume 2026-11-02T08:55:38.002109+00:00: explicit user resume lifts the context 
 Verified12-01 continuation 2026-11-02T09:19:40.853429+00:00: read-only SHB assessment and14 recovery/replay cases pass within511 tests/71 current browser checks, identical346 backend/eight-script hashes. docs/build/shb-recovery-2026-11-02.md records exact scope/commands and false completeness/actual qualification flags. Actual independent runner/custody/post-backup/restore gates remain open; no parent SUMMARY/count change.
 
 Continue 2026-11-02T09:25:58.429725+00:00: user authorized continued local work. Existing12-01 actual qualification awaits the unassigned off-host runner; continue unblocked existing10-05 inline. Require manual support-record review/financial linkage and staff communication while preserving all original records and false live-authority flags.
+
+Verified10-05 continuation 2026-11-02T09:56:40.275115+00:00: archived manual SHB refund review, shared finance linkage and attributed support-team communication pass15 new cases within526 tests/71 customer browser checks, identical350 backend/eight-script hashes. Existing13 register maps all thirty acceptance criteria and explicit actual limits. docs/build/shb-financial-handoff-2026-11-02.md records commands/results. No parent SUMMARY/count change or actual money/policy/recovery qualification.

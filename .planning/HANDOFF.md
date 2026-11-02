@@ -6,18 +6,16 @@ Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-3
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only.
 
-**Current plan:** 10-05 — link synthetic SHB refunds to manual support review and the original paid order.
+**Current plan:** 10-05 — archived manual refund review, original financial linkage and staff support-team handoff verified locally; actual financial/release qualification remains open.
 
-**Execution status:** in progress — continuing the existing10-05 financial/manual-handoff slice inline; prior511 tests/71 browser checks remain verified.
+**Execution status:** in progress — local financial/manual-handoff slice verified with526 tests/71 browser checks; actual provider/policy/mail/runtime/independent qualification remains pending.
 
-**Next implementation task:** Require retained manual support review before new synthetic SHB refunds; preserve original order/payment/coupon records and record staff support-team communication after the confirmed financial result.
+**Next implementation task:** Continue13-01 release qualification from the refreshed thirty-case evidence trace when actual prerequisites are available; keep selected-bank, mail, host/runtime, human and independent recovery gates closed until qualified.
 
 **Recorded implementation:** 5e0f72af31dc4eb83fbe16e7c1ff16bf72b14237
 
-Current exact evidence:511 tests,71 actual Chromium checks/two modes/320px, identical346 backend/eight-script hashes. [Behavior, evidence and full commands](../docs/build/shb-recovery-2026-11-02.md). Existing07 workflows remain intact. New12-01 read-only SHB assessment checks retained records/archives before fixture release; incomplete evidence rolls back release without clearing quarantine.14 new PostgreSQL tests cover closing/notice/lineage and original invitation/coupon/order replay. Pending work retains original IDs/fences, captured notice proof resumes, held notices remain held and uncertain payment stays lookup-only.
+Current exact evidence:526 tests and71 actual Chromium customer checks/two modes/320px, identical350 backend/eight-script hashes. [Behavior, evidence and commands](../docs/build/shb-financial-handoff-2026-11-02.md).15 financial cases cover manual review/archival, original order/coupon preservation, scope/MFA/CSRF/concurrency, SQL bypass denial, uncertain lookup, support communication and recovery. Native staff forms have Django coverage; no actual staff browser/human qualification is claimed.
 
-No parent SUMMARY or count change:11/42 retained records and1/14 documentary phases. The assessment cannot establish completeness of post-backup events; all actual recovery/retry/reopening authority flags remain false. The next12-01 gate requires assigned authorized independent off-host runner, sbg custody, external post-backup reconciliation and restore/complete-loss/transport qualification. None is inferred from this local component.
+Current10-05 local component records manual checks before shared full synthetic refund, pins the original review/hash in the money intent, and records staff communication only after the confirmed result. Original paid-order/purchased-hours/coupon records remain intact; no time adjustment, task email or actual money/approval. New review/result/handoff archives are part of local recovery assessment. Refreshed13-QUALIFICATION-REGISTER.md traces all thirty current criteria to local evidence and pending actual limits.
 
-Company inputs arrive later through docs/decisions.md; no repeat request. Normal Nix/source/runtime and actual provider/mail/host/database/native/licence/OCI/CI/independent/recovery/human gates remain pending. Retained tools stay separate synthetic evidence. No owned process/job, .env/cache access, external action or paid provision. HANDOFF.json was consumed at resume; no current pause.
-
-Continue 2026-11-02T09:25:58.429725+00:00: user authorized continued local work. Existing12-01 actual qualification awaits the unassigned off-host runner; continue unblocked existing10-05 inline. Require manual support-record review/financial linkage and staff communication while preserving all original records and false live-authority flags.
+Next13-01 retains normal pinned Nix/source/runtime/native/licence/OCI/CI and actual company/provider/mail/host/database/independent/recovery/human gates. The independent runner is unassigned, post-backup completeness remains unproven and actual refund/tax/provider policy is null. Company inputs arrive later in docs/decisions.md; no repeat request. No parent SUMMARY/count change (11/42 records,1/14 documentary phases), external action, .env/cache access, paid provision or owned process/job. Current status remains in_progress.

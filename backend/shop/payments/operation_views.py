@@ -14,6 +14,7 @@ from shop.catalog.package_views import archive_root,cursor,error_response
 from . import operations as service
 from .bank_contract import BankError
 from .models import SyntheticPaymentStaffGrant as StaffGrant,SyntheticPaymentOperation as Operation
+from shop.shb.errors import ShbError
 
 
 @require_GET
@@ -48,8 +49,15 @@ def detail(request,identity):
                 if request.content_type!='application/json':return redirect(request.path)
             state=service.inspect(request,row.pk,archive) if row else None
         context={'assigned':True,'kind':scope.kind,'operation':state,'request_id':str(uuid.uuid4())}
+        if scope.kind=='refund':
+            from shop.shb.models import PaidOrderGrant,RefundReview
+            grant=PaidOrderGrant.objects.filter(user=request.user,order__acceptance_id=scope.acceptance_id).first()
+            if grant:
+                context['shb_order_path']='/staff/shb-orders/'+str(grant.order_id)+'/'
+                context['shb_review_required']=not RefundReview.objects.filter(order_id=grant.order_id).exists()
         if request.content_type=='application/json' or request.headers.get('Accept')=='application/json':return private(reply(context))
         return private(render(request,'access/payments.html',context))
     except TimeoutError:return private(reply({'error':'payment_operation_uncertain_use_lookup'},409))
+    except ShbError as error:return private(reply({'error':error.code},error.status))
     except ObjectDoesNotExist:return private(reply({'error':'not_found'},404))
     except (checkout.CheckoutError,BankError,ArchiveError,OSError,ValueError,TypeError,UnicodeError) as error:return error_response(error)
