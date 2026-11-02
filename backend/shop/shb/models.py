@@ -395,3 +395,25 @@ class InvitationIssue(models.Model):
         constraints=[models.UniqueConstraint(fields=['scope','request_id'],name='shb_issue_retry_once'),
             models.CheckConstraint(condition=models.Q(sha256__regex=r'^[a-f0-9]{64}$') &
                 (models.Q(invitation__isnull=True,archive_receipt={}) | (models.Q(invitation__isnull=False)&~models.Q(archive_receipt={}))),name='shb_issue_publication_archive')]
+
+
+class DiscountStaffGrant(models.Model):
+    """Exact revocation assignment; no authority to issue a concession."""
+    user=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT)
+    discount=models.ForeignKey(DiscountCode,on_delete=models.PROTECT)
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['user','discount'],name='shb_discount_staff_once')]
+
+
+class DiscountRevocation(models.Model):
+    """Archived decision stops new claims without changing locked commitments."""
+    id=models.UUIDField(primary_key=True,editable=False)
+    discount=models.OneToOneField(DiscountCode,on_delete=models.PROTECT)
+    request_id=models.UUIDField(editable=False)
+    revoked_at=models.DateTimeField(editable=False)
+    payload=models.JSONField(editable=False)
+    sha256=models.CharField(max_length=64,editable=False)
+    archive_receipt=models.JSONField(editable=False)
+    class Meta:
+        constraints=[models.CheckConstraint(condition=models.Q(sha256__regex=r'^[a-f0-9]{64}$') &
+            ~models.Q(archive_receipt={}),name='shb_discount_revocation_archive')]

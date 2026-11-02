@@ -16,7 +16,7 @@ from shop.access.grants import revoke_staff_resource_grants
 class Command(BaseCommand):
     help='Local/synthetic staff provision/reset/revoke and explicit quotation reviewer grants. Credentials go to private files only.'
     def add_arguments(self,parser):
-        parser.add_argument('action',choices=['provision','reset','revoke','grant','revoke-grant','grant-business','revoke-business','grant-support','revoke-support','grant-delivery','revoke-delivery','grant-case','revoke-case','grant-refund','revoke-refund','grant-overpayment','revoke-overpayment','grant-payment','revoke-payment','grant-shb-order','revoke-shb-order','grant-invitation','revoke-invitation-grant','grant-invitation-issue','revoke-invitation-issue'])
+        parser.add_argument('action',choices=['provision','reset','revoke','grant','revoke-grant','grant-business','revoke-business','grant-support','revoke-support','grant-delivery','revoke-delivery','grant-case','revoke-case','grant-refund','revoke-refund','grant-overpayment','revoke-overpayment','grant-payment','revoke-payment','grant-shb-order','revoke-shb-order','grant-invitation','revoke-invitation-grant','grant-invitation-issue','revoke-invitation-issue','grant-discount','revoke-discount-grant'])
         parser.add_argument('--username',required=True)
         parser.add_argument('--capture-root')
         parser.add_argument('--quotation')
@@ -24,6 +24,7 @@ class Command(BaseCommand):
         parser.add_argument('--order')
         parser.add_argument('--invitation')
         parser.add_argument('--issuance-scope')
+        parser.add_argument('--discount')
         parser.add_argument('--entitlement')
         parser.add_argument('--case')
         parser.add_argument('--attempt')
@@ -58,6 +59,18 @@ class Command(BaseCommand):
             elif action=='revoke':
                 credential.enabled=False;credential.generation=uuid.uuid4();credential.save()
                 revoke_staff_resource_grants(user_id=user.pk)
+            elif action in ('grant-discount','revoke-discount-grant'):
+                from shop.shb.models import DiscountCode,DiscountStaffGrant
+                from shop.shb.invitations import fixture_guard
+                try:
+                    fixture_guard();identity=uuid.UUID(options.get('discount') or '')
+                except (ValueError,TypeError):raise CommandError('Exact synthetic discount required') from None
+                discount=DiscountCode.objects.filter(pk=identity).first()
+                if discount is None:raise CommandError('Synthetic discount unavailable')
+                if action=='grant-discount':
+                    if not credential.enabled or not user.is_active:raise CommandError('Active staff required')
+                    DiscountStaffGrant.objects.get_or_create(user=user,discount=discount)
+                else:DiscountStaffGrant.objects.filter(user=user,discount=discount).delete()
             elif action in ('grant-invitation-issue','revoke-invitation-issue'):
                 from shop.shb.models import InvitationIssuanceScope,InvitationIssueGrant
                 from shop.shb.invitations import fixture_guard

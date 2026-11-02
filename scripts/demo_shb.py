@@ -123,6 +123,14 @@ scope=register_fixture(customer=customer,registered_by=user,company_name='Synthe
     fpga_eligible=True,asic_allowed=True)
 InvitationIssueGrant.objects.create(user=user,scope=scope)
 value['issuance_path']='/staff/shb-invitation-scopes/'+str(scope.pk)+'/'
+from shop.shb.discounts import issue_fixture as issue_discount
+from shop.shb.models import DiscountStaffGrant
+value['staff_discounts']=[]
+for _ in range(2):
+    discount,_=issue_discount(customer=customer,issuer=user,percentage_bps=1500,fpga_allowed=True,asic_allowed=True)
+    DiscountStaffGrant.objects.create(user=user,discount=discount)
+    value['staff_discounts'].append({'id':str(discount.pk),'path':'/staff/shb-discounts/'+str(discount.pk)+'/',
+        'expiresAt':discount.expires_at.isoformat()})
 value['staff_invitations']=[]
 for _ in range(2):
     invite,token=issue_fixture(customer=customer,issuer=user,company_name='Synthetic Company Limited',project_reference='SLL synthetic revocation fixture')
@@ -165,7 +173,8 @@ with PreparedArchive(Path(settings.LOCAL_CHECKOUT_ARCHIVE_ROOT)) as archive:
         assert review.order.acceptance.attempt.provider_status=='refunded'
         assert review.payload['actor']['staff_id']==handoff.payload['actor']['staff_id']
     from shop.shb.models import Invitation,InvitationRevocation,InvitationIssue
-    from shop.shb import invitation_admin,invitation_issuance
+    from shop.shb import invitation_admin,invitation_issuance,discount_admin
+    from shop.shb.models import DiscountRevocation
     assert InvitationRevocation.objects.count()==2
     assert InvitationIssue.objects.count()==2
     assert Invitation.objects.get(pk=value['invitation_id']).revoked_at is None
@@ -179,6 +188,12 @@ with PreparedArchive(Path(settings.LOCAL_CHECKOUT_ARCHIVE_ROOT)) as archive:
         assert issued.invitation_id==issued.pk and issued.invitation_id!=issued.replaces_id
         assert issued.invitation.expires_at>event.invitation.expires_at
         assert not issued.payload['actual_invitation_authority'] and not issued.payload['actual_email_sent']
+    assert DiscountRevocation.objects.count()==2
+    for item in value['staff_discounts']:
+        event=DiscountRevocation.objects.select_related('discount').get(discount_id=item['id'])
+        discount_admin.retained(event,archive)
+        assert event.discount.expires_at.isoformat()==item['expiresAt']
+        assert not event.payload['actual_discount_authority'] and not event.payload['actual_email_sent']
 assert not SyntheticFulfilment.objects.exists() and not SyntheticSupportEvent.objects.exists()
 print('SHB_STAFF_REFUNDS 2 archived=true original_orders_coupons_notices=unchanged actual_money_email=false')
 ''')
@@ -311,6 +326,7 @@ def main():
                         'captureRoot':str(staff_codes),'orders':credential['staff_orders'],
                         'noFinancePath':credential['no_finance_path'],'unassignedPath':credential['unassigned_path'],
                         'issuancePath':credential['issuance_path'],
+                        'discounts':[{key:item[key] for key in ('path','expiresAt')} for item in credential['staff_discounts']],
                         'invitations':[{key:item[key] for key in ('path','expiresAt')} for item in credential['staff_invitations']]}}
                 result=subprocess.run([browser_env['SHOP_NODE'],str(ROOT/'scripts/browser_shb.mjs')],input=json.dumps(staff_config),
                     text=True,capture_output=True,env=browser_env,timeout=120,check=True)
@@ -320,10 +336,12 @@ def main():
                     status,_,_,_=request(opener,base+'/shop/');require(status==403)
                 require(staff_report['staffRevocation']=='archived-two-synthetic-invitations')
                 require(staff_report['staffIssuance']=='two-deliberate-replacements-one-time-bearers')
+                require(staff_report['staffDiscounts']=='two-archived-revocations-original-claim-clocks')
                 verify_staff_refunds(python,env,capture)
                 report.update(customer_checks=report['checks'],staff_checks=staff_report['checks'],
                     checks=report['checks']+staff_report['checks'],staffRefund=staff_report['staffRefund'],
                     staffHandoff=staff_report['staffHandoff'],staffRevocation=staff_report['staffRevocation'],staffIssuance=staff_report['staffIssuance'],
+                    staffDiscounts=staff_report['staffDiscounts'],
                     revoked_invitation_sessions='2-denied-on-next-request',staff_modes=2,staff_facts='original-orders-coupons-notices-unchanged')
                 print(json.dumps(report))
                 return report

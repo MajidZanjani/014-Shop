@@ -6,11 +6,11 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
 
-**Current plan:** 06-01 — protected invitation issuance/reissue and revocation verified locally; scoped discount administration/actual qualification open.
+**Current plan:** 06-01 — protected invitation issuance/reissue and scoped discount revocation verified locally; protected discount issuance/actual qualification open.
 
-**Execution status:** in progress — issuance/reissue4db2586 is verified/pushed with565 tests/137 browser checks; scoped discount revocation RED begins; actual qualification remains open.
+**Execution status:** in progress — protected staff issuance/reissue and discount revocation verified with583 tests/147 browser checks; protected discount issuance and actual qualification remain open.
 
-**Next implementation task:** Implement exact-scope recent-MFA discount revocation with attributed archive, atomic SQL guards, reset/recovery and native forms; preserve every held/accepted concession and original claim clock. Then add separately scoped protected discount issuance. Real commercial authority remains closed.
+**Next implementation task:** Implement protected discount issuance with a separate explicit synthetic customer/variant/percentage/use-limit/claim-period authority, durable digest-only prepared intent and safe one-time code response. Preserve held concessions and original clocks; invitation/revocation grants and entered contact never establish commercial authority.
 
 ## What this is
 
@@ -115,3 +115,5 @@ Context checkpoint 2026-11-02T11:24:23.042Z: verified revocation implementation 
 Resume 2026-11-02T11:30:38.977387+00:00: explicit user resume lifts the context-pressure pause; continue06-01 issuance/reissue inline under the recorded local synthetic boundaries. STATE.md / ROADMAP.md remain operative.
 
 2026-11-02T11:55:26.231440+00:00: Protected issuance/reissue passes565 tests/137 browser checks and exact373-source records. Digest-only prepared intents, one-time response, independent clocks, SQL atomic publication and selected restore are verified locally; docs/build/shb-invitation-issuance-2026-11-02.md. Continue scoped discounts with actual gates/counts unchanged.
+
+2026-11-02T12:14:30.619677+00:00: Protected scoped discount revocation passes583 tests/147 browser checks and exact380-source records. Held ASIC offer acceptance/payment retains the original concession; uncertainty remains held, and restore retains audit. docs/build/shb-discount-revocation-2026-11-02.md. Protected discount issuance remains next; actual gates/counts unchanged.

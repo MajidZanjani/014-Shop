@@ -77,8 +77,8 @@
   ],
   "next": {
     "command": "$gsd-execute-phase 6",
-    "label": "Continue protected scoped discount administration",
-    "reason": "Implement exact-scope recent-MFA discount revocation with attributed archive, atomic SQL guards, reset/recovery and native forms; preserve every held/accepted concession and original claim clock. Then add separately scoped protected discount issuance. Real commercial authority remains closed."
+    "label": "Continue protected discount issuance",
+    "reason": "Implement protected discount issuance with a separate explicit synthetic customer/variant/percentage/use-limit/claim-period authority, durable digest-only prepared intent and safe one-time code response. Preserve held concessions and original clocks; invitation/revocation grants and entered contact never establish commercial authority."
   },
-  "updated_at": "2026-11-02T11:57:14.451826+00:00"
+  "updated_at": "2026-11-02T12:14:30.619677+00:00"
 }
