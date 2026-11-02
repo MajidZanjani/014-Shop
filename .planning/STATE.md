@@ -1,12 +1,12 @@
 ---
 gsd_state_version: "1.0"
 release: shb-1.1
-current_phase: 12
-current_phase_name: Independent backup, restore and SHB reopening
-current_plan: 1
+current_phase: 10
+current_phase_name: Paid SHB orders, transaction notices and manual handoff
+current_plan: 5
 current_task: 1
 status: in_progress
-last_updated: "2026-11-02T09:21:05.067952+00:00"
+last_updated: "2026-11-02T09:25:58.429725+00:00"
 last_activity: 2026-11-02
 state_head: 5e0f72af31dc4eb83fbe16e7c1ff16bf72b14237
 progress:
@@ -21,15 +21,15 @@ progress:
 
 Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. STATE.md / ROADMAP.md remain operative.
 
-**Current development focus:** 12 — Independent backup, restore and SHB reopening.
+**Current development focus:** 10 — Paid SHB orders, transaction notices and manual handoff.
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only.
 
-**Current plan:** 12-01 — local SHB recovery assessment/replay verified; independent custody, post-backup completeness and off-host qualification remain open.
+**Current plan:** 10-05 — link synthetic SHB refunds to manual support review and the original paid order.
 
-**Execution status:** in progress — local recovery slice verified with511 tests/71 browser checks; actual independent recovery and shared runtime/release qualification remain pending.
+**Execution status:** in progress — continuing the existing10-05 financial/manual-handoff slice inline; prior511 tests/71 browser checks remain verified.
 
-**Next implementation task:** Continue12-01 independent recovery qualification when the authorized off-host runner and scoped recovery custody/environment are assigned; preserve original clocks, coupon outcomes and paid-order references.
+**Next implementation task:** Require retained manual support review before new synthetic SHB refunds; preserve original order/payment/coupon records and record staff support-team communication after the confirmed financial result.
 
 ## Verified local scope
 
@@ -49,8 +49,8 @@ One actual-input register: docs/decisions.md. Company inputs arrive later; no re
 
 ## Session Continuity
 
-Last session: 2026-11-02T09:19:40.853429+00:00
-Stopped at: Local12-01 assessment/replay slice committed and pushed as 5e0f72af31dc4eb83fbe16e7c1ff16bf72b14237. Actual independent recovery prerequisites remain pending.
-Resume file: phases/12-independent-recovery/.continue-here.md.
+Last session: 2026-11-02T09:25:58.429725+00:00
+Stopped at: User continued.12-01 actual off-host runner/custody gate remains closed; existing10-05 has unblocked local manual refund review work. Continue inline through gsd-execute-phase.
+Resume file: phases/10-staged-delivery-and-support-ledger/.continue-here.md.
 
-HANDOFF.json was consumed at successful resumption. No measured context percentage, pause or automatic-monitoring claim. No uncommitted test failure or owned background process.
+Current code is unverified; prior511 tests/71 browser checks remain the baseline. No external action, real financial approval or parent completion.

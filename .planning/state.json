@@ -76,9 +76,9 @@
     }
   ],
   "next": {
-    "command": "$gsd-execute-phase 12",
-    "label": "Independent recovery qualification (gated)",
-    "reason": "Continue12-01 independent recovery qualification when the authorized off-host runner and scoped recovery custody/environment are assigned; preserve original clocks, coupon outcomes and paid-order references."
+    "command": "$gsd-execute-phase 10",
+    "label": "Continue SHB financial/manual support handoff",
+    "reason": "Require retained manual support review before new synthetic SHB refunds; preserve original order/payment/coupon records and record staff support-team communication after the confirmed financial result."
   },
-  "updated_at": "2026-11-02T09:19:40.853429+00:00"
+  "updated_at": "2026-11-02T09:25:58.429725+00:00"
 }

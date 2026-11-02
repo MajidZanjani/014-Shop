@@ -2,15 +2,15 @@
 
 Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md). STATE.md / ROADMAP.md remain operative.
 
-**Current development focus:** 12 — Independent backup, restore and SHB reopening.
+**Current development focus:** 10 — Paid SHB orders, transaction notices and manual handoff.
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only.
 
-**Current plan:** 12-01 — local SHB recovery assessment/replay verified; independent custody, post-backup completeness and off-host qualification remain open.
+**Current plan:** 10-05 — link synthetic SHB refunds to manual support review and the original paid order.
 
-**Execution status:** in progress — local recovery slice verified with511 tests/71 browser checks; actual independent recovery and shared runtime/release qualification remain pending.
+**Execution status:** in progress — continuing the existing10-05 financial/manual-handoff slice inline; prior511 tests/71 browser checks remain verified.
 
-**Next implementation task:** Continue12-01 independent recovery qualification when the authorized off-host runner and scoped recovery custody/environment are assigned; preserve original clocks, coupon outcomes and paid-order references.
+**Next implementation task:** Require retained manual support review before new synthetic SHB refunds; preserve original order/payment/coupon records and record staff support-team communication after the confirmed financial result.
 
 **Recorded implementation:** 5e0f72af31dc4eb83fbe16e7c1ff16bf72b14237
 
@@ -19,3 +19,5 @@ Current exact evidence:511 tests,71 actual Chromium checks/two modes/320px, iden
 No parent SUMMARY or count change:11/42 retained records and1/14 documentary phases. The assessment cannot establish completeness of post-backup events; all actual recovery/retry/reopening authority flags remain false. The next12-01 gate requires assigned authorized independent off-host runner, sbg custody, external post-backup reconciliation and restore/complete-loss/transport qualification. None is inferred from this local component.
 
 Company inputs arrive later through docs/decisions.md; no repeat request. Normal Nix/source/runtime and actual provider/mail/host/database/native/licence/OCI/CI/independent/recovery/human gates remain pending. Retained tools stay separate synthetic evidence. No owned process/job, .env/cache access, external action or paid provision. HANDOFF.json was consumed at resume; no current pause.
+
+Continue 2026-11-02T09:25:58.429725+00:00: user authorized continued local work. Existing12-01 actual qualification awaits the unassigned off-host runner; continue unblocked existing10-05 inline. Require manual support-record review/financial linkage and staff communication while preserving all original records and false live-authority flags.

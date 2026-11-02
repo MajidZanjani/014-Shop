@@ -1,0 +1,10 @@
+{
+  "command": "python3 .scratch/shb_financial_target.py (retained-tool namespace; disposable PostgreSQL; /nix/store/nr6vqhv33q8n6nbyy529fvcydy3zp1jd-python3-3.13.16-env/bin/python3 manage.py test shop.shb.financial_tests.FinancialTests.test_new_shb_refund_cannot_bypass_manual_support_review_through_shared_finance_route --noinput --keepdb --verbosity 1)",
+  "exitCode": 1,
+  "output": "Using existing test database for alias 'default'...\nF\n======================================================================\nFAIL: test_new_shb_refund_cannot_bypass_manual_support_review_through_shared_finance_route (shop.shb.financial_tests.FinancialTests.test_new_shb_refund_cannot_bypass_manual_support_review_through_shared_finance_route)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/claude/project/014-Shop/backend/shop/shb/financial_tests.py\", line 38, in test_new_shb_refund_cannot_bypass_manual_support_review_through_shared_finance_route\n    self.assertEqual(response.status_code, 409)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 200 != 409\n\n----------------------------------------------------------------------\nRan 1 test in 0.844s\n\nFAILED (failures=1)\nPreserving test database for alias 'default'...\nFound 1 test(s).\nSystem check identified no issues (0 silenced).\n",
+  "targetTest": "shop.shb.financial_tests.FinancialTests.test_new_shb_refund_cannot_bypass_manual_support_review_through_shared_finance_route",
+  "targetFile": "backend/shop/shb/financial_tests.py",
+  "expected": "New SHB refund preparation requires retained manual support review even through the shared finance route.",
+  "actual": "The existing shared finance route prepares an SHB refund without any manual support review.",
+  "semanticAssessment": "One actual target executes after successful ASIC offer, acceptance, captured paid order and exact current staff order/refund grants. It fails only on200 versus409: the shared finance route prepares an unreviewed SHB refund. No fixture, import, syntax or discovery failure. GSD RED_EVIDENCE_OK."
+}
