@@ -73,3 +73,7 @@ STATE.md / ROADMAP.md / HANDOFF and machine routing paused consistently. Impleme
 2026-11-02T08:39:55.241769+00:00 — STATE.md/ROADMAP.md07-04 linked material revisions verified:497 tests/71 browser checks,20 ordinary captures, identical344 backend/eight-script source. Old scopes/approvals retained; new exact request/quotation/review/offer/acceptance tested. Next shared recovery/replay gap remains open; no parent count change or real effect.
 
 2026-11-02T08:40:33.289Z — Standing apparent-context-pressure checkpoint after three verified/pushed slices through2fb096adabfffd81565790ce17b0328d444f3ae0. Exact percentage unavailable.497 tests/71 browser checks/20 ordinary captures; STATE.md/ROADMAP.md/HANDOFF and machine routing paused consistently.12-01 local recovery/replay next, actual qualification pending; no parent count change.
+
+- 2026-11-02T08:55:38.002109+00:00: Resumed through gsd-resume-work/gsd-execute-phase; consumed the committed HANDOFF.json and moved current focus to existing12-01 inline. STATE.md / ROADMAP.md remain operative. Existing access/effect gate lacks SHB assessment; implement local read-only assessment and replay coverage. No actual qualification/count change.
+
+- 2026-11-02: Existing12-01 local SHB release gate has actual PostgreSQL RED evidence: release clears quarantine despite a missing committed ordinary-capture blob. Target fails only because AccessRecoveryError is not raised; GSD RED_EVIDENCE_OK. STATE.md / ROADMAP.md continue the partial local assessment/replay slice.

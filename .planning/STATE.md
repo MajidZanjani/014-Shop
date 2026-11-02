@@ -1,13 +1,12 @@
 ---
 gsd_state_version: "1.0"
 release: shb-1.1
-current_phase: 7
-current_phase_name: FPGA checkout, ASIC reviewed offers and scoped discounts
-current_plan: 4
+current_phase: 12
+current_phase_name: Independent backup, restore and SHB reopening
+current_plan: 1
 current_task: 1
-status: paused
-paused_at: "2026-11-02T08:40:33.289Z"
-last_updated: "2026-11-02T08:40:33.289Z"
+status: in_progress
+last_updated: "2026-11-02T08:55:38.002109+00:00"
 last_activity: 2026-11-02
 state_head: 2fb096adabfffd81565790ce17b0328d444f3ae0
 progress:
@@ -22,15 +21,15 @@ progress:
 
 Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. STATE.md / ROADMAP.md remain operative.
 
-**Current development focus:** 7 — FPGA checkout, ASIC reviewed offers and scoped discounts.
+**Current development focus:** 12 — Independent backup, restore and SHB reopening.
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only.
 
-**Current plan:** 07-04 — archived ASIC closing/reissue, ordinary notices and linked changed-work revisions verified locally; shared recovery/release qualification remains open.
+**Current plan:** 12-01 — local SHB record assessment and replay coverage; actual independent recovery qualification remains open.
 
-**Execution status:** paused — standing apparent-context-pressure checkpoint after497 tests/71 browser checks and20 ordinary captures; closing/reissue/notices/material revisions verified locally; recovery/replay and actual qualification remain open.
+**Execution status:** in progress — resumed inline; implementing local SHB recovery assessment for archived closing, notice and replacement records after verified497 tests/71 browser checks.
 
-**Next implementation task:** After resume, extend existing12-01 SHB recovery/replay assessment and local PostgreSQL tests for closing intents, ordinary notice delivery/capture and replacement lineage; preserve invitation clocks, coupon outcomes and original paid-order references before reopening.
+**Next implementation task:** Extend the existing local recovery release gate with read-only SHB archive/identity assessment and PostgreSQL replay tests; retain original invitation clocks, coupon outcomes and paid-order references.
 
 ## Verified local scope
 
@@ -52,8 +51,8 @@ One actual-input register: docs/decisions.md. Company inputs arrive later; no re
 
 ## Session Continuity
 
-Last session: 2026-11-02T08:40:33.289Z
-Stopped at: Standing apparent-context-pressure checkpoint after three verified/pushed local slices. Exact context percentage is unavailable; no measured90% or automatic monitoring claim.
-Resume file: HANDOFF.json and phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/.continue-here.md.
+Last session: 2026-11-02T08:55:38.002109+00:00
+Stopped at: Session resumed, continuing existing12-01 inline. HANDOFF.json consumed after comparing the committed checkpoint with the worktree; only unrelated http_cache.sqlite remains.
+Resume file: phases/12-independent-recovery/.continue-here.md.
 
-Implementation 2fb096adabfffd81565790ce17b0328d444f3ae0 is committed/pushed. Final497 tests/71 browser checks and20 ordinary captures bind identical344 backend/eight-script hashes. No uncommitted implementation or owned test/server/database/async job remains. Next: After resume, extend existing12-01 SHB recovery/replay assessment and local PostgreSQL tests for closing intents, ordinary notice delivery/capture and replacement lineage; preserve invitation clocks, coupon outcomes and original paid-order references before reopening.
+No actual qualification or completion count change. Prior497-test/71-browser evidence remains the verified baseline; current assessment/replay implementation is not verified yet.

@@ -76,9 +76,9 @@
     }
   ],
   "next": {
-    "command": "$gsd-resume-work",
-    "label": "Resume SHB recovery/replay coverage",
-    "reason": "After resume, extend existing12-01 SHB recovery/replay assessment and local PostgreSQL tests for closing intents, ordinary notice delivery/capture and replacement lineage; preserve invitation clocks, coupon outcomes and original paid-order references before reopening."
+    "command": "$gsd-execute-phase 12",
+    "label": "Continue local SHB recovery assessment and replay",
+    "reason": "Extend the existing local recovery release gate with read-only SHB archive/identity assessment and PostgreSQL replay tests; retain original invitation clocks, coupon outcomes and paid-order references."
   },
-  "updated_at": "2026-11-02T08:40:33.289Z"
+  "updated_at": "2026-11-02T08:55:38.002109+00:00"
 }

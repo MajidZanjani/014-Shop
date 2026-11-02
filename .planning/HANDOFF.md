@@ -2,15 +2,15 @@
 
 Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md). STATE.md / ROADMAP.md remain operative.
 
-**Current development focus:** 7 — FPGA checkout, ASIC reviewed offers and scoped discounts.
+**Current development focus:** 12 — Independent backup, restore and SHB reopening.
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only.
 
-**Current plan:** 07-04 — archived ASIC closing/reissue, ordinary notices and linked changed-work revisions verified locally; shared recovery/release qualification remains open.
+**Current plan:** 12-01 — local SHB record assessment and replay coverage; actual independent recovery qualification remains open.
 
-**Execution status:** paused — standing apparent-context-pressure checkpoint after497 tests/71 browser checks and20 ordinary captures; closing/reissue/notices/material revisions verified locally; recovery/replay and actual qualification remain open.
+**Execution status:** in progress — resumed inline; implementing local SHB recovery assessment for archived closing, notice and replacement records after verified497 tests/71 browser checks.
 
-**Next implementation task:** After resume, extend existing12-01 SHB recovery/replay assessment and local PostgreSQL tests for closing intents, ordinary notice delivery/capture and replacement lineage; preserve invitation clocks, coupon outcomes and original paid-order references before reopening.
+**Next implementation task:** Extend the existing local recovery release gate with read-only SHB archive/identity assessment and PostgreSQL replay tests; retain original invitation clocks, coupon outcomes and paid-order references.
 
 **Recorded implementation:** 2fb096adabfffd81565790ce17b0328d444f3ae0
 
@@ -18,6 +18,4 @@ Current exact evidence:497 tests,71 actual Chromium checks/two modes/320px, iden
 
 Completed locally: archived pre-acceptance withdrawal/final expiry, fresh-reviewed unchanged-scope reissue, failed-preparation abandonment, ordinary request/question/decline/offer/closing/customer notices, and linked fresh material request revisions with current eligibility/price/coupon/approval/acceptance. Old scope/evidence remains immutable. No parent SUMMARY or count change:11/42 retained records and1/14 documentary phases.
 
-Next is real shared12-01 recovery/replay coverage for the new closing/notice/lineage records, then remaining actual qualification. Do not redo completed07 workflows. Company inputs arrive later through docs/decisions.md; no repeat request. Normal Nix/source/runtime and actual provider/mail/host/database/native/licence/OCI/CI/independent/recovery/human gates remain pending; off-host runner unassigned. Retained tools remain separate synthetic evidence. No owned process/job, .env/cache access, external action or paid provision.
-
-This is a proactive checkpoint under the standing apparent-context-pressure instruction after a large resumed context. Exact usage percentage is unavailable; no measured90% or automatic-monitoring claim. Clear the session and run $gsd-resume-work.
+Resumed 2026-11-02T08:55:38.002109+00:00 through gsd-resume-work/gsd-execute-phase. Continue the local12-01 slice inline. The code currently has access/effect recovery fences but no SHB assessment; add checks at the existing fixture release gate and verify PostgreSQL replay. Actual post-backup reconstruction/off-host qualification remains pending; no production release authority. Company inputs arrive later; no repeat request.

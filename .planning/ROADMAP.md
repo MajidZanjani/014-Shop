@@ -2,15 +2,15 @@
 
 Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](STATE.md) / [ROADMAP.md](ROADMAP.md).
 
-**Current development focus:** 7 — FPGA checkout, ASIC reviewed offers and scoped discounts.
+**Current development focus:** 12 — Independent backup, restore and SHB reopening.
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
 
-**Current plan:** 07-04 — archived ASIC closing/reissue, ordinary notices and linked changed-work revisions verified locally; shared recovery/release qualification remains open.
+**Current plan:** 12-01 — local SHB record assessment and replay coverage; actual independent recovery qualification remains open.
 
-**Execution status:** paused — standing apparent-context-pressure checkpoint after497 tests/71 browser checks and20 ordinary captures; closing/reissue/notices/material revisions verified locally; recovery/replay and actual qualification remain open.
+**Execution status:** in progress — resumed inline; implementing local SHB recovery assessment for archived closing, notice and replacement records after verified497 tests/71 browser checks.
 
-**Next implementation task:** After resume, extend existing12-01 SHB recovery/replay assessment and local PostgreSQL tests for closing intents, ordinary notice delivery/capture and replacement lineage; preserve invitation clocks, coupon outcomes and original paid-order references before reopening.
+**Next implementation task:** Extend the existing local recovery release gate with read-only SHB archive/identity assessment and PostgreSQL replay tests; retain original invitation clocks, coupon outcomes and paid-order references.
 
 Stable T01–T14/folder IDs preserve history. Titles and active task scopes now follow SHB 1.1. Completed summary counts below are historical records, not engineering effort or new commercial acceptance.
 
@@ -22,12 +22,12 @@ Stable T01–T14/folder IDs preserve history. Titles and active task scopes now 
 - [ ] **Phase 4: Shared SHB form, invitations and private storefront**
 - [ ] **Phase 5: SHB durable records, archives and outbox**
 - [ ] **Phase 6: Invitation scope, verified resources and staff MFA**
-- [ ] **Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts** — CURRENT DEVELOPMENT FOCUS; paused — standing apparent-context-pressure checkpoint after497 tests/71 browser checks and20 ordinary captures; closing/reissue/notices/material revisions verified locally; recovery/replay and actual qualification remain open.
+- [ ] **Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts**
 - [ ] **Phase 8: Payment lifecycle and fault-injectable synthetic bank**
 - [ ] **Phase 9: Selected-bank sandbox and complete reconciliation**
 - [ ] **Phase 10: Paid SHB orders, transaction notices and manual handoff**
 - [ ] **Phase 11: Private release delivery and protected-host qualification**
-- [ ] **Phase 12: Independent backup, restore and SHB reopening**
+- [ ] **Phase 12: Independent backup, restore and SHB reopening** — CURRENT DEVELOPMENT FOCUS; in progress — resumed inline; implementing local SHB recovery assessment for archived closing, notice and replacement records after verified497 tests/71 browser checks.
 - [ ] **Phase 13: Thirty SHB acceptance cases and release verification**
 - [ ] **Phase 14: SHB handover and separately authorized activation**
 
@@ -105,7 +105,7 @@ Requirements: SHB-11, SHB-13, SHB-14.
 
 Plans: [06-01-PLAN](phases/06-invitation-scope-and-staff-mfa/06-01-PLAN.md)
 
-### Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts — CURRENT DEVELOPMENT FOCUS; paused — standing apparent-context-pressure checkpoint after497 tests/71 browser checks and20 ordinary captures; closing/reissue/notices/material revisions verified locally; recovery/replay and actual qualification remain open.
+### Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts
 
 Goal: Automatic eligible FPGA checkout; ASIC request/clarify/decline/withdraw/approve/dated offer/acceptance. One scoped percentage code; PostgreSQL reservations survive ASIC review beyond claim expiry. Immutable accepted price/scope revisions.
 
@@ -165,7 +165,7 @@ Requirements: SHB-30.
 
 Plans: [11-01-PLAN](phases/11-private-delivery-and-protected-host/11-01-PLAN.md)
 
-### Phase 12: Independent backup, restore and SHB reopening
+### Phase 12: Independent backup, restore and SHB reopening — CURRENT DEVELOPMENT FOCUS; in progress — resumed inline; implementing local SHB recovery assessment for archived closing, notice and replacement records after verified497 tests/71 browser checks.
 
 Goal: Independent sbg backups, complete-pool-loss off-host rehearsal and custody. Block effects before exposure; invalidate restored sessions/MFA; reconcile original invitation expiry/revocations, customer scope, financial/order/acceptance/coupon/offer/document events.
 
@@ -211,12 +211,12 @@ Plans: [14-01-PLAN](phases/14-shb-release-handover/14-01-PLAN.md)
 | 4. Shared SHB form, invitations and private storefront | 0/1 | In Progress | Pending actual revised evidence |
 | 5. SHB durable records, archives and outbox | 0/1 | In Progress | Pending actual revised evidence |
 | 6. Invitation scope, verified resources and staff MFA | 0/1 | In Progress | Pending actual revised evidence |
-| 7. FPGA checkout, ASIC reviewed offers and scoped discounts | 1/4 | In Progress; CURRENT DEVELOPMENT FOCUS; paused — standing apparent-context-pressure checkpoint after497 tests/71 browser checks and20 ordinary captures; closing/reissue/notices/material revisions verified locally; recovery/replay and actual qualification remain open. | Pending actual revised evidence |
+| 7. FPGA checkout, ASIC reviewed offers and scoped discounts | 1/4 | In Progress | Pending actual revised evidence |
 | 8. Payment lifecycle and fault-injectable synthetic bank | 0/3 | In Progress | Pending actual revised evidence |
 | 9. Selected-bank sandbox and complete reconciliation | 0/1 | Pending | Pending actual revised evidence |
 | 10. Paid SHB orders, transaction notices and manual handoff | 0/6 | In Progress | Pending actual revised evidence |
 | 11. Private release delivery and protected-host qualification | 0/1 | Pending | Pending actual revised evidence |
-| 12. Independent backup, restore and SHB reopening | 0/1 | In Progress | Pending actual revised evidence |
+| 12. Independent backup, restore and SHB reopening | 0/1 | In Progress; CURRENT DEVELOPMENT FOCUS; in progress — resumed inline; implementing local SHB recovery assessment for archived closing, notice and replacement records after verified497 tests/71 browser checks. | Pending actual revised evidence |
 | 13. Thirty SHB acceptance cases and release verification | 0/1 | In Progress | Pending actual revised evidence |
 | 14. SHB handover and separately authorized activation | 0/1 | Pending | Pending actual revised evidence |
 
@@ -249,3 +249,5 @@ Verified 2026-11-02T08:24:28.608322+00:00:487 tests/65 browser checks, identical
 Verified 2026-11-02T08:39:55.241769+00:00: linked material revisions complete locally;497 tests/71 browser checks,20 ordinary and4 support-team fake captures, identical344 backend/eight-script hashes. Report docs/build/shb-material-revisions-2026-11-02.md. Next shared recovery/replay coverage and actual qualifications remain open; no parent count change.
 
 Context checkpoint 2026-11-02T08:40:33.289Z: verified material-revision implementation2fb096adabfffd81565790ce17b0328d444f3ae0 and prior closing/notices slices are pushed.497 tests/71 browser checks,20 ordinary captures. Exact percentage unavailable; standing apparent-pressure checkpoint. HANDOFF.json records recovery/replay as next; actual gates and parent completion remain open.
+
+Resume 2026-11-02T08:55:38.002109+00:00: explicit user resume lifts the context checkpoint. Existing12-01 proceeds inline with synthetic fixtures and all actual qualification gates retained. HANDOFF.json consumed.

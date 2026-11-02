@@ -2,15 +2,15 @@
 
 Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](STATE.md) / [ROADMAP.md](ROADMAP.md).
 
-**Current development focus:** 7 — FPGA checkout, ASIC reviewed offers and scoped discounts.
+**Current development focus:** 12 — Independent backup, restore and SHB reopening.
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
 
-**Current plan:** 07-04 — archived ASIC closing/reissue, ordinary notices and linked changed-work revisions verified locally; shared recovery/release qualification remains open.
+**Current plan:** 12-01 — local SHB record assessment and replay coverage; actual independent recovery qualification remains open.
 
-**Execution status:** paused — standing apparent-context-pressure checkpoint after497 tests/71 browser checks and20 ordinary captures; closing/reissue/notices/material revisions verified locally; recovery/replay and actual qualification remain open.
+**Execution status:** in progress — resumed inline; implementing local SHB recovery assessment for archived closing, notice and replacement records after verified497 tests/71 browser checks.
 
-**Next implementation task:** After resume, extend existing12-01 SHB recovery/replay assessment and local PostgreSQL tests for closing intents, ordinary notice delivery/capture and replacement lineage; preserve invitation clocks, coupon outcomes and original paid-order references before reopening.
+**Next implementation task:** Extend the existing local recovery release gate with read-only SHB archive/identity assessment and PostgreSQL replay tests; retain original invitation clocks, coupon outcomes and paid-order references.
 
 ## What this is
 
@@ -89,3 +89,5 @@ Verified 2026-11-02T08:24:28.608322+00:00:487 tests/65 browser checks, identical
 Verified 2026-11-02T08:39:55.241769+00:00: linked material revisions complete locally;497 tests/71 browser checks,20 ordinary and4 support-team fake captures, identical344 backend/eight-script hashes. Report docs/build/shb-material-revisions-2026-11-02.md. Next shared recovery/replay coverage and actual qualifications remain open; no parent count change.
 
 Context checkpoint 2026-11-02T08:40:33.289Z: verified material-revision implementation2fb096adabfffd81565790ce17b0328d444f3ae0 and prior closing/notices slices are pushed.497 tests/71 browser checks,20 ordinary captures. Exact percentage unavailable; standing apparent-pressure checkpoint. HANDOFF.json records recovery/replay as next; actual gates and parent completion remain open.
+
+Resume 2026-11-02T08:55:38.002109+00:00: explicit user resume lifts the context checkpoint. Existing12-01 proceeds inline with synthetic fixtures and all actual qualification gates retained. HANDOFF.json consumed.
