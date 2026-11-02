@@ -23,9 +23,12 @@ from shop.shb.staff_orders import refund_review,refund_handoff
 from shop.shb.invitation_admin_views import queue as invitation_queue,detail as invitation_detail
 from shop.shb.invitation_issuance_views import queue as issuance_queue,detail as issuance_detail
 from shop.shb.discount_admin_views import queue as discount_queue,detail as discount_detail
+from shop.shb.discount_issuance_views import queue as discount_scope_queue,detail as discount_scope_detail
 urlpatterns=[
     path('staff/shb-discounts/',discount_queue),
     path('staff/shb-discounts/<uuid:identity>/',discount_detail),
+    path('staff/shb-discount-scopes/',discount_scope_queue),
+    path('staff/shb-discount-scopes/<uuid:identity>/',discount_scope_detail),
     path('staff/shb-invitation-scopes/',issuance_queue),
     path('staff/shb-invitation-scopes/<uuid:identity>/',issuance_detail),
     path('staff/shb-invitations/',invitation_queue),

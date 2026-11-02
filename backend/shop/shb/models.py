@@ -417,3 +417,48 @@ class DiscountRevocation(models.Model):
     class Meta:
         constraints=[models.CheckConstraint(condition=models.Q(sha256__regex=r'^[a-f0-9]{64}$') &
             ~models.Q(archive_receipt={}),name='shb_discount_revocation_archive')]
+
+
+class DiscountIssuanceScope(models.Model):
+    """Established synthetic commercial authority; staff forms cannot create or edit it."""
+    id=models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
+    customer=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT,related_name='+')
+    registered_by=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT,related_name='+')
+    percentage_bps=models.PositiveSmallIntegerField()
+    fpga_allowed=models.BooleanField(default=False)
+    asic_allowed=models.BooleanField(default=False)
+    use_limit=models.PositiveSmallIntegerField(default=1)
+    claim_period_days=models.PositiveSmallIntegerField()
+    evidence_class=models.CharField(max_length=32,default='local-synthetic',editable=False)
+    created_at=models.DateTimeField(default=timezone.now,editable=False)
+    enabled=models.BooleanField(default=True)
+    class Meta:
+        constraints=[models.CheckConstraint(condition=models.Q(fpga_allowed=True)|models.Q(asic_allowed=True),name='shb_discount_issue_scope_modes'),
+            models.CheckConstraint(condition=models.Q(percentage_bps__gte=1,percentage_bps__lte=9999),name='shb_discount_issue_scope_percentage'),
+            models.CheckConstraint(condition=models.Q(use_limit__gte=1,use_limit__lte=100),name='shb_discount_issue_scope_use_limit'),
+            models.CheckConstraint(condition=models.Q(claim_period_days__gte=1,claim_period_days__lte=365),name='shb_discount_issue_scope_claim_period'),
+            models.CheckConstraint(condition=models.Q(evidence_class='local-synthetic'),name='shb_discount_issue_scope_synthetic')]
+
+
+class DiscountIssueGrant(models.Model):
+    """Explicit authority to issue new codes under one commercial scope, separate from revocation."""
+    user=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT)
+    scope=models.ForeignKey(DiscountIssuanceScope,on_delete=models.PROTECT)
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['user','scope'],name='shb_discount_issue_grant_once')]
+
+
+class DiscountIssue(models.Model):
+    """Digest-only intent precedes archive/publication; raw codes are unrecoverable."""
+    id=models.UUIDField(primary_key=True,editable=False)
+    scope=models.ForeignKey(DiscountIssuanceScope,on_delete=models.PROTECT)
+    request_id=models.UUIDField(editable=False)
+    discount=models.OneToOneField(DiscountCode,null=True,on_delete=models.PROTECT,related_name='+')
+    created_at=models.DateTimeField(editable=False)
+    payload=models.JSONField(editable=False)
+    sha256=models.CharField(max_length=64,editable=False)
+    archive_receipt=models.JSONField(default=dict,editable=False)
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['scope','request_id'],name='shb_discount_issue_retry_once'),
+            models.CheckConstraint(condition=models.Q(sha256__regex=r'^[a-f0-9]{64}$') &
+                (models.Q(discount__isnull=True,archive_receipt={}) | (models.Q(discount__isnull=False)&~models.Q(archive_receipt={}))),name='shb_discount_issue_publication_archive')]

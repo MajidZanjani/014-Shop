@@ -24,7 +24,7 @@ from .errors import ShbError
 from .models import (CheckoutClosure, DiscountReservation, Invitation, PaidOrder,
     PurchaseNoticeCapture, PurchaseNoticeDelivery, RequestClosure, RequestReplacement,
     SupportCheckout, SupportOffer, SupportRequest, SupportRequestReview,
-    TransactionNotice, TransactionNoticeCapture, TransactionNoticeDelivery,RefundReview,RefundSupportHandoff,InvitationRevocation)
+    TransactionNotice, TransactionNoticeCapture, TransactionNoticeDelivery,RefundReview,RefundSupportHandoff,InvitationRevocation,DiscountIssue)
 
 
 def require(condition):
@@ -71,6 +71,11 @@ def _records(archive):
     from .models import DiscountRevocation
     for event in DiscountRevocation.objects.select_related('discount').iterator():
         discount_admin.retained(event,archive)
+
+    from . import discount_issuance
+    from .models import DiscountIssue
+    for event in DiscountIssue.objects.select_related('scope','discount').iterator():
+        discount_issuance.retained(event,archive)
 
     for row in SupportRequest.objects.select_related('invitation', 'quotation__cart', 'quotation__snapshot').iterator():
         require(row.sha256 == catalog.digest(row.payload)
@@ -219,6 +224,8 @@ def _records(archive):
         'invitation_issues':InvitationIssue.objects.count(),
         'prepared_invitation_issues':InvitationIssue.objects.filter(invitation__isnull=True).count(),
         'discount_revocations':DiscountRevocation.objects.count(),
+        'discount_issues':DiscountIssue.objects.count(),
+        'prepared_discount_issues':DiscountIssue.objects.filter(discount__isnull=True).count(),
         'refund_reviews':RefundReview.objects.count(), 'refund_handoffs':RefundSupportHandoff.objects.count(),
         'uncertain_refunds':SyntheticOperationDispatch.objects.filter(operation__in=financial,operation__kind='refund',state='uncertain').count(),
     }

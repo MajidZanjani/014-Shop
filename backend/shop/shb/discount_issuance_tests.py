@@ -169,12 +169,10 @@ class DiscountIssuanceTests(TransactionTestCase):
 
     def test_sql_cannot_publish_prepared_intent_against_another_discount(self):
         from shop.adapters.evidence_archive import PreparedArchive,ArchiveError
-        from .discounts import issue_fixture
-        other,_=issue_fixture(customer=self.customer,issuer=self.user,percentage_bps=1500,asic_allowed=True)
         with patch.object(PreparedArchive,'publish',side_effect=ArchiveError('owned outage')):
             self.assertEqual(self.issue().status_code,503)
         with self.assertRaises(DatabaseError),transaction.atomic():
-            DiscountIssue.objects.update(discount=other,archive_receipt={'forged':True})
+            DiscountIssue.objects.update(discount=self.discount,archive_receipt={'forged':True})
         self.no_publication()
 
     def test_sql_refuses_discount_when_issue_publication_update_is_omitted(self):
