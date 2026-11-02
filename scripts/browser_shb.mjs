@@ -33,6 +33,7 @@ async function main(){
     require(new URL(config.origin).hostname==='staff.localhost'&&config.staff.orders?.length===2&&config.staff.invitations?.length===2);
     require(config.staff.invitations.every(row=>/^\/staff\/shb-invitations\/[a-f0-9-]{36}\/$/.test(row.path)&&typeof row.expiresAt==='string'));
     require(/^\/staff\/shb-invitation-scopes\/[a-f0-9-]{36}\/$/.test(config.staff.issuancePath));
+    require(/^\/staff\/shb-discount-scopes\/[a-f0-9-]{36}\/$/.test(config.staff.discountIssuancePath));
     require(config.staff.discounts?.length===2&&config.staff.discounts.every(row=>/^\/staff\/shb-discounts\/[a-f0-9-]{36}\/$/.test(row.path)&&typeof row.expiresAt==='string'));
     require([...config.staff.orders.map(row=>row.path),config.staff.noFinancePath,config.staff.unassignedPath].every(path=>/^\/staff\/shb-orders\/[a-f0-9-]{36}\/$/.test(path)));
     require(config.staff.orders.every(row=>/^\/staff\/payments\/[1-9][0-9]*\/$/.test(row.financePath)&&/^[a-f0-9-]{36}$/.test(row.reference)));
@@ -241,6 +242,29 @@ async function main(){
         await submit('form button');
         require(lastStatus===200&&await evaluate('document.body.innerText.includes("Revoked:")&&!document.querySelector("form")&&document.body.innerText.includes('+JSON.stringify(discount.expiresAt)+')'));checks++;
         await go(config.origin+discount.path);require(lastStatus===200&&await clean()&&escaped===0);checks++;
+        stage=mode+'-staff-discount-issue-scope';
+        await go(config.origin+'/staff/shb-discount-scopes/');
+        require(lastStatus===200&&await evaluate('document.body.innerText.includes("Discount issuance scopes")'));checks++;
+        await go(config.origin+config.staff.discountIssuancePath);
+        require(lastStatus===200&&await evaluate('!!document.querySelector("textarea[name=reason]")&&!document.querySelector("[name=percentage_bps]")&&!document.querySelector("[name=code]")&&!document.body.innerText.includes("SLL-")'));checks++;
+        stage=mode+'-staff-discount-issue-csrf';
+        await type('[name=reason]','Deliberate synthetic browser discount issue.');
+        await evaluate('document.querySelector("form [name=csrfmiddlewaretoken]").remove()');
+        await submit('form button');require(lastStatus===403);checks++;
+        stage=mode+'-staff-discount-issue';
+        await go(config.origin+config.staff.discountIssuancePath);
+        await type('[name=reason]','Deliberate synthetic browser discount issue.');
+        const issueDiscountKey=await evaluate('document.querySelector("input[name=request_id]").value');
+        await submit('form button');
+        require(lastStatus===201&&await evaluate('document.body.innerText.includes("Synthetic discount issued")&&/^SLL-[A-Z2-9]{24}$/.test(document.querySelector("textarea[readonly]").value)'));checks++;
+        require(await clean()&&escaped===0);checks++;
+        stage=mode+'-staff-discount-issue-retry';
+        await go(config.origin+config.staff.discountIssuancePath);
+        require(lastStatus===200&&!await evaluate('document.body.innerText.includes("SLL-")'));checks++;
+        await evaluate('document.querySelector("input[name=request_id]").value='+JSON.stringify(issueDiscountKey));
+        await type('[name=reason]','Deliberate synthetic browser discount issue.');
+        await submit('form button');
+        require(lastStatus===200&&await evaluate('!document.querySelector("textarea[readonly]")&&document.body.innerText.includes("raw code cannot be recovered")'));checks++;
         stage=mode+'-staff-logout';
         await go(config.origin+'/staff/');await submit('form[action="/staff/logout/"] button');
         await go(config.origin+order.path);require(lastStatus===403);checks++;
@@ -350,7 +374,7 @@ async function main(){
       await cdp.send('Target.disposeBrowserContext',{browserContextId});
     }
     const report={status:'SHB_BROWSER_PASS',checks,modes:2,pendingDocumentLoads,browser:version,node:process.versions.node,evidence_class:'local-synthetic-browser'};
-    Object.assign(report,config.staff?{staffRefund:'archived-full-synthetic-once',staffHandoff:'attributed-manual-communication',staffRevocation:'archived-two-synthetic-invitations',staffIssuance:'two-deliberate-replacements-one-time-bearers',staffDiscounts:'two-archived-revocations-original-claim-clocks'}:
+    Object.assign(report,config.staff?{staffRefund:'archived-full-synthetic-once',staffHandoff:'attributed-manual-communication',staffRevocation:'archived-two-synthetic-invitations',staffIssuance:'two-deliberate-replacements-one-time-bearers',staffDiscounts:'two-archived-revocations-original-claim-clocks',staffDiscountIssuance:'two-deliberate-issues-one-time-codes'}:
       {fpga:'accepted-30-hours',asic:'requested-and-accepted-50-hours',payment:'synthetic-captured-once',paidOrder:'recorded-once-per-purchase',closure:'safe-before-dispatch',withdrawal:'deliberate-unaccepted-asic-offer',revision:'linked-unpaid-75-hours'});
     console.log(JSON.stringify(report));
   }catch(error){

@@ -123,6 +123,11 @@ scope=register_fixture(customer=customer,registered_by=user,company_name='Synthe
     fpga_eligible=True,asic_allowed=True)
 InvitationIssueGrant.objects.create(user=user,scope=scope)
 value['issuance_path']='/staff/shb-invitation-scopes/'+str(scope.pk)+'/'
+from shop.shb.discount_issuance import register_fixture as register_discount_scope
+from shop.shb.models import DiscountIssueGrant
+discount_scope=register_discount_scope(customer=customer,registered_by=user,percentage_bps=1500,asic_allowed=True,use_limit=2,claim_period_days=30)
+DiscountIssueGrant.objects.create(user=user,scope=discount_scope)
+value['discount_issuance_path']='/staff/shb-discount-scopes/'+str(discount_scope.pk)+'/'
 from shop.shb.discounts import issue_fixture as issue_discount
 from shop.shb.models import DiscountStaffGrant
 value['staff_discounts']=[]
@@ -326,6 +331,7 @@ def main():
                         'captureRoot':str(staff_codes),'orders':credential['staff_orders'],
                         'noFinancePath':credential['no_finance_path'],'unassignedPath':credential['unassigned_path'],
                         'issuancePath':credential['issuance_path'],
+                        'discountIssuancePath':credential['discount_issuance_path'],
                         'discounts':[{key:item[key] for key in ('path','expiresAt')} for item in credential['staff_discounts']],
                         'invitations':[{key:item[key] for key in ('path','expiresAt')} for item in credential['staff_invitations']]}}
                 result=subprocess.run([browser_env['SHOP_NODE'],str(ROOT/'scripts/browser_shb.mjs')],input=json.dumps(staff_config),
@@ -337,6 +343,7 @@ def main():
                 require(staff_report['staffRevocation']=='archived-two-synthetic-invitations')
                 require(staff_report['staffIssuance']=='two-deliberate-replacements-one-time-bearers')
                 require(staff_report['staffDiscounts']=='two-archived-revocations-original-claim-clocks')
+                require(staff_report['staffDiscountIssuance']=='two-deliberate-issues-one-time-codes')
                 verify_staff_refunds(python,env,capture)
                 report.update(customer_checks=report['checks'],staff_checks=staff_report['checks'],
                     checks=report['checks']+staff_report['checks'],staffRefund=staff_report['staffRefund'],
