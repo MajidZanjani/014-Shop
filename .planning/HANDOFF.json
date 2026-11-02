@@ -1,0 +1,120 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-11-02T07:31:00.938Z",
+  "release": "shb-1.1",
+  "phase": "07",
+  "phase_name": "FPGA checkout, ASIC reviewed offers and scoped discounts",
+  "phase_dir": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance",
+  "plan": 3,
+  "task": 1,
+  "total_tasks": 1,
+  "status": "paused",
+  "pause_reason": "Standing apparent-context-pressure authorization after long resumed implementation; exact percentage unavailable, no measured90% claim",
+  "implementation_commit": "0a53002ddb66de572dbe6cbf82ba6c5881198ca1",
+  "implementation_push": "verified ordinary origin/main push completed",
+  "completed_tasks": [
+    {
+      "id": 1,
+      "name": "07-03/07-04 parent workflow",
+      "status": "in_progress",
+      "progress": "Matching dated ASIC issuance, exact immutable scope/documents, explicit acceptance/payment, original request-hold consumption, assigned paid-order details and accepted never-dispatched cancellation are verified and committed. Pre-acceptance withdrawal/final expiry/reissue and remaining ordinary request/customer notices stay unfinished."
+    }
+  ],
+  "verified_slices": [
+    "One archived exact dated ASIC offer per reviewed request and one shared checkout per offer",
+    "Current recent-MFA/exact grant publication reauthorization after archive I/O",
+    "Blank customer billing/contact fields; current same-customer/company/project invitation scope; no private history/prefill",
+    "Actual elapsed coupon claim deadline preserves original request concession into offer and paid order",
+    "Exact acceptance and immutable price/policy/document bodies; matching issuer/technical-review attribution in archived offer",
+    "Repeat-safe ASIC paid order, original request hold consumption, existing staff order scope and durable fake support-team purchase notice",
+    "Uncertain dispatch retains hold; lookup after invitation revocation finalizes the same purchase; safe accepted cancellation releases once",
+    "458 tests,59 actual Chromium checks/two modes/320px; identical332 backend/eight-script hashes"
+  ],
+  "remaining_tasks": [
+    {
+      "id": 1,
+      "name": "Explicit pre-acceptance ASIC request/offer withdrawal, final expiry/release, replacement/reissue and material revised-work lifecycle",
+      "status": "not_started"
+    },
+    {
+      "id": 2,
+      "name": "Remaining ordinary request/question/decline/offer/closing/customer purchase notifications using the existing worker",
+      "status": "not_started"
+    },
+    {
+      "id": 3,
+      "name": "Normal Nix/source/runtime and actual company/provider/mail/host/independent qualification",
+      "status": "pending"
+    }
+  ],
+  "blockers": [
+    {
+      "description": "Normal pinned Nix shell/source packaging cannot resolve missing dependencies",
+      "type": "technical",
+      "workaround": "Use separate verified retained-tool local lane; no normal Nix/runtime qualification claim"
+    },
+    {
+      "description": "Ordinary sandbox bwrap denies authorized workspace traversal",
+      "type": "technical",
+      "workaround": "Narrow justified require_escalated local work; no host/permission changes"
+    },
+    {
+      "description": "Actual inputs/qualifications pending; independent off-host runner unassigned",
+      "type": "external",
+      "workaround": "Continue local closing/notices after resume; no repeat company-input requests"
+    }
+  ],
+  "async_jobs": [],
+  "background_processes": [],
+  "human_actions_pending": [
+    {
+      "action": "Clear this substantial context and resume when ready",
+      "context": "Standing apparent-pressure checkpoint; exact percentage unavailable",
+      "blocking": true
+    },
+    {
+      "action": "Actual company inputs arrive later through docs/decisions.md",
+      "context": "Do not request again; unaffected local closing/notices can continue after resume",
+      "blocking": false
+    }
+  ],
+  "decisions": [
+    {
+      "decision": "Reuse immutable request/quotation/checkout/payment and one existing worker; no named identity fabrication",
+      "rationale": "Invitation scope authorizes current new offers/purchases, not private history or saved contact prefill",
+      "phase": "07"
+    },
+    {
+      "decision": "Archive exact offer documents and issuer/review attribution before publication; preserve request-held concessions through review",
+      "rationale": "Current copy/rates and original coupon claim expiry must not silently change an issued offer",
+      "phase": "07"
+    },
+    {
+      "decision": "Expired unaccepted offers retain their concession until safe closing/reissue is implemented",
+      "rationale": "No fabricated acceptance, premature release or blind retry for uncertain money",
+      "phase": "07"
+    }
+  ],
+  "uncommitted_files": [
+    " M .planning/ACTIVITY-LOG.md",
+    " M .planning/HANDOFF.md",
+    " M .planning/PROJECT.md",
+    " M .planning/PURCHASE-FLOW-RECONCILIATION.json",
+    " M .planning/ROADMAP.md",
+    " M .planning/STATE.md",
+    " M .planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/.continue-here.md",
+    " M .planning/state.json",
+    "?? .planning/HANDOFF.json",
+    "?? http_cache.sqlite"
+  ],
+  "uncommitted_files_elided": 0,
+  "next_action": "Implement explicit pre-acceptance ASIC request/offer withdrawal, final expiry/release and replacement/reissue, then remaining ordinary request/customer notices.",
+  "context_notes": "458/59 is verified current source; do not redo matching ASIC offers/acceptance/payment or the prior FPGA slices. Existing CheckoutClosure requires real accepted checkout proof, so implement an appropriate archived pre-acceptance closing intent rather than manufacturing acceptance. Reissue/material-change/request-customer notices remain genuinely open. Paid-order notice is a fixed-recipient durable fake support-team capture, not actual SMTP/customer notice. No time accounting/task email/customer balance panel. No .env/external operation; cache untouched.",
+  "evidence_records": [
+    "docs/evidence/shb/retained-tests/2e56a1b8dd097255b5da8a539889aedf9b18d732587d132bf74f0864fa087daf.json",
+    "docs/evidence/shb/retained-tests/02a6058c130ec85a9e93c9ba9e89ae0b1cfb60d0203955c5230a8d1484d504fe.json"
+  ],
+  "report": "docs/build/shb-asic-offers-2026-11-02.md",
+  "working_tree_snapshot_at": "2026-11-02T07:31:01.019723+00:00",
+  "working_tree_snapshot_scope": "Measured after checkpoint artifacts existed and before checkpoint commit. Listed planning changes are committed in the checkpoint; implementation is already committed/pushed. Only unrelated http_cache.sqlite should remain afterward."
+}

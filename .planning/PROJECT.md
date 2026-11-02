@@ -8,7 +8,7 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Current plan:** 07-03 — matching dated ASIC offers, exact acceptance/payment and request-held coupon consumption verified; withdrawal/expiry/reissue and customer notices remain open.
 
-**Execution status:** in progress — dated ASIC offers and exact acceptance/payment verified;458 tests/59 browser checks pass; remaining closure/notices and actual qualifications are pending.
+**Execution status:** paused — context checkpoint after verified matching ASIC offers/acceptance/payment;458 tests/59 browser checks pass; closing/reissue/notices and actual qualifications remain pending.
 
 **Next implementation task:** Implement explicit pre-acceptance ASIC request/offer withdrawal, final expiry/release and replacement/reissue, then remaining ordinary request/customer notices.
 
@@ -77,3 +77,5 @@ Context checkpoint 2026-11-02T06:36:54.289Z: paid-order implementation07cb88d an
 Resume 2026-11-02T06:49:42.113651+00:00: explicit user $gsd-resume-work lifts the context checkpoint. Continue matching ASIC offers inline through the existing plan; real inputs/qualifications remain pending. HANDOFF.json consumed.
 
 Verified ASIC offer continuation 2026-11-02T07:28:41.148953+00:00:458 tests/59 actual browser checks; identical332-backend/eight-script hashes. Dated matching ASIC offers, exact immutable documents/acceptance/payment, original request-hold consumption and assigned staff scope display are implemented. Report: docs/build/shb-asic-offers-2026-11-02.md. Pre-acceptance withdrawal/final expiry/reissue and remaining ordinary request/customer notices stay open. No parent SUMMARY/count change or live/independent qualification.
+
+Context checkpoint 2026-11-02T07:31:00.938Z: matching ASIC offer implementation 0a53002ddb66de572dbe6cbf82ba6c5881198ca1 is committed/pushed.458 tests/59 actual browser checks remain verified; no uncommitted code or owned background job. Exact context percentage is unavailable; standing apparent-pressure checkpoint. HANDOFF.json resumes pre-acceptance withdrawal/final expiry/reissue and remaining ordinary notices. No parent completion count change.
