@@ -69,3 +69,5 @@ STATE.md / ROADMAP.md / HANDOFF and machine routing paused consistently. Impleme
 2026-11-02T08:24:28.608322+00:00 — STATE.md/ROADMAP.md07-04 ordinary notices verified:487 tests/65 browser checks,18 ordinary and4 support-team captures, identical340 backend/eight-script source. Source/notice/outbox atomicity and bounded lost-process recovery implemented; no real mail or parent count change.
 
 2026-11-02T08:28:40.860376+00:00 — Continued after pushed notification implementationbfa003a56d651e663689f97dcdbecfdb977e1b11. Linked material-revision RED: current protected withdrawal works, revised fresh form missing404 versus200; GSD RED_EVIDENCE_OK. STATE.md/ROADMAP.md remain active, no parent count change.
+
+2026-11-02T08:39:55.241769+00:00 — STATE.md/ROADMAP.md07-04 linked material revisions verified:497 tests/71 browser checks,20 ordinary captures, identical344 backend/eight-script source. Old scopes/approvals retained; new exact request/quotation/review/offer/acceptance tested. Next shared recovery/replay gap remains open; no parent count change or real effect.

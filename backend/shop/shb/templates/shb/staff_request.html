@@ -2,6 +2,7 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Review ASIC support request — SLL</title></head>
 <body><main><p><a href="/staff/quotation-requests/">Assigned requests</a></p><h1>Review ASIC support request</h1>
 <p>Reference: {{ record.pk }}</p><p>State: {{ record.state }}</p>
+<p>Request revision: {{ record.revision }}.</p>{% if record.payload.replaces_request_id %}<p>Revises withdrawn request {{ record.payload.replaces_request_id }}. This request requires its own matching review and offer.</p>{% endif %}
 <p>Explicit local synthetic workflow. Technical readiness does not issue a payable offer or authorize payment. Ordinary request and offer notices are queued for durable fake capture by the existing worker; no actual email is sent.</p>
 <h2>Requested assistance</h2><p>{{ details.assistance }}</p><p>SLL IP/project reference: {{ known_project_reference|default:details.project_reference }}</p><p>{{ details.design_context }}</p><p>{{ details.timing }}</p>
 <h2>Purchasing company and contact</h2><dl><dt>Company Name</dt><dd>{{ details.company_name }}</dd><dt>Address</dt><dd>{{ details.billing_address }}, {{ details.city }} {{ details.region }} {{ details.postal_code }} {{ details.country }}</dd><dt>Company Phone</dt><dd>{{ details.company_phone }}</dd><dt>Contact Person</dt><dd>{{ details.contact_name }}</dd><dt>Contact Phone Number</dt><dd>{{ details.contact_phone }}</dd><dt>Contact Email</dt><dd>{{ details.contact_email }}</dd></dl>

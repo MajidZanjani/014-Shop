@@ -6,11 +6,11 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
 
-**Current plan:** 07-04 — ASIC closing/reissue and ordinary notices verified; linked material changed-work request revisions remain open.
+**Current plan:** 07-04 — archived ASIC closing/reissue, ordinary notices and linked changed-work revisions verified locally; shared recovery/release qualification remains open.
 
-**Execution status:** in progress — linked material ASIC request revisions are under test-first implementation; prior closing/reissue/notices verified at487 tests/65 browser checks; new revision work and actual qualification remain pending.
+**Execution status:** in progress — ASIC closing/reissue, ordinary notices and linked material request revisions verified;497 tests/71 browser checks and20 ordinary captures pass; SHB recovery/replay coverage and actual qualifications remain open.
 
-**Next implementation task:** Implement a linked new ASIC request revision after deliberate unpaid withdrawal, with fresh form/eligibility/price/coupon validation, assigned technical review and explicit new offer acceptance.
+**Next implementation task:** Extend existing12-01 SHB recovery/replay assessment and local PostgreSQL tests for closing intents, ordinary notice delivery/capture and replacement lineage; preserve invitation clocks, coupon outcomes and original paid-order references before reopening.
 
 ## What this is
 
@@ -85,3 +85,5 @@ Resume 2026-11-02T07:42:05.168551+00:00: explicit user $gsd-resume-work lifts th
 Verified continuation 2026-11-02T08:03:47.200665+00:00:475 tests/65 actual browser checks and identical336-backend/eight-script source. Archived pre-acceptance ASIC withdrawal/final expiry and fresh-reviewed unchanged-scope reissue complete locally; report docs/build/shb-asic-closing-2026-11-02.md. Ordinary notices/linked material revisions/actual gates remain open; no parent count change.
 
 Verified 2026-11-02T08:24:28.608322+00:00:487 tests/65 browser checks, identical340 backend/eight-script hashes;18 ordinary notice captures through the existing worker, no real email. Report docs/build/shb-ordinary-notices-2026-11-02.md. Linked material revisions/actual gates remain open.
+
+Verified 2026-11-02T08:39:55.241769+00:00: linked material revisions complete locally;497 tests/71 browser checks,20 ordinary and4 support-team fake captures, identical344 backend/eight-script hashes. Report docs/build/shb-material-revisions-2026-11-02.md. Next shared recovery/replay coverage and actual qualifications remain open; no parent count change.

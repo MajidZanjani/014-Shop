@@ -1,7 +1,9 @@
 """Changed ASIC work becomes a new linked request with fresh review and acceptance."""
 import uuid
+from concurrent.futures import ThreadPoolExecutor
+from threading import Barrier
 from unittest.mock import patch
-from django.db import DatabaseError, transaction
+from django.db import DatabaseError, connections, transaction
 from django.test import TransactionTestCase, override_settings
 from . import offer_tests
 from .tests import form_data
@@ -142,3 +144,20 @@ class RevisionTests(TransactionTestCase):
                 (SupportRequest,link.request_id,{'revision':5}),(SupportRequest,self.row.pk,{'revision':5})]:
             with self.subTest(model=model.__name__),self.assertRaises(DatabaseError),transaction.atomic():
                 model.objects.filter(pk=pk).update(**changes)
+
+    def test_parallel_changed_requests_have_one_child_and_one_new_acknowledgement(self):
+        from .tests import ShopClient
+        from .models import RequestReplacement,TransactionNotice
+        self.withdraw();self.revision_data=form_data(variant='shb-asic-25h',quantity='3',assistance='Changed SLL IP objective.',
+            accept_terms='',privacy_acknowledged='on',discount_code='',action='submit')
+        cookies=self.client.cookies.copy();barrier=Barrier(2)
+        with override_settings(**self.customer_settings):
+            def submit(_):
+                try:
+                    client=ShopClient();client.cookies=cookies.copy();barrier.wait(timeout=5)
+                    return client.post(self.revision_path,dict(self.revision_data,request_id=str(uuid.uuid4())),secure=True).status_code
+                finally:connections.close_all()
+            with ThreadPoolExecutor(max_workers=2) as pool:statuses=list(pool.map(submit,range(2)))
+        self.assertEqual(sorted(statuses),[200,409])
+        self.assertEqual(RequestReplacement.objects.count(),1)
+        self.assertEqual(TransactionNotice.objects.filter(event='request-received').count(),2)

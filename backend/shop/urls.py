@@ -27,6 +27,7 @@ urlpatterns = [
     path('purchase/simple/',shb.shop),
     path('purchase/shb/<uuid:identity>/',shb.payment_page),
     path('purchase/shb/offer/<uuid:identity>/',shb.offer_page),
+    path('purchase/shb/revise/<uuid:identity>/',shb.revised_request_page),
     path('api/v1/catalog/',shb.catalog_json),path('api/v1/shb/catalog/',shb.catalog_json),
     path('shop/assets/shop.css',shb.stylesheet),
     path('shop/private/index.html',shb.static_asset),

@@ -13,6 +13,8 @@ from .private_release import read_asset,ENTRY
 
 
 def page(request,**context):
+    if getattr(request,'shb_replacement',None) is not None:
+        context.update(revised_request=True,form_action=request.path)
     response=TemplateResponse(request,'shb/shop.html',context,status=context.pop('status',200))
     response['Content-Security-Policy']="default-src 'none'; style-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'"
     response['Cache-Control']='no-store';response['Referrer-Policy']='no-referrer'
@@ -58,7 +60,7 @@ def shop(request):
     fixture=getattr(settings,'SHB_SYNTHETIC_FIXTURE',False) and settings.SHOP_ENV in ('local','synthetic')
     if request.method=='GET':
         if request.path=='/shop/' and getattr(settings,'SHB_PRIVATE_RELEASE_ROOT',None):return static_asset(request)
-        variant=request.GET.get('variant','shb-fpga-10h');quantity=request.GET.get('quantity','1')
+        variant=request.GET.get('variant','shb-asic-25h' if getattr(request,'shb_replacement',None) else 'shb-fpga-10h');quantity=request.GET.get('quantity','1')
         if (set(request.GET)-{'variant','quantity'} or variant not in ('shb-fpga-10h','shb-asic-25h')
                 or not 1<=len(quantity)<=10 or not quantity.isascii() or not quantity.isdecimal() or not 1<=int(quantity)<=catalog.MAX_QUANTITY):return denied(400)
         return page(request,form=ShopForm(initial={'variant':variant,'quantity':quantity}),request_id=str(uuid.uuid4()),fixture=fixture,is_asic=variant=='shb-asic-25h',asic_fields=('assistance','project_reference','design_context','timing'))
@@ -73,6 +75,8 @@ def shop(request):
         'is_asic':request.POST.get('variant')=='shb-asic-25h','asic_fields':('assistance','project_reference','design_context','timing')}
     if not form.is_valid():return page(request,**context,status=422)
     data=form.cleaned_data
+    if getattr(request,'shb_replacement',None) and (data['variant']!='shb-asic-25h' or action=='checkout'):
+        return page(request,**context,error='A revised ASIC request requires fresh technical review and offer acceptance.',status=422)
     if data['company_name'].strip()!=invitation.company_name:
         return page(request,**context,error='Contact SLL to clarify a different purchasing company.',status=409)
     if data['variant']=='shb-fpga-10h' and not invitation.fpga_eligible or data['variant']=='shb-asic-25h' and not invitation.asic_allowed:
@@ -80,7 +84,7 @@ def shop(request):
     try:
         if action=='submit':
             if not fixture:raise services.ShbError('Live request intake awaits its approved privacy and operational configuration.',503)
-            row=services.submit_asic(request,data,request.POST.get('request_id'))
+            row=services.submit_asic(request,data,request.POST.get('request_id'),replacement=getattr(request,'shb_replacement',None))
             from .models import DiscountReservation
             hold=DiscountReservation.objects.filter(request=row).first()
             message=('The unused discount reservation was released.' if hold and hold.state=='released'
@@ -191,8 +195,8 @@ def offer_page(request,identity):
             root=getattr(settings,'LOCAL_CHECKOUT_ARCHIVE_ROOT',None)
             if not root: raise services.ShbError('recovery_evidence_unavailable',503)
             with PreparedArchive(Path(root)) as archive:
-                lifecycle.customer_withdraw(request,identity,request.POST.get('request_id'),archive)
-            context['withdrawn']=True
+                closed=lifecycle.customer_withdraw(request,identity,request.POST.get('request_id'),archive)
+            context.update(withdrawn=True,revision_path='/purchase/shb/revise/'+str(closed.pk)+'/')
             response=TemplateResponse(request,'shb/offer.html',context,status=200)
             response['Cache-Control']='no-store';response['Referrer-Policy']='no-referrer'
             response['Content-Security-Policy']="default-src 'none'; style-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'"
@@ -228,3 +232,16 @@ def offer_page(request,identity):
     response['Content-Security-Policy']="default-src 'none'; style-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'"
     response['Cache-Control']='no-store';response['Referrer-Policy']='no-referrer'
     return response
+
+
+@require_http_methods(['GET','POST'])
+@sensitive_post_parameters()
+def revised_request_page(request,identity):
+    from . import revisions
+    from django.db import transaction
+    if request.GET:return denied(400)
+    try:
+        with transaction.atomic(durable=True):revisions.authorized(request,identity,lock=True)
+    except services.ShbError as error:return denied(error.status)
+    request.shb_replacement=identity
+    return shop(request)

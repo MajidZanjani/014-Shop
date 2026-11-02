@@ -289,3 +289,17 @@ class TransactionNoticeCapture(models.Model):
     class Meta:
         constraints = [models.CheckConstraint(condition=models.Q(sha256__regex=r'^[a-f0-9]{64}$') &
             ~models.Q(archive_receipt={}) & ~models.Q(notice_archive_receipt={}), name='shb_transaction_capture_archived')]
+
+
+class RequestReplacement(models.Model):
+    """Append-only link between a withdrawn request and its freshly captured revision."""
+    id = models.UUIDField(primary_key=True, editable=False)
+    previous = models.OneToOneField(SupportRequest, on_delete=models.PROTECT, related_name='replacement_child')
+    request = models.OneToOneField(SupportRequest, on_delete=models.PROTECT, related_name='replacement_origin')
+    closure = models.OneToOneField(RequestClosure, on_delete=models.PROTECT)
+    invitation = models.ForeignKey(Invitation, on_delete=models.PROTECT)
+    session_digest = models.CharField(max_length=64, editable=False)
+
+    class Meta:
+        constraints = [models.CheckConstraint(condition=~models.Q(previous=models.F('request')) &
+            models.Q(session_digest__regex=r'^[a-f0-9]{64}$'), name='shb_replacement_distinct_request')]

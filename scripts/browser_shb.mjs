@@ -184,6 +184,14 @@ async function main(){
       await submit('button[name=action][value=withdraw]');
       require(lastStatus===200&&escaped===0&&await evaluate('document.body.innerText.includes("have been withdrawn")&&!document.querySelector("[name=company_name]")&&!document.querySelector("button[value=checkout]")'));checks++;
       require(await evaluate('document.documentElement.scrollWidth<=document.documentElement.clientWidth&&localStorage.length===0&&sessionStorage.length===0'));checks++;
+      stage=javascript?'javascript-asic-revision':'no-javascript-asic-revision';
+      const revisionPath=await evaluate('[...document.querySelectorAll("a")].map(a=>a.getAttribute("href")).find(path=>path?.startsWith("/purchase/shb/revise/"))');
+      await go(config.origin+revisionPath);
+      require(lastStatus===200&&await evaluate('document.body.innerText.includes("Revised ASIC request")&&document.querySelector("[name=company_name]").value===""&&!document.querySelector("select[name=variant]")'));checks++;
+      await fill();await type('[name=quantity]','3');await type('[name=assistance]','Changed SLL IP integration objective.');
+      await submit('button[name=action][value=submit]');
+      require(lastStatus===200&&await evaluate('document.body.innerText.includes("request revision 2")&&document.body.innerText.includes("75 requested hours")&&!document.querySelector("button[value=checkout]")'));checks++;
+      require(await evaluate('document.documentElement.scrollWidth<=document.documentElement.clientWidth&&localStorage.length===0&&sessionStorage.length===0'));checks++;
       stage=javascript?'javascript-fpga-cancel':'no-javascript-fpga-cancel';
       await go(config.origin+'/purchase/simple/?variant=shb-fpga-10h&quantity=1');
       await until('!!document.querySelector("[name=company_name]")');await fill();
@@ -210,7 +218,7 @@ async function main(){
       require(await evaluate('document.documentElement.scrollWidth<=document.documentElement.clientWidth&&localStorage.length===0&&sessionStorage.length===0'));checks++;
       await cdp.send('Target.disposeBrowserContext',{browserContextId});
     }
-    console.log(JSON.stringify({status:'SHB_BROWSER_PASS',checks,modes:2,pendingDocumentLoads,browser:version,node:process.versions.node,evidence_class:'local-synthetic-browser',fpga:'accepted-30-hours',asic:'requested-and-accepted-50-hours',payment:'synthetic-captured-once',paidOrder:'recorded-once-per-purchase',closure:'safe-before-dispatch',withdrawal:'deliberate-unaccepted-asic-offer'}));
+    console.log(JSON.stringify({status:'SHB_BROWSER_PASS',checks,modes:2,pendingDocumentLoads,browser:version,node:process.versions.node,evidence_class:'local-synthetic-browser',fpga:'accepted-30-hours',asic:'requested-and-accepted-50-hours',payment:'synthetic-captured-once',paidOrder:'recorded-once-per-purchase',closure:'safe-before-dispatch',withdrawal:'deliberate-unaccepted-asic-offer',revision:'linked-unpaid-75-hours'}));
   }catch(error){
     if(config.evidence&&diagnose){try{await writeFile(join(config.evidence,'browser-failure.json'),JSON.stringify(await diagnose()),{flag:'wx',mode:0o600});}catch{}}
     throw error;

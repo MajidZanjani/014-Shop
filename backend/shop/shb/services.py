@@ -23,7 +23,7 @@ def _previous(invitation,request_id,fingerprint):
     return previous
 
 
-def submit_asic(request,cleaned,request_id):
+def submit_asic(request,cleaned,request_id,*,replacement=None):
     invitations.fixture_guard()  # Actual intake/privacy/operational adoption is pending.
     try:request_id=uuid.UUID(str(request_id))
     except (TypeError,ValueError,AttributeError):raise ShbError('invalid_request',422) from None
@@ -39,8 +39,15 @@ def submit_asic(request,cleaned,request_id):
         if row is None:raise ShbError('invitation_required',403)
         if not row.asic_allowed or cleaned['variant']!='shb-asic-25h':raise ShbError('asic_request_required',422)
         if cleaned['company_name'].strip()!=row.company_name:raise ShbError('company_clarification_required')
+        prior=None
+        if replacement is not None:
+            from . import revisions
+            _,prior=revisions.authorized(request,replacement,lock=True)
         previous=_previous(row,request_id,fingerprint)
-        if previous:return previous
+        if previous:
+            if previous.payload.get('replaces_closure_id')!=(str(prior.pk) if prior else None):raise ShbError('request_conflict')
+            return previous
+        if prior:revisions.validate(row,prior,cleaned)
         claim=discounts.claim(row,cleaned['variant'],cleaned['discount_code']) if cleaned.get('discount_code') else None
         purchase=catalog.quote(cleaned['variant'],cleaned['quantity'],offer=catalog.synthetic_offer(),
             discount_bps=claim[2]['percentage_bps'] if claim else 0)
@@ -50,6 +57,9 @@ def submit_asic(request,cleaned,request_id):
             'known_project_reference':row.project_reference,'source_sha256':catalog.CATALOG['source_sha256'],
             'intake_privacy_revision':'synthetic-shb-privacy-v1','purchase_acceptance':False,
             'financial_confirmation':False,'effects_authorized':False}
+        revision=prior.request.revision+1 if prior else 1
+        if prior:payload.update(request_revision=revision,replaces_request_id=str(prior.request_id),
+            replaces_closure_id=str(prior.pk),replaces_request_sha256=prior.request.sha256)
         encoded=catalog.digest(payload)
         cart,_=DraftCart.objects.get_or_create(owner=row.customer)
         cart=DraftCart.objects.select_for_update().get(pk=cart.pk)
@@ -59,8 +69,9 @@ def submit_asic(request,cleaned,request_id):
             catalog_revision=catalog.CATALOG['revision'],lines=[purchase],
             evaluation={'release':'shb-1.1','evidence_class':'local-synthetic','payable':False})
         quotation=QuotationRequest.objects.create(cart=cart,snapshot=snapshot,request_id=request_id)
-        saved=SupportRequest.objects.create(invitation=row,quotation=quotation,request_id=request_id,payload=payload,sha256=encoded)
+        saved=SupportRequest.objects.create(invitation=row,quotation=quotation,request_id=request_id,payload=payload,sha256=encoded,revision=revision)
         if claim:discounts.reserve(saved,claim)
+        if prior:revisions.link(request,prior,saved)
         from .transaction_mail import queue
         queue('request-received',saved)
         return saved

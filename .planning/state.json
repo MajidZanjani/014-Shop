@@ -76,9 +76,9 @@
     }
   ],
   "next": {
-    "command": "$gsd-execute-phase 07",
-    "label": "Continue linked material request revisions",
-    "reason": "Implement a linked new ASIC request revision after deliberate unpaid withdrawal, with fresh form/eligibility/price/coupon validation, assigned technical review and explicit new offer acceptance."
+    "command": "$gsd-execute-phase 12",
+    "label": "Extend SHB recovery/replay coverage",
+    "reason": "Extend existing12-01 SHB recovery/replay assessment and local PostgreSQL tests for closing intents, ordinary notice delivery/capture and replacement lineage; preserve invitation clocks, coupon outcomes and original paid-order references before reopening."
   },
-  "updated_at": "2026-11-02T08:28:40.860376+00:00"
+  "updated_at": "2026-11-02T08:39:55.241769+00:00"
 }
