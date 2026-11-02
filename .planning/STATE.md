@@ -8,6 +8,7 @@ current_task: 1
 status: active
 last_updated: "2026-11-02T13:05:00+00:00"
 last_activity: 2026-11-02
+state_head: b3a729c6b956eb56f4bb1ba5c902e09aaf3d2a64
 progress:
   total_phases: 14
   completed_phases: 1

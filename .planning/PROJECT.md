@@ -10,7 +10,7 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Execution status:** active — verified continuation after resume;605 tests/147 browser checks retained with the new discount issuance surface added; actual commercial/provider/mail/host/independent prerequisites remain closed.
 
-**Next implementation task:** Normal pinned Nix/source/runtime/native/licence/OCI/CI and actual commercial/provider/refund/tax/mail/host/ingress/database/human/independent custody/post-backup/transport/restore/complete-loss qualification remain open; the authorized independent off-host runner is unassigned. Continue existing documented local follow-ups once prerequisites arrive.
+**Next implementation task:** Normal pinned Nix/source/runtime/native/licence/OCI/CI and actual commercial/provider/refund/tax/mail/host/ingress/database/human/independent custody/post-backup/transport/restore/complete-loss qualification remain open; the authorized independent off-host runner is unassigned. Continue existing documented local follow-ups once prerequisites arrive; do not rerun unchanged failed Nix build or weaken retained tool pins.
 
 ## What this is
 
