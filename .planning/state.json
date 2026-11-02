@@ -76,9 +76,9 @@
     }
   ],
   "next": {
-    "command": "$gsd-resume-work",
-    "label": "Resume protected SHB issuance and discount administration",
-    "reason": "After explicit resume, inspect existing invitation/discount fixture issuance and staff/operator ownership patterns, then implement protected invitation issuance/reissue with explicit eligibility/issuance scope and safe one-time bearer handling; continue scoped discount administration afterward. Do not treat the revocation assignment or form-entered contact as issuing/commercial authority."
+    "command": "$gsd-execute-phase 6",
+    "label": "Continue protected invitation issuance/reissue",
+    "reason": "Implement protected synthetic invitation issuance/reissue from explicitly assigned eligibility scopes, one-time bearer response, archived immutable audit and controlled retries; then continue scoped discount administration. No issuance authority follows from revocation grants or form-entered company/contact."
   },
-  "updated_at": "2026-11-02T11:24:23.042Z"
+  "updated_at": "2026-11-02T11:30:38.977387+00:00"
 }

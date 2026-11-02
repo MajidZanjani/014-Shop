@@ -5,9 +5,8 @@ current_phase: 6
 current_phase_name: Invitation scope, verified resources and staff MFA
 current_plan: 1
 current_task: 1
-status: paused
-paused_at: "2026-11-02T11:24:23.042Z"
-last_updated: "2026-11-02T11:24:23.042Z"
+status: in_progress
+last_updated: "2026-11-02T11:30:38.977387+00:00"
 last_activity: 2026-11-02
 state_head: 175c3ce5f958c2a04229568e1863486c3d88a247
 progress:
@@ -28,9 +27,9 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Current plan:** 06-01 — protected staff invitation revocation and recoverable audit verified locally; remaining administration/actual qualification open.
 
-**Execution status:** paused — standing context-pressure checkpoint after verified/pushed invitation revocation; 543 tests/123 browser checks retained; remaining local issuance/discount administration and actual gates remain open.
+**Execution status:** in progress — resumed06-01 protected invitation issuance/reissue with separate customer/mode scope; scoped discount administration follows; actual qualification remains open.
 
-**Next implementation task:** After explicit resume, inspect existing invitation/discount fixture issuance and staff/operator ownership patterns, then implement protected invitation issuance/reissue with explicit eligibility/issuance scope and safe one-time bearer handling; continue scoped discount administration afterward. Do not treat the revocation assignment or form-entered contact as issuing/commercial authority.
+**Next implementation task:** Implement protected synthetic invitation issuance/reissue from explicitly assigned eligibility scopes, one-time bearer response, archived immutable audit and controlled retries; then continue scoped discount administration. No issuance authority follows from revocation grants or form-entered company/contact.
 
 ## Verified local scope
 
@@ -52,10 +51,10 @@ No .env, real credentials, actual bank/mail/storage/protected-host/DNS/TLS opera
 
 ## Session Continuity
 
-Last session: 2026-11-02T11:24:23.042Z
-Stopped at: Standing conditional pause for apparent context pressure at verified/pushed implementation 175c3ce5f958c2a04229568e1863486c3d88a247. No unfinished code, current test failure or owned job. Exact usage percentage is unavailable; no measured90% or monitoring claim.
-Resume file: HANDOFF.json and phases/06-invitation-scope-and-staff-mfa/.continue-here.md.
+Last session: 2026-11-02T11:30:38.977387+00:00
+Stopped at: Explicit resume restored committed revocation evidence and began next issuance/reissue component inline through gsd-execute-phase. HANDOFF.json and06 checkpoint consumed.
+Resume file: HANDOFF.md
 
-Next: After explicit resume, inspect existing invitation/discount fixture issuance and staff/operator ownership patterns, then implement protected invitation issuance/reissue with explicit eligibility/issuance scope and safe one-time bearer handling; continue scoped discount administration afterward. Do not treat the revocation assignment or form-entered contact as issuing/commercial authority.
+Next: Implement protected synthetic invitation issuance/reissue from explicitly assigned eligibility scopes, one-time bearer response, archived immutable audit and controlled retries; then continue scoped discount administration. No issuance authority follows from revocation grants or form-entered company/contact.
 
-The user authorized apparent-pressure checkpoints when no exact percentage is supplied. Resume lifts this pause; continue inline with no new subagent request and no repeated company-input request. Existing actual gates remain closed.
+User authorizes continued local work and ordinary non-force origin/main pushes. Actual gates remain closed. Exact context percentage is unavailable.

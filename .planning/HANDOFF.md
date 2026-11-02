@@ -8,9 +8,9 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Current plan:** 06-01 — protected staff invitation revocation and recoverable audit verified locally; remaining administration/actual qualification open.
 
-**Execution status:** paused — standing context-pressure checkpoint after verified/pushed invitation revocation; 543 tests/123 browser checks retained; remaining local issuance/discount administration and actual gates remain open.
+**Execution status:** in progress — resumed06-01 protected invitation issuance/reissue with separate customer/mode scope; scoped discount administration follows; actual qualification remains open.
 
-**Next implementation task:** After explicit resume, inspect existing invitation/discount fixture issuance and staff/operator ownership patterns, then implement protected invitation issuance/reissue with explicit eligibility/issuance scope and safe one-time bearer handling; continue scoped discount administration afterward. Do not treat the revocation assignment or form-entered contact as issuing/commercial authority.
+**Next implementation task:** Implement protected synthetic invitation issuance/reissue from explicitly assigned eligibility scopes, one-time bearer response, archived immutable audit and controlled retries; then continue scoped discount administration. No issuance authority follows from revocation grants or form-entered company/contact.
 
 **Recorded implementation:** 175c3ce5f958c2a04229568e1863486c3d88a247
 
@@ -21,3 +21,5 @@ Remaining local work is protected invitation issuance/reissue and scoped discoun
 Actual normal pinned source/runtime/native/licence/OCI/CI and company/provider/mail/host/ingress/database/human/independent custody/post-backup/transport/restore/complete-loss qualification remain open. Off-host runner is unassigned. Company inputs arrive later in docs/decisions.md; no repeat request. No .env/unrelated cache access, protected resource/bank/mail/DNS/TLS operation or paid provision. No new parent SUMMARY/count change (11/42 records,1/14 documentary phases).
 
 All owned contexts completed; no async job or uncommitted implementation. The private9-file Astro release is unchanged; current private browser evidence is .scratch/shb-checkout-browser-ss83c58x. HANDOFF.json and the06 .continue-here.md are the resumption sources. This pause uses the standing apparent-context-pressure rule; exact usage is unavailable. Resume with $gsd-resume-work.
+
+Resume 2026-11-02T11:30:38.977387+00:00: explicit user resume lifts the context-pressure pause; continue06-01 issuance/reissue inline under the recorded local synthetic boundaries. STATE.md / ROADMAP.md remain operative.

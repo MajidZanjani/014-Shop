@@ -8,9 +8,9 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Current plan:** 06-01 — protected staff invitation revocation and recoverable audit verified locally; remaining administration/actual qualification open.
 
-**Execution status:** paused — standing context-pressure checkpoint after verified/pushed invitation revocation; 543 tests/123 browser checks retained; remaining local issuance/discount administration and actual gates remain open.
+**Execution status:** in progress — resumed06-01 protected invitation issuance/reissue with separate customer/mode scope; scoped discount administration follows; actual qualification remains open.
 
-**Next implementation task:** After explicit resume, inspect existing invitation/discount fixture issuance and staff/operator ownership patterns, then implement protected invitation issuance/reissue with explicit eligibility/issuance scope and safe one-time bearer handling; continue scoped discount administration afterward. Do not treat the revocation assignment or form-entered contact as issuing/commercial authority.
+**Next implementation task:** Implement protected synthetic invitation issuance/reissue from explicitly assigned eligibility scopes, one-time bearer response, archived immutable audit and controlled retries; then continue scoped discount administration. No issuance authority follows from revocation grants or form-entered company/contact.
 
 Stable T01–T14/folder IDs preserve history. Titles and active task scopes now follow SHB 1.1. Completed summary counts below are historical records, not engineering effort or new commercial acceptance.
 
@@ -21,7 +21,7 @@ Stable T01–T14/folder IDs preserve history. Titles and active task scopes now 
 - [ ] **Phase 3: Supporting Hours Bundle catalog and approved pricing**
 - [ ] **Phase 4: Shared SHB form, invitations and private storefront**
 - [ ] **Phase 5: SHB durable records, archives and outbox**
-- [ ] **Phase 6: Invitation scope, verified resources and staff MFA** — CURRENT DEVELOPMENT FOCUS; paused — standing context-pressure checkpoint after verified/pushed invitation revocation; 543 tests/123 browser checks retained; remaining local issuance/discount administration and actual gates remain open.
+- [ ] **Phase 6: Invitation scope, verified resources and staff MFA** — CURRENT DEVELOPMENT FOCUS; in progress — resumed06-01 protected invitation issuance/reissue with separate customer/mode scope; scoped discount administration follows; actual qualification remains open.
 - [ ] **Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts**
 - [ ] **Phase 8: Payment lifecycle and fault-injectable synthetic bank**
 - [ ] **Phase 9: Selected-bank sandbox and complete reconciliation**
@@ -95,7 +95,7 @@ Plans: [05-01-PLAN](phases/05-durable-records-and-outbox/05-01-PLAN.md)
 
 ### Phase 6: Invitation scope, verified resources and staff MFA
 
-Status: CURRENT DEVELOPMENT FOCUS; paused — standing context-pressure checkpoint after verified/pushed invitation revocation; 543 tests/123 browser checks retained; remaining local issuance/discount administration and actual gates remain open.
+Status: CURRENT DEVELOPMENT FOCUS; in progress — resumed06-01 protected invitation issuance/reissue with separate customer/mode scope; scoped discount administration follows; actual qualification remains open.
 
 Goal: Invitation authorizes current offers/new purchases only; no customer history or prefilled private data. Retain verified-contact access for old private resources and MFA/recent verification/resource permissions for every staff route.
 
@@ -213,7 +213,7 @@ Plans: [14-01-PLAN](phases/14-shb-release-handover/14-01-PLAN.md)
 | 3. Supporting Hours Bundle catalog and approved pricing | 0/1 | In Progress | Pending actual revised evidence |
 | 4. Shared SHB form, invitations and private storefront | 0/1 | In Progress | Pending actual revised evidence |
 | 5. SHB durable records, archives and outbox | 0/1 | In Progress | Pending actual revised evidence |
-| 6. Invitation scope, verified resources and staff MFA | 0/1 | In Progress; CURRENT DEVELOPMENT FOCUS; paused — standing context-pressure checkpoint after verified/pushed invitation revocation; 543 tests/123 browser checks retained; remaining local issuance/discount administration and actual gates remain open. | Pending actual revised evidence |
+| 6. Invitation scope, verified resources and staff MFA | 0/1 | In Progress; CURRENT DEVELOPMENT FOCUS; in progress — resumed06-01 protected invitation issuance/reissue with separate customer/mode scope; scoped discount administration follows; actual qualification remains open. | Pending actual revised evidence |
 | 7. FPGA checkout, ASIC reviewed offers and scoped discounts | 1/4 | In Progress | Pending actual revised evidence |
 | 8. Payment lifecycle and fault-injectable synthetic bank | 0/3 | In Progress | Pending actual revised evidence |
 | 9. Selected-bank sandbox and complete reconciliation | 0/1 | Pending | Pending actual revised evidence |
@@ -274,3 +274,5 @@ Continuation 2026-11-02T10:49:10.181609+00:00: existing06-01 staff invitation re
 Verified06-01 continuation 2026-11-02T11:16:44.495073+00:00: protected invitation revocation and archived audit, 17 new cases within543 tests/123 browser checks; identical 357 backend/eight-script hashes. Exact commands/results/limits: docs/build/shb-invitation-revocation-2026-11-02.md. Existing purchase/coupon/review and original invitation clocks retained; remaining local issuance/discount administration and actual gates remain open. No parent SUMMARY/count change or actual external operation.
 
 Context checkpoint 2026-11-02T11:24:23.042Z: verified revocation implementation 175c3ce5f958c2a04229568e1863486c3d88a247 is pushed; 543 tests/123 browser checks with matching357 backend/eight-script hashes. Apparent working-context pressure; exact percentage is unavailable. HANDOFF.json and the06 checkpoint save remaining local issuance/discount work and actual gates. This uses the standing conditional pause authorization, not a measured threshold.
+
+Resume 2026-11-02T11:30:38.977387+00:00: explicit user resume lifts the context-pressure pause; continue06-01 issuance/reissue inline under the recorded local synthetic boundaries. STATE.md / ROADMAP.md remain operative.

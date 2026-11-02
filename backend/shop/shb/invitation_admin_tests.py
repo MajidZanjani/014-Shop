@@ -43,6 +43,12 @@ class InvitationAdminTests(TransactionTestCase):
         self.assertEqual(response.status_code,200)
         self.assertTrue(b'Assigned invitations' in response.content)
 
+    def test_revocation_assignment_does_not_grant_invitation_issuance(self):
+        response=self.browser.get('/staff/shb-invitation-scopes/')
+        self.assertEqual(response.status_code,200)
+        self.assertEqual(response.json()['scopes'],[])
+        self.untouched()
+
     def test_scoped_get_hides_bearer_digest_and_has_no_commercial_effects(self):
         response=self.browser.get('/staff/'+self.invite_route)
         self.assertEqual(response.status_code,200)

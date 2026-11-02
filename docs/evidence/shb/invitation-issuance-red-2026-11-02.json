@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "evidence_class": "local-synthetic-retained-tools",
+  "timestamp": "2026-11-02T11:31:52.101769+00:00",
+  "command": "python3 scripts/check_shb_retained.py --test-label shop.shb.invitation_admin_tests.InvitationAdminTests.test_revocation_assignment_does_not_grant_invitation_issuance",
+  "result": {
+    "tests": 1,
+    "failures": 1,
+    "errors": 0,
+    "assertion": "404 != 200"
+  },
+  "diagnostic_sha256": "4de774dd152eac4db0a928b8fd5693655e955e4278c482f067db4c18b27011a9",
+  "test_source_sha256": "f6961f2edfb0336df29ea07f9e06f1ab1ee27ef700f526f259818096bab150c1",
+  "actual_authority": false
+}
