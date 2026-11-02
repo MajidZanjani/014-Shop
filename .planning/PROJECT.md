@@ -6,11 +6,11 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
 
-**Current plan:** 12-01 — local SHB record assessment and replay coverage; actual independent recovery qualification remains open.
+**Current plan:** 12-01 — local SHB recovery assessment/replay verified; independent custody, post-backup completeness and off-host qualification remain open.
 
-**Execution status:** in progress — resumed inline; implementing local SHB recovery assessment for archived closing, notice and replacement records after verified497 tests/71 browser checks.
+**Execution status:** in progress — local recovery slice verified with511 tests/71 browser checks; actual independent recovery and shared runtime/release qualification remain pending.
 
-**Next implementation task:** Extend the existing local recovery release gate with read-only SHB archive/identity assessment and PostgreSQL replay tests; retain original invitation clocks, coupon outcomes and paid-order references.
+**Next implementation task:** Continue12-01 independent recovery qualification when the authorized off-host runner and scoped recovery custody/environment are assigned; preserve original clocks, coupon outcomes and paid-order references.
 
 ## What this is
 
@@ -91,3 +91,5 @@ Verified 2026-11-02T08:39:55.241769+00:00: linked material revisions complete lo
 Context checkpoint 2026-11-02T08:40:33.289Z: verified material-revision implementation2fb096adabfffd81565790ce17b0328d444f3ae0 and prior closing/notices slices are pushed.497 tests/71 browser checks,20 ordinary captures. Exact percentage unavailable; standing apparent-pressure checkpoint. HANDOFF.json records recovery/replay as next; actual gates and parent completion remain open.
 
 Resume 2026-11-02T08:55:38.002109+00:00: explicit user resume lifts the context checkpoint. Existing12-01 proceeds inline with synthetic fixtures and all actual qualification gates retained. HANDOFF.json consumed.
+
+Verified12-01 continuation 2026-11-02T09:19:40.853429+00:00: read-only SHB assessment and14 recovery/replay cases pass within511 tests/71 current browser checks, identical346 backend/eight-script hashes. docs/build/shb-recovery-2026-11-02.md records exact scope/commands and false completeness/actual qualification flags. Actual independent runner/custody/post-backup/restore gates remain open; no parent SUMMARY/count change.

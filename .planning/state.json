@@ -77,8 +77,8 @@
   ],
   "next": {
     "command": "$gsd-execute-phase 12",
-    "label": "Continue local SHB recovery assessment and replay",
-    "reason": "Extend the existing local recovery release gate with read-only SHB archive/identity assessment and PostgreSQL replay tests; retain original invitation clocks, coupon outcomes and paid-order references."
+    "label": "Independent recovery qualification (gated)",
+    "reason": "Continue12-01 independent recovery qualification when the authorized off-host runner and scoped recovery custody/environment are assigned; preserve original clocks, coupon outcomes and paid-order references."
   },
-  "updated_at": "2026-11-02T08:55:38.002109+00:00"
+  "updated_at": "2026-11-02T09:19:40.853429+00:00"
 }

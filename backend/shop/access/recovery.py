@@ -85,6 +85,11 @@ def local_recovery_operation(*,action,request_id,expected_database,basis_reset=N
                 raise AccessRecoveryError('recovery_changed')
             if action=='release' and drain_state(quarantined=epoch.quarantined)['unfinished_effects']:
                 raise AccessRecoveryError('recovery_effects_unfinished')
+            if action=='release':
+                from shop.shb.recovery import assess_locked
+                from shop.shb.errors import ShbError
+                try:assess_locked()
+                except ShbError:raise AccessRecoveryError('shb_recovery_evidence_required') from None
             counts={'customer_challenges':VerificationChallenge.objects.filter(consumed_at__isnull=True).update(consumed_at=timezone.now()),
                 'staff_challenges':StaffChallenge.objects.filter(consumed_at__isnull=True).update(consumed_at=timezone.now()),
                 'staff_credentials':StaffCredential.objects.update(generation=Func(function='gen_random_uuid',output_field=UUIDField()))}

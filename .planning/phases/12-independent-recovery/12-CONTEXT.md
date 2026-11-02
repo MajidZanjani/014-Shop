@@ -11,3 +11,5 @@ Existing October21 protection/security/financial/recovery requirements remain bi
 </decisions>
 
 Acceptance: SHB-28. Preserve original order references and prevent staff counting replay as a new sale. Five-minute WAL timeout, 35-day DB window, 15-minute RPO and four-hour operator-start restore are proposed targets; measure safe reopening separately.
+
+Local2026-11-02 continuation: the existing fixture release gate now has read-only SHB record/archive assessment and14 new PostgreSQL recovery/replay cases. Shared511 tests pass; full evidence and commands are in docs/build/shb-recovery-2026-11-02.md. This validates present facts and replay identities only. Every report retains false post-backup completeness/actual qualification/retry/reopening flags. Actual off-host runner/custody/reconstruction/complete financial windows remain open; no parent completion or new time-accounting scope.
