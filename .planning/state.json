@@ -77,8 +77,8 @@
   ],
   "next": {
     "command": "$gsd-execute-phase 6",
-    "label": "Continue protected invitation issuance/reissue",
-    "reason": "Implement protected synthetic invitation issuance/reissue from explicitly assigned eligibility scopes, one-time bearer response, archived immutable audit and controlled retries; then continue scoped discount administration. No issuance authority follows from revocation grants or form-entered company/contact."
+    "label": "Continue protected scoped discount administration",
+    "reason": "Continue scoped discount administration inline: add exact-scope recent-MFA issue/revoke controls with attributed archive, preserving existing accepted/reserved concessions and independent clocks. Inspect existing discount helpers and grant/reset patterns; keep real commercial authority closed."
   },
-  "updated_at": "2026-11-02T11:30:38.977387+00:00"
+  "updated_at": "2026-11-02T11:55:26.231440+00:00"
 }

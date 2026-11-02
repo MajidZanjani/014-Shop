@@ -8,9 +8,9 @@ One concise external-input register: docs/decisions.md. No new rehearsal feature
 
 ## Current local acceptance trace — 2026-11-02
 
-This table maps each current requirement to executed local component tests and the browser scenario. Exact totals, source hashes, commands and limits are in docs/build/shb-financial-handoff-2026-11-02.md and docs/build/shb-recovery-2026-11-02.md. Earlier financial/staff-browser reports retain their exact source-bound baselines. Current543 tests/123 browser checks and matching357-backend/eight-script records are owned by docs/build/shb-invitation-revocation-2026-11-02.md. A local pass does not mark a requirement or phase complete; actual bank/mail/host/runtime/recovery and attributable human qualification remain pending.
+This table maps each current requirement to executed local component tests and the browser scenario. Exact totals, source hashes, commands and limits are in docs/build/shb-financial-handoff-2026-11-02.md and docs/build/shb-recovery-2026-11-02.md. Earlier financial/staff-browser reports retain their exact source-bound baselines. Current565 tests/137 browser checks and matching365-backend/eight-script records are owned by docs/build/shb-invitation-issuance-2026-11-02.md. A local pass does not mark a requirement or phase complete; actual bank/mail/host/runtime/recovery and attributable human qualification remain pending.
 
-Test paths below are relative to backend/shop unless prefixed tests/ or scripts/. The shared lane executes the cited SHB/payment/access modules against owned PostgreSQL; the source/catalog lane executes tests/test_shb_*.py. Browser evidence now covers71 customer and52 staff native-form checks in both JS/no-JS modes at320px. Staff password/possession-code authentication, exact scope/CSRF denials, refund and attributed handoff are exercised in actual local Chromium. Attributable human verification remains pending.
+Test paths below are relative to backend/shop unless prefixed tests/ or scripts/. The shared lane executes the cited SHB/payment/access modules against owned PostgreSQL; the source/catalog lane executes tests/test_shb_*.py. Browser evidence now covers71 customer and66 staff native-form checks in both JS/no-JS modes at320px. Staff password/possession-code authentication, exact scope/CSRF denials, refund and attributed handoff are exercised in actual local Chromium. Attributable human verification remains pending.
 
 | ID | Executed local evidence | Remaining limit |
 |---|---|---|
@@ -24,10 +24,10 @@ Test paths below are relative to backend/shop unless prefixed tests/ or scripts/
 | SHB-08 | shb/offer_tests.py, revision_tests.py: unapproved/altered scope denied, fresh review for changed work | Actual technical/commercial attribution pending |
 | SHB-09 | shb/review_tests.py, lifecycle_tests.py, notification_tests.py: triage/closing/notices | Actual reviewer/mail operation pending |
 | SHB-10 | shb/tests.py and private release source tests: gated manifest files/deep routes/alternate host denial | Actual ingress/private origin/storage/host tests pending |
-| SHB-11 | shb/tests.py, checkout_tests.py and invitation_admin_tests.py; actual native staff revocation and two surviving-session denials | Actual ingress/session delivery qualification pending |
+| SHB-11 | shb/tests.py, checkout_tests.py and invitation_admin_tests.py, invitation_issuance_tests.py; actual native staff revocation/reissue and two surviving-session denials | Actual ingress/session delivery qualification pending |
 | SHB-12 | shb/tests.py and recovery_tests.py: calendar month-end/leap-year and original expiry | Actual trusted clock/runtime qualification pending |
 | SHB-13 | shb/tests.py, discount_tests.py: reusable entry and no GET reservation/request/mail effects | Actual ingress token redaction remains pending |
-| SHB-14 | shb/tests.py, offer_tests.py, checkout_tests.py, invitation_admin_tests.py: no-store/privacy/exact grants/no bearer or prefill | Actual logs, proxy/referrer and private-origin qualification pending |
+| SHB-14 | shb/tests.py, offer_tests.py, checkout_tests.py, invitation_admin_tests.py, invitation_issuance_tests.py: no-store/privacy/exact grants/no bearer or prefill | Actual logs, proxy/referrer and private-origin qualification pending |
 | SHB-15 | shb/discount_tests.py: customer/variant/expiry/revocation/stacking denial | Actual discount defaults/authority pending |
 | SHB-16 | shb/discount_tests.py and checkout_tests.py PostgreSQL concurrent one-use arbitration | Actual runtime/database qualification pending |
 | SHB-17 | shb/discount_tests.py and offer_tests.py: reserved concession survives claim expiry/review | Actual adopted clock/discount defaults pending |
@@ -40,8 +40,8 @@ Test paths below are relative to backend/shop unless prefixed tests/ or scripts/
 | SHB-24 | shb/financial_tests.py rejects usage fields; paid/refund flows preserve no ledger/fulfilment effects | Manual time tracking remains outside shop |
 | SHB-25 | shb/financial_tests.py: manual review, full synthetic refund, original order/coupon, attributed team communication; actual local staff Chromium in both script modes | Partial local scope: actual refund/chargeback/tax/provider policy pending |
 | SHB-26 | shb/paid_order_tests.py and financial_tests.py retain purchased order despite invite revocation | ASIC no-expiry/service terms need actual adoption |
-| SHB-27 | scripts/browser_shb.mjs:71 customer/52 staff native keyboard checks, two modes/320px; shb/financial_tests.py scope/MFA/CSRF | Attributable human UAT and actual deployment remain pending |
-| SHB-28 | shb/recovery_tests.py, financial_tests.py and invitation_admin_tests.py: retained archives, revocation clocks, corruption holds and same-reference replay | Partial local scope: full post-backup completeness, off-host restore/loss/custody pending |
+| SHB-27 | scripts/browser_shb.mjs:71 customer/66 staff native keyboard checks, two modes/320px; shb/financial_tests.py scope/MFA/CSRF | Attributable human UAT and actual deployment remain pending |
+| SHB-28 | shb/recovery_tests.py, financial_tests.py and invitation_admin_tests.py, invitation_issuance_tests.py: retained archives, revocation clocks, corruption holds and same-reference replay | Partial local scope: full post-backup completeness, off-host restore/loss/custody pending |
 | SHB-29 | shb/catalog/checkout/discount/financial tests: synthetic-only/null live policy and fixed denials | Actual commercial/provider inputs remain pending in docs/decisions.md |
 | SHB-30 | Existing protection inventory/allowlist/release review retained; local suite makes no host changes | Actual protected-host/runtime/exhaustion/complete-loss qualification pending |
 

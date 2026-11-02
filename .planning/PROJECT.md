@@ -6,11 +6,11 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
 
-**Current plan:** 06-01 — protected staff invitation revocation and recoverable audit verified locally; remaining administration/actual qualification open.
+**Current plan:** 06-01 — protected invitation issuance/reissue and revocation verified locally; scoped discount administration/actual qualification open.
 
-**Execution status:** in progress — resumed06-01 protected invitation issuance/reissue with separate customer/mode scope; scoped discount administration follows; actual qualification remains open.
+**Execution status:** in progress — protected issuance/reissue verified with565 tests/137 browser checks and identical source hashes; continue scoped discount administration; actual qualification remains open.
 
-**Next implementation task:** Implement protected synthetic invitation issuance/reissue from explicitly assigned eligibility scopes, one-time bearer response, archived immutable audit and controlled retries; then continue scoped discount administration. No issuance authority follows from revocation grants or form-entered company/contact.
+**Next implementation task:** Continue scoped discount administration inline: add exact-scope recent-MFA issue/revoke controls with attributed archive, preserving existing accepted/reserved concessions and independent clocks. Inspect existing discount helpers and grant/reset patterns; keep real commercial authority closed.
 
 ## What this is
 
@@ -113,3 +113,5 @@ Verified06-01 continuation 2026-11-02T11:16:44.495073+00:00: protected invitatio
 Context checkpoint 2026-11-02T11:24:23.042Z: verified revocation implementation 175c3ce5f958c2a04229568e1863486c3d88a247 is pushed; 543 tests/123 browser checks with matching357 backend/eight-script hashes. Apparent working-context pressure; exact percentage is unavailable. HANDOFF.json and the06 checkpoint save remaining local issuance/discount work and actual gates. This uses the standing conditional pause authorization, not a measured threshold.
 
 Resume 2026-11-02T11:30:38.977387+00:00: explicit user resume lifts the context-pressure pause; continue06-01 issuance/reissue inline under the recorded local synthetic boundaries. STATE.md / ROADMAP.md remain operative.
+
+2026-11-02T11:55:26.231440+00:00: Protected issuance/reissue passes565 tests/137 browser checks and exact373-source records. Digest-only prepared intents, one-time response, independent clocks, SQL atomic publication and selected restore are verified locally; docs/build/shb-invitation-issuance-2026-11-02.md. Continue scoped discounts with actual gates/counts unchanged.

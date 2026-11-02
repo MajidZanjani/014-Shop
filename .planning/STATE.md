@@ -6,7 +6,7 @@ current_phase_name: Invitation scope, verified resources and staff MFA
 current_plan: 1
 current_task: 1
 status: in_progress
-last_updated: "2026-11-02T11:30:38.977387+00:00"
+last_updated: "2026-11-02T11:55:26.231440+00:00"
 last_activity: 2026-11-02
 state_head: 175c3ce5f958c2a04229568e1863486c3d88a247
 progress:
@@ -25,25 +25,25 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only.
 
-**Current plan:** 06-01 — protected staff invitation revocation and recoverable audit verified locally; remaining administration/actual qualification open.
+**Current plan:** 06-01 — protected invitation issuance/reissue and revocation verified locally; scoped discount administration/actual qualification open.
 
-**Execution status:** in progress — resumed06-01 protected invitation issuance/reissue with separate customer/mode scope; scoped discount administration follows; actual qualification remains open.
+**Execution status:** in progress — protected issuance/reissue verified with565 tests/137 browser checks and identical source hashes; continue scoped discount administration; actual qualification remains open.
 
-**Next implementation task:** Implement protected synthetic invitation issuance/reissue from explicitly assigned eligibility scopes, one-time bearer response, archived immutable audit and controlled retries; then continue scoped discount administration. No issuance authority follows from revocation grants or form-entered company/contact.
+**Next implementation task:** Continue scoped discount administration inline: add exact-scope recent-MFA issue/revoke controls with attributed archive, preserving existing accepted/reserved concessions and independent clocks. Inspect existing discount helpers and grant/reset patterns; keep real commercial authority closed.
 
 ## Verified local scope
 
-Existing 06-01 now provides assigned staff invitation reads and native/JSON revocation through the existing staff application. Recent MFA, exact invitation grants, current recovery epoch and CSRF are required. Staff receive no bearer/digest, private history or contact prefill. Bounded reasons reject malformed/NUL input before archive/database work. An immutable attributed audit is archived before revocation; current MFA/grant/epoch are rechecked after I/O. SQL guards bind audit and timestamp atomically. Exact retries retain one event; archive failure keeps the invitation active.
+Protected staff issuance/reissue extends the existing application with immutable customer/eligibility/mode scopes and separate exact issuance grants. Native/JSON POST records one digest-only intent before archive I/O, then publishes the exact invitation atomically after current epoch/MFA/grant/eligibility rechecks. Only the creating response can show the32-random-byte bearer; GET and retries expose no bearer/digest. Interrupted/archive-failed publication retains the same original clocks/digest, with no active invitation until commit. Replacement requires an inactive exactly matching source and retains its original clocks/revocation. Issuing staff receive an exact revocation assignment for the new invitation. Reset/selected restore clear issue grants while retaining historical audits.
 
-The 17 invitation-administration tests cover access/GET/privacy, scope/cursor/MFA/CSRF, native forms, malformed fields, archive failure, grant/MFA changes during I/O, SQL immutable/atomic guards, concurrency, operator/reset, legacy revocation and recovery holds. Staff resets/selected restores clear the new mutable assignment, retaining history. Recovery validates retained audit bytes and original clocks; completeness/retry/actual reopening flags remain false. No automatic replacement, mail, price authority, order/coupon/time mutation or customer panel.
+Twenty-one issuance cases plus18 revocation cases pass, including concurrency, same-key commands, native CSRF, malformed input, archive/I/O authority faults, SQL immutable scope/publication, interrupted and omitted publication, selected restore and missing archive holds. No contact/company field establishes eligibility, no new commercial authority/mail, and no order/coupon/time mutation. Prior revocation behavior is retained.
 
-Final evidence: 543 tests, none failed/skipped (200 SHB, 95 access/recovery, 104 payment, 30 staff, 24 worker/statement-mail, 75 shared transactions/archive, nine source/catalog, six actual network-isolated adapters). Django check/migrations0023/0024/drift and planning checks pass. Actual Chromium151/Node24.15 passes 123 checks: 71 customer/52 staff, both JS/no-JS/320px. Two new invitations are revoked through actual native forms; pre-existing customer sessions then deny the next protected request. Existing 30-hour FPGA/50-hour ASIC purchases, unpaid75-hour revisions, refunds and manual handoffs preserve all original order/coupon/notice facts.
+Final565 tests pass with none failed/skipped:222 SHB,95 access/recovery,104 payment,30 staff,24 worker/statement-mail,75 shared transaction/archive, nine source/catalog and six actual network-isolated adapters. Django check/migrations0025/0026/drift pass. Actual Chromium151/Node24.15 passes137 checks:71 customer/66 staff, JS/no-JS/320px. Two native invitation replacements show a bearer once and hide it on retry; original customer sessions remain denied. Existing FPGA30-hour/ASIC50-hour purchases and unpaid75-hour revisions/refunds/manual handoffs retain original facts.
 
-Both final records bind identical 357 backend/eight-script hashes. Browser 88fba02799ceb5de1f3650598871aae724adf8a99a904da68da54203b6260c32.json and regression 36d8f0f157241d73cffee09cfee8e1611c56ae4d75a0b7d63e977b786f9bb9e6.json are in docs/evidence/shb/retained-tests. Full commands/RED/intermediate/final results and limits: docs/build/shb-invitation-revocation-2026-11-02.md. Current private browser evidence: .scratch/shb-checkout-browser-ss83c58x. The private9-file Astro release remains unchanged. All owned contexts completed; no async external job.
+Final browser11620cba8b55f8c1870147621b01ac8ab30cd31957c5e2a0a57043b6b9541a88.json and regression2028fdfde6332f22a78c601cf8215db7b642376763fca84fef10bb5048c0b29d.json bind identical365 backend/eight-script hashes. Focused48 record44338ca135f22f58d11d2a904a28a188bb80a88414646f37bef0a987860f4d96.json shares those bytes. Reports, intermediate failures and full commands: docs/build/shb-invitation-issuance-2026-11-02.md. Browser evidence: .scratch/shb-checkout-browser-rqbnhvgi. All owned contexts completed; no async job. The private9-file Astro release is unchanged.
 
 ## Remaining work and gates
 
-Protected staff invitation issuance/reissue and discount administration are still local follow-up work; only existing fixture helpers issue them today. Reuse existing staff/eligibility/secret-capture patterns. Do not turn a form-entered company/contact or the revocation assignment into new issuance/commercial authority. New invitations are deliberate separately attributed six-month issues, never renewal of original clocks. Actual company inputs arrive later through docs/decisions.md; no repeated request.
+Protected scoped discount issue/revoke administration remains local follow-up work; current discount helper issuance is fixture-only. Reuse exact grants and archive-before-state controls, preserving every held/accepted concession. Do not turn invitation eligibility or revocation assignments into discount/commercial authority. Invitation issuance/reissue is now verified only under the synthetic gate. Actual company inputs arrive later through docs/decisions.md; no repeated request.
 
 Normal pinned Nix/source/runtime/native/licence/OCI/CI and actual commercial/provider/refund/tax/mail/host/ingress/database/human/independent custody/post-backup/transport/restore/complete-loss qualification remain open. The authorized independent off-host runner is unassigned. The saved missing-dependency Nix failure was inspected, not rerun or weakened. No parent SUMMARY/FULL_PASS/count change: 11/42 summary records and1/14 documentary phases.
 
@@ -51,10 +51,10 @@ No .env, real credentials, actual bank/mail/storage/protected-host/DNS/TLS opera
 
 ## Session Continuity
 
-Last session: 2026-11-02T11:30:38.977387+00:00
-Stopped at: Explicit resume restored committed revocation evidence and began next issuance/reissue component inline through gsd-execute-phase. HANDOFF.json and06 checkpoint consumed.
+Last session: 2026-11-02T11:55:26.231440+00:00
+Stopped at: Verified565 tests/137 browser checks; preparing issuance implementation commit, then continue scoped discount administration inline. No owned process/job.
 Resume file: HANDOFF.md
 
-Next: Implement protected synthetic invitation issuance/reissue from explicitly assigned eligibility scopes, one-time bearer response, archived immutable audit and controlled retries; then continue scoped discount administration. No issuance authority follows from revocation grants or form-entered company/contact.
+Next: Continue scoped discount administration inline: add exact-scope recent-MFA issue/revoke controls with attributed archive, preserving existing accepted/reserved concessions and independent clocks. Inspect existing discount helpers and grant/reset patterns; keep real commercial authority closed.
 
-User authorizes continued local work and ordinary non-force origin/main pushes. Actual gates remain closed. Exact context percentage is unavailable.
+User authorizes local work and ordinary non-force origin/main pushes. Actual gates remain closed. Exact context percentage is unavailable.

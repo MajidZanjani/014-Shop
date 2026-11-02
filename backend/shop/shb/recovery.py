@@ -62,6 +62,11 @@ def _records(archive):
     for event in InvitationRevocation.objects.select_related('invitation').iterator():
         invitation_admin.retained(event,archive)
 
+    from . import invitation_issuance
+    from .models import InvitationIssue
+    for event in InvitationIssue.objects.select_related('scope','replaces','invitation').iterator():
+        invitation_issuance.retained(event,archive)
+
     for row in SupportRequest.objects.select_related('invitation', 'quotation__cart', 'quotation__snapshot').iterator():
         require(row.sha256 == catalog.digest(row.payload)
             and row.payload['invitation_id'] == str(row.invitation_id)
@@ -205,7 +210,10 @@ def _records(archive):
         'transaction_notices':len(expected_notices), 'transaction_captures':TransactionNoticeCapture.objects.count(),
         'held_transaction_notices':TransactionNoticeDelivery.objects.filter(state='held').count(),
         'uncertain_payments':SupportCheckout.objects.filter(checkout__syntheticcheckoutacceptance__attempt__state='uncertain').count(),
-        'invitation_revocations':InvitationRevocation.objects.count(), 'refund_reviews':RefundReview.objects.count(), 'refund_handoffs':RefundSupportHandoff.objects.count(),
+        'invitation_revocations':InvitationRevocation.objects.count(),
+        'invitation_issues':InvitationIssue.objects.count(),
+        'prepared_invitation_issues':InvitationIssue.objects.filter(invitation__isnull=True).count(),
+        'refund_reviews':RefundReview.objects.count(), 'refund_handoffs':RefundSupportHandoff.objects.count(),
         'uncertain_refunds':SyntheticOperationDispatch.objects.filter(operation__in=financial,operation__kind='refund',state='uncertain').count(),
     }
 
