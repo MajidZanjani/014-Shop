@@ -1,0 +1,130 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-11-02T10:03:35.210Z",
+  "release": "shb-1.1",
+  "phase": "10",
+  "phase_name": "Paid SHB orders, transaction notices and manual handoff",
+  "phase_dir": ".planning/phases/10-staged-delivery-and-support-ledger",
+  "plan": 5,
+  "task": 1,
+  "total_tasks": 1,
+  "status": "paused",
+  "pause_reason": "Explicit user $gsd-pause-work",
+  "implementation_commit": "d9bb925f93dd5ee6f3c58d2aa469ec4ba12ee4d1",
+  "implementation_push": "Verified ordinary origin/main push completed; status6081bc2 also pushed",
+  "completed_tasks": [
+    {
+      "id": 1,
+      "name": "10-05-01 financial/manual-handoff parent",
+      "status": "in_progress",
+      "progress": "Local implementation and15 financial cases are verified/pushed; full actual financial/release qualification remains open."
+    }
+  ],
+  "verified_slices": [
+    {
+      "commit": "5e0f72a",
+      "name": "12-01 local retained SHB recovery assessment and replay"
+    },
+    {
+      "commit": "d9bb925f93dd5ee6f3c58d2aa469ec4ba12ee4d1",
+      "name": "10-05 local manual refund review/financial linkage/support-team handoff and thirty-case local evidence trace"
+    }
+  ],
+  "remaining_tasks": [
+    {
+      "id": 1,
+      "name": "13-01 staff-browser verification, then remaining actual release qualifications",
+      "status": "not_started"
+    }
+  ],
+  "blockers": [
+    {
+      "description": "Normal pinned Nix/source/runtime/native/licence/OCI/CI qualification pending",
+      "type": "technical",
+      "workaround": "Separate verified retained tools for authorized local synthetic fixtures only"
+    },
+    {
+      "description": "Ordinary exec sandbox bwrap denies workspace traversal",
+      "type": "technical",
+      "workaround": "Narrow justified require_escalated local commands; no host permissions/resource changes"
+    },
+    {
+      "description": "Actual commercial/provider/mail/host/database/human/independent recovery prerequisites pending; off-host runner unassigned",
+      "type": "external",
+      "workaround": "Continue the unblocked local staff-browser lane after explicit resume; no repeated company-input request"
+    }
+  ],
+  "async_jobs": [],
+  "background_processes": [],
+  "human_actions_pending": [
+    {
+      "action": "Run $gsd-resume-work when ready",
+      "context": "Explicit user pause; no implementation before resume",
+      "blocking": true
+    },
+    {
+      "action": "Company inputs arrive later through docs/decisions.md",
+      "context": "Do not request again; local synthetic staff-browser work needs no real credentials",
+      "blocking": false
+    },
+    {
+      "action": "Assign scoped authorized independent off-host runner before actual drills",
+      "context": "Blocks independent runtime/restore/complete-loss qualification, not local browser work",
+      "blocking": false
+    }
+  ],
+  "decisions": [
+    {
+      "decision": "Keep manual refund checks/communication archived, attributable and separate from time accounting or actual approval",
+      "rationale": "Preserve original purchased-hours/coupon/money facts and the user\u2019s manual-support boundary",
+      "phase": "10"
+    },
+    {
+      "decision": "Retain lookup-only uncertain financial intents and validate their source review/result archives",
+      "rationale": "No blind second mutation or duplicate paid-order/notice identity",
+      "phase": "10"
+    },
+    {
+      "decision": "Next local qualification is staff browser coverage of existing native financial forms",
+      "rationale": "Current71 browser checks cover customers; staff forms currently have Django/CSRF coverage only",
+      "phase": "13"
+    }
+  ],
+  "blocking_constraints": [
+    {
+      "severity": "advisory",
+      "description": "Do not request a fresh CSRF token from quarantined staff session when testing stale-session denial; use cached token/session"
+    },
+    {
+      "severity": "advisory",
+      "description": "Deliberate corruption fixture controls only exact owned disposable-table triggers inside a transaction; preserve application guards"
+    }
+  ],
+  "uncommitted_files": [
+    " M .planning/ACTIVITY-LOG.md",
+    " M .planning/HANDOFF.md",
+    " M .planning/PROJECT.md",
+    " M .planning/PURCHASE-FLOW-RECONCILIATION.json",
+    " M .planning/ROADMAP.md",
+    " M .planning/STATE.md",
+    " M .planning/phases/10-staged-delivery-and-support-ledger/.continue-here.md",
+    " M .planning/state.json",
+    "?? .planning/HANDOFF.json",
+    "?? http_cache.sqlite"
+  ],
+  "uncommitted_files_elided": 0,
+  "initial_working_tree": [
+    "?? http_cache.sqlite"
+  ],
+  "next_action": "After explicit resume, continue existing13-01 by extending the existing owned synthetic demo/browser harness to exercise the new staff refund review and support-team handoff forms with recent MFA, exact order/refund scopes and CSRF; retain all actual qualification gates.",
+  "context_notes": "Explicit pause at verified/pushed local financial boundary.526 tests/71 customer checks,15 financial tests, identical350 backend/eight-script hashes; actual staff browser/human not qualified. No parent SUMMARY/count change. All owned contexts completed. Do not redo finished local10-05/12-01, infer actual approval, use .env or touch unrelated cache. New staff-browser work is the first unblocked13-01 slice after resume.",
+  "evidence_records": [
+    "docs/evidence/shb/retained-tests/fc078b95887c6023643d2e383867cee64b182aeecdb7d8d7f9d5245091f04658.json",
+    "docs/evidence/shb/retained-tests/17d1d92dceb18ae563b0064b380a3d54d23a6724710c5ba3bafec2e29a312c9a.json"
+  ],
+  "report": "docs/build/shb-financial-handoff-2026-11-02.md",
+  "false_completion_placeholders": [],
+  "context_usage_percent": null,
+  "working_tree_snapshot_at": "2026-11-02T10:03:35.321192+00:00",
+  "working_tree_snapshot_scope": "Measured after checkpoint artifacts and initial planning inventory refresh, before checkpoint commit. Listed planning edits are owned by this checkpoint; implementation is already committed/pushed. After checkpoint commit only unrelated http_cache.sqlite is expected to remain untracked."
+}

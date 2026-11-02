@@ -76,9 +76,9 @@
     }
   ],
   "next": {
-    "command": "$gsd-execute-phase 13",
-    "label": "Continue release qualification from current evidence trace (gated)",
-    "reason": "Continue13-01 release qualification from the refreshed thirty-case evidence trace when actual prerequisites are available; keep selected-bank, mail, host/runtime, human and independent recovery gates closed until qualified."
+    "command": "$gsd-resume-work",
+    "label": "Resume SHB staff-browser qualification",
+    "reason": "After explicit resume, continue existing13-01 by extending the existing owned synthetic demo/browser harness to exercise the new staff refund review and support-team handoff forms with recent MFA, exact order/refund scopes and CSRF; retain all actual qualification gates."
   },
-  "updated_at": "2026-11-02T09:58:26.996733+00:00"
+  "updated_at": "2026-11-02T10:03:35.210Z"
 }
