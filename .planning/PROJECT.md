@@ -6,11 +6,11 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
 
-**Current plan:** 06-01 — protected invitation issuance/reissue and scoped discount revocation verified locally; protected discount issuance/actual qualification open.
+**Current plan:** 06-01 — protected invitation issuance/reissue, scoped discount revocation and separate protected discount issuance verified locally; actual qualification remains open.
 
-**Execution status:** paused — explicit user gsd-pause-work after pushed protected invitation issuance/reissue and discount revocation;583 tests/147 browser checks retained; discount issuance and actual qualification remain open.
+**Execution status:** active — verified continuation after resume;605 tests/147 browser checks retained with the new discount issuance surface added; actual commercial/provider/mail/host/independent prerequisites remain closed.
 
-**Next implementation task:** After explicit resume, inspect existing discount fixture issuance and invitation intent/scope patterns, then implement protected discount issuance with separate explicit synthetic customer/variant/percentage/use-limit/claim-period authority and a durable digest-only intent/one-time code response. Preserve original clocks and held concessions; invitation/revocation grants and entered contact never establish commercial authority.
+**Next implementation task:** Normal pinned Nix/source/runtime/native/licence/OCI/CI and actual commercial/provider/refund/tax/mail/host/ingress/database/human/independent custody/post-backup/transport/restore/complete-loss qualification remain open; the authorized independent off-host runner is unassigned. Continue existing documented local follow-ups once prerequisites arrive.
 
 ## What this is
 
@@ -119,3 +119,7 @@ Resume 2026-11-02T11:30:38.977387+00:00: explicit user resume lifts the context-
 2026-11-02T12:14:30.619677+00:00: Protected scoped discount revocation passes583 tests/147 browser checks and exact380-source records. Held ASIC offer acceptance/payment retains the original concession; uncertainty remains held, and restore retains audit. docs/build/shb-discount-revocation-2026-11-02.md. Protected discount issuance remains next; actual gates/counts unchanged.
 
 Explicit pause 2026-11-02T12:16:14.551Z: user requested $gsd-pause-work after pushed implementation34c00196f5a9c0b3e43155927c2ee7ad561f800d.583 tests/147 browser checks and current380-source records retained; protected discount issuance remains next. STATE.md / ROADMAP.md / HANDOFF and machine routing paused consistently. No owned process/job or new completion count; exact context percentage unavailable.
+
+Resume 2026-11-02T12:35:00+00:00: explicit user $gsd-resume-work lifts the saved pause. HANDOFF.json and the06 .continue-here.md are consumed after confirming all referenced commits (4db2586,34c0019,bb3d603) are pushed. Continue06-01 inline under the recorded local synthetic boundaries.
+
+Verified protected discount issuance 2026-11-02T13:05:00+00:00: new DiscountIssuanceScope/DiscountIssueGrant/DiscountIssue models and migrations0029/0030, service, native/JSON views, templates, local-staff grant command, grant-reset wiring and recovery scan land locally;605 tests/147 browser checks and matching new source hashes. docs/build/shb-discount-issuance-2026-11-02.md. No parent SUMMARY/count change or actual commercial/mail/host/independent qualification.
