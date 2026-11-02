@@ -2,15 +2,15 @@
 
 Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](STATE.md) / [ROADMAP.md](ROADMAP.md).
 
-**Current development focus:** 13 — Thirty SHB acceptance cases and release verification.
+**Current development focus:** 6 — Invitation scope, verified resources and staff MFA.
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
 
-**Current plan:** 13-01 — local customer/staff financial browser acceptance verified; actual release qualification remains open.
+**Current plan:** 06-01 — assigned recent-MFA invitation revocation, archived audit and recovery retention; local slice in progress.
 
-**Execution status:** in progress — local staff-browser slice verified with526 tests/113 browser checks; actual source/runtime/provider/host/database/independent/human qualifications remain open.
+**Execution status:** in progress — existing06-01 protected invitation revocation in local synthetic implementation;526 tests/113 browser checks remain the verified baseline and actual gates stay open.
 
-**Next implementation task:** Continue existing13-01 actual release qualification when its approved source/runtime, commercial/provider/mail/host/database/human prerequisites and authorized independent runner are available; retain scoped gates and the single docs/decisions.md input register.
+**Next implementation task:** Implement protected staff invitation revocation through existing exact grants, native/JSON CSRF forms and archive/recovery controls; preserve original purchase/reconciliation facts and all actual qualification gates.
 
 ## What this is
 
@@ -105,3 +105,5 @@ Resume 2026-11-02T10:08:54.578045+00:00: explicit user $gsd-resume-work lifts th
 Verified13-01 continuation 2026-11-02T10:20:51.502698+00:00:113 actual local Chromium checks (71 customer/42 staff) and526 shared tests pass with identical350 backend/eight-script hashes. Existing native staff authentication, scope/CSRF denials, full synthetic refund and manual team handoff preserve original order/coupon/notice facts. Evidence: docs/build/shb-staff-browser-2026-11-02.md. The saved local browser action is complete; remaining actual prerequisites/runner are still pending. No parent SUMMARY/count change or external action.
 
 Recorded sync 2026-11-02T10:22:45.995398+00:00: existing13-01 staff-browser verification f06869f12e4e458e282509f388b37884461e21f6 is pushed to origin/main;526 tests/113 local browser checks remain the exact verified scope. Current STATE.md / ROADMAP.md and actual gates remain operative.
+
+Continuation 2026-11-02T10:49:10.181609+00:00: existing06-01 staff invitation revocation is unimplemented; continue inline with synthetic data. STATE.md / ROADMAP.md remain operative. No actual authority or parent completion change.

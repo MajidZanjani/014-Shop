@@ -2,15 +2,15 @@
 
 Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](STATE.md) / [ROADMAP.md](ROADMAP.md).
 
-**Current development focus:** 13 — Thirty SHB acceptance cases and release verification.
+**Current development focus:** 6 — Invitation scope, verified resources and staff MFA.
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
 
-**Current plan:** 13-01 — local customer/staff financial browser acceptance verified; actual release qualification remains open.
+**Current plan:** 06-01 — assigned recent-MFA invitation revocation, archived audit and recovery retention; local slice in progress.
 
-**Execution status:** in progress — local staff-browser slice verified with526 tests/113 browser checks; actual source/runtime/provider/host/database/independent/human qualifications remain open.
+**Execution status:** in progress — existing06-01 protected invitation revocation in local synthetic implementation;526 tests/113 browser checks remain the verified baseline and actual gates stay open.
 
-**Next implementation task:** Continue existing13-01 actual release qualification when its approved source/runtime, commercial/provider/mail/host/database/human prerequisites and authorized independent runner are available; retain scoped gates and the single docs/decisions.md input register.
+**Next implementation task:** Implement protected staff invitation revocation through existing exact grants, native/JSON CSRF forms and archive/recovery controls; preserve original purchase/reconciliation facts and all actual qualification gates.
 
 Stable T01–T14/folder IDs preserve history. Titles and active task scopes now follow SHB 1.1. Completed summary counts below are historical records, not engineering effort or new commercial acceptance.
 
@@ -21,14 +21,14 @@ Stable T01–T14/folder IDs preserve history. Titles and active task scopes now 
 - [ ] **Phase 3: Supporting Hours Bundle catalog and approved pricing**
 - [ ] **Phase 4: Shared SHB form, invitations and private storefront**
 - [ ] **Phase 5: SHB durable records, archives and outbox**
-- [ ] **Phase 6: Invitation scope, verified resources and staff MFA**
+- [ ] **Phase 6: Invitation scope, verified resources and staff MFA** — CURRENT DEVELOPMENT FOCUS; in progress — existing06-01 protected invitation revocation in local synthetic implementation;526 tests/113 browser checks remain the verified baseline and actual gates stay open.
 - [ ] **Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts**
 - [ ] **Phase 8: Payment lifecycle and fault-injectable synthetic bank**
 - [ ] **Phase 9: Selected-bank sandbox and complete reconciliation**
 - [ ] **Phase 10: Paid SHB orders, transaction notices and manual handoff**
 - [ ] **Phase 11: Private release delivery and protected-host qualification**
 - [ ] **Phase 12: Independent backup, restore and SHB reopening**
-- [ ] **Phase 13: Thirty SHB acceptance cases and release verification** — CURRENT DEVELOPMENT FOCUS; in progress — local staff-browser slice verified with526 tests/113 browser checks; actual source/runtime/provider/host/database/independent/human qualifications remain open.
+- [ ] **Phase 13: Thirty SHB acceptance cases and release verification**
 - [ ] **Phase 14: SHB handover and separately authorized activation**
 
 ## Phase details
@@ -94,6 +94,8 @@ Requirements: retained shared controls in REQUIREMENTS.md.
 Plans: [05-01-PLAN](phases/05-durable-records-and-outbox/05-01-PLAN.md)
 
 ### Phase 6: Invitation scope, verified resources and staff MFA
+
+Status: CURRENT DEVELOPMENT FOCUS; in progress — existing06-01 protected invitation revocation in local synthetic implementation;526 tests/113 browser checks remain the verified baseline and actual gates stay open.
 
 Goal: Invitation authorizes current offers/new purchases only; no customer history or prefilled private data. Retain verified-contact access for old private resources and MFA/recent verification/resource permissions for every staff route.
 
@@ -179,7 +181,6 @@ Plans: [12-01-PLAN](phases/12-independent-recovery/12-01-PLAN.md)
 
 ### Phase 13: Thirty SHB acceptance cases and release verification
 
-Status: CURRENT DEVELOPMENT FOCUS; in progress — local staff-browser slice verified with526 tests/113 browser checks; actual source/runtime/provider/host/database/independent/human qualifications remain open.
 
 Goal: Exercise both variant paths, JS/no-JS keyboard/mobile, invite/static/customer isolation, PostgreSQL coupon/payment concurrency, transaction-mail failure and restore/replay. Trace each SHB-01–30 result to exact artifacts.
 
@@ -212,14 +213,14 @@ Plans: [14-01-PLAN](phases/14-shb-release-handover/14-01-PLAN.md)
 | 3. Supporting Hours Bundle catalog and approved pricing | 0/1 | In Progress | Pending actual revised evidence |
 | 4. Shared SHB form, invitations and private storefront | 0/1 | In Progress | Pending actual revised evidence |
 | 5. SHB durable records, archives and outbox | 0/1 | In Progress | Pending actual revised evidence |
-| 6. Invitation scope, verified resources and staff MFA | 0/1 | In Progress | Pending actual revised evidence |
+| 6. Invitation scope, verified resources and staff MFA | 0/1 | In Progress; CURRENT DEVELOPMENT FOCUS; in progress — existing06-01 protected invitation revocation in local synthetic implementation;526 tests/113 browser checks remain the verified baseline and actual gates stay open. | Pending actual revised evidence |
 | 7. FPGA checkout, ASIC reviewed offers and scoped discounts | 1/4 | In Progress | Pending actual revised evidence |
 | 8. Payment lifecycle and fault-injectable synthetic bank | 0/3 | In Progress | Pending actual revised evidence |
 | 9. Selected-bank sandbox and complete reconciliation | 0/1 | Pending | Pending actual revised evidence |
 | 10. Paid SHB orders, transaction notices and manual handoff | 0/6 | In Progress; | Pending actual revised evidence |
 | 11. Private release delivery and protected-host qualification | 0/1 | Pending | Pending actual revised evidence |
 | 12. Independent backup, restore and SHB reopening | 0/1 | In Progress | Pending actual revised evidence |
-| 13. Thirty SHB acceptance cases and release verification | 0/1 | In Progress; CURRENT DEVELOPMENT FOCUS; in progress — local staff-browser slice verified with526 tests/113 browser checks; actual source/runtime/provider/host/database/independent/human qualifications remain open. | Pending actual revised evidence |
+| 13. Thirty SHB acceptance cases and release verification | 0/1 | In Progress; | Pending actual revised evidence |
 | 14. SHB handover and separately authorized activation | 0/1 | Pending | Pending actual revised evidence |
 
 **Latest local verification:**526 tests and71 actual browser checks/two modes, identical350 backend/eight-script hashes; docs/build/shb-financial-handoff-2026-11-02.md. Actual qualification remains pending.
@@ -267,3 +268,5 @@ Resume 2026-11-02T10:08:54.578045+00:00: explicit user $gsd-resume-work lifts th
 Verified13-01 continuation 2026-11-02T10:20:51.502698+00:00:113 actual local Chromium checks (71 customer/42 staff) and526 shared tests pass with identical350 backend/eight-script hashes. Existing native staff authentication, scope/CSRF denials, full synthetic refund and manual team handoff preserve original order/coupon/notice facts. Evidence: docs/build/shb-staff-browser-2026-11-02.md. The saved local browser action is complete; remaining actual prerequisites/runner are still pending. No parent SUMMARY/count change or external action.
 
 Recorded sync 2026-11-02T10:22:45.995398+00:00: existing13-01 staff-browser verification f06869f12e4e458e282509f388b37884461e21f6 is pushed to origin/main;526 tests/113 local browser checks remain the exact verified scope. Current STATE.md / ROADMAP.md and actual gates remain operative.
+
+Continuation 2026-11-02T10:49:10.181609+00:00: existing06-01 staff invitation revocation is unimplemented; continue inline with synthetic data. STATE.md / ROADMAP.md remain operative. No actual authority or parent completion change.

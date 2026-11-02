@@ -134,6 +134,9 @@ def inside(args):
     assert all(dist.version==actual[dist.metadata['Name'].lower().replace('_','-').replace('.','-')] for dist in installed)
     print('RETAINED_SHB_RUNTIME python=3.13.16 django=5.2.18 postgres=18.6 libpq=180006 installed_inventory=locked nix_environment_qualified=false',flush=True)
     before=source_snapshot()
+    if args.test_label:
+        assert not args.shared and not args.browser
+        assert all(re.fullmatch(r'shop\.shb\.[a-z_]+(?:\.[A-Za-z_][A-Za-z0-9_]*){0,2}',name) for name in args.test_label)
     if args.browser:
         assert args.release and args.browser_binary and args.browser_node
         # These are actual local browser versions, recorded separately from pinned qualification.
@@ -159,6 +162,7 @@ def inside(args):
     assert result.wasSuccessful() and not result.skipped and result.testsRun>=9
     total+=result.testsRun
     labels=[['shop.shb.tests','shop.shb.discount_tests','shop.shb.review_tests','shop.shb.checkout_tests','shop.shb.paid_order_tests','shop.shb.closure_tests','shop.shb.offer_tests','shop.shb.lifecycle_tests','shop.shb.notification_tests','shop.shb.revision_tests','shop.shb.recovery_tests','shop.shb.financial_tests']]
+    if args.test_label:labels=[args.test_label]
     if args.shared:
         labels.extend([
             ['shop.core.tests','shop.access.tests','shop.access.staff_tests','shop.access.recovery_tests','shop.access.effect_tests','shop.access.startup_tests','shop.access.staff_restore_tests','shop.access.authentication_recovery_tests'],
@@ -187,7 +191,7 @@ def inside(args):
             output=run(['unshare','--net',str(python),'manage.py','test','shop.adapters.tests','--noinput','--keepdb'],network_env)
             assert 'Ran 6 tests' in output and 'OK' in output and 'skipped' not in output
             total+=6;print('RETAINED_SHB_ADAPTER_PASS tests=6 actual_unshare_net=true',flush=True)
-    save_record(before,{'kind':'postgresql-tests','tests':total,'shared':args.shared,'schema_consistent':True})
+    save_record(before,{'kind':'postgresql-tests','tests':total,'shared':args.shared,'test_labels':args.test_label,'schema_consistent':True})
     print(f'RETAINED_SHB_TEST_PASS tests={total} duration_seconds={time.monotonic()-started:.3f} evidence=local-synthetic nix_environment_qualified=false',flush=True)
 
 
@@ -195,6 +199,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--inside',action='store_true',help=argparse.SUPPRESS)
     parser.add_argument('--shared',action='store_true')
+    parser.add_argument('--test-label',action='append',default=[],help='Run exact SHB test labels without claiming the shared lane')
     parser.add_argument('--browser',action='store_true')
     parser.add_argument('--release',type=Path)
     parser.add_argument('--browser-binary')

@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "evidence_class": "local-synthetic",
+  "timestamp": "2026-11-02T10:50:52.849541+00:00",
+  "label": "shop.shb.invitation_admin_tests.InvitationAdminTests.test_staff_home_exposes_assigned_invitation_administration",
+  "exit_code": 1,
+  "tests": 1,
+  "failures": 1,
+  "errors": 0,
+  "assertion": "Authenticated staff home lacks Assigned invitations navigation",
+  "test_sha256": "1fc9865bb9e7f72c09395b4d3e3f13db3954e6519a2fd6288783b3bf2dc7ca30",
+  "raw_log_sha256": "058e972c4c91a6b75fba718dafbd3b9b7d4ef4835e54657fffbff4773c7a6cdc",
+  "raw_log": ".scratch/shb-invitation-admin-red-2026-11-02.log",
+  "actual_invitation_authority": false,
+  "runtime_qualified": false
+}

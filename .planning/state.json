@@ -76,9 +76,9 @@
     }
   ],
   "next": {
-    "command": "$gsd-execute-phase 13",
-    "label": "Continue actual SHB release qualification when prerequisites are available",
-    "reason": "Continue existing13-01 actual release qualification when its approved source/runtime, commercial/provider/mail/host/database/human prerequisites and authorized independent runner are available; retain scoped gates and the single docs/decisions.md input register."
+    "command": "$gsd-execute-phase 6",
+    "label": "Continue protected invitation revocation",
+    "reason": "Implement protected staff invitation revocation through existing exact grants, native/JSON CSRF forms and archive/recovery controls; preserve original purchase/reconciliation facts and all actual qualification gates."
   },
-  "updated_at": "2026-11-02T10:22:45.995398+00:00"
+  "updated_at": "2026-11-02T10:49:10.181609+00:00"
 }

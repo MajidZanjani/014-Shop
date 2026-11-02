@@ -99,3 +99,9 @@ STATE.md / ROADMAP.md / HANDOFF and machine routing paused consistently. Impleme
 STATE.md / ROADMAP.md remain operative.113 browser checks (71 customer/42 staff),526 shared tests and3 planning activity tests pass; identical350 backend/eight-script hashes. Existing native MFA, exact scope/CSRF, refund/lookup/manual communication preserve original order/coupon/notice facts. See docs/build/shb-staff-browser-2026-11-02.md. Saved checkpoint consumed; actual qualifications/runner remain pending. No parent SUMMARY/count change or external effect.
 
 Recorded sync 2026-11-02T10:22:45.995398+00:00: existing13-01 staff-browser verification f06869f12e4e458e282509f388b37884461e21f6 is pushed to origin/main;526 tests/113 local browser checks remain the exact verified scope. Current STATE.md / ROADMAP.md and actual gates remain operative.
+
+## 2026-11-02T10:49:10.181609+00:00 — Continue existing06-01 invitation administration
+
+STATE.md / ROADMAP.md route to protected staff revocation. Existing customer revocation enforcement has no staff action yet. Native/JSON forms require exact grants, recent MFA, archive/recovery retention and no order/coupon/time effects. Prior526 tests/113 browser checks remain baseline; actual gates and completion counts unchanged.
+
+Actual06-01 RED: authenticated staff fixture/migrations succeed; one executed assertion fails because staff home lacks Assigned invitations. Exact safe record: docs/evidence/shb/invitation-admin-red-2026-11-02.json. No discovery/import error or real operation. Full parent remains in progress.

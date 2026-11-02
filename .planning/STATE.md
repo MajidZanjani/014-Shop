@@ -1,12 +1,12 @@
 ---
 gsd_state_version: "1.0"
 release: shb-1.1
-current_phase: 13
-current_phase_name: Thirty SHB acceptance cases and release verification
+current_phase: 6
+current_phase_name: Invitation scope, verified resources and staff MFA
 current_plan: 1
 current_task: 1
 status: in_progress
-last_updated: "2026-11-02T10:22:45.995398+00:00"
+last_updated: "2026-11-02T10:49:10.181609+00:00"
 last_activity: 2026-11-02
 state_head: f06869f12e4e458e282509f388b37884461e21f6
 progress:
@@ -21,15 +21,15 @@ progress:
 
 Current authority: [SHB revision1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. STATE.md / ROADMAP.md remain operative.
 
-**Current development focus:** 13 — Thirty SHB acceptance cases and release verification.
+**Current development focus:** 6 — Invitation scope, verified resources and staff MFA.
 
 **Last fully completed phase:** 1 — documentary authority/reconciliation only.
 
-**Current plan:** 13-01 — local customer/staff financial browser acceptance verified; actual release qualification remains open.
+**Current plan:** 06-01 — assigned recent-MFA invitation revocation, archived audit and recovery retention; local slice in progress.
 
-**Execution status:** in progress — local staff-browser slice verified with526 tests/113 browser checks; actual source/runtime/provider/host/database/independent/human qualifications remain open.
+**Execution status:** in progress — existing06-01 protected invitation revocation in local synthetic implementation;526 tests/113 browser checks remain the verified baseline and actual gates stay open.
 
-**Next implementation task:** Continue existing13-01 actual release qualification when its approved source/runtime, commercial/provider/mail/host/database/human prerequisites and authorized independent runner are available; retain scoped gates and the single docs/decisions.md input register.
+**Next implementation task:** Implement protected staff invitation revocation through existing exact grants, native/JSON CSRF forms and archive/recovery controls; preserve original purchase/reconciliation facts and all actual qualification gates.
 
 ## Verified local scope
 
@@ -50,9 +50,9 @@ The initial staff browser attempt failed because the fixture resolver did not ma
 ## Session Continuity
 
 Last session: 2026-11-02T10:22:45.995398+00:00
-Stopped at: Existing13-01 local staff-browser task verified, committed asf06869f12e4e458e282509f388b37884461e21f6 and ordinarily pushed to origin/main. Remaining actual qualification requires its existing prerequisites and scoped authority.
+Stopped at: User continued existing local implementation;06-01 staff revocation gap identified. Start actual RED/implementation inline; no repeated normal Nix failure or external operation.
 Resume file: None; HANDOFF.json consumed and the10 checkpoint marked resumed.
 
-Next: Continue existing13-01 actual release qualification when its approved source/runtime, commercial/provider/mail/host/database/human prerequisites and authorized independent runner are available; retain scoped gates and the single docs/decisions.md input register.
+Next: Implement protected staff invitation revocation through existing exact grants, native/JSON CSRF forms and archive/recovery controls; preserve original purchase/reconciliation facts and all actual qualification gates.
 
 No exact context percentage is supplied; no automatic-monitoring claim or new pause. User-authorized local continuation remains valid. No new subagent request; execute inline.

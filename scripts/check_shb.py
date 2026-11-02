@@ -33,7 +33,10 @@ def legacy_transaction_environment(env,scratch):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--shared',action='store_true',help='Also run affected shared security, recovery and bank-domain regressions; existing test commands remain unchanged')
+    parser.add_argument('--test-label',action='append',default=[],help='Run exact SHB test labels without claiming the shared lane')
     args=parser.parse_args()
+    if args.test_label:
+        if args.shared or not all(re.fullmatch(r'shop\.shb\.[a-z_]+(?:\.[A-Za-z_][A-Za-z0-9_]*){0,2}',name) for name in args.test_label):raise ValueError('invalid focused SHB lane')
     started=time.monotonic()
     # Pure source/money checks are useful even before Django starts.
     suite=unittest.defaultTestLoader.discover(str(ROOT/'tests'),pattern='test_shb_*.py')
@@ -43,10 +46,11 @@ def main():
         manage(python,env,'check')
         manage(python,env,'migrate','--noinput')
         manage(python,env,'makemigrations','--check','--dry-run')
-        output=manage(python,env,'test','shop.shb.tests','shop.shb.discount_tests','shop.shb.review_tests','shop.shb.checkout_tests','shop.shb.paid_order_tests','shop.shb.closure_tests','shop.shb.offer_tests','shop.shb.lifecycle_tests','shop.shb.notification_tests','shop.shb.revision_tests','shop.shb.recovery_tests','shop.shb.financial_tests','--noinput','--keepdb',timeout=120)
+        labels=args.test_label or ['shop.shb.tests','shop.shb.discount_tests','shop.shb.review_tests','shop.shb.checkout_tests','shop.shb.paid_order_tests','shop.shb.closure_tests','shop.shb.offer_tests','shop.shb.lifecycle_tests','shop.shb.notification_tests','shop.shb.revision_tests','shop.shb.recovery_tests','shop.shb.financial_tests']
+        output=manage(python,env,'test',*labels,'--noinput','--keepdb',timeout=120)
         raw=output.stdout+output.stderr
         count=re.search(r'Ran (\d+) tests?',raw)
-        if not count or int(count[1])<71 or 'OK' not in raw or 'skipped' in raw:
+        if not count or int(count[1])<(1 if args.test_label else 71) or 'OK' not in raw or 'skipped' in raw:
             raise ValueError('SHB PostgreSQL controls missing/failed/skipped')
         print(raw)
         shared=0
