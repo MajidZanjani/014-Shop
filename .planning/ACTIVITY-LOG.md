@@ -39,3 +39,7 @@ STATE.md/ROADMAP.md route through resume to07-03, not started. Both implementati
 ## 2026-11-02T05:34:44.886054+00:00 — FPGA checkout verified locally
 
 STATE.md / ROADMAP.md retain07-03 as partial. Guarded schema/scope, signed review, separate acceptance/privacy, protected payment route and post-archive invitation checks implemented.390 tests,41 actual browser checks and312 backend/eight-script source hashes pass through the explicitly synthetic retained-tool lane; normal Nix source/runtime qualification remains blocked. No full parent completion, external effect or time automation. See docs/build/shb-checkout-2026-11-02.md.
+
+## 2026-11-02T05:37:52.615Z — Context checkpoint after verified FPGA checkout
+
+STATE.md / ROADMAP.md / HANDOFF and machine routing paused consistently. Implementation a3936d512c822d608a086740fc64e346c0ec31e4 is pushed;390 tests/41 actual browser checks and exact source records retained. Full paid-order/ASIC/qualification work remains open; counts11/42 and1/14 unchanged. Exact context percentage unavailable; no measured90% claim. No active test/server/async jobs or external service actions.

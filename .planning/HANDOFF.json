@@ -1,0 +1,117 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-11-02T05:37:52.615Z",
+  "release": "shb-1.1",
+  "phase": "07",
+  "phase_name": "FPGA checkout, ASIC reviewed offers and scoped discounts",
+  "phase_dir": ".planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance",
+  "plan": 3,
+  "task": 1,
+  "total_tasks": 1,
+  "status": "paused",
+  "pause_reason": "Standing context-pressure authorization; exact usage percentage unavailable; no measured90% claim",
+  "implementation_commit": "a3936d512c822d608a086740fc64e346c0ec31e4",
+  "implementation_push": "verified ordinary origin/main push completed",
+  "completed_tasks": [
+    {
+      "id": 1,
+      "name": "07-03 parent task",
+      "status": "in_progress",
+      "progress": "FPGA signed review/acceptance/archived fake payment slice verified and committed; paid-order/coupon finalization and matching ASIC offers remain unfinished."
+    }
+  ],
+  "verified_slices": [
+    "Guarded additive migrations and SQL provenance/immutability",
+    "Exact invitation/session review, acceptance and protected payment/lookup",
+    "390 tests including20 checkout and6 actual network-isolated adapter cases",
+    "41 actual Chromium151/Node24.15 browser checks in2 modes",
+    "Identical unchanged hashes for312 backend files/eight scripts in test/browser evidence"
+  ],
+  "remaining_tasks": [
+    {
+      "id": 1,
+      "name": "Once-only FPGA paid-order finalization, coupon consumption/safe closure, staff order visibility and ordinary durable transaction notification",
+      "status": "not_started"
+    },
+    {
+      "id": 2,
+      "name": "Matching dated ASIC offers, withdrawal/expiry/reissue and exact acceptance/payment",
+      "status": "not_started"
+    },
+    {
+      "id": 3,
+      "name": "Normal Nix/build/browser and actual external qualification; keep all scoped gates closed",
+      "status": "pending"
+    }
+  ],
+  "blockers": [
+    {
+      "description": "Normal pinned Nix shell/source packaging cannot resolve missing dependencies",
+      "type": "technical",
+      "workaround": "Use scripts/check_shb_retained.py for distinct synthetic test evidence; never claim Nix/runtime qualification"
+    },
+    {
+      "description": "Ordinary sandbox denies workspace at bwrap startup",
+      "type": "technical",
+      "workaround": "Narrow justified require_escalated local execution; no permission/host changes"
+    },
+    {
+      "description": "Independent off-host runner unassigned; actual commercial/provider/host inputs pending",
+      "type": "external",
+      "workaround": "Continue unaffected inline synthetic work after resume; no repeated company-input request"
+    }
+  ],
+  "async_jobs": [],
+  "background_processes": [],
+  "human_actions_pending": [
+    {
+      "action": "Clear the long session and resume when ready",
+      "context": "Standing context-pressure checkpoint; exact usage percentage unavailable",
+      "blocking": true
+    },
+    {
+      "action": "Actual company inputs arrive later through docs/decisions.md",
+      "context": "Do not repeat requests; unrelated local work can continue after resume",
+      "blocking": false
+    }
+  ],
+  "decisions": [
+    {
+      "decision": "Explicit SHB bearer/session scope on shared commerce records, never fabricated verified identity",
+      "rationale": "Invitation permits new purchase only; preserve historical private-resource authorization",
+      "phase": "07"
+    },
+    {
+      "decision": "Retained OCI tool recovery is a separate local test lane",
+      "rationale": "Pinned tool materialization failed; do not replace actual Nix/runtime/provider evidence",
+      "phase": "07"
+    },
+    {
+      "decision": "No parent SUMMARY or completion count added",
+      "rationale": "Per-order paid finalization/coupon consumption/ordinary notices and matching ASIC offers remain open",
+      "phase": "07"
+    }
+  ],
+  "uncommitted_code_files": [],
+  "uncommitted_files": [
+    " M .planning/ACTIVITY-LOG.md",
+    " M .planning/HANDOFF.md",
+    " M .planning/PROJECT.md",
+    " M .planning/PURCHASE-FLOW-RECONCILIATION.json",
+    " M .planning/ROADMAP.md",
+    " M .planning/STATE.md",
+    " M .planning/phases/07-multi-line-cart-quotations-business-checkout-and-acceptance/.continue-here.md",
+    " M .planning/state.json",
+    "?? .planning/HANDOFF.json",
+    "?? http_cache.sqlite"
+  ],
+  "next_action": "Complete per-order FPGA paid finalization and coupon consumption with archived acceptance/captured payment, staff visibility and durable transaction notice; then continue matching dated ASIC offers.",
+  "context_notes": "Read full checkpoint and docs/build/shb-checkout-2026-11-02.md first. Initial six-file WIP is now committed/verified, not RED.390 tests/41 actual browser checks with312 backend/eight-script exact unchanged hashes. Current normal Nix source/environment and actual deployment qualifications remain pending. No full plan/phase/Summary;11/42 records,1/14 documentary phases. No active jobs. No .env/external action/time engine. http_cache.sqlite untouched. Inline only.",
+  "evidence_records": [
+    "docs/evidence/shb/retained-tests/71f876d388f81812a08bb3311dc76209b17b6690a8327defb46bb7257f262b8b.json",
+    "docs/evidence/shb/retained-tests/a45fa4da54213036c4b89a33aa8a648249109d8efcbf845c5077abd1e7cf2183.json"
+  ],
+  "working_tree_snapshot_at": "2026-11-02T05:37:52.723223+00:00",
+  "working_tree_snapshot_scope": "Measured after checkpoint artifacts/inventory existed, before the metadata checkpoint commit. Listed planning changes are included in that commit; implementation is already committed/pushed. Only unrelated http_cache.sqlite is expected to remain afterward.",
+  "uncommitted_files_elided": 0
+}

@@ -8,7 +8,7 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Current plan:** 07-03 — SHB immutable FPGA checkout/acceptance and fake payment verified locally; paid-order finalization remains open.
 
-**Execution status:** in progress — FPGA checkout slice verified with390 local tests and41 browser checks; full paid workflow and Nix qualification remain pending.
+**Execution status:** paused — context checkpoint after verified FPGA checkout;390 tests and41 browser checks pass; full paid workflow and Nix qualification remain pending.
 
 **Next implementation task:** Complete per-order FPGA paid finalization and coupon consumption with archived acceptance/captured payment, staff visibility and durable transaction notice; then continue matching dated ASIC offers.
 
@@ -22,7 +22,7 @@ Stable T01–T14/folder IDs preserve history. Titles and active task scopes now 
 - [ ] **Phase 4: Shared SHB form, invitations and private storefront**
 - [ ] **Phase 5: SHB durable records, archives and outbox**
 - [ ] **Phase 6: Invitation scope, verified resources and staff MFA**
-- [ ] **Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts** — CURRENT DEVELOPMENT FOCUS; in progress — FPGA checkout slice verified with390 local tests and41 browser checks; full paid workflow and Nix qualification remain pending.
+- [ ] **Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts** — CURRENT DEVELOPMENT FOCUS; paused — context checkpoint after verified FPGA checkout;390 tests and41 browser checks pass; full paid workflow and Nix qualification remain pending.
 - [ ] **Phase 8: Payment lifecycle and fault-injectable synthetic bank**
 - [ ] **Phase 9: Selected-bank sandbox and complete reconciliation**
 - [ ] **Phase 10: Paid SHB orders, transaction notices and manual handoff**
@@ -105,7 +105,7 @@ Requirements: SHB-11, SHB-13, SHB-14.
 
 Plans: [06-01-PLAN](phases/06-invitation-scope-and-staff-mfa/06-01-PLAN.md)
 
-### Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts — CURRENT DEVELOPMENT FOCUS; in progress — FPGA checkout slice verified with390 local tests and41 browser checks; full paid workflow and Nix qualification remain pending.
+### Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts — CURRENT DEVELOPMENT FOCUS; paused — context checkpoint after verified FPGA checkout;390 tests and41 browser checks pass; full paid workflow and Nix qualification remain pending.
 
 Goal: Automatic eligible FPGA checkout; ASIC request/clarify/decline/withdraw/approve/dated offer/acceptance. One scoped percentage code; PostgreSQL reservations survive ASIC review beyond claim expiry. Immutable accepted price/scope revisions.
 
@@ -211,7 +211,7 @@ Plans: [14-01-PLAN](phases/14-shb-release-handover/14-01-PLAN.md)
 | 4. Shared SHB form, invitations and private storefront | 0/1 | In Progress | Pending actual revised evidence |
 | 5. SHB durable records, archives and outbox | 0/1 | In Progress | Pending actual revised evidence |
 | 6. Invitation scope, verified resources and staff MFA | 0/1 | In Progress | Pending actual revised evidence |
-| 7. FPGA checkout, ASIC reviewed offers and scoped discounts | 1/4 | In Progress; CURRENT DEVELOPMENT FOCUS; in progress — FPGA checkout slice verified with390 local tests and41 browser checks; full paid workflow and Nix qualification remain pending. | Pending actual revised evidence |
+| 7. FPGA checkout, ASIC reviewed offers and scoped discounts | 1/4 | In Progress; CURRENT DEVELOPMENT FOCUS; paused — context checkpoint after verified FPGA checkout;390 tests and41 browser checks pass; full paid workflow and Nix qualification remain pending. | Pending actual revised evidence |
 | 8. Payment lifecycle and fault-injectable synthetic bank | 0/3 | In Progress | Pending actual revised evidence |
 | 9. Selected-bank sandbox and complete reconciliation | 0/1 | Pending | Pending actual revised evidence |
 | 10. Paid SHB orders, transaction notices and manual handoff | 0/6 | In Progress | Pending actual revised evidence |
@@ -227,3 +227,5 @@ Resume 2026-10-30T13:52:15.032330+00:00: explicit resume lifts the context-press
 Explicit pause 2026-10-30T13:57:58.828345+00:00: user requested $gsd-pause-work during07-03. Partial model/service/test files remain uncommitted and unverified; migrations, routes/templates, SQL invariants, regression/browser/source checks remain. Only pause metadata is committed. See HANDOFF.json and the07 checkpoint.
 
 Resume 2026-11-02T05:03:27.708886+00:00: explicit user $gsd-resume-work lifts the earlier pause. HANDOFF.json consumed after matching all six code files; planning changes in its snapshot were already committed. Continue07-03 inline with no external operation or commercial approval.
+
+Context checkpoint 2026-11-02T05:37:52.615Z: verified FPGA checkout slice committed/pushed as a3936d512c822d608a086740fc64e346c0ec31e4. Exact context percentage is unavailable; new HANDOFF.json preserves the remaining paid-order/ASIC work. Completion counts remain unchanged.
