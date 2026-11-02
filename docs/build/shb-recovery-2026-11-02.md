@@ -14,7 +14,7 @@ Current files: [SHB assessment](../../backend/shop/shb/recovery.py), the existin
 
 ## Evidence and limits
 
-The actual [RED report](../evidence/shb/recovery-assessment-red-2026-11-02.json) records one PostgreSQL test after successful ordinary notice capture and quarantine. It fails because release does not raise after the captured proof blob is removed. GSD returns `RED_EVIDENCE_OK`; this assertion failure is the intended release gap, with no import, discovery or fixture failure. Test/state commit1009d97 is pushed.
+The actual [RED report](../evidence/shb/recovery-assessment-red-2026-11-02.json) records one PostgreSQL test after successful ordinary notice capture and quarantine. It fails because release does not raise after the captured proof blob is removed. GSD returns `RED_EVIDENCE_OK`; this assertion failure is the intended release gap, with no import, discovery or fixture failure. Test/state commit1009d97 and implementation5e0f72af31dc4eb83fbe16e7c1ff16bf72b14237 are committed and ordinarily pushed to origin/main.
 
 Fourteen recovery cases pass: missing capture bytes, read-only inspection, unheld/undrained denial, missing delivery, a self-consistent forged recipient, missing applied closing bytes, interrupted closing after invitation revocation, committed capture before process loss, original month-end/leap-year clocks and coupon outcomes with selected-restore staff reset, missing replacement link, missing coupon reservation, uncertain bank reconciliation without a second start, held notice exhaustion, and a paid75-hour changed request retaining the original order and capture references.
 

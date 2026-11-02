@@ -12,7 +12,7 @@
       "path": ".planning/ACTIVITY-LOG.md",
       "role": "current",
       "release": "shb-1.1",
-      "sha256": "8ef318d9f568c18ab734dcb1eaf207494612a92b06538725025daaaf708f84a9",
+      "sha256": "d8aed0a0881efaa5ec4d1640725e40e0cf3916d9acf1facabb161f3de13430c2",
       "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
@@ -26,7 +26,7 @@
       "path": ".planning/HANDOFF.md",
       "role": "current",
       "release": "shb-1.1",
-      "sha256": "f4e8ae26162a80a8611a25eb08c1d96b3c02f5be63bc872ecfc873e995797fba",
+      "sha256": "5ff690b90784687091f259cf2439027292eb8713c1947bbe4b9004d1dd5498fb",
       "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
@@ -82,7 +82,7 @@
       "path": ".planning/STATE.md",
       "role": "current",
       "release": "shb-1.1",
-      "sha256": "1c72fb0b9c6b18ced70aa2cc49e57a25346ff36c8da1c856b252acb1364e5f88",
+      "sha256": "ae58ffb65309bf6edd5d59cfbd9838c7aef98d1a1686e53c00903c0697b55fa3",
       "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
@@ -1111,7 +1111,7 @@
       "path": ".planning/phases/12-independent-recovery/.continue-here.md",
       "role": "current",
       "release": "shb-1.1",
-      "sha256": "5cfd847b415641ac44c6d18cf8d75f410671d0178be4801229cf1507b225eb32",
+      "sha256": "008c0ee16cfb10fd0c72d98e86aefee1019bf2847aa8129360099e30cb7b163f",
       "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
