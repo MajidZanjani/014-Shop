@@ -8,7 +8,7 @@ current_task: 1
 status: active
 last_updated: "2026-11-02T13:05:00+00:00"
 last_activity: 2026-11-02
-state_head: b3a729c6b956eb56f4bb1ba5c902e09aaf3d2a64
+state_head: a7072ffbfe3664af2764c42954b95c8eae250c26
 progress:
   total_phases: 14
   completed_phases: 1
@@ -27,7 +27,7 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Current plan:** 06-01 — protected invitation issuance/reissue, scoped discount revocation and separate protected discount issuance verified locally; actual qualification remains open.
 
-**Execution status:** active — verified continuation after resume;605 tests/147 browser checks retained with the new discount issuance surface added; actual commercial/provider/mail/host/independent prerequisites remain closed.
+**Execution status:** active — verified continuation after resume;605 tests/161 browser checks retained with the new discount issuance surface added; actual commercial/provider/mail/host/independent prerequisites remain closed.
 
 **Next implementation task:** Normal pinned Nix/source/runtime/native/licence/OCI/CI and actual commercial/provider/refund/tax/mail/host/ingress/database/human/independent custody/post-backup/transport/restore/complete-loss qualification remain open; the authorized independent off-host runner is unassigned. Continue existing documented local follow-ups once prerequisites arrive; do not rerun unchanged failed Nix build or weaken retained tool pins.
 
@@ -54,6 +54,6 @@ No .env, real credentials, actual bank/mail/storage/protected-host/DNS/TLS opera
 Last session: 2026-11-02T12:16:14.551Z (paused) → 2026-11-02T12:35:00+00:00 (resumed) → 2026-11-02T13:05:00+00:00 (verified continuation)
 Stopped at: Explicit user $gsd-pause-work after verified/pushed invitation issuance4db2586 and discount revocation34c0019. All implementation is committed and verified; no current local test failure or owned process/job.
 Resumed at: 2026-11-02T12:35:00+00:00 — explicit user $gsd-resume-work. HANDOFF.json and phases/06-invitation-scope-and-staff-mfa/.continue-here.md consumed after confirming referenced commits (4db2586,34c0019,bb3d603) are pushed and the working tree carries no owned implementation changes.
-Verified continuation 2026-11-02T13:05:00+00:00: protected scoped discount issuance implemented and pushed with RED705c2de and GREEN awaiting commit after regression.605 tests/147 browser checks and matching new source hashes record. No parent SUMMARY/count change; actual gates unchanged.
+Verified continuation 2026-11-02T13:05:00+00:00: protected scoped discount issuance implemented and pushed with RED705c2de and GREEN awaiting commit after regression.605 tests/161 browser checks and matching new source hashes record. No parent SUMMARY/count change; actual gates unchanged.
 
 Next: Normal pinned Nix/source/runtime/native/licence/OCI/CI and actual commercial/provider/refund/tax/mail/host/ingress/database/human/independent custody/post-backup/transport/restore/complete-loss qualification remain open; the authorized independent off-host runner is unassigned. Continue existing documented local follow-ups once prerequisites arrive; do not rerun unchanged failed Nix build or weaken retained tool pins.
