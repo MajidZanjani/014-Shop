@@ -99,6 +99,43 @@ class PaidOrderTests(TransactionTestCase):
         self.assertFalse(SyntheticFulfilment.objects.exists())
         self.assertFalse(SyntheticSupportEvent.objects.exists())
 
+    def test_duplicate_pay_reconcile_and_worker_iterations_keep_one_order_and_one_reference(self):
+        from . import purchase_mail
+        from .models import DiscountReservation,PaidOrder,PurchaseNoticeCapture,PurchaseNoticeDelivery,TransactionNoticeCapture
+        from shop.payments.models import SyntheticBankOperation
+        from shop.worker.services import execute_once as worker_execute_once
+        order=self.pay(discount=True)
+        reservation_consumed=DiscountReservation.objects.get().consumed_order_id
+        self.assertEqual(reservation_consumed,order.pk)
+        for _ in range(3):
+            self.assertEqual(self.client.post(self.path,{'action':'pay'},secure=True).status_code,200)
+            self.assertEqual(self.client.post(self.path,{'action':'reconcile'},secure=True).status_code,200)
+        self.assertEqual(PaidOrder.objects.count(),1)
+        self.assertEqual(SyntheticBankOperation.objects.count(),1)
+        self.assertEqual(DiscountReservation.objects.count(),1)
+        reservation=DiscountReservation.objects.get()
+        self.assertEqual(reservation.state,'consumed')
+        self.assertEqual(reservation.consumed_order_id,reservation_consumed)
+        self.assertEqual(PurchaseNoticeDelivery.objects.count(),1)
+        notice_delivery_pk=PurchaseNoticeDelivery.objects.get().pk
+        self.assertTrue(purchase_mail.execute_once())
+        self.assertFalse(purchase_mail.execute_once())
+        self.assertFalse(purchase_mail.execute_once())
+        self.assertEqual(PurchaseNoticeCapture.objects.count(),1)
+        self.assertEqual(PurchaseNoticeDelivery.objects.get().pk,notice_delivery_pk)
+        while worker_execute_once():pass
+        captures_after_first=TransactionNoticeCapture.objects.count()
+        self.assertGreater(captures_after_first,0)
+        for capture in TransactionNoticeCapture.objects.all():
+            self.assertEqual(capture.notice.payload['body']['reference'],order.payload['order_reference'])
+            self.assertIs(capture.notice.payload['actual_email_sent'],False)
+        for _ in range(5):self.assertFalse(worker_execute_once())
+        self.assertEqual(TransactionNoticeCapture.objects.count(),captures_after_first)
+        self.assertEqual(PaidOrder.objects.count(),1)
+        self.assertEqual(SyntheticBankOperation.objects.count(),1)
+        self.assertEqual(DiscountReservation.objects.get().state,'consumed')
+        self.assertEqual(DiscountReservation.objects.get().consumed_order_id,reservation_consumed)
+
     def test_payment_can_be_reconciled_after_invitation_expiry_without_new_checkout(self):
         from shop.catalog import checkout_payment
         from .models import PaidOrder,PaidOrderGrant
