@@ -296,3 +296,57 @@ class RecoveryTests(TransactionTestCase):
         self.assertEqual(set(TransactionNoticeCapture.objects.values_list('pk',flat=True)),capture_ids)
         self.assertEqual(PurchaseNoticeCapture.objects.count(),1)
         self.assertEqual(DiscountReservation.objects.get(state='consumed').consumed_order_id,hold.consumed_order_id)
+
+    def test_shb_28_restore_replay_preserves_invitation_expiry_order_reference_and_coupon_state(self):
+        """SHB-28: a selected restore/replay within the existing recovery
+        qualification preserves invitation expires_at + revoked_at, the
+        PaidOrder.order_reference and the DiscountReservation state --
+        staff never count a replay as a new purchase.
+
+        Pairs with test_original_month_end_clocks_revocation_and_coupon_outcomes_survive_selected_restore
+        (invitation clocks + coupon state through selected restore) and
+        test_paid_material_revision_and_captured_notices_keep_original_order_reference_on_replay
+        (order_reference preserved under revision/replay). This tags the
+        composite invariant as SHB-28."""
+        from .models import DiscountReservation, Invitation, PaidOrder
+        from shop.payments.models import SyntheticBankOperation
+        from shop.worker.services import execute_once
+        # Issue offer, accept, pay -> one PaidOrder with reference.
+        self.assertEqual(self.issue().status_code, 201)
+        response = self.accept_offer(); self.assertEqual(response.status_code, 302)
+        self.assertEqual(self.pay(response['Location']).status_code, 200)
+        for _ in range(15):
+            if not execute_once(): break
+        order = PaidOrder.objects.get()
+        reference = order.payload['order_reference']
+        hours = order.payload['purchase']['hours_purchased']
+        hold = DiscountReservation.objects.get(state='consumed')
+        before_invitation = Invitation.objects.get(pk=self.invitation.pk)
+        bank_ops_before = SyntheticBankOperation.objects.count()
+        # Quarantine + inspect + release cycle (selected restore basis).
+        reset = uuid.uuid4()
+        self.operation(request_id=reset)
+        result = self.inspect()
+        self.assertEqual(result['counts']['paid_orders'], 1,
+            'inspect confirms exactly one PaidOrder before release')
+        self.operation('release', basis=reset)
+        # (1) Invitation clocks preserved byte-identical.
+        after_invitation = Invitation.objects.get(pk=self.invitation.pk)
+        self.assertEqual(after_invitation.expires_at, before_invitation.expires_at,
+            'restore must preserve original invitation expires_at')
+        self.assertEqual(after_invitation.revoked_at, before_invitation.revoked_at,
+            'restore must preserve original invitation revoked_at')
+        self.assertEqual(after_invitation.token_digest, before_invitation.token_digest,
+            'restore must preserve the original token_digest')
+        # (2) PaidOrder.order_reference and hours preserved; no new order.
+        self.assertEqual(PaidOrder.objects.count(), 1,
+            'replay must not create a second PaidOrder')
+        self.assertEqual(PaidOrder.objects.get().payload['order_reference'], reference,
+            'replay preserves the original order_reference so staff see no new purchase')
+        self.assertEqual(PaidOrder.objects.get().payload['purchase']['hours_purchased'], hours)
+        # (3) DiscountReservation state preserved.
+        self.assertEqual(DiscountReservation.objects.get().state, 'consumed')
+        self.assertEqual(DiscountReservation.objects.get().consumed_order_id, hold.consumed_order_id)
+        # (4) No duplicate bank operation from the restore.
+        self.assertEqual(SyntheticBankOperation.objects.count(), bank_ops_before,
+            'restore must not replay a bank operation')
