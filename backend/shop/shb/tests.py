@@ -248,6 +248,61 @@ class InvitationTests(TransactionTestCase):
                 self.assertIn(client.get('/shop/',secure=True).status_code,(302,400,403,404))
         self.assertEqual(Invitation.objects.count(),1,'no fresh invitation ever created by bogus GET')
 
+    def test_shb_13_valid_link_reuse_and_scanner_get_has_no_side_effect(self):
+        """SHB-13: reuse of a valid invitation link is allowed and HEAD/scanner
+        probes have no commercial or message side effects.
+
+        Pairs with test_digest_only_reusable_get_and_clean_redirect, which
+        closes the plain two-GET reuse case; this closes the email-software /
+        scanner angle (various UAs plus HEAD) and asserts no DiscountReservation,
+        PaidOrder, PurchaseNoticeDelivery, PreparedArchive publication or
+        SupportRequest row is created by GET/HEAD on /invite/<token>."""
+        from .models import Invitation,SupportRequest
+        try:
+            from shop.payments.models import DiscountReservation
+        except Exception:
+            DiscountReservation=None
+        try:
+            from .models import PaidOrder,PurchaseNoticeDelivery
+        except Exception:
+            PaidOrder,PurchaseNoticeDelivery=None,None
+        before_expiry=self.invitation.expires_at
+        before_digest=self.invitation.token_digest
+        before_revoked=self.invitation.revoked_at
+        scanners=(
+            'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)',  # Outlook preview
+            'Mozilla/5.0 (compatible; GoogleImageProxy/1.1; mail.google.com)',   # Gmail prefetch
+            'Mozilla/5.0 (compatible; YahooMailProxy/1.0; +https://mail.yahoo.com)',
+            'Barracuda-Link-Protection',                                         # link-rewriter scanner
+            'Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36',                # mobile preview
+            'curl/8.4.0',                                                        # bare client
+        )
+        for ua in scanners:
+            with self.subTest(scanner=ua):
+                client=ShopClient(HTTP_USER_AGENT=ua)
+                for _ in range(2):  # scanners often re-fetch
+                    response=client.get('/invite/'+self.token,secure=True)
+                    self.assertEqual(response.status_code,302,'reuse must be permitted for '+ua)
+                    self.assertEqual(response['Location'],'/shop/')
+                    self.assertNotIn(self.token,response.content.decode())
+                    self.assertEqual(response['Cache-Control'],'no-store')
+                    self.assertEqual(response['Referrer-Policy'],'no-referrer')
+                # HEAD scan on the invitation route must likewise cause no commercial writes.
+                head=client.head('/invite/'+self.token,secure=True)
+                self.assertIn(head.status_code,(200,302,405))
+        row=Invitation.objects.get(pk=self.invitation.pk)
+        self.assertEqual(row.expires_at,before_expiry,'GET must not extend expiry')
+        self.assertEqual(row.token_digest,before_digest,'GET must not rotate digest')
+        self.assertEqual(row.revoked_at,before_revoked,'GET must not alter revocation state')
+        self.assertEqual(Invitation.objects.count(),1,'no fresh invitations from scanner reuse')
+        self.assertEqual(SupportRequest.objects.count(),0,'GET must create no SupportRequest')
+        if DiscountReservation is not None:
+            self.assertEqual(DiscountReservation.objects.count(),0,'GET must create no coupon reservation')
+        if PaidOrder is not None:
+            self.assertEqual(PaidOrder.objects.count(),0,'GET must create no paid order')
+        if PurchaseNoticeDelivery is not None:
+            self.assertEqual(PurchaseNoticeDelivery.objects.count(),0,'GET must dispatch no purchase mail')
+
     def test_shorter_session_hard_deadline_and_wrong_host(self):
         self.enter()
         deadline=datetime.fromisoformat(self.client.session['shb_session_until'])
