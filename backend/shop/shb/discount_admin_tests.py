@@ -41,6 +41,12 @@ class DiscountAdminTests(TransactionTestCase):
         self.discount.refresh_from_db();self.assertIsNone(self.discount.revoked_at)
         self.assertFalse(DiscountRevocation.objects.exists())
 
+    def test_discount_revocation_grant_alone_does_not_expose_discount_issuance_scopes(self):
+        response=self.browser.get('/staff/shb-discount-scopes/')
+        self.assertEqual(response.status_code,200)
+        self.assertEqual(response.json()['scopes'],[])
+        self.untouched()
+
     def test_get_is_exactly_scoped_code_free_and_has_no_effects(self):
         response=self.browser.get('/staff/'+self.discount_route)
         self.assertEqual(response.status_code,200);self.assertEqual(response['Cache-Control'],'no-store')

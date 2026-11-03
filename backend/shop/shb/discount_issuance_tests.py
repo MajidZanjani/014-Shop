@@ -251,3 +251,22 @@ class DiscountIssuanceTests(TransactionTestCase):
         DiscountStaffGrant.objects.create(user=self.user,discount=self.discount)
         self.assertEqual(self.issue().status_code,404);self.no_publication()
         self.assertFalse(DiscountIssue.objects.exists())
+
+    def test_newly_issued_code_is_revocable_through_normal_flow_and_retains_both_audits(self):
+        from .models import DiscountStaffGrant,DiscountRevocation
+        response=self.issue();self.assertEqual(response.status_code,201)
+        code=response.json()['discount_code']
+        issue_event=DiscountIssue.objects.select_related('discount').get()
+        new_discount=issue_event.discount
+        self.assertTrue(DiscountStaffGrant.objects.filter(user=self.user,discount=new_discount).exists())
+        listing=self.browser.get('/staff/shb-discounts/').json()
+        self.assertIn(str(new_discount.pk),[row['id'] for row in listing['discounts']])
+        revoke_route='shb-discounts/'+str(new_discount.pk)+'/'
+        revoked=self.post(revoke_route,{'request_id':str(uuid.uuid4()),'reason':'Deliberate revocation of newly issued code.'})
+        self.assertEqual(revoked.status_code,201)
+        new_discount.refresh_from_db();self.assertIsNotNone(new_discount.revoked_at)
+        self.assertEqual(DiscountRevocation.objects.filter(discount=new_discount).count(),1)
+        self.assertEqual(DiscountIssue.objects.filter(discount=new_discount).count(),1)
+        issue_event.refresh_from_db();self.assertEqual(issue_event.discount_id,new_discount.pk)
+        with override_settings(**self.customer_settings):
+            self.assertEqual(self.customer_submit(action='apply_discount',discount_code=code).status_code,422)
