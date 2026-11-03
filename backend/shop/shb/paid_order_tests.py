@@ -99,6 +99,40 @@ class PaidOrderTests(TransactionTestCase):
         self.assertFalse(SyntheticFulfilment.objects.exists())
         self.assertFalse(SyntheticSupportEvent.objects.exists())
 
+    def test_forged_payment_success_fields_at_payment_page_cannot_mark_paid(self):
+        from .models import PaidOrder,SupportCheckout
+        from shop.payments.models import SyntheticPaymentAttempt,SyntheticBankOperation
+        response=self.checkout();self.assertEqual(response.status_code,302)
+        path=response['Location']
+        self.assertFalse(PaidOrder.objects.exists())
+        self.assertFalse(SyntheticBankOperation.objects.exists())
+        attempt_count_before=SyntheticPaymentAttempt.objects.count()
+        checkouts_before=SupportCheckout.objects.count()
+        forged_bodies=(
+            {'action':'pay','status':'paid'},
+            {'action':'pay','payment_token':'fake-success-token'},
+            {'action':'pay','confirmed':'true'},
+            {'action':'pay','result':'captured'},
+            {'action':'pay','amount_minor':'0'},
+            {'action':'pay','provider_operation_id':str(uuid.uuid4())},
+        )
+        for forged in forged_bodies:
+            response=self.client.post(path,forged,secure=True)
+            self.assertEqual(response.status_code,400,forged)
+            self.assertFalse(PaidOrder.objects.exists())
+            self.assertFalse(SyntheticBankOperation.objects.exists())
+            self.assertEqual(SyntheticPaymentAttempt.objects.count(),attempt_count_before)
+            self.assertEqual(SupportCheckout.objects.count(),checkouts_before)
+        for forged_action in ('confirm','succeed','complete','authorized','ok','paid','capture'):
+            response=self.client.post(path,{'action':forged_action},secure=True)
+            self.assertEqual(response.status_code,400,forged_action)
+            self.assertFalse(PaidOrder.objects.exists())
+            self.assertFalse(SyntheticBankOperation.objects.exists())
+            self.assertEqual(SyntheticPaymentAttempt.objects.count(),attempt_count_before)
+        response=self.client.post(path,{'action':'pay'},secure=True)
+        self.assertEqual(response.status_code,200)
+        self.assertEqual(PaidOrder.objects.count(),1)
+
     def test_staff_order_views_show_per_order_hours_only_without_cumulative_balance(self):
         from .invitations import issue_fixture
         from .models import PaidOrder,PaidOrderGrant
