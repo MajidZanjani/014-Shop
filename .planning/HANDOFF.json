@@ -1,0 +1,82 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-11-03T14:04:32.000Z",
+  "phase": "6",
+  "phase_name": "Invitation scope, verified resources and staff MFA",
+  "phase_dir": ".planning/phases/06-invitation-scope-and-staff-mfa",
+  "plan": 1,
+  "task": 1,
+  "total_tasks": 1,
+  "status": "paused",
+  "completed_tasks": [
+    {"id": "shb-11", "name": "SHB-11 invalid/tampered tokens denial", "status": "done", "commit": "5b96383"},
+    {"id": "shb-13", "name": "SHB-13 valid link reuse + scanner safety", "status": "done", "commit": "abbd461"},
+    {"id": "shb-14", "name": "SHB-14 token leakage/caching/cross-customer", "status": "done", "commit": "3cffe9d"},
+    {"id": "shb-15", "name": "SHB-15 wrong-customer/variant/expired/revoked/stacked", "status": "done", "commit": "cae3430"},
+    {"id": "shb-16", "name": "SHB-16 concurrent one-use + apply-is-preview", "status": "done", "commit": "7d154de"},
+    {"id": "shb-17", "name": "SHB-17 ASIC reviewed after coupon expiry", "status": "done", "commit": "681c9b9"},
+    {"id": "shb-18", "name": "SHB-18 withdrawn/expired releases, no claim extension", "status": "done", "commit": "f4cdab6"},
+    {"id": "shb-08", "name": "SHB-08 unapproved/altered-scope blocks payment", "status": "done", "commit": "2719357"},
+    {"id": "shb-09", "name": "SHB-09 ASIC transitions, notices, no premature PaidOrder", "status": "done", "commit": "b29a408"},
+    {"id": "shb-05", "name": "SHB-05 forged submit values", "status": "done", "commit": "4468355"},
+    {"id": "shb-25", "name": "SHB-25 refund linkage, no auto time adj, no erased history", "status": "done", "commit": "ef064c5"},
+    {"id": "shb-01-06", "name": "SHB-01/02/03/04/06 catalog/variants/pricing/old-IP/form", "status": "done", "commit": "615b843"},
+    {"id": "shb-27", "name": "SHB-27 JS-off form parity", "status": "done", "commit": "410c034"},
+    {"id": "shb-28", "name": "SHB-28 restore/replay preserves invitation + order_reference", "status": "done", "commit": "87ddc23"},
+    {"id": "shb-29", "name": "SHB-29 missing rates/policies fail closed", "status": "done", "commit": "8a62ec0"},
+    {"id": "shb-30", "name": "SHB-30 shop code boundary vs protected host services", "status": "done", "commit": "4b9a648"},
+    {"id": "docs-rollup", "name": "STATE/PROJECT/ROADMAP/REQUIREMENTS/ACTIVITY-LOG + evidence doc", "status": "done", "commit": "3116f19"}
+  ],
+  "remaining_tasks": [],
+  "blockers": [
+    {"description": "Authorized independent off-host runner remains unassigned", "type": "external", "workaround": "none; blocks every actual drill (runtime/fault/exhaustion/complete-loss)"},
+    {"description": "Pinned Nix/source/runtime/native/licence/OCI/CI qualification not performed", "type": "external", "workaround": "none; blocks deployment"},
+    {"description": "No actual commercial/provider/refund/tax authority adopted", "type": "external", "workaround": "none; local synthetic fixtures remain in use"},
+    {"description": "No actual mail/host/ingress/DNS/TLS integration", "type": "external", "workaround": "none; blocks real-user flow"},
+    {"description": "Production/bank-sandbox database connection gate remains closed", "type": "external", "workaround": "none; by design until identity/all-write/transport/migration qualified"}
+  ],
+  "async_jobs": [],
+  "human_actions_pending": [
+    {"action": "Assign the authorized independent off-host runner", "context": "every actual drill (runtime, fault injection, exhaustion, complete-loss, restore) depends on it; also required for pinned Nix qualification", "blocking": true},
+    {"action": "Decide the next scope — either begin external-gate work when the above is assigned, or pick a new local-only initiative not framed as SHB rev 1.1 completion", "context": "every SHB-01..30 requirement now has explicit local coverage; no local work remains for SHB rev 1.1 release prep", "blocking": true}
+  ],
+  "decisions": [
+    {"decision": "Every SHB-NN gets one dedicated test_shb_NN_* assertion, paired via docstring with pre-existing granular coverage", "rationale": "makes the SHB-NN -> test map 1:1 for release traceability; keeps existing assertions intact (never weakened)", "phase": "6"},
+    {"decision": "Composite SHB-01/02/03/04/06 covered by a single composite test rather than five tags", "rationale": "all five clauses live on the /shop/ HTTP boundary and share fixture state; splitting would duplicate setup without new coverage", "phase": "6"},
+    {"decision": "SHB-30 covered at the code-boundary level only (no host-service imports; no activate_host hook)", "rationale": "the actual deployment review is an external gate; the local portion is the code boundary, which is testable now", "phase": "6"},
+    {"decision": "SHB-29 branch for PAYMENT_ADAPTER='real' dropped from the test", "rationale": "that toggle gates payment, not submit; the submit boundary already proves fail-closed via SHB_SYNTHETIC_FIXTURE=False and SHOP_ENV='production'", "phase": "6"},
+    {"decision": "Progress reporting re-framed around SHB-completion, not the legacy 14-phase roadmap percent", "rationale": "user feedback: 14-phase percent (7%) misrepresents how far along the project actually is; SHB-NN coverage is the acceptance metric for rev 1.1", "phase": "6"}
+  ],
+  "uncommitted_files": [
+    "?? .bash_profile",
+    "?? .bashrc",
+    "?? .claude/",
+    "?? .gitconfig",
+    "?? .gitmodules",
+    "?? .idea",
+    "?? .mcp.json",
+    "?? .profile",
+    "?? .ripgreprc",
+    "?? .vscode",
+    "?? .zprofile",
+    "?? .zshrc",
+    "?? docs/evidence/shb/retained-tests/0112cc37b01bbd7a8ec76f21296cfc4c109e8814556cbf87298051b1eeb0ea3b.json",
+    "?? docs/evidence/shb/retained-tests/16ddb76bcec13f9636fab37f4c77388062879fcd993ce32e37498160318906ef.json",
+    "?? docs/evidence/shb/retained-tests/324ee3e8ec4cda3236434057d71f63f015ac2e88a82a5d17cf69ed2df85c7b24.json",
+    "?? docs/evidence/shb/retained-tests/54a7736b875b527b127f1011910c45fdcd5606724b81a226b992b086212cd2a6.json",
+    "?? docs/evidence/shb/retained-tests/bf8f230619d792628e5a4a84e685addd666a04f693957c69c15599714f6d6fec.json",
+    "?? docs/evidence/shb/retained-tests/c19fd20616adad15c34ce710aacb083453f78cf824fd2ff3fcb988d87fc8a53c.json",
+    "?? docs/evidence/shb/retained-tests/c42c09b37d8d4cb9afd1208c83351383711145406c076e29a0628993aaf10c27.json",
+    "?? docs/evidence/shb/retained-tests/e6a643456c77b9e564af62462aae1056436a4d7fa13c7794df48eda4ea35d84f.json",
+    "?? http_cache.sqlite"
+  ],
+  "uncommitted_notes": "Dotfiles, .claude/, .idea/, .mcp.json, .vscode/, .gitconfig, .gitmodules, http_cache.sqlite are all pre-existing benign untracked and are flagged as such in STATE.md. The eight docs/evidence/shb/retained-tests/*.json files are intermediate focused-test audit records from --test-label debugging runs during this session (unrelated to the per-SHB-NN shared+focused evidence pairs that WERE committed with each tagged test). They are not load-bearing; the per-commit shared evidence remains the audit trail for the SHB-NN additions.",
+  "next_action": "Wait for user direction. All SHB-01..30 explicit coverage is done, committed and pushed. No local work remains for SHB rev 1.1 release prep. External gates (off-host runner, pinned Nix, actual commercial/provider authority, real mail/host/DNS/TLS, independent custody/post-backup/transport/restore/complete-loss drills) require user authority and are the only remaining items. If the user wants a new scope, ask what it is before planning anything.",
+  "context_notes": "This was a two-session day both on 2026-11-03. The first session (through milestone tag shb-1.1-explicit-coverage-2026-11-03 at e9ea30a) committed 11 SHB-NN tags (SHB-07/10/11-01/12/19/20/21/22/23/24/26) and corrected a propagated stale browser-evidence hash (9a729dd1 -> 45bcdeab -> 601663ad). The second session (this one) committed the remaining 16 SHB-NN tags plus the final docs rollup (3116f19). Shared retained regression progression across the whole day: 605 -> 640 (+35). SHB subset: 262 -> 297 (+35). Browser lane: 161 unchanged. Workflow is well-grooved: pick an SHB-NN requirement, locate paired granular tests, write test_shb_NN_* with composite assertions, run isolated test, run shared lane (~270s), commit test + evidence pair, update STATE.md. The user explicitly rejected framing progress against the 14-phase roadmap percent (7%) early in this session; see memory feedback-progress-framing.md.",
+  "test_counts": {
+    "shared_retained_lane": {"total": 640, "shb_subset": 297, "duration_seconds": 278.109, "last_evidence": "docs/evidence/shb/retained-tests/f852416ef8a5ccf985939e0ed78143a7839d3ab0ac2c2467bbbecae4eaf4b671.json"},
+    "browser_lane": {"total": 161, "customer": 71, "staff": 90, "chromium": "151.0.7922.173", "node": "24.15.0", "evidence": "601663ad4aca5b134743f63badf063b97cd90d386cb7eae4075e3b4663d31fc5.json"}
+  },
+  "parent_counts_unchanged": {"plan_summaries": "11/42", "phase_summaries": "1/14"},
+  "git_state": {"local_head": "3116f19", "origin_main": "3116f19", "ahead": 0, "behind": 0}
+}
