@@ -159,6 +159,25 @@ class InvitationTests(TransactionTestCase):
                 self.assertIn(response.status_code,(403,404))
                 self.assertNotContains(response,'FPGA Supporting Hours Bundle',status_code=response.status_code)
 
+    def test_shb_10_private_release_and_astro_assets_refuse_without_invitation(self):
+        """SHB-10: deep private release routes and _astro assets refuse without invitation; alt host 404s."""
+        import uuid
+        private_paths=('/shop/private/index.html','/_astro/'+uuid.uuid4().hex[:16]+'.js','/_astro/'+uuid.uuid4().hex[:16]+'.css','/purchase/shb/'+str(uuid.uuid4())+'/')
+        for path in private_paths:
+            with self.subTest(path=path):
+                response=self.client.get(path,secure=True)
+                self.assertIn(response.status_code,(403,404),f'{path} must deny without invitation')
+                self.assertNotContains(response,'FPGA Supporting Hours Bundle',status_code=response.status_code)
+                self.assertNotContains(response,'Supporting Hours Bundle',status_code=response.status_code)
+                self.assertNotContains(response,'Synthetic Company',status_code=response.status_code)
+        for path in ('/shop/','/shop/private/index.html','/_astro/anything.js','/invite/'+'A'*43):
+            with self.subTest(path=path,host='other.example'):
+                try:
+                    response=self.client.get(path,secure=True,HTTP_HOST='other.example')
+                    self.assertIn(response.status_code,(400,404),f'{path} on alt host must deny')
+                except Exception as error:
+                    self.assertIn('DisallowedHost',type(error).__name__)
+
     def test_revoked_expired_and_exact_expiry_deny_surviving_cookie(self):
         from .models import Invitation
         self.enter();self.assertEqual(self.client.get('/shop/',secure=True).status_code,200)
