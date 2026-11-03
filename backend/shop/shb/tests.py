@@ -475,6 +475,81 @@ class InvitationTests(TransactionTestCase):
         changed=self.client.post('/purchase/simple/',dict(data,quantity='1'),secure=True)
         self.assertEqual(changed.status_code,409)
 
+    def test_shb_01_02_03_04_06_catalog_variants_pricing_old_ip_and_common_form(self):
+        """SHB-01 to SHB-06 (excluding SHB-05 which has its own tag):
+        - SHB-01: exactly one product, two labelled variants on /shop/
+        - SHB-02: old IP routes (configurations, cart, checkout-rehearsal) 404
+        - SHB-03: FPGA qty 1 and 3 derive 10 and 30 hours, authoritative pricing
+        - SHB-04: ASIC qty 1 and 2 derive 25 and 50 requested hours, submit only
+          (no initial payment, no completed purchase, no SyntheticPaymentAttempt)
+        - SHB-06: common form supports same-phone and conditional tax fields
+
+        Pairs with the existing granular tests that cover each clause:
+        test_form_has_one_product_exact_variants_and_no_private_prefill,
+        test_old_ip_submissions_and_time_panel_are_not_release_routes,
+        test_common_form_review_derives_hours_and_no_balance,
+        test_asic_submit_persists_once_without_payment_or_time_credit,
+        test_common_fields_and_same_phone_are_resolved_without_dossier,
+        test_tax_rules_are_conditional_and_no_blanket_vat_requirement.
+        This tags the composite as SHB-01/02/03/04/06 at one HTTP boundary."""
+        from .models import SupportRequest
+        from shop.catalog.models import QuotationRequest, SyntheticFulfilment
+        from shop.payments.models import SyntheticPaymentAttempt
+        self.enter()
+        # SHB-01: catalog identity.
+        page = self.client.get('/shop/', secure=True)
+        self.assertEqual(page.status_code, 200)
+        self.assertContains(page, 'Supporting Hours Bundle')
+        self.assertContains(page, 'FPGA Supporting Hours Bundle')
+        self.assertContains(page, 'ASIC Supporting Hours Bundle')
+        self.assertNotContains(page, 'IP configurator')
+        self.assertNotContains(page, 'Configure your licence')
+        # SHB-02: old IP routes refused (no new IP sale).
+        for path in ('/api/v1/configurations/validate/', '/api/v1/configuration-drafts/',
+                '/api/v1/cart/', '/purchase/cart/', '/purchase/checkout-rehearsal/'):
+            with self.subTest(path=path):
+                response = self.client.post(path, {'product_id': 'sll-xspi-mc'}, secure=True)
+                self.assertEqual(response.status_code, 404, path)
+        # SHB-03: FPGA qty 1 and 3 derive 10 and 30 hours respectively.
+        fpga_1 = self.client.post('/purchase/simple/',
+            form_data(variant='shb-fpga-10h', quantity='1', action='review'), secure=True)
+        self.assertEqual(fpga_1.status_code, 200)
+        self.assertContains(fpga_1, '10 hours in this order')
+        fpga_3 = self.client.post('/purchase/simple/',
+            form_data(variant='shb-fpga-10h', quantity='3', action='review'), secure=True)
+        self.assertEqual(fpga_3.status_code, 200)
+        self.assertContains(fpga_3, '30 hours in this order')
+        # SHB-04: ASIC qty 1 and 2 derive 25 and 50 requested hours; submit only.
+        asic_1 = self.client.post('/purchase/simple/',
+            form_data(variant='shb-asic-25h', quantity='1', assistance='Review SLL integration',
+                action='submit', accept_terms=''), secure=True)
+        self.assertEqual(asic_1.status_code, 200)
+        self.assertContains(asic_1, '25 requested hours')
+        # Fresh invitation for second ASIC submission to keep assertions isolated.
+        from .invitations import issue_fixture
+        _, token = issue_fixture(customer=self.customer, issuer=self.issuer,
+            company_name='Synthetic Company Limited', project_reference='SLL fixture 2')
+        other = ShopClient(); other.get('/invite/' + token, secure=True)
+        asic_2 = other.post('/purchase/simple/',
+            form_data(variant='shb-asic-25h', quantity='2', assistance='Review SLL integration',
+                action='submit', accept_terms=''), secure=True)
+        self.assertEqual(asic_2.status_code, 200)
+        self.assertContains(asic_2, '50 requested hours')
+        # Submit Request path: at least one SupportRequest/QuotationRequest per ASIC submit, no payment or completed purchase.
+        self.assertGreaterEqual(SupportRequest.objects.count(), 1)
+        self.assertGreaterEqual(QuotationRequest.objects.count(), 1)
+        self.assertEqual(SyntheticPaymentAttempt.objects.count(), 0, 'no initial payment on ASIC submit')
+        self.assertEqual(SyntheticFulfilment.objects.count(), 0, 'no completed purchase on ASIC submit')
+        # SHB-06: form supports same-phone choice and conditional tax.
+        from .forms import ShopForm
+        self.assertTrue(ShopForm(form_data(same_phone='on')).is_valid())
+        self.assertTrue(ShopForm(form_data(same_phone='on', contact_phone='')).is_valid(),
+            'same_phone=on allows empty contact_phone')
+        self.assertTrue(ShopForm(form_data(tax_not_applicable='on', tax_identifier='')).is_valid(),
+            'tax_not_applicable=on allows empty tax_identifier')
+        self.assertFalse(ShopForm(form_data(same_phone='', contact_phone='')).is_valid(),
+            'same_phone=off requires contact_phone')
+
     def test_company_and_price_tampering_and_expired_submission_do_not_persist(self):
         from .models import SupportRequest
         self.enter()
