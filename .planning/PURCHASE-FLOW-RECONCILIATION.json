@@ -26,14 +26,14 @@
       "path": ".planning/HANDOFF.md",
       "role": "current",
       "release": "shb-1.1",
-      "sha256": "2f1354d6f23a06d3c3e6deeeb38a9d015028cb0e61dcdc3f771e527fcb718b49",
+      "sha256": "3ef482a80ea34faa979d3782c2086baf111ecbc5589e56daa0d16c52f67f392f",
       "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/PROJECT.md",
       "role": "current",
       "release": "shb-1.1",
-      "sha256": "4320dc048c36877c1e0387c4f6d181711b9129c47e95813c74f8e5daf3fe81f3",
+      "sha256": "28cc20ba0dacb394be797da8181614ba343fced93f8a8d6212f698cc32d44d42",
       "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
@@ -61,7 +61,7 @@
       "path": ".planning/ROADMAP.md",
       "role": "current",
       "release": "shb-1.1",
-      "sha256": "67a6ac49601de03e226989e3f6a5b92b2e110f318264d99e46d6218aa746d189",
+      "sha256": "2b9a853f74c3254fd1bd865d449e7508d37c5107bd1282f3e166c23d8606882a",
       "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
@@ -82,7 +82,7 @@
       "path": ".planning/STATE.md",
       "role": "current",
       "release": "shb-1.1",
-      "sha256": "5ebc44dd984815dbb10cede798c7c8ec21ebd12595679e5b02f4d445fd77d020",
+      "sha256": "3e820be874fbd3d76d9ee94c176ee9bd9978a8aa53c52177726af78d4aeb4d05",
       "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
@@ -859,7 +859,7 @@
       "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-01-PLAN.md",
       "role": "current",
       "release": "shb-1.1",
-      "sha256": "5f458afe771e174d3d5a803e5d78b7366bc96231923375116995f896ee45d1a2",
+      "sha256": "b580c04e684aeef14b83935bf6c710dae6c1a6f9e77eeaf190ef3f7e1940c32d",
       "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
@@ -1244,7 +1244,7 @@
       "path": ".planning/phases/13-purchase-flow-fulfilment-and-release-acceptance/13-QUALIFICATION-REGISTER.md",
       "role": "current",
       "release": "shb-1.1",
-      "sha256": "7966625c63b457e9d48e4ae5399d63890b8e5eedaab6d0aa743813e87c1db295",
+      "sha256": "24da6103747ae297b6f2783964b612aeb48946c3f92f454e063630989590d8a6",
       "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
