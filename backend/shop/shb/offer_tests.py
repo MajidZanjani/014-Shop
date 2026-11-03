@@ -322,3 +322,46 @@ class OfferTests(TransactionTestCase):
             Invitation.objects.filter(pk=self.invitation.pk).update(revoked_at=timezone.now())
             self.assertEqual(self.accept_offer(data,token).status_code,403)
         self.assertFalse(SupportCheckout.objects.exists())
+
+    def test_shb_17_asic_before_coupon_expiry_reviewed_after_keeps_discount_in_offer(self):
+        """SHB-17: an ASIC request submitted before the coupon's claim deadline
+        and reviewed afterward keeps its DiscountReservation across review and
+        the dated offer carries the reserved coupon's percentage and policy
+        snapshot.
+
+        Pairs with test_actual_coupon_claim_deadline_can_pass_before_issue_without_losing_discount
+        (uses a short-lived coupon and time.sleep) and
+        review_tests.test_clarification_preserves_discount_after_claim_and_invitation_expiry
+        (reservation survives clarification across expiry). This test tags the
+        composite as SHB-17: a full clarify -> ready-for-commercial-review ->
+        issue sequence with time patched past the coupon's expiry, asserting
+        the reservation remains 'reserved' throughout and the final offer
+        payload carries discount_bps == self.discount.percentage_bps and
+        discount_policy == reservation.snapshot."""
+        from .models import DiscountReservation, SupportOffer, SupportRequest
+        reservation = DiscountReservation.objects.get()
+        snapshot = reservation.snapshot
+        self.assertEqual(reservation.state, 'reserved')
+        past_expiry = self.discount.expires_at + timedelta(days=1)
+        with patch('shop.shb.discounts.now', return_value=past_expiry):
+            self.assertEqual(self.submit(decision='needs_information').status_code, 201)
+            self.assertEqual(SupportRequest.objects.get().state, 'needs_information')
+            self.assertEqual(DiscountReservation.objects.get().state, 'reserved')
+            self.assertEqual(self.submit(request_id=str(uuid.uuid4()),
+                expected_review_version=1, decision='ready_for_commercial_review').status_code, 201)
+            self.assertEqual(SupportRequest.objects.get().state, 'under_review')
+            self.assertEqual(DiscountReservation.objects.get().state, 'reserved')
+            value = {'request_id': str(uuid.uuid4()), 'expected_review_version': 2,
+                'scope_sha256': self.row.sha256,
+                'prerequisites': 'Customer provides authorized tool access separately.',
+                'exclusions': 'No tape-out or sign-off commitment.'}
+            response = self.post('quotation-requests/' + str(self.row.quotation_id) + '/shb-offers/', value)
+            self.assertEqual(response.status_code, 201,
+                'offer must issue after coupon expiry when reservation was taken before')
+        offer = SupportOffer.objects.get()
+        self.assertEqual(offer.payload['purchase']['discount_bps'], self.discount.percentage_bps,
+            'offer carries the reserved coupon percentage')
+        self.assertEqual(offer.payload['purchase']['discount_policy'], snapshot,
+            'offer carries the reservation snapshot verbatim')
+        self.assertEqual(DiscountReservation.objects.get().state, 'reserved',
+            'reservation is still reserved after issuance (consumption happens on payment, not issue)')
