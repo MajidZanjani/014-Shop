@@ -303,6 +303,63 @@ class InvitationTests(TransactionTestCase):
         if PurchaseNoticeDelivery is not None:
             self.assertEqual(PurchaseNoticeDelivery.objects.count(),0,'GET must dispatch no purchase mail')
 
+    def test_shb_14_no_token_leak_no_shared_cache_and_no_cross_customer_data(self):
+        """SHB-14: no raw token in logs/referrers/bank URLs, no shared caching,
+        no cross-customer leakage, and entering an email in a form does not
+        replace the invitation's bound customer.
+
+        1. Raw token must not appear in response body, headers, serialized
+           Invitation table or session storage; token_digest is sha256(token).
+        2. Protected routes carry Cache-Control: no-store (prevents shared
+           caching between different customers behind a proxy) and the
+           invitation GET sets Referrer-Policy: no-referrer.
+        3. A separate invitation for a different customer must not see
+           customer A's project_reference or any A-side token material.
+        4. Submitting a form with a different contact_email does not mutate
+           the invitation's customer FK -- the invited customer identity is
+           immutable; form-entered contact is per-request data only."""
+        from .models import Invitation
+        from .invitations import issue_fixture
+        # (1) No raw token in body/headers of either /invite/<token> or /shop/.
+        entry=self.client.get('/invite/'+self.token,secure=True)
+        self.assertEqual(entry.status_code,302)
+        self.assertNotIn(self.token,entry.content.decode())
+        for header,value in entry.items():
+            self.assertNotIn(self.token,str(value),f'header {header} must not carry raw token')
+        shop_page=self.client.get('/shop/',secure=True)
+        self.assertEqual(shop_page.status_code,200)
+        self.assertNotIn(self.token,shop_page.content.decode())
+        self.assertEqual(shop_page['Cache-Control'],'no-store')
+        self.assertEqual(entry['Cache-Control'],'no-store')
+        self.assertEqual(entry['Referrer-Policy'],'no-referrer')
+        # Session must store derived state, never the raw token.
+        for key,value in self.client.session.items():
+            self.assertNotIn(self.token,str(value),f'session key {key} must not carry raw token')
+        # (2) Serialized Invitation table (what a casual log/dump would reveal)
+        # carries only the digest, never the raw token.
+        serialized=json.dumps(list(Invitation.objects.values()),default=str)
+        self.assertNotIn(self.token,serialized)
+        self.assertEqual(Invitation.objects.get(pk=self.invitation.pk).token_digest,
+                         hashlib.sha256(self.token.encode()).hexdigest())
+        # (3) Cross-customer: a second invitation for a different customer must
+        # not surface A's project_reference or A-side identifiers.
+        other_customer=get_user_model().objects.create_user(username='shb-fixture-owner-b')
+        other_invitation,other_token=issue_fixture(customer=other_customer,issuer=self.issuer,
+            company_name='Other Synthetic Company',project_reference='Other SLL reference')
+        other_client=ShopClient()
+        other_client.get('/invite/'+other_token,secure=True)
+        other_shop=other_client.get('/shop/',secure=True)
+        self.assertEqual(other_shop.status_code,200)
+        other_body=other_shop.content.decode()
+        self.assertNotIn('SLL fixture',other_body,'customer B must not see A project_reference')
+        self.assertNotIn(self.token,other_body,'customer B must not see A raw token')
+        self.assertNotIn(str(self.invitation.id),other_body,'customer B must not see A invitation id')
+        # (4) Form contact_email never mutates the invitation's customer FK.
+        pre_customer_id=self.invitation.customer_id
+        self.client.post('/shop/',data=form_data(contact_email='different@example.invalid'),secure=True)
+        self.assertEqual(Invitation.objects.get(pk=self.invitation.pk).customer_id,pre_customer_id,
+                         'form contact_email must not replace the authorized customer FK')
+
     def test_shorter_session_hard_deadline_and_wrong_host(self):
         self.enter()
         deadline=datetime.fromisoformat(self.client.session['shb_session_until'])
