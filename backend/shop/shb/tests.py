@@ -587,6 +587,54 @@ class InvitationTests(TransactionTestCase):
         self.assertEqual(client.post('/purchase/simple/',data,secure=True,HTTP_ORIGIN='null',HTTP_SEC_FETCH_SITE='same-origin').status_code,200)
         self.assertEqual(client.post('/purchase/simple/',form_data(action='review'),secure=True,HTTP_ORIGIN='null',HTTP_SEC_FETCH_SITE='same-origin').status_code,403)
 
+    def test_shb_30_shop_code_does_not_import_or_touch_protected_host_services(self):
+        """SHB-30 (local-assertable portion): the shop application code must
+        not import or depend on protected existing-host services (Stalwart,
+        WebAdminProxy, Plesk, pre-existing PostgreSQL, Prometheus/Grafana,
+        Blackbox, Alertmanager, NetBird, Matrix, MicroVMs). Actual deployment
+        review itself is an external gate (off-host runner unassigned); the
+        local portion asserts the code boundary.
+
+        Pairs with the host-protection-inventory.md and shop-resource-allowlist.md
+        docs which enumerate the host-side allowlist. This tags the
+        local-code-boundary portion of SHB-30."""
+        import pathlib
+        root = pathlib.Path(__file__).resolve().parents[2]  # backend/shop
+        forbidden = (
+            'stalwart',             # existing mail/SMTP server
+            'webadminproxy',        # existing admin reverse proxy
+            'plesk',                # existing hosting panel
+            'alertmanager',         # existing alerting
+            'netbird',              # existing overlay network
+            # Matrix federation client / server access, grafana TLS clients:
+            'matrix_client', 'matrix_server',
+            'grafana_api', 'grafanaclient',
+        )
+        offenders = []
+        for py_file in root.rglob('*.py'):
+            # Skip the test files themselves (they reference the names in docstrings).
+            if py_file.name.endswith(('_tests.py', 'tests.py')):
+                continue
+            # Skip migrations.
+            if '/migrations/' in py_file.as_posix():
+                continue
+            text = py_file.read_text().lower()
+            for name in forbidden:
+                # Look for actual import statements, not substrings in strings.
+                if f'import {name}' in text or f'from {name}' in text:
+                    offenders.append((py_file.relative_to(root).as_posix(), name))
+        self.assertEqual(offenders, [],
+            'shop code must not import protected host services (SHB-30 local boundary): '
+            + str(offenders))
+        # No activation hook: the shop module itself does not spawn host processes
+        # or touch /etc, /nix/store, systemd units at import time.
+        import importlib
+        shb_module = importlib.import_module('shop.shb')
+        self.assertFalse(hasattr(shb_module, 'activate_host'),
+            'shop.shb must not expose an activate_host entry point')
+        self.assertFalse(hasattr(shb_module, 'install_host_hook'),
+            'shop.shb must not expose an install_host_hook entry point')
+
     def test_shb_29_missing_rates_policies_or_provider_fail_closed_while_synthetic_runs(self):
         """SHB-29: when rates/policies/provider authority is missing (live
         config toggles off the synthetic fixture or into production), every
