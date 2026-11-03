@@ -587,6 +587,50 @@ class InvitationTests(TransactionTestCase):
         self.assertEqual(client.post('/purchase/simple/',data,secure=True,HTTP_ORIGIN='null',HTTP_SEC_FETCH_SITE='same-origin').status_code,200)
         self.assertEqual(client.post('/purchase/simple/',form_data(action='review'),secure=True,HTTP_ORIGIN='null',HTTP_SEC_FETCH_SITE='same-origin').status_code,403)
 
+    def test_shb_29_missing_rates_policies_or_provider_fail_closed_while_synthetic_runs(self):
+        """SHB-29: when rates/policies/provider authority is missing (live
+        config toggles off the synthetic fixture or into production), every
+        affected live action fails closed with 503; local implementation
+        still runs with explicit synthetic data when SHB_SYNTHETIC_FIXTURE
+        is on.
+
+        Pairs with discount_tests.test_exact_claim_expiry_and_live_configuration_fail_closed
+        (apply_discount 503 under live-config), offer_tests.test_staff_scope_mfa_and_live_guard_are_rechecked
+        (issue 503 under non-synthetic) and
+        invitation_issuance_tests fail-closed branches. This tags the composite
+        at the customer-facing checkout boundary as SHB-29."""
+        self.enter()
+        # Synthetic (default): the customer page renders with explicit synthetic classification.
+        response = self.client.get('/shop/', secure=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'synthetic',
+            msg_prefix='synthetic fixture must be visibly classified')
+        # (1) SHB_SYNTHETIC_FIXTURE=False: any apply_discount / submit action fails 503.
+        with override_settings(SHB_SYNTHETIC_FIXTURE=False):
+            response = self.client.post('/purchase/simple/',
+                form_data(variant='shb-asic-25h', assistance='Help', action='submit',
+                    accept_terms=''), secure=True)
+            self.assertEqual(response.status_code, 503,
+                'live action without synthetic fixture must fail closed')
+        # (2) SHOP_ENV='production' without live config: still fails closed.
+        with override_settings(SHOP_ENV='production'):
+            response = self.client.post('/purchase/simple/',
+                form_data(variant='shb-asic-25h', assistance='Help', action='submit',
+                    accept_terms=''), secure=True)
+            self.assertEqual(response.status_code, 503,
+                'production env without rates/provider must fail closed')
+        # (3) After each failed-closed attempt, SupportRequest.count() stays at the
+        # baseline (none created under live-config attempts).
+        from .models import SupportRequest
+        self.assertEqual(SupportRequest.objects.count(), 0,
+            'no SupportRequest may be created when live action fails closed')
+        # (4) Baseline: with the default synthetic fixture back on, the same submit succeeds.
+        response = self.client.post('/purchase/simple/',
+            form_data(variant='shb-asic-25h', assistance='Help', action='submit',
+                accept_terms=''), secure=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(SupportRequest.objects.count(), 1)
+
     def test_shb_27_native_js_off_form_same_backend_rules_and_clear_errors(self):
         """SHB-27: a native (no-JavaScript) form submission goes through the
         same backend validation/price/approval rules and reports clear
