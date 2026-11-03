@@ -243,3 +243,62 @@ class FinancialTests(TransactionTestCase):
         with self.assertRaisesMessage(AccessRecoveryError,'shb_recovery_evidence_required'):
             local_recovery_operation(action='release',request_id=uuid.uuid4(),basis_reset=reset,expected_database=connection.settings_dict['NAME'])
         self.assertTrue(AccessEpoch.objects.get().quarantined)
+
+    def test_shb_25_refund_links_to_original_order_no_automated_time_adjustment_no_erased_history(self):
+        """SHB-25: a refund/chargeback is linked to the original PaidOrder;
+        staff consult manual usage records; the support team is informed; no
+        automated time adjustment is created; no financial history is erased.
+
+        Pairs with test_full_refund_and_manual_communication_keep_original_purchase_and_coupon
+        (end-to-end refund flow with byte-identical PaidOrder.payload) and
+        test_manual_records_are_append_only_and_invitation_revocation_does_not_erase_money
+        (append-only history). This tags the composite as SHB-25 with
+        explicit assertions on linkage, manual-record consultation and
+        the no-automated-time-adjustment invariant."""
+        from .models import DiscountReservation, PaidOrder, RefundReview, RefundSupportHandoff
+        from shop.payments.models import SyntheticPaymentOperation
+        from shop.catalog.models import SyntheticFulfilment, SyntheticSupportEvent
+        original_payload = self.order.payload
+        original_reservation = DiscountReservation.objects.get()
+        # (1) Manual review consults manual usage records and references the original order.
+        self.assertEqual(self.manual_review().status_code, 201)
+        review = RefundReview.objects.get()
+        self.assertEqual(review.payload['order_reference'], original_payload['order_reference'],
+            'refund review is explicitly linked to original PaidOrder.order_reference')
+        self.assertTrue(review.payload['manual_records_checked'],
+            'staff must consult manual usage records')
+        self.assertTrue(review.payload['manual_record_reference'],
+            'manual record reference must be captured on the review')
+        # (2) Full refund flow: prepare, dispatch, reconcile, handoff.
+        self.assertEqual(self.prepare_refund().status_code, 200)
+        operation = SyntheticPaymentOperation.objects.get()
+        self.assertEqual(operation.payload['shb_refund_review']['order_id'], str(self.order.pk),
+            'bank operation carries the original PaidOrder.id')
+        self.assertEqual(self.finance('dispatch').status_code, 200)
+        self.assertEqual(self.finance('reconcile').status_code, 200)
+        self.assertEqual(self.handoff().status_code, 201,
+            'support team informed via refund handoff')
+        handoff = RefundSupportHandoff.objects.get()
+        self.assertTrue(handoff.payload.get('communication_reference'),
+            'handoff carries the support-team communication reference')
+        # (3) Original purchase/coupon/history preserved.
+        self.assertEqual(PaidOrder.objects.get().payload, original_payload,
+            'PaidOrder.payload must stay byte-identical through refund')
+        self.assertEqual(DiscountReservation.objects.get().state, 'consumed',
+            'coupon reservation stays consumed; refund does not reopen it')
+        self.assertEqual(DiscountReservation.objects.get().consumed_order_id,
+            original_reservation.consumed_order_id,
+            'reservation consumed_order_id is unchanged')
+        # (4) No automated time adjustment.
+        self.assertFalse(SyntheticFulfilment.objects.exists(),
+            'refund must not create a SyntheticFulfilment (no automated time adjustment)')
+        self.assertFalse(SyntheticSupportEvent.objects.exists(),
+            'refund must not create a SyntheticSupportEvent (no automated time adjustment)')
+        # (5) No erased financial history: RefundReview and RefundSupportHandoff
+        # are each append-only (counts stay 1 after retry).
+        self.assertEqual(RefundReview.objects.count(), 1)
+        self.assertEqual(RefundSupportHandoff.objects.count(), 1)
+        self.assertEqual(self.manual_review().status_code, 200,
+            'idempotent retry of same review returns 200, not creating a second row')
+        self.assertEqual(RefundReview.objects.count(), 1,
+            'refund review history is append-only; no second row from retry')
