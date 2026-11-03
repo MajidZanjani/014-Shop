@@ -223,6 +223,31 @@ class InvitationTests(TransactionTestCase):
             self.assertEqual(self.enter().status_code,403)
             self.assertEqual(self.client.get('/shop/',secure=True).status_code,403)
 
+    def test_shb_11_invalid_and_tampered_tokens_deny_without_server_state(self):
+        """SHB-11: invalid/tampered token values are denied on the next request
+        using server state (no raw equality on client-supplied bytes).
+
+        Pairs with test_revoked_expired_and_exact_expiry_deny_surviving_cookie
+        which closes the revoked/expired/surviving-cookie branches; this closes
+        the invalid-shape and tampered-digest branches so a request that merely
+        looks token-like gains no shop access."""
+        from .models import Invitation
+        invalid_tokens=(
+            '',' ','not-a-token','0'*len(self.token),self.token[:-1]+'X',self.token+'A',
+            self.token.swapcase() if any(c.isalpha() for c in self.token) else self.token+'!',
+            'A'*len(self.token),'../'+self.token,self.token.replace(self.token[0],'/',1),
+        )
+        for probe in invalid_tokens:
+            with self.subTest(token=probe):
+                client=ShopClient()
+                response=client.get('/invite/'+probe,secure=True)
+                self.assertIn(response.status_code,(400,403,404),f'bogus token {probe!r} must deny')
+                self.assertNotContains(response,'FPGA Supporting Hours Bundle',status_code=response.status_code)
+                self.assertNotContains(response,'Synthetic Company',status_code=response.status_code)
+                # Even a surviving cookie from a parallel bogus GET must not grant /shop/.
+                self.assertIn(client.get('/shop/',secure=True).status_code,(302,400,403,404))
+        self.assertEqual(Invitation.objects.count(),1,'no fresh invitation ever created by bogus GET')
+
     def test_shorter_session_hard_deadline_and_wrong_host(self):
         self.enter()
         deadline=datetime.fromisoformat(self.client.session['shb_session_until'])
