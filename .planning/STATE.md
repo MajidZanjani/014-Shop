@@ -10,11 +10,22 @@ last_updated: "2026-11-03T07:55:00.000Z"
 last_activity: 2026-11-03
 state_head: a41b42d58d98eb7e0d1abfa9914f3013605ccf11
 progress:
+  # The project treats `percent` as PHASE-based completion (enforced by
+  # scripts/check_planning.py:74 as round(100 * completed_phases / total_phases)).
+  # External tools that count SUMMARYs per active plan (e.g. `gsd-tools stats`)
+  # report ~28%; that number uses active_plans (excludes superseded) as the
+  # denominator and is informational, not the acceptance metric. See
+  # plans_summarized_percent (all plans) and active_plans_percent (active only)
+  # below. The canonical POC remains `percent`.
   total_phases: 14
   completed_phases: 1
   total_plans: 42
   completed_plans: 11
   percent: 7
+  plans_summarized_percent: 26
+  superseded_plans: 3
+  active_plans: 39
+  active_plans_percent: 28
 ---
 
 # Project state — Supporting Hours Bundle revision 1.1
