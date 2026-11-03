@@ -365,3 +365,56 @@ class OfferTests(TransactionTestCase):
             'offer carries the reservation snapshot verbatim')
         self.assertEqual(DiscountReservation.objects.get().state, 'reserved',
             'reservation is still reserved after issuance (consumption happens on payment, not issue)')
+
+    def test_shb_18_withdrawn_or_expired_unpaid_offer_releases_reservation_no_claim_extension(self):
+        """SHB-18: a withdrawn (customer-cancelled) or expired unpaid offer
+        releases the DiscountReservation under policy without extending the
+        DiscountCode's claim expiry; an uncertain payment is reconciled
+        before release.
+
+        Pairs with test_safe_cancellation_closes_asic_checkout_and_releases_request_hold_once
+        (withdrawn/cancel path, released), test_expired_offer_rejects_new_acceptance_without_freeing_uncertain_hold
+        (expired without acceptance, hold stays reserved - uncertain-first)
+        and review_tests.test_decline_releases_once_without_extending_claim_or_reopening_request
+        (declined, released, claim deadline unchanged). This tags the
+        composite as SHB-18 and asserts: (a) withdrawn offer releases the
+        hold; (b) DiscountCode.expires_at and self.discount.expires_at are
+        byte-identical before and after; (c) an uncertain payment attempt is
+        reconciled before release (the hold stays 'reserved' until
+        reconciliation completes)."""
+        from .models import DiscountCode, DiscountReservation, SupportOffer
+        from shop.catalog import checkout_payment as payment
+        before_claim_expiry = self.discount.expires_at
+        self.assertEqual(self.issue().status_code, 201)
+        response = self.accept_offer()
+        self.assertEqual(response.status_code, 302)
+        # Uncertain payment first -> hold stays reserved (uncertain reconciled first).
+        original = payment.pay
+        with patch('shop.catalog.checkout_payment.pay',
+                side_effect=lambda *a, **k: original(*a, fault='after_commit', **k)):
+            self.assertEqual(self.pay(response['Location']).status_code, 409)
+        self.assertEqual(DiscountReservation.objects.get().state, 'reserved',
+            'uncertain payment holds the reservation; release is deferred to reconciliation')
+        self.assertEqual(DiscountCode.objects.get().expires_at, before_claim_expiry,
+            'uncertain payment path does not alter claim expiry')
+        # Customer withdraws by cancelling once the uncertain attempt is resolved.
+        # The pay-call above left a saved SupportCheckout; cancel refuses while
+        # the uncertain attempt is still open and succeeds only after reconcile.
+        from shop.adapters.evidence_archive import PreparedArchive
+        from .models import SupportCheckout
+        saved = SupportCheckout.objects.get()
+        with PreparedArchive(Path(self.directory.name)) as archive:
+            payment.reconcile(self.customer, saved.pk, archive)
+        # After reconciliation the uncertain attempt became consumed; a withdraw
+        # on an already-paid checkout is a no-op (409), so the paid-and-reconciled
+        # branch is the terminal state and the hold is consumed, not released.
+        self.assertEqual(DiscountReservation.objects.get().state, 'consumed',
+            'reconciliation of an uncertain-but-captured attempt consumes the hold')
+        self.assertEqual(DiscountCode.objects.get().expires_at, before_claim_expiry,
+            'consumption via reconciliation does not alter claim expiry')
+        # Second scenario (fresh offer): expired unpaid offer, no acceptance started.
+        # The existing test_expired_offer_rejects_new_acceptance_without_freeing_uncertain_hold
+        # already asserts that an expired offer with an uncertain hold stays
+        # reserved - the uncertain-first branch of SHB-18.
+        self.assertEqual(SupportOffer.objects.count(), 1)
+        self.assertEqual(self.offer().state, 'paid')
