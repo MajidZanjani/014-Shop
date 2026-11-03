@@ -26,14 +26,14 @@
       "path": ".planning/HANDOFF.md",
       "role": "current",
       "release": "shb-1.1",
-      "sha256": "51bca777513f015bb4371d91ad388cbe4b3b96db9c022fe29ad04d03e4cf2dac",
+      "sha256": "2f1354d6f23a06d3c3e6deeeb38a9d015028cb0e61dcdc3f771e527fcb718b49",
       "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/PROJECT.md",
       "role": "current",
       "release": "shb-1.1",
-      "sha256": "6a807e1b9cda3655a66da66f930dfc8552d412bbac6c10fba0ba85f8e628fbc4",
+      "sha256": "4320dc048c36877c1e0387c4f6d181711b9129c47e95813c74f8e5daf3fe81f3",
       "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
@@ -61,7 +61,7 @@
       "path": ".planning/ROADMAP.md",
       "role": "current",
       "release": "shb-1.1",
-      "sha256": "82fb843658cf199f65b448428b82c032f811c2cccad2c7db94fc5f2ae3061634",
+      "sha256": "9e764c2ee4f16679937f25eefb0c61883f2d6e3d24134c7a3552cf74b6ee20b0",
       "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
@@ -82,7 +82,7 @@
       "path": ".planning/STATE.md",
       "role": "current",
       "release": "shb-1.1",
-      "sha256": "8e26279ee65a931378aaf61c0127dd79767314de97199b685cd777728f52424c",
+      "sha256": "5ebc44dd984815dbb10cede798c7c8ec21ebd12595679e5b02f4d445fd77d020",
       "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
@@ -859,7 +859,7 @@
       "path": ".planning/phases/08-payment-domain-and-fault-injectable-fake-bank/08-01-PLAN.md",
       "role": "current",
       "release": "shb-1.1",
-      "sha256": "fc25809964c821c343483f90c5216510ccfdb0aea56e29b080d3286ce2be91d9",
+      "sha256": "5f458afe771e174d3d5a803e5d78b7366bc96231923375116995f896ee45d1a2",
       "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
