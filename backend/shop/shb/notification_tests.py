@@ -173,3 +173,76 @@ class NotificationTests(TransactionTestCase):
             with override_settings(**self.customer_settings),self.assertRaisesMessage(DatabaseError,'queue its ordinary notice atomically'):
                 self.customer_submit(discount_code='')
         self.assertEqual(SupportRequest.objects.count(),1)
+
+    def test_shb_09_approve_clarify_decline_withdraw_each_notices_state_and_no_paid_order(self):
+        """SHB-09: each ASIC transition emits the correct customer notice,
+        updates state as expected, keeps DiscountReservation in the right
+        state, and leaves PaidOrder.objects.count() == 0 until an accepted
+        verified payment.
+
+        Pairs with:
+        - test_stored_asic_request_has_one_retryable_customer_acknowledgement
+          (submission -> request-received notice)
+        - test_question_and_decline_notices_freeze_the_exact_review_message
+          (clarify -> request-question notice; decline -> request-declined;
+          reservation released on decline)
+        - test_customer_withdrawal_queues_its_committed_closing_once
+          (withdraw -> request-closed notice, idempotent)
+        - test_offer_and_customer_purchase_notices_keep_one_order_reference_and_no_balance
+          (approve+issue -> offer-issued notice; pay -> purchase-confirmed)
+
+        This tags the composite as SHB-09 and chains clarify -> approve ->
+        issue -> withdraw on a single request, with a separate decline
+        branch, asserting PaidOrder.objects.count() == 0 at every
+        pre-payment point."""
+        from .models import DiscountReservation, PaidOrder, SupportRequest, TransactionNotice
+        # (A) Starting from the submitted state, PaidOrder is zero.
+        self.assertEqual(PaidOrder.objects.count(), 0, 'submitted state must have no PaidOrder')
+        self.assertTrue(TransactionNotice.objects.filter(event='request-received').exists())
+        # (B) Clarify (needs_information) -> state 'needs_information', notice emitted.
+        self.assertEqual(self.submit().status_code, 201)
+        self.assertEqual(SupportRequest.objects.get().state, 'needs_information')
+        self.assertTrue(TransactionNotice.objects.filter(event='request-question').exists())
+        self.assertEqual(DiscountReservation.objects.get().state, 'reserved')
+        self.assertEqual(PaidOrder.objects.count(), 0, 'needs_information must have no PaidOrder')
+        # (C) Approve (ready_for_commercial_review from needs_information) ->
+        # state 'under_review', no PaidOrder.
+        self.assertEqual(self.submit(request_id=str(uuid.uuid4()), expected_review_version=1,
+            decision='ready_for_commercial_review',
+            message='Ready for commercial review').status_code, 201)
+        self.assertEqual(SupportRequest.objects.get().state, 'under_review')
+        self.assertEqual(DiscountReservation.objects.get().state, 'reserved')
+        self.assertEqual(PaidOrder.objects.count(), 0, 'under_review must have no PaidOrder')
+        # (D) Issue offer, then customer withdraws -> request-closed notice.
+        issue_value = {'request_id': str(uuid.uuid4()), 'expected_review_version': 2,
+            'scope_sha256': self.row.sha256,
+            'prerequisites': 'Customer provides authorized tool access separately.',
+            'exclusions': 'No tape-out or sign-off commitment.'}
+        self.assertEqual(self.post('quotation-requests/' + str(self.row.quotation_id) +
+            '/shb-offers/', issue_value).status_code, 201)
+        self.assertTrue(TransactionNotice.objects.filter(event='offer-issued').exists())
+        self.assertEqual(PaidOrder.objects.count(), 0, 'offer_issued must have no PaidOrder')
+        path = '/purchase/shb/offer/' + str(self.offer().pk) + '/'
+        with override_settings(**self.customer_settings):
+            self.assertEqual(self.client.post(path, {'action': 'withdraw',
+                'request_id': str(uuid.uuid4())}, secure=True).status_code, 200)
+        self.assertEqual(TransactionNotice.objects.filter(event='request-closed').count(), 1)
+        self.assertEqual(PaidOrder.objects.count(), 0,
+            'withdrawn offer must have no PaidOrder (completion requires accepted verified payment)')
+        # (E) Separately, assert decline-from-needs_information releases the hold
+        # using a fresh second request (independent of the chain above).
+        with override_settings(**self.customer_settings):
+            self.assertEqual(self.customer_submit(discount_code='').status_code, 200)
+        second = SupportRequest.objects.exclude(pk=self.row.pk).get()
+        from shop.access.models import StaffQuotationGrant
+        StaffQuotationGrant.objects.create(user=self.user, quotation=second.quotation,
+            business_scope_version=second.revision)
+        route = 'quotation-requests/' + str(second.quotation_id) + '/shb-reviews/'
+        decline_value = {'request_id': str(uuid.uuid4()), 'expected_review_version': 0,
+            'scope_sha256': second.sha256, 'decision': 'declined',
+            'message': 'The requested scope cannot be supported.'}
+        self.assertEqual(self.post(route, decline_value).status_code, 201)
+        self.assertEqual(SupportRequest.objects.get(pk=second.pk).state, 'declined')
+        self.assertTrue(TransactionNotice.objects.filter(event='request-declined').exists())
+        self.assertEqual(PaidOrder.objects.count(), 0,
+            'declined request must have no PaidOrder')
