@@ -64,6 +64,41 @@ class PaidOrderTests(TransactionTestCase):
         self.assertEqual(response.status_code,422)
         self.assertContains(self.client.get(self.path,secure=True),'Paid purchase recorded')
 
+    def test_eligible_fpga_top_up_records_independent_paid_orders_per_invitation(self):
+        from .invitations import issue_fixture
+        from .models import PaidOrder,PurchaseNoticeDelivery
+        from .tests import form_data
+        from shop.catalog.models import SyntheticFulfilment,SyntheticSupportEvent
+        first=self.pay()
+        self.assertEqual(first.payload['purchase']['hours_purchased'],30)
+        self.assertEqual(first.payload['purchase']['variant_id'],'shb-fpga-10h')
+        _,token=issue_fixture(customer=self.customer,issuer=self.issuer,
+            company_name='Synthetic Company Limited',project_reference='SLL top-up')
+        self.assertNotEqual(token,self.token)
+        self.client.get('/invite/'+token,secure=True)
+        data=form_data(quantity='2',action='review',accept_terms='',privacy_acknowledged='')
+        response=self.client.post('/purchase/simple/',data,secure=True)
+        self.assertEqual(response.status_code,200)
+        response=self.client.post('/purchase/simple/',dict(data,action='checkout',
+            review_digest=response.context['review_digest'],accept_terms='on',privacy_acknowledged='on'),secure=True)
+        self.assertEqual(response.status_code,302)
+        self.assertNotEqual(response['Location'],self.path)
+        self.assertEqual(self.client.post(response['Location'],{'action':'pay'},secure=True).status_code,200)
+        orders=list(PaidOrder.objects.order_by('created_at'))
+        self.assertEqual(len(orders),2);self.assertNotEqual(orders[0].pk,orders[1].pk)
+        self.assertEqual(orders[0].payload['purchase']['hours_purchased'],30)
+        self.assertEqual(orders[1].payload['purchase']['hours_purchased'],20)
+        self.assertEqual(orders[0].payload['purchase']['quantity'],3)
+        self.assertEqual(orders[1].payload['purchase']['quantity'],2)
+        self.assertNotEqual(orders[0].payload['order_reference'],orders[1].payload['order_reference'])
+        self.assertEqual(orders[0].payload['support_tracking'],'manual-outside-shop')
+        self.assertEqual(orders[1].payload['support_tracking'],'manual-outside-shop')
+        self.assertIs(orders[0].payload['effects_authorized'],False)
+        self.assertIs(orders[1].payload['effects_authorized'],False)
+        self.assertEqual(PurchaseNoticeDelivery.objects.count(),2)
+        self.assertFalse(SyntheticFulfilment.objects.exists())
+        self.assertFalse(SyntheticSupportEvent.objects.exists())
+
     def test_get_cannot_finalize_or_queue_and_accepted_unpaid_order_cannot_finalize(self):
         from . import paid_orders
         from .models import PaidOrder,PurchaseNoticeDelivery
