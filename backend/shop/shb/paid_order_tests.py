@@ -99,6 +99,42 @@ class PaidOrderTests(TransactionTestCase):
         self.assertFalse(SyntheticFulfilment.objects.exists())
         self.assertFalse(SyntheticSupportEvent.objects.exists())
 
+    def test_temporary_mail_failure_retains_order_coupon_payment_and_staff_view(self):
+        from . import purchase_mail
+        from .models import PaidOrder,PaidOrderGrant,PurchaseNoticeCapture,PurchaseNoticeDelivery,DiscountReservation
+        from shop.payments.models import SyntheticPaymentAttempt
+        order=self.pay(discount=True)
+        order_payload=dict(order.payload)
+        reservation=DiscountReservation.objects.get()
+        reservation_state=reservation.state;reservation_consumed=reservation.consumed_order_id
+        attempt=SyntheticPaymentAttempt.objects.get()
+        attempt_state=attempt.state;attempt_amount=attempt.amount_minor
+        path=self.staff(order);PaidOrderGrant.objects.create(user=self.user,order=order)
+        with PreparedArchive(Path(self.directory.name)) as archive:
+            with patch.object(PreparedArchive,'publish',side_effect=ArchiveError('temporary mail failure')):
+                claimed=purchase_mail.claim(lease_seconds=1)
+                with self.assertRaises(ArchiveError):purchase_mail.capture(claimed,archive)
+                self.assertFalse(PurchaseNoticeCapture.objects.exists())
+                order.refresh_from_db();self.assertEqual(order.payload,order_payload)
+                self.assertEqual(PaidOrder.objects.count(),1)
+                reservation.refresh_from_db()
+                self.assertEqual(reservation.state,reservation_state)
+                self.assertEqual(reservation.consumed_order_id,reservation_consumed)
+                attempt.refresh_from_db()
+                self.assertEqual(attempt.state,attempt_state)
+                self.assertEqual(attempt.amount_minor,attempt_amount)
+                response=self.browser.get(path)
+                self.assertEqual(response.status_code,200)
+                self.assertEqual(response.json()['purchase']['hours_purchased'],30)
+            PurchaseNoticeDelivery.objects.filter(pk=order.pk).update(lease_until=timezone.now()-timedelta(seconds=1))
+            self.assertTrue(purchase_mail.execute_once())
+        self.assertEqual(PaidOrder.objects.count(),1)
+        self.assertEqual(PurchaseNoticeCapture.objects.count(),1)
+        order.refresh_from_db();self.assertEqual(order.payload,order_payload)
+        reservation.refresh_from_db()
+        self.assertEqual(reservation.state,reservation_state)
+        self.assertEqual(reservation.consumed_order_id,reservation_consumed)
+
     def test_paid_order_remains_valid_and_visible_to_staff_after_invitation_expiry(self):
         from . import purchase_mail
         from .models import PaidOrder,PaidOrderGrant,PurchaseNoticeDelivery,SupportCheckout
