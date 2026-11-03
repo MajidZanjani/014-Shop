@@ -99,6 +99,39 @@ class PaidOrderTests(TransactionTestCase):
         self.assertFalse(SyntheticFulfilment.objects.exists())
         self.assertFalse(SyntheticSupportEvent.objects.exists())
 
+    def test_payment_can_be_reconciled_after_invitation_expiry_without_new_checkout(self):
+        from shop.catalog import checkout_payment
+        from .models import PaidOrder,PaidOrderGrant
+        from .tests import form_data
+        from shop.payments.models import SyntheticPaymentAttempt
+        response=self.checkout();self.assertEqual(response.status_code,302)
+        path=response['Location']
+        original=checkout_payment.pay
+        def interrupted(*args,**kwargs):return original(*args,fault='after_commit',**kwargs)
+        with patch('shop.catalog.checkout_payment.pay',side_effect=interrupted):
+            self.assertEqual(self.client.post(path,{'action':'pay'},secure=True).status_code,409)
+        self.assertEqual(SyntheticPaymentAttempt.objects.get().state,'uncertain')
+        self.assertFalse(PaidOrder.objects.exists())
+        saved_id=self.saved().pk
+        future=self.invitation.expires_at+timedelta(days=1)
+        with patch('shop.shb.invitations.now',return_value=future):
+            self.assertEqual(self.client.get(path,secure=True).status_code,403)
+            self.assertEqual(self.client.post(path,{'action':'pay'},secure=True).status_code,403)
+            response=self.client.post('/purchase/simple/',form_data(action='submit',quantity='1'),secure=True)
+            self.assertEqual(response.status_code,403)
+            self.assertFalse(PaidOrder.objects.exists())
+            with PreparedArchive(Path(self.directory.name)) as archive:
+                result=checkout_payment.reconcile(self.customer,saved_id,archive)
+            self.assertEqual(result.attempt.provider_status,'captured')
+            self.assertEqual(PaidOrder.objects.count(),1)
+        order=PaidOrder.objects.get()
+        self.assertEqual(order.payload['purchase']['hours_purchased'],30)
+        self.assertEqual(order.payload['purchase']['variant_id'],'shb-fpga-10h')
+        staff_path=self.staff(order);PaidOrderGrant.objects.create(user=self.user,order=order)
+        response=self.browser.get(staff_path)
+        self.assertEqual(response.status_code,200)
+        self.assertEqual(response.json()['purchase']['hours_purchased'],30)
+
     def test_forged_payment_success_fields_at_payment_page_cannot_mark_paid(self):
         from .models import PaidOrder,SupportCheckout
         from shop.payments.models import SyntheticPaymentAttempt,SyntheticBankOperation
