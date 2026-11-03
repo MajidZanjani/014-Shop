@@ -99,6 +99,35 @@ class PaidOrderTests(TransactionTestCase):
         self.assertFalse(SyntheticFulfilment.objects.exists())
         self.assertFalse(SyntheticSupportEvent.objects.exists())
 
+    def test_paid_order_remains_valid_and_visible_to_staff_after_invitation_expiry(self):
+        from . import purchase_mail
+        from .models import PaidOrder,PaidOrderGrant,PurchaseNoticeDelivery,SupportCheckout
+        from .tests import form_data
+        from shop.catalog.models import SyntheticFulfilment,SyntheticSupportEvent
+        order=self.pay()
+        original_payload=dict(order.payload)
+        original_notice_pk=PurchaseNoticeDelivery.objects.get().pk
+        future=self.invitation.expires_at+timedelta(days=1)
+        with patch('shop.shb.invitations.now',return_value=future):
+            checkouts_before=SupportCheckout.objects.count()
+            response=self.client.post('/purchase/simple/',form_data(action='submit'),secure=True)
+            self.assertNotEqual(response.status_code,302)
+            self.assertEqual(PaidOrder.objects.count(),1)
+            self.assertEqual(SupportCheckout.objects.count(),checkouts_before)
+        path=self.staff(order)
+        PaidOrderGrant.objects.create(user=self.user,order=order)
+        response=self.browser.get(path)
+        self.assertEqual(response.status_code,200)
+        self.assertEqual(response.json()['purchase']['hours_purchased'],30)
+        self.assertEqual(response.json()['purchase']['variant_id'],'shb-fpga-10h')
+        self.assertEqual(response.json()['details']['company_name'],'Synthetic Company Limited')
+        order.refresh_from_db()
+        self.assertEqual(order.payload,original_payload)
+        self.assertFalse(SyntheticFulfilment.objects.exists())
+        self.assertFalse(SyntheticSupportEvent.objects.exists())
+        self.assertTrue(purchase_mail.execute_once())
+        self.assertEqual(PurchaseNoticeDelivery.objects.get().pk,original_notice_pk)
+
     def test_get_cannot_finalize_or_queue_and_accepted_unpaid_order_cannot_finalize(self):
         from . import paid_orders
         from .models import PaidOrder,PurchaseNoticeDelivery
