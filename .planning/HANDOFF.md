@@ -8,11 +8,11 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Current plan:** 06-01 — protected invitation issuance/reissue, scoped discount revocation and separate protected discount issuance verified locally; actual qualification remains open.
 
-**Execution status:** active — SHB-07/26/23/24 Phase 10, SHB-19/22/20/21 Phase 8, SHB-12 Phase 6 and SHB-10 Phase 4 assertions committed (dc902cb,f421a7a,c1dba1c,a3dd5fa,abf491b,44abaf8,a41b42d,cd88d44,91d3835,7aff8f9); shared retained lane now passes 623 total (280 SHB) in 269.588s; browser lane remains at 161 (re-verified at head via 601663ad).
+**Execution status:** active — SHB-07/26/23/24 Phase 10, SHB-19/22/20/21 Phase 8, SHB-12 Phase 6, SHB-10 Phase 4 and SHB-11-01 Phase 11 bypass assertions committed (dc902cb,f421a7a,c1dba1c,a3dd5fa,abf491b,44abaf8,a41b42d,cd88d44,91d3835,7aff8f9,c7d76c1); shared retained lane now passes 624 total (281 SHB) in 269.916s; browser lane remains at 161 (re-verified at head via 601663ad).
 
 **Next implementation task:** Local 06-01 slice is fully verified. Continue with the next planned 06 work (or begin 07 continuation) under the existing synthetic-fixture boundaries. Normal pinned Nix/source/runtime/native/licence/OCI/CI and actual commercial/provider/refund/tax/mail/host/ingress/database/human/independent custody/post-backup/transport/restore/complete-loss qualification remain open; the authorized independent off-host runner is unassigned.
 
-**Recorded implementation:** 7aff8f9104bd8765b983de29483ac7401170b257
+**Recorded implementation:** c7d76c166255aac08eb21b72fe2144469318b2b3
 
 All three protected staff components for06-01 are ordinarily pushed to origin/main: invitation issuance/reissue4db2586, scoped discount revocation34c0019 and separate scoped discount issuance e5ec3dd; RED7567254/79b78c7/705c2de are also pushed. The lifecycle+mirror closure b7cd2e9 is committed locally and pushes with this record. [Issuance behavior/evidence/commands](../docs/build/shb-invitation-issuance-2026-11-02.md), [current discount revocation behavior/evidence/commands](../docs/build/shb-discount-revocation-2026-11-02.md) and [current discount issuance behavior/evidence/commands](../docs/build/shb-discount-issuance-2026-11-02.md).
 
