@@ -286,3 +286,53 @@ class DiscountTests(TransactionTestCase):
         self.assertEqual(self.post().status_code, 403)
         self.assertFalse(DiscountReservation.objects.exists())
         self.assertFalse(DiscountThrottle.objects.exists())
+
+    def test_shb_15_wrong_customer_variant_expired_revoked_or_stacked_rejects_no_bypass(self):
+        """SHB-15: wrong-customer/variant/expired/revoked/stacked coupon
+        attempts are rejected server-side with no access or approval bypass.
+
+        Pairs with test_wrong_customer_and_variant_expiry_revocation_and_stacking_are_generic
+        (same five branches at the generic level) and
+        test_discount_never_bypasses_revoked_access_or_duplicate_form_fields
+        (revoked-access branch). This test tags the invariant as SHB-15 and
+        asserts the composite side-effect bound across all branches: 422
+        'Discount unavailable', no DiscountReservation, no SupportRequest,
+        and the invitation row/digest is left untouched by the rejection."""
+        from .discounts import issue_fixture as issue_discount
+        from .models import DiscountCode, DiscountReservation, Invitation, SupportRequest
+        other = get_user_model().objects.create_user(username='shb-15-wrong-customer')
+        now = timezone.now()
+        before_invite_digest = self.invitation.token_digest
+        branches = (
+            ('wrong_customer', dict(customer=other)),
+            ('wrong_variant', dict(asic_allowed=False)),
+            ('not_yet_active', dict(starts_at=now + timedelta(days=1), expires_at=now + timedelta(days=2))),
+            ('expired', dict(starts_at=now - timedelta(days=2), expires_at=now - timedelta(days=1))),
+        )
+        for name, changes in branches:
+            with self.subTest(branch=name):
+                values = dict(customer=self.customer, issuer=self.issuer, percentage_bps=1000,
+                    fpga_allowed=True, asic_allowed=True)
+                values.update(changes)
+                _, code = issue_discount(**values)
+                response = self.post(discount_code=code)
+                self.assertEqual(response.status_code, 422, name)
+                self.assertContains(response, 'Discount unavailable', status_code=422)
+                self.assertFalse(DiscountReservation.objects.exists(), name)
+                self.assertEqual(SupportRequest.objects.count(), 0, name)
+        # Stacked codes: two valid codes concatenated are still one rejected submission.
+        _, second_code = issue_discount(customer=self.customer, issuer=self.issuer,
+            percentage_bps=1000, fpga_allowed=True, asic_allowed=True)
+        response = self.post(discount_code=self.code + ',' + second_code)
+        self.assertEqual(response.status_code, 422)
+        self.assertFalse(DiscountReservation.objects.exists())
+        self.assertEqual(SupportRequest.objects.count(), 0)
+        # Revoked branch: existing DiscountCode becomes revoked and the apply fails
+        # without erasing the DiscountCode row or affecting the invitation.
+        DiscountCode.objects.filter(pk=self.discount.pk).update(revoked_at=now)
+        self.assertEqual(self.post().status_code, 422)
+        self.assertTrue(DiscountCode.objects.filter(pk=self.discount.pk).exists())
+        self.assertEqual(Invitation.objects.get(pk=self.invitation.pk).token_digest,
+                         before_invite_digest, 'rejection must not touch the invitation row')
+        self.assertFalse(DiscountReservation.objects.exists())
+        self.assertEqual(SupportRequest.objects.count(), 0)
