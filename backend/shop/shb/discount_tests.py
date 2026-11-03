@@ -336,3 +336,55 @@ class DiscountTests(TransactionTestCase):
                          before_invite_digest, 'rejection must not touch the invitation row')
         self.assertFalse(DiscountReservation.objects.exists())
         self.assertEqual(SupportRequest.objects.count(), 0)
+
+    def test_shb_16_concurrent_one_use_claims_have_one_reservation_and_apply_consumes_none(self):
+        """SHB-16: concurrent one-use claims yield at most one live reservation
+        and apply_discount alone (preview) consumes none.
+
+        Pairs with test_parallel_requests_for_one_use_have_one_winner_and_atomic_rollback
+        (2-way submit race) and test_apply_and_remove_preview_only_and_preserve_hours
+        (apply does not reserve). This test tags both clauses as SHB-16 and
+        raises the race to four concurrent submitters, asserting exactly one
+        200 winner and at most one DiscountReservation; then asserts that
+        apply_discount by any number of concurrent clients leaves the
+        reservation count unchanged (preview does not consume)."""
+        from .invitations import issue_fixture as issue_invitation
+        from .models import DiscountReservation, SupportRequest
+        # Four concurrent one-use SUBMIT attempts, four distinct invited clients.
+        clients = [self.client]
+        for suffix in ('b', 'c', 'd'):
+            _, token = issue_invitation(customer=self.customer, issuer=self.issuer,
+                company_name='Synthetic Company Limited', project_reference='SLL fixture ' + suffix)
+            extra = ShopClient(); extra.get('/invite/' + token, secure=True); clients.append(extra)
+        barrier = Barrier(len(clients))
+        def submit(client):
+            try:
+                barrier.wait(timeout=5)
+                return client.post('/purchase/simple/', form_data(variant='shb-asic-25h',
+                    assistance='Help', action='submit', discount_code=self.code), secure=True).status_code
+            finally:
+                connections.close_all()
+        with ThreadPoolExecutor(max_workers=len(clients)) as pool:
+            outcomes = list(pool.map(submit, clients))
+        self.assertEqual(sorted(outcomes), sorted([200] + [422] * (len(clients) - 1)))
+        self.assertEqual(DiscountReservation.objects.count(), 1, 'exactly one live reservation after race')
+        self.assertEqual(SupportRequest.objects.count(), 1, 'exactly one SupportRequest after race')
+        reservation_pk = DiscountReservation.objects.get().pk
+        # Three concurrent apply_discount previews on the same winner's session
+        # must not create any additional reservation (preview-only semantics).
+        winner = next(c for i, c in enumerate(clients) if outcomes[i] == 200)
+        cookies = winner.cookies.copy()
+        preview_barrier = Barrier(3)
+        def preview(_):
+            try:
+                client = ShopClient(); client.cookies = cookies.copy(); preview_barrier.wait(timeout=5)
+                return client.post('/purchase/simple/', form_data(variant='shb-asic-25h',
+                    assistance='Help', action='apply_discount', discount_code=self.code), secure=True).status_code
+            finally:
+                connections.close_all()
+        with ThreadPoolExecutor(max_workers=3) as pool:
+            list(pool.map(preview, range(3)))
+        self.assertEqual(DiscountReservation.objects.count(), 1,
+                         'apply_discount preview must not add reservations')
+        self.assertEqual(DiscountReservation.objects.get().pk, reservation_pk,
+                         'original reservation pk is stable under preview concurrency')
