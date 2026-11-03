@@ -68,6 +68,55 @@ class FormTests(SimpleTestCase):
         self.assertTrue(form.is_valid(),form.errors)
 
 
+class CalendarExpiryTests(SimpleTestCase):
+    """SHB-12: six-month calendar expiry handles month-end and leap-year cases."""
+
+    def _expiry(self,year,month,day,hour=6):
+        from datetime import datetime,timezone as utc
+        from .invitations import six_month_expiry
+        return six_month_expiry(datetime(year,month,day,hour,tzinfo=utc.utc))
+
+    def test_six_month_expiry_rejects_naive_or_non_datetime(self):
+        from datetime import datetime
+        from .invitations import six_month_expiry
+        with self.assertRaises(ValueError):six_month_expiry(datetime(2026,1,1,6))
+        with self.assertRaises(ValueError):six_month_expiry('2026-01-01T06:00:00Z')
+
+    def test_normal_same_day_six_month_shift(self):
+        from datetime import datetime,timezone as utc
+        self.assertEqual(self._expiry(2026,1,15),datetime(2026,7,15,6,tzinfo=utc.utc))
+        self.assertEqual(self._expiry(2026,6,1),datetime(2026,12,1,6,tzinfo=utc.utc))
+
+    def test_year_boundary_crossing(self):
+        from datetime import datetime,timezone as utc
+        self.assertEqual(self._expiry(2026,9,15),datetime(2027,3,15,6,tzinfo=utc.utc))
+        self.assertEqual(self._expiry(2026,12,1),datetime(2027,6,1,6,tzinfo=utc.utc))
+
+    def test_month_end_clamps_to_last_day_of_target_month(self):
+        from datetime import datetime,timezone as utc
+        self.assertEqual(self._expiry(2025,8,31),datetime(2026,2,28,6,tzinfo=utc.utc))
+        self.assertEqual(self._expiry(2026,3,31),datetime(2026,9,30,6,tzinfo=utc.utc))
+        self.assertEqual(self._expiry(2026,5,31),datetime(2026,11,30,6,tzinfo=utc.utc))
+        self.assertEqual(self._expiry(2026,10,31),datetime(2027,4,30,6,tzinfo=utc.utc))
+
+    def test_leap_target_month_keeps_day_29_available(self):
+        from datetime import datetime,timezone as utc
+        self.assertEqual(self._expiry(2027,8,31),datetime(2028,2,29,6,tzinfo=utc.utc))
+        self.assertEqual(self._expiry(2027,8,30),datetime(2028,2,29,6,tzinfo=utc.utc))
+        self.assertEqual(self._expiry(2027,8,28),datetime(2028,2,28,6,tzinfo=utc.utc))
+
+    def test_leap_source_day_29_shifts_cleanly(self):
+        from datetime import datetime,timezone as utc
+        self.assertEqual(self._expiry(2024,2,29),datetime(2024,8,29,6,tzinfo=utc.utc))
+
+    def test_expiry_is_strictly_after_creation(self):
+        from datetime import datetime,timezone as utc
+        from .invitations import six_month_expiry
+        for year,month,day in ((2024,2,29),(2025,8,31),(2026,3,31),(2026,6,15),(2027,12,1)):
+            created=datetime(year,month,day,6,tzinfo=utc.utc)
+            self.assertGreater(six_month_expiry(created),created)
+
+
 @override_settings(SHB_SYNTHETIC_FIXTURE=True)
 class InvitationTests(TransactionTestCase):
     reset_sequences=True
