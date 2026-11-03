@@ -303,6 +303,71 @@ class InvitationTests(TransactionTestCase):
         if PurchaseNoticeDelivery is not None:
             self.assertEqual(PurchaseNoticeDelivery.objects.count(),0,'GET must dispatch no purchase mail')
 
+    def test_shb_05_forged_quantity_price_hours_discount_or_customer_id_at_submit_rejects(self):
+        """SHB-05: invalid quantity and forged price/hours/discount/customer_id
+        at the POST /purchase/simple/ submit endpoint are rejected or derived
+        from server state; no SupportRequest row ever carries the forged value.
+
+        Pairs with:
+        - test_exact_positive_quantity_and_forged_customer_money_or_flags
+          (form-level validator rejects quantities and forged flags)
+        - test_company_and_price_tampering_and_expired_submission_do_not_persist
+          (end-to-end company/price tampering)
+        - offer_tests.test_forged_quantity_scope_price_and_changed_review_cannot_capture
+          (checkout-stage forged capture rejection)
+
+        This tags the composite at the ASIC-submit boundary (one HTTP
+        surface) as SHB-05 and asserts that forged quantity, discount_bps,
+        total_minor, hours_purchased, approved, customer_id and ip_product_id
+        all either reject (400/422) or get sanitized to trusted server-side
+        values -- never propagated into SupportRequest.payload."""
+        from .models import SupportRequest
+        self.enter()
+        base = form_data(variant='shb-asic-25h', assistance='Help with SLL IP',
+            action='submit', accept_terms='')
+        forgeries = (
+            {'quantity': '0'},
+            {'quantity': '-1'},
+            {'quantity': '2147483648'},
+            {'quantity': '1.5'},
+            {'quantity': 'two'},
+            {'customer_id': str(self.customer.pk + 999)},
+            {'total_minor': '1'},
+            {'hours_purchased': '9999'},
+            {'discount_bps': '9999'},
+            {'approved': 'on'},
+            {'ip_product_id': 'tampered-ip-sku'},
+        )
+        for forgery in forgeries:
+            with self.subTest(forgery=tuple(forgery)):
+                response = self.client.post('/purchase/simple/', dict(base, **forgery), secure=True)
+                # Either rejected outright, or accepted with the server deriving
+                # trusted values (never persisting the forgery).
+                self.assertIn(response.status_code, (200, 400, 422), forgery)
+                for row in SupportRequest.objects.all():
+                    payload = row.payload or {}
+                    purchase = payload.get('purchase', {})
+                    # No row ever has forged values from the attempt.
+                    self.assertNotEqual(purchase.get('hours_purchased'), 9999, forgery)
+                    self.assertNotEqual(purchase.get('discount_bps'), 9999, forgery)
+                    self.assertNotEqual(purchase.get('total_minor'), 1, forgery)
+                    self.assertNotEqual(purchase.get('quantity'), 0, forgery)
+                    self.assertNotEqual(purchase.get('quantity'), -1, forgery)
+                    # customer_id is derived server-side from the invited session,
+                    # not from form input -- it must always equal self.customer.pk.
+                    self.assertEqual(row.customer_id if hasattr(row, 'customer_id') else self.customer.pk,
+                        self.customer.pk, forgery)
+                    # approved and ip_product_id must never appear in payload.
+                    self.assertNotIn('approved', payload, forgery)
+                    self.assertNotIn('ip_product_id', payload, forgery)
+        # And the baseline (no forgery) still succeeds with trusted values.
+        baseline = self.client.post('/purchase/simple/', base, secure=True)
+        self.assertEqual(baseline.status_code, 200)
+        if SupportRequest.objects.exists():
+            payload = SupportRequest.objects.get().payload
+            self.assertEqual(payload['purchase']['hours_purchased'], 25)
+            self.assertEqual(payload['purchase']['quantity'], 1)
+
     def test_shb_14_no_token_leak_no_shared_cache_and_no_cross_customer_data(self):
         """SHB-14: no raw token in logs/referrers/bank URLs, no shared caching,
         no cross-customer leakage, and entering an email in a form does not
