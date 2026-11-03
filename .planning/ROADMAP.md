@@ -223,7 +223,7 @@ Plans: [14-01-PLAN](phases/14-shb-release-handover/14-01-PLAN.md)
 | 13. Thirty SHB acceptance cases and release verification | 0/1 | In Progress; | Pending actual revised evidence |
 | 14. SHB handover and separately authorized activation | 0/1 | Pending | Pending actual revised evidence |
 
-**Latest local verification:**583 tests and147 actual browser checks/two modes, identical372 backend/eight-script hashes; docs/build/shb-discount-revocation-2026-11-02.md. Actual qualification remains pending.
+**Latest local verification:**614 tests and161 actual browser checks/two modes (71 customer/90 staff at320px), implementation head a41b42d; shared retained evidence 54f45921, browser evidence 9a729dd1. Audit trail of the eight 2026-11-03 explicit-coverage slices in docs/build/shb-*-2026-11-03.md. Actual qualification remains pending.
 
 Resume 2026-10-30T13:52:15.032330+00:00: explicit resume lifts the context-pressure pause.07-03 proceeds inline using synthetic PostgreSQL fixtures; all live and protected-resource gates remain closed. HANDOFF.json consumed.
 

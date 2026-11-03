@@ -76,9 +76,9 @@
     }
   ],
   "next": {
-    "command": "$gsd-resume-work",
-    "label": "Resume protected discount issuance",
-    "reason": "After explicit resume, inspect existing discount fixture issuance and invitation intent/scope patterns, then implement protected discount issuance with separate explicit synthetic customer/variant/percentage/use-limit/claim-period authority and a durable digest-only intent/one-time code response. Preserve original clocks and held concessions; invitation/revocation grants and entered contact never establish commercial authority."
+    "command": "$gsd-progress",
+    "label": "Continue inline from Phase 6 (current focus) or pick a new slice",
+    "reason": "Active session after 2026-11-03 resume. Nine explicit SHB-XX coverage slices committed: 06-01 discount lifecycle+mirror (b7cd2e9), SHB-07 top-up (dc902cb), SHB-26 invitation-expiry (f421a7a), SHB-23 cross-model mail-failure (c1dba1c), SHB-24 per-order display (a3dd5fa), SHB-19 forged payment-success (abf491b), SHB-22 reconcile-after-expiry (44abaf8), SHB-20 duplicate-messages chain (a41b42d). Shared retained lane at 614 total (271 SHB) and browser lane unchanged at 161. Parent counts stay 11/42 and 1/14 until actual external gates qualify; current development focus remains Phase 6."
   },
-  "updated_at": "2026-11-02T12:16:14.551Z"
+  "updated_at": "2026-11-03T07:55:00.000Z"
 }

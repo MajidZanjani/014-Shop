@@ -6,11 +6,11 @@ Use all SHB-01–30 in REQUIREMENTS.md; current revised product evidence is pend
 
 One concise external-input register: docs/decisions.md. No new rehearsal feature or repeated unchanged audit merely to add coverage.
 
-## Current local acceptance trace — 2026-11-02
+## Current local acceptance trace — 2026-11-03
 
-This table maps each current requirement to executed local component tests and the browser scenario. Exact totals, source hashes, commands and limits are in docs/build/shb-financial-handoff-2026-11-02.md and docs/build/shb-recovery-2026-11-02.md. Earlier financial/staff-browser reports retain their exact source-bound baselines. Current583 tests/147 browser checks and matching372-backend/eight-script records are owned by docs/build/shb-discount-revocation-2026-11-02.md. A local pass does not mark a requirement or phase complete; actual bank/mail/host/runtime/recovery and attributable human qualification remain pending.
+This table maps each current requirement to executed local component tests and the browser scenario. Exact totals, source hashes, commands and limits are in the dated docs/build/shb-*-2026-11-02.md and 2026-11-03.md reports. Current614 tests and 161 browser checks are the shared-lane and native-browser totals through implementation commit a41b42d; the current retained-source record is docs/evidence/shb/retained-tests/54f45921…json. A local pass does not mark a requirement or phase complete; actual bank/mail/host/runtime/recovery and attributable human qualification remain pending.
 
-Test paths below are relative to backend/shop unless prefixed tests/ or scripts/. The shared lane executes the cited SHB/payment/access modules against owned PostgreSQL; the source/catalog lane executes tests/test_shb_*.py. Browser evidence now covers71 customer and76 staff native-form checks in both JS/no-JS modes at320px. Staff password/possession-code authentication, exact scope/CSRF denials, refund and attributed handoff are exercised in actual local Chromium. Attributable human verification remains pending.
+Test paths below are relative to backend/shop unless prefixed tests/ or scripts/. The shared lane executes the cited SHB/payment/access modules against owned PostgreSQL; the source/catalog lane executes tests/test_shb_*.py. Browser evidence now covers71 customer and90 staff native-form checks in both JS/no-JS modes at320px (161 total; evidence 9a729dd1). Staff password/possession-code authentication, exact scope/CSRF denials, refund, attributed handoff and the native staff discount issuance surface are exercised in actual local Chromium. Attributable human verification remains pending.
 
 | ID | Executed local evidence | Remaining limit |
 |---|---|---|
@@ -20,7 +20,7 @@ Test paths below are relative to backend/shop unless prefixed tests/ or scripts/
 | SHB-04 | shb/tests.py and offer_tests.py; browser request then reviewed50-hour ASIC purchase | Live ASIC intake/offer terms pending |
 | SHB-05 | shb/checkout_tests.py, offer_tests.py, discount_tests.py: forged values and quantity denial | Actual provider bounds pending |
 | SHB-06 | shb/tests.py common fields/same-phone; native/browser shared form | Actual tax/territory policy pending |
-| SHB-07 | shb/paid_order_tests.py: one purchase/coupon/notice; browser eligible FPGA path | Actual commercial/provider qualification pending |
+| SHB-07 | shb/paid_order_tests.py: one purchase/coupon/notice + explicit top-up test_eligible_fpga_top_up_records_independent_paid_orders_per_invitation (dc902cb); browser eligible FPGA path | Actual commercial/provider qualification pending |
 | SHB-08 | shb/offer_tests.py, revision_tests.py: unapproved/altered scope denied, fresh review for changed work | Actual technical/commercial attribution pending |
 | SHB-09 | shb/review_tests.py, lifecycle_tests.py, notification_tests.py: triage/closing/notices | Actual reviewer/mail operation pending |
 | SHB-10 | shb/tests.py and private release source tests: gated manifest files/deep routes/alternate host denial | Actual ingress/private origin/storage/host tests pending |
@@ -32,15 +32,15 @@ Test paths below are relative to backend/shop unless prefixed tests/ or scripts/
 | SHB-16 | shb/discount_tests.py and checkout_tests.py PostgreSQL concurrent one-use arbitration | Actual runtime/database qualification pending |
 | SHB-17 | shb/discount_tests.py and offer_tests.py: reserved concession survives claim expiry/review; discount_admin_tests.py accepts/pays the reserved offer after code revocation | Actual adopted clock/discount defaults pending |
 | SHB-18 | shb/closure_tests.py and lifecycle_tests.py: archived safe release; uncertainty keeps hold | Actual provider closing/reconciliation rules pending |
-| SHB-19 | payments notification/attempt tests and shb/paid_order_tests.py deny forged/unobserved success | Actual selected-bank authentication/sandbox evidence pending |
-| SHB-20 | shb/paid_order_tests.py, notification_tests.py, financial_tests.py: durable identities/races/replay | Actual provider and recovery completeness pending |
+| SHB-19 | payments notification/attempt tests and shb/paid_order_tests.py: `test_hint_does_not_mark_paid_and_existing_worker_looks_up_without_start` (bank-side) + explicit `test_forged_payment_success_fields_at_payment_page_cannot_mark_paid` (abf491b, SHB side) deny forged/unobserved success | Actual selected-bank authentication/sandbox evidence pending |
+| SHB-20 | shb/paid_order_tests.py `test_duplicate_pay_reconcile_and_worker_iterations_keep_one_order_and_one_reference` (a41b42d), notification_tests.py, financial_tests.py: durable identities/races/replay with stable order reference across all retry layers | Actual provider and recovery completeness pending |
 | SHB-21 | payments/operation_tests.py and shb/financial_tests.py: lookup-only uncertain operations | Actual provider duplicate/late-payment rules pending |
-| SHB-22 | shb/offer_tests.py, paid_order_tests.py, financial_tests.py: staff/lookup after invite revocation | Actual independently authenticated bank route pending |
-| SHB-23 | shb/notification_tests.py, paid_order_tests.py and worker regression: finite leases/held failures | Actual mail route/delivery remains unqualified |
-| SHB-24 | shb/financial_tests.py rejects usage fields; paid/refund flows preserve no ledger/fulfilment effects | Manual time tracking remains outside shop |
+| SHB-22 | shb/offer_tests.py, paid_order_tests.py `test_payment_can_be_reconciled_after_invitation_expiry_without_new_checkout` (44abaf8), financial_tests.py: staff/lookup after invite expiry; worker-driven reconcile independent of customer session | Actual independently authenticated bank route pending |
+| SHB-23 | shb/notification_tests.py, paid_order_tests.py `test_temporary_mail_failure_retains_order_coupon_payment_and_staff_view` (c1dba1c) and worker regression: finite leases/held failures; cross-model (PaidOrder/DiscountReservation/SyntheticPaymentAttempt) byte-identical through fault window | Actual mail route/delivery remains unqualified |
+| SHB-24 | shb/financial_tests.py rejects usage fields; paid/refund flows preserve no ledger/fulfilment effects; explicit per-order-only display `test_staff_order_views_show_per_order_hours_only_without_cumulative_balance` (a3dd5fa) with forbidden-key/phrase enforcement on JSON+HTML | Manual time tracking remains outside shop |
 | SHB-25 | shb/financial_tests.py: manual review, full synthetic refund, original order/coupon, attributed team communication; actual local staff Chromium in both script modes | Partial local scope: actual refund/chargeback/tax/provider policy pending |
-| SHB-26 | shb/paid_order_tests.py and financial_tests.py retain purchased order despite invite revocation | ASIC no-expiry/service terms need actual adoption |
-| SHB-27 | scripts/browser_shb.mjs:71 customer/76 staff native keyboard checks, two modes/320px; shb/financial_tests.py scope/MFA/CSRF | Attributable human UAT and actual deployment remain pending |
+| SHB-26 | shb/paid_order_tests.py `test_paid_order_remains_valid_and_visible_to_staff_after_invitation_expiry` (f421a7a) and financial_tests.py retain purchased order despite invite revocation/expiry; worker still processes same notice row | ASIC no-expiry/service terms need actual adoption |
+| SHB-27 | scripts/browser_shb.mjs:71 customer/90 staff native keyboard checks, two modes/320px (161 total; 9a729dd1); shb/financial_tests.py scope/MFA/CSRF | Attributable human UAT and actual deployment remain pending |
 | SHB-28 | shb/recovery_tests.py, financial_tests.py and invitation_admin_tests.py, invitation_issuance_tests.py, discount_admin_tests.py: retained archives, revocation clocks, corruption holds and same-reference replay | Partial local scope: full post-backup completeness, off-host restore/loss/custody pending |
 | SHB-29 | shb/catalog/checkout/discount/financial tests: synthetic-only/null live policy and fixed denials | Actual commercial/provider inputs remain pending in docs/decisions.md |
 | SHB-30 | Existing protection inventory/allowlist/release review retained; local suite makes no host changes | Actual protected-host/runtime/exhaustion/complete-loss qualification pending |
