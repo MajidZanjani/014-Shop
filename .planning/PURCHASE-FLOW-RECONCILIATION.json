@@ -23,24 +23,17 @@
       "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
-      "path": ".planning/HANDOFF.json",
-      "role": "current",
-      "release": "shb-1.1",
-      "sha256": "1463fd0021de779146e6cbfb1d2efed170c03ad0305da45edb3559e6baf8bd31",
-      "disposition": "Execute only current SHB routing; retain applicable shared controls"
-    },
-    {
       "path": ".planning/HANDOFF.md",
       "role": "current",
       "release": "shb-1.1",
-      "sha256": "e6480972102c59cdf4b02f23b1a973080e7eb2d3af29556656735b2a600cd040",
+      "sha256": "7611224362201894c65dcdf3c0b91a31f37fdd93a98b31c9bfcf3bb5ce6cb944",
       "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
       "path": ".planning/PROJECT.md",
       "role": "current",
       "release": "shb-1.1",
-      "sha256": "d265ca90364917bff6c4e0ae445f037587666b34d2fcceb4068e1b4d080e930f",
+      "sha256": "49ac96eef2acc71617d5abfa571216fdfa100d4db6ea6715ffad1bfa4ca7df4d",
       "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
@@ -68,7 +61,7 @@
       "path": ".planning/ROADMAP.md",
       "role": "current",
       "release": "shb-1.1",
-      "sha256": "9fc90107fa6c0db700ab3455049df5aa2bce7b001b5589fbc69db2de90c58042",
+      "sha256": "abace9ccc2f869c501b4412e9d5c63cb025c36540c3c46562bf86f0380636404",
       "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
@@ -89,7 +82,7 @@
       "path": ".planning/STATE.md",
       "role": "current",
       "release": "shb-1.1",
-      "sha256": "b93b20c778d500a4761e3a845a41d4ae975f87ae2dcad149534fffa3053111b6",
+      "sha256": "3dd771bdd5bc14bc96747af18bee5e688a9f61b9b8cbcad9dc7dd18f801f10c8",
       "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
@@ -555,17 +548,10 @@
       "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {
-      "path": ".planning/phases/06-invitation-scope-and-staff-mfa/.continue-here.md",
-      "role": "current",
-      "release": "shb-1.1",
-      "sha256": "0d4c822c6038280a0e6a41f7917ae8ccc2601bf5fb5e1e8a7210289897c79ccf",
-      "disposition": "Execute only current SHB routing; retain applicable shared controls"
-    },
-    {
       "path": ".planning/phases/06-invitation-scope-and-staff-mfa/06-01-PLAN.md",
       "role": "current",
       "release": "shb-1.1",
-      "sha256": "34e73c76a960e7114ca5ea015806c965a565fb15d254c11d570da0a66b015536",
+      "sha256": "5e76426662a8f6251da35cb251838b6d2db0c8abcdbc49746c54f4e8f4d8e307",
       "disposition": "Execute only current SHB routing; retain applicable shared controls"
     },
     {

@@ -8,9 +8,9 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Current plan:** 06-01 — protected invitation issuance/reissue, scoped discount revocation and separate protected discount issuance verified locally; actual qualification remains open.
 
-**Execution status:** paused — explicit user gsd-pause-work during focused lifecycle-test addition after pushed605 tests/161 browser checks through b04b955; two follow-up tests pass focused but remain uncommitted and the shared regression rerun was interrupted mid-run.
+**Execution status:** active — verified continuation 2026-11-03 after $gsd-resume-work; the two lifecycle/mirror tests are committed (b7cd2e9) and the shared retained lane passes 607 total (264 SHB, +2 vs 605) in 262.864s; browser lane remains at 161 (unchanged).
 
-**Next implementation task:** After explicit resume, commit the two uncommitted follow-up tests (end-to-end issue→revoke lifecycle in discount_issuance_tests.py; mirror discount-admin nav assertion in discount_admin_tests.py), rerun the shared regression lane (expect607 total: 264 SHB), stage the new focused evidence record and bump test counts/state_head across STATE/PROJECT/ROADMAP/HANDOFF/06-01-PLAN and docs/build/shb-discount-issuance-2026-11-02.md, then push. Normal pinned and actual external gates remain closed.
+**Next implementation task:** Local 06-01 slice is fully verified. Continue with the next planned 06 work (or begin 07 continuation) under the existing synthetic-fixture boundaries. Normal pinned Nix/source/runtime/native/licence/OCI/CI and actual commercial/provider/refund/tax/mail/host/ingress/database/human/independent custody/post-backup/transport/restore/complete-loss qualification remain open; the authorized independent off-host runner is unassigned.
 
 Stable T01–T14/folder IDs preserve history. Titles and active task scopes now follow SHB 1.1. Completed summary counts below are historical records, not engineering effort or new commercial acceptance.
 
@@ -21,7 +21,7 @@ Stable T01–T14/folder IDs preserve history. Titles and active task scopes now 
 - [ ] **Phase 3: Supporting Hours Bundle catalog and approved pricing**
 - [ ] **Phase 4: Shared SHB form, invitations and private storefront**
 - [ ] **Phase 5: SHB durable records, archives and outbox**
-- [ ] **Phase 6: Invitation scope, verified resources and staff MFA** — CURRENT DEVELOPMENT FOCUS; paused — explicit user gsd-pause-work during focused lifecycle-test addition after pushed605 tests/161 browser checks through b04b955; two follow-up tests pass focused but remain uncommitted and the shared regression rerun was interrupted mid-run.
+- [ ] **Phase 6: Invitation scope, verified resources and staff MFA** — CURRENT DEVELOPMENT FOCUS; active — verified continuation 2026-11-03 after $gsd-resume-work; the two lifecycle/mirror tests are committed (b7cd2e9) and the shared retained lane passes 607 total (264 SHB, +2 vs 605) in 262.864s; browser lane remains at 161 (unchanged).
 - [ ] **Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts**
 - [ ] **Phase 8: Payment lifecycle and fault-injectable synthetic bank**
 - [ ] **Phase 9: Selected-bank sandbox and complete reconciliation**
@@ -95,7 +95,7 @@ Plans: [05-01-PLAN](phases/05-durable-records-and-outbox/05-01-PLAN.md)
 
 ### Phase 6: Invitation scope, verified resources and staff MFA
 
-Status: CURRENT DEVELOPMENT FOCUS; paused — explicit user gsd-pause-work during focused lifecycle-test addition after pushed605 tests/161 browser checks through b04b955; two follow-up tests pass focused but remain uncommitted and the shared regression rerun was interrupted mid-run.
+Status: CURRENT DEVELOPMENT FOCUS; active — verified continuation 2026-11-03 after $gsd-resume-work; the two lifecycle/mirror tests are committed (b7cd2e9) and the shared retained lane passes 607 total (264 SHB, +2 vs 605) in 262.864s; browser lane remains at 161 (unchanged).
 
 Goal: Invitation authorizes current offers/new purchases only; no customer history or prefilled private data. Retain verified-contact access for old private resources and MFA/recent verification/resource permissions for every staff route.
 
@@ -213,7 +213,7 @@ Plans: [14-01-PLAN](phases/14-shb-release-handover/14-01-PLAN.md)
 | 3. Supporting Hours Bundle catalog and approved pricing | 0/1 | In Progress | Pending actual revised evidence |
 | 4. Shared SHB form, invitations and private storefront | 0/1 | In Progress | Pending actual revised evidence |
 | 5. SHB durable records, archives and outbox | 0/1 | In Progress | Pending actual revised evidence |
-| 6. Invitation scope, verified resources and staff MFA | 0/1 | In Progress; CURRENT DEVELOPMENT FOCUS; paused — explicit user gsd-pause-work during focused lifecycle-test addition after pushed605 tests/161 browser checks through b04b955; two follow-up tests pass focused but remain uncommitted and the shared regression rerun was interrupted mid-run. | Pending actual revised evidence |
+| 6. Invitation scope, verified resources and staff MFA | 0/1 | In Progress; CURRENT DEVELOPMENT FOCUS; active — verified continuation 2026-11-03 after $gsd-resume-work; the two lifecycle/mirror tests are committed (b7cd2e9) and the shared retained lane passes 607 total (264 SHB, +2 vs 605) in 262.864s; browser lane remains at 161 (unchanged). | Pending actual revised evidence |
 | 7. FPGA checkout, ASIC reviewed offers and scoped discounts | 1/4 | In Progress | Pending actual revised evidence |
 | 8. Payment lifecycle and fault-injectable synthetic bank | 0/3 | In Progress | Pending actual revised evidence |
 | 9. Selected-bank sandbox and complete reconciliation | 0/1 | Pending | Pending actual revised evidence |
@@ -282,3 +282,5 @@ Resume 2026-11-02T11:30:38.977387+00:00: explicit user resume lifts the context-
 2026-11-02T12:14:30.619677+00:00: Protected scoped discount revocation passes583 tests/147 browser checks and exact380-source records. Held ASIC offer acceptance/payment retains the original concession; uncertainty remains held, and restore retains audit. docs/build/shb-discount-revocation-2026-11-02.md. Protected discount issuance remains next; actual gates/counts unchanged.
 
 Explicit pause 2026-11-02T12:16:14.551Z: user requested $gsd-pause-work after pushed implementation34c00196f5a9c0b3e43155927c2ee7ad561f800d.583 tests/147 browser checks and current380-source records retained; protected discount issuance remains next. STATE.md / ROADMAP.md / HANDOFF and machine routing paused consistently. No owned process/job or new completion count; exact context percentage unavailable.
+
+Verified continuation 2026-11-03T05:11:00+00:00: scoped discount issuance slice closed with lifecycle+mirror tests (commit b7cd2e9,25 insertions). Shared retained regression passes 607 total in 262.864s (264 SHB, +2 vs 605); browser lane unchanged at 161. Evidence docs/evidence/shb/retained-tests/6272c2fa…json; focused 40-test record fe29b38a retained. Parent counts unchanged (11/42 and 1/14); actual gates/off-host runner unchanged.

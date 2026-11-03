@@ -8,9 +8,9 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Current plan:** 06-01 — protected invitation issuance/reissue, scoped discount revocation and separate protected discount issuance verified locally; actual qualification remains open.
 
-**Execution status:** paused — explicit user gsd-pause-work during focused lifecycle-test addition after pushed605 tests/161 browser checks through b04b955; two follow-up tests pass focused but remain uncommitted and the shared regression rerun was interrupted mid-run.
+**Execution status:** active — verified continuation 2026-11-03 after $gsd-resume-work; the two lifecycle/mirror tests are committed (b7cd2e9) and the shared retained lane passes 607 total (264 SHB, +2 vs 605) in 262.864s; browser lane remains at 161 (unchanged).
 
-**Next implementation task:** After explicit resume, commit the two uncommitted follow-up tests (end-to-end issue→revoke lifecycle in discount_issuance_tests.py; mirror discount-admin nav assertion in discount_admin_tests.py), rerun the shared regression lane (expect607 total: 264 SHB), stage the new focused evidence record and bump test counts/state_head across STATE/PROJECT/ROADMAP/HANDOFF/06-01-PLAN and docs/build/shb-discount-issuance-2026-11-02.md, then push. Normal pinned and actual external gates remain closed.
+**Next implementation task:** Local 06-01 slice is fully verified. Continue with the next planned 06 work (or begin 07 continuation) under the existing synthetic-fixture boundaries. Normal pinned Nix/source/runtime/native/licence/OCI/CI and actual commercial/provider/refund/tax/mail/host/ingress/database/human/independent custody/post-backup/transport/restore/complete-loss qualification remain open; the authorized independent off-host runner is unassigned.
 
 ## What this is
 
@@ -125,3 +125,7 @@ Resume 2026-11-02T12:35:00+00:00: explicit user $gsd-resume-work lifts the saved
 Verified protected discount issuance 2026-11-02T13:05:00+00:00: new DiscountIssuanceScope/DiscountIssueGrant/DiscountIssue models and migrations0029/0030, service, native/JSON views, templates, local-staff grant command, grant-reset wiring and recovery scan land locally;605 tests/147 browser checks initially. Browser follow-up to161 checks (71 customer/90 staff, JS/no-JS at320px) in a7072ff/b04b955; docs/build/shb-discount-issuance-2026-11-02.md.
 
 Explicit pause 2026-11-02T13:42:27.791Z: user requested $gsd-pause-work during focused lifecycle-test addition after pushed HEAD b04b955. Two follow-up tests (end-to-end issue→revoke lifecycle; mirror discount-admin nav) pass the focused lane (40 tests, evidence fe29b38a…) but are uncommitted; the shared regression rerun was interrupted mid-run. STATE/HANDOFF.json/06 .continue-here.md record the exact resume plan. No parent SUMMARY/count change; actual gates unchanged.
+
+Resume 2026-11-03T00:00:00+00:00: explicit user $gsd-resume-work lifts the saved pause. Working tree matches HANDOFF.json snapshot exactly; HANDOFF.json and the 06 .continue-here.md are consumed. Continue 06-01 inline under the recorded synthetic boundaries.
+
+Verified continuation 2026-11-03T05:11:00+00:00: lifecycle/mirror tests committed as b7cd2e9 (`test(06-01): close discount issuance->revocation lifecycle and mirror nav`,25 insertions). Shared retained regression passes 607 total in 262.864s (264 SHB,95 access/recovery,104 payment,30 staff,24 worker/statement-mail,75 shared transaction/archive, nine source/catalog, six actual network-isolated adapters); evidence docs/evidence/shb/retained-tests/6272c2fa…json. Browser 161 unchanged (9a729dd1). Focused40-test record fe29b38a retained as audit trail. No parent SUMMARY/count change (11/42 and 1/14); actual gates/off-host runner unchanged.
