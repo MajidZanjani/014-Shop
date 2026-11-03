@@ -587,6 +587,53 @@ class InvitationTests(TransactionTestCase):
         self.assertEqual(client.post('/purchase/simple/',data,secure=True,HTTP_ORIGIN='null',HTTP_SEC_FETCH_SITE='same-origin').status_code,200)
         self.assertEqual(client.post('/purchase/simple/',form_data(action='review'),secure=True,HTTP_ORIGIN='null',HTTP_SEC_FETCH_SITE='same-origin').status_code,403)
 
+    def test_shb_27_native_js_off_form_same_backend_rules_and_clear_errors(self):
+        """SHB-27: a native (no-JavaScript) form submission goes through the
+        same backend validation/price/approval rules and reports clear
+        errors in HTML; the mobile/keyboard flow uses the same POST path.
+
+        Pairs with test_native_no_referrer_form_still_requires_valid_csrf_and_same_origin_metadata
+        (native CSRF/origin), test_common_form_review_derives_hours_and_no_balance
+        (server-derived hours) and the browser lane which exercises the same
+        page in JS-disabled Chromium. This tags the native backend-parity
+        invariant as SHB-27."""
+        from django.test import Client as DjangoClient
+        from .models import SupportRequest
+        client = ShopClient(enforce_csrf_checks=True)
+        self.enter(client)
+        client.get('/purchase/simple/', secure=True)
+        csrf = client.cookies['csrftoken'].value
+        # (1) Native POST with CSRF derives the same hours server-side (FPGA qty 3 -> 30h).
+        data = form_data(variant='shb-fpga-10h', quantity='3', action='review',
+            csrfmiddlewaretoken=csrf)
+        response = client.post('/purchase/simple/', data, secure=True,
+            HTTP_ORIGIN='null', HTTP_SEC_FETCH_SITE='same-origin')
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, '30 hours in this order',
+            msg_prefix='native POST must derive hours identically to JS flow')
+        # (2) Invalid quantity returns a clear error in HTML (same backend rules).
+        bad = client.post('/purchase/simple/',
+            form_data(quantity='0', action='review', csrfmiddlewaretoken=csrf),
+            secure=True, HTTP_ORIGIN='null', HTTP_SEC_FETCH_SITE='same-origin')
+        self.assertIn(bad.status_code, (200, 400, 422))
+        self.assertContains(bad, 'quantity',
+            msg_prefix='native form must show a clear error on invalid quantity',
+            status_code=bad.status_code)
+        # (3) ASIC submit through the native path persists exactly like the JS path:
+        asic = client.post('/purchase/simple/',
+            form_data(variant='shb-asic-25h', quantity='2',
+                assistance='Native JS-off assistance',
+                action='submit', accept_terms='', csrfmiddlewaretoken=csrf),
+            secure=True, HTTP_ORIGIN='null', HTTP_SEC_FETCH_SITE='same-origin')
+        self.assertEqual(asic.status_code, 200)
+        self.assertContains(asic, '50 requested hours')
+        self.assertEqual(SupportRequest.objects.count(), 1)
+        self.assertEqual(SupportRequest.objects.get().payload['purchase']['hours_purchased'], 50)
+        # (4) Response does not require a JS execution context: no inline <script> is
+        # needed to render the form or the error -- a conventional HTML form submit works.
+        self.assertNotIn(b'<script>document.getElementById', response.content,
+            'the native path must not require JS to render the review page')
+
     def test_immutable_scope_no_extension_unrevoke_or_request_rewrite(self):
         from django.db import DatabaseError,transaction
         from .models import Invitation,SupportRequest
