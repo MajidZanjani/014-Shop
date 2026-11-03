@@ -99,6 +99,33 @@ class PaidOrderTests(TransactionTestCase):
         self.assertFalse(SyntheticFulfilment.objects.exists())
         self.assertFalse(SyntheticSupportEvent.objects.exists())
 
+    def test_duplicate_real_payment_leaves_one_order_identifiable_by_staff(self):
+        from .models import PaidOrder,PaidOrderGrant,PurchaseNoticeDelivery
+        from shop.payments.models import SyntheticBankOperation,SyntheticPaymentAttempt
+        order=self.pay()
+        attempt_pk=SyntheticPaymentAttempt.objects.get().pk
+        operation_pk=SyntheticBankOperation.objects.get().pk
+        order_reference=order.payload['order_reference']
+        for _ in range(4):
+            self.assertEqual(self.client.post(self.path,{'action':'pay'},secure=True).status_code,200)
+        self.assertEqual(PaidOrder.objects.count(),1)
+        self.assertEqual(SyntheticPaymentAttempt.objects.count(),1)
+        self.assertEqual(SyntheticPaymentAttempt.objects.get().pk,attempt_pk)
+        self.assertEqual(SyntheticBankOperation.objects.count(),1)
+        self.assertEqual(SyntheticBankOperation.objects.get().pk,operation_pk)
+        self.assertEqual(PurchaseNoticeDelivery.objects.count(),1)
+        path=self.staff(order);PaidOrderGrant.objects.create(user=self.user,order=order)
+        listing=self.browser.get('/staff/shb-orders/')
+        self.assertEqual(listing.status_code,200)
+        rows=listing.json()['orders']
+        self.assertEqual(len(rows),1)
+        self.assertEqual(rows[0]['order_reference'],order_reference)
+        self.assertEqual(rows[0]['id'],str(order.pk))
+        detail=self.browser.get(path)
+        self.assertEqual(detail.status_code,200)
+        self.assertEqual(detail.json()['purchase']['hours_purchased'],30)
+        self.assertEqual(detail.json()['details']['company_name'],'Synthetic Company Limited')
+
     def test_duplicate_pay_reconcile_and_worker_iterations_keep_one_order_and_one_reference(self):
         from . import purchase_mail
         from .models import DiscountReservation,PaidOrder,PurchaseNoticeCapture,PurchaseNoticeDelivery,TransactionNoticeCapture
