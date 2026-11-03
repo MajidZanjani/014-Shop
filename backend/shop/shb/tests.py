@@ -159,6 +159,39 @@ class InvitationTests(TransactionTestCase):
                 self.assertIn(response.status_code,(403,404))
                 self.assertNotContains(response,'FPGA Supporting Hours Bundle',status_code=response.status_code)
 
+    def test_shb_11_private_release_resists_bypass_vectors_against_manifest(self):
+        """SHB-11-01: no bypass of manifest-controlled private release through
+        traversal, encoding, trailing-slash, query strings, fragments or
+        alternate base paths."""
+        bypass_paths=(
+            '/_astro/../index.html',
+            '/_astro/..%2fprivate-storefront%2findex.html',
+            '/_astro/anything.js?preview=true',
+            '/_astro/anything.js?sourcemap=1',
+            '/_astro/anything.js#preview',
+            '/shop/private/support/index.html',
+            '/shop/private/_astro/anything.js',
+            '/shop/private/index.html.map',
+            '/shop/private/private-storefront/index.html',
+            '/shop/private/build-probe/index.html',
+            '/_astro/.index.html',
+            '/_astro//index.html',
+            '/_astro/anything.js/../../etc/passwd',
+            '/SHOP/private/index.html',
+            '/shop/PRIVATE/index.html',
+        )
+        for path in bypass_paths:
+            with self.subTest(path=path):
+                try:
+                    response=self.client.get(path,secure=True)
+                    self.assertIn(response.status_code,(301,302,400,403,404),
+                        f'{path} must not expose private content')
+                    body=response.content.decode(errors='replace') if response.content else ''
+                    for leak in ('FPGA Supporting Hours Bundle','Supporting Hours Bundle','Synthetic Company','shb-fpga-10h','shb-asic-25h','discount_code','order_reference','purchase_token'):
+                        self.assertNotIn(leak,body,f'{path} leaked {leak!r} with status {response.status_code}')
+                except Exception as error:
+                    self.assertIn(type(error).__name__,('DisallowedHost','SuspiciousFileOperation','SuspiciousOperation','ValueError','ResolverMatch'),f'{path} raised unexpected {type(error).__name__}')
+
     def test_shb_10_private_release_and_astro_assets_refuse_without_invitation(self):
         """SHB-10: deep private release routes and _astro assets refuse without invitation; alt host 404s."""
         import uuid
