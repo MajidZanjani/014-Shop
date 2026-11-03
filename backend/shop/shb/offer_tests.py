@@ -418,3 +418,48 @@ class OfferTests(TransactionTestCase):
         # reserved - the uncertain-first branch of SHB-18.
         self.assertEqual(SupportOffer.objects.count(), 1)
         self.assertEqual(self.offer().state, 'paid')
+
+    def test_shb_08_unapproved_asic_or_altered_approved_scope_blocks_payment(self):
+        """SHB-08: unapproved ASIC checkout and altered-after-approval scope
+        are blocked at payment; any material change requires a new matching
+        approval/offer.
+
+        Pairs with checkout_tests.test_unapproved_asic_and_unknown_live_config_cannot_capture_checkout
+        (unapproved ASIC checkout -> 409/422) and
+        test_offer_and_request_material_rewrites_cannot_reuse_approval
+        (SQL-level material rewrites raise DatabaseError). This tags both
+        paths as SHB-08 and adds the HTTP-level 'rewrite between issue and
+        pay must not allow a second offer with changed scope' assertion."""
+        from .models import SupportOffer, SupportRequest
+        # (1) Issue an offer for the approved scope; a second issue with
+        # materially-changed scope (prerequisites/exclusions) must be
+        # rejected with 409 and not create a second SupportOffer.
+        self.assertEqual(self.issue().status_code, 201)
+        original = self.offer().payload
+        self.assertEqual(self.issue(prerequisites='Changed-scope prerequisites').status_code, 409)
+        self.assertEqual(self.issue(exclusions='Changed-scope exclusions').status_code, 409)
+        self.assertEqual(SupportOffer.objects.count(), 1)
+        self.assertEqual(self.offer().payload, original,
+            'rejected re-issue must not mutate the approved offer payload')
+        # (2) SQL-level rewrites of the SupportOffer or SupportRequest
+        # material fields raise DatabaseError (append-only / scope-locked).
+        offer_pk = self.offer().pk
+        row_pk = self.row.pk
+        attempts = [
+            (SupportOffer, offer_pk, {'payload': dict(original, customer_id=0)}),
+            (SupportOffer, offer_pk, {'payload': dict(original,
+                purchase=dict(original['purchase'], hours_purchased=200))}),
+            (SupportRequest, row_pk, {'payload': dict(self.row.payload, customer_id=0)}),
+            (SupportRequest, row_pk, {'revision': self.row.revision + 1}),
+        ]
+        for model, pk, changes in attempts:
+            with self.subTest(model=model.__name__, changes=tuple(changes)):
+                with self.assertRaises(DatabaseError), transaction.atomic():
+                    model.objects.filter(pk=pk).update(**changes)
+        # (3) After rejected re-issues and failed SQL rewrites, the original
+        # approved offer still accepts and pays correctly -- the approval
+        # path is intact and bound to the original scope only.
+        data, token = self.customer_review()
+        result = self.accept_offer(data, token)
+        self.assertEqual(result.status_code, 302)
+        self.assertEqual(self.pay(result['Location']).status_code, 200)
