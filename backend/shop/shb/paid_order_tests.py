@@ -99,6 +99,51 @@ class PaidOrderTests(TransactionTestCase):
         self.assertFalse(SyntheticFulfilment.objects.exists())
         self.assertFalse(SyntheticSupportEvent.objects.exists())
 
+    def test_staff_order_views_show_per_order_hours_only_without_cumulative_balance(self):
+        from .invitations import issue_fixture
+        from .models import PaidOrder,PaidOrderGrant
+        from .tests import form_data
+        first=self.pay()
+        _,token=issue_fixture(customer=self.customer,issuer=self.issuer,
+            company_name='Synthetic Company Limited',project_reference='SLL top-up')
+        self.client.get('/invite/'+token,secure=True)
+        data=form_data(quantity='2',action='review',accept_terms='',privacy_acknowledged='')
+        response=self.client.post('/purchase/simple/',data,secure=True)
+        response=self.client.post('/purchase/simple/',dict(data,action='checkout',
+            review_digest=response.context['review_digest'],accept_terms='on',privacy_acknowledged='on'),secure=True)
+        self.assertEqual(self.client.post(response['Location'],{'action':'pay'},secure=True).status_code,200)
+        second=PaidOrder.objects.exclude(pk=first.pk).get()
+        path=self.staff(first)
+        PaidOrderGrant.objects.create(user=self.user,order=first)
+        PaidOrderGrant.objects.create(user=self.user,order=second)
+        forbidden=('total hours','total_hours','hours_total','cumulative','available hours','remaining hours',
+            'used hours','hour balance','hours balance','balance of hours','bundle panel','time ledger',
+            'time-ledger','time entry','time-entry','task usage','task-usage')
+        response=self.browser.get('/staff/shb-orders/')
+        self.assertEqual(response.status_code,200)
+        body=response.json()
+        self.assertEqual(sorted(o['hours_purchased'] for o in body['orders']),[20,30])
+        self.assertEqual(set(body),{'orders','limit','older'})
+        self.assertEqual(set(body['orders'][0]),{'id','order_reference','variant','hours_purchased'})
+        raw=response.content.decode().lower()
+        for keyword in forbidden:self.assertNotIn(keyword,raw)
+        html=self.browser.get('/staff/shb-orders/',HTTP_ACCEPT='text/html').content.decode()
+        self.assertIn('30 hours in this order',html);self.assertIn('20 hours in this order',html)
+        lower=html.lower()
+        for keyword in forbidden:self.assertNotIn(keyword,lower)
+        for order,hours in ((first,30),(second,20)):
+            detail=self.browser.get('/staff/shb-orders/'+str(order.pk)+'/')
+            self.assertEqual(detail.status_code,200)
+            payload=detail.json()
+            self.assertEqual(payload['purchase']['hours_purchased'],hours)
+            self.assertNotIn('total_hours',payload);self.assertNotIn('total_hours',payload['purchase'])
+            self.assertNotIn('balance',payload);self.assertNotIn('balance',payload['purchase'])
+            self.assertNotIn('used_hours',payload['purchase'])
+            self.assertNotIn('remaining_hours',payload['purchase'])
+            self.assertNotIn('available_hours',payload['purchase'])
+            raw=detail.content.decode().lower()
+            for keyword in forbidden:self.assertNotIn(keyword,raw)
+
     def test_temporary_mail_failure_retains_order_coupon_payment_and_staff_view(self):
         from . import purchase_mail
         from .models import PaidOrder,PaidOrderGrant,PurchaseNoticeCapture,PurchaseNoticeDelivery,DiscountReservation
