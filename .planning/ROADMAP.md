@@ -8,7 +8,7 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Current plan:** 06-01 — protected invitation issuance/reissue, scoped discount revocation and separate protected discount issuance verified locally; actual qualification remains open.
 
-**Execution status:** active — SHB-07/26/23/24 Phase 10 and SHB-19 Phase 8 assertions committed (dc902cb,f421a7a,c1dba1c,a3dd5fa,abf491b); shared retained lane now passes 612 total (269 SHB) in 266.354s; browser lane remains at 161 (unchanged).
+**Execution status:** active — SHB-07/26/23/24 Phase 10 and SHB-19/22 Phase 8 assertions committed (dc902cb,f421a7a,c1dba1c,a3dd5fa,abf491b,44abaf8); shared retained lane now passes 613 total (270 SHB) in 267.610s; browser lane remains at 161 (unchanged).
 
 **Next implementation task:** Local 06-01 slice is fully verified. Continue with the next planned 06 work (or begin 07 continuation) under the existing synthetic-fixture boundaries. Normal pinned Nix/source/runtime/native/licence/OCI/CI and actual commercial/provider/refund/tax/mail/host/ingress/database/human/independent custody/post-backup/transport/restore/complete-loss qualification remain open; the authorized independent off-host runner is unassigned.
 
@@ -21,7 +21,7 @@ Stable T01–T14/folder IDs preserve history. Titles and active task scopes now 
 - [ ] **Phase 3: Supporting Hours Bundle catalog and approved pricing**
 - [ ] **Phase 4: Shared SHB form, invitations and private storefront**
 - [ ] **Phase 5: SHB durable records, archives and outbox**
-- [ ] **Phase 6: Invitation scope, verified resources and staff MFA** — CURRENT DEVELOPMENT FOCUS; active — SHB-07/26/23/24 Phase 10 and SHB-19 Phase 8 assertions committed (dc902cb,f421a7a,c1dba1c,a3dd5fa,abf491b); shared retained lane now passes 612 total (269 SHB) in 266.354s; browser lane remains at 161 (unchanged).
+- [ ] **Phase 6: Invitation scope, verified resources and staff MFA** — CURRENT DEVELOPMENT FOCUS; active — SHB-07/26/23/24 Phase 10 and SHB-19/22 Phase 8 assertions committed (dc902cb,f421a7a,c1dba1c,a3dd5fa,abf491b,44abaf8); shared retained lane now passes 613 total (270 SHB) in 267.610s; browser lane remains at 161 (unchanged).
 - [ ] **Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts**
 - [ ] **Phase 8: Payment lifecycle and fault-injectable synthetic bank**
 - [ ] **Phase 9: Selected-bank sandbox and complete reconciliation**
@@ -95,7 +95,7 @@ Plans: [05-01-PLAN](phases/05-durable-records-and-outbox/05-01-PLAN.md)
 
 ### Phase 6: Invitation scope, verified resources and staff MFA
 
-Status: CURRENT DEVELOPMENT FOCUS; active — SHB-07/26/23/24 Phase 10 and SHB-19 Phase 8 assertions committed (dc902cb,f421a7a,c1dba1c,a3dd5fa,abf491b); shared retained lane now passes 612 total (269 SHB) in 266.354s; browser lane remains at 161 (unchanged).
+Status: CURRENT DEVELOPMENT FOCUS; active — SHB-07/26/23/24 Phase 10 and SHB-19/22 Phase 8 assertions committed (dc902cb,f421a7a,c1dba1c,a3dd5fa,abf491b,44abaf8); shared retained lane now passes 613 total (270 SHB) in 267.610s; browser lane remains at 161 (unchanged).
 
 Goal: Invitation authorizes current offers/new purchases only; no customer history or prefilled private data. Retain verified-contact access for old private resources and MFA/recent verification/resource permissions for every staff route.
 
@@ -213,7 +213,7 @@ Plans: [14-01-PLAN](phases/14-shb-release-handover/14-01-PLAN.md)
 | 3. Supporting Hours Bundle catalog and approved pricing | 0/1 | In Progress | Pending actual revised evidence |
 | 4. Shared SHB form, invitations and private storefront | 0/1 | In Progress | Pending actual revised evidence |
 | 5. SHB durable records, archives and outbox | 0/1 | In Progress | Pending actual revised evidence |
-| 6. Invitation scope, verified resources and staff MFA | 0/1 | In Progress; CURRENT DEVELOPMENT FOCUS; active — SHB-07/26/23/24 Phase 10 and SHB-19 Phase 8 assertions committed (dc902cb,f421a7a,c1dba1c,a3dd5fa,abf491b); shared retained lane now passes 612 total (269 SHB) in 266.354s; browser lane remains at 161 (unchanged). | Pending actual revised evidence |
+| 6. Invitation scope, verified resources and staff MFA | 0/1 | In Progress; CURRENT DEVELOPMENT FOCUS; active — SHB-07/26/23/24 Phase 10 and SHB-19/22 Phase 8 assertions committed (dc902cb,f421a7a,c1dba1c,a3dd5fa,abf491b,44abaf8); shared retained lane now passes 613 total (270 SHB) in 267.610s; browser lane remains at 161 (unchanged). | Pending actual revised evidence |
 | 7. FPGA checkout, ASIC reviewed offers and scoped discounts | 1/4 | In Progress | Pending actual revised evidence |
 | 8. Payment lifecycle and fault-injectable synthetic bank | 0/3 | In Progress | Pending actual revised evidence |
 | 9. Selected-bank sandbox and complete reconciliation | 0/1 | Pending | Pending actual revised evidence |
@@ -286,6 +286,8 @@ Explicit pause 2026-11-02T12:16:14.551Z: user requested $gsd-pause-work after pu
 Verified continuation 2026-11-03T05:11:00+00:00: scoped discount issuance slice closed with lifecycle+mirror tests (commit b7cd2e9,25 insertions). Shared retained regression passes 607 total in 262.864s (264 SHB, +2 vs 605); browser lane unchanged at 161. Evidence docs/evidence/shb/retained-tests/6272c2fa…json; focused 40-test record fe29b38a retained. Parent counts unchanged (11/42 and 1/14); actual gates/off-host runner unchanged.
 
 Verified Phase 10 continuation 2026-11-03T05:35:00+00:00: SHB-07 FPGA top-up assertion committed as dc902cb (35 insertions in paid_order_tests.py). Same customer, new invitation, second eligible FPGA purchase; both PaidOrders independent (30h/20h, distinct order_reference, independent notice delivery). No SyntheticFulfilment/SyntheticSupportEvent -- no automated time credit, no online balance update. Shared retained regression passes 608 total in 279.374s (265 SHB); evidence f5ae1504…json. Browser lane unchanged at 161. The invariant was already implicit; this test makes SHB-07 explicit coverage in paid_order_tests.py. docs/build/shb-top-up-2026-11-03.md. Parent counts unchanged (11/42 and 1/14); actual gates/off-host runner unchanged.
+
+Verified Phase 8 continuation 2026-11-03T07:35:00+00:00: SHB-22 reconcile-after-expiry assertion committed as 44abaf8 (33 insertions). Uncertain attempt + patched invitation expiry → customer-side 403 everywhere, worker reconcile still completes and finalize_shb creates one PaidOrder visible to staff. Shared retained regression passes 613 total in 267.610s (270 SHB); evidence 81aeddaa…json. Browser lane unchanged. docs/build/shb-reconcile-after-expiry-2026-11-03.md. Parent counts unchanged (11/42 and 1/14); actual gates/off-host runner unchanged.
 
 Verified Phase 8 continuation 2026-11-03T07:15:00+00:00: SHB-19 forged-success rejection assertion committed as abf491b (34 insertions). At /purchase/shb/<pk>/ forged "success" fields and action values are 400 with no PaidOrder/attempt/bank-op/checkout mutation; legitimate action=pay then succeeds. Shared retained regression passes 612 total in 266.354s (269 SHB); evidence 2a24959e…json. Browser lane unchanged. docs/build/shb-forged-success-2026-11-03.md. Parent counts unchanged (11/42 and 1/14); actual gates/off-host runner unchanged.
 
