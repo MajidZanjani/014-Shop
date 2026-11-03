@@ -8,7 +8,7 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Current plan:** 06-01 — protected invitation issuance/reissue, scoped discount revocation and separate protected discount issuance verified locally; actual qualification remains open.
 
-**Execution status:** active — SHB-07/26/23/24 Phase 10, SHB-19/22/20/21 Phase 8 and SHB-12 Phase 6 calendar-expiry assertions committed (dc902cb,f421a7a,c1dba1c,a3dd5fa,abf491b,44abaf8,a41b42d,cd88d44,91d3835); shared retained lane now passes 622 total (279 SHB) in 269.548s; browser lane remains at 161 (unchanged).
+**Execution status:** active — SHB-07/26/23/24 Phase 10, SHB-19/22/20/21 Phase 8, SHB-12 Phase 6 and SHB-10 Phase 4 assertions committed (dc902cb,f421a7a,c1dba1c,a3dd5fa,abf491b,44abaf8,a41b42d,cd88d44,91d3835,7aff8f9); shared retained lane now passes 623 total (280 SHB) in 269.588s; browser lane remains at 161 (re-verified at head via 601663ad).
 
 **Next implementation task:** Local 06-01 slice is fully verified. Continue with the next planned 06 work (or begin 07 continuation) under the existing synthetic-fixture boundaries. Normal pinned Nix/source/runtime/native/licence/OCI/CI and actual commercial/provider/refund/tax/mail/host/ingress/database/human/independent custody/post-backup/transport/restore/complete-loss qualification remain open; the authorized independent off-host runner is unassigned.
 
@@ -21,7 +21,7 @@ Stable T01–T14/folder IDs preserve history. Titles and active task scopes now 
 - [ ] **Phase 3: Supporting Hours Bundle catalog and approved pricing**
 - [ ] **Phase 4: Shared SHB form, invitations and private storefront**
 - [ ] **Phase 5: SHB durable records, archives and outbox**
-- [ ] **Phase 6: Invitation scope, verified resources and staff MFA** — CURRENT DEVELOPMENT FOCUS; active — SHB-07/26/23/24 Phase 10, SHB-19/22/20/21 Phase 8 and SHB-12 Phase 6 calendar-expiry assertions committed (dc902cb,f421a7a,c1dba1c,a3dd5fa,abf491b,44abaf8,a41b42d,cd88d44,91d3835); shared retained lane now passes 622 total (279 SHB) in 269.548s; browser lane remains at 161 (unchanged).
+- [ ] **Phase 6: Invitation scope, verified resources and staff MFA** — CURRENT DEVELOPMENT FOCUS; active — SHB-07/26/23/24 Phase 10, SHB-19/22/20/21 Phase 8, SHB-12 Phase 6 and SHB-10 Phase 4 assertions committed (dc902cb,f421a7a,c1dba1c,a3dd5fa,abf491b,44abaf8,a41b42d,cd88d44,91d3835,7aff8f9); shared retained lane now passes 623 total (280 SHB) in 269.588s; browser lane remains at 161 (re-verified at head via 601663ad).
 - [ ] **Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts**
 - [ ] **Phase 8: Payment lifecycle and fault-injectable synthetic bank**
 - [ ] **Phase 9: Selected-bank sandbox and complete reconciliation**
@@ -95,7 +95,7 @@ Plans: [05-01-PLAN](phases/05-durable-records-and-outbox/05-01-PLAN.md)
 
 ### Phase 6: Invitation scope, verified resources and staff MFA
 
-Status: CURRENT DEVELOPMENT FOCUS; active — SHB-07/26/23/24 Phase 10, SHB-19/22/20/21 Phase 8 and SHB-12 Phase 6 calendar-expiry assertions committed (dc902cb,f421a7a,c1dba1c,a3dd5fa,abf491b,44abaf8,a41b42d,cd88d44,91d3835); shared retained lane now passes 622 total (279 SHB) in 269.548s; browser lane remains at 161 (unchanged).
+Status: CURRENT DEVELOPMENT FOCUS; active — SHB-07/26/23/24 Phase 10, SHB-19/22/20/21 Phase 8, SHB-12 Phase 6 and SHB-10 Phase 4 assertions committed (dc902cb,f421a7a,c1dba1c,a3dd5fa,abf491b,44abaf8,a41b42d,cd88d44,91d3835,7aff8f9); shared retained lane now passes 623 total (280 SHB) in 269.588s; browser lane remains at 161 (re-verified at head via 601663ad).
 
 Goal: Invitation authorizes current offers/new purchases only; no customer history or prefilled private data. Retain verified-contact access for old private resources and MFA/recent verification/resource permissions for every staff route.
 
@@ -213,7 +213,7 @@ Plans: [14-01-PLAN](phases/14-shb-release-handover/14-01-PLAN.md)
 | 3. Supporting Hours Bundle catalog and approved pricing | 0/1 | In Progress | Pending actual revised evidence |
 | 4. Shared SHB form, invitations and private storefront | 0/1 | In Progress | Pending actual revised evidence |
 | 5. SHB durable records, archives and outbox | 0/1 | In Progress | Pending actual revised evidence |
-| 6. Invitation scope, verified resources and staff MFA | 0/1 | In Progress; CURRENT DEVELOPMENT FOCUS; active — SHB-07/26/23/24 Phase 10, SHB-19/22/20/21 Phase 8 and SHB-12 Phase 6 calendar-expiry assertions committed (dc902cb,f421a7a,c1dba1c,a3dd5fa,abf491b,44abaf8,a41b42d,cd88d44,91d3835); shared retained lane now passes 622 total (279 SHB) in 269.548s; browser lane remains at 161 (unchanged). | Pending actual revised evidence |
+| 6. Invitation scope, verified resources and staff MFA | 0/1 | In Progress; CURRENT DEVELOPMENT FOCUS; active — SHB-07/26/23/24 Phase 10, SHB-19/22/20/21 Phase 8, SHB-12 Phase 6 and SHB-10 Phase 4 assertions committed (dc902cb,f421a7a,c1dba1c,a3dd5fa,abf491b,44abaf8,a41b42d,cd88d44,91d3835,7aff8f9); shared retained lane now passes 623 total (280 SHB) in 269.588s; browser lane remains at 161 (re-verified at head via 601663ad). | Pending actual revised evidence |
 | 7. FPGA checkout, ASIC reviewed offers and scoped discounts | 1/4 | In Progress | Pending actual revised evidence |
 | 8. Payment lifecycle and fault-injectable synthetic bank | 0/3 | In Progress | Pending actual revised evidence |
 | 9. Selected-bank sandbox and complete reconciliation | 0/1 | Pending | Pending actual revised evidence |
@@ -223,7 +223,7 @@ Plans: [14-01-PLAN](phases/14-shb-release-handover/14-01-PLAN.md)
 | 13. Thirty SHB acceptance cases and release verification | 0/1 | In Progress; | Pending actual revised evidence |
 | 14. SHB handover and separately authorized activation | 0/1 | Pending | Pending actual revised evidence |
 
-**Latest local verification:**622 tests and161 actual browser checks/two modes (71 customer/90 staff at320px), implementation head 91d3835; shared retained evidence d2ef0a6e, browser evidence 601663ad. Audit trail of the ten 2026-11-03 explicit-coverage slices in docs/build/shb-*-2026-11-03.md. Actual qualification remains pending.
+**Latest local verification:**623 tests and161 actual browser checks/two modes (71 customer/90 staff at320px), implementation head 7aff8f9; shared retained evidence e3bad257, browser evidence 601663ad. Audit trail of the eleven 2026-11-03 explicit-coverage slices in docs/build/shb-*-2026-11-03.md plus the ad1ec7d browser re-verification. Actual qualification remains pending.
 
 Resume 2026-10-30T13:52:15.032330+00:00: explicit resume lifts the context-pressure pause.07-03 proceeds inline using synthetic PostgreSQL fixtures; all live and protected-resource gates remain closed. HANDOFF.json consumed.
 
