@@ -8,9 +8,9 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Current plan:** 06-01 — protected invitation issuance/reissue, scoped discount revocation and separate protected discount issuance verified locally; actual qualification remains open.
 
-**Execution status:** active — SHB-07/26/23/24 Phase 10, SHB-19/22/20/21 Phase 8, SHB-12 Phase 6, SHB-10 Phase 4 and SHB-11-01 Phase 11 bypass assertions committed (dc902cb,f421a7a,c1dba1c,a3dd5fa,abf491b,44abaf8,a41b42d,cd88d44,91d3835,7aff8f9,c7d76c1); shared retained lane now passes 624 total (281 SHB) in 269.916s; browser lane remains at 161 (re-verified at head via 601663ad).
+**Execution status:** active — every SHB-01 through SHB-30 requirement now has an explicit `test_shb_NN_*` tagged assertion in the retained shared regression lane. Shared retained lane passes 640 total (297 SHB) in 273.887s; browser lane remains at 161 (re-verified at head via 601663ad). See docs/build/shb-complete-explicit-coverage-2026-11-03.md for the SHB-NN → test map.
 
-**Next implementation task:** Local 06-01 slice is fully verified. Continue with the next planned 06 work (or begin 07 continuation) under the existing synthetic-fixture boundaries. Normal pinned Nix/source/runtime/native/licence/OCI/CI and actual commercial/provider/refund/tax/mail/host/ingress/database/human/independent custody/post-backup/transport/restore/complete-loss qualification remain open; the authorized independent off-host runner is unassigned.
+**Next implementation task:** All 30 SHB rev 1.1 requirements have explicit local-verifiable coverage. The remaining items are the external gates: pinned Nix/source/runtime/native/licence/OCI/CI and actual commercial/provider/refund/tax/mail/host/ingress/database/human/independent custody/post-backup/transport/restore/complete-loss qualification; the authorized independent off-host runner is unassigned.
 
 ## What this is
 
