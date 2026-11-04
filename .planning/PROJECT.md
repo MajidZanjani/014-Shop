@@ -8,9 +8,9 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Current plan:** 06-01 — protected invitation issuance/reissue, scoped discount revocation and separate protected discount issuance verified locally; actual qualification remains open.
 
-**Execution status:** active — 2026-11-04 amendment re-opens Phase 6 for defect remediation. Shared retained lane last recorded 640/297 and browser lane 161 at 2026-11-03 against commit b38dc24. Next action R1 (SHB-13 silent-skip fix at backend/shop/shb/tests.py:251-300); follow-ups R2..R9 in HANDOFF.md.
+**Execution status:** active — R1 (SHB-13 silent-skip) closed 2026-11-04; three previously-conditional assertions now unconditional and focused test passes (SHB_LOCAL_PASS). Shared retained lane last recorded 640/297 and browser lane 161 at 2026-11-03 against commit b38dc24; neither rerun by R1 per its evidence-to-close criterion. Next action R2 (silent-skip audit across sibling SHB test modules); follow-ups R3..R9 in HANDOFF.md.
 
-**Next implementation task:** R1 — fix the SHB-13 silent-skip defect in backend/shop/shb/tests.py:251-300 (change DiscountReservation import to shop.shb.models, remove the try/except and the conditional skip, make the assertion unconditional). Follow-up R2..R9 in HANDOFF.md; R9 (external gates and off-host runner) remains external.
+**Next implementation task:** R2 — audit sibling SHB test modules (backend/shop/shb/{tests,discount_tests,offer_tests,notification_tests,review_tests,financial_tests,paid_order_tests,recovery_tests}.py) for the silent-skip pattern (try: from X import Y except: Y=None followed by if Y is not None:); fix each or justify explicitly. Follow-up R3..R9 in HANDOFF.md; R9 (external gates and off-host runner) remains external.
 
 ## What this is
 

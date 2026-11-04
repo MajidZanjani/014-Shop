@@ -8,9 +8,9 @@ Current product authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-
 
 **Current plan:** 06-01 — protected invitation issuance/reissue, scoped discount revocation and separate protected discount issuance verified locally; actual qualification remains open.
 
-**Execution status:** active — 2026-11-04 amendment re-opens Phase 6 for defect remediation. Shared retained lane last recorded 640/297 and browser lane 161 at 2026-11-03 against commit b38dc24. Next action R1 (SHB-13 silent-skip fix at backend/shop/shb/tests.py:251-300); follow-ups R2..R9 in HANDOFF.md.
+**Execution status:** active — R1 (SHB-13 silent-skip) closed 2026-11-04; three previously-conditional assertions now unconditional and focused test passes (SHB_LOCAL_PASS). Shared retained lane last recorded 640/297 and browser lane 161 at 2026-11-03 against commit b38dc24; neither rerun by R1 per its evidence-to-close criterion. Next action R2 (silent-skip audit across sibling SHB test modules); follow-ups R3..R9 in HANDOFF.md.
 
-**Next implementation task:** R1 — fix the SHB-13 silent-skip defect in backend/shop/shb/tests.py:251-300 (change DiscountReservation import to shop.shb.models, remove the try/except and the conditional skip, make the assertion unconditional). Follow-up R2..R9 in HANDOFF.md; R9 (external gates and off-host runner) remains external.
+**Next implementation task:** R2 — audit sibling SHB test modules (backend/shop/shb/{tests,discount_tests,offer_tests,notification_tests,review_tests,financial_tests,paid_order_tests,recovery_tests}.py) for the silent-skip pattern (try: from X import Y except: Y=None followed by if Y is not None:); fix each or justify explicitly. Follow-up R3..R9 in HANDOFF.md; R9 (external gates and off-host runner) remains external.
 
 Stable T01–T14/folder IDs preserve history. Titles and active task scopes now follow SHB 1.1. Completed summary counts below are historical records, not engineering effort or new commercial acceptance.
 
@@ -21,7 +21,7 @@ Stable T01–T14/folder IDs preserve history. Titles and active task scopes now 
 - [ ] **Phase 3: Supporting Hours Bundle catalog and approved pricing**
 - [ ] **Phase 4: Shared SHB form, invitations and private storefront**
 - [ ] **Phase 5: SHB durable records, archives and outbox**
-- [ ] **Phase 6: Invitation scope, verified resources and staff MFA** — CURRENT DEVELOPMENT FOCUS; active — 2026-11-04 amendment re-opens Phase 6 for defect remediation. Shared retained lane last recorded 640/297 and browser lane 161 at 2026-11-03 against commit b38dc24. Next action R1 (SHB-13 silent-skip fix at backend/shop/shb/tests.py:251-300); follow-ups R2..R9 in HANDOFF.md.
+- [ ] **Phase 6: Invitation scope, verified resources and staff MFA** — CURRENT DEVELOPMENT FOCUS; active — R1 (SHB-13 silent-skip) closed 2026-11-04; three previously-conditional assertions now unconditional and focused test passes (SHB_LOCAL_PASS). Shared retained lane last recorded 640/297 and browser lane 161 at 2026-11-03 against commit b38dc24; neither rerun by R1 per its evidence-to-close criterion. Next action R2 (silent-skip audit across sibling SHB test modules); follow-ups R3..R9 in HANDOFF.md.
 - [ ] **Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts**
 - [ ] **Phase 8: Payment lifecycle and fault-injectable synthetic bank**
 - [ ] **Phase 9: Selected-bank sandbox and complete reconciliation**
@@ -95,7 +95,7 @@ Plans: [05-01-PLAN](phases/05-durable-records-and-outbox/05-01-PLAN.md)
 
 ### Phase 6: Invitation scope, verified resources and staff MFA
 
-Status: CURRENT DEVELOPMENT FOCUS; active — 2026-11-04 amendment re-opens Phase 6 for defect remediation. Shared retained lane last recorded 640/297 and browser lane 161 at 2026-11-03 against commit b38dc24. Next action R1 (SHB-13 silent-skip fix at backend/shop/shb/tests.py:251-300); follow-ups R2..R9 in HANDOFF.md.
+Status: CURRENT DEVELOPMENT FOCUS; active — R1 (SHB-13 silent-skip) closed 2026-11-04; three previously-conditional assertions now unconditional and focused test passes (SHB_LOCAL_PASS). Shared retained lane last recorded 640/297 and browser lane 161 at 2026-11-03 against commit b38dc24; neither rerun by R1 per its evidence-to-close criterion. Next action R2 (silent-skip audit across sibling SHB test modules); follow-ups R3..R9 in HANDOFF.md.
 
 Goal: Invitation authorizes current offers/new purchases only; no customer history or prefilled private data. Retain verified-contact access for old private resources and MFA/recent verification/resource permissions for every staff route.
 
@@ -213,7 +213,7 @@ Plans: [14-01-PLAN](phases/14-shb-release-handover/14-01-PLAN.md)
 | 3. Supporting Hours Bundle catalog and approved pricing | 0/1 | In Progress | Pending actual revised evidence |
 | 4. Shared SHB form, invitations and private storefront | 0/1 | In Progress | Pending actual revised evidence |
 | 5. SHB durable records, archives and outbox | 0/1 | In Progress | Pending actual revised evidence |
-| 6. Invitation scope, verified resources and staff MFA | 0/1 | In Progress; CURRENT DEVELOPMENT FOCUS; active — 2026-11-04 amendment re-opens Phase 6 for defect remediation. Shared retained lane last recorded 640/297 and browser lane 161 at 2026-11-03 against commit b38dc24. Next action R1 (SHB-13 silent-skip fix at backend/shop/shb/tests.py:251-300); follow-ups R2..R9 in HANDOFF.md. | Pending actual revised evidence |
+| 6. Invitation scope, verified resources and staff MFA | 0/1 | In Progress; CURRENT DEVELOPMENT FOCUS; active — R1 (SHB-13 silent-skip) closed 2026-11-04; three previously-conditional assertions now unconditional and focused test passes (SHB_LOCAL_PASS). Shared retained lane last recorded 640/297 and browser lane 161 at 2026-11-03 against commit b38dc24; neither rerun by R1 per its evidence-to-close criterion. Next action R2 (silent-skip audit across sibling SHB test modules); follow-ups R3..R9 in HANDOFF.md. | Pending actual revised evidence |
 | 7. FPGA checkout, ASIC reviewed offers and scoped discounts | 1/4 | In Progress | Pending actual revised evidence |
 | 8. Payment lifecycle and fault-injectable synthetic bank | 0/3 | In Progress | Pending actual revised evidence |
 | 9. Selected-bank sandbox and complete reconciliation | 0/1 | Pending | Pending actual revised evidence |

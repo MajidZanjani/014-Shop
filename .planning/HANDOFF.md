@@ -9,9 +9,9 @@ Current planning/execution precedence: [2026-11-04 amendment](../014-Shop-SHB-Cl
 
 **Current plan:** 06-01 — protected invitation issuance/reissue, scoped discount revocation and separate protected discount issuance verified locally; actual qualification remains open.
 
-**Execution status:** active — 2026-11-04 amendment re-opens Phase 6 for defect remediation. Shared retained lane last recorded 640/297 and browser lane 161 at 2026-11-03 against commit b38dc24. Next action R1 (SHB-13 silent-skip fix at backend/shop/shb/tests.py:251-300); follow-ups R2..R9 in HANDOFF.md.
+**Execution status:** active — R1 (SHB-13 silent-skip) closed 2026-11-04; three previously-conditional assertions now unconditional and focused test passes (SHB_LOCAL_PASS). Shared retained lane last recorded 640/297 and browser lane 161 at 2026-11-03 against commit b38dc24; neither rerun by R1 per its evidence-to-close criterion. Next action R2 (silent-skip audit across sibling SHB test modules); follow-ups R3..R9 in HANDOFF.md.
 
-**Next implementation task:** R1 — fix the SHB-13 silent-skip defect in backend/shop/shb/tests.py:251-300 (change DiscountReservation import to shop.shb.models, remove the try/except and the conditional skip, make the assertion unconditional). Follow-up R2..R9 in HANDOFF.md; R9 (external gates and off-host runner) remains external.
+**Next implementation task:** R2 — audit sibling SHB test modules (backend/shop/shb/{tests,discount_tests,offer_tests,notification_tests,review_tests,financial_tests,paid_order_tests,recovery_tests}.py) for the silent-skip pattern (try: from X import Y except: Y=None followed by if Y is not None:); fix each or justify explicitly. Follow-up R3..R9 in HANDOFF.md; R9 (external gates and off-host runner) remains external.
 
 **Recorded implementation:** b38dc244f78b32fdf3129f1ae49c5112cb1da2a2
 
@@ -21,7 +21,7 @@ Columns — SHB req or shared invariant · concrete files/components · can be d
 
 | # | Deliverable | SHB ref | Files / components | Local now | External dep | Evidence to close |
 |---|---|---|---|---|---|---|
-| R1 | Fix SHB-13 silent-skip assertion (wrong module import + conditional guard swallows the SHB-mandated assertion) | SHB-13 | `backend/shop/shb/tests.py:251-300` (change import to `from shop.shb.models import DiscountReservation`, remove `try/except`, make `assertEqual(count, 0)` unconditional) | ✅ | — | Focused run of the SHB-13 test under default fixtures; shared-lane rerun only if any adjacent fixture semantics change |
+| R1 | ✅ **CLOSED 2026-11-04** — SHB-13 silent-skip fixed; focused `shop.shb.tests.InvitationTests.test_shb_13_valid_link_reuse_and_scanner_get_has_no_side_effect` passes with the three previously-conditional assertions (DiscountReservation / PaidOrder / PurchaseNoticeDelivery) now unconditional. `SHB_LOCAL_PASS checks=4 tests=10 shared_tests=0 duration_seconds=12.391`. | SHB-13 | `backend/shop/shb/tests.py:251-300` (changed import to `from .models import Invitation,SupportRequest,DiscountReservation,PaidOrder,PurchaseNoticeDelivery`; removed both `try/except` guards and both `if X is not None:` wrappers around the assertions) | ✅ | — | Done |
 | R2 | Audit sibling SHB test modules for the same silent-skip pattern (`try: from X import Y except: Y=None` followed by `if Y is not None:`) | SHB-13, SHB-14, SHB-25, SHB-26 (candidate scope — scan all `backend/shop/shb/*_tests.py`) | `backend/shop/shb/{tests,discount_tests,offer_tests,notification_tests,review_tests,financial_tests,paid_order_tests,recovery_tests}.py` | ✅ | — | grep audit report; any found instance fixed with explicit import; focused rerun of affected tests |
 | R3 | Repair REQUIREMENTS.md and `docs/build/shb-complete-explicit-coverage-2026-11-03.md` citations — link each SHB-NN row to a test method that actually exists in source (SHB-07/19/20/21/22/23/24/26 currently cite nonexistent `test_shb_NN_*` names; real tests live under their original names in `backend/shop/shb/paid_order_tests.py` at the commits already recorded) | SHB-07, SHB-19, SHB-20, SHB-21, SHB-22, SHB-23, SHB-24, SHB-26 (traceability only) | `.planning/REQUIREMENTS.md`, `docs/build/shb-complete-explicit-coverage-2026-11-03.md` | ✅ | — | Each SHB-NN row cites a test name `grep -Rn` returns from the source tree; no new/duplicate tests added |
 | R4 | Reconcile the SHB suite definition across supported runners — `scripts/check_shb.py:49` currently omits `shop.shb.discount_issuance_tests`; `scripts/check_shb_retained.py:164` includes it | SHB-15/16/17 regression integrity | `scripts/check_shb.py`, `scripts/check_shb_retained.py` | ✅ | — | Both scripts enumerate the same SHB module list (minus any explicitly justified difference); focused run of each script |
@@ -35,11 +35,11 @@ Columns — SHB req or shared invariant · concrete files/components · can be d
 
 ## Next action
 
-**R1 — Fix the SHB-13 silent-skip defect.** Smallest coherent correctness fix (~3 lines in `backend/shop/shb/tests.py:251-300`). Change `from shop.payments.models import DiscountReservation` to `from shop.shb.models import DiscountReservation`, remove the `try/except ImportError` guard and the `DiscountReservation=None` fallback, and make `self.assertEqual(DiscountReservation.objects.count(), 0, 'GET must create no coupon reservation')` unconditional. Verify with the focused SHB-13 test; shared-lane rerun only if any adjacent fixture semantics change.
+**R2 — Audit sibling SHB test modules for the same silent-skip pattern.** Grep `backend/shop/shb/{tests,discount_tests,offer_tests,notification_tests,review_tests,financial_tests,paid_order_tests,recovery_tests}.py` for the pattern `try: from X import Y except: Y=None` followed by `if Y is not None:`. For each match, either (a) replace with the correct unconditional import if the symbol actually lives in the named module, or (b) keep the guard and add an explicit docstring justification naming the scenario it protects (e.g. a module that is intentionally optional in some test runs). Verify any fixed test with its focused run.
 
-Rationale per the amendment: pick by dependency and completion value. R1 is self-contained, closes a defect in a test the current coverage claim depends on, needs no external input, and surfaces whether the SHB-13 invariant actually holds.
+Rationale per the amendment §4: "Fix that import and make the required assertion unconditional; remove similar silent assertion omissions where directly encountered." R1 already removed the two directly-encountered silent-skip instances in SHB-13's scanner test. R2 generalises that to the rest of the SHB test tree in case the same pattern was copy-pasted.
 
-Follow-up order after R1 is resolved: R2 (silent-skip scan) → R3 (citation repair) → R4 (suite symmetry) → R7 (SHB lane module audit) → R5 + R6 (CI/development workflow reconciliation) → R8 (operational-implementation documentation). R9 remains external.
+Follow-up order after R2: R3 (citation repair) → R4 (suite symmetry) → R7 (SHB lane module audit) → R5 + R6 (CI/development workflow reconciliation) → R8 (operational-implementation documentation). R9 remains external.
 
 ## Preserved context (pre-amendment)
 

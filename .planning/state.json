@@ -79,8 +79,8 @@
   ],
   "next": {
     "command": "$gsd-resume-work",
-    "label": "R1 — Fix SHB-13 silent-skip defect in backend/shop/shb/tests.py",
-    "reason": "2026-11-04 amendment (014-Shop-SHB-Claude-Correction-Prompt-2026-11-04.txt) withdraws the 2026-11-03 'no local work remains' stance. Quick task 261104-81g registered the amendment and reconciled HANDOFF, continuation, STATE and traceability. Nine remaining-work items (R1..R9) are enumerated in .planning/HANDOFF.md; R1 is the single next action — change the SHB-13 scanner test import from shop.payments.models (wrong; ImportError silently swallowed) to shop.shb.models, remove the `if X is not None:` guard, and make the SHB-mandated assertEqual unconditional. Shared retained lane at 640 total (297 SHB-tagged) and browser lane at 161 are last-recorded against 2026-11-03 commit 3116f19; not rerun by this doc-only quick task. Current development focus remains Phase 6."
+    "label": "R2 — audit sibling SHB test modules for silent-skip pattern",
+    "reason": "R1 (SHB-13 silent-skip) closed on 2026-11-04: focused shop.shb.tests.InvitationTests.test_shb_13_valid_link_reuse_and_scanner_get_has_no_side_effect passes with three assertions now unconditional (DiscountReservation / PaidOrder / PurchaseNoticeDelivery); evidence SHB_LOCAL_PASS checks=4 tests=10 shared_tests=0 duration_seconds=12.391. R2 is next: grep backend/shop/shb/{tests,discount_tests,offer_tests,notification_tests,review_tests,financial_tests,paid_order_tests,recovery_tests}.py for the `try: from X import Y except: Y=None` + `if Y is not None:` pattern and fix each or justify. Follow-ups R3..R9 enumerated in .planning/HANDOFF.md."
   },
-  "updated_at": "2026-11-04T05:52:00.000Z"
+  "updated_at": "2026-11-04T06:15:00.000Z"
 }
