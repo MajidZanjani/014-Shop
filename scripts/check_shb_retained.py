@@ -157,31 +157,35 @@ def inside(args):
         save_record(before,{'kind':'browser','browser':browser_version,'node':node_version,'evidence_directory':str(evidence),'observed':report})
         return
     started=time.monotonic();total=0
+    # Import the shared split + legacy wrapper from check_shb so both SHB lanes agree
+    # on the classification (R7, 2026-11-04).
+    from check_shb import SHB_LABELS,SHB_SHARED_LABELS,HISTORICAL_LABELS,HISTORICAL_TRANSACTION_TESTS,legacy_transaction_environment
+    if args.historical:
+        assert not args.shared and not args.test_label and not args.browser
+        with retained_database() as (python,env,pg,database,scratch):
+            for argv in (['check'],['migrate','--noinput']):run([str(python),'manage.py',*argv],env)
+            print('RETAINED_SHB_SCHEMA_PASS check=true migrate=true',flush=True)
+            for batch in HISTORICAL_LABELS:
+                batch_env=legacy_transaction_environment(env,scratch) if batch==HISTORICAL_TRANSACTION_TESTS else env
+                output=run([str(python),'manage.py','test',*batch,'--noinput','--keepdb'],batch_env)
+                count=re.search(r'Ran (\d+) tests?',output)
+                assert count and 'OK' in output and 'skipped' not in output
+                total+=int(count[1]);print('RETAINED_SHB_HISTORICAL_BATCH_PASS tests='+count[1]+' labels='+','.join(batch),flush=True)
+        save_record(before,{'kind':'postgresql-historical','tests':total,'schema_consistent':True,'shb_acceptance':False})
+        print(f'RETAINED_SHB_HISTORICAL_PASS tests={total} duration_seconds={time.monotonic()-started:.3f} evidence=local-synthetic-historical shb_acceptance=false',flush=True)
+        return
     suite=unittest.defaultTestLoader.discover(str(ROOT/'tests'),pattern='test_shb_*.py')
     result=unittest.TextTestRunner(verbosity=1).run(suite)
     assert result.wasSuccessful() and not result.skipped and result.testsRun>=9
     total+=result.testsRun
-    labels=[['shop.shb.tests','shop.shb.discount_tests','shop.shb.review_tests','shop.shb.checkout_tests','shop.shb.paid_order_tests','shop.shb.closure_tests','shop.shb.offer_tests','shop.shb.lifecycle_tests','shop.shb.notification_tests','shop.shb.revision_tests','shop.shb.recovery_tests','shop.shb.financial_tests','shop.shb.invitation_admin_tests','shop.shb.invitation_issuance_tests','shop.shb.discount_admin_tests','shop.shb.discount_issuance_tests']]
+    labels=[SHB_LABELS]
     if args.test_label:labels=[args.test_label]
-    if args.shared:
-        labels.extend([
-            ['shop.core.tests','shop.access.tests','shop.access.staff_tests','shop.access.recovery_tests','shop.access.effect_tests','shop.access.startup_tests','shop.access.staff_restore_tests','shop.access.authentication_recovery_tests'],
-            ['shop.payments.tests','shop.payments.attempt_tests','shop.payments.control_tests','shop.payments.notification_tests','shop.payments.observation_tests','shop.payments.operation_tests','shop.payments.overpayment_tests'],
-            ['shop.access.review_tests','shop.access.staff_navigation_tests','shop.access.preparation_tests'],
-                ['shop.worker.tests.OwnershipTests','shop.worker.statement_mail_tests'],
-            ['shop.catalog.checkout_tests','shop.catalog.checkout_payment_tests','shop.catalog.fulfilment_tests','shop.adapters.evidence_archive_tests'],
-        ])
+    if args.shared:labels.extend(SHB_SHARED_LABELS)
     with retained_database() as (python,env,pg,database,scratch):
         for argv in (['check'],['migrate','--noinput'],['makemigrations','--check','--dry-run']):run([str(python),'manage.py',*argv],env)
         print('RETAINED_SHB_SCHEMA_PASS check=true migrate=true makemigrations_clean=true',flush=True)
         for batch in labels:
             batch_env=env
-            if 'shop.catalog.checkout_tests' in batch:
-                # Exercise preserved legacy services/HTTP checks in isolation from
-                # the new-sale route closure. Production settings/routes stay closed;
-                # the SHB suite separately proves that closure on the actual boundary.
-                from check_shb import legacy_transaction_environment
-                batch_env=legacy_transaction_environment(env,scratch)
             output=run([str(python),'manage.py','test',*batch,'--noinput','--keepdb'],batch_env)
             count=re.search(r'Ran (\d+) tests?',output)
             assert count and 'OK' in output and 'skipped' not in output
@@ -199,6 +203,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--inside',action='store_true',help=argparse.SUPPRESS)
     parser.add_argument('--shared',action='store_true')
+    parser.add_argument('--historical',action='store_true',help='Run only preserved IP-era regressions (catalog checkout/payment/fulfilment + worker statement-mail). Not part of mandatory SHB acceptance.')
     parser.add_argument('--test-label',action='append',default=[],help='Run exact SHB test labels without claiming the shared lane')
     parser.add_argument('--browser',action='store_true')
     parser.add_argument('--release',type=Path)
