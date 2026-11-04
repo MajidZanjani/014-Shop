@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-"""Real synthetic Django/PG checks; full core requires an assigned off-host runner."""
+"""Real synthetic Django/PG checks; full core requires an assigned off-host runner.
+
+Per the 2026-11-04 amendment, the mandatory `core-local` lane exercises the SHB
+application and the genuinely-shared security/payment/archive/worker/recovery
+invariants that SHB depends on. Historical IP-sale / time-accounting modules are
+preserved as a separately-identified `core-historical` lane so they stay runnable
+but are not mandatory for SHB rev 1.1 acceptance. See R5 in .planning/HANDOFF.md.
+"""
 import argparse
 import contextlib
 import hashlib
@@ -20,6 +27,108 @@ sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parents[1]
 from check_python import frozen_environment, require
 import dev_postgres
+
+# --- SHB rev 1.1 mandatory test labels (2026-11-04 R5 reconciliation) ----------
+# SHB application itself. Kept in sync with scripts/check_shb.py:49 (R4). The
+# complete-explicit-coverage map at docs/build/shb-complete-explicit-coverage-
+# 2026-11-03.md and the REQUIREMENTS.md traceability table both cite into these
+# modules; they are the local-verifiable surface of SHB rev 1.1.
+SHB_LABELS = [
+    'shop.shb.tests', 'shop.shb.discount_tests', 'shop.shb.review_tests',
+    'shop.shb.checkout_tests', 'shop.shb.paid_order_tests', 'shop.shb.closure_tests',
+    'shop.shb.offer_tests', 'shop.shb.lifecycle_tests', 'shop.shb.notification_tests',
+    'shop.shb.revision_tests', 'shop.shb.recovery_tests', 'shop.shb.financial_tests',
+    'shop.shb.invitation_admin_tests', 'shop.shb.invitation_issuance_tests',
+    'shop.shb.discount_admin_tests', 'shop.shb.discount_issuance_tests',
+]
+# Genuinely-shared invariants SHB code reuses (per amendment §3 — "relevant shared
+# security, payment, transaction, archive, worker and recovery invariants"). Each
+# group is justified below. Keep them in mandatory core-local because SHB imports
+# or depends on behavior these tests assert.
+SHARED_INVARIANT_LABELS = [
+    # Core: health endpoints, closed logger, settings guard. SHB serves health
+    # and its logging goes through this module.
+    'shop.core.tests',
+    # NOTE: shop.catalog.tests is NOT included. Every class in that module
+    # exercises an HTTP route the SHB middleware now intercepts (OLD_SALES,
+    # invitation-only PROTECTED, or the removed /api/v1/configurations/validate/
+    # anonymous handler). The catalog MODEL semantics (CATALOG constant, digest
+    # helpers) are exercised transitively by shop.shb.{catalog,checkout,
+    # invitations,discount_tests}. See CORE_HISTORICAL_LABELS below for the
+    # preserved full module.
+    # Access / auth / MFA / recovery: every SHB privileged route checks staff MFA
+    # or invitation session through shop.access.* services. Restore-fencing and
+    # customer access context likewise gate SHB.
+    'shop.access.tests', 'shop.access.staff_tests', 'shop.access.recovery_tests',
+    'shop.access.effect_tests', 'shop.access.authentication_recovery_tests',
+    'shop.access.startup_tests', 'shop.access.staff_restore_tests',
+    'shop.access.review_tests', 'shop.access.preparation_tests',
+    'shop.access.preparation_snapshot_tests', 'shop.access.comparison_tests',
+    'shop.access.workflow_audit_tests',
+    # shop.access.journey_tests.SupportedJourneyTests asserts /api/v1/cart/
+    # returns 401 anonymously; SHB middleware now returns 404 (OLD_SALES). The
+    # test exercises the old supported cart → staff round trip, which SHB has
+    # deferred. Preserved in CORE_HISTORICAL_LABELS below.
+    'shop.access.customer_portal_tests', 'shop.access.archive_observation_tests',
+    'shop.access.request_evidence_tests', 'shop.access.staff_navigation_tests',
+    # Adapters: PreparedArchive and archive-destination guards; SHB uses
+    # PreparedArchive for discount issuance, paid order, invitation issuance.
+    'shop.adapters.evidence_archive_tests', 'shop.adapters.archive_destination_tests',
+    # Worker: SHB transaction-mail runs on the worker, prepared-publish bytes
+    # travel through these exact leases.
+    'shop.worker.prepared_tests', 'shop.worker.prepared_command_tests',
+    # Payment domain: SHB PaidOrder reuses the payment attempt state machine,
+    # synthetic bank operation lifecycle, reconciliation, overpayment handling,
+    # notification-safety and operation audit.
+    'shop.payments.tests', 'shop.payments.attempt_tests',
+    'shop.payments.recovery_command_tests', 'shop.payments.control_tests',
+    'shop.payments.notification_tests', 'shop.payments.overpayment_tests',
+    'shop.payments.observation_tests', 'shop.payments.operation_tests',
+    # Archive-before-effects invariants: shared across SHB discount issuance,
+    # invitation issuance, paid order and legacy checkout. The amendment §3
+    # explicitly names archive invariants as shared.
+    'shop.catalog.archive_binding_tests', 'shop.catalog.archive_authority_tests',
+    'shop.catalog.archive_inspection_tests', 'shop.catalog.archive_claim_tests',
+    'shop.catalog.archive_publication_tests', 'shop.catalog.archive_reconciliation_tests',
+]
+CORE_LOCAL_LABELS = SHB_LABELS + SHARED_INVARIANT_LABELS
+# Historical regression lane: deferred IP-sale / time-accounting modules the SHB
+# rev 1.1 scope removes from mandatory CI. These remain runnable via the
+# `core-historical` lane so no assertion is deleted (amendment §3: "Do not
+# delete useful assertions"), but they are NOT a release gate for SHB.
+CORE_HISTORICAL_LABELS = [
+    # shop.catalog.tests — every class asserts pre-SHB status codes (e.g.
+    # anonymous /purchase/simple/ 200, /api/v1/configurations/validate/ 422,
+    # DraftRecoveryTests 403-vs-404). The SHB middleware now intercepts those
+    # routes; tests would need rewriting with invitation fixtures to run in
+    # mandatory CI. Retained here per amendment §3 "do not delete useful
+    # assertions"; the catalog MODEL semantics are exercised transitively by
+    # shop.shb.{catalog,checkout,invitations,discount_tests}.
+    'shop.catalog.tests',
+    # Access journey tests that exercise the old supported /api/v1/cart/ flow.
+    'shop.access.journey_tests',
+    # Old multi-line cart + quotation flow (SHB uses only /purchase/simple/).
+    'shop.catalog.cart_tests', 'shop.catalog.quotation_tests',
+    'shop.catalog.quotation_history_tests', 'shop.catalog.cart_editor_tests',
+    'shop.catalog.quotation_capture_tests',
+    # Old business draft / binding / document / timeline.
+    'shop.catalog.business_tests', 'shop.catalog.binding_tests',
+    'shop.catalog.document_tests', 'shop.catalog.timeline_tests',
+    # Old request-envelope capture (new IP sales disabled).
+    'shop.catalog.request_envelope_tests', 'shop.catalog.envelope_capture_tests',
+    # Old IP checkout (SHB has shop.shb.checkout_tests + paid_order_tests).
+    'shop.catalog.checkout_tests', 'shop.catalog.checkout_payment_tests',
+    # Old fulfilment / licence / delivery / statement mail (deferred time-
+    # accounting territory; SLL manually tracks support hours outside the shop).
+    'shop.catalog.fulfilment_tests', 'shop.catalog.support_ledger_tests',
+    'shop.catalog.support_context_tests', 'shop.catalog.private_package_tests',
+    'shop.catalog.licence_change_tests', 'shop.catalog.document_number_tests',
+    'shop.catalog.support_refund_tests', 'shop.catalog.delivery_control_tests',
+    'shop.catalog.commercial_revision_tests',
+    'shop.worker.statement_mail_tests',
+    # Old /purchase/checkout-rehearsal/ IP flow (SHB has shop.shb.paid_order_tests).
+    'shop.payments.purchase_flow_tests',
+]
 
 
 def runner_authorization(path, action='owned-synthetic-postgresql-outage'):
@@ -99,7 +208,13 @@ def gunicorn(python, env, scratch, *, probe_path='/health/live', probe_host=None
                     process.wait(timeout=5)
 
 
-def qualify(faults=False):
+def qualify(faults=False, labels=None, historical=False):
+    """Run the mandatory SHB + shared-invariant core-local suite (or the opt-in
+    historical lane). `labels` overrides the default CORE_LOCAL_LABELS for the
+    `core-historical` lane (set by main()). `historical` only controls the
+    output marker so parent orchestration can tell the two apart.
+    """
+    labels = CORE_LOCAL_LABELS if labels is None else labels
     started = time.monotonic()
     parent = Path(os.environ.get('SHOP_TEST_SCRATCH', ROOT / '.scratch'))
     require(not parent.is_symlink() and parent.is_dir(), 'existing owned scratch parent required')
@@ -124,16 +239,25 @@ def qualify(faults=False):
                 run([python, 'manage.py', 'makemigrations', '--check', '--dry-run'], env)
                 # Keep the finite per-process bound as the suite grows; each batch
                 # reuses the test DB only within this owned disposable scratch cluster.
-                labels = ['shop.core.tests', 'shop.catalog.tests', 'shop.access.tests', 'shop.catalog.cart_tests', 'shop.catalog.quotation_tests', 'shop.access.staff_tests', 'shop.access.recovery_tests', 'shop.access.effect_tests', 'shop.access.authentication_recovery_tests', 'shop.access.startup_tests', 'shop.access.staff_restore_tests', 'shop.access.review_tests', 'shop.catalog.business_tests', 'shop.catalog.binding_tests', 'shop.catalog.document_tests', 'shop.catalog.timeline_tests', 'shop.access.preparation_tests', 'shop.access.preparation_snapshot_tests', 'shop.access.comparison_tests', 'shop.access.workflow_audit_tests', 'shop.access.journey_tests', 'shop.access.customer_portal_tests', 'shop.catalog.quotation_history_tests', 'shop.catalog.cart_editor_tests', 'shop.catalog.quotation_capture_tests', 'shop.adapters.evidence_archive_tests', 'shop.catalog.request_envelope_tests', 'shop.catalog.envelope_capture_tests', 'shop.adapters.archive_destination_tests', 'shop.catalog.archive_binding_tests', 'shop.catalog.archive_authority_tests', 'shop.catalog.archive_inspection_tests', 'shop.catalog.archive_claim_tests', 'shop.catalog.archive_publication_tests', 'shop.catalog.archive_reconciliation_tests', 'shop.worker.prepared_tests', 'shop.worker.prepared_command_tests', 'shop.access.archive_observation_tests', 'shop.access.request_evidence_tests', 'shop.access.staff_navigation_tests', 'shop.payments.tests', 'shop.payments.attempt_tests', 'shop.payments.recovery_command_tests','shop.payments.control_tests', 'shop.payments.purchase_flow_tests', 'shop.catalog.checkout_tests', 'shop.catalog.checkout_payment_tests', 'shop.catalog.fulfilment_tests', 'shop.catalog.support_ledger_tests', 'shop.catalog.support_context_tests', 'shop.catalog.private_package_tests', 'shop.catalog.licence_change_tests', 'shop.catalog.document_number_tests', 'shop.worker.statement_mail_tests', 'shop.catalog.support_refund_tests', 'shop.catalog.delivery_control_tests', 'shop.payments.notification_tests', 'shop.payments.overpayment_tests', 'shop.payments.observation_tests', 'shop.catalog.commercial_revision_tests', 'shop.payments.operation_tests']
                 checks, tests = 4, 0
-                for offset in range(0,len(labels),20):
-                    batch=labels[offset:offset+20]
+                # Batch size 10, per-batch timeout 300s: the SHB retained lane runs
+                # ~297 tests in ~274s across its 16 modules, so a 10-module batch
+                # may contain enough SHB load to approach 200s. The old 20/120
+                # pairing predates the full SHB module set (R5, 2026-11-04).
+                for offset in range(0,len(labels),10):
+                    batch=labels[offset:offset+10]
                     test_result = dev_postgres.run([str(python), 'manage.py', 'test', *batch, '--noinput', '--keepdb'],
-                        env=env, cwd=ROOT / 'backend', timeout=120)
+                        env=env, cwd=ROOT / 'backend', timeout=300)
                     test_output = test_result.stdout + test_result.stderr
                     match = re.search(r'Ran (\d+) tests?', test_output)
-                    require(match is not None and int(match[1]) >= 5 and 'OK' in test_output and 'skipped' not in test_output,
-                            'required Django configuration tests missing, failed or skipped')
+                    # `>= 1` (down from the old `>= 5`) matches the new batch size
+                    # of 10 — a tail batch may legitimately contain a single
+                    # module with only a few tests. The integrity gates remain
+                    # the OK marker and the absence of 'skipped'.
+                    if not (match is not None and int(match[1]) >= 1 and 'OK' in test_output and 'skipped' not in test_output):
+                        print('--- failing batch output (labels: %s) ---' % batch, file=sys.stderr, flush=True)
+                        print(test_output[-8000:] if len(test_output) > 8000 else test_output, file=sys.stderr, flush=True)
+                        require(False, 'required Django configuration tests missing, failed or skipped')
                     tests += int(match[1])
                 with gunicorn(python, env, scratch) as port:
                     for path, status, body in [('/health/live', 200, {'status': 'live'}),
@@ -141,16 +265,21 @@ def qualify(faults=False):
                         code, raw, content_type = get(port, path)
                         require(code == status and json.loads(raw) == body and content_type.startswith('application/json'), 'health contract mismatch')
                         tests += 1
-                    # Product capabilities are tested directly; future commerce routes
-                    # are no longer required to remain skeleton 404s.
+                    # SHB rev 1.1 is invitation-only (see shop.shb.middleware.PROTECTED):
+                    # anonymous GET to protected routes must deny, not 200. The 200
+                    # assertions below for /purchase/access/ and the deny-status
+                    # assertions for the legacy OLD_SALES routes still exercise
+                    # the Django-level boundary. The invitation-only invariant for
+                    # /api/v1/catalog/, /purchase/simple/ and the private release
+                    # surface is covered by shop.shb.tests (SHB-10, SHB-11, SHB-14).
                     for path, status in (
-                        ('/api/v1/catalog/', 200),
-                        ('/purchase/simple/', 200),
+                        ('/api/v1/catalog/', 403),
+                        ('/purchase/simple/', 403),
                         ('/purchase/access/', 200),
-                        ('/purchase/cart/', 401),
+                        ('/purchase/cart/', 404),
                         ('/purchase/quotations/', 401),
-                        ('/purchase/request-quotation/', 401),
-                        ('/api/v1/configurations/validate/', 405),
+                        ('/purchase/request-quotation/', 404),
+                        ('/api/v1/configurations/validate/', 404),
                         ('/api/v1/configuration-drafts/00000000-0000-0000-0000-000000000001/', 401),
                         ('/admin/', 404)):
                         require(get(port, path)[0] == status, 'product/authentication boundary mismatch')
@@ -178,7 +307,7 @@ def qualify(faults=False):
                 require('"event":"health.ready"' in log_output and '"event":"health.live"' in log_output,
                         'real request safe events missing')
                 checks += 1
-                marker = 'CORE_PASS' if faults else 'CORE_LOCAL_PASS'
+                marker = 'CORE_PASS' if faults else ('CORE_HISTORICAL_PASS' if historical else 'CORE_LOCAL_PASS')
                 print(f'{marker} checks={checks} tests={tests} duration_seconds={time.monotonic()-started:.3f}')
                 if not faults:
                     print('PENDING_OFF_HOST: database outage/recovery unexecuted; full core qualification pending')
@@ -206,7 +335,10 @@ def qualify_adapters():
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('lane', choices=('core', 'core-local', 'adapters'))
+    # `core-historical` runs the deferred IP-sale / time-accounting modules
+    # preserved per 2026-11-04 amendment §3; it is NOT a release gate for SHB
+    # rev 1.1 and is not invoked by scripts/check.py's default lanes.
+    parser.add_argument('lane', choices=('core', 'core-local', 'core-historical', 'adapters'))
     parser.add_argument('--runner-authorization', type=Path)
     args = parser.parse_args()
     if args.lane == 'adapters':
@@ -218,11 +350,21 @@ def main():
         runner_authorization(args.runner_authorization or os.environ.get("SHOP_CORE_RUNNER_AUTHORIZATION"))
     elif args.runner_authorization:
         raise ValueError('runner authorization is only valid for the full core lane')
-    qualify(faults=args.lane == 'core')
+    if args.lane == 'core-historical':
+        qualify(faults=False, labels=CORE_HISTORICAL_LABELS, historical=True)
+    else:
+        qualify(faults=args.lane == 'core')
 
 if __name__ == '__main__':
     try:
         main()
     except (ValueError, OSError, subprocess.SubprocessError) as error:
         print('BACKEND_FAIL: ' + str(error), file=sys.stderr)
+        if isinstance(error, subprocess.CalledProcessError):
+            if error.output:
+                print('--- subprocess stdout ---', file=sys.stderr)
+                print(error.output[-6000:] if len(error.output) > 6000 else error.output, file=sys.stderr)
+            if error.stderr:
+                print('--- subprocess stderr ---', file=sys.stderr)
+                print(error.stderr[-6000:] if len(error.stderr) > 6000 else error.stderr, file=sys.stderr)
         raise SystemExit(1)
