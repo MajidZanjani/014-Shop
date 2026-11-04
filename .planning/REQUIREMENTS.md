@@ -1,8 +1,12 @@
 # SHB release requirements
 
-Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](STATE.md) / [ROADMAP.md](ROADMAP.md).
+Current product authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30.
 
-STATE.md and ROADMAP.md own current status. No SHB criterion is complete merely because earlier code/tests exist.
+Current planning/execution authority: [2026-11-04 amendment](../014-Shop-SHB-Claude-Correction-Prompt-2026-11-04.txt) — supersedes conflicting earlier planning/execution instructions only. All security and operational restrictions remain binding.
+
+Current routing: [STATE.md](STATE.md) / [ROADMAP.md](ROADMAP.md) / [HANDOFF.md](HANDOFF.md).
+
+STATE.md and ROADMAP.md own current status. No SHB criterion is complete merely because earlier code/tests exist, and no criterion is complete merely because a `test_shb_NN_*` method exists if that method's assertion is silently skipped or named by a method grep cannot find. The traceability table below carries phantom citations for SHB-07/19/20/21/22/23/24/26 (the method names listed do not appear in source; the committed assertions for those SHBs live under their original names in `backend/shop/shb/paid_order_tests.py` at the cited commits). The repair is tracked as `R3` in HANDOFF.md and is not performed by this preamble.
 
 - [ ] **SHB-01**: Load active shop with valid access — Exactly one product and the two exact requested variant labels.
 - [ ] **SHB-02**: Visit old IP route or submit old IP SKU — No new IP sale; existing orders/history and contractual obligations remain intact.

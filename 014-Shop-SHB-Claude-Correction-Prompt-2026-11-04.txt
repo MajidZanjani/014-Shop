@@ -1,0 +1,113 @@
+Continue 014-Shop: complete the SHB-only release and correct the remaining plan
+Review date: 4 November 2026
+
+Continue the existing Supporting Hours Bundle release. This instruction resumes that objective; it does not request a new product or a new local initiative. Correct the existing planning and verification paths, then continue the next authorized, unblocked implementation batch.
+
+The review baseline was b38dc244f78b32fdf3129f1ae49c5112cb1da2a2. Inspect the current worktree and subsequent commits once; do not reset to that commit or overwrite later work.
+
+1. Authority and product scope
+
+Read the current AGENTS.md, the full 014-Shop-SHB-Proposal-Revision-2026-10-30.md revision 1.1 including its appendix, and the operative planning/state/handoff files. Follow the existing GSD workflow. My current instruction and revision 1.1 supersede conflicting historical IP-sale and automated time-accounting requirements.
+
+Complete only:
+- One visible product named "Supporting Hours Bundle".
+- "FPGA Supporting Hours Bundle": 10 hours per bundle, positive whole-bundle quantities, automated checkout for an eligible customer.
+- "ASIC Supporting Hours Bundle": 25 hours per bundle, higher approved base hourly rate, "Submit Request", technical review, a matching approved offer, customer acceptance, then payment.
+- The approved minimum company/billing/contact form and brief ASIC context; optional scoped discounts.
+- Server-enforced invitation access for six calendar months from creation, including private storefront/assets and revocation. Follow revision 1.1's fixed shop.xspi.pro/invite/<token> design and Asia/Tbilisi calendar rules.
+- Per-order purchased hours, payment/order records, ordinary transaction/request notifications, and the existing staff order/approval tools.
+- Manual support-time tracking and manual support-task emails outside the shop. No online used/remaining-hour calculations, cumulative balance, time credits/debits, staff time-entry workflow, automated usage statements or customer support/bundle panel.
+
+Keep new IP-product sales disabled. Do not build or finish the old licence configurator, board/host/production-band questionnaire, IP package/key/reference-design delivery or trial funnel. Keep historical code, data, evidence, contracts and existing obligations intact. Reuse the existing architecture and shared services; do not rebuild the shop or introduce another commerce platform.
+
+Support eligibility for existing SLL IP, software dependency licence compliance, staff MFA, private access, financial integrity and recovery remain relevant. Classify by actual purpose, not by whether a filename contains "IP", "licence", "catalog" or "support".
+
+2. Correct the false stopping condition
+
+At the review baseline, HANDOFF.json and the Phase 6 .continue-here.md say "no local work remains" because every SHB requirement supposedly has an explicit tagged test. That is not a valid completion criterion.
+
+Inspect actual remaining code and release wiring. Separate:
+A. Implemented and verified locally.
+B. Remaining SHB implementation or release preparation that can proceed locally.
+C. Integration/qualification requiring specified external data, access or a suitable runner.
+D. Commercial decisions or explicit operational authority.
+E. Historical/deferred work excluded from SHB acceptance.
+
+Do not describe missing implementation as merely "waiting for credentials". Do not describe a passing refusal of live operation as proof that a valid approved configuration can operate correctly. Equally, do not invent extra local work after the concrete SHB gaps have actually been exhausted.
+
+3. Reconcile the required test and CI paths with SHB
+
+Inspect scripts/check.py, scripts/check_backend.py, scripts/check_shb.py, scripts/check_shb_retained.py, scripts/demo_shb.py and both .github/workflows/ci.yml and development.yml.
+
+At the baseline:
+- Required CI calls check.py all, whose core lane still selects old IP/ledger/package/licence-change/delivery test modules without selecting the SHB modules.
+- check_backend.py retains old expectations such as anonymous catalog and purchase-form HTTP 200 responses, contrary to invitation-only SHB behavior.
+- The development workflow still invokes demo_purchase_flow.py, whose scenario creates old IP sales, licence entitlements, reference-design deliveries and support credits.
+- The SHB shared lane includes legacy fulfilment and automated support-statement tests.
+- check_shb_retained.py includes shop.shb.discount_issuance_tests, but check_shb.py omits that module.
+
+Update the active release/development checks to exercise the actual SHB application and relevant shared security, payment, transaction, archive, worker and recovery invariants. Use one consistent SHB suite definition across supported runners where practical, including discount issuance.
+
+Preserve historical tests. Move dedicated excluded-product/time-accounting tests out of mandatory SHB acceptance into an explicitly identified historical regression lane. If an old test protects a reused component or an existing obligation, retain that protection with a specific justification, or exercise the shared invariant with SHB fixtures. Do not delete useful assertions, suppress failures, add blanket skips or disable old-IP-route rejection to make the current shop pass. Historical regression settings must never become a production route bypass.
+
+Do not infer success or failure of a CI run that has not been executed.
+
+4. Repair evidence accuracy and the concrete test defect
+
+Verify the requirement-to-test map against actual source definitions. At the baseline, the complete-explicit-coverage document and REQUIREMENTS.md name several nonexistent test_shb_07/test_shb_19/etc. methods; the scenarios exist under ordinary names in paid_order_tests.py. Link to the real tests. Do not add duplicate tests just to match a naming convention, and do not treat the 297 SHB tests as 297 explicitly tagged methods.
+
+In backend/shop/shb/tests.py, the SHB-13 scanner test imports DiscountReservation from shop.payments.models, catches the error and conditionally omits the assertion. The actual model is in shop.shb.models. Fix that import and make the required assertion unconditional; remove similar silent assertion omissions where directly encountered.
+
+Keep local SHB-28 replay checks distinct from an actual backup restore, and local SHB-30 code checks distinct from deployment/non-disruption qualification. Preserve real qualification gates.
+
+The existing 640-test evidence matches its recorded current source set. The 161-check browser record predates later test/documentation edits but still matches the recorded application and browser-harness files. Preserve useful evidence, state its actual scope/source identity, and rerun only where changes, a concrete risk or a required gate justify it. Test counts are evidence, not the target.
+
+5. Make remaining operational implementation explicit
+
+At the baseline, inspect at least:
+- backend/shop/shb/catalog.py: live approved-offer selection is explicitly pending; pricing accepts synthetic policies only.
+- backend/shop/shb/checkout.py and invitations.py: checkout requires the fake-only fixture guard and constructs synthetic terms/order snapshots.
+- backend/shop/shb/views.py and services.py: live ASIC request intake is explicitly blocked.
+- backend/shop/shb/models.py: discount/issuance records have synthetic-only constraints.
+- The shared payment boundary: synthetic-bank calls and synthetic checkout/acceptance records.
+- backend/shop/shb/transaction_mail.py and purchase notifications: fake capture rather than actual mail transport.
+- Private release/archive/storage and deployment integration required for actual operation.
+
+Plan the smallest coherent changes that connect approved commercial/policy data, eligibility/invitation issuance, orders, selected-bank payment/reconciliation, transactional mail and recoverable storage. Implement provider-independent portions and locally verifiable behavior now where authorized. Provider-specific code must follow the actual selected provider documentation; identify the exact missing specification when blocked.
+
+Keep fixtures explicitly separate from real records and approvals. Never promote synthetic customers, prices, agreements, evidence, orders or payment results into live authority. Do not enable the shop by merely removing guards, changing evidence flags or weakening database constraints. Preserve validated approval, identity, transaction and recovery checks in the eventual real path.
+
+Missing ASIC commercial adoption should block the affected ASIC operation, not independently ready FPGA work. Unknown prices/tax/terms remain unset; do not invent commercial values or legal decisions.
+
+6. Update the existing plan once, with a finite path to completion
+
+Synchronize PROJECT.md, REQUIREMENTS.md, ROADMAP.md, STATE.md, state.json, HANDOFF.md, HANDOFF.json, the active phase continuation file and the current demo instructions in docs/purchase-flow.md. Keep stable historical IDs and audit history, but label old results as historical. Do not create a parallel master plan or make cosmetic phase closure the objective.
+
+Use a concise remaining-work table containing:
+- Deliverable and relevant SHB requirement/shared invariant.
+- Concrete files/components and acceptance result.
+- Whether it can be done locally now.
+- Exact external dependency and owner, if any.
+- Evidence needed to close it.
+
+Set one next task, not "Phase 6 or Phase 7" or "ask for a new scope". Choose by dependency and completion value. Consolidate actual commercial inputs in the existing decision record; do not request obsolete IP-sale pricing/rights or repeatedly ask for inputs already recorded as pending.
+
+7. Preserve operational boundaries
+
+Keep all existing production services and resources protected. This instruction authorizes the existing local SHB implementation/planning scope; it does not authorize production activation, bank-sandbox connection, real charges/refunds, customer emails, host changes, DNS/TLS/ingress changes, destructive drills or paid provisioning.
+
+Retain the authorized independent off-host runner requirement for the qualification that needs it. State the exact dependency for each task; an unassigned runner does not itself prevent local code changes, test/CI reconciliation, policy-loading implementation or preparation of deployment artifacts. Prepare concrete reviewable changes before any separately required approval.
+
+8. Execute and report
+
+After the bounded reconciliation, complete the next meaningful authorized SHB batch. Use focused checks during development and the relevant required regression checks for the completed batch. Avoid a full multi-minute rerun after every documentation-only or test-label edit unless a required gate or changed behavior warrants it.
+
+Report:
+- What SHB behavior or release-preparation gap was closed.
+- What historical IP/time work was removed from mandatory SHB acceptance, with retained shared safeguards.
+- Exact commands executed and actual results.
+- Current source/evidence identity and the limits of synthetic verification.
+- Remaining implementation separately from external decisions/qualification.
+- The single next action.
+
+Do not stop after another plan document or ask me to invent a new scope for unfinished SHB work. If all authorized unblocked work is genuinely complete, stop with the smallest specific blocker list and the exact input or authority needed.

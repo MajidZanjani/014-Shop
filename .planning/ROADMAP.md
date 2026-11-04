@@ -1,16 +1,16 @@
 # Roadmap — Supporting Hours Bundle
 
-Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. The user explicitly replaces the earlier active product plan on 2026-10-30. Current routing: [STATE.md](STATE.md) / [ROADMAP.md](ROADMAP.md).
+Current product authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. Current planning/execution authority: [2026-11-04 amendment](../014-Shop-SHB-Claude-Correction-Prompt-2026-11-04.txt) — supersedes conflicting earlier planning/execution instructions only. Current routing: [STATE.md](STATE.md) / [ROADMAP.md](ROADMAP.md) / [HANDOFF.md](HANDOFF.md).
 
 **Current development focus:** 6 — Invitation scope, verified resources and staff MFA.
 
-**Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
+**Last fully completed phase:** 1 — documentary authority/reconciliation only.
 
 **Current plan:** 06-01 — protected invitation issuance/reissue, scoped discount revocation and separate protected discount issuance verified locally; actual qualification remains open.
 
-**Execution status:** active — every SHB-01 through SHB-30 requirement now has an explicit `test_shb_NN_*` tagged assertion in the retained shared regression lane. Shared retained lane passes 640 total (297 SHB) in 273.887s; browser lane remains at 161 (re-verified at head via 601663ad). See docs/build/shb-complete-explicit-coverage-2026-11-03.md.
+**Execution status:** active — 2026-11-04 amendment re-opens Phase 6 for defect remediation. Shared retained lane last recorded 640/297 and browser lane 161 at 2026-11-03 against commit b38dc24. Next action R1 (SHB-13 silent-skip fix at backend/shop/shb/tests.py:251-300); follow-ups R2..R9 in HANDOFF.md.
 
-**Next implementation task:** All 30 SHB rev 1.1 requirements have explicit local-verifiable coverage. The remaining items are the external gates: pinned Nix/source/runtime/native/licence/OCI/CI and actual commercial/provider/refund/tax/mail/host/ingress/database/human/independent custody/post-backup/transport/restore/complete-loss qualification; the authorized independent off-host runner is unassigned.
+**Next implementation task:** R1 — fix the SHB-13 silent-skip defect in backend/shop/shb/tests.py:251-300 (change DiscountReservation import to shop.shb.models, remove the try/except and the conditional skip, make the assertion unconditional). Follow-up R2..R9 in HANDOFF.md; R9 (external gates and off-host runner) remains external.
 
 Stable T01–T14/folder IDs preserve history. Titles and active task scopes now follow SHB 1.1. Completed summary counts below are historical records, not engineering effort or new commercial acceptance.
 
@@ -21,7 +21,7 @@ Stable T01–T14/folder IDs preserve history. Titles and active task scopes now 
 - [ ] **Phase 3: Supporting Hours Bundle catalog and approved pricing**
 - [ ] **Phase 4: Shared SHB form, invitations and private storefront**
 - [ ] **Phase 5: SHB durable records, archives and outbox**
-- [ ] **Phase 6: Invitation scope, verified resources and staff MFA** — CURRENT DEVELOPMENT FOCUS; active — every SHB-01 through SHB-30 requirement now has an explicit `test_shb_NN_*` tagged assertion in the retained shared regression lane (640 total / 297 SHB; browser 161). See docs/build/shb-complete-explicit-coverage-2026-11-03.md for the SHB-NN → test map.
+- [ ] **Phase 6: Invitation scope, verified resources and staff MFA** — CURRENT DEVELOPMENT FOCUS; active — 2026-11-04 amendment re-opens Phase 6 for defect remediation. Shared retained lane last recorded 640/297 and browser lane 161 at 2026-11-03 against commit b38dc24. Next action R1 (SHB-13 silent-skip fix at backend/shop/shb/tests.py:251-300); follow-ups R2..R9 in HANDOFF.md.
 - [ ] **Phase 7: FPGA checkout, ASIC reviewed offers and scoped discounts**
 - [ ] **Phase 8: Payment lifecycle and fault-injectable synthetic bank**
 - [ ] **Phase 9: Selected-bank sandbox and complete reconciliation**
@@ -95,7 +95,7 @@ Plans: [05-01-PLAN](phases/05-durable-records-and-outbox/05-01-PLAN.md)
 
 ### Phase 6: Invitation scope, verified resources and staff MFA
 
-Status: CURRENT DEVELOPMENT FOCUS; active — SHB-07/26/23/24 Phase 10, SHB-19/22/20/21 Phase 8, SHB-12 Phase 6, SHB-10 Phase 4 and SHB-11-01 Phase 11 bypass assertions committed (dc902cb,f421a7a,c1dba1c,a3dd5fa,abf491b,44abaf8,a41b42d,cd88d44,91d3835,7aff8f9,c7d76c1); shared retained lane now passes 624 total (281 SHB) in 269.916s; browser lane remains at 161 (re-verified at head via 601663ad).
+Status: CURRENT DEVELOPMENT FOCUS; active — 2026-11-04 amendment re-opens Phase 6 for defect remediation. Shared retained lane last recorded 640/297 and browser lane 161 at 2026-11-03 against commit b38dc24. Next action R1 (SHB-13 silent-skip fix at backend/shop/shb/tests.py:251-300); follow-ups R2..R9 in HANDOFF.md.
 
 Goal: Invitation authorizes current offers/new purchases only; no customer history or prefilled private data. Retain verified-contact access for old private resources and MFA/recent verification/resource permissions for every staff route.
 
@@ -213,7 +213,7 @@ Plans: [14-01-PLAN](phases/14-shb-release-handover/14-01-PLAN.md)
 | 3. Supporting Hours Bundle catalog and approved pricing | 0/1 | In Progress | Pending actual revised evidence |
 | 4. Shared SHB form, invitations and private storefront | 0/1 | In Progress | Pending actual revised evidence |
 | 5. SHB durable records, archives and outbox | 0/1 | In Progress | Pending actual revised evidence |
-| 6. Invitation scope, verified resources and staff MFA | 0/1 | In Progress; CURRENT DEVELOPMENT FOCUS; active — SHB-07/26/23/24 Phase 10, SHB-19/22/20/21 Phase 8, SHB-12 Phase 6, SHB-10 Phase 4 and SHB-11-01 Phase 11 bypass assertions committed (dc902cb,f421a7a,c1dba1c,a3dd5fa,abf491b,44abaf8,a41b42d,cd88d44,91d3835,7aff8f9,c7d76c1); shared retained lane now passes 624 total (281 SHB) in 269.916s; browser lane remains at 161 (re-verified at head via 601663ad). | Pending actual revised evidence |
+| 6. Invitation scope, verified resources and staff MFA | 0/1 | In Progress; CURRENT DEVELOPMENT FOCUS; active — 2026-11-04 amendment re-opens Phase 6 for defect remediation. Shared retained lane last recorded 640/297 and browser lane 161 at 2026-11-03 against commit b38dc24. Next action R1 (SHB-13 silent-skip fix at backend/shop/shb/tests.py:251-300); follow-ups R2..R9 in HANDOFF.md. | Pending actual revised evidence |
 | 7. FPGA checkout, ASIC reviewed offers and scoped discounts | 1/4 | In Progress | Pending actual revised evidence |
 | 8. Payment lifecycle and fault-injectable synthetic bank | 0/3 | In Progress | Pending actual revised evidence |
 | 9. Selected-bank sandbox and complete reconciliation | 0/1 | Pending | Pending actual revised evidence |

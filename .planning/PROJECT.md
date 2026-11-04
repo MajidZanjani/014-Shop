@@ -4,13 +4,13 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Current development focus:** 6 — Invitation scope, verified resources and staff MFA.
 
-**Last fully completed phase:** 1 — documentary authority/reconciliation only; historical implementation evidence is not SHB acceptance.
+**Last fully completed phase:** 1 — documentary authority/reconciliation only.
 
 **Current plan:** 06-01 — protected invitation issuance/reissue, scoped discount revocation and separate protected discount issuance verified locally; actual qualification remains open.
 
-**Execution status:** active — every SHB-01 through SHB-30 requirement now has an explicit `test_shb_NN_*` tagged assertion in the retained shared regression lane. Shared retained lane passes 640 total (297 SHB) in 273.887s; browser lane remains at 161 (re-verified at head via 601663ad). See docs/build/shb-complete-explicit-coverage-2026-11-03.md for the SHB-NN → test map.
+**Execution status:** active — 2026-11-04 amendment re-opens Phase 6 for defect remediation. Shared retained lane last recorded 640/297 and browser lane 161 at 2026-11-03 against commit b38dc24. Next action R1 (SHB-13 silent-skip fix at backend/shop/shb/tests.py:251-300); follow-ups R2..R9 in HANDOFF.md.
 
-**Next implementation task:** All 30 SHB rev 1.1 requirements have explicit local-verifiable coverage. The remaining items are the external gates: pinned Nix/source/runtime/native/licence/OCI/CI and actual commercial/provider/refund/tax/mail/host/ingress/database/human/independent custody/post-backup/transport/restore/complete-loss qualification; the authorized independent off-host runner is unassigned.
+**Next implementation task:** R1 — fix the SHB-13 silent-skip defect in backend/shop/shb/tests.py:251-300 (change DiscountReservation import to shop.shb.models, remove the try/except and the conditional skip, make the assertion unconditional). Follow-up R2..R9 in HANDOFF.md; R9 (external gates and off-host runner) remains external.
 
 ## What this is
 

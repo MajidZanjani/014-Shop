@@ -1,14 +1,16 @@
 ---
 gsd_state_version: "1.0"
 release: shb-1.1
+amendment: 014-Shop-SHB-Claude-Correction-Prompt-2026-11-04.txt
+amendment_date: 2026-11-04
 current_phase: 6
 current_phase_name: Invitation scope, verified resources and staff MFA
 current_plan: 1
 current_task: 1
 status: active
-last_updated: "2026-11-03T09:35:00.000Z"
-last_activity: 2026-11-03
-state_head: c7d76c166255aac08eb21b72fe2144469318b2b3
+last_updated: "2026-11-04T05:52:00.000Z"
+last_activity: 2026-11-04
+state_head: b38dc244f78b32fdf3129f1ae49c5112cb1da2a2
 progress:
   # The project treats `percent` as PHASE-based completion (enforced by
   # scripts/check_planning.py:74 as round(100 * completed_phases / total_phases)).
@@ -30,7 +32,7 @@ progress:
 
 # Project state — Supporting Hours Bundle revision 1.1
 
-Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. STATE.md / ROADMAP.md remain operative.
+Current product authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-30.md), SHA256 `ba801dff4adbfdcfa0f1e43cfe1f2d6963780476867da1b5e6f737230a472b5e`. Current planning/execution authority: [2026-11-04 amendment](../014-Shop-SHB-Claude-Correction-Prompt-2026-11-04.txt) — supersedes conflicting earlier planning/execution instructions only. STATE.md / ROADMAP.md remain operative.
 
 **Current development focus:** 6 — Invitation scope, verified resources and staff MFA.
 
@@ -38,9 +40,9 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Current plan:** 06-01 — protected invitation issuance/reissue, scoped discount revocation and separate protected discount issuance verified locally; actual qualification remains open.
 
-**Execution status:** active — every SHB-01 through SHB-30 requirement now has an explicit `test_shb_NN_*` tagged assertion in the retained shared regression lane. This session added SHB-11/13/14/15/16/17/18/08/09/05/25/01-02-03-04-06/27/28/29/30 (commits 5b96383,abbd461,3cffe9d,cae3430,7d154de,681c9b9,f4cdab6,2719357,b29a408,4468355,ef064c5,615b843,410c034,87ddc23,8a62ec0,4b9a648). Shared retained lane passes 640 total (297 SHB) in 273.887s; browser lane remains at 161 (re-verified at head via 601663ad). Prior session had committed SHB-07/26/23/24/19/20/21/22/12/10/11-01.
+**Execution status:** active — 2026-11-04 amendment re-opens Phase 6 for defect remediation. Shared retained lane last recorded 640/297 and browser lane 161 at 2026-11-03 against commit b38dc24. Next action R1 (SHB-13 silent-skip fix at backend/shop/shb/tests.py:251-300); follow-ups R2..R9 in HANDOFF.md.
 
-**Next implementation task:** All 30 SHB rev 1.1 requirements have explicit local-verifiable coverage. Remaining items are the external gates: pinned Nix/source/runtime/native/licence/OCI/CI and actual commercial/provider/refund/tax/mail/host/ingress/database/human/independent custody/post-backup/transport/restore/complete-loss qualification; the authorized independent off-host runner is unassigned. Local 06-01 slice is fully verified. See docs/build/shb-complete-explicit-coverage-2026-11-03.md for the SHB-NN → test map.
+**Next implementation task:** R1 — fix the SHB-13 silent-skip defect in backend/shop/shb/tests.py:251-300 (change DiscountReservation import to shop.shb.models, remove the try/except and the conditional skip, make the assertion unconditional). Follow-up R2..R9 in HANDOFF.md; R9 (external gates and off-host runner) remains external.
 
 ## Verified local scope
 
@@ -98,3 +100,5 @@ Verified Phase 10 continuation 2026-11-03T06:55:00+00:00: explicit SHB-24 per-or
 Verified Phase 10 continuation 2026-11-03T06:30:00+00:00: explicit SHB-23 cross-model invariant assertion committed as c1dba1c (`test(10-01): assert SHB-23 cross-model invariant under temporary mail failure`,36 insertions). During temporary PreparedArchive.publish failure (ArchiveError), PaidOrder.payload stays byte-identical, DiscountReservation state/consumed_order_id stay byte-identical, SyntheticPaymentAttempt state/amount_minor stay byte-identical, no PurchaseNoticeCapture is created, and assigned staff with recent MFA and PaidOrderGrant can still read /staff/shb-orders/<pk>/ returning the correct hours. After the lease expires and the patch lifts, purchase_mail.execute_once() recovers to exactly one PurchaseNoticeCapture with PaidOrder count still 1 and business state still byte-identical. Shared retained regression passes 610 total in 264.242s (267 SHB, +1 vs 609); new evidence docs/evidence/shb/retained-tests/be47eee8c6b72c8c31211f545a151d9ac5f583f7aa118c0eae3365328899c0a0.json. Focused 1-test audit record c280077332d182a2a5883c937554d58d75559069fbe7c920416e528f2696e3ef.json retained. Browser lane unchanged at 161. The invariant was already implicit; this commit makes SHB-23 explicit coverage. No parent SUMMARY/count change (11/42 and 1/14); actual gates/off-host runner unchanged.
 
 Verified Phase 10 continuation 2026-11-03T06:05:00+00:00: explicit SHB-26 invitation-expiry invariant assertion committed as f421a7a (`test(10-01): assert SHB-26 paid order survives invitation expiry`,29 insertions in backend/shop/shb/paid_order_tests.py). After the customer's invitation elapses past its 6-month calendar expiry (patched via `shop.shb.invitations.now`), the customer-side attempt at a second purchase fails (no 302, no new SupportCheckout, no new PaidOrder) while the existing PaidOrder remains byte-identical, visible to assigned staff with recent MFA at /staff/shb-orders/<pk>/, and still processable by purchase_mail.execute_once(). No SyntheticFulfilment/SyntheticSupportEvent produced -- purchased support hours continue under their own terms independently of the invitation lifecycle. Shared retained regression passes 609 total in 261.435s (266 SHB, +1 vs 608); new evidence docs/evidence/shb/retained-tests/55f826a4a734289ea97b53cb0e508cfcdb4a66fe576a791bad1c82976d86310b.json. Focused 1-test audit record 3d61e87bd17f9baed58a960f279b571326dd24c003da446c9e869325878305a4.json retained. Browser lane unchanged at 161. The SHB-26 invariant was already implicit; this commit makes it explicit coverage. No parent SUMMARY/count change (11/42 and 1/14); actual gates/off-host runner unchanged.
+
+Amendment adoption 2026-11-04T05:52:00+00:00: user `/gsd-quick` registered the 2026-11-04 planning/execution amendment `014-Shop-SHB-Claude-Correction-Prompt-2026-11-04.txt` as persistent authority alongside SHB revision 1.1. Quick task `261104-81g` created project-root `CLAUDE.md` importing `@AGENTS.md` and the amendment TXT; both imports resolve to existing files. Inserted an "Amendment precedence (2026-11-04)" block near the top of `AGENTS.md` without overwriting any pre-existing instruction. Rewrote `.planning/HANDOFF.md`, `.planning/HANDOFF.json` and `.planning/phases/06-invitation-scope-and-staff-mfa/.continue-here.md` to withdraw the 2026-11-03 "no local work remains" stopping condition and enumerate the nine remaining-work items `R1..R9` (SHB-13 silent-skip, sibling-module silent-skip audit, REQUIREMENTS.md phantom citations, check_shb.py/check_shb_retained.py suite asymmetry, check_backend.py core-local legacy module list + anonymous-catalog 200 assertion, development.yml demo_purchase_flow invocation, check_shb_retained.py legacy module audit, per-file synthetic-vs-real-path documentation, and external gates). Verified defect claims against actual source: SHB-13 test at `backend/shop/shb/tests.py:251-300` does swallow `ImportError` and skip its assertion; `scripts/check_shb.py:49` does omit `shop.shb.discount_issuance_tests` that `scripts/check_shb_retained.py:164` includes; `scripts/check_backend.py:127` has no `shop.shb.*` modules and `:147` asserts `/api/v1/catalog/` 200; `.github/workflows/development.yml:91` invokes `scripts/demo_purchase_flow.py`; only 18 `def test_shb_` methods exist in source against ~26 cited. Updated `state.json.next` to point at `R1` (SHB-13 fix) as the single next action for `$gsd-resume-work`. No test rerun (documentation-only reconciliation); last-recorded 640/297 shared and 161 browser evidence stands for 2026-11-03 commit `3116f19`, carried forward unchanged to pause commit `b38dc24`. No parent SUMMARY/count change (11/42 and 1/14); no external gate closed. Preserved historical IDs and completed implementation; no code or test file modified by this quick task.

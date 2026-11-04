@@ -2,6 +2,31 @@
 
 Current user-authorized product plan: [SHB revision 1.1](014-Shop-SHB-Proposal-Revision-2026-10-30.md), read fully including Appendix A. It supersedes conflicting earlier storefront/IP/time-ledger requirements. Existing .planning/PROJECT.md, REQUIREMENTS.md, ROADMAP.md and STATE.md are the operative plan; stable old phase/folder IDs are retained for history. Historical originals are in docs/archive/2026-10-30-before-shb; their next actions are not active instructions.
 
+## Amendment precedence (2026-11-04)
+
+The user-authorized planning and execution amendment
+[`014-Shop-SHB-Claude-Correction-Prompt-2026-11-04.txt`](014-Shop-SHB-Claude-Correction-Prompt-2026-11-04.txt)
+governs how work on this release continues. SHB revision 1.1 above
+remains the **product specification**; the amendment supersedes
+conflicting earlier **planning and execution** instructions, including
+the previous "no local work remains" stopping condition recorded in
+HANDOFF and the Phase 6 continuation. All security and operational
+restrictions in this file — protected services, no blanket NixOS
+activation, no real bank/mail/host/DNS/TLS action, no paid provisioning,
+closed production/bank-sandbox gate, unassigned off-host runner, credential
+handling — remain binding without exception.
+
+The amendment identifies concrete defects in current source/test/CI/doc
+artifacts (SHB-13 silent-skip, check_shb.py suite asymmetry, check_backend.py
+legacy module list, development.yml demo_purchase_flow invocation,
+REQUIREMENTS.md citations of nonexistent test methods). These are
+tracked in `.planning/HANDOFF.md` as remaining SHB implementation.
+Source/evidence registration and planning reconciliation for the
+amendment were completed on 2026-11-04 by quick task `261104-81g`; future
+sessions continue the resulting plan rather than repeat adoption. The
+project-root `CLAUDE.md` imports this file and the amendment TXT; do not
+add a second entry point.
+
 ## Product
 
 Invitation-only shop at https://shop.xspi.pro. One visible product **Supporting Hours Bundle**; exactly **FPGA Supporting Hours Bundle** (10 hours, automatic eligible Checkout) and **ASIC Supporting Hours Bundle** (25 hours, Submit Request then reviewed matching offer/acceptance/payment). Positive whole-bundle quantity, authoritative price/hours, minimum company/billing/contact form and optional scoped percentage code. New IP sales/routes are disabled; preserve prior code/history/accepted obligations. No new licence/board/host/production questionnaire or technical uploads.
