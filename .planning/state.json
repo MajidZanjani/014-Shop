@@ -79,8 +79,8 @@
   ],
   "next": {
     "command": "$gsd-resume-work",
-    "label": "R5 — repair CI core-local lane to exercise SHB modules and remove anonymous catalog 200 assertion",
-    "reason": "R4 (SHB suite symmetry) closed on 2026-11-04: scripts/check_shb.py:49 now includes `shop.shb.discount_issuance_tests`; focused run passes 22 tests / SHB_LOCAL_PASS checks=4 tests=31 shared_tests=0 duration_seconds=22.095. R5 is the largest remaining local-now item: scripts/check_backend.py:127 core-local labels list contains ~60 legacy modules and zero shop.shb.* modules, and :147 asserts /api/v1/catalog/ returns 200 anonymously (contradicts invitation-only SHB). Reconcile both; move legacy IP/time-accounting modules to an explicitly identified historical regression lane. Verify with `scripts/check.py all` under the pinned Nix shell. Follow-ups R6..R9 in HANDOFF.md."
+    "label": "R6 — replace demo_purchase_flow.py in development.yml with an SHB-scoped demo",
+    "reason": "R5 (CI core-local lane repair) closed on 2026-11-04: scripts/check_backend.py rewritten with module-level SHB_LABELS, SHARED_INVARIANT_LABELS, CORE_LOCAL_LABELS, CORE_HISTORICAL_LABELS; new core-historical argparse lane preserves legacy modules; HTTP probes updated to SHB invitation-only semantics (anonymous /api/v1/catalog/ and /purchase/simple/ now assert 403, not 200; OLD_SALES routes assert 404); batch size 20→10, timeout 120s→300s. Verified: CORE_LOCAL_PASS checks=5 tests=659 duration_seconds=284.938. R6 is next: .github/workflows/development.yml:91 invokes scripts/demo_purchase_flow.py (old IP rehearsal) as mandatory CI; replace with scripts/demo_shb.py or similar SHB-scoped demo; retain the IP demo script as historical. Follow-ups R7..R9 in HANDOFF.md."
   },
-  "updated_at": "2026-11-04T06:35:00.000Z"
+  "updated_at": "2026-11-04T07:00:00.000Z"
 }
