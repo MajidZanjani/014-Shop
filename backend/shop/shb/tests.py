@@ -257,15 +257,7 @@ class InvitationTests(TransactionTestCase):
         scanner angle (various UAs plus HEAD) and asserts no DiscountReservation,
         PaidOrder, PurchaseNoticeDelivery, PreparedArchive publication or
         SupportRequest row is created by GET/HEAD on /invite/<token>."""
-        from .models import Invitation,SupportRequest
-        try:
-            from shop.payments.models import DiscountReservation
-        except Exception:
-            DiscountReservation=None
-        try:
-            from .models import PaidOrder,PurchaseNoticeDelivery
-        except Exception:
-            PaidOrder,PurchaseNoticeDelivery=None,None
+        from .models import Invitation,SupportRequest,DiscountReservation,PaidOrder,PurchaseNoticeDelivery
         before_expiry=self.invitation.expires_at
         before_digest=self.invitation.token_digest
         before_revoked=self.invitation.revoked_at
@@ -296,12 +288,9 @@ class InvitationTests(TransactionTestCase):
         self.assertEqual(row.revoked_at,before_revoked,'GET must not alter revocation state')
         self.assertEqual(Invitation.objects.count(),1,'no fresh invitations from scanner reuse')
         self.assertEqual(SupportRequest.objects.count(),0,'GET must create no SupportRequest')
-        if DiscountReservation is not None:
-            self.assertEqual(DiscountReservation.objects.count(),0,'GET must create no coupon reservation')
-        if PaidOrder is not None:
-            self.assertEqual(PaidOrder.objects.count(),0,'GET must create no paid order')
-        if PurchaseNoticeDelivery is not None:
-            self.assertEqual(PurchaseNoticeDelivery.objects.count(),0,'GET must dispatch no purchase mail')
+        self.assertEqual(DiscountReservation.objects.count(),0,'GET must create no coupon reservation')
+        self.assertEqual(PaidOrder.objects.count(),0,'GET must create no paid order')
+        self.assertEqual(PurchaseNoticeDelivery.objects.count(),0,'GET must dispatch no purchase mail')
 
     def test_shb_05_forged_quantity_price_hours_discount_or_customer_id_at_submit_rejects(self):
         """SHB-05: invalid quantity and forged price/hours/discount/customer_id
