@@ -79,8 +79,8 @@
   ],
   "next": {
     "command": "$gsd-resume-work",
-    "label": "R2 — audit sibling SHB test modules for silent-skip pattern",
-    "reason": "R1 (SHB-13 silent-skip) closed on 2026-11-04: focused shop.shb.tests.InvitationTests.test_shb_13_valid_link_reuse_and_scanner_get_has_no_side_effect passes with three assertions now unconditional (DiscountReservation / PaidOrder / PurchaseNoticeDelivery); evidence SHB_LOCAL_PASS checks=4 tests=10 shared_tests=0 duration_seconds=12.391. R2 is next: grep backend/shop/shb/{tests,discount_tests,offer_tests,notification_tests,review_tests,financial_tests,paid_order_tests,recovery_tests}.py for the `try: from X import Y except: Y=None` + `if Y is not None:` pattern and fix each or justify. Follow-ups R3..R9 enumerated in .planning/HANDOFF.md."
+    "label": "R5 — repair CI core-local lane to exercise SHB modules and remove anonymous catalog 200 assertion",
+    "reason": "R4 (SHB suite symmetry) closed on 2026-11-04: scripts/check_shb.py:49 now includes `shop.shb.discount_issuance_tests`; focused run passes 22 tests / SHB_LOCAL_PASS checks=4 tests=31 shared_tests=0 duration_seconds=22.095. R5 is the largest remaining local-now item: scripts/check_backend.py:127 core-local labels list contains ~60 legacy modules and zero shop.shb.* modules, and :147 asserts /api/v1/catalog/ returns 200 anonymously (contradicts invitation-only SHB). Reconcile both; move legacy IP/time-accounting modules to an explicitly identified historical regression lane. Verify with `scripts/check.py all` under the pinned Nix shell. Follow-ups R6..R9 in HANDOFF.md."
   },
-  "updated_at": "2026-11-04T06:15:00.000Z"
+  "updated_at": "2026-11-04T06:35:00.000Z"
 }

@@ -6,7 +6,7 @@ Current planning/execution authority: [2026-11-04 amendment](../014-Shop-SHB-Cla
 
 Current routing: [STATE.md](STATE.md) / [ROADMAP.md](ROADMAP.md) / [HANDOFF.md](HANDOFF.md).
 
-STATE.md and ROADMAP.md own current status. No SHB criterion is complete merely because earlier code/tests exist, and no criterion is complete merely because a `test_shb_NN_*` method exists if that method's assertion is silently skipped or named by a method grep cannot find. The traceability table below carries phantom citations for SHB-07/19/20/21/22/23/24/26 (the method names listed do not appear in source; the committed assertions for those SHBs live under their original names in `backend/shop/shb/paid_order_tests.py` at the cited commits). The repair is tracked as `R3` in HANDOFF.md and is not performed by this preamble.
+STATE.md and ROADMAP.md own current status. No SHB criterion is complete merely because earlier code/tests exist, and no criterion is complete merely because a `test_shb_NN_*` method exists if that method's assertion is silently skipped or named by a method grep cannot find. R3 (2026-11-04) repaired the SHB-07/19/20/21/22/23/24/26 rows below to cite the real method names in `backend/shop/shb/paid_order_tests.py`; every row is now grep-verifiable.
 
 - [ ] **SHB-01**: Load active shop with valid access — Exactly one product and the two exact requested variant labels.
 - [ ] **SHB-02**: Visit old IP route or submit old IP SKU — No new IP sale; existing orders/history and contractual obligations remain intact.
@@ -151,7 +151,7 @@ SHB records only bundle size, quantity and hours bought in each order. SLL manua
 | SHB-04 | Phase 3 | Local test `test_shb_01_02_03_04_06_...` (615b843); external gates pending |
 | SHB-05 | Phase 3 | Local test `test_shb_05_forged_quantity_price_hours_discount_or_customer_id_at_submit_rejects` (4468355); external gates pending |
 | SHB-06 | Phase 4 | Local test `test_shb_01_02_03_04_06_...` (615b843); external gates pending |
-| SHB-07 | Phase 10 | Local test `test_shb_07_fpga_top_up_records_independent_per_order_hours` (dc902cb); external gates pending |
+| SHB-07 | Phase 10 | Local test `shop.shb.paid_order_tests.test_eligible_fpga_top_up_records_independent_paid_orders_per_invitation` (dc902cb); external gates pending |
 | SHB-08 | Phase 7 | Local test `test_shb_08_unapproved_asic_or_altered_approved_scope_blocks_payment` (2719357); external gates pending |
 | SHB-09 | Phase 7 | Local test `test_shb_09_approve_clarify_decline_withdraw_each_notices_state_and_no_paid_order` (b29a408); external gates pending |
 | SHB-10 | Phase 4 | Local test `test_shb_10_private_release_and_astro_assets_refuse_without_invitation` (7aff8f9); external gates pending |
@@ -163,14 +163,14 @@ SHB records only bundle size, quantity and hours bought in each order. SLL manua
 | SHB-16 | Phase 7 | Local test `test_shb_16_concurrent_one_use_claims_have_one_reservation_and_apply_consumes_none` (7d154de); external gates pending |
 | SHB-17 | Phase 7 | Local test `test_shb_17_asic_before_coupon_expiry_reviewed_after_keeps_discount_in_offer` (681c9b9); external gates pending |
 | SHB-18 | Phase 7 | Local test `test_shb_18_withdrawn_or_expired_unpaid_offer_releases_reservation_no_claim_extension` (f4cdab6); external gates pending |
-| SHB-19 | Phase 8 | Local test `test_shb_19_forged_payment_success_fields_are_rejected` (abf491b); external gates pending |
-| SHB-20 | Phase 8 | Local test `test_shb_20_duplicate_messages_converge_to_one_reference` (a41b42d); external gates pending |
-| SHB-21 | Phase 8 | Local test `test_shb_21_duplicate_real_payment_identifiable_by_staff` (cd88d44); external gates pending |
-| SHB-22 | Phase 8 | Local test `test_shb_22_reconcile_continues_after_invitation_expiry` (44abaf8); external gates pending |
-| SHB-23 | Phase 10 | Local test `test_shb_23_cross_model_invariant_under_temporary_mail_failure` (c1dba1c); external gates pending |
-| SHB-24 | Phase 10 | Local test `test_shb_24_per_order_hours_display_without_cumulative_balance` (a3dd5fa); external gates pending |
+| SHB-19 | Phase 8 | Local test `shop.shb.paid_order_tests.test_forged_payment_success_fields_at_payment_page_cannot_mark_paid` (abf491b); external gates pending |
+| SHB-20 | Phase 8 | Local test `shop.shb.paid_order_tests.test_duplicate_pay_reconcile_and_worker_iterations_keep_one_order_and_one_reference` (a41b42d); external gates pending |
+| SHB-21 | Phase 8 | Local test `shop.shb.paid_order_tests.test_duplicate_real_payment_leaves_one_order_identifiable_by_staff` (cd88d44); external gates pending |
+| SHB-22 | Phase 8 | Local test `shop.shb.paid_order_tests.test_payment_can_be_reconciled_after_invitation_expiry_without_new_checkout` (44abaf8); external gates pending |
+| SHB-23 | Phase 10 | Local test `shop.shb.paid_order_tests.test_temporary_mail_failure_retains_order_coupon_payment_and_staff_view` (c1dba1c); external gates pending |
+| SHB-24 | Phase 10 | Local test `shop.shb.paid_order_tests.test_staff_order_views_show_per_order_hours_only_without_cumulative_balance` (a3dd5fa); external gates pending |
 | SHB-25 | Phase 10 | Local test `test_shb_25_refund_links_to_original_order_no_automated_time_adjustment_no_erased_history` (ef064c5); external gates pending |
-| SHB-26 | Phase 10 | Local test `test_shb_26_paid_order_survives_invitation_expiry` (f421a7a); external gates pending |
+| SHB-26 | Phase 10 | Local test `shop.shb.paid_order_tests.test_paid_order_remains_valid_and_visible_to_staff_after_invitation_expiry` (f421a7a); external gates pending |
 | SHB-27 | Phase 4 | Local test `test_shb_27_native_js_off_form_same_backend_rules_and_clear_errors` (410c034); external gates pending |
 | SHB-28 | Phase 12 | Local test `test_shb_28_restore_replay_preserves_invitation_expiry_order_reference_and_coupon_state` (87ddc23); external restore qualification pending |
 | SHB-29 | Phase 14 | Local test `test_shb_29_missing_rates_policies_or_provider_fail_closed_while_synthetic_runs` (8a62ec0); external gates pending |

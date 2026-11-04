@@ -8,9 +8,9 @@ Current authority: [SHB revision 1.1](../014-Shop-SHB-Proposal-Revision-2026-10-
 
 **Current plan:** 06-01 — protected invitation issuance/reissue, scoped discount revocation and separate protected discount issuance verified locally; actual qualification remains open.
 
-**Execution status:** active — R1 (SHB-13 silent-skip) closed 2026-11-04; three previously-conditional assertions now unconditional and focused test passes (SHB_LOCAL_PASS). Shared retained lane last recorded 640/297 and browser lane 161 at 2026-11-03 against commit b38dc24; neither rerun by R1 per its evidence-to-close criterion. Next action R2 (silent-skip audit across sibling SHB test modules); follow-ups R3..R9 in HANDOFF.md.
+**Execution status:** active — R1 (SHB-13 silent-skip) / R2 (silent-skip audit — zero additional instances) / R3 (8 phantom citations repaired) / R4 (SHB suite symmetry via adding shop.shb.discount_issuance_tests to check_shb.py) all closed 2026-11-04. Shared retained lane last recorded 640/297 and browser lane 161 at 2026-11-03 against commit b38dc24; neither rerun (amendment §8 — the R1-R4 changes do not warrant a multi-minute rerun). Next action R5 (CI core-local lane repair + anonymous-catalog 200 assertion removal in scripts/check_backend.py); follow-ups R6..R9 in HANDOFF.md.
 
-**Next implementation task:** R2 — audit sibling SHB test modules (backend/shop/shb/{tests,discount_tests,offer_tests,notification_tests,review_tests,financial_tests,paid_order_tests,recovery_tests}.py) for the silent-skip pattern (try: from X import Y except: Y=None followed by if Y is not None:); fix each or justify explicitly. Follow-up R3..R9 in HANDOFF.md; R9 (external gates and off-host runner) remains external.
+**Next implementation task:** R5 — repair the CI core-local lane in scripts/check_backend.py so it exercises SHB modules and genuinely-shared invariants rather than legacy IP/catalog/support-ledger modules (line 127 labels list), and either re-scope or expect-403 the /api/v1/catalog/ anonymous HTTP 200 assertion that contradicts invitation-only SHB (line 147). Move legacy modules into an explicitly identified historical regression lane. Verify with scripts/check.py all. Follow-up R6..R9 in HANDOFF.md; R9 (external gates and off-host runner) remains external.
 
 ## What this is
 
