@@ -79,8 +79,8 @@
   ],
   "next": {
     "command": "$gsd-resume-work",
-    "label": "R6 — replace demo_purchase_flow.py in development.yml with an SHB-scoped demo",
-    "reason": "R5 (CI core-local lane repair) closed on 2026-11-04: scripts/check_backend.py rewritten with module-level SHB_LABELS, SHARED_INVARIANT_LABELS, CORE_LOCAL_LABELS, CORE_HISTORICAL_LABELS; new core-historical argparse lane preserves legacy modules; HTTP probes updated to SHB invitation-only semantics (anonymous /api/v1/catalog/ and /purchase/simple/ now assert 403, not 200; OLD_SALES routes assert 404); batch size 20→10, timeout 120s→300s. Verified: CORE_LOCAL_PASS checks=5 tests=659 duration_seconds=284.938. R6 is next: .github/workflows/development.yml:91 invokes scripts/demo_purchase_flow.py (old IP rehearsal) as mandatory CI; replace with scripts/demo_shb.py or similar SHB-scoped demo; retain the IP demo script as historical. Follow-ups R7..R9 in HANDOFF.md."
+    "label": "R7 — audit check_shb_retained.py for modules that belong in historical regression",
+    "reason": "R6 (development.yml demo path) closed on 2026-11-04: .github/workflows/development.yml:91 swapped (['python3','scripts/demo_purchase_flow.py'],900,'PURCHASE_FLOW_DEMO_PASS') → (['python3','scripts/demo_shb.py','--check'],900,'SHB_DEMO_PASS'). scripts/demo_purchase_flow.py preserved on disk as historical regression (amendment §3). Verified locally under the pinned Nix shell: demo_shb.py --help renders; demo_shb.py --check emits SHB_DEMO_PASS checks=17 evidence=local-synthetic-header-level fpga=review asic=submitted payment=not_exercised manual_time_tracking=true. R7 is next: scripts/check_shb_retained.py:164 lists legacy fulfilment / statement-mail modules alongside the SHB suite; audit each retained legacy module and either move it to the historical lane or justify it with a one-line rationale. R8 (per-file synthetic-vs-real-path documentation) follows; R9 remains external."
   },
-  "updated_at": "2026-11-04T07:00:00.000Z"
+  "updated_at": "2026-11-04T07:30:00.000Z"
 }
